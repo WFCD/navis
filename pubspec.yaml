@@ -1,0 +1,63 @@
+name: navis
+description: A new Flutter application.
+
+dependencies:
+  flutter:
+    sdk: flutter
+  intl: ^0.15.7
+  share: ^0.5.2
+  flutter_youtube: ^1.1.1
+  codable: ^1.0.0-beta.1
+  countdown: ^0.0.3
+  scoped_model: ^0.2.0
+  shared_preferences: ^0.4.2
+  flutter_custom_tabs: ^0.2.0
+  flutter_advanced_networkimage: ^0.3.4
+  android_job_scheduler: ^0.0.7
+  flutter_villains: ^1.1.1
+  flutter_list_drag_and_drop: ^0.1.4
+  flutter_map: ^0.0.11
+  chewie: ^0.6.1
+  flutter_circular_chart: ^0.0.3
+  sentry: ^2.1.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_launcher_icons: ^0.5.2
+
+flutter_icons:
+  image_path: assets/icons/nightmare.png
+  android: true
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/acolytes/
+    - assets/hotfix.jpg
+
+  fonts:
+    - family: Factions
+      fonts:
+        - asset: assets/icons/Factions.ttf
+    - family: Icons
+      fonts:
+        - asset: assets/icons/Icons.ttf
+    - family: Relics
+      fonts:
+        - asset: assets/icons/Relics.ttf
+    - family: Platforms
+      fonts:
+        - asset: assets/icons/Platforms.ttf
+    - family: Syndicates
+      fonts:
+        - asset: assets/icons/Syndicates.ttf
+    - family: Nightmare
+      fonts:
+        - asset: assets/icons/Nightmare.ttf
+    - family: archwing
+      fonts:
+        - asset: assets/icons/archwing.ttf
+    - family: invasions
+      fonts:
+        - asset: assets/icons/invasions.ttf
