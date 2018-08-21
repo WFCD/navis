@@ -12,7 +12,7 @@ dependencies:
   scoped_model: ^0.2.0
   shared_preferences: ^0.4.2
   flutter_custom_tabs: ^0.2.0
-  flutter_advanced_networkimage: ^0.3.4
+  flutter_advanced_networkimage: any
   android_job_scheduler: ^0.0.7
   flutter_villains: ^1.1.1
   flutter_list_drag_and_drop: ^0.1.4

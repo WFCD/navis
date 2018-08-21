@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -43,12 +42,7 @@ class NavisModel extends Model {
 
   List<Syndicates> get syndicates => _worldState.syndicates;
 
-  Invasions get oneInvasion {
-    final rand = Random.secure();
-    final one = rand.nextInt(_worldState.invasions.length);
-
-    return _worldState.invasions[one];
-  }
+  Invasions get oneInvasion => _worldState.invasions.first;
 
   Stream<Duration> get cetusTime {
     String expiry = _worldState.cetus.expiry;
@@ -81,7 +75,7 @@ class NavisModel extends Model {
     if (_worldState.cetus.expiry == null) {
       Future.delayed(Duration(minutes: 1));
       update();
-      _format.format(DateTime.parse(_worldState.cetus.expiry).toLocal());
+      return _format.format(DateTime.parse(_worldState.cetus.expiry).toLocal());
     } else
       return _format.format(DateTime.parse(_worldState.cetus.expiry).toLocal());
   }

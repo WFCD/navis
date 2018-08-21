@@ -30,7 +30,7 @@ class Feed extends StatelessWidget {
               CetusCycle(cycle: Cycle.cetus),
               CetusCycle(cycle: Cycle.earth),
               alerts ? emptyBox : AlertTile(),
-              QuickInvasion(),
+              //QuickInvasion(),
               Trader(),
               Sortie(),
             ]));

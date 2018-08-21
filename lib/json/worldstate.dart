@@ -8,7 +8,7 @@ class WorldState extends Coding {
   Sortie sortie;
   VoidTrader trader;
   List<Invasions> invasions;
-  List<dynamic> events;
+  List<Events> events;
   List<PersistentEnemies> persistentEnemies;
   List<OrbiterNews> news;
   List<Alerts> alerts;
