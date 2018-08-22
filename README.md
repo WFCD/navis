@@ -10,9 +10,11 @@ flutter install
 ```
 make sure that you follow all the instructions and everything should run smoothly, unless there's a bug in which case report it so I can take care of it
 
-Some screen shots to show progress [Pixel 2](https://i.imgur.com/7crlH2r.png), [gif](https://media.giphy.com/media/xUNd9I8cnD6KQBIbbW/giphy.gif) of what I have so far, animations is a lot smoother in person
+Some screen shots to show progress of what I have so far, animations is a lot smoother in person.
 
-keep in mind that I am an amature at this, and I am still learning to code.
+![gif](assets/demo.gif)
+
+keep in mind that I am an amateur at this, and I am still learning to code.
 
 ## Getting Started
 
