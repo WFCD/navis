@@ -19,7 +19,7 @@ class Invasions extends Coding {
     eta = object.decode('eta');
 
     attackerReward = object.decodeObject('attackerReward', () => _Faction());
-    defenderReward = object.decodeObject('defenderFaction', () => _Faction());
+    defenderReward = object.decodeObject('defenderReward', () => _Faction());
 
     vsInfestation = object.decode('vsInfestation');
     completed = object.decode('completed');

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:navis/screens/invasions.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 import '../cards/acolytes.dart';
 import '../cards/alerts.dart';
 import '../cards/cycle.dart';
-import '../cards/qinvasions.dart';
 import '../cards/sortie.dart';
 import '../cards/trader.dart';
 import '../model.dart';
@@ -30,7 +30,6 @@ class Feed extends StatelessWidget {
               CetusCycle(cycle: Cycle.cetus),
               CetusCycle(cycle: Cycle.earth),
               alerts ? emptyBox : AlertTile(),
-              //QuickInvasion(),
               Trader(),
               Sortie(),
             ]));

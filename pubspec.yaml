@@ -20,6 +20,7 @@ dependencies:
   chewie: ^0.6.1
   flutter_circular_chart: ^0.0.3
   sentry: ^2.1.0
+  percent_indicator: ^1.0.9
 
 dev_dependencies:
   flutter_test:
