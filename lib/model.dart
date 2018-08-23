@@ -72,16 +72,32 @@ class NavisModel extends Model {
       DateTime.parse(_worldState.earth.expiry).difference(DateTime.now()));
 
   String get cetusExpiry {
-    if (_worldState.cetus.expiry == null) {
-      Future.delayed(Duration(minutes: 1));
-      update();
-      return _format.format(DateTime.parse(_worldState.cetus.expiry).toLocal());
-    } else
-      return _format.format(DateTime.parse(_worldState.cetus.expiry).toLocal());
+    String expiry;
+    try {
+      expiry =
+          _format.format(DateTime.parse(_worldState.cetus.expiry).toLocal());
+    } catch (err) {
+      Future.delayed(Duration(seconds: 60));
+      expiry =
+          _format.format(DateTime.parse(_worldState.cetus.expiry).toLocal());
+    }
+
+    return expiry;
   }
 
-  String get earthExpiry =>
-      _format.format(DateTime.parse(_worldState.earth.expiry).toLocal());
+  String get earthExpiry {
+    String expiry;
+    try {
+      expiry =
+          _format.format(DateTime.parse(_worldState.earth.expiry).toLocal());
+    } catch (err) {
+      Future.delayed(Duration(seconds: 60));
+      expiry =
+          _format.format(DateTime.parse(_worldState.earth.expiry).toLocal());
+    }
+
+    return expiry;
+  }
 
   String get arrival =>
       _format.format(DateTime.parse(_worldState.trader.activation).toLocal());

@@ -29,10 +29,10 @@ android {
     }
     defaultConfig {
         applicationId "com.cephalon.navis"
-        minSdkVersion 20
+        minSdkVersion 16
         targetSdkVersion 28
         versionCode 1
-        versionName "1.0"
+        versionName "1.0.1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     signingConfigs {
@@ -43,11 +43,13 @@ android {
             storePassword keystoreProperties['storePassword']
         }
     }
+
     buildTypes {
         release {
             signingConfig signingConfigs.release
         }
     }
+
     buildToolsVersion '28.0.2'
 }
 

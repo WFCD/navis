@@ -41,8 +41,7 @@ class CountDown {
 
   /// provide a way to send less data to the client but keep the data of the timer up to date
 
-  int _everyTick,
-      counter = 0;
+  int _everyTick, counter = 0;
 
   /// once you instantiate the CountDown you need to register to receive information
 

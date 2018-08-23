@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
 
@@ -49,9 +47,7 @@ class _CetusCycle extends State<CetusCycle> with TickerProviderStateMixin {
     TextStyle style = TextStyle(fontSize: 15.0);
     return ScopedModelDescendant<NavisModel>(builder: (context, child, model) {
       var cycle = _modelCycle(model);
-      model.cetusTime.listen((data) {},
-          onDone: () => Future.delayed(
-              Duration(milliseconds: 500), () => model.update()));
+      model.cetusTime.listen((data) {}, onDone: () => model.update());
 
       return Tiles(
           child: Column(
@@ -150,12 +146,11 @@ class _CetusCycle extends State<CetusCycle> with TickerProviderStateMixin {
                         color: Colors.blueAccent[400],
                         borderRadius:
                             const BorderRadius.all(const Radius.circular(3.0))),
-                    child: new RichText(
-                        text: new TextSpan(
-                            text: widget.cycle == Cycle.cetus
-                                ? '${model.cetusExpiry}'
-                                : '${model.earthExpiry}',
-                            style: TextStyle(color: Colors.white)))),
+                    child: Text(
+                        widget.cycle == Cycle.cetus
+                            ? '${model.cetusExpiry}'
+                            : '${model.earthExpiry}',
+                        style: TextStyle(color: Colors.white))),
               ],
             ),
           )

@@ -15,7 +15,7 @@ class _FishPlayer extends State<FishPlayer>
   VideoPlayerController _controller;
   bool _isPlaying = true;
   FadeAnimation imageFadeAnim =
-  FadeAnimation(child: const Icon(Icons.play_arrow, size: 100.0));
+      FadeAnimation(child: const Icon(Icons.play_arrow, size: 100.0));
 
   @override
   void initState() {
@@ -80,8 +80,8 @@ class _FishPlayer extends State<FishPlayer>
     return Center(
         child: _controller.value.initialized
             ? AspectRatio(
-            aspectRatio: _controller.value.aspectRatio,
-            child: Stack(fit: StackFit.passthrough, children: children))
+                aspectRatio: _controller.value.aspectRatio,
+                child: Stack(fit: StackFit.passthrough, children: children))
             : Container());
   }
 }
@@ -105,7 +105,7 @@ class _FadeAnimationState extends State<FadeAnimation>
   void initState() {
     super.initState();
     animationController =
-    new AnimationController(duration: widget.duration, vsync: this);
+        new AnimationController(duration: widget.duration, vsync: this);
     animationController.addListener(() {
       if (mounted) {
         setState(() {});
@@ -138,9 +138,9 @@ class _FadeAnimationState extends State<FadeAnimation>
   Widget build(BuildContext context) {
     return animationController.isAnimating
         ? new Opacity(
-      opacity: 1.0 - animationController.value,
-      child: widget.child,
-    )
+            opacity: 1.0 - animationController.value,
+            child: widget.child,
+          )
         : new Container();
   }
 }

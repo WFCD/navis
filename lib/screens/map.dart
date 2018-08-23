@@ -44,8 +44,7 @@ class _Maps extends State<Maps> with TickerProviderStateMixin {
           anchor: AnchorPos.center,
           anchorOverride: null,
           builder: (_) => InkWell(
-              onTap: () async =>
-                  Navigator.of(context).push(Popup(
+              onTap: () async => Navigator.of(context).push(Popup(
                   child: FishPlayer(url: await SystemState.fishVideos(o[4])))),
               child: Container(
                   child: Image.network(
@@ -92,22 +91,23 @@ class _Maps extends State<Maps> with TickerProviderStateMixin {
     ];
 
     return Scaffold(
-      appBar: AppBar(title: Text("Cetus Map"), actions: actionButton),
-      body: FlutterMap(
-        options: MapOptions(
-            center: LatLng(0.0, 0.0),
-            zoom: 3.0,
-            nePanBoundary: LatLng(-65.0, -80.0)),
-        layers: [
-          TileLayerOptions(
-            backgroundColor: Color.fromRGBO(34, 34, 34, .9),
-            keepBuffer: 150,
-            urlTemplate: 'http://35.196.173.46/plains/{z}_{x}_{y}.png',
-          ),
-          MarkerLayerOptions(markers: markers)
-        ],
-      ),
-    );
+        appBar: AppBar(title: Text("Cetus Map"), actions: actionButton),
+        body: Center(
+            child: FlutterMap(
+          options: MapOptions(
+              center: LatLng(0.0, 0.0),
+              zoom: 3.0,
+              nePanBoundary: LatLng(-65.0, -80.0)),
+          layers: [
+            TileLayerOptions(
+              backgroundColor: Color.fromRGBO(34, 34, 34, .9),
+              keepBuffer: 200,
+              offlineMode: true,
+              urlTemplate: 'assets/plains/{z}_{x}_{y}.png',
+            ),
+            MarkerLayerOptions(markers: markers)
+          ],
+        )));
   }
 }
 

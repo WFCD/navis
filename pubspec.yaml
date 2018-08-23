@@ -29,6 +29,7 @@ flutter:
   uses-material-design: true
   assets:
     - assets/acolytes/
+    - assets/plains/
     - assets/hotfix.jpg
 
   fonts:

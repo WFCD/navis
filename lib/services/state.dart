@@ -66,7 +66,7 @@ class SystemState {
     var url;
     try {
       url = json.decode(
-          (await http.get('http://35.196.173.46/rewards/$reward')).body);
+          (await http.get('http://142.93.23.157/rewards/$reward')).body);
     } catch (err) {
       url = {"level": ""};
     }
