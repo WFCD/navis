@@ -42,7 +42,7 @@ class NavisModel extends Model {
 
   List<Syndicates> get syndicates => _worldState.syndicates;
 
-  Invasions get oneInvasion => _worldState.invasions.first;
+  List<Invasions> get invasion => _worldState.invasions;
 
   Stream<Duration> get cetusTime {
     String expiry = _worldState.cetus.expiry;
@@ -112,5 +112,5 @@ class NavisModel extends Model {
   }
 
   static NavisModel of(BuildContext context) =>
-      ModelFinder<NavisModel>().of(context);
+      ScopedModel.of<NavisModel>(context);
 }

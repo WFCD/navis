@@ -58,7 +58,7 @@ class _CetusCycle extends State<CetusCycle> with TickerProviderStateMixin {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          new Container(
+          Container(
               padding: const EdgeInsets.only(top: 4.0),
               child: new Row(
                 mainAxisAlignment: MainAxisAlignment.center,

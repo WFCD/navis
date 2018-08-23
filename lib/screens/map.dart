@@ -44,7 +44,8 @@ class _Maps extends State<Maps> with TickerProviderStateMixin {
           anchor: AnchorPos.center,
           anchorOverride: null,
           builder: (_) => InkWell(
-              onTap: () async => Navigator.of(context).push(VillainPopup(
+              onTap: () async =>
+                  Navigator.of(context).push(Popup(
                   child: FishPlayer(url: await SystemState.fishVideos(o[4])))),
               child: Container(
                   child: Image.network(

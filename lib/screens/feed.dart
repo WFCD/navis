@@ -1,18 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:navis/screens/invasions.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 import '../cards/acolytes.dart';
 import '../cards/alerts.dart';
 import '../cards/cycle.dart';
+import '../cards/events.dart';
+import '../cards/invasionsCard.dart';
 import '../cards/sortie.dart';
 import '../cards/trader.dart';
 import '../model.dart';
 
 class Feed extends StatelessWidget {
-  final GlobalKey<QuickInvasionState> invasion =
-      GlobalKey<QuickInvasionState>();
-
   @override
   Widget build(BuildContext context) {
     return ScopedModelDescendant<NavisModel>(
@@ -25,11 +23,12 @@ class Feed extends StatelessWidget {
         return RefreshIndicator(
             onRefresh: () => model.update(),
             child: ListView(children: <Widget>[
-              //event ? emptyBox : Event(),
+              event ? emptyBox : Event(),
               acolytes ? emptyBox : Acolytes(),
               CetusCycle(cycle: Cycle.cetus),
               CetusCycle(cycle: Cycle.earth),
               alerts ? emptyBox : AlertTile(),
+              InvasionCard(),
               Trader(),
               Sortie(),
             ]));

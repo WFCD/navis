@@ -17,7 +17,7 @@ class _Event extends State<Event> {
     return ScopedModelDescendant<NavisModel>(
       builder: (BuildContext context, Widget child, NavisModel model) {
         if (model.events[0].description == 'Ghoul Purge')
-          Container(height: 0.0, width: 0.0);
+          return Container(height: 0.0, width: 0.0);
         else
           return _factionEvents(context, model);
       },

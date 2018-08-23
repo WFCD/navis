@@ -31,7 +31,8 @@ class _Ostrons extends State<Ostrons> {
                 color: Theme.of(context).accentColor,
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(5.0)),
-                onPressed: () => Navigator.of(context).push(VillainRoute(
+                onPressed: () =>
+                    Navigator.of(context).push(FadeRoute(
                     child: BountyRewards(
                         missionTYpe: job.type, rewards: job.rewardPool))),
                 child: Text(

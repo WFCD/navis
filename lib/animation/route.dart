@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_villains/villain.dart';
 
-class VillainRoute extends PageRoute {
+class FadeRoute extends PageRoute {
   final Widget child;
 
-  VillainRoute({@required this.child});
+  FadeRoute({@required this.child});
 
   @override
   Color get barrierColor => null;
@@ -15,11 +14,7 @@ class VillainRoute extends PageRoute {
   @override
   Widget buildPage(BuildContext context, Animation<double> animation,
       Animation<double> secondaryAnimation) {
-    return Villain(
-        villainAnimation:
-            VillainAnimation.fromBottom(curve: Curves.fastOutSlowIn),
-        secondaryVillainAnimation: VillainAnimation.fade(),
-        child: child);
+    return FadeTransition(opacity: animation, child: child);
   }
 
   @override
@@ -29,10 +24,10 @@ class VillainRoute extends PageRoute {
   Duration get transitionDuration => const Duration(milliseconds: 200);
 }
 
-class VillainPopup extends PopupRoute {
+class Popup extends PopupRoute {
   final Widget child;
 
-  VillainPopup({@required this.child});
+  Popup({@required this.child});
 
   @override
   Color get barrierColor => Colors.black;

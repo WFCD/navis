@@ -8,28 +8,22 @@ dependencies:
   share: ^0.5.2
   flutter_youtube: ^1.1.1
   codable: ^1.0.0-beta.1
-  countdown: ^0.0.3
-  scoped_model: ^0.2.0
+  scoped_model: ^0.3.0
   shared_preferences: ^0.4.2
-  flutter_custom_tabs: ^0.2.0
-  flutter_advanced_networkimage: any
-  android_job_scheduler: ^0.0.7
-  flutter_villains: ^1.1.1
-  flutter_list_drag_and_drop: ^0.1.4
-  flutter_map: ^0.0.11
-  chewie: ^0.6.1
-  flutter_circular_chart: ^0.0.3
+  flutter_custom_tabs: ^0.3.0
+  flutter_advanced_networkimage: ^0.3.6
+  #android_job_scheduler: ^0.0.7
+  flutter_map: ^0.1.0
+  flutter_circular_chart:
+      git:
+        url: https://github.com/xqwzts/flutter_circular_chart.git
+        ref: a8f7bf4b6bd2a32363dfef6a141d263113885032
   sentry: ^2.1.0
-  percent_indicator: ^1.0.9
+  video_player: ^0.6.4
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_launcher_icons: ^0.5.2
-
-flutter_icons:
-  image_path: assets/icons/nightmare.png
-  android: true
 
 flutter:
   uses-material-design: true

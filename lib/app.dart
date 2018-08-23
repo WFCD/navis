@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_villains/villain.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 import 'model.dart';
@@ -21,7 +20,6 @@ class Navis extends StatelessWidget {
 
     final app = MaterialApp(
       title: 'Navis',
-      navigatorObservers: [VillainTransitionObserver()],
       debugShowCheckedModeBanner: false,
       color: Colors.grey[900],
       theme: theme,

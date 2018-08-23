@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:navis/util/assets.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 import '../animation/route.dart';
@@ -48,15 +47,13 @@ class _HomeScreen extends State<HomeScreen> with TickerProviderStateMixin {
 
     final appBar = AppBar(elevation: 8.0, title: title, actions: <Widget>[
       IconButton(
-          icon: Icon(ImageAssets.invasions, size: 30.0), onPressed: () => null),
-      IconButton(
           icon: Icon(Icons.map),
           onPressed: () =>
-              Navigator.of(context).push(VillainRoute(child: Maps()))),
+              Navigator.of(context).push(FadeRoute(child: Maps()))),
       IconButton(
           icon: Icon(Icons.settings),
           onPressed: () =>
-              Navigator.of(context).push(VillainRoute(child: Settings())))
+              Navigator.of(context).push(FadeRoute(child: Settings())))
     ]);
 
     final pageView = PageView(
