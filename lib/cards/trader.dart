@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 import '../animation/countdown.dart';
+import '../json/trader.dart';
 import '../model.dart';
 import '../widgets/cards.dart';
 
@@ -105,10 +106,23 @@ class _Trader extends State<Trader> {
                               child: trader.active
                                   ? Text(model.departure)
                                   : Text(model.arrival))
-                        ]))
+                        ])),
+                trader.active
+                    ? ExpansionTile(
+                    title: Text('Baro Ki\'Teeer Inventory'),
+                    children: trader.inventory
+                        .map((item) => _buildInventoryItem(context, item))
+                        .toList())
+                    : emptyBox
               ]),
         );
       },
     );
   }
+}
+
+Widget _buildInventoryItem(BuildContext context, Inventory item) {
+  return ListTile(
+      title: Text(item.item),
+      subtitle: Text('${item.ducats} Ducats, ${item.credits} Credits'));
 }
