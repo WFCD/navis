@@ -109,10 +109,10 @@ class _Trader extends State<Trader> {
                         ])),
                 trader.active
                     ? ExpansionTile(
-                    title: Text('Baro Ki\'Teeer Inventory'),
-                    children: trader.inventory
-                        .map((item) => _buildInventoryItem(context, item))
-                        .toList())
+                        title: Text('Baro Ki\'Teeer Inventory'),
+                        children: trader.inventory
+                            .map((item) => _buildInventoryItem(context, item))
+                            .toList())
                     : emptyBox
               ]),
         );

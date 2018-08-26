@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_advanced_networkimage/flutter_advanced_networkimage.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_custom_tabs/flutter_custom_tabs.dart';
 import 'package:flutter_youtube/flutter_youtube.dart';
 import 'package:scoped_model/scoped_model.dart';
@@ -31,7 +31,8 @@ class _Orbiter extends State<Orbiter> with TickerProviderStateMixin {
   _buildTiles(List<OrbiterNews> data, int index, BuildContext context,
       NavisModel model) {
     bool hotfix = data[index].message.contains('Hotfix');
-    AdvancedNetworkImage image = AdvancedNetworkImage(data[index].imageLink);
+    CachedNetworkImageProvider image =
+        CachedNetworkImageProvider(data[index].imageLink);
 
     return Padding(
         padding: EdgeInsets.only(left: 2.0, right: 2.0, top: 2.5, bottom: 2.5),

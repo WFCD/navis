@@ -77,7 +77,7 @@ class NavisModel extends Model {
       expiry =
           _format.format(DateTime.parse(_worldState.cetus.expiry).toLocal());
     } catch (err) {
-      Future.delayed(Duration(seconds: 60));
+      Future.delayed(Duration(seconds: 110));
       expiry =
           _format.format(DateTime.parse(_worldState.cetus.expiry).toLocal());
     }
@@ -91,7 +91,7 @@ class NavisModel extends Model {
       expiry =
           _format.format(DateTime.parse(_worldState.earth.expiry).toLocal());
     } catch (err) {
-      Future.delayed(Duration(seconds: 60));
+      Future.delayed(Duration(seconds: 110));
       expiry =
           _format.format(DateTime.parse(_worldState.earth.expiry).toLocal());
     }

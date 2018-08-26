@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:navis/util/preferences.dart';
 
@@ -20,11 +21,11 @@ void main() async {
   final model = NavisModel(state: SystemState());
 
   await model.update();
-  runApp(Navis(model: model));
+  //runApp(Navis(model: model));
 
-  /*runZoned(() => runApp(Navis(model: model)),
+  runZoned(() => runApp(Navis(model: model)),
       onError: (error, stackTrace) =>
-          exceptionService.reportErrorAndStackTrace(error, stackTrace));*/
+          exceptionService.reportErrorAndStackTrace(error, stackTrace));
 
   //await AndroidJobScheduler.scheduleEvery(Duration(minutes: 5), 100, update);
 }

@@ -1,9 +1,10 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_advanced_networkimage/flutter_advanced_networkimage.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 import '../services/state.dart';
+import '../json/rewardpool.dart';
 
 class BountyRewards extends StatefulWidget {
   BountyRewards({Key key, this.missionTYpe, this.rewards}) : super(key: key);
@@ -15,26 +16,20 @@ class BountyRewards extends StatefulWidget {
 }
 
 class _BountyRewards extends State<BountyRewards> {
-  List<String> _urls = [];
-  List<String> _levels = [];
+  List<Rewards> _rewards = [];
   bool isLoading = true;
-  Duration _timeout = Duration(minutes: 2);
 
-  Future<Null> getUrls() async {
-    List<String> urls = [];
-    List<String> levels = [];
+  Future<Null> getRewards() async {
+    List<Rewards> rewards = [];
 
     for (int i = 0; i < widget.rewards.length; i++) {
-      String reward = await SystemState.rewardImages(widget.rewards[i]);
-      String level = await SystemState.rewardColor(widget.rewards[i]);
-      urls.add(reward);
-      levels.add(level);
+     final reward = await SystemState.rewards(widget.rewards[i]);
+      rewards.add(reward);
     }
 
     if (mounted)
       setState(() {
-        _urls = urls;
-        _levels = levels;
+        _rewards = rewards;
         isLoading = false;
       });
   }
@@ -42,12 +37,12 @@ class _BountyRewards extends State<BountyRewards> {
   @override
   void initState() {
     super.initState();
-    getUrls();
+    getRewards();
   }
 
   @override
   void dispose() {
-    _urls = [];
+    _rewards = [];
     super.dispose();
   }
 
@@ -58,7 +53,7 @@ class _BountyRewards extends State<BountyRewards> {
       body: isLoading
           ? Center(child: CircularProgressIndicator())
           : ListView.builder(
-              itemCount: _urls.length,
+              itemCount: _rewards.length,
               itemBuilder: (BuildContext context, int index) {
                 return Column(children: <Widget>[
                   Padding(
@@ -66,19 +61,14 @@ class _BountyRewards extends State<BountyRewards> {
                     child: Row(children: <Widget>[
                       Container(
                           padding: EdgeInsets.only(right: 20.0),
-                          child: Image(
-                              fit: BoxFit.fitHeight,
+                          child: CachedNetworkImage(
+                              imageUrl: _rewards[index].path,
                               height: 65.0,
                               width: 70.0,
-                              image: AdvancedNetworkImage(_urls[index],
-                                  useDiskCache: true,
-                                  useMemoryCache: true,
-                                  timeoutDuration: _timeout,
-                                  retryDuration: _timeout,
-                                  retryLimit: 10))),
+                              fit: BoxFit.fitHeight)),
                       Text(
                         widget.rewards[index],
-                        style: color(_levels[index]),
+                        style: color(_rewards[index].level),
                       )
                     ]),
                   )

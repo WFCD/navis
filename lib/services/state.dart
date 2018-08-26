@@ -47,11 +47,11 @@ class SystemState {
     return state;
   }
 
-  static Future<String> rewardImages(String reward) async {
+  static Future<Rewards> rewards(String reward) async {
     var url;
     try {
       url = json.decode(
-          (await http.get('http://35.196.173.46/rewards/$reward')).body);
+          (await http.get('http://142.93.23.157/rewards/$reward')).body);
     } catch (err) {
       url = {"path": "https://i.imgur.com/LuVQFbh.png"};
     }
@@ -59,22 +59,7 @@ class SystemState {
     final key = KeyedArchive.unarchive(url);
     final rewards = Rewards()..decode(key);
 
-    return rewards.path;
-  }
-
-  static Future<String> rewardColor(String reward) async {
-    var url;
-    try {
-      url = json.decode(
-          (await http.get('http://142.93.23.157/rewards/$reward')).body);
-    } catch (err) {
-      url = {"level": ""};
-    }
-
-    final key = KeyedArchive.unarchive(url);
-    final rewards = Rewards()..decode(key);
-
-    return rewards.level;
+    return rewards;
   }
 
   static Future<String> fishVideos(String shortCode) async {

@@ -36,6 +36,15 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.4"
+  cached_network_image:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: HEAD
+      resolved-ref: "98e6ad6c0304fde425e2919063cbec4e182c8034"
+      url: "https://github.com/Cretezy/flutter_cached_network_image.git"
+    source: git
+    version: "0.4.2"
   charcode:
     dependency: transitive
     description:
@@ -90,13 +99,15 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  flutter_advanced_networkimage:
-    dependency: "direct main"
+  flutter_cache_manager:
+    dependency: transitive
     description:
-      name: flutter_advanced_networkimage
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.3.6"
+      path: "."
+      ref: HEAD
+      resolved-ref: "58f5fdbda9e2e9a6ccce5645ae6ebee46b5059e4"
+      url: "https://github.com/Cretezy/flutter_cache_manager.git"
+    source: git
+    version: "0.1.2"
   flutter_circular_chart:
     dependency: "direct main"
     description:
@@ -419,6 +430,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.4"
+  synchronized:
+    dependency: transitive
+    description:
+      name: synchronized
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.5.1+1"
   term_glyph:
     dependency: transitive
     description:
@@ -475,6 +493,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.9.0+5"
+  uuid:
+    dependency: transitive
+    description:
+      name: uuid
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.3"
   validate:
     dependency: transitive
     description:

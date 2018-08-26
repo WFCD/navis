@@ -11,15 +11,15 @@ dependencies:
   scoped_model: ^0.3.0
   shared_preferences: ^0.4.2
   flutter_custom_tabs: ^0.3.0
-  flutter_advanced_networkimage: ^0.3.6
-  #android_job_scheduler: ^0.0.7
   flutter_map: ^0.1.0
-  flutter_circular_chart:
-      git:
-        url: https://github.com/xqwzts/flutter_circular_chart.git
-        ref: a8f7bf4b6bd2a32363dfef6a141d263113885032
   sentry: ^2.1.0
   video_player: ^0.6.4
+  flutter_circular_chart:
+        git:
+          url: https://github.com/xqwzts/flutter_circular_chart.git
+          ref: a8f7bf4b6bd2a32363dfef6a141d263113885032
+  cached_network_image:
+        git: https://github.com/Cretezy/flutter_cached_network_image.git
 
 dev_dependencies:
   flutter_test:

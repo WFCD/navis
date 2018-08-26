@@ -17,6 +17,8 @@ class Feed extends StatelessWidget {
       builder: (context, child, model) {
         final event = model.events.isEmpty;
         final acolytes = model.enemies.isEmpty;
+        final invasions = model.invasion.isEmpty;
+        final sortie = model.sortie.variants.isEmpty;
         final alerts = model.alerts.isEmpty;
         final emptyBox = Container(height: 0.0, width: 0.0);
 
@@ -28,9 +30,9 @@ class Feed extends StatelessWidget {
               CetusCycle(cycle: Cycle.cetus),
               CetusCycle(cycle: Cycle.earth),
               alerts ? emptyBox : AlertTile(),
-              InvasionCard(),
+              invasions ? emptyBox : InvasionCard(),
               Trader(),
-              Sortie(),
+              sortie ? emptyBox : Sortie(),
             ]));
       },
     );
