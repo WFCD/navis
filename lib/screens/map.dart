@@ -92,22 +92,26 @@ class _Maps extends State<Maps> with TickerProviderStateMixin {
 
     return Scaffold(
         appBar: AppBar(title: Text("Cetus Map"), actions: actionButton),
-        body: Center(
-            child: FlutterMap(
-          options: MapOptions(
-              center: LatLng(0.0, 0.0),
-              zoom: 3.0,
-              nePanBoundary: LatLng(-65.0, -80.0)),
-          layers: [
-            TileLayerOptions(
-              backgroundColor: Color.fromRGBO(34, 34, 34, .9),
-              keepBuffer: 200,
-              offlineMode: true,
-              urlTemplate: 'assets/plains/{z}_{x}_{y}.png',
-            ),
-            MarkerLayerOptions(markers: markers)
-          ],
-        )));
+        body: Flex(direction: Axis.vertical, children: <Widget>[
+          Expanded(
+              child: FlutterMap(
+            options: MapOptions(
+                center: LatLng(0.0, 0.0),
+                minZoom: 2.0,
+                maxZoom: 3.0,
+                zoom: 2.0,
+                nePanBoundary: LatLng(-65.0, -80.0)),
+            layers: [
+              TileLayerOptions(
+                backgroundColor: Color.fromRGBO(34, 34, 34, .9),
+                keepBuffer: 85,
+                offlineMode: true,
+                urlTemplate: 'assets/plains/{z}/{x}/{y}.png',
+              ),
+              MarkerLayerOptions(markers: markers)
+            ],
+          ))
+        ]));
   }
 }
 

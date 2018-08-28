@@ -73,13 +73,16 @@ class NavisModel extends Model {
 
   String get cetusExpiry {
     String expiry;
+    Duration day = Duration(minutes: 100);
+    Duration night = Duration(minutes: 50);
+
     try {
-      expiry =
-          _format.format(DateTime.parse(_worldState.cetus.expiry).toLocal());
+      expiry = _format.format(DateTime.parse(_worldState.cetus.expiry));
     } catch (err) {
-      Future.delayed(Duration(seconds: 110));
-      expiry =
-          _format.format(DateTime.parse(_worldState.cetus.expiry).toLocal());
+      if (_worldState.cetus.isDay)
+        expiry = _format.format(DateTime.now().add(day));
+      else
+        expiry = _format.format(DateTime.now().add(night));
     }
 
     return expiry;
@@ -87,13 +90,16 @@ class NavisModel extends Model {
 
   String get earthExpiry {
     String expiry;
+    Duration cycle = Duration(hours: 4);
+
     try {
       expiry =
           _format.format(DateTime.parse(_worldState.earth.expiry).toLocal());
     } catch (err) {
-      Future.delayed(Duration(seconds: 110));
-      expiry =
-          _format.format(DateTime.parse(_worldState.earth.expiry).toLocal());
+      if (_worldState.earth.isDay)
+        expiry = _format.format(DateTime.now().add(cycle));
+      else
+        expiry = _format.format(DateTime.now().add(cycle));
     }
 
     return expiry;

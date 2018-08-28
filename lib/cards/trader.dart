@@ -41,9 +41,9 @@ class _Trader extends State<Trader> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
                         trader.active
-                            ? Text('${trader.character} arrives in',
+                            ? Text('${trader.character} leaves in',
                                 style: TextStyle(fontSize: 17.0))
-                            : Text('${trader.character} leaves in',
+                            : Text('${trader.character} arrives in',
                                 style: TextStyle(fontSize: 17.0)),
                         Container(
                           padding: EdgeInsets.all(3.0),

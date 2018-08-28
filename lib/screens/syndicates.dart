@@ -7,43 +7,7 @@ import '../json/export.dart';
 import '../model.dart';
 import 'rewards.dart';
 
-class Ostrons extends StatefulWidget {
-  Ostrons({Key key}) : super(key: key);
-
-  @override
-  createState() => _Ostrons();
-}
-
-class _Ostrons extends State<Ostrons> {
-  Widget _buildMissionType(BuildContext context, Jobs job) {
-    return Padding(
-      padding: EdgeInsets.all(4.0),
-      child: Card(
-        elevation: 5.0,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
-        color: Color.fromRGBO(187, 187, 197, 0.2),
-        child: ListTile(
-          title: Text(job.type),
-          subtitle: Text(
-              'Enemey Level ${job.enemyLevels[0]} - ${job.enemyLevels[1]}'),
-          trailing: ButtonTheme.bar(
-            child: RaisedButton(
-                color: Theme.of(context).accentColor,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(5.0)),
-                onPressed: () => Navigator.of(context).push(FadeRoute(
-                    child: BountyRewards(
-                        missionTYpe: job.type, rewards: job.rewardPool))),
-                child: Text(
-                  'Rewards',
-                  style: TextStyle(color: Colors.white),
-                )),
-          ),
-        ),
-      ),
-    );
-  }
-
+class Ostrons extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScopedModelDescendant<NavisModel>(
@@ -52,58 +16,79 @@ class _Ostrons extends State<Ostrons> {
         Duration bountyTime =
             DateTime.parse(ostrons.expiry).difference(DateTime.now());
 
-        final empylist = Center(
+        final emptyList = Center(
             child: Text('Waiting for new Bounties check back in a minute.',
                 style: TextStyle(fontSize: 17.0)));
 
-        final body = Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Column(
-                  children: ostrons.jobs
-                      .map((job) => _buildMissionType(context, job))
-                      .toList()),
-              SizedBox(
-                  height: 50.0,
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 8.0, right: 8.0),
-                    child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          Text('Bounties expire in',
-                              style: TextStyle(fontSize: 17.0)),
-                          Container(
-                              child: StreamBuilder<Duration>(
-                                  initialData: Duration(minutes: 60),
-                                  stream: CounterScreenStream(bountyTime),
-                                  builder: (context, snapshot) {
-                                    Duration data = snapshot.data;
+        return Flex(direction: Axis.vertical, children: <Widget>[
+          Expanded(
+              child: Column(
+                  children: ostrons.jobs.isEmpty
+                      ? <Widget>[emptyList]
+                      : ostrons.jobs
+                          .map((job) => _buildMissionType(context, job))
+                          .toList())),
+          Align(
+              alignment: Alignment.bottomCenter,
+              child: Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Text('Bounties expire in',
+                          style: TextStyle(fontSize: 17.0)),
+                      Container(
+                          child: StreamBuilder<Duration>(
+                              initialData: Duration(minutes: 60),
+                              stream: CounterScreenStream(bountyTime),
+                              builder: (context, snapshot) {
+                                Duration data = snapshot.data;
 
-                                    String hour = '${data.inHours}';
-                                    String minutes =
-                                        '${(data.inMinutes % 60).floor()}'
-                                            .padLeft(2, '0');
-                                    String seconds =
-                                        '${(data.inSeconds % 60).floor()}'
-                                            .padLeft(2, '0');
+                                String hour = '${data.inHours}';
+                                String minutes =
+                                    '${(data.inMinutes % 60).floor()}'
+                                        .padLeft(2, '0');
+                                String seconds =
+                                    '${(data.inSeconds % 60).floor()}'
+                                        .padLeft(2, '0');
 
-                                    return Text('$hour:$minutes:$seconds',
-                                        style: TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 17.0));
-                                  }))
-                        ]),
-                  ))
-            ]);
-
-        return AnimatedCrossFade(
-            firstChild: empylist,
-            secondChild: body,
-            crossFadeState: ostrons.jobs.isEmpty
-                ? CrossFadeState.showFirst
-                : CrossFadeState.showSecond,
-            duration: Duration(milliseconds: 200));
+                                return Text('$hour:$minutes:$seconds',
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 17.0));
+                              }))
+                    ]),
+              ))
+        ]);
       },
     );
   }
+}
+
+Widget _buildMissionType(BuildContext context, Jobs job) {
+  return Padding(
+    padding: EdgeInsets.all(4.0),
+    child: Card(
+      elevation: 5.0,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
+      color: Color.fromRGBO(187, 187, 197, 0.2),
+      child: ListTile(
+        title: Text(job.type),
+        subtitle:
+            Text('Enemey Level ${job.enemyLevels[0]} - ${job.enemyLevels[1]}'),
+        trailing: ButtonTheme.bar(
+          child: RaisedButton(
+              color: Theme.of(context).accentColor,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(5.0)),
+              onPressed: () => Navigator.of(context).push(FadeRoute(
+                  child: BountyRewards(
+                      missionTYpe: job.type, rewards: job.rewardPool))),
+              child: Text(
+                'Rewards',
+                style: TextStyle(color: Colors.white),
+              )),
+        ),
+      ),
+    ),
+  );
 }

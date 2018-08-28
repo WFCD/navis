@@ -8,3 +8,4 @@ build/
 assets/svg/
 lib/util/keys.dart
 android/key.properties
+android/app/google-services.json
