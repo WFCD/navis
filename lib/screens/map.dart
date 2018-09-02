@@ -13,7 +13,7 @@ class Maps extends StatefulWidget {
 }
 
 class _Maps extends State<Maps> with TickerProviderStateMixin {
-  List<String> filter = ['Fish', 'Oddity', 'Caves', 'Lures'];
+  List<String> filter = ['All', 'Caves', 'Fish', 'Lures', 'Odditys'];
   List markers = <Marker>[
     Marker(
         height: 80.0,
@@ -63,10 +63,10 @@ class _Maps extends State<Maps> with TickerProviderStateMixin {
         case 'Lures':
           filters = lures;
           break;
-        case 'Oddity':
+        case 'Odditys':
           filters = oldFish;
           break;
-        default:
+        case 'All':
           filters = [lures, fish, caves].expand((x) => x).toList();
       }
       setState(() {
@@ -97,14 +97,14 @@ class _Maps extends State<Maps> with TickerProviderStateMixin {
               child: FlutterMap(
             options: MapOptions(
                 center: LatLng(0.0, 0.0),
-                minZoom: 2.0,
+                minZoom: 1.9,
                 maxZoom: 3.0,
                 zoom: 2.0,
                 nePanBoundary: LatLng(-65.0, -80.0)),
             layers: [
               TileLayerOptions(
                 backgroundColor: Color.fromRGBO(34, 34, 34, .9),
-                keepBuffer: 85,
+                keepBuffer: 90,
                 offlineMode: true,
                 urlTemplate: 'assets/plains/{z}/{x}/{y}.png',
               ),

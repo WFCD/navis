@@ -11,30 +11,86 @@ class InvasionCard extends StatefulWidget {
   _InvasionCard createState() => _InvasionCard();
 }
 
-class _InvasionCard extends State<InvasionCard> {
+class _InvasionCard extends State<InvasionCard>
+    with SingleTickerProviderStateMixin {
+  AnimationController _controller;
+  Animation<double> _opacity;
+  bool _showMore = false;
+  double height = 0.0;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _controller =
+        AnimationController(duration: Duration(milliseconds: 500), vsync: this);
+
+    _opacity = Tween(begin: 0.0, end: 1.0)
+        .animate(CurvedAnimation(parent: _controller, curve: Curves.easeInOut));
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    List items = <Widget>[
-      Container(
-          padding: const EdgeInsets.only(top: 4.0),
-          child: new Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              new RichText(
-                  text: new TextSpan(
-                      text: 'Invasions', style: TextStyle(fontSize: 20.0)))
-            ],
-          )),
-      Divider(color: Theme.of(context).accentColor),
-    ];
-
     return ScopedModelDescendant<NavisModel>(
       builder: (BuildContext context, Widget child, NavisModel model) {
-        items.addAll(
-            model.invasion.map((i) => _buildInvasions(context, i)).toList());
         return Tiles(
             child: Column(
-                mainAxisAlignment: MainAxisAlignment.center, children: items));
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Container(
+                      padding: EdgeInsets.only(top: 4.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          RichText(
+                              text: TextSpan(
+                                  text: 'Invasions',
+                                  style: TextStyle(fontSize: 20.0)))
+                        ],
+                      )),
+                  Divider(color: Theme
+                      .of(context)
+                      .accentColor),
+                  _buildInvasions(context, model.invasion[0]),
+                  _buildInvasions(context, model.invasion[1]),
+                  Align(
+                      alignment: Alignment.topRight,
+                      child: IconButton(
+                          icon: Icon(Icons.arrow_drop_down),
+                          onPressed: () {
+                            _showMore = !_showMore;
+                            if (_showMore) {
+                              setState(() {
+                                height =
+                                    (106 * (model.invasion.length - 2))
+                                        .toDouble();
+                                _controller.forward();
+                              });
+                            } else {
+                              setState(() {
+                                height = 0.0;
+                                _controller.reverse();
+                              });
+                            }
+                          })),
+                  AnimatedContainer(
+                      duration: Duration(milliseconds: 100),
+                      height: height,
+                      curve: Curves.fastOutSlowIn,
+                      child: FadeTransition(
+                          opacity: _opacity,
+                          child: Column(
+                              children: model.invasion
+                                  .skip(2)
+                                  .map((i) => _buildInvasions(context, i))
+                                  .toList())))
+                ]));
       },
     );
   }

@@ -3,6 +3,7 @@ import 'package:flutter_circular_chart/flutter_circular_chart.dart';
 import 'package:navis/util/assets.dart';
 import 'package:scoped_model/scoped_model.dart';
 
+import '../json/events.dart';
 import '../model.dart';
 import '../widgets/cards.dart';
 
@@ -16,18 +17,21 @@ class _Event extends State<Event> {
   Widget build(BuildContext context) {
     return ScopedModelDescendant<NavisModel>(
       builder: (BuildContext context, Widget child, NavisModel model) {
-        if (model.events[0].description == 'Ghoul Purge')
-          return Container(height: 0.0, width: 0.0);
+        if (model.events.first.description == 'Ghoul Purge')
+          return Container();
+        else if (model.events.first.description == 'Relay Title')
+          return Container(); //_factionEvents(
         else
-          return _factionEvents(context, model);
+          return _factionEvents(
+              context, model.events.first); // context, model.events.first);
       },
     );
   }
 }
 
-Widget _factionEvents(BuildContext context, NavisModel model) {
-  double health = double.parse(model.events[0].health);
-  bool checkFaction = model.events[0].faction.contains('Corpus');
+Widget _factionEvents(BuildContext context, Events event) {
+  double health = double.parse(event.health);
+  bool checkFaction = event.faction.contains('Corpus');
 
   final percent = AnimatedCircularChart(
       size: Size(95.0, 95.0),
@@ -46,8 +50,7 @@ Widget _factionEvents(BuildContext context, NavisModel model) {
     child:
         Column(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
       Container(
-          child: Text(model.events[0].description,
-              style: TextStyle(fontSize: 20.0))),
+          child: Text(event.description, style: TextStyle(fontSize: 20.0))),
       Divider(color: Theme.of(context).accentColor),
       Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: <Widget>[
         Container(
@@ -64,7 +67,7 @@ Widget _factionEvents(BuildContext context, NavisModel model) {
                 decoration: BoxDecoration(
                     color: Colors.red,
                     borderRadius: BorderRadius.circular(8.0)),
-                child: Text(model.events[0].victimNode)),
+                child: Text(event.victimNode)),
             Padding(
               padding: const EdgeInsets.only(left: 8.0),
               child: Container(
@@ -72,7 +75,7 @@ Widget _factionEvents(BuildContext context, NavisModel model) {
                 decoration: BoxDecoration(
                     color: Colors.orange,
                     borderRadius: BorderRadius.circular(8.0)),
-                child: Text('${model.events[0].health}\% Remaining'),
+                child: Text('${event.health}\% Remaining'),
               ),
             ),
           ]),
@@ -84,7 +87,8 @@ Widget _factionEvents(BuildContext context, NavisModel model) {
                   color: Colors.green,
                   borderRadius: BorderRadius.circular(8.0)),
               child: Text(
-                  '${model.events[0].rewards[0].itemString} + ${model.events[0].rewards[0].credits}cr'),
+                  '${event.rewards.first.itemString} + ${event.rewards.first
+                      .credits}cr'),
             ),
           ),
         ]),

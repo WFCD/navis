@@ -15,12 +15,9 @@ dependencies:
   sentry: ^2.1.0
   video_player: ^0.6.4
   firebase_messaging: ^1.0.5
-  flutter_circular_chart:
-    git:
-      url: https://github.com/xqwzts/flutter_circular_chart.git
-      ref: a8f7bf4b6bd2a32363dfef6a141d263113885032
-  cached_network_image:
-    git: https://github.com/Cretezy/flutter_cached_network_image.git
+  flutter_local_notifications: ^0.3.7
+  flutter_circular_chart: ^0.1.0
+  cached_network_image: ^0.4.2
 
 dev_dependencies:
   flutter_test:
