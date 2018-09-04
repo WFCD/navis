@@ -11,7 +11,7 @@ dependencies:
   scoped_model: ^0.3.0
   shared_preferences: ^0.4.2
   flutter_custom_tabs: ^0.3.0
-  flutter_map: ^0.1.0
+  flutter_map: ^0.1.1
   sentry: ^2.1.0
   video_player: ^0.6.4
   firebase_messaging: ^1.0.5

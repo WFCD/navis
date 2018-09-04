@@ -105,6 +105,7 @@ class _Maps extends State<Maps> with TickerProviderStateMixin {
               TileLayerOptions(
                 backgroundColor: Color.fromRGBO(34, 34, 34, .9),
                 keepBuffer: 90,
+                fromAssets: true,
                 offlineMode: true,
                 urlTemplate: 'assets/plains/{z}/{x}/{y}.png',
               ),

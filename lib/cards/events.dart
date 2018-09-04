@@ -87,8 +87,7 @@ Widget _factionEvents(BuildContext context, Events event) {
                   color: Colors.green,
                   borderRadius: BorderRadius.circular(8.0)),
               child: Text(
-                  '${event.rewards.first.itemString} + ${event.rewards.first
-                      .credits}cr'),
+                  '${event.rewards.first.itemString} + ${event.rewards.first.credits}cr'),
             ),
           ),
         ]),

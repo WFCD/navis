@@ -15,6 +15,7 @@ class _InvasionCard extends State<InvasionCard>
     with SingleTickerProviderStateMixin {
   AnimationController _controller;
   Animation<double> _opacity;
+  Animation<double> _iconTurn;
   bool _showMore = false;
   double height = 0.0;
 
@@ -27,6 +28,9 @@ class _InvasionCard extends State<InvasionCard>
 
     _opacity = Tween(begin: 0.0, end: 1.0)
         .animate(CurvedAnimation(parent: _controller, curve: Curves.easeInOut));
+
+    _iconTurn = Tween<double>(begin: 0.0, end: 0.5)
+        .animate(CurvedAnimation(parent: _controller, curve: Curves.easeInOut));
   }
 
   @override
@@ -35,54 +39,71 @@ class _InvasionCard extends State<InvasionCard>
     super.dispose();
   }
 
+  void _expand(int length) {
+    _showMore = !_showMore;
+    if (_showMore) {
+      setState(() {
+        height = (106 * (length - 2)).toDouble();
+        _controller.forward();
+      });
+    } else {
+      setState(() {
+        height = 0.0;
+        _controller.reverse();
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    final title = Container(
+        padding: EdgeInsets.only(top: 4.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            RichText(
+                text: TextSpan(
+                    text: 'Invasions', style: TextStyle(fontSize: 20.0)))
+          ],
+        ));
+
     return ScopedModelDescendant<NavisModel>(
       builder: (BuildContext context, Widget child, NavisModel model) {
+        if (model.invasion.length < 1) {
+          return Tiles(
+              child: Column(children: <Widget>[
+                title,
+                Divider(color: Theme
+                    .of(context)
+                    .accentColor),
+                Container(child: _buildInvasions(context, model.invasion.first))
+              ]));
+        }
+
         return Tiles(
             child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Container(
-                      padding: EdgeInsets.only(top: 4.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          RichText(
-                              text: TextSpan(
-                                  text: 'Invasions',
-                                  style: TextStyle(fontSize: 20.0)))
-                        ],
-                      )),
+                  title,
                   Divider(color: Theme
                       .of(context)
                       .accentColor),
-                  _buildInvasions(context, model.invasion[0]),
-                  _buildInvasions(context, model.invasion[1]),
-                  Align(
-                      alignment: Alignment.topRight,
-                      child: IconButton(
-                          icon: Icon(Icons.arrow_drop_down),
-                          onPressed: () {
-                            _showMore = !_showMore;
-                            if (_showMore) {
-                              setState(() {
-                                height =
-                                    (106 * (model.invasion.length - 2))
-                                        .toDouble();
-                                _controller.forward();
-                              });
-                            } else {
-                              setState(() {
-                                height = 0.0;
-                                _controller.reverse();
-                              });
-                            }
-                          })),
+                  InkWell(
+                      onTap: () => _expand(model.invasion.length),
+                      child: Container(
+                          child: Column(children: <Widget>[
+                            _buildInvasions(context, model.invasion[0]),
+                            _buildInvasions(context, model.invasion[1]),
+                            Align(
+                                alignment: Alignment.topRight,
+                                child: RotationTransition(
+                                    turns: _iconTurn,
+                                    child: Icon(Icons.expand_more))),
+                          ]))),
                   AnimatedContainer(
-                      duration: Duration(milliseconds: 100),
+                      duration: Duration(milliseconds: 200),
                       height: height,
-                      curve: Curves.fastOutSlowIn,
+                      curve: Curves.easeInOut,
                       child: FadeTransition(
                           opacity: _opacity,
                           child: Column(
