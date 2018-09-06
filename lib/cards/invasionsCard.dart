@@ -24,7 +24,7 @@ class _InvasionCard extends State<InvasionCard>
     super.initState();
 
     _controller =
-        AnimationController(duration: Duration(milliseconds: 500), vsync: this);
+        AnimationController(duration: Duration(milliseconds: 200), vsync: this);
 
     _opacity = Tween(begin: 0.0, end: 1.0)
         .animate(CurvedAnimation(parent: _controller, curve: Curves.easeInOut));
@@ -101,7 +101,7 @@ class _InvasionCard extends State<InvasionCard>
                                     child: Icon(Icons.expand_more))),
                           ]))),
                   AnimatedContainer(
-                      duration: Duration(milliseconds: 200),
+                      duration: _controller.duration,
                       height: height,
                       curve: Curves.easeInOut,
                       child: FadeTransition(

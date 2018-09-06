@@ -13,11 +13,12 @@ dependencies:
   flutter_custom_tabs: ^0.3.0
   flutter_map: ^0.1.1
   sentry: ^2.1.0
-  video_player: ^0.6.4
+  chewie: ^0.7.0
   firebase_messaging: ^1.0.5
   flutter_local_notifications: ^0.3.7
   flutter_circular_chart: ^0.1.0
   cached_network_image: ^0.4.2
+  flutter_offline: ^0.1.0
 
 dev_dependencies:
   flutter_test:
