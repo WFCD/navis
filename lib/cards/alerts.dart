@@ -1,77 +1,81 @@
 import 'package:flutter/material.dart';
-import 'package:navis/util/assets.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 import '../animation/countdown.dart';
 import '../json/alerts.dart';
 import '../model.dart';
+import '../util/assets.dart';
+import '../util/dynamicSwitch.dart';
 import '../widgets/cards.dart';
 
 class AlertTile extends StatelessWidget {
-  Widget _buildAlerts(Alerts alert) {
+  Widget _buildAlerts(Alerts alert, NavisModel model) {
+    final switcher = DynamicFaction(model: model);
     Duration time = DateTime.parse(alert.expiry).difference(DateTime.now());
 
     return Padding(
       padding: const EdgeInsets.only(top: 4.0, bottom: 4.0),
       child: Container(
         padding: EdgeInsets.only(bottom: 8.0, top: 5.0),
-        child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    Container(
-                        child: Row(children: <Widget>[
-                      _specialMission(alert.mission.nightmare,
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: <
+            Widget>[
+          Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Container(
+                    child: Row(children: <Widget>[
+                      _specialMission(
+                          alert.mission.nightmare,
                           alert.mission.archwingRequired),
                       Text(alert.mission.node,
                           style: TextStyle(fontWeight: FontWeight.bold))
                     ])),
-                    alert.mission.reward.itemString.isEmpty
-                        ? Container(
-                            height: 0.0,
-                            width: 0.0,
-                          )
-                        : Container(
-                            padding: EdgeInsets.all(4.0),
-                            decoration: BoxDecoration(
-                                color: Colors.blueAccent[400],
-                                borderRadius: BorderRadius.circular(3.0)),
-                            child: Text(alert.mission.reward.itemString)),
-                  ]),
-              Padding(
-                padding: const EdgeInsets.only(top: 8.0),
-                child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      Text(
-                          '${alert.mission.type} (${alert.mission.faction}) | Level: ${alert.mission.minEnemyLevel} - ${alert.mission.maxEnemyLevel} | ${alert.mission.reward.credits}cr'),
-                      Container(
+                alert.mission.reward.itemString.isEmpty
+                    ? Container(
+                  height: 0.0,
+                  width: 0.0,
+                )
+                    : Container(
+                    padding: EdgeInsets.all(4.0),
+                    decoration: BoxDecoration(
+                        color: Colors.blueAccent[400],
+                        borderRadius: BorderRadius.circular(3.0)),
+                    child: Text(alert.mission.reward.itemString)),
+              ]),
+          Padding(
+            padding: const EdgeInsets.only(top: 8.0),
+            child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Text(
+                      '${alert.mission.type} (${alert.mission
+                          .faction}) | Level: ${alert.mission
+                          .minEnemyLevel} - ${alert.mission
+                          .maxEnemyLevel} | ${alert.mission.reward.credits}cr'),
+                  StreamBuilder<Duration>(
+                      initialData: Duration(seconds: 60),
+                      stream: CounterScreenStream(time),
+                      builder: (context, snapshot) {
+                        Duration data = snapshot.data;
+
+                        String hour = '${data.inHours}';
+                        String minutes =
+                        '${(data.inMinutes % 60).floor()}'.padLeft(2, '0');
+                        String seconds =
+                        '${(data.inSeconds % 60).floor()}'.padLeft(2, '0');
+
+                        return Container(
                           padding: EdgeInsets.all(4.0),
                           decoration: BoxDecoration(
-                              color: Colors.green,
+                              color: switcher.alertColor(data),
                               borderRadius: BorderRadius.circular(3.0)),
-                          child: StreamBuilder<Duration>(
-                              initialData: Duration(seconds: 60),
-                              stream: CounterScreenStream(time),
-                              builder: (context, snapshot) {
-                                Duration data = snapshot.data;
-
-                                String hour = '${data.inHours}';
-                                String minutes =
-                                    '${(data.inMinutes % 60).floor()}'
-                                        .padLeft(2, '0');
-                                String seconds =
-                                    '${(data.inSeconds % 60).floor()}'
-                                        .padLeft(2, '0');
-
-                                return Text('$hour:$minutes:$seconds',
-                                    style: TextStyle(color: Colors.white));
-                              }))
-                    ]),
-              ),
-            ]),
+                          child: Text('$hour:$minutes:$seconds',
+                              style: TextStyle(color: Colors.white)),
+                        );
+                      })
+                ]),
+          ),
+        ]),
       ),
     );
   }
@@ -93,7 +97,8 @@ class AlertTile extends StatelessWidget {
         Divider(
           color: Theme.of(context).accentColor,
         ),
-        Column(children: model.alerts.map(_buildAlerts).toList())
+        Column(
+            children: model.alerts.map((a) => _buildAlerts(a, model)).toList())
       ])));
     });
   }

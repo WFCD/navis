@@ -1,7 +1,7 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_custom_tabs/flutter_custom_tabs.dart';
 import 'package:flutter_youtube/flutter_youtube.dart';
 import 'package:scoped_model/scoped_model.dart';
@@ -35,7 +35,7 @@ class _Orbiter extends State<Orbiter> with TickerProviderStateMixin {
         CachedNetworkImageProvider(data[index].imageLink);
 
     return Padding(
-        padding: EdgeInsets.only(left: 2.0, right: 2.0, top: 2.5, bottom: 2.5),
+        padding: EdgeInsets.only(top: 2.5, bottom: 2.5),
         child: Card(
             elevation: 8.0,
             shape: RoundedRectangleBorder(
@@ -47,8 +47,8 @@ class _Orbiter extends State<Orbiter> with TickerProviderStateMixin {
                 constraints: BoxConstraints.expand(height: 200.0),
                 alignment: Alignment.bottomLeft,
                 padding: EdgeInsets.only(left: 8.0, bottom: 8.0),
-                foregroundDecoration: BoxDecoration(),
                 decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8.0),
                     image: DecorationImage(
                         colorFilter: ColorFilter.mode(
                             Colors.black.withOpacity(0.8), BlendMode.dstATop),

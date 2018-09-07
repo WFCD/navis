@@ -8,7 +8,7 @@ class Tiles extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(top: 5.0, left: 3.0, right: 3.0, bottom: 2.0),
+      padding: EdgeInsets.only(top: 5.0, left: 2.0, right: 2.0, bottom: 2.0),
       child: Card(
         elevation: 8.0,
         color: Color.fromRGBO(187, 187, 197, 0.2),
