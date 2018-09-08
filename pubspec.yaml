@@ -10,7 +10,7 @@ dependencies:
   codable: ^1.0.0
   scoped_model: ^0.3.0
   shared_preferences: ^0.4.2
-  flutter_custom_tabs: ^0.3.0
+  flutter_custom_tabs: ^0.4.0
   flutter_map: ^0.1.1
   sentry: ^2.1.0
   chewie: ^0.7.0
@@ -18,7 +18,8 @@ dependencies:
   flutter_local_notifications: ^0.3.7
   flutter_circular_chart: ^0.1.0
   cached_network_image: ^0.4.2
-  flutter_offline: ^0.1.0
+  flutter_offline: ^0.2.0
+  package_info: ^0.3.2
 
 dev_dependencies:
   flutter_test:

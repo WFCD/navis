@@ -96,7 +96,8 @@ void _launchLink(String link, BuildContext context) async {
               enableDefaultShare: true,
               enableUrlBarHiding: true,
               showPageTitle: true,
-              animation: CustomTabsAnimation.slideIn()));
+              animation: CustomTabsAnimation.slideIn(),
+              extraCustomTabs: <String>['org.mozilla.firefox']));
     } catch (err) {
       _noBrowser(context);
     }
