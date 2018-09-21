@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
-import '../util/assets.dart';
+import '../../resources/assets.dart';
 
 class InvasionBar extends StatelessWidget {
   final String attackingFaction, defendingFaction;

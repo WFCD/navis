@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
 
+import '../../app_model.dart';
 import '../cards/acolytes.dart';
 import '../cards/alerts.dart';
 import '../cards/cycle.dart';
@@ -8,7 +9,6 @@ import '../cards/events.dart';
 import '../cards/invasionsCard.dart';
 import '../cards/sortie.dart';
 import '../cards/trader.dart';
-import '../model.dart';
 
 class Feed extends StatelessWidget {
   @override

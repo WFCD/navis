@@ -3,12 +3,14 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:sentry/sentry.dart';
 
-import '../util/keys.dart';
+import '../resources/keys.dart';
 
 class ExceptionService {
-  final SentryClient _sentry = new SentryClient(dsn: dsn);
+  static String release;
+  final SentryClient _sentry = new SentryClient(
+      dsn: dsn, environmentAttributes: Event(release: release));
 
-  static bool isDebug = false;
+  static bool isDebug = true;
 
   // Singleton
 

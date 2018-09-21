@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:navis/util/assets.dart';
 import 'package:scoped_model/scoped_model.dart';
 
+import '../../app_model.dart';
+import '../../resources/assets.dart';
+import '../../resources/factions.dart';
 import '../animation/countdown.dart';
-import '../model.dart';
-import '../util/dynamicSwitch.dart';
 
 class Fissure extends StatefulWidget {
   createState() => _Fissure();
@@ -12,15 +12,15 @@ class Fissure extends StatefulWidget {
 
 class _Fissure extends State<Fissure> {
   Widget _fissureTiles(int index, NavisModel model) {
-    final switcher = DynamicFaction(model: model);
+    final switcher = DynamicFaction();
     Duration timeLeft =
-    DateTime.parse(model.fissures[index].expiry).difference(DateTime.now());
+        DateTime.parse(model.fissures[index].expiry).difference(DateTime.now());
 
     return Padding(
       padding: EdgeInsets.all(4.0),
       child: Card(
           shape:
-          RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
           elevation: 5.0,
           color: Color.fromRGBO(187, 187, 197, 0.2),
           child: ListTile(
@@ -29,8 +29,7 @@ class _Fissure extends State<Fissure> {
               size: 45.0,
             ),
             title: Text(
-              '${model.fissures[index].node} | ${model.fissures[index]
-                  .missionType} | ${model.fissures[index].tier}',
+              '${model.fissures[index].node} | ${model.fissures[index].missionType} | ${model.fissures[index].tier}',
               style: TextStyle(fontSize: 15.0),
             ),
             trailing: StreamBuilder<Duration>(
@@ -41,11 +40,13 @@ class _Fissure extends State<Fissure> {
 
                   String hour = '${data.inHours}';
                   String minutes =
-                  '${(data.inMinutes % 60).floor()}'.padLeft(2, '0');
+                      '${(data.inMinutes % 60).floor()}'.padLeft(2, '0');
                   String seconds =
-                  '${(data.inSeconds % 60).floor()}'.padLeft(2, '0');
+                      '${(data.inSeconds % 60).floor()}'.padLeft(2, '0');
 
-                  return Container(
+                  return AnimatedContainer(
+                      duration: Duration(milliseconds: 200),
+                      curve: Curves.easeInOut,
                       padding: EdgeInsets.all(4.0),
                       decoration: BoxDecoration(
                           color: switcher.alertColor(data),

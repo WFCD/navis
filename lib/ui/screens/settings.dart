@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:navis/util/assets.dart';
-import 'package:navis/util/preferences.dart';
 import 'package:scoped_model/scoped_model.dart';
 
-import '../model.dart';
+import '../../app_model.dart';
+import '../../resources/assets.dart';
+import '../../resources/preferences.dart';
 
 class Settings extends StatefulWidget {
   @override

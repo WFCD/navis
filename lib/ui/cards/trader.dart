@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
 
+import '../../app_model.dart';
+import '../../models/trader.dart';
 import '../animation/countdown.dart';
-import '../json/trader.dart';
-import '../model.dart';
 import '../widgets/cards.dart';
 
 class Trader extends StatefulWidget {

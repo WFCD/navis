@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_circular_chart/flutter_circular_chart.dart';
 import 'package:scoped_model/scoped_model.dart';
 
-import '../json/persistentEnemies.dart';
-import '../model.dart';
+import '../../app_model.dart';
+import '../../models/persistentEnemies.dart';
 import '../widgets/cards.dart';
 
 class Acolytes extends StatefulWidget {

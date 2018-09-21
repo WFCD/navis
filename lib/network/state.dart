@@ -3,10 +3,10 @@ import 'dart:convert';
 
 import 'package:codable/codable.dart';
 import 'package:http/http.dart' as http;
-import 'package:navis/util/preferences.dart';
 
-import '../json/export.dart';
-import '../util/keys.dart';
+import '../models/export.dart';
+import '../resources/keys.dart';
+import '../resources/preferences.dart';
 
 class SystemState {
   String _platform;
@@ -32,7 +32,7 @@ class SystemState {
     final key = KeyedArchive.unarchive(data);
     WorldState state = WorldState()..decode(key);
 
-    state.voidFissures.sort((a, b) => a.tierNum.compareTo(b.tierNum));
+    state.alerts.removeWhere((a) => a.expired == true);
 
     state.news.sort((a, b) => b.date.compareTo(a.date));
 
@@ -43,6 +43,9 @@ class SystemState {
 
     state.syndicates
         .retainWhere((syndicate) => syndicate.syndicate == 'Ostrons');
+
+    state.voidFissures.removeWhere((v) => v.expired == true);
+    state.voidFissures.sort((a, b) => a.tierNum.compareTo(b.tierNum));
 
     return state;
   }

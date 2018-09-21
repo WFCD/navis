@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
 
+import '../../app_model.dart';
+import '../../models/sortie.dart';
+import '../../resources/factions.dart';
 import '../animation/countdown.dart';
-import '../json/sortie.dart';
-import '../model.dart';
-import '../util/dynamicSwitch.dart';
 import '../widgets/cards.dart';
 
 class Sortie extends StatelessWidget {
@@ -12,16 +12,16 @@ class Sortie extends StatelessWidget {
   Widget build(BuildContext context) {
     return ScopedModelDescendant<NavisModel>(
       builder: (context, child, model) {
-        final switcher = DynamicFaction(model: model);
+        final factionSwitch = DynamicFaction();
+
         final title = ListTile(
-          leading: Icon(switcher.factionIcon(),
-              size: 45.0, color: switcher.factionColor()),
+          leading: DynamicFaction.factionIcon(model.sortie.faction, size: 45.0),
           title: Text(model.sortie.boss),
           subtitle: Text(model.sortie.faction),
           trailing: Container(
               padding: EdgeInsets.all(4.0),
               decoration: BoxDecoration(
-                  color: switcher.sortieColor(
+                  color: factionSwitch.sortieColor(
                       DateTime.parse(model.sortie.expiry)
                           .difference(DateTime.now())),
                   borderRadius: BorderRadius.circular(3.0)),
@@ -34,9 +34,9 @@ class Sortie extends StatelessWidget {
 
                   String hour = '${data.inHours}';
                   String minutes =
-                  '${(data.inMinutes % 60).floor()}'.padLeft(2, '0');
+                      '${(data.inMinutes % 60).floor()}'.padLeft(2, '0');
                   String seconds =
-                  '${(data.inSeconds % 60).floor()}'.padLeft(2, '0');
+                      '${(data.inSeconds % 60).floor()}'.padLeft(2, '0');
 
                   switch (snapshot.connectionState) {
                     case ConnectionState.none:
@@ -68,7 +68,7 @@ class Sortie extends StatelessWidget {
                         child: Text(variants.modifierDescription,
                             style: TextStyle(
                                 color:
-                                Theme.of(context).textTheme.caption.color)))
+                                    Theme.of(context).textTheme.caption.color)))
                   ]),
                 ]),
               ));
@@ -77,7 +77,7 @@ class Sortie extends StatelessWidget {
         List<Widget> missions = model.sortie.variants
             .map(_buildMissions)
             .toList()
-          ..insert(0, title);
+              ..insert(0, title);
 
         return Tiles(child: Column(children: missions));
       },

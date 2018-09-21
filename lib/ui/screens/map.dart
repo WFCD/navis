@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong/latlong.dart';
 
+import '../../network/state.dart';
+import '../../resources/constants.dart';
 import '../animation/route.dart';
-import '../constants.dart';
-import '../services/state.dart';
 import '../widgets/videoplayer.dart';
 
 class Maps extends StatefulWidget {

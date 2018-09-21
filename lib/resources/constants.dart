@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:navis/util/assets.dart';
+
+import 'assets.dart';
 
 class Constants {
   static const List<String> choices = <String>['PC', 'PS4', 'XBox One'];

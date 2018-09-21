@@ -1,17 +1,20 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
 
+import '../../app_model.dart';
+import '../../models/alerts.dart';
+import '../../resources/assets.dart';
+import '../../resources/factions.dart';
 import '../animation/countdown.dart';
-import '../json/alerts.dart';
-import '../model.dart';
-import '../util/assets.dart';
-import '../util/dynamicSwitch.dart';
 import '../widgets/cards.dart';
 
 class AlertTile extends StatelessWidget {
   Widget _buildAlerts(Alerts alert, NavisModel model) {
-    final switcher = DynamicFaction(model: model);
-    Duration time = DateTime.parse(alert.expiry).difference(DateTime.now());
+    final switcher = DynamicFaction();
+    Stream timer = CounterScreenStream(
+        DateTime.parse(alert.expiry).difference(DateTime.now()));
 
     return Padding(
       padding: const EdgeInsets.only(top: 4.0, bottom: 4.0),
@@ -24,23 +27,22 @@ class AlertTile extends StatelessWidget {
               children: <Widget>[
                 Container(
                     child: Row(children: <Widget>[
-                      _specialMission(
-                          alert.mission.nightmare,
-                          alert.mission.archwingRequired),
-                      Text(alert.mission.node,
-                          style: TextStyle(fontWeight: FontWeight.bold))
-                    ])),
+                  _specialMission(
+                      alert.mission.nightmare, alert.mission.archwingRequired),
+                  Text(alert.mission.node,
+                      style: TextStyle(fontWeight: FontWeight.bold))
+                ])),
                 alert.mission.reward.itemString.isEmpty
                     ? Container(
-                  height: 0.0,
-                  width: 0.0,
-                )
+                        height: 0.0,
+                        width: 0.0,
+                      )
                     : Container(
-                    padding: EdgeInsets.all(4.0),
-                    decoration: BoxDecoration(
-                        color: Colors.blueAccent[400],
-                        borderRadius: BorderRadius.circular(3.0)),
-                    child: Text(alert.mission.reward.itemString)),
+                        padding: EdgeInsets.all(4.0),
+                        decoration: BoxDecoration(
+                            color: Colors.blueAccent[400],
+                            borderRadius: BorderRadius.circular(3.0)),
+                        child: Text(alert.mission.reward.itemString)),
               ]),
           Padding(
             padding: const EdgeInsets.only(top: 8.0),
@@ -48,23 +50,22 @@ class AlertTile extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   Text(
-                      '${alert.mission.type} (${alert.mission
-                          .faction}) | Level: ${alert.mission
-                          .minEnemyLevel} - ${alert.mission
-                          .maxEnemyLevel} | ${alert.mission.reward.credits}cr'),
+                      '${alert.mission.type} (${alert.mission.faction}) | Level: ${alert.mission.minEnemyLevel} - ${alert.mission.maxEnemyLevel} | ${alert.mission.reward.credits}cr'),
                   StreamBuilder<Duration>(
                       initialData: Duration(seconds: 60),
-                      stream: CounterScreenStream(time),
+                      stream: timer,
                       builder: (context, snapshot) {
                         Duration data = snapshot.data;
 
                         String hour = '${data.inHours}';
                         String minutes =
-                        '${(data.inMinutes % 60).floor()}'.padLeft(2, '0');
+                            '${(data.inMinutes % 60).floor()}'.padLeft(2, '0');
                         String seconds =
-                        '${(data.inSeconds % 60).floor()}'.padLeft(2, '0');
+                            '${(data.inSeconds % 60).floor()}'.padLeft(2, '0');
 
-                        return Container(
+                        return AnimatedContainer(
+                          duration: Duration(milliseconds: 200),
+                          curve: Curves.easeInOut,
                           padding: EdgeInsets.all(4.0),
                           decoration: BoxDecoration(
                               color: switcher.alertColor(data),

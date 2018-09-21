@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
 
-import '../json/invasions.dart';
-import '../model.dart';
+import '../../app_model.dart';
+import '../../models/invasions.dart';
 import '../widgets/cards.dart';
 import '../widgets/invasionsBar.dart';
 
@@ -69,49 +69,44 @@ class _InvasionCard extends State<InvasionCard>
 
     return ScopedModelDescendant<NavisModel>(
       builder: (BuildContext context, Widget child, NavisModel model) {
-        if (model.invasion.length < 1) {
+        if (model.invasion.length < 0) {
           return Tiles(
               child: Column(children: <Widget>[
-                title,
-                Divider(color: Theme
-                    .of(context)
-                    .accentColor),
-                Container(child: _buildInvasions(context, model.invasion.first))
-              ]));
+            title,
+            Divider(color: Theme.of(context).accentColor),
+            Container(child: _buildInvasions(context, model.invasion.first))
+          ]));
         }
 
         return Tiles(
             child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  title,
-                  Divider(color: Theme
-                      .of(context)
-                      .accentColor),
-                  InkWell(
-                      onTap: () => _expand(model.invasion.length),
-                      child: Container(
-                          child: Column(children: <Widget>[
-                            _buildInvasions(context, model.invasion[0]),
-                            _buildInvasions(context, model.invasion[1]),
-                            Align(
-                                alignment: Alignment.topRight,
-                                child: RotationTransition(
-                                    turns: _iconTurn,
-                                    child: Icon(Icons.expand_more))),
-                          ]))),
-                  AnimatedContainer(
-                      duration: _controller.duration,
-                      height: height,
-                      curve: Curves.easeInOut,
-                      child: FadeTransition(
-                          opacity: _opacity,
-                          child: Column(
-                              children: model.invasion
-                                  .skip(2)
-                                  .map((i) => _buildInvasions(context, i))
-                                  .toList())))
-                ]));
+              title,
+              Divider(color: Theme.of(context).accentColor),
+              InkWell(
+                  onTap: () => _expand(model.invasion.length),
+                  child: Container(
+                      child: Column(children: <Widget>[
+                    _buildInvasions(context, model.invasion[0]),
+                    _buildInvasions(context, model.invasion[1]),
+                    Align(
+                        alignment: Alignment.topRight,
+                        child: RotationTransition(
+                            turns: _iconTurn, child: Icon(Icons.expand_more))),
+                  ]))),
+              AnimatedContainer(
+                  duration: _controller.duration,
+                  height: height,
+                  curve: Curves.easeInOut,
+                  child: FadeTransition(
+                      opacity: _opacity,
+                      child: Column(
+                          children: model.invasion
+                              .skip(2)
+                              .map((i) => _buildInvasions(context, i))
+                              .toList())))
+            ]));
       },
     );
   }

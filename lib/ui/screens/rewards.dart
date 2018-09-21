@@ -1,10 +1,10 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/material.dart';
 
-import '../services/state.dart';
-import '../json/rewardpool.dart';
+import '../../models/rewardpool.dart';
+import '../../network/state.dart';
 
 class BountyRewards extends StatefulWidget {
   BountyRewards({Key key, this.missionTYpe, this.rewards}) : super(key: key);
@@ -23,7 +23,7 @@ class _BountyRewards extends State<BountyRewards> {
     List<Rewards> rewards = [];
 
     for (int i = 0; i < widget.rewards.length; i++) {
-     final reward = await SystemState.rewards(widget.rewards[i]);
+      final reward = await SystemState.rewards(widget.rewards[i]);
       rewards.add(reward);
     }
 

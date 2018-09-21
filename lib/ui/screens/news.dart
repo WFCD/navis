@@ -7,9 +7,9 @@ import 'package:flutter_youtube/flutter_youtube.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:share/share.dart';
 
-import '../json/news.dart';
-import '../model.dart';
-import '../util/keys.dart';
+import '../../app_model.dart';
+import '../../models/news.dart';
+import '../../resources/keys.dart';
 
 class Orbiter extends StatefulWidget {
   Orbiter({Key key}) : super(key: key);

@@ -6,6 +6,7 @@ build/
 .flutter-plugins
 .idea
 assets/svg/
-lib/util/keys.dart
+lib/resources/keys.dart
+lib/resources/notifications.dart
 android/key.properties
 android/app/google-services.json

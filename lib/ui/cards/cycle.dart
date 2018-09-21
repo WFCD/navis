@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
 
-import '../model.dart';
+import '../../app_model.dart';
 import '../widgets/cards.dart';
 
 enum Cycle { cetus, earth }

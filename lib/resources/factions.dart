@@ -1,13 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../model.dart';
 import 'assets.dart';
 
 class DynamicFaction {
-  final NavisModel _model;
-
-  DynamicFaction({@required NavisModel model}) : this._model = model;
-
   sortieColor(Duration timeLeft) {
     if (timeLeft >= Duration(hours: 12))
       return Colors.green;
@@ -24,21 +19,25 @@ class DynamicFaction {
     else if (timeLeft <= Duration(minutes: 10)) return Colors.red;
   }
 
-  factionIcon() {
-    switch (_model.sortie.faction) {
+  static factionIcon(String faction, {double size}) {
+    switch (faction) {
       case 'Grineer':
-        return ImageAssets.grineer;
+        return Icon(ImageAssets.grineer,
+            size: size, color: factionColor(faction));
       case 'Corpus':
-        return ImageAssets.corpus;
+        return Icon(ImageAssets.corpus,
+            size: size, color: factionColor(faction));
       case 'Corrupted':
-        return ImageAssets.corrupted;
+        return Icon(ImageAssets.corrupted,
+            size: size, color: factionColor(faction));
       default:
-        return ImageAssets.infested;
+        return Icon(ImageAssets.infested,
+            size: size, color: factionColor(faction));
     }
   }
 
-  factionColor() {
-    switch (_model.sortie.faction) {
+  static factionColor(String faction) {
+    switch (faction) {
       case 'Corpus':
         return Colors.blue[300];
       case 'Grineer':

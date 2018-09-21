@@ -1,52 +1,54 @@
 import 'dart:async';
 
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:scoped_model/scoped_model.dart';
 
-import 'animation/countdown.dart';
-import 'json/export.dart';
-import 'services/state.dart';
+import 'models/export.dart';
+import 'network/state.dart';
+import 'resources/notifications.dart';
+import 'ui/animation/countdown.dart';
 
 class NavisModel extends Model {
-  final SystemState state;
+  final SystemState state = SystemState();
+  final Notifications notification = Notifications();
+  final fcm = FirebaseMessaging();
   final DateFormat _format = DateFormat.jms().add_yMd();
 
   bool _isLoading = false;
   bool _hasError = false;
-  WorldState _worldState;
-
-  NavisModel({this.state});
+  WorldState worldState;
 
   bool get isLoading => _isLoading;
 
   bool get hasError => _hasError;
 
-  Cetus get cetus => _worldState.cetus;
+  Cetus get cetus => worldState.cetus;
 
-  Earth get earth => _worldState.earth;
+  Earth get earth => worldState.earth;
 
-  Sortie get sortie => _worldState.sortie;
+  Sortie get sortie => worldState.sortie;
 
-  VoidTrader get trader => _worldState.trader;
+  VoidTrader get trader => worldState.trader;
 
-  List<Alerts> get alerts => _worldState.alerts;
+  List<Alerts> get alerts => worldState.alerts;
 
-  List<Events> get events => _worldState.events;
+  List<Events> get events => worldState.events;
 
-  List<VoidFissures> get fissures => _worldState.voidFissures;
+  List<VoidFissures> get fissures => worldState.voidFissures;
 
-  List<OrbiterNews> get news => _worldState.news;
+  List<OrbiterNews> get news => worldState.news;
 
-  List<PersistentEnemies> get enemies => _worldState.persistentEnemies;
+  List<PersistentEnemies> get enemies => worldState.persistentEnemies;
 
-  List<Syndicates> get syndicates => _worldState.syndicates;
+  List<Syndicates> get syndicates => worldState.syndicates;
 
-  List<Invasions> get invasion => _worldState.invasions;
+  List<Invasions> get invasion => worldState.invasions;
 
   Stream<Duration> get cetusTime {
-    String expiry = _worldState.cetus.expiry;
-    bool isDay = _worldState.cetus.isDay;
+    String expiry = worldState.cetus.expiry;
+    bool isDay = worldState.cetus.isDay;
     Duration time;
 
     try {
@@ -69,7 +71,7 @@ class NavisModel extends Model {
   }
 
   Stream<Duration> get earthTime => CounterScreenStream(
-      DateTime.parse(_worldState.earth.expiry).difference(DateTime.now()));
+      DateTime.parse(worldState.earth.expiry).difference(DateTime.now()));
 
   String get cetusExpiry {
     String expiry;
@@ -77,9 +79,9 @@ class NavisModel extends Model {
     Duration night = Duration(minutes: 50);
 
     try {
-      expiry = _format.format(DateTime.parse(_worldState.cetus.expiry));
+      expiry = _format.format(DateTime.parse(worldState.cetus.expiry));
     } catch (err) {
-      if (_worldState.cetus.isDay)
+      if (worldState.cetus.isDay)
         expiry = _format.format(DateTime.now().add(day));
       else
         expiry = _format.format(DateTime.now().add(night));
@@ -94,9 +96,9 @@ class NavisModel extends Model {
 
     try {
       expiry =
-          _format.format(DateTime.parse(_worldState.earth.expiry).toLocal());
+          _format.format(DateTime.parse(worldState.earth.expiry).toLocal());
     } catch (err) {
-      if (_worldState.earth.isDay)
+      if (worldState.earth.isDay)
         expiry = _format.format(DateTime.now().add(cycle));
       else
         expiry = _format.format(DateTime.now().add(cycle));
@@ -106,17 +108,17 @@ class NavisModel extends Model {
   }
 
   String get arrival =>
-      _format.format(DateTime.parse(_worldState.trader.activation).toLocal());
+      _format.format(DateTime.parse(worldState.trader.activation).toLocal());
 
   String get departure =>
-      _format.format(DateTime.parse(_worldState.trader.expiry).toLocal());
+      _format.format(DateTime.parse(worldState.trader.expiry).toLocal());
 
   Future<Null> update() async {
     _isLoading = true;
     notifyListeners();
 
     return state.updateState().then((data) async {
-      _worldState = data;
+      worldState = data;
       _isLoading = false;
       _hasError = false;
       notifyListeners();
@@ -131,6 +133,13 @@ class NavisModel extends Model {
   @override
   void addListener(VoidCallback listener) {
     super.addListener(listener);
+    fcm.configure(
+      onMessage: (Map<String, dynamic> payload) {
+        update();
+        notification.alertNotification(worldState.alerts.first);
+      },
+      onResume: (Map<String, dynamic> payload) => update(),
+    );
   }
 
   static NavisModel of(BuildContext context) =>

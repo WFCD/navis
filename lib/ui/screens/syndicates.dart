@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
 
+import '../../app_model.dart';
+import '../../models/export.dart';
 import '../animation/countdown.dart';
 import '../animation/route.dart';
-import '../json/export.dart';
-import '../model.dart';
 import 'rewards.dart';
 
 class Ostrons extends StatelessWidget {
@@ -22,7 +22,7 @@ class Ostrons extends StatelessWidget {
 
         return Flex(direction: Axis.vertical, children: <Widget>[
           Expanded(
-              child: Column(
+              child: ListView(
                   children: ostrons.jobs.isEmpty
                       ? <Widget>[emptyList]
                       : ostrons.jobs
