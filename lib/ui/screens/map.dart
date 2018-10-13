@@ -4,7 +4,7 @@ import 'package:latlong/latlong.dart';
 
 import '../../network/state.dart';
 import '../../resources/constants.dart';
-import '../animation/route.dart';
+import '../animation/popup.dart';
 import '../widgets/videoplayer.dart';
 
 class Maps extends StatefulWidget {

@@ -2,8 +2,12 @@ import 'package:flutter/material.dart';
 
 class Tiles extends StatelessWidget {
   final Widget child;
+  final double height;
+  final Duration duration;
 
-  Tiles({@required this.child});
+  Tiles({@required this.child,
+    this.height,
+    this.duration = const Duration(milliseconds: 200)});
 
   @override
   Widget build(BuildContext context) {
@@ -11,13 +15,11 @@ class Tiles extends StatelessWidget {
       padding: EdgeInsets.only(top: 5.0, left: 2.0, right: 2.0, bottom: 2.0),
       child: Card(
         elevation: 8.0,
-        color: Color.fromRGBO(187, 187, 197, 0.2),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
-        child: Container(
-            margin: EdgeInsets.only(left: 4.0, right: 4.0),
-            decoration: BoxDecoration(
-                border: Border(
-                    bottom: BorderSide(color: Colors.blue[700], width: 2.5))),
+        child: AnimatedContainer(
+            duration: duration,
+            margin: EdgeInsets.only(left: 3.0, right: 3.0),
+            height: height,
             child: child),
       ),
     );

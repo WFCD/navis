@@ -5,6 +5,7 @@
 build/
 .flutter-plugins
 .idea
+.vscode
 assets/svg/
 lib/resources/keys.dart
 lib/resources/notifications.dart

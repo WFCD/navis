@@ -14,6 +14,7 @@ class ImageAssets {
   static const IconData pc = IconData(0xe900, fontFamily: 'Platforms');
   static const IconData ps4 = IconData(0xe901, fontFamily: 'Platforms');
   static const IconData xbox = IconData(0xe902, fontFamily: 'Platforms');
+  static const IconData nintendo = IconData(0xe903, fontFamily: 'Platforms');
 
   //this points to Void tier icons
   static const IconData lith = IconData(0xe900, fontFamily: 'Relics');

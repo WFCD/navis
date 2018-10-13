@@ -6,16 +6,15 @@ import 'package:sentry/sentry.dart';
 import '../resources/keys.dart';
 
 class ExceptionService {
-  static String release;
   final SentryClient _sentry = new SentryClient(
-      dsn: dsn, environmentAttributes: Event(release: release));
+      dsn: dsn, environmentAttributes: Event(release: '1.0.5'));
 
-  static bool isDebug = true;
+  static bool isDebug = false;
 
   // Singleton
 
   static final ExceptionService _exceptionService =
-      new ExceptionService._internal();
+  ExceptionService._internal();
 
   factory ExceptionService() => _exceptionService;
 

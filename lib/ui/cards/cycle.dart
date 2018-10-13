@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:scoped_model/scoped_model.dart';
+import 'package:navis/blocs/provider.dart';
+import 'package:navis/blocs/worldstate_bloc.dart';
+import 'package:navis/models/worldstate.dart';
+import 'package:navis/ui/animation/countdown.dart';
 
-import '../../app_model.dart';
 import '../widgets/cards.dart';
 
 enum Cycle { cetus, earth }
@@ -16,16 +18,6 @@ class CetusCycle extends StatefulWidget {
 }
 
 class _CetusCycle extends State<CetusCycle> with TickerProviderStateMixin {
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-  }
-
   _cycle(Cycle cycle) {
     switch (cycle) {
       case Cycle.cetus:
@@ -35,127 +27,149 @@ class _CetusCycle extends State<CetusCycle> with TickerProviderStateMixin {
     }
   }
 
-  _modelCycle(NavisModel model) {
+  _modelCycle(WorldState state) {
     if (widget.cycle == Cycle.cetus)
-      return model.cetus;
+      return state.cetus;
     else
-      return model.earth;
+      return state.earth;
   }
 
   @override
   Widget build(BuildContext context) {
-    TextStyle style = TextStyle(fontSize: 15.0);
-    return ScopedModelDescendant<NavisModel>(builder: (context, child, model) {
-      var cycle = _modelCycle(model);
-      model.cetusTime.listen((data) {}, onDone: () => model.update());
+    final state = BlocProvider.of<WorldstateBloc>(context);
 
-      return Tiles(
-          child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        mainAxisSize: MainAxisSize.min,
-        children: <Widget>[
-          Container(
-              padding: const EdgeInsets.only(top: 4.0),
-              child: new Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+    final style = TextStyle(
+        fontSize: 15.0, color: Theme
+        .of(context)
+        .textTheme
+        .body1
+        .color);
+
+    return StreamBuilder<WorldState>(
+        initialData: state.lastState,
+        stream: state.worldstate,
+        builder: (BuildContext context, AsyncSnapshot<WorldState> snapshot) {
+          final cycle = _modelCycle(snapshot.data);
+
+          return Tiles(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
-                  new RichText(
-                      text: new TextSpan(
-                          text: _cycle(widget.cycle),
-                          style: TextStyle(fontSize: 20.0)))
-                ],
-              )),
-          new Divider(color: Theme.of(context).accentColor),
-          new Container(
-              padding: const EdgeInsets.only(bottom: 8.0),
-              child: new Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  new RichText(
-                      text:
-                          new TextSpan(text: 'Currently it is', style: style)),
-                  cycle.isDay == true
-                      ? new RichText(
-                          text: new TextSpan(
-                              text: 'Day',
-                              style: TextStyle(
-                                  color: Colors.yellow[700],
-                                  fontSize: 20.0,
-                                  fontWeight: FontWeight.bold)))
-                      : new RichText(
-                          text: new TextSpan(
-                              text: 'Night',
-                              style: TextStyle(
-                                  color: Colors.blue,
-                                  fontSize: 20.0,
-                                  fontWeight: FontWeight.bold)))
-                ],
-              )),
-          new Container(
-            padding: const EdgeInsets.only(bottom: 8.0),
-            child: new Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                cycle.isDay == true
-                    ? new RichText(
-                        text: new TextSpan(
-                            text: 'Time until Night', style: style))
-                    : new RichText(
-                        text:
-                            new TextSpan(text: 'Time until Day', style: style)),
-                new Container(
-                    padding: EdgeInsets.all(4.0),
-                    decoration: new BoxDecoration(
-                        color: cycle.isDay == true
-                            ? Colors.green
-                            : Colors.blueAccent[400],
-                        borderRadius: BorderRadius.all(Radius.circular(3.0))),
-                    child: StreamBuilder<Duration>(
-                        initialData: Duration(seconds: 60),
-                        stream: widget.cycle == Cycle.cetus
-                            ? model.cetusTime
-                            : model.earthTime,
-                        builder: (context, snapshot) {
-                          Duration data = snapshot.data;
+                  Container(
+                      padding: EdgeInsets.only(top: 4.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          RichText(
+                              text: TextSpan(
+                                  text: _cycle(widget.cycle),
+                                  style: TextStyle(
+                                      fontSize: 20.0,
+                                      color:
+                                      Theme
+                                          .of(context)
+                                          .textTheme
+                                          .body1
+                                          .color)))
+                        ],
+                      )),
+                  Divider(color: Theme
+                      .of(context)
+                      .accentColor),
+                  Container(
+                      padding: EdgeInsets.only(bottom: 8.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          RichText(
+                              text:
+                              TextSpan(text: 'Currently it is', style: style)),
+                          cycle.isDay == true
+                              ? RichText(
+                              text: TextSpan(
+                                  text: 'Day',
+                                  style: TextStyle(
+                                      color: Colors.yellow[700],
+                                      fontSize: 20.0,
+                                      fontWeight: FontWeight.bold)))
+                              : RichText(
+                              text: TextSpan(
+                                  text: 'Night',
+                                  style: TextStyle(
+                                      color: Colors.blue,
+                                      fontSize: 20.0,
+                                      fontWeight: FontWeight.bold)))
+                        ],
+                      )),
+                  Container(
+                    padding: EdgeInsets.only(bottom: 8.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        cycle.isDay == true
+                            ? RichText(
+                            text: TextSpan(
+                                text: 'Time until Night', style: style))
+                            : RichText(
+                            text:
+                            TextSpan(text: 'Time until Day', style: style)),
+                        new Container(
+                            padding: EdgeInsets.all(4.0),
+                            decoration: BoxDecoration(
+                                color: cycle.isDay == true
+                                    ? Colors.green
+                                    : Colors.blueAccent[400],
+                                borderRadius:
+                                BorderRadius.all(Radius.circular(3.0))),
+                            child: StreamBuilder<Duration>(
+                                initialData: Duration(seconds: 60),
+                                stream: widget.cycle == Cycle.cetus
+                                    ? CounterScreenStream(state.cetusCycleTime)
+                                    : CounterScreenStream(state.earthCycleTime),
+                                builder: (context, snapshot) {
+                                  Duration data = snapshot.data;
 
-                          String hour = '${data.inHours}';
-                          String minutes = '${(data.inMinutes % 60).floor()}'
-                              .padLeft(2, '0');
-                          String seconds = '${(data.inSeconds % 60).floor()}'
-                              .padLeft(2, '0');
+                                  String hour = '${data.inHours}';
+                                  String minutes =
+                                  '${(data.inMinutes % 60).floor()}'
+                                      .padLeft(2, '0');
+                                  String seconds =
+                                  '${(data.inSeconds % 60).floor()}'
+                                      .padLeft(2, '0');
 
-                          return Text('$hour:$minutes:$seconds',
-                              style: TextStyle(color: Colors.white));
-                        }))
-              ],
-            ),
-          ),
-          new Container(
-            padding: const EdgeInsets.only(bottom: 8.0),
-            child: new Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                cycle.isDay == true
-                    ? new RichText(
-                        text: new TextSpan(text: 'Time at Night', style: style))
-                    : new RichText(
-                        text: new TextSpan(text: 'Time at Day', style: style)),
-                new Container(
-                    padding: const EdgeInsets.all(4.0),
-                    decoration: new BoxDecoration(
-                        color: Colors.blueAccent[400],
-                        borderRadius:
-                            const BorderRadius.all(const Radius.circular(3.0))),
-                    child: Text(
-                        widget.cycle == Cycle.cetus
-                            ? '${model.cetusExpiry}'
-                            : '${model.earthExpiry}',
-                        style: TextStyle(color: Colors.white))),
-              ],
-            ),
-          )
-        ],
-      ));
-    });
+                                  return Text('$hour:$minutes:$seconds',
+                                      style: TextStyle(color: Colors.white));
+                                }))
+                      ],
+                    ),
+                  ),
+                  Container(
+                    padding: EdgeInsets.only(bottom: 8.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        cycle.isDay == true
+                            ? RichText(
+                            text: TextSpan(text: 'Time at Night', style: style))
+                            : RichText(
+                            text: TextSpan(text: 'Time at Day', style: style)),
+                        Container(
+                            padding: EdgeInsets.all(4.0),
+                            decoration: BoxDecoration(
+                                color: Colors.blueAccent[400],
+                                borderRadius:
+                                BorderRadius.all(Radius.circular(3.0))),
+                            child: Text(
+                                widget.cycle == Cycle.cetus
+                                    ? '${state.cetusExpiry}'
+                                    : '${state.earthExpiry}',
+                                style: TextStyle(color: Colors.white))),
+                      ],
+                    ),
+                  )
+                ],
+              ));
+        });
   }
 }

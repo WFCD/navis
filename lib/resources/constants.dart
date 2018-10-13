@@ -1,35 +1,5 @@
-import 'package:flutter/material.dart';
-
-import 'assets.dart';
-
 class Constants {
   static const List<String> choices = <String>['PC', 'PS4', 'XBox One'];
-  static const items = <BottomNavigationBarItem>[
-    BottomNavigationBarItem(
-        icon: Icon(Icons.update),
-        title: Text(
-          'News',
-          style: TextStyle(fontSize: 13.0),
-        )),
-    BottomNavigationBarItem(
-        icon: Icon(Icons.view_headline),
-        title: Text(
-          'Feed',
-          style: TextStyle(fontSize: 13.0),
-        )),
-    BottomNavigationBarItem(
-        icon: Icon(ImageAssets.fissure),
-        title: Text(
-          'Fissures',
-          style: TextStyle(fontSize: 13.0),
-        )),
-    BottomNavigationBarItem(
-        icon: Icon(ImageAssets.ostrons),
-        title: Text(
-          'Ostrons',
-          style: TextStyle(fontSize: 13.0),
-        ))
-  ];
 
   static const List lure = <List<dynamic>>[
     ['Eidolon Lure X2', 65.73062649311031, -51.6796875],

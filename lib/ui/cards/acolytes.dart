@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_circular_chart/flutter_circular_chart.dart';
-import 'package:scoped_model/scoped_model.dart';
+import 'package:navis/blocs/provider.dart';
+import 'package:navis/blocs/worldstate_bloc.dart';
+import 'package:navis/models/persistentEnemies.dart';
+import 'package:navis/models/worldstate.dart';
 
-import '../../app_model.dart';
-import '../../models/persistentEnemies.dart';
 import '../widgets/cards.dart';
 
 class Acolytes extends StatefulWidget {
@@ -13,8 +13,6 @@ class Acolytes extends StatefulWidget {
 
 class _Acolytes extends State<Acolytes> {
   Widget _buildAcolytes(PersistentEnemies enemy) {
-    num health = (enemy.healthPercent * 100).toDouble();
-
     return Container(
         padding: EdgeInsets.all(8.0),
         child:
@@ -22,19 +20,9 @@ class _Acolytes extends State<Acolytes> {
           Padding(
             padding: const EdgeInsets.only(right: 10.0),
             child: Container(
-              child: Stack(alignment: Alignment.center, children: <Widget>[
-                AnimatedCircularChart(
-                    size: Size(70.0, 70.0),
-                    percentageValues: true,
-                    edgeStyle: SegmentEdgeStyle.round,
-                    chartType: CircularChartType.Radial,
-                    initialChartData: <CircularStackEntry>[
-                      CircularStackEntry(<CircularSegmentEntry>[
-                        CircularSegmentEntry(health, Colors.red[800])
-                      ])
-                    ]),
-                acolyteProfile(enemy.agentType)
-              ]),
+              child: Stack(
+                  alignment: Alignment.center,
+                  children: <Widget>[acolyteProfile(enemy.agentType)]),
             ),
           ),
           Column(
@@ -82,11 +70,17 @@ class _Acolytes extends State<Acolytes> {
 
   @override
   Widget build(BuildContext context) {
-    return ScopedModelDescendant<NavisModel>(
-      builder: (BuildContext context, Widget child, NavisModel model) {
+    final enemies = BlocProvider.of<WorldstateBloc>(context);
+
+    return StreamBuilder<WorldState>(
+      initialData: enemies.lastState,
+      stream: enemies.worldstate,
+      builder: (BuildContext context, AsyncSnapshot<WorldState> snapshot) {
         return Tiles(
-            child:
-                Column(children: model.enemies.map(_buildAcolytes).toList()));
+            child: Column(
+                children: snapshot.data.persistentEnemies
+                    .map(_buildAcolytes)
+                    .toList()));
       },
     );
   }

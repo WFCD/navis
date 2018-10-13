@@ -1,4 +1,4 @@
-package com.example.navis
+package com.cephalon.navis
 
 import android.os.Bundle
 

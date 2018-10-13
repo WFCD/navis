@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:scoped_model/scoped_model.dart';
+import 'package:navis/blocs/provider.dart';
+import 'package:navis/blocs/worldstate_bloc.dart';
+import 'package:navis/models/trader.dart';
+import 'package:navis/models/worldstate.dart';
 
-import '../../app_model.dart';
-import '../../models/trader.dart';
 import '../animation/countdown.dart';
 import '../widgets/cards.dart';
 
@@ -14,15 +15,23 @@ class Trader extends StatefulWidget {
 class _Trader extends State<Trader> {
   @override
   Widget build(BuildContext context) {
+    final trader = BlocProvider.of<WorldstateBloc>(context);
+    final style = TextStyle(color: Theme
+        .of(context)
+        .textTheme
+        .body2
+        .color);
+
     final emptyBox = Container(height: 0.0, width: 0.0);
 
-    return ScopedModelDescendant<NavisModel>(
-      builder: (BuildContext context, Widget child, NavisModel model) {
-        final trader = model.trader;
-        final arrives =
-            DateTime.parse(trader.activation).difference(DateTime.now());
-        final leaving =
-            DateTime.parse(trader.expiry).difference(DateTime.now());
+    return StreamBuilder<WorldState>(
+      initialData: trader.lastState,
+      stream: trader.worldstate,
+      builder: (BuildContext context, AsyncSnapshot<WorldState> snapshot) {
+        final arrives = DateTime.parse(snapshot.data.trader.activation)
+            .difference(DateTime.now());
+        final leaving = DateTime.parse(snapshot.data.trader.expiry)
+            .difference(DateTime.now());
 
         return Tiles(
           child: Column(
@@ -35,16 +44,18 @@ class _Trader extends State<Trader> {
                 ),
                 Divider(color: Theme.of(context).accentColor),
                 Padding(
-                  padding: EdgeInsets.only(bottom: 5.0),
+                  padding: EdgeInsets.only(bottom: 5.0, left: 5.0, right: 3.0),
                   child: Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
-                        trader.active
-                            ? Text('${trader.character} leaves in',
-                                style: TextStyle(fontSize: 17.0))
-                            : Text('${trader.character} arrives in',
-                                style: TextStyle(fontSize: 17.0)),
+                        snapshot.data.trader.active
+                            ? Text(
+                            '${snapshot.data.trader.character} leaves in',
+                            style: TextStyle(fontSize: 17.0))
+                            : Text(
+                            '${snapshot.data.trader.character} arrives in',
+                            style: TextStyle(fontSize: 17.0)),
                         Container(
                           padding: EdgeInsets.all(3.0),
                           decoration: BoxDecoration(
@@ -53,18 +64,20 @@ class _Trader extends State<Trader> {
                           child: StreamBuilder<Duration>(
                               initialData: Duration(seconds: 60),
                               stream: CounterScreenStream(
-                                  trader.active ? leaving : arrives),
+                                  snapshot.data.trader.active
+                                      ? leaving
+                                      : arrives),
                               builder: (context, snapshot) {
                                 Duration data = snapshot.data;
 
                                 String days = '${data.inDays}';
                                 String hour = '${data.inHours % 24}';
                                 String minutes =
-                                    '${(data.inMinutes % 60).floor()}'
-                                        .padLeft(2, '0');
+                                '${(data.inMinutes % 60).floor()}'
+                                    .padLeft(2, '0');
                                 String seconds =
-                                    '${(data.inSeconds % 60).floor()}'
-                                        .padLeft(2, '0');
+                                '${(data.inSeconds % 60).floor()}'
+                                    .padLeft(2, '0');
 
                                 return Text('$days\d $hour:$minutes:$seconds',
                                     style: TextStyle(color: Colors.white));
@@ -72,47 +85,51 @@ class _Trader extends State<Trader> {
                         )
                       ]),
                 ),
-                trader.active
+                snapshot.data.trader.active
                     ? Padding(
-                        padding: EdgeInsets.only(bottom: 5.0),
-                        child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: <Widget>[
-                              Text('Loaction',
-                                  style: TextStyle(fontSize: 17.0)),
-                              Container(
-                                  padding: EdgeInsets.all(4.0),
-                                  decoration: BoxDecoration(
-                                      color: Colors.blue,
-                                      borderRadius: BorderRadius.circular(3.0)),
-                                  child: Text('${trader.location}'))
-                            ]))
-                    : emptyBox,
-                Padding(
                     padding: EdgeInsets.only(bottom: 5.0),
                     child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
-                          trader.active
+                          Text('Loaction',
+                              style: TextStyle(fontSize: 17.0)),
+                          Container(
+                              padding: EdgeInsets.all(4.0),
+                              decoration: BoxDecoration(
+                                  color: Colors.blue,
+                                  borderRadius: BorderRadius.circular(3.0)),
+                              child:
+                              Text('${snapshot.data.trader.location}'))
+                        ]))
+                    : emptyBox,
+                Padding(
+                    padding:
+                    EdgeInsets.only(bottom: 8.0, left: 5.0, right: 3.0),
+                    child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          snapshot.data.trader.active
                               ? Text('Leaves on',
-                                  style: TextStyle(fontSize: 17.0))
+                              style: TextStyle(fontSize: 17.0))
                               : Text('Arrives on',
-                                  style: TextStyle(fontSize: 17.0)),
+                              style: TextStyle(fontSize: 17.0)),
                           Container(
                               padding: EdgeInsets.all(3.0),
                               decoration: BoxDecoration(
                                   color: Colors.blueAccent[400],
                                   borderRadius: BorderRadius.circular(3.0)),
-                              child: trader.active
-                                  ? Text(model.departure)
-                                  : Text(model.arrival))
+                              child: snapshot.data.trader.active
+                                  ? Text(trader.voidTraderDeparture,
+                                  style: style)
+                                  : Text(trader.voidTraderArrival,
+                                  style: style))
                         ])),
-                trader.active
+                snapshot.data.trader.active
                     ? ExpansionTile(
-                        title: Text('Baro Ki\'Teeer Inventory'),
-                        children: trader.inventory
-                            .map((item) => _buildInventoryItem(context, item))
-                            .toList())
+                    title: Text('Baro Ki\'Teeer Inventory'),
+                    children: snapshot.data.trader.inventory
+                        .map((item) => _buildInventoryItem(context, item))
+                        .toList())
                     : emptyBox
               ]),
         );

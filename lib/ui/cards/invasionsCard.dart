@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:scoped_model/scoped_model.dart';
+import 'package:navis/blocs/provider.dart';
+import 'package:navis/blocs/worldstate_bloc.dart';
+import 'package:navis/models/invasions.dart';
+import 'package:navis/models/worldstate.dart';
 
-import '../../app_model.dart';
-import '../../models/invasions.dart';
+import '../../resources/factions.dart';
 import '../widgets/cards.dart';
 import '../widgets/invasionsBar.dart';
 
 class InvasionCard extends StatefulWidget {
+  InvasionCard({Key key}) : super(key: key);
+
   @override
   _InvasionCard createState() => _InvasionCard();
 }
@@ -15,7 +19,6 @@ class _InvasionCard extends State<InvasionCard>
     with SingleTickerProviderStateMixin {
   AnimationController _controller;
   Animation<double> _opacity;
-  Animation<double> _iconTurn;
   bool _showMore = false;
   double height = 0.0;
 
@@ -27,9 +30,6 @@ class _InvasionCard extends State<InvasionCard>
         AnimationController(duration: Duration(milliseconds: 200), vsync: this);
 
     _opacity = Tween(begin: 0.0, end: 1.0)
-        .animate(CurvedAnimation(parent: _controller, curve: Curves.easeInOut));
-
-    _iconTurn = Tween<double>(begin: 0.0, end: 0.5)
         .animate(CurvedAnimation(parent: _controller, curve: Curves.easeInOut));
   }
 
@@ -56,59 +56,59 @@ class _InvasionCard extends State<InvasionCard>
 
   @override
   Widget build(BuildContext context) {
-    final title = Container(
-        padding: EdgeInsets.only(top: 4.0),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            RichText(
-                text: TextSpan(
-                    text: 'Invasions', style: TextStyle(fontSize: 20.0)))
-          ],
-        ));
+    final invasions = BlocProvider.of<WorldstateBloc>(context);
 
-    return ScopedModelDescendant<NavisModel>(
-      builder: (BuildContext context, Widget child, NavisModel model) {
-        if (model.invasion.length < 0) {
+    return StreamBuilder<WorldState>(
+        initialData: invasions.lastState,
+        stream: invasions.worldstate,
+        builder: (BuildContext context, AsyncSnapshot<WorldState> snapshot) {
+          if (snapshot.data.invasions.length < 0) {
+            return Tiles(
+                duration: Duration(milliseconds: 200),
+                child: Column(children: <Widget>[
+                  Container(
+                      child: _buildInvasions(
+                          context, snapshot.data.invasions.first))
+                ]));
+          }
+
           return Tiles(
-              child: Column(children: <Widget>[
-            title,
-            Divider(color: Theme.of(context).accentColor),
-            Container(child: _buildInvasions(context, model.invasion.first))
-          ]));
-        }
-
-        return Tiles(
+            duration: _controller.duration,
             child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-              title,
-              Divider(color: Theme.of(context).accentColor),
-              InkWell(
-                  onTap: () => _expand(model.invasion.length),
-                  child: Container(
+                  Container(
                       child: Column(children: <Widget>[
-                    _buildInvasions(context, model.invasion[0]),
-                    _buildInvasions(context, model.invasion[1]),
-                    Align(
-                        alignment: Alignment.topRight,
-                        child: RotationTransition(
-                            turns: _iconTurn, child: Icon(Icons.expand_more))),
-                  ]))),
-              AnimatedContainer(
-                  duration: _controller.duration,
-                  height: height,
-                  curve: Curves.easeInOut,
-                  child: FadeTransition(
-                      opacity: _opacity,
-                      child: Column(
-                          children: model.invasion
-                              .skip(2)
-                              .map((i) => _buildInvasions(context, i))
-                              .toList())))
-            ]));
-      },
-    );
+                        _buildInvasions(context, snapshot.data.invasions[0]),
+                        _buildInvasions(context, snapshot.data.invasions[1]),
+                      ])),
+                  AnimatedContainer(
+                      duration: _controller.duration,
+                      height: height,
+                      child: FadeTransition(
+                          opacity: _opacity,
+                          child: Column(
+                              children: snapshot.data.invasions
+                                  .skip(2)
+                                  .map((i) => _buildInvasions(context, i))
+                                  .toList()))),
+                  ButtonTheme.bar(
+                    child: ButtonBar(
+                        alignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          FlatButton(
+                              padding: EdgeInsets.all(8.0),
+                              textColor: Colors.blue,
+                              onPressed: () =>
+                                  _expand(snapshot.data.invasions.length),
+                              child: _showMore
+                                  ? Text('See less')
+                                  : Text('See more'))
+                        ]),
+                  )
+                ]),
+          );
+        });
   }
 }
 
@@ -135,9 +135,15 @@ Widget _buildInvasions(BuildContext context, Invasions invasion) {
                       child: Container(
                           padding: EdgeInsets.all(3.0),
                           decoration: BoxDecoration(
-                              color: _factionColor(attacking),
+                              color: DynamicFaction.factionColor(attacking),
                               borderRadius: BorderRadius.circular(3.0)),
-                          child: Text(invasion.attackerReward.itemString)),
+                          child: Text(
+                            invasion.attackerReward.itemString,
+                            style: Theme
+                                .of(context)
+                                .textTheme
+                                .body2,
+                          )),
                     ),
               invasion.defenderReward.itemString.isEmpty
                   ? Container(height: 0.0, width: 0.0)
@@ -146,32 +152,24 @@ Widget _buildInvasions(BuildContext context, Invasions invasion) {
                       child: Container(
                           padding: EdgeInsets.all(3.0),
                           decoration: BoxDecoration(
-                              color: _factionColor(defending),
+                              color: DynamicFaction.factionColor(defending),
                               borderRadius: BorderRadius.circular(3.0)),
-                          child: Text(invasion.defenderReward.itemString)),
+                          child: Text(invasion.defenderReward.itemString,
+                              style: Theme
+                                  .of(context)
+                                  .textTheme
+                                  .body2)),
                     )
             ]),
       ),
       InvasionBar(
         width: 389.0,
         lineHeight: 15.0,
+        color: Colors.white,
         progress: completion / 100,
         attackingFaction: attacking,
         defendingFaction: defending,
       )
     ]),
   );
-}
-
-_factionColor(String faction) {
-  switch (faction) {
-    case 'Corpus':
-      return Colors.blue;
-    case 'Grineer':
-      return Colors.red[700];
-    case 'Corrupted':
-      return Colors.yellow[300];
-    default:
-      return Colors.green;
-  }
 }

@@ -9,6 +9,7 @@ class InvasionBar extends StatelessWidget {
   final double width;
   final double lineHeight;
   final EdgeInsets padding;
+  final Color color;
 
   InvasionBar(
       {this.progress,
@@ -16,7 +17,11 @@ class InvasionBar extends StatelessWidget {
       this.padding,
       @required this.attackingFaction,
       @required this.defendingFaction,
-      this.lineHeight});
+        this.color,
+        this.lineHeight})
+      : assert(attackingFaction != null),
+        assert(defendingFaction != null),
+        assert(progress != null);
 
   _factionIcon(String faction) {
     switch (faction) {
@@ -39,8 +44,10 @@ class InvasionBar extends StatelessWidget {
         return Colors.red[700];
       case 'Corrupted':
         return Colors.yellow[300];
-      default:
+      case 'Infested':
         return Colors.green;
+      default:
+        return Colors.grey;
     }
   }
 
@@ -66,8 +73,10 @@ class InvasionBar extends StatelessWidget {
                       child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
-                            Icon(_factionIcon(attackingFaction), size: 15.0),
-                            Icon(_factionIcon(defendingFaction), size: 15.0)
+                            Icon(_factionIcon(attackingFaction),
+                                size: 15.0, color: color),
+                            Icon(_factionIcon(defendingFaction),
+                                size: 15.0, color: color)
                           ])))
             ]));
   }

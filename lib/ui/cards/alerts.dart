@@ -1,17 +1,18 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:scoped_model/scoped_model.dart';
+import 'package:navis/blocs/provider.dart';
+import 'package:navis/blocs/worldstate_bloc.dart';
+import 'package:navis/models/alerts.dart';
+import 'package:navis/models/worldstate.dart';
 
-import '../../app_model.dart';
-import '../../models/alerts.dart';
 import '../../resources/assets.dart';
 import '../../resources/factions.dart';
 import '../animation/countdown.dart';
 import '../widgets/cards.dart';
 
 class AlertTile extends StatelessWidget {
-  Widget _buildAlerts(Alerts alert, NavisModel model) {
+  Widget _buildAlerts(Alerts alert, BuildContext context) {
     final switcher = DynamicFaction();
     Stream timer = CounterScreenStream(
         DateTime.parse(alert.expiry).difference(DateTime.now()));
@@ -42,7 +43,13 @@ class AlertTile extends StatelessWidget {
                         decoration: BoxDecoration(
                             color: Colors.blueAccent[400],
                             borderRadius: BorderRadius.circular(3.0)),
-                        child: Text(alert.mission.reward.itemString)),
+                    child: Text(
+                      alert.mission.reward.itemString,
+                      style: Theme
+                          .of(context)
+                          .textTheme
+                          .body2,
+                    )),
               ]),
           Padding(
             padding: const EdgeInsets.only(top: 8.0),
@@ -83,25 +90,34 @@ class AlertTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ScopedModelDescendant<NavisModel>(builder: (context, child, model) {
-      return Tiles(
-          child: Container(
-              child: Column(children: <Widget>[
-        Padding(
-          padding: const EdgeInsets.only(top: 5.0),
-          child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Text('Alerts', style: TextStyle(fontSize: 19.0))
-              ]),
-        ),
-        Divider(
-          color: Theme.of(context).accentColor,
-        ),
-        Column(
-            children: model.alerts.map((a) => _buildAlerts(a, model)).toList())
-      ])));
-    });
+    final alert = BlocProvider.of<WorldstateBloc>(context);
+
+    return StreamBuilder<WorldState>(
+        initialData: alert.lastState,
+        stream: alert.worldstate,
+        builder: (BuildContext context, AsyncSnapshot<WorldState> snapshot) {
+          return Tiles(
+              child: Container(
+                  child: Column(children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.only(top: 5.0),
+                      child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Text('Alerts', style: TextStyle(fontSize: 19.0))
+                          ]),
+                    ),
+                    Divider(
+                      color: Theme
+                          .of(context)
+                          .accentColor,
+                    ),
+                    Column(
+                        children: snapshot.data.alerts
+                            .map((alert) => _buildAlerts(alert, context))
+                            .toList())
+                  ])));
+        });
   }
 }
 

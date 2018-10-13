@@ -8,6 +8,9 @@
       <excludeFolder url="file://$MODULE_DIR$/.dart_tool" />
       <excludeFolder url="file://$MODULE_DIR$/.idea" />
       <excludeFolder url="file://$MODULE_DIR$/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/android_job_scheduler/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/android_job_scheduler/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/android_job_scheduler/build" />
       <excludeFolder url="file://$MODULE_DIR$/build" />
       <excludeFolder url="file://$MODULE_DIR$/market/.dart_tool" />
       <excludeFolder url="file://$MODULE_DIR$/market/.pub" />

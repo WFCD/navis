@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.navis">
+    package="com.cephalon.navis">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
@@ -30,15 +30,9 @@
             </intent-filter>
         </activity>
 
-        <receiver android:name="com.dexterous.flutterlocalnotifications.ScheduledNotificationReceiver" />
-        <receiver android:name="com.dexterous.flutterlocalnotifications.ScheduledNotificationBootReceiver">
-            <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED" />
-            </intent-filter>
-        </receiver>
         <service
-            android:name="io.gjg.androidjobscheduler.AndroidJobScheduler"
             android:exported="false"
+            android:name="io.gjg.androidjobscheduler.AndroidJobScheduler"
             android:permission="android.permission.BIND_JOB_SERVICE" />
     </application>
 </manifest>

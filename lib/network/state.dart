@@ -3,31 +3,19 @@ import 'dart:convert';
 
 import 'package:codable/codable.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../models/export.dart';
 import '../resources/keys.dart';
-import '../resources/preferences.dart';
 
 class SystemState {
   String _platform;
   String _baseRoute = 'https://api.warframestat.us/';
 
-  SystemState();
-
-  Future _loadPlatform() async {
-    final prefs = Preferences();
-    final platform = await prefs.getPlatform();
-
-    if (platform == null) {
-      prefs.firstRun();
-      _platform = await prefs.getPlatform();
-    } else {
-      return _platform = platform;
-    }
-  }
-
   Future<WorldState> updateState() async {
-    await _loadPlatform();
+    final prefs = await SharedPreferences.getInstance();
+    _platform = prefs.getString('Platform') ?? 'pc';
+
     final data = json.decode((await http.get(_baseRoute + _platform)).body);
     final key = KeyedArchive.unarchive(data);
     WorldState state = WorldState()..decode(key);
@@ -35,7 +23,6 @@ class SystemState {
     state.alerts.removeWhere((a) => a.expired == true);
 
     state.news.sort((a, b) => b.date.compareTo(a.date));
-
     state.news.retainWhere((art) => art.translations.en != null);
 
     state.invasions.retainWhere(
@@ -48,21 +35,6 @@ class SystemState {
     state.voidFissures.sort((a, b) => a.tierNum.compareTo(b.tierNum));
 
     return state;
-  }
-
-  static Future<Rewards> rewards(String reward) async {
-    var url;
-    try {
-      url = json.decode(
-          (await http.get('http://142.93.23.157/rewards/$reward')).body);
-    } catch (err) {
-      url = {"path": "https://i.imgur.com/LuVQFbh.png"};
-    }
-
-    final key = KeyedArchive.unarchive(url);
-    final rewards = Rewards()..decode(key);
-
-    return rewards;
   }
 
   static Future<String> fishVideos(String shortCode) async {

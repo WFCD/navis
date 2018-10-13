@@ -1,79 +1,89 @@
 import 'package:flutter/material.dart';
-import 'package:scoped_model/scoped_model.dart';
+import 'package:navis/blocs/provider.dart';
+import 'package:navis/blocs/worldstate_bloc.dart';
+import 'package:navis/models/void.dart';
+import 'package:navis/models/worldstate.dart';
 
-import '../../app_model.dart';
 import '../../resources/assets.dart';
 import '../../resources/factions.dart';
 import '../animation/countdown.dart';
+import '../widgets/cards.dart';
 
 class Fissure extends StatefulWidget {
-  createState() => _Fissure();
+  Fissure({Key key}) : super(key: key);
+
+  _Fissure createState() => _Fissure();
 }
 
 class _Fissure extends State<Fissure> {
-  Widget _fissureTiles(int index, NavisModel model) {
-    final switcher = DynamicFaction();
-    Duration timeLeft =
-        DateTime.parse(model.fissures[index].expiry).difference(DateTime.now());
-
-    return Padding(
-      padding: EdgeInsets.all(4.0),
-      child: Card(
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
-          elevation: 5.0,
-          color: Color.fromRGBO(187, 187, 197, 0.2),
-          child: ListTile(
-            leading: new Icon(
-              _getTier(index, model.fissures),
-              size: 45.0,
-            ),
-            title: Text(
-              '${model.fissures[index].node} | ${model.fissures[index].missionType} | ${model.fissures[index].tier}',
-              style: TextStyle(fontSize: 15.0),
-            ),
-            trailing: StreamBuilder<Duration>(
-                initialData: Duration(seconds: 60),
-                stream: CounterScreenStream(timeLeft),
-                builder: (context, snapshot) {
-                  Duration data = snapshot.data;
-
-                  String hour = '${data.inHours}';
-                  String minutes =
-                      '${(data.inMinutes % 60).floor()}'.padLeft(2, '0');
-                  String seconds =
-                      '${(data.inSeconds % 60).floor()}'.padLeft(2, '0');
-
-                  return AnimatedContainer(
-                      duration: Duration(milliseconds: 200),
-                      curve: Curves.easeInOut,
-                      padding: EdgeInsets.all(4.0),
-                      decoration: BoxDecoration(
-                          color: switcher.alertColor(data),
-                          borderRadius: BorderRadius.circular(3.0)),
-                      child: Text('$hour:$minutes:$seconds',
-                          style: TextStyle(color: Colors.white)));
-                }),
-          )),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
-    return ScopedModelDescendant<NavisModel>(builder: (context, child, model) {
-      return RefreshIndicator(
-        onRefresh: () => model.update(),
-        child: ListView.builder(
-          itemCount: model.fissures.length,
-          itemBuilder: (context, index) => _fissureTiles(index, model),
-        ),
-      );
-    });
+    final state = BlocProvider.of<WorldstateBloc>(context);
+
+    return StreamBuilder(
+        initialData: state.lastState,
+        stream: state.worldstate,
+        builder: (BuildContext context, AsyncSnapshot<WorldState> snapshot) {
+          if (!snapshot.hasData)
+            return Center(child: CircularProgressIndicator());
+
+          return RefreshIndicator(
+            onRefresh: () => state.update(),
+            child: ListView.builder(
+              itemCount: snapshot.data.voidFissures.length,
+              itemBuilder: (context, index) =>
+                  _buildFissures(snapshot.data.voidFissures[index], context),
+            ),
+          );
+        });
   }
 }
 
-_getTier(index, snapshot) {
-  switch (snapshot[index].tier) {
+Widget _buildFissures(VoidFissures fissure, BuildContext context) {
+  final now = DateTime.now();
+  final switcher = DynamicFaction();
+  Duration timeLeft = DateTime.parse(fissure.expiry).difference(now);
+
+  return Tiles(
+    child: ListTile(
+      leading: Icon(
+        _getTier(fissure),
+        size: 45.0,
+        color: Theme
+            .of(context)
+            .iconTheme
+            .color,
+      ),
+      title: Text(
+        '${fissure.node} | ${fissure.missionType} | ${fissure.tier}',
+        style: TextStyle(fontSize: 15.0),
+      ),
+      trailing: StreamBuilder<Duration>(
+          initialData: Duration(seconds: 60),
+          stream: CounterScreenStream(timeLeft),
+          builder: (context, snapshot) {
+            Duration data = snapshot.data;
+
+            String hour = '${data.inHours}';
+            String minutes = '${(data.inMinutes % 60).floor()}'.padLeft(2, '0');
+            String seconds = '${(data.inSeconds % 60).floor()}'.padLeft(2, '0');
+
+            return AnimatedContainer(
+                duration: Duration(milliseconds: 200),
+                curve: Curves.easeInOut,
+                padding: EdgeInsets.all(4.0),
+                decoration: BoxDecoration(
+                    color: switcher.alertColor(data),
+                    borderRadius: BorderRadius.circular(3.0)),
+                child: Text('$hour:$minutes:$seconds',
+                    style: TextStyle(color: Colors.white)));
+          }),
+    ),
+  );
+}
+
+_getTier(fissure) {
+  switch (fissure.tier) {
     case 'Lith':
       return ImageAssets.lith;
       break;

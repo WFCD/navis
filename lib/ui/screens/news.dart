@@ -4,11 +4,10 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_custom_tabs/flutter_custom_tabs.dart';
 import 'package:flutter_youtube/flutter_youtube.dart';
-import 'package:scoped_model/scoped_model.dart';
-import 'package:share/share.dart';
+import 'package:navis/blocs/provider.dart';
+import 'package:navis/blocs/worldstate_bloc.dart';
+import 'package:navis/models/export.dart';
 
-import '../../app_model.dart';
-import '../../models/news.dart';
 import '../../resources/keys.dart';
 
 class Orbiter extends StatefulWidget {
@@ -17,22 +16,11 @@ class Orbiter extends StatefulWidget {
   _Orbiter createState() => _Orbiter();
 }
 
-class _Orbiter extends State<Orbiter> with TickerProviderStateMixin {
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-  }
-
-  _buildTiles(List<OrbiterNews> data, int index, BuildContext context,
-      NavisModel model) {
-    bool hotfix = data[index].message.contains('Hotfix');
+class _Orbiter extends State<Orbiter> {
+  _buildTiles(OrbiterNews news, BuildContext context) {
+    bool hotfix = news.message.contains('hotfix');
     CachedNetworkImageProvider image =
-        CachedNetworkImageProvider(data[index].imageLink);
+    CachedNetworkImageProvider(news.imageLink);
 
     return Padding(
         padding: EdgeInsets.only(top: 2.5, bottom: 2.5),
@@ -41,8 +29,7 @@ class _Orbiter extends State<Orbiter> with TickerProviderStateMixin {
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(8.0)),
             child: InkWell(
-              onLongPress: () => Share.share(data[index].link),
-              onTap: () => _launchLink(data[index].link, context),
+              onTap: () => _launchLink(news.link, context),
               child: Container(
                 constraints: BoxConstraints.expand(height: 200.0),
                 alignment: Alignment.bottomLeft,
@@ -50,14 +37,13 @@ class _Orbiter extends State<Orbiter> with TickerProviderStateMixin {
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8.0),
                     image: DecorationImage(
-                        colorFilter: ColorFilter.mode(
-                            Colors.black.withOpacity(0.8), BlendMode.dstATop),
                         image: hotfix ? AssetImage('assets/hotfix.jpg') : image,
                         fit: BoxFit.cover)),
                 child: Text(
-                  data[index].message,
+                  news.message,
                   style: TextStyle(
-                      fontWeight: FontWeight.bold, color: Colors.white),
+                      fontWeight: FontWeight.bold,
+                      color: hotfix ? Colors.red[700] : Colors.white),
                 ),
               ),
             )));
@@ -65,22 +51,23 @@ class _Orbiter extends State<Orbiter> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    return ScopedModelDescendant<NavisModel>(
-      builder: (context, child, model) {
-        return RefreshIndicator(
-          onRefresh: () => model.update(),
-          child: CustomScrollView(
-              scrollDirection: Axis.vertical,
-              slivers: <Widget>[
-                SliverList(
-                    delegate: SliverChildBuilderDelegate(
-                        (context, index) =>
-                            _buildTiles(model.news, index, context, model),
-                        childCount: model.news.length))
-              ]),
-        );
-      },
-    );
+    final news = BlocProvider.of<WorldstateBloc>(context);
+
+    return StreamBuilder(
+        initialData: news.lastState,
+        stream: news.worldstate,
+        builder: (BuildContext context, AsyncSnapshot<WorldState> snapshot) {
+          if (!snapshot.hasData)
+            return Center(child: CircularProgressIndicator());
+
+          return RefreshIndicator(
+            onRefresh: () => news.update(),
+            child: ListView.builder(
+                itemCount: snapshot.data.news.length,
+                itemBuilder: (BuildContext context, int index) =>
+                    _buildTiles(snapshot.data.news[index], context)),
+          );
+        });
   }
 }
 

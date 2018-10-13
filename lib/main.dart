@@ -1,31 +1,28 @@
 import 'dart:async';
 
+import 'package:android_job_scheduler/android_job_scheduler.dart';
 import 'package:flutter/material.dart';
-import 'package:package_info/package_info.dart';
+import 'package:navis/blocs/provider.dart';
+import 'package:navis/blocs/worldstate_bloc.dart';
 
 import 'app.dart';
-import 'app_model.dart';
 import 'network/sentry.dart';
-//import 'package:android_job_scheduler/android_job_scheduler.dart';
 
-Future update() async {
-  final model = NavisModel();
-  model.update();
+Future updateState() async {
+  final state = WorldstateBloc();
+  await state.update();
 }
 
 void main() async {
-  final package = await PackageInfo.fromPlatform();
-  ExceptionService.release = package.version;
-
+  final state = WorldstateBloc();
   final exceptionService = ExceptionService();
-  final model = NavisModel();
 
-  await model.update();
+  runZoned(
+          () =>
+          runApp(BlocProvider<WorldstateBloc>(bloc: state, child: Navis())),
+      onError: (error, stackTrace) async =>
+      await exceptionService.reportErrorAndStackTrace(error, stackTrace));
 
-  /* runZoned(() => runApp(Navis(model: model)),
-      onError: (error, stackTrace) =>
-          exceptionService.reportErrorAndStackTrace(error, stackTrace));*/
-
-  runApp(Navis(model: model));
-  //await AndroidJobScheduler.scheduleEvery(Duration(minutes: 5), 100, update);
+  await AndroidJobScheduler.scheduleEvery(
+      Duration(minutes: 10), 100, updateState);
 }
