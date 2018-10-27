@@ -9,7 +9,7 @@ class ExceptionService {
   final SentryClient _sentry = new SentryClient(
       dsn: dsn, environmentAttributes: Event(release: '1.0.5'));
 
-  static bool isDebug = false;
+  static bool isDebug = true;
 
   // Singleton
 

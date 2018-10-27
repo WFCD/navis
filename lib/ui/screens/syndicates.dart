@@ -1,12 +1,12 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:navis/blocs/provider.dart';
 import 'package:navis/blocs/worldstate_bloc.dart';
 import 'package:navis/models/export.dart';
 
 import '../animation/countdown.dart';
+import '../animation/fade_route.dart';
 import '../widgets/cards.dart';
+import 'rewards.dart';
 
 class Ostrons extends StatefulWidget {
   @override
@@ -32,51 +32,47 @@ class OstronsState extends State<Ostrons> {
           DateTime.parse(snapshot.data.syndicates[0].expiry)
               .difference(DateTime.now());
 
+          List<Widget> allJobs = snapshot.data.syndicates[0].jobs
+              .map((j) => _buildMissionType(context, j))
+              .toList();
+
+          if (snapshot.data.events[0].jobs != null) {
+            allJobs.addAll(snapshot.data.events[0].jobs
+                .map((j) => _buildMissionType(context, j)));
+          }
+
           return RefreshIndicator(
               onRefresh: () => syndicate.update(),
-              child: Flex(direction: Axis.vertical, children: <Widget>[
-                Expanded(
-                    child: ListView(
-                        children: snapshot.data.syndicates[0].jobs.isEmpty
+              child: CustomScrollView(slivers: <Widget>[
+                SliverAppBar(
+                    floating: true,
+                    snap: true,
+                    backgroundColor: Theme
+                        .of(context)
+                        .scaffoldBackgroundColor,
+                    title: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Text('Bounties expire in',
+                              style: TextStyle(fontSize: 17.0)),
+                          AnimatedContainer(
+                              duration: Duration(milliseconds: 200),
+                              padding: EdgeInsets.all(4.0),
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(3.0),
+                                  color: _warnings(bountyTime)),
+                              child: StreamBuilder<Duration>(
+                                  initialData: Duration(minutes: 60),
+                                  stream: CounterScreenStream(bountyTime),
+                                  builder: (context, snapshot) =>
+                                      _buildTimer(context, snapshot.data)))
+                        ])),
+                SliverFixedExtentList(
+                    delegate: SliverChildListDelegate(
+                        snapshot.data.syndicates[0].jobs.isEmpty
                             ? <Widget>[emptyList]
-                            : snapshot.data.syndicates[0].jobs
-                            .map((job) => _buildMissionType(context, job))
-                            .toList())),
-                Align(
-                    alignment: Alignment.bottomCenter,
-                    child: Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: <Widget>[
-                            Text('Bounties expire in',
-                                style: TextStyle(fontSize: 17.0)),
-                            Container(
-                                child: StreamBuilder<Duration>(
-                                    initialData: Duration(minutes: 60),
-                                    stream: CounterScreenStream(bountyTime),
-                                    builder: (context, snapshot) {
-                                      Duration data = snapshot.data;
-
-                                      String hour = '${data.inHours}';
-                                      String minutes =
-                                      '${(data.inMinutes % 60).floor()}'
-                                          .padLeft(2, '0');
-                                      String seconds =
-                                      '${(data.inSeconds % 60).floor()}'
-                                          .padLeft(2, '0');
-
-                                      return Text('$hour:$minutes:$seconds',
-                                          style: TextStyle(
-                                              color: Theme
-                                                  .of(context)
-                                                  .textTheme
-                                                  .body1
-                                                  .color,
-                                              fontSize: 17.0));
-                                    }))
-                          ]),
-                    ))
+                            : allJobs),
+                    itemExtent: 85.0)
               ]));
         });
   }
@@ -90,7 +86,12 @@ Widget _buildMissionType(BuildContext context, Jobs job) {
       Text('Enemey Level ${job.enemyLevels[0]} - ${job.enemyLevels[1]}'),
       trailing: ButtonTheme.bar(
         child: FlatButton(
-            onPressed: () => showRewards(context, job.rewardPool),
+            onPressed: () =>
+                Navigator.of(context).push(FadeRoute(
+                    child: BountyRewards(
+                      missionTYpe: job.type,
+                      rewards: job.rewardPool,
+                    ))),
             child: Text(
               'See Rewards',
               style: TextStyle(color: Colors.blue),
@@ -100,75 +101,25 @@ Widget _buildMissionType(BuildContext context, Jobs job) {
   );
 }
 
-Future<Null> showRewards(BuildContext context, List<String> rewards) {
-  return showDialog(
-      context: context,
-      barrierDismissible: true,
-      builder: (BuildContext context) {
-        if (rewards.length <= 0)
-          return AlertDialog(
-            title: Text('Error loading rewards'),
-            content: Text(
-                'It seems that that this bounty doesn\'t have any rewards or the API is having a bit hiccup'),
-            actions: <Widget>[
-              ButtonTheme.bar(
-                  child: ButtonBar(children: <Widget>[
-                    FlatButton(
-                        color: Colors.blue,
-                        onPressed: () => Navigator.of(context).pop(),
-                        child: Text('Dismiss'))
-                  ]))
-            ],
-          );
-
-        return SimpleDialog(
-          contentPadding: EdgeInsets.zero,
-          titlePadding: EdgeInsets.zero,
-          children: rewards.map((r) => ListTile(title: Text(r))).toList(),
-        );
-      });
+Color _warnings(Duration timeLeft) {
+  if (timeLeft > Duration(hours: 1))
+    return Colors.green;
+  else if (timeLeft < Duration(hours: 1) && timeLeft >= Duration(minutes: 30))
+    return Colors.orange[700];
+  else
+    return Colors.red;
 }
 
-/*Flex(direction: Axis.vertical, children: <Widget>[
-                Expanded(
-                    child: ListView(
-                        children: snapshot.data.syndicates[0].jobs.isEmpty
-                            ? <Widget>[emptyList]
-                            : snapshot.data.syndicates[0].jobs
-                                .map((job) => _buildMissionType(context, job))
-                                .toList())),
-                Align(
-                    alignment: Alignment.bottomCenter,
-                    child: Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: <Widget>[
-                            Text('Bounties expire in',
-                                style: TextStyle(fontSize: 17.0)),
-                            Container(
-                                child: StreamBuilder<Duration>(
-                                    initialData: Duration(minutes: 60),
-                                    stream: CounterScreenStream(bountyTime),
-                                    builder: (context, snapshot) {
-                                      Duration data = snapshot.data;
+Widget _buildTimer(BuildContext context, Duration timeLeft) {
+  String hour = '${timeLeft.inHours}';
+  String minutes = '${(timeLeft.inMinutes % 60).floor()}'.padLeft(2, '0');
+  String seconds = '${(timeLeft.inSeconds % 60).floor()}'.padLeft(2, '0');
 
-                                      String hour = '${data.inHours}';
-                                      String minutes =
-                                          '${(data.inMinutes % 60).floor()}'
-                                              .padLeft(2, '0');
-                                      String seconds =
-                                          '${(data.inSeconds % 60).floor()}'
-                                              .padLeft(2, '0');
-
-                                      return Text('$hour:$minutes:$seconds',
-                                          style: TextStyle(
-                                              color: Theme.of(context)
-                                                  .textTheme
-                                                  .body1
-                                                  .color,
-                                              fontSize: 17.0));
-                                    }))
-                          ]),
-                    ))
-              ])*/
+  return Text('$hour:$minutes:$seconds',
+      style: TextStyle(
+          color: Theme
+              .of(context)
+              .textTheme
+              .body1
+              .color, fontSize: 17.0));
+}

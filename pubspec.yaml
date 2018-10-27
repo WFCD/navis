@@ -14,6 +14,7 @@ dependencies:
   sentry: ^2.1.1
   chewie: ^0.7.0
   cached_network_image: ^0.4.2
+  timeago: ^2.0.8
   android_job_scheduler:
     path: android_job_scheduler/
 

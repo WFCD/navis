@@ -12,7 +12,7 @@ class WorldstateBloc implements Base {
   final Stream<WorldState> worldstate;
 
   static WorldState _worldstate;
-  final DateFormat _format = DateFormat.jms().add_yMd();
+  final DateFormat format = DateFormat.jms().add_yMd();
 
   factory WorldstateBloc() {
     final state = SystemState();
@@ -36,16 +36,16 @@ class WorldstateBloc implements Base {
       DateTime.parse(_worldstate.earth.expiry).difference(DateTime.now());
 
   String get cetusExpiry =>
-      _format.format(DateTime.parse(_worldstate.cetus.expiry).toLocal());
+      format.format(DateTime.parse(_worldstate.cetus.expiry).toLocal());
 
   String get earthExpiry =>
-      _format.format(DateTime.parse(_worldstate.earth.expiry).toLocal());
+      format.format(DateTime.parse(_worldstate.earth.expiry).toLocal());
 
   String get voidTraderArrival =>
-      _format.format(DateTime.parse(_worldstate.trader.activation).toLocal());
+      format.format(DateTime.parse(_worldstate.trader.activation).toLocal());
 
   String get voidTraderDeparture =>
-      _format.format(DateTime.parse(_worldstate.trader.expiry).toLocal());
+      format.format(DateTime.parse(_worldstate.trader.expiry).toLocal());
 
   Future<Null> update() async {
     final state = SystemState();

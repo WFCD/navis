@@ -55,9 +55,10 @@ Widget _buildFissures(VoidFissures fissure, BuildContext context) {
             .color,
       ),
       title: Text(
-        '${fissure.node} | ${fissure.missionType} | ${fissure.tier}',
+        '${fissure.node} | ${fissure.tier}',
         style: TextStyle(fontSize: 15.0),
       ),
+      subtitle: Text('Missions type: ${fissure.missionType}'),
       trailing: StreamBuilder<Duration>(
           initialData: Duration(seconds: 60),
           stream: CounterScreenStream(timeLeft),

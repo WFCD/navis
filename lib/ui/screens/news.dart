@@ -7,6 +7,7 @@ import 'package:flutter_youtube/flutter_youtube.dart';
 import 'package:navis/blocs/provider.dart';
 import 'package:navis/blocs/worldstate_bloc.dart';
 import 'package:navis/models/export.dart';
+import 'package:timeago/timeago.dart' as timeago;
 
 import '../../resources/keys.dart';
 
@@ -17,8 +18,8 @@ class Orbiter extends StatefulWidget {
 }
 
 class _Orbiter extends State<Orbiter> {
-  _buildTiles(OrbiterNews news, BuildContext context) {
-    bool hotfix = news.message.contains('hotfix');
+  _buildTiles(OrbiterNews news, BuildContext context, WorldstateBloc bloc) {
+    bool hotfix = news.message.contains('Hotfix');
     CachedNetworkImageProvider image =
     CachedNetworkImageProvider(news.imageLink);
 
@@ -40,7 +41,8 @@ class _Orbiter extends State<Orbiter> {
                         image: hotfix ? AssetImage('assets/hotfix.jpg') : image,
                         fit: BoxFit.cover)),
                 child: Text(
-                  news.message,
+                  '[${timeago.format(DateTime.parse(news.date))}] ${news
+                      .message}',
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
                       color: hotfix ? Colors.red[700] : Colors.white),
@@ -62,10 +64,23 @@ class _Orbiter extends State<Orbiter> {
 
           return RefreshIndicator(
             onRefresh: () => news.update(),
-            child: ListView.builder(
-                itemCount: snapshot.data.news.length,
-                itemBuilder: (BuildContext context, int index) =>
-                    _buildTiles(snapshot.data.news[index], context)),
+            child: OrientationBuilder(
+                builder: (BuildContext context, Orientation orientation) {
+                  if (orientation == Orientation.landscape)
+                    return GridView.builder(
+                        itemCount: snapshot.data.news.length,
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 3),
+                        itemBuilder: (BuildContext context, int index) =>
+                            _buildTiles(
+                                snapshot.data.news[index], context, news));
+
+                  return ListView.builder(
+                      itemCount: snapshot.data.news.length,
+                      itemBuilder: (BuildContext context, int index) =>
+                          _buildTiles(
+                              snapshot.data.news[index], context, news));
+                }),
           );
         });
   }

@@ -22,7 +22,7 @@ class _Trader extends State<Trader> {
         .body2
         .color);
 
-    final emptyBox = Container(height: 0.0, width: 0.0);
+    final emptyBox = Container();
 
     return StreamBuilder<WorldState>(
       initialData: trader.lastState,
@@ -87,7 +87,8 @@ class _Trader extends State<Trader> {
                 ),
                 snapshot.data.trader.active
                     ? Padding(
-                    padding: EdgeInsets.only(bottom: 5.0),
+                    padding:
+                    EdgeInsets.only(bottom: 5.0, left: 5.0, right: 3.0),
                     child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
@@ -128,7 +129,7 @@ class _Trader extends State<Trader> {
                     ? ExpansionTile(
                     title: Text('Baro Ki\'Teeer Inventory'),
                     children: snapshot.data.trader.inventory
-                        .map((item) => _buildInventoryItem(context, item))
+                        .map((item) => _buildInventoryItem(item))
                         .toList())
                     : emptyBox
               ]),
@@ -138,7 +139,7 @@ class _Trader extends State<Trader> {
   }
 }
 
-Widget _buildInventoryItem(BuildContext context, Inventory item) {
+Widget _buildInventoryItem(Inventory item) {
   return ListTile(
       title: Text(item.item),
       subtitle: Text('${item.ducats} Ducats, ${item.credits} Credits'));

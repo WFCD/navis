@@ -37,6 +37,17 @@ class SystemState {
     return state;
   }
 
+  static Future<Rewards> rewards(String item) async {
+    var url = json
+        .decode((await http.get('http://142.93.23.157/rewards/$item')).body);
+
+    final key = KeyedArchive.unarchive(url);
+    Rewards reward = Rewards()
+      ..decode(key);
+
+    return reward;
+  }
+
   static Future<String> fishVideos(String shortCode) async {
     final data = json.decode((await http.get(
             'https://api.streamable.com/videos/$shortCode',

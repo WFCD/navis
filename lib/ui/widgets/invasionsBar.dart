@@ -59,25 +59,26 @@ class InvasionBar extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Container(
-                  height: lineHeight * 2,
-                  width: width,
-                  padding: padding,
-                  child: CustomPaint(
-                      willChange: true,
-                      painter: _InvasionBar(
-                          progress: progress,
-                          progressColor: _factionColor(attackingFaction),
-                          backgroundColor: _factionColor(defendingFaction),
-                          lineWidth: lineHeight),
-                      child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: <Widget>[
-                            Icon(_factionIcon(attackingFaction),
-                                size: 15.0, color: color),
-                            Icon(_factionIcon(defendingFaction),
-                                size: 15.0, color: color)
-                          ])))
+              Expanded(
+                  child: Container(
+                      height: lineHeight * 2,
+                      width: width,
+                      padding: padding,
+                      child: CustomPaint(
+                          willChange: true,
+                          painter: _InvasionBar(
+                              progress: progress,
+                              progressColor: _factionColor(attackingFaction),
+                              backgroundColor: _factionColor(defendingFaction),
+                              lineWidth: lineHeight),
+                          child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                Icon(_factionIcon(attackingFaction),
+                                    size: 15.0, color: color),
+                                Icon(_factionIcon(defendingFaction),
+                                    size: 15.0, color: color)
+                              ]))))
             ]));
   }
 }
