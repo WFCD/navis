@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:navis/blocs/provider.dart';
 import 'package:navis/blocs/worldstate_bloc.dart';
@@ -11,9 +9,11 @@ void main() async {
   final state = WorldstateBloc();
   final exceptionService = ExceptionService();
 
-  runZoned(
+  /*runZoned(
           () =>
           runApp(BlocProvider<WorldstateBloc>(bloc: state, child: Navis())),
       onError: (error, stackTrace) async =>
-      await exceptionService.reportErrorAndStackTrace(error, stackTrace));
+      await exceptionService.reportErrorAndStackTrace(error, stackTrace));*/
+
+  runApp(BlocProvider<WorldstateBloc>(bloc: state, child: Navis()));
 }
