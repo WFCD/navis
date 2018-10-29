@@ -62,14 +62,16 @@ class _InvasionCard extends State<InvasionCard>
         initialData: invasions.lastState,
         stream: invasions.worldstate,
         builder: (BuildContext context, AsyncSnapshot<WorldState> snapshot) {
-          if (snapshot.data.invasions.length < 0) {
+          if (snapshot.data.invasions.length < 3) {
             return Tiles(
                 duration: Duration(milliseconds: 200),
-                child: Column(children: <Widget>[
-                  Container(
-                      child: _buildInvasions(
-                          context, snapshot.data.invasions.first))
-                ]));
+                child: Padding(
+                  padding: EdgeInsets.only(bottom: 8.0),
+                  child: Column(
+                      children: snapshot.data.invasions
+                          .map((i) => _buildInvasions(context, i))
+                          .toList()),
+                ));
           }
 
           return Tiles(
@@ -118,13 +120,13 @@ Widget _buildInvasions(BuildContext context, Invasions invasion) {
   String attacking = invasion.attackingFaction;
 
   return Padding(
-    padding: const EdgeInsets.only(top: 8.0),
+    padding: EdgeInsets.only(top: 10.0),
     child: Column(children: <Widget>[
       Text(invasion.node, style: TextStyle(fontSize: 15.0)),
       Text('${invasion.desc} (${invasion.eta})',
           style: TextStyle(color: Theme.of(context).textTheme.caption.color)),
       Padding(
-        padding: const EdgeInsets.only(top: 4.0),
+        padding: EdgeInsets.only(top: 4.0),
         child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[

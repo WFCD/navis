@@ -4,7 +4,6 @@ import 'package:navis/blocs/worldstate_bloc.dart';
 import 'package:navis/models/export.dart';
 
 import '../animation/countdown.dart';
-import '../animation/fade_route.dart';
 import '../widgets/cards.dart';
 import 'rewards.dart';
 
@@ -54,7 +53,14 @@ class OstronsState extends State<Ostrons> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
                           Text('Bounties expire in',
-                              style: TextStyle(fontSize: 17.0)),
+                              style: TextStyle(
+                                  fontSize: 17.0,
+                                  color:
+                                  Theme
+                                      .of(context)
+                                      .textTheme
+                                      .body1
+                                      .color)),
                           AnimatedContainer(
                               duration: Duration(milliseconds: 200),
                               padding: EdgeInsets.all(4.0),
@@ -87,8 +93,9 @@ Widget _buildMissionType(BuildContext context, Jobs job) {
       trailing: ButtonTheme.bar(
         child: FlatButton(
             onPressed: () =>
-                Navigator.of(context).push(FadeRoute(
-                    child: BountyRewards(
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (_) =>
+                        BountyRewards(
                       missionTYpe: job.type,
                       rewards: job.rewardPool,
                     ))),
@@ -120,6 +127,6 @@ Widget _buildTimer(BuildContext context, Duration timeLeft) {
           color: Theme
               .of(context)
               .textTheme
-              .body1
+              .body2
               .color, fontSize: 17.0));
 }

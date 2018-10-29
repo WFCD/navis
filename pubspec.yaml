@@ -15,8 +15,6 @@ dependencies:
   chewie: ^0.8.0
   cached_network_image: ^0.5.0
   timeago: ^2.0.8
-  android_job_scheduler:
-    path: android_job_scheduler/
 
 dev_dependencies:
   flutter_test:

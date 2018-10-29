@@ -3,7 +3,6 @@ import 'package:navis/blocs/provider.dart';
 import 'package:navis/blocs/worldstate_bloc.dart';
 
 import '../../resources/assets.dart';
-import '../animation/fade_route.dart';
 import '../widgets/navgationIconView.dart';
 import 'feed.dart';
 import 'fissures.dart';
@@ -103,11 +102,13 @@ class _HomeScreen extends State<HomeScreen> with TickerProviderStateMixin {
           IconButton(
               icon: Icon(Icons.map),
               onPressed: () =>
-                  Navigator.of(context).push(FadeRoute(child: Maps()))),
+                  Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (_) => Maps()))),
           IconButton(
               icon: Icon(Icons.settings),
               onPressed: () =>
-                  Navigator.of(context).push(FadeRoute(child: Settings())))
+                  Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (_) => Settings())))
         ]),
         body: StreamBuilder(
             stream: state.worldstate,

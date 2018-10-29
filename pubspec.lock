@@ -8,13 +8,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.32.4"
-  android_job_scheduler:
-    dependency: "direct main"
-    description:
-      path: android_job_scheduler
-      relative: true
-    source: path
-    version: "0.0.7"
   ansicolor:
     dependency: transitive
     description:
@@ -150,7 +143,7 @@ packages:
       name: flutter_youtube
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.1.1"
+    version: "1.1.2"
   front_end:
     dependency: transitive
     description:

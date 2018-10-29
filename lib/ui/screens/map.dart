@@ -83,7 +83,7 @@ class _Maps extends State<Maps> with TickerProviderStateMixin {
           itemBuilder: (_) {
             return filter.map((f) {
               return PopupMenuItem<String>(
-                child: Text(f),
+                child: ListTile(title: Text(f)),
                 value: f,
               );
             }).toList();
@@ -92,27 +92,23 @@ class _Maps extends State<Maps> with TickerProviderStateMixin {
 
     return Scaffold(
         appBar: AppBar(title: Text("Cetus Map"), actions: actionButton),
-        body: Flex(direction: Axis.vertical, children: <Widget>[
-          Expanded(
-              child: FlutterMap(
-            options: MapOptions(
-                center: LatLng(0.0, 0.0),
-                minZoom: 1.9,
-                maxZoom: 3.0,
-                zoom: 2.0,
-                nePanBoundary: LatLng(-65.0, -80.0)),
-            layers: [
-              TileLayerOptions(
-                backgroundColor: Color.fromRGBO(34, 34, 34, .9),
-                keepBuffer: 90,
-                fromAssets: true,
-                offlineMode: true,
-                urlTemplate: 'assets/plains/{z}/{x}/{y}.png',
-              ),
-              MarkerLayerOptions(markers: markers)
-            ],
-          ))
-        ]));
+        body: FlutterMap(
+          options: MapOptions(
+            center: LatLng(0.0, 0.0),
+            minZoom: 1.9,
+            maxZoom: 3.0,
+          ),
+          layers: [
+            TileLayerOptions(
+              backgroundColor: Color.fromRGBO(34, 34, 34, .9),
+              fromAssets: true,
+              offlineMode: true,
+              maxZoom: 3.0,
+              urlTemplate: 'assets/plains/{z}/{x}/{y}.png',
+            ),
+            MarkerLayerOptions(markers: markers)
+          ],
+        ));
   }
 }
 
