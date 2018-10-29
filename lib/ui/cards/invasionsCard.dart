@@ -81,9 +81,9 @@ class _InvasionCard extends State<InvasionCard>
                 children: <Widget>[
                   Container(
                       child: Column(children: <Widget>[
-                        _buildInvasions(context, snapshot.data.invasions[0]),
-                        _buildInvasions(context, snapshot.data.invasions[1]),
-                      ])),
+                    _buildInvasions(context, snapshot.data.invasions[0]),
+                    _buildInvasions(context, snapshot.data.invasions[1]),
+                  ])),
                   AnimatedContainer(
                       duration: Duration(milliseconds: 200),
                       height: height,
@@ -141,10 +141,7 @@ Widget _buildInvasions(BuildContext context, Invasions invasion) {
                               borderRadius: BorderRadius.circular(3.0)),
                           child: Text(
                             invasion.attackerReward.itemString,
-                            style: Theme
-                                .of(context)
-                                .textTheme
-                                .body2,
+                            style: Theme.of(context).textTheme.body2,
                           )),
                     ),
               invasion.defenderReward.itemString.isEmpty
@@ -157,10 +154,7 @@ Widget _buildInvasions(BuildContext context, Invasions invasion) {
                               color: DynamicFaction.factionColor(defending),
                               borderRadius: BorderRadius.circular(3.0)),
                           child: Text(invasion.defenderReward.itemString,
-                              style: Theme
-                                  .of(context)
-                                  .textTheme
-                                  .body2)),
+                              style: Theme.of(context).textTheme.body2)),
                     )
             ]),
       ),

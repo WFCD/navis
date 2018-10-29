@@ -37,27 +37,25 @@ class AlertTile extends StatelessWidget {
           return Tiles(
               child: Container(
                   child: Column(children: <Widget>[
-                    Padding(
-                      padding: const EdgeInsets.only(top: 5.0),
-                      child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            Text('Alerts', style: TextStyle(fontSize: 19.0))
-                          ]),
-                    ),
-                    Divider(
-                      color: Theme
-                          .of(context)
-                          .accentColor,
-                    ),
-                    Column(children: allAlerts)
-                  ])));
+            Padding(
+              padding: const EdgeInsets.only(top: 5.0),
+              child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Text('Alerts', style: TextStyle(fontSize: 19.0))
+                  ]),
+            ),
+            Divider(
+              color: Theme.of(context).accentColor,
+            ),
+            Column(children: allAlerts)
+          ])));
         });
   }
 }
 
-Widget _buildTacticalAlerts(Events alert, WorldstateBloc bloc,
-    BuildContext context) {
+Widget _buildTacticalAlerts(
+    Events alert, WorldstateBloc bloc, BuildContext context) {
   final switcher = DynamicFaction();
   Stream timer = CounterScreenStream(
       DateTime.parse(alert.expiry).difference(DateTime.now()));
@@ -113,10 +111,7 @@ Widget _buildTacticalAlerts(Events alert, WorldstateBloc bloc,
                               color: Colors.blueAccent[400],
                               borderRadius: BorderRadius.circular(3.0)),
                           child: Text(r.itemString,
-                              style: Theme
-                                  .of(context)
-                                  .textTheme
-                                  .body2));
+                              style: Theme.of(context).textTheme.body2));
                     }).toList()),
               )
             ])
@@ -141,28 +136,24 @@ Widget _buildAlerts(Alerts alert, BuildContext context) {
             children: <Widget>[
               Container(
                   child: Row(children: <Widget>[
-                    _specialMission(
-                        alert.mission.nightmare,
-                        alert.mission.archwingRequired),
-                    Text(alert.mission.node, style: TextStyle(fontSize: 15.0))
-                  ])),
+                _specialMission(
+                    alert.mission.nightmare, alert.mission.archwingRequired),
+                Text(alert.mission.node, style: TextStyle(fontSize: 15.0))
+              ])),
               alert.mission.reward.itemString.isEmpty
                   ? Container(
-                height: 0.0,
-                width: 0.0,
-              )
+                      height: 0.0,
+                      width: 0.0,
+                    )
                   : Container(
-                  padding: EdgeInsets.all(4.0),
-                  decoration: BoxDecoration(
-                      color: Colors.blueAccent[400],
-                      borderRadius: BorderRadius.circular(3.0)),
-                  child: Text(
-                    alert.mission.reward.itemString,
-                    style: Theme
-                        .of(context)
-                        .textTheme
-                        .body2,
-                  )),
+                      padding: EdgeInsets.all(4.0),
+                      decoration: BoxDecoration(
+                          color: Colors.blueAccent[400],
+                          borderRadius: BorderRadius.circular(3.0)),
+                      child: Text(
+                        alert.mission.reward.itemString,
+                        style: Theme.of(context).textTheme.body2,
+                      )),
             ]),
         Padding(
           padding: const EdgeInsets.only(top: 8.0),
@@ -170,16 +161,9 @@ Widget _buildAlerts(Alerts alert, BuildContext context) {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Text(
-                    '${alert.mission.type} (${alert.mission
-                        .faction}) | Level: ${alert.mission
-                        .minEnemyLevel} - ${alert.mission
-                        .maxEnemyLevel} | ${alert.mission.reward.credits}cr',
+                    '${alert.mission.type} (${alert.mission.faction}) | Level: ${alert.mission.minEnemyLevel} - ${alert.mission.maxEnemyLevel} | ${alert.mission.reward.credits}cr',
                     style: TextStyle(
-                        color: Theme
-                            .of(context)
-                            .textTheme
-                            .caption
-                            .color)),
+                        color: Theme.of(context).textTheme.caption.color)),
                 StreamBuilder<Duration>(
                     initialData: Duration(seconds: 60),
                     stream: timer,
@@ -188,9 +172,9 @@ Widget _buildAlerts(Alerts alert, BuildContext context) {
 
                       String hour = '${data.inHours}';
                       String minutes =
-                      '${(data.inMinutes % 60).floor()}'.padLeft(2, '0');
+                          '${(data.inMinutes % 60).floor()}'.padLeft(2, '0');
                       String seconds =
-                      '${(data.inSeconds % 60).floor()}'.padLeft(2, '0');
+                          '${(data.inSeconds % 60).floor()}'.padLeft(2, '0');
 
                       return AnimatedContainer(
                         duration: Duration(milliseconds: 200),
