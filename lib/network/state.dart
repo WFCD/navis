@@ -3,9 +3,9 @@ import 'dart:convert';
 
 import 'package:codable/codable.dart';
 import 'package:http/http.dart' as http;
+import 'package:navis/models/worldstate_model/export.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../models/export.dart';
 import '../resources/keys.dart';
 
 class SystemState {

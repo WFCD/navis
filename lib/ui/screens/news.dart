@@ -6,7 +6,7 @@ import 'package:flutter_custom_tabs/flutter_custom_tabs.dart';
 import 'package:flutter_youtube/flutter_youtube.dart';
 import 'package:navis/blocs/provider.dart';
 import 'package:navis/blocs/worldstate_bloc.dart';
-import 'package:navis/models/export.dart';
+import 'package:navis/models/worldstate_model/export.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
 import '../../resources/keys.dart';

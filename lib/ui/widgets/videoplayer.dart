@@ -3,9 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 
 class FishPlayer extends StatefulWidget {
+  final String lore;
   final String url;
 
-  FishPlayer({this.url});
+  FishPlayer({this.lore, this.url});
 
   @override
   _FishPlayer createState() => _FishPlayer();
@@ -30,17 +31,21 @@ class _FishPlayer extends State<FishPlayer>
   @override
   Widget build(BuildContext context) {
     return Container(
-        child: Chewie(
-      _controller,
-      autoInitialize: true,
-      autoPlay: true,
-      aspectRatio: 3 / 2,
-      showControls: true,
-      materialProgressColors: ChewieProgressColors(
-          playedColor: Colors.blue,
-          backgroundColor: Colors.grey,
-          handleColor: Colors.white,
-          bufferedColor: Colors.white),
-    ));
+        child: Column(children: <Widget>[
+          Text(widget.lore),
+          Container(
+              child: Chewie(
+                _controller,
+                autoInitialize: true,
+                autoPlay: true,
+                aspectRatio: 3 / 2,
+                showControls: true,
+                materialProgressColors: ChewieProgressColors(
+                    playedColor: Colors.blue,
+                    backgroundColor: Colors.grey,
+                    handleColor: Colors.white,
+                    bufferedColor: Colors.white),
+              ))
+        ]));
   }
 }

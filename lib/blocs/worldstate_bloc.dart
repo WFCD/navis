@@ -1,9 +1,9 @@
 import 'dart:async';
 
 import 'package:intl/intl.dart';
+import 'package:navis/models/worldstate_model/worldstate.dart';
 import 'package:rxdart/rxdart.dart';
 
-import '../models/worldstate.dart';
 import '../network/state.dart';
 import 'base.dart';
 

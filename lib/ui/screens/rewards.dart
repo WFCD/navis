@@ -1,8 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:navis/models/worldstate_model/rewardpool.dart';
 
-import '../../models/rewardpool.dart';
 import '../../network/state.dart';
 import '../../resources/assets.dart';
 

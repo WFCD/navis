@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:navis/blocs/provider.dart';
 import 'package:navis/blocs/worldstate_bloc.dart';
-import 'package:navis/models/invasions.dart';
-import 'package:navis/models/worldstate.dart';
+import 'package:navis/models/worldstate_model/invasions.dart';
+import 'package:navis/models/worldstate_model/worldstate.dart';
 
 import '../../resources/factions.dart';
 import '../widgets/cards.dart';

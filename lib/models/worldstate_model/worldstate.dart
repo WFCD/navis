@@ -1,6 +1,5 @@
 import 'package:codable/codable.dart';
-
-import 'export.dart';
+import 'package:navis/models/worldstate_model/export.dart';
 
 class WorldState extends Coding {
   Cetus cetus;

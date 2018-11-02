@@ -45,7 +45,8 @@ class _Maps extends State<Maps> with TickerProviderStateMixin {
           anchorOverride: null,
           builder: (_) => InkWell(
               onTap: () async => Navigator.of(context).push(Popup(
-                  child: FishPlayer(url: await SystemState.fishVideos(o[4])))),
+                  child: FishPlayer(
+                      lore: o[3], url: await SystemState.fishVideos(o[4])))),
               child: Container(
                   child: Image.network(
                       'https://hub.warframestat.us/img/map_icons/oddity.png'))));

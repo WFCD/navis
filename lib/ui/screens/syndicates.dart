@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:navis/blocs/provider.dart';
 import 'package:navis/blocs/worldstate_bloc.dart';
-import 'package:navis/models/export.dart';
+import 'package:navis/models/worldstate_model/export.dart';
 
 import '../animation/countdown.dart';
 import '../widgets/cards.dart';
@@ -35,7 +35,8 @@ class OstronsState extends State<Ostrons> {
               .map((j) => _buildMissionType(context, j))
               .toList();
 
-          if (snapshot.data.events[0].jobs != null) {
+          if (snapshot.data.events.isNotEmpty &&
+              snapshot.data.events[0].jobs != null) {
             allJobs.addAll(snapshot.data.events[0].jobs
                 .map((j) => _buildMissionType(context, j)));
           }

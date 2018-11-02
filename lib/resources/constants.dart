@@ -1,6 +1,4 @@
 class Constants {
-  static const List<String> choices = <String>['PC', 'PS4', 'XBox One'];
-
   static const List lure = <List<dynamic>>[
     ['Eidolon Lure X2', 65.73062649311031, -51.6796875],
     ['Eidolon Lure X2', 66.93006025862448, 9.4921875],
