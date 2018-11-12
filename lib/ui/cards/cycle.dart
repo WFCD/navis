@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:navis/blocs/provider.dart';
 import 'package:navis/blocs/worldstate_bloc.dart';
 import 'package:navis/models/worldstate.dart';
-import 'package:navis/ui/animation/countdown.dart';
+import 'package:navis/ui/widgets/timer.dart';
 
 import '../widgets/cards.dart';
 
@@ -61,17 +61,14 @@ class _CetusCycle extends State<CetusCycle> with TickerProviderStateMixin {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
-                          RichText(
-                              text: TextSpan(
-                                  text: _cycle(widget.cycle),
-                                  style: TextStyle(
-                                      fontSize: 20.0,
-                                      color:
-                                      Theme
-                                          .of(context)
-                                          .textTheme
-                                          .body1
-                                          .color)))
+                          Text(_cycle(widget.cycle),
+                              style: TextStyle(
+                                  fontSize: 20.0,
+                                  color: Theme
+                                      .of(context)
+                                      .textTheme
+                                      .body1
+                                      .color))
                         ],
                       )),
                   Divider(color: Theme
@@ -82,9 +79,7 @@ class _CetusCycle extends State<CetusCycle> with TickerProviderStateMixin {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
-                          RichText(
-                              text:
-                              TextSpan(text: 'Currently it is', style: style)),
+                          Text('Currently it is', style: style),
                           cycle.isDay == true
                               ? RichText(
                               text: TextSpan(
@@ -93,13 +88,11 @@ class _CetusCycle extends State<CetusCycle> with TickerProviderStateMixin {
                                       color: Colors.yellow[700],
                                       fontSize: 20.0,
                                       fontWeight: FontWeight.bold)))
-                              : RichText(
-                              text: TextSpan(
-                                  text: 'Night',
-                                  style: TextStyle(
-                                      color: Colors.blue,
-                                      fontSize: 20.0,
-                                      fontWeight: FontWeight.bold)))
+                              : Text('Night',
+                              style: TextStyle(
+                                  color: Colors.blue,
+                                  fontSize: 20.0,
+                                  fontWeight: FontWeight.bold))
                         ],
                       )),
                   Container(
@@ -108,39 +101,13 @@ class _CetusCycle extends State<CetusCycle> with TickerProviderStateMixin {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
                         cycle.isDay == true
-                            ? RichText(
-                            text: TextSpan(
-                                text: 'Time until Night', style: style))
-                            : RichText(
-                            text:
-                            TextSpan(text: 'Time until Day', style: style)),
-                        new Container(
-                            padding: EdgeInsets.all(4.0),
-                            decoration: BoxDecoration(
-                                color: cycle.isDay == true
-                                    ? Colors.green
-                                    : Colors.blueAccent[400],
-                                borderRadius:
-                                BorderRadius.all(Radius.circular(3.0))),
-                            child: StreamBuilder<Duration>(
-                                initialData: Duration(seconds: 60),
-                                stream: widget.cycle == Cycle.cetus
-                                    ? CounterScreenStream(state.cetusCycleTime)
-                                    : CounterScreenStream(state.earthCycleTime),
-                                builder: (context, snapshot) {
-                                  Duration data = snapshot.data;
-
-                                  String hour = '${data.inHours}';
-                                  String minutes =
-                                  '${(data.inMinutes % 60).floor()}'
-                                      .padLeft(2, '0');
-                                  String seconds =
-                                  '${(data.inSeconds % 60).floor()}'
-                                      .padLeft(2, '0');
-
-                                  return Text('$hour:$minutes:$seconds',
-                                      style: TextStyle(color: Colors.white));
-                                }))
+                            ? Text('Time until Night', style: style)
+                            : Text('Time until Day', style: style),
+                        Timer(
+                            duration: widget.cycle == Cycle.cetus
+                                ? state.cetusCycleTime
+                                : state.earthCycleTime,
+                            isMore1H: true)
                       ],
                     ),
                   ),
@@ -150,10 +117,8 @@ class _CetusCycle extends State<CetusCycle> with TickerProviderStateMixin {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
                         cycle.isDay == true
-                            ? RichText(
-                            text: TextSpan(text: 'Time at Night', style: style))
-                            : RichText(
-                            text: TextSpan(text: 'Time at Day', style: style)),
+                            ? Text('Time at Night', style: style)
+                            : Text('Time at Day', style: style),
                         Container(
                             padding: EdgeInsets.all(4.0),
                             decoration: BoxDecoration(

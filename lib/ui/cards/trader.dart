@@ -3,8 +3,8 @@ import 'package:navis/blocs/provider.dart';
 import 'package:navis/blocs/worldstate_bloc.dart';
 import 'package:navis/models/worldstate.dart';
 
-import '../animation/countdown.dart';
 import '../widgets/cards.dart';
+import '../widgets/timer.dart';
 
 class Trader extends StatefulWidget {
   @override
@@ -55,33 +55,10 @@ class _Trader extends State<Trader> {
                             : Text(
                             '${snapshot.data.trader.character} arrives in',
                             style: TextStyle(fontSize: 17.0)),
-                        Container(
-                          padding: EdgeInsets.all(3.0),
-                          decoration: BoxDecoration(
-                              color: Colors.green,
-                              borderRadius: BorderRadius.circular(3.0)),
-                          child: StreamBuilder<Duration>(
-                              initialData: Duration(seconds: 60),
-                              stream: CounterScreenStream(
-                                  snapshot.data.trader.active
-                                      ? leaving
-                                      : arrives),
-                              builder: (context, snapshot) {
-                                Duration data = snapshot.data;
-
-                                String days = '${data.inDays}';
-                                String hour = '${data.inHours % 24}';
-                                String minutes =
-                                '${(data.inMinutes % 60).floor()}'
-                                    .padLeft(2, '0');
-                                String seconds =
-                                '${(data.inSeconds % 60).floor()}'
-                                    .padLeft(2, '0');
-
-                                return Text('$days\d $hour:$minutes:$seconds',
-                                    style: TextStyle(color: Colors.white));
-                              }),
-                        )
+                        Timer(
+                            duration:
+                            snapshot.data.trader.active ? leaving : arrives,
+                            isEvent: true)
                       ]),
                 ),
                 snapshot.data.trader.active

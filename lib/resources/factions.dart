@@ -11,14 +11,6 @@ class DynamicFaction {
     else if (timeLeft <= Duration(hours: 6)) return Colors.red;
   }
 
-  alertColor(Duration timeLeft) {
-    if (timeLeft >= Duration(hours: 1))
-      return Colors.green;
-    else if (timeLeft < Duration(hours: 1) && timeLeft > Duration(minutes: 10))
-      return Colors.orange[700];
-    else if (timeLeft <= Duration(minutes: 10)) return Colors.red;
-  }
-
   static factionIcon(String faction, {double size}) {
     switch (faction) {
       case 'Grineer':

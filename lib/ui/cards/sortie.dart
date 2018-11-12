@@ -5,8 +5,8 @@ import 'package:navis/models/sortie.dart';
 import 'package:navis/models/worldstate.dart';
 
 import '../../resources/factions.dart';
-import '../animation/countdown.dart';
 import '../widgets/cards.dart';
+import '../widgets/timer.dart';
 
 class SculptureMissions extends StatelessWidget {
   Widget _buildMissions(Variants variants, BuildContext context) {
@@ -49,29 +49,10 @@ class SculptureMissions extends StatelessWidget {
           subtitle: Text(snapshot.data.sortie.faction),
           trailing: Container(
               padding: EdgeInsets.all(4.0),
-              decoration: BoxDecoration(
-                  color: factionSwitch.sortieColor(
-                      DateTime.parse(snapshot.data.sortie.expiry)
-                          .difference(DateTime.now())),
-                  borderRadius: BorderRadius.circular(3.0)),
-              child: StreamBuilder<Duration>(
-                initialData: Duration(seconds: 60),
-                stream: CounterScreenStream(
-                    DateTime.parse(snapshot.data.sortie.expiry)
-                        .difference(DateTime.now())),
-                builder: (context, snapshot) {
-                  Duration data = snapshot.data;
-
-                  String hour = '${data.inHours}';
-                  String minutes =
-                  '${(data.inMinutes % 60).floor()}'.padLeft(2, '0');
-                  String seconds =
-                  '${(data.inSeconds % 60).floor()}'.padLeft(2, '0');
-
-                  return Text('$hour:$minutes:$seconds',
-                      style: TextStyle(color: Colors.white));
-                },
-              )),
+              child: Timer(
+                  duration: DateTime.parse(snapshot.data.sortie.expiry)
+                      .difference(DateTime.now()),
+                  isMore1H: true)),
         );
 
         List<Widget> missions = snapshot.data.sortie.variants

@@ -5,9 +5,8 @@ import 'package:navis/models/void.dart';
 import 'package:navis/models/worldstate.dart';
 
 import '../../resources/assets.dart';
-import '../../resources/factions.dart';
-import '../animation/countdown.dart';
 import '../widgets/cards.dart';
+import '../widgets/timer.dart';
 
 class Fissure extends StatefulWidget {
   Fissure({Key key}) : super(key: key);
@@ -41,7 +40,6 @@ class _Fissure extends State<Fissure> {
 
 Widget _buildFissures(VoidFissures fissure, BuildContext context) {
   final now = DateTime.now();
-  final switcher = DynamicFaction();
   Duration timeLeft = DateTime.parse(fissure.expiry).difference(now);
 
   return Tiles(
@@ -59,26 +57,7 @@ Widget _buildFissures(VoidFissures fissure, BuildContext context) {
         style: TextStyle(fontSize: 15.0),
       ),
       subtitle: Text('Missions type: ${fissure.missionType}'),
-      trailing: StreamBuilder<Duration>(
-          initialData: Duration(seconds: 60),
-          stream: CounterScreenStream(timeLeft),
-          builder: (context, snapshot) {
-            Duration data = snapshot.data;
-
-            String hour = '${data.inHours}';
-            String minutes = '${(data.inMinutes % 60).floor()}'.padLeft(2, '0');
-            String seconds = '${(data.inSeconds % 60).floor()}'.padLeft(2, '0');
-
-            return AnimatedContainer(
-                duration: Duration(milliseconds: 200),
-                curve: Curves.easeInOut,
-                padding: EdgeInsets.all(4.0),
-                decoration: BoxDecoration(
-                    color: switcher.alertColor(data),
-                    borderRadius: BorderRadius.circular(3.0)),
-                child: Text('$hour:$minutes:$seconds',
-                    style: TextStyle(color: Colors.white)));
-          }),
+      trailing: Timer(duration: timeLeft, isMore1H: true),
     ),
   );
 }

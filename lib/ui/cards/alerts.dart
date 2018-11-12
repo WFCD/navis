@@ -1,4 +1,4 @@
-import 'dart:async';
+//import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:navis/blocs/provider.dart';
@@ -8,9 +8,8 @@ import 'package:navis/models/events.dart';
 import 'package:navis/models/worldstate.dart';
 
 import '../../resources/assets.dart';
-import '../../resources/factions.dart';
-import '../animation/countdown.dart';
 import '../widgets/cards.dart';
+import '../widgets/timer.dart';
 
 class AlertTile extends StatelessWidget {
   @override
@@ -56,140 +55,109 @@ class AlertTile extends StatelessWidget {
 
 Widget _buildTacticalAlerts(
     Events alert, WorldstateBloc bloc, BuildContext context) {
-  final switcher = DynamicFaction();
-  Stream timer = CounterScreenStream(
-      DateTime.parse(alert.expiry).difference(DateTime.now()));
+  Duration timeLeft = DateTime.parse(alert.expiry).difference(DateTime.now());
 
   return Padding(
     padding: const EdgeInsets.only(top: 4.0, bottom: 4.0),
     child: Container(
       padding: EdgeInsets.only(bottom: 8.0, top: 5.0),
-      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: <
-          Widget>[
-        Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    Text(alert.description, style: TextStyle(fontSize: 15.0)),
-                    StreamBuilder<Duration>(
-                        initialData: Duration(seconds: 60),
-                        stream: timer,
-                        builder: (context, snapshot) {
-                          Duration data = snapshot.data;
-
-                          String days = '${data.inDays}';
-                          String hour = '${(data.inHours / 24).floor()}';
-                          String minutes = '${(data.inMinutes % 60).floor()}'
-                              .padLeft(2, '0');
-                          String seconds = '${(data.inSeconds % 60).floor()}'
-                              .padLeft(2, '0');
-
-                          return AnimatedContainer(
-                            duration: Duration(milliseconds: 200),
-                            curve: Curves.easeInOut,
-                            padding: EdgeInsets.all(4.0),
-                            decoration: BoxDecoration(
-                                color: switcher.alertColor(data),
-                                borderRadius: BorderRadius.circular(3.0)),
-                            child: Text('$days\d $hour:$minutes:$seconds',
-                                style: TextStyle(color: Colors.white)),
-                          );
-                        }),
-                  ]),
-              Padding(
-                padding: const EdgeInsets.only(top: 8.0),
-                child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: alert.rewards.map((r) {
-                      return Container(
-                          padding: EdgeInsets.all(4.0),
-                          decoration: BoxDecoration(
-                              color: Colors.blueAccent[400],
-                              borderRadius: BorderRadius.circular(3.0)),
-                          child: Text(r.itemString,
-                              style: Theme.of(context).textTheme.body2));
-                    }).toList()),
-              )
-            ])
-      ]),
+      child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Text(alert.description,
+                            style: TextStyle(fontSize: 15.0)),
+                        Timer(duration: timeLeft, isEvent: true),
+                      ]),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 8.0),
+                    child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: alert.rewards.map((r) {
+                          return Container(
+                              padding: EdgeInsets.all(4.0),
+                              decoration: BoxDecoration(
+                                  color: Colors.blueAccent[400],
+                                  borderRadius: BorderRadius.circular(3.0)),
+                              child: Text(r.itemString,
+                                  style: Theme
+                                      .of(context)
+                                      .textTheme
+                                      .body2));
+                        }).toList()),
+                  )
+                ])
+          ]),
     ),
   );
 }
 
 Widget _buildAlerts(Alerts alert, BuildContext context) {
-  final switcher = DynamicFaction();
-  Stream timer = CounterScreenStream(
-      DateTime.parse(alert.expiry).difference(DateTime.now()));
+  Duration timeLeft = DateTime.parse(alert.expiry).difference(DateTime.now());
 
   return Padding(
     padding: const EdgeInsets.only(top: 4.0, bottom: 4.0),
     child: Container(
       padding: EdgeInsets.only(bottom: 8.0, top: 5.0),
-      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: <
-          Widget>[
-        Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Container(
-                  child: Row(children: <Widget>[
-                _specialMission(
-                    alert.mission.nightmare, alert.mission.archwingRequired),
-                Text(alert.mission.node, style: TextStyle(fontSize: 15.0))
-              ])),
-              alert.mission.reward.itemString.isEmpty
-                  ? Container(
-                      height: 0.0,
-                      width: 0.0,
-                    )
-                  : Container(
+      child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Container(
+                      child: Row(children: <Widget>[
+                        _specialMission(alert.mission.nightmare,
+                            alert.mission.archwingRequired),
+                        Text(alert.mission.node,
+                            style: TextStyle(fontSize: 15.0))
+                      ])),
+                  alert.mission.reward.itemString.isEmpty
+                      ? Container(
+                    height: 0.0,
+                    width: 0.0,
+                  )
+                      : Container(
                       padding: EdgeInsets.all(4.0),
                       decoration: BoxDecoration(
                           color: Colors.blueAccent[400],
                           borderRadius: BorderRadius.circular(3.0)),
                       child: Text(
                         alert.mission.reward.itemString,
-                        style: Theme.of(context).textTheme.body2,
+                        style: Theme
+                            .of(context)
+                            .textTheme
+                            .body2,
                       )),
-            ]),
-        Padding(
-          padding: const EdgeInsets.only(top: 8.0),
-          child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Text(
-                    '${alert.mission.type} (${alert.mission.faction}) | Level: ${alert.mission.minEnemyLevel} - ${alert.mission.maxEnemyLevel} | ${alert.mission.reward.credits}cr',
-                    style: TextStyle(
-                        color: Theme.of(context).textTheme.caption.color)),
-                StreamBuilder<Duration>(
-                    initialData: Duration(seconds: 60),
-                    stream: timer,
-                    builder: (context, snapshot) {
-                      Duration data = snapshot.data;
-
-                      String hour = '${data.inHours}';
-                      String minutes =
-                          '${(data.inMinutes % 60).floor()}'.padLeft(2, '0');
-                      String seconds =
-                          '${(data.inSeconds % 60).floor()}'.padLeft(2, '0');
-
-                      return AnimatedContainer(
-                        duration: Duration(milliseconds: 200),
-                        curve: Curves.easeInOut,
-                        padding: EdgeInsets.all(4.0),
-                        decoration: BoxDecoration(
-                            color: switcher.alertColor(data),
-                            borderRadius: BorderRadius.circular(3.0)),
-                        child: Text('$hour:$minutes:$seconds',
-                            style: TextStyle(color: Colors.white)),
-                      );
-                    })
-              ]),
-        ),
-      ]),
+                ]),
+            Padding(
+              padding: const EdgeInsets.only(top: 8.0),
+              child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Text(
+                        '${alert.mission.type} (${alert.mission
+                            .faction}) | Level: ${alert.mission
+                            .minEnemyLevel} - ${alert.mission
+                            .maxEnemyLevel} | ${alert.mission.reward
+                            .credits}cr',
+                        style: TextStyle(
+                            color: Theme
+                                .of(context)
+                                .textTheme
+                                .caption
+                                .color)),
+                    Timer(isMore1H: true, duration: timeLeft)
+                  ]),
+            ),
+          ]),
     ),
   );
 }
