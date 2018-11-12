@@ -48,7 +48,7 @@ class _HomeScreen extends State<HomeScreen> with TickerProviderStateMixin {
       NavigationIconView(
           icon: ImageAssets.standing,
           title: 'Syndicates',
-          child: Ostrons(),
+          child: SyndicatesList(),
           vsync: this)
     ];
 

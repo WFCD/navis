@@ -28,8 +28,8 @@ class SystemState {
     state.invasions.retainWhere(
         (invasion) => invasion.completion < 100 && invasion.completed == false);
 
-    state.syndicates
-        .retainWhere((syndicate) => syndicate.syndicate == 'Ostrons');
+    state.syndicates.retainWhere(
+            (syndicate) => _syndicateCheck(syndicate.syndicate) == true);
 
     state.voidFissures.removeWhere((v) => v.expired == true);
     state.voidFissures.sort((a, b) => a.tierNum.compareTo(b.tierNum));
@@ -55,5 +55,16 @@ class SystemState {
         .body);
 
     return data['files']['mp4']['url'];
+  }
+
+  bool _syndicateCheck(String syndicate) {
+    switch (syndicate) {
+      case 'Ostrons':
+        return true;
+      case 'Solaris United':
+        return true;
+      default:
+        return false;
+    }
   }
 }
