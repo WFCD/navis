@@ -32,7 +32,7 @@ class TimerState extends State<Timer> {
 
   Widget _timerVersions(Duration time) {
     String days = '${time.inDays}';
-    String hours = '${time.inHours}';
+    String hours = '${time.inHours % 24}';
     String minutes = '${(time.inMinutes % 60).floor()}'.padLeft(2, '0');
     String seconds = '${(time.inSeconds % 60).floor()}'.padLeft(2, '0');
 
@@ -40,7 +40,7 @@ class TimerState extends State<Timer> {
       return Text('$hours:$minutes:$seconds',
           style: TextStyle(color: Colors.white));
     else if (widget.isEvent)
-      return Text('$days\d :$hours:$minutes:$seconds',
+      return Text('$days\d $hours:$minutes:$seconds',
           style: TextStyle(color: Colors.white));
 
     return Text('$minutes:$seconds', style: TextStyle(color: Colors.white));
