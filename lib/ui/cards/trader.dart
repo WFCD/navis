@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:navis/blocs/provider.dart';
 import 'package:navis/blocs/worldstate_bloc.dart';
-import 'package:navis/models/trader.dart';
 import 'package:navis/models/worldstate.dart';
 
 import '../animation/countdown.dart';
@@ -97,7 +96,7 @@ class _Trader extends State<Trader> {
                           Container(
                               padding: EdgeInsets.all(4.0),
                               decoration: BoxDecoration(
-                                  color: Colors.blue,
+                                  color: Colors.blueAccent[400],
                                   borderRadius: BorderRadius.circular(3.0)),
                               child:
                               Text('${snapshot.data.trader.location}'))
@@ -125,42 +124,23 @@ class _Trader extends State<Trader> {
                                   : Text(trader.voidTraderArrival,
                                   style: style))
                         ])),
-                ListTile(
-                    title: Text('Baro Ki\'Teeer Inventory'),
-                    trailing: ButtonTheme(
-                        child: FlatButton(
-                          child: Text('See Inventory'),
-                          onPressed: () =>
-                              _showInventory(
-                                  context, snapshot.data.trader.inventory),
-                        )))
+                Padding(
+                  padding: EdgeInsets.only(bottom: 8.0, left: 5.0, right: 3.0),
+                  child: snapshot.data.trader.active
+                      ? Container(
+                      width: 500.0,
+                      height: 30.0,
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                          color: Colors.blueAccent[400],
+                          borderRadius: BorderRadius.circular(8.0)),
+                      child: Text('Baro Ki\'Teeer Inventory',
+                          style: TextStyle(fontSize: 17.0)))
+                      : emptyBox,
+                ),
               ]),
         );
       },
     );
   }
-}
-
-Future<Null> _showInventory(BuildContext context, List<Inventory> items) async {
-  return showDialog<Null>(
-      context: context,
-      barrierDismissible: true,
-      builder: (_) {
-        return AlertDialog(
-          title: Text('Current Inventory'),
-          content: SingleChildScrollView(
-              padding: EdgeInsets.zero,
-              child: ListBody(
-                  children: items.map((i) {
-                    return Container(child: ListTile(title: Text(i.item)));
-                  }).toList())),
-          actions: <Widget>[
-            FlatButton(
-              child: Text('Dismiss'),
-              textColor: Colors.blue,
-              onPressed: () => Navigator.of(context).pop(),
-            )
-          ],
-        );
-      });
 }

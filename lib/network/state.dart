@@ -28,6 +28,7 @@ class SystemState {
     state.invasions.retainWhere(
         (invasion) => invasion.completion < 100 && invasion.completed == false);
 
+    state.syndicates.sort((a, b) => a.syndicate.compareTo(b.syndicate));
     state.syndicates.retainWhere(
             (syndicate) => _syndicateCheck(syndicate.syndicate) == true);
 
