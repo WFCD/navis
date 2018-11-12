@@ -12,10 +12,9 @@ void main() {
   final exceptionService = ExceptionService();
 
   runZoned(
-          () =>
-          runApp(BlocProvider<WorldstateBloc>(bloc: state, child: Navis())),
+      () => runApp(BlocProvider<WorldstateBloc>(bloc: state, child: Navis())),
       onError: (error, stackTrace) async =>
-      await exceptionService.reportErrorAndStackTrace(error, stackTrace));
+          await exceptionService.reportErrorAndStackTrace(error, stackTrace));
 
   //runApp(BlocProvider<WorldstateBloc>(bloc: state, child: Navis()));
 }

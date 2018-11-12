@@ -87,10 +87,7 @@ Widget _buildTacticalAlerts(
                                   color: Colors.blueAccent[400],
                                   borderRadius: BorderRadius.circular(3.0)),
                               child: Text(r.itemString,
-                                  style: Theme
-                                      .of(context)
-                                      .textTheme
-                                      .body2));
+                                  style: Theme.of(context).textTheme.body2));
                         }).toList()),
                   )
                 ])
@@ -114,28 +111,24 @@ Widget _buildAlerts(Alerts alert, BuildContext context) {
                 children: <Widget>[
                   Container(
                       child: Row(children: <Widget>[
-                        _specialMission(alert.mission.nightmare,
-                            alert.mission.archwingRequired),
-                        Text(alert.mission.node,
-                            style: TextStyle(fontSize: 15.0))
-                      ])),
+                    _specialMission(alert.mission.nightmare,
+                        alert.mission.archwingRequired),
+                    Text(alert.mission.node, style: TextStyle(fontSize: 15.0))
+                  ])),
                   alert.mission.reward.itemString.isEmpty
                       ? Container(
-                    height: 0.0,
-                    width: 0.0,
-                  )
+                          height: 0.0,
+                          width: 0.0,
+                        )
                       : Container(
-                      padding: EdgeInsets.all(4.0),
-                      decoration: BoxDecoration(
-                          color: Colors.blueAccent[400],
-                          borderRadius: BorderRadius.circular(3.0)),
-                      child: Text(
-                        alert.mission.reward.itemString,
-                        style: Theme
-                            .of(context)
-                            .textTheme
-                            .body2,
-                      )),
+                          padding: EdgeInsets.all(4.0),
+                          decoration: BoxDecoration(
+                              color: Colors.blueAccent[400],
+                              borderRadius: BorderRadius.circular(3.0)),
+                          child: Text(
+                            alert.mission.reward.itemString,
+                            style: Theme.of(context).textTheme.body2,
+                          )),
                 ]),
             Padding(
               padding: const EdgeInsets.only(top: 8.0),
@@ -143,17 +136,9 @@ Widget _buildAlerts(Alerts alert, BuildContext context) {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     Text(
-                        '${alert.mission.type} (${alert.mission
-                            .faction}) | Level: ${alert.mission
-                            .minEnemyLevel} - ${alert.mission
-                            .maxEnemyLevel} | ${alert.mission.reward
-                            .credits}cr',
+                        '${alert.mission.type} (${alert.mission.faction}) | Level: ${alert.mission.minEnemyLevel} - ${alert.mission.maxEnemyLevel} | ${alert.mission.reward.credits}cr',
                         style: TextStyle(
-                            color: Theme
-                                .of(context)
-                                .textTheme
-                                .caption
-                                .color)),
+                            color: Theme.of(context).textTheme.caption.color)),
                     Timer(isMore1H: true, duration: timeLeft)
                   ]),
             ),

@@ -47,10 +47,7 @@ Widget _buildFissures(VoidFissures fissure, BuildContext context) {
       leading: Icon(
         _getTier(fissure),
         size: 45.0,
-        color: Theme
-            .of(context)
-            .iconTheme
-            .color,
+        color: Theme.of(context).iconTheme.color,
       ),
       title: Text(
         '${fissure.node} | ${fissure.tier}',

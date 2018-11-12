@@ -35,7 +35,6 @@ class SculptureMissions extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final factionSwitch = DynamicFaction();
     final sortie = BlocProvider.of<WorldstateBloc>(context);
 
     return StreamBuilder<WorldState>(

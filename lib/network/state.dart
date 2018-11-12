@@ -30,7 +30,7 @@ class SystemState {
 
     state.syndicates.sort((a, b) => a.syndicate.compareTo(b.syndicate));
     state.syndicates.retainWhere(
-            (syndicate) => _syndicateCheck(syndicate.syndicate) == true);
+        (syndicate) => _syndicateCheck(syndicate.syndicate) == true);
 
     state.voidFissures.removeWhere((v) => v.expired == true);
     state.voidFissures.sort((a, b) => a.tierNum.compareTo(b.tierNum));
@@ -43,8 +43,7 @@ class SystemState {
         .decode((await http.get('http://142.93.23.157/rewards/$item')).body);
 
     final key = KeyedArchive.unarchive(url);
-    final reward = Reward()
-      ..decode(key);
+    final reward = Reward()..decode(key);
 
     return reward;
   }
