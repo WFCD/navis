@@ -3,7 +3,6 @@ import 'package:navis/blocs/provider.dart';
 import 'package:navis/blocs/worldstate_bloc.dart';
 import 'package:navis/models/export.dart';
 
-import '../animation/countdown.dart';
 import '../widgets/cards.dart';
 import 'rewards.dart';
 
@@ -27,9 +26,6 @@ class SyndicateJobsState extends State<SyndicateJobs> {
         child: Text('Waiting for new Bounties check back in a minute.',
             style: TextStyle(fontSize: 17.0)));
 
-    Duration bountyTime =
-        DateTime.parse(widget.syndicate.expiry).difference(DateTime.now());
-
     List<Widget> allJobs = widget.syndicate.jobs
         .map((j) => _buildMissionType(context, j))
         .toList();
@@ -48,29 +44,6 @@ class SyndicateJobsState extends State<SyndicateJobs> {
         body: RefreshIndicator(
             onRefresh: () => syndicate.update(),
             child: CustomScrollView(slivers: <Widget>[
-              SliverAppBar(
-                  automaticallyImplyLeading: false,
-                  backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-                  title: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        Text('Bounties expire in',
-                            style: TextStyle(
-                                fontSize: 17.0,
-                                color:
-                                    Theme.of(context).textTheme.body1.color)),
-                        AnimatedContainer(
-                            duration: Duration(milliseconds: 200),
-                            padding: EdgeInsets.all(4.0),
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(3.0),
-                                color: _warnings(bountyTime)),
-                            child: StreamBuilder<Duration>(
-                                initialData: Duration(minutes: 60),
-                                stream: CounterScreenStream(bountyTime),
-                                builder: (context, snapshot) =>
-                                    _buildTimer(context, snapshot.data)))
-                      ])),
               SliverFixedExtentList(
                   delegate: SliverChildListDelegate(
                       widget.syndicate.jobs.isEmpty

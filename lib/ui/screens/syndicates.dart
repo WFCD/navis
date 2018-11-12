@@ -5,6 +5,7 @@ import 'package:navis/blocs/worldstate_bloc.dart';
 import 'package:navis/models/export.dart';
 
 import '../widgets/cards.dart';
+import '../widgets/timer.dart';
 import 'syndicate_missions.dart';
 
 class SyndicatesList extends StatelessWidget {
@@ -12,16 +13,47 @@ class SyndicatesList extends StatelessWidget {
   Widget build(BuildContext context) {
     final syndicate = BlocProvider.of<WorldstateBloc>(context);
 
+    final bountyTime = DateTime.parse(syndicate.lastState.syndicates
+        .firstWhere((s) => s.syndicate == 'Ostrons')
+        .expiry)
+        .difference(DateTime.now());
+
     return StreamBuilder(
         stream: syndicate.worldstate,
         builder: (BuildContext context, AsyncSnapshot<WorldState> snapshot) {
           if (!snapshot.hasData)
             return Center(child: CircularProgressIndicator());
 
-          return Column(
-              children: snapshot.data.syndicates
-                  .map((s) => _buildSyndicate(context, s, snapshot.data.events))
-                  .toList());
+          return RefreshIndicator(
+            onRefresh: () => syndicate.update(),
+            child: ListView(children: <Widget>[
+              SizedBox(
+                height: 50.0,
+                child: Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Text('Bounties expire in',
+                            style: TextStyle(
+                                fontSize: 20.0,
+                                color:
+                                Theme
+                                    .of(context)
+                                    .textTheme
+                                    .body1
+                                    .color)),
+                        Timer(duration: bountyTime, isMore1H: true)
+                      ]),
+                ),
+              ),
+              Column(
+                  children: snapshot.data.syndicates
+                      .map((s) =>
+                      _buildSyndicate(context, s, snapshot.data.events))
+                      .toList())
+            ]),
+          );
         });
   }
 }
