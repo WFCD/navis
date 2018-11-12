@@ -10,6 +10,7 @@ import '../cards/events.dart';
 import '../cards/invasionsCard.dart';
 import '../cards/sortie.dart';
 import '../cards/trader.dart';
+import '../cards/vallis.dart';
 
 class Feed extends StatefulWidget {
   Feed({Key key}) : super(key: key);
@@ -44,6 +45,7 @@ class FeedState extends State<Feed> {
                 event ? emptyBox : Event(event: snap.events.first),
                 acolytes ? emptyBox : Acolytes(),
                 CetusCycle(cycle: Cycle.cetus),
+                OrbVallis(),
                 CetusCycle(cycle: Cycle.earth),
                 alerts ? emptyBox : AlertTile(),
                 invasions ? emptyBox : InvasionCard(),

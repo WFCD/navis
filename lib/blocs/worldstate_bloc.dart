@@ -35,11 +35,17 @@ class WorldstateBloc implements Base {
   Duration get earthCycleTime =>
       DateTime.parse(_worldstate.earth.expiry).difference(DateTime.now());
 
+  Duration get vallisCycleTime =>
+      DateTime.parse(_worldstate.vallis.expiry).difference(DateTime.now());
+
   String get cetusExpiry =>
       format.format(DateTime.parse(_worldstate.cetus.expiry).toLocal());
 
   String get earthExpiry =>
       format.format(DateTime.parse(_worldstate.earth.expiry).toLocal());
+
+  String get vallisExpiry =>
+      format.format(DateTime.parse(_worldstate.vallis.expiry).toLocal());
 
   String get voidTraderArrival =>
       format.format(DateTime.parse(_worldstate.trader.activation).toLocal());

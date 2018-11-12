@@ -61,14 +61,12 @@ _checkSigil(String syndicateName) {
 
   switch (syndicateName) {
     case 'Ostrons':
-      final String sigil = 'assets/sigils/OstronSigil.svg';
-      return SvgPicture.asset(sigil,
+      return SvgPicture.asset('assets/sigils/OstronSigil.svg',
           height: height,
           width: width,
           color: Color.fromRGBO(232, 221, 175, 1.0));
     default:
-      final String sigil = 'assets/sigils/SolarisUnited.svg';
-      return SvgPicture.asset(sigil,
+      return SvgPicture.asset('assets/sigils/SolarisUnited.svg',
           height: height,
           width: width,
           color: Color.fromRGBO(152, 92, 67, 1.0));

@@ -4,6 +4,7 @@ import 'package:navis/models/export.dart';
 class WorldState extends Coding {
   Cetus cetus;
   Earth earth;
+  Vallis vallis;
   Sortie sortie;
   VoidTrader trader;
   List<Invasions> invasions;
@@ -20,6 +21,7 @@ class WorldState extends Coding {
 
     cetus = object.decodeObject('cetusCycle', () => Cetus());
     earth = object.decodeObject('earthCycle', () => Earth());
+    vallis = object.decodeObject('vallisCycle', () => Vallis());
     sortie = object.decodeObject('sortie', () => Sortie());
     trader = object.decodeObject('voidTrader', () => VoidTrader());
     invasions = object.decodeObjects('invasions', () => Invasions());
@@ -36,6 +38,7 @@ class WorldState extends Coding {
   void encode(KeyedArchive object) {
     object.encodeObject('cetusCycle', cetus);
     object.encodeObject('earthCycle', earth);
+    object.encodeObject('vallisCycle', vallis);
     object.encodeObject('sortie', sortie);
     object.encodeObject('voidTrader', trader);
     object.encodeObjects('invasions', invasions);

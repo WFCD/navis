@@ -43,7 +43,7 @@ class _InvasionCard extends State<InvasionCard>
     _showMore = !_showMore;
     if (_showMore) {
       setState(() {
-        height = (106 * (length - 2)).toDouble();
+        height = (108 * (length - 2)).toDouble();
         _controller.forward();
       });
     } else {
@@ -64,7 +64,6 @@ class _InvasionCard extends State<InvasionCard>
         builder: (BuildContext context, AsyncSnapshot<WorldState> snapshot) {
           if (snapshot.data.invasions.length < 3) {
             return Tiles(
-                duration: Duration(milliseconds: 200),
                 child: Padding(
                   padding: EdgeInsets.only(bottom: 8.0),
                   child: Column(
@@ -75,7 +74,6 @@ class _InvasionCard extends State<InvasionCard>
           }
 
           return Tiles(
-            duration: _controller.duration,
             child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
