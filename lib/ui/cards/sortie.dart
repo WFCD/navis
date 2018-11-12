@@ -23,11 +23,7 @@ class SculptureMissions extends StatelessWidget {
               Expanded(
                   child: Text(variants.modifierDescription,
                       style: TextStyle(
-                          color: Theme
-                              .of(context)
-                              .textTheme
-                              .caption
-                              .color)))
+                          color: Theme.of(context).textTheme.caption.color)))
             ]),
           ]),
         ));
@@ -57,7 +53,7 @@ class SculptureMissions extends StatelessWidget {
         List<Widget> missions = snapshot.data.sortie.variants
             .map((variant) => _buildMissions(variant, context))
             .toList()
-          ..insert(0, title);
+              ..insert(0, title);
 
         return Tiles(child: Column(children: missions));
       },

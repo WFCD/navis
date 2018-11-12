@@ -65,12 +65,12 @@ class _InvasionCard extends State<InvasionCard>
           if (snapshot.data.invasions.length < 3) {
             return Tiles(
                 child: Padding(
-                  padding: EdgeInsets.only(bottom: 8.0),
-                  child: Column(
-                      children: snapshot.data.invasions
-                          .map((i) => _buildInvasions(context, i))
-                          .toList()),
-                ));
+              padding: EdgeInsets.only(bottom: 8.0),
+              child: Column(
+                  children: snapshot.data.invasions
+                      .map((i) => _buildInvasions(context, i))
+                      .toList()),
+            ));
           }
 
           return Tiles(

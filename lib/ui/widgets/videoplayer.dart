@@ -32,20 +32,20 @@ class _FishPlayer extends State<FishPlayer>
   Widget build(BuildContext context) {
     return Container(
         child: Column(children: <Widget>[
-          Text(widget.lore),
-          Container(
-              child: Chewie(
-                _controller,
-                autoInitialize: true,
-                autoPlay: true,
-                aspectRatio: 3 / 2,
-                showControls: true,
-                materialProgressColors: ChewieProgressColors(
-                    playedColor: Colors.blue,
-                    backgroundColor: Colors.grey,
-                    handleColor: Colors.white,
-                    bufferedColor: Colors.white),
-              ))
-        ]));
+      Text(widget.lore),
+      Container(
+          child: Chewie(
+        _controller,
+        autoInitialize: true,
+        autoPlay: true,
+        aspectRatio: 3 / 2,
+        showControls: true,
+        materialProgressColors: ChewieProgressColors(
+            playedColor: Colors.blue,
+            backgroundColor: Colors.grey,
+            handleColor: Colors.white,
+            bufferedColor: Colors.white),
+      ))
+    ]));
   }
 }

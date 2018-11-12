@@ -60,8 +60,7 @@ class _HomeScreen extends State<HomeScreen> with TickerProviderStateMixin {
 
   @override
   void dispose() {
-    for (NavigationIconView view in _items)
-      view.controller.dispose();
+    for (NavigationIconView view in _items) view.controller.dispose();
     super.dispose();
   }
 
@@ -74,8 +73,7 @@ class _HomeScreen extends State<HomeScreen> with TickerProviderStateMixin {
   Widget _buildTransitionsStack() {
     final List<FadeTransition> transitions = <FadeTransition>[];
 
-    for (NavigationIconView view in _items)
-      transitions.add(view.transition());
+    for (NavigationIconView view in _items) transitions.add(view.transition());
 
     // We want to have the newly animating (fading in) views on top.
     transitions.sort((FadeTransition a, FadeTransition b) {
@@ -101,14 +99,12 @@ class _HomeScreen extends State<HomeScreen> with TickerProviderStateMixin {
         appBar: AppBar(elevation: 8.0, title: title, actions: <Widget>[
           IconButton(
               icon: Icon(Icons.map),
-              onPressed: () =>
-                  Navigator.of(context)
-                      .push(MaterialPageRoute(builder: (_) => Maps()))),
+              onPressed: () => Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (_) => Maps()))),
           IconButton(
               icon: Icon(Icons.settings),
-              onPressed: () =>
-                  Navigator.of(context)
-                      .push(MaterialPageRoute(builder: (_) => Settings())))
+              onPressed: () => Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (_) => Settings())))
         ]),
         body: StreamBuilder(
             stream: state.worldstate,
@@ -123,7 +119,7 @@ class _HomeScreen extends State<HomeScreen> with TickerProviderStateMixin {
             child: BottomNavigationBar(
                 iconSize: 25.0,
                 items:
-                _items.map((NavigationIconView view) => view.item).toList(),
+                    _items.map((NavigationIconView view) => view.item).toList(),
                 currentIndex: _currentIndex,
                 onTap: (int index) {
                   setState(() {

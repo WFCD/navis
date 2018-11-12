@@ -49,7 +49,7 @@ class _BountyRewards extends State<BountyRewards> {
                             leading: reward.imagePath == null
                                 ? Icon(ImageAssets.nightmare, size: 50.0)
                                 : Image.network(reward.imagePath,
-                                scale: 8.0, fit: BoxFit.cover),
+                                    scale: 8.0, fit: BoxFit.cover),
                             title: Text(widget.rewards[index],
                                 style: TextStyle(fontSize: 17.0))),
                       ),
