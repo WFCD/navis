@@ -3,7 +3,7 @@ import 'dart:convert';
 
 import 'package:codable/codable.dart';
 import 'package:http/http.dart' as http;
-import 'package:navis/models/worldstate_model/export.dart';
+import 'package:navis/models/export.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../resources/keys.dart';
@@ -37,12 +37,12 @@ class SystemState {
     return state;
   }
 
-  static Future<Rewards> rewards(String item) async {
-    var url = json
+  static Future<Reward> rewards(String item) async {
+    Map<String, dynamic> url = json
         .decode((await http.get('http://142.93.23.157/rewards/$item')).body);
 
     final key = KeyedArchive.unarchive(url);
-    Rewards reward = Rewards()
+    final reward = Reward()
       ..decode(key);
 
     return reward;

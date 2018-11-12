@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:navis/blocs/provider.dart';
 import 'package:navis/blocs/worldstate_bloc.dart';
-import 'package:navis/models/worldstate_model/trader.dart';
-import 'package:navis/models/worldstate_model/worldstate.dart';
+import 'package:navis/models/trader.dart';
+import 'package:navis/models/worldstate.dart';
 
 import '../animation/countdown.dart';
 import '../widgets/cards.dart';
@@ -36,7 +36,7 @@ class _Trader extends State<Trader> {
         return Tiles(
           child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisSize: MainAxisSize.max,
+              mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 Padding(
                   padding: const EdgeInsets.only(top: 4.0),
@@ -125,13 +125,15 @@ class _Trader extends State<Trader> {
                                   : Text(trader.voidTraderArrival,
                                   style: style))
                         ])),
-                snapshot.data.trader.active
-                    ? ExpansionTile(
+                ListTile(
                     title: Text('Baro Ki\'Teeer Inventory'),
-                    children: snapshot.data.trader.inventory
-                        .map((item) => _buildInventoryItem(item))
-                        .toList())
-                    : emptyBox
+                    trailing: ButtonTheme(
+                        child: FlatButton(
+                          child: Text('See Inventory'),
+                          onPressed: () =>
+                              _showInventory(
+                                  context, snapshot.data.trader.inventory),
+                        )))
               ]),
         );
       },
@@ -139,8 +141,26 @@ class _Trader extends State<Trader> {
   }
 }
 
-Widget _buildInventoryItem(Inventory item) {
-  return ListTile(
-      title: Text(item.item),
-      subtitle: Text('${item.ducats} Ducats, ${item.credits} Credits'));
+Future<Null> _showInventory(BuildContext context, List<Inventory> items) async {
+  return showDialog<Null>(
+      context: context,
+      barrierDismissible: true,
+      builder: (_) {
+        return AlertDialog(
+          title: Text('Current Inventory'),
+          content: SingleChildScrollView(
+              padding: EdgeInsets.zero,
+              child: ListBody(
+                  children: items.map((i) {
+                    return Container(child: ListTile(title: Text(i.item)));
+                  }).toList())),
+          actions: <Widget>[
+            FlatButton(
+              child: Text('Dismiss'),
+              textColor: Colors.blue,
+              onPressed: () => Navigator.of(context).pop(),
+            )
+          ],
+        );
+      });
 }

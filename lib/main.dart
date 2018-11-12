@@ -7,7 +7,7 @@ import 'package:navis/blocs/worldstate_bloc.dart';
 import 'app.dart';
 import 'network/sentry.dart';
 
-void main() async {
+void main() {
   final state = WorldstateBloc();
   final exceptionService = ExceptionService();
 

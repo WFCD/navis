@@ -46,8 +46,8 @@ class _HomeScreen extends State<HomeScreen> with TickerProviderStateMixin {
           child: Fissure(key: PageStorageKey<int>(2)),
           vsync: this),
       NavigationIconView(
-          icon: ImageAssets.ostrons,
-          title: 'Ostrons',
+          icon: ImageAssets.standing,
+          title: 'Syndicates',
           child: Ostrons(),
           vsync: this)
     ];
