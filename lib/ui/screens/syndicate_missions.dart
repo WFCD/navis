@@ -31,7 +31,7 @@ class SyndicateJobsState extends State<SyndicateJobs> {
         .toList();
 
     if (widget.events.isNotEmpty &&
-        widget.events[0].jobs != null &&
+        widget.events[0].jobs.isNotEmpty &&
         widget.syndicate.syndicate == 'Ostrons') {
       allJobs.addAll(
           widget.events[0].jobs.map((j) => _buildMissionType(context, j)));
@@ -39,6 +39,7 @@ class SyndicateJobsState extends State<SyndicateJobs> {
 
     return Scaffold(
         appBar: AppBar(
+            titleSpacing: 0.0,
             title: Text(widget.syndicate.syndicate),
             backgroundColor: widget.color),
         body: RefreshIndicator(
@@ -74,23 +75,4 @@ Widget _buildMissionType(BuildContext context, Jobs job) {
       ),
     ),
   );
-}
-
-Color _warnings(Duration timeLeft) {
-  if (timeLeft > Duration(hours: 1))
-    return Colors.green;
-  else if (timeLeft < Duration(hours: 1) && timeLeft >= Duration(minutes: 30))
-    return Colors.orange[700];
-  else
-    return Colors.red;
-}
-
-Widget _buildTimer(BuildContext context, Duration timeLeft) {
-  String hour = '${timeLeft.inHours}';
-  String minutes = '${(timeLeft.inMinutes % 60).floor()}'.padLeft(2, '0');
-  String seconds = '${(timeLeft.inSeconds % 60).floor()}'.padLeft(2, '0');
-
-  return Text('$hour:$minutes:$seconds',
-      style: TextStyle(
-          color: Theme.of(context).textTheme.body2.color, fontSize: 17.0));
 }

@@ -43,7 +43,11 @@ class SyndicatesList extends StatelessWidget {
                                     .textTheme
                                     .body1
                                     .color)),
-                        Timer(duration: bountyTime, isMore1H: true)
+                        Timer(
+                            duration: bountyTime,
+                            size: 17.0,
+                            callback: syndicate.update(),
+                            isMore1H: true)
                       ]),
                 ),
               ),
