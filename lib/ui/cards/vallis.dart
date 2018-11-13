@@ -74,7 +74,7 @@ class OrbVallis extends StatelessWidget {
           children: <Widget>[
             isWarm
                 ? Text('Winter is coming in ', style: style)
-                : Text('Warmaer climate in ', style: style),
+                : Text('Warmer climate at ', style: style),
             Container(
                 padding: EdgeInsets.all(4.0),
                 decoration: BoxDecoration(
