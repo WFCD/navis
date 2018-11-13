@@ -64,6 +64,7 @@ class SyndicatesList extends StatelessWidget {
 
 Widget _buildSyndicate(
     BuildContext context, Syndicates syndicate, List<Events> events) {
+  final style = TextStyle(color: Colors.white);
   final ostronsColor = Color.fromRGBO(183, 70, 36, 1.0);
   final solarisColor = Color.fromRGBO(206, 162, 54, 1.0);
 
@@ -71,22 +72,18 @@ Widget _buildSyndicate(
     color: syndicate.syndicate == 'Ostrons' ? ostronsColor : solarisColor,
     child: ListTile(
       leading: _checkSigil(syndicate.syndicate),
-      title: Text(syndicate.syndicate, style: TextStyle(color: Colors.white)),
-      trailing: ButtonTheme.bar(
-        child: FlatButton(
-            onPressed: () => Navigator.of(context).push(MaterialPageRoute(
-                builder: (_) => SyndicateJobs(
-                      syndicate: syndicate,
-                      events: events,
-                      color: syndicate.syndicate == 'Ostrons'
-                          ? ostronsColor
-                          : solarisColor,
-                    ))),
-            child: Text(
-              'See Bounties',
-              style: TextStyle(color: Colors.white),
-            )),
-      ),
+      title: Text(syndicate.syndicate, style: style),
+      trailing: Container(child: Text('Tap to see bounties', style: style)),
+      onTap: () =>
+          Navigator.of(context).push(MaterialPageRoute(
+              builder: (_) =>
+                  SyndicateJobs(
+                    syndicate: syndicate,
+                    events: events,
+                    color: syndicate.syndicate == 'Ostrons'
+                        ? ostronsColor
+                        : solarisColor,
+                  ))),
     ),
   );
 }

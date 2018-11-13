@@ -23,7 +23,7 @@ class Timer extends StatefulWidget {
 }
 
 class TimerState extends State<Timer> {
-  Stream<Duration> timer;
+  StreamController<Duration> countdown;
 
   _hours(Duration timeLeft) {
     if (timeLeft >= Duration(hours: 1))
@@ -57,16 +57,22 @@ class TimerState extends State<Timer> {
     return Text('$minutes:$seconds', style: style);
   }
 
+  load(StreamConsumer<Duration> stream) async {
+    //await Future.delayed(Duration(seconds: 1));
+    CounterScreenStream(widget.duration).pipe(stream);
+  }
+
   @override
   void initState() {
     super.initState();
-    timer = CounterScreenStream(widget.duration);
-    timer.listen((d) {}, onDone: () => widget.callback);
+    countdown = StreamController.broadcast();
+    load(countdown);
   }
 
   @override
   void dispose() {
-    timer = null;
+    countdown?.close();
+    countdown = null;
     super.dispose();
   }
 
@@ -74,7 +80,7 @@ class TimerState extends State<Timer> {
   Widget build(BuildContext context) {
     return StreamBuilder<Duration>(
       initialData: Duration(seconds: 60),
-      stream: timer,
+      stream: countdown.stream,
       builder: (context, snapshot) {
         Duration data = snapshot.data;
 
@@ -85,7 +91,7 @@ class TimerState extends State<Timer> {
           decoration: BoxDecoration(
               color: widget.isEvent ? _days(data) : _hours(data),
               borderRadius: BorderRadius.circular(3.0)),
-          child: _timerVersions(data),
+          child: snapshot.hasData ? _timerVersions(data) : Text(''),
         );
       },
     );

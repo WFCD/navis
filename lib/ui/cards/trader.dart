@@ -99,7 +99,7 @@ class _Trader extends State<Trader> {
                         ])),
                 Padding(
                   padding: EdgeInsets.only(bottom: 8.0, left: 5.0, right: 3.0),
-                  child: snapshot.data.trader.active
+                  child: !snapshot.data.trader.active
                       ? Container(
                           width: 500.0,
                           height: 30.0,
@@ -107,8 +107,12 @@ class _Trader extends State<Trader> {
                           decoration: BoxDecoration(
                               color: Colors.blueAccent[400],
                               borderRadius: BorderRadius.circular(8.0)),
-                          child: Text('Baro Ki\'Teeer Inventory',
-                              style: TextStyle(fontSize: 17.0)))
+                      child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Text('Baro Ki\'Teeer Inventory',
+                                style: TextStyle(fontSize: 17.0))
+                          ]))
                       : emptyBox,
                 ),
               ]),

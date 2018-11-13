@@ -7,7 +7,7 @@ import '../resources/keys.dart';
 
 class ExceptionService {
   final SentryClient _sentry = new SentryClient(
-      dsn: dsn, environmentAttributes: Event(release: '1.0.5'));
+      dsn: dsn, environmentAttributes: Event(release: '1.0.6'));
 
   static bool isDebug = true;
 
