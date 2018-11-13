@@ -66,6 +66,24 @@ class OrbVallis extends StatelessWidget {
                     }),
               )
             ]),
+      ),
+      Container(
+        padding: EdgeInsets.only(bottom: 8.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            isWarm
+                ? Text('Winter is coming in ', style: style)
+                : Text('Warmaer climate in ', style: style),
+            Container(
+                padding: EdgeInsets.all(4.0),
+                decoration: BoxDecoration(
+                    color: Colors.blueAccent[400],
+                    borderRadius: BorderRadius.all(Radius.circular(3.0))),
+                child: Text('${state.vallisExpiry}',
+                    style: TextStyle(color: Colors.white))),
+          ],
+        ),
       )
     ]));
   }

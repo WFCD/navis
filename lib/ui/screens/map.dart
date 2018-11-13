@@ -93,23 +93,27 @@ class _Maps extends State<Maps> with TickerProviderStateMixin {
 
     return Scaffold(
         appBar: AppBar(title: Text("Cetus Map"), actions: actionButton),
-        body: FlutterMap(
-          options: MapOptions(
-            center: LatLng(0.0, 0.0),
-            minZoom: 1.9,
-            maxZoom: 3.0,
-          ),
-          layers: [
-            TileLayerOptions(
-              backgroundColor: Color.fromRGBO(34, 34, 34, .9),
-              fromAssets: true,
-              offlineMode: true,
-              maxZoom: 3.0,
-              urlTemplate: 'assets/plains/{z}/{x}/{y}.png',
-            ),
-            MarkerLayerOptions(markers: markers)
-          ],
-        ));
+        body: Column(children: <Widget>[
+          Expanded(
+              child: FlutterMap(
+                options: MapOptions(
+                  center: LatLng(0.0, 0.0),
+                  zoom: 3,
+                  minZoom: 1.0,
+                  maxZoom: 3.0,
+                ),
+                layers: [
+                  TileLayerOptions(
+                    backgroundColor: Color.fromRGBO(34, 34, 34, .9),
+                    maxZoom: 3.0,
+                    keepBuffer: 50,
+                    urlTemplate:
+                    'https://raw.githubusercontent.com/WFCD/warframe-hub/dev/public/img/plains/{z}_{x}_{y}.jpg',
+                  ),
+                  MarkerLayerOptions(markers: markers)
+                ],
+              ))
+        ]));
   }
 }
 
