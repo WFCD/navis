@@ -38,26 +38,29 @@ class WorldstateBloc implements Base {
   Duration get vallisCycleTime =>
       DateTime.parse(_worldstate.vallis.expiry).difference(DateTime.now());
 
-  String get cetusExpiry =>
-      format.format(DateTime.parse(_worldstate.cetus.expiry).toLocal());
+  String get cetusExpiry => _expiration(_worldstate.cetus.expiry);
 
-  String get earthExpiry =>
-      format.format(DateTime.parse(_worldstate.earth.expiry).toLocal());
+  String get earthExpiry => _expiration(_worldstate.earth.expiry);
 
-  String get vallisExpiry =>
-      format.format(DateTime.parse(_worldstate.vallis.expiry).toLocal());
+  String get vallisExpiry => _expiration(_worldstate.vallis.expiry);
 
-  String get voidTraderArrival =>
-      format.format(DateTime.parse(_worldstate.trader.activation).toLocal());
+  String get voidTraderArrival => _expiration(_worldstate.trader.activation);
 
-  String get voidTraderDeparture =>
-      format.format(DateTime.parse(_worldstate.trader.expiry).toLocal());
+  String get voidTraderDeparture => _expiration(_worldstate.trader.expiry);
 
   Future<Null> update() async {
     final state = SystemState();
     currentState.add(await state.updateState());
 
     return null;
+  }
+
+  _expiration(String expiry) {
+    try {
+      return format.format(DateTime.parse(expiry).toLocal());
+    } catch (err) {
+      return 'Fetching Date';
+    }
   }
 
   @override
