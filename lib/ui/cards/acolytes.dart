@@ -6,12 +6,7 @@ import 'package:navis/models/worldstate.dart';
 
 import '../widgets/cards.dart';
 
-class Acolytes extends StatefulWidget {
-  @override
-  _Acolytes createState() => _Acolytes();
-}
-
-class _Acolytes extends State<Acolytes> {
+class Acolytes extends StatelessWidget {
   Widget _buildAcolytes(PersistentEnemies enemy) {
     return Container(
         padding: EdgeInsets.all(8.0),

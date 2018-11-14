@@ -3,29 +3,24 @@ import 'package:navis/models/events.dart';
 
 import 'event/wmd.dart';
 
-class Event extends StatefulWidget {
+class Event extends StatelessWidget {
   final Events event;
 
   Event({Key key, @required this.event}) : super(key: key);
 
   @override
-  _Event createState() => _Event();
-}
-
-class _Event extends State<Event> {
-  @override
   Widget build(BuildContext context) {
-    bool eventCheck = widget.event.description.contains('Fomorian') ||
-        widget.event.description.contains('Razorback');
+    bool eventCheck = event.description.contains('Fomorian') ||
+        event.description.contains('Razorback');
 
-    switch (widget.event.description) {
+    switch (event.description) {
       case 'Ghoul Purge':
         return Container();
       case 'Relay Title':
         return Container();
       default:
         if (eventCheck)
-          return WMD(event: widget.event);
+          return WMD(event: event);
         else
           return Container();
     }

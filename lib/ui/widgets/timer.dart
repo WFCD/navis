@@ -4,26 +4,24 @@ import 'package:flutter/material.dart';
 
 import '../animation/countdown.dart';
 
-class Timer extends StatefulWidget {
+class Timer extends StatelessWidget {
   final Duration duration;
   final double size;
   final Future<Null> callback;
   final bool isMore1H;
   final bool isEvent;
 
+  Stream<Duration> _countdown;
+
   Timer(
       {this.duration,
       this.size,
       this.callback,
       this.isMore1H = false,
-      this.isEvent = false});
-
-  @override
-  TimerState createState() => TimerState();
-}
-
-class TimerState extends State<Timer> {
-  StreamController<Duration> countdown;
+        this.isEvent = false}) {
+    var timer = CountDown(duration);
+    _countdown = timer.stream;
+  }
 
   _hours(Duration timeLeft) {
     if (timeLeft >= Duration(hours: 1))
@@ -42,45 +40,26 @@ class TimerState extends State<Timer> {
   }
 
   Widget _timerVersions(Duration time) {
-    final style = TextStyle(fontSize: widget.size, color: Colors.white);
+    final style = TextStyle(fontSize: size, color: Colors.white);
 
     String days = '${time.inDays}';
     String hours = '${time.inHours % 24}';
     String minutes = '${(time.inMinutes % 60).floor()}'.padLeft(2, '0');
     String seconds = '${(time.inSeconds % 60).floor()}'.padLeft(2, '0');
 
-    if (widget.isMore1H)
+    if (isMore1H)
       return Text('$hours:$minutes:$seconds', style: style);
-    else if (widget.isEvent)
+    else if (isEvent)
       return Text('$days\d $hours:$minutes:$seconds', style: style);
 
     return Text('$minutes:$seconds', style: style);
-  }
-
-  load(StreamConsumer<Duration> stream) async {
-    //await Future.delayed(Duration(seconds: 1));
-    CounterScreenStream(widget.duration).pipe(stream);
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    countdown = StreamController.broadcast();
-    load(countdown);
-  }
-
-  @override
-  void dispose() {
-    countdown?.close();
-    countdown = null;
-    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<Duration>(
       initialData: Duration(seconds: 60),
-      stream: countdown.stream,
+      stream: _countdown,
       builder: (context, snapshot) {
         Duration data = snapshot.data;
 
@@ -89,7 +68,7 @@ class TimerState extends State<Timer> {
           curve: Curves.easeInOut,
           padding: EdgeInsets.all(4.0),
           decoration: BoxDecoration(
-              color: widget.isEvent ? _days(data) : _hours(data),
+              color: isEvent ? _days(data) : _hours(data),
               borderRadius: BorderRadius.circular(3.0)),
           child: snapshot.hasData ? _timerVersions(data) : Text(''),
         );

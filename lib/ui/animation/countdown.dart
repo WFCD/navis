@@ -26,17 +26,11 @@ class CountDown {
   /// reference point for start and resume
 
   DateTime _begin;
-
   Timer _timer;
-
   Duration _duration;
-
   Duration remainingTime;
-
   bool isPaused = false;
-
   StreamController<Duration> _controller;
-
   Duration _refresh;
 
   /// provide a way to send less data to the client but keep the data of the timer up to date
@@ -112,9 +106,7 @@ class CountDown {
 
   void _tick(Timer timer) {
     counter++;
-
     Duration alreadyConsumed = new DateTime.now().difference(_begin);
-
     this.remainingTime = this._duration - alreadyConsumed;
 
     if (this.remainingTime.isNegative) {

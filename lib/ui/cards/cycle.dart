@@ -8,16 +8,11 @@ import '../widgets/cards.dart';
 
 enum Cycle { cetus, earth }
 
-class CetusCycle extends StatefulWidget {
+class CetusCycle extends StatelessWidget {
   final Cycle cycle;
 
   CetusCycle({@required this.cycle});
 
-  @override
-  createState() => _CetusCycle();
-}
-
-class _CetusCycle extends State<CetusCycle> with TickerProviderStateMixin {
   _cycle(Cycle cycle) {
     switch (cycle) {
       case Cycle.cetus:
@@ -28,7 +23,7 @@ class _CetusCycle extends State<CetusCycle> with TickerProviderStateMixin {
   }
 
   _modelCycle(WorldState state) {
-    if (widget.cycle == Cycle.cetus)
+    if (cycle == Cycle.cetus)
       return state.cetus;
     else
       return state.earth;
@@ -45,7 +40,7 @@ class _CetusCycle extends State<CetusCycle> with TickerProviderStateMixin {
         initialData: state.lastState,
         stream: state.worldstate,
         builder: (BuildContext context, AsyncSnapshot<WorldState> snapshot) {
-          final cycle = _modelCycle(snapshot.data);
+          final orbit = _modelCycle(snapshot.data);
 
           return Tiles(
               child: Column(
@@ -57,7 +52,7 @@ class _CetusCycle extends State<CetusCycle> with TickerProviderStateMixin {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      Text(_cycle(widget.cycle),
+                      Text(_cycle(cycle),
                           style: TextStyle(
                               fontSize: 20.0,
                               color: Theme.of(context).textTheme.body1.color))
@@ -70,7 +65,7 @@ class _CetusCycle extends State<CetusCycle> with TickerProviderStateMixin {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       Text('Currently it is', style: style),
-                      cycle.isDay == true
+                      orbit.isDay == true
                           ? RichText(
                               text: TextSpan(
                                   text: 'Day',
@@ -90,11 +85,11 @@ class _CetusCycle extends State<CetusCycle> with TickerProviderStateMixin {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-                    cycle.isDay == true
+                    orbit.isDay == true
                         ? Text('Time until Night', style: style)
                         : Text('Time until Day', style: style),
                     Timer(
-                        duration: widget.cycle == Cycle.cetus
+                        duration: orbit == Cycle.cetus
                             ? state.cetusCycleTime
                             : state.earthCycleTime,
                         isMore1H: true)
@@ -106,7 +101,7 @@ class _CetusCycle extends State<CetusCycle> with TickerProviderStateMixin {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-                    cycle.isDay == true
+                    orbit.isDay == true
                         ? Text('Time at Night', style: style)
                         : Text('Time at Day', style: style),
                     Container(
@@ -116,7 +111,7 @@ class _CetusCycle extends State<CetusCycle> with TickerProviderStateMixin {
                             borderRadius:
                                 BorderRadius.all(Radius.circular(3.0))),
                         child: Text(
-                            widget.cycle == Cycle.cetus
+                            orbit == Cycle.cetus
                                 ? '${state.cetusExpiry}'
                                 : '${state.earthExpiry}',
                             style: TextStyle(color: Colors.white))),
