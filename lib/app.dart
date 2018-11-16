@@ -3,6 +3,8 @@ import 'package:navis/blocs/provider.dart';
 import 'package:navis/blocs/theming.dart';
 
 import 'ui/screens/home.dart';
+import 'ui/screens/map.dart';
+import 'ui/screens/settings.dart';
 
 class Navis extends StatelessWidget {
   final theme = ThemeBloc();
@@ -20,6 +22,10 @@ class Navis extends StatelessWidget {
                 color: Colors.grey[900],
                 theme: snapshot.data.theme,
                 home: HomeScreen(),
+                routes: <String, WidgetBuilder>{
+                  '/Maps': (_) => Maps(),
+                  '/Settings': (_) => Settings()
+                },
               );
             }));
   }

@@ -4,6 +4,7 @@ import 'package:navis/blocs/worldstate_bloc.dart';
 
 import '../../resources/assets.dart';
 import '../widgets/navgationIconView.dart';
+import '../animation/fade_route.dart';
 import 'feed.dart';
 import 'fissures.dart';
 import 'map.dart';
@@ -84,7 +85,7 @@ class _HomeScreen extends State<HomeScreen> with TickerProviderStateMixin {
       return aValue.compareTo(bValue);
     });
 
-    return new Stack(children: transitions);
+    return Stack(children: transitions);
   }
 
   @override
@@ -99,12 +100,10 @@ class _HomeScreen extends State<HomeScreen> with TickerProviderStateMixin {
         appBar: AppBar(elevation: 8.0, title: title, actions: <Widget>[
           IconButton(
               icon: Icon(Icons.map),
-              onPressed: () => Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (_) => Maps()))),
+              onPressed: () => Navigator.of(context).pushNamed('/Maps')),
           IconButton(
               icon: Icon(Icons.settings),
-              onPressed: () => Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (_) => Settings())))
+              onPressed: () => Navigator.of(context).pushNamed('/Settings'))
         ]),
         body: StreamBuilder(
             stream: state.worldstate,

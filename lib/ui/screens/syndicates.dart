@@ -35,11 +35,7 @@ class SyndicatesList extends StatelessWidget {
                             style: TextStyle(
                                 fontSize: 20.0,
                                 color:
-                                Theme
-                                    .of(context)
-                                    .textTheme
-                                    .body1
-                                    .color)),
+                                    Theme.of(context).textTheme.body1.color)),
                         Timer(
                             duration: DateTime.parse(data.syndicates[0].expiry)
                                 .difference(DateTime.now()),
@@ -51,7 +47,7 @@ class SyndicatesList extends StatelessWidget {
               Column(
                   children: snapshot.data.syndicates
                       .map((s) =>
-                      _buildSyndicate(context, s, snapshot.data.events))
+                          _buildSyndicate(context, s, snapshot.data.events))
                       .toList())
             ]),
           );
@@ -68,26 +64,25 @@ Widget _buildSyndicate(
   return Tiles(
     color: syndicate.syndicate == 'Ostrons' ? ostronsColor : solarisColor,
     child: ListTile(
+      contentPadding: EdgeInsets.zero,
       leading: _checkSigil(syndicate.syndicate),
       title: Text(syndicate.syndicate, style: style),
       subtitle: Text('Tap to see bounties'),
-      onTap: () =>
-          Navigator.of(context).push(MaterialPageRoute(
-              builder: (_) =>
-                  SyndicateJobs(
-                    syndicate: syndicate,
-                    events: events,
-                    color: syndicate.syndicate == 'Ostrons'
-                        ? ostronsColor
-                        : solarisColor,
-                  ))),
+      onTap: () => Navigator.of(context).push(MaterialPageRoute(
+          builder: (_) => SyndicateJobs(
+                syndicate: syndicate,
+                events: events,
+                color: syndicate.syndicate == 'Ostrons'
+                    ? ostronsColor
+                    : solarisColor,
+              ))),
     ),
   );
 }
 
 _checkSigil(String syndicateName) {
-  final height = 50.0;
-  final width = 50.0;
+  final height = 60.0;
+  final width = 60.0;
 
   switch (syndicateName) {
     case 'Ostrons':

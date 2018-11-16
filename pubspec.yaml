@@ -28,6 +28,11 @@ flutter:
     - assets/sigils/
     - assets/acolytes/
     - assets/hotfix.jpg
+    - assets/plains/0/
+    - assets/plains/1/
+    - assets/plains/2/
+    - assets/plains/3/
+    - assets/plains/4/
 
   fonts:
     - family: Factions

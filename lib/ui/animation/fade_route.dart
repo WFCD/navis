@@ -18,7 +18,7 @@ class FadeRoute extends PageRoute {
   }
 
   @override
-  bool get maintainState => false;
+  bool get maintainState => true;
 
   @override
   Duration get transitionDuration => const Duration(milliseconds: 200);
