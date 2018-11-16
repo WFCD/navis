@@ -35,7 +35,7 @@ class WorldstateBloc implements Base {
 
   Duration get earthCycleTime => _durations(_worldstate.earth.expiry);
 
-  Duration get vallisCycleTime => _expirations(_worldstate.vallis.expiry);
+  Duration get vallisCycleTime => _durations(_worldstate.vallis.expiry);
 
   String get cetusExpiry => _expirations(_worldstate.cetus.expiry);
 
