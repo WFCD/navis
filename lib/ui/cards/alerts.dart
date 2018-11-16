@@ -73,7 +73,7 @@ Widget _buildTacticalAlerts(
                       children: <Widget>[
                         Text(alert.description,
                             style: TextStyle(fontSize: 15.0)),
-                        Timer(duration: timeLeft, isEvent: true),
+                        Timer(duration: timeLeft),
                       ]),
                   Padding(
                     padding: const EdgeInsets.only(top: 8.0),
@@ -139,7 +139,7 @@ Widget _buildAlerts(Alerts alert, BuildContext context) {
                         '${alert.mission.type} (${alert.mission.faction}) | Level: ${alert.mission.minEnemyLevel} - ${alert.mission.maxEnemyLevel} | ${alert.mission.reward.credits}cr',
                         style: TextStyle(
                             color: Theme.of(context).textTheme.caption.color)),
-                    Timer(isMore1H: true, duration: timeLeft)
+                    Timer(duration: timeLeft)
                   ]),
             ),
           ]),

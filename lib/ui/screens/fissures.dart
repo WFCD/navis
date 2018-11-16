@@ -54,7 +54,7 @@ Widget _buildFissures(VoidFissures fissure, BuildContext context) {
         style: TextStyle(fontSize: 15.0),
       ),
       subtitle: Text('Missions type: ${fissure.missionType}'),
-      trailing: Timer(duration: timeLeft, isMore1H: true),
+      trailing: Timer(duration: timeLeft),
     ),
   );
 }

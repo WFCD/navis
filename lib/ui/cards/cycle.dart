@@ -89,10 +89,9 @@ class CetusCycle extends StatelessWidget {
                         ? Text('Time until Night', style: style)
                         : Text('Time until Day', style: style),
                     Timer(
-                        duration: orbit == Cycle.cetus
+                        duration: cycle == Cycle.cetus
                             ? state.cetusCycleTime
-                            : state.earthCycleTime,
-                        isMore1H: true)
+                            : state.earthCycleTime)
                   ],
                 ),
               ),
@@ -111,7 +110,7 @@ class CetusCycle extends StatelessWidget {
                             borderRadius:
                                 BorderRadius.all(Radius.circular(3.0))),
                         child: Text(
-                            orbit == Cycle.cetus
+                            cycle == Cycle.cetus
                                 ? '${state.cetusExpiry}'
                                 : '${state.earthExpiry}',
                             style: TextStyle(color: Colors.white))),

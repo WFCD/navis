@@ -38,14 +38,20 @@ class SystemState {
     return state;
   }
 
-  static Future<Reward> rewards(String item) async {
-    Map<String, dynamic> url = json
-        .decode((await http.get('http://142.93.23.157/rewards/$item')).body);
+  static Future<List<Reward>> rewards() async {
+    List<Reward> rewards = [];
 
-    final key = KeyedArchive.unarchive(url);
-    final reward = Reward()..decode(key);
+    List<dynamic> url =
+    json.decode((await http.get('http://142.93.23.157/rewards')).body);
 
-    return reward;
+    for (int i = 0; i < url.length; i++) {
+      final key = KeyedArchive.unarchive(url[i]);
+      final reward = Reward()
+        ..decode(key);
+      rewards.add(reward);
+    }
+
+    return rewards;
   }
 
   static Future<String> fishVideos(String shortCode) async {

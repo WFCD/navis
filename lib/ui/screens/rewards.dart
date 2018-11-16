@@ -6,22 +6,30 @@ import 'package:navis/models/rewardpool.dart';
 import '../../network/state.dart';
 import '../../resources/assets.dart';
 
-class BountyRewards extends StatefulWidget {
-  BountyRewards({Key key, this.missionTYpe, this.rewards}) : super(key: key);
+class BountyRewards extends StatelessWidget {
+  BountyRewards({Key key, this.missionTYpe, this.bountyRewards})
+      : super(key: key);
 
-  final List<String> rewards;
-
+  final List<String> bountyRewards;
   final String missionTYpe;
 
-  createState() => _BountyRewards();
-}
-
-class _BountyRewards extends State<BountyRewards> {
   Future<List<Reward>> getRewards() async {
+    List<Reward> imageList = await SystemState.rewards();
     List<Reward> rewards = [];
 
-    for (int i = 0; i < widget.rewards.length; i++)
-      rewards.add(await SystemState.rewards(widget.rewards[i]));
+    final nonexistent = Reward()
+      ..rewardName = 'reward doesn\'t exist'
+      ..imagePath = null;
+
+    bountyRewards.forEach((r) {
+      var image = List.from(imageList);
+      try {
+        image.retainWhere((i) => r.contains(i.rewardName) == true);
+        rewards.add(image.first);
+      } catch (err) {
+        rewards.add(nonexistent);
+      }
+    });
 
     return rewards;
   }
@@ -29,7 +37,7 @@ class _BountyRewards extends State<BountyRewards> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: Text(widget.missionTYpe)),
+        appBar: AppBar(title: Text(missionTYpe)),
         body: FutureBuilder<List<Reward>>(
             future: getRewards(),
             builder:
@@ -50,7 +58,7 @@ class _BountyRewards extends State<BountyRewards> {
                                 ? Icon(ImageAssets.nightmare, size: 50.0)
                                 : Image.network(reward.imagePath,
                                     scale: 8.0, fit: BoxFit.cover),
-                            title: Text(widget.rewards[index],
+                            title: Text(bountyRewards[index],
                                 style: TextStyle(fontSize: 17.0))),
                       ),
                     );

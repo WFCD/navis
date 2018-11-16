@@ -46,8 +46,7 @@ class SculptureMissions extends StatelessWidget {
               padding: EdgeInsets.all(4.0),
               child: Timer(
                   duration: DateTime.parse(snapshot.data.sortie.expiry)
-                      .difference(DateTime.now()),
-                  isMore1H: true)),
+                      .difference(DateTime.now()))),
         );
 
         List<Widget> missions = snapshot.data.sortie.variants

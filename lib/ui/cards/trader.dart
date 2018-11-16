@@ -53,8 +53,7 @@ class _Trader extends State<Trader> {
                                 style: TextStyle(fontSize: 17.0)),
                         Timer(
                             duration:
-                                snapshot.data.trader.active ? leaving : arrives,
-                            isEvent: true)
+                            snapshot.data.trader.active ? leaving : arrives)
                       ]),
                 ),
                 snapshot.data.trader.active

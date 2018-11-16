@@ -8,20 +8,8 @@ class Timer extends StatelessWidget {
   final Duration duration;
   final double size;
   final Future<Null> callback;
-  final bool isMore1H;
-  final bool isEvent;
 
-  Stream<Duration> _countdown;
-
-  Timer(
-      {this.duration,
-      this.size,
-      this.callback,
-      this.isMore1H = false,
-        this.isEvent = false}) {
-    var timer = CountDown(duration);
-    _countdown = timer.stream;
-  }
+  Timer({this.duration, this.size, this.callback});
 
   _hours(Duration timeLeft) {
     if (timeLeft >= Duration(hours: 1))
@@ -31,35 +19,28 @@ class Timer extends StatelessWidget {
     else if (timeLeft <= Duration(minutes: 10)) return Colors.red;
   }
 
-  _days(Duration timeLeft) {
-    if (timeLeft >= Duration(days: 1))
-      return Colors.green;
-    else if (timeLeft < Duration(days: 1) && timeLeft > Duration(hours: 20))
-      return Colors.orange[700];
-    else if (timeLeft <= Duration(minutes: 10)) return Colors.red;
-  }
-
   Widget _timerVersions(Duration time) {
     final style = TextStyle(fontSize: size, color: Colors.white);
+    final forDays = Duration(days: 1);
 
     String days = '${time.inDays}';
     String hours = '${time.inHours % 24}';
     String minutes = '${(time.inMinutes % 60).floor()}'.padLeft(2, '0');
     String seconds = '${(time.inSeconds % 60).floor()}'.padLeft(2, '0');
 
-    if (isMore1H)
+    if (time < forDays) {
       return Text('$hours:$minutes:$seconds', style: style);
-    else if (isEvent)
+    } else {
       return Text('$days\d $hours:$minutes:$seconds', style: style);
-
-    return Text('$minutes:$seconds', style: style);
+    }
   }
 
   @override
   Widget build(BuildContext context) {
+    final countdown = CountDown(duration);
     return StreamBuilder<Duration>(
       initialData: Duration(seconds: 60),
-      stream: _countdown,
+      stream: countdown.stream,
       builder: (context, snapshot) {
         Duration data = snapshot.data;
 
@@ -68,8 +49,7 @@ class Timer extends StatelessWidget {
           curve: Curves.easeInOut,
           padding: EdgeInsets.all(4.0),
           decoration: BoxDecoration(
-              color: isEvent ? _days(data) : _hours(data),
-              borderRadius: BorderRadius.circular(3.0)),
+              color: _hours(data), borderRadius: BorderRadius.circular(3.0)),
           child: snapshot.hasData ? _timerVersions(data) : Text(''),
         );
       },

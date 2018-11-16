@@ -51,7 +51,7 @@ class OrbVallis extends StatelessWidget {
                     borderRadius: BorderRadius.all(Radius.circular(3.0))),
                 child: StreamBuilder(
                     initialData: Duration(seconds: 60),
-                    stream: CounterScreenStream(state.vallisCycleTime),
+                    stream: CounterStream(state.vallisCycleTime),
                     builder: (BuildContext context,
                         AsyncSnapshot<Duration> snapshot) {
                       Duration data = snapshot.data;

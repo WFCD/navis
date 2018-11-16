@@ -1,9 +1,9 @@
 import 'dart:async';
 
-class CounterScreenStream extends Stream<Duration> {
+class CounterStream extends Stream<Duration> {
   final Stream<Duration> _stream;
 
-  CounterScreenStream(Duration initialValue)
+  CounterStream(Duration initialValue)
       : this._stream = createStream(initialValue);
 
   @override

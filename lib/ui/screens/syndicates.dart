@@ -13,14 +13,11 @@ class SyndicatesList extends StatelessWidget {
   Widget build(BuildContext context) {
     final syndicate = BlocProvider.of<WorldstateBloc>(context);
 
-    final bountyTime = DateTime.parse(syndicate.lastState.syndicates
-        .firstWhere((s) => s.syndicate == 'Ostrons')
-        .expiry)
-        .difference(DateTime.now());
-
     return StreamBuilder(
         stream: syndicate.worldstate,
         builder: (BuildContext context, AsyncSnapshot<WorldState> snapshot) {
+          final data = snapshot.data;
+
           if (!snapshot.hasData)
             return Center(child: CircularProgressIndicator());
 
@@ -44,10 +41,10 @@ class SyndicatesList extends StatelessWidget {
                                     .body1
                                     .color)),
                         Timer(
-                            duration: bountyTime,
+                            duration: DateTime.parse(data.syndicates[0].expiry)
+                                .difference(DateTime.now()),
                             size: 17.0,
-                            callback: syndicate.update(),
-                            isMore1H: true)
+                            callback: syndicate.update())
                       ]),
                 ),
               ),
@@ -73,7 +70,7 @@ Widget _buildSyndicate(
     child: ListTile(
       leading: _checkSigil(syndicate.syndicate),
       title: Text(syndicate.syndicate, style: style),
-      trailing: Container(child: Text('Tap to see bounties', style: style)),
+      subtitle: Text('Tap to see bounties'),
       onTap: () =>
           Navigator.of(context).push(MaterialPageRoute(
               builder: (_) =>
