@@ -17,8 +17,8 @@ class InvasionBar extends StatelessWidget {
       this.padding,
       @required this.attackingFaction,
       @required this.defendingFaction,
-        this.color,
-        this.lineHeight})
+      this.color,
+      this.lineHeight})
       : assert(attackingFaction != null),
         assert(defendingFaction != null),
         assert(progress != null);

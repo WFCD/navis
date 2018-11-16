@@ -16,8 +16,6 @@ class SyndicatesList extends StatelessWidget {
     return StreamBuilder(
         stream: syndicate.worldstate,
         builder: (BuildContext context, AsyncSnapshot<WorldState> snapshot) {
-          final data = snapshot.data;
-
           if (!snapshot.hasData)
             return Center(child: CircularProgressIndicator());
 
@@ -37,8 +35,7 @@ class SyndicatesList extends StatelessWidget {
                                 color:
                                     Theme.of(context).textTheme.body1.color)),
                         Timer(
-                            duration: DateTime.parse(data.syndicates[0].expiry)
-                                .difference(DateTime.now()),
+                            duration: syndicate.bountyTime,
                             size: 17.0,
                             callback: syndicate.update())
                       ]),

@@ -42,12 +42,11 @@ class SystemState {
     List<Reward> rewards = [];
 
     List<dynamic> url =
-    json.decode((await http.get('http://142.93.23.157/rewards')).body);
+        json.decode((await http.get('http://142.93.23.157/rewards')).body);
 
     for (int i = 0; i < url.length; i++) {
       final key = KeyedArchive.unarchive(url[i]);
-      final reward = Reward()
-        ..decode(key);
+      final reward = Reward()..decode(key);
       rewards.add(reward);
     }
 

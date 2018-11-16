@@ -53,7 +53,7 @@ class _Trader extends State<Trader> {
                                 style: TextStyle(fontSize: 17.0)),
                         Timer(
                             duration:
-                            snapshot.data.trader.active ? leaving : arrives)
+                                snapshot.data.trader.active ? leaving : arrives)
                       ]),
                 ),
                 snapshot.data.trader.active
@@ -106,12 +106,12 @@ class _Trader extends State<Trader> {
                           decoration: BoxDecoration(
                               color: Colors.blueAccent[400],
                               borderRadius: BorderRadius.circular(8.0)),
-                      child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            Text('Baro Ki\'Teeer Inventory',
-                                style: TextStyle(fontSize: 17.0))
-                          ]))
+                          child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                Text('Baro Ki\'Teeer Inventory',
+                                    style: TextStyle(fontSize: 17.0))
+                              ]))
                       : emptyBox,
                 ),
               ]),

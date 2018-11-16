@@ -29,24 +29,23 @@ class WorldstateBloc implements Base {
   WorldState get lastState => _worldstate;
 
   // I have no idea what I'm doing anymore
-  Duration get cetusCycleTime =>
-      DateTime.parse(_worldstate.cetus.expiry).difference(DateTime.now());
+  Duration get bountyTime => _durations(_worldstate.syndicates.first.expiry);
 
-  Duration get earthCycleTime =>
-      DateTime.parse(_worldstate.earth.expiry).difference(DateTime.now());
+  Duration get cetusCycleTime => _durations(_worldstate.cetus.expiry);
 
-  Duration get vallisCycleTime =>
-      DateTime.parse(_worldstate.vallis.expiry).difference(DateTime.now());
+  Duration get earthCycleTime => _durations(_worldstate.earth.expiry);
 
-  String get cetusExpiry => _expiration(_worldstate.cetus.expiry);
+  Duration get vallisCycleTime => _expirations(_worldstate.vallis.expiry);
 
-  String get earthExpiry => _expiration(_worldstate.earth.expiry);
+  String get cetusExpiry => _expirations(_worldstate.cetus.expiry);
 
-  String get vallisExpiry => _expiration(_worldstate.vallis.expiry);
+  String get earthExpiry => _expirations(_worldstate.earth.expiry);
 
-  String get voidTraderArrival => _expiration(_worldstate.trader.activation);
+  String get vallisExpiry => _expirations(_worldstate.vallis.expiry);
 
-  String get voidTraderDeparture => _expiration(_worldstate.trader.expiry);
+  String get voidTraderArrival => _expirations(_worldstate.trader.activation);
+
+  String get voidTraderDeparture => _expirations(_worldstate.trader.expiry);
 
   Future<Null> update() async {
     final state = SystemState();
@@ -55,11 +54,19 @@ class WorldstateBloc implements Base {
     return null;
   }
 
-  _expiration(String expiry) {
+  _expirations(String expiry) {
     try {
       return format.format(DateTime.parse(expiry).toLocal());
     } catch (err) {
       return 'Fetching Date';
+    }
+  }
+
+  _durations(String expiry) {
+    try {
+      return DateTime.parse(expiry).difference(DateTime.now());
+    } catch (err) {
+      return Duration(minutes: 1);
     }
   }
 

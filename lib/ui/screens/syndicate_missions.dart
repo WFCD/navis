@@ -66,7 +66,7 @@ Widget _buildMissionType(BuildContext context, Jobs job) {
             onPressed: () => Navigator.of(context).push(MaterialPageRoute(
                 builder: (_) => BountyRewards(
                       missionTYpe: job.type,
-                  bountyRewards: job.rewardPool,
+                      bountyRewards: job.rewardPool,
                     ))),
             child: Text(
               'See Rewards',

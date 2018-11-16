@@ -40,14 +40,15 @@ class CountDown {
   /// once you instantiate the CountDown you need to register to receive information
 
   CountDown(Duration duration,
-      {Duration refresh: const Duration(milliseconds: 10), int everyTick: 1}) {
+      {Duration refresh = const Duration(milliseconds: 10),
+      int everyTick = 1}) {
     _refresh = refresh;
 
     _everyTick = everyTick;
 
     this._duration = duration;
 
-    _controller = new StreamController<Duration>(
+    _controller = StreamController<Duration>(
         onListen: _onListen,
         onPause: _onPause,
         onResume: _onResume,
@@ -63,9 +64,9 @@ class CountDown {
   _onListen() {
     // reference point
 
-    _begin = new DateTime.now();
+    _begin = DateTime.now();
 
-    _timer = new Timer.periodic(_refresh, _tick);
+    _timer = Timer.periodic(_refresh, _tick);
   }
 
   /// the remaining time is set at '_refresh' ms accurate
@@ -81,7 +82,7 @@ class CountDown {
   /// ...restart the timer with the new duration
 
   _onResume() {
-    _begin = new DateTime.now();
+    _begin = DateTime.now();
 
     _duration = this.remainingTime;
 
@@ -89,7 +90,7 @@ class CountDown {
 
     //  lance le timer
 
-    _timer = new Timer.periodic(_refresh, _tick);
+    _timer = Timer.periodic(_refresh, _tick);
   }
 
   _onCancel() {
@@ -106,7 +107,7 @@ class CountDown {
 
   void _tick(Timer timer) {
     counter++;
-    Duration alreadyConsumed = new DateTime.now().difference(_begin);
+    Duration alreadyConsumed = DateTime.now().difference(_begin);
     this.remainingTime = this._duration - alreadyConsumed;
 
     if (this.remainingTime.isNegative) {
