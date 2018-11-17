@@ -7,6 +7,7 @@ import '../../resources/constants.dart';
 import '../animation/popup.dart';
 import '../widgets/videoplayer.dart';
 
+//TODO rework map and create one for Orb Vallis
 class Maps extends StatefulWidget {
   @override
   _Maps createState() => _Maps();
@@ -25,16 +26,6 @@ class _Maps extends State<Maps> with TickerProviderStateMixin {
   ];
 
   @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     List<Marker> oldFish = Constants.oddity.map((o) {
       return Marker(
@@ -45,6 +36,7 @@ class _Maps extends State<Maps> with TickerProviderStateMixin {
           anchorOverride: null,
           builder: (_) => InkWell(
               onTap: () async => Navigator.of(context).push(Popup(
+                  context: context,
                   child: FishPlayer(
                       lore: o[3], url: await SystemState.fishVideos(o[4])))),
               child: Container(
@@ -76,44 +68,35 @@ class _Maps extends State<Maps> with TickerProviderStateMixin {
       });
     }
 
-    final List<Widget> actionButton = [
-      PopupMenuButton<String>(
-          elevation: 8.0,
-          icon: Icon(Icons.sort),
-          onSelected: filters,
-          itemBuilder: (_) {
-            return filter.map((f) {
-              return PopupMenuItem<String>(
-                child: ListTile(title: Text(f)),
-                value: f,
-              );
-            }).toList();
-          })
-    ];
-
     return Scaffold(
-        appBar: AppBar(title: Text("Cetus Map"), actions: actionButton),
-        body: Column(children: <Widget>[
-          Expanded(
-              child: FlutterMap(
-                options: MapOptions(
-                  center: LatLng(0.0, 0.0),
-                  zoom: 3,
-                  minZoom: 1.0,
-                  maxZoom: 3.0,
-                ),
-                layers: [
-                  TileLayerOptions(
-                    backgroundColor: Color.fromRGBO(34, 34, 34, .9),
-                    maxZoom: 3.0,
-                    keepBuffer: 50,
-                    urlTemplate:
-                    'https://raw.githubusercontent.com/WFCD/warframe-hub/dev/public/img/plains/{z}_{x}_{y}.jpg',
-                  ),
-                  MarkerLayerOptions(markers: markers)
-                ],
-              ))
-        ]));
+        appBar: AppBar(title: Text("Cetus Map"), actions: <Widget>[
+          PopupMenuButton<String>(
+              elevation: 8.0,
+              icon: Icon(Icons.sort),
+              onSelected: filters,
+              itemBuilder: (_) {
+                return filter.map((f) {
+                  return PopupMenuItem<String>(
+                    child: ListTile(
+                        title: Text(f), contentPadding: EdgeInsets.zero),
+                    value: f,
+                  );
+                }).toList();
+              })
+        ]),
+        body: FlutterMap(
+          options:
+          MapOptions(center: LatLng(0, 0), zoom: 3, minZoom: 0, maxZoom: 4),
+          layers: [
+            TileLayerOptions(
+              maxZoom: 5,
+              fromAssets: true,
+              offlineMode: true,
+              urlTemplate: 'assets/plains/{z}/tile_{x}_{y}.png',
+            ),
+            MarkerLayerOptions(markers: markers)
+          ],
+        ));
   }
 }
 
