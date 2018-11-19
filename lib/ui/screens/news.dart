@@ -10,6 +10,7 @@ import 'package:navis/models/export.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
 import '../../resources/keys.dart';
+import '../widgets/cards.dart';
 
 class Orbiter extends StatefulWidget {
   Orbiter({Key key}) : super(key: key);
@@ -23,31 +24,26 @@ class _Orbiter extends State<Orbiter> {
     CachedNetworkImageProvider image =
         CachedNetworkImageProvider(news.imageLink);
 
-    return Padding(
-        padding: EdgeInsets.only(top: 2.5, bottom: 2.5),
-        child: Card(
-            elevation: 8.0,
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(8.0)),
-            child: InkWell(
-              onTap: () => _launchLink(news.link, context),
-              child: Container(
-                constraints: BoxConstraints.expand(height: 200.0),
-                alignment: Alignment.bottomLeft,
-                padding: EdgeInsets.only(left: 8.0, bottom: 8.0),
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8.0),
-                    image: DecorationImage(
-                        image: hotfix ? AssetImage('assets/hotfix.jpg') : image,
-                        fit: BoxFit.cover)),
-                child: Text(
-                  '[${timeago.format(DateTime.parse(news.date))}] ${news.message}',
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: hotfix ? Colors.red[700] : Colors.white),
-                ),
-              ),
-            )));
+    return Tiles(
+        child: InkWell(
+          onTap: () => _launchLink(news.link, context),
+          child: Container(
+            constraints: BoxConstraints.expand(height: 200.0),
+            alignment: Alignment.bottomLeft,
+            padding: EdgeInsets.only(left: 8.0, bottom: 8.0),
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(8.0),
+                image: DecorationImage(
+                    image: hotfix ? AssetImage('assets/hotfix.jpg') : image,
+                    fit: BoxFit.cover)),
+            child: Text(
+              '[${timeago.format(DateTime.parse(news.date))}] ${news.message}',
+              style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: hotfix ? Colors.red[700] : Colors.white),
+            ),
+          ),
+        ));
   }
 
   @override

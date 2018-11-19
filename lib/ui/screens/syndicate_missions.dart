@@ -31,6 +31,7 @@ class SyndicateJobsState extends State<SyndicateJobs> {
         .toList();
 
     if (widget.events.isNotEmpty &&
+        widget.events[0].jobs != null &&
         widget.events[0].jobs.isNotEmpty &&
         widget.syndicate.syndicate == 'Ostrons') {
       allJobs.addAll(

@@ -12,7 +12,6 @@ import 'syndicates.dart';
 //import 'map.dart';
 //import 'settings.dart';
 
-
 class HomeScreen extends StatefulWidget {
   HomeScreen({Key key}) : super(key: key);
 
