@@ -101,7 +101,7 @@ class _HomeScreen extends State<HomeScreen> with TickerProviderStateMixin {
           IconButton(
               icon: Icon(Icons.map),
               onPressed:
-              null), //() => Navigator.of(context).pushNamed('/Maps')),
+                  null), //() => Navigator.of(context).pushNamed('/Maps')),
           IconButton(
               icon: Icon(Icons.settings),
               onPressed: () => Navigator.of(context).pushNamed('/Settings'))

@@ -46,8 +46,8 @@ class BountyRewards extends StatelessWidget {
   }
 }
 
-Widget _buildForSyndicates(Future<List<Reward>> future,
-    List<String> bountyRewards) {
+Widget _buildForSyndicates(
+    Future<List<Reward>> future, List<String> bountyRewards) {
   return FutureBuilder<List<Reward>>(
       future: future,
       builder: (BuildContext context, AsyncSnapshot<List<Reward>> snapshot) {
@@ -62,7 +62,7 @@ Widget _buildForSyndicates(Future<List<Reward>> future,
               final rewardIcon = reward.imagePath == null
                   ? Icon(ImageAssets.nightmare, size: 50.0)
                   : Image.network(reward.imagePath,
-                  scale: 8.0, fit: BoxFit.cover);
+                      scale: 8.0, fit: BoxFit.cover);
 
               return Padding(
                 padding: const EdgeInsets.only(bottom: 8.0, top: 8.0),

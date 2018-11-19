@@ -102,25 +102,24 @@ class _Trader extends State<Trader> {
                   padding: EdgeInsets.only(bottom: 8.0, left: 5.0, right: 3.0),
                   child: snapshot.data.trader.active
                       ? InkWell(
-                      onTap: () =>
-                          Navigator.of(context).push(FadeRoute(
+                          onTap: () => Navigator.of(context).push(FadeRoute(
                               child: BountyRewards(
                                   missionTYpe: 'Baro Ki\'Teeer Inventory',
                                   traderInventory:
-                                  snapshot.data.trader.inventory))),
-                      child: Container(
-                          width: 500.0,
-                          height: 30.0,
-                          alignment: Alignment.center,
-                          decoration: BoxDecoration(
-                              color: Colors.blueAccent[400],
-                              borderRadius: BorderRadius.circular(8.0)),
-                          child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: <Widget>[
-                                Text('Baro Ki\'Teeer Inventory',
-                                    style: TextStyle(fontSize: 17.0))
-                              ])))
+                                      snapshot.data.trader.inventory))),
+                          child: Container(
+                              width: 500.0,
+                              height: 30.0,
+                              alignment: Alignment.center,
+                              decoration: BoxDecoration(
+                                  color: Colors.blueAccent[400],
+                                  borderRadius: BorderRadius.circular(8.0)),
+                              child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: <Widget>[
+                                    Text('Baro Ki\'Teeer Inventory',
+                                        style: TextStyle(fontSize: 17.0))
+                                  ])))
                       : emptyBox,
                 ),
               ]),
