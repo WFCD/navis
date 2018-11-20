@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:navis/blocs/platform.dart';
 import 'package:navis/blocs/provider.dart';
 import 'package:navis/blocs/worldstate_bloc.dart';
-import 'package:navis/globalkeys.dart';
 import 'package:navis/resources/assets.dart';
 
 class PlatformChoice extends StatefulWidget {
@@ -69,13 +68,10 @@ class PlatformChoiceState extends State<PlatformChoice> {
                     Container(
                         child: IconButton(
                             icon: Icon(ImageAssets.nintendo),
-                            color: snapshot.data == 'ph'
+                            color: snapshot.data == 'swi'
                                 ? Theme.of(context).accentColor
                                 : Theme.of(context).disabledColor,
-                            onPressed: () => scaffold.currentState.showSnackBar(
-                                SnackBar(
-                                    content: Text(
-                                        'Nintendo Switch worldstate is not yet available')))))
+                            onPressed: () => onPressed(select, state, 'swi')))
                   ],
                 );
               })),
