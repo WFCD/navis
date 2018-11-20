@@ -12,6 +12,12 @@
       <excludeFolder url="file://$MODULE_DIR$/android_job_scheduler/.pub" />
       <excludeFolder url="file://$MODULE_DIR$/android_job_scheduler/build" />
       <excludeFolder url="file://$MODULE_DIR$/build" />
+      <excludeFolder url="file://$MODULE_DIR$/get_version/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/get_version/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/get_version/build" />
+      <excludeFolder url="file://$MODULE_DIR$/get_version/example/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/get_version/example/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/get_version/example/build" />
       <excludeFolder url="file://$MODULE_DIR$/market/.dart_tool" />
       <excludeFolder url="file://$MODULE_DIR$/market/.pub" />
       <excludeFolder url="file://$MODULE_DIR$/market/build" />

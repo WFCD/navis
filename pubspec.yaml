@@ -10,12 +10,15 @@ dependencies:
   rxdart: ^0.19.0
   shared_preferences: ^0.4.3
   flutter_custom_tabs: ^0.4.0
+  flutter_sequence_animation: ^3.0.1
   flutter_map: ^0.2.0
   flutter_svg: ^0.6.3
   sentry: ^2.1.1
   chewie: ^0.8.0
   cached_network_image: ^0.5.0+1
   timeago: ^2.0.8
+  package_info: ^0.3.2
+  device_info: ^0.3.0
 
 dev_dependencies:
   flutter_test:
@@ -25,14 +28,15 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
-    - assets/sigils/
     - assets/acolytes/
-    - assets/hotfix.jpg
-    #- assets/plains/0/
-    #- assets/plains/1/
-    #- assets/plains/2/
-    #- assets/plains/3/
-    #- assets/plains/4/
+    - assets/general/
+    - assets/platforms/
+    - assets/sigils/
+    - assets/plains/0/
+    - assets/plains/1/
+    - assets/plains/2/
+    - assets/plains/3/
+    - assets/plains/4/
 
   fonts:
     - family: Factions
@@ -44,18 +48,6 @@ flutter:
     - family: Relics
       fonts:
         - asset: assets/icons/Relics.ttf
-    - family: Platforms
-      fonts:
-        - asset: assets/icons/Platforms.ttf
-    - family: Syndicates
-      fonts:
-        - asset: assets/icons/Syndicates.ttf
-    - family: Nightmare
-      fonts:
-        - asset: assets/icons/Nightmare.ttf
     - family: archwing
       fonts:
         - asset: assets/icons/archwing.ttf
-    - family: invasions
-      fonts:
-        - asset: assets/icons/invasions.ttf
