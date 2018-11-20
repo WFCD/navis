@@ -1,11 +1,11 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:navis/models/rewardpool.dart';
 import 'package:navis/models/trader.dart';
 
 import '../../network/state.dart';
-import '../../resources/assets.dart';
 
 class BountyRewards extends StatelessWidget {
   final List<String> bountyRewards;
@@ -60,7 +60,8 @@ Widget _buildForSyndicates(
               final reward = snapshot.data[index];
 
               final rewardIcon = reward.imagePath == null
-                  ? Icon(ImageAssets.nightmare, size: 50.0)
+                  ? SvgPicture.asset('assets/general/nightmare.svg',
+                  color: Colors.red, height: 50, width: 50)
                   : Image.network(reward.imagePath,
                       scale: 8.0, fit: BoxFit.cover);
 

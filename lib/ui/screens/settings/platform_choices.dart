@@ -1,10 +1,10 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:navis/blocs/platform.dart';
 import 'package:navis/blocs/provider.dart';
 import 'package:navis/blocs/worldstate_bloc.dart';
-import 'package:navis/resources/assets.dart';
 
 class PlatformChoice extends StatefulWidget {
   @override
@@ -45,32 +45,58 @@ class PlatformChoiceState extends State<PlatformChoice> {
                   children: <Widget>[
                     Container(
                       child: IconButton(
-                          icon: Icon(ImageAssets.pc),
-                          color: snapshot.data == 'pc'
-                              ? Theme.of(context).accentColor
-                              : Theme.of(context).disabledColor,
+                          icon: SvgPicture.asset(
+                            'assets/platforms/pc.svg',
+                            color: snapshot.data == 'pc'
+                                ? Theme
+                                .of(context)
+                                .accentColor
+                                : Theme
+                                .of(context)
+                                .disabledColor,
+                            height: 25,
+                            width: 25,
+                          ),
                           onPressed: () => onPressed(select, state, 'pc')),
                     ),
                     Container(
                         child: IconButton(
-                            icon: Icon(ImageAssets.ps4),
-                            color: snapshot.data == 'ps4'
-                                ? Theme.of(context).accentColor
-                                : Theme.of(context).disabledColor,
+                            icon: SvgPicture.asset(
+                              'assets/platforms/ps4.svg',
+                              color: snapshot.data == 'ps4'
+                                  ? Color.fromRGBO(0, 55, 145, 1.0)
+                                  : Theme
+                                  .of(context)
+                                  .disabledColor,
+                              height: 25,
+                              width: 25,
+                            ),
                             onPressed: () => onPressed(select, state, 'ps4'))),
                     Container(
                         child: IconButton(
-                            icon: Icon(ImageAssets.xbox),
-                            color: snapshot.data == 'xb1'
-                                ? Theme.of(context).accentColor
-                                : Theme.of(context).disabledColor,
+                            icon: SvgPicture.asset(
+                              'assets/platforms/xbox1.svg',
+                              color: snapshot.data == 'xb1'
+                                  ? Color.fromRGBO(16, 124, 16, 1.0)
+                                  : Theme
+                                  .of(context)
+                                  .disabledColor,
+                              height: 25,
+                              width: 25,
+                            ),
                             onPressed: () => onPressed(select, state, 'xb1'))),
                     Container(
                         child: IconButton(
-                            icon: Icon(ImageAssets.nintendo),
-                            color: snapshot.data == 'swi'
-                                ? Theme.of(context).accentColor
-                                : Theme.of(context).disabledColor,
+                            icon: SvgPicture.asset(
+                              'assets/platforms/switch.svg',
+                              color: snapshot.data == 'swi'
+                                  ? Color.fromRGBO(230, 0, 18, 1.0)
+                                  : Theme
+                                  .of(context)
+                                  .disabledColor,
+                              height: 50,
+                              width: 50,
+                            ),
                             onPressed: () => onPressed(select, state, 'swi')))
                   ],
                 );

@@ -49,7 +49,7 @@ class FeedState extends State<Feed> {
                 CetusCycle(cycle: Cycle.earth),
                 alerts ? emptyBox : AlertTile(),
                 invasions ? emptyBox : InvasionCard(),
-                Trader(),
+                snap.trader != null ? Trader() : emptyBox,
                 sortie ? emptyBox : SculptureMissions(),
               ]));
         });

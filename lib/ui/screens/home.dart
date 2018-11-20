@@ -100,8 +100,7 @@ class _HomeScreen extends State<HomeScreen> with TickerProviderStateMixin {
         appBar: AppBar(elevation: 8.0, title: title, actions: <Widget>[
           IconButton(
               icon: Icon(Icons.map),
-              onPressed:
-                  null), //() => Navigator.of(context).pushNamed('/Maps')),
+              onPressed: () => Navigator.of(context).pushNamed('/Maps')),
           IconButton(
               icon: Icon(Icons.settings),
               onPressed: () => Navigator.of(context).pushNamed('/Settings'))

@@ -19,7 +19,6 @@ class Orbiter extends StatefulWidget {
 
 class _Orbiter extends State<Orbiter> {
   _buildTiles(OrbiterNews news, BuildContext context, WorldstateBloc bloc) {
-    bool hotfix = news.message.contains('Hotfix');
     CachedNetworkImageProvider image =
         CachedNetworkImageProvider(news.imageLink);
 
@@ -32,14 +31,10 @@ class _Orbiter extends State<Orbiter> {
         padding: EdgeInsets.only(left: 8.0, bottom: 8.0),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(4.0),
-            image: DecorationImage(
-                image: hotfix ? AssetImage('assets/hotfix.jpg') : image,
-                fit: BoxFit.cover)),
+            image: DecorationImage(image: image, fit: BoxFit.cover)),
         child: Text(
           '[${timeago.format(DateTime.parse(news.date))}] ${news.message}',
-          style: TextStyle(
-              fontWeight: FontWeight.bold,
-              color: hotfix ? Colors.red[700] : Colors.white),
+          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
         ),
       ),
     ));

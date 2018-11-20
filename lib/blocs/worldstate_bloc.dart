@@ -29,7 +29,16 @@ class WorldstateBloc implements Base {
   WorldState get lastState => _worldstate;
 
   // I have no idea what I'm doing anymore
-  Duration get bountyTime => _durations(_worldstate.syndicates.first.expiry);
+  Duration get bountyTime {
+    try {
+      String expiry = _worldstate.syndicates.first.expiry;
+      return DateTime.parse(expiry).difference(DateTime.now());
+    } catch (err) {
+      return Duration(minutes: 150);
+    }
+  }
+
+  static int get invasions => _worldstate.invasions.length;
 
   Duration get cetusCycleTime => _durations(_worldstate.cetus.expiry);
 
