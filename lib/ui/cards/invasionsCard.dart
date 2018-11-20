@@ -16,36 +16,15 @@ class InvasionCard extends StatefulWidget {
   _InvasionCard createState() => _InvasionCard();
 }
 
-class _InvasionCard extends State<InvasionCard>
-    with SingleTickerProviderStateMixin {
+class _InvasionCard extends State<InvasionCard> with TickerProviderStateMixin {
   AnimationController _controller;
   SequenceAnimation _expand;
   bool _showMore = false;
 
-  //double height = 0.0;
-
   @override
   void initState() {
     super.initState();
-
     _controller = AnimationController(vsync: this);
-
-    _expand = SequenceAnimationBuilder()
-        .addAnimatable(
-        animatable: Tween<double>(
-            begin: 0,
-            end: (108 * (WorldstateBloc.invasions - 2)).toDouble()),
-        from: Duration(milliseconds: 0),
-        to: Duration(milliseconds: 125),
-        curve: Curves.easeOut,
-        tag: 'expand')
-        .addAnimatable(
-        animatable: Tween<double>(begin: 0, end: 1),
-        from: Duration(milliseconds: 125),
-        to: Duration(milliseconds: 225),
-        curve: Curves.easeOut,
-        tag: 'fade')
-        .animate(_controller);
   }
 
   @override
@@ -84,6 +63,23 @@ class _InvasionCard extends State<InvasionCard>
   @override
   Widget build(BuildContext context) {
     final invasions = BlocProvider.of<WorldstateBloc>(context);
+    final _invasionLength = WorldstateBloc.invasions;
+
+    _expand = SequenceAnimationBuilder()
+        .addAnimatable(
+        animatable: Tween<double>(
+            begin: 0, end: (108 * (_invasionLength - 2)).toDouble()),
+        from: Duration(milliseconds: 0),
+        to: Duration(milliseconds: 125),
+        curve: Curves.easeOut,
+        tag: 'expand')
+        .addAnimatable(
+        animatable: Tween<double>(begin: 0, end: 1),
+        from: Duration(milliseconds: 125),
+        to: Duration(milliseconds: 225),
+        curve: Curves.easeOut,
+        tag: 'fade')
+        .animate(_controller);
 
     return StreamBuilder<WorldState>(
         initialData: invasions.lastState,
