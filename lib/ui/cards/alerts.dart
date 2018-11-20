@@ -1,13 +1,11 @@
-//import 'dart:async';
-
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:navis/blocs/provider.dart';
 import 'package:navis/blocs/worldstate_bloc.dart';
 import 'package:navis/models/alerts.dart';
 import 'package:navis/models/events.dart';
 import 'package:navis/models/worldstate.dart';
 
-import '../../resources/assets.dart';
 import '../widgets/cards.dart';
 import '../widgets/timer.dart';
 
@@ -148,31 +146,34 @@ Widget _buildAlerts(Alerts alert, BuildContext context) {
 }
 
 Widget _specialMission(bool nightmare, bool archwing) {
+  final nightmareIcon = SvgPicture.asset('assets/general/nightmare.svg',
+      color: Colors.red, height: 10, width: 10);
+
+  final archwingIcon = SvgPicture.asset('assets/general/archwing.svg',
+      color: Colors.blue, height: 25, width: 25);
+
   if (archwing && nightmare)
     return Padding(
       padding: const EdgeInsets.only(right: 5.0),
       child: Container(
           child: Row(children: <Widget>[
-        Padding(
-          padding: const EdgeInsets.only(right: 3.0),
-          child: Icon(ImageAssets.nightmare),
-        ),
-        Icon(ImageAssets.archwing)
-      ])),
+            Padding(
+              padding: const EdgeInsets.only(right: 3.0),
+              child: nightmareIcon,
+            ),
+            archwingIcon
+          ])),
     );
   else if (archwing)
     return Padding(
       padding: const EdgeInsets.only(right: 5.0),
-      child: Container(child: Icon(ImageAssets.archwing)),
+      child: Container(child: archwingIcon),
     );
   else if (nightmare)
     return Padding(
       padding: const EdgeInsets.only(right: 5.0),
-      child: Container(child: Icon(ImageAssets.nightmare)),
+      child: Container(child: nightmareIcon),
     );
   else
-    return Container(
-      height: 0.0,
-      width: 0.0,
-    );
+    return Container(height: 0.0, width: 0.0);
 }
