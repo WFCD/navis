@@ -7,7 +7,6 @@ import 'package:flutter_youtube/flutter_youtube.dart';
 import 'package:navis/blocs/provider.dart';
 import 'package:navis/blocs/worldstate_bloc.dart';
 import 'package:navis/models/export.dart';
-import 'package:timeago/timeago.dart' as timeago;
 
 import '../../resources/keys.dart';
 
@@ -28,14 +27,21 @@ class _Orbiter extends State<Orbiter> {
       child: Container(
         constraints: BoxConstraints.expand(height: 200.0),
         alignment: Alignment.bottomLeft,
-        padding: EdgeInsets.only(left: 8.0, bottom: 8.0),
+        padding: EdgeInsets.only(bottom: 3.0, right: 8.0),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(4.0),
             image: DecorationImage(image: image, fit: BoxFit.cover)),
-        child: Text(
-          '[${timeago.format(DateTime.parse(news.date))}] ${news.message}',
-          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
-        ),
+        child: Container(
+            height: 50,
+            alignment: Alignment.centerLeft,
+            decoration: BoxDecoration(color: Color.fromRGBO(34, 34, 34, .5)),
+            child: Text(
+              '[${_timestamp(news.date)}] ${news.message}',
+              style: TextStyle(
+                  fontSize: 15,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white),
+            )),
       ),
     ));
   }
@@ -120,4 +126,19 @@ Future<Null> _noBrowser(BuildContext context) async {
       );
     },
   );
+}
+
+String _timestamp(String timestamp) {
+  final duration =
+  DateTime.parse(timestamp).difference(DateTime.now().toLocal()).abs();
+
+  final hour = Duration(hours: 1);
+  final day = Duration(hours: 24);
+
+  if (duration < hour) {
+    return '${duration.inMinutes.abs()}m';
+  } else if (duration >= hour && duration < day) {
+    return '${duration.inHours.abs()}h ${(duration.inMinutes % 60).abs()}m';
+  } else
+    return '${duration.inDays.abs()}d';
 }
