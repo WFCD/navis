@@ -147,7 +147,7 @@ Widget _buildAlerts(Alerts alert, BuildContext context) {
 
 Widget _specialMission(bool nightmare, bool archwing) {
   final nightmareIcon = SvgPicture.asset('assets/general/nightmare.svg',
-      color: Colors.red, height: 10, width: 10);
+      color: Colors.red, height: 25, width: 25);
 
   final archwingIcon = SvgPicture.asset('assets/general/archwing.svg',
       color: Colors.blue, height: 25, width: 25);
