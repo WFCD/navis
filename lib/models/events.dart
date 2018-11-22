@@ -19,6 +19,7 @@ class Events extends Coding {
     node = object.decode('node');
     tooltip = object.decode('tooltip');
     rewards = object.decodeObjects('rewards', () => _Rewards());
+    jobs = object.decodeObjects('jobs', () => Jobs());
   }
 
   @override
@@ -31,6 +32,7 @@ class Events extends Coding {
     object.encode('node', node);
     object.encode('tooltip', tooltip);
     object.encodeObjects('rewards', rewards);
+    object.encodeObjects('jobs', jobs);
   }
 }
 
