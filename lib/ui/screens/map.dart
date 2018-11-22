@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong/latlong.dart';
 
-import '../../network/state.dart';
+import '../../network/network.dart';
 import '../../resources/constants.dart';
 import '../animation/popup.dart';
 import '../widgets/videoplayer.dart';
@@ -38,7 +38,7 @@ class _Maps extends State<Maps> with TickerProviderStateMixin {
               onTap: () async => Navigator.of(context).push(Popup(
                   context: context,
                   child: FishPlayer(
-                      lore: o[3], url: await SystemState.fishVideos(o[4])))),
+                      lore: o[3], url: await Network.fishVideos(o[4])))),
               child: Container(
                   child: Image.network(
                       'https://hub.warframestat.us/img/map_icons/oddity.png'))));
@@ -86,7 +86,7 @@ class _Maps extends State<Maps> with TickerProviderStateMixin {
         ]),
         body: FlutterMap(
           options:
-          MapOptions(center: LatLng(0, 0), zoom: 3, minZoom: 0, maxZoom: 4),
+              MapOptions(center: LatLng(0, 0), zoom: 3, minZoom: 0, maxZoom: 4),
           layers: [
             TileLayerOptions(
               maxZoom: 5,
