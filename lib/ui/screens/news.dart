@@ -36,7 +36,7 @@ class _Orbiter extends State<Orbiter> {
             alignment: Alignment.centerLeft,
             decoration: BoxDecoration(color: Color.fromRGBO(34, 34, 34, .5)),
             child: Text(
-              '[${_timestamp(news.date)}] ${news.message}',
+              '[${_timestamp(news.date)} ago] ${news.message}',
               style: TextStyle(
                   fontSize: 15,
                   fontWeight: FontWeight.bold,
@@ -130,7 +130,7 @@ Future<Null> _noBrowser(BuildContext context) async {
 
 String _timestamp(String timestamp) {
   final duration =
-  DateTime.parse(timestamp).difference(DateTime.now().toLocal()).abs();
+      DateTime.parse(timestamp).difference(DateTime.now().toLocal()).abs();
 
   final hour = Duration(hours: 1);
   final day = Duration(hours: 24);

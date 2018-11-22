@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:navis/blocs/provider.dart';
 import 'package:navis/blocs/worldstate_bloc.dart';
-import 'package:navis/models/worldstate.dart';
+import 'package:navis/models/export.dart';
 
 import '../animation/fade_route.dart';
 import '../screens/rewards.dart';

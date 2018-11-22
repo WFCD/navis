@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:navis/blocs/provider.dart';
 import 'package:navis/blocs/worldstate_bloc.dart';
-import 'package:navis/models/alerts.dart';
-import 'package:navis/models/events.dart';
-import 'package:navis/models/worldstate.dart';
+import 'package:navis/models/export.dart';
 
 import '../widgets/cards.dart';
 import '../widgets/timer.dart';
@@ -157,12 +155,12 @@ Widget _specialMission(bool nightmare, bool archwing) {
       padding: const EdgeInsets.only(right: 5.0),
       child: Container(
           child: Row(children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.only(right: 3.0),
-              child: nightmareIcon,
-            ),
-            archwingIcon
-          ])),
+        Padding(
+          padding: const EdgeInsets.only(right: 3.0),
+          child: nightmareIcon,
+        ),
+        archwingIcon
+      ])),
     );
   else if (archwing)
     return Padding(

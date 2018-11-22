@@ -16,9 +16,9 @@ dependencies:
   sentry: ^2.1.1
   chewie: ^0.8.0
   cached_network_image: ^0.5.0+1
-  timeago: ^2.0.8
   package_info: ^0.3.2
   device_info: ^0.3.0
+  background_fetch: ^0.1.1
 
 dev_dependencies:
   flutter_test:

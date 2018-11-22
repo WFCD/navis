@@ -2,10 +2,9 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:navis/models/rewardpool.dart';
-import 'package:navis/models/trader.dart';
+import 'package:navis/models/export.dart';
 
-import '../../network/state.dart';
+import '../../network/network.dart';
 
 class BountyRewards extends StatelessWidget {
   final List<String> bountyRewards;
@@ -17,7 +16,7 @@ class BountyRewards extends StatelessWidget {
       : super(key: key);
 
   Future<List<Reward>> getRewards() async {
-    List<Reward> imageList = await SystemState.rewards();
+    List<Reward> imageList = await Network.rewards();
     List<Reward> rewards = [];
     final nonexistent = Reward()
       ..rewardName = 'reward doesn\'t exist'
@@ -61,7 +60,7 @@ Widget _buildForSyndicates(
 
               final rewardIcon = reward.imagePath == null
                   ? SvgPicture.asset('assets/general/nightmare.svg',
-                  color: Colors.red, height: 50, width: 50)
+                      color: Colors.red, height: 50, width: 50)
                   : Image.network(reward.imagePath,
                       scale: 8.0, fit: BoxFit.cover);
 

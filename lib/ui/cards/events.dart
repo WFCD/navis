@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:navis/models/events.dart';
+import 'package:navis/models/export.dart';
 
 import 'event/wmd.dart';
 

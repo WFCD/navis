@@ -70,7 +70,6 @@ Future<Null> showOptions(BuildContext context, ThemeBloc theme) {
                     ButtonTheme.bar(
                         child: ButtonBar(children: <Widget>[
                       FlatButton(
-                          textColor: Theme.of(context).accentColor,
                           onPressed: () => Navigator.pop(context),
                           child: Text('Cancel',
                               style: TextStyle(

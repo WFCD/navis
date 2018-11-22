@@ -48,12 +48,8 @@ class PlatformChoiceState extends State<PlatformChoice> {
                           icon: SvgPicture.asset(
                             'assets/platforms/pc.svg',
                             color: snapshot.data == 'pc'
-                                ? Theme
-                                .of(context)
-                                .accentColor
-                                : Theme
-                                .of(context)
-                                .disabledColor,
+                                ? Theme.of(context).accentColor
+                                : Theme.of(context).disabledColor,
                             height: 25,
                             width: 25,
                           ),
@@ -65,9 +61,7 @@ class PlatformChoiceState extends State<PlatformChoice> {
                               'assets/platforms/ps4.svg',
                               color: snapshot.data == 'ps4'
                                   ? Color.fromRGBO(0, 55, 145, 1.0)
-                                  : Theme
-                                  .of(context)
-                                  .disabledColor,
+                                  : Theme.of(context).disabledColor,
                               height: 25,
                               width: 25,
                             ),
@@ -78,9 +72,7 @@ class PlatformChoiceState extends State<PlatformChoice> {
                               'assets/platforms/xbox1.svg',
                               color: snapshot.data == 'xb1'
                                   ? Color.fromRGBO(16, 124, 16, 1.0)
-                                  : Theme
-                                  .of(context)
-                                  .disabledColor,
+                                  : Theme.of(context).disabledColor,
                               height: 25,
                               width: 25,
                             ),
@@ -91,9 +83,7 @@ class PlatformChoiceState extends State<PlatformChoice> {
                               'assets/platforms/switch.svg',
                               color: snapshot.data == 'swi'
                                   ? Color.fromRGBO(230, 0, 18, 1.0)
-                                  : Theme
-                                  .of(context)
-                                  .disabledColor,
+                                  : Theme.of(context).disabledColor,
                               height: 50,
                               width: 50,
                             ),

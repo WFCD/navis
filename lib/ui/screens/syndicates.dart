@@ -44,10 +44,10 @@ class SyndicatesList extends StatelessWidget {
               snapshot.data.syndicates.isEmpty
                   ? Center(child: Text('Retrieving new bounties...'))
                   : Column(
-                  children: snapshot.data.syndicates
-                      .map((s) =>
-                      _buildSyndicate(context, s, snapshot.data.events))
-                      .toList())
+                      children: snapshot.data.syndicates
+                          .map((s) =>
+                              _buildSyndicate(context, s, snapshot.data.events))
+                          .toList())
             ]),
           );
         });

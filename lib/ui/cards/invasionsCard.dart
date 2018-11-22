@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_sequence_animation/flutter_sequence_animation.dart';
 import 'package:navis/blocs/provider.dart';
 import 'package:navis/blocs/worldstate_bloc.dart';
-import 'package:navis/models/invasions.dart';
-import 'package:navis/models/worldstate.dart';
+import 'package:navis/models/export.dart';
 
 import '../../resources/factions.dart';
 import '../widgets/cards.dart';
@@ -36,13 +35,9 @@ class _InvasionCard extends State<InvasionCard> with TickerProviderStateMixin {
   void _showMoreInvasions() {
     _showMore = !_showMore;
     if (_showMore) {
-      _controller
-          .forward()
-          .orCancel;
+      _controller.forward().orCancel;
     } else {
-      _controller
-          .reverse()
-          .orCancel;
+      _controller.reverse().orCancel;
     }
 
     setState(() => _showMore = _showMore);
@@ -67,18 +62,18 @@ class _InvasionCard extends State<InvasionCard> with TickerProviderStateMixin {
 
     _expand = SequenceAnimationBuilder()
         .addAnimatable(
-        animatable: Tween<double>(
-            begin: 0, end: (108 * (_invasionLength - 2)).toDouble()),
-        from: Duration(milliseconds: 0),
-        to: Duration(milliseconds: 125),
-        curve: Curves.easeOut,
-        tag: 'expand')
+            animatable: Tween<double>(
+                begin: 0, end: (108 * (_invasionLength - 2)).toDouble()),
+            from: Duration(milliseconds: 0),
+            to: Duration(milliseconds: 125),
+            curve: Curves.easeOut,
+            tag: 'expand')
         .addAnimatable(
-        animatable: Tween<double>(begin: 0, end: 1),
-        from: Duration(milliseconds: 125),
-        to: Duration(milliseconds: 225),
-        curve: Curves.easeOut,
-        tag: 'fade')
+            animatable: Tween<double>(begin: 0, end: 1),
+            from: Duration(milliseconds: 125),
+            to: Duration(milliseconds: 225),
+            curve: Curves.easeOut,
+            tag: 'fade')
         .animate(_controller);
 
     return StreamBuilder<WorldState>(

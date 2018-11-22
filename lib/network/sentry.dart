@@ -10,6 +10,7 @@ class ExceptionService {
 
   static String appVersion;
   static String androidVersion;
+  static String model;
 
   static bool isDebug = false;
 
@@ -17,7 +18,8 @@ class ExceptionService {
     final sentry = SentryClient(
         dsn: dsn,
         environmentAttributes: Event(
-            release: appVersion, extra: {'Android Version': androidVersion}));
+            release: appVersion,
+            extra: {'Android Version': androidVersion, 'Model': model}));
 
     assert(isDebug = true);
     FlutterError.onError = (FlutterErrorDetails details) async {

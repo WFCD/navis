@@ -13,6 +13,8 @@ class SyndicateJobs extends StatefulWidget {
 
   SyndicateJobs({this.syndicate, this.events, this.color});
 
+  String get faction => syndicate.syndicate;
+
   @override
   SyndicateJobsState createState() => SyndicateJobsState();
 }
@@ -22,20 +24,19 @@ class SyndicateJobsState extends State<SyndicateJobs> {
   Widget build(BuildContext context) {
     final syndicate = BlocProvider.of<WorldstateBloc>(context);
 
-    final emptyList = Center(
-        child: Text('Waiting for new Bounties check back in a minute.',
-            style: TextStyle(fontSize: 17.0)));
-
     List<Widget> allJobs = widget.syndicate.jobs
-        .map((j) => _buildMissionType(context, j))
+        .map((j) => _buildMissionType(context, j, false))
         .toList();
 
     if (widget.events.isNotEmpty &&
         widget.events[0].jobs != null &&
         widget.events[0].jobs.isNotEmpty &&
-        widget.syndicate.syndicate == 'Ostrons') {
-      allJobs.addAll(
-          widget.events[0].jobs.map((j) => _buildMissionType(context, j)));
+        widget.faction == 'Ostrons') {
+      allJobs
+        ..insertAll(
+            0,
+            widget.events[0].jobs
+                .map((j) => _buildMissionType(context, j, true)));
     }
 
     return Scaffold(
@@ -45,19 +46,13 @@ class SyndicateJobsState extends State<SyndicateJobs> {
             backgroundColor: widget.color),
         body: RefreshIndicator(
             onRefresh: () => syndicate.update(),
-            child: CustomScrollView(slivers: <Widget>[
-              SliverFixedExtentList(
-                  delegate: SliverChildListDelegate(
-                      widget.syndicate.jobs.isEmpty
-                          ? <Widget>[emptyList]
-                          : allJobs),
-                  itemExtent: 85.0)
-            ])));
+            child: Column(children: allJobs)));
   }
 }
 
-Widget _buildMissionType(BuildContext context, Jobs job) {
+Widget _buildMissionType(BuildContext context, Jobs job, bool purge) {
   return Tiles(
+    color: purge ? Colors.green[800] : null,
     child: ListTile(
       title: Text(job.type),
       subtitle:
@@ -71,7 +66,7 @@ Widget _buildMissionType(BuildContext context, Jobs job) {
                     ))),
             child: Text(
               'See Rewards',
-              style: TextStyle(color: Colors.blue),
+              style: TextStyle(color: purge ? Colors.white : Colors.blue),
             )),
       ),
     ),

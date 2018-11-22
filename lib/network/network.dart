@@ -8,15 +8,24 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../resources/keys.dart';
 
-class SystemState {
+class Network {
   String _platform;
   String _baseRoute = 'https://api.warframestat.us/';
 
   Future<WorldState> updateState() async {
     final prefs = await SharedPreferences.getInstance();
     _platform = prefs.getString('Platform') ?? 'pc';
+    http.Response response;
 
-    final data = json.decode((await http.get(_baseRoute + _platform)).body);
+    try {
+      response = await http.get(_baseRoute + _platform);
+    } catch (err) {
+      throw Exception();
+    }
+
+    if (response.statusCode != 200) throw Exception();
+
+    final data = json.decode(response.body);
     final key = KeyedArchive.unarchive(data);
     WorldState state = WorldState()..decode(key);
 

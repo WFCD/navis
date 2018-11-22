@@ -1,10 +1,10 @@
 import 'dart:async';
 
 import 'package:intl/intl.dart';
-import 'package:navis/models/worldstate.dart';
+import 'package:navis/models/export.dart';
 import 'package:rxdart/rxdart.dart';
 
-import '../network/state.dart';
+import '../network/network.dart';
 import 'base.dart';
 
 class WorldstateBloc implements Base {
@@ -15,7 +15,7 @@ class WorldstateBloc implements Base {
   final DateFormat format = DateFormat.jms().add_yMd();
 
   factory WorldstateBloc() {
-    final state = SystemState();
+    final state = Network();
     final currentState = BehaviorSubject<WorldState>(); // ignore: close_sinks
     final worldstate = currentState.distinct();
 
@@ -57,10 +57,15 @@ class WorldstateBloc implements Base {
   String get voidTraderDeparture => _expirations(_worldstate.trader.expiry);
 
   Future<Null> update() async {
-    final state = SystemState();
-    currentState.add(await state.updateState());
+    final state = Network();
+    WorldState seed;
 
-    return null;
+    try {
+      seed = await state.updateState();
+      return currentState.add(seed);
+    } catch (err) {
+      throw Exception('No connection');
+    }
   }
 
   _expirations(String expiry) {

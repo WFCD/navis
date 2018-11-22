@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:navis/models/events.dart';
+import 'package:navis/models/export.dart';
 import 'package:navis/ui/widgets/cards.dart';
 
 class WMD extends StatelessWidget {
