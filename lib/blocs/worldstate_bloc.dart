@@ -28,7 +28,11 @@ class WorldstateBloc implements Base {
 
   WorldState get lastState => _worldstate;
 
+  //final Duration _late = Duration(minutes: 1);
+
   // I have no idea what I'm doing anymore
+  static int get invasions => _worldstate.invasions.length;
+
   Duration get bountyTime {
     try {
       String expiry = _worldstate.syndicates.first.expiry;
@@ -38,13 +42,40 @@ class WorldstateBloc implements Base {
     }
   }
 
-  static int get invasions => _worldstate.invasions.length;
+  Duration get cetusCycleTime {
+    Duration currentTime = _durations(_worldstate.cetus.expiry);
+    DateTime expiry = DateTime.parse(_worldstate.cetus.expiry);
 
-  Duration get cetusCycleTime => _durations(_worldstate.cetus.expiry);
+    if (DateTime.now().isAfter(expiry)) {
+      if (_worldstate.cetus.isDay) return Duration(minutes: 100);
 
-  Duration get earthCycleTime => _durations(_worldstate.earth.expiry);
+      return Duration(minutes: 50);
+    }
 
-  Duration get vallisCycleTime => _durations(_worldstate.vallis.expiry);
+    return currentTime;
+  }
+
+  Duration get earthCycleTime {
+    Duration currentTime = _durations(_worldstate.earth.expiry);
+    DateTime expiry = DateTime.parse(_worldstate.earth.expiry);
+
+    if (DateTime.now().isAfter(expiry)) return Duration(minutes: 240);
+
+    return currentTime;
+  }
+
+  Duration get vallisCycleTime {
+    Duration currentTime = _durations(_worldstate.vallis.expiry);
+    DateTime expiry = DateTime.parse(_worldstate.vallis.expiry);
+
+    if (DateTime.now().isAfter(expiry)) {
+      if (_worldstate.vallis.isWarm) return Duration(minutes: 20);
+
+      return Duration(minutes: 4);
+    }
+
+    return currentTime;
+  }
 
   String get cetusExpiry => _expirations(_worldstate.cetus.expiry);
 
@@ -70,18 +101,22 @@ class WorldstateBloc implements Base {
 
   _expirations(String expiry) {
     try {
-      return format.format(DateTime.parse(expiry).toLocal());
+      return format.format(DateTime.parse(expiry));
     } catch (err) {
       return 'Fetching Date';
     }
   }
 
   _durations(String expiry) {
+    Duration converted;
+
     try {
-      return DateTime.parse(expiry).difference(DateTime.now());
+      converted = DateTime.parse(expiry).difference(DateTime.now());
     } catch (err) {
-      return Duration(minutes: 1);
+      converted = Duration(minutes: 3) - Duration(minutes: 4);
     }
+
+    return converted;
   }
 
   @override
