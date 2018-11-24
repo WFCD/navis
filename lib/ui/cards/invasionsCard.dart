@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_sequence_animation/flutter_sequence_animation.dart';
 import 'package:navis/blocs/provider.dart';
 import 'package:navis/blocs/worldstate_bloc.dart';
 import 'package:navis/models/export.dart';
 
 import '../../resources/factions.dart';
 import '../widgets/cards.dart';
+import '../widgets/expanded.dart';
 import '../widgets/invasionsBar.dart';
 
 class InvasionCard extends StatefulWidget {
@@ -17,7 +17,6 @@ class InvasionCard extends StatefulWidget {
 
 class _InvasionCard extends State<InvasionCard> with TickerProviderStateMixin {
   AnimationController _controller;
-  SequenceAnimation _expand;
   bool _showMore = false;
 
   @override
@@ -43,56 +42,27 @@ class _InvasionCard extends State<InvasionCard> with TickerProviderStateMixin {
     setState(() => _showMore = _showMore);
   }
 
-  Widget _buildAnimation(BuildContext context, WorldState state) {
-    return Container(
-        height: _expand['expand'].value,
-        child: FadeTransition(
-            opacity: _expand['fade'],
-            child: Column(
-                children: state.invasions
-                    .skip(2)
-                    .map((i) => _buildInvasions(context, i))
-                    .toList())));
-  }
-
   @override
   Widget build(BuildContext context) {
     final invasions = BlocProvider.of<WorldstateBloc>(context);
     final _invasionLength = WorldstateBloc.invasions;
 
-    _expand = SequenceAnimationBuilder()
-        .addAnimatable(
-            animatable: Tween<double>(
-                begin: 0, end: (108 * (_invasionLength - 2)).toDouble()),
-            from: Duration(milliseconds: 0),
-            to: Duration(milliseconds: 125),
-            curve: Curves.easeOut,
-            tag: 'expand')
-        .addAnimatable(
-            animatable: Tween<double>(begin: 0, end: 1),
-            from: Duration(milliseconds: 125),
-            to: Duration(milliseconds: 225),
-            curve: Curves.easeOut,
-            tag: 'fade')
-        .animate(_controller);
+    return Tiles(
+      child: StreamBuilder(
+          initialData: invasions.lastState,
+          stream: invasions.worldstate,
+          builder: (BuildContext context, AsyncSnapshot<WorldState> snapshot) {
+            if (snapshot.data.invasions.length < 3) {
+              return Padding(
+                padding: EdgeInsets.only(bottom: 8.0),
+                child: Column(
+                    children: snapshot.data.invasions
+                        .map((i) => _buildInvasions(context, i))
+                        .toList()),
+              );
+            }
 
-    return StreamBuilder<WorldState>(
-        initialData: invasions.lastState,
-        stream: invasions.worldstate,
-        builder: (BuildContext context, AsyncSnapshot<WorldState> snapshot) {
-          if (snapshot.data.invasions.length < 3) {
-            return Tiles(
-                child: Padding(
-              padding: EdgeInsets.only(bottom: 8.0),
-              child: Column(
-                  children: snapshot.data.invasions
-                      .map((i) => _buildInvasions(context, i))
-                      .toList()),
-            ));
-          }
-
-          return Tiles(
-            child: Column(
+            return Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Container(
@@ -100,10 +70,15 @@ class _InvasionCard extends State<InvasionCard> with TickerProviderStateMixin {
                     _buildInvasions(context, snapshot.data.invasions[0]),
                     _buildInvasions(context, snapshot.data.invasions[1]),
                   ])),
-                  AnimatedBuilder(
-                      animation: _controller,
-                      builder: (BuildContext context, Widget child) =>
-                          _buildAnimation(context, snapshot.data)),
+                  ExpandedCard(
+                    controller: _controller,
+                    length: (108 * (_invasionLength - 2)).toDouble(),
+                    child: Column(
+                        children: snapshot.data.invasions
+                            .skip(2)
+                            .map((i) => _buildInvasions(context, i))
+                            .toList()),
+                  ),
                   ButtonTheme.bar(
                     child: ButtonBar(
                         alignment: MainAxisAlignment.center,
@@ -117,9 +92,9 @@ class _InvasionCard extends State<InvasionCard> with TickerProviderStateMixin {
                                   : Text('See more'))
                         ]),
                   )
-                ]),
-          );
-        });
+                ]);
+          }),
+    );
   }
 }
 
@@ -146,7 +121,7 @@ Widget _buildInvasions(BuildContext context, Invasions invasion) {
                       child: Container(
                           padding: EdgeInsets.all(3.0),
                           decoration: BoxDecoration(
-                              color: DynamicFaction.factionColor(attacking),
+                              color: Factions.factionColor(attacking),
                               borderRadius: BorderRadius.circular(3.0)),
                           child: Text(
                             invasion.attackerReward.itemString,
@@ -160,7 +135,7 @@ Widget _buildInvasions(BuildContext context, Invasions invasion) {
                       child: Container(
                           padding: EdgeInsets.all(3.0),
                           decoration: BoxDecoration(
-                              color: DynamicFaction.factionColor(defending),
+                              color: Factions.factionColor(defending),
                               borderRadius: BorderRadius.circular(3.0)),
                           child: Text(invasion.defenderReward.itemString,
                               style: Theme.of(context).textTheme.body2)),
