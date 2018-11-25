@@ -15,14 +15,8 @@ class Network {
   Future<WorldState> updateState() async {
     final prefs = await SharedPreferences.getInstance();
     _platform = prefs.getString('Platform') ?? 'pc';
-    http.Response response;
-
-    try {
-      response = await http.get(_baseRoute + _platform);
-    } catch (err) {
-      throw Exception();
-    }
-
+    http.Response response = await http.get(_baseRoute + _platform);
+    
     if (response.statusCode != 200) throw Exception();
 
     final data = json.decode(response.body);

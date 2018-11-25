@@ -16,7 +16,6 @@ class ExpandedCard extends StatefulWidget {
 class ExpandedCardState extends State<ExpandedCard>
     with TickerProviderStateMixin {
   SequenceAnimation _expand;
-  double _length = 0.0;
 
   @override
   void initState() {
@@ -38,8 +37,6 @@ class ExpandedCardState extends State<ExpandedCard>
 
   _updateLength() {
     setState(() {
-      _length = widget.length;
-
       _expand = SequenceAnimationBuilder()
           .addAnimatable(
               animatable: Tween<double>(begin: 0, end: widget.length),

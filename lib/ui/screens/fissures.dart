@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:navis/blocs/provider.dart';
 import 'package:navis/blocs/worldstate_bloc.dart';
 import 'package:navis/models/export.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
-import '../../resources/assets.dart';
 import '../widgets/cards.dart';
 import '../widgets/timer.dart';
 
@@ -18,22 +18,22 @@ class _Fissure extends State<Fissure> {
   Widget build(BuildContext context) {
     final state = BlocProvider.of<WorldstateBloc>(context);
 
-    return StreamBuilder(
-        initialData: state.lastState,
-        stream: state.worldstate,
-        builder: (BuildContext context, AsyncSnapshot<WorldState> snapshot) {
-          if (!snapshot.hasData)
-            return Center(child: CircularProgressIndicator());
+    return RefreshIndicator(
+        onRefresh: () => state.update(),
+        child: StreamBuilder(
+            initialData: state.lastState,
+            stream: state.worldstate,
+            builder:
+                (BuildContext context, AsyncSnapshot<WorldState> snapshot) {
+              if (!snapshot.hasData)
+                return Center(child: CircularProgressIndicator());
 
-          return RefreshIndicator(
-            onRefresh: () => state.update(),
-            child: ListView.builder(
-              itemCount: snapshot.data.voidFissures.length,
-              itemBuilder: (context, index) =>
-                  _buildFissures(snapshot.data.voidFissures[index], context),
-            ),
-          );
-        });
+              return ListView.builder(
+                itemCount: snapshot.data.voidFissures.length,
+                itemBuilder: (context, index) =>
+                    _buildFissures(snapshot.data.voidFissures[index], context),
+              );
+            }));
   }
 }
 
@@ -43,11 +43,8 @@ Widget _buildFissures(VoidFissures fissure, BuildContext context) {
 
   return Tiles(
     child: ListTile(
-      leading: Icon(
-        _getTier(fissure),
-        size: 45.0,
-        color: Theme.of(context).iconTheme.color,
-      ),
+      dense: true,
+      leading: _getTier(fissure.tier, context),
       title: Text(
         '${fissure.node} | ${fissure.tier}',
         style: TextStyle(fontSize: 15.0),
@@ -58,18 +55,25 @@ Widget _buildFissures(VoidFissures fissure, BuildContext context) {
   );
 }
 
-_getTier(fissure) {
-  switch (fissure.tier) {
+SvgPicture _getTier(String tier, BuildContext context) {
+  final color = Theme.of(context).iconTheme.color;
+  final size = 50.0;
+
+  switch (tier) {
     case 'Lith':
-      return ImageAssets.lith;
+      return SvgPicture.asset('assets/relics/Lith.svg',
+          height: size, width: size, color: color);
       break;
     case 'Meso':
-      return ImageAssets.meso;
+      return SvgPicture.asset('assets/relics/Meso.svg',
+          height: size, width: size, color: color);
       break;
     case 'Neo':
-      return ImageAssets.neo;
+      return SvgPicture.asset('assets/relics/Neo.svg',
+          height: size, width: size, color: color);
       break;
     default:
-      return ImageAssets.axi;
+      return SvgPicture.asset('assets/relics/Axi.svg',
+          height: size, width: size, color: color);
   }
 }

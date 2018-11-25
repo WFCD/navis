@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
-import '../../resources/assets.dart';
+import 'package:navis/resources/factions.dart';
 
 class InvasionBar extends StatelessWidget {
   final String attackingFaction, defendingFaction;
@@ -23,34 +23,6 @@ class InvasionBar extends StatelessWidget {
         assert(defendingFaction != null),
         assert(progress != null);
 
-  _factionIcon(String faction) {
-    switch (faction) {
-      case 'Grineer':
-        return ImageAssets.grineer;
-      case 'Corpus':
-        return ImageAssets.corpus;
-      case 'Corrupted':
-        return ImageAssets.corrupted;
-      default:
-        return ImageAssets.infested;
-    }
-  }
-
-  _factionColor(String faction) {
-    switch (faction) {
-      case 'Corpus':
-        return Colors.blue;
-      case 'Grineer':
-        return Colors.red[700];
-      case 'Corrupted':
-        return Colors.yellow[300];
-      case 'Infested':
-        return Colors.green;
-      default:
-        return Colors.grey;
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -68,16 +40,18 @@ class InvasionBar extends StatelessWidget {
                           willChange: true,
                           painter: _InvasionBar(
                               progress: progress,
-                              progressColor: _factionColor(attackingFaction),
-                              backgroundColor: _factionColor(defendingFaction),
+                              progressColor:
+                                  Factions.factionColor(attackingFaction),
+                              backgroundColor:
+                                  Factions.factionColor(defendingFaction),
                               lineWidth: lineHeight),
                           child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: <Widget>[
-                                Icon(_factionIcon(attackingFaction),
-                                    size: 15.0, color: color),
-                                Icon(_factionIcon(defendingFaction),
-                                    size: 15.0, color: color)
+                                Factions.factionIcon(attackingFaction,
+                                    size: 15, hasColor: false),
+                                Factions.factionIcon(defendingFaction,
+                                    size: 15, hasColor: false),
                               ]))))
             ]));
   }

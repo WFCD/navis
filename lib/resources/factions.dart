@@ -1,39 +1,33 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
-import 'assets.dart';
+class Factions {
+  static SvgPicture factionIcon(String faction,
+      {double size, bool hasColor = true}) {
+    final color = hasColor ? factionColor(faction) : Colors.white;
 
-class DynamicFaction {
-  sortieColor(Duration timeLeft) {
-    if (timeLeft >= Duration(hours: 12))
-      return Colors.green;
-    else if (timeLeft < Duration(hours: 12) && timeLeft > Duration(hours: 6))
-      return Colors.orange[700];
-    else if (timeLeft <= Duration(hours: 6)) return Colors.red;
-  }
-
-  static factionIcon(String faction, {double size}) {
     switch (faction) {
       case 'Grineer':
-        return Icon(ImageAssets.grineer,
-            size: size, color: factionColor(faction));
+        return SvgPicture.asset('assets/factions/Grineer.svg',
+            height: size, width: size, color: color);
       case 'Corpus':
-        return Icon(ImageAssets.corpus,
-            size: size, color: factionColor(faction));
+        return SvgPicture.asset('assets/factions/Corpus.svg',
+            height: size, width: size, color: color);
       case 'Corrupted':
-        return Icon(ImageAssets.corrupted,
-            size: size, color: factionColor(faction));
+        return SvgPicture.asset('assets/factions/Corrputed.svg',
+            height: size, width: size, color: color);
       default:
-        return Icon(ImageAssets.infested,
-            size: size, color: factionColor(faction));
+        return SvgPicture.asset('assets/factions/Infested.svg',
+            height: size, width: size, color: color);
     }
   }
 
   static factionColor(String faction) {
     switch (faction) {
       case 'Corpus':
-        return Colors.blue[300];
+        return Colors.blue;
       case 'Grineer':
-        return Colors.red[900];
+        return Colors.red[700];
       case 'Corrupted':
         return Colors.yellow[300];
       default:

@@ -17,49 +17,20 @@ class Orbiter extends StatefulWidget {
 }
 
 class _Orbiter extends State<Orbiter> {
-  _buildTiles(OrbiterNews news, BuildContext context, WorldstateBloc bloc) {
-    CachedNetworkImageProvider image =
-        CachedNetworkImageProvider(news.imageLink);
-
-    return Card(
-        child: InkWell(
-      onTap: () => _launchLink(news.link, context),
-      child: Container(
-        constraints: BoxConstraints.expand(height: 200.0),
-        alignment: Alignment.bottomLeft,
-        padding: EdgeInsets.only(bottom: 3.0, right: 8.0),
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(4.0),
-            image: DecorationImage(image: image, fit: BoxFit.cover)),
-        child: Container(
-            height: 50,
-            alignment: Alignment.centerLeft,
-            decoration: BoxDecoration(color: Color.fromRGBO(34, 34, 34, .5)),
-            child: Text(
-              '[${_timestamp(news.date)} ago] ${news.message}',
-              style: TextStyle(
-                  fontSize: 15,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white),
-            )),
-      ),
-    ));
-  }
-
   @override
   Widget build(BuildContext context) {
     final news = BlocProvider.of<WorldstateBloc>(context);
 
-    return StreamBuilder(
-        initialData: news.lastState,
-        stream: news.worldstate,
-        builder: (BuildContext context, AsyncSnapshot<WorldState> snapshot) {
-          if (!snapshot.hasData)
-            return Center(child: CircularProgressIndicator());
+    return RefreshIndicator(
+      onRefresh: () => news.update(),
+      child: StreamBuilder<WorldState>(
+          initialData: news.lastState,
+          stream: news.worldstate,
+          builder: (BuildContext context, AsyncSnapshot<WorldState> snapshot) {
+            if (!snapshot.hasData)
+              return Center(child: CircularProgressIndicator());
 
-          return RefreshIndicator(
-            onRefresh: () => news.update(),
-            child: OrientationBuilder(
+            return OrientationBuilder(
                 builder: (BuildContext context, Orientation orientation) {
               if (orientation == Orientation.landscape)
                 return GridView.builder(
@@ -73,10 +44,37 @@ class _Orbiter extends State<Orbiter> {
                   itemCount: snapshot.data.news.length,
                   itemBuilder: (BuildContext context, int index) =>
                       _buildTiles(snapshot.data.news[index], context, news));
-            }),
-          );
-        });
+            });
+          }),
+    );
   }
+}
+
+Widget _buildTiles(
+    OrbiterNews news, BuildContext context, WorldstateBloc bloc) {
+  return Card(
+      child: InkWell(
+    onTap: () => _launchLink(news.link, context),
+    child: Container(
+      constraints: BoxConstraints.expand(height: 200.0),
+      alignment: Alignment.bottomLeft,
+      padding: EdgeInsets.only(bottom: 3.0, right: 8.0),
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(4.0),
+          image: DecorationImage(
+              image: CachedNetworkImageProvider(news.imageLink),
+              fit: BoxFit.cover)),
+      child: Container(
+          height: 50,
+          alignment: Alignment.centerLeft,
+          decoration: BoxDecoration(color: Color.fromRGBO(34, 34, 34, .5)),
+          child: Text(
+            '[${_timestamp(news.date)} ago] ${news.message}',
+            style: TextStyle(
+                fontSize: 15, fontWeight: FontWeight.bold, color: Colors.white),
+          )),
+    ),
+  ));
 }
 
 void _launchLink(String link, BuildContext context) async {

@@ -95,7 +95,7 @@ class WorldstateBloc implements Base {
       seed = await state.updateState();
       return currentState.add(seed);
     } catch (err) {
-      throw Exception('No connection');
+      //throw Exception('No connection');
     }
   }
 

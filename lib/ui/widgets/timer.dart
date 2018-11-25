@@ -1,8 +1,7 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 
-import '../animation/countdown.dart';
+import 'countdown.dart';
 
 class Timer extends StatelessWidget {
   final Duration duration;

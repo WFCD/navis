@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 //import 'package:navis/blocs/provider.dart';
 //import 'package:navis/blocs/worldstate_bloc.dart';
 
-import '../../resources/assets.dart';
 import 'feed.dart';
 import 'fissures.dart';
 import 'news.dart';
@@ -17,6 +17,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreen extends State<HomeScreen> with TickerProviderStateMixin {
   int _currentIndex = 1;
+  double size = 22;
   Color _color = Color.fromRGBO(34, 34, 34, .9);
   TextStyle _titleStyle = TextStyle(fontSize: 12);
   List<BottomNavigationBarItem> _items;
@@ -32,10 +33,12 @@ class _HomeScreen extends State<HomeScreen> with TickerProviderStateMixin {
           icon: Icon(Icons.view_headline),
           title: Text('Feed', style: _titleStyle)),
       BottomNavigationBarItem(
-          icon: Icon(ImageAssets.fissure),
+          icon: SvgPicture.asset('assets/general/VoidTearIcon.svg',
+              height: size, width: size, color: Colors.white),
           title: Text('Fissures', style: _titleStyle)),
       BottomNavigationBarItem(
-          icon: Icon(ImageAssets.standing),
+          icon: SvgPicture.asset('assets/general/standing.svg',
+              height: size, width: size, color: Colors.white),
           title: Text('Syndicates', style: _titleStyle))
     ];
   }

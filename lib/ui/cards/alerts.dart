@@ -12,40 +12,41 @@ class AlertTile extends StatelessWidget {
   Widget build(BuildContext context) {
     final alert = BlocProvider.of<WorldstateBloc>(context);
 
-    return StreamBuilder<WorldState>(
-        initialData: alert.lastState,
-        stream: alert.worldstate,
-        builder: (BuildContext context, AsyncSnapshot<WorldState> snapshot) {
-          List<Widget> allAlerts = snapshot.data.alerts
-              .map((alert) => _buildAlerts(alert, context))
-              .toList();
+    return Tiles(
+        child: Container(
+            child: Column(children: <Widget>[
+      Padding(
+        padding: const EdgeInsets.only(top: 5.0),
+        child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text('Alerts', style: TextStyle(fontSize: 19.0))
+            ]),
+      ),
+      Divider(
+        color: Theme.of(context).accentColor,
+      ),
+      StreamBuilder(
+          initialData: alert.lastState,
+          stream: alert.worldstate,
+          builder: (BuildContext context, AsyncSnapshot<WorldState> snapshot) {
+            List<Widget> allAlerts = snapshot.data.alerts
+                .map((alert) => _buildAlerts(alert, context))
+                .toList();
 
-          if (snapshot.data.events.isNotEmpty &&
-              snapshot.data.events[0].description.contains('Tactical Alert')) {
-            allAlerts.insertAll(
-                0,
-                snapshot.data.events
-                    .where((e) => e.tooltip.contains('Tac Alert') == true)
-                    .map((e) => _buildTacticalAlerts(e, alert, context)));
-          }
+            if (snapshot.data.events.isNotEmpty &&
+                snapshot.data.events[0].description
+                    .contains('Tactical Alert')) {
+              allAlerts.insertAll(
+                  0,
+                  snapshot.data.events
+                      .where((e) => e.tooltip.contains('Tac Alert') == true)
+                      .map((e) => _buildTacticalAlerts(e, alert, context)));
+            }
 
-          return Tiles(
-              child: Container(
-                  child: Column(children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.only(top: 5.0),
-              child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Text('Alerts', style: TextStyle(fontSize: 19.0))
-                  ]),
-            ),
-            Divider(
-              color: Theme.of(context).accentColor,
-            ),
-            Column(children: allAlerts)
-          ])));
-        });
+            return Column(children: allAlerts);
+          })
+    ])));
   }
 }
 

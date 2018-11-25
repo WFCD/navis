@@ -31,23 +31,11 @@ flutter:
     - assets/acolytes/
     - assets/general/
     - assets/platforms/
+    - assets/factions/
     - assets/sigils/
+    - assets/relics/
     - assets/plains/0/
     - assets/plains/1/
     - assets/plains/2/
     - assets/plains/3/
     - assets/plains/4/
-
-  fonts:
-    - family: Factions
-      fonts:
-        - asset: assets/icons/Factions.ttf
-    - family: Icons
-      fonts:
-        - asset: assets/icons/Icons.ttf
-    - family: Relics
-      fonts:
-        - asset: assets/icons/Relics.ttf
-    - family: archwing
-      fonts:
-        - asset: assets/icons/archwing.ttf

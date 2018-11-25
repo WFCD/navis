@@ -4,7 +4,7 @@ import 'package:latlong/latlong.dart';
 
 import '../../network/network.dart';
 import '../../resources/constants.dart';
-import '../animation/popup.dart';
+import '../widgets/popup.dart';
 import '../widgets/videoplayer.dart';
 
 //TODO rework map and create one for Orb Vallis
