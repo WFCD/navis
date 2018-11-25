@@ -38,20 +38,23 @@ class _Orbiter extends State<Orbiter> {
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 3),
                     itemBuilder: (BuildContext context, int index) =>
-                        _buildTiles(snapshot.data.news[index], context, news));
+                        _buildTiles(snapshot.data.news[index], context));
 
-              return ListView.builder(
-                  itemCount: snapshot.data.news.length,
-                  itemBuilder: (BuildContext context, int index) =>
-                      _buildTiles(snapshot.data.news[index], context, news));
+              return CustomScrollView(slivers: <Widget>[
+                SliverFixedExtentList(
+                    itemExtent: 200,
+                    delegate: SliverChildBuilderDelegate(
+                        (BuildContext context, int index) =>
+                            _buildTiles(snapshot.data.news[index], context),
+                        childCount: snapshot.data.news.length))
+              ]);
             });
           }),
     );
   }
 }
 
-Widget _buildTiles(
-    OrbiterNews news, BuildContext context, WorldstateBloc bloc) {
+Widget _buildTiles(OrbiterNews news, BuildContext context) {
   return Card(
       child: InkWell(
     onTap: () => _launchLink(news.link, context),
