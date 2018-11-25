@@ -58,15 +58,14 @@ Widget _buildTiles(
     child: Container(
       constraints: BoxConstraints.expand(height: 200.0),
       alignment: Alignment.bottomLeft,
-      padding: EdgeInsets.only(bottom: 3.0, right: 8.0),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(4.0),
           image: DecorationImage(
               image: CachedNetworkImageProvider(news.imageLink),
               fit: BoxFit.cover)),
       child: Container(
-          height: 50,
-          alignment: Alignment.centerLeft,
+          height: 40,
+          alignment: Alignment.center,
           decoration: BoxDecoration(color: Color.fromRGBO(34, 34, 34, .5)),
           child: Text(
             '[${_timestamp(news.date)} ago] ${news.message}',
