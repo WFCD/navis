@@ -36,16 +36,20 @@ class Feed extends StatelessWidget {
 
           return RefreshIndicator(
               onRefresh: () => state.update(),
-              child: ListView(children: <Widget>[
-                event ? emptyBox : Event(event: snap.events.first),
-                acolytes ? emptyBox : Acolytes(),
-                CetusCycle(cycle: Cycle.cetus),
-                OrbVallis(),
-                CetusCycle(cycle: Cycle.earth),
-                alerts ? emptyBox : AlertTile(),
-                invasions ? emptyBox : InvasionCard(),
-                snap.trader != null ? Trader() : emptyBox,
-                sortie ? emptyBox : SculptureMissions(),
+              child: CustomScrollView(slivers: <Widget>[
+                SliverList(
+                  delegate: SliverChildListDelegate(<Widget>[
+                    event ? emptyBox : Event(event: snap.events.first),
+                    acolytes ? emptyBox : Acolytes(),
+                    CetusCycle(cycle: Cycle.cetus),
+                    OrbVallis(),
+                    CetusCycle(cycle: Cycle.earth),
+                    alerts ? emptyBox : AlertTile(),
+                    invasions ? emptyBox : InvasionCard(),
+                    snap.trader != null ? Trader() : emptyBox,
+                    sortie ? emptyBox : SculptureMissions(),
+                  ]),
+                )
               ]));
         });
   }
