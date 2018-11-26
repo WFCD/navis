@@ -52,46 +52,43 @@ class _InvasionCard extends State<InvasionCard> with TickerProviderStateMixin {
           initialData: invasions.lastState,
           stream: invasions.worldstate,
           builder: (BuildContext context, AsyncSnapshot<WorldState> snapshot) {
-            if (snapshot.data.invasions.length < 3) {
-              return Padding(
-                padding: EdgeInsets.only(bottom: 8.0),
-                child: Column(
-                    children: snapshot.data.invasions
-                        .map((i) => _buildInvasions(context, i))
-                        .toList()),
-              );
-            }
+            final invasions = snapshot.data.invasions;
+            final length = invasions.length;
+            final emptyBox = Container(height: 0, width: 0);
 
             return Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Container(
-                      child: Column(children: <Widget>[
-                    _buildInvasions(context, snapshot.data.invasions[0]),
-                    _buildInvasions(context, snapshot.data.invasions[1]),
-                  ])),
+                      child: Column(
+                          children: invasions
+                              .take(2)
+                              .map((i) => _buildInvasions(context, i))
+                              .toList())),
                   ExpandedCard(
                     controller: _controller,
                     length: (108 * (_invasionLength - 2)).toDouble(),
                     child: Column(
-                        children: snapshot.data.invasions
+                        children: invasions
                             .skip(2)
                             .map((i) => _buildInvasions(context, i))
                             .toList()),
                   ),
-                  ButtonTheme.bar(
-                    child: ButtonBar(
-                        alignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          FlatButton(
-                              padding: EdgeInsets.all(8.0),
-                              textColor: Colors.blue,
-                              onPressed: _showMoreInvasions,
-                              child: _showMore
-                                  ? Text('See less')
-                                  : Text('See more'))
-                        ]),
-                  )
+                  length < 3
+                      ? emptyBox
+                      : ButtonTheme.bar(
+                          child: ButtonBar(
+                              alignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                FlatButton(
+                                    padding: EdgeInsets.all(8.0),
+                                    textColor: Colors.blue,
+                                    onPressed: _showMoreInvasions,
+                                    child: _showMore
+                                        ? Text('See less')
+                                        : Text('See more'))
+                              ]),
+                        )
                 ]);
           }),
     );
