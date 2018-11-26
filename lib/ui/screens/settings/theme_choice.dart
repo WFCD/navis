@@ -25,12 +25,14 @@ class ThemeChoice extends StatelessWidget {
           )),
       ListTile(
           title: Text('Theme'),
-          subtitle: StreamBuilder(
+          subtitle: StreamBuilder<ThemeData>(
               initialData: theme.defaultTheme,
               stream: theme.themeDataStream,
               builder:
-                  (BuildContext context, AsyncSnapshot<ThemeType> snapshot) =>
-                      Text(snapshot.data.name)),
+                  (BuildContext context, AsyncSnapshot<ThemeData> snapshot) =>
+                      Text(snapshot.data.brightness == Brightness.dark
+                          ? 'Dark'
+                          : 'Light')),
           onTap: () => showOptions(context, theme))
     ]);
   }
@@ -41,28 +43,28 @@ Future<Null> showOptions(BuildContext context, ThemeBloc theme) {
       context: context,
       barrierDismissible: true,
       builder: (BuildContext context) {
-        return StreamBuilder<ThemeType>(
+        return StreamBuilder<ThemeData>(
             initialData: theme.defaultTheme,
             stream: theme.themeDataStream,
-            builder: (BuildContext context, AsyncSnapshot snapshot) {
+            builder: (BuildContext context, AsyncSnapshot<ThemeData> snapshot) {
               return SimpleDialog(
                   contentPadding: EdgeInsets.zero,
                   title: Text('Select Theme'),
                   children: <Widget>[
-                    RadioListTile<String>(
+                    RadioListTile<Brightness>(
                         title: Text('Dark'),
                         activeColor: Theme.of(context).accentColor,
-                        value: 'Dark',
-                        groupValue: snapshot.data.name,
+                        value: Brightness.dark,
+                        groupValue: Theme.of(context).brightness,
                         onChanged: (newTheme) {
                           theme.setTheme(newTheme);
                           Navigator.pop(context);
                         }),
-                    RadioListTile<String>(
+                    RadioListTile<Brightness>(
                         title: Text('Light'),
                         activeColor: Theme.of(context).accentColor,
-                        value: 'Light',
-                        groupValue: snapshot.data.name,
+                        value: Brightness.light,
+                        groupValue: Theme.of(context).brightness,
                         onChanged: (newTheme) {
                           theme.setTheme(newTheme);
                           Navigator.pop(context);
@@ -74,7 +76,7 @@ Future<Null> showOptions(BuildContext context, ThemeBloc theme) {
                           child: Text('Cancel',
                               style: TextStyle(
                                   color:
-                                      Theme.of(context).textTheme.body2.color)))
+                                      Theme.of(context).textTheme.body1.color)))
                     ]))
                   ]);
             });
