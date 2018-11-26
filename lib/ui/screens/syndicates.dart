@@ -7,6 +7,7 @@ import 'package:navis/models/export.dart';
 import '../widgets/cards.dart';
 import '../widgets/timer.dart';
 import 'syndicate_missions.dart';
+import 'map.dart';
 
 class SyndicatesList extends StatelessWidget {
   @override
@@ -67,6 +68,10 @@ Widget _buildSyndicate(
       leading: _checkSigil(syndicate.syndicate),
       title: Text(syndicate.syndicate, style: style),
       subtitle: Text('Tap to see bounties'),
+      trailing: IconButton(
+          icon: Icon(Icons.map),
+          onPressed: () => Navigator.of(context)
+              .push(MaterialPageRoute(builder: (_) => Maps()))),
       onTap: () => Navigator.of(context).push(MaterialPageRoute(
           builder: (_) => SyndicateJobs(
                 syndicate: syndicate,

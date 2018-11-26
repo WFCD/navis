@@ -34,6 +34,8 @@ flutter:
     - assets/factions/
     - assets/sigils/
     - assets/relics/
+
+    #Plains of Eidolon map tiles
     - assets/plains/0/
     - assets/plains/1/
     - assets/plains/2/
