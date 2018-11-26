@@ -17,10 +17,9 @@ Some screen shots to show progress of what I have so far, animations is a lot sm
 
 keep in mind that I am an amateur at this, and I am still learning to code.
 
+*Note although the app was built using the flutter engine I have not tested it on IOS due to not owing a IDevice or OSX to test on. Might not even compile properly. And a few of the plugins used in this app are not compatible with IOS
+
 ## Getting Started
 
 For help getting started with Flutter, view our online
 [documentation](http://flutter.io/).
-
-
-*Note although the app was built using the flutter engine I have not tested it on IOS due to not owing a IDevice or OSX to test on. Might not even compile properly. And a few of the plugins used in this app are not compatible with IOS
