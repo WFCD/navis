@@ -20,7 +20,13 @@ class ThemeBloc implements Base {
 
   ThemeBloc._(this.themeDataStream, this.selectedTheme);
 
-  get current async => await themeDataStream.last;
+  ThemeData get current {
+    ThemeData currentTheme;
+
+    themeDataStream.last.then((t) => currentTheme = t);
+
+    return currentTheme;
+  }
 
   setTheme(Brightness theme) async {
     final prefs = await SharedPreferences.getInstance();

@@ -26,7 +26,7 @@ class ThemeChoice extends StatelessWidget {
       ListTile(
           title: Text('Theme'),
           subtitle: StreamBuilder<ThemeData>(
-              initialData: theme.defaultTheme,
+              initialData: theme.current,
               stream: theme.themeDataStream,
               builder:
                   (BuildContext context, AsyncSnapshot<ThemeData> snapshot) =>
