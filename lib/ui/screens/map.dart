@@ -41,6 +41,7 @@ class MapState extends State<Maps> {
         data: Theme.of(context)
             .copyWith(cardColor: Color.fromRGBO(34, 34, 34, 1)),
         child: PopupMenuButton<String>(
+            icon: Icon(Icons.sort),
             onSelected: (f) => filter.add(plains.filter(f)),
             itemBuilder: (BuildContext context) => plains.filters.map((f) {
                   return PopupMenuItem<String>(
