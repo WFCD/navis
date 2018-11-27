@@ -36,8 +36,7 @@ class Plains extends Mapbase {
         anchorOverride: null,
         builder: (_) => InkWell(
             onTap: () async => Navigator.of(_context).push(Popup(
-                context: _context,
-                child: FishPlayer(
+                child: VideoPlayer(
                     lore: o[3], url: await Network.fishVideos(o[4])))),
             child: Container(
                 child: Image.network(
@@ -82,26 +81,25 @@ class Plains extends Mapbase {
   }).toList();
 
   @override
-  filter(String filter) {
+  List<Marker> filter(String filter) {
     List filters;
     switch (filter) {
       case 'Caves':
-        filters = _caves..add(home);
+        filters = _caves;
         break;
       case 'Fish':
-        filters = _fish..add(home);
+        filters = _fish;
         break;
       case 'Lures':
-        filters = _lures..add(home);
+        filters = _lures;
         break;
       case 'Odditys':
-        filters = _oldFish..add(home);
+        filters = _oldFish;
         break;
       case 'All':
-        filters = [_lures, _fish, _caves, _oldFish].expand((x) => x).toList()
-          ..add(home);
+        filters = [_lures, _fish, _caves, _oldFish].expand((x) => x).toList();
     }
 
-    return filters;
+    return filters..add(home);
   }
 }

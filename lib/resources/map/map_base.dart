@@ -1,3 +1,5 @@
+import 'package:flutter_map/flutter_map.dart';
+
 abstract class Mapbase {
-  filter(String filter);
+  List<Marker> filter(String filter);
 }

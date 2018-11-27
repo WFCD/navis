@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 
 class Popup extends PopupRoute {
   final Widget child;
-  final BuildContext context;
 
-  Popup({@required this.child, @required this.context});
+  Popup({@required this.child});
 
   @override
   Color get barrierColor => Color.fromRGBO(34, 34, 34, .9);
@@ -13,13 +12,12 @@ class Popup extends PopupRoute {
   bool get barrierDismissible => true;
 
   @override
-  String get barrierLabel => null;
+  String get barrierLabel => 'close';
 
   @override
   Widget buildPage(BuildContext context, Animation<double> animation,
-      Animation<double> secondaryAnimation) {
-    return FadeTransition(opacity: animation, child: Center(child: child));
-  }
+          Animation<double> secondaryAnimation) =>
+      child;
 
   @override
   Duration get transitionDuration => Duration(milliseconds: 200);
