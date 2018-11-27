@@ -25,20 +25,18 @@ class ThemeChoice extends StatelessWidget {
           )),
       ListTile(
           title: Text('Theme'),
-          subtitle: StreamBuilder<ThemeData>(
-              initialData: theme.current,
-              stream: theme.themeDataStream,
-              builder:
-                  (BuildContext context, AsyncSnapshot<ThemeData> snapshot) =>
-                      Text(snapshot.data.brightness == Brightness.dark
-                          ? 'Dark'
-                          : 'Light')),
+          subtitle: Text(Theme.of(context).brightness == Brightness.dark
+              ? 'Dark'
+              : 'Light'),
           onTap: () => showOptions(context, theme))
     ]);
   }
 }
 
 Future<Null> showOptions(BuildContext context, ThemeBloc theme) {
+  final accentColor = Theme.of(context).accentColor;
+  final groupValue = Theme.of(context).brightness;
+
   return showDialog(
       context: context,
       barrierDismissible: true,
@@ -53,18 +51,18 @@ Future<Null> showOptions(BuildContext context, ThemeBloc theme) {
                   children: <Widget>[
                     RadioListTile<Brightness>(
                         title: Text('Dark'),
-                        activeColor: Theme.of(context).accentColor,
+                        activeColor: accentColor,
                         value: Brightness.dark,
-                        groupValue: Theme.of(context).brightness,
+                        groupValue: groupValue,
                         onChanged: (newTheme) {
                           theme.setTheme(newTheme);
                           Navigator.pop(context);
                         }),
                     RadioListTile<Brightness>(
                         title: Text('Light'),
-                        activeColor: Theme.of(context).accentColor,
+                        activeColor: accentColor,
                         value: Brightness.light,
-                        groupValue: Theme.of(context).brightness,
+                        groupValue: groupValue,
                         onChanged: (newTheme) {
                           theme.setTheme(newTheme);
                           Navigator.pop(context);

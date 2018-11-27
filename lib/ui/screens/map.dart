@@ -1,138 +1,77 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong/latlong.dart';
 
-import '../../network/network.dart';
-import '../../resources/constants.dart';
-import '../widgets/popup.dart';
-import '../widgets/videoplayer.dart';
+import 'package:navis/resources/map/plains.dart';
 
-//TODO rework map and create one for Orb Vallis
+enum Location { plains, vallis }
+
 class Maps extends StatefulWidget {
-  @override
-  _Maps createState() => _Maps();
+  final Location location;
+
+  Maps({this.location});
+
+  MapState createState() => MapState();
 }
 
-class _Maps extends State<Maps> with TickerProviderStateMixin {
-  List<String> filter = ['All', 'Caves', 'Fish', 'Lures', 'Odditys'];
-  List markers = <Marker>[
-    Marker(
-        height: 80.0,
-        width: 80.0,
-        point: LatLng(-42.68243539838622, 4.5703125),
-        builder: (_) => Container(
-            child: Image.network(
-                'https://hub.warframestat.us/img/map_icons/home.png')))
-  ];
+class MapState extends State<Maps> {
+  StreamController<List<Marker>> filter;
+
+  Plains plains;
+
+  @override
+  void initState() {
+    filter = StreamController<List<Marker>>();
+
+    plains = Plains(context: context);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    filter.close();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    List<Marker> oldFish = Constants.oddity.map((o) {
-      return Marker(
-          height: 80.0,
-          width: 80.0,
-          point: LatLng(o[1], o[2]),
-          anchor: AnchorPos.center,
-          anchorOverride: null,
-          builder: (_) => InkWell(
-              onTap: () async => Navigator.of(context).push(Popup(
-                  context: context,
-                  child: FishPlayer(
-                      lore: o[3], url: await Network.fishVideos(o[4])))),
-              child: Container(
-                  child: Image.network(
-                      'https://hub.warframestat.us/img/map_icons/oddity.png'))));
-    }).toList();
-
-    void filters(String filter) {
-      List filters;
-      switch (filter) {
-        case 'Caves':
-          filters = caves;
-          break;
-        case 'Fish':
-          filters = fish;
-          break;
-        case 'Lures':
-          filters = lures;
-          break;
-        case 'Odditys':
-          filters = oldFish;
-          break;
-        case 'All':
-          filters = [lures, fish, caves].expand((x) => x).toList();
-      }
-      setState(() {
-        markers.removeRange(1, markers.length);
-        markers.addAll(filters);
-      });
-    }
-
-    return Scaffold(
-        appBar: AppBar(title: Text("Cetus Map"), actions: <Widget>[
-          PopupMenuButton<String>(
-              elevation: 8.0,
-              icon: Icon(Icons.sort),
-              onSelected: filters,
-              itemBuilder: (_) {
-                return filter.map((f) {
+    final filterButton = Theme(
+        data: Theme.of(context)
+            .copyWith(cardColor: Color.fromRGBO(34, 34, 34, 1)),
+        child: PopupMenuButton<String>(
+            icon: Icon(Icons.sort),
+            onSelected: (f) => filter.add(plains.filter(f)),
+            itemBuilder: (BuildContext context) => plains.filters.map((f) {
                   return PopupMenuItem<String>(
-                    child: ListTile(
-                        title: Text(f), contentPadding: EdgeInsets.zero),
+                    child: Text(f),
                     value: f,
                   );
-                }).toList();
-              })
-        ]),
-        body: FlutterMap(
-          options:
-              MapOptions(center: LatLng(0, 0), zoom: 3, minZoom: 0, maxZoom: 4),
-          layers: [
-            TileLayerOptions(
-              maxZoom: 5,
-              fromAssets: true,
-              offlineMode: true,
-              urlTemplate: 'assets/plains/{z}/tile_{x}_{y}.png',
-            ),
-            MarkerLayerOptions(markers: markers)
-          ],
-        ));
+                }).toList()));
+
+    return Scaffold(
+        appBar: AppBar(title: Text('Cetus'), actions: <Widget>[filterButton]),
+        body: StreamBuilder<List<Marker>>(
+            initialData: plains.filter('All'),
+            stream: filter.stream,
+            builder:
+                (BuildContext context, AsyncSnapshot<List<Marker>> snapshot) {
+              return FlutterMap(
+                options: MapOptions(
+                    center: LatLng(0, 0), zoom: 3, minZoom: 0, maxZoom: 4),
+                layers: [
+                  TileLayerOptions(
+                    maxZoom: 5,
+                    fromAssets: true,
+                    offlineMode: true,
+                    keepBuffer: 25,
+                    backgroundColor: Color.fromRGBO(63, 92, 98, 1),
+                    urlTemplate: 'assets/plains/{z}/tile_{x}_{y}.png',
+                  ),
+                  MarkerLayerOptions(markers: snapshot.data)
+                ],
+              );
+            }));
   }
 }
-
-List<Marker> lures = Constants.lure.map((a) {
-  return Marker(
-      height: 80.0,
-      width: 80.0,
-      point: LatLng(a[1], a[2]),
-      anchor: AnchorPos.center,
-      anchorOverride: null,
-      builder: (_) => Container(
-            child: Image.network(
-                'https://hub.warframestat.us/img/map_icons/lure.png'),
-          ));
-}).toList();
-
-List<Marker> fish = Constants.fish.map((f) {
-  return Marker(
-      height: 80.0,
-      width: 80.0,
-      point: LatLng(f[1], f[2]),
-      anchor: AnchorPos.center,
-      anchorOverride: null,
-      builder: (_) => Container(
-          child: Image.network(
-              'https://hub.warframestat.us/img/map_icons/fish.png')));
-}).toList();
-
-List<Marker> caves = Constants.cave.map((c) {
-  return Marker(
-      height: 80.0,
-      width: 80.0,
-      point: LatLng(c[1], c[2]),
-      anchor: AnchorPos.center,
-      anchorOverride: null,
-      builder: (_) => Container(
-          child: Image.network(
-              'https://hub.warframestat.us/img/map_icons/caves.png')));
-}).toList();

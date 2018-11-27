@@ -28,9 +28,10 @@ class _HomeScreen extends State<HomeScreen> with TickerProviderStateMixin {
 
     _items = [
       BottomNavigationBarItem(
-          icon: Icon(Icons.update), title: Text('News', style: _titleStyle)),
+          icon: Icon(Icons.update, color: Colors.white),
+          title: Text('News', style: _titleStyle)),
       BottomNavigationBarItem(
-          icon: Icon(Icons.view_headline),
+          icon: Icon(Icons.view_headline, color: Colors.white),
           title: Text('Feed', style: _titleStyle)),
       BottomNavigationBarItem(
           icon: SvgPicture.asset('assets/general/VoidTearIcon.svg',
@@ -73,9 +74,6 @@ class _HomeScreen extends State<HomeScreen> with TickerProviderStateMixin {
 
     return Scaffold(
         appBar: AppBar(elevation: 8.0, title: title, actions: <Widget>[
-          IconButton(
-              icon: Icon(Icons.map),
-              onPressed: () => Navigator.of(context).pushNamed('/Maps')),
           IconButton(
               icon: Icon(Icons.settings),
               onPressed: () => Navigator.of(context).pushNamed('/Settings'))
