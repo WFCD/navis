@@ -6,6 +6,7 @@ build/
 .flutter-plugins
 .idea
 .vscode
+pubspec.lock
 assets/svg/
 lib/resources/keys.dart
 lib/resources/notifications.dart

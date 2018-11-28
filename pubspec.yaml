@@ -12,7 +12,7 @@ dependencies:
   flutter_custom_tabs: ^0.4.0
   flutter_sequence_animation: ^3.0.1
   flutter_map: ^0.2.0
-  flutter_svg: ^0.6.3
+  flutter_svg: ^0.7.0
   sentry: ^2.1.1
   chewie: ^0.8.0
   cached_network_image: ^0.5.0+1
@@ -39,5 +39,9 @@ flutter:
     - assets/plains/0/
     - assets/plains/1/
     - assets/plains/2/
-    - assets/plains/3/
-    - assets/plains/4/
+
+    #Orb Vallis Map tiles
+    - assets/vallis/1/
+    - assets/vallis/2/
+    - assets/vallis/3/
+    - assets/vallis/4/

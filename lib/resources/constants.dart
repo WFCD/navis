@@ -1,4 +1,13 @@
 class Constants {
+  static const grineer = [
+    ['Grineer Sea Spire Base', -35.7465122599185, -90.52734, ''],
+    ['Grineer Excavation Site', -6.839169626342807, -17.5781, ''],
+    ['Grineer Mountain Base', 64.01449619484472, -45.3515625, ''],
+    ['Grineer Firepit Base', 65.94647177615738, 14.0625, ''],
+    ['Grineer Radar Base', 37.85750715625203, 68.02734375, ''],
+    ['Grineer East Outpost', -56.94497418085159, 65.21484375, ''],
+  ];
+
   static const List lure = <List<dynamic>>[
     ['Eidolon Lure X2', 65.73062649311031, -51.6796875],
     ['Eidolon Lure X2', 66.93006025862448, 9.4921875],

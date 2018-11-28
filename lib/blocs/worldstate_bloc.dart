@@ -43,16 +43,14 @@ class WorldstateBloc implements Base {
   }
 
   Duration get cetusCycleTime {
-    Duration currentTime = _durations(_worldstate.cetus.expiry);
-    DateTime expiry = DateTime.parse(_worldstate.cetus.expiry);
-
-    if (DateTime.now().isAfter(expiry)) {
+    try {
+      Duration currentTime = _durations(_worldstate.cetus.expiry);
+      return currentTime;
+    } catch (err) {
       if (_worldstate.cetus.isDay) return Duration(minutes: 100);
 
       return Duration(minutes: 50);
     }
-
-    return currentTime;
   }
 
   Duration get earthCycleTime {

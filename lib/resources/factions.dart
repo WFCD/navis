@@ -16,6 +16,14 @@ class Factions {
       case 'Corrupted':
         return SvgPicture.asset('assets/factions/Corrputed.svg',
             height: size, width: size, color: color);
+      case 'Ostrons':
+        return SvgPicture.asset('assets/sigils/OstronSigil.svg',
+            height: size,
+            width: size,
+            color: Color.fromRGBO(232, 221, 175, 1.0));
+      case 'Solaris United':
+        return SvgPicture.asset('assets/sigils/SolarisUnited.svg',
+            height: size, width: size, color: Color.fromRGBO(152, 92, 67, 1.0));
       default:
         return SvgPicture.asset('assets/factions/Infested.svg',
             height: size, width: size, color: color);

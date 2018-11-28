@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:navis/blocs/provider.dart';
 import 'package:navis/blocs/worldstate_bloc.dart';
 import 'package:navis/models/export.dart';
+import 'package:navis/resources/factions.dart';
 
 import '../widgets/cards.dart';
 import '../widgets/timer.dart';
@@ -67,15 +67,14 @@ Widget _buildSyndicate(
     color: ostron ? ostronsColor : solarisColor,
     child: ListTile(
       contentPadding: EdgeInsets.zero,
-      leading: _checkSigil(syndicate.syndicate),
+      leading: Factions.factionIcon(syndicate.syndicate, size: 60),
       title: Text(syndicate.syndicate, style: style),
       subtitle: Text('Tap to see bounties'),
-      trailing: ostron
-          ? IconButton(
-              icon: Icon(Icons.map),
-              onPressed: () => Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (_) => Maps())))
-          : null,
+      trailing: IconButton(
+          icon: Icon(Icons.map),
+          onPressed: () => Navigator.of(context).push(MaterialPageRoute(
+              builder: (_) =>
+                  Maps(location: _checkFaction(syndicate.syndicate))))),
       onTap: () => Navigator.of(context).push(MaterialPageRoute(
           builder: (_) => SyndicateJobs(
                 syndicate: syndicate,
@@ -88,20 +87,11 @@ Widget _buildSyndicate(
   );
 }
 
-_checkSigil(String syndicateName) {
-  final height = 60.0;
-  final width = 60.0;
-
+_checkFaction(String syndicateName) {
   switch (syndicateName) {
     case 'Ostrons':
-      return SvgPicture.asset('assets/sigils/OstronSigil.svg',
-          height: height,
-          width: width,
-          color: Color.fromRGBO(232, 221, 175, 1.0));
+      return Location.plains;
     default:
-      return SvgPicture.asset('assets/sigils/SolarisUnited.svg',
-          height: height,
-          width: width,
-          color: Color.fromRGBO(152, 92, 67, 1.0));
+      return Location.vallis;
   }
 }

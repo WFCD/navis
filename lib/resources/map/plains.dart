@@ -2,6 +2,7 @@ import 'map_base.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong/latlong.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import '../constants.dart';
 import '../../ui/widgets/popup.dart';
@@ -15,17 +16,25 @@ class Plains extends Mapbase {
     _context = context;
   }
 
-  static double _size = 50;
+  static double _size = 25;
 
-  List<String> filters = ['All', 'Caves', 'Fish', 'Lures', 'Odditys'];
+  List<String> filters = [
+    'All',
+    'Caves',
+    'Fish',
+    'Grineer',
+    'Lures',
+    'Odditys'
+  ];
 
   final home = Marker(
       height: _size,
       width: _size,
-      point: LatLng(-42.68243539838622, 4.5703125),
+      point: LatLng(-60.68243539838622, 4.5703125),
+      anchor: AnchorPos.center,
       builder: (_) => Container(
-          child: Image.network(
-              'https://hub.warframestat.us/img/map_icons/home.png')));
+          child: Icon(Icons.home,
+              color: Color.fromRGBO(183, 70, 36, 1.0), size: 30)));
 
   final List<Marker> _oldFish = Constants.oddity.map((o) {
     return Marker(
@@ -80,12 +89,25 @@ class Plains extends Mapbase {
                 'https://hub.warframestat.us/img/map_icons/caves.png')));
   }).toList();
 
+  final List<Marker> _grineerBase = Constants.grineer.map((g) {
+    return Marker(
+        height: _size,
+        width: _size,
+        point: LatLng(g[1], g[2]),
+        anchor: AnchorPos.center,
+        builder: (_) => SvgPicture.asset('assets/factions/Grineer.svg',
+            height: 10, width: 10, color: Colors.red[700]));
+  }).toList();
+
   @override
   List<Marker> filter(String filter) {
     List filters;
     switch (filter) {
       case 'Caves':
         filters = _caves;
+        break;
+      case 'Grineer':
+        filters = _grineerBase;
         break;
       case 'Fish':
         filters = _fish;
@@ -97,7 +119,9 @@ class Plains extends Mapbase {
         filters = _oldFish;
         break;
       case 'All':
-        filters = [_lures, _fish, _caves, _oldFish].expand((x) => x).toList();
+        filters = [_lures, _fish, _caves, _oldFish, _grineerBase]
+            .expand((x) => x)
+            .toList();
     }
 
     return filters..add(home);
