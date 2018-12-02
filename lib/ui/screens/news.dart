@@ -11,7 +11,8 @@ import 'package:navis/models/export.dart';
 import '../../resources/keys.dart';
 
 class Orbiter extends StatefulWidget {
-  Orbiter({Key key}) : super(key: key);
+  Orbiter({Key key = const PageStorageKey<String>('orbiter')})
+      : super(key: key);
 
   _Orbiter createState() => _Orbiter();
 }

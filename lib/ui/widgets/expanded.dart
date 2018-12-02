@@ -13,8 +13,7 @@ class ExpandedCard extends StatefulWidget {
   State<StatefulWidget> createState() => ExpandedCardState();
 }
 
-class ExpandedCardState extends State<ExpandedCard>
-    with TickerProviderStateMixin {
+class ExpandedCardState extends State<ExpandedCard> {
   SequenceAnimation _expand;
 
   @override

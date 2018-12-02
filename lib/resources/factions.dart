@@ -14,7 +14,7 @@ class Factions {
         return SvgPicture.asset('assets/factions/Corpus.svg',
             height: size, width: size, color: color);
       case 'Corrupted':
-        return SvgPicture.asset('assets/factions/Corrputed.svg',
+        return SvgPicture.asset('assets/factions/Corrupted.svg',
             height: size, width: size, color: color);
       case 'Ostrons':
         return SvgPicture.asset('assets/sigils/OstronSigil.svg',

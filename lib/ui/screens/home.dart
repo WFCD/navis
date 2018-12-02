@@ -17,7 +17,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreen extends State<HomeScreen> with TickerProviderStateMixin {
   int _currentIndex = 1;
-  double size = 22;
+  double size = 20;
   Color _color = Color.fromRGBO(34, 34, 34, .9);
   TextStyle _titleStyle = TextStyle(fontSize: 12);
   List<BottomNavigationBarItem> _items;
@@ -51,15 +51,9 @@ class _HomeScreen extends State<HomeScreen> with TickerProviderStateMixin {
 
   Widget _buildStack() {
     return Stack(children: <Widget>[
-      Offstage(
-          offstage: _currentIndex != 0,
-          child: Orbiter(key: PageStorageKey<String>('news'))),
-      Offstage(
-          offstage: _currentIndex != 1,
-          child: Feed(key: PageStorageKey<String>('feed'))),
-      Offstage(
-          offstage: _currentIndex != 2,
-          child: Fissure(key: PageStorageKey<String>('relics'))),
+      Offstage(offstage: _currentIndex != 0, child: Orbiter()),
+      Offstage(offstage: _currentIndex != 1, child: Feed()),
+      Offstage(offstage: _currentIndex != 2, child: Fissure()),
       Offstage(offstage: _currentIndex != 3, child: SyndicatesList())
     ]);
   }

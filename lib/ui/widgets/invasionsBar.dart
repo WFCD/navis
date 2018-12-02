@@ -58,12 +58,12 @@ class InvasionBar extends StatelessWidget {
 }
 
 class _InvasionBar extends CustomPainter {
-  final _attackingFaction = Paint();
-  final _defendingFaction = Paint();
-  final backgroundColor;
-  final progressColor;
-  final progress;
-  final lineWidth;
+  final Paint _attackingFaction = Paint();
+  final Paint _defendingFaction = Paint();
+  final Color backgroundColor;
+  final Color progressColor;
+  final double progress;
+  final double lineWidth;
 
   _InvasionBar(
       {this.progress,
@@ -92,5 +92,9 @@ class _InvasionBar extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(CustomPainter oldDelegate) => true;
+  bool shouldRepaint(CustomPainter oldDelegate) {
+    if (this.progress != progress) return true;
+
+    return false;
+  }
 }

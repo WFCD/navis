@@ -12,9 +12,14 @@ import '../cards/sortie.dart';
 import '../cards/trader.dart';
 import '../cards/vallis.dart';
 
-class Feed extends StatelessWidget {
-  Feed({Key key}) : super(key: key);
+class Feed extends StatefulWidget {
+  Feed({Key key = const PageStorageKey<String>('feed')}) : super(key: key);
 
+  @override
+  State<StatefulWidget> createState() => FeedState();
+}
+
+class FeedState extends State<Feed> {
   @override
   Widget build(BuildContext context) {
     final state = BlocProvider.of<WorldstateBloc>(context);
