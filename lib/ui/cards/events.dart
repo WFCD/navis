@@ -22,7 +22,7 @@ class Event extends StatelessWidget {
         if (eventCheck)
           return WMD(event: event);
         else
-          return Container();
+          return Container(height: 0.0, width: 0.0);
     }
   }
 }

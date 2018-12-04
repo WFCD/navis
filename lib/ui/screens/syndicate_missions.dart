@@ -9,9 +9,8 @@ import 'rewards.dart';
 class SyndicateJobs extends StatefulWidget {
   final Syndicates syndicate;
   final List<Events> events;
-  final Color color;
 
-  SyndicateJobs({this.syndicate, this.events, this.color});
+  SyndicateJobs({this.syndicate, this.events});
 
   String get faction => syndicate.syndicate;
 
@@ -20,6 +19,28 @@ class SyndicateJobs extends StatefulWidget {
 }
 
 class SyndicateJobsState extends State<SyndicateJobs> {
+  Color _buildColor() {
+    final ostronsColor = Color.fromRGBO(183, 70, 36, 1.0);
+    final solarisColor = Color.fromRGBO(206, 162, 54, 1.0);
+
+    return widget.syndicate.syndicate == 'Ostrons'
+        ? ostronsColor
+        : solarisColor;
+  }
+
+  void _buildEventTile(List<Widget> jobs) {
+    if (widget.events.isNotEmpty &&
+        widget.events[0].jobs != null &&
+        widget.events[0].jobs.isNotEmpty &&
+        widget.faction == 'Ostrons') {
+      jobs
+        ..insertAll(
+            0,
+            widget.events[0].jobs
+                .map((j) => _buildMissionType(context, j, true)));
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final syndicate = BlocProvider.of<WorldstateBloc>(context);
@@ -28,22 +49,13 @@ class SyndicateJobsState extends State<SyndicateJobs> {
         .map((j) => _buildMissionType(context, j, false))
         .toList();
 
-    if (widget.events.isNotEmpty &&
-        widget.events[0].jobs != null &&
-        widget.events[0].jobs.isNotEmpty &&
-        widget.faction == 'Ostrons') {
-      allJobs
-        ..insertAll(
-            0,
-            widget.events[0].jobs
-                .map((j) => _buildMissionType(context, j, true)));
-    }
+    _buildEventTile(allJobs);
 
     return Scaffold(
         appBar: AppBar(
             titleSpacing: 0.0,
             title: Text(widget.syndicate.syndicate),
-            backgroundColor: widget.color),
+            backgroundColor: _buildColor()),
         body: RefreshIndicator(
             onRefresh: () => syndicate.update(),
             child: Column(children: allJobs)));

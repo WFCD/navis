@@ -8,6 +8,17 @@ import '../widgets/cards.dart';
 import '../widgets/timer.dart';
 
 class AlertTile extends StatelessWidget {
+  void addTacticalAlerts(
+      List<Widget> alerts, List<Events> events, BuildContext context) {
+    if (events.isNotEmpty && events[0].description.contains('Tactical Alert')) {
+      alerts.insertAll(
+          0,
+          events
+              .where((e) => e.tooltip.contains('Tac Alert') == true)
+              .map((e) => _buildTacticalAlerts(e, context)));
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final alert = BlocProvider.of<WorldstateBloc>(context);
@@ -34,24 +45,17 @@ class AlertTile extends StatelessWidget {
                 .map((alert) => _buildAlerts(alert, context))
                 .toList();
 
-            if (snapshot.data.events.isNotEmpty &&
-                snapshot.data.events[0].description
-                    .contains('Tactical Alert')) {
-              allAlerts.insertAll(
-                  0,
-                  snapshot.data.events
-                      .where((e) => e.tooltip.contains('Tac Alert') == true)
-                      .map((e) => _buildTacticalAlerts(e, alert, context)));
-            }
+            addTacticalAlerts(allAlerts, snapshot.data.events, context);
 
-            return Column(children: allAlerts);
+            return allAlerts.isEmpty
+                ? Center(child: Text('No alerts at this time'))
+                : Column(children: allAlerts);
           })
     ])));
   }
 }
 
-Widget _buildTacticalAlerts(
-    Events alert, WorldstateBloc bloc, BuildContext context) {
+Widget _buildTacticalAlerts(Events alert, BuildContext context) {
   Duration timeLeft = DateTime.parse(alert.expiry).difference(DateTime.now());
 
   return Padding(

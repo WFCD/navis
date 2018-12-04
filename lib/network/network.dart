@@ -23,21 +23,7 @@ class Network {
     final key = KeyedArchive.unarchive(data);
     WorldState state = WorldState()..decode(key);
 
-    state.alerts.removeWhere((a) => a.expired == true);
-
-    state.news.sort((a, b) => b.date.compareTo(a.date));
-    state.news.retainWhere((art) => art.translations.en != null);
-
-    state.invasions.retainWhere(
-        (invasion) => invasion.completion < 100 && invasion.completed == false);
-
-    state.syndicates.sort((a, b) => a.syndicate.compareTo(b.syndicate));
-    state.syndicates.retainWhere(
-        (syndicate) => _syndicateCheck(syndicate.syndicate) == true);
-
-    state.voidFissures.removeWhere((v) => v.expired == true);
-    state.voidFissures.sort((a, b) => a.tierNum.compareTo(b.tierNum));
-
+    await _cleanUpState(state);
     return state;
   }
 
@@ -63,6 +49,24 @@ class Network {
         .body);
 
     return data['files']['mp4']['url'];
+  }
+
+  Future<void> _cleanUpState(WorldState state) async {
+    state.alerts.removeWhere((a) => a.expired == true);
+
+    state.news.sort((a, b) => b.date.compareTo(a.date));
+    state.news.retainWhere((art) => art.translations.en != null);
+
+    state.invasions.retainWhere(
+        (invasion) => invasion.completion < 100 && invasion.completed == false);
+
+    state.syndicates.retainWhere(
+        (syndicate) => _syndicateCheck(syndicate.syndicate) == true);
+
+    state.syndicates.sort((a, b) => a.syndicate.compareTo(b.syndicate));
+
+    state.voidFissures.removeWhere((v) => v.expired == true);
+    state.voidFissures.sort((a, b) => a.tierNum.compareTo(b.tierNum));
   }
 
   bool _syndicateCheck(String syndicate) {

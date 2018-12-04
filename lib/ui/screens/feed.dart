@@ -20,6 +20,23 @@ class Feed extends StatefulWidget {
 }
 
 class FeedState extends State<Feed> {
+  List<Widget> childeren = [
+    CetusCycle(cycle: Cycle.cetus),
+    OrbVallis(),
+    CetusCycle(cycle: Cycle.earth),
+    AlertTile(),
+    InvasionCard(),
+    Trader(),
+    SculptureMissions()
+  ];
+
+  _addEvents(List<Events> events, List<Widget> childeren) => events.isNotEmpty
+      ? childeren.insert(0, Event(event: events.first))
+      : null;
+
+  _addAcolytes(List<PersistentEnemies> enemies, List<Widget> childeren) =>
+      enemies.isNotEmpty ? childeren.insert(0, Acolytes()) : null;
+
   @override
   Widget build(BuildContext context) {
     final state = BlocProvider.of<WorldstateBloc>(context);
@@ -27,34 +44,16 @@ class FeedState extends State<Feed> {
     return StreamBuilder(
         stream: state.worldstate,
         builder: (BuildContext context, AsyncSnapshot<WorldState> snapshot) {
-          final snap = snapshot.data;
-          final emptyBox = Container(height: 0.0, width: 0.0);
-
           if (!snapshot.hasData)
             return Center(child: CircularProgressIndicator());
 
-          final event = snap.events.isEmpty;
-          final acolytes = snap.persistentEnemies.isEmpty;
-          final invasions = snap.invasions.isEmpty;
-          final sortie = snap.sortie.variants.isEmpty;
-          final alerts = snap.alerts.isEmpty;
+          _addAcolytes(snapshot.data.persistentEnemies, childeren);
+          _addEvents(snapshot.data.events, childeren);
 
           return RefreshIndicator(
               onRefresh: () => state.update(),
               child: CustomScrollView(slivers: <Widget>[
-                SliverList(
-                  delegate: SliverChildListDelegate(<Widget>[
-                    event ? emptyBox : Event(event: snap.events.first),
-                    acolytes ? emptyBox : Acolytes(),
-                    CetusCycle(cycle: Cycle.cetus),
-                    OrbVallis(),
-                    CetusCycle(cycle: Cycle.earth),
-                    alerts ? emptyBox : AlertTile(),
-                    invasions ? emptyBox : InvasionCard(),
-                    snap.trader != null ? Trader() : emptyBox,
-                    sortie ? emptyBox : SculptureMissions(),
-                  ]),
-                )
+                SliverList(delegate: SliverChildListDelegate(childeren))
               ]));
         });
   }

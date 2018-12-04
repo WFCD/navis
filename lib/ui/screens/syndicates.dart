@@ -66,25 +66,29 @@ Widget _buildSyndicate(
   return Tiles(
     color: ostron ? ostronsColor : solarisColor,
     child: ListTile(
-      contentPadding: EdgeInsets.zero,
-      leading: Factions.factionIcon(syndicate.syndicate, size: 60),
-      title: Text(syndicate.syndicate, style: style),
-      subtitle: Text('Tap to see bounties'),
-      trailing: IconButton(
-          icon: Icon(Icons.map),
-          onPressed: () => Navigator.of(context).push(MaterialPageRoute(
-              builder: (_) =>
-                  Maps(location: _checkFaction(syndicate.syndicate))))),
-      onTap: () => Navigator.of(context).push(MaterialPageRoute(
-          builder: (_) => SyndicateJobs(
-                syndicate: syndicate,
-                events: events,
-                color: syndicate.syndicate == 'Ostrons'
-                    ? ostronsColor
-                    : solarisColor,
-              ))),
-    ),
+        contentPadding: EdgeInsets.zero,
+        leading: Factions.factionIcon(syndicate.syndicate, size: 60),
+        title: Text(syndicate.syndicate, style: style),
+        subtitle: Text('Tap to see bounties'),
+        trailing: IconButton(
+            icon: Icon(Icons.map),
+            onPressed: () => _navigateToMap(context, syndicate.syndicate)),
+        onTap: () => _navigateToBounties(context, syndicate, events)),
   );
+}
+
+void _navigateToMap(BuildContext context, String syndicate) {
+  Navigator.of(context).push(MaterialPageRoute(
+      builder: (_) => Maps(location: _checkFaction(syndicate))));
+}
+
+void _navigateToBounties(
+    BuildContext context, Syndicates syndicate, List<Events> events) {
+  Navigator.of(context).push(MaterialPageRoute(
+      builder: (_) => SyndicateJobs(
+            syndicate: syndicate,
+            events: events,
+          )));
 }
 
 _checkFaction(String syndicateName) {

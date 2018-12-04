@@ -34,7 +34,10 @@ class SculptureMissions extends StatelessWidget {
                   .map((variant) => _buildMissions(variant, context))
                   .toList()
                     ..insert(0, title);
-              return Column(children: missions);
+
+              return missions.isEmpty
+                  ? Center(child: Text('Loading current sorite...'))
+                  : Column(children: missions);
             }));
   }
 }
