@@ -48,23 +48,12 @@ class WorldstateAPI {
     state.invasions.retainWhere(
         (invasion) => invasion.completion < 100 && invasion.completed == false);
 
-    state.syndicates.retainWhere(
-        (syndicate) => _syndicateCheck(syndicate.syndicate) == true);
+    state.syndicates.retainWhere((s) =>
+        s.syndicate.contains(RegExp('(Ostrons)|(Solaris United)')) == true);
 
     state.syndicates.sort((a, b) => a.syndicate.compareTo(b.syndicate));
 
-    state.voidFissures.removeWhere((v) => v.expired == true);
+    state.voidFissures.removeWhere((v) => v.active != true);
     state.voidFissures.sort((a, b) => a.tierNum.compareTo(b.tierNum));
-  }
-
-  bool _syndicateCheck(String syndicate) {
-    switch (syndicate) {
-      case 'Ostrons':
-        return true;
-      case 'Solaris United':
-        return true;
-      default:
-        return false;
-    }
   }
 }

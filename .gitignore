@@ -12,3 +12,5 @@ lib/utils/keys.dart
 lib/resources/notifications.dart
 android/key.properties
 android/app/google-services.json
+assets/voidTrader.json
+assets/worldstate.json
