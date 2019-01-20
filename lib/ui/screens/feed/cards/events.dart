@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:navis/models/export.dart';
 
 import 'event/wmd.dart';
+import 'event/ostron_event.dart';
 
 class Event extends StatelessWidget {
   final Events event;
@@ -10,12 +11,12 @@ class Event extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool eventCheck = event.description.contains('Fomorian') ||
-        event.description.contains('Razorback');
+    bool eventCheck =
+        event.description.contains(RegExp('(Fomorian)|(Razorback)'));
 
     switch (event.description) {
       case 'Ghoul Purge':
-        return Container();
+        return BountyEvent(event: event);
       case 'Relay Title':
         return Container();
       default:

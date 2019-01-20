@@ -65,7 +65,7 @@ class CustomScaffoldState extends State<CustomScaffold>
   Widget build(BuildContext context) {
     return Scaffold(
         key: scaffold,
-        appBar: AppBar(elevation: 8.0, title: Text('Navis'), actions: <Widget>[
+        appBar: AppBar(title: Text('Navis'), actions: <Widget>[
           IconButton(
               icon: Icon(Icons.settings),
               onPressed: () => Navigator.of(context).pushNamed('/Settings'))

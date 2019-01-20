@@ -8,11 +8,10 @@ import 'package:navis/APIs/worldstate.dart';
 
 class BountyRewards extends StatelessWidget {
   final List<String> bountyRewards;
-  final List<Inventory> traderInventory;
+
   final String missionTYpe;
 
-  BountyRewards(
-      {Key key, this.missionTYpe, this.bountyRewards, this.traderInventory})
+  BountyRewards({Key key, this.missionTYpe, this.bountyRewards})
       : super(key: key);
 
   Future<List<Reward>> getRewards() async {
@@ -39,9 +38,7 @@ class BountyRewards extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(title: Text(missionTYpe)),
-        body: bountyRewards != null
-            ? _buildForSyndicates(getRewards(), bountyRewards)
-            : _buildForTrader(traderInventory));
+        body: _buildForSyndicates(getRewards(), bountyRewards));
   }
 }
 
@@ -74,20 +71,5 @@ Widget _buildForSyndicates(
                 ),
               );
             });
-      });
-}
-
-Widget _buildForTrader(List<Inventory> inventory) {
-  return ListView.builder(
-      itemCount: inventory.length,
-      itemBuilder: (BuildContext context, int index) {
-        return Padding(
-          padding: const EdgeInsets.only(bottom: 8.0, top: 8.0),
-          child: Center(
-            child: ListTile(
-                title: Text(inventory[index].item,
-                    style: TextStyle(fontSize: 17.0))),
-          ),
-        );
       });
 }

@@ -34,72 +34,23 @@ class SyndicateJobsState extends State<SyndicateJobs> {
                 (BuildContext context, AsyncSnapshot<WorldState> snapshot) {
               if (!snapshot.hasData)
                 return Center(child: CircularProgressIndicator());
-              List<Widget> jobs = [];
 
               List<Syndicates> syndicate = snapshot.data.syndicates
                   .where(
                       (syn) => syn.syndicate == _factionCheck(widget.faction))
                   .toList();
 
-              _buildEventTile(
-                  widget.faction, jobs, snapshot.data.events, context);
-
-              jobs.add(_jobs(context, syndicate));
-
-              return ListView(children: jobs);
+              return ListView(
+                  children: syndicate[0]
+                      .jobs
+                      .map((j) => _buildMissionType(context, j))
+                      .toList());
             }));
   }
 }
 
-Widget _jobs(BuildContext context, List<Syndicates> syndicate) {
-  List<Widget> children = [
-    Align(
-      alignment: Alignment.centerLeft,
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Text('Current Bounties',
-            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-      ),
-    )
-  ];
-
-  Iterable<Widget> jobs =
-      syndicate.first.jobs.map((j) => _buildMissionType(context, j, false));
-
-  children.addAll(jobs);
-
-  if (syndicate.length >= 2)
-    children.add(_addUpcomingJobs(context, syndicate[1].jobs));
-
-  return Container(
-      child: Column(
-    children: children,
-  ));
-}
-
-Widget _addUpcomingJobs(BuildContext context, List<Jobs> upcomingJobs) {
-  List<Widget> children = [
-    Align(
-      alignment: Alignment.centerLeft,
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Text('Upcoming Bounties',
-            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-      ),
-    )
-  ];
-
-  Iterable<Widget> jobs =
-      upcomingJobs.map((job) => _buildMissionType(context, job, false));
-
-  children.addAll(jobs);
-
-  return Container(child: Column(children: children));
-}
-
-Widget _buildMissionType(BuildContext context, Jobs job, bool purge) {
+Widget _buildMissionType(BuildContext context, Jobs job) {
   return Tiles(
-    color: purge ? Colors.green[800] : null,
     child: ListTile(
       title: Text(job.type),
       subtitle:
@@ -113,23 +64,11 @@ Widget _buildMissionType(BuildContext context, Jobs job, bool purge) {
                     ))),
             child: Text(
               'See Rewards',
-              style: TextStyle(color: purge ? Colors.white : Colors.blue),
+              style: TextStyle(color: Colors.blue),
             )),
       ),
     ),
   );
-}
-
-void _buildEventTile(OpenWorldFactions faction, List<Widget> jobs,
-    List<Events> events, BuildContext context) {
-  if (events.isNotEmpty &&
-      events[0].jobs != null &&
-      events[0].jobs.isNotEmpty &&
-      _factionCheck(faction) == 'Ostrons') {
-    jobs
-      ..insertAll(
-          0, events[0].jobs.map((j) => _buildMissionType(context, j, true)));
-  }
 }
 
 Color _buildColor(OpenWorldFactions faction) {

@@ -27,7 +27,7 @@ class WorldstateBloc implements Base {
   Stateutils get stateUtils => Stateutils(worldstate: initworldstate);
   Factionutils get factionUtils => Factionutils();
 
-  Future<void> update() async {
+  Future<Null> update() async {
     final state = WorldstateAPI();
     updatedState.add(await state.updateState());
     initworldstate = await state.updateState();
