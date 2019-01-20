@@ -4,6 +4,8 @@ class Vallis extends Coding {
   String expiry;
   bool isWarm;
 
+  Duration get timer => DateTime.parse(expiry).difference(DateTime.now());
+
   @override
   void decode(KeyedArchive object) {
     super.decode(object);

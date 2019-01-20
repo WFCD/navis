@@ -8,7 +8,7 @@ build/
 .vscode
 pubspec.lock
 assets/svg/
-lib/resources/keys.dart
+lib/utils/keys.dart
 lib/resources/notifications.dart
 android/key.properties
 android/app/google-services.json

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-//import 'package:navis/blocs/provider.dart';
-//import 'package:navis/blocs/worldstate_bloc.dart';
 
-import 'feed.dart';
-import 'fissures.dart';
-import 'news.dart';
-import 'syndicates.dart';
+import 'package:navis/ui/widgets/scaffold.dart';
+
+import 'feed/feed.dart';
+import 'fissures/fissures.dart';
+import 'news/news.dart';
+import 'syndicates/syndicates.dart';
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({Key key}) : super(key: key);
@@ -16,10 +16,9 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreen extends State<HomeScreen> with TickerProviderStateMixin {
-  int _currentIndex = 1;
   double size = 20;
-  Color _color = Color.fromRGBO(34, 34, 34, .9);
   TextStyle _titleStyle = TextStyle(fontSize: 12);
+  List<Widget> pages = [Orbiter(), Feed(), Fissure(), SyndicatesList()];
   List<BottomNavigationBarItem> _items;
 
   @override
@@ -49,38 +48,11 @@ class _HomeScreen extends State<HomeScreen> with TickerProviderStateMixin {
     super.dispose();
   }
 
-  Widget _buildStack() {
-    return Stack(children: <Widget>[
-      Offstage(offstage: _currentIndex != 0, child: Orbiter()),
-      Offstage(offstage: _currentIndex != 1, child: Feed()),
-      Offstage(offstage: _currentIndex != 2, child: Fissure()),
-      Offstage(offstage: _currentIndex != 3, child: SyndicatesList())
-    ]);
-  }
-
   @override
   Widget build(BuildContext context) {
-    //final state = BlocProvider.of<WorldstateBloc>(context);
-    final title = RichText(
-        text: TextSpan(
-            text: 'Navis',
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0)));
-
-    return Scaffold(
-        appBar: AppBar(elevation: 8.0, title: title, actions: <Widget>[
-          IconButton(
-              icon: Icon(Icons.settings),
-              onPressed: () => Navigator.of(context).pushNamed('/Settings'))
-        ]),
-        body: _buildStack(),
-        bottomNavigationBar: Theme(
-            data: Theme.of(context).copyWith(canvasColor: _color),
-            child: BottomNavigationBar(
-                iconSize: 25.0,
-                items: _items,
-                currentIndex: _currentIndex,
-                onTap: (int index) {
-                  setState(() => _currentIndex = index);
-                })));
+    return CustomScaffold(
+      pageChilderen: pages,
+      childeren: _items,
+    );
   }
 }

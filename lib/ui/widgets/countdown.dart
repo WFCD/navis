@@ -1,28 +1,6 @@
 import 'dart:async';
 
-class CounterStream extends Stream<Duration> {
-  final Stream<Duration> _stream;
-
-  CounterStream(Duration initialValue)
-      : this._stream = createStream(initialValue);
-
-  @override
-  StreamSubscription<Duration> listen(
-    void onData(Duration event), {
-    Function onError,
-    void onDone(),
-    bool cancelOnError,
-  }) =>
-      _stream.listen(onData,
-          onError: onError, onDone: onDone, cancelOnError: cancelOnError);
-
-  static Stream<Duration> createStream(Duration initialValue) {
-    var countdown = CountDown(initialValue);
-    return countdown.stream.asBroadcastStream();
-  }
-}
-
-class CountDown {
+class Counter {
   /// reference point for start and resume
 
   DateTime _begin;
@@ -39,7 +17,7 @@ class CountDown {
 
   /// once you instantiate the CountDown you need to register to receive information
 
-  CountDown(Duration duration,
+  Counter(Duration duration,
       {Duration refresh = const Duration(milliseconds: 10),
       int everyTick = 1}) {
     _refresh = refresh;
@@ -48,14 +26,11 @@ class CountDown {
 
     this._duration = duration;
 
-    _controller = StreamController<Duration>(
-        onListen: _onListen,
-        onPause: _onPause,
-        onResume: _onResume,
-        onCancel: _onCancel);
+    _controller = StreamController<Duration>.broadcast(
+        onListen: _onListen, onCancel: _onCancel);
   }
 
-  Stream<Duration> get stream => _controller.stream;
+  Stream<Duration> get stream => _controller.stream.asBroadcastStream();
 
   /// _onListen
 

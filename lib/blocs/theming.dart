@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'base.dart';
+import 'provider.dart';
 
 class ThemeBloc implements Base {
   final Stream<ThemeData> themeDataStream;

@@ -1,122 +1,43 @@
 import 'dart:async';
-
-import 'package:intl/intl.dart';
-import 'package:navis/models/export.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:navis/utils/factionutils.dart';
+import 'package:navis/utils/stateutils.dart';
+import 'package:navis/models/export.dart';
 
-import '../network/network.dart';
-import 'base.dart';
+import '../APIs/worldstate.dart';
+import 'provider.dart';
 
 class WorldstateBloc implements Base {
-  final Sink<WorldState> currentState;
+  final Sink<WorldState> updatedState;
   final Stream<WorldState> worldstate;
 
-  static WorldState _worldstate;
-  final DateFormat format = DateFormat.jms().add_yMd();
+  static WorldState initworldstate;
 
   factory WorldstateBloc() {
-    final state = Network();
-    final currentState = BehaviorSubject<WorldState>(); // ignore: close_sinks
-    final worldstate = currentState.distinct();
+    final state = WorldstateAPI();
+    final updatedState = BehaviorSubject<WorldState>(); // ignore: close_sinks
+    final worldstate = updatedState.distinct();
 
-    state.updateState().then((state) => currentState.add(state));
-    worldstate.listen((state) => _worldstate = state);
-    return WorldstateBloc._(currentState, worldstate);
+    state.updateState().then((state) => _initLogic(state, updatedState));
+    return WorldstateBloc._(updatedState, worldstate);
   }
 
-  WorldstateBloc._(this.currentState, this.worldstate);
+  WorldstateBloc._(this.updatedState, this.worldstate);
 
-  WorldState get lastState => _worldstate;
+  Stateutils get stateUtils => Stateutils(worldstate: initworldstate);
+  Factionutils get factionUtils => Factionutils();
 
-  //final Duration _late = Duration(minutes: 1);
-
-  // I have no idea what I'm doing anymore
-  static int get invasions => _worldstate.invasions.length;
-
-  Duration get bountyTime {
-    try {
-      String expiry = _worldstate.syndicates.first.expiry;
-      return DateTime.parse(expiry).difference(DateTime.now());
-    } catch (err) {
-      return Duration(minutes: 150);
-    }
+  Future<void> update() async {
+    final state = WorldstateAPI();
+    updatedState.add(await state.updateState());
+    initworldstate = await state.updateState();
   }
 
-  Duration get cetusCycleTime {
-    try {
-      Duration currentTime = _durations(_worldstate.cetus.expiry);
-      return currentTime;
-    } catch (err) {
-      if (_worldstate.cetus.isDay) return Duration(minutes: 100);
-
-      return Duration(minutes: 50);
-    }
-  }
-
-  Duration get earthCycleTime {
-    Duration currentTime = _durations(_worldstate.earth.expiry);
-    DateTime expiry = DateTime.parse(_worldstate.earth.expiry);
-
-    if (DateTime.now().isAfter(expiry)) return Duration(minutes: 240);
-
-    return currentTime;
-  }
-
-  Duration get vallisCycleTime {
-    Duration currentTime = _durations(_worldstate.vallis.expiry);
-    DateTime expiry = DateTime.parse(_worldstate.vallis.expiry);
-
-    if (DateTime.now().isAfter(expiry)) {
-      if (_worldstate.vallis.isWarm) return Duration(minutes: 20);
-
-      return Duration(minutes: 4);
-    }
-
-    return currentTime;
-  }
-
-  String get cetusExpiry => _expirations(_worldstate.cetus.expiry);
-
-  String get earthExpiry => _expirations(_worldstate.earth.expiry);
-
-  String get vallisExpiry => _expirations(_worldstate.vallis.expiry);
-
-  String get voidTraderArrival => _expirations(_worldstate.trader.activation);
-
-  String get voidTraderDeparture => _expirations(_worldstate.trader.expiry);
-
-  Future<Null> update() async {
-    final state = Network();
-    WorldState seed;
-
-    try {
-      seed = await state.updateState();
-      return currentState.add(seed);
-    } catch (err) {
-      //throw Exception('No connection');
-    }
-  }
-
-  _expirations(String expiry) {
-    try {
-      return format.format(DateTime.parse(expiry));
-    } catch (err) {
-      return 'Fetching Date';
-    }
-  }
-
-  _durations(String expiry) {
-    Duration converted;
-
-    try {
-      converted = DateTime.parse(expiry).difference(DateTime.now());
-    } catch (err) {
-      converted = Duration(minutes: 3) - Duration(minutes: 4);
-    }
-
-    return converted;
+  static _initLogic(WorldState state, sink) {
+    initworldstate = state;
+    sink.add(state);
   }
 
   @override
-  void dispose() => currentState.close();
+  void dispose() => updatedState.close();
 }

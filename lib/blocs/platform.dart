@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:rxdart/rxdart.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'base.dart';
+import 'provider.dart';
 
 class Platforms implements Base {
   static String _default = 'pc';

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
-import 'package:navis/resources/factions.dart';
+import 'package:navis/utils/factionutils.dart';
 
 class InvasionBar extends StatelessWidget {
+  final factionutils = Factionutils();
+
   final String attackingFaction, defendingFaction;
   final double progress;
   final double width;
@@ -41,16 +43,16 @@ class InvasionBar extends StatelessWidget {
                           painter: _InvasionBar(
                               progress: progress,
                               progressColor:
-                                  Factions.factionColor(attackingFaction),
+                                  factionutils.factionColor(attackingFaction),
                               backgroundColor:
-                                  Factions.factionColor(defendingFaction),
+                                  factionutils.factionColor(defendingFaction),
                               lineWidth: lineHeight),
                           child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: <Widget>[
-                                Factions.factionIcon(attackingFaction,
+                                factionutils.factionIcon(attackingFaction,
                                     size: 15, hasColor: false),
-                                Factions.factionIcon(defendingFaction,
+                                factionutils.factionIcon(defendingFaction,
                                     size: 15, hasColor: false),
                               ]))))
             ]));

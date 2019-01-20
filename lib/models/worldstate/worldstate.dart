@@ -2,6 +2,7 @@ import 'package:codable/codable.dart';
 import 'package:navis/models/export.dart';
 
 class WorldState extends Coding {
+  String timestamp;
   Cetus cetus;
   Earth earth;
   Vallis vallis;
@@ -19,6 +20,7 @@ class WorldState extends Coding {
   void decode(KeyedArchive object) {
     super.decode(object);
 
+    timestamp = object.decode('timestamp');
     cetus = object.decodeObject('cetusCycle', () => Cetus());
     earth = object.decodeObject('earthCycle', () => Earth());
     vallis = object.decodeObject('vallisCycle', () => Vallis());
@@ -36,6 +38,7 @@ class WorldState extends Coding {
 
   @override
   void encode(KeyedArchive object) {
+    object.encode('timestamp', timestamp);
     object.encodeObject('cetusCycle', cetus);
     object.encodeObject('earthCycle', earth);
     object.encodeObject('vallisCycle', vallis);

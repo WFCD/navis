@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'base.dart';
+abstract class Base {
+  void dispose();
+}
 
 class BlocProvider<T extends Base> extends StatefulWidget {
   BlocProvider({

@@ -5,6 +5,8 @@ class Cetus extends Coding {
   String timeLeft;
   String expiry;
 
+  Duration get timer => DateTime.parse(expiry).difference(DateTime.now());
+
   @override
   void decode(KeyedArchive object) {
     super.decode(object);

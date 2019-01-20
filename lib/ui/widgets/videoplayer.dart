@@ -19,7 +19,7 @@ class _VideoPlayerState extends State<VideoPlayer>
   @override
   void initState() {
     super.initState();
-    _controller = VideoPlayerController.network('http:${widget.url}');
+    _controller = VideoPlayerController.network(widget.url);
   }
 
   @override
@@ -40,7 +40,7 @@ class _VideoPlayerState extends State<VideoPlayer>
 Widget _buildPlayer(
     VideoPlayerController controller, String title, BuildContext context) {
   return Padding(
-      padding: EdgeInsets.all(20),
+      padding: EdgeInsets.zero,
       child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[

@@ -5,6 +5,9 @@ class Alerts extends Coding {
   bool expired;
   _Mission mission;
 
+  Duration get timer =>
+      DateTime.parse(expiry).toLocal().difference(DateTime.now());
+
   @override
   void decode(KeyedArchive object) {
     super.decode(object);
