@@ -25,9 +25,7 @@ class SculptureMissions extends StatelessWidget {
                 subtitle: Text(snapshot.data.sortie.faction),
                 trailing: Container(
                     padding: EdgeInsets.all(4.0),
-                    child: Timer(
-                        duration: DateTime.parse(snapshot.data.sortie.expiry)
-                            .difference(DateTime.now()))),
+                    child: Timer(expiry: snapshot.data.sortie.expiry)),
               );
 
               List<Widget> missions = snapshot.data.sortie.variants
@@ -43,20 +41,21 @@ class SculptureMissions extends StatelessWidget {
 }
 
 Widget _buildMissions(Variants variants, BuildContext context) {
+  final info = Theme.of(context).textTheme.subhead;
+  final description =
+      Theme.of(context).textTheme.caption.copyWith(fontSize: 13);
+
   return Padding(
       padding: EdgeInsets.only(bottom: 4.0),
       child: Container(
         margin: EdgeInsets.only(bottom: 4.0, right: 4.0, left: 4.0),
         child: Column(children: <Widget>[
           Row(children: <Widget>[
-            Text('${variants.missionType} - ${variants.node}',
-                style: TextStyle(fontSize: 15.0))
+            Text('${variants.missionType} - ${variants.node}', style: info)
           ]),
           Row(children: <Widget>[
             Expanded(
-                child: Text(variants.modifierDescription,
-                    style: TextStyle(
-                        color: Theme.of(context).textTheme.caption.color)))
+                child: Text(variants.modifierDescription, style: description))
           ]),
         ]),
       ));

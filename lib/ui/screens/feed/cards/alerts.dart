@@ -26,35 +26,28 @@ class AlertTile extends StatelessWidget {
     final padding = SizedBox(height: 8);
 
     return Tiles(
+        title: 'Alerts',
         child: Column(children: <Widget>[
-      padding,
-      Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[Text('Alerts', style: TextStyle(fontSize: 19.0))]),
-      Divider(
-        color: Theme.of(context).accentColor,
-      ),
-      StreamBuilder(
-          initialData: WorldstateBloc.initworldstate,
-          stream: alert.worldstate,
-          builder: (BuildContext context, AsyncSnapshot<WorldState> snapshot) {
-            List<Widget> allAlerts = snapshot.data.alerts
-                .map((alert) => _buildAlerts(alert, context))
-                .toList();
+          StreamBuilder(
+              initialData: WorldstateBloc.initworldstate,
+              stream: alert.worldstate,
+              builder:
+                  (BuildContext context, AsyncSnapshot<WorldState> snapshot) {
+                List<Widget> allAlerts = snapshot.data.alerts
+                    .map((alert) => _buildAlerts(alert, context))
+                    .toList();
 
-            addTacticalAlerts(allAlerts, snapshot.data.events, context);
+                addTacticalAlerts(allAlerts, snapshot.data.events, context);
 
-            return allAlerts.isEmpty
-                ? Center(child: Text('No alerts at this time'))
-                : Column(children: allAlerts);
-          })
-    ]));
+                return allAlerts.isEmpty
+                    ? Center(child: Text('No alerts at this time'))
+                    : Column(children: allAlerts);
+              })
+        ]));
   }
 }
 
 Widget _buildTacticalAlerts(Events alert, BuildContext context) {
-  Duration timeLeft = DateTime.parse(alert.expiry).difference(DateTime.now());
-
   return Padding(
     padding: const EdgeInsets.only(top: 4.0, bottom: 4.0),
     child: Container(
@@ -71,7 +64,7 @@ Widget _buildTacticalAlerts(Events alert, BuildContext context) {
                       children: <Widget>[
                         Text(alert.description,
                             style: TextStyle(fontSize: 15.0)),
-                        Timer(duration: timeLeft),
+                        Timer(expiry: alert.expiry),
                       ]),
                   Padding(
                     padding: const EdgeInsets.only(top: 8.0),
@@ -109,7 +102,8 @@ Widget _buildAlerts(Alerts alert, BuildContext context) {
                       child: Row(children: <Widget>[
                     _specialMission(alert.mission.nightmare,
                         alert.mission.archwingRequired),
-                    Text(alert.mission.node, style: TextStyle(fontSize: 15.0))
+                    Text(alert.mission.node,
+                        style: Theme.of(context).textTheme.subhead)
                   ])),
                   alert.mission.reward.itemString.isEmpty
                       ? Container(
@@ -124,15 +118,17 @@ Widget _buildAlerts(Alerts alert, BuildContext context) {
                           )),
                 ]),
             Padding(
-              padding: const EdgeInsets.only(top: 8.0),
+              padding: const EdgeInsets.only(top: 4),
               child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     Text(
                         '${alert.mission.type} (${alert.mission.faction}) | Level: ${alert.mission.minEnemyLevel} - ${alert.mission.maxEnemyLevel} | ${alert.mission.reward.credits}cr',
-                        style: TextStyle(
-                            color: Theme.of(context).textTheme.caption.color)),
-                    Timer(duration: alert.timer)
+                        style: Theme.of(context)
+                            .textTheme
+                            .caption
+                            .copyWith(fontSize: 13)),
+                    Timer(expiry: alert.expiry)
                   ]),
             ),
           ]),

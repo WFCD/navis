@@ -3,7 +3,8 @@ import 'package:codable/codable.dart';
 import 'syndicates.dart';
 
 class Events extends Coding {
-  String expiry, faction, description, victimNode, health, node, tooltip;
+  DateTime expiry;
+  String faction, description, victimNode, health, node, tooltip;
   List<_Rewards> rewards;
   List<Jobs> jobs;
 
@@ -11,7 +12,7 @@ class Events extends Coding {
   void decode(KeyedArchive object) {
     super.decode(object);
 
-    expiry = object.decode('expiry');
+    expiry = DateTime.parse(object.decode('expiry'));
     faction = object.decode('faction');
     description = object.decode('description');
     victimNode = object.decode('victimNode');

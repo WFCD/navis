@@ -28,8 +28,12 @@ class BountyEvent extends StatelessWidget {
             child: Container(
                 margin: EdgeInsets.all(4.0),
                 padding: EdgeInsets.all(4.0),
+                alignment: Alignment.center,
                 child: Text(j.type,
-                    style: TextStyle(fontSize: 13, color: Colors.white)))),
+                    style: Theme.of(context)
+                        .textTheme
+                        .subhead
+                        .copyWith(fontSize: 13, color: Colors.white)))),
       );
     }).toList();
 
@@ -47,21 +51,29 @@ class BountyEvent extends StatelessWidget {
     return SizedBox(
         height: 125,
         child: Material(
+            color: Theme.of(context).canvasColor,
             child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-              Container(
-                  margin: EdgeInsets.only(bottom: 4, top: 4),
-                  child:
-                      Text(event.description, style: TextStyle(fontSize: 20))),
-              Container(
-                  margin: EdgeInsets.only(bottom: 4),
-                  child: Text(event.tooltip)),
-              Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[victimNode, SizedBox(width: 4), progress]),
-              SizedBox(height: 8),
-              Row(mainAxisAlignment: MainAxisAlignment.center, children: jobs)
-            ])));
+                  Container(
+                      margin: EdgeInsets.only(bottom: 4, top: 4),
+                      child: Text(event.description,
+                          style: Theme.of(context).textTheme.title)),
+                  Container(
+                      margin: EdgeInsets.only(bottom: 4),
+                      child: Text(event.tooltip,
+                          style: Theme.of(context).textTheme.subtitle)),
+                  Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        victimNode,
+                        SizedBox(width: 4),
+                        progress
+                      ]),
+                  SizedBox(height: 8),
+                  Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: jobs)
+                ])));
   }
 }

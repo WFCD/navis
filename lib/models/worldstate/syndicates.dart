@@ -2,7 +2,8 @@ import 'package:codable/cast.dart' as cast;
 import 'package:codable/codable.dart';
 
 class Syndicates extends Coding {
-  String syndicate, expiry, activation;
+  String syndicate, activation;
+  DateTime expiry;
   bool active;
   List<Jobs> jobs;
 
@@ -12,9 +13,14 @@ class Syndicates extends Coding {
 
     syndicate = object.decode('syndicate');
     activation = object.decode('activation');
-    expiry = object.decode('expiry');
+
     active = object.decode('active');
     jobs = object.decodeObjects('jobs', () => Jobs());
+
+    if (object.decode('expiry') == null)
+      expiry = DateTime.now().add(Duration(minutes: 120));
+    else
+      expiry = DateTime.parse(object.decode('expiry')).toLocal();
   }
 
   @override

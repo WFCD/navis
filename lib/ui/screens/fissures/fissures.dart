@@ -42,7 +42,6 @@ class _BuildFissures extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final utils = BlocProvider.of<WorldstateBloc>(context).stateUtils;
     final factionUtils = BlocProvider.of<WorldstateBloc>(context).factionUtils;
 
     return Tiles(
@@ -54,7 +53,7 @@ class _BuildFissures extends StatelessWidget {
           style: TextStyle(fontSize: 15.0),
         ),
         subtitle: Text('Missions type: ${fissure.missionType}'),
-        trailing: Timer(duration: utils.durationFormater(fissure.expiry)),
+        trailing: Timer(expiry: fissure.expiry),
       ),
     );
   }

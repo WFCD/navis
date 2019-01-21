@@ -1,16 +1,15 @@
 import 'package:codable/codable.dart';
 
 class Sortie extends Coding {
-  String expiry;
+  DateTime expiry;
   List<Variants> variants;
-  String boss;
-  String faction;
+  String boss, faction;
 
   @override
   void decode(KeyedArchive object) {
     super.decode(object);
 
-    expiry = object.decode('expiry');
+    expiry = DateTime.parse(object.decode('expiry'));
     variants = object.decodeObjects('variants', () => Variants());
     boss = object.decode('boss');
     faction = object.decode('faction');

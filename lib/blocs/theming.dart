@@ -64,8 +64,8 @@ class ThemeBloc implements Base {
         brightness: Brightness.dark,
         primaryColor: Color.fromRGBO(26, 80, 144, .9),
         accentColor: Color.fromRGBO(26, 80, 144, .9),
-        cardColor: Color.fromRGBO(187, 187, 197, 0.2),
-        scaffoldBackgroundColor: Color.fromRGBO(34, 34, 34, .9),
+        cardColor: Color(0xFF2C2C2C),
+        scaffoldBackgroundColor: Color(0xFF212121),
         splashColor: Color.fromRGBO(26, 80, 144, .9));
   }
 

@@ -119,7 +119,8 @@ class _BuildInvasions extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.only(top: 10.0),
       child: Column(children: <Widget>[
-        Text(invasion.node, style: TextStyle(fontSize: 15.0)),
+        Text(invasion.node,
+            style: Theme.of(context).textTheme.subhead.copyWith(fontSize: 15)),
         Text('${invasion.desc} (${invasion.eta})',
             style: TextStyle(color: Theme.of(context).textTheme.caption.color)),
         Padding(

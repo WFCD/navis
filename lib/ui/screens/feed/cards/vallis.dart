@@ -5,7 +5,7 @@ import 'package:navis/models/export.dart';
 
 import 'package:navis/ui/widgets/cards.dart';
 import 'package:navis/ui/widgets/static_box.dart';
-import 'package:navis/ui/widgets/countdown.dart';
+import 'package:navis/ui/widgets/timer.dart';
 
 class OrbVallis extends StatelessWidget {
   @override
@@ -13,28 +13,18 @@ class OrbVallis extends StatelessWidget {
     final state = BlocProvider.of<WorldstateBloc>(context);
     final utils = state.stateUtils;
 
-    final style = TextStyle(
-        fontSize: 15.0, color: Theme.of(context).textTheme.body1.color);
+    final style = Theme.of(context).textTheme.subhead;
 
     return Tiles(
+        title: 'Orb Vallis Cycle',
         child: StreamBuilder<WorldState>(
             initialData: WorldstateBloc.initworldstate,
             stream: state.worldstate,
             builder: (context, snapshot) {
               final vallis = snapshot.data.vallis;
               final padding = SizedBox(height: 8);
-              final counter = Counter(vallis.timer);
 
               return Column(children: <Widget>[
-                padding,
-                Text(
-                  'Orb Vallis Cycle',
-                  style: TextStyle(
-                      fontSize: 20.0,
-                      color: Theme.of(context).textTheme.body1.color),
-                ),
-                Divider(),
-                padding,
                 Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
@@ -54,32 +44,7 @@ class OrbVallis extends StatelessWidget {
                       Text(
                           'Time till Temperature ${vallis.isWarm ? 'Increases' : 'drops'} ',
                           style: style),
-                      Container(
-                        padding: EdgeInsets.all(4.0),
-                        decoration: BoxDecoration(
-                            color: vallis.isWarm
-                                ? Colors.red
-                                : Colors.blueAccent[400],
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(3.0))),
-                        child: StreamBuilder(
-                            initialData: Duration(seconds: 60),
-                            stream: counter.stream,
-                            builder: (BuildContext context,
-                                AsyncSnapshot<Duration> snapshot) {
-                              Duration data = snapshot.data;
-
-                              String minutes =
-                                  '${(data.inMinutes % 60).floor()}'
-                                      .padLeft(2, '0');
-                              String seconds =
-                                  '${(data.inSeconds % 60).floor()}'
-                                      .padLeft(2, '0');
-
-                              return Text('$minutes:$seconds',
-                                  style: TextStyle(color: Colors.white));
-                            }),
-                      )
+                      Timer(expiry: vallis.expiry),
                     ]),
                 padding,
                 Row(

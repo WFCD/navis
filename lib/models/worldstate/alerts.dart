@@ -1,19 +1,17 @@
 import 'package:codable/codable.dart';
 
 class Alerts extends Coding {
-  String activation, expiry, eta;
+  DateTime expiry;
+  String activation, eta;
   bool expired;
   _Mission mission;
-
-  Duration get timer =>
-      DateTime.parse(expiry).toLocal().difference(DateTime.now());
 
   @override
   void decode(KeyedArchive object) {
     super.decode(object);
 
     activation = object.decode('activation');
-    expiry = object.decode('expiry');
+    expiry = DateTime.parse(object.decode('expiry'));
     eta = object.decode('eta');
     expired = object.decode('expired');
     mission = object.decodeObject('mission', () => _Mission());

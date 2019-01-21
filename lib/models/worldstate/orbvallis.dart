@@ -1,16 +1,25 @@
 import 'package:codable/codable.dart';
 
 class Vallis extends Coding {
-  String expiry;
-  bool isWarm;
+  final currentTime = DateTime.now().millisecondsSinceEpoch;
 
-  Duration get timer => DateTime.parse(expiry).difference(DateTime.now());
+  DateTime expiry;
+  bool isWarm;
 
   @override
   void decode(KeyedArchive object) {
     super.decode(object);
-    expiry = object.decode('expiry');
     isWarm = object.decode('isWarm');
+    expiry = object.decode('expiry');
+
+    if (currentTime > expiry.millisecondsSinceEpoch) {
+      isWarm = !isWarm;
+      if (isWarm) {
+        expiry = expiry.add(Duration(seconds: 400));
+      } else {
+        expiry = expiry.add(Duration(seconds: 1200));
+      }
+    }
   }
 
   @override

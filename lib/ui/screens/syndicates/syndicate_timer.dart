@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:navis/ui/widgets/timer.dart';
 
 class SyndicateTimer extends StatelessWidget {
-  final Duration time;
+  final DateTime time;
 
   SyndicateTimer({this.time});
 
@@ -19,7 +19,7 @@ class SyndicateTimer extends StatelessWidget {
                   style: TextStyle(
                       fontSize: 20.0,
                       color: Theme.of(context).textTheme.body1.color)),
-              Timer(duration: time, size: 17.0)
+              Timer(expiry: time, size: 17.0)
             ]),
       ),
     );

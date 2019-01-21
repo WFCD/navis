@@ -29,10 +29,10 @@ class CetusCycle extends StatelessWidget {
     final state = BlocProvider.of<WorldstateBloc>(context);
     final utils = state.stateUtils;
 
-    final style = TextStyle(
-        fontSize: 15.0, color: Theme.of(context).textTheme.body1.color);
+    final style = Theme.of(context).textTheme.subhead;
 
     return Tiles(
+        title: _cycle(cycle),
         child: StreamBuilder(
             initialData: WorldstateBloc.initworldstate,
             stream: state.worldstate,
@@ -47,17 +47,6 @@ class CetusCycle extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
-                  padding,
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Text(_cycle(cycle),
-                          style: TextStyle(
-                              fontSize: 20.0,
-                              color: Theme.of(context).textTheme.body1.color))
-                    ],
-                  ),
-                  Divider(color: Theme.of(context).accentColor),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
@@ -85,8 +74,9 @@ class CetusCycle extends StatelessWidget {
                           ? Text('Time until Night', style: style)
                           : Text('Time until Day', style: style),
                       Timer(
-                          duration:
-                              cycle == Cycle.cetus ? cetus.timer : earth.timer)
+                          expiry: cycle == Cycle.cetus
+                              ? cetus.expiry
+                              : earth.expiry)
                     ],
                   ),
                   padding,

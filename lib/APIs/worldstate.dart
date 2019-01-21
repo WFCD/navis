@@ -14,7 +14,7 @@ class WorldstateAPI {
     _platform = prefs.getString('Platform') ?? 'pc';
     http.Response response = await http.get(_baseRoute + _platform);
 
-    if (response.statusCode != 200) throw Exception();
+    if (response.statusCode != 200) throw Exception('error loading state');
 
     final data = json.decode(response.body);
     final key = KeyedArchive.unarchive(data);
@@ -40,7 +40,8 @@ class WorldstateAPI {
   }
 
   Future<void> _cleanupState(WorldState state) async {
-    //state.alerts.removeWhere((a) => a.expired == true);
+    state.alerts.removeWhere(
+        (a) => a.expiry.difference(DateTime.now()) <= Duration.zero);
 
     state.news.retainWhere((art) => art.translations.en != null);
     state.news.sort((a, b) => b.date.compareTo(a.date));
@@ -53,7 +54,8 @@ class WorldstateAPI {
 
     state.syndicates.sort((a, b) => a.syndicate.compareTo(b.syndicate));
 
-    state.voidFissures.removeWhere((v) => v.active != true);
+    state.voidFissures.removeWhere(
+        (v) => v.expiry.difference(DateTime.now()) <= Duration.zero);
     state.voidFissures.sort((a, b) => a.tierNum.compareTo(b.tierNum));
   }
 }

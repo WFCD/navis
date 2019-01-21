@@ -1,7 +1,8 @@
 import 'package:codable/codable.dart';
 
 class VoidTrader extends Coding {
-  String activation, expiry, character, location;
+  String character, location;
+  DateTime activation, expiry;
   bool active;
 
   List<Inventory> inventory;
@@ -10,8 +11,8 @@ class VoidTrader extends Coding {
   void decode(KeyedArchive object) {
     super.decode(object);
 
-    activation = object.decode('activation');
-    expiry = object.decode('expiry');
+    activation = DateTime.parse(object.decode('activation'));
+    expiry = DateTime.parse(object.decode('expiry')).toLocal();
     character = object.decode('character');
     location = object.decode('location');
     active = object.decode('active');

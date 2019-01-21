@@ -1,11 +1,10 @@
 import 'package:codable/codable.dart';
 
 class Cetus extends Coding {
+  final currentTime = DateTime.now().millisecondsSinceEpoch;
   bool isDay;
   String timeLeft;
-  String expiry;
-
-  Duration get timer => DateTime.parse(expiry).difference(DateTime.now());
+  DateTime expiry;
 
   @override
   void decode(KeyedArchive object) {
@@ -13,7 +12,16 @@ class Cetus extends Coding {
 
     isDay = object.decode('isDay');
     timeLeft = object.decode('timeLeft');
-    expiry = object.decode('expiry');
+    expiry = DateTime.parse(object.decode('expiry'));
+
+    if (currentTime > expiry.millisecondsSinceEpoch) {
+      isDay = !isDay;
+      if (isDay) {
+        expiry = expiry.add(Duration(minutes: 000));
+      } else {
+        expiry = expiry.add(Duration(minutes: 50));
+      }
+    }
   }
 
   @override

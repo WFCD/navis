@@ -24,15 +24,32 @@ class Syndicate extends StatelessWidget {
 
     return Tiles(
       color: ostron ? ostronsColor : solarisColor,
-      child: ListTile(
-          contentPadding: EdgeInsets.zero,
-          leading: factionutils.factionIcon(syndicate.syndicate, size: 60),
-          title: Text(syndicate.syndicate, style: style),
-          subtitle: Text('Tap to see bounties'),
-          trailing: IconButton(
-              icon: Icon(Icons.map, color: Colors.white),
-              onPressed: () => _navigateToMap(context, syndicate.syndicate)),
-          onTap: () => _navigateToBounties(context, syndicate, events)),
+      child: InkWell(
+          onTap: () => _navigateToBounties(context, syndicate, events),
+          child: Row(mainAxisSize: MainAxisSize.max, children: <Widget>[
+            Container(
+                child: factionutils.factionIcon(syndicate.syndicate, size: 60)),
+            Expanded(
+                child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                  Text(syndicate.syndicate,
+                      style: Theme.of(context)
+                          .textTheme
+                          .subhead
+                          .copyWith(color: Colors.white)),
+                  Text('Tap to see bounties',
+                      style: Theme.of(context)
+                          .textTheme
+                          .subtitle
+                          .copyWith(color: Colors.white70))
+                ])),
+            IconButton(
+                iconSize: 30,
+                icon: Icon(Icons.map, color: Colors.white),
+                onPressed: () => _navigateToMap(context, syndicate.syndicate))
+          ])),
     );
   }
 }
