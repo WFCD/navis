@@ -31,21 +31,21 @@ class FeedState extends State<Feed> {
   Widget build(BuildContext context) {
     final state = BlocProvider.of<WorldstateBloc>(context);
 
-    List<Widget> childeren = [
-      CetusCycle(cycle: Cycle.cetus),
-      OrbVallis(),
-      CetusCycle(cycle: Cycle.earth),
-      AlertTile(),
-      InvasionCard(),
-      Trader(),
-      SculptureMissions()
-    ];
-
-    return StreamBuilder(
+    return StreamBuilder<WorldState>(
         stream: state.worldstate,
-        builder: (BuildContext context, AsyncSnapshot<WorldState> snapshot) {
+        builder: (context, snapshot) {
           if (!snapshot.hasData)
             return Center(child: CircularProgressIndicator());
+
+          List<Widget> childeren = [
+            CetusCycle(cycle: Cycle.cetus),
+            OrbVallis(),
+            CetusCycle(cycle: Cycle.earth),
+            AlertTile(),
+            InvasionCard(),
+            Trader(),
+            SculptureMissions()
+          ];
 
           _addEvents(snapshot.data.events, childeren);
           _addAcolytes(snapshot.data.persistentEnemies, childeren);

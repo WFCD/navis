@@ -4,6 +4,7 @@ import 'package:navis/blocs/worldstate_bloc.dart';
 import 'package:navis/models/export.dart';
 
 import 'package:navis/ui/widgets/cards.dart';
+import 'package:navis/ui/widgets/static_box.dart';
 import 'package:navis/ui/widgets/expanded.dart';
 import 'package:navis/ui/widgets/invasionsBar.dart';
 
@@ -35,9 +36,9 @@ class _InvasionCard extends State<InvasionCard>
     _showMore = !_showMore;
     try {
       if (_showMore) {
-        _controller.forward().orCancel;
+        await _controller.forward().orCancel;
       } else {
-        _controller.reverse().orCancel;
+        await _controller.reverse().orCancel;
       }
     } on TickerCanceled {
       // The animation was canceled, maybe it was disposed mid animation, hell if I know
@@ -130,29 +131,17 @@ class _BuildInvasions extends StatelessWidget {
               children: <Widget>[
                 invasion.attackerReward.itemString.isEmpty
                     ? Container(height: 0.0, width: 0.0)
-                    : Padding(
+                    : StaticBox.text(
+                        color: factionutils.factionColor(attacking),
                         padding: const EdgeInsets.only(right: 4.0, top: 8.0),
-                        child: Container(
-                            padding: EdgeInsets.all(3.0),
-                            decoration: BoxDecoration(
-                                color: factionutils.factionColor(attacking),
-                                borderRadius: BorderRadius.circular(3.0)),
-                            child: Text(
-                              invasion.attackerReward.itemString,
-                              style: Theme.of(context).textTheme.body2,
-                            )),
+                        text: invasion.attackerReward.itemString,
                       ),
                 invasion.defenderReward.itemString.isEmpty
                     ? Container(height: 0.0, width: 0.0)
-                    : Padding(
+                    : StaticBox.text(
+                        color: factionutils.factionColor(defending),
                         padding: const EdgeInsets.only(left: 4.0, top: 8.0),
-                        child: Container(
-                            padding: EdgeInsets.all(3.0),
-                            decoration: BoxDecoration(
-                                color: factionutils.factionColor(defending),
-                                borderRadius: BorderRadius.circular(3.0)),
-                            child: Text(invasion.defenderReward.itemString,
-                                style: Theme.of(context).textTheme.body2)),
+                        text: invasion.defenderReward.itemString,
                       )
               ]),
         ),

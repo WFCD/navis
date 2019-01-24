@@ -45,18 +45,13 @@ Widget _buildMissions(Variants variants, BuildContext context) {
   final description =
       Theme.of(context).textTheme.caption.copyWith(fontSize: 13);
 
-  return Padding(
-      padding: EdgeInsets.only(bottom: 4.0),
-      child: Container(
-        margin: EdgeInsets.only(bottom: 4.0, right: 4.0, left: 4.0),
-        child: Column(children: <Widget>[
-          Row(children: <Widget>[
-            Text('${variants.missionType} - ${variants.node}', style: info)
-          ]),
-          Row(children: <Widget>[
-            Expanded(
-                child: Text(variants.modifierDescription, style: description))
-          ]),
-        ]),
-      ));
+  return Container(
+    padding: EdgeInsets.only(bottom: 4.0),
+    margin: EdgeInsets.only(bottom: 4.0, right: 4.0, left: 4.0),
+    child:
+        Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
+      Text('${variants.missionType} - ${variants.node}', style: info),
+      Text(variants.modifierDescription, style: description),
+    ]),
+  );
 }
