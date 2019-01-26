@@ -1,60 +1,58 @@
 import 'package:flutter/material.dart';
-import 'package:navis/blocs/worldstate_bloc.dart';
+
 import 'package:navis/blocs/provider.dart';
+import 'package:navis/blocs/worldstate_bloc.dart';
 
 import 'static_box.dart';
 
-//enum TimerLength { days, hours }
-
-class Timer extends StatefulWidget {
+class CountdownBox extends StatefulWidget {
   final DateTime expiry;
   final double size;
 
-  Timer({this.expiry, this.size});
+  CountdownBox({this.expiry, this.size});
 
   @override
-  TimerState createState() => TimerState();
+  CountdownBoxState createState() => CountdownBoxState();
 }
 
-class TimerState extends State<Timer> with SingleTickerProviderStateMixin {
-  int _currentTime;
+class CountdownBoxState extends State<CountdownBox>
+    with SingleTickerProviderStateMixin {
   AnimationController _controller;
-  Animation<int> _animation;
   StepTween _tween;
-
-  _listener(AnimationStatus status) {
-    if (_tween.end == _currentTime)
-      BlocProvider.of<WorldstateBloc>(context).update();
-  }
+  Animation<int> _animation;
 
   @override
   void initState() {
     super.initState();
-    _currentTime = DateTime.now().millisecondsSinceEpoch;
 
     _controller = AnimationController(
-        vsync: this,
-        duration: Duration(
-            seconds: (widget.expiry.millisecondsSinceEpoch - _currentTime)));
+        vsync: this, duration: widget.expiry.difference(DateTime.now()));
 
     _tween = StepTween(
-        begin: widget.expiry.millisecondsSinceEpoch, end: _currentTime);
+        begin: widget.expiry.millisecondsSinceEpoch,
+        end: DateTime.now().millisecondsSinceEpoch);
 
-    _animation = _tween.animate(_controller)..addStatusListener(_listener);
+    _animation = _tween.animate(_controller);
 
     _controller.forward(from: 0.0);
+
+    _animation.addStatusListener((status) => status == AnimationStatus.completed
+        ? BlocProvider.of<WorldstateBloc>(context).update()
+        : null);
   }
 
   @override
-  void didUpdateWidget(Timer oldWidget) {
+  void didUpdateWidget(CountdownBox oldWidget) {
     if (oldWidget.expiry != widget.expiry) {
-      _currentTime = DateTime.now().millisecondsSinceEpoch;
-
       _controller.duration = Duration(
-          seconds: (widget.expiry.millisecondsSinceEpoch - _currentTime));
+          seconds: (widget.expiry.millisecondsSinceEpoch -
+              DateTime.now().millisecondsSinceEpoch));
 
-      _tween.begin = widget.expiry.millisecondsSinceEpoch;
-      _tween.end = _currentTime;
+      _animation = StepTween(
+              begin: widget.expiry.millisecondsSinceEpoch,
+              end: DateTime.now().millisecondsSinceEpoch)
+          .animate(_controller);
+
       _controller
         ..reset()
         ..forward(from: 0.0);
@@ -66,8 +64,6 @@ class TimerState extends State<Timer> with SingleTickerProviderStateMixin {
   @override
   void dispose() {
     _controller.dispose();
-    _animation.removeStatusListener(_listener);
-    _tween = null;
     super.dispose();
   }
 
