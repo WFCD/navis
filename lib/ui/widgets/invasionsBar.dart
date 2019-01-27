@@ -94,8 +94,6 @@ class _InvasionBar extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(_InvasionBar oldDelegate) {
-    if (oldDelegate.progress != this.progress) return true;
-    return false;
-  }
+  bool shouldRepaint(_InvasionBar oldDelegate) =>
+      oldDelegate.progress != this.progress;
 }

@@ -4,7 +4,7 @@ import 'package:navis/blocs/worldstate_bloc.dart';
 import 'package:navis/models/export.dart';
 
 import 'package:navis/ui/widgets/cards.dart';
-import 'package:navis/ui/widgets/timer.dart';
+import 'package:navis/ui/widgets/countdown.dart';
 import 'package:navis/ui/widgets/row_item.dart';
 import 'package:navis/ui/widgets/static_box.dart';
 import 'package:navis/ui/routes/trader_inventory.dart';
@@ -29,15 +29,13 @@ class _Trader extends State<Trader> {
           stream: state.worldstate,
           builder: (BuildContext context, AsyncSnapshot<WorldState> snapshot) {
             final trader = snapshot.data.trader;
-            final style =
-                Theme.of(context).textTheme.subhead.copyWith(fontSize: 17);
 
             return Column(children: <Widget>[
               RowItem(
                   text: snapshot.data.trader.active
                       ? '${trader.character} leaves in'
                       : '${trader.character} arrives in',
-                  child: Timer(
+                  child: CountdownBox(
                       expiry:
                           trader.active ? trader.expiry : trader.activation)),
               trader.active

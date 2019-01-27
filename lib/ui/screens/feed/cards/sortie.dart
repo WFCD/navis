@@ -4,7 +4,7 @@ import 'package:navis/blocs/worldstate_bloc.dart';
 import 'package:navis/models/export.dart';
 
 import 'package:navis/ui/widgets/cards.dart';
-import 'package:navis/ui/widgets/timer.dart';
+import 'package:navis/ui/widgets/countdown.dart';
 
 class SculptureMissions extends StatelessWidget {
   @override
@@ -25,7 +25,7 @@ class SculptureMissions extends StatelessWidget {
                 subtitle: Text(snapshot.data.sortie.faction),
                 trailing: Container(
                     padding: EdgeInsets.all(4.0),
-                    child: Timer(expiry: snapshot.data.sortie.expiry)),
+                    child: CountdownBox(expiry: snapshot.data.sortie.expiry)),
               );
 
               List<Widget> missions = snapshot.data.sortie.variants

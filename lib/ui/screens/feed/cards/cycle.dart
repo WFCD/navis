@@ -4,7 +4,8 @@ import 'package:navis/blocs/provider.dart';
 import 'package:navis/blocs/worldstate_bloc.dart';
 import 'package:navis/models/export.dart';
 
-import 'package:navis/ui/widgets/timer.dart';
+import 'package:navis/ui/widgets/countdown.dart';
+import 'package:navis/ui/widgets/row_item.dart';
 import 'package:navis/ui/widgets/static_box.dart';
 import 'package:navis/ui/widgets/cards.dart';
 
@@ -29,8 +30,6 @@ class CetusCycle extends StatelessWidget {
     final state = BlocProvider.of<WorldstateBloc>(context);
     final utils = state.stateUtils;
 
-    final style = Theme.of(context).textTheme.subhead;
-
     return Tiles(
         title: _cycle(cycle),
         child: StreamBuilder(
@@ -38,62 +37,33 @@ class CetusCycle extends StatelessWidget {
             stream: state.worldstate,
             builder:
                 (BuildContext context, AsyncSnapshot<WorldState> snapshot) {
-              final earth = snapshot.data.earth;
-              final cetus = snapshot.data.cetus;
-              final dynamic orbit = cycle == Cycle.cetus ? cetus : earth;
-              final padding = SizedBox(height: 8);
+              final Earth earth = cycle == Cycle.cetus
+                  ? snapshot.data.cetus
+                  : snapshot.data.earth;
+              final padding = SizedBox(height: 4);
 
               return Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      Text('Currently it is', style: style),
-                      orbit.isDay == true
-                          ? RichText(
-                              text: TextSpan(
-                                  text: 'Day',
-                                  style: TextStyle(
-                                      color: Colors.yellow[700],
-                                      fontSize: 20.0,
-                                      fontWeight: FontWeight.bold)))
-                          : Text('Night',
-                              style: TextStyle(
-                                  color: Colors.blue,
-                                  fontSize: 20.0,
-                                  fontWeight: FontWeight.bold))
-                    ],
+                  RowItem.richText(
+                    title: 'Currently it is',
+                    richText: earth.isDay == true ? 'Day' : 'Night',
+                    color: earth.isDay ? Colors.yellow[700] : Colors.blue,
+                    size: 20.0,
                   ),
                   padding,
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      orbit.isDay == true
-                          ? Text('Time until Night', style: style)
-                          : Text('Time until Day', style: style),
-                      Timer(
-                          expiry: cycle == Cycle.cetus
-                              ? cetus.expiry
-                              : earth.expiry)
-                    ],
+                  RowItem(
+                    text: earth.isDay == true
+                        ? 'Time until Night'
+                        : 'Time until Day',
+                    child: CountdownBox(expiry: earth.expiry),
                   ),
                   padding,
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      orbit.isDay == true
-                          ? Text('Time at Night', style: style)
-                          : Text('Time at Day', style: style),
-                      StaticBox(
-                          color: Colors.blueAccent[400],
-                          child: Text(
-                              cycle == Cycle.cetus
-                                  ? '${utils.expiration(snapshot.data.cetus.expiry)}'
-                                  : '${utils.expiration(snapshot.data.cetus.expiry)}',
-                              style: TextStyle(color: Colors.white))),
-                    ],
+                  RowItem(
+                    text: earth.isDay == true ? 'Time at Night' : 'Time at Day',
+                    child: StaticBox.text(
+                      color: Colors.blueAccent[400],
+                      text: '${utils.expiration(snapshot.data.cetus.expiry)}',
+                    ),
                   ),
                   padding
                 ],

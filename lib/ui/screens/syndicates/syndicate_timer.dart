@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:navis/ui/widgets/timer.dart';
+import 'package:navis/ui/widgets/countdown.dart';
 
 class SyndicateTimer extends StatelessWidget {
   final DateTime time;
@@ -19,7 +19,7 @@ class SyndicateTimer extends StatelessWidget {
                   style: TextStyle(
                       fontSize: 20.0,
                       color: Theme.of(context).textTheme.body1.color)),
-              Timer(expiry: time, size: 17.0)
+              CountdownBox(expiry: time, size: 17.0)
             ]),
       ),
     );

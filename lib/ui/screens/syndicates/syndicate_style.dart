@@ -9,9 +9,8 @@ import 'package:navis/ui/routes/syndicates/syndicate_missions.dart';
 
 class Syndicate extends StatelessWidget {
   final Syndicates syndicate;
-  final List<Events> events;
 
-  Syndicate({this.syndicate, this.events});
+  Syndicate({this.syndicate});
 
   final style = TextStyle(color: Colors.white);
   final ostronsColor = Color.fromRGBO(183, 70, 36, 1.0);
@@ -25,7 +24,7 @@ class Syndicate extends StatelessWidget {
     return Tiles(
       color: ostron ? ostronsColor : solarisColor,
       child: InkWell(
-          onTap: () => _navigateToBounties(context, syndicate, events),
+          onTap: () => _navigateToBounties(context, syndicate),
           child: Row(mainAxisSize: MainAxisSize.max, children: <Widget>[
             Container(
                 child: factionutils.factionIcon(syndicate.syndicate, size: 60)),
@@ -59,13 +58,9 @@ void _navigateToMap(BuildContext context, String syndicate) {
       MaterialPageRoute(builder: (_) => Maps(location: _locaton(syndicate))));
 }
 
-void _navigateToBounties(
-    BuildContext context, Syndicates syn, List<Events> events) {
+void _navigateToBounties(BuildContext context, Syndicates syn) {
   Navigator.of(context).push(MaterialPageRoute(
-      builder: (_) => SyndicateJobs(
-            faction: _faction(syn.syndicate),
-            events: events,
-          )));
+      builder: (_) => SyndicateJobs(faction: _faction(syn.syndicate))));
 }
 
 _locaton(String syndicateName) {

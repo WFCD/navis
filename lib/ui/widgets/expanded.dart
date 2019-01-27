@@ -18,39 +18,41 @@ class ExpandedCardState extends State<ExpandedCard> {
 
   @override
   void initState() {
-    _updateLength();
-
     super.initState();
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
+    _updateLength();
   }
 
   @override
   void didUpdateWidget(ExpandedCard oldWidget) {
-    if (oldWidget.length != widget.length) _updateLength();
+    if (oldWidget.length != widget.length) {
+      _expand = null;
+      _updateLength();
+    }
+
     super.didUpdateWidget(oldWidget);
   }
 
+  @override
+  void dispose() {
+    _expand = null;
+    super.dispose();
+  }
+
   _updateLength() {
-    setState(() {
-      _expand = SequenceAnimationBuilder()
-          .addAnimatable(
-              animatable: Tween<double>(begin: 0, end: widget.length),
-              from: Duration(milliseconds: 0),
-              to: Duration(milliseconds: 125),
-              curve: Curves.easeOut,
-              tag: 'expand')
-          .addAnimatable(
-              animatable: Tween<double>(begin: 0, end: 1),
-              from: Duration(milliseconds: 125),
-              to: Duration(milliseconds: 225),
-              curve: Curves.easeOut,
-              tag: 'fade')
-          .animate(widget.controller);
-    });
+    _expand = SequenceAnimationBuilder()
+        .addAnimatable(
+            animatable: Tween<double>(begin: 0, end: widget.length),
+            from: Duration(milliseconds: 0),
+            to: Duration(milliseconds: 125),
+            curve: Curves.easeOut,
+            tag: 'expand')
+        .addAnimatable(
+            animatable: Tween<double>(begin: 0, end: 1),
+            from: Duration(milliseconds: 125),
+            to: Duration(milliseconds: 225),
+            curve: Curves.easeOut,
+            tag: 'fade')
+        .animate(widget.controller);
   }
 
   @override

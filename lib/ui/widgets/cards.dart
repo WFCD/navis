@@ -29,9 +29,10 @@ class Tiles extends StatelessWidget {
     if (title != null) children.insert(0, _buildTitle(context, title));
 
     return Card(
-      elevation: 6,
+      elevation: 2,
+      margin: EdgeInsets.all(6),
       color: color,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
       child: Container(
           margin: EdgeInsets.all(4),
           height: height,

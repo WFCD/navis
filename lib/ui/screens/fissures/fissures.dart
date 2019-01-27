@@ -4,7 +4,7 @@ import 'package:navis/blocs/worldstate_bloc.dart';
 import 'package:navis/models/export.dart';
 
 import 'package:navis/ui/widgets/cards.dart';
-import 'package:navis/ui/widgets/timer.dart';
+import 'package:navis/ui/widgets/countdown.dart';
 
 class Fissure extends StatefulWidget {
   Fissure({Key key}) : super(key: key);
@@ -53,7 +53,7 @@ class _BuildFissures extends StatelessWidget {
           style: TextStyle(fontSize: 15.0),
         ),
         subtitle: Text('Missions type: ${fissure.missionType}'),
-        trailing: Timer(expiry: fissure.expiry),
+        trailing: CountdownBox(expiry: fissure.expiry),
       ),
     );
   }

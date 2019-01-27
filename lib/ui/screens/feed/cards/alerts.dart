@@ -7,7 +7,7 @@ import 'package:navis/models/export.dart';
 import 'package:navis/ui/widgets/cards.dart';
 import 'package:navis/ui/widgets/row_item.dart';
 import 'package:navis/ui/widgets/static_box.dart';
-import 'package:navis/ui/widgets/timer.dart';
+import 'package:navis/ui/widgets/countdown.dart';
 
 class AlertTile extends StatelessWidget {
   @override
@@ -79,7 +79,7 @@ class _BuildAlerts extends StatelessWidget {
                 text:
                     '${alert.mission.type} (${alert.mission.faction}) | Level: ${alert.mission.minEnemyLevel} - ${alert.mission.maxEnemyLevel} | ${alert.mission.reward.credits}cr',
                 caption: true,
-                child: Timer(expiry: alert.expiry)),
+                child: CountdownBox(expiry: alert.expiry)),
           ]),
     );
   }

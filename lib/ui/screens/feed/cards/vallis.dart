@@ -6,7 +6,7 @@ import 'package:navis/models/export.dart';
 import 'package:navis/ui/widgets/cards.dart';
 import 'package:navis/ui/widgets/row_item.dart';
 import 'package:navis/ui/widgets/static_box.dart';
-import 'package:navis/ui/widgets/timer.dart';
+import 'package:navis/ui/widgets/countdown.dart';
 
 class OrbVallis extends StatelessWidget {
   @override
@@ -33,7 +33,7 @@ class OrbVallis extends StatelessWidget {
                 RowItem(
                   text:
                       'Time till Temperature ${snapshot.data.vallis.isWarm ? 'Increases' : 'drops'} ',
-                  child: Timer(expiry: snapshot.data.vallis.expiry),
+                  child: CountdownBox(expiry: snapshot.data.vallis.expiry),
                 ),
                 padding,
                 RowItem(

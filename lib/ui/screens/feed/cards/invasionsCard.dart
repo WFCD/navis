@@ -45,7 +45,7 @@ class _InvasionCard extends State<InvasionCard>
       // not even sure what I'm doing anymore
     }
 
-    setState(() => _showMore = _showMore);
+    if (mounted) setState(() => _showMore = _showMore);
   }
 
   @override
@@ -63,42 +63,40 @@ class _InvasionCard extends State<InvasionCard>
 
             return invasions.isEmpty
                 ? Center(child: Text('No Invasions at this time'))
-                : Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                        Container(
-                            child: Column(
-                                children: invasions
-                                    .take(2)
-                                    .map((i) => _BuildInvasions(invasion: i))
-                                    .toList())),
-                        ExpandedCard(
-                          controller: _controller,
-                          length: (108 * (length - 2)).toDouble(),
-                          child: Column(
-                              children: invasions
-                                  .skip(2)
-                                  .map((i) => _BuildInvasions(invasion: i))
-                                  .toList()),
-                        ),
-                        length < 3
-                            ? emptyBox
-                            : ButtonTheme.bar(
-                                child: ButtonBar(
-                                    alignment: MainAxisAlignment.center,
-                                    children: <Widget>[
-                                      FlatButton(
-                                          padding: EdgeInsets.all(8.0),
-                                          textColor: Colors.blue,
-                                          onPressed: () {
-                                            _showMoreInvasions();
-                                          },
-                                          child: _showMore
-                                              ? Text('See less')
-                                              : Text('See more'))
-                                    ]),
-                              )
-                      ]);
+                : Column(children: <Widget>[
+                    Container(
+                        child: Column(
+                            children: invasions
+                                .take(2)
+                                .map((i) => _BuildInvasions(invasion: i))
+                                .toList())),
+                    ExpandedCard(
+                      controller: _controller,
+                      length: (110 * (length - 2)).toDouble(),
+                      child: Column(
+                          children: invasions
+                              .skip(2)
+                              .map((i) => _BuildInvasions(invasion: i))
+                              .toList()),
+                    ),
+                    length < 3
+                        ? emptyBox
+                        : ButtonTheme.bar(
+                            child: ButtonBar(
+                                alignment: MainAxisAlignment.center,
+                                children: <Widget>[
+                                  FlatButton(
+                                      padding: EdgeInsets.all(8.0),
+                                      textColor: Colors.blue,
+                                      onPressed: () {
+                                        _showMoreInvasions();
+                                      },
+                                      child: _showMore
+                                          ? Text('See less')
+                                          : Text('See more'))
+                                ]),
+                          )
+                  ]);
           }),
     );
   }

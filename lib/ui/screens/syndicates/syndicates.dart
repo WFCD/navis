@@ -28,8 +28,7 @@ class SyndicatesList extends StatelessWidget {
                   : Column(
                       children: syndicates
                           .where((syn) => syn.active == true)
-                          .map((syn) => Syndicate(
-                              syndicate: syn, events: snapshot.data.events))
+                          .map((syn) => Syndicate(syndicate: syn))
                           .toList())
             ]),
           );
