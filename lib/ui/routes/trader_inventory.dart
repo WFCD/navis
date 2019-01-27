@@ -36,6 +36,7 @@ class VoidTraderInventoryState extends State<VoidTraderInventory> {
               header: Text('Inventory'),
               rowsPerPage: _rowsPerPage,
               onRowsPerPageChanged: (r) => setState(() => _rowsPerPage = r),
+              onSelectAll: (selected) {},
               columns: columns,
               source: _source,
             )
@@ -56,11 +57,14 @@ class InventoryDataSource extends DataTableSource {
 
     final product = inventory[index];
 
-    return DataRow.byIndex(index: index, cells: <DataCell>[
-      DataCell(Text(product.item)),
-      DataCell(Text('${product.ducats}')),
-      DataCell(Text('${product.credits}cr'))
-    ]);
+    return DataRow.byIndex(
+        index: index,
+        cells: <DataCell>[
+          DataCell(Text(product.item), onTap: () {}),
+          DataCell(Text('${product.ducats}'), onTap: () {}),
+          DataCell(Text('${product.credits}cr'), onTap: () {})
+        ],
+        onSelectChanged: null);
   }
 
   @override

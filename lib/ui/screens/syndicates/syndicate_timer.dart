@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:navis/ui/widgets/row_item.dart';
 import 'package:navis/ui/widgets/countdown.dart';
 
 class SyndicateTimer extends StatelessWidget {
@@ -12,15 +13,10 @@ class SyndicateTimer extends StatelessWidget {
       height: 50.0,
       child: Padding(
         padding: EdgeInsets.all(8.0),
-        child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Text('Bounties expire in',
-                  style: TextStyle(
-                      fontSize: 20.0,
-                      color: Theme.of(context).textTheme.body1.color)),
-              CountdownBox(expiry: time, size: 17.0)
-            ]),
+        child: RowItem(
+            text: 'Bounties expire in',
+            size: 20,
+            child: CountdownBox(expiry: time, size: 17.0)),
       ),
     );
   }
