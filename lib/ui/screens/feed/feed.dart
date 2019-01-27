@@ -31,34 +31,29 @@ class FeedState extends State<Feed> {
   Widget build(BuildContext context) {
     final state = BlocProvider.of<WorldstateBloc>(context);
 
-    return StreamBuilder<WorldState>(
-        stream: state.worldstate,
-        builder: (context, snapshot) {
-          if (!snapshot.hasData)
-            return Center(child: CircularProgressIndicator());
+    return RefreshIndicator(
+      onRefresh: () => state.update(),
+      child: StreamBuilder<WorldState>(
+          stream: state.worldstate,
+          builder: (context, snapshot) {
+            if (!snapshot.hasData)
+              return Center(child: CircularProgressIndicator());
 
-          List<Widget> childeren = [
-            CetusCycle(cycle: Cycle.cetus),
-            OrbVallis(),
-            CetusCycle(cycle: Cycle.earth),
-            AlertTile(),
-            InvasionCard(),
-            Trader(),
-            SculptureMissions()
-          ];
+            List<Widget> childeren = [
+              CetusCycle(cycle: Cycle.cetus),
+              OrbVallis(),
+              CetusCycle(cycle: Cycle.earth),
+              AlertTile(),
+              InvasionCard(),
+              Trader(),
+              SculptureMissions()
+            ];
 
-          _addEvents(snapshot.data.events, childeren);
-          _addAcolytes(snapshot.data.persistentEnemies, childeren);
+            _addEvents(snapshot.data.events, childeren);
+            _addAcolytes(snapshot.data.persistentEnemies, childeren);
 
-          return RefreshIndicator(
-              onRefresh: () => state.update(),
-              child: CustomScrollView(slivers: <Widget>[
-                SliverList(delegate: SliverChildListDelegate(childeren))
-              ]));
-        });
+            return ListView(children: childeren);
+          }),
+    );
   }
 }
-
-/*
-
- */
