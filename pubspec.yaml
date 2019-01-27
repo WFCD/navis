@@ -28,7 +28,7 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
-    - assets/acolytes/
+    #- assets/acolytes/
     - assets/general/
     - assets/platforms/
     - assets/factions/
