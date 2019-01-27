@@ -3,7 +3,7 @@ import 'package:navis/models/export.dart';
 
 class WorldState extends Coding {
   String timestamp;
-  Cetus cetus;
+  Earth cetus;
   Earth earth;
   Vallis vallis;
   Sortie sortie;
@@ -21,7 +21,7 @@ class WorldState extends Coding {
     super.decode(object);
 
     timestamp = object.decode('timestamp');
-    cetus = object.decodeObject('cetusCycle', () => Cetus());
+    cetus = object.decodeObject('cetusCycle', () => Earth());
     earth = object.decodeObject('earthCycle', () => Earth());
     vallis = object.decodeObject('vallisCycle', () => Vallis());
     sortie = object.decodeObject('sortie', () => Sortie());

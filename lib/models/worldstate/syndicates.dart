@@ -50,12 +50,7 @@ class Jobs extends Coding {
     type = object.decode('type');
     enemyLevels = object.decode('enemyLevels');
     standingStages = object.decode('standingStages');
-
-    if (object.decode('rewardPool') is List) {
-      rewardPool = object.decode('rewardPool');
-    } else {
-      rewardPool = <String>[];
-    }
+    rewardPool = object.decode('rewardPool');
   }
 
   @override

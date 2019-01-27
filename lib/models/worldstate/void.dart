@@ -6,8 +6,6 @@ class VoidFissures extends Coding {
   int tierNum;
   bool active, expired;
 
-  Duration get timer => expiry.difference(DateTime.now());
-
   @override
   void decode(KeyedArchive object) {
     super.decode(object);
@@ -17,7 +15,7 @@ class VoidFissures extends Coding {
     enemy = object.decode('enemy');
     tier = object.decode('tier');
     tierNum = object.decode('tierNum');
-    expiry = DateTime.parse(object.decode('expiry')).toLocal();
+    expiry = DateTime.parse(object.decode('expiry'));
     eta = object.decode('eta');
     active = object.decode('active');
     expired = object.decode('expired');

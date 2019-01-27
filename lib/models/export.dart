@@ -1,5 +1,4 @@
 export 'package:navis/models/worldstate/alerts.dart';
-export 'package:navis/models/worldstate/cetus.dart';
 export 'package:navis/models/worldstate/earth.dart';
 export 'package:navis/models/worldstate/events.dart';
 export 'package:navis/models/worldstate/orbvallis.dart';

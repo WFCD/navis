@@ -29,8 +29,10 @@ class WorldstateBloc implements Base {
 
   Future<Null> update() async {
     final state = WorldstateAPI();
-    updatedState.add(await state.updateState());
-    initworldstate = await state.updateState();
+    try {
+      updatedState.add(await state.updateState());
+      initworldstate = await state.updateState();
+    } catch (err) {}
   }
 
   static _initLogic(WorldState state, sink) {
