@@ -39,7 +39,9 @@ class WorldstateAPI {
   }
 
   Future<void> _cleanupState(WorldState state) async {
-    //state.alerts.removeWhere((a) => a.active == false);
+    state.alerts.removeWhere((a) =>
+        a.active == false ||
+        a.expiry.difference(DateTime.now().toUtc()) < Duration(seconds: 1));
 
     state.news.retainWhere((art) => art.translations.en != null);
     state.news.sort((a, b) => b.date.compareTo(a.date));
@@ -54,7 +56,10 @@ class WorldstateAPI {
 
     state.syndicates.sort((a, b) => a.syndicate.compareTo(b.syndicate));
 
-    //state.voidFissures.removeWhere((v) => v.active == false);
+    state.voidFissures.removeWhere((v) =>
+        v.active == false ||
+        v.expiry.difference(DateTime.now().toUtc()) < Duration(seconds: 1));
+
     state.voidFissures.sort((a, b) => a.tierNum.compareTo(b.tierNum));
   }
 }
