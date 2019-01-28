@@ -3,7 +3,7 @@ import 'package:codable/codable.dart';
 class Alerts extends Coding {
   DateTime expiry;
   String activation, eta;
-  bool expired;
+  bool active;
   _Mission mission;
 
   @override
@@ -13,7 +13,7 @@ class Alerts extends Coding {
     activation = object.decode('activation');
     expiry = DateTime.parse(object.decode('expiry'));
     eta = object.decode('eta');
-    expired = object.decode('expired');
+    active = object.decode('active');
     mission = object.decodeObject('mission', () => _Mission());
   }
 
@@ -22,7 +22,7 @@ class Alerts extends Coding {
     object.encode('activation', activation);
     object.encode('expiry', expiry);
     object.encode('eta', eta);
-    object.encode('expired', expired);
+    object.encode('active', active);
     object.encodeObject('mission', mission);
   }
 }

@@ -58,7 +58,7 @@ class AcolyteProfile extends StatelessWidget {
           child: StaticBox.text(
               size: 15,
               text:
-                  'Health: ${(enemy.healthPercent * 100).toStringAsFixed(2)}\%',
+                  'Health: ${(enemy.healthPercent * 100).toStringAsFixed(2)}%',
               color: _healthColor((enemy.healthPercent * 100)))),
       Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: <Widget>[
         StaticBox(

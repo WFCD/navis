@@ -24,22 +24,17 @@ class ExceptionService {
 
   ExceptionService._();
 
-  /// Reports [error] (either an [Exception] or an [Error]) to Sentry.io.
+  /// Reports [error] (either an [Exception] or an [Error]) to Crashlytics.
   Future<Null> reportError(dynamic error) async {
     if (isDebug) throw error;
 
-    debugPrint('Caught error: $error');
-    debugPrint('Reporting to Error Crashlytics...');
-
+    await FlutterCrashlytics().log(error.toString());
     await FlutterCrashlytics().logException(error, error.stackTrace);
   }
 
   Future<Null> reportErrorAndStackTrace(
       dynamic error, dynamic stackTrace) async {
     if (isDebug) throw error;
-
-    debugPrint('Caught error: $error');
-    debugPrint('Reporting to Error and StackTrace Crashlytics...');
 
     return await FlutterCrashlytics()
         .reportCrash(error, stackTrace, forceCrash: true);

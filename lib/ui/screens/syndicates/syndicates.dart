@@ -11,27 +11,28 @@ class SyndicatesList extends StatelessWidget {
   Widget build(BuildContext context) {
     final bloc = BlocProvider.of<WorldstateBloc>(context);
 
-    return StreamBuilder(
-        stream: bloc.worldstate,
-        builder: (BuildContext context, AsyncSnapshot<WorldState> snapshot) {
-          if (!snapshot.hasData)
-            return Center(child: CircularProgressIndicator());
+    return RefreshIndicator(
+        onRefresh: () => bloc.update(),
+        child: StreamBuilder(
+            stream: bloc.worldstate,
+            builder:
+                (BuildContext context, AsyncSnapshot<WorldState> snapshot) {
+              if (!snapshot.hasData)
+                return Center(child: CircularProgressIndicator());
 
-          List<Syndicates> syndicates = snapshot.data.syndicates;
+              List<Syndicates> syndicates = snapshot.data.syndicates;
 
-          return RefreshIndicator(
-            onRefresh: () => bloc.update(),
-            child: ListView(children: <Widget>[
-              SyndicateTimer(time: bloc.stateUtils.bountyTime),
-              syndicates.isEmpty
-                  ? Center(child: Text('Retrieving new bounties...'))
-                  : Column(
-                      children: syndicates
-                          .where((syn) => syn.active == true)
-                          .map((syn) => Syndicate(syndicate: syn))
-                          .toList())
-            ]),
-          );
-        });
+              if (syndicates.isEmpty)
+                return Center(child: Text('Retrieving new bounties...'));
+
+              return ListView(children: <Widget>[
+                SyndicateTimer(time: bloc.stateUtils.bountyTime),
+                Column(
+                    children: syndicates
+                        .where((syn) => syn.active == true)
+                        .map((syn) => Syndicate(syndicate: syn))
+                        .toList())
+              ]);
+            }));
   }
 }
