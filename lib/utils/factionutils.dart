@@ -36,19 +36,19 @@ class Factionutils {
     switch (tier) {
       case 'Lith':
         return SvgPicture.asset('assets/relics/Lith.svg',
-            height: size, width: size, color: color);
+            height: size, width: size, color: Color(0xFFcd7f32));
         break;
       case 'Meso':
         return SvgPicture.asset('assets/relics/Meso.svg',
-            height: size, width: size, color: color);
+            height: size, width: size, color: Color(0xFF201408));
         break;
       case 'Neo':
         return SvgPicture.asset('assets/relics/Neo.svg',
-            height: size, width: size, color: color);
+            height: size, width: size, color: Color(0xFFC0C0C0));
         break;
       default:
         return SvgPicture.asset('assets/relics/Axi.svg',
-            height: size, width: size, color: color);
+            height: size, width: size, color: Color(0xFFCFB53B));
     }
   }
 
