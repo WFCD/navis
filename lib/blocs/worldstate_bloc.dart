@@ -8,13 +8,9 @@ import '../APIs/worldstate.dart';
 import 'provider.dart';
 
 class WorldstateBloc implements Base {
-  final Sink<WorldState> updatedState;
-  final Stream<WorldState> worldstate;
-
-  static WorldState initworldstate;
-
   factory WorldstateBloc() {
     final state = WorldstateAPI();
+
     final updatedState = BehaviorSubject<WorldState>(); // ignore: close_sinks
     final worldstate = updatedState.distinct();
 
@@ -24,18 +20,25 @@ class WorldstateBloc implements Base {
 
   WorldstateBloc._(this.updatedState, this.worldstate);
 
+  final Sink<WorldState> updatedState;
+  final Stream<WorldState> worldstate;
+
+  static WorldState initworldstate;
+
   Stateutils get stateUtils => Stateutils(worldstate: initworldstate);
   Factionutils get factionUtils => Factionutils();
 
-  Future<Null> update() async {
+  Future<void> update() async {
     final state = WorldstateAPI();
     try {
       updatedState.add(await state.updateState());
       initworldstate = await state.updateState();
-    } catch (err) {}
+    } catch (err) {
+      // ignore: empty_catchers
+    }
   }
 
-  static _initLogic(WorldState state, sink) {
+  static void _initLogic(WorldState state, sink) {
     initworldstate = state;
     sink.add(state);
   }

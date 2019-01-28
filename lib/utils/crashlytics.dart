@@ -3,8 +3,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_crashlytics/flutter_crashlytics.dart';
 
 class ExceptionService {
-  static bool isDebug = false;
-
   factory ExceptionService() {
     assert(isDebug = true);
     FlutterError.onError = (FlutterErrorDetails details) {
@@ -24,15 +22,19 @@ class ExceptionService {
 
   ExceptionService._();
 
+  static bool isDebug = false;
+
   /// Reports [error] (either an [Exception] or an [Error]) to Crashlytics.
-  Future<Null> reportError(dynamic error) async {
-    if (isDebug) throw error;
+  Future<void> reportError(dynamic error) async {
+    if (isDebug) {
+      throw error;
+    }
 
     await FlutterCrashlytics().log(error.toString());
     await FlutterCrashlytics().logException(error, error.stackTrace);
   }
 
-  Future<Null> reportErrorAndStackTrace(
+  Future<void> reportErrorAndStackTrace(
       dynamic error, dynamic stackTrace) async {
     if (isDebug) throw error;
 

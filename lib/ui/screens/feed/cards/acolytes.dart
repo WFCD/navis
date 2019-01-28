@@ -16,7 +16,7 @@ class Acolytes extends StatelessWidget {
       initialData: WorldstateBloc.initworldstate,
       stream: enemies.worldstate,
       builder: (BuildContext context, AsyncSnapshot<WorldState> snapshot) {
-        List<AcolyteProfile> acolytes = snapshot.data.persistentEnemies
+        final List<AcolyteProfile> acolytes = snapshot.data.persistentEnemies
             .map((e) => AcolyteProfile(enemy: e))
             .toList();
 
@@ -32,24 +32,27 @@ class Acolytes extends StatelessWidget {
   }
 }
 
+//ignore: must_be_immutable
 class AcolyteProfile extends StatelessWidget {
-  final PersistentEnemies enemy;
-
+  // ignore: prefer_const_constructors_in_immutables
   AcolyteProfile({@required this.enemy});
+
+  final PersistentEnemies enemy;
 
   bool divider = false;
 
-  _healthColor(double health) {
+  Color _healthColor(double health) {
     if (health > 50.0)
       return Colors.green;
     else if (health <= 50.0 && health >= 10.0)
       return Colors.orange[700];
-    else if (health < 10.0) return Colors.red;
+    else
+      return Colors.red;
   }
 
   @override
   Widget build(BuildContext context) {
-    final color = Colors.white;
+    const color = Colors.white;
 
     return Container(
         child: Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
@@ -59,16 +62,16 @@ class AcolyteProfile extends StatelessWidget {
               size: 15,
               text:
                   'Health: ${(enemy.healthPercent * 100).toStringAsFixed(2)}%',
-              color: _healthColor((enemy.healthPercent * 100)))),
+              color: _healthColor(enemy.healthPercent * 100))),
       Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: <Widget>[
         StaticBox(
           color: enemy.isDiscovered ? Colors.red[800] : Colors.grey,
           child: Row(children: <Widget>[
             enemy.isDiscovered
-                ? Icon(Icons.gps_fixed, color: color)
-                : Icon(Icons.gps_not_fixed, color: color),
-            SizedBox(width: 4),
-            Text(enemy.lastDiscoveredAt, style: TextStyle(color: color))
+                ? const Icon(Icons.gps_fixed, color: color)
+                : const Icon(Icons.gps_not_fixed, color: color),
+            const SizedBox(width: 4),
+            Text(enemy.lastDiscoveredAt, style: const TextStyle(color: color))
           ]),
         ),
         StaticBox.text(

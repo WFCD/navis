@@ -1,13 +1,7 @@
 import 'package:flutter/material.dart';
 
 class RowItem extends StatelessWidget {
-  final List<Widget> icons;
-  final String text;
-  final Widget child;
-  final double size;
-  final bool caption;
-
-  RowItem({
+  const RowItem({
     this.icons = const <Widget>[],
     @required this.text,
     @required this.child,
@@ -24,12 +18,18 @@ class RowItem extends StatelessWidget {
                 fontWeight: FontWeight.bold, fontSize: size, color: color)));
   }
 
-  _addIcons(bool notEmpty, List<Widget> children) {
+  final List<Widget> icons;
+  final String text;
+  final Widget child;
+  final double size;
+  final bool caption;
+
+  void _addIcons(bool notEmpty, List<Widget> children) {
     if (notEmpty)
       children.insertAll(
           0,
-          icons.map(
-              (i) => Padding(padding: EdgeInsets.only(right: 4.0), child: i)));
+          icons.map((i) =>
+              Padding(padding: const EdgeInsets.only(right: 4.0), child: i)));
   }
 
   @override
@@ -38,7 +38,8 @@ class RowItem extends StatelessWidget {
         ? Theme.of(context).textTheme.caption.copyWith(fontSize: 13)
         : Theme.of(context).textTheme.subhead.copyWith(fontSize: size);
 
-    List<Widget> children = [Text(text, style: style)];
+    final List<Widget> children = [Text(text, style: style)];
+
     _addIcons(icons.isNotEmpty, children);
 
     final _text = Container(child: Row(children: children));

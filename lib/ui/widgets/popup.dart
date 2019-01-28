@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
 class Popup extends PopupRoute {
-  final Widget child;
-
   Popup({@required this.child});
 
+  final Widget child;
+
   @override
-  Color get barrierColor => Color.fromRGBO(34, 34, 34, .9);
+  Color get barrierColor => const Color.fromRGBO(34, 34, 34, .9);
 
   @override
   bool get barrierDismissible => true;

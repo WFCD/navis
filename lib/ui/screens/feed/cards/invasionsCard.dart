@@ -9,7 +9,7 @@ import 'package:navis/ui/widgets/expanded.dart';
 import 'package:navis/ui/widgets/invasionsBar.dart';
 
 class InvasionCard extends StatefulWidget {
-  InvasionCard({Key key}) : super(key: key);
+  const InvasionCard({Key key}) : super(key: key);
 
   @override
   _InvasionCard createState() => _InvasionCard();
@@ -62,7 +62,7 @@ class _InvasionCard extends State<InvasionCard>
             final emptyBox = Container(height: 0, width: 0);
 
             return invasions.isEmpty
-                ? Center(child: Text('No Invasions at this time'))
+                ? const Center(child: Text('No Invasions at this time'))
                 : Column(children: <Widget>[
                     Container(
                         child: Column(
@@ -86,14 +86,14 @@ class _InvasionCard extends State<InvasionCard>
                                 alignment: MainAxisAlignment.center,
                                 children: <Widget>[
                                   FlatButton(
-                                      padding: EdgeInsets.all(8.0),
+                                      padding: const EdgeInsets.all(8.0),
                                       textColor: Colors.blue,
                                       onPressed: () {
                                         _showMoreInvasions();
                                       },
                                       child: _showMore
-                                          ? Text('See less')
-                                          : Text('See more'))
+                                          ? const Text('See less')
+                                          : const Text('See more'))
                                 ]),
                           )
                   ]);
@@ -103,27 +103,27 @@ class _InvasionCard extends State<InvasionCard>
 }
 
 class _BuildInvasions extends StatelessWidget {
-  final Invasions invasion;
+  const _BuildInvasions({this.invasion});
 
-  _BuildInvasions({this.invasion});
+  final Invasions invasion;
 
   @override
   Widget build(BuildContext context) {
     final factionutils = BlocProvider.of<WorldstateBloc>(context).factionUtils;
 
-    double completion = invasion.completion.toDouble();
-    String defending = invasion.defendingFaction;
-    String attacking = invasion.attackingFaction;
+    final double completion = invasion.completion.toDouble();
+    final String defending = invasion.defendingFaction;
+    final String attacking = invasion.attackingFaction;
 
     return Padding(
-      padding: EdgeInsets.only(top: 10.0),
+      padding: const EdgeInsets.only(top: 10.0),
       child: Column(children: <Widget>[
         Text(invasion.node,
             style: Theme.of(context).textTheme.subhead.copyWith(fontSize: 15)),
         Text('${invasion.desc} (${invasion.eta})',
             style: TextStyle(color: Theme.of(context).textTheme.caption.color)),
         Padding(
-          padding: EdgeInsets.only(top: 4.0),
+          padding: const EdgeInsets.only(top: 4.0),
           child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[

@@ -7,8 +7,9 @@ import 'package:navis/ui/widgets/cards.dart';
 import 'package:navis/ui/widgets/countdown.dart';
 
 class Fissure extends StatefulWidget {
-  Fissure({Key key}) : super(key: key);
+  const Fissure({Key key}) : super(key: key);
 
+  @override
   _Fissure createState() => _Fissure();
 }
 
@@ -24,7 +25,7 @@ class _Fissure extends State<Fissure> {
             builder:
                 (BuildContext context, AsyncSnapshot<WorldState> snapshot) {
               if (!snapshot.hasData)
-                return Center(child: CircularProgressIndicator());
+                return const Center(child: CircularProgressIndicator());
 
               return ListView.builder(
                 itemCount: snapshot.data.voidFissures.length,
@@ -36,9 +37,9 @@ class _Fissure extends State<Fissure> {
 }
 
 class _BuildFissures extends StatelessWidget {
-  final VoidFissures fissure;
+  const _BuildFissures({this.fissure});
 
-  _BuildFissures({this.fissure});
+  final VoidFissures fissure;
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +51,7 @@ class _BuildFissures extends StatelessWidget {
         leading: factionUtils.getTierIcon(fissure.tier, context),
         title: Text(
           '${fissure.node} | ${fissure.tier}',
-          style: TextStyle(fontSize: 15.0),
+          style: const TextStyle(fontSize: 15.0),
         ),
         subtitle: Text('Missions type: ${fissure.missionType}'),
         trailing: CountdownBox(expiry: fissure.expiry),

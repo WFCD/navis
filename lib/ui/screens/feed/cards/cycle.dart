@@ -12,15 +12,15 @@ import 'package:navis/ui/widgets/cards.dart';
 enum Cycle { cetus, earth }
 
 class CetusCycle extends StatelessWidget {
+  const CetusCycle({@required this.cycle});
+
   final Cycle cycle;
 
-  CetusCycle({@required this.cycle});
-
-  _cycle(Cycle cycle) {
+  String _cycle(Cycle cycle) {
     switch (cycle) {
       case Cycle.cetus:
         return 'Cetus Day/Night Cycle';
-      case Cycle.earth:
+      default:
         return 'Earth Day/Night Cycle';
     }
   }
@@ -40,7 +40,7 @@ class CetusCycle extends StatelessWidget {
               final Earth earth = cycle == Cycle.cetus
                   ? snapshot.data.cetus
                   : snapshot.data.earth;
-              final padding = SizedBox(height: 4);
+              const padding = SizedBox(height: 4);
 
               return Column(
                 children: <Widget>[

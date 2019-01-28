@@ -20,7 +20,7 @@ class OrbVallis extends StatelessWidget {
             initialData: WorldstateBloc.initworldstate,
             stream: state.worldstate,
             builder: (context, snapshot) {
-              final padding = SizedBox(height: 4);
+              const padding = SizedBox(height: 4);
 
               return Column(children: <Widget>[
                 RowItem.richText(
@@ -44,7 +44,7 @@ class OrbVallis extends StatelessWidget {
                       color: Colors.blueAccent[400],
                       child: Text(
                           '${utils.expiration(snapshot.data.vallis.expiry)}',
-                          style: TextStyle(color: Colors.white))),
+                          style: const TextStyle(color: Colors.white))),
                 ),
                 padding
               ]);

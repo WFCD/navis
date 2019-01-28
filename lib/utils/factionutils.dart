@@ -19,10 +19,12 @@ class Factionutils {
         return SvgPicture.asset('assets/sigils/OstronSigil.svg',
             height: size,
             width: size,
-            color: Color.fromRGBO(232, 221, 175, 1.0));
+            color: const Color.fromRGBO(232, 221, 175, 1.0));
       case 'Solaris United':
         return SvgPicture.asset('assets/sigils/SolarisUnited.svg',
-            height: size, width: size, color: Color.fromRGBO(152, 92, 67, 1.0));
+            height: size,
+            width: size,
+            color: const Color.fromRGBO(152, 92, 67, 1.0));
       default:
         return SvgPicture.asset('assets/factions/Infested.svg',
             height: size, width: size, color: color);
@@ -30,29 +32,28 @@ class Factionutils {
   }
 
   SvgPicture getTierIcon(String tier, BuildContext context) {
-    final color = Theme.of(context).iconTheme.color;
-    final size = 50.0;
+    const double size = 50.0;
 
     switch (tier) {
       case 'Lith':
         return SvgPicture.asset('assets/relics/Lith.svg',
-            height: size, width: size, color: Color(0xFFcd7f32));
+            height: size, width: size, color: const Color(0xFFcd7f32));
         break;
       case 'Meso':
         return SvgPicture.asset('assets/relics/Meso.svg',
-            height: size, width: size, color: Color(0xFF201408));
+            height: size, width: size, color: const Color(0xFF201408));
         break;
       case 'Neo':
         return SvgPicture.asset('assets/relics/Neo.svg',
-            height: size, width: size, color: Color(0xFFC0C0C0));
+            height: size, width: size, color: const Color(0xFFC0C0C0));
         break;
       default:
         return SvgPicture.asset('assets/relics/Axi.svg',
-            height: size, width: size, color: Color(0xFFCFB53B));
+            height: size, width: size, color: const Color(0xFFCFB53B));
     }
   }
 
-  factionColor(String faction) {
+  Color factionColor(String faction) {
     switch (faction) {
       case 'Corpus':
         return Colors.blue;

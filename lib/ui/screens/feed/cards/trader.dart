@@ -54,7 +54,8 @@ class _Trader extends State<Trader> {
                         : utils.expiration(trader.activation),
                   )),
               Padding(
-                padding: EdgeInsets.only(bottom: 8.0, left: 5.0, right: 3.0),
+                padding:
+                    const EdgeInsets.only(bottom: 8.0, left: 5.0, right: 3.0),
                 child: trader.active
                     ? InkWell(
                         onTap: () => Navigator.of(context).push(
@@ -71,7 +72,7 @@ class _Trader extends State<Trader> {
                                 borderRadius: BorderRadius.circular(8.0)),
                             child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
-                                children: <Widget>[
+                                children: const <Widget>[
                                   Text('Baro Ki\'Teeer Inventory',
                                       style: TextStyle(fontSize: 17.0))
                                 ])))

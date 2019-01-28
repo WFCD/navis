@@ -7,29 +7,29 @@ import 'package:navis/models/export.dart';
 import 'package:navis/APIs/worldstate.dart';
 
 class BountyRewards extends StatelessWidget {
-  final List<String> bountyRewards;
-
-  final String missionTYpe;
-
-  BountyRewards({Key key, this.missionTYpe, this.bountyRewards})
+  const BountyRewards({Key key, this.missionTYpe, this.bountyRewards})
       : super(key: key);
 
+  final List<String> bountyRewards;
+  final String missionTYpe;
+
   Future<List<Reward>> getRewards() async {
-    List<Reward> imageList = await WorldstateAPI.rewards();
-    List<Reward> rewards = [];
+    final List<Reward> imageList = await WorldstateAPI.rewards();
+    final List<Reward> rewards = [];
     final nonexistent = Reward()
       ..rewardName = 'reward doesn\'t exist'
       ..imagePath = null;
 
-    bountyRewards.forEach((r) {
-      var image = List.from(imageList);
+    for (int i = 0; i < bountyRewards.length; i++) {
+      final image = List.from(imageList);
       try {
-        image.retainWhere((i) => r.contains(i.rewardName) == true);
+        image.retainWhere(
+            (i) => bountyRewards[i].contains(i.rewardName) == true);
         rewards.add(image.first);
       } catch (err) {
         rewards.add(nonexistent);
       }
-    });
+    }
 
     return rewards;
   }
@@ -48,7 +48,7 @@ Widget _buildForSyndicates(
       future: future,
       builder: (BuildContext context, AsyncSnapshot<List<Reward>> snapshot) {
         if (!snapshot.hasData)
-          return Center(child: CircularProgressIndicator());
+          return const Center(child: CircularProgressIndicator());
 
         return ListView.builder(
             itemCount: snapshot.data.length,
@@ -67,7 +67,7 @@ Widget _buildForSyndicates(
                   child: ListTile(
                       leading: rewardIcon,
                       title: Text(bountyRewards[index],
-                          style: TextStyle(fontSize: 17.0))),
+                          style: const TextStyle(fontSize: 17.0))),
                 ),
               );
             });

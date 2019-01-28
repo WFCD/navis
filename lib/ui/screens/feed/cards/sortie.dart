@@ -24,17 +24,17 @@ class SculptureMissions extends StatelessWidget {
                 title: Text(snapshot.data.sortie.boss),
                 subtitle: Text(snapshot.data.sortie.faction),
                 trailing: Container(
-                    padding: EdgeInsets.all(4.0),
+                    padding: const EdgeInsets.all(4.0),
                     child: CountdownBox(expiry: snapshot.data.sortie.expiry)),
               );
 
-              List<Widget> missions = snapshot.data.sortie.variants
+              final List<Widget> missions = snapshot.data.sortie.variants
                   .map((variant) => _buildMissions(variant, context))
                   .toList()
                     ..insert(0, title);
 
               return missions.isEmpty
-                  ? Center(child: Text('Loading current sorite...'))
+                  ? const Center(child: Text('Loading current sorite...'))
                   : Column(children: missions);
             }));
   }
@@ -46,8 +46,8 @@ Widget _buildMissions(Variants variants, BuildContext context) {
       Theme.of(context).textTheme.caption.copyWith(fontSize: 13);
 
   return Container(
-    padding: EdgeInsets.only(bottom: 4.0),
-    margin: EdgeInsets.only(bottom: 4.0, right: 4.0, left: 4.0),
+    padding: const EdgeInsets.only(bottom: 4.0),
+    margin: const EdgeInsets.only(bottom: 4.0, right: 4.0, left: 4.0),
     child:
         Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
       Text('${variants.missionType} - ${variants.node}', style: info),

@@ -14,12 +14,12 @@ class PlatformChoice extends StatefulWidget {
 class PlatformChoiceState extends State<PlatformChoice> {
   @override
   Widget build(BuildContext context) {
-    final select = Platforms();
-    final state = BlocProvider.of<WorldstateBloc>(context);
+    final Platforms select = Platforms();
+    final WorldstateBloc state = BlocProvider.of<WorldstateBloc>(context);
 
     return Column(children: <Widget>[
       Padding(
-          padding: EdgeInsets.only(top: 8.0),
+          padding: const EdgeInsets.only(top: 8.0),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
@@ -60,7 +60,7 @@ class PlatformChoiceState extends State<PlatformChoice> {
                             icon: SvgPicture.asset(
                               'assets/platforms/ps4.svg',
                               color: snapshot.data == 'ps4'
-                                  ? Color.fromRGBO(0, 55, 145, 1.0)
+                                  ? const Color(0xFF003791)
                                   : Theme.of(context).disabledColor,
                               height: 25,
                               width: 25,
@@ -71,7 +71,7 @@ class PlatformChoiceState extends State<PlatformChoice> {
                             icon: SvgPicture.asset(
                               'assets/platforms/xbox1.svg',
                               color: snapshot.data == 'xb1'
-                                  ? Color.fromRGBO(16, 124, 16, 1.0)
+                                  ? const Color(0xFF107c10)
                                   : Theme.of(context).disabledColor,
                               height: 25,
                               width: 25,
@@ -82,7 +82,7 @@ class PlatformChoiceState extends State<PlatformChoice> {
                             icon: SvgPicture.asset(
                               'assets/platforms/switch.svg',
                               color: snapshot.data == 'swi'
-                                  ? Color.fromRGBO(230, 0, 18, 1.0)
+                                  ? const Color(0xFFe60012)
                                   : Theme.of(context).disabledColor,
                               height: 50,
                               width: 50,
@@ -95,11 +95,10 @@ class PlatformChoiceState extends State<PlatformChoice> {
   }
 }
 
-void onPressed(
-    Platforms platform, WorldstateBloc bloc, String selectPlatform) async {
-  platform.selectedPlatform.add((selectPlatform));
-  await Future.delayed(Duration(
-      milliseconds:
-          500)); // waits for for platform to save before updating.. I think
-  bloc.update();
+void onPressed(Platforms platform, WorldstateBloc bloc, String selectPlatform) {
+  platform.selectedPlatform.add(selectPlatform);
+  Future<void>.delayed(
+      Duration(milliseconds: 500),
+      () => bloc
+          .update()); // waits for for platform to save before updating.. I think
 }

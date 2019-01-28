@@ -13,18 +13,20 @@ import 'cards/trader.dart';
 import 'cards/vallis.dart';
 
 class Feed extends StatefulWidget {
-  Feed({Key key = const PageStorageKey<String>('feed')}) : super(key: key);
+  const Feed({Key key = const PageStorageKey<String>('feed')})
+      : super(key: key);
 
   @override
   State<StatefulWidget> createState() => FeedState();
 }
 
 class FeedState extends State<Feed> {
-  _addEvents(List<Events> events, List<Widget> childeren) => events.isNotEmpty
-      ? childeren.insert(0, Event(event: events.first))
-      : null;
+  void _addEvents(List<Events> events, List<Widget> childeren) =>
+      events.isNotEmpty
+          ? childeren.insert(0, Event(event: events.first))
+          : null;
 
-  _addAcolytes(List<PersistentEnemies> enemies, List<Widget> childeren) =>
+  void _addAcolytes(List<PersistentEnemies> enemies, List<Widget> childeren) =>
       enemies.isNotEmpty ? childeren.insert(1, Acolytes()) : null;
 
   @override
@@ -37,14 +39,14 @@ class FeedState extends State<Feed> {
           stream: state.worldstate,
           builder: (context, snapshot) {
             if (!snapshot.hasData)
-              return Center(child: CircularProgressIndicator());
+              return const Center(child: CircularProgressIndicator());
 
-            List<Widget> childeren = [
-              CetusCycle(cycle: Cycle.cetus),
+            final List<Widget> childeren = [
+              const CetusCycle(cycle: Cycle.cetus),
               OrbVallis(),
-              CetusCycle(cycle: Cycle.earth),
+              const CetusCycle(cycle: Cycle.earth),
               AlertTile(),
-              InvasionCard(),
+              const InvasionCard(),
               Trader(),
               SculptureMissions()
             ];

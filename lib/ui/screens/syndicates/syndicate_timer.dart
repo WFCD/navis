@@ -3,16 +3,16 @@ import 'package:navis/ui/widgets/row_item.dart';
 import 'package:navis/ui/widgets/countdown.dart';
 
 class SyndicateTimer extends StatelessWidget {
-  final DateTime time;
+  const SyndicateTimer({this.time});
 
-  SyndicateTimer({this.time});
+  final DateTime time;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: 50.0,
       child: Padding(
-        padding: EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(8.0),
         child: RowItem(
             text: 'Bounties expire in',
             size: 20,

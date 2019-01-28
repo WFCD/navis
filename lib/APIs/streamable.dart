@@ -9,7 +9,7 @@ class StreamableAPI {
   static Future<String> fishVideos(String shortCode) async {
     final data = json.decode((await http.get(
             'https://api.streamable.com/videos/$shortCode',
-            headers: {"email": streamableUser, "password": streamablePassword}))
+            headers: {'email': streamableUser, 'password': streamablePassword}))
         .body);
     final key = KeyedArchive.unarchive(data);
     final video = Video()..decode(key);

@@ -3,10 +3,10 @@ import 'package:navis/globalkeys.dart';
 import 'package:navis/ui/widgets/bottomNavBar.dart';
 
 class CustomScaffold extends StatefulWidget {
+  const CustomScaffold({this.pageChilderen, this.childeren});
+
   final List<Widget> pageChilderen;
   final List<BottomNavigationBarItem> childeren;
-
-  CustomScaffold({this.pageChilderen, this.childeren});
 
   @override
   CustomScaffoldState createState() => CustomScaffoldState();
@@ -22,7 +22,7 @@ class CustomScaffoldState extends State<CustomScaffold>
     super.initState();
 
     transWidget = widget.pageChilderen
-        .map((w) => NavigationFade(child: w, vsync: this))
+        .map((Widget w) => NavigationFade(child: w, vsync: this))
         .toList();
 
     for (NavigationFade view in transWidget)
@@ -65,9 +65,9 @@ class CustomScaffoldState extends State<CustomScaffold>
   Widget build(BuildContext context) {
     return Scaffold(
         key: scaffold,
-        appBar: AppBar(title: Text('Navis'), actions: <Widget>[
+        appBar: AppBar(title: const Text('Navis'), actions: <Widget>[
           IconButton(
-              icon: Icon(Icons.settings),
+              icon: const Icon(Icons.settings),
               onPressed: () => Navigator.of(context).pushNamed('/Settings'))
         ]),
         body: _buildTransitionsStack(),
@@ -95,7 +95,7 @@ class NavigationFade {
           vsync: vsync,
         ) {
     _animation = controller.drive(CurveTween(
-      curve: Interval(0.5, 1.0, curve: Curves.easeInOut),
+      curve: const Interval(0.5, 1.0, curve: Curves.easeInOut),
     ));
   }
 

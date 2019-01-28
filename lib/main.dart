@@ -14,7 +14,7 @@ final state = WorldstateBloc();
 void main() {
   final exception = ExceptionService();
 
-  runZoned<Future<Null>>(
+  runZoned<Future<void>>(
       () async =>
           runApp(BlocProvider<WorldstateBloc>(bloc: state, child: Navis())),
       onError: (error, stackTrace) async =>
@@ -26,7 +26,7 @@ void main() {
       fetchState);
 }
 
-void fetchState() async {
+Future<void> fetchState() async {
   state.update();
   BackgroundFetch.finish();
 }

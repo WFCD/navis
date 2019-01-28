@@ -9,28 +9,35 @@ import 'news/news.dart';
 import 'syndicates/syndicates.dart';
 
 class HomeScreen extends StatefulWidget {
-  HomeScreen({Key key}) : super(key: key);
+  const HomeScreen({Key key}) : super(key: key);
 
   @override
-  createState() => _HomeScreen();
+  _HomeScreen createState() => _HomeScreen();
 }
 
 class _HomeScreen extends State<HomeScreen> with TickerProviderStateMixin {
   double size = 20;
-  TextStyle _titleStyle = TextStyle(fontSize: 12);
-  List<Widget> pages = [Orbiter(), Feed(), Fissure(), SyndicatesList()];
+  final TextStyle _titleStyle = const TextStyle(fontSize: 12);
+
+  List<Widget> pages = [
+    const Orbiter(),
+    const Feed(),
+    const Fissure(),
+    SyndicatesList()
+  ];
+
   List<BottomNavigationBarItem> _items;
 
   @override
-  initState() {
+  void initState() {
     super.initState();
 
     _items = [
       BottomNavigationBarItem(
-          icon: Icon(Icons.update, color: Colors.white),
+          icon: const Icon(Icons.update, color: Colors.white),
           title: Text('News', style: _titleStyle)),
       BottomNavigationBarItem(
-          icon: Icon(Icons.view_headline, color: Colors.white),
+          icon: const Icon(Icons.view_headline, color: Colors.white),
           title: Text('Feed', style: _titleStyle)),
       BottomNavigationBarItem(
           icon: SvgPicture.asset('assets/general/VoidTearIcon.svg',

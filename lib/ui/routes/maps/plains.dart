@@ -1,4 +1,3 @@
-import 'map_base.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong/latlong.dart';
@@ -9,14 +8,16 @@ import 'package:navis/ui/widgets/popup.dart';
 import 'package:navis/ui/widgets/videoplayer.dart';
 import 'package:navis/APIs/streamable.dart';
 
-class Plains extends Mapbase {
-  static BuildContext _context;
+import 'map_base.dart';
 
+class Plains extends Mapbase {
   Plains({@required context}) {
     _context = context;
   }
 
-  static double _size = 25;
+  static BuildContext _context;
+
+  static const double _size = 25;
 
   List<String> filters = [
     'All',
@@ -32,7 +33,7 @@ class Plains extends Mapbase {
       width: _size,
       point: LatLng(-60.68243539838622, 4.5703125),
       builder: (_) => Container(
-          child: Icon(Icons.home,
+          child: const Icon(Icons.home,
               color: Color.fromRGBO(183, 70, 36, 1.0), size: 30)));
 
   final List<Marker> _oldFish = Constants.oddity.map((o) {

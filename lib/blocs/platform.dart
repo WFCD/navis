@@ -6,11 +6,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'provider.dart';
 
 class Platforms implements Base {
-  static String _default = 'pc';
-
-  Sink<String> selectedPlatform;
-  Stream<String> currentPlatform;
-
   factory Platforms() {
     final selectedPlatform = BehaviorSubject<String>(); // ignore: close_sinks
     final currentPlatform = selectedPlatform.distinct().doOnData(_onData);
@@ -21,12 +16,17 @@ class Platforms implements Base {
 
   Platforms._(this.selectedPlatform, this.currentPlatform);
 
-  static _onData(String platform) async {
+  static const String _default = 'pc';
+
+  Sink<String> selectedPlatform;
+  Stream<String> currentPlatform;
+
+  static Future<void> _onData(String platform) async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setString('Platform', platform);
   }
 
-  static _first({Sink sink}) async {
+  static Future<void> _first({Sink sink}) async {
     final prefs = await SharedPreferences.getInstance();
 
     if (prefs.getString('Platform') == null) {

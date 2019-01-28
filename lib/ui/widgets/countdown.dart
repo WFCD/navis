@@ -6,10 +6,10 @@ import 'package:navis/blocs/worldstate_bloc.dart';
 import 'static_box.dart';
 
 class CountdownBox extends StatefulWidget {
+  const CountdownBox({this.expiry, this.size});
+
   final DateTime expiry;
   final double size;
-
-  CountdownBox({this.expiry, this.size});
 
   @override
   CountdownBoxState createState() => CountdownBoxState();
@@ -74,30 +74,29 @@ class CountdownBoxState extends State<CountdownBox>
 }
 
 class CountDown extends AnimatedWidget {
+  const CountDown({Key key, this.animation, this.expiry, this.size})
+      : super(key: key, listenable: animation);
+
   final Animation<int> animation;
   final DateTime expiry;
   final double size;
 
-  CountDown({Key key, this.animation, this.expiry, this.size})
-      : super(key: key, listenable: animation);
-
-  _containerColors(Duration timeLeft) {
+  Color _containerColors(Duration timeLeft) {
     if (timeLeft >= Duration(hours: 1))
       return Colors.green;
     else if (timeLeft < Duration(hours: 1) && timeLeft > Duration(minutes: 10))
       return Colors.orange[700];
-    else if (timeLeft <= Duration(minutes: 10)) return Colors.red;
+    else
+      return Colors.red;
   }
 
   String _timerVersions(Duration time) {
-    final forDays = Duration(days: 1);
+    final String days = '${time.inDays}';
+    final String hours = '${time.inHours % 24}';
+    final String minutes = '${time.inMinutes % 60}'.padLeft(2, '0');
+    final String seconds = '${time.inSeconds % 60}'.padLeft(2, '0');
 
-    String days = '${time.inDays}';
-    String hours = '${time.inHours % 24}';
-    String minutes = '${time.inMinutes % 60}'.padLeft(2, '0');
-    String seconds = '${time.inSeconds % 60}'.padLeft(2, '0');
-
-    if (time < forDays)
+    if (time < Duration(days: 1))
       return '$hours:$minutes:$seconds';
     else
       return '$days\d $hours:$minutes:$seconds';
@@ -105,7 +104,7 @@ class CountDown extends AnimatedWidget {
 
   @override
   Widget build(BuildContext context) {
-    Duration duration = expiry.difference(DateTime.now());
+    final Duration duration = expiry.difference(DateTime.now());
 
     return StaticBox.text(
         color: _containerColors(duration),

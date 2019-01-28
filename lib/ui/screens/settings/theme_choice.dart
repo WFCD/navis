@@ -7,11 +7,11 @@ import 'package:navis/blocs/theming.dart';
 class ThemeChoice extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final theme = BlocProvider.of<ThemeBloc>(context);
+    final ThemeBloc theme = BlocProvider.of<ThemeBloc>(context);
 
     return Column(children: <Widget>[
       Padding(
-          padding: EdgeInsets.only(top: 8.0, left: 8.0),
+          padding: const EdgeInsets.only(top: 8.0, left: 8.0),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
@@ -24,7 +24,7 @@ class ThemeChoice extends StatelessWidget {
             ],
           )),
       ListTile(
-          title: Text('Theme'),
+          title: const Text('Theme'),
           subtitle: Text(Theme.of(context).brightness == Brightness.dark
               ? 'Dark'
               : 'Light'),
@@ -33,9 +33,9 @@ class ThemeChoice extends StatelessWidget {
   }
 }
 
-Future<Null> showOptions(BuildContext context, ThemeBloc theme) {
-  final accentColor = Theme.of(context).accentColor;
-  final groupValue = Theme.of(context).brightness;
+Future<void> showOptions(BuildContext context, ThemeBloc theme) {
+  final Color accentColor = Theme.of(context).accentColor;
+  final Brightness groupValue = Theme.of(context).brightness;
 
   return showDialog(
       context: context,
@@ -47,23 +47,23 @@ Future<Null> showOptions(BuildContext context, ThemeBloc theme) {
             builder: (BuildContext context, AsyncSnapshot<ThemeData> snapshot) {
               return SimpleDialog(
                   contentPadding: EdgeInsets.zero,
-                  title: Text('Select Theme'),
+                  title: const Text('Select Theme'),
                   children: <Widget>[
                     RadioListTile<Brightness>(
-                        title: Text('Dark'),
+                        title: const Text('Dark'),
                         activeColor: accentColor,
                         value: Brightness.dark,
                         groupValue: groupValue,
-                        onChanged: (newTheme) {
+                        onChanged: (Brightness newTheme) {
                           theme.setTheme(newTheme);
                           Navigator.pop(context);
                         }),
                     RadioListTile<Brightness>(
-                        title: Text('Light'),
+                        title: const Text('Light'),
                         activeColor: accentColor,
                         value: Brightness.light,
                         groupValue: groupValue,
-                        onChanged: (newTheme) {
+                        onChanged: (Brightness newTheme) {
                           theme.setTheme(newTheme);
                           Navigator.pop(context);
                         }),

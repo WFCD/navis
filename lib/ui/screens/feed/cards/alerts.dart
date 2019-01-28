@@ -22,12 +22,12 @@ class AlertTile extends StatelessWidget {
               stream: alert.worldstate,
               builder:
                   (BuildContext context, AsyncSnapshot<WorldState> snapshot) {
-                List<Widget> allAlerts = snapshot.data.alerts
+                final List<Widget> allAlerts = snapshot.data.alerts
                     .map((alert) => _BuildAlerts(alert: alert))
                     .toList();
 
                 return allAlerts.isEmpty
-                    ? Center(child: Text('No alerts at this time'))
+                    ? const Center(child: Text('No alerts at this time'))
                     : Column(children: allAlerts);
               })
         ]));
@@ -35,9 +35,9 @@ class AlertTile extends StatelessWidget {
 }
 
 class _BuildAlerts extends StatelessWidget {
-  final Alerts alert;
+  const _BuildAlerts({@required this.alert});
 
-  _BuildAlerts({@required this.alert});
+  final Alerts alert;
 
   void _addIcons(bool status, Widget icon, List<Widget> icons) {
     if (status) icons.insert(0, icon);
@@ -45,7 +45,7 @@ class _BuildAlerts extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> icons = [];
+    final List<Widget> icons = [];
 
     final _nightmareIcon = SvgPicture.asset('assets/general/nightmare.svg',
         color: Colors.red, height: 25, width: 25);
@@ -58,7 +58,7 @@ class _BuildAlerts extends StatelessWidget {
     _addIcons(alert.mission.nightmare, _nightmareIcon, icons);
 
     return Container(
-      padding: EdgeInsets.only(bottom: 8.0, top: 5.0),
+      padding: const EdgeInsets.only(bottom: 8.0, top: 5.0),
       child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[

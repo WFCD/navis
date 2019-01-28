@@ -4,19 +4,20 @@ import 'package:navis/ui/widgets/static_box.dart';
 import 'package:navis/ui/routes/syndicates/rewards.dart';
 
 class Event extends StatelessWidget {
+  const Event({this.event});
+
   final Events event;
 
-  Event({this.event});
-
-  _healthColor(double health) {
+  Color _healthColor(double health) {
     if (health > 50.0)
       return Colors.green;
     else if (health <= 50.0 && health >= 10.0)
       return Colors.orange[700];
-    else if (health < 10.0) return Colors.red;
+    else
+      return Colors.red;
   }
 
-  _addReward(BuildContext context, bool bounty, List<Widget> children) {
+  void _addReward(BuildContext context, bool bounty, List<Widget> children) {
     if (bounty) {
       children.addAll(event.jobs.map((j) => _buildJob(context, j)));
     } else {
@@ -29,7 +30,7 @@ class Event extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> children = [];
+    final List<Widget> children = [];
 
     final victimNode =
         StaticBox.text(text: event.victimNode, color: Colors.red);
@@ -50,21 +51,21 @@ class Event extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Container(
-                      margin: EdgeInsets.only(bottom: 4, top: 4),
+                      margin: const EdgeInsets.only(bottom: 4, top: 4),
                       child: Text(event.description,
                           style: Theme.of(context).textTheme.title)),
                   Container(
-                      margin: EdgeInsets.only(bottom: 4),
+                      margin: const EdgeInsets.only(bottom: 4),
                       child: Text(event.tooltip,
                           style: Theme.of(context).textTheme.subtitle)),
                   Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         victimNode,
-                        SizedBox(width: 4),
+                        const SizedBox(width: 4),
                         progress
                       ]),
-                  SizedBox(height: 8),
+                  const SizedBox(height: 8),
                   Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: children)
@@ -80,8 +81,8 @@ Widget _buildJob(BuildContext context, Jobs job) {
             builder: (_) => BountyRewards(
                 missionTYpe: job.type, bountyRewards: job.rewardPool))),
         child: Container(
-            margin: EdgeInsets.all(4.0),
-            padding: EdgeInsets.all(4.0),
+            margin: const EdgeInsets.all(4.0),
+            padding: const EdgeInsets.all(4.0),
             alignment: Alignment.center,
             child: Text(job.type,
                 style: Theme.of(context)

@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_sequence_animation/flutter_sequence_animation.dart';
 
 class ExpandedCard extends StatefulWidget {
+  const ExpandedCard({Key key, this.controller, this.length, this.child})
+      : super(key: key);
+
   final double length;
   final Widget child;
   final AnimationController controller;
-
-  ExpandedCard({Key key, this.controller, this.length, this.child})
-      : super(key: key);
 
   @override
   State<StatefulWidget> createState() => ExpandedCardState();
@@ -38,7 +38,7 @@ class ExpandedCardState extends State<ExpandedCard> {
     super.dispose();
   }
 
-  _updateLength() {
+  void _updateLength() {
     _expand = SequenceAnimationBuilder()
         .addAnimatable(
             animatable: Tween<double>(begin: 0, end: widget.length),

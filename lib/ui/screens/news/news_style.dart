@@ -8,11 +8,11 @@ import 'package:navis/models/export.dart';
 import 'package:navis/utils/keys.dart';
 
 class NewsCard extends StatelessWidget {
+  const NewsCard({this.news});
+
   final OrbiterNews news;
 
-  NewsCard({this.news});
-
-  void _launchLink(String link, BuildContext context) async {
+  Future<void> _launchLink(String link, BuildContext context) async {
     if (link.contains(RegExp('youtube'))) {
       FlutterYoutube.playYoutubeVideoByUrl(
           apiKey: youtubeKey, videoUrl: link, autoPlay: true);
@@ -29,16 +29,17 @@ class NewsCard extends StatelessWidget {
       } catch (err) {
         scaffold.currentState.showSnackBar(SnackBar(
             duration: Duration(seconds: 30),
-            content: Text('No Browser detected')));
+            content: const Text('No Browser detected')));
       }
     }
   }
 
   String _timestamp(DateTime timestamp) {
-    final duration = timestamp.difference(DateTime.now().toUtc()).abs();
+    final Duration duration =
+        timestamp.difference(DateTime.now().toUtc()).abs();
 
-    final hour = Duration(hours: 1);
-    final day = Duration(hours: 24);
+    final Duration hour = Duration(hours: 1);
+    final Duration day = Duration(hours: 24);
 
     if (duration < hour) {
       return '${duration.inMinutes.floor()}m';
@@ -54,7 +55,7 @@ class NewsCard extends StatelessWidget {
         child: InkWell(
       onTap: () => _launchLink(news.link, context),
       child: Container(
-        constraints: BoxConstraints.expand(height: 200.0),
+        constraints: const BoxConstraints.expand(height: 200.0),
         alignment: Alignment.bottomCenter,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(4.0),
@@ -64,7 +65,7 @@ class NewsCard extends StatelessWidget {
         child: Container(
             height: 40,
             alignment: Alignment.center,
-            decoration: BoxDecoration(color: Color.fromRGBO(34, 34, 34, .5)),
+            decoration: const BoxDecoration(color: Color(0xFF222222)),
             child: Text(
               '[${_timestamp(news.date)} ago] ${news.translations.en}',
               style: Theme.of(context)

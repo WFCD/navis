@@ -9,10 +9,11 @@ import 'plains.dart';
 enum Location { plains, vallis }
 
 class Maps extends StatefulWidget {
+  const Maps({@required this.location});
+
   final Location location;
 
-  Maps({@required this.location});
-
+  @override
   MapState createState() => MapState();
 }
 
@@ -35,21 +36,21 @@ class MapState extends State<Maps> {
     super.dispose();
   }
 
-  _mapBuilder(Location location) {
+  Widget _mapBuilder(Location location) {
     switch (location) {
       case Location.plains:
         return _buildCetusMap(filter.stream, plains);
-      case Location.vallis:
+      default:
         return _buildVallisMap(<Marker>[]);
     }
   }
 
-  _tiles(Location location) {
+  Widget _tiles(Location location) {
     switch (location) {
       case Location.plains:
-        return Text('Plains of Eidolon');
-      case Location.vallis:
-        return Text('Orb Vallis');
+        return const Text('Plains of Eidolon');
+      default:
+        return const Text('Orb Vallis');
     }
   }
 
@@ -58,9 +59,9 @@ class MapState extends State<Maps> {
     final cetusFilter = <Widget>[
       Theme(
           data: Theme.of(context)
-              .copyWith(cardColor: Color.fromRGBO(34, 34, 34, 1)),
+              .copyWith(cardColor: const Color.fromRGBO(34, 34, 34, 1)),
           child: PopupMenuButton<String>(
-              icon: Icon(Icons.sort),
+              icon: const Icon(Icons.sort),
               onSelected: (f) => filter.add(plains.filter(f)),
               itemBuilder: (BuildContext context) => plains.filters.map((f) {
                     return PopupMenuItem<String>(
@@ -95,7 +96,7 @@ Widget _buildCetusMap(Stream filter, Plains plains) {
             TileLayerOptions(
               maxZoom: 2,
               keepBuffer: 15,
-              backgroundColor: Color.fromRGBO(63, 92, 98, 1),
+              backgroundColor: const Color.fromRGBO(63, 92, 98, 1),
               urlTemplate:
                   'https://raw.githubusercontent.com/SlayerOrnstein/navis/master/assets/plains/{z}/tile_{x}_{y}.png',
             ),
@@ -117,7 +118,7 @@ Widget _buildVallisMap(List<Marker> markers) {
       TileLayerOptions(
         maxZoom: 4,
         keepBuffer: 15,
-        backgroundColor: Color.fromRGBO(221, 231, 240, 1),
+        backgroundColor: const Color.fromRGBO(221, 231, 240, 1),
         urlTemplate:
             'https://raw.githubusercontent.com/SlayerOrnstein/navis/master/assets/vallis/{z}/tile_{x}_{y}.png',
       ),

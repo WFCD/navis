@@ -4,17 +4,8 @@ import 'package:flutter/rendering.dart';
 import 'package:navis/utils/factionutils.dart';
 
 class InvasionBar extends StatelessWidget {
-  final factionutils = Factionutils();
-
-  final String attackingFaction, defendingFaction;
-  final double progress;
-  final double width;
-  final double lineHeight;
-  final EdgeInsets padding;
-  final Color color;
-
   InvasionBar(
-      {this.progress,
+      {@required this.progress,
       this.width,
       this.padding,
       @required this.attackingFaction,
@@ -24,6 +15,15 @@ class InvasionBar extends StatelessWidget {
       : assert(attackingFaction != null),
         assert(defendingFaction != null),
         assert(progress != null);
+
+  final Factionutils factionutils = Factionutils();
+
+  final String attackingFaction, defendingFaction;
+  final double progress;
+  final double width;
+  final double lineHeight;
+  final EdgeInsets padding;
+  final Color color;
 
   @override
   Widget build(BuildContext context) {
@@ -60,13 +60,6 @@ class InvasionBar extends StatelessWidget {
 }
 
 class _InvasionBar extends CustomPainter {
-  final Paint _attackingFaction = Paint();
-  final Paint _defendingFaction = Paint();
-  final Color backgroundColor;
-  final Color progressColor;
-  final double progress;
-  final double lineWidth;
-
   _InvasionBar(
       {this.progress,
       this.progressColor,
@@ -83,10 +76,17 @@ class _InvasionBar extends CustomPainter {
     _defendingFaction.strokeCap = StrokeCap.butt;
   }
 
+  final Paint _attackingFaction = Paint();
+  final Paint _defendingFaction = Paint();
+  final Color backgroundColor;
+  final Color progressColor;
+  final double progress;
+  final double lineWidth;
+
   @override
   void paint(Canvas canvas, Size size) {
-    final start = Offset(0.0, size.height / 2);
-    final end = Offset(size.width, size.height / 2);
+    final Offset start = Offset(0.0, size.height / 2);
+    final Offset end = Offset(size.width, size.height / 2);
 
     canvas.drawLine(start, end, _defendingFaction);
     canvas.drawLine(start, Offset(size.width * progress, size.height / 2),
@@ -95,5 +95,5 @@ class _InvasionBar extends CustomPainter {
 
   @override
   bool shouldRepaint(_InvasionBar oldDelegate) =>
-      oldDelegate.progress != this.progress;
+      oldDelegate.progress != progress;
 }

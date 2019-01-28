@@ -21,8 +21,10 @@ class Navis extends StatelessWidget {
                 //showPerformanceOverlay: true,
                 color: Colors.grey[900],
                 theme: snapshot.data,
-                home: HomeScreen(),
-                routes: <String, WidgetBuilder>{'/Settings': (_) => Settings()},
+                home: const HomeScreen(),
+                routes: <String, WidgetBuilder>{
+                  '/Settings': (_) => const Settings()
+                },
               );
             }));
   }

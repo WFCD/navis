@@ -41,7 +41,7 @@ class Jobs extends Coding {
 
   @override
   Map<String, cast.Cast<dynamic>> get castMap =>
-      {'rewardPool': cast.List(cast.String)};
+      {'rewardPool': const cast.List(cast.String)};
 
   @override
   void decode(KeyedArchive object) {

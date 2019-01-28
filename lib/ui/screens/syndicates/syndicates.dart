@@ -9,28 +9,28 @@ import 'syndicate_timer.dart';
 class SyndicatesList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final bloc = BlocProvider.of<WorldstateBloc>(context);
+    final WorldstateBloc bloc = BlocProvider.of<WorldstateBloc>(context);
 
     return RefreshIndicator(
         onRefresh: () => bloc.update(),
-        child: StreamBuilder(
+        child: StreamBuilder<WorldState>(
             stream: bloc.worldstate,
             builder:
                 (BuildContext context, AsyncSnapshot<WorldState> snapshot) {
               if (!snapshot.hasData)
-                return Center(child: CircularProgressIndicator());
+                return const Center(child: CircularProgressIndicator());
 
-              List<Syndicates> syndicates = snapshot.data.syndicates;
+              final List<Syndicates> syndicates = snapshot.data.syndicates;
 
               if (syndicates.isEmpty)
-                return Center(child: Text('Retrieving new bounties...'));
+                return const Center(child: Text('Retrieving new bounties...'));
 
               return ListView(children: <Widget>[
                 SyndicateTimer(time: bloc.stateUtils.bountyTime),
                 Column(
                     children: syndicates
-                        .where((syn) => syn.active == true)
-                        .map((syn) => Syndicate(syndicate: syn))
+                        .where((Syndicates syn) => syn.active == true)
+                        .map((Syndicates syn) => Syndicate(syndicate: syn))
                         .toList())
               ]);
             }));

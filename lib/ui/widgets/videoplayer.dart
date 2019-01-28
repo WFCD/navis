@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 
 class VideoPlayer extends StatefulWidget {
+  const VideoPlayer({this.lore, this.url});
+
   final String lore;
   final String url;
-
-  VideoPlayer({this.lore, this.url});
 
   @override
   _VideoPlayerState createState() => _VideoPlayerState();
@@ -46,7 +46,7 @@ Widget _buildPlayer(
           children: <Widget>[
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Text(title, style: TextStyle(fontSize: 15)),
+              child: Text(title, style: const TextStyle(fontSize: 15)),
             ),
             Container(
                 child: Chewie(

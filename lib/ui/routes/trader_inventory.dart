@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:navis/models/export.dart';
 
 class VoidTraderInventory extends StatefulWidget {
-  final List<Inventory> inventory;
+  const VoidTraderInventory({this.inventory});
 
-  VoidTraderInventory({this.inventory});
+  final List<Inventory> inventory;
 
   @override
   VoidTraderInventoryState createState() => VoidTraderInventoryState();
@@ -15,9 +15,9 @@ class VoidTraderInventoryState extends State<VoidTraderInventory> {
   InventoryDataSource _source;
 
   final List<DataColumn> columns = [
-    DataColumn(label: Text('Item'), onSort: (i, b) {}),
-    DataColumn(label: Text('Ducats'), onSort: (i, b) {}),
-    DataColumn(label: Text('Credits'), onSort: (i, b) {})
+    DataColumn(label: const Text('Item'), onSort: (i, b) {}),
+    DataColumn(label: const Text('Ducats'), onSort: (i, b) {}),
+    DataColumn(label: const Text('Credits'), onSort: (i, b) {})
   ];
 
   @override
@@ -29,11 +29,11 @@ class VoidTraderInventoryState extends State<VoidTraderInventory> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: Text('Baro\'s Inventory')),
+        appBar: AppBar(title: const Text('Baro\'s Inventory')),
         body: ListView(
           children: <Widget>[
             PaginatedDataTable(
-              header: Text('Inventory'),
+              header: const Text('Inventory'),
               rowsPerPage: _rowsPerPage,
               onRowsPerPageChanged: (r) => setState(() => _rowsPerPage = r),
               onSelectAll: (selected) {},
@@ -46,9 +46,9 @@ class VoidTraderInventoryState extends State<VoidTraderInventory> {
 }
 
 class InventoryDataSource extends DataTableSource {
-  final List<Inventory> inventory;
-
   InventoryDataSource({this.inventory});
+
+  final List<Inventory> inventory;
 
   @override
   DataRow getRow(int index) {

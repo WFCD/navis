@@ -9,10 +9,10 @@ import 'rewards.dart';
 enum OpenWorldFactions { cetus, fortuna }
 
 class SyndicateJobs extends StatefulWidget {
+  const SyndicateJobs({this.faction, this.events});
+
   final OpenWorldFactions faction;
   final List<Events> events;
-
-  SyndicateJobs({this.faction, this.events});
 
   @override
   SyndicateJobsState createState() => SyndicateJobsState();
@@ -33,9 +33,9 @@ class SyndicateJobsState extends State<SyndicateJobs> {
             builder:
                 (BuildContext context, AsyncSnapshot<WorldState> snapshot) {
               if (!snapshot.hasData)
-                return Center(child: CircularProgressIndicator());
+                return const Center(child: CircularProgressIndicator());
 
-              List<Syndicates> syndicate = snapshot.data.syndicates
+              final List<Syndicates> syndicate = snapshot.data.syndicates
                   .where(
                       (syn) => syn.syndicate == _factionCheck(widget.faction))
                   .toList();
@@ -62,7 +62,7 @@ Widget _buildMissionType(BuildContext context, Jobs job) {
                       missionTYpe: job.type,
                       bountyRewards: job.rewardPool,
                     ))),
-            child: Text(
+            child: const Text(
               'See Rewards',
               style: TextStyle(color: Colors.blue),
             )),
@@ -72,17 +72,17 @@ Widget _buildMissionType(BuildContext context, Jobs job) {
 }
 
 Color _buildColor(OpenWorldFactions faction) {
-  final ostronsColor = Color.fromRGBO(183, 70, 36, 1.0);
-  final solarisColor = Color.fromRGBO(206, 162, 54, 1.0);
+  const ostronsColor = Color.fromRGBO(183, 70, 36, 1.0);
+  const solarisColor = Color.fromRGBO(206, 162, 54, 1.0);
 
   return _factionCheck(faction) == 'Ostrons' ? ostronsColor : solarisColor;
 }
 
-_factionCheck(OpenWorldFactions faction) {
+String _factionCheck(OpenWorldFactions faction) {
   switch (faction) {
     case OpenWorldFactions.cetus:
       return 'Ostrons';
-    case OpenWorldFactions.fortuna:
+    default:
       return 'Solaris United';
   }
 }
