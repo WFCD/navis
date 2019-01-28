@@ -24,7 +24,7 @@ class BountyRewards extends StatelessWidget {
       final image = List.from(imageList);
       try {
         image.retainWhere(
-            (i) => bountyRewards[i].contains(i.rewardName) == true);
+            (image) => bountyRewards[i].contains(image.rewardName) == true);
         rewards.add(image.first);
       } catch (err) {
         rewards.add(nonexistent);

@@ -41,7 +41,7 @@ class AcolyteProfile extends StatelessWidget {
 
   bool divider = false;
 
-  Color _healthColor(double health) {
+  Color _healthColor(num health) {
     if (health > 50.0)
       return Colors.green;
     else if (health <= 50.0 && health >= 10.0)
@@ -64,16 +64,19 @@ class AcolyteProfile extends StatelessWidget {
                   'Health: ${(enemy.healthPercent * 100).toStringAsFixed(2)}%',
               color: _healthColor(enemy.healthPercent * 100))),
       Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: <Widget>[
-        StaticBox(
-          color: enemy.isDiscovered ? Colors.red[800] : Colors.grey,
-          child: Row(children: <Widget>[
-            enemy.isDiscovered
-                ? const Icon(Icons.gps_fixed, color: color)
-                : const Icon(Icons.gps_not_fixed, color: color),
-            const SizedBox(width: 4),
-            Text(enemy.lastDiscoveredAt, style: const TextStyle(color: color))
-          ]),
-        ),
+        enemy.lastDiscoveredAt.isEmpty
+            ? Container()
+            : StaticBox(
+                color: enemy.isDiscovered ? Colors.red[800] : Colors.grey,
+                child: Row(children: <Widget>[
+                  enemy.isDiscovered
+                      ? const Icon(Icons.gps_fixed, color: color)
+                      : const Icon(Icons.gps_not_fixed, color: color),
+                  const SizedBox(width: 4),
+                  Text(enemy.lastDiscoveredAt,
+                      style: const TextStyle(color: color))
+                ]),
+              ),
         StaticBox.text(
           color: enemy.isDiscovered ? Colors.red[800] : Colors.blueAccent[400],
           size: 15,

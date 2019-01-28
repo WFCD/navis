@@ -25,9 +25,11 @@ class CountdownBoxState extends State<CountdownBox>
   void initState() {
     super.initState();
 
+    final start = widget.expiry.difference(DateTime.now().toUtc());
+
     _controller = AnimationController(
         vsync: this,
-        duration: widget.expiry.difference(DateTime.now().toUtc()));
+        duration: start < Duration.zero ? Duration(milliseconds: 500) : start);
 
     _tween = StepTween(
         begin: widget.expiry.millisecondsSinceEpoch,
@@ -45,7 +47,10 @@ class CountdownBoxState extends State<CountdownBox>
   @override
   void didUpdateWidget(CountdownBox oldWidget) {
     if (oldWidget.expiry != widget.expiry) {
-      _controller.duration = widget.expiry.difference(DateTime.now().toUtc());
+      final start = widget.expiry.difference(DateTime.now().toUtc());
+
+      _controller.duration =
+          start < Duration.zero ? Duration(milliseconds: 500) : start;
 
       _animation = StepTween(
               begin: widget.expiry.millisecondsSinceEpoch,

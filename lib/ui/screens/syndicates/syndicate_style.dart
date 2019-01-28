@@ -28,7 +28,8 @@ class Syndicate extends StatelessWidget {
           onTap: () => _navigateToBounties(context, syndicate),
           child: Row(mainAxisSize: MainAxisSize.max, children: <Widget>[
             Container(
-                child: factionutils.factionIcon(syndicate.syndicate, size: 60)),
+                child:
+                    factionutils.factionIcon(syndicate.syndicate, size: 60.0)),
             Expanded(
                 child: Column(
                     mainAxisSize: MainAxisSize.min,
