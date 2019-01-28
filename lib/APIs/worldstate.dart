@@ -47,6 +47,8 @@ class WorldstateAPI {
     state.invasions.retainWhere(
         (invasion) => invasion.completion < 100 && invasion.completed == false);
 
+    state.persistentEnemies.sort((a, b) => a.agentType.compareTo(b.agentType));
+
     state.syndicates.retainWhere((s) =>
         s.syndicate.contains(RegExp('(Ostrons)|(Solaris United)')) == true);
 
