@@ -40,10 +40,11 @@ class Event extends StatelessWidget {
       color: _healthColor(double.parse(event.health)),
     );
 
-    _addReward(context, event.jobs.isEmpty, children);
+    _addReward(context, event.jobs.isNotEmpty, children);
 
     return SizedBox(
-        height: 125,
+        height: 140,
+        width: MediaQuery.of(context).size.width,
         child: Material(
             color: Theme.of(context).cardColor,
             elevation: 6,
@@ -51,7 +52,7 @@ class Event extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Container(
-                      margin: const EdgeInsets.only(bottom: 4, top: 4),
+                      margin: const EdgeInsets.only(bottom: 4, top: 3),
                       child: Text(event.description,
                           style: Theme.of(context).textTheme.title)),
                   Container(
@@ -65,8 +66,9 @@ class Event extends StatelessWidget {
                         const SizedBox(width: 4),
                         progress
                       ]),
-                  const SizedBox(height: 8),
+                  const SizedBox(height: 4),
                   Row(
+                      mainAxisSize: MainAxisSize.min,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: children)
                 ])));
@@ -75,6 +77,7 @@ class Event extends StatelessWidget {
 
 Widget _buildJob(BuildContext context, Jobs job) {
   return Card(
+    margin: const EdgeInsets.only(right: 3.0),
     color: Colors.blueAccent[400],
     child: InkWell(
         onTap: () => Navigator.of(context).push(MaterialPageRoute(
