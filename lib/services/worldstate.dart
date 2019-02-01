@@ -1,44 +1,50 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:codable/codable.dart';
-import 'package:http/http.dart' as http;
+import 'package:http/http.dart';
 import 'package:navis/models/export.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:navis/utils/metric_httpClient.dart';
 
 class WorldstateAPI {
   final String _baseRoute = 'https://api.warframestat.us/';
 
+  static final MetricHttpClient _metricHttpClient = MetricHttpClient(Client());
+
   Future<WorldState> updateState() async {
     final prefs = await SharedPreferences.getInstance();
-    final _platform = prefs.getString('Platform') ?? 'pc';
-    final response = await http.get(_baseRoute + _platform);
+    final Request request = Request(
+        'GET', Uri.parse('$_baseRoute${prefs.getString('Platform') ?? 'pc'}'));
+
+    final StreamedResponse response = await _metricHttpClient.send(request);
 
     if (response.statusCode != 200) throw Exception('error loading state');
 
-    final data = json.decode(response.body);
+    final data =
+        json.decode(await response.stream.transform(utf8.decoder).join());
+
     final key = KeyedArchive.unarchive(data);
     final WorldState state = WorldState()..decode(key);
 
-    await _cleanupState(state);
+    _cleanState(state);
     return state;
   }
 
   static Future<List<Reward>> rewards() async {
-    final List<Reward> rewards = [];
+    final Request request =
+        Request('GET', Uri.parse('http://142.93.23.157/rewards'));
 
-    final List<dynamic> url =
-        json.decode((await http.get('http://142.93.23.157/rewards')).body);
+    final StreamedResponse response = await _metricHttpClient.send(request);
 
-    for (int i = 0; i < url.length; i++) {
-      final key = KeyedArchive.unarchive(url[i]);
-      final reward = Reward()..decode(key);
-      rewards.add(reward);
-    }
-
-    return rewards;
+    return await response.stream
+        .transform(utf8.decoder)
+        .transform(json.decoder)
+        .expand((r) => r)
+        .map((r) => Reward()..decode(KeyedArchive.unarchive(r)))
+        .toList();
   }
 
-  Future<void> _cleanupState(WorldState state) async {
+  void _cleanState(WorldState state) {
     state.alerts.removeWhere((a) =>
         a.active == false ||
         a.expiry.difference(DateTime.now().toUtc()) < Duration(seconds: 1));

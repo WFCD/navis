@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-
+import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:navis/ui/widgets/scaffold.dart';
+import 'package:navis/ui/widgets/icons.dart';
 
 import 'feed/feed.dart';
 import 'fissures/fissures.dart';
@@ -17,7 +17,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreen extends State<HomeScreen> with TickerProviderStateMixin {
   double size = 20;
-  final TextStyle _titleStyle = const TextStyle(fontSize: 12);
+  final TextStyle _titleStyle = const TextStyle(color: Colors.white);
 
   List<Widget> pages = [
     const Orbiter(),
@@ -26,33 +26,26 @@ class _HomeScreen extends State<HomeScreen> with TickerProviderStateMixin {
     SyndicatesList()
   ];
 
-  List<BottomNavigationBarItem> _items;
+  List<BottomNavyBarItem> _items;
 
   @override
   void initState() {
     super.initState();
 
     _items = [
-      BottomNavigationBarItem(
+      BottomNavyBarItem(
           icon: const Icon(Icons.update, color: Colors.white),
           title: Text('News', style: _titleStyle)),
-      BottomNavigationBarItem(
+      BottomNavyBarItem(
           icon: const Icon(Icons.view_headline, color: Colors.white),
           title: Text('Feed', style: _titleStyle)),
-      BottomNavigationBarItem(
-          icon: SvgPicture.asset('assets/general/VoidTearIcon.svg',
-              height: size, width: size, color: Colors.white),
+      BottomNavyBarItem(
+          icon: const Icon(VoidTear.voidtearicon, color: Colors.white),
           title: Text('Fissures', style: _titleStyle)),
-      BottomNavigationBarItem(
-          icon: SvgPicture.asset('assets/general/standing.svg',
-              height: size, width: size, color: Colors.white),
+      BottomNavyBarItem(
+          icon: const Icon(Standing.standing, color: Colors.white),
           title: Text('Syndicates', style: _titleStyle))
     ];
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
   }
 
   @override

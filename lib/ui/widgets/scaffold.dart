@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:navis/globalkeys.dart';
-import 'package:navis/ui/widgets/bottomNavBar.dart';
+
+import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 
 class CustomScaffold extends StatefulWidget {
   const CustomScaffold({this.pageChilderen, this.childeren});
 
   final List<Widget> pageChilderen;
-  final List<BottomNavigationBarItem> childeren;
+  final List<BottomNavyBarItem> childeren;
 
   @override
   CustomScaffoldState createState() => CustomScaffoldState();
@@ -71,10 +72,12 @@ class CustomScaffoldState extends State<CustomScaffold>
               onPressed: () => Navigator.of(context).pushNamed('/Settings'))
         ]),
         body: _buildTransitionsStack(),
-        bottomNavigationBar: BottomNavBar(
-          index: _currentPage,
+        bottomNavigationBar: BottomNavyBar(
+          backgroundColor: const Color(0xFF222222),
+          activeColor: Theme.of(context).accentColor,
+          currentIndex: _currentPage,
           items: widget.childeren,
-          onTap: (int index) {
+          onItemSelected: (int index) {
             setState(() {
               transWidget[_currentPage].controller.reverse();
               _currentPage = index;
