@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:navis/models/export.dart';
 
-import 'package:navis/APIs/worldstate.dart';
+import 'package:navis/services/worldstate.dart';
 
 class BountyRewards extends StatelessWidget {
   const BountyRewards({Key key, this.missionTYpe, this.bountyRewards})
@@ -59,7 +59,7 @@ Widget _buildForSyndicates(
                   ? SvgPicture.asset('assets/general/nightmare.svg',
                       color: Colors.red, height: 50, width: 50)
                   : Image.network(reward.imagePath,
-                      scale: 8.0, fit: BoxFit.cover);
+                      height: 60, width: 60, fit: BoxFit.cover);
 
               return Padding(
                 padding: const EdgeInsets.only(bottom: 8.0, top: 8.0),

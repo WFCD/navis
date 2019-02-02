@@ -6,7 +6,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:navis/utils/constants.dart';
 import 'package:navis/ui/widgets/popup.dart';
 import 'package:navis/ui/widgets/videoplayer.dart';
-import 'package:navis/APIs/streamable.dart';
+import 'package:navis/services/streamable.dart';
 
 import 'map_base.dart';
 

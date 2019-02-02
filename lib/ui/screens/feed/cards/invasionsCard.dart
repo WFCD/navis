@@ -5,7 +5,6 @@ import 'package:navis/models/export.dart';
 
 import 'package:navis/ui/widgets/cards.dart';
 import 'package:navis/ui/widgets/static_box.dart';
-import 'package:navis/ui/widgets/expanded.dart';
 import 'package:navis/ui/widgets/invasionsBar.dart';
 
 class InvasionCard extends StatefulWidget {
@@ -15,35 +14,11 @@ class InvasionCard extends StatefulWidget {
   _InvasionCard createState() => _InvasionCard();
 }
 
-class _InvasionCard extends State<InvasionCard>
-    with SingleTickerProviderStateMixin {
-  AnimationController _controller;
+class _InvasionCard extends State<InvasionCard> {
   bool _showMore = false;
-
-  @override
-  void initState() {
-    super.initState();
-    _controller = AnimationController(vsync: this);
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
 
   Future<void> _showMoreInvasions() async {
     _showMore = !_showMore;
-    try {
-      if (_showMore) {
-        await _controller.forward().orCancel;
-      } else {
-        await _controller.reverse().orCancel;
-      }
-    } on TickerCanceled {
-      // The animation was canceled, maybe it was disposed mid animation, hell if I know
-      // not even sure what I'm doing anymore
-    }
 
     if (mounted) setState(() => _showMore = _showMore);
   }
@@ -54,12 +29,11 @@ class _InvasionCard extends State<InvasionCard>
 
     return Tiles(
       child: StreamBuilder(
-          initialData: WorldstateBloc.initworldstate,
+          initialData: state.initial,
           stream: state.worldstate,
           builder: (BuildContext context, AsyncSnapshot<WorldState> snapshot) {
             final invasions = snapshot.data.invasions;
             final length = invasions.length;
-            final emptyBox = Container(height: 0, width: 0);
 
             return invasions.isEmpty
                 ? const Center(child: Text('No Invasions at this time'))
@@ -70,32 +44,33 @@ class _InvasionCard extends State<InvasionCard>
                                 .take(2)
                                 .map((i) => _BuildInvasions(invasion: i))
                                 .toList())),
-                    ExpandedCard(
-                      controller: _controller,
-                      length: (110 * (length - 2)).toDouble(),
-                      child: Column(
+                    AnimatedCrossFade(
+                      duration: const Duration(milliseconds: 250),
+                      crossFadeState: _showMore
+                          ? CrossFadeState.showSecond
+                          : CrossFadeState.showFirst,
+                      firstChild: Container(),
+                      secondChild: Column(
                           children: invasions
                               .skip(2)
                               .map((i) => _BuildInvasions(invasion: i))
                               .toList()),
                     ),
-                    length < 3
-                        ? emptyBox
-                        : ButtonTheme.bar(
-                            child: ButtonBar(
-                                alignment: MainAxisAlignment.center,
-                                children: <Widget>[
-                                  FlatButton(
-                                      padding: const EdgeInsets.all(8.0),
-                                      textColor: Colors.blue,
-                                      onPressed: () {
-                                        _showMoreInvasions();
-                                      },
-                                      child: _showMore
-                                          ? const Text('See less')
-                                          : const Text('See more'))
-                                ]),
-                          )
+                    ButtonTheme.bar(
+                      child: ButtonBar(
+                          alignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            FlatButton(
+                                padding: const EdgeInsets.all(8.0),
+                                textColor: Colors.blue,
+                                onPressed: length < 3
+                                    ? null
+                                    : () => _showMoreInvasions(),
+                                child: _showMore
+                                    ? const Text('See less')
+                                    : const Text('See more'))
+                          ]),
+                    )
                   ]);
           }),
     );

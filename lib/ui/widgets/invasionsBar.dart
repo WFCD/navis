@@ -38,23 +38,26 @@ class InvasionBar extends StatelessWidget {
                       height: lineHeight * 2,
                       width: width,
                       padding: padding,
-                      child: CustomPaint(
-                          willChange: true,
-                          painter: _InvasionBar(
-                              progress: progress,
-                              progressColor:
-                                  factionutils.factionColor(attackingFaction),
-                              backgroundColor:
-                                  factionutils.factionColor(defendingFaction),
-                              lineWidth: lineHeight),
-                          child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: <Widget>[
-                                factionutils.factionIcon(attackingFaction,
-                                    size: 15, hasColor: false),
-                                factionutils.factionIcon(defendingFaction,
-                                    size: 15, hasColor: false),
-                              ]))))
+                      child: RepaintBoundary(
+                          child: CustomPaint(
+                              willChange: false,
+                              isComplex: true,
+                              painter: _InvasionBar(
+                                  progress: progress,
+                                  progressColor: factionutils
+                                      .factionColor(attackingFaction),
+                                  backgroundColor: factionutils
+                                      .factionColor(defendingFaction),
+                                  lineWidth: lineHeight),
+                              child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: <Widget>[
+                                    factionutils.factionIcon(attackingFaction,
+                                        size: 15, hasColor: false),
+                                    factionutils.factionIcon(defendingFaction,
+                                        size: 15, hasColor: false),
+                                  ])))))
             ]));
   }
 }
@@ -92,6 +95,10 @@ class _InvasionBar extends CustomPainter {
     canvas.drawLine(start, Offset(size.width * progress, size.height / 2),
         _attackingFaction);
   }
+
+  @override
+  bool shouldRebuildSemantics(_InvasionBar oldDelegate) =>
+      oldDelegate.progress != progress;
 
   @override
   bool shouldRepaint(_InvasionBar oldDelegate) =>

@@ -71,10 +71,22 @@ class CountdownBoxState extends State<CountdownBox>
     super.dispose();
   }
 
+  Color _containerColors(Duration timeLeft) {
+    if (timeLeft >= Duration(hours: 1))
+      return Colors.green;
+    else if (timeLeft < Duration(hours: 1) && timeLeft > Duration(minutes: 10))
+      return Colors.orange[700];
+    else
+      return Colors.red;
+  }
+
   @override
   Widget build(BuildContext context) {
-    return CountDown(
-        animation: _animation, expiry: widget.expiry, size: widget.size);
+    return StaticBox(
+      color: _containerColors(_controller.duration),
+      child: CountDown(
+          animation: _animation, expiry: widget.expiry, size: widget.size),
+    );
   }
 }
 
@@ -86,34 +98,24 @@ class CountDown extends AnimatedWidget {
   final DateTime expiry;
   final double size;
 
-  Color _containerColors(Duration timeLeft) {
-    if (timeLeft >= Duration(hours: 1))
-      return Colors.green;
-    else if (timeLeft < Duration(hours: 1) && timeLeft > Duration(minutes: 10))
-      return Colors.orange[700];
-    else
-      return Colors.red;
-  }
-
-  String _timerVersions(Duration time) {
+  Widget _timerVersions(Duration time) {
     final String days = '${time.inDays}';
     final String hours = '${time.inHours % 24}';
     final String minutes = '${time.inMinutes % 60}'.padLeft(2, '0');
     final String seconds = '${time.inSeconds % 60}'.padLeft(2, '0');
 
     if (time < Duration(days: 1))
-      return '$hours:$minutes:$seconds';
+      return Text('$hours:$minutes:$seconds',
+          style: TextStyle(fontSize: size, color: Colors.white));
     else
-      return '$days\d $hours:$minutes:$seconds';
+      return Text('$days\d $hours:$minutes:$seconds',
+          style: TextStyle(fontSize: size, color: Colors.white));
   }
 
   @override
   Widget build(BuildContext context) {
     final Duration duration = expiry.difference(DateTime.now());
 
-    return StaticBox.text(
-        color: _containerColors(duration),
-        text: _timerVersions(duration),
-        size: size);
+    return _timerVersions(duration);
   }
 }

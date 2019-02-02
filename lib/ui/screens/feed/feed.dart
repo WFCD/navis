@@ -41,20 +41,24 @@ class FeedState extends State<Feed> {
             if (!snapshot.hasData)
               return const Center(child: CircularProgressIndicator());
 
-            final List<Widget> childeren = [
+            final List<Widget> children = [
               const CetusCycle(cycle: Cycle.cetus),
               OrbVallis(),
               const CetusCycle(cycle: Cycle.earth),
               AlertTile(),
-              const InvasionCard(),
+              const InvasionCard(key: PageStorageKey<String>('invasions')),
               Trader(),
               SculptureMissions()
             ];
 
-            _addEvents(snapshot.data.events, childeren);
-            _addAcolytes(snapshot.data.persistentEnemies, childeren);
+            _addEvents(snapshot.data.events, children);
+            _addAcolytes(snapshot.data.persistentEnemies, children);
 
-            return ListView(children: childeren);
+            //return ListView(children: childeren);
+
+            return CustomScrollView(slivers: <Widget>[
+              SliverList(delegate: SliverChildListDelegate(children))
+            ]);
           }),
     );
   }
