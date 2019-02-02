@@ -25,10 +25,7 @@ class Sortie extends Coding {
 }
 
 class Variants extends Coding {
-  String missionType;
-  String modifier;
-  String modifierDescription;
-  String node;
+  String missionType, modifier, modifierDescription, node;
 
   @override
   void decode(KeyedArchive object) {

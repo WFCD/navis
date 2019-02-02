@@ -5,7 +5,7 @@ class Invasions extends Coding {
   bool vsInfestation, completed;
   num completion, count;
 
-  _Faction attackerReward, defenderReward;
+  _FactionReward attackerReward, defenderReward;
 
   @override
   void decode(KeyedArchive object) {
@@ -18,8 +18,10 @@ class Invasions extends Coding {
     activation = object.decode('activation');
     eta = object.decode('eta');
 
-    attackerReward = object.decodeObject('attackerReward', () => _Faction());
-    defenderReward = object.decodeObject('defenderReward', () => _Faction());
+    attackerReward =
+        object.decodeObject('attackerReward', () => _FactionReward());
+    defenderReward =
+        object.decodeObject('defenderReward', () => _FactionReward());
 
     vsInfestation = object.decode('vsInfestation');
     completed = object.decode('completed');
@@ -48,7 +50,7 @@ class Invasions extends Coding {
   }
 }
 
-class _Faction extends Coding {
+class _FactionReward extends Coding {
   String itemString, asString, thumbnail;
 
   @override

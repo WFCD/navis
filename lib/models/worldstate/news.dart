@@ -3,7 +3,7 @@ import 'package:codable/codable.dart';
 class OrbiterNews extends Coding {
   String message, link, imageLink;
   DateTime date;
-  bool update, stream;
+  bool priority, update, primeAccess, stream;
 
   _Translations translations;
 
@@ -14,8 +14,10 @@ class OrbiterNews extends Coding {
     message = object.decode('message');
     link = object.decode('link');
     imageLink = object.decode('imageLink');
+    priority = object.decode('priority');
     date = DateTime.parse(object.decode('date'));
     update = object.decode('update');
+    primeAccess = object.decode('primeAccess');
     stream = object.decode('stream');
     translations = object.decodeObject('translations', () => _Translations());
   }
