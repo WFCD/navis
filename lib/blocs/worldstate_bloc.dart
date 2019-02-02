@@ -9,8 +9,7 @@ import 'provider.dart';
 
 class WorldstateBloc implements Base {
   factory WorldstateBloc() {
-    final updatedState = BehaviorSubject<WorldState>(
-        seedValue: initworldstate); // ignore: close_sinks
+    final updatedState = BehaviorSubject<WorldState>(); // ignore: close_sinks
     final worldstate = updatedState.distinct();
 
     return WorldstateBloc._(updatedState, worldstate);
@@ -18,17 +17,24 @@ class WorldstateBloc implements Base {
 
   WorldstateBloc._(this.updatedState, this.worldstate);
 
-  static WorldState initworldstate;
+  final _state = WorldstateAPI();
+
+  WorldState initial;
 
   final Sink<WorldState> updatedState;
   final Stream<WorldState> worldstate;
 
-  Stateutils get stateUtils => Stateutils(worldstate: initworldstate);
+  Stateutils get stateUtils => Stateutils(worldstate: initial);
   Factionutils get factionUtils => Factionutils();
 
   Future<void> update() async {
-    final state = WorldstateAPI();
-    updatedState.add(await state.updateState());
+    initial ??= await _state.updateState();
+    updatedState.add(await _state.updateState());
+  }
+
+  @override
+  void initState() {
+    update();
   }
 
   @override
