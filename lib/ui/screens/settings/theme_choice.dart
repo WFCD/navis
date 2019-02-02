@@ -42,7 +42,7 @@ Future<void> showOptions(BuildContext context, ThemeBloc theme) {
       barrierDismissible: true,
       builder: (BuildContext context) {
         return StreamBuilder<ThemeData>(
-            initialData: theme.defaultTheme,
+            //initialData: theme.defaultTheme,
             stream: theme.themeDataStream,
             builder: (BuildContext context, AsyncSnapshot<ThemeData> snapshot) {
               return SimpleDialog(
