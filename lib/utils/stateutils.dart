@@ -7,10 +7,6 @@ class Stateutils {
   final DateFormat format = DateFormat.jms().add_yMd();
   final WorldState worldstate;
 
-  int get invasions => worldstate.invasions.length;
-
-  DateTime get bountyTime => worldstate.syndicates.first.expiry;
-
   String expiration(DateTime expiry) {
     try {
       return format.format(expiry);

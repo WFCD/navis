@@ -26,7 +26,7 @@ class SyndicatesList extends StatelessWidget {
                 return const Center(child: Text('Retrieving new bounties...'));
 
               return ListView(children: <Widget>[
-                SyndicateTimer(time: bloc.stateUtils.bountyTime),
+                SyndicateTimer(time: syndicates[0].expiry),
                 Column(
                     children: syndicates
                         .where((Syndicates syn) => syn.active == true)

@@ -40,7 +40,7 @@ class Event extends StatelessWidget {
       color: _healthColor(double.parse(event.health)),
     );
 
-    _addReward(context, event.jobs.isNotEmpty, children);
+    _addReward(context, event.jobs?.isNotEmpty ?? false, children);
 
     return SizedBox(
         height: 140,
@@ -55,10 +55,12 @@ class Event extends StatelessWidget {
                       margin: const EdgeInsets.only(bottom: 4, top: 3),
                       child: Text(event.description,
                           style: Theme.of(context).textTheme.title)),
-                  Container(
-                      margin: const EdgeInsets.only(bottom: 4),
-                      child: Text(event.tooltip,
-                          style: Theme.of(context).textTheme.subtitle)),
+                  event.tooltip == null
+                      ? Container()
+                      : Container(
+                          margin: const EdgeInsets.only(bottom: 4),
+                          child: Text(event.tooltip,
+                              style: Theme.of(context).textTheme.subtitle)),
                   Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
