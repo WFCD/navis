@@ -17,7 +17,7 @@ class OrbVallis extends StatelessWidget {
     return Tiles(
         title: 'Orb Vallis Cycle',
         child: StreamBuilder<WorldState>(
-            initialData: WorldstateBloc.initworldstate,
+            initialData: state.initial,
             stream: state.worldstate,
             builder: (context, snapshot) {
               const padding = SizedBox(height: 4);

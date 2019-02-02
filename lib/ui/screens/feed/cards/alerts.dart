@@ -18,7 +18,7 @@ class AlertTile extends StatelessWidget {
         title: 'Alerts',
         child: Column(children: <Widget>[
           StreamBuilder(
-              initialData: WorldstateBloc.initworldstate,
+              initialData: alert.initial,
               stream: alert.worldstate,
               builder:
                   (BuildContext context, AsyncSnapshot<WorldState> snapshot) {
@@ -34,6 +34,12 @@ class AlertTile extends StatelessWidget {
   }
 }
 
+final _nightmareIcon = SvgPicture.asset('assets/general/nightmare.svg',
+    color: Colors.red, height: 25, width: 25);
+
+final _archwingIcon = SvgPicture.asset('assets/general/archwing.svg',
+    color: Colors.blue, height: 25, width: 25);
+
 class _BuildAlerts extends StatelessWidget {
   const _BuildAlerts({@required this.alert});
 
@@ -47,14 +53,7 @@ class _BuildAlerts extends StatelessWidget {
   Widget build(BuildContext context) {
     final List<Widget> icons = [];
 
-    final _nightmareIcon = SvgPicture.asset('assets/general/nightmare.svg',
-        color: Colors.red, height: 25, width: 25);
-
-    final _archwingIcon = SvgPicture.asset('assets/general/archwing.svg',
-        color: Colors.blue, height: 25, width: 25);
-
     _addIcons(alert.mission.archwingRequired, _archwingIcon, icons);
-
     _addIcons(alert.mission.nightmare, _nightmareIcon, icons);
 
     return Container(

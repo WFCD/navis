@@ -33,7 +33,7 @@ class CetusCycle extends StatelessWidget {
     return Tiles(
         title: _cycle(cycle),
         child: StreamBuilder(
-            initialData: WorldstateBloc.initworldstate,
+            initialData: state.initial,
             stream: state.worldstate,
             builder:
                 (BuildContext context, AsyncSnapshot<WorldState> snapshot) {

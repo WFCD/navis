@@ -14,7 +14,7 @@ class SculptureMissions extends StatelessWidget {
 
     return Tiles(
         child: StreamBuilder(
-            initialData: WorldstateBloc.initworldstate,
+            initialData: state.initial,
             stream: state.worldstate,
             builder:
                 (BuildContext context, AsyncSnapshot<WorldState> snapshot) {

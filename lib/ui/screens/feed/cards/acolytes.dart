@@ -13,33 +13,25 @@ class Acolytes extends StatelessWidget {
     final enemies = BlocProvider.of<WorldstateBloc>(context);
 
     return StreamBuilder<WorldState>(
-      initialData: WorldstateBloc.initworldstate,
+      initialData: enemies.initial,
       stream: enemies.worldstate,
       builder: (BuildContext context, AsyncSnapshot<WorldState> snapshot) {
-        final List<AcolyteProfile> acolytes = snapshot.data.persistentEnemies
-            .map((e) => AcolyteProfile(enemy: e))
-            .toList();
-
-        for (int i = 0; i < acolytes.length; i++) {
-          if (i == (acolytes.length - 1)) {
-          } else
-            acolytes[i].divider = true;
-        }
-
-        return Tiles(title: 'Acolytes', child: Column(children: acolytes));
+        return Tiles(
+            title: 'Acolytes',
+            child: Column(
+              children: snapshot.data.persistentEnemies
+                  .map((e) => AcolyteProfile(enemy: e))
+                  .toList(),
+            ));
       },
     );
   }
 }
 
-//ignore: must_be_immutable
 class AcolyteProfile extends StatelessWidget {
-  // ignore: prefer_const_constructors_in_immutables
-  AcolyteProfile({@required this.enemy});
+  const AcolyteProfile({@required this.enemy});
 
   final PersistentEnemies enemy;
-
-  bool divider = false;
 
   Color _healthColor(num health) {
     if (health > 50.0)
@@ -55,36 +47,41 @@ class AcolyteProfile extends StatelessWidget {
     const color = Colors.white;
 
     return Container(
+        margin: const EdgeInsets.only(top: 4.0),
         child: Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
-      RowItem(
-          text: 'Acolyte: ${enemy.agentType} | lvl: ${enemy.rank}',
-          child: StaticBox.text(
-              size: 15,
-              text:
-                  'Health: ${(enemy.healthPercent * 100).toStringAsFixed(2)}%',
-              color: _healthColor(enemy.healthPercent * 100))),
-      Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: <Widget>[
-        enemy.lastDiscoveredAt.isEmpty
-            ? Container()
-            : StaticBox(
-                color: enemy.isDiscovered ? Colors.red[800] : Colors.grey,
-                child: Row(children: <Widget>[
-                  enemy.isDiscovered
-                      ? const Icon(Icons.gps_fixed, color: color)
-                      : const Icon(Icons.gps_not_fixed, color: color),
-                  const SizedBox(width: 4),
-                  Text(enemy.lastDiscoveredAt,
-                      style: const TextStyle(color: color))
-                ]),
-              ),
-        StaticBox.text(
-          color: enemy.isDiscovered ? Colors.red[800] : Colors.blueAccent[400],
-          size: 15,
-          text:
-              '${enemy.isDiscovered ? 'Found' : 'Last seen'}: ${enemy.lastDiscoveredTime.difference(DateTime.now()).inMinutes.abs()}m ago',
-        )
-      ]),
-      divider ? Divider(color: Colors.blueAccent[400]) : Container()
-    ]));
+          RowItem(
+              text: 'Acolyte: ${enemy.agentType} | lvl: ${enemy.rank}',
+              child: StaticBox.text(
+                  size: 15,
+                  text:
+                      'Health: ${(enemy.healthPercent * 100).toStringAsFixed(2)}%',
+                  color: _healthColor(enemy.healthPercent * 100))),
+          Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                enemy.lastDiscoveredAt.isEmpty
+                    ? Container()
+                    : StaticBox(
+                        color:
+                            enemy.isDiscovered ? Colors.red[800] : Colors.grey,
+                        child: Row(children: <Widget>[
+                          enemy.isDiscovered
+                              ? const Icon(Icons.gps_fixed, color: color)
+                              : const Icon(Icons.gps_not_fixed, color: color),
+                          const SizedBox(width: 4),
+                          Text(enemy.lastDiscoveredAt,
+                              style: const TextStyle(color: color))
+                        ]),
+                      ),
+                StaticBox.text(
+                  color: enemy.isDiscovered
+                      ? Colors.red[800]
+                      : Colors.blueAccent[400],
+                  size: 15,
+                  text:
+                      '${enemy.isDiscovered ? 'Found' : 'Last seen'}: ${enemy.lastDiscoveredTime.difference(DateTime.now()).inMinutes.abs()}m ago',
+                )
+              ]),
+        ]));
   }
 }

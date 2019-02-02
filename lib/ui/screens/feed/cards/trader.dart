@@ -25,7 +25,7 @@ class _Trader extends State<Trader> {
     return Tiles(
         title: 'Void Trader',
         child: StreamBuilder<WorldState>(
-          initialData: WorldstateBloc.initworldstate,
+          initialData: state.initial,
           stream: state.worldstate,
           builder: (BuildContext context, AsyncSnapshot<WorldState> snapshot) {
             final trader = snapshot.data.trader;
