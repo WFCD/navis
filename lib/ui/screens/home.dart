@@ -17,7 +17,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreen extends State<HomeScreen> with TickerProviderStateMixin {
   double size = 20;
-  final TextStyle _titleStyle = const TextStyle(color: Colors.white);
+  static const TextStyle _titleStyle = TextStyle(color: Colors.white);
 
   List<Widget> pages = [
     const Orbiter(),
@@ -26,27 +26,20 @@ class _HomeScreen extends State<HomeScreen> with TickerProviderStateMixin {
     SyndicatesList()
   ];
 
-  List<BottomNavyBarItem> _items;
-
-  @override
-  void initState() {
-    super.initState();
-
-    _items = [
-      BottomNavyBarItem(
-          icon: const Icon(Icons.update, color: Colors.white),
-          title: Text('News', style: _titleStyle)),
-      BottomNavyBarItem(
-          icon: const Icon(Icons.view_headline, color: Colors.white),
-          title: Text('Feed', style: _titleStyle)),
-      BottomNavyBarItem(
-          icon: const Icon(VoidTear.voidtearicon, color: Colors.white),
-          title: Text('Fissures', style: _titleStyle)),
-      BottomNavyBarItem(
-          icon: const Icon(Standing.standing, color: Colors.white),
-          title: Text('Syndicates', style: _titleStyle))
-    ];
-  }
+  final List<BottomNavyBarItem> _items = [
+    BottomNavyBarItem(
+        icon: const Icon(Icons.update, color: Colors.white),
+        title: const Text('News', style: _titleStyle)),
+    BottomNavyBarItem(
+        icon: const Icon(Icons.view_headline, color: Colors.white),
+        title: const Text('Feed', style: _titleStyle)),
+    BottomNavyBarItem(
+        icon: const Icon(VoidTear.voidtearicon, color: Colors.white),
+        title: const Text('Fissures', style: _titleStyle)),
+    BottomNavyBarItem(
+        icon: const Icon(Standing.standing, color: Colors.white),
+        title: const Text('Syndicates', style: _titleStyle))
+  ];
 
   @override
   Widget build(BuildContext context) {

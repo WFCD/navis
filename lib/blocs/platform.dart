@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:rxdart/rxdart.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -39,4 +38,9 @@ class Platforms implements Base {
 
   @override
   void dispose() => selectedPlatform.close();
+
+  @override
+  void initState() {
+    // TODO
+  }
 }
