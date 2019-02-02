@@ -1,15 +1,15 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:navis/blocs/provider.dart';
-import 'package:navis/blocs/worldstate_bloc.dart';
-import 'package:navis/services/worldstate.dart';
 import 'package:background_fetch/background_fetch.dart';
+import 'package:navis/blocs/provider.dart';
+import 'package:navis/blocs/theming.dart';
+import 'package:navis/blocs/worldstate_bloc.dart';
 import 'package:navis/utils/crashlytics.dart';
+import 'package:navis/utils/themes.dart';
 
 import 'app.dart';
 
 final state = WorldstateBloc();
-final stateService = WorldstateAPI();
 
 Future<void> fetchState() async {
   state.update();
@@ -17,9 +17,10 @@ Future<void> fetchState() async {
 }
 
 Future<void> main() async {
-  WorldstateBloc.initworldstate = await stateService.updateState();
-
   final exception = ExceptionService();
+  final AppThemes theme = AppThemes();
+
+  ThemeBloc.initialTheme = await theme.savedTheme();
 
   runZoned<Future<void>>(
       () async =>
