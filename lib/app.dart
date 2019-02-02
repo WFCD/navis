@@ -13,12 +13,11 @@ class Navis extends StatelessWidget {
     return BlocProvider<ThemeBloc>(
         bloc: theme,
         child: StreamBuilder<ThemeData>(
-            initialData: theme.defaultTheme,
+            initialData: ThemeBloc.initialTheme,
             stream: theme.themeDataStream,
             builder: (BuildContext context, AsyncSnapshot<ThemeData> snapshot) {
               return MaterialApp(
                 title: 'Navis',
-                //showPerformanceOverlay: true,
                 color: Colors.grey[900],
                 theme: snapshot.data,
                 home: const HomeScreen(),
