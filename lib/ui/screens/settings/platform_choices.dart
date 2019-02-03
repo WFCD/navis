@@ -37,6 +37,7 @@ class PlatformChoiceState extends State<PlatformChoice> {
       Align(
           alignment: Alignment.topCenter,
           child: StreamBuilder<String>(
+              initialData: Platforms.kPlatform,
               stream: select.currentPlatform,
               builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
                 return Row(

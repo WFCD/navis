@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:navis/globalkeys.dart';
 
-import 'package:bottom_navy_bar/bottom_navy_bar.dart';
+//import 'bottomAppBar.dart';
 
 class CustomScaffold extends StatefulWidget {
   const CustomScaffold({this.pageChilderen, this.childeren});
 
   final List<Widget> pageChilderen;
-  final List<BottomNavyBarItem> childeren;
+  final List<BottomNavigationBarItem> childeren;
 
   @override
   CustomScaffoldState createState() => CustomScaffoldState();
@@ -72,19 +72,21 @@ class CustomScaffoldState extends State<CustomScaffold>
               onPressed: () => Navigator.of(context).pushNamed('/Settings'))
         ]),
         body: _buildTransitionsStack(),
-        bottomNavigationBar: BottomNavyBar(
-          backgroundColor: const Color(0xFF222222),
-          activeColor: Theme.of(context).accentColor,
-          currentIndex: _currentPage,
-          items: widget.childeren,
-          onItemSelected: (int index) {
-            setState(() {
-              transWidget[_currentPage].controller.reverse();
-              _currentPage = index;
-              transWidget[_currentPage].controller.forward();
-            });
-          },
-        ));
+        bottomNavigationBar: Theme(
+            data: Theme.of(context).copyWith(
+                canvasColor: const Color(0xFF222222),
+                brightness: Brightness.dark),
+            child: BottomNavigationBar(
+              currentIndex: _currentPage,
+              items: widget.childeren,
+              onTap: (int index) {
+                setState(() {
+                  transWidget[_currentPage].controller.reverse();
+                  _currentPage = index;
+                  transWidget[_currentPage].controller.forward();
+                });
+              },
+            )));
   }
 }
 

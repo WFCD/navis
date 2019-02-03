@@ -33,10 +33,8 @@ class ThemeBloc implements Base {
   }
 
   @override
-  void dispose() => selectedTheme.close();
+  void initState() {}
 
   @override
-  void initState() {
-    // TODO: implement initState
-  }
+  void dispose() => selectedTheme.close();
 }
