@@ -61,7 +61,7 @@ class _InvasionCard extends State<InvasionCard> {
                             children: <Widget>[
                               FlatButton(
                                   padding: const EdgeInsets.all(8.0),
-                                  textColor: Colors.blue,
+                                  textColor: Theme.of(context).accentColor,
                                   onPressed: length < 3
                                       ? null
                                       : () => _showMoreInvasions(),

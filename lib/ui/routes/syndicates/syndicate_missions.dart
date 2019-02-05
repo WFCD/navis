@@ -62,9 +62,9 @@ Widget _buildMissionType(BuildContext context, Jobs job) {
                       missionTYpe: job.type,
                       bountyRewards: job.rewardPool.cast<String>(),
                     ))),
-            child: const Text(
+            child: Text(
               'See Rewards',
-              style: TextStyle(color: Colors.blue),
+              style: TextStyle(color: Theme.of(context).accentColor),
             )),
       ),
     ),
