@@ -71,8 +71,8 @@ class NewsCard extends StatelessWidget {
               '[${_timestamp(news.date)} ago] ${news.translations.en}',
               style: Theme.of(context)
                   .textTheme
-                  .subhead
-                  .copyWith(color: Colors.white),
+                  .title
+                  .copyWith(color: Colors.white, fontSize: 15),
             )),
       ),
     ));
