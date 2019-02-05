@@ -2,14 +2,10 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:navis/models/export.dart';
 import 'package:navis/utils/factionutils.dart';
 
 import '../services/repository.dart';
-import 'wordstateStates.dart';
-
-abstract class StateEvent {}
-
-class UpdateState extends StateEvent {}
 
 class WorldstateBloc extends Bloc<StateEvent, WorldStates> {
   final repository = Respiratory();
@@ -55,3 +51,29 @@ class WorldstateBloc extends Bloc<StateEvent, WorldStates> {
     dispatch(UpdateState());
   }
 }
+
+// data State
+abstract class WorldStates {}
+
+class WorldstateUninitialized extends WorldStates {}
+
+class WorldstateError extends WorldStates {
+  WorldstateError({this.error});
+
+  final dynamic error;
+}
+
+class WorldstateLoaded extends WorldStates {
+  WorldstateLoaded({this.worldState});
+
+  final WorldState worldState;
+
+  WorldstateLoaded copyWith({WorldState worldState}) {
+    return WorldstateLoaded(worldState: worldState);
+  }
+}
+
+// State Event
+abstract class StateEvent {}
+
+class UpdateState extends StateEvent {}

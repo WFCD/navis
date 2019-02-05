@@ -4,7 +4,7 @@ import 'package:navis/utils/crashlytics.dart';
 
 import 'app.dart';
 
-Future<void> main() async {
+void main() {
   final exception = ExceptionService();
 
   runZoned<Future<void>>(() async => runApp(Navis()),

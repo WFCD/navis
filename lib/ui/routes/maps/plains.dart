@@ -38,7 +38,7 @@ class Plains extends Mapbase {
           child: const Icon(Icons.home,
               color: Color.fromRGBO(183, 70, 36, 1.0), size: 30)));
 
-  final List<Marker> _oldFish = Constants.oddity.map((o) {
+  final List<Marker> _oldFish = oddity.map((o) {
     return Marker(
         height: _size,
         width: _size,
@@ -53,7 +53,7 @@ class Plains extends Mapbase {
                     'https://hub.warframestat.us/img/map_icons/oddity.png'))));
   }).toList();
 
-  final List<Marker> _lures = Constants.lure.map((a) {
+  final List<Marker> _lures = lure.map((a) {
     return Marker(
         height: _size,
         width: _size,
@@ -64,7 +64,7 @@ class Plains extends Mapbase {
             ));
   }).toList();
 
-  final List<Marker> _fish = Constants.fish.map((f) {
+  final List<Marker> _fish = fish.map((f) {
     return Marker(
         height: _size,
         width: _size,
@@ -74,7 +74,7 @@ class Plains extends Mapbase {
                 'https://hub.warframestat.us/img/map_icons/fish.png')));
   }).toList();
 
-  final List<Marker> _caves = Constants.cave.map((c) {
+  final List<Marker> _caves = cave.map((c) {
     return Marker(
         height: _size,
         width: _size,
@@ -84,7 +84,7 @@ class Plains extends Mapbase {
                 'https://hub.warframestat.us/img/map_icons/caves.png')));
   }).toList();
 
-  final List<Marker> _grineerBase = Constants.grineer.map((g) {
+  final List<Marker> _grineerBase = grineer.map((g) {
     return Marker(
         height: _size,
         width: _size,
