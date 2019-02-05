@@ -6,7 +6,7 @@ import 'package:navis/utils/keys.dart';
 import 'package:navis/models/streamable/video.dart';
 
 class StreamableAPI {
-  static Future<String> fishVideos(String shortCode) async {
+  Future<String> fishVideos(String shortCode) async {
     final data = json.decode((await http.get(
             'https://api.streamable.com/videos/$shortCode',
             headers: {'email': streamableUser, 'password': streamablePassword}))

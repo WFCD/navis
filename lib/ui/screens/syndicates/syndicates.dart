@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:navis/blocs/provider.dart';
-import 'package:navis/blocs/worldstate_bloc.dart';
+import 'package:navis/blocs/bloc.dart';
 import 'package:navis/models/export.dart';
 
 import 'syndicate_style.dart';
@@ -13,26 +12,28 @@ class SyndicatesList extends StatelessWidget {
 
     return RefreshIndicator(
         onRefresh: () => bloc.update(),
-        child: StreamBuilder<WorldState>(
-            stream: bloc.worldstate,
-            builder:
-                (BuildContext context, AsyncSnapshot<WorldState> snapshot) {
-              if (!snapshot.hasData)
+        child: BlocBuilder(
+            bloc: bloc,
+            builder: (context, state) {
+              if (state is WorldstateUninitialized)
                 return const Center(child: CircularProgressIndicator());
 
-              final List<Syndicates> syndicates = snapshot.data.syndicates;
+              if (state is WorldstateLoaded) {
+                final List<Syndicates> syndicates = state.worldState.syndicates;
 
-              if (syndicates.isEmpty)
-                return const Center(child: Text('Retrieving new bounties...'));
+                if (syndicates.isEmpty)
+                  return const Center(
+                      child: Text('Retrieving new bounties...'));
 
-              return ListView(children: <Widget>[
-                SyndicateTimer(time: syndicates[0].expiry),
-                Column(
-                    children: syndicates
-                        .where((Syndicates syn) => syn.active == true)
-                        .map((Syndicates syn) => Syndicate(syndicate: syn))
-                        .toList())
-              ]);
+                return ListView(children: <Widget>[
+                  SyndicateTimer(time: syndicates[0].expiry),
+                  Column(
+                      children: syndicates
+                          .where((Syndicates syn) => syn.active == true)
+                          .map((Syndicates syn) => Syndicate(syndicate: syn))
+                          .toList())
+                ]);
+              }
             }));
   }
 }

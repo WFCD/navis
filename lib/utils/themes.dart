@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AppThemes {
-  Future<ThemeData> savedTheme() async {
+  Future<int> savedTheme() async {
     final preferences = await SharedPreferences.getInstance();
+    final saveint = preferences.getInt('Theme') ?? 0;
 
-    return preferences.getInt('Theme') != 1 ? darkTheme() : lightTheme();
+    return saveint;
   }
 
   Future<bool> save(int brightness) async {

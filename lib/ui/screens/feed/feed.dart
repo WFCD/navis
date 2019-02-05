@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:navis/blocs/provider.dart';
-import 'package:navis/blocs/worldstate_bloc.dart';
+import 'package:navis/blocs/bloc.dart';
 import 'package:navis/models/export.dart';
 
 import 'cards/acolytes.dart';
@@ -31,34 +30,34 @@ class FeedState extends State<Feed> {
 
   @override
   Widget build(BuildContext context) {
-    final state = BlocProvider.of<WorldstateBloc>(context);
+    final wstate = BlocProvider.of<WorldstateBloc>(context);
 
     return RefreshIndicator(
-      onRefresh: () => state.update(),
-      child: StreamBuilder<WorldState>(
-          stream: state.worldstate,
-          builder: (context, snapshot) {
-            if (!snapshot.hasData)
+      onRefresh: () => wstate.update(),
+      child: BlocBuilder(
+          bloc: wstate,
+          builder: (context, state) {
+            if (state is WorldstateUninitialized)
               return const Center(child: CircularProgressIndicator());
 
-            final List<Widget> children = [
-              const CetusCycle(cycle: Cycle.cetus),
-              OrbVallis(),
-              const CetusCycle(cycle: Cycle.earth),
-              AlertTile(),
-              const InvasionCard(key: PageStorageKey<String>('invasions')),
-              Trader(),
-              SculptureMissions()
-            ];
+            if (state is WorldstateLoaded) {
+              final List<Widget> children = [
+                const CetusCycle(cycle: Cycle.cetus),
+                OrbVallis(),
+                const CetusCycle(cycle: Cycle.earth),
+                AlertTile(),
+                const InvasionCard(key: PageStorageKey<String>('invasions')),
+                Trader(),
+                SculptureMissions()
+              ];
 
-            _addEvents(snapshot.data.events, children);
-            _addAcolytes(snapshot.data.persistentEnemies, children);
+              _addEvents(state.worldState.events, children);
+              _addAcolytes(state.worldState.persistentEnemies, children);
 
-            //return ListView(children: childeren);
-
-            return CustomScrollView(slivers: <Widget>[
-              SliverList(delegate: SliverChildListDelegate(children))
-            ]);
+              return CustomScrollView(slivers: <Widget>[
+                SliverList(delegate: SliverChildListDelegate(children))
+              ]);
+            }
           }),
     );
   }

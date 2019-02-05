@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:navis/blocs/provider.dart';
-import 'package:navis/blocs/worldstate_bloc.dart';
+import 'package:navis/blocs/bloc.dart';
 import 'package:navis/models/export.dart';
 
 import 'package:navis/ui/widgets/cards.dart';
@@ -20,19 +19,23 @@ class _Fissure extends State<Fissure> {
 
     return RefreshIndicator(
         onRefresh: () => state.update(),
-        child: StreamBuilder(
-            stream: state.worldstate,
-            builder:
-                (BuildContext context, AsyncSnapshot<WorldState> snapshot) {
-              if (!snapshot.hasData)
-                return const Center(child: CircularProgressIndicator());
+        child: BlocBuilder(
+          bloc: state,
+          builder: (context, state) {
+            if (state is WorldstateUninitialized)
+              return const Center(child: CircularProgressIndicator());
+
+            if (state is WorldstateLoaded) {
+              final fissures = state.worldState.voidFissures;
 
               return ListView.builder(
-                itemCount: snapshot.data.voidFissures.length,
+                itemCount: fissures.length,
                 itemBuilder: (context, index) =>
-                    _BuildFissures(fissure: snapshot.data.voidFissures[index]),
+                    _BuildFissures(fissure: fissures[index]),
               );
-            }));
+            }
+          },
+        ));
   }
 }
 

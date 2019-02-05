@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'package:navis/blocs/provider.dart';
-import 'package:navis/blocs/worldstate_bloc.dart';
+import 'package:navis/blocs/worldstateBloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'static_box.dart';
 
@@ -29,7 +29,8 @@ class CountdownBoxState extends State<CountdownBox>
 
     _controller = AnimationController(
         vsync: this,
-        duration: start < Duration.zero ? Duration(milliseconds: 500) : start);
+        duration:
+            start < Duration.zero ? const Duration(milliseconds: 500) : start);
 
     _tween = StepTween(
         begin: widget.expiry.millisecondsSinceEpoch,
@@ -50,7 +51,7 @@ class CountdownBoxState extends State<CountdownBox>
       final start = widget.expiry.difference(DateTime.now().toUtc());
 
       _controller.duration =
-          start < Duration.zero ? Duration(milliseconds: 500) : start;
+          start < Duration.zero ? const Duration(milliseconds: 500) : start;
 
       _animation = StepTween(
               begin: widget.expiry.millisecondsSinceEpoch,
@@ -72,9 +73,12 @@ class CountdownBoxState extends State<CountdownBox>
   }
 
   Color _containerColors(Duration timeLeft) {
-    if (timeLeft >= Duration(hours: 1))
+    const max = Duration(hours: 1);
+    const minimum = Duration(minutes: 10);
+
+    if (timeLeft >= max)
       return Colors.green;
-    else if (timeLeft < Duration(hours: 1) && timeLeft > Duration(minutes: 10))
+    else if (timeLeft < max && timeLeft > minimum)
       return Colors.orange[700];
     else
       return Colors.red;
@@ -104,7 +108,7 @@ class CountDown extends AnimatedWidget {
     final String minutes = '${time.inMinutes % 60}'.padLeft(2, '0');
     final String seconds = '${time.inSeconds % 60}'.padLeft(2, '0');
 
-    if (time < Duration(days: 1))
+    if (time < const Duration(days: 1))
       return Text('$hours:$minutes:$seconds',
           style: TextStyle(fontSize: size, color: Colors.white));
     else

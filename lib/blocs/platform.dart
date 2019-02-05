@@ -1,41 +1,45 @@
 import 'dart:async';
 import 'package:rxdart/rxdart.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:bloc/bloc.dart';
 
-import 'provider.dart';
-
-class Platforms implements Base {
-  factory Platforms() {
-    final selectedPlatform = BehaviorSubject<String>(); // ignore: close_sinks
-    final currentPlatform = selectedPlatform.distinct().doOnData(_onData);
-
-    return Platforms._(selectedPlatform, currentPlatform);
-  }
-
-  Platforms._(this.selectedPlatform, this.currentPlatform);
-
-  static String kPlatform = 'pc';
-
-  Sink<String> selectedPlatform;
-  Stream<String> currentPlatform;
-
-  static Future<void> _onData(String platform) async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setString('Platform', platform);
-    kPlatform = platform;
-  }
-
-  Future<void> _retrivePlatform() async {
-    final prefs = await SharedPreferences.getInstance();
-
-    kPlatform = prefs.getString('Platform') ?? 'pc';
+class PlatformBloc extends Bloc<PlatformEvent, PlatformState> {
+  @override
+  Stream<PlatformEvent> transform(Stream<PlatformEvent> events) {
+    //ignore: avoid_as
+    return (events as Observable<PlatformEvent>).distinct();
   }
 
   @override
-  void dispose() => selectedPlatform.close();
+  PlatformState get initialState => PlatformState();
 
   @override
-  void initState() {
-    _retrivePlatform();
+  Stream<PlatformState> mapEventToState(
+      PlatformState currentState, PlatformEvent event) async* {
+    if (event is PlatformStart) {
+      final prefs = await SharedPreferences.getInstance();
+      yield PlatformState(platform: prefs.getString('Platform') ?? 'pc');
+    }
+    if (event is PlatformChange) {
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.setString('Platform', event.platform);
+      yield PlatformState(platform: event.platform);
+    }
   }
+}
+
+abstract class PlatformEvent {}
+
+class PlatformState {
+  PlatformState({this.platform});
+
+  final String platform;
+}
+
+class PlatformStart extends PlatformEvent {}
+
+class PlatformChange extends PlatformEvent {
+  PlatformChange({this.platform});
+
+  final String platform;
 }

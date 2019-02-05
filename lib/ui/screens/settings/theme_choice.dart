@@ -1,8 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:navis/blocs/provider.dart';
-import 'package:navis/blocs/theming.dart';
+import 'package:navis/blocs/bloc.dart';
 
 class ThemeChoice extends StatelessWidget {
   @override
@@ -41,10 +40,9 @@ Future<void> showOptions(BuildContext context, ThemeBloc theme) {
       context: context,
       barrierDismissible: true,
       builder: (BuildContext context) {
-        return StreamBuilder<ThemeData>(
-            //initialData: theme.defaultTheme,
-            stream: theme.themeDataStream,
-            builder: (BuildContext context, AsyncSnapshot<ThemeData> snapshot) {
+        return BlocBuilder<ThemeEvent, ThemeState>(
+            bloc: theme,
+            builder: (_, themeState) {
               return SimpleDialog(
                   contentPadding: EdgeInsets.zero,
                   title: const Text('Select Theme'),
@@ -54,8 +52,8 @@ Future<void> showOptions(BuildContext context, ThemeBloc theme) {
                         activeColor: accentColor,
                         value: Brightness.dark,
                         groupValue: groupValue,
-                        onChanged: (Brightness newTheme) {
-                          theme.setTheme(newTheme);
+                        onChanged: (Brightness value) {
+                          theme.dispatch(ThemeDark());
                           Navigator.pop(context);
                         }),
                     RadioListTile<Brightness>(
@@ -63,8 +61,8 @@ Future<void> showOptions(BuildContext context, ThemeBloc theme) {
                         activeColor: accentColor,
                         value: Brightness.light,
                         groupValue: groupValue,
-                        onChanged: (Brightness newTheme) {
-                          theme.setTheme(newTheme);
+                        onChanged: (Brightness value) {
+                          theme.dispatch(ThemeLight());
                           Navigator.pop(context);
                         }),
                     ButtonTheme.bar(

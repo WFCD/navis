@@ -9,7 +9,7 @@ import 'package:navis/utils/metric_httpClient.dart';
 class WorldstateAPI {
   final String _baseRoute = 'https://api.warframestat.us/';
 
-  static final MetricHttpClient _metricHttpClient = MetricHttpClient(Client());
+  final MetricHttpClient _metricHttpClient = MetricHttpClient(Client());
 
   Future<WorldState> updateState() async {
     final prefs = await SharedPreferences.getInstance();
@@ -28,20 +28,6 @@ class WorldstateAPI {
 
     _cleanState(state);
     return state;
-  }
-
-  static Future<List<Reward>> rewards() async {
-    final Request request =
-        Request('GET', Uri.parse('http://142.93.23.157/rewards'));
-
-    final StreamedResponse response = await _metricHttpClient.send(request);
-
-    return await response.stream
-        .transform(utf8.decoder)
-        .transform(json.decoder)
-        .expand((r) => r)
-        .map((r) => Reward()..decode(KeyedArchive.unarchive(r)))
-        .toList();
   }
 
   void _cleanState(WorldState state) {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:navis/blocs/provider.dart';
-import 'package:navis/blocs/worldstate_bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:navis/blocs/bloc.dart';
 import 'package:navis/models/export.dart';
 
 import 'package:navis/ui/widgets/cards.dart';
@@ -12,25 +12,23 @@ import 'package:navis/ui/widgets/countdown.dart';
 class AlertTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final alert = BlocProvider.of<WorldstateBloc>(context);
+    final state = BlocProvider.of<WorldstateBloc>(context);
 
     return Tiles(
         title: 'Alerts',
-        child: Column(children: <Widget>[
-          StreamBuilder(
-              initialData: alert.initial,
-              stream: alert.worldstate,
-              builder:
-                  (BuildContext context, AsyncSnapshot<WorldState> snapshot) {
-                final List<Widget> allAlerts = snapshot.data.alerts
-                    .map((alert) => _BuildAlerts(alert: alert))
-                    .toList();
+        child: BlocBuilder(
+            bloc: state,
+            builder: (context, state) {
+              if (state is WorldstateLoaded) {
+                final alerts = state.worldState.alerts;
+                final List<Widget> allAlerts =
+                    alerts.map((alert) => _BuildAlerts(alert: alert)).toList();
 
                 return allAlerts.isEmpty
                     ? const Center(child: Text('No alerts at this time'))
                     : Column(children: allAlerts);
-              })
-        ]));
+              }
+            }));
   }
 }
 

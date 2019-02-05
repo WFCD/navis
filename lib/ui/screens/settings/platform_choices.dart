@@ -3,8 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:navis/blocs/platform.dart';
-import 'package:navis/blocs/provider.dart';
-import 'package:navis/blocs/worldstate_bloc.dart';
+import 'package:navis/blocs/bloc.dart';
 
 class PlatformChoice extends StatefulWidget {
   @override
@@ -14,8 +13,8 @@ class PlatformChoice extends StatefulWidget {
 class PlatformChoiceState extends State<PlatformChoice> {
   @override
   Widget build(BuildContext context) {
-    final Platforms select = Platforms();
-    final WorldstateBloc state = BlocProvider.of<WorldstateBloc>(context);
+    final state = BlocProvider.of<WorldstateBloc>(context);
+    final platform = BlocProvider.of<PlatformBloc>(context);
 
     return Column(children: <Widget>[
       Padding(
@@ -36,70 +35,76 @@ class PlatformChoiceState extends State<PlatformChoice> {
       ),
       Align(
           alignment: Alignment.topCenter,
-          child: StreamBuilder<String>(
-              initialData: Platforms.kPlatform,
-              stream: select.currentPlatform,
-              builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
-                return Row(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: <Widget>[
-                    Container(
-                      child: IconButton(
-                          icon: SvgPicture.asset(
-                            'assets/platforms/pc.svg',
-                            color: snapshot.data == 'pc'
-                                ? Theme.of(context).accentColor
-                                : Theme.of(context).disabledColor,
-                            height: 25,
-                            width: 25,
-                          ),
-                          onPressed: () => onPressed(select, state, 'pc')),
-                    ),
-                    Container(
-                        child: IconButton(
-                            icon: SvgPicture.asset(
-                              'assets/platforms/ps4.svg',
-                              color: snapshot.data == 'ps4'
-                                  ? const Color(0xFF003791)
-                                  : Theme.of(context).disabledColor,
-                              height: 25,
-                              width: 25,
-                            ),
-                            onPressed: () => onPressed(select, state, 'ps4'))),
-                    Container(
-                        child: IconButton(
-                            icon: SvgPicture.asset(
-                              'assets/platforms/xbox1.svg',
-                              color: snapshot.data == 'xb1'
-                                  ? const Color(0xFF107c10)
-                                  : Theme.of(context).disabledColor,
-                              height: 25,
-                              width: 25,
-                            ),
-                            onPressed: () => onPressed(select, state, 'xb1'))),
-                    Container(
-                        child: IconButton(
-                            icon: SvgPicture.asset(
-                              'assets/platforms/switch.svg',
-                              color: snapshot.data == 'swi'
-                                  ? const Color(0xFFe60012)
-                                  : Theme.of(context).disabledColor,
-                              height: 50,
-                              width: 50,
-                            ),
-                            onPressed: () => onPressed(select, state, 'swi')))
-                  ],
-                );
-              })),
+          child: BlocProvider<PlatformBloc>(
+              bloc: platform,
+              child: BlocBuilder<PlatformEvent, PlatformState>(
+                  bloc: platform,
+                  builder: (context, platformState) {
+                    return Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: <Widget>[
+                        Container(
+                          child: IconButton(
+                              icon: SvgPicture.asset(
+                                'assets/platforms/pc.svg',
+                                color: platformState.platform == 'pc'
+                                    ? Theme.of(context).accentColor
+                                    : Theme.of(context).disabledColor,
+                                height: 25,
+                                width: 25,
+                              ),
+                              onPressed: () =>
+                                  onPressed(platform, state, 'pc')),
+                        ),
+                        Container(
+                            child: IconButton(
+                                icon: SvgPicture.asset(
+                                  'assets/platforms/ps4.svg',
+                                  color: platformState.platform == 'ps4'
+                                      ? const Color(0xFF003791)
+                                      : Theme.of(context).disabledColor,
+                                  height: 25,
+                                  width: 25,
+                                ),
+                                onPressed: () =>
+                                    onPressed(platform, state, 'ps4'))),
+                        Container(
+                            child: IconButton(
+                                icon: SvgPicture.asset(
+                                  'assets/platforms/xbox1.svg',
+                                  color: platformState.platform == 'xb1'
+                                      ? const Color(0xFF107c10)
+                                      : Theme.of(context).disabledColor,
+                                  height: 25,
+                                  width: 25,
+                                ),
+                                onPressed: () =>
+                                    onPressed(platform, state, 'xb1'))),
+                        Container(
+                            child: IconButton(
+                                icon: SvgPicture.asset(
+                                  'assets/platforms/switch.svg',
+                                  color: platformState.platform == 'swi'
+                                      ? const Color(0xFFe60012)
+                                      : Theme.of(context).disabledColor,
+                                  height: 50,
+                                  width: 50,
+                                ),
+                                onPressed: () =>
+                                    onPressed(platform, state, 'swi')))
+                      ],
+                    );
+                  }))),
     ]);
   }
 }
 
-void onPressed(Platforms platform, WorldstateBloc bloc, String selectPlatform) {
-  platform.selectedPlatform.add(selectPlatform);
+void onPressed(
+    PlatformBloc platform, WorldstateBloc bloc, String selectPlatform) {
+  platform.dispatch(PlatformChange(platform: selectPlatform));
   Future<void>.delayed(
-      Duration(milliseconds: 500),
+      const Duration(milliseconds: 500),
       () => bloc
           .update()); // waits for for platform to save before updating.. I think
 }

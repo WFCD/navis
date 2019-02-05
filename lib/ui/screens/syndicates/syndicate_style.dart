@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:navis/blocs/provider.dart';
-import 'package:navis/blocs/worldstate_bloc.dart';
+import 'package:navis/blocs/bloc.dart';
 import 'package:navis/models/export.dart';
 import 'package:navis/ui/widgets/cards.dart';
 import 'package:navis/ui/routes/maps/map.dart';

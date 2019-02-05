@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:navis/blocs/provider.dart';
-import 'package:navis/blocs/worldstate_bloc.dart';
+import 'package:navis/blocs/bloc.dart';
 import 'package:navis/models/export.dart';
 
 import 'package:navis/ui/widgets/countdown.dart';
@@ -28,46 +27,46 @@ class CetusCycle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final state = BlocProvider.of<WorldstateBloc>(context);
-    final utils = state.stateUtils;
 
     return Tiles(
         title: _cycle(cycle),
-        child: StreamBuilder(
-            initialData: state.initial,
-            stream: state.worldstate,
-            builder:
-                (BuildContext context, AsyncSnapshot<WorldState> snapshot) {
-              final Earth earth = cycle == Cycle.cetus
-                  ? snapshot.data.cetus
-                  : snapshot.data.earth;
-              const padding = SizedBox(height: 4);
+        child: BlocBuilder(
+            bloc: state,
+            builder: (context, currentState) {
+              if (currentState is WorldstateLoaded) {
+                final Earth earth = cycle == Cycle.cetus
+                    ? currentState.worldState.cetus
+                    : currentState.worldState.earth;
+                const padding = SizedBox(height: 4);
 
-              return Column(
-                children: <Widget>[
-                  RowItem.richText(
-                    title: 'Currently it is',
-                    richText: earth.isDay == true ? 'Day' : 'Night',
-                    color: earth.isDay ? Colors.yellow[700] : Colors.blue,
-                    size: 20.0,
-                  ),
-                  padding,
-                  RowItem(
-                    text: earth.isDay == true
-                        ? 'Time until Night'
-                        : 'Time until Day',
-                    child: CountdownBox(expiry: earth.expiry),
-                  ),
-                  padding,
-                  RowItem(
-                    text: earth.isDay == true ? 'Time at Night' : 'Time at Day',
-                    child: StaticBox.text(
-                      color: Colors.blueAccent[400],
-                      text: '${utils.expiration(snapshot.data.cetus.expiry)}',
+                return Column(
+                  children: <Widget>[
+                    RowItem.richText(
+                      title: 'Currently it is',
+                      richText: earth.isDay == true ? 'Day' : 'Night',
+                      color: earth.isDay ? Colors.yellow[700] : Colors.blue,
+                      size: 20.0,
                     ),
-                  ),
-                  padding
-                ],
-              );
+                    padding,
+                    RowItem(
+                      text: earth.isDay == true
+                          ? 'Time until Night'
+                          : 'Time until Day',
+                      child: CountdownBox(expiry: earth.expiry),
+                    ),
+                    padding,
+                    RowItem(
+                      text:
+                          earth.isDay == true ? 'Time at Night' : 'Time at Day',
+                      child: StaticBox.text(
+                        color: Colors.blueAccent[400],
+                        text: '${state.expiration(earth.expiry)}',
+                      ),
+                    ),
+                    padding
+                  ],
+                );
+              }
             }));
   }
 }

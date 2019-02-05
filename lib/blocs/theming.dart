@@ -1,40 +1,54 @@
 import 'dart:async';
-
+import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:navis/utils/themes.dart';
 
-import 'provider.dart';
+final themes = AppThemes();
 
-class ThemeBloc implements Base {
-  factory ThemeBloc() {
-    final selectedTheme = BehaviorSubject<ThemeData>(); // ignore: close_sinks
-    final themeDataStream = selectedTheme.distinct();
+class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
+  ThemeState persistentTheme;
 
-    return ThemeBloc._(themeDataStream, selectedTheme);
+  @override
+  ThemeState get initialState => ThemeState(theme: themes.darkTheme());
+
+  @override
+  Stream<ThemeEvent> transform(Stream<ThemeEvent> events) {
+    // ignore: avoid_as
+    return (events as Observable<ThemeEvent>).distinct();
   }
 
-  ThemeBloc._(this.themeDataStream, this.selectedTheme);
+  @override
+  Stream<ThemeState> mapEventToState(
+      ThemeState currentState, ThemeEvent event) async* {
+    if (event is ThemeStart) {
+      final saved = await themes.savedTheme();
+      if (saved == 1)
+        yield ThemeState(theme: themes.lightTheme());
+      else
+        yield ThemeState(theme: themes.darkTheme());
+    }
+    if (event is ThemeDark) {
+      themes.save(0);
+      yield ThemeState(theme: themes.darkTheme());
+    }
 
-  final Stream<ThemeData> themeDataStream;
-  final Sink<ThemeData> selectedTheme;
-
-  static final theme = AppThemes();
-  static ThemeData initialTheme;
-
-  Future<void> setTheme(Brightness save) async {
-    if (save == Brightness.dark) {
-      selectedTheme.add(theme.darkTheme());
-      theme.save(0);
-    } else if (save == Brightness.light) {
-      selectedTheme.add(theme.lightTheme());
-      theme.save(1);
+    if (event is ThemeLight) {
+      themes.save(1);
+      yield ThemeState(theme: themes.lightTheme());
     }
   }
-
-  @override
-  void initState() {}
-
-  @override
-  void dispose() => selectedTheme.close();
 }
+
+class ThemeState {
+  ThemeState({this.theme});
+  final ThemeData theme;
+}
+
+abstract class ThemeEvent {}
+
+class ThemeStart extends ThemeEvent {}
+
+class ThemeDark extends ThemeEvent {}
+
+class ThemeLight extends ThemeEvent {}

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:navis/blocs/provider.dart';
-import 'package:navis/blocs/worldstate_bloc.dart';
+import 'package:navis/blocs/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/models/export.dart';
 
 import 'package:navis/ui/widgets/cards.dart';
@@ -10,19 +10,20 @@ import 'package:navis/ui/widgets/static_box.dart';
 class Acolytes extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final enemies = BlocProvider.of<WorldstateBloc>(context);
+    final state = BlocProvider.of<WorldstateBloc>(context);
 
-    return StreamBuilder<WorldState>(
-      initialData: enemies.initial,
-      stream: enemies.worldstate,
-      builder: (BuildContext context, AsyncSnapshot<WorldState> snapshot) {
-        return Tiles(
-            title: 'Acolytes',
-            child: Column(
-              children: snapshot.data.persistentEnemies
-                  .map((e) => AcolyteProfile(enemy: e))
-                  .toList(),
-            ));
+    return BlocBuilder(
+      bloc: state,
+      builder: (context, state) {
+        if (state is WorldstateLoaded) {
+          final enemies = state.worldState.persistentEnemies;
+
+          return Tiles(
+              title: 'Acolytes',
+              child: Column(
+                children: enemies.map((e) => AcolyteProfile(enemy: e)).toList(),
+              ));
+        }
       },
     );
   }

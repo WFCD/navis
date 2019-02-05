@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:navis/blocs/provider.dart';
-import 'package:navis/blocs/worldstate_bloc.dart';
+import 'package:navis/blocs/bloc.dart';
 import 'package:navis/models/export.dart';
 
 import 'package:navis/ui/widgets/cards.dart';
@@ -28,23 +27,24 @@ class SyndicateJobsState extends State<SyndicateJobs> {
             titleSpacing: 0.0,
             title: Text(_factionCheck(widget.faction)),
             backgroundColor: _buildColor(widget.faction)),
-        body: StreamBuilder(
-            stream: bloc.worldstate,
-            builder:
-                (BuildContext context, AsyncSnapshot<WorldState> snapshot) {
-              if (!snapshot.hasData)
+        body: BlocBuilder(
+            bloc: bloc,
+            builder: (context, state) {
+              if (state is WorldstateUninitialized)
                 return const Center(child: CircularProgressIndicator());
 
-              final List<Syndicates> syndicate = snapshot.data.syndicates
-                  .where(
-                      (syn) => syn.syndicate == _factionCheck(widget.faction))
-                  .toList();
+              if (state is WorldstateLoaded) {
+                final List<Syndicates> syndicate = state.worldState.syndicates
+                    .where(
+                        (syn) => syn.syndicate == _factionCheck(widget.faction))
+                    .toList();
 
-              return ListView(
-                  children: syndicate[0]
-                      .jobs
-                      .map((j) => _buildMissionType(context, j))
-                      .toList());
+                return ListView(
+                    children: syndicate[0]
+                        .jobs
+                        .map((j) => _buildMissionType(context, j))
+                        .toList());
+              }
             }));
   }
 }
@@ -60,7 +60,7 @@ Widget _buildMissionType(BuildContext context, Jobs job) {
             onPressed: () => Navigator.of(context).push(MaterialPageRoute(
                 builder: (_) => BountyRewards(
                       missionTYpe: job.type,
-                      bountyRewards: job.rewardPool,
+                      bountyRewards: job.rewardPool.cast<String>(),
                     ))),
             child: const Text(
               'See Rewards',

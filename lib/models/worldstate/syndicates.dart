@@ -1,4 +1,3 @@
-import 'package:codable/cast.dart' as cast;
 import 'package:codable/codable.dart';
 
 class Syndicates extends Coding {
@@ -37,11 +36,7 @@ class Jobs extends Coding {
   String type;
   List enemyLevels;
   List standingStages;
-  List<String> rewardPool;
-
-  @override
-  Map<String, cast.Cast<dynamic>> get castMap =>
-      {'rewardPool': const cast.List(cast.String)};
+  List rewardPool;
 
   @override
   void decode(KeyedArchive object) {
@@ -50,7 +45,11 @@ class Jobs extends Coding {
     type = object.decode('type');
     enemyLevels = object.decode('enemyLevels');
     standingStages = object.decode('standingStages');
-    rewardPool = object.decode('rewardPool');
+
+    if (object.decode('rewardPool') is List)
+      rewardPool = object.decode('rewardPool');
+    else
+      rewardPool = <String>[];
   }
 
   @override

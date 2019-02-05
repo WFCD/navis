@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:navis/blocs/provider.dart';
-import 'package:navis/blocs/worldstate_bloc.dart';
+import 'package:navis/blocs/bloc.dart';
 import 'package:navis/models/export.dart';
 
 import 'package:navis/ui/widgets/cards.dart';
@@ -9,33 +8,34 @@ import 'package:navis/ui/widgets/countdown.dart';
 class SculptureMissions extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final state = BlocProvider.of<WorldstateBloc>(context);
-    final factionutils = state.factionUtils;
+    final wstate = BlocProvider.of<WorldstateBloc>(context);
+    final factionutils = wstate.factionUtils;
 
     return Tiles(
-        child: StreamBuilder(
-            initialData: state.initial,
-            stream: state.worldstate,
-            builder:
-                (BuildContext context, AsyncSnapshot<WorldState> snapshot) {
-              final title = ListTile(
-                leading: factionutils.factionIcon(snapshot.data.sortie.faction,
-                    size: 45),
-                title: Text(snapshot.data.sortie.boss),
-                subtitle: Text(snapshot.data.sortie.faction),
-                trailing: Container(
-                    padding: const EdgeInsets.all(4.0),
-                    child: CountdownBox(expiry: snapshot.data.sortie.expiry)),
-              );
+        child: BlocBuilder(
+            bloc: wstate,
+            builder: (context, state) {
+              if (state is WorldstateLoaded) {
+                final sortie = state.worldState.sortie;
 
-              final List<Widget> missions = snapshot.data.sortie.variants
-                  .map((variant) => _buildMissions(variant, context))
-                  .toList()
-                    ..insert(0, title);
+                final title = ListTile(
+                  leading: factionutils.factionIcon(sortie.faction, size: 45),
+                  title: Text(sortie.boss),
+                  subtitle: Text(sortie.faction),
+                  trailing: Container(
+                      padding: const EdgeInsets.all(4.0),
+                      child: CountdownBox(expiry: sortie.expiry)),
+                );
 
-              return missions.isEmpty
-                  ? const Center(child: Text('Loading current sorite...'))
-                  : Column(children: missions);
+                final List<Widget> missions = sortie.variants
+                    .map((variant) => _buildMissions(variant, context))
+                    .toList()
+                      ..insert(0, title);
+
+                return missions.isEmpty
+                    ? const Center(child: Text('Loading current sorite...'))
+                    : Column(children: missions);
+              }
             }));
   }
 }

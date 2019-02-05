@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:navis/blocs/provider.dart';
-import 'package:navis/blocs/worldstate_bloc.dart';
+import 'package:navis/blocs/bloc.dart';
 import 'package:navis/models/export.dart';
 
 import 'package:navis/ui/widgets/cards.dart';
@@ -25,53 +24,54 @@ class _InvasionCard extends State<InvasionCard> {
 
   @override
   Widget build(BuildContext context) {
-    final state = BlocProvider.of<WorldstateBloc>(context);
+    final wstate = BlocProvider.of<WorldstateBloc>(context);
 
     return Tiles(
-      child: StreamBuilder(
-          initialData: state.initial,
-          stream: state.worldstate,
-          builder: (BuildContext context, AsyncSnapshot<WorldState> snapshot) {
-            final invasions = snapshot.data.invasions;
-            final length = invasions.length;
+      child: BlocBuilder(
+          bloc: wstate,
+          builder: (context, state) {
+            if (state is WorldstateLoaded) {
+              final invasions = state.worldState.invasions;
+              final length = invasions.length;
 
-            return invasions.isEmpty
-                ? const Center(child: Text('No Invasions at this time'))
-                : Column(children: <Widget>[
-                    Container(
-                        child: Column(
+              return invasions.isEmpty
+                  ? const Center(child: Text('No Invasions at this time'))
+                  : Column(children: <Widget>[
+                      Container(
+                          child: Column(
+                              children: invasions
+                                  .take(2)
+                                  .map((i) => _BuildInvasions(invasion: i))
+                                  .toList())),
+                      AnimatedCrossFade(
+                        duration: const Duration(milliseconds: 250),
+                        crossFadeState: _showMore
+                            ? CrossFadeState.showSecond
+                            : CrossFadeState.showFirst,
+                        firstChild: Container(),
+                        secondChild: Column(
                             children: invasions
-                                .take(2)
+                                .skip(2)
                                 .map((i) => _BuildInvasions(invasion: i))
-                                .toList())),
-                    AnimatedCrossFade(
-                      duration: const Duration(milliseconds: 250),
-                      crossFadeState: _showMore
-                          ? CrossFadeState.showSecond
-                          : CrossFadeState.showFirst,
-                      firstChild: Container(),
-                      secondChild: Column(
-                          children: invasions
-                              .skip(2)
-                              .map((i) => _BuildInvasions(invasion: i))
-                              .toList()),
-                    ),
-                    ButtonTheme.bar(
-                      child: ButtonBar(
-                          alignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            FlatButton(
-                                padding: const EdgeInsets.all(8.0),
-                                textColor: Colors.blue,
-                                onPressed: length < 3
-                                    ? null
-                                    : () => _showMoreInvasions(),
-                                child: _showMore
-                                    ? const Text('See less')
-                                    : const Text('See more'))
-                          ]),
-                    )
-                  ]);
+                                .toList()),
+                      ),
+                      ButtonTheme.bar(
+                        child: ButtonBar(
+                            alignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              FlatButton(
+                                  padding: const EdgeInsets.all(8.0),
+                                  textColor: Colors.blue,
+                                  onPressed: length < 3
+                                      ? null
+                                      : () => _showMoreInvasions(),
+                                  child: _showMore
+                                      ? const Text('See less')
+                                      : const Text('See more'))
+                            ]),
+                      )
+                    ]);
+            }
           }),
     );
   }
