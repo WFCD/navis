@@ -23,32 +23,56 @@ class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
       ThemeState currentState, ThemeEvent event) async* {
     if (event is ThemeStart) {
       final saved = await themes.savedTheme();
-      if (saved == 1)
-        yield ThemeState(theme: themes.lightTheme());
-      else
-        yield ThemeState(theme: themes.darkTheme());
-    }
-    if (event is ThemeDark) {
-      themes.save(0);
-      yield ThemeState(theme: themes.darkTheme());
+
+      yield ThemeState(theme: saved);
     }
 
-    if (event is ThemeLight) {
-      themes.save(1);
-      yield ThemeState(theme: themes.lightTheme());
+    if (event is ThemeChange) {
+      switch (event.brightness) {
+        case Brightness.dark:
+          themes.save(0);
+          yield ThemeState(theme: themes.darkTheme());
+          break;
+        case Brightness.light:
+          themes.save(1);
+          yield ThemeState(theme: themes.lightTheme());
+      }
+    }
+
+    if (event is ThemeCustom) {
+      final base = await themes.savedTheme();
+      if (base.brightness == Brightness.light) {
+        themes.save(1, accentColor: event.accentColor);
+        yield ThemeState(
+            theme: themes.lightTheme(accentColor: event.accentColor));
+      } else {
+        themes.save(0, accentColor: event.accentColor);
+        yield ThemeState(
+            theme: themes.darkTheme(accentColor: event.accentColor));
+      }
     }
   }
 }
 
+// Theme States
 class ThemeState {
   ThemeState({this.theme});
   final ThemeData theme;
 }
 
+// Theme events
 abstract class ThemeEvent {}
 
 class ThemeStart extends ThemeEvent {}
 
-class ThemeDark extends ThemeEvent {}
+class ThemeChange extends ThemeEvent {
+  ThemeChange({@required this.brightness});
 
-class ThemeLight extends ThemeEvent {}
+  final Brightness brightness;
+}
+
+class ThemeCustom extends ThemeEvent {
+  ThemeCustom({@required this.accentColor});
+
+  final Color accentColor;
+}

@@ -20,6 +20,7 @@ dependencies:
   flutter_bloc: ^0.5.3
   firebase_performance: ^0.1.0
   flutter_crashlytics: ^0.2.1
+  flutter_material_color_picker: ^0.0.5
 
 dev_dependencies:
   flutter_test:
