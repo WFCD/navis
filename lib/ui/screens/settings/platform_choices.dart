@@ -49,7 +49,7 @@ class PlatformChoiceState extends State<PlatformChoice> {
                               icon: SvgPicture.asset(
                                 'assets/platforms/pc.svg',
                                 color: platformState.platform == 'pc'
-                                    ? Theme.of(context).accentColor
+                                    ? const Color(0xFFFACA04)
                                     : Theme.of(context).disabledColor,
                                 height: 25,
                                 width: 25,
