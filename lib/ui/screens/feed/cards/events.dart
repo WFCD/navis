@@ -21,10 +21,14 @@ class Event extends StatelessWidget {
     if (bounty) {
       children.addAll(event.jobs.map((j) => _buildJob(context, j)));
     } else {
-      children.add(StaticBox.text(
-          color: Colors.green,
-          text:
-              '${event.rewards.first.itemString} + ${event.rewards.first.credits}cr'));
+      if (event.rewards.isNotEmpty) {
+        children.add(StaticBox.text(
+            color: Colors.green,
+            text:
+                '${event.rewards.first.itemString} + ${event.rewards.first.credits}cr'));
+      }
+
+      children.add(Container());
     }
   }
 
@@ -32,13 +36,16 @@ class Event extends StatelessWidget {
   Widget build(BuildContext context) {
     final List<Widget> children = [];
 
-    final victimNode =
-        StaticBox.text(text: event.victimNode, color: Colors.red);
+    final victimNode = event.victimNode == null
+        ? Container()
+        : StaticBox.text(text: event.victimNode, color: Colors.red);
 
-    final progress = StaticBox.text(
-      text: '${event.health}% Remaining',
-      color: _healthColor(double.parse(event.health)),
-    );
+    final progress = event.health == null
+        ? Container()
+        : StaticBox.text(
+            text: '${event.health}% Remaining',
+            color: _healthColor(double.parse(event.health)),
+          );
 
     _addReward(context, event.jobs?.isNotEmpty ?? false, children);
 
