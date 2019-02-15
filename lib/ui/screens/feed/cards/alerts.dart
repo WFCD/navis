@@ -69,7 +69,10 @@ class _BuildAlerts extends StatelessWidget {
                       color: Colors.blueAccent[400],
                       child: Text(
                         alert.mission.reward.itemString,
-                        style: Theme.of(context).textTheme.body2,
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 12.5,
+                            color: Colors.white),
                       )),
             ),
             RowItem(
