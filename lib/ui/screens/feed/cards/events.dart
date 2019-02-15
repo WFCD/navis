@@ -84,7 +84,8 @@ Widget _buildJob(BuildContext context, Jobs job) {
     child: InkWell(
         onTap: () => Navigator.of(context).push(MaterialPageRoute(
             builder: (_) => BountyRewards(
-                missionTYpe: job.type, bountyRewards: job.rewardPool))),
+                missionTYpe: job.type,
+                bountyRewards: job.rewardPool.cast<String>()))),
         child: Container(
             margin: const EdgeInsets.all(4.0),
             padding: const EdgeInsets.all(4.0),
