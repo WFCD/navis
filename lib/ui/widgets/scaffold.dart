@@ -96,7 +96,7 @@ class NavigationFade {
     TickerProvider vsync,
   })  : _child = child,
         controller = AnimationController(
-          duration: Duration(milliseconds: 250),
+          duration: const Duration(milliseconds: 250),
           vsync: vsync,
         ) {
     _animation = controller.drive(CurveTween(

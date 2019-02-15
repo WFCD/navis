@@ -5,7 +5,8 @@ import 'package:navis/utils/factionutils.dart';
 
 class InvasionBar extends StatelessWidget {
   InvasionBar(
-      {@required this.progress,
+      {Key key,
+      @required this.progress,
       this.width,
       this.padding,
       @required this.attackingFaction,
@@ -14,7 +15,8 @@ class InvasionBar extends StatelessWidget {
       this.lineHeight})
       : assert(attackingFaction != null),
         assert(defendingFaction != null),
-        assert(progress != null);
+        assert(progress != null),
+        super(key: key);
 
   final Factionutils factionutils = Factionutils();
 

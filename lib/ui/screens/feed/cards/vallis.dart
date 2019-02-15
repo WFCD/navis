@@ -30,7 +30,7 @@ class OrbVallis extends StatelessWidget {
                   padding,
                   RowItem(
                     text:
-                        'Time till Temperature ${vallis.isWarm ? 'Increases' : 'drops'} ',
+                        'Time till ${vallis.isWarm ? 'Cold Cycle' : 'Warm Cycle'} ',
                     child: CountdownBox(expiry: vallis.expiry),
                   ),
                   padding,

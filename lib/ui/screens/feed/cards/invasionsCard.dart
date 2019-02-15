@@ -44,7 +44,7 @@ class _InvasionCard extends State<InvasionCard> {
                                   .map((i) => _BuildInvasions(invasion: i))
                                   .toList())),
                       AnimatedCrossFade(
-                        duration: const Duration(milliseconds: 250),
+                        duration: const Duration(milliseconds: 200),
                         crossFadeState: _showMore
                             ? CrossFadeState.showSecond
                             : CrossFadeState.showFirst,
@@ -119,6 +119,7 @@ class _BuildInvasions extends StatelessWidget {
               ]),
         ),
         InvasionBar(
+          key: ValueKey<String>(invasion.node),
           width: 389.0,
           lineHeight: 15.0,
           color: Colors.white,

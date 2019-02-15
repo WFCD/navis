@@ -1,10 +1,12 @@
 import 'dart:async';
+
 import 'package:bloc/bloc.dart';
+import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:rxdart/rxdart.dart';
 import 'package:navis/models/export.dart';
 import 'package:navis/utils/factionutils.dart';
 
+import '../globalkeys.dart';
 import '../services/repository.dart';
 
 class WorldstateBloc extends Bloc<StateEvent, WorldStates> {
@@ -13,12 +15,6 @@ class WorldstateBloc extends Bloc<StateEvent, WorldStates> {
 
   @override
   WorldStates get initialState => WorldstateUninitialized();
-
-  @override
-  Stream<StateEvent> transform(Stream<StateEvent> events) {
-    // ignore: avoid_as
-    return (events as Observable<StateEvent>).distinct();
-  }
 
   @override
   Stream<WorldStates> mapEventToState(currentState, event) async* {
@@ -31,8 +27,11 @@ class WorldstateBloc extends Bloc<StateEvent, WorldStates> {
         final state = await repository.getState();
         yield WorldstateLoaded(worldState: state);
       }
-    } catch (e) {
-      yield WorldstateError(error: e);
+    } catch (error) {
+      scaffold.currentState.showSnackBar(SnackBar(
+          content: const Text('Error loading Worldstate'),
+          duration: Duration(milliseconds: 500)));
+      yield WorldstateError(error: error);
     }
   }
 
@@ -47,8 +46,8 @@ class WorldstateBloc extends Bloc<StateEvent, WorldStates> {
   }
 
   Future<void> update() async {
-    await Future.delayed(Duration(milliseconds: 200));
-    dispatch(UpdateState());
+    await Future.delayed(
+        Duration(milliseconds: 300), () => dispatch(UpdateState()));
   }
 }
 
