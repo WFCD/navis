@@ -61,12 +61,14 @@ class Event extends StatelessWidget {
                   Container(
                       margin: const EdgeInsets.only(bottom: 4, top: 3),
                       child: Text(event.description,
+                          textAlign: TextAlign.center,
                           style: Theme.of(context).textTheme.title)),
                   event.tooltip == null
                       ? Container()
                       : Container(
                           margin: const EdgeInsets.only(bottom: 4),
                           child: Text(event.tooltip,
+                              textAlign: TextAlign.center,
                               style: Theme.of(context).textTheme.subtitle)),
                   Row(
                       mainAxisAlignment: MainAxisAlignment.center,
