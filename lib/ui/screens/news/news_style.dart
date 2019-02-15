@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_custom_tabs/flutter_custom_tabs.dart';
 import 'package:flutter_youtube/flutter_youtube.dart';
-import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter_advanced_networkimage/provider.dart';
 
 import 'package:navis/globalkeys.dart';
 import 'package:navis/models/export.dart';
@@ -60,7 +60,10 @@ class NewsCard extends StatelessWidget {
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(4.0),
             image: DecorationImage(
-                image: CachedNetworkImageProvider(news.imageLink),
+                image: AdvancedNetworkImage(news.imageLink,
+                    fallbackAssetImage: 'assets/general/404.png',
+                    retryLimit: 3,
+                    useDiskCache: true),
                 fit: BoxFit.cover)),
         child: Container(
             height: 40,
@@ -69,6 +72,7 @@ class NewsCard extends StatelessWidget {
                 const BoxDecoration(color: Color.fromRGBO(34, 34, 34, .4)),
             child: Text(
               '[${_timestamp(news.date)} ago] ${news.translations.en}',
+              textAlign: TextAlign.center,
               style: Theme.of(context)
                   .textTheme
                   .title

@@ -12,15 +12,15 @@ dependencies:
   shared_preferences: ^0.4.3
   flutter_custom_tabs: ^0.4.0
   flutter_map: ^0.4.0
-  flutter_svg: ^0.7.0+1
+  flutter_svg: ^0.10.2
   chewie: ^0.8.0
-  cached_network_image: ^0.5.1
   background_fetch: ^0.1.1
-  bloc: ^0.8.2
-  flutter_bloc: ^0.5.3
+  bloc: ^0.9.0
+  flutter_bloc: ^0.6.0
   firebase_performance: ^0.1.0
   flutter_crashlytics: ^0.2.1
   flutter_material_color_picker: ^0.0.5
+  flutter_advanced_networkimage: ^0.4.8
 
 dev_dependencies:
   flutter_test:

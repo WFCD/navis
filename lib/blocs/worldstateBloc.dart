@@ -18,21 +18,20 @@ class WorldstateBloc extends Bloc<StateEvent, WorldStates> {
 
   @override
   Stream<WorldStates> mapEventToState(currentState, event) async* {
-    try {
-      if (currentState is WorldstateUninitialized) {
-        final state = await repository.getState();
-        yield WorldstateLoaded(worldState: state);
-      }
-      if (currentState is WorldstateLoaded) {
-        final state = await repository.getState();
-        yield WorldstateLoaded(worldState: state);
-      }
-    } catch (error) {
-      scaffold.currentState.showSnackBar(SnackBar(
-          content: const Text('Error loading Worldstate'),
-          duration: Duration(milliseconds: 500)));
-      yield WorldstateError(error: error);
+    if (currentState is WorldstateUninitialized) {
+      final state = await repository.getState();
+      yield WorldstateLoaded(worldState: state);
     }
+    if (currentState is WorldstateLoaded) {
+      final state = await repository.getState();
+      yield WorldstateLoaded(worldState: state);
+    }
+  }
+
+  @override
+  void onError(Object error, StackTrace stacktrace) {
+    scaffold.currentState.showSnackBar(const SnackBar(
+        content: Text('Error updating worldstate try again later')));
   }
 
   Factionutils get factionUtils => Factionutils();
@@ -47,7 +46,7 @@ class WorldstateBloc extends Bloc<StateEvent, WorldStates> {
 
   Future<void> update() async {
     await Future.delayed(
-        Duration(milliseconds: 300), () => dispatch(UpdateState()));
+        const Duration(milliseconds: 300), () => dispatch(UpdateState()));
   }
 }
 
@@ -55,12 +54,6 @@ class WorldstateBloc extends Bloc<StateEvent, WorldStates> {
 abstract class WorldStates {}
 
 class WorldstateUninitialized extends WorldStates {}
-
-class WorldstateError extends WorldStates {
-  WorldstateError({this.error});
-
-  final dynamic error;
-}
 
 class WorldstateLoaded extends WorldStates {
   WorldstateLoaded({this.worldState});
