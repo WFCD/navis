@@ -4,13 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:navis/utils/themes.dart';
 
-final themes = AppThemes();
+final themes = AppTheme();
 
 class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
   ThemeState persistentTheme;
 
   @override
-  ThemeState get initialState => ThemeState(theme: themes.darkTheme());
+  ThemeState get initialState => ThemeState(theme: themes.defaultTheme());
 
   @override
   Stream<ThemeEvent> transform(Stream<ThemeEvent> events) {
@@ -31,24 +31,25 @@ class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
       switch (event.brightness) {
         case Brightness.dark:
           themes.save(0);
-          yield ThemeState(theme: themes.darkTheme());
+          yield ThemeState(theme: await themes.darkTheme());
           break;
         case Brightness.light:
           themes.save(1);
-          yield ThemeState(theme: themes.lightTheme());
+          yield ThemeState(theme: await themes.lightTheme());
       }
     }
 
     if (event is ThemeCustom) {
       final base = await themes.savedTheme();
+
       if (base.brightness == Brightness.light) {
-        themes.save(1, accentColor: event.accentColor);
-        yield ThemeState(
-            theme: themes.lightTheme(accentColor: event.accentColor));
+        themes.save(1,
+            primaryColor: event.primaryColor, accentColor: event.accentColor);
+        yield ThemeState(theme: await themes.lightTheme());
       } else {
-        themes.save(0, accentColor: event.accentColor);
-        yield ThemeState(
-            theme: themes.darkTheme(accentColor: event.accentColor));
+        themes.save(0,
+            primaryColor: event.primaryColor, accentColor: event.accentColor);
+        yield ThemeState(theme: await themes.darkTheme());
       }
     }
   }
@@ -72,7 +73,8 @@ class ThemeChange extends ThemeEvent {
 }
 
 class ThemeCustom extends ThemeEvent {
-  ThemeCustom({@required this.accentColor});
+  ThemeCustom({this.primaryColor, this.accentColor});
 
+  final Color primaryColor;
   final Color accentColor;
 }

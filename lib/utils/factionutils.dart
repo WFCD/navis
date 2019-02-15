@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+enum OpenWorldFactions { cetus, fortuna }
+
 class Factionutils {
   SvgPicture factionIcon(String faction, {double size, bool hasColor = true}) {
     final color = hasColor ? factionColor(faction) : Colors.white;
@@ -63,6 +65,22 @@ class Factionutils {
         return Colors.yellow[300];
       default:
         return Colors.green;
+    }
+  }
+
+  Color buildColor(OpenWorldFactions faction) {
+    const ostronsColor = Color.fromRGBO(183, 70, 36, 1.0);
+    const solarisColor = Color.fromRGBO(206, 162, 54, 1.0);
+
+    return factionCheck(faction) == 'Ostrons' ? ostronsColor : solarisColor;
+  }
+
+  String factionCheck(OpenWorldFactions faction) {
+    switch (faction) {
+      case OpenWorldFactions.cetus:
+        return 'Ostrons';
+      default:
+        return 'Solaris United';
     }
   }
 }

@@ -1,10 +1,106 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:navis/blocs/bloc.dart';
 import 'package:flutter_material_color_picker/flutter_material_color_picker.dart';
 
-class ThemeChoice extends StatelessWidget {
+class ThemeChoice extends StatefulWidget {
+  @override
+  ThemeChoiceState createState() => ThemeChoiceState();
+}
+
+class ThemeChoiceState extends State<ThemeChoice> {
+  void _openDialog({String title, Widget content, Widget action}) {
+    showDialog(
+      context: context,
+      barrierDismissible: true,
+      builder: (_) => AlertDialog(
+            contentPadding: const EdgeInsets.all(6.0),
+            title: Text(title),
+            content: content,
+            actions: [action],
+          ),
+    );
+  }
+
+  void _baseTheme(ThemeBloc theme) {
+    final currentBrightness = theme.currentState.theme.brightness;
+    final currentAccentColor = theme.currentState.theme.accentColor;
+
+    _openDialog(
+        title: 'Select your Theme',
+        content: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              RadioListTile(
+                activeColor: currentAccentColor,
+                value: Brightness.dark,
+                groupValue: currentBrightness,
+                title: const Text('Dark'),
+                onChanged: (value) {
+                  theme.dispatch(ThemeChange(brightness: value));
+                  Navigator.of(context).pop();
+                },
+              ),
+              RadioListTile(
+                activeColor: currentAccentColor,
+                value: Brightness.light,
+                groupValue: currentBrightness,
+                title: const Text('Light'),
+                onChanged: (value) {
+                  theme.dispatch(ThemeChange(brightness: value));
+                  Navigator.of(context).pop();
+                },
+              ),
+            ]),
+        action: FlatButton(
+          textColor: Theme.of(context).textTheme.title.color,
+          child: const Text('CANCEL'),
+          onPressed: () => Navigator.of(context).pop(),
+        ));
+  }
+
+  void _primaryColor(ThemeBloc theme) {
+    final currentAccentColor = theme.currentState.theme.primaryColor;
+    Color tempColor;
+
+    _openDialog(
+        title: 'Select Color',
+        content: MaterialColorPicker(
+          selectedColor: currentAccentColor,
+          onColorChange: (color) => tempColor = color,
+          onMainColorChange: (color) => tempColor = color,
+        ),
+        action: FlatButton(
+          textColor: Theme.of(context).textTheme.title.color,
+          child: const Text('APPLY'),
+          onPressed: () {
+            theme.dispatch(ThemeCustom(primaryColor: tempColor));
+            Navigator.of(context).pop();
+          },
+        ));
+  }
+
+  void _accentColor(ThemeBloc theme) {
+    final currentAccentColor = theme.currentState.theme.accentColor;
+    Color tempColor;
+
+    _openDialog(
+        title: 'Select Color',
+        content: MaterialColorPicker(
+          selectedColor: currentAccentColor,
+          onColorChange: (color) => tempColor = color,
+          onMainColorChange: (color) => tempColor = color,
+        ),
+        action: FlatButton(
+          textColor: Theme.of(context).textTheme.title.color,
+          child: const Text('APPLY'),
+          onPressed: () {
+            theme.dispatch(ThemeCustom(accentColor: tempColor));
+            Navigator.of(context).pop();
+          },
+        ));
+  }
+
   @override
   Widget build(BuildContext context) {
     final ThemeBloc theme = BlocProvider.of<ThemeBloc>(context);
@@ -23,100 +119,16 @@ class ThemeChoice extends StatelessWidget {
       ListTile(
           title: const Text('Theme'),
           subtitle: Text(brightness ? 'Dark' : 'Light'),
-          onTap: () => _showOptions(context, theme)),
+          onTap: () => _baseTheme(theme)),
       //Divider(color: Theme.of(context).accentColor),
       ListTile(
+          title: const Text('Primary Color'),
+          subtitle: const Text('Most visible color'),
+          onTap: () => _primaryColor(theme)),
+      ListTile(
           title: const Text('Accent Color'),
-          subtitle: const Text(
-              'Color used to tint mainly the Appbar and certaint text elements'),
-          onTap: () => _showAccents(context, theme))
+          subtitle: const Text('Color used to tint certaint text elements'),
+          onTap: () => _accentColor(theme))
     ]);
   }
-}
-
-Future<void> _showAccents(BuildContext context, ThemeBloc theme) async {
-  final currentAccentColor = theme.currentState.theme.accentColor;
-
-  Color tempColor;
-
-  return showDialog(
-      context: context,
-      barrierDismissible: true,
-      builder: (_) {
-        return AlertDialog(
-          title: const Text('Select Color'),
-          contentPadding: const EdgeInsets.all(6.0),
-          content: MaterialColorPicker(
-            selectedColor: currentAccentColor,
-            onColorChange: (color) => tempColor = color,
-            onMainColorChange: (color) => tempColor = color,
-          ),
-          actions: <Widget>[
-            FlatButton(
-              child: const Text('RESET'),
-              textColor: Theme.of(context).textTheme.title.color,
-              onPressed: () {
-                theme.dispatch(ThemeStart());
-                Navigator.of(context).pop();
-              },
-            ),
-            FlatButton(
-              child: const Text('APPLY'),
-              textColor: Theme.of(context).textTheme.title.color,
-              onPressed: () {
-                theme.dispatch(ThemeCustom(accentColor: tempColor));
-                Navigator.of(context).pop();
-              },
-            )
-          ],
-        );
-      });
-}
-
-Future<void> _showOptions(BuildContext context, ThemeBloc theme) async {
-  final currentBrightness = theme.currentState.theme.brightness;
-  final currentAccentColor = theme.currentState.theme.accentColor;
-
-  void dismiss(Brightness value) {
-    theme.dispatch(ThemeChange(brightness: value));
-    Navigator.of(context).pop();
-  }
-
-  return showDialog(
-      context: context,
-      barrierDismissible: true,
-      builder: (_) {
-        return AlertDialog(
-          title: const Text('Select Theme'),
-          elevation: 6.0,
-          backgroundColor: Theme.of(context).cardColor,
-          contentPadding: const EdgeInsets.all(6.0),
-          content: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                RadioListTile(
-                  activeColor: currentAccentColor,
-                  value: Brightness.dark,
-                  groupValue: currentBrightness,
-                  onChanged: dismiss,
-                  title: const Text('Dark'),
-                ),
-                RadioListTile(
-                  activeColor: currentAccentColor,
-                  value: Brightness.light,
-                  groupValue: currentBrightness,
-                  onChanged: dismiss,
-                  title: const Text('Light'),
-                ),
-              ]),
-          actions: <Widget>[
-            FlatButton(
-              textColor: Theme.of(context).textTheme.title.color,
-              child: const Text('CANCEL'),
-              onPressed: () => Navigator.of(context).pop(),
-            )
-          ],
-        );
-      });
 }

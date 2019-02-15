@@ -1,49 +1,74 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class AppThemes {
+class AppTheme {
   Future<ThemeData> savedTheme() async {
     final preferences = await SharedPreferences.getInstance();
     final savedTheme = preferences.getInt('Theme') ?? 0;
-    final savedAccent = preferences.getInt('accentColor');
 
     if (savedTheme == 0) {
-      if (savedAccent != null)
-        return darkTheme(accentColor: Color(savedAccent));
-      else
-        return darkTheme();
+      return darkTheme();
     } else {
-      if (savedAccent != null)
-        return lightTheme(accentColor: Color(savedAccent));
-      else
-        return lightTheme();
+      return lightTheme();
     }
   }
 
-  Future<void> save(int brightness, {Color accentColor}) async {
+  Future<void> save(int brightness,
+      {Color primaryColor, Color accentColor}) async {
     final preferences = await SharedPreferences.getInstance();
 
     preferences.setInt('Theme', brightness);
 
     if (accentColor != null)
       preferences.setInt('accentColor', accentColor.value);
+
+    if (primaryColor != null)
+      preferences.setInt('primaryColor', primaryColor.value);
   }
 
-  ThemeData darkTheme({Color accentColor}) {
+  ThemeData defaultTheme({bool light = false}) {
+    return ThemeData(
+        brightness: light ? Brightness.light : Brightness.dark,
+        primaryColor: const Color.fromRGBO(26, 80, 144, .9),
+        accentColor: Colors.blueAccent[700],
+        cardColor: light ? null : const Color(0xFF2C2C2C),
+        scaffoldBackgroundColor: const Color(0xFF212121),
+        splashColor: Colors.blueAccent[400]);
+  }
+
+  Future<ThemeData> darkTheme() async {
+    final preferences = await SharedPreferences.getInstance();
+    final primaryColor = preferences.getInt('primaryColor');
+    final accentColor = preferences.getInt('accentColor');
+
     return ThemeData(
         brightness: Brightness.dark,
-        primaryColor: accentColor ?? const Color.fromRGBO(26, 80, 144, .9),
-        accentColor: accentColor ?? const Color.fromRGBO(26, 80, 144, .9),
+        primaryColor: primaryColor != null
+            ? Color(primaryColor)
+            : const Color.fromRGBO(26, 80, 144, .9),
+        accentColor:
+            accentColor != null ? Color(accentColor) : Colors.blueAccent[400],
         cardColor: const Color(0xFF2C2C2C),
         scaffoldBackgroundColor: const Color(0xFF212121),
-        splashColor: accentColor ?? const Color.fromRGBO(26, 80, 144, .9));
+        splashColor:
+            accentColor != null ? Color(accentColor) : Colors.blueAccent[400]);
   }
 
-  ThemeData lightTheme({Color accentColor}) {
+  Future<ThemeData> lightTheme() async {
+    final preferences = await SharedPreferences.getInstance();
+    final primaryColor = preferences.getInt('primaryColor');
+    final accentColor = preferences.getInt('accentColor');
+
     return ThemeData(
         brightness: Brightness.light,
-        primaryColor: accentColor ?? const Color.fromRGBO(26, 80, 144, .9),
-        accentColor: accentColor ?? const Color.fromRGBO(26, 80, 144, .9),
-        splashColor: accentColor ?? const Color.fromRGBO(26, 80, 144, .9));
+        primaryColor: primaryColor != null
+            ? Color(primaryColor)
+            : const Color.fromRGBO(26, 80, 144, .9),
+        accentColor: accentColor != null
+            ? Color(accentColor)
+            : const Color.fromRGBO(26, 80, 144, .9),
+        splashColor: accentColor != null
+            ? Color(accentColor)
+            : const Color.fromRGBO(26, 80, 144, .9));
   }
 }
