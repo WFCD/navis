@@ -2,7 +2,7 @@ import 'package:codable/codable.dart';
 
 import 'syndicates.dart';
 
-class Events extends Coding {
+class Event extends Coding {
   DateTime expiry;
   String faction, description, victimNode, health, node, tooltip;
   List<_Rewards> rewards;

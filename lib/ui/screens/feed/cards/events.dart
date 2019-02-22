@@ -1,12 +1,76 @@
+import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:navis/models/export.dart';
-import 'package:navis/ui/widgets/static_box.dart';
 import 'package:navis/ui/routes/syndicates/rewards.dart';
+import 'package:navis/ui/widgets/static_box.dart';
 
-class Event extends StatelessWidget {
-  const Event({this.event});
+class EventPanel extends StatefulWidget {
+  const EventPanel({this.events});
 
-  final Events event;
+  final List<Event> events;
+
+  @override
+  EventPanelState createState() => EventPanelState();
+}
+
+class EventPanelState extends State<EventPanel> {
+  int _currentPage;
+
+  @override
+  void initState() {
+    super.initState();
+    _currentPage = 0;
+  }
+
+  @override
+  void didUpdateWidget(EventPanel oldWidget) {
+    if (oldWidget.events.length != widget.events.length) {
+      _currentPage = 0;
+    }
+    super.didUpdateWidget(oldWidget);
+  }
+
+  @override
+  void dispose() {
+    _currentPage = null;
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+        height: 140,
+        width: MediaQuery.of(context).size.width,
+        child: Material(
+            color: Theme.of(context).cardColor,
+            elevation: 6,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisSize: MainAxisSize.max,
+              children: <Widget>[
+                Expanded(
+                    child: PageView(
+                  scrollDirection: Axis.horizontal,
+                  children:
+                      widget.events.map((e) => EventBuilder(event: e)).toList(),
+                  onPageChanged: (index) => setState(() {
+                        _currentPage = index;
+                      }),
+                )),
+                DotsIndicator(
+                  numberOfDot: widget.events.length,
+                  position: _currentPage,
+                  dotActiveColor: Theme.of(context).accentColor,
+                )
+              ],
+            )));
+  }
+}
+
+class EventBuilder extends StatelessWidget {
+  const EventBuilder({this.event});
+
+  final Event event;
 
   Color _healthColor(double health) {
     if (health > 50.0)
@@ -49,40 +113,33 @@ class Event extends StatelessWidget {
 
     _addReward(context, event.jobs?.isNotEmpty ?? false, children);
 
-    return SizedBox(
-        height: 140,
-        width: MediaQuery.of(context).size.width,
-        child: Material(
-            color: Theme.of(context).cardColor,
-            elevation: 6,
-            child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Container(
-                      margin: const EdgeInsets.only(bottom: 4, top: 3),
-                      child: Text(event.description,
-                          textAlign: TextAlign.center,
-                          style: Theme.of(context).textTheme.title)),
-                  event.tooltip == null
-                      ? Container()
-                      : Container(
-                          margin: const EdgeInsets.only(bottom: 4),
-                          child: Text(event.tooltip,
-                              textAlign: TextAlign.center,
-                              style: Theme.of(context).textTheme.subtitle)),
-                  Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        victimNode,
-                        const SizedBox(width: 4),
-                        progress
-                      ]),
-                  const SizedBox(height: 4),
-                  Row(
-                      mainAxisSize: MainAxisSize.min,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: children)
-                ])));
+    return Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          Container(
+              margin: const EdgeInsets.only(bottom: 4, top: 3),
+              child: Text(event.description,
+                  textAlign: TextAlign.center,
+                  style: Theme.of(context).textTheme.title)),
+          event.tooltip == null
+              ? Container()
+              : Container(
+                  margin: const EdgeInsets.only(bottom: 4),
+                  child: Text(event.tooltip,
+                      textAlign: TextAlign.center,
+                      style: Theme.of(context).textTheme.subtitle)),
+          Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
+            victimNode,
+            const SizedBox(width: 4),
+            progress
+          ]),
+          const SizedBox(height: 4),
+          Row(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: children)
+        ]);
   }
 }
 
