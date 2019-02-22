@@ -1,40 +1,42 @@
 name: navis
 description: Cephalon Navis is an Android app inspired by Warframe Hub.
-version: 1.1.0+7 
+version: 1.1.0+7
 
 dependencies:
   flutter:
     sdk: flutter
-  intl: ^0.15.7
-  flutter_youtube: ^1.1.4
-  codable: ^1.0.0
-  rxdart: ^0.20.0
-  shared_preferences: ^0.4.3
-  flutter_custom_tabs: ^0.4.0
-  flutter_map: ^0.4.0
-  flutter_svg: ^0.10.2
-  chewie: ^0.8.0
   background_fetch: ^0.1.1
   bloc: ^0.9.0
-  flutter_bloc: ^0.6.0
-  firebase_performance: ^0.1.0
-  flutter_crashlytics: ^0.2.1
-  flutter_material_color_picker: ^0.0.5
+  chewie: ^0.9.5
+  codable: ^1.0.0
+  equatable: ^0.2.0
+  firebase_messaging: ^3.0.1
   flutter_advanced_networkimage: ^0.4.8
+  flutter_bloc: ^0.6.0
+  flutter_crashlytics: ^0.2.1
+  flutter_custom_tabs: ^0.4.0
+  flutter_map: ^0.4.0
+  flutter_material_color_picker: ^0.0.5
+  flutter_svg: ^0.10.2
+  flutter_youtube: ^1.1.4
+  intl: ^0.15.7
+  rxdart: ^0.20.0
+  shared_preferences: ^0.5.1+1
   sticky_headers: ^0.1.7
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
+  test: ^1.5.3
+  mockito: ^4.0.0
 
 flutter:
   uses-material-design: true
   fonts:
-    - family:  Standing
+    - family: Standing
       fonts:
-        - asset: assets/general/Standing.ttf    
-    - family:  VoidTear
+        - asset: assets/general/Standing.ttf
+    - family: VoidTear
       fonts:
         - asset: assets/general/VoidTear.ttf
   assets:
@@ -44,12 +46,11 @@ flutter:
     - assets/factions/
     - assets/sigils/
     - assets/relics/
-
+    - assets/worldstate.json
     #Plains of Eidolon map tiles
     #- assets/plains/0/
     #- assets/plains/1/
     #- assets/plains/2/
-
     #Orb Vallis Map tiles
     #- assets/vallis/1/
     #- assets/vallis/2/
