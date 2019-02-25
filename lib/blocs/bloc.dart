@@ -1,5 +1,6 @@
 export 'package:flutter_bloc/flutter_bloc.dart';
 
-export 'platform.dart';
-export 'theming.dart';
-export 'worldstateBloc.dart';
+// blocs
+export 'platform/platform.dart';
+export 'theme/theme.dart';
+export 'worldstate/worldState.dart';

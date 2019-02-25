@@ -1,22 +1,21 @@
 import 'dart:async';
+
 import 'package:bloc/bloc.dart';
+import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
-import 'package:rxdart/rxdart.dart';
 import 'package:navis/utils/themes.dart';
+
+import 'theme_events.dart';
+import 'theme_states.dart';
 
 final themes = AppTheme();
 
-class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
+class ThemeBloc extends Bloc<ThemeEvent, ThemeState>
+    with EquatableMixinBase, EquatableMixin {
   ThemeState persistentTheme;
 
   @override
   ThemeState get initialState => ThemeState(theme: themes.defaultTheme());
-
-  @override
-  Stream<ThemeEvent> transform(Stream<ThemeEvent> events) {
-    // ignore: avoid_as
-    return (events as Observable<ThemeEvent>).distinct();
-  }
 
   @override
   Stream<ThemeState> mapEventToState(
@@ -53,28 +52,4 @@ class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
       }
     }
   }
-}
-
-// Theme States
-class ThemeState {
-  ThemeState({this.theme});
-  final ThemeData theme;
-}
-
-// Theme events
-abstract class ThemeEvent {}
-
-class ThemeStart extends ThemeEvent {}
-
-class ThemeChange extends ThemeEvent {
-  ThemeChange({@required this.brightness});
-
-  final Brightness brightness;
-}
-
-class ThemeCustom extends ThemeEvent {
-  ThemeCustom({this.primaryColor, this.accentColor});
-
-  final Color primaryColor;
-  final Color accentColor;
 }
