@@ -15,16 +15,25 @@ class VideoPlayer extends StatefulWidget {
 class _VideoPlayerState extends State<VideoPlayer>
     with SingleTickerProviderStateMixin {
   VideoPlayerController _controller;
+  ChewieController _chewieController;
 
   @override
   void initState() {
     super.initState();
     _controller = VideoPlayerController.network(widget.url);
+    _chewieController = ChewieController(
+      videoPlayerController: _controller,
+      autoInitialize: true,
+      autoPlay: true,
+      aspectRatio: 3 / 2,
+      showControls: true,
+    );
   }
 
   @override
   void dispose() {
     _controller?.dispose();
+    _chewieController?.dispose();
     super.dispose();
   }
 
@@ -32,29 +41,19 @@ class _VideoPlayerState extends State<VideoPlayer>
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.transparent,
-        body: Builder(
-            builder: (_) => _buildPlayer(_controller, widget.lore, context)));
+        body: Builder(builder: (_) {
+          return Padding(
+              padding: EdgeInsets.zero,
+              child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(widget.lore,
+                          style: const TextStyle(fontSize: 15)),
+                    ),
+                    Container(child: Chewie(controller: _chewieController))
+                  ]));
+        }));
   }
-}
-
-Widget _buildPlayer(
-    VideoPlayerController controller, String title, BuildContext context) {
-  return Padding(
-      padding: EdgeInsets.zero,
-      child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(title, style: const TextStyle(fontSize: 15)),
-            ),
-            Container(
-                child: Chewie(
-              controller,
-              autoInitialize: true,
-              autoPlay: true,
-              aspectRatio: 3 / 2,
-              showControls: true,
-            ))
-          ]));
 }
