@@ -3,10 +3,9 @@ import 'dart:convert';
 import 'package:codable/codable.dart';
 import 'package:http/http.dart';
 import 'package:navis/models/export.dart';
-import 'package:navis/utils/metric_httpClient.dart';
 
 class Rewards {
-  final MetricHttpClient _metricHttpClient = MetricHttpClient(Client());
+  final _client = Client();
 
   Future<List<Reward>> rewards(List<String> bountyRewards) async {
     final List<Reward> imageList = await retriveRewards(bountyRewards);
@@ -33,7 +32,7 @@ class Rewards {
     final Request request =
         Request('GET', Uri.parse('http://142.93.23.157/rewards'));
 
-    final StreamedResponse response = await _metricHttpClient.send(request);
+    final StreamedResponse response = await _client.send(request);
 
     return await response.stream
         .transform(utf8.decoder)
