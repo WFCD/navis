@@ -10,12 +10,13 @@ class Vallis extends Coding {
     isWarm = object.decode('isWarm');
     expiry = DateTime.parse(object.decode('expiry'));
 
-    if (expiry.difference(DateTime.now().toUtc()) <= Duration(seconds: 1)) {
+    if (expiry.difference(DateTime.now().toUtc()) <=
+        const Duration(seconds: 1)) {
       isWarm = !isWarm;
       if (isWarm)
-        expiry = expiry.add(Duration(minutes: 6, seconds: 40));
+        expiry = expiry.add(const Duration(minutes: 6, seconds: 40));
       else
-        expiry = expiry.add(Duration(minutes: 20));
+        expiry = expiry.add(const Duration(minutes: 20));
     }
   }
 

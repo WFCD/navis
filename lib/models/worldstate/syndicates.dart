@@ -17,7 +17,7 @@ class Syndicate extends Coding {
     jobs = object.decodeObjects('jobs', () => Jobs());
 
     if (object.decode('expiry') == null)
-      expiry = DateTime.now().add(Duration(minutes: 120));
+      expiry = DateTime.now().add(const Duration(minutes: 120));
     else
       expiry = DateTime.parse(object.decode('expiry')).toLocal();
   }

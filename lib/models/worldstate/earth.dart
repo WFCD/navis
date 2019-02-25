@@ -12,16 +12,17 @@ class Earth extends Coding {
     isCetus = object.decode('isCetus') ?? false;
     expiry = DateTime.parse(object.decode('expiry')).toLocal();
 
-    if (expiry.difference(DateTime.now().toUtc()) <= Duration(seconds: 1)) {
+    if (expiry.difference(DateTime.now().toUtc()) <=
+        const Duration(seconds: 1)) {
       isDay = !isDay;
       if (isDay)
         expiry = isCetus
-            ? expiry.add(Duration(minutes: 100))
-            : expiry.add(Duration(hours: 4));
+            ? expiry.add(const Duration(minutes: 100))
+            : expiry.add(const Duration(hours: 4));
       else
         expiry = isCetus
-            ? expiry.add(Duration(minutes: 50))
-            : expiry.add(Duration(hours: 4));
+            ? expiry.add(const Duration(minutes: 50))
+            : expiry.add(const Duration(hours: 4));
     }
   }
 

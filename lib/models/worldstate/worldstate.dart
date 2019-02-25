@@ -9,11 +9,11 @@ class WorldState extends Coding {
   Sortie sortie;
   VoidTrader trader;
   List<Invasions> invasions;
-  List<Events> events;
+  List<Event> events;
   List<PersistentEnemies> persistentEnemies;
   List<OrbiterNews> news;
   List<Alerts> alerts;
-  List<Syndicates> syndicates;
+  List<Syndicate> syndicates;
   List<VoidFissures> voidFissures;
 
   @override
@@ -27,12 +27,12 @@ class WorldState extends Coding {
     sortie = object.decodeObject('sortie', () => Sortie());
     trader = object.decodeObject('voidTrader', () => VoidTrader());
     invasions = object.decodeObjects('invasions', () => Invasions());
-    events = object.decodeObjects('events', () => Events());
+    events = object.decodeObjects('events', () => Event());
     persistentEnemies =
         object.decodeObjects('persistentEnemies', () => PersistentEnemies());
     news = object.decodeObjects('news', () => OrbiterNews());
     alerts = object.decodeObjects('alerts', () => Alerts());
-    syndicates = object.decodeObjects('syndicateMissions', () => Syndicates());
+    syndicates = object.decodeObjects('syndicateMissions', () => Syndicate());
     voidFissures = object.decodeObjects('fissures', () => VoidFissures());
   }
 
