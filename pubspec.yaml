@@ -55,7 +55,7 @@ flutter:
     - assets/factions/
     - assets/sigils/
     - assets/relics/
-    - assets/worldstate.json
+    #- assets/worldstate.json
     #Plains of Eidolon map tiles
     #- assets/plains/0/
     #- assets/plains/1/
