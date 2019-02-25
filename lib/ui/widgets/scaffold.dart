@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:navis/globalkeys.dart';
-
-//import 'bottomAppBar.dart';
+import 'package:navis/global_keys.dart';
 
 class CustomScaffold extends StatefulWidget {
   const CustomScaffold({this.pageChilderen, this.childeren});
@@ -83,7 +81,7 @@ class CustomScaffoldState extends State<CustomScaffold>
                 setState(() {
                   transWidget[_currentPage].controller.reverse();
                   _currentPage = index;
-                  transWidget[_currentPage].controller.forward();
+                  transWidget[index].controller.forward();
                 });
               },
             )));
@@ -96,7 +94,7 @@ class NavigationFade {
     TickerProvider vsync,
   })  : _child = child,
         controller = AnimationController(
-          duration: const Duration(milliseconds: 250),
+          duration: const Duration(milliseconds: 200),
           vsync: vsync,
         ) {
     _animation = controller.drive(CurveTween(

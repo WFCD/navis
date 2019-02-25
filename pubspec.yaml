@@ -36,8 +36,8 @@ dev_dependencies:
   test: ^1.5.3
   mockito: ^4.0.0
 
-dependency_overrides:
-  test_api: 0.2.2
+#dependency_overrides:
+# test_api: 0.2.2
 
 flutter:
   uses-material-design: true

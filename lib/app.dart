@@ -1,9 +1,9 @@
-import 'package:flutter/material.dart';
-import 'package:navis/blocs/bloc.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:navis/blocs/theming.dart';
 import 'package:background_fetch/background_fetch.dart';
-
+import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_villains/villain.dart';
+import 'package:navis/blocs/bloc.dart';
 import 'package:navis/ui/screens/home.dart';
 import 'package:navis/ui/screens/settings/settings.dart';
 
@@ -13,20 +13,25 @@ class Navis extends StatefulWidget {
 }
 
 class NavisState extends State<Navis> {
+  final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
   final _theme = ThemeBloc();
   final _platform = PlatformBloc();
-  final _worldstate = WorldstateBloc();
+  final _worldstate = WorldstateBloc.initialize();
 
   @override
   void initState() {
     super.initState();
     _init();
+
+    _firebaseMessaging.configure();
   }
 
   Future<void> _init() async {
     _theme.dispatch(ThemeStart());
     _platform.dispatch(PlatformStart());
-    _worldstate.dispatch(UpdateState());
+
+    await Future.delayed(const Duration(milliseconds: 300),
+        () => _worldstate.dispatch(UpdateState()));
 
     BackgroundFetch.configure(
         BackgroundFetchConfig(
@@ -48,20 +53,21 @@ class NavisState extends State<Navis> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
+    return BlocProvider<ThemeBloc>(
         bloc: _theme,
-        child: BlocProvider(
+        child: BlocProvider<PlatformBloc>(
             bloc: _platform,
-            child: BlocProvider(
+            child: BlocProvider<WorldstateBloc>(
               bloc: _worldstate,
               child: BlocBuilder(
                   bloc: _theme,
                   builder: (_, ThemeState themeState) {
                     return MaterialApp(
+                      navigatorObservers: [VillainTransitionObserver()],
                       title: 'Navis',
                       color: Colors.grey[900],
                       theme: themeState.theme,
-                      home: const HomeScreen(),
+                      home: HomeScreen(),
                       routes: <String, WidgetBuilder>{
                         '/Settings': (_) => const Settings()
                       },

@@ -1,26 +1,22 @@
 import 'package:flutter/material.dart';
+//import 'package:navis/ui/widgets/s_prototype.dart';
 import 'package:navis/ui/widgets/scaffold.dart';
 import 'package:navis/ui/widgets/icons.dart';
+import 'package:navis/global_keys.dart';
 
 import 'feed/feed.dart';
 import 'fissures/fissures.dart';
 import 'news/news.dart';
 import 'syndicates/syndicates.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key key}) : super(key: key);
+class HomeScreen extends StatelessWidget {
+  HomeScreen({Key key}) : super(key: key);
 
-  @override
-  _HomeScreen createState() => _HomeScreen();
-}
+  final double size = 20;
 
-class _HomeScreen extends State<HomeScreen> with TickerProviderStateMixin {
-  double size = 20;
-  //static const TextStyle _titleStyle = TextStyle(color: Colors.white);
-
-  List<Widget> pages = [
+  final List<Widget> _pages = [
     const Orbiter(),
-    const Feed(),
+    Feed(key: feed),
     const Fissure(),
     SyndicatesList()
   ];
@@ -38,7 +34,7 @@ class _HomeScreen extends State<HomeScreen> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(
-      pageChilderen: pages,
+      pageChilderen: _pages,
       childeren: _items,
     );
   }
