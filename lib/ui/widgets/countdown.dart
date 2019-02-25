@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import 'package:navis/blocs/worldstateBloc.dart';
+import 'package:navis/blocs/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'static_box.dart';

@@ -6,7 +6,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:navis/utils/constants.dart';
 import 'package:navis/ui/widgets/popup.dart';
 import 'package:navis/ui/widgets/videoplayer.dart';
-import 'package:navis/services/repository.dart';
+import 'package:navis/services/streamable.dart';
 
 import 'map_base.dart';
 
@@ -19,7 +19,7 @@ class Plains extends Mapbase {
 
   static const double _size = 25;
 
-  static final straeamble = Respiratory();
+  static final straeamble = StreamableAPI();
 
   List<String> filters = [
     'All',
@@ -46,8 +46,7 @@ class Plains extends Mapbase {
         builder: (_) => InkWell(
             onTap: () async => Navigator.of(_context).push(Popup(
                 child: VideoPlayer(
-                    lore: o[3],
-                    url: await straeamble.getStreamableLink(o[4])))),
+                    lore: o[3], url: await straeamble.fishVideos(o[4])))),
             child: Container(
                 child: Image.network(
                     'https://hub.warframestat.us/img/map_icons/oddity.png'))));

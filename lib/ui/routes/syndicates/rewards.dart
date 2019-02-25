@@ -1,24 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:navis/models/export.dart';
-
-import 'package:navis/blocs/bloc.dart';
+import 'package:navis/services/rewards.dart';
 
 class BountyRewards extends StatelessWidget {
-  const BountyRewards({Key key, this.missionTYpe, this.bountyRewards})
+  BountyRewards({Key key, this.missionTYpe, this.bountyRewards})
       : super(key: key);
 
   final List<String> bountyRewards;
   final String missionTYpe;
 
+  final _rewards = Rewards();
+
   @override
   Widget build(BuildContext context) {
-    final repository = BlocProvider.of<WorldstateBloc>(context).repository;
-
     return Scaffold(
         appBar: AppBar(title: Text(missionTYpe)),
         body: FutureBuilder<List<Reward>>(
-            future: repository.getRewardImages(bountyRewards),
+            future: _rewards.rewards(bountyRewards),
             builder:
                 (BuildContext context, AsyncSnapshot<List<Reward>> snapshot) {
               if (!snapshot.hasData)

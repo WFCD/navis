@@ -14,18 +14,24 @@ class EventPanel extends StatefulWidget {
 }
 
 class EventPanelState extends State<EventPanel> {
+  PageController _controller;
   int _currentPage;
 
   @override
   void initState() {
     super.initState();
+
     _currentPage = 0;
+    _controller = PageController(initialPage: _currentPage);
   }
 
   @override
   void didUpdateWidget(EventPanel oldWidget) {
     if (oldWidget.events.length != widget.events.length) {
+      _controller.dispose();
+
       _currentPage = 0;
+      _controller = PageController(initialPage: _currentPage);
     }
     super.didUpdateWidget(oldWidget);
   }
@@ -33,11 +39,14 @@ class EventPanelState extends State<EventPanel> {
   @override
   void dispose() {
     _currentPage = null;
+    _controller.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    final bool enableDots = widget.events.length <= 1;
+
     return SizedBox(
         height: 140,
         width: MediaQuery.of(context).size.width,
@@ -49,19 +58,23 @@ class EventPanelState extends State<EventPanel> {
               mainAxisSize: MainAxisSize.max,
               children: <Widget>[
                 Expanded(
-                    child: PageView(
+                    child: PageView.builder(
+                  controller: _controller,
                   scrollDirection: Axis.horizontal,
-                  children:
-                      widget.events.map((e) => EventBuilder(event: e)).toList(),
+                  itemCount: widget.events.length,
+                  itemBuilder: (_, index) =>
+                      EventBuilder(event: widget.events[index]),
                   onPageChanged: (index) => setState(() {
                         _currentPage = index;
                       }),
                 )),
-                DotsIndicator(
-                  numberOfDot: widget.events.length,
-                  position: _currentPage,
-                  dotActiveColor: Theme.of(context).accentColor,
-                )
+                enableDots
+                    ? Container()
+                    : DotsIndicator(
+                        numberOfDot: widget.events.length,
+                        position: _currentPage,
+                        dotActiveColor: Theme.of(context).accentColor,
+                      )
               ],
             )));
   }

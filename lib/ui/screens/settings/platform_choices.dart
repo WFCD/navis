@@ -1,8 +1,5 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:navis/blocs/platform.dart';
 import 'package:navis/blocs/bloc.dart';
 
 class PlatformChoice extends StatefulWidget {
@@ -45,18 +42,18 @@ class PlatformChoiceState extends State<PlatformChoice> {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: <Widget>[
                         Container(
-                          child: IconButton(
-                              icon: SvgPicture.asset(
-                                'assets/platforms/pc.svg',
-                                color: platformState.platform == 'pc'
-                                    ? const Color(0xFFFACA04)
-                                    : Theme.of(context).disabledColor,
-                                height: 25,
-                                width: 25,
-                              ),
-                              onPressed: () =>
-                                  onPressed(platform, state, 'pc')),
-                        ),
+                            child: IconButton(
+                          icon: SvgPicture.asset(
+                            'assets/platforms/pc.svg',
+                            color: platformState.platform == 'pc'
+                                ? const Color(0xFFFACA04)
+                                : Theme.of(context).disabledColor,
+                            height: 25,
+                            width: 25,
+                          ),
+                          onPressed: () => platform.onPressed(Platforms.pc,
+                              callback: state.update()),
+                        )),
                         Container(
                             child: IconButton(
                                 icon: SvgPicture.asset(
@@ -67,8 +64,9 @@ class PlatformChoiceState extends State<PlatformChoice> {
                                   height: 25,
                                   width: 25,
                                 ),
-                                onPressed: () =>
-                                    onPressed(platform, state, 'ps4'))),
+                                onPressed: () => platform.onPressed(
+                                    Platforms.ps4,
+                                    callback: state.update()))),
                         Container(
                             child: IconButton(
                                 icon: SvgPicture.asset(
@@ -79,8 +77,9 @@ class PlatformChoiceState extends State<PlatformChoice> {
                                   height: 25,
                                   width: 25,
                                 ),
-                                onPressed: () =>
-                                    onPressed(platform, state, 'xb1'))),
+                                onPressed: () => platform.onPressed(
+                                    Platforms.xb1,
+                                    callback: state.update()))),
                         Container(
                             child: IconButton(
                                 icon: SvgPicture.asset(
@@ -91,20 +90,12 @@ class PlatformChoiceState extends State<PlatformChoice> {
                                   height: 50,
                                   width: 50,
                                 ),
-                                onPressed: () =>
-                                    onPressed(platform, state, 'swi')))
+                                onPressed: () => platform.onPressed(
+                                    Platforms.swi,
+                                    callback: state.update())))
                       ],
                     );
                   }))),
     ]);
   }
-}
-
-void onPressed(
-    PlatformBloc platform, WorldstateBloc bloc, String selectPlatform) {
-  platform.dispatch(PlatformChange(platform: selectPlatform));
-  Future<void>.delayed(
-      const Duration(milliseconds: 500),
-      () => bloc
-          .update()); // waits for for platform to save before updating.. I think
 }

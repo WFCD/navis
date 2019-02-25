@@ -6,6 +6,8 @@ import 'syndicate_style.dart';
 import 'syndicate_timer.dart';
 
 class SyndicatesList extends StatelessWidget {
+  final _currentTime = DateTime.now();
+
   @override
   Widget build(BuildContext context) {
     final WorldstateBloc bloc = BlocProvider.of<WorldstateBloc>(context);
@@ -19,9 +21,10 @@ class SyndicatesList extends StatelessWidget {
                 return const Center(child: CircularProgressIndicator());
 
               if (state is WorldstateLoaded) {
-                final List<Syndicates> syndicates = state.worldState.syndicates;
+                final List<Syndicate> syndicates = state.worldState.syndicates;
 
-                if (syndicates.isEmpty)
+                if (syndicates[0].activation.isAfter(_currentTime) &&
+                    syndicates[0].expiry.isBefore(_currentTime))
                   return const Center(
                       child: Text('Retrieving new bounties...'));
 
@@ -29,8 +32,8 @@ class SyndicatesList extends StatelessWidget {
                   SyndicateTimer(time: syndicates[0].expiry),
                   Column(
                       children: syndicates
-                          .where((Syndicates syn) => syn.active == true)
-                          .map((Syndicates syn) => Syndicate(syndicate: syn))
+                          .map(
+                              (Syndicate syn) => SyndicateStyle(syndicate: syn))
                           .toList())
                 ]);
               }

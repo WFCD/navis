@@ -12,12 +12,12 @@ import 'cards/trader.dart';
 import 'cards/vallis.dart';
 
 class Feed extends StatelessWidget {
-  const Feed({Key key = const PageStorageKey<String>('feed')})
-      : super(key: key);
+  const Feed({Key key}) : super(key: key);
 
   void _addEvents(List<Event> events, List<Widget> childeren) =>
       events.isNotEmpty
-          ? childeren.insert(0, EventPanel(events: events))
+          ? childeren.insert(
+              0, SliverToBoxAdapter(child: EventPanel(events: events)))
           : null;
 
   void _addAcolytes(List<PersistentEnemies> enemies, List<Widget> childeren) =>
@@ -46,14 +46,15 @@ class Feed extends StatelessWidget {
                 SculptureMissions()
               ];
 
-              _addEvents(state.worldState.events, children);
+              final List sliver = <Widget>[
+                SliverList(delegate: SliverChildListDelegate(children))
+              ];
+
+              _addEvents(state.worldState.events, sliver);
               _addAcolytes(state.worldState.persistentEnemies, children);
 
               return CustomScrollView(
-                  key: const Key('Feed_list'),
-                  slivers: <Widget>[
-                    SliverList(delegate: SliverChildListDelegate(children))
-                  ]);
+                  key: const PageStorageKey<String>('feed'), slivers: sliver);
             }
           }),
     );

@@ -20,5 +20,5 @@ class Popup extends PopupRoute {
       child;
 
   @override
-  Duration get transitionDuration => Duration(milliseconds: 200);
+  Duration get transitionDuration => const Duration(milliseconds: 200);
 }

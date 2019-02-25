@@ -3,7 +3,7 @@ import 'package:flutter_custom_tabs/flutter_custom_tabs.dart';
 import 'package:flutter_youtube/flutter_youtube.dart';
 import 'package:flutter_advanced_networkimage/provider.dart';
 
-import 'package:navis/globalkeys.dart';
+import 'package:navis/global_keys.dart';
 import 'package:navis/models/export.dart';
 import 'package:navis/utils/keys.dart';
 
@@ -27,9 +27,9 @@ class NewsCard extends StatelessWidget {
                 animation: CustomTabsAnimation.slideIn(),
                 extraCustomTabs: <String>['org.mozilla.firefox']));
       } catch (err) {
-        scaffold.currentState.showSnackBar(SnackBar(
+        scaffold.currentState.showSnackBar(const SnackBar(
             duration: Duration(seconds: 30),
-            content: const Text('No Browser detected')));
+            content: Text('No Browser detected')));
       }
     }
   }
@@ -38,8 +38,8 @@ class NewsCard extends StatelessWidget {
     final Duration duration =
         timestamp.difference(DateTime.now().toUtc()).abs();
 
-    final Duration hour = Duration(hours: 1);
-    final Duration day = Duration(hours: 24);
+    const Duration hour = Duration(hours: 1);
+    const Duration day = Duration(hours: 24);
 
     if (duration < hour) {
       return '${duration.inMinutes.floor()}m';

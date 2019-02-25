@@ -6,10 +6,9 @@ import 'package:navis/utils/factionutils.dart';
 import 'package:sticky_headers/sticky_headers.dart';
 
 class SyndicateJobs extends StatefulWidget {
-  const SyndicateJobs({this.faction, this.events});
+  const SyndicateJobs({this.faction});
 
   final OpenWorldFactions faction;
-  final List<Events> events;
 
   @override
   SyndicateJobsState createState() => SyndicateJobsState();
@@ -33,9 +32,9 @@ class SyndicateJobsState extends State<SyndicateJobs> {
                 return const Center(child: CircularProgressIndicator());
 
               if (state is WorldstateLoaded) {
-                final Syndicates syndicate = state.worldState.syndicates
+                final Syndicate syndicate = state.worldState.syndicates
                     .firstWhere((syn) =>
-                        syn.syndicate == futils.factionCheck(widget.faction));
+                        syn.name == futils.factionCheck(widget.faction));
 
                 return ListView.builder(
                     itemCount: syndicate.jobs.length,

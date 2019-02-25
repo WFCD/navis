@@ -18,7 +18,7 @@ class _Orbiter extends State<Orbiter> {
     final bloc = BlocProvider.of<WorldstateBloc>(context);
 
     return RefreshIndicator(
-        onRefresh: () => bloc.update(),
+        onRefresh: bloc.update,
         child: BlocBuilder(
             bloc: bloc,
             builder: (context, state) {
