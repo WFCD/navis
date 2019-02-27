@@ -10,7 +10,7 @@ class Earth extends Coding {
 
     isDay = object.decode('isDay');
     isCetus = object.decode('isCetus') ?? false;
-    expiry = DateTime.parse(object.decode('expiry')).toLocal();
+    expiry = DateTime.parse(object.decode('expiry'));
 
     if (expiry.difference(DateTime.now().toUtc()) <=
         const Duration(seconds: 1)) {
