@@ -3,18 +3,17 @@ import 'package:navis/models/export.dart';
 
 class WorldState extends Coding {
   String timestamp;
-  Earth cetus;
-  Earth earth;
-  Vallis vallis;
-  Sortie sortie;
-  VoidTrader trader;
-  List<Invasions> invasions;
-  List<Event> events;
-  List<PersistentEnemies> persistentEnemies;
   List<OrbiterNews> news;
-  List<Alerts> alerts;
+  List<Event> events;
+  Sortie sortie;
   List<Syndicate> syndicates;
   List<VoidFissures> voidFissures;
+  List<Invasions> invasions;
+  VoidTrader trader;
+  List<PersistentEnemies> persistentEnemies;
+  Earth earth;
+  Earth cetus;
+  Vallis vallis;
 
   @override
   void decode(KeyedArchive object) {
@@ -31,7 +30,6 @@ class WorldState extends Coding {
     persistentEnemies =
         object.decodeObjects('persistentEnemies', () => PersistentEnemies());
     news = object.decodeObjects('news', () => OrbiterNews());
-    alerts = object.decodeObjects('alerts', () => Alerts());
     syndicates = object.decodeObjects('syndicateMissions', () => Syndicate());
     voidFissures = object.decodeObjects('fissures', () => VoidFissures());
   }
@@ -48,7 +46,6 @@ class WorldState extends Coding {
     object.encodeObjects('events', events);
     object.encodeObjects('persistentEnemies', persistentEnemies);
     object.encodeObjects('news', news);
-    object.encodeObjects('alerts', alerts);
     object.encodeObjects('syndicateMission', syndicates);
     object.encodeObjects('fissures', voidFissures);
   }

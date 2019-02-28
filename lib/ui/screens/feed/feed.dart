@@ -3,7 +3,6 @@ import 'package:navis/blocs/bloc.dart';
 import 'package:navis/models/export.dart';
 
 import 'cards/acolytes.dart';
-import 'cards/alerts.dart';
 import 'cards/cycle.dart';
 import 'cards/events.dart';
 import 'cards/fissures.dart';
@@ -43,7 +42,6 @@ class Feed extends StatelessWidget {
                 const CetusCycle(cycle: Cycle.cetus),
                 OrbVallis(),
                 const CetusCycle(cycle: Cycle.earth),
-                //AlertTile(),
                 const RepaintBoundary(child: Fissure()),
                 const RepaintBoundary(child: InvasionCard()),
                 Trader(),

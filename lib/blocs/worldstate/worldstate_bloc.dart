@@ -3,10 +3,11 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
+import 'package:navis/models/export.dart';
 import 'package:navis/utils/factionutils.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:http/http.dart' as http;
 
 import '../../global_keys.dart';
 import '../../services/worldstate.dart';
@@ -38,7 +39,7 @@ class WorldstateBloc extends Bloc<StateEvent, WorldStates>
       final state = await api.updateState(client,
           platform: prefs.getString('platform') ?? 'pc');
 
-      yield WorldstateLoaded(worldState: state);
+      yield WorldstateLoaded(worldState: _cleanState(state));
     }
   }
 
@@ -70,5 +71,29 @@ class WorldstateBloc extends Bloc<StateEvent, WorldStates>
   Future<void> update() async {
     await Future.delayed(
         const Duration(milliseconds: 300), () => dispatch(UpdateState()));
+  }
+
+  WorldState _cleanState(WorldState state) {
+    state.news.retainWhere((art) => art.translations.en != null);
+    state.news.sort((a, b) => b.date.compareTo(a.date));
+
+    state.invasions.retainWhere(
+        (invasion) => invasion.completion < 100 && invasion.completed == false);
+
+    state.persistentEnemies.sort((a, b) => a.agentType.compareTo(b.agentType));
+
+    state.syndicates.retainWhere(
+        (s) => s.name.contains(RegExp('(Ostrons)|(Solaris United)')) == true);
+
+    state.syndicates.sort((a, b) => a.name.compareTo(b.name));
+
+    state.voidFissures.removeWhere((v) =>
+        v.active == false ||
+        v.expiry.difference(DateTime.now().toUtc()) <
+            const Duration(seconds: 1));
+
+    state.voidFissures.sort((a, b) => a.tierNum.compareTo(b.tierNum));
+
+    return state;
   }
 }
