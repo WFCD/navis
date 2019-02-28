@@ -3,9 +3,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:navis/blocs/bloc.dart';
 
 class PlatformChoice extends StatefulWidget {
-  const PlatformChoice({this.enableTitle = true});
+  const PlatformChoice({Key key}) : super(key: key);
 
-  final bool enableTitle;
   @override
   PlatformChoiceState createState() => PlatformChoiceState();
 }
@@ -22,9 +21,7 @@ class PlatformChoiceState extends State<PlatformChoice> {
     }
 
     return Column(children: <Widget>[
-      Divider(
-        color: Theme.of(context).accentColor,
-      ),
+      Divider(color: Theme.of(context).accentColor),
       BlocProvider<PlatformBloc>(
           bloc: platform,
           child: BlocBuilder<PlatformEvent, PlatformState>(

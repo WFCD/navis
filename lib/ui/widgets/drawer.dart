@@ -30,13 +30,13 @@ class CustomDrawer extends StatelessWidget {
 
     _listview.addAll(children.map(_buildDrawerItem));
 
-    //_items.insert(0, DrawerHeader(child: Container()));
+    _items.insert(
+        0, Container(height: 76, color: Theme.of(context).accentColor));
 
     _items.add(Expanded(
-      child: ListView(children: _listview),
-    ));
+        child: ListView(padding: EdgeInsets.zero, children: _listview)));
 
-    _items.add(const PlatformChoice(enableTitle: false));
+    _items.add(const PlatformChoice());
 
     _items.add(ListTile(
       leading: const Icon(Icons.settings),
