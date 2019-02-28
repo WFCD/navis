@@ -50,6 +50,7 @@ class AppTheme {
             accentColor != null ? Color(accentColor) : Colors.blueAccent[400],
         cardColor: const Color(0xFF2C2C2C),
         scaffoldBackgroundColor: const Color(0xFF212121),
+        canvasColor: const Color(0xFF212121),
         splashColor:
             accentColor != null ? Color(accentColor) : Colors.blueAccent[400]);
   }

@@ -3,7 +3,7 @@ import 'package:navis/utils/factionutils.dart';
 import 'package:navis/blocs/bloc.dart';
 import 'package:navis/models/export.dart';
 import 'package:navis/ui/widgets/cards.dart';
-import 'package:navis/ui/routes/maps/map.dart';
+
 import 'package:navis/ui/routes/syndicates/syndicate_missions.dart';
 
 class SyndicateStyle extends StatelessWidget {
@@ -45,11 +45,7 @@ class SyndicateStyle extends StatelessWidget {
                           .textTheme
                           .subtitle
                           .copyWith(color: Colors.white70))
-                ])),
-            IconButton(
-                iconSize: 30,
-                icon: const Icon(Icons.map, color: Colors.white),
-                onPressed: () => _navigateToMap(context, syndicate.name))
+                ]))
           ]),
         ),
       ),
@@ -57,23 +53,9 @@ class SyndicateStyle extends StatelessWidget {
   }
 }
 
-void _navigateToMap(BuildContext context, String syndicate) {
-  Navigator.of(context).push(
-      MaterialPageRoute(builder: (_) => Maps(location: _locaton(syndicate))));
-}
-
 void _navigateToBounties(BuildContext context, Syndicate syn) {
   Navigator.of(context).push(MaterialPageRoute(
       builder: (_) => SyndicateJobs(faction: _faction(syn.name))));
-}
-
-Location _locaton(String syndicateName) {
-  switch (syndicateName) {
-    case 'Ostrons':
-      return Location.plains;
-    default:
-      return Location.vallis;
-  }
 }
 
 OpenWorldFactions _faction(String faction) {

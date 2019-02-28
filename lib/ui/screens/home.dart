@@ -1,41 +1,134 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
-//import 'package:navis/ui/widgets/s_prototype.dart';
-import 'package:navis/ui/widgets/scaffold.dart';
-import 'package:navis/ui/widgets/icons.dart';
+import 'package:flutter_custom_tabs/flutter_custom_tabs.dart';
 import 'package:navis/global_keys.dart';
+import 'package:navis/ui/widgets/drawer.dart';
+import 'package:flutter_villains/villain.dart';
+import 'package:navis/ui/widgets/icons.dart';
+import 'package:rxdart/rxdart.dart';
+import 'package:navis/ui/routes/maps/map.dart';
 
 import 'feed/feed.dart';
-import 'fissures/fissures.dart';
 import 'news/news.dart';
 import 'syndicates/syndicates.dart';
 
-class HomeScreen extends StatelessWidget {
-  HomeScreen({Key key}) : super(key: key);
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({Key key}) : super(key: key);
 
-  final double size = 20;
+  @override
+  _HomeScreenState createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  final _currentTab = 1;
+  StreamController<int> _pageIndex;
+  List<DrawerItem> _drawerItem;
 
   final List<Widget> _pages = [
     const Orbiter(),
     Feed(key: feed),
-    const Fissure(),
-    SyndicatesList()
-  ];
-
-  final List<BottomNavigationBarItem> _items = const [
-    BottomNavigationBarItem(icon: Icon(Icons.update), title: Text('News')),
-    BottomNavigationBarItem(
-        icon: Icon(Icons.view_headline), title: Text('Feed')),
-    BottomNavigationBarItem(
-        icon: Icon(VoidTear.voidtearicon), title: Text('Fissures')),
-    BottomNavigationBarItem(
-        icon: Icon(Standing.standing), title: Text('Syndicates'))
+    Container(),
+    SyndicatesList(),
+    //Container()
   ];
 
   @override
+  void initState() {
+    super.initState();
+    _pageIndex = BehaviorSubject<int>();
+
+    _drawerItem = [
+      DrawerItem(
+          icon: const Icon(Icons.update),
+          title: 'News',
+          callback: () => _setBody(0)),
+      DrawerItem(
+          icon: const Icon(Icons.timer),
+          title: 'Timers',
+          callback: () => _setBody(1)),
+      DrawerItem(icon: const Icon(Icons.map), title: 'Maps', children: <
+          DrawerItem>[
+        DrawerItem(title: 'Plains', callback: () => _navigateToMap('Ostrons')),
+        DrawerItem(
+            title: 'Vallis', callback: () => _navigateToMap('Solaris United')),
+        DrawerItem(
+            title: 'Fishing Data',
+            callback: () => _launchUrl('https://hub.warframestat.us/fish')),
+        DrawerItem(
+            title: 'How to Fish',
+            callback: () => _launchUrl('https://hub.warframestat.us/howtofish'))
+      ]),
+      DrawerItem(
+          icon: const Icon(Standing.standing),
+          title: 'Syndicate',
+          callback: () => _setBody(3)),
+      /*DrawerItem(
+          icon: const Icon(PriceTag.tag),
+          title: 'Flash Sales',
+          callback: () => _setBody(4))*/
+    ];
+
+    _pageIndex.stream
+        .distinct()
+        .listen((index) => VillainController.playAllVillains(context));
+  }
+
+  void _setBody(int index) {
+    _pageIndex.sink.add(index);
+    Navigator.of(context).pop();
+  }
+
+  void _navigateToMap(String syndicate) {
+    Navigator.of(context).pop();
+    Navigator.of(context).push(
+        MaterialPageRoute(builder: (_) => Maps(location: _locaton(syndicate))));
+  }
+
+  Location _locaton(String syndicateName) {
+    switch (syndicateName) {
+      case 'Ostrons':
+        return Location.plains;
+      default:
+        return Location.vallis;
+    }
+  }
+
+  Future<void> _launchUrl(String url) async {
+    Navigator.of(context).pop();
+    try {
+      await launch(url,
+          option: CustomTabsOption(
+              toolbarColor: Theme.of(context).primaryColor,
+              enableDefaultShare: true,
+              enableUrlBarHiding: true,
+              showPageTitle: true,
+              animation: CustomTabsAnimation.slideIn(),
+              extraCustomTabs: <String>['org.mozilla.firefox']));
+    } catch (err) {
+      scaffold.currentState.showSnackBar(const SnackBar(
+          duration: Duration(seconds: 30),
+          content: Text('No Browser detected')));
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return CustomScaffold(
-      pageChilderen: _pages,
-      childeren: _items,
+    return Scaffold(
+      key: scaffold,
+      appBar: AppBar(title: const Text('Navis'), elevation: 6),
+      drawer: StreamBuilder(
+          initialData: _currentTab,
+          stream: _pageIndex.stream.distinct(),
+          builder: (_, snapshot) =>
+              CustomDrawer(currentIndex: snapshot.data, children: _drawerItem)),
+      body: StreamBuilder(
+        initialData: _currentTab,
+        stream: _pageIndex.stream.distinct(),
+        builder: (_, snapshot) => Villain(
+            villainAnimation: VillainAnimation.fade(),
+            child: _pages[snapshot.data]),
+      ),
     );
   }
 }

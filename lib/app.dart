@@ -67,7 +67,7 @@ class NavisState extends State<Navis> {
                       title: 'Navis',
                       color: Colors.grey[900],
                       theme: themeState.theme,
-                      home: HomeScreen(),
+                      home: const HomeScreen(),
                       routes: <String, WidgetBuilder>{
                         '/Settings': (_) => const Settings()
                       },

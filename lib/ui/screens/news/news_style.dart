@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_custom_tabs/flutter_custom_tabs.dart';
-import 'package:flutter_youtube/flutter_youtube.dart';
-import 'package:flutter_advanced_networkimage/provider.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 import 'package:navis/global_keys.dart';
 import 'package:navis/models/export.dart';
-import 'package:navis/utils/keys.dart';
 
 class NewsCard extends StatelessWidget {
   const NewsCard({this.news});
@@ -13,24 +11,19 @@ class NewsCard extends StatelessWidget {
   final OrbiterNews news;
 
   Future<void> _launchLink(String link, BuildContext context) async {
-    if (link.contains(RegExp('youtube'))) {
-      FlutterYoutube.playYoutubeVideoByUrl(
-          apiKey: youtubeKey, videoUrl: link, autoPlay: true);
-    } else {
-      try {
-        await launch(link,
-            option: CustomTabsOption(
-                toolbarColor: Theme.of(context).primaryColor,
-                enableDefaultShare: true,
-                enableUrlBarHiding: true,
-                showPageTitle: true,
-                animation: CustomTabsAnimation.slideIn(),
-                extraCustomTabs: <String>['org.mozilla.firefox']));
-      } catch (err) {
-        scaffold.currentState.showSnackBar(const SnackBar(
-            duration: Duration(seconds: 30),
-            content: Text('No Browser detected')));
-      }
+    try {
+      await launch(link,
+          option: CustomTabsOption(
+              toolbarColor: Theme.of(context).primaryColor,
+              enableDefaultShare: true,
+              enableUrlBarHiding: true,
+              showPageTitle: true,
+              animation: CustomTabsAnimation.slideIn(),
+              extraCustomTabs: <String>['org.mozilla.firefox']));
+    } catch (err) {
+      scaffold.currentState.showSnackBar(const SnackBar(
+          duration: Duration(seconds: 30),
+          content: Text('No Browser detected')));
     }
   }
 
@@ -60,10 +53,7 @@ class NewsCard extends StatelessWidget {
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(4.0),
             image: DecorationImage(
-                image: AdvancedNetworkImage(news.imageLink,
-                    fallbackAssetImage: 'assets/general/404.png',
-                    retryLimit: 3,
-                    useDiskCache: true),
+                image: CachedNetworkImageProvider(news.imageLink),
                 fit: BoxFit.cover)),
         child: Container(
             height: 40,

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'platform_choices.dart';
 import 'theme_choice.dart';
 
 class Settings extends StatelessWidget {
@@ -11,7 +10,6 @@ class Settings extends StatelessWidget {
         appBar: AppBar(title: const Text('Settings')),
         body: Column(
           children: <Widget>[
-            PlatformChoice(),
             ThemeChoice(),
           ],
         ));
