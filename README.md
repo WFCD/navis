@@ -1,6 +1,28 @@
 # Cephalon Navis
 
-Cephalon Navis  is an Android app inspired by [Warframe Hub](https://hub.warframestat.us/). At the moment not all information is currently showed by the app, if you do have some info that you want to see let me know.
+Cephalon Navis is an Android app inspired by [Warframe Hub](https://hub.warframestat.us/). Navis for short uses the [WarframeStat.us API](https://docs.warframestat.us/) to display as much useful and necessary information to help you as you travel the solar system without leaving your game.
+
+### Features:
+- Display game news including updates
+- Supports displaying multiple events
+- information on acolytes
+- Cetus and Earth Day/Night cycle
+- Orb vallis Warm/Cold cycle
+- Ostron and Solaris United bounties with Timer
+- Void Fissures
+- Baro Timer and Inventory
+- Display Soties and Invasions
+- Plains and Vallis maps (currently only PoE has the most available data)
+- Links to useful guides for new players to learn how to fish
+- supports PC, PS4, Xbox and switch worldstates
+
+### Upcoming Features:
+- Notifications
+- Nightwaves (?)
+- Flash sales and Darvo deal (These two depends on who actually uses it, so if you use it let me know)
+
+
+# Build Instructions
 
 To build Navis you must first install Flutter from the link below and follow all the instructions needed to get it running for your desired device* then simple run:
 
@@ -9,6 +31,9 @@ flutter packages get
 flutter build apk
 flutter install
 ```
+Optionally ```flutter build apk --target-platform=android-arm64``` will build for arm64 devices
+
+
 make sure that you follow all the instructions and everything should run smoothly, unless there's a bug in which case report it so I can take care of it
 
 Some screen shots to show progress of what I have so far, animations is a lot smoother in person.
@@ -22,4 +47,4 @@ keep in mind that I am an amateur at this, and I am still learning to code.
 ## Getting Started
 
 For help getting started with Flutter, view our online
-[documentation](http://flutter.io/).
+[documentation](https://flutter.dev/docs).
