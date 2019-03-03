@@ -6,16 +6,13 @@ import 'cards/acolytes.dart';
 import 'cards/alerts.dart';
 import 'cards/cycle.dart';
 import 'cards/events.dart';
-import 'cards/fissures.dart';
 import 'cards/invasionsCard.dart';
 import 'cards/sortie.dart';
 import 'cards/trader.dart';
 import 'cards/vallis.dart';
 
 class Feed extends StatelessWidget {
-  const Feed({Key key = scrollkey}) : super(key: key);
-
-  static const scrollkey = PageStorageKey<String>('feed');
+  const Feed({Key key}) : super(key: key);
 
   void _addEvents(List<Event> events, List<Widget> childeren) =>
       events.isNotEmpty
@@ -43,9 +40,8 @@ class Feed extends StatelessWidget {
                 const CetusCycle(cycle: Cycle.cetus),
                 OrbVallis(),
                 const CetusCycle(cycle: Cycle.earth),
-                //AlertTile(),
-                const RepaintBoundary(child: Fissure()),
-                const RepaintBoundary(child: InvasionCard()),
+                AlertTile(),
+                const InvasionCard(key: PageStorageKey<String>('invasions')),
                 Trader(),
                 SculptureMissions()
               ];
@@ -57,7 +53,8 @@ class Feed extends StatelessWidget {
               _addEvents(state.worldState.events, sliver);
               _addAcolytes(state.worldState.persistentEnemies, children);
 
-              return CustomScrollView(slivers: sliver);
+              return CustomScrollView(
+                  key: const PageStorageKey<String>('feed'), slivers: sliver);
             }
           }),
     );
