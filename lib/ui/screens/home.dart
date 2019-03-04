@@ -131,4 +131,10 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
+
+  @override
+  void dispose() {
+    _pageIndex?.close();
+    super.dispose();
+  }
 }
