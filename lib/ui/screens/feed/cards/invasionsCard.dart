@@ -4,23 +4,11 @@ import 'package:navis/models/export.dart';
 
 import 'package:navis/ui/widgets/cards.dart';
 import 'package:navis/ui/widgets/static_box.dart';
+import 'package:navis/ui/widgets/expandedCard.dart';
 import 'package:navis/ui/widgets/invasionsBar.dart';
 
-class InvasionCard extends StatefulWidget {
+class InvasionCard extends StatelessWidget {
   const InvasionCard({Key key}) : super(key: key);
-
-  @override
-  _InvasionCard createState() => _InvasionCard();
-}
-
-class _InvasionCard extends State<InvasionCard> {
-  bool _showMore = false;
-
-  Future<void> _showMoreInvasions() async {
-    _showMore = !_showMore;
-
-    if (mounted) setState(() => _showMore = _showMore);
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,41 +24,19 @@ class _InvasionCard extends State<InvasionCard> {
 
               return invasions.isEmpty
                   ? const Center(child: Text('No Invasions at this time'))
-                  : Column(children: <Widget>[
-                      Container(
-                          child: Column(
-                              children: invasions
-                                  .take(2)
-                                  .map((i) => _BuildInvasions(invasion: i))
-                                  .toList())),
-                      AnimatedCrossFade(
-                        duration: const Duration(milliseconds: 200),
-                        crossFadeState: _showMore
-                            ? CrossFadeState.showSecond
-                            : CrossFadeState.showFirst,
-                        firstChild: Container(),
-                        secondChild: Column(
-                            children: invasions
-                                .skip(2)
-                                .map((i) => _BuildInvasions(invasion: i))
-                                .toList()),
-                      ),
-                      ButtonTheme.bar(
-                        child: ButtonBar(
-                            alignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              FlatButton(
-                                  padding: const EdgeInsets.all(8.0),
-                                  textColor: Theme.of(context).accentColor,
-                                  onPressed: length < 3
-                                      ? null
-                                      : () => _showMoreInvasions(),
-                                  child: _showMore
-                                      ? const Text('See less')
-                                      : const Text('See more'))
-                            ]),
-                      )
-                    ]);
+                  : ExpandedInfo(
+                      header: Column(
+                          children: invasions
+                              .take(2)
+                              .map((i) => _BuildInvasions(invasion: i))
+                              .toList()),
+                      body: Column(
+                          children: invasions
+                              .skip(2)
+                              .map((i) => _BuildInvasions(invasion: i))
+                              .toList()),
+                      condition: length < 3,
+                    );
             }
           }),
     );
@@ -80,7 +46,7 @@ class _InvasionCard extends State<InvasionCard> {
 class _BuildInvasions extends StatelessWidget {
   const _BuildInvasions({this.invasion});
 
-  final Invasions invasion;
+  final Invasion invasion;
 
   @override
   Widget build(BuildContext context) {
