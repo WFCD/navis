@@ -55,7 +55,8 @@ class SyndicateStyle extends StatelessWidget {
 
 void _navigateToBounties(BuildContext context, Syndicate syn) {
   Navigator.of(context).push(MaterialPageRoute(
-      builder: (_) => SyndicateJobs(faction: _faction(syn.name))));
+      builder: (_) =>
+          SyndicateJobs(faction: _faction(syn.name), jobs: syn.jobs)));
 }
 
 OpenWorldFactions _faction(String faction) {

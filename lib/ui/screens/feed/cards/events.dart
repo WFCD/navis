@@ -168,11 +168,9 @@ Widget _buildJob(BuildContext context, Jobs job) {
         child: Container(
             margin: const EdgeInsets.all(4.0),
             padding: const EdgeInsets.all(4.0),
+            width: MediaQuery.of(context).size.width / 2.2,
             alignment: Alignment.center,
             child: Text(job.type,
-                style: Theme.of(context)
-                    .textTheme
-                    .subhead
-                    .copyWith(fontSize: 13, color: Colors.white)))),
+                overflow: TextOverflow.ellipsis, textAlign: TextAlign.center))),
   );
 }

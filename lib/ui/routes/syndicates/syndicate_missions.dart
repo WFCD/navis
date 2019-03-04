@@ -6,9 +6,10 @@ import 'package:navis/utils/factionutils.dart';
 import 'package:sticky_headers/sticky_headers.dart';
 
 class SyndicateJobs extends StatefulWidget {
-  const SyndicateJobs({this.faction});
+  const SyndicateJobs({this.faction, this.jobs});
 
   final OpenWorldFactions faction;
+  final List<Jobs> jobs;
 
   @override
   SyndicateJobsState createState() => SyndicateJobsState();
@@ -25,34 +26,20 @@ class SyndicateJobsState extends State<SyndicateJobs> {
             titleSpacing: 0.0,
             title: Text(futils.factionCheck(widget.faction)),
             backgroundColor: futils.buildColor(widget.faction)),
-        body: BlocBuilder(
-            bloc: bloc,
-            builder: (context, state) {
-              if (state is WorldstateUninitialized)
-                return const Center(child: CircularProgressIndicator());
+        body: ListView.builder(
+            itemCount: widget.jobs.length,
+            itemBuilder: (_, int index) {
+              final job = widget.jobs[index];
 
-              if (state is WorldstateLoaded) {
-                final Syndicate syndicate = state.worldState.syndicates
-                    .firstWhere((syn) =>
-                        syn.name == futils.factionCheck(widget.faction));
-
-                return ListView.builder(
-                    itemCount: syndicate.jobs.length,
-                    itemBuilder: (_, int index) {
-                      final job = syndicate.jobs[index];
-
-                      return StickyHeader(
-                        header:
-                            _buildMissionType(job, futils, widget.faction, _),
-                        content: Column(
-                          mainAxisSize: MainAxisSize.max,
-                          children: job.rewardPool
-                              .map((r) => ListTile(title: Text(r)))
-                              .toList(),
-                        ),
-                      );
-                    });
-              }
+              return StickyHeader(
+                header: _buildMissionType(job, futils, widget.faction, _),
+                content: Column(
+                  mainAxisSize: MainAxisSize.max,
+                  children: job.rewardPool
+                      .map((r) => ListTile(title: Text(r)))
+                      .toList(),
+                ),
+              );
             }));
   }
 }
