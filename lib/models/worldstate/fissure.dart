@@ -1,6 +1,6 @@
 import 'package:codable/codable.dart';
 
-class VoidFissures extends Coding {
+class VoidFissure extends Coding {
   String node, missionType, enemy, tier, eta;
   DateTime expiry;
   int tierNum;

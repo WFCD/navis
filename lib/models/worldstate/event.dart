@@ -1,10 +1,16 @@
 import 'package:codable/codable.dart';
 
-import 'syndicates.dart';
+import 'syndicate.dart';
 
 class Event extends Coding {
   DateTime expiry;
-  String faction, description, victimNode, health, node, tooltip;
+  String faction,
+      description,
+      affiliatedWith,
+      victimNode,
+      health,
+      node,
+      tooltip;
   List<_Rewards> rewards;
   List<Jobs> jobs;
 
@@ -15,6 +21,7 @@ class Event extends Coding {
     expiry = DateTime.parse(object.decode('expiry'));
     faction = object.decode('faction');
     description = object.decode('description');
+    affiliatedWith = object.decode('affiliatedWith');
     victimNode = object.decode('victimNode');
     health = object.decode('health');
     node = object.decode('node');

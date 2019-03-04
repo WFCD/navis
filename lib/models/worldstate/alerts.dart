@@ -1,6 +1,6 @@
 import 'package:codable/codable.dart';
 
-class Alerts extends Coding {
+class Alert extends Coding {
   DateTime expiry;
   String activation, eta;
   bool active;

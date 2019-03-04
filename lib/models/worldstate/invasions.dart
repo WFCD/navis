@@ -1,6 +1,6 @@
 import 'package:codable/codable.dart';
 
-class Invasions extends Coding {
+class Invasion extends Coding {
   String node, desc, attackingFaction, defendingFaction, activation, eta;
   bool vsInfestation, completed;
   num completion, count;

@@ -6,13 +6,15 @@ import 'cards/acolytes.dart';
 import 'cards/alerts.dart';
 import 'cards/cycle.dart';
 import 'cards/events.dart';
+import 'cards/fissures.dart';
 import 'cards/invasionsCard.dart';
 import 'cards/sortie.dart';
 import 'cards/trader.dart';
 import 'cards/vallis.dart';
 
 class Feed extends StatelessWidget {
-  const Feed({Key key}) : super(key: key);
+  const Feed({Key key = const PageStorageKey<String>('feed')})
+      : super(key: key);
 
   void _addEvents(List<Event> events, List<Widget> childeren) =>
       events.isNotEmpty
@@ -20,7 +22,7 @@ class Feed extends StatelessWidget {
               0, SliverToBoxAdapter(child: EventPanel(events: events)))
           : null;
 
-  void _addAcolytes(List<PersistentEnemies> enemies, List<Widget> childeren) =>
+  void _addAcolytes(List<PersistentEnemie> enemies, List<Widget> childeren) =>
       enemies.isNotEmpty ? childeren.insert(1, Acolytes()) : null;
 
   @override
@@ -36,12 +38,15 @@ class Feed extends StatelessWidget {
               return const Center(child: CircularProgressIndicator());
 
             if (state is WorldstateLoaded) {
+              final bool isAlertFilled = state.worldState.alerts.isNotEmpty;
+
               final List<Widget> children = [
                 const CetusCycle(cycle: Cycle.cetus),
                 OrbVallis(),
                 const CetusCycle(cycle: Cycle.earth),
-                AlertTile(),
-                const InvasionCard(key: PageStorageKey<String>('invasions')),
+                isAlertFilled ? AlertTile() : Container(),
+                Fissure(),
+                const RepaintBoundary(child: InvasionCard()),
                 Trader(),
                 SculptureMissions()
               ];
@@ -53,8 +58,7 @@ class Feed extends StatelessWidget {
               _addEvents(state.worldState.events, sliver);
               _addAcolytes(state.worldState.persistentEnemies, children);
 
-              return CustomScrollView(
-                  key: const PageStorageKey<String>('feed'), slivers: sliver);
+              return CustomScrollView(slivers: sliver);
             }
           }),
     );

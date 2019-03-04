@@ -3,18 +3,19 @@ import 'package:navis/models/export.dart';
 
 class WorldState extends Coding {
   String timestamp;
-  Earth cetus;
-  Earth earth;
-  Vallis vallis;
-  Sortie sortie;
-  VoidTrader trader;
-  List<Invasions> invasions;
-  List<Event> events;
-  List<PersistentEnemies> persistentEnemies;
   List<OrbiterNews> news;
-  List<Alerts> alerts;
+  List<Event> events;
+  List<Alert> alerts;
+  Sortie sortie;
   List<Syndicate> syndicates;
-  List<VoidFissures> voidFissures;
+  List<VoidFissure> voidFissures;
+  List<Invasion> invasions;
+  VoidTrader trader;
+  List<PersistentEnemie> persistentEnemies;
+  Earth earth;
+  Earth cetus;
+  Vallis vallis;
+  Nightwave nightwave;
 
   @override
   void decode(KeyedArchive object) {
@@ -24,16 +25,17 @@ class WorldState extends Coding {
     cetus = object.decodeObject('cetusCycle', () => Earth());
     earth = object.decodeObject('earthCycle', () => Earth());
     vallis = object.decodeObject('vallisCycle', () => Vallis());
+    nightwave = object.decodeObject('nightwave', () => Nightwave());
     sortie = object.decodeObject('sortie', () => Sortie());
     trader = object.decodeObject('voidTrader', () => VoidTrader());
-    invasions = object.decodeObjects('invasions', () => Invasions());
+    invasions = object.decodeObjects('invasions', () => Invasion());
     events = object.decodeObjects('events', () => Event());
     persistentEnemies =
-        object.decodeObjects('persistentEnemies', () => PersistentEnemies());
+        object.decodeObjects('persistentEnemies', () => PersistentEnemie());
     news = object.decodeObjects('news', () => OrbiterNews());
-    alerts = object.decodeObjects('alerts', () => Alerts());
+    alerts = object.decodeObjects('alerts', () => Alert());
     syndicates = object.decodeObjects('syndicateMissions', () => Syndicate());
-    voidFissures = object.decodeObjects('fissures', () => VoidFissures());
+    voidFissures = object.decodeObjects('fissures', () => VoidFissure());
   }
 
   @override

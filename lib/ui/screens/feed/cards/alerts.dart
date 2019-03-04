@@ -43,7 +43,7 @@ final _archwingIcon = RepaintBoundary(
 class _BuildAlerts extends StatelessWidget {
   const _BuildAlerts({@required this.alert});
 
-  final Alerts alert;
+  final Alert alert;
 
   void _addIcons(bool status, Widget icon, List<Widget> icons) {
     if (status) icons.insert(0, icon);

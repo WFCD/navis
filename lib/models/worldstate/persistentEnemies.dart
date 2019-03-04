@@ -1,6 +1,6 @@
 import 'package:codable/codable.dart';
 
-class PersistentEnemies extends Coding {
+class PersistentEnemie extends Coding {
   String agentType, locationTag, lastDiscoveredAt;
   DateTime lastDiscoveredTime;
   int fleeDamage, region, rank;

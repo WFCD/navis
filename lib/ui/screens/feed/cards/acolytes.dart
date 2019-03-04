@@ -32,7 +32,7 @@ class Acolytes extends StatelessWidget {
 class AcolyteProfile extends StatelessWidget {
   const AcolyteProfile({@required this.enemy});
 
-  final PersistentEnemies enemy;
+  final PersistentEnemie enemy;
 
   Color _healthColor(num health) {
     if (health > 50.0)
