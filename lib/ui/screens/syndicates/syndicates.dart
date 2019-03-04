@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:navis/blocs/bloc.dart';
 import 'package:navis/models/export.dart';
 
+import '../../widgets/timer_style.dart';
+import 'nightwave_style.dart';
 import 'syndicate_style.dart';
-import 'syndicate_timer.dart';
 
 class SyndicatesList extends StatelessWidget {
   final _currentTime = DateTime.now();
@@ -29,12 +30,18 @@ class SyndicatesList extends StatelessWidget {
                       child: Text('Retrieving new bounties...'));
 
                 return ListView(children: <Widget>[
-                  SyndicateTimer(time: syndicates[0].expiry),
+                  TimerBox(
+                      title: 'Bounties expire in:', time: syndicates[0].expiry),
                   Column(
                       children: syndicates
                           .map(
                               (Syndicate syn) => SyndicateStyle(syndicate: syn))
-                          .toList())
+                          .toList()),
+                  const SizedBox(height: 20),
+                  TimerBox(
+                      title: 'Season ends in:',
+                      time: state.worldState.nightwave.expiry),
+                  NightWaveStyle()
                 ]);
               }
             }));
