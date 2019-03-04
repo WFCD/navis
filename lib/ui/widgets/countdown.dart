@@ -19,6 +19,7 @@ class CountdownBoxState extends State<CountdownBox>
   AnimationController _controller;
   StepTween _tween;
   Animation<int> _animation;
+  Color remainingTimeColor;
 
   @override
   void initState() {
@@ -30,6 +31,8 @@ class CountdownBoxState extends State<CountdownBox>
         vsync: this,
         duration:
             start < Duration.zero ? const Duration(milliseconds: 500) : start);
+
+    remainingTimeColor = _containerColors(_controller.duration);
 
     _tween = StepTween(
         begin: widget.expiry.millisecondsSinceEpoch,
@@ -46,20 +49,13 @@ class CountdownBoxState extends State<CountdownBox>
 
   @override
   void didUpdateWidget(CountdownBox oldWidget) {
-    if (oldWidget.expiry != widget.expiry) {
-      final start = widget.expiry.difference(DateTime.now().toUtc());
+    final currentTime = DateTime.now().toUtc();
 
-      _controller.duration =
-          start < Duration.zero ? const Duration(milliseconds: 500) : start;
+    final newTime = widget.expiry.difference(currentTime);
+    final oldTime = oldWidget.expiry.difference(currentTime);
 
-      _animation = StepTween(
-              begin: widget.expiry.millisecondsSinceEpoch,
-              end: DateTime.now().toUtc().millisecondsSinceEpoch)
-          .animate(_controller);
-
-      _controller
-        ..reset()
-        ..forward(from: 0.0);
+    if (oldTime != newTime) {
+      remainingTimeColor = _containerColors(_controller.duration);
     }
 
     super.didUpdateWidget(oldWidget);
@@ -86,7 +82,7 @@ class CountdownBoxState extends State<CountdownBox>
   @override
   Widget build(BuildContext context) {
     return StaticBox(
-      color: _containerColors(_controller.duration),
+      color: remainingTimeColor,
       child: CountDown(
           animation: _animation, expiry: widget.expiry, size: widget.size),
     );
