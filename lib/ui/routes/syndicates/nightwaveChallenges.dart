@@ -4,6 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:navis/models/export.dart';
 import 'package:rxdart/rxdart.dart';
 
+import 'package:navis/ui/widgets/countdown.dart';
+import 'package:navis/ui/widgets/row_item.dart';
+
 class NightwaveChallenges extends StatefulWidget {
   const NightwaveChallenges({this.challenges});
 
@@ -151,8 +154,18 @@ class _BuildChallengeBox extends StatelessWidget {
   final bool isElite;
 
   Widget _buildChallenge(Challenges challenge) {
-    return ListTile(
-        title: Text(challenge.title), subtitle: Text(challenge.desc));
+    return Container(
+        height: 60,
+        margin: const EdgeInsets.all(2.0),
+        child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              RowItem(
+                  text: challenge.title,
+                  child: CountdownBox(expiry: challenge.expiry)),
+              Expanded(child: Text(challenge.desc))
+            ]));
   }
 
   void _buildtype(bool d, List<Widget> children, TextStyle style) {
@@ -164,6 +177,7 @@ class _BuildChallengeBox extends StatelessWidget {
       children.addAll(
           challenges.where((e) => e.isElite == true).map(_buildChallenge));
 
+      children.add(const SizedBox(height: 8));
       children.add(normal);
       children.addAll(challenges
           .where((e) => e.isElite == false && e.isDaily == false)

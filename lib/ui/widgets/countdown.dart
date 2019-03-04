@@ -83,14 +83,14 @@ class CountdownBoxState extends State<CountdownBox>
   Widget build(BuildContext context) {
     return StaticBox(
       color: remainingTimeColor,
-      child: CountDown(
+      child: _CountDown(
           animation: _animation, expiry: widget.expiry, size: widget.size),
     );
   }
 }
 
-class CountDown extends AnimatedWidget {
-  const CountDown({Key key, this.animation, this.expiry, this.size})
+class _CountDown extends AnimatedWidget {
+  const _CountDown({Key key, this.animation, this.expiry, this.size})
       : super(key: key, listenable: animation);
 
   final Animation<int> animation;
