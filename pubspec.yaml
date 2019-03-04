@@ -44,9 +44,6 @@ flutter:
     - family: VoidTear
       fonts:
         - asset: assets/general/VoidTear.ttf
-    - family: PriceTag
-      fonts:
-        - asset: assets/general/PriceTag.ttf
   assets:
     #- assets/acolytes/
     - assets/general/
