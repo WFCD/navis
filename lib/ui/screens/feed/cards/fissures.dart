@@ -34,6 +34,7 @@ class Fissure extends StatelessWidget {
                         .map((f) => _BuildFissures(f))
                         .toList()),
                 condition: fissures.length < 3,
+                padding: EdgeInsets.zero,
               );
             }
           },

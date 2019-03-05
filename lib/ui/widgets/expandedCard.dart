@@ -8,11 +8,13 @@ class ExpandedInfo extends StatefulWidget {
       {Key key,
       @required this.header,
       @required this.body,
+      this.padding = const EdgeInsets.symmetric(horizontal: 8.0),
       this.condition = false})
       : super(key: key);
 
   final Widget header;
   final Widget body;
+  final EdgeInsets padding;
   final bool condition;
 
   @override
@@ -51,6 +53,7 @@ class _ExpandedInfoState extends State<ExpandedInfo> {
               secondChild: widget.body,
             ),
             ButtonTheme.bar(
+              padding: widget.padding,
               child: ButtonBar(
                   alignment: MainAxisAlignment.center,
                   children: <Widget>[

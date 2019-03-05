@@ -122,7 +122,7 @@ class _HomeScreenState extends State<HomeScreen> {
           key: scaffold,
           appBar: AppBar(title: const Text('Navis'), elevation: 6),
           drawer:
-          CustomDrawer(currentIndex: snapshot.data, children: _drawerItem),
+              CustomDrawer(currentIndex: snapshot.data, children: _drawerItem),
           body: Villain(
               villainAnimation: VillainAnimation.fade(),
               child: _pages[snapshot.data]),

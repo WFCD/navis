@@ -172,9 +172,9 @@ class _BuildChallengeBox extends StatelessWidget {
                   text: challenge.title,
                   child: Container(
                       child: Row(children: <Widget>[
-                        _standing(challenge.reputation),
-                        CountdownBox(expiry: challenge.expiry)
-                      ]))),
+                    _standing(challenge.reputation),
+                    CountdownBox(expiry: challenge.expiry)
+                  ]))),
               Expanded(child: Text(challenge.desc))
             ]));
   }

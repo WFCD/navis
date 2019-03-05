@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:async/async.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
@@ -5,9 +7,16 @@ import 'package:mockito/mockito.dart';
 import 'package:navis/blocs/bloc.dart';
 import 'package:test/test.dart';
 
-import 'assetBundle.dart';
-
 class MockClient extends Mock implements http.Client {}
+
+const mockstate = {
+  'news': [],
+  'alerts': [],
+  'syndicateMissions': [],
+  'fissures': [],
+  'invasions': [],
+  'persistentEnemies': []
+};
 
 void main() {
   final client = MockClient();
@@ -37,11 +46,8 @@ void main() {
     });
 
     test('Worldstate is loaded correctly', () async {
-      final jsons = await DiskAssetBundle.loadGlob(['*.json']);
-      final worldstate = await jsons.loadString('assets/worldstate.json');
-
       when(client.get('https://api.warframestat.us/pc'))
-          .thenAnswer((_) async => http.Response(worldstate, 200));
+          .thenAnswer((_) async => http.Response(json.encode(mockstate), 200));
 
       expectLater(
           worldstateBloc.state,
@@ -65,8 +71,7 @@ void main() {
       expect(platformBloc.initialState, KDefaultState());
     });
 
-    test('Make sure state changes with String and that it is a String',
-        () async {
+    test('Make sure state changes', () async {
       final state = StreamQueue(platformBloc.state);
       expectLater(
           platformBloc.state,
@@ -83,8 +88,15 @@ void main() {
       platformBloc.dispatch(Xb1Event());
       platformBloc.dispatch(SwitchEvent());
 
-      final platform = await state.next;
-      expect(platform.platform, const TypeMatcher<String>());
+      expect(
+          state,
+          emitsInOrder(const [
+            TypeMatcher<KDefaultState>(),
+            TypeMatcher<PCState>(),
+            TypeMatcher<PS4State>(),
+            TypeMatcher<Xb1State>(),
+            TypeMatcher<SwitchState>()
+          ]));
     });
 
     test('dispose does not create a new state', () {

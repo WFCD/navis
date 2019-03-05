@@ -13,7 +13,7 @@ class Navis extends StatefulWidget {
 }
 
 class NavisState extends State<Navis> {
-  final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
+  //final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
   final _theme = ThemeBloc();
   final _platform = PlatformBloc();
   final _worldstate = WorldstateBloc.initialize();
@@ -23,7 +23,7 @@ class NavisState extends State<Navis> {
     super.initState();
     _init();
 
-    _firebaseMessaging.configure();
+    // _firebaseMessaging.configure();
   }
 
   Future<void> _init() async {
