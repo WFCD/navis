@@ -2,10 +2,11 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:navis/models/export.dart';
-import 'package:rxdart/rxdart.dart';
-
 import 'package:navis/ui/widgets/countdown.dart';
+import 'package:navis/ui/widgets/icons.dart';
 import 'package:navis/ui/widgets/row_item.dart';
+import 'package:navis/ui/widgets/static_box.dart';
+import 'package:rxdart/rxdart.dart';
 
 class NightwaveChallenges extends StatefulWidget {
   const NightwaveChallenges({this.challenges});
@@ -42,22 +43,15 @@ class _NightwaveChallengesState extends State<NightwaveChallenges> {
             titleSpacing: 0.0,
             title: const Text('Nightwave'),
             backgroundColor: Theme.of(context).primaryColor),
-        body: Container(
-            decoration: BoxDecoration(
-                image: DecorationImage(
-                    colorFilter: const ColorFilter.mode(
-                        Color.fromRGBO(34, 34, 34, .5), BlendMode.darken),
-                    image: const AssetImage('assets/general/background.webp'),
-                    fit: BoxFit.fitHeight)),
-            child: ListView(children: <Widget>[
-              BountyType(
-                  category: 'Weekly',
-                  child: _BuildChallengeBox(
-                      challenges: widget.challenges, isElite: true)),
-              BountyType(
-                  category: 'Daily',
-                  child: _BuildChallengeBox(challenges: widget.challenges)),
-            ])));
+        body: ListView(children: <Widget>[
+          BountyType(
+              category: 'Weekly',
+              child: _BuildChallengeBox(
+                  challenges: widget.challenges, isElite: true)),
+          BountyType(
+              category: 'Daily',
+              child: _BuildChallengeBox(challenges: widget.challenges)),
+        ]));
   }
 }
 
@@ -123,9 +117,9 @@ class _BountyTypeState extends State<BountyType>
             child: InkWell(
                 splashColor: Colors.redAccent[700],
                 onTap: () => _handleTap(),
-                child: Container(
-                    height: 50,
-                    margin: const EdgeInsets.all(4.0),
+                child: StaticBox(
+                    height: 40,
+                    padding: const EdgeInsets.all(6.0),
                     child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
@@ -153,6 +147,19 @@ class _BuildChallengeBox extends StatelessWidget {
   final List<Challenges> challenges;
   final bool isElite;
 
+  Widget _standing(num reputation) {
+    return StaticBox(
+        color: Colors.red,
+        width: 60,
+        child: Row(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: <Widget>[
+              const Icon(Standing.standing, size: 15),
+              Expanded(child: Text('$reputation'))
+            ]));
+  }
+
   Widget _buildChallenge(Challenges challenge) {
     return Container(
         height: 60,
@@ -163,7 +170,11 @@ class _BuildChallengeBox extends StatelessWidget {
             children: <Widget>[
               RowItem(
                   text: challenge.title,
-                  child: CountdownBox(expiry: challenge.expiry)),
+                  child: Container(
+                      child: Row(children: <Widget>[
+                        _standing(challenge.reputation),
+                        CountdownBox(expiry: challenge.expiry)
+                      ]))),
               Expanded(child: Text(challenge.desc))
             ]));
   }

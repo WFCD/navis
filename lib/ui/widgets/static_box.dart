@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 
 class StaticBox extends StatelessWidget {
-  const StaticBox(
-      {this.child, this.color, this.padding = const EdgeInsets.all(3.0)});
+  const StaticBox({this.child,
+    this.color,
+    this.height,
+    this.width,
+    this.padding = const EdgeInsets.all(3.0)});
 
 //create simple text box with hard coded color of white
   factory StaticBox.text(
@@ -19,12 +22,16 @@ class StaticBox extends StatelessWidget {
 
   final Color color;
   final Widget child;
+  final double height;
+  final double width;
   final EdgeInsetsGeometry padding;
 
   @override
   Widget build(BuildContext context) {
     return Container(
         padding: const EdgeInsets.all(4.0),
+        height: height,
+        width: width,
         margin: padding,
         decoration: BoxDecoration(
             color: color,

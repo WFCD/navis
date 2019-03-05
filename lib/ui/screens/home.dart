@@ -2,12 +2,12 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_custom_tabs/flutter_custom_tabs.dart';
-import 'package:navis/global_keys.dart';
-import 'package:navis/ui/widgets/drawer.dart';
 import 'package:flutter_villains/villain.dart';
+import 'package:navis/global_keys.dart';
+import 'package:navis/ui/routes/maps/map.dart';
+import 'package:navis/ui/widgets/drawer.dart';
 import 'package:navis/ui/widgets/icons.dart';
 import 'package:rxdart/rxdart.dart';
-import 'package:navis/ui/routes/maps/map.dart';
 
 import 'feed/feed.dart';
 import 'news/news.dart';
@@ -114,21 +114,20 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      key: scaffold,
-      appBar: AppBar(title: const Text('Navis'), elevation: 6),
-      drawer: StreamBuilder(
-          initialData: _currentTab,
-          stream: _pageIndex.stream.distinct(),
-          builder: (_, snapshot) =>
-              CustomDrawer(currentIndex: snapshot.data, children: _drawerItem)),
-      body: StreamBuilder(
-        initialData: _currentTab,
-        stream: _pageIndex.stream.distinct(),
-        builder: (_, snapshot) => Villain(
-            villainAnimation: VillainAnimation.fade(),
-            child: _pages[snapshot.data]),
-      ),
+    return StreamBuilder<int>(
+      initialData: _currentTab,
+      stream: _pageIndex.stream,
+      builder: (_, snapshot) {
+        return Scaffold(
+          key: scaffold,
+          appBar: AppBar(title: const Text('Navis'), elevation: 6),
+          drawer:
+          CustomDrawer(currentIndex: snapshot.data, children: _drawerItem),
+          body: Villain(
+              villainAnimation: VillainAnimation.fade(),
+              child: _pages[snapshot.data]),
+        );
+      },
     );
   }
 

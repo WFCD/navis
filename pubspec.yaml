@@ -45,18 +45,8 @@ flutter:
       fonts:
         - asset: assets/general/VoidTear.ttf
   assets:
-    #- assets/acolytes/
     - assets/general/
     - assets/platforms/
     - assets/factions/
     - assets/sigils/
     - assets/relics/
-    #Plains of Eidolon map tiles
-    #- assets/plains/0/
-    #- assets/plains/1/
-    #- assets/plains/2/
-    #Orb Vallis Map tiles
-    #- assets/vallis/1/
-    #- assets/vallis/2/
-    #- assets/vallis/3/
-    #- assets/vallis/4/
