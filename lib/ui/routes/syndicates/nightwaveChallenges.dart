@@ -93,14 +93,15 @@ class _BountyTypeState extends State<BountyType>
   }
 
   void _handleTap() {
-    setState(() {
-      _show = !_show;
-      if (_show) {
-        _controller.forward();
-      } else {
-        _controller.reverse();
-      }
-    });
+    if (mounted)
+      setState(() {
+        _show = !_show;
+        if (_show) {
+          _controller.forward().orCancel;
+        } else {
+          _controller.reverse().orCancel;
+        }
+      });
   }
 
   Widget _buildTitle(String title) => Align(
@@ -163,7 +164,7 @@ class _BuildChallengeBox extends StatelessWidget {
   Widget _buildChallenge(Challenges challenge) {
     return Container(
         height: 60,
-        margin: const EdgeInsets.all(2.0),
+        margin: const EdgeInsets.all(4.0),
         child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
@@ -181,7 +182,7 @@ class _BuildChallengeBox extends StatelessWidget {
 
   void _buildtype(bool d, List<Widget> children, TextStyle style) {
     final elite = Text('Elite Bounties', style: style);
-    final normal = Text('Normal Bounties', style: style);
+    final normal = Text('Regular Bounties', style: style);
 
     if (d == true) {
       children.add(elite);
@@ -206,6 +207,9 @@ class _BuildChallengeBox extends StatelessWidget {
     final style = Theme.of(context).textTheme.subhead;
 
     _buildtype(isElite, children, style);
-    return Container(color: Colors.black54, child: Column(children: children));
+    return Container(
+        color: Colors.black54,
+        margin: const EdgeInsets.all(4.0),
+        child: Column(children: children));
   }
 }
