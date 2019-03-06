@@ -37,14 +37,20 @@ class NightWaveStyle extends StatelessWidget {
                       alignment: Alignment.center,
                       decoration: const BoxDecoration(
                           color: Color.fromRGBO(34, 34, 34, .2)),
-                      child: Text(
-                        state.worldState.nightwave.tag,
-                        textAlign: TextAlign.center,
-                        style: Theme.of(context)
-                            .textTheme
-                            .title
-                            .copyWith(color: Colors.white, fontSize: 15),
-                      )));
+                      child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Text('NIghtwave',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .title
+                                    .copyWith(
+                                        color: Colors.white, fontSize: 20)),
+                            Text(
+                                'Season ${state.worldState.nightwave.season + 1}',
+                                textAlign: TextAlign.center,
+                                style: Theme.of(context).textTheme.subtitle)
+                          ])));
             }
           },
         ),
