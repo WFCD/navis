@@ -14,7 +14,6 @@ dependencies:
   codable: ^1.0.0
   dots_indicator: ^0.0.4
   equatable: ^0.2.0
-  firebase_messaging: ^3.0.1
   cached_network_image: ^0.6.1
   flutter_bloc: ^0.6.3
   flutter_crashlytics: ^0.2.1
