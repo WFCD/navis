@@ -169,13 +169,21 @@ class _BuildChallengeBox extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
-              RowItem(
-                  text: challenge.title,
-                  child: Container(
-                      child: Row(children: <Widget>[
-                    _standing(challenge.reputation),
-                    CountdownBox(expiry: challenge.expiry)
-                  ]))),
+              Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Expanded(
+                        child: Text(
+                      challenge.title,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(fontSize: 15),
+                    )),
+                    Container(
+                        child: Row(children: <Widget>[
+                      _standing(challenge.reputation),
+                      CountdownBox(expiry: challenge.expiry)
+                    ]))
+                  ]),
               Expanded(child: Text(challenge.desc))
             ]));
   }
