@@ -14,7 +14,7 @@ class EventPanel extends StatefulWidget {
 }
 
 class EventPanelState extends State<EventPanel> {
-  PageController _controller;
+  final _dotKey = PageStorageBucket();
   int _currentPage;
 
   @override
@@ -22,61 +22,70 @@ class EventPanelState extends State<EventPanel> {
     super.initState();
 
     _currentPage = 0;
-    _controller = PageController(initialPage: _currentPage);
   }
 
   @override
   void didUpdateWidget(EventPanel oldWidget) {
-    if (oldWidget.events.length != widget.events.length) {
-      _controller.dispose();
+    if (oldWidget.events != widget.events) _currentPage = 0;
 
-      _currentPage = 0;
-      _controller = PageController(initialPage: _currentPage);
-    }
     super.didUpdateWidget(oldWidget);
   }
 
   @override
   void dispose() {
     _currentPage = null;
-    _controller.dispose();
+
     super.dispose();
+  }
+
+  void onPageChanged(int index) {
+    setState(() {
+      _currentPage = index;
+      _dotKey.writeState(context, index);
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     final bool enableDots = widget.events.length <= 1;
 
-    return SizedBox(
-        height: 140,
-        width: MediaQuery.of(context).size.width,
-        child: Material(
-            color: Theme.of(context).cardColor,
-            elevation: 6,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              mainAxisSize: MainAxisSize.max,
-              children: <Widget>[
-                Expanded(
-                    child: PageView.builder(
-                  controller: _controller,
-                  scrollDirection: Axis.horizontal,
-                  itemCount: widget.events.length,
-                  itemBuilder: (_, index) =>
-                      EventBuilder(event: widget.events[index]),
-                  onPageChanged: (index) => setState(() {
-                        _currentPage = index;
-                      }),
-                )),
-                enableDots
-                    ? Container()
-                    : DotsIndicator(
-                        numberOfDot: widget.events.length,
-                        position: _currentPage,
-                        dotActiveColor: Theme.of(context).accentColor,
-                      )
-              ],
-            )));
+    return PageStorage(
+        bucket: _dotKey,
+        child: SizedBox(
+            height: 140,
+            width: MediaQuery
+                .of(context)
+                .size
+                .width,
+            child: Material(
+                color: Theme
+                    .of(context)
+                    .cardColor,
+                elevation: 6,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.max,
+                  children: <Widget>[
+                    Expanded(
+                        child: PageView(
+                          scrollDirection: Axis.horizontal,
+                          children: widget.events
+                              .map((e) => EventBuilder(event: e))
+                              .toList(),
+                          onPageChanged: onPageChanged,
+                        )),
+                    enableDots
+                        ? Container()
+                        : DotsIndicator(
+                      numberOfDot: widget.events.length,
+                      position:
+                      _dotKey.readState(context) ?? _currentPage,
+                      dotActiveColor: Theme
+                          .of(context)
+                          .accentColor,
+                    )
+                  ],
+                ))));
   }
 }
 
