@@ -9,7 +9,7 @@ dependencies:
   flutter:
     sdk: flutter
   background_fetch: ^0.1.1
-  bloc: ^0.9.3
+  bloc: ^0.9.5
   chewie: ^0.9.5
   codable: ^1.0.0
   dots_indicator: ^0.0.4

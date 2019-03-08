@@ -53,14 +53,9 @@ class EventPanelState extends State<EventPanel> {
         bucket: _dotKey,
         child: SizedBox(
             height: 140,
-            width: MediaQuery
-                .of(context)
-                .size
-                .width,
+            width: MediaQuery.of(context).size.width,
             child: Material(
-                color: Theme
-                    .of(context)
-                    .cardColor,
+                color: Theme.of(context).cardColor,
                 elevation: 6,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -68,22 +63,20 @@ class EventPanelState extends State<EventPanel> {
                   children: <Widget>[
                     Expanded(
                         child: PageView(
-                          scrollDirection: Axis.horizontal,
-                          children: widget.events
-                              .map((e) => EventBuilder(event: e))
-                              .toList(),
-                          onPageChanged: onPageChanged,
-                        )),
+                      scrollDirection: Axis.horizontal,
+                      children: widget.events
+                          .map((e) => EventBuilder(event: e))
+                          .toList(),
+                      onPageChanged: onPageChanged,
+                    )),
                     enableDots
                         ? Container()
                         : DotsIndicator(
-                      numberOfDot: widget.events.length,
-                      position:
-                      _dotKey.readState(context) ?? _currentPage,
-                      dotActiveColor: Theme
-                          .of(context)
-                          .accentColor,
-                    )
+                            numberOfDot: widget.events.length,
+                            position:
+                                _dotKey.readState(context) ?? _currentPage,
+                            dotActiveColor: Theme.of(context).accentColor,
+                          )
                   ],
                 ))));
   }
