@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:navis/models/export.dart';
 import 'package:navis/ui/widgets/countdown.dart';
 import 'package:navis/ui/widgets/icons.dart';
-import 'package:navis/ui/widgets/row_item.dart';
 import 'package:navis/ui/widgets/static_box.dart';
 import 'package:rxdart/rxdart.dart';
 
@@ -81,8 +80,8 @@ class _BountyTypeState extends State<BountyType>
   void initState() {
     super.initState();
 
-    _controller =
-        AnimationController(duration: Duration(milliseconds: 200), vsync: this);
+    _controller = AnimationController(
+        duration: const Duration(milliseconds: 200), vsync: this);
     _iconTurns = _controller.drive(_halfTween.chain(_easeInTween));
   }
 
