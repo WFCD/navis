@@ -101,10 +101,16 @@ class EventBuilder extends StatelessWidget {
       children.addAll(event.jobs.map((j) => _buildJob(context, j)));
     } else {
       if (event.rewards.isNotEmpty) {
+        final withCredits =
+            '${event.rewards.first.itemString} + ${event.rewards.first
+            .credits}cr';
+        final withoutCredits = '${event.rewards.first.itemString}';
+
         children.add(StaticBox.text(
             color: Colors.green,
-            text:
-                '${event.rewards.first.itemString} + ${event.rewards.first.credits}cr'));
+            text: event.rewards.first.credits < 100
+                ? withoutCredits
+                : withCredits));
       }
 
       children.add(Container());
