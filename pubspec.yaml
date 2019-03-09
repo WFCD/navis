@@ -14,13 +14,13 @@ dependencies:
   codable: ^1.0.0
   dots_indicator: ^0.0.4
   equatable: ^0.2.0
-  cached_network_image: ^0.6.1
+  flutter_advanced_networkimage: ^0.4.13
   flutter_bloc: ^0.6.3
   flutter_crashlytics: ^0.2.1
   flutter_custom_tabs: ^0.5.0
   flutter_map: ^0.4.0
   flutter_material_color_picker: ^0.0.5
-  flutter_svg: ^0.10.4
+  #flutter_svg: ^0.10.4
   flutter_villains: ^1.2.0
   intl: ^0.15.7
   shared_preferences: ^0.5.1+1

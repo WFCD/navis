@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_advanced_networkimage/provider.dart';
 import 'package:flutter_custom_tabs/flutter_custom_tabs.dart';
-import 'package:cached_network_image/cached_network_image.dart';
-
 import 'package:navis/global_keys.dart';
 import 'package:navis/models/export.dart';
 
@@ -53,7 +52,9 @@ class NewsCard extends StatelessWidget {
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(4.0),
             image: DecorationImage(
-                image: CachedNetworkImageProvider(news.imageLink),
+                image: AdvancedNetworkImage(news.imageLink,
+                    fallbackAssetImage: 'assets/general/404.webp',
+                    retryLimit: 3),
                 fit: BoxFit.cover)),
         child: Container(
             height: 40,
