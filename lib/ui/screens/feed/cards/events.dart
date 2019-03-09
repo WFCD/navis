@@ -102,8 +102,7 @@ class EventBuilder extends StatelessWidget {
     } else {
       if (event.rewards.isNotEmpty) {
         final withCredits =
-            '${event.rewards.first.itemString} + ${event.rewards.first
-            .credits}cr';
+            '${event.rewards.first.itemString} + ${event.rewards.first.credits}cr';
         final withoutCredits = '${event.rewards.first.itemString}';
 
         children.add(StaticBox.text(
