@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:navis/blocs/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:navis/blocs/bloc.dart';
 
 import 'static_box.dart';
 
@@ -23,8 +23,9 @@ class CountdownBoxState extends State<CountdownBox>
   @override
   void initState() {
     super.initState();
+    final expiry = widget.expiry.toLocal();
 
-    final start = widget.expiry.difference(DateTime.now().toUtc());
+    final start = expiry.difference(DateTime.now());
 
     _controller = AnimationController(
         vsync: this,
@@ -32,8 +33,10 @@ class CountdownBoxState extends State<CountdownBox>
             start < Duration.zero ? const Duration(milliseconds: 500) : start);
 
     _tween = StepTween(
-        begin: widget.expiry.millisecondsSinceEpoch,
-        end: DateTime.now().toUtc().millisecondsSinceEpoch);
+        begin: expiry.millisecondsSinceEpoch,
+        end: DateTime
+            .now()
+            .millisecondsSinceEpoch);
 
     _animation = _tween.animate(_controller);
 
@@ -47,14 +50,17 @@ class CountdownBoxState extends State<CountdownBox>
   @override
   void didUpdateWidget(CountdownBox oldWidget) {
     if (oldWidget.expiry != widget.expiry) {
-      final start = widget.expiry.difference(DateTime.now().toUtc());
+      final expiry = widget.expiry.toLocal();
+      final start = expiry.difference(DateTime.now().toUtc());
 
       _controller.duration =
           start < Duration.zero ? const Duration(milliseconds: 500) : start;
 
       _animation = StepTween(
-              begin: widget.expiry.millisecondsSinceEpoch,
-              end: DateTime.now().toUtc().millisecondsSinceEpoch)
+          begin: expiry.millisecondsSinceEpoch,
+          end: DateTime
+              .now()
+              .millisecondsSinceEpoch)
           .animate(_controller);
 
       _controller

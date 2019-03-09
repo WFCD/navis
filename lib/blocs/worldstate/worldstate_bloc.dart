@@ -3,10 +3,10 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 import 'package:navis/utils/factionutils.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:http/http.dart' as http;
 
 import '../../global_keys.dart';
 import '../../services/worldstate.dart';
@@ -61,7 +61,7 @@ class WorldstateBloc extends Bloc<StateEvent, WorldStates>
     final DateFormat format = DateFormat.jms().add_yMd();
 
     try {
-      return format.format(expiry);
+      return format.format(expiry.toLocal());
     } catch (err) {
       return 'Fetching Date';
     }
