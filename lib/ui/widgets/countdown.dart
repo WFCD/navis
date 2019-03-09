@@ -34,9 +34,7 @@ class CountdownBoxState extends State<CountdownBox>
 
     _tween = StepTween(
         begin: expiry.millisecondsSinceEpoch,
-        end: DateTime
-            .now()
-            .millisecondsSinceEpoch);
+        end: DateTime.now().millisecondsSinceEpoch);
 
     _animation = _tween.animate(_controller);
 
@@ -57,10 +55,8 @@ class CountdownBoxState extends State<CountdownBox>
           start < Duration.zero ? const Duration(milliseconds: 500) : start;
 
       _animation = StepTween(
-          begin: expiry.millisecondsSinceEpoch,
-          end: DateTime
-              .now()
-              .millisecondsSinceEpoch)
+              begin: expiry.millisecondsSinceEpoch,
+              end: DateTime.now().millisecondsSinceEpoch)
           .animate(_controller);
 
       _controller
