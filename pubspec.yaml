@@ -23,6 +23,7 @@ dependencies:
   #flutter_svg: ^0.10.4
   flutter_villains: ^1.2.0
   intl: ^0.15.7
+  package_info: ^0.4.0+1
   shared_preferences: ^0.5.1+1
   sticky_headers: ^0.1.7
 

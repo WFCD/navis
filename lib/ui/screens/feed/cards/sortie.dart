@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:navis/blocs/bloc.dart';
 import 'package:navis/models/export.dart';
-
 import 'package:navis/ui/widgets/cards.dart';
 import 'package:navis/ui/widgets/countdown.dart';
 
@@ -18,23 +17,35 @@ class SculptureMissions extends StatelessWidget {
               if (state is WorldstateLoaded) {
                 final sortie = state.worldState.sortie;
 
-                final title = ListTile(
-                  leading: factionutils.factionIcon(sortie.faction, size: 45),
-                  title: Text(sortie.boss),
-                  subtitle: Text(sortie.faction),
-                  trailing: Container(
-                      padding: const EdgeInsets.all(4.0),
-                      child: CountdownBox(expiry: sortie.expiry)),
-                );
+                if (sortie.variants.isNotEmpty) {
+                  final title = ListTile(
+                    leading: factionutils.factionIcon(sortie.faction, size: 45),
+                    title: Text(sortie.boss),
+                    subtitle: Text(sortie.faction),
+                    trailing: Container(
+                        padding: const EdgeInsets.all(4.0),
+                        child: CountdownBox(expiry: sortie.expiry)),
+                  );
 
-                final List<Widget> missions = sortie.variants
-                    .map((variant) => _buildMissions(variant, context))
-                    .toList()
-                      ..insert(0, title);
+                  final List<Widget> missions = sortie.variants
+                      .map((variant) => _buildMissions(variant, context))
+                      .toList()
+                    ..insert(0, title);
 
-                return missions.isEmpty
-                    ? const Center(child: Text('Loading current sorite...'))
-                    : Column(children: missions);
+                  return missions.isEmpty
+                      ? const Center(child: Text('Loading current sorite...'))
+                      : Column(children: missions);
+                }
+
+                return Container(
+                    height: 200,
+                    width: 250,
+                    child: const Center(
+                        child: Text(
+                          'Server is rotating sorties',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(fontSize: 20),
+                        )));
               }
             }));
   }
