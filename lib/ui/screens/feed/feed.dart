@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:navis/blocs/bloc.dart';
-import 'package:navis/models/export.dart';
 
 import 'cards/acolytes.dart';
 import 'cards/alerts.dart';
@@ -15,15 +14,6 @@ import 'cards/vallis.dart';
 class Feed extends StatelessWidget {
   const Feed({Key key = const PageStorageKey<String>('feed')})
       : super(key: key);
-
-  void _addEvents(List<Event> events, List<Widget> childeren) =>
-      events.isNotEmpty
-          ? childeren.insert(
-              0, SliverToBoxAdapter(child: EventPanel(events: events)))
-          : null;
-
-  void _addAcolytes(List<PersistentEnemie> enemies, List<Widget> childeren) =>
-      enemies.isNotEmpty ? childeren.insert(1, Acolytes()) : null;
 
   @override
   Widget build(BuildContext context) {
@@ -48,17 +38,22 @@ class Feed extends StatelessWidget {
                 Fissure(),
                 const RepaintBoundary(child: InvasionCard()),
                 Trader(),
-                SculptureMissions()
+                Sorties()
               ];
 
               final List sliver = <Widget>[
                 SliverList(delegate: SliverChildListDelegate(children))
               ];
 
-              _addEvents(state.worldState.events, sliver);
-              _addAcolytes(state.worldState.persistentEnemies, children);
+              return CustomScrollView(slivers: List.unmodifiable(() sync* {
+                if (state.worldState.events.isNotEmpty)
+                  yield SliverToBoxAdapter(
+                      child: EventPanel(events: state.worldState.events));
+                if (state.worldState.persistentEnemies.isNotEmpty)
+                  yield SliverToBoxAdapter(child: Acolytes());
 
-              return CustomScrollView(slivers: sliver);
+                yield* sliver;
+              }()));
             }
           }),
     );
