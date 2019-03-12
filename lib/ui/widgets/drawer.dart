@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:package_info/package_info.dart';
 
 import 'platform_choices.dart';
 
@@ -44,15 +43,14 @@ class CustomDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final List<Widget> _items = [];
-    final List<Widget> _listview = [];
-
-    _listview.addAll(children.map(_buildDrawerItem));
 
     _items.insert(
         0, Container(height: 76, color: Theme.of(context).accentColor));
 
     _items.add(Expanded(
-        child: ListView(padding: EdgeInsets.zero, children: _listview)));
+        child: ListView(
+            padding: EdgeInsets.zero,
+            children: children.map(_buildDrawerItem).toList())));
 
     _items.add(const PlatformChoice());
 
@@ -65,7 +63,7 @@ class CustomDrawer extends StatelessWidget {
       },
     ));
 
-    _items.add(FutureBuilder<PackageInfo>(
+    /* _items.add(FutureBuilder<PackageInfo>(
         future: PackageInfo.fromPlatform(),
         builder: (_, snapshot) {
           return AboutListTile(
@@ -74,9 +72,9 @@ class CustomDrawer extends StatelessWidget {
             applicationName: 'Cephalon Navis',
             applicationVersion: snapshot.data?.version ?? '',
             applicationLegalese:
-            'Warframe and the Warframe logo are registered trademarks of Digital Extremes Ltd. Cephalon Navis is not affiliated with Digital Extremes Ltd. in any way.',
+                'Warframe and the Warframe logo are registered trademarks of Digital Extremes Ltd. Cephalon Navis is not affiliated with Digital Extremes Ltd. in any way.',
           );
-        }));
+        }));*/
 
     return Drawer(
         child: Column(

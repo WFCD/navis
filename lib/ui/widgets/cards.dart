@@ -26,8 +26,6 @@ class Tiles extends StatelessWidget {
   Widget build(BuildContext context) {
     final List<Widget> children = <Widget>[child];
 
-    if (title != null) children.insert(0, _buildTitle(context, title));
-
     return Card(
       elevation: 6,
       margin: const EdgeInsets.all(6.0),
@@ -37,7 +35,10 @@ class Tiles extends StatelessWidget {
           margin: const EdgeInsets.all(4),
           height: height,
           alignment: Alignment.center,
-          child: Column(children: children)),
+          child: Column(children: List.unmodifiable(() sync* {
+            if (title != null) yield _buildTitle(context, title);
+            yield* children;
+          }()))),
     );
   }
 }
