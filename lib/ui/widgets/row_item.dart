@@ -24,14 +24,6 @@ class RowItem extends StatelessWidget {
   final double size;
   final bool caption;
 
-  void _addIcons(bool notEmpty, List<Widget> children) {
-    if (notEmpty)
-      children.insertAll(
-          0,
-          icons.map((i) =>
-              Padding(padding: const EdgeInsets.only(right: 4.0), child: i)));
-  }
-
   @override
   Widget build(BuildContext context) {
     final style = caption
@@ -40,9 +32,13 @@ class RowItem extends StatelessWidget {
 
     final List<Widget> children = [Text(text, style: style)];
 
-    _addIcons(icons.isNotEmpty, children);
-
-    final _text = Container(child: Row(children: children));
+    final _text = Container(child: Row(children: List.unmodifiable(() sync* {
+      if (icons.isNotEmpty) {
+        yield icons.map((i) =>
+            Padding(padding: const EdgeInsets.only(right: 4.0), child: i));
+      }
+      yield* children;
+    }())));
 
     return Container(
         child: Row(
