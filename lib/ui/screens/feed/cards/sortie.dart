@@ -4,7 +4,7 @@ import 'package:navis/models/export.dart';
 import 'package:navis/ui/widgets/cards.dart';
 import 'package:navis/ui/widgets/countdown.dart';
 
-class SculptureMissions extends StatelessWidget {
+class Sorties extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final wstate = BlocProvider.of<WorldstateBloc>(context);
@@ -17,7 +17,7 @@ class SculptureMissions extends StatelessWidget {
               if (state is WorldstateLoaded) {
                 final sortie = state.worldState.sortie;
 
-                if (sortie.variants.isNotEmpty) {
+                if (sortie.variants?.isNotEmpty ?? false) {
                   final title = ListTile(
                     leading: factionutils.factionIcon(sortie.faction, size: 45),
                     title: Text(sortie.boss),
