@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:navis/blocs/bloc.dart';
 import 'package:navis/models/export.dart';
-import 'package:navis/ui/widgets/cards.dart';
-import 'package:navis/ui/widgets/countdown.dart';
+import 'package:navis/ui/widgets/layout.dart';
+import 'package:navis/ui/widgets/animations.dart';
 
 class Sorties extends StatelessWidget {
   @override
@@ -30,7 +30,7 @@ class Sorties extends StatelessWidget {
                   final List<Widget> missions = sortie.variants
                       .map((variant) => _buildMissions(variant, context))
                       .toList()
-                    ..insert(0, title);
+                        ..insert(0, title);
 
                   return missions.isEmpty
                       ? const Center(child: Text('Loading current sorite...'))
@@ -42,10 +42,10 @@ class Sorties extends StatelessWidget {
                     width: 250,
                     child: const Center(
                         child: Text(
-                          'Server is rotating sorties',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(fontSize: 20),
-                        )));
+                      'Server is rotating sorties',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontSize: 20),
+                    )));
               }
             }));
   }

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:navis/utils/factionutils.dart';
 import 'package:navis/blocs/bloc.dart';
 import 'package:navis/models/export.dart';
-import 'package:navis/ui/widgets/cards.dart';
+import 'package:navis/ui/widgets/layout.dart';
 
 import 'package:navis/ui/routes/syndicates/syndicate_missions.dart';
 

@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:navis/blocs/bloc.dart';
 
-import 'package:navis/ui/widgets/cards.dart';
-import 'package:navis/ui/widgets/countdown.dart';
-import 'package:navis/ui/widgets/row_item.dart';
-import 'package:navis/ui/widgets/static_box.dart';
+import 'package:navis/ui/widgets/layout.dart';
+import 'package:navis/ui/widgets/animations.dart';
 import 'package:navis/ui/routes/trader_inventory.dart';
 
 class Trader extends StatefulWidget {

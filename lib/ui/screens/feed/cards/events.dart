@@ -2,7 +2,7 @@ import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:navis/models/export.dart';
 import 'package:navis/ui/routes/syndicates/rewards.dart';
-import 'package:navis/ui/widgets/static_box.dart';
+import 'package:navis/ui/widgets/layout.dart';
 
 class EventPanel extends StatefulWidget {
   const EventPanel({this.events});
@@ -101,15 +101,20 @@ class EventBuilder extends StatelessWidget {
       children.addAll(event.jobs.map((j) => _buildJob(context, j)));
     } else {
       if (event.rewards.isNotEmpty) {
-        final withCredits =
-            '${event.rewards.first.itemString} + ${event.rewards.first.credits}cr';
-        final withoutCredits = '${event.rewards.first.itemString}';
+        final reward = event.rewards.first;
+        if (reward.itemString.isNotEmpty) {
+          final withCredits =
+              '${event.rewards.first.itemString} + ${event.rewards.first.credits}cr';
+          final withoutCredits = '${event.rewards.first.itemString}';
 
-        children.add(StaticBox.text(
-            color: Colors.green,
-            text: event.rewards.first.credits < 100
-                ? withoutCredits
-                : withCredits));
+          children.add(StaticBox.text(
+              color: Colors.green,
+              text: event.rewards.first.credits < 100
+                  ? withoutCredits
+                  : withCredits));
+        }
+
+        children.add(Container());
       }
 
       children.add(Container());

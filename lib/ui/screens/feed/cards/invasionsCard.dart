@@ -2,10 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:navis/blocs/bloc.dart';
 import 'package:navis/models/export.dart';
 
-import 'package:navis/ui/widgets/cards.dart';
-import 'package:navis/ui/widgets/static_box.dart';
-import 'package:navis/ui/widgets/expandedCard.dart';
-import 'package:navis/ui/widgets/invasionsBar.dart';
+import 'package:navis/ui/widgets/layout.dart';
+import 'package:navis/ui/widgets/styles.dart';
 
 class InvasionCard extends StatelessWidget {
   const InvasionCard({Key key}) : super(key: key);

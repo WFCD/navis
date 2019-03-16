@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:navis/blocs/bloc.dart';
 import 'package:navis/models/export.dart';
+import 'package:navis/ui/widgets/styles.dart';
 
-import '../../widgets/timer_style.dart';
 import 'nightwave_style.dart';
 import 'syndicate_style.dart';
 

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/blocs/bloc.dart';
 
-import 'static_box.dart';
+import '../layout/static_box.dart';
 
 class CountdownBox extends StatefulWidget {
   const CountdownBox({this.expiry, this.size});

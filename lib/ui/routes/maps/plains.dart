@@ -4,8 +4,7 @@ import 'package:latlong/latlong.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:navis/utils/constants.dart';
-import 'package:navis/ui/widgets/popup.dart';
-import 'package:navis/ui/widgets/videoplayer.dart';
+import 'package:navis/ui/widgets/dialogs.dart';
 import 'package:navis/services/streamable.dart';
 
 import 'map_base.dart';
@@ -44,9 +43,8 @@ class Plains extends Mapbase {
         width: _size,
         point: LatLng(o[1], o[2]),
         builder: (_) => InkWell(
-            onTap: () async => Navigator.of(_context).push(Popup(
-                child: VideoPlayer(
-                    lore: o[3], url: await straeamble.fishVideos(o[4])))),
+            onTap: () async => VideoDialog.showVideo(
+                _context, o[3], await straeamble.fishVideos(o[4])),
             child: Container(
                 child: Image.network(
                     'https://hub.warframestat.us/img/map_icons/oddity.png'))));

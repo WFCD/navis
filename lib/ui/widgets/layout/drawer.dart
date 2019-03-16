@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:package_info/package_info.dart';
 
-import 'platform_choices.dart';
+import '../styles/platform_choices.dart';
 
 class CustomDrawer extends StatelessWidget {
   const CustomDrawer({this.currentIndex, this.children});
@@ -63,7 +64,7 @@ class CustomDrawer extends StatelessWidget {
       },
     ));
 
-    /* _items.add(FutureBuilder<PackageInfo>(
+    /*_items.add(FutureBuilder<PackageInfo>(
         future: PackageInfo.fromPlatform(),
         builder: (_, snapshot) {
           return AboutListTile(
