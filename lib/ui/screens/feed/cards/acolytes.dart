@@ -3,9 +3,7 @@ import 'package:navis/blocs/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/models/export.dart';
 
-import 'package:navis/ui/widgets/cards.dart';
-import 'package:navis/ui/widgets/row_item.dart';
-import 'package:navis/ui/widgets/static_box.dart';
+import 'package:navis/ui/widgets/layout.dart';
 
 class Acolytes extends StatelessWidget {
   @override

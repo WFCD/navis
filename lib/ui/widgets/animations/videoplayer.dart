@@ -39,21 +39,6 @@ class _VideoPlayerState extends State<VideoPlayer>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        backgroundColor: Colors.transparent,
-        body: Builder(builder: (_) {
-          return Padding(
-              padding: EdgeInsets.zero,
-              child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(widget.lore,
-                          style: const TextStyle(fontSize: 15)),
-                    ),
-                    Container(child: Chewie(controller: _chewieController))
-                  ]));
-        }));
+    return Chewie(controller: _chewieController);
   }
 }

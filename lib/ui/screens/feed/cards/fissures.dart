@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:navis/blocs/bloc.dart';
 import 'package:navis/models/export.dart';
 
-import 'package:navis/ui/widgets/cards.dart';
-import 'package:navis/ui/widgets/expandedCard.dart';
-import 'package:navis/ui/widgets/countdown.dart';
+import 'package:navis/ui/widgets/layout.dart';
+import 'package:navis/ui/widgets/animations.dart';
 
 class Fissure extends StatelessWidget {
   @override

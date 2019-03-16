@@ -5,7 +5,7 @@ import 'package:flutter_custom_tabs/flutter_custom_tabs.dart';
 import 'package:flutter_villains/villain.dart';
 import 'package:navis/global_keys.dart';
 import 'package:navis/ui/routes/maps/map.dart';
-import 'package:navis/ui/widgets/drawer.dart';
+import 'package:navis/ui/widgets/layout.dart';
 import 'package:navis/ui/widgets/icons.dart';
 import 'package:rxdart/rxdart.dart';
 

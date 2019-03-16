@@ -2,9 +2,9 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:navis/models/export.dart';
-import 'package:navis/ui/widgets/countdown.dart';
+import 'package:navis/ui/widgets/animations/countdown.dart';
 import 'package:navis/ui/widgets/icons.dart';
-import 'package:navis/ui/widgets/static_box.dart';
+import 'package:navis/ui/widgets/layout/static_box.dart';
 import 'package:rxdart/rxdart.dart';
 
 class NightwaveChallenges extends StatefulWidget {

@@ -33,6 +33,7 @@ keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
 
 android {
     compileSdkVersion 28
+    buildToolsVersion "28.0.3"
 
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
@@ -64,6 +65,7 @@ android {
     buildTypes {
         release {
             signingConfig signingConfigs.release
+            
         }
     }
 }
