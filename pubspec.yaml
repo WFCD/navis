@@ -8,7 +8,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  background_fetch: ^0.1.1
+  background_fetch: ^0.2.0
   bloc: ^0.9.5
   chewie: ^0.9.5
   codable: ^1.0.0
