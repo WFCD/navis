@@ -13,20 +13,21 @@ class PlatformChoiceState extends State<PlatformChoice> {
   @override
   Widget build(BuildContext context) {
     final state = BlocProvider.of<WorldstateBloc>(context);
-    final platform = BlocProvider.of<PlatformBloc>(context);
+    final platform = BlocProvider.of<StorageBloc>(context);
 
     void onPressed(Platforms platforms) {
-      platform.onPressed(platforms, callback: state.update());
+      platform.onPressedPlatform(platforms);
+      state.update();
       Navigator.of(context).pop();
     }
 
     return Column(children: <Widget>[
       Divider(color: Theme.of(context).accentColor),
-      BlocProvider<PlatformBloc>(
+      BlocProvider<StorageBloc>(
           bloc: platform,
-          child: BlocBuilder<PlatformEvent, PlatformState>(
+          child: BlocBuilder<ChangeEvent, StorageState>(
               bloc: platform,
-              builder: (context, platformState) {
+              builder: (context, storageState) {
                 return Row(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -35,7 +36,7 @@ class PlatformChoiceState extends State<PlatformChoice> {
                         child: IconButton(
                       icon: SvgPicture.asset(
                         'assets/platforms/pc.svg',
-                        color: platformState.platform == 'pc'
+                        color: storageState.platform == 'pc'
                             ? const Color(0xFFFACA04)
                             : Theme.of(context).disabledColor,
                         height: 25,
@@ -47,7 +48,7 @@ class PlatformChoiceState extends State<PlatformChoice> {
                         child: IconButton(
                             icon: SvgPicture.asset(
                               'assets/platforms/ps4.svg',
-                              color: platformState.platform == 'ps4'
+                              color: storageState.platform == 'ps4'
                                   ? const Color(0xFF003791)
                                   : Theme.of(context).disabledColor,
                               height: 25,
@@ -58,7 +59,7 @@ class PlatformChoiceState extends State<PlatformChoice> {
                         child: IconButton(
                             icon: SvgPicture.asset(
                               'assets/platforms/xbox1.svg',
-                              color: platformState.platform == 'xb1'
+                              color: storageState.platform == 'xb1'
                                   ? const Color(0xFF107c10)
                                   : Theme.of(context).disabledColor,
                               height: 25,
@@ -69,7 +70,7 @@ class PlatformChoiceState extends State<PlatformChoice> {
                         child: IconButton(
                             icon: SvgPicture.asset(
                               'assets/platforms/switch.svg',
-                              color: platformState.platform == 'swi'
+                              color: storageState.platform == 'swi'
                                   ? const Color(0xFFe60012)
                                   : Theme.of(context).disabledColor,
                               height: 50,

@@ -98,7 +98,7 @@ class EventBuilder extends StatelessWidget {
 
   void _addReward(BuildContext context, bool bounty, List<Widget> children) {
     if (bounty) {
-      children.addAll(event.jobs.map((j) => _buildJob(context, j)));
+      children.addAll(event.jobs.map((j) => _BuildJob(j)));
     } else {
       if (event.rewards.isNotEmpty) {
         final reward = event.rewards.first;
@@ -168,21 +168,29 @@ class EventBuilder extends StatelessWidget {
   }
 }
 
-Widget _buildJob(BuildContext context, Jobs job) {
-  return Card(
-    margin: const EdgeInsets.only(right: 3.0),
-    color: Colors.blueAccent[400],
-    child: InkWell(
-        onTap: () => Navigator.of(context).push(MaterialPageRoute(
-            builder: (_) => BountyRewards(
-                missionTYpe: job.type,
-                bountyRewards: job.rewardPool.cast<String>()))),
-        child: Container(
-            margin: const EdgeInsets.all(4.0),
-            padding: const EdgeInsets.all(4.0),
-            width: MediaQuery.of(context).size.width / 2.2,
-            alignment: Alignment.center,
-            child: Text(job.type,
-                overflow: TextOverflow.ellipsis, textAlign: TextAlign.center))),
-  );
+class _BuildJob extends StatelessWidget {
+  const _BuildJob(this.job);
+
+  final Jobs job;
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      margin: const EdgeInsets.only(right: 3.0),
+      color: Colors.blueAccent[400],
+      child: InkWell(
+          onTap: () => Navigator.of(context).push(MaterialPageRoute(
+              builder: (_) => BountyRewards(
+                  missionTYpe: job.type,
+                  bountyRewards: job.rewardPool.cast<String>()))),
+          child: Container(
+              margin: const EdgeInsets.all(4.0),
+              padding: const EdgeInsets.all(4.0),
+              width: MediaQuery.of(context).size.width / 2.2,
+              alignment: Alignment.center,
+              child: Text(job.type,
+                  overflow: TextOverflow.ellipsis,
+                  textAlign: TextAlign.center))),
+    );
+  }
 }

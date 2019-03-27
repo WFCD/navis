@@ -39,7 +39,7 @@ class VideoDialog extends StatelessWidget {
         children: <Widget>[
           Text(
             lore,
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 24.0,
               fontWeight: FontWeight.w700,
             ),

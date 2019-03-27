@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:navis/blocs/bloc.dart';
 import 'package:navis/models/export.dart';
+import 'package:navis/utils/factionutils.dart';
 import 'package:navis/ui/widgets/layout.dart';
 import 'package:navis/ui/widgets/animations.dart';
 
@@ -8,7 +9,6 @@ class Sorties extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final wstate = BlocProvider.of<WorldstateBloc>(context);
-    final factionutils = wstate.factionUtils;
 
     return Tiles(
         child: BlocBuilder(
@@ -17,9 +17,9 @@ class Sorties extends StatelessWidget {
               if (state is WorldstateLoaded) {
                 final sortie = state.worldState.sortie;
 
-                if (sortie.variants?.isNotEmpty ?? false) {
+                if (sortie?.variants?.isNotEmpty ?? false) {
                   final title = ListTile(
-                    leading: factionutils.factionIcon(sortie.faction, size: 45),
+                    leading: factionIcon(sortie.faction, size: 45),
                     title: Text(sortie.boss),
                     subtitle: Text(sortie.faction),
                     trailing: Container(
@@ -28,13 +28,13 @@ class Sorties extends StatelessWidget {
                   );
 
                   final List<Widget> missions = sortie.variants
-                      .map((variant) => _buildMissions(variant, context))
-                      .toList()
-                        ..insert(0, title);
+                      .map((variant) => _BuildMissions(variant))
+                      .toList();
 
-                  return missions.isEmpty
-                      ? const Center(child: Text('Loading current sorite...'))
-                      : Column(children: missions);
+                  return Column(children: List.unmodifiable(() sync* {
+                    yield title;
+                    yield* missions;
+                  }()));
                 }
 
                 return Container(
@@ -51,18 +51,26 @@ class Sorties extends StatelessWidget {
   }
 }
 
-Widget _buildMissions(Variants variants, BuildContext context) {
-  final info = Theme.of(context).textTheme.subhead;
-  final description =
-      Theme.of(context).textTheme.caption.copyWith(fontSize: 13);
+class _BuildMissions extends StatelessWidget {
+  const _BuildMissions(this.variants);
 
-  return Container(
-    padding: const EdgeInsets.only(bottom: 4.0),
-    margin: const EdgeInsets.only(bottom: 4.0, right: 4.0, left: 4.0),
-    child:
-        Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
-      Text('${variants.missionType} - ${variants.node}', style: info),
-      Text(variants.modifierDescription, style: description),
-    ]),
-  );
+  final Variants variants;
+
+  @override
+  Widget build(BuildContext context) {
+    final info = Theme.of(context).textTheme.subhead;
+    final description =
+        Theme.of(context).textTheme.caption.copyWith(fontSize: 13);
+
+    return Container(
+      padding: const EdgeInsets.only(bottom: 4.0),
+      margin: const EdgeInsets.only(bottom: 4.0, right: 4.0, left: 4.0),
+      child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Text('${variants.missionType} - ${variants.node}', style: info),
+            Text(variants.modifierDescription, style: description),
+          ]),
+    );
+  }
 }

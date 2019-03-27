@@ -106,7 +106,8 @@ class ThemeChoiceState extends State<ThemeChoice> {
     final ThemeBloc theme = BlocProvider.of<ThemeBloc>(context);
     final bool brightness = Theme.of(context).brightness == Brightness.dark;
 
-    return Column(children: <Widget>[
+    return Container(
+        child: Column(children: <Widget>[
       Padding(
           padding: const EdgeInsets.only(top: 10.0, left: 8.0),
           child: Align(
@@ -129,6 +130,6 @@ class ThemeChoiceState extends State<ThemeChoice> {
           title: const Text('Accent Color'),
           subtitle: const Text('Color used to tint certaint text elements'),
           onTap: () => _accentColor(theme))
-    ]);
+    ]));
   }
 }
