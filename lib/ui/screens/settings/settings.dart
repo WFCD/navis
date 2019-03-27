@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+
+import 'dateformat.dart';
 import 'theme_choice.dart';
 
 class Settings extends StatelessWidget {
@@ -9,9 +11,7 @@ class Settings extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(title: const Text('Settings')),
         body: Column(
-          children: <Widget>[
-            ThemeChoice(),
-          ],
+          children: <Widget>[ThemeChoice(), const DateformatSetting()],
         ));
   }
 }
