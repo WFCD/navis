@@ -4,6 +4,9 @@ import 'package:package_info/package_info.dart';
 
 import '../styles/platform_choices.dart';
 
+const legalese =
+    'Warframe and the Warframe logo are registered trademarks of Digital Extremes Ltd. Cephalon Navis is not affiliated with Digital Extremes Ltd. in any way.';
+
 class CustomDrawer extends StatelessWidget {
   const CustomDrawer({this.currentIndex, this.children});
 
@@ -26,56 +29,53 @@ class CustomDrawer extends StatelessWidget {
     );
   }
 
-  Widget _appIcon() {
-    return Container(
-      decoration: BoxDecoration(
-          border: Border.all(color: Colors.white),
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(60.0)),
-      child: SvgPicture.asset(
-        'assets/general/nightmare.svg',
-        height: 60,
-        width: 60,
-        color: const Color.fromRGBO(26, 80, 144, .9),
-      ),
-    );
-  }
+  Widget _appIcon() => Container(
+        decoration: BoxDecoration(
+            border: Border.all(color: Colors.white),
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(60.0)),
+        child: SvgPicture.asset(
+          'assets/general/nightmare.svg',
+          height: 60,
+          width: 60,
+          color: const Color.fromRGBO(26, 80, 144, .9),
+        ),
+      );
+
+  Widget body() => Expanded(
+      child: ListView(
+          padding: EdgeInsets.zero,
+          children: children.map(_buildDrawerItem).toList()));
+
+  Widget aboutTile() => FutureBuilder<PackageInfo>(
+      future: PackageInfo.fromPlatform(),
+      builder: (_, snapshot) {
+        return AboutListTile(
+          icon: const Icon(Icons.info),
+          applicationIcon: _appIcon(),
+          applicationName: 'Cephalon Navis',
+          applicationVersion: snapshot.data?.version ?? '',
+          applicationLegalese: legalese,
+        );
+      });
+
+  Widget settings(BuildContext context) => ListTile(
+        leading: const Icon(Icons.settings),
+        title: const Text('Settings'),
+        onTap: () {
+          Navigator.of(context).pop();
+          Navigator.of(context).pushNamed('/Settings');
+        },
+      );
 
   @override
   Widget build(BuildContext context) {
-    final List<Widget> _items = [];
-
-    _items.insert(
-        0, Container(height: 76, color: Theme.of(context).accentColor));
-
-    _items.add(Expanded(
-        child: ListView(
-            padding: EdgeInsets.zero,
-            children: children.map(_buildDrawerItem).toList())));
-
-    _items.add(const PlatformChoice());
-
-    _items.add(ListTile(
-      leading: const Icon(Icons.settings),
-      title: const Text('Settings'),
-      onTap: () {
-        Navigator.of(context).pop();
-        Navigator.of(context).pushNamed('/Settings');
-      },
-    ));
-
-    /*_items.add(FutureBuilder<PackageInfo>(
-        future: PackageInfo.fromPlatform(),
-        builder: (_, snapshot) {
-          return AboutListTile(
-            icon: const Icon(Icons.info),
-            applicationIcon: _appIcon(),
-            applicationName: 'Cephalon Navis',
-            applicationVersion: snapshot.data?.version ?? '',
-            applicationLegalese:
-                'Warframe and the Warframe logo are registered trademarks of Digital Extremes Ltd. Cephalon Navis is not affiliated with Digital Extremes Ltd. in any way.',
-          );
-        }));*/
+    final List<Widget> _items = []
+      ..insert(0, Container(height: 76, color: Theme.of(context).accentColor))
+      ..add(body())
+      ..add(const PlatformChoice())
+      ..add(settings(context));
+    //..add(aboutTile());
 
     return Drawer(
         child: Column(

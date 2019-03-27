@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:navis/blocs/bloc.dart';
-
-import 'package:navis/ui/widgets/layout.dart';
-import 'package:navis/ui/widgets/animations.dart';
 import 'package:navis/ui/routes/trader_inventory.dart';
+import 'package:navis/ui/widgets/animations.dart';
+import 'package:navis/ui/widgets/layout.dart';
 
 class Trader extends StatefulWidget {
   @override
@@ -40,13 +39,11 @@ class _Trader extends State<Trader> {
                             text: '${trader.location}'))
                     : emptyBox,
                 RowItem(
-                    text: trader.active ? 'Leaves on' : 'Arrives on',
-                    child: StaticBox.text(
-                      color: Colors.blueAccent[400],
-                      text: trader.active
-                          ? wstate.expiration(trader.expiry)
-                          : wstate.expiration(trader.activation),
-                    )),
+                  text: trader.active ? 'Leaves on' : 'Arrives on',
+                  child: trader.active
+                      ? DateView(expiry: trader.expiry)
+                      : DateView(expiry: trader.activation),
+                ),
                 Padding(
                   padding:
                       const EdgeInsets.only(bottom: 8.0, left: 5.0, right: 3.0),

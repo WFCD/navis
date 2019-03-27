@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-
 import 'package:navis/blocs/bloc.dart';
-import 'package:navis/models/export.dart';
 import 'package:navis/ui/widgets/animations.dart';
 import 'package:navis/ui/widgets/layout.dart';
 
@@ -31,7 +29,7 @@ class CetusCycle extends StatelessWidget {
             bloc: state,
             builder: (context, currentState) {
               if (currentState is WorldstateLoaded) {
-                final Earth earth = cycle == Cycle.cetus
+                final earth = cycle == Cycle.cetus
                     ? currentState.worldState.cetus
                     : currentState.worldState.earth;
                 const padding = SizedBox(height: 4);
@@ -53,13 +51,10 @@ class CetusCycle extends StatelessWidget {
                     ),
                     padding,
                     RowItem(
-                      text:
-                          earth.isDay == true ? 'Time at Night' : 'Time at Day',
-                      child: StaticBox.text(
-                        color: Colors.blueAccent[400],
-                        text: '${state.expiration(earth.expiry)}',
-                      ),
-                    ),
+                        text: earth.isDay == true
+                            ? 'Time at Night'
+                            : 'Time at Day',
+                        child: DateView(expiry: earth.expiry)),
                     padding
                   ],
                 );

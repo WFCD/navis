@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:navis/blocs/bloc.dart';
-
-import 'package:navis/ui/widgets/layout.dart';
 import 'package:navis/ui/widgets/animations.dart';
+import 'package:navis/ui/widgets/layout.dart';
 
 class OrbVallis extends StatelessWidget {
   @override
@@ -36,10 +35,7 @@ class OrbVallis extends StatelessWidget {
                     text: vallis.isWarm
                         ? 'Winter is coming in '
                         : 'Warmer climate at ',
-                    child: StaticBox(
-                        color: Colors.blueAccent[400],
-                        child: Text('${wstate.expiration(vallis.expiry)}',
-                            style: const TextStyle(color: Colors.white))),
+                    child: DateView(expiry: vallis.expiry),
                   ),
                   padding
                 ]);

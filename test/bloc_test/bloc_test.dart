@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:async/async.dart';
+//import 'package:async/async.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'package:mockito/mockito.dart';
@@ -22,12 +22,12 @@ void main() {
   final client = MockClient();
 
   WorldstateBloc worldstateBloc;
-  PlatformBloc platformBloc;
+  //StorageBloc platformBloc;
   ThemeBloc themeBloc;
 
   setUpAll(() {
     worldstateBloc = WorldstateBloc.initialize(client: client);
-    platformBloc = PlatformBloc();
+    //platformBloc = StorageBloc();
     themeBloc = ThemeBloc();
 
     const MethodChannel('plugins.flutter.io/shared_preferences')
@@ -56,53 +56,13 @@ void main() {
             const TypeMatcher<WorldstateLoaded>()
           ]));
 
-      worldstateBloc.dispatch(UpdateState());
+      worldstateBloc.dispatch(UpdateEvent.update);
     });
 
     test('dispose does not create a new state', () {
       expectLater(worldstateBloc.state, emitsInOrder([]));
 
       worldstateBloc.dispose();
-    });
-  });
-
-  group('Test Platform bloc', () {
-    test('Initial state is Platform Uninitialized', () {
-      expect(platformBloc.initialState, KDefaultState());
-    });
-
-    test('Make sure state changes', () async {
-      final state = StreamQueue(platformBloc.state);
-      expectLater(
-          platformBloc.state,
-          emitsInOrder([
-            KDefaultState(),
-            PCState(),
-            PS4State(),
-            Xb1State(),
-            SwitchState()
-          ]));
-
-      platformBloc.dispatch(PCEvent());
-      platformBloc.dispatch(PS4Event());
-      platformBloc.dispatch(Xb1Event());
-      platformBloc.dispatch(SwitchEvent());
-
-      expect(
-          state,
-          emitsInOrder(const [
-            TypeMatcher<KDefaultState>(),
-            TypeMatcher<PCState>(),
-            TypeMatcher<PS4State>(),
-            TypeMatcher<Xb1State>(),
-            TypeMatcher<SwitchState>()
-          ]));
-    });
-
-    test('dispose does not create a new state', () {
-      expectLater(platformBloc.state, emitsInOrder([]));
-
-      platformBloc.dispose();
     });
   });
 

@@ -4,6 +4,8 @@ import 'package:navis/blocs/bloc.dart';
 
 import '../layout/static_box.dart';
 
+const stalling = Duration(milliseconds: 500);
+
 class CountdownBox extends StatefulWidget {
   const CountdownBox({this.expiry, this.size});
 
@@ -24,17 +26,14 @@ class CountdownBoxState extends State<CountdownBox>
   void initState() {
     super.initState();
     final expiry = widget.expiry.toLocal();
-
-    final start = expiry.difference(DateTime.now());
+    final now = DateTime.now();
+    final start = expiry.difference(now);
 
     _controller = AnimationController(
-        vsync: this,
-        duration:
-            start < Duration.zero ? const Duration(milliseconds: 500) : start);
+        vsync: this, duration: start < Duration.zero ? stalling : start);
 
     _tween = StepTween(
-        begin: expiry.millisecondsSinceEpoch,
-        end: DateTime.now().millisecondsSinceEpoch);
+        begin: expiry.millisecondsSinceEpoch, end: now.millisecondsSinceEpoch);
 
     _animation = _tween.animate(_controller);
 
@@ -49,15 +48,17 @@ class CountdownBoxState extends State<CountdownBox>
   void didUpdateWidget(CountdownBox oldWidget) {
     if (oldWidget.expiry != widget.expiry) {
       final expiry = widget.expiry.toLocal();
-      final start = expiry.difference(DateTime.now().toUtc());
+      final now = DateTime.now();
 
-      _controller.duration =
-          start < Duration.zero ? const Duration(milliseconds: 500) : start;
+      final start = expiry.difference(now);
 
-      _animation = StepTween(
-              begin: expiry.millisecondsSinceEpoch,
-              end: DateTime.now().millisecondsSinceEpoch)
-          .animate(_controller);
+      _controller.duration = start < Duration.zero ? stalling : start;
+
+      _tween = StepTween(
+          begin: expiry.millisecondsSinceEpoch,
+          end: now.millisecondsSinceEpoch);
+
+      _animation = _tween.animate(_controller);
 
       _controller
         ..reset()
@@ -69,7 +70,7 @@ class CountdownBoxState extends State<CountdownBox>
 
   @override
   void dispose() {
-    _controller.dispose();
+    _controller?.dispose();
     super.dispose();
   }
 
@@ -100,18 +101,16 @@ class _CountDown extends AnimatedWidget {
       return Colors.red;
   }
 
-  Widget _timerVersions(Duration time) {
+  String _timerVersions(Duration time) {
     final String days = '${time.inDays}';
     final String hours = '${time.inHours % 24}';
     final String minutes = '${time.inMinutes % 60}'.padLeft(2, '0');
     final String seconds = '${time.inSeconds % 60}'.padLeft(2, '0');
 
     if (time < const Duration(days: 1))
-      return Text('$hours:$minutes:$seconds',
-          style: TextStyle(fontSize: size, color: Colors.white));
+      return '$hours:$minutes:$seconds';
     else
-      return Text('$days\d $hours:$minutes:$seconds',
-          style: TextStyle(fontSize: size, color: Colors.white));
+      return '$days\d $hours:$minutes:$seconds';
   }
 
   @override
@@ -119,6 +118,8 @@ class _CountDown extends AnimatedWidget {
     final Duration duration = expiry.difference(DateTime.now());
 
     return StaticBox(
-        color: _containerColors(duration), child: _timerVersions(duration));
+        color: _containerColors(duration),
+        child: Text(_timerVersions(duration),
+            style: TextStyle(fontSize: size, color: Colors.white)));
   }
 }

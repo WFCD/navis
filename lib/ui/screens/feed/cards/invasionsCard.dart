@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:navis/blocs/bloc.dart';
 import 'package:navis/models/export.dart';
+import 'package:navis/utils/factionutils.dart';
 
 import 'package:navis/ui/widgets/layout.dart';
 import 'package:navis/ui/widgets/styles.dart';
@@ -48,8 +49,6 @@ class _BuildInvasions extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final factionutils = BlocProvider.of<WorldstateBloc>(context).factionUtils;
-
     final double completion = invasion.completion.toDouble();
     final String defending = invasion.defendingFaction;
     final String attacking = invasion.attackingFaction;
@@ -69,14 +68,14 @@ class _BuildInvasions extends StatelessWidget {
                 invasion.attackerReward.itemString.isEmpty
                     ? Container(height: 0.0, width: 0.0)
                     : StaticBox.text(
-                        color: factionutils.factionColor(attacking),
+                        color: factionColor(attacking),
                         padding: const EdgeInsets.only(right: 4.0, top: 8.0),
                         text: invasion.attackerReward.itemString,
                       ),
                 invasion.defenderReward.itemString.isEmpty
                     ? Container(height: 0.0, width: 0.0)
                     : StaticBox.text(
-                        color: factionutils.factionColor(defending),
+                        color: factionColor(defending),
                         padding: const EdgeInsets.only(left: 4.0, top: 8.0),
                         text: invasion.defenderReward.itemString,
                       )

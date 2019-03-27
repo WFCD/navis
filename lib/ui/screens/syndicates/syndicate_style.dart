@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:navis/utils/factionutils.dart';
-import 'package:navis/blocs/bloc.dart';
 import 'package:navis/models/export.dart';
-import 'package:navis/ui/widgets/layout.dart';
-
 import 'package:navis/ui/routes/syndicates/syndicate_missions.dart';
+import 'package:navis/ui/widgets/layout.dart';
+import 'package:navis/utils/factionutils.dart';
 
 class SyndicateStyle extends StatelessWidget {
   const SyndicateStyle({this.syndicate});
@@ -16,9 +14,6 @@ class SyndicateStyle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final dynamic factionutils =
-        BlocProvider.of<WorldstateBloc>(context).factionUtils;
-
     final bool ostron = syndicate.name == 'Ostrons';
 
     return Tiles(
@@ -28,8 +23,7 @@ class SyndicateStyle extends StatelessWidget {
         splashColor: Colors.transparent,
         child: Container(
           child: Row(mainAxisSize: MainAxisSize.max, children: <Widget>[
-            Container(
-                child: factionutils.factionIcon(syndicate.name, size: 60.0)),
+            Container(child: factionIcon(syndicate.name, size: 60.0)),
             Expanded(
                 child: Column(
                     mainAxisSize: MainAxisSize.min,

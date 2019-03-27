@@ -4,16 +4,15 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:intl/intl.dart';
-import 'package:navis/utils/factionutils.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../global_keys.dart';
 import '../../services/worldstate.dart';
-import 'worldstate_events.dart';
 import 'worldstate_states.dart';
 
-class WorldstateBloc extends Bloc<StateEvent, WorldStates>
+enum UpdateEvent { update }
+
+class WorldstateBloc extends Bloc<UpdateEvent, WorldStates>
     with EquatableMixinBase, EquatableMixin {
   WorldstateBloc._({this.client});
 
@@ -31,14 +30,11 @@ class WorldstateBloc extends Bloc<StateEvent, WorldStates>
   WorldStates get initialState => WorldstateUninitialized();
 
   @override
-  Stream<WorldStates> mapEventToState(currentState, event) async* {
-    final prefs = await SharedPreferences.getInstance();
-
-    if (event is UpdateState) {
-      final state = await api.updateState(client,
-          platform: prefs.getString('platform') ?? 'pc');
-
-      yield WorldstateLoaded(worldState: state);
+  Stream<WorldStates> mapEventToState(
+      WorldStates currentState, UpdateEvent event) async* {
+    switch (event) {
+      case UpdateEvent.update:
+        yield await _reload();
     }
   }
 
@@ -55,20 +51,16 @@ class WorldstateBloc extends Bloc<StateEvent, WorldStates>
     super.dispose();
   }
 
-  Factionutils get factionUtils => Factionutils();
+  Future<WorldStates> _reload() async {
+    final prefs = await SharedPreferences.getInstance();
+    final state = await api.updateState(client,
+        platform: prefs.getString('platform') ?? 'pc');
 
-  String expiration(DateTime expiry) {
-    final DateFormat format = DateFormat.jms().add_yMd();
-
-    try {
-      return format.format(expiry.toLocal());
-    } catch (err) {
-      return 'Fetching Date';
-    }
+    return WorldstateLoaded(worldState: state);
   }
 
   Future<void> update() async {
     await Future.delayed(
-        const Duration(milliseconds: 300), () => dispatch(UpdateState()));
+        const Duration(milliseconds: 300), () => dispatch(UpdateEvent.update));
   }
 }
