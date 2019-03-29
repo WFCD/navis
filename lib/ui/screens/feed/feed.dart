@@ -4,6 +4,7 @@ import 'package:navis/blocs/bloc.dart';
 import 'cards/acolytes.dart';
 import 'cards/alerts.dart';
 import 'cards/cycle.dart';
+import 'cards/deals.dart';
 import 'cards/events.dart';
 import 'cards/fissures.dart';
 import 'cards/invasionsCard.dart';
@@ -38,6 +39,7 @@ class Feed extends StatelessWidget {
                 Fissure(),
                 const RepaintBoundary(child: InvasionCard()),
                 Trader(),
+                Deals(),
                 Sorties()
               ];
 
