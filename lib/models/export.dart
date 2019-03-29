@@ -3,6 +3,7 @@ export 'package:navis/models/worldstate/earth.dart';
 export 'package:navis/models/worldstate/event.dart';
 export 'package:navis/models/worldstate/orbvallis.dart';
 
+export 'worldstate/deals.dart';
 export 'worldstate/fissure.dart';
 export 'worldstate/invasions.dart';
 export 'worldstate/news.dart';

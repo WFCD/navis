@@ -11,6 +11,7 @@ class WorldState extends Coding {
   List<VoidFissure> voidFissures;
   List<Invasion> invasions;
   VoidTrader trader;
+  List<DarvoDeal> dailyDeals;
   List<PersistentEnemie> persistentEnemies;
   Earth earth;
   Earth cetus;
@@ -28,6 +29,7 @@ class WorldState extends Coding {
     nightwave = object.decodeObject('nightwave', () => Nightwave());
     sortie = object.decodeObject('sortie', () => Sortie());
     trader = object.decodeObject('voidTrader', () => VoidTrader());
+    dailyDeals = object.decodeObjects('dailyDeals', () => DarvoDeal());
     invasions = object.decodeObjects('invasions', () => Invasion());
     events = object.decodeObjects('events', () => Event());
     persistentEnemies =
@@ -46,6 +48,7 @@ class WorldState extends Coding {
     object.encodeObject('vallisCycle', vallis);
     object.encodeObject('sortie', sortie);
     object.encodeObject('voidTrader', trader);
+    object.encodeObjects('dailyDeals', dailyDeals);
     object.encodeObjects('invasions', invasions);
     object.encodeObjects('events', events);
     object.encodeObjects('persistentEnemies', persistentEnemies);
