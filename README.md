@@ -11,6 +11,7 @@ Cephalon Navis is an Android app inspired by [Warframe Hub](https://hub.warframe
 - Orb vallis Warm/Cold cycle
 - Ostron and Solaris United bounties with Timer
 - Void Fissures
+- Nightwaves
 - Baro Timer and Inventory
 - Display Soties and Invasions
 - Plains and Vallis maps (currently only PoE has the most available data)
@@ -19,7 +20,6 @@ Cephalon Navis is an Android app inspired by [Warframe Hub](https://hub.warframe
 
 ### Upcoming Features:
 - Notifications
-- Nightwaves (?)
 - Flash sales and Darvo deal (These two depends on who actually uses it, so if you use it let me know)
 
 
