@@ -30,8 +30,7 @@ class WorldstateBloc extends Bloc<UpdateEvent, WorldStates>
   WorldStates get initialState => WorldstateUninitialized();
 
   @override
-  Stream<WorldStates> mapEventToState(
-      WorldStates currentState, UpdateEvent event) async* {
+  Stream<WorldStates> mapEventToState(UpdateEvent event) async* {
     switch (event) {
       case UpdateEvent.update:
         yield await _reload();

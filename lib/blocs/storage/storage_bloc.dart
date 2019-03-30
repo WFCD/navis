@@ -13,8 +13,7 @@ class StorageBloc extends Bloc<ChangeEvent, StorageState>
   StorageState get initialState => AppStart();
 
   @override
-  Stream<StorageState> mapEventToState(
-      StorageState currentState, ChangeEvent event) async* {
+  Stream<StorageState> mapEventToState(ChangeEvent event) async* {
     if (event is RestoreEvent) yield await restore();
 
     if (event is ChangeDateFormat)
