@@ -18,8 +18,7 @@ class ThemeBloc extends Bloc<ThemeEvent, ThemeState>
   ThemeState get initialState => ThemeState(theme: themes.defaultTheme());
 
   @override
-  Stream<ThemeState> mapEventToState(
-      ThemeState currentState, ThemeEvent event) async* {
+  Stream<ThemeState> mapEventToState(ThemeEvent event) async* {
     if (event is ThemeStart) {
       final saved = await themes.savedTheme();
 

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:navis/blocs/bloc.dart';
-import 'package:navis/models/export.dart';
+//import 'package:navis/models/export.dart';
 import 'package:navis/ui/widgets/layout.dart';
 import 'package:navis/ui/widgets/animations.dart';
 
 class Deals extends StatelessWidget {
-  Deals({Key key}) : super(key: key);
+  const Deals({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -6,8 +6,8 @@ import 'package:navis/ui/routes/syndicates/nightwaveChallenges.dart';
 class NightWaveStyle extends StatelessWidget {
   void _navigateToChallenges(
           BuildContext context, List<Challenges> challenges) =>
-      Navigator.of(context).push(MaterialPageRoute(
-          builder: (_) => NightwaveChallenges(challenges: challenges)));
+      Navigator.of(context)
+          .push(MaterialPageRoute(builder: (_) => const NightwaveChallenges()));
 
   @override
   Widget build(BuildContext context) {
