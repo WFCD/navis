@@ -19,7 +19,7 @@ class Sorties extends StatelessWidget {
 
                 if (sortie?.variants?.isNotEmpty ?? false) {
                   final title = ListTile(
-                    leading: factionIcon(sortie.faction, size: 45),
+                    leading: FactionIcon(sortie.faction, size: 45),
                     title: Text(sortie.boss),
                     subtitle: Text(sortie.faction),
                     trailing: Container(
