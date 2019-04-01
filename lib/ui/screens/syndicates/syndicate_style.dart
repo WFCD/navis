@@ -23,7 +23,7 @@ class SyndicateStyle extends StatelessWidget {
         splashColor: Colors.transparent,
         child: Container(
           child: Row(mainAxisSize: MainAxisSize.max, children: <Widget>[
-            Container(child: factionIcon(syndicate.name, size: 60.0)),
+            Container(child: FactionIcon(syndicate.name, size: 60.0)),
             Expanded(
                 child: Column(
                     mainAxisSize: MainAxisSize.min,

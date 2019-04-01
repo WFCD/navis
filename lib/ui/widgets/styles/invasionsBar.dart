@@ -52,9 +52,9 @@ class InvasionBar extends StatelessWidget {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: <Widget>[
-                                    factionIcon(attackingFaction,
+                                    FactionIcon(attackingFaction,
                                         size: 15, hasColor: false),
-                                    factionIcon(defendingFaction,
+                                    FactionIcon(defendingFaction,
                                         size: 15, hasColor: false),
                                   ])))))
             ]));

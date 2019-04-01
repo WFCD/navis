@@ -4,6 +4,7 @@ import 'package:navis/models/export.dart';
 
 import 'package:navis/ui/widgets/layout.dart';
 import 'package:navis/ui/widgets/animations.dart';
+import 'package:navis/utils/factionutils.dart';
 
 class Fissure extends StatelessWidget {
   @override
@@ -32,7 +33,7 @@ class Fissure extends StatelessWidget {
                         .skip(3)
                         .map((f) => _BuildFissures(f))
                         .toList()),
-                condition: fissures.length < 3,
+                condition: fissures.length <= 3,
                 padding: EdgeInsets.zero,
               );
             }
@@ -48,15 +49,19 @@ class _BuildFissures extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      dense: true,
-      contentPadding: EdgeInsets.zero,
-      title: Text(
-        '${fissure.node} | ${fissure.tier}',
-        style: const TextStyle(fontSize: 15.0),
-      ),
-      subtitle: Text('Missions type: ${fissure.missionType}'),
-      trailing: CountdownBox(expiry: fissure.expiry),
-    );
+    return Row(children: <Widget>[
+      GetTierIcon(fissure.tier),
+      const SizedBox(width: 8.0),
+      Expanded(
+          child: Container(
+              padding: const EdgeInsets.only(top: 16.0, bottom: 16.0),
+              child: Text(
+                  '${fissure.node} | ${fissure.tier} | ${fissure.missionType}',
+                  style: Theme.of(context)
+                      .textTheme
+                      .subhead
+                      .copyWith(fontSize: 15)))),
+      CountdownBox(expiry: fissure.expiry)
+    ]);
   }
 }

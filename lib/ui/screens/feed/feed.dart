@@ -39,7 +39,7 @@ class Feed extends StatelessWidget {
                 Fissure(),
                 const RepaintBoundary(child: InvasionCard()),
                 Trader(),
-                Deals(),
+                const Deals(),
                 Sorties()
               ];
 
