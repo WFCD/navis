@@ -45,7 +45,7 @@ class _ExpandedInfoState extends State<ExpandedInfo> {
           return Column(children: <Widget>[
             widget.header,
             AnimatedCrossFade(
-              duration: const Duration(milliseconds: 200),
+              duration: const Duration(milliseconds: 250),
               crossFadeState: !action.data
                   ? CrossFadeState.showFirst
                   : CrossFadeState.showSecond,
