@@ -68,39 +68,57 @@ class BountyType extends StatelessWidget {
 
   final Challenges challenge;
 
-  Widget _type() {
-    final timer = CountdownBox(expiry: challenge.expiry);
-    const elite = StaticBox(child: Text('Elite Mission'), color: Colors.red);
+  Widget _type() => challenge.isDaily
+      ? CountdownBox(expiry: challenge.expiry)
+      : Container(height: 0, width: 0);
 
-    if (challenge.isDaily)
-      return timer;
-    else if (challenge.isElite)
-      return elite;
+  Color _setColor(BuildContext context) {
+    if (challenge?.isElite ?? false)
+      return Colors.red;
+    else if (challenge?.isDaily ?? false)
+      return Theme.of(context).accentColor;
     else
-      return Container(height: 0, width: 0);
+      return Colors.orange[700];
   }
 
   @override
   Widget build(BuildContext context) {
-    return Tiles(
-        child: ListTile(
-      title: Text(challenge.title),
-      subtitle: Text(challenge.desc),
-      trailing: Column(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: <Widget>[
-            StaticBox(
-                color: Theme.of(context).accentColor,
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: <Widget>[
-                    const Icon(Standing.standing, size: 13),
-                    Text('${challenge.reputation}')
-                  ],
-                )),
-            _type()
-          ]),
-    ));
+    final color = Theme.of(context).textTheme.caption.color;
+
+    return Card(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+        child: Container(
+            margin: const EdgeInsets.all(8.0),
+            child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: <Widget>[
+                  Container(
+                      child: Text(challenge.title,
+                          style: Theme.of(context).textTheme.subhead)),
+                  const SizedBox(height: 4.0),
+                  Container(
+                      child: Text(challenge.desc,
+                          style: Theme.of(context)
+                              .textTheme
+                              .body1
+                              .copyWith(fontSize: 14, color: color))),
+                  const SizedBox(height: 8.0),
+                  Row(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: <Widget>[
+                        StaticBox(
+                            color: _setColor(context),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: <Widget>[
+                                const Icon(Standing.standing, size: 15),
+                                Text('${challenge.reputation}')
+                              ],
+                            )),
+                        _type()
+                      ]),
+                ])));
   }
 }
