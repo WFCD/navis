@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:navis/blocs/bloc.dart';
-import 'package:navis/models/export.dart';
 import 'package:navis/ui/routes/syndicates/nightwaveChallenges.dart';
 
 class NightWaveStyle extends StatelessWidget {
-  void _navigateToChallenges(
-          BuildContext context, List<Challenges> challenges) =>
-      Navigator.of(context)
-          .push(MaterialPageRoute(builder: (_) => const NightwaveChallenges()));
+  void _navigateToChallenges(BuildContext context) => Navigator.of(context)
+      .push(MaterialPageRoute(builder: (_) => const NightwaveChallenges()));
 
   @override
   Widget build(BuildContext context) {
@@ -30,8 +27,7 @@ class NightWaveStyle extends StatelessWidget {
           builder: (_, state) {
             if (state is WorldstateLoaded) {
               return InkWell(
-                  onTap: () => _navigateToChallenges(
-                      context, state.worldState.nightwave.activeChallenges),
+                  onTap: () => _navigateToChallenges(context),
                   child: Container(
                       height: 40,
                       alignment: Alignment.center,

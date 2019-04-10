@@ -27,24 +27,26 @@ class Deals extends StatelessWidget {
                 const SizedBox(width: 100)
               ]);
 
-              return Table(
-                defaultVerticalAlignment: TableCellVerticalAlignment.middle,
-                defaultColumnWidth: FlexColumnWidth(),
-                children: List.unmodifiable(() sync* {
-                  yield header;
-                  yield* deals.map((d) {
-                    final remaining = d.total - d.sold;
+              return Container(
+                  margin: const EdgeInsets.all(4),
+                  child: Table(
+                    defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+                    defaultColumnWidth: FlexColumnWidth(),
+                    children: List.unmodifiable(() sync* {
+                      yield header;
+                      yield* deals.map((d) {
+                        final remaining = d.total - d.sold;
 
-                    return TableRow(children: <Widget>[
-                      Text(d.item, style: style),
-                      Text('${d.discount}%', style: style),
-                      Text('${d.salePrice}', style: style),
-                      Text('$remaining/${d.total}', style: style),
-                      CountdownBox(expiry: d.expiry),
-                    ]);
-                  });
-                }()),
-              );
+                        return TableRow(children: <Widget>[
+                          Text(d.item, style: style),
+                          Text('${d.discount}%', style: style),
+                          Text('${d.salePrice}', style: style),
+                          Text('$remaining/${d.total}', style: style),
+                          CountdownBox(expiry: d.expiry),
+                        ]);
+                      });
+                    }()),
+                  ));
             }
           },
         ));
