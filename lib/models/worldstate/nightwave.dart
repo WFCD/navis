@@ -7,8 +7,14 @@ class Nightwave extends Coding {
   bool active;
   num season, phase;
 
-  List<Challenges> possibleChallenges, activeChallenges;
+  List<Challenge> possibleChallenges, _activeChallenges;
   List<String> rewardTypes;
+
+  List<Challenge> get dailyChallenges =>
+      _activeChallenges.where((c) => c.isDaily == true).toList();
+
+  List<Challenge> get weeklyChallenges =>
+      _activeChallenges.where((c) => c.isDaily == false).toList();
 
   @override
   Map<String, cast.Cast> get castMap =>
@@ -28,10 +34,10 @@ class Nightwave extends Coding {
     phase = object.decode('phase');
 
     possibleChallenges =
-        object.decodeObjects('possibleChallenges', () => Challenges());
+        object.decodeObjects('possibleChallenges', () => Challenge());
 
-    activeChallenges =
-        object.decodeObjects('activeChallenges', () => Challenges());
+    _activeChallenges =
+        object.decodeObjects('activeChallenges', () => Challenge());
 
     rewardTypes = object.decode('rewardTypes');
   }
@@ -50,7 +56,7 @@ class Nightwave extends Coding {
   }
 }
 
-class Challenges extends Coding {
+class Challenge extends Coding {
   String id, startString, desc, title;
   DateTime activation, expiry;
   bool active, isDaily, isElite;

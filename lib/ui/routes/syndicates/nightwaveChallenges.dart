@@ -26,16 +26,13 @@ class NightwaveChallenges extends StatelessWidget {
           bloc: BlocProvider.of<WorldstateBloc>(context),
           builder: (_, state) {
             if (state is WorldstateLoaded) {
-              final List<Challenges> challenges =
-                  state.worldState.nightwave.activeChallenges;
+              final nightwave = state.worldState.nightwave;
 
-              final daily = challenges
-                  .where((c) => c.isDaily == true)
+              final daily = nightwave.dailyChallenges
                   .map((c) => BountyType(challenge: c))
                   .toList();
 
-              final weekly = challenges
-                  .where((c) => c?.isDaily == false)
+              final weekly = nightwave.weeklyChallenges
                   .map((c) => BountyType(challenge: c))
                   .toList();
 
@@ -66,7 +63,7 @@ class NightwaveChallenges extends StatelessWidget {
 class BountyType extends StatelessWidget {
   const BountyType({Key key, this.challenge}) : super(key: key);
 
-  final Challenges challenge;
+  final Challenge challenge;
 
   Widget _type() => challenge.isDaily
       ? CountdownBox(expiry: challenge.expiry)
