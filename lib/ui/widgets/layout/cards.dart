@@ -27,12 +27,11 @@ class Tiles extends StatelessWidget {
     final List<Widget> children = <Widget>[child];
 
     return Card(
-      elevation: 6,
       margin: const EdgeInsets.all(6.0),
       color: color,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
       child: Container(
-          margin: const EdgeInsets.all(4),
+          margin: const EdgeInsets.all(4.0),
           height: height,
           alignment: Alignment.center,
           child: Column(children: List.unmodifiable(() sync* {
