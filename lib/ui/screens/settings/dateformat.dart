@@ -1,6 +1,8 @@
 import 'package:navis/blocs/bloc.dart';
 import 'package:flutter/material.dart';
 
+import 'package:navis/ui/widgets/dialogs.dart';
+
 class DateformatSetting extends StatelessWidget {
   const DateformatSetting({Key key}) : super(key: key);
 
@@ -8,65 +10,27 @@ class DateformatSetting extends StatelessWidget {
     return BlocBuilder(
       bloc: storage,
       builder: (BuildContext context, StorageState storageState) {
-        return ListTile(
-            title: const Text('Change Dateformat'),
-            onTap: () => _showdialog(context, storage));
+        return;
       },
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    final storage = BlocProvider.of<StorageBloc>(context);
-
-    final title = Padding(
-        padding: const EdgeInsets.only(top: 10.0, left: 8.0),
-        child: Align(
+    return Container(
+      child: Column(children: <Widget>[
+        Container(
+            margin: const EdgeInsets.only(top: 10.0, left: 8.0),
             alignment: Alignment.centerLeft,
             child: Text('Behavior',
                 style: Theme.of(context)
                     .textTheme
                     .subtitle
-                    .copyWith(fontSize: 15))));
-
-    return Container(
-      child: Column(children: <Widget>[title, formatoption(context, storage)]),
+                    .copyWith(fontSize: 15))),
+        ListTile(
+            title: const Text('Change Dateformat'),
+            onTap: () => DateFormatPicker.selectDateformat(context))
+      ]),
     );
   }
-}
-
-Future<void> _showdialog(BuildContext context, StorageBloc storage) async {
-  return showDialog(
-    context: context,
-    builder: (_) => AlertDialog(
-          contentPadding: EdgeInsets.zero,
-          title: const Text('Select DateFormat'),
-          content: Container(
-              child: BlocBuilder(
-                  bloc: storage,
-                  builder: (_, StorageState state) {
-                    return Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: Formats.values.map((v) {
-                          final String format = v.toString().split('.').last;
-
-                          return RadioListTile(
-                              title: Text(format),
-                              value: v,
-                              groupValue: state.dateFormat,
-                              activeColor: Theme.of(context).accentColor,
-                              onChanged: (value) {
-                                storage.dispatch(ChangeDateFormat(v));
-                                Navigator.of(context).pop();
-                              });
-                        }).toList());
-                  })),
-          actions: <Widget>[
-            FlatButton(
-              child: const Text('CANCEL'),
-              onPressed: () => Navigator.of(context).pop(),
-            )
-          ],
-        ),
-  );
 }

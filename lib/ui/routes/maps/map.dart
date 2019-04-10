@@ -91,6 +91,8 @@ Widget _buildCetusMap(Stream filter, Plains plains) {
             zoom: 3,
             minZoom: 1,
             maxZoom: 2,
+            nePanBoundary: LatLng(65.0, 80.0),
+            swPanBoundary: LatLng(-65.0, -80.0),
           ),
           layers: [
             TileLayerOptions(

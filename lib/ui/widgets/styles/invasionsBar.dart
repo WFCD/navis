@@ -38,25 +38,20 @@ class InvasionBar extends StatelessWidget {
                       height: lineHeight * 2,
                       width: width,
                       padding: padding,
-                      child: RepaintBoundary(
-                          child: CustomPaint(
-                              willChange: false,
-                              isComplex: true,
-                              painter: _InvasionBar(
-                                  progress: progress,
-                                  progressColor: factionColor(attackingFaction),
-                                  backgroundColor:
-                                      factionColor(defendingFaction),
-                                  lineWidth: lineHeight),
-                              child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: <Widget>[
-                                    FactionIcon(attackingFaction,
-                                        size: 15, hasColor: false),
-                                    FactionIcon(defendingFaction,
-                                        size: 15, hasColor: false),
-                                  ])))))
+                      child: CustomPaint(
+                          painter: _InvasionBar(
+                              progress: progress,
+                              progressColor: factionColor(attackingFaction),
+                              backgroundColor: factionColor(defendingFaction),
+                              lineWidth: lineHeight),
+                          child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                FactionIcon(attackingFaction,
+                                    size: 15, hasColor: false),
+                                FactionIcon(defendingFaction,
+                                    size: 15, hasColor: false),
+                              ]))))
             ]));
   }
 }

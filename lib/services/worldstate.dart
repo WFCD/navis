@@ -6,7 +6,7 @@ import 'package:navis/models/export.dart';
 import 'package:http/http.dart' as http;
 
 class WorldstateAPI {
-  final String _baseRoute = 'https://api.warframestat.us/';
+  static const String _baseRoute = 'https://api.warframestat.us/';
 
   Future<WorldState> updateState(http.Client client, {String platform}) async {
     final response = await client.get(_baseRoute + platform);

@@ -65,7 +65,7 @@ class _HomeScreenState extends State<HomeScreen> {
           callback: () => _setBody(3)),
       /*DrawerItem(
           icon: const Icon(PriceTag.tag),
-          title: 'Flash Sales',
+          title: 'Riven Market',
           callback: () => _setBody(4))*/
     ];
 
