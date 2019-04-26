@@ -52,8 +52,7 @@ class WorldstateBloc extends Bloc<UpdateEvent, WorldStates>
 
   Future<WorldStates> _reload() async {
     final prefs = await SharedPreferences.getInstance();
-    final state =
-        await api.updateState(client, prefs.getString('platform') ?? 'pc');
+    final state = await api.updateState(client, prefs.getString('platform'));
 
     return WorldstateLoaded(worldState: state);
   }
