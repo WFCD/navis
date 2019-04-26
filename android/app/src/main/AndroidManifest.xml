@@ -10,7 +10,7 @@
     <application
         tools:replace="android:label"
         android:name="io.flutter.app.FlutterApplication"
-        android:icon="@mipmap/ic_launcher"
+        android:icon='@mipmap/ic_launcher'
         android:label="Navis">
         <activity
             android:name=".MainActivity"
@@ -28,12 +28,6 @@
             </intent-filter>
         </activity>
 
-        <receiver android:name="com.dexterous.flutterlocalnotifications.ScheduledNotificationReceiver" />
-        <receiver android:name="com.dexterous.flutterlocalnotifications.ScheduledNotificationBootReceiver">
-            <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED" />
-            </intent-filter>
-        </receiver>
         <service
             android:exported="false"
             android:name="io.gjg.androidjobscheduler.AndroidJobScheduler"
