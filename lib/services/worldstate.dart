@@ -8,7 +8,10 @@ import 'package:http/http.dart' as http;
 class WorldstateAPI {
   static const String _baseRoute = 'https://api.warframestat.us/';
 
-  Future<WorldState> updateState(http.Client client, {String platform}) async {
+  Future<WorldState> updateState([http.Client client, String platform]) async {
+    client ??= http.Client();
+    platform ??= 'pc';
+
     final response = await client.get(_baseRoute + platform);
 
     if (response.statusCode != 200) throw Exception('error loading state');
