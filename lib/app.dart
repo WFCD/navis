@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/blocs/bloc.dart';
 import 'package:navis/ui/screens/home.dart';
 import 'package:navis/ui/screens/settings/settings.dart';
+//import 'package:firebase_messaging/firebase_messaging.dart';
 
 class Navis extends StatefulWidget {
   @override
@@ -11,7 +12,7 @@ class Navis extends StatefulWidget {
 }
 
 class NavisState extends State<Navis> {
-  //final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
+  //final _messaging = FirebaseMessaging();
   final _theme = ThemeBloc();
   final _storage = StorageBloc();
   final _worldstate = WorldstateBloc.initialize();
@@ -24,8 +25,7 @@ class NavisState extends State<Navis> {
     _worldstate.dispatch(UpdateEvent.update);
 
     _init();
-
-    // _firebaseMessaging.configure();
+    //_messaging.configure();
   }
 
   Future<void> _init() async {
@@ -34,7 +34,8 @@ class NavisState extends State<Navis> {
             startOnBoot: true,
             stopOnTerminate: false,
             enableHeadless: true), () {
-      _worldstate.update();
+      //ignore: avoid_as
+
       BackgroundFetch.finish();
     });
   }
@@ -62,7 +63,7 @@ class NavisState extends State<Navis> {
                       title: 'Navis',
                       color: Colors.grey[900],
                       theme: themeState.theme,
-                      home: const HomeScreen(),
+                      home: HomeScreen(),
                       routes: <String, WidgetBuilder>{
                         '/Settings': (_) => const Settings()
                       },
