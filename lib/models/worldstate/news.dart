@@ -1,6 +1,7 @@
 import 'package:codable/codable.dart';
 
 class OrbiterNews extends Coding {
+  String id;
   String message, link, imageLink;
   DateTime date;
   bool priority, update, primeAccess, stream;
@@ -11,6 +12,7 @@ class OrbiterNews extends Coding {
   void decode(KeyedArchive object) {
     super.decode(object);
 
+    id = object.decode('id');
     message = object.decode('message');
     link = object.decode('link');
     imageLink = object.decode('imageLink');
@@ -24,6 +26,7 @@ class OrbiterNews extends Coding {
 
   @override
   void encode(KeyedArchive object) {
+    object.encode('id', id);
     object.encode('message', message);
     object.encode('link', link);
     object.encode('imageLink', imageLink);

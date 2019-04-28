@@ -1,6 +1,7 @@
 import 'package:codable/codable.dart';
 
 class VoidFissure extends Coding {
+  String id;
   String node, missionType, enemy, tier, eta;
   DateTime expiry;
   int tierNum;
@@ -10,6 +11,7 @@ class VoidFissure extends Coding {
   void decode(KeyedArchive object) {
     super.decode(object);
 
+    id = object.decode('id');
     node = object.decode('node');
     missionType = object.decode('missionType');
     enemy = object.decode('enemy');
@@ -23,6 +25,7 @@ class VoidFissure extends Coding {
 
   @override
   void encode(KeyedArchive object) {
+    object.encode('id', id);
     object.encode('node', node);
     object.encode('missionType', missionType);
     object.encode('enemy', enemy);

@@ -1,12 +1,15 @@
 import 'package:codable/codable.dart';
 
 class Vallis extends Coding {
+  String id;
   DateTime expiry;
   bool isWarm;
 
   @override
   void decode(KeyedArchive object) {
     super.decode(object);
+
+    id = object.decode('id');
     isWarm = object.decode('isWarm');
     expiry = DateTime.parse(object.decode('expiry'));
 

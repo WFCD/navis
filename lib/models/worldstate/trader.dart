@@ -1,7 +1,7 @@
 import 'package:codable/codable.dart';
 
 class VoidTrader extends Coding {
-  String character, location;
+  String id, character, location;
   DateTime activation, expiry;
   bool active;
 
@@ -11,6 +11,7 @@ class VoidTrader extends Coding {
   void decode(KeyedArchive object) {
     super.decode(object);
 
+    id = object.decode('id');
     activation = DateTime.parse(object.decode('activation'));
     expiry = DateTime.parse(object.decode('expiry')).toLocal();
     character = object.decode('character');
@@ -21,6 +22,7 @@ class VoidTrader extends Coding {
 
   @override
   void encode(KeyedArchive object) {
+    object.encode('id', id);
     object.encode('activation', activation);
     object.encode('expiry', expiry);
     object.encode('character', character);
