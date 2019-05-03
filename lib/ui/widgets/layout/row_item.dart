@@ -32,13 +32,13 @@ class RowItem extends StatelessWidget {
 
     final List<Widget> children = [Text(text, style: style)];
 
-    final _text = Container(child: Row(children: List.unmodifiable(() sync* {
-      if (icons.isNotEmpty) {
-        yield icons.map((i) =>
-            Padding(padding: const EdgeInsets.only(right: 4.0), child: i));
-      }
-      yield* children;
-    }())));
+    final _text = Container(
+        child: Row(children: <Widget>[
+      if (icons.isNotEmpty)
+        ...icons.map((i) =>
+            Padding(padding: const EdgeInsets.only(right: 4.0), child: i)),
+      ...children
+    ]));
 
     return Container(
         child: Row(

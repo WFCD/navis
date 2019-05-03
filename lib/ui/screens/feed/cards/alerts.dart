@@ -49,10 +49,8 @@ class _BuildAlerts extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<Widget> icons = [];
-
-    _addIcons(alert.mission.archwingRequired, _archwingIcon, icons);
-    _addIcons(alert.mission.nightmare, _nightmareIcon, icons);
+    final archwing = alert.mission.archwingRequired;
+    final nightmare = alert.mission.nightmare;
 
     return Container(
       padding: const EdgeInsets.only(bottom: 8.0, top: 5.0),
@@ -60,7 +58,10 @@ class _BuildAlerts extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             RowItem(
-              icons: icons,
+              icons: <Widget>[
+                if (archwing) _archwingIcon,
+                if (nightmare) _nightmareIcon
+              ],
               text: alert.mission.node,
               child: alert.mission.reward.itemString.isEmpty
                   ? Container()
