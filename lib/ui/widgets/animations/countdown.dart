@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/blocs/bloc.dart';
+//import 'package:navis/utils/notifications.dart';
 
 import '../layout/static_box.dart';
 
@@ -25,6 +26,9 @@ class CountdownBoxState extends State<CountdownBox>
   @override
   void initState() {
     super.initState();
+    //final notify = Notifications();
+    final bloc = BlocProvider.of<WorldstateBloc>(context);
+
     final expiry = widget.expiry.toLocal();
     final now = DateTime.now();
     final start = expiry.difference(now);
@@ -39,9 +43,12 @@ class CountdownBoxState extends State<CountdownBox>
 
     _controller.forward(from: 0.0);
 
-    _animation.addStatusListener((status) => status == AnimationStatus.completed
-        ? BlocProvider.of<WorldstateBloc>(context).update()
-        : null);
+    _animation.addStatusListener((status) {
+      if (status == AnimationStatus.completed ||
+          status == AnimationStatus.dismissed) {
+        bloc.update();
+      }
+    });
   }
 
   @override

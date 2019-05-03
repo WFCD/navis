@@ -1,6 +1,7 @@
 import 'package:codable/codable.dart';
 
 class PersistentEnemie extends Coding {
+  String id;
   String agentType, locationTag, lastDiscoveredAt;
   DateTime lastDiscoveredTime;
   int fleeDamage, region, rank;
@@ -11,6 +12,7 @@ class PersistentEnemie extends Coding {
   void decode(KeyedArchive object) {
     super.decode(object);
 
+    id = object.decode('id');
     agentType = object.decode('agentType');
     locationTag = object.decode('locationTag');
     lastDiscoveredTime = DateTime.parse(object.decode('lastDiscoveredTime'));
@@ -26,6 +28,7 @@ class PersistentEnemie extends Coding {
 
   @override
   void encode(KeyedArchive object) {
+    object.encode('id', id);
     object.encode('agentType', agentType);
     object.encode('locationTag', locationTag);
     object.encode('lastDiscoveredTime', lastDiscoveredTime);

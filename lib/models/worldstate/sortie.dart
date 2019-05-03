@@ -1,6 +1,7 @@
 import 'package:codable/codable.dart';
 
 class Sortie extends Coding {
+  String id;
   DateTime expiry;
   List<Variants> variants;
   String boss, faction;
@@ -9,6 +10,7 @@ class Sortie extends Coding {
   void decode(KeyedArchive object) {
     super.decode(object);
 
+    id = object.decode('id');
     expiry = DateTime.parse(object.decode('expiry'));
     variants = object.decodeObjects('variants', () => Variants());
     boss = object.decode('boss');
@@ -17,6 +19,7 @@ class Sortie extends Coding {
 
   @override
   void encode(KeyedArchive object) {
+    object.encode('id', id);
     object.encode('expiry', expiry);
     object.encodeObjects('variants', variants);
     object.encode('boss', boss);

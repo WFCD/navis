@@ -1,7 +1,7 @@
 import 'package:codable/codable.dart';
 
 class Syndicate extends Coding {
-  String name;
+  String id, name;
   DateTime expiry, activation;
   bool active;
   List<Jobs> jobs;
@@ -10,6 +10,7 @@ class Syndicate extends Coding {
   void decode(KeyedArchive object) {
     super.decode(object);
 
+    id = object.decode('id');
     name = object.decode('syndicate');
     activation = DateTime.parse(object.decode('activation'));
 
@@ -24,6 +25,7 @@ class Syndicate extends Coding {
 
   @override
   void encode(KeyedArchive object) {
+    object.encode('id', id);
     object.encode('syndicate', name);
     object.encode('activation', activation);
     object.encode('expiry', expiry);

@@ -1,6 +1,7 @@
 import 'package:codable/codable.dart';
 
 class Earth extends Coding {
+  String id;
   DateTime expiry;
   bool isDay, isCetus;
 
@@ -8,6 +9,7 @@ class Earth extends Coding {
   void decode(KeyedArchive object) {
     super.decode(object);
 
+    id = object.decode('id');
     isDay = object.decode('isDay');
     isCetus = object.decode('isCetus') ?? false;
     expiry = DateTime.parse(object.decode('expiry'));
@@ -28,6 +30,7 @@ class Earth extends Coding {
 
   @override
   void encode(KeyedArchive object) {
+    object.encode('id', id);
     object.encode('expiry', expiry);
     object.encode('isCetus', isCetus);
     object.encode('isDay', isDay);

@@ -3,6 +3,7 @@ import 'package:codable/codable.dart';
 import 'syndicate.dart';
 
 class Event extends Coding {
+  String id;
   DateTime expiry;
   String faction,
       description,
@@ -18,6 +19,7 @@ class Event extends Coding {
   void decode(KeyedArchive object) {
     super.decode(object);
 
+    id = object.decode('id');
     expiry = DateTime.parse(object.decode('expiry'));
     faction = object.decode('faction');
     description = object.decode('description');
@@ -32,6 +34,7 @@ class Event extends Coding {
 
   @override
   void encode(KeyedArchive object) {
+    object.encode('id', id);
     object.encode('expiry', expiry);
     object.encode('faction', faction);
     object.encode('description', description);
