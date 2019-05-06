@@ -62,12 +62,15 @@ android {
 
     buildTypes {
         release {
+
             ndk {
                 abiFilters 'armeabi-v7a', 'x86' ,'arm64-v8a'
             }
-            
-            signingConfig signingConfigs.release 
+            signingConfig signingConfigs.release
         }
+    }
+    compileOptions {
+        sourceCompatibility = kotlin_version
     }
 }
 
@@ -77,9 +80,9 @@ flutter {
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test:runner:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
+    testImplementation 'junit:junit:4.13-beta-2'
+    androidTestImplementation 'androidx.test:runner:1.2.0-alpha05'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0-alpha05'
 }
 
 apply plugin: 'io.fabric'
