@@ -1,8 +1,8 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/widgets.dart';
-import 'package:navis/ui/screens/news/news.dart';
-import 'package:navis/ui/screens/feed/feed.dart';
-import 'package:navis/ui/screens/syndicates/syndicates.dart';
+import 'package:navis/screens/feed/feed.dart';
+import 'package:navis/screens/news/news.dart';
+import 'package:navis/screens/syndicates/syndicates.dart';
 
 enum RouteEvent { news, timers, syndicates }
 
