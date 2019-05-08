@@ -10,7 +10,7 @@ class Tiles extends StatelessWidget {
 
   Widget _buildTitle(BuildContext context, String text) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 8),
+      padding: const EdgeInsets.only(bottom: 8, top: 4),
       child: Text(
         title,
         textAlign: TextAlign.center,
@@ -24,20 +24,19 @@ class Tiles extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<Widget> children = <Widget>[child];
-
     return Card(
-      margin: const EdgeInsets.all(6.0),
+      margin: const EdgeInsets.fromLTRB(6, 8, 6, 8),
       color: color,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
       child: Container(
-          margin: const EdgeInsets.all(4.0),
+          margin: const EdgeInsets.fromLTRB(4, 6, 4, 6),
+          padding: const EdgeInsets.all(2),
           height: height,
           alignment: Alignment.center,
-          child: Column(children: List.unmodifiable(() sync* {
-            if (title != null) yield _buildTitle(context, title);
-            yield* children;
-          }()))),
+          child: Column(children: <Widget>[
+            if (title != null) _buildTitle(context, title),
+            child
+          ])),
     );
   }
 }
