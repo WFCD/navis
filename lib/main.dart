@@ -1,6 +1,10 @@
+import 'package:background_fetch/background_fetch.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:navis/blocs/bloc.dart';
+import 'package:navis/services/notification_service.dart';
+import 'package:navis/services/worldstate.dart';
 
 import 'app.dart';
 
@@ -19,5 +23,14 @@ void main() {
     }
   };
 
-  runApp(Navis());
+  runApp(BlocProvider(bloc: NavigationBloc(), child: const Navis()));
+
+  BackgroundFetch.registerHeadlessTask(callNotification);
+}
+
+Future<void> callNotification() async {
+  final worldstate = WorldstateAPI();
+
+  callNotifications(await worldstate.updateState());
+  BackgroundFetch.finish();
 }
