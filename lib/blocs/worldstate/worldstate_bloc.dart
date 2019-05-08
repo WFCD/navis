@@ -4,6 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:navis/services/notification_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../global_keys.dart';
@@ -25,15 +26,20 @@ class WorldstateBloc extends Bloc<UpdateEvent, WorldStates>
   final http.Client client;
 
   WorldstateAPI api = WorldstateAPI();
+  NotificationService notification = NotificationService();
 
   @override
   WorldStates get initialState => WorldstateUninitialized();
 
   @override
   Stream<WorldStates> mapEventToState(UpdateEvent event) async* {
-    switch (event) {
-      case UpdateEvent.update:
-        yield await _reload();
+    if (event == UpdateEvent.update) {
+      final prefs = await SharedPreferences.getInstance();
+      final state = await api.updateState(client, prefs.getString('platform'));
+
+      await callNotifications(state);
+
+      yield WorldstateLoaded(state);
     }
   }
 
@@ -41,20 +47,12 @@ class WorldstateBloc extends Bloc<UpdateEvent, WorldStates>
   void onError(Object error, StackTrace stacktrace) {
     scaffold.currentState.showSnackBar(const SnackBar(
         content: Text('Error updating worldstate try again later')));
-    //print(error.toString());
   }
 
   @override
   void dispose() {
-    client.close();
+    client?.close();
     super.dispose();
-  }
-
-  Future<WorldStates> _reload() async {
-    final prefs = await SharedPreferences.getInstance();
-    final state = await api.updateState(client, prefs.getString('platform'));
-
-    return WorldstateLoaded(worldState: state);
   }
 
   Future<void> update() async {

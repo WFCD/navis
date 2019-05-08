@@ -5,7 +5,6 @@ import 'package:equatable/equatable.dart';
 
 import 'storage_events.dart';
 import 'storage_states.dart';
-import 'storage_utils.dart';
 
 class StorageBloc extends Bloc<ChangeEvent, StorageState>
     with EquatableMixinBase, EquatableMixin {
@@ -14,20 +13,36 @@ class StorageBloc extends Bloc<ChangeEvent, StorageState>
 
   @override
   Stream<StorageState> mapEventToState(ChangeEvent event) async* {
-    if (event is RestoreEvent) yield await restore();
+    final state = MainStorageState();
 
-    if (event is ChangeDateFormat)
-      yield await saveDateFormat(currentState, event.dateformat);
+    if (event is RestoreEvent) {
+      await state.getPreferences();
+      yield state;
+    }
 
-    if (event is ChangePlatformEvent)
-      yield await savePlatform(currentState, event.platform);
+    if (event is ChangeDateFormat) {
+      state.saveDateFormat(event.dateformat);
+      await state.getPreferences();
+      yield state;
+    }
+
+    if (event is ChangePlatformEvent) {
+      state.savePlatform(event.platform);
+      await state.getPreferences();
+      yield state;
+    }
+
+    if (event is ToggleNotification) {
+      // need to populate missions and acolytes list with empty list on first install
+      await state.getPreferences();
+
+      if (event.option != null)
+        state.toggleOption(event.key, event.value, event.option);
+      else
+        state.toggleOption(event.key, event.value);
+
+      await state.getPreferences();
+      yield state;
+    }
   }
-
-  void onPressedPlatform(Platforms plat) {
-    final platform = plat.toString().split('.').last;
-    dispatch(ChangePlatformEvent(platform));
-  }
-
-  void onPressedDateFormat(Formats format) =>
-      dispatch(ChangeDateFormat(format));
 }

@@ -4,6 +4,11 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 final service = NotificationService();
 
+Future<void> callNotifications(WorldState state) async {
+  await service.cetusNotification(state.cetus);
+  await service.vallisNotification(state.vallis);
+}
+
 class NotificationService {
   NotificationService() {
     plugin.initialize(_initializationSettings);
@@ -16,11 +21,6 @@ class NotificationService {
   static const _initializationSettingsIOS = IOSInitializationSettings();
   static const _initializationSettings = InitializationSettings(
       _initializationSettingsAndroid, _initializationSettingsIOS);
-
-  Future<void> callNotifications(WorldState state) async {
-    await cetusNotification(state.cetus);
-    await vallisNotification(state.vallis);
-  }
 
   Future<void> cetusNotification(Earth cetus) async {
     final pref = await SharedPreferences.getInstance();
