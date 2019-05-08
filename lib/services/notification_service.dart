@@ -7,6 +7,7 @@ final service = NotificationService();
 Future<void> callNotifications(WorldState state) async {
   await service.cetusNotification(state.cetus);
   await service.vallisNotification(state.vallis);
+  await service.sortieNotification(state.sortie);
 }
 
 class NotificationService {
@@ -28,11 +29,11 @@ class NotificationService {
     const channel = ChannelDetails(
         'cetus', 'Cetus cycle', 'Notifications for both Day and night');
 
-    final cetusId = pref.getStringList('cetusIds') ?? <String>[];
+    final cetusIds = pref.getStringList('cetusIds') ?? <String>[];
 
     final id = DateTime.now().millisecond;
 
-    if (!cetusId.contains(cetus.id)) {
+    if (!cetusIds.contains(cetus.id)) {
       if (cetus.isDay) {
         if (pref.getBool('day') ?? false) {
           final day =
@@ -49,8 +50,7 @@ class NotificationService {
         }
       }
 
-      cetusId.add(cetus.id);
-      await pref.setStringList('cetusIds', cetusId);
+      await _idHandler('cetusIds', cetus.id, cetusIds);
     }
   }
 
@@ -60,11 +60,11 @@ class NotificationService {
     const channel = ChannelDetails('vallis', 'Orb Vallis Cycle',
         'Notifications for both cold and warm cycles');
 
-    final vallisId = pref.getStringList('vallisIds') ?? <String>[];
+    final vallisIds = pref.getStringList('vallisIds') ?? <String>[];
 
     final id = DateTime.now().millisecond;
 
-    if (!vallisId.contains(vallis.id)) {
+    if (!vallisIds.contains(vallis.id)) {
       if (vallis.isWarm) {
         if (pref.getBool('warm') ?? false) {
           final warm =
@@ -81,10 +81,26 @@ class NotificationService {
         }
       }
 
-      if (vallisId.length > 10) vallisId.removeRange(0, 8);
+      await _idHandler('vallisIds', vallis.id, vallisIds);
+    }
+  }
 
-      vallisId.add(vallis.id);
-      await pref.setStringList('vallisIds', vallisId);
+  Future<void> sortieNotification(Sortie sortie) async {
+    final pref = await SharedPreferences.getInstance();
+
+    const channel = ChannelDetails('sortie', 'Sorties', '');
+
+    final sortieIds = pref.getStringList('sortieIds') ?? <String>[];
+    final id = DateTime.now().millisecond;
+
+    if (!sortieIds.contains(sortie.id)) {
+      if (pref.getBool('sorties') ?? false) {
+        final sortie = Details(id, 'Sortie', 'A new Sortie is available');
+
+        await _buildNotification(channel, sortie);
+      }
+
+      await _idHandler('sortieIds', sortie.id, sortieIds);
     }
   }
 
@@ -101,6 +117,15 @@ class NotificationService {
 
     await plugin.show(
         details.id, details.title, details.body, platformChannelSpecifics);
+  }
+
+  Future<void> _idHandler(String key, String id, List<String> idList) async {
+    final pref = await SharedPreferences.getInstance();
+
+    if (idList.length > 10) idList.removeRange(0, 8);
+
+    idList.add(id);
+    await pref.setStringList(key, idList);
   }
 }
 

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/blocs/bloc.dart';
+import 'package:navis/services/notification_service.dart';
 
 import '../layout/static_box.dart';
 
@@ -44,6 +45,8 @@ class CountdownBoxState extends State<CountdownBox>
       if (status == AnimationStatus.completed ||
           status == AnimationStatus.dismissed) {
         await BlocProvider.of<WorldstateBloc>(context).update();
+        await callNotifications(
+            BlocProvider.of<WorldstateBloc>(context).currentState.worldState);
       }
     });
   }
