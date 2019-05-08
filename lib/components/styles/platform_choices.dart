@@ -2,6 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:navis/blocs/bloc.dart';
 
+const pc = 'PC';
+const ps4 = 'Sony PlayStation 4';
+const xb1 = 'Microsoft Xbox One';
+const swi = 'Nintendo Switch';
+
 class PlatformChoice extends StatefulWidget {
   const PlatformChoice({Key key}) : super(key: key);
 
@@ -36,6 +41,7 @@ class PlatformChoiceState extends State<PlatformChoice> {
                   children: <Widget>[
                     Container(
                         child: IconButton(
+                      tooltip: pc,
                       icon: SvgPicture.asset(
                         'assets/platforms/pc.svg',
                         color: storageState.platform == Platforms.pc
@@ -43,11 +49,13 @@ class PlatformChoiceState extends State<PlatformChoice> {
                             : Theme.of(context).disabledColor,
                         height: 25,
                         width: 25,
+                        semanticsLabel: 'PC',
                       ),
                       onPressed: () => onPressed(Platforms.pc),
                     )),
                     Container(
                         child: IconButton(
+                            tooltip: ps4,
                             icon: SvgPicture.asset(
                               'assets/platforms/ps4.svg',
                               color: storageState.platform == Platforms.ps4
@@ -55,10 +63,12 @@ class PlatformChoiceState extends State<PlatformChoice> {
                                   : Theme.of(context).disabledColor,
                               height: 25,
                               width: 25,
+                              semanticsLabel: 'Sony PlayStation 4',
                             ),
                             onPressed: () => onPressed(Platforms.ps4))),
                     Container(
                         child: IconButton(
+                            tooltip: xb1,
                             icon: SvgPicture.asset(
                               'assets/platforms/xbox1.svg',
                               color: storageState.platform == Platforms.xb1
@@ -66,10 +76,12 @@ class PlatformChoiceState extends State<PlatformChoice> {
                                   : Theme.of(context).disabledColor,
                               height: 25,
                               width: 25,
+                              semanticsLabel: 'Microsoft Xbox One',
                             ),
                             onPressed: () => onPressed(Platforms.xb1))),
                     Container(
                         child: IconButton(
+                            tooltip: swi,
                             icon: SvgPicture.asset(
                               'assets/platforms/switch.svg',
                               color: storageState.platform == Platforms.swi
@@ -77,6 +89,7 @@ class PlatformChoiceState extends State<PlatformChoice> {
                                   : Theme.of(context).disabledColor,
                               height: 50,
                               width: 50,
+                              semanticsLabel: 'Nintendo Switch',
                             ),
                             onPressed: () => onPressed(Platforms.swi)))
                   ],

@@ -5,8 +5,8 @@ import 'package:latlong/latlong.dart';
 import 'package:navis/components/dialogs.dart';
 import 'package:navis/services/streamable.dart';
 
-import 'coordinates.dart';
 import 'map_base.dart';
+import 'plains_coordinates.dart';
 
 class Plains extends Mapbase {
   Plains({@required context}) {
@@ -46,7 +46,7 @@ class Plains extends Mapbase {
                 _context, o[3], await straeamble.fishVideos(o[4])),
             child: Container(
                 child: Image.network(
-                    'https://hub.warframestat.us/img/map_icons/oddity.png'))));
+                    'https://raw.githubusercontent.com/WFCD/warframe-hub/dev/src/assets/img/map_icons/lorefish.png'))));
   }).toList();
 
   final List<Marker> _lures = lure.map((a) {
@@ -56,7 +56,7 @@ class Plains extends Mapbase {
         point: LatLng(a[1], a[2]),
         builder: (_) => Container(
               child: Image.network(
-                  'https://hub.warframestat.us/img/map_icons/lure.png'),
+                  'https://raw.githubusercontent.com/WFCD/warframe-hub/dev/src/assets/img/map_icons/lure.png'),
             ));
   }).toList();
 
@@ -67,7 +67,7 @@ class Plains extends Mapbase {
         point: LatLng(f[1], f[2]),
         builder: (_) => Container(
             child: Image.network(
-                'https://hub.warframestat.us/img/map_icons/fish.png')));
+                'https://raw.githubusercontent.com/WFCD/warframe-hub/dev/src/assets/img/map_icons/fish-recommend.png')));
   }).toList();
 
   final List<Marker> _caves = cave.map((c) {
@@ -77,7 +77,7 @@ class Plains extends Mapbase {
         point: LatLng(c[1], c[2]),
         builder: (_) => Container(
             child: Image.network(
-                'https://hub.warframestat.us/img/map_icons/caves.png')));
+                'https://raw.githubusercontent.com/WFCD/warframe-hub/dev/src/assets/img/map_icons/lure.png')));
   }).toList();
 
   final List<Marker> _grineerBase = grineer.map((g) {

@@ -98,9 +98,10 @@ Widget _buildCetusMap(Stream filter, Plains plains) {
             TileLayerOptions(
               maxZoom: 2,
               keepBuffer: 15,
+              fromAssets: true,
+              offlineMode: true,
               backgroundColor: const Color.fromRGBO(63, 92, 98, 1),
-              urlTemplate:
-                  'https://raw.githubusercontent.com/SlayerOrnstein/navis/master/assets/plains/{z}/tile_{x}_{y}.png',
+              urlTemplate: 'assets/plains/{z}/tile_{x}_{y}.webp',
             ),
             MarkerLayerOptions(markers: snapshot.data)
           ],
@@ -120,9 +121,10 @@ Widget _buildVallisMap(List<Marker> markers) {
       TileLayerOptions(
         maxZoom: 4,
         keepBuffer: 15,
+        offlineMode: true,
+        fromAssets: true,
         backgroundColor: const Color.fromRGBO(221, 231, 240, 1),
-        urlTemplate:
-            'https://raw.githubusercontent.com/SlayerOrnstein/navis/master/assets/vallis/{z}/tile_{x}_{y}.png',
+        urlTemplate: 'assets/vallis/{z}/tile_{x}_{y}.webp',
       ),
       MarkerLayerOptions(markers: markers)
     ],
