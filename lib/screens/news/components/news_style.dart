@@ -1,5 +1,5 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_advanced_networkimage/provider.dart';
 import 'package:flutter_custom_tabs/flutter_custom_tabs.dart';
 import 'package:navis/global_keys.dart';
 import 'package:navis/models/export.dart';
@@ -46,30 +46,37 @@ class NewsCard extends StatelessWidget {
     return Card(
         child: InkWell(
       onTap: () => _launchLink(news.link, context),
-      child: Container(
-        constraints: const BoxConstraints.expand(height: 200.0),
-        alignment: Alignment.bottomCenter,
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(4.0),
-            image: DecorationImage(
-                image: AdvancedNetworkImage(news.imageLink,
-                    fallbackAssetImage: 'assets/general/404.webp',
-                    retryLimit: 3),
-                fit: BoxFit.cover)),
-        child: Container(
-            height: 40,
-            alignment: Alignment.center,
-            decoration:
-                const BoxDecoration(color: Color.fromRGBO(34, 34, 34, .4)),
-            child: Text(
-              '[${_timestamp(news.date)} ago] ${news.translations.en}',
-              textAlign: TextAlign.center,
-              style: Theme.of(context)
-                  .textTheme
-                  .title
-                  .copyWith(color: Colors.white, fontSize: 15),
-            )),
-      ),
+      child: Stack(children: <Widget>[
+        CachedNetworkImage(
+          imageUrl: news.imageLink,
+          errorWidget: (context, url, error) =>
+              Image.asset('assets/general/404.webp'),
+          imageBuilder: (context, provider) {
+            return Container(
+              constraints: const BoxConstraints.expand(height: 200.0),
+              alignment: Alignment.center,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(4.0),
+                  image: DecorationImage(image: provider, fit: BoxFit.cover)),
+            );
+          },
+        ),
+        Align(
+            alignment: Alignment.bottomCenter,
+            child: Container(
+                height: 40,
+                alignment: Alignment.center,
+                decoration:
+                    const BoxDecoration(color: Color.fromRGBO(34, 34, 34, .4)),
+                child: Text(
+                  '[${_timestamp(news.date)} ago] ${news.translations.en}',
+                  textAlign: TextAlign.center,
+                  style: Theme.of(context)
+                      .textTheme
+                      .title
+                      .copyWith(color: Colors.white, fontSize: 15),
+                ))),
+      ]),
     ));
   }
 }
