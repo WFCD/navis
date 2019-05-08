@@ -1,63 +1,85 @@
+import 'dart:async';
+
 import 'package:background_fetch/background_fetch.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/blocs/bloc.dart';
-import 'package:navis/ui/screens/home.dart';
-import 'package:navis/ui/screens/settings/settings.dart';
-//import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:navis/screens/home.dart';
+import 'package:navis/screens/settings/settings.dart';
+import 'package:navis/services/notification_service.dart';
+import 'package:navis/services/worldstate.dart';
 
 class Navis extends StatefulWidget {
+  const Navis();
+
   @override
   NavisState createState() => NavisState();
 }
 
-class NavisState extends State<Navis> {
-  //final _messaging = FirebaseMessaging();
-  final _theme = ThemeBloc();
-  final _storage = StorageBloc();
-  final _worldstate = WorldstateBloc.initialize();
+class NavisState extends State<Navis> with WidgetsBindingObserver {
+  final _messaging = FirebaseMessaging();
+
+  final theme = ThemeBloc();
+  final storage = StorageBloc();
+  final worldstate = WorldstateBloc.initialize();
 
   @override
   void initState() {
     super.initState();
-    _theme.dispatch(ThemeStart());
-    _storage.dispatch(RestoreEvent());
-    _worldstate.dispatch(UpdateEvent.update);
+    WidgetsBinding.instance.addObserver(this);
 
     _init();
-    //_messaging.configure();
+    _messaging.configure();
+
+    Timer.periodic(const Duration(minutes: 7),
+        (t) => worldstate.dispatch(UpdateEvent.update));
   }
 
   Future<void> _init() async {
+    theme.dispatch(ThemeStart());
+    storage.dispatch(RestoreEvent());
+    worldstate.dispatch(UpdateEvent.update);
+
     BackgroundFetch.configure(
         BackgroundFetchConfig(
+            minimumFetchInterval: 15,
             startOnBoot: true,
             stopOnTerminate: false,
-            enableHeadless: true), () {
-      //ignore: avoid_as
+            enableHeadless: true),
+        () => backgroundTask());
+  }
 
-      BackgroundFetch.finish();
-    });
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.resumed) {
+      theme.dispatch(ThemeStart());
+      storage.dispatch(RestoreEvent());
+      worldstate.dispatch(UpdateEvent.update);
+    }
+
+    super.didChangeAppLifecycleState(state);
   }
 
   @override
   void dispose() {
-    _theme.dispose();
-    _storage.dispose();
-    _worldstate.dispose();
+    theme.dispose();
+    storage.dispose();
+    worldstate.dispose();
+    WidgetsBinding.instance.removeObserver(this);
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider<ThemeBloc>(
-        bloc: _theme,
+        bloc: theme,
         child: BlocProvider<StorageBloc>(
-            bloc: _storage,
+            bloc: storage,
             child: BlocProvider<WorldstateBloc>(
-              bloc: _worldstate,
+              bloc: worldstate,
               child: BlocBuilder(
-                  bloc: _theme,
+                  bloc: theme,
                   builder: (_, ThemeState themeState) {
                     return MaterialApp(
                       title: 'Navis',
@@ -71,4 +93,11 @@ class NavisState extends State<Navis> {
                   }),
             )));
   }
+}
+
+Future<void> backgroundTask() async {
+  final worldstate = WorldstateAPI();
+
+  callNotifications(await worldstate.updateState());
+  BackgroundFetch.finish();
 }
