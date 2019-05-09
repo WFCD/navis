@@ -48,28 +48,27 @@ class GetTierIcon extends StatelessWidget {
 
   final String tier;
 
-  static const double _size = 25.0;
+  static const double _size = 30.0;
   static const Color _color = Colors.white;
 
   @override
   Widget build(BuildContext context) {
+    SvgPicture icon;
     switch (tier) {
       case 'Lith':
-        return SvgPicture.asset('assets/relics/Lith.svg',
-            height: _size, width: _size, color: _color);
+        icon = SvgPicture.asset('assets/relics/Lith.svg', color: _color);
         break;
       case 'Meso':
-        return SvgPicture.asset('assets/relics/Meso.svg',
-            height: _size, width: _size, color: _color);
+        icon = SvgPicture.asset('assets/relics/Meso.svg', color: _color);
         break;
       case 'Neo':
-        return SvgPicture.asset('assets/relics/Neo.svg',
-            height: _size, width: _size, color: _color);
+        icon = SvgPicture.asset('assets/relics/Neo.svg', color: _color);
         break;
       default:
-        return SvgPicture.asset('assets/relics/Axi.svg',
-            height: _size, width: _size, color: _color);
+        icon = SvgPicture.asset('assets/relics/Axi.svg', color: _color);
     }
+
+    return SizedBox(height: _size, width: _size, child: icon);
   }
 }
 

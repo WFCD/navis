@@ -25,15 +25,15 @@ class Fissure extends StatelessWidget {
               return ExpandedInfo(
                 header: Column(
                     children: fissures
-                        .take(3)
+                        .take(5)
                         .map((f) => _BuildFissures(f))
                         .toList()),
                 body: Column(
                     children: fissures
-                        .skip(3)
+                        .skip(5)
                         .map((f) => _BuildFissures(f))
                         .toList()),
-                condition: fissures.length <= 3,
+                condition: fissures.length <= 5,
                 padding: EdgeInsets.zero,
               );
             }
