@@ -12,6 +12,7 @@ class Event extends Coding {
       health,
       node,
       tooltip;
+  num currentScore, maximumScore;
   List<_Rewards> rewards;
   List<Jobs> jobs;
 
@@ -26,6 +27,8 @@ class Event extends Coding {
     affiliatedWith = object.decode('affiliatedWith');
     victimNode = object.decode('victimNode');
     health = object.decode('health');
+    currentScore = object.decode('currentScore');
+    maximumScore = object.decode('maximumScore');
     node = object.decode('node');
     tooltip = object.decode('tooltip');
     rewards = object.decodeObjects('rewards', () => _Rewards());
