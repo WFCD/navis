@@ -69,14 +69,12 @@ class EventPanelState extends State<EventPanel> {
                           .toList(),
                       onPageChanged: onPageChanged,
                     )),
-                    enableDots
-                        ? Container()
-                        : DotsIndicator(
-                            numberOfDot: widget.events.length,
-                            position:
-                                _dotKey.readState(context) ?? _currentPage,
-                            dotActiveColor: Theme.of(context).accentColor,
-                          )
+                    if (!enableDots)
+                      DotsIndicator(
+                        numberOfDot: widget.events.length,
+                        position: _dotKey.readState(context) ?? _currentPage,
+                        dotActiveColor: Theme.of(context).accentColor,
+                      )
                   ],
                 ))));
   }
@@ -87,7 +85,7 @@ class EventBuilder extends StatelessWidget {
 
   final Event event;
 
-  Color _healthColor(double health) {
+  Color _healthColor(num health) {
     if (health > 50.0)
       return Colors.green;
     else if (health <= 50.0 && health >= 10.0)
@@ -96,47 +94,20 @@ class EventBuilder extends StatelessWidget {
       return Colors.red;
   }
 
-  void _addReward(BuildContext context, bool bounty, List<Widget> children) {
-    if (bounty) {
-      children.addAll(event.jobs.map((j) => _BuildJob(j)));
-    } else {
-      if (event.rewards.isNotEmpty) {
-        final reward = event.rewards.first;
-        if (reward.itemString.isNotEmpty) {
-          final withCredits =
-              '${event.rewards.first.itemString} + ${event.rewards.first.credits}cr';
-          final withoutCredits = '${event.rewards.first.itemString}';
+  Widget _addReward() {
+    final reward = event.rewards.firstWhere((r) => r.itemString.isNotEmpty);
 
-          children.add(StaticBox.text(
-              color: Colors.green,
-              text: event.rewards.first.credits < 100
-                  ? withoutCredits
-                  : withCredits));
-        }
+    final withCredits = '${reward.itemString} + ${reward.credits}cr';
+    final withoutCredits = reward.itemString;
 
-        children.add(Container());
-      }
-
-      children.add(Container());
-    }
+    return StaticBox.text(
+        color: Colors.green,
+        text: event.rewards.first.credits < 100 ? withoutCredits : withCredits);
   }
 
   @override
   Widget build(BuildContext context) {
-    final List<Widget> children = [];
-
-    final victimNode = event.victimNode == null
-        ? Container()
-        : StaticBox.text(text: event.victimNode, color: Colors.red);
-
-    final progress = event.health == null
-        ? Container()
-        : StaticBox.text(
-            text: '${event.health}% Remaining',
-            color: _healthColor(double.parse(event.health)),
-          );
-
-    _addReward(context, event.jobs?.isNotEmpty ?? false, children);
+    const space = SizedBox(height: 4);
 
     return Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -147,23 +118,32 @@ class EventBuilder extends StatelessWidget {
               child: Text(event.description,
                   textAlign: TextAlign.center,
                   style: Theme.of(context).textTheme.title)),
-          event.tooltip == null
-              ? Container()
-              : Container(
-                  margin: const EdgeInsets.only(bottom: 4),
-                  child: Text(event.tooltip,
-                      textAlign: TextAlign.center,
-                      style: Theme.of(context).textTheme.subtitle)),
+          if (event.tooltip != null)
+            Container(
+                margin: const EdgeInsets.only(bottom: 4),
+                child: Text(event.tooltip,
+                    textAlign: TextAlign.center,
+                    style: Theme.of(context).textTheme.subtitle)),
           Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
-            victimNode,
-            const SizedBox(width: 4),
-            progress
+            if (event.victimNode != null)
+              StaticBox.text(text: event.victimNode, color: Colors.red),
+            space,
+            StaticBox.text(
+              text:
+                  '${(100 - event.currentScore / event.maximumScore * 100).toStringAsFixed(2)}% Remaining',
+              color: _healthColor(
+                  100 - event.currentScore / event.maximumScore * 100),
+            )
           ]),
-          const SizedBox(height: 4),
+          space,
           Row(
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.center,
-              children: children)
+              children: <Widget>[
+                if (event.jobs?.isNotEmpty ?? false)
+                  ...event.jobs.map((j) => _BuildJob(j)),
+                if (event.rewards.isNotEmpty) _addReward()
+              ])
         ]);
   }
 }
