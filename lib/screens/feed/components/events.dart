@@ -15,32 +15,33 @@ class EventPanel extends StatefulWidget {
 
 class EventPanelState extends State<EventPanel> {
   final _dotKey = PageStorageBucket();
-  int _currentPage;
+  PageController pageController;
 
   @override
   void initState() {
     super.initState();
-
-    _currentPage = 0;
+    _dotKey.writeState(context, 0);
+    pageController = PageController(initialPage: _dotKey.readState(context));
   }
 
   @override
   void didUpdateWidget(EventPanel oldWidget) {
-    if (oldWidget.events != widget.events) _currentPage = 0;
+    if (oldWidget.events.length != widget.events.length) {
+      _dotKey.writeState(context, pageController.page.toInt());
+    }
 
     super.didUpdateWidget(oldWidget);
   }
 
   @override
   void dispose() {
-    _currentPage = null;
-
+    _dotKey.writeState(context, 0);
+    pageController?.dispose();
     super.dispose();
   }
 
   void onPageChanged(int index) {
     setState(() {
-      _currentPage = index;
       _dotKey.writeState(context, index);
     });
   }
@@ -49,34 +50,36 @@ class EventPanelState extends State<EventPanel> {
   Widget build(BuildContext context) {
     final bool enableDots = widget.events.length <= 1;
 
-    return PageStorage(
-        bucket: _dotKey,
-        child: SizedBox(
-            height: 140,
-            width: MediaQuery.of(context).size.width,
-            child: Material(
-                color: Theme.of(context).cardColor,
-                elevation: 6,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  mainAxisSize: MainAxisSize.max,
-                  children: <Widget>[
-                    Expanded(
-                        child: PageView(
-                      scrollDirection: Axis.horizontal,
-                      children: widget.events
-                          .map((e) => EventBuilder(event: e))
-                          .toList(),
-                      onPageChanged: onPageChanged,
-                    )),
-                    if (!enableDots)
-                      DotsIndicator(
-                        numberOfDot: widget.events.length,
-                        position: _dotKey.readState(context) ?? _currentPage,
-                        dotActiveColor: Theme.of(context).accentColor,
-                      )
-                  ],
-                ))));
+    return SizedBox(
+        height: 140,
+        width: MediaQuery.of(context).size.width,
+        child: Material(
+            color: Theme.of(context).cardColor,
+            elevation: 6,
+            child: PageStorage(
+              bucket: _dotKey,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisSize: MainAxisSize.max,
+                children: <Widget>[
+                  Expanded(
+                      child: PageView(
+                    controller: pageController,
+                    scrollDirection: Axis.horizontal,
+                    children: widget.events
+                        .map((e) => EventBuilder(event: e))
+                        .toList(),
+                    onPageChanged: onPageChanged,
+                  )),
+                  if (!enableDots)
+                    DotsIndicator(
+                      numberOfDot: widget.events.length,
+                      position: _dotKey.readState(context),
+                      dotActiveColor: Theme.of(context).accentColor,
+                    )
+                ],
+              ),
+            )));
   }
 }
 
@@ -85,7 +88,7 @@ class EventBuilder extends StatelessWidget {
 
   final Event event;
 
-  Color _healthColor(num health) {
+  Color _healthColor(dynamic health) {
     if (health > 50.0)
       return Colors.green;
     else if (health <= 50.0 && health >= 10.0)
@@ -129,10 +132,10 @@ class EventBuilder extends StatelessWidget {
               StaticBox.text(text: event.victimNode, color: Colors.red),
             space,
             StaticBox.text(
-              text:
-                  '${(100 - event.currentScore / event.maximumScore * 100).toStringAsFixed(2)}% Remaining',
-              color: _healthColor(
-                  100 - event.currentScore / event.maximumScore * 100),
+              text: event?.health ??
+                  '${(100 - (event.currentScore / event.maximumScore) * 100).toStringAsFixed(2)}% Remaining',
+              color: _healthColor(double.parse(event?.health ??
+                  '${100 - event.currentScore / event.maximumScore * 100}')),
             )
           ]),
           space,
