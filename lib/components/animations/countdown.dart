@@ -2,99 +2,28 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/blocs/bloc.dart';
 import 'package:navis/services/notification_service.dart';
+import 'package:navis/services/worldstate.dart';
+import 'package:simple_animations/simple_animations.dart';
 
 import '../layout/static_box.dart';
 
 const stalling = Duration(milliseconds: 500);
 
-class CountdownBox extends StatefulWidget {
+class CountdownBox extends StatelessWidget {
   const CountdownBox({this.expiry, this.size});
 
   final DateTime expiry;
   final double size;
 
-  @override
-  CountdownBoxState createState() => CountdownBoxState();
-}
+  Future<void> _listener(BuildContext context, AnimationStatus status) async {
+    if (status == AnimationStatus.completed ||
+        status == AnimationStatus.dismissed) {
+      final ws = WorldstateAPI();
 
-class CountdownBoxState extends State<CountdownBox>
-    with SingleTickerProviderStateMixin {
-  AnimationController _controller;
-  StepTween _tween;
-  Animation<int> _animation;
-
-  @override
-  void initState() {
-    super.initState();
-
-    final expiry = widget.expiry.toLocal();
-    final now = DateTime.now();
-    final start = expiry.difference(now);
-
-    _controller = AnimationController(
-        vsync: this, duration: start < Duration.zero ? stalling : start);
-
-    _tween = StepTween(
-        begin: expiry.millisecondsSinceEpoch, end: now.millisecondsSinceEpoch);
-
-    _animation = _tween.animate(_controller);
-
-    _controller.forward(from: 0.0);
-
-    _animation.addStatusListener((status) async {
-      if (status == AnimationStatus.completed ||
-          status == AnimationStatus.dismissed) {
-        await BlocProvider.of<WorldstateBloc>(context).update();
-        await callNotifications(
-            BlocProvider.of<WorldstateBloc>(context).currentState.worldState);
-      }
-    });
-  }
-
-  @override
-  void didUpdateWidget(CountdownBox oldWidget) {
-    if (oldWidget.expiry != widget.expiry) {
-      final expiry = widget.expiry.toLocal();
-      final now = DateTime.now();
-
-      final start = expiry.difference(now);
-
-      _controller.duration = start < Duration.zero ? stalling : start;
-
-      _tween = StepTween(
-          begin: expiry.millisecondsSinceEpoch,
-          end: now.millisecondsSinceEpoch);
-
-      _animation = _tween.animate(_controller);
-
-      _controller
-        ..reset()
-        ..forward(from: 0.0);
+      await callNotifications(await ws.getWorldstate());
+      BlocProvider.of<WorldstateBloc>(context).dispatch(UpdateEvent.update);
     }
-
-    super.didUpdateWidget(oldWidget);
   }
-
-  @override
-  void dispose() {
-    _controller?.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return _CountDown(
-        animation: _animation, expiry: widget.expiry, size: widget.size);
-  }
-}
-
-class _CountDown extends AnimatedWidget {
-  const _CountDown({Key key, this.animation, this.expiry, this.size})
-      : super(key: key, listenable: animation);
-
-  final Animation<int> animation;
-  final DateTime expiry;
-  final double size;
 
   Color _containerColors(Duration timeLeft) {
     const max = Duration(hours: 1);
@@ -122,11 +51,24 @@ class _CountDown extends AnimatedWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Duration duration = expiry.difference(DateTime.now());
+    final tween = StepTween(
+        begin: expiry.millisecondsSinceEpoch,
+        end: DateTime.now().millisecondsSinceEpoch);
 
-    return StaticBox(
-        color: _containerColors(duration),
-        child: Text(_timerVersions(duration),
-            style: TextStyle(fontSize: size, color: Colors.white)));
+    return ControlledAnimation(
+      duration: expiry.difference(DateTime.now()),
+      tween: tween,
+      playback: Playback.PLAY_FORWARD,
+      animationControllerStatusListener: (AnimationStatus status) =>
+          _listener(context, status),
+      builder: (context, value) {
+        final Duration duration = expiry.difference(DateTime.now());
+
+        return StaticBox(
+            color: _containerColors(duration),
+            child: Text(_timerVersions(duration),
+                style: TextStyle(fontSize: size, color: Colors.white)));
+      },
+    );
   }
 }

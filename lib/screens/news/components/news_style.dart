@@ -20,9 +20,11 @@ class NewsCard extends StatelessWidget {
               animation: CustomTabsAnimation.slideIn(),
               extraCustomTabs: <String>['org.mozilla.firefox']));
     } catch (err) {
-      scaffold.currentState.showSnackBar(const SnackBar(
-          duration: Duration(seconds: 30),
-          content: Text('No Browser detected')));
+      scaffold.currentState.showSnackBar(SnackBar(
+          duration: const Duration(seconds: 5),
+          content: link.isEmpty
+              ? const Text('No valid link provided by API')
+              : const Text('No Browser detected')));
     }
   }
 

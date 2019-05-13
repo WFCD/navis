@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_villains/villain.dart';
 import 'package:navis/blocs/bloc.dart';
 import 'package:navis/components/layout.dart';
 import 'package:navis/global_keys.dart';
@@ -15,8 +14,7 @@ class HomeScreen extends StatelessWidget {
       drawer: CustomDrawer(bloc: _navBloc),
       body: BlocBuilder(
         bloc: _navBloc,
-        builder: (BuildContext context, RouteState route) => Villain(
-            villainAnimation: VillainAnimation.fade(), child: route.widget),
+        builder: (BuildContext context, RouteState route) => route.widget,
       ),
     );
   }

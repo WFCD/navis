@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:rxdart/rxdart.dart';
 
 import 'navigation_states.dart';
 
@@ -21,5 +22,12 @@ class NavigationBloc extends Bloc<RouteEvent, RouteState>
         yield SyndicatesState();
         break;
     }
+  }
+
+  @override
+  Stream<RouteState> transform(Stream<RouteEvent> events,
+      Stream<RouteState> Function(RouteEvent event) next) {
+    //ignore: avoid_as
+    return super.transform((events as Observable<RouteEvent>).distinct(), next);
   }
 }

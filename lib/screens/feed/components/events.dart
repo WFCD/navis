@@ -1,4 +1,3 @@
-import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:navis/models/export.dart';
 import 'package:navis/screens/syndicates/components/rewards.dart';
@@ -72,9 +71,13 @@ class EventPanelState extends State<EventPanel> {
                     onPageChanged: onPageChanged,
                   )),
                   if (!enableDots)
-                    DotsIndicator(
+                    Indicator(
                       numberOfDot: widget.events.length,
                       position: _dotKey.readState(context),
+                      dotSize: const Size.square(9.0),
+                      dotActiveSize: const Size(25.0, 9.0),
+                      dotActiveShape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8.0)),
                       dotActiveColor: Theme.of(context).accentColor,
                     )
                 ],
@@ -132,10 +135,12 @@ class EventBuilder extends StatelessWidget {
               StaticBox.text(text: event.victimNode, color: Colors.red),
             space,
             StaticBox.text(
-              text: event?.health ??
-                  '${(100 - (event.currentScore / event.maximumScore) * 100).toStringAsFixed(2)}% Remaining',
-              color: _healthColor(double.parse(event?.health ??
-                  '${100 - event.currentScore / event.maximumScore * 100}')),
+              text: event?.health != null
+                  ? '${100 - double.parse(event?.health)}% Remaining'
+                  : '${(100 - (event.currentScore / event.maximumScore) * 100).toStringAsFixed(2)}% Remaining',
+              color: _healthColor(double.parse(event?.health != null
+                  ? '${100 - double.parse(event?.health)}'
+                  : '${100 - event.currentScore / event.maximumScore * 100}')),
             )
           ]),
           space,

@@ -24,16 +24,16 @@ class WorldstateBloc extends Bloc<UpdateEvent, WorldStates>
 
   final http.Client client;
 
-  WorldstateAPI api = WorldstateAPI();
-
   @override
   WorldStates get initialState => WorldstateUninitialized();
 
   @override
   Stream<WorldStates> mapEventToState(UpdateEvent event) async* {
+    final ws = WorldstateAPI();
+
     if (event == UpdateEvent.update) {
       final prefs = await SharedPreferences.getInstance();
-      final state = await api.updateState(client, prefs.getString('platform'));
+      final state = await ws.getWorldstate(client, prefs.getString('platform'));
 
       yield WorldstateLoaded(state);
     }
@@ -42,7 +42,7 @@ class WorldstateBloc extends Bloc<UpdateEvent, WorldStates>
   @override
   void onError(Object error, StackTrace stacktrace) {
     scaffold.currentState.showSnackBar(const SnackBar(
-        content: Text('Error updating worldstate try again later')));
+        content: Text('Error connecting to warframestat.us API')));
   }
 
   @override
