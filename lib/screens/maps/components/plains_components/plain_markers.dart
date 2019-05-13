@@ -5,7 +5,7 @@ import 'package:latlong/latlong.dart';
 import 'package:navis/components/dialogs.dart';
 import 'package:navis/services/streamable.dart';
 
-import 'map_base.dart';
+import '../map_base.dart';
 import 'plains_coordinates.dart';
 
 class Plains extends Mapbase {
@@ -31,7 +31,7 @@ class Plains extends Mapbase {
   final home = Marker(
       height: _size,
       width: _size,
-      point: LatLng(-60.68243539838622, 4.5703125),
+      point: LatLng(-65.68243539838622, 6.5703125),
       builder: (_) => Container(
           child: const Icon(Icons.home,
               color: Color.fromRGBO(183, 70, 36, 1.0), size: 30)));

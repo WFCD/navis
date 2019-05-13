@@ -3,7 +3,7 @@ import 'package:flutter_custom_tabs/flutter_custom_tabs.dart';
 import 'package:navis/blocs/bloc.dart';
 import 'package:navis/components/icons/standing.dart';
 import 'package:navis/global_keys.dart';
-import 'package:navis/screens/maps/map.dart';
+//import 'package:navis/screens/maps/map.dart';
 
 import '../styles/platform_choices.dart';
 
@@ -69,25 +69,29 @@ class CustomDrawer extends StatelessWidget {
           title: 'Timers',
           routeType: RouteEvent.timers,
           callback: () => _changeRoute(context, RouteEvent.timers)),
-      DrawerItem(
-          icon: const Icon(Icons.map),
-          title: 'Maps',
-          children: <DrawerItem>[
-            DrawerItem(
-                title: 'Plains',
-                callback: () => _navigateToMap(context, 'Ostrons')),
-            DrawerItem(
-                title: 'Vallis',
-                callback: () => _navigateToMap(context, 'Solaris United')),
-            DrawerItem(
-                title: 'Fishing Data',
-                callback: () =>
-                    _launchUrl(context, 'https://hub.warframestat.us/fish')),
-            DrawerItem(
-                title: 'How to Fish',
-                callback: () => _launchUrl(
-                    context, 'https://hub.warframestat.us/howtofish'))
-          ]),
+      DrawerItem(icon: const Icon(Icons.map), title: 'Maps', children: <
+          DrawerItem>[
+        DrawerItem(
+            title: 'Plains',
+            callback: () =>
+                _launchUrl(context, 'https://hub.warframestat.us/#/poe/map')),
+        DrawerItem(
+            title: 'Vallis',
+            callback: () => _launchUrl(
+                context, 'https://hub.warframestat.us/#/vallis/map')),
+        DrawerItem(
+            title: 'PoE: Fishing Data',
+            callback: () =>
+                _launchUrl(context, 'https://hub.warframestat.us/#/poe/fish')),
+        DrawerItem(
+            title: 'Orb Vallis: Fishing Data',
+            callback: () => _launchUrl(
+                context, 'https://hub.warframestat.us/#/vallis/fish')),
+        DrawerItem(
+            title: 'How to Fish',
+            callback: () => _launchUrl(
+                context, 'https://hub.warframestat.us/#/poe/fish/howto'))
+      ]),
       DrawerItem(
           icon: const Icon(Standing.standing),
           title: 'Syndicate',
@@ -125,7 +129,7 @@ class CustomDrawer extends StatelessWidget {
   }
 }
 
-void _navigateToMap(BuildContext context, String syndicate) {
+/*void _navigateToMap(BuildContext context, String syndicate) {
   Location _locaton(String syndicateName) {
     switch (syndicateName) {
       case 'Ostrons':
@@ -138,7 +142,7 @@ void _navigateToMap(BuildContext context, String syndicate) {
   Navigator.of(context).pop();
   Navigator.of(context).push(
       MaterialPageRoute(builder: (_) => Maps(location: _locaton(syndicate))));
-}
+}*/
 
 Future<void> _launchUrl(BuildContext context, String url) async {
   Navigator.of(context).pop();

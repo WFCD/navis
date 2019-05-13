@@ -3,8 +3,9 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong/latlong.dart';
+import 'package:navis/screens/maps/components/plains.dart';
 
-import 'plains.dart';
+import 'components/plains_components/plain_markers.dart';
 
 enum Location { plains, vallis }
 
@@ -34,15 +35,6 @@ class MapState extends State<Maps> {
   void dispose() {
     filter.close();
     super.dispose();
-  }
-
-  Widget _mapBuilder(Location location) {
-    switch (location) {
-      case Location.plains:
-        return _buildCetusMap(filter.stream, plains);
-      default:
-        return _buildVallisMap(<Marker>[]);
-    }
   }
 
   Widget _tiles(Location location) {
@@ -76,37 +68,10 @@ class MapState extends State<Maps> {
             title: _tiles(widget.location),
             actions:
                 widget.location == Location.plains ? cetusFilter : <Widget>[]),
-        body: _mapBuilder(widget.location));
+        body: widget.location == Location.plains
+            ? CetusMap(plains: plains)
+            : _buildVallisMap(<Marker>[]));
   }
-}
-
-Widget _buildCetusMap(Stream filter, Plains plains) {
-  return StreamBuilder<List<Marker>>(
-      initialData: plains.filter('All'),
-      stream: filter,
-      builder: (BuildContext context, AsyncSnapshot<List<Marker>> snapshot) {
-        return FlutterMap(
-          options: MapOptions(
-            center: LatLng(0, 0),
-            zoom: 3,
-            minZoom: 1,
-            maxZoom: 2,
-            nePanBoundary: LatLng(65.0, 80.0),
-            swPanBoundary: LatLng(-65.0, -80.0),
-          ),
-          layers: [
-            TileLayerOptions(
-              maxZoom: 2,
-              keepBuffer: 15,
-              fromAssets: true,
-              offlineMode: true,
-              backgroundColor: const Color.fromRGBO(63, 92, 98, 1),
-              urlTemplate: 'assets/plains/{z}/tile_{x}_{y}.webp',
-            ),
-            MarkerLayerOptions(markers: snapshot.data)
-          ],
-        );
-      });
 }
 
 Widget _buildVallisMap(List<Marker> markers) {
