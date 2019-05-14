@@ -2,20 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:navis/blocs/bloc.dart';
 import 'package:flutter_material_color_picker/flutter_material_color_picker.dart';
 
-import 'baseDialog.dart';
+import 'base_dialog.dart';
 
-class ColorPickerDialog extends StatelessWidget {
+class ColorPickerDialog extends StatelessWidget with DialogWidget {
   const ColorPickerDialog(this.primary);
 
   final bool primary;
 
   static Future<void> selectPrimary(BuildContext context) async {
-    showDialog(context: context, builder: (_) => const ColorPickerDialog(true));
+    DialogWidget.openDialog(context, const ColorPickerDialog(true));
   }
 
   static Future<void> selectAccent(BuildContext context) async {
-    showDialog(
-        context: context, builder: (_) => const ColorPickerDialog(false));
+    DialogWidget.openDialog(context, const ColorPickerDialog(false));
   }
 
   void _submit(BuildContext context, ThemeBloc bloc, Color color) {

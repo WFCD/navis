@@ -31,6 +31,6 @@ void main() {
 Future<void> callNotification() async {
   final worldstate = WorldstateAPI();
 
-  callNotifications(await worldstate.updateState());
+  callNotifications(await worldstate.getWorldstate());
   BackgroundFetch.finish();
 }

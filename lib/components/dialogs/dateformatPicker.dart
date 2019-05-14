@@ -1,11 +1,11 @@
 import 'package:navis/blocs/bloc.dart';
 import 'package:flutter/material.dart';
 
-import 'baseDialog.dart';
+import 'base_dialog.dart';
 
-class DateFormatPicker extends StatelessWidget {
+class DateFormatPicker extends StatelessWidget with DialogWidget {
   static Future<void> selectDateformat(BuildContext context) async {
-    showDialog(context: context, builder: (_) => DateFormatPicker());
+    DialogWidget.openDialog(context, DateFormatPicker());
   }
 
   @override

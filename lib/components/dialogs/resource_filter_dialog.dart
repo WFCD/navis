@@ -2,20 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:navis/utils/notification_filters.dart';
 import 'package:navis/blocs/bloc.dart';
 
-import 'baseDialog.dart';
+import 'base_dialog.dart';
 
 enum FilterType { cycles, missions, news, acolytes }
 
-class ResourceFilterOptions extends StatelessWidget {
+class ResourceFilterOptions extends StatelessWidget with DialogWidget {
   const ResourceFilterOptions(this.option);
 
   final FilterType option;
 
   static Future<void> showFilters(
       BuildContext context, FilterType options) async {
-    showDialog(
-        context: context,
-        builder: (BuildContext context) => BlocBuilder(
+    DialogWidget.openDialog(
+        context,
+        BlocBuilder(
             bloc: BlocProvider.of<StorageBloc>(context),
             builder: (context, state) => ResourceFilterOptions(options)));
   }

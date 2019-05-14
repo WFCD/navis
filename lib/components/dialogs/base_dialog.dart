@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
 
+mixin DialogWidget on StatelessWidget {
+  static Future<void> openDialog(BuildContext context, Widget child) async {
+    showDialog(context: context, builder: (BuildContext context) => child);
+  }
+}
+
 class BaseDialog extends StatelessWidget {
   const BaseDialog({this.dialogTitle, @required this.child, this.actions});
 

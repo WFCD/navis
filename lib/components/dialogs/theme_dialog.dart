@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:navis/blocs/bloc.dart';
 
-import 'baseDialog.dart';
+import 'base_dialog.dart';
 
-class BaseThemePickerDialog extends StatelessWidget {
+class BaseThemePickerDialog extends StatelessWidget with DialogWidget {
   static Future<void> showBaseThemePicker(BuildContext context) async {
-    showDialog(context: context, builder: (_) => BaseThemePickerDialog());
+    DialogWidget.openDialog(context, BaseThemePickerDialog());
   }
 
   @override

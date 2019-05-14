@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:navis/components/dialogs/base_dialog.dart';
 
 import '../animations.dart';
 
-class VideoDialog extends StatelessWidget {
+class VideoDialog extends StatelessWidget with DialogWidget {
   const VideoDialog({Key key, this.lore, this.url}) : super(key: key);
 
   final String lore;
@@ -10,8 +11,7 @@ class VideoDialog extends StatelessWidget {
 
   static Future<void> showVideo(
       BuildContext context, String lore, String url) async {
-    showDialog(
-        context: context, builder: (_) => VideoDialog(lore: lore, url: url));
+    DialogWidget.openDialog(context, VideoDialog(lore: lore, url: url));
   }
 
   @override
