@@ -18,8 +18,9 @@ class Navis extends StatefulWidget {
 }
 
 class NavisState extends State<Navis> with WidgetsBindingObserver {
-  final _messaging = FirebaseMessaging();
+  Timer timer;
 
+  final _messaging = FirebaseMessaging();
   final theme = ThemeBloc();
   final storage = StorageBloc();
   final worldstate = WorldstateBloc.initialize();
@@ -32,7 +33,7 @@ class NavisState extends State<Navis> with WidgetsBindingObserver {
     _init();
     _messaging.configure();
 
-    Timer.periodic(const Duration(minutes: 7),
+    timer = Timer.periodic(const Duration(minutes: 7),
         (t) => worldstate.dispatch(UpdateEvent.update));
   }
 
@@ -53,8 +54,6 @@ class NavisState extends State<Navis> with WidgetsBindingObserver {
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     if (state == AppLifecycleState.resumed) {
-      theme.dispatch(ThemeStart());
-      storage.dispatch(RestoreEvent());
       worldstate.dispatch(UpdateEvent.update);
     }
 
@@ -66,6 +65,7 @@ class NavisState extends State<Navis> with WidgetsBindingObserver {
     theme.dispose();
     storage.dispose();
     worldstate.dispose();
+    timer?.cancel();
     WidgetsBinding.instance.removeObserver(this);
     super.dispose();
   }
@@ -98,6 +98,6 @@ class NavisState extends State<Navis> with WidgetsBindingObserver {
 Future<void> backgroundTask() async {
   final worldstate = WorldstateAPI();
 
-  callNotifications(await worldstate.updateState());
+  callNotifications(await worldstate.getWorldstate());
   BackgroundFetch.finish();
 }

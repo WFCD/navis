@@ -2,19 +2,22 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:codable/codable.dart';
+
 import 'package:navis/models/export.dart';
 import 'package:http/http.dart' as http;
 
 class WorldstateAPI {
   static const String _baseRoute = 'https://api.warframestat.us/';
 
-  Future<WorldState> updateState([http.Client client, String platform]) async {
+  Future<WorldState> getWorldstate(
+      [http.Client client, String platform]) async {
     client ??= http.Client();
     platform ??= 'pc';
 
     final response = await client.get(_baseRoute + platform);
 
-    if (response.statusCode != 200) throw Exception('error loading state');
+    if (response.statusCode != 200)
+      throw Exception('Error connecting: ${response.statusCode}');
 
     final data = json.decode(response.body);
 
