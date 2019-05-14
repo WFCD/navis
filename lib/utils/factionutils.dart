@@ -4,6 +4,13 @@ import 'package:intl/intl.dart';
 
 enum OpenWorldFactions { cetus, fortuna }
 
+const grineer = 'assets/factions/Grineer.svg';
+const corpus = 'assets/factions/Corpus.svg';
+const corrupted = 'assets/factions/Corrupted.svg';
+const infested = 'assets/factions/Infested.svg';
+const ostrons = 'assets/sigils/OstronSigil.svg';
+const solaris = 'assets/sigils/SolarisUnited.svg';
+
 class FactionIcon extends StatelessWidget {
   const FactionIcon(this.faction, {Key key, this.size, this.hasColor = true})
       : super(key: key);
@@ -14,32 +21,32 @@ class FactionIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final color = hasColor ? factionColor(faction) : Colors.white;
+    String assetName;
 
     switch (faction) {
       case 'Grineer':
-        return SvgPicture.asset('assets/factions/Grineer.svg',
-            height: size, width: size, color: color);
+        assetName = grineer;
+        break;
       case 'Corpus':
-        return SvgPicture.asset('assets/factions/Corpus.svg',
-            height: size, width: size, color: color);
+        assetName = corpus;
+        break;
       case 'Corrupted':
-        return SvgPicture.asset('assets/factions/Corrupted.svg',
-            height: size, width: size, color: color);
+        assetName = corrupted;
+        break;
       case 'Ostrons':
-        return SvgPicture.asset('assets/sigils/OstronSigil.svg',
-            height: size,
-            width: size,
-            color: const Color.fromRGBO(232, 221, 175, 1.0));
+        assetName = ostrons;
+        break;
       case 'Solaris United':
-        return SvgPicture.asset('assets/sigils/SolarisUnited.svg',
-            height: size,
-            width: size,
-            color: const Color.fromRGBO(152, 92, 67, 1.0));
+        assetName = solaris;
+        break;
       default:
-        return SvgPicture.asset('assets/factions/Infested.svg',
-            height: size, width: size, color: color);
+        assetName = infested;
     }
+
+    return SvgPicture.asset(assetName,
+        height: size,
+        width: size,
+        color: hasColor ? factionColor(faction) : Colors.white);
   }
 }
 
@@ -80,6 +87,10 @@ Color factionColor(String faction) {
       return Colors.red[700];
     case 'Corrupted':
       return Colors.yellow[300];
+    case 'Ostrons':
+      return const Color.fromRGBO(232, 221, 175, 1.0);
+    case 'Solaris United':
+      return const Color.fromRGBO(152, 92, 67, 1.0);
     default:
       return Colors.green;
   }
