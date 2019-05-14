@@ -49,9 +49,9 @@ class _BuildInvasions extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final double completion = invasion.completion.toDouble();
     final String defending = invasion.defendingFaction;
     final String attacking = invasion.attackingFaction;
+    final double completion = invasion.completion.toDouble();
 
     return Padding(
       padding: const EdgeInsets.only(top: 10.0),
@@ -65,20 +65,19 @@ class _BuildInvasions extends StatelessWidget {
           child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                invasion.attackerReward.itemString.isEmpty
-                    ? Container(height: 0.0, width: 0.0)
-                    : StaticBox.text(
-                        color: factionColor(attacking),
-                        padding: const EdgeInsets.only(right: 4.0, top: 8.0),
-                        text: invasion.attackerReward.itemString,
-                      ),
-                invasion.defenderReward.itemString.isEmpty
-                    ? Container(height: 0.0, width: 0.0)
-                    : StaticBox.text(
-                        color: factionColor(defending),
-                        padding: const EdgeInsets.only(left: 4.0, top: 8.0),
-                        text: invasion.defenderReward.itemString,
-                      )
+                if (invasion.attackerReward.itemString.isNotEmpty)
+                  StaticBox.text(
+                    color: factionColor(attacking),
+                    padding: const EdgeInsets.only(right: 4.0, top: 8.0),
+                    text: invasion.attackerReward.itemString,
+                  ),
+                Container(),
+                if (invasion.defenderReward.itemString.isNotEmpty)
+                  StaticBox.text(
+                    color: factionColor(defending),
+                    padding: const EdgeInsets.only(left: 4.0, top: 8.0),
+                    text: invasion.defenderReward.itemString,
+                  )
               ]),
         ),
         InvasionBar(

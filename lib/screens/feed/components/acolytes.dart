@@ -58,20 +58,18 @@ class AcolyteProfile extends StatelessWidget {
           Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                enemy.lastDiscoveredAt.isEmpty
-                    ? Container()
-                    : StaticBox(
-                        color:
-                            enemy.isDiscovered ? Colors.red[800] : Colors.grey,
-                        child: Row(children: <Widget>[
-                          enemy.isDiscovered
-                              ? const Icon(Icons.gps_fixed, color: color)
-                              : const Icon(Icons.gps_not_fixed, color: color),
-                          const SizedBox(width: 4),
-                          Text(enemy.lastDiscoveredAt,
-                              style: const TextStyle(color: color))
-                        ]),
-                      ),
+                if (enemy.lastDiscoveredAt.isNotEmpty)
+                  StaticBox(
+                    color: enemy.isDiscovered ? Colors.red[800] : Colors.grey,
+                    child: Row(children: <Widget>[
+                      enemy.isDiscovered
+                          ? const Icon(Icons.gps_fixed, color: color)
+                          : const Icon(Icons.gps_not_fixed, color: color),
+                      const SizedBox(width: 4),
+                      Text(enemy.lastDiscoveredAt,
+                          style: const TextStyle(color: color))
+                    ]),
+                  ),
                 StaticBox.text(
                   color: enemy.isDiscovered
                       ? Colors.red[800]

@@ -47,15 +47,14 @@ class Feed extends StatelessWidget {
                 SliverList(delegate: SliverChildListDelegate(children))
               ];
 
-              return CustomScrollView(slivers: List.unmodifiable(() sync* {
+              return CustomScrollView(slivers: <Widget>[
                 if (state.worldState.events.isNotEmpty)
-                  yield SliverToBoxAdapter(
-                      child: EventPanel(events: state.worldState.events));
+                  SliverToBoxAdapter(
+                      child: EventPanel(events: state.worldState.events)),
                 if (state.worldState.persistentEnemies.isNotEmpty)
-                  yield SliverToBoxAdapter(child: Acolytes());
-
-                yield* sliver;
-              }()));
+                  SliverToBoxAdapter(child: Acolytes()),
+                ...sliver
+              ]);
             }
           }),
     );
