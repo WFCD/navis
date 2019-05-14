@@ -22,7 +22,7 @@ class PlatformChoiceState extends State<PlatformChoice> {
 
     void onPressed(Platforms platforms) {
       platform.dispatch(ChangePlatformEvent(platforms));
-      state.update();
+      state.dispatch(UpdateEvent.update);
       Navigator.of(context).pop();
     }
 
