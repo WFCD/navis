@@ -6,25 +6,27 @@ dependencies:
   flutter:
     sdk: flutter
   background_fetch: ^0.2.0
-  bloc: ^0.11.1
+  bloc: ^0.13.0
   chewie: ^0.9.5
   codable: ^1.0.0
-  dots_indicator: ^0.0.4
   equatable: ^0.2.0
-  flutter_bloc: ^0.9.1
-  firebase_crashlytics: ^0.0.4+1
+  flutter_bloc: ^0.13.0
+  firebase_crashlytics: ^0.0.4+3
   flutter_custom_tabs: ^0.6.0
-  flutter_map: ^0.4.0
+  flutter_map: ^0.5.0+1
   flutter_material_color_picker: ^0.0.5
-  flutter_villains: ^1.2.0
   intl: ^0.15.7
-  package_info: ^0.4.0+1
+  package_info: ^0.4.0+3
   shared_preferences: ^0.5.1+2
   sticky_headers: ^0.1.7
   flutter_local_notifications: ^0.7.0
   firebase_messaging: ^4.0.0+4
   cached_network_image: ^0.8.0
   flutter_svg: ^0.12.4
+  simple_animations: ^1.2.0
+
+dependency_overrides:
+    cached_network_image: ^0.8.0
 
 dev_dependencies:
   flutter_test:
@@ -49,13 +51,5 @@ flutter:
     - assets/factions/
     - assets/sigils/
     - assets/relics/
-    
-    - assets/plains/0/
-    - assets/plains/1/
-    - assets/plains/2/
-
-    - assets/vallis/0/
-    - assets/vallis/1/
-    - assets/vallis/2/
-    - assets/vallis/3/
-    - assets/vallis/4/
+    - assets/maps/
+    - assets/maps/imgs/
