@@ -1,7 +1,11 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:navis/models/export.dart';
 import 'package:navis/screens/syndicates/components/rewards.dart';
 import 'package:navis/components/layout.dart';
+
+import 'package:rxdart/rxdart.dart';
 
 class EventPanel extends StatefulWidget {
   const EventPanel({this.events});
@@ -13,20 +17,22 @@ class EventPanel extends StatefulWidget {
 }
 
 class EventPanelState extends State<EventPanel> {
-  final _dotKey = PageStorageBucket();
+  StreamController<int> _currentPage;
   PageController pageController;
 
   @override
   void initState() {
     super.initState();
-    _dotKey.writeState(context, 0);
-    pageController = PageController(initialPage: _dotKey.readState(context));
+    _currentPage = BehaviorSubject<int>();
+
+    _currentPage.sink.add(0);
+    pageController = PageController(initialPage: 0);
   }
 
   @override
   void didUpdateWidget(EventPanel oldWidget) {
     if (oldWidget.events.length != widget.events.length) {
-      _dotKey.writeState(context, pageController.page.toInt());
+      _currentPage.sink.add(pageController.page.toInt());
     }
 
     super.didUpdateWidget(oldWidget);
@@ -34,15 +40,13 @@ class EventPanelState extends State<EventPanel> {
 
   @override
   void dispose() {
-    _dotKey.writeState(context, 0);
+    _currentPage?.close();
     pageController?.dispose();
     super.dispose();
   }
 
   void onPageChanged(int index) {
-    setState(() {
-      _dotKey.writeState(context, index);
-    });
+    _currentPage.sink.add(index);
   }
 
   @override
@@ -53,36 +57,39 @@ class EventPanelState extends State<EventPanel> {
         height: 140,
         width: MediaQuery.of(context).size.width,
         child: Material(
-            color: Theme.of(context).cardColor,
-            elevation: 6,
-            child: PageStorage(
-              bucket: _dotKey,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                mainAxisSize: MainAxisSize.max,
-                children: <Widget>[
-                  Expanded(
-                      child: PageView(
-                    controller: pageController,
-                    scrollDirection: Axis.horizontal,
-                    children: widget.events
-                        .map((e) => EventBuilder(event: e))
-                        .toList(),
-                    onPageChanged: onPageChanged,
-                  )),
-                  if (!enableDots)
-                    Indicator(
+          color: Theme.of(context).cardColor,
+          elevation: 6,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.max,
+            children: <Widget>[
+              Expanded(
+                  child: PageView(
+                controller: pageController,
+                scrollDirection: Axis.horizontal,
+                children:
+                    widget.events.map((e) => EventBuilder(event: e)).toList(),
+                onPageChanged: onPageChanged,
+              )),
+              if (!enableDots)
+                StreamBuilder(
+                  stream: _currentPage.stream.distinct(),
+                  initialData: 0,
+                  builder: (BuildContext context, AsyncSnapshot snapshot) {
+                    return Indicator(
                       numberOfDot: widget.events.length,
-                      position: _dotKey.readState(context),
+                      position: snapshot.data,
                       dotSize: const Size.square(9.0),
                       dotActiveSize: const Size(25.0, 9.0),
                       dotActiveShape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(8.0)),
                       dotActiveColor: Theme.of(context).accentColor,
-                    )
-                ],
-              ),
-            )));
+                    );
+                  },
+                ),
+            ],
+          ),
+        ));
   }
 }
 
@@ -91,7 +98,7 @@ class EventBuilder extends StatelessWidget {
 
   final Event event;
 
-  Color _healthColor(dynamic health) {
+  Color _healthColor(double health) {
     if (health > 50.0)
       return Colors.green;
     else if (health <= 50.0 && health >= 10.0)
@@ -136,11 +143,12 @@ class EventBuilder extends StatelessWidget {
             space,
             StaticBox.text(
               text: event?.health != null
-                  ? '${100 - double.parse(event?.health)}% Remaining'
+                  ? '${event?.health}% Remaining'
                   : '${(100 - (event.currentScore / event.maximumScore) * 100).toStringAsFixed(2)}% Remaining',
-              color: _healthColor(double.parse(event?.health != null
-                  ? '${100 - double.parse(event?.health)}'
-                  : '${100 - event.currentScore / event.maximumScore * 100}')),
+              color: _healthColor(event?.health != null
+                  ? double.parse(event?.health)
+                  : (100 - event.currentScore / event.maximumScore * 100)
+                      .toDouble()),
             )
           ]),
           space,
