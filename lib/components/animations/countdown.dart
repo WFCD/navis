@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/blocs/bloc.dart';
-import 'package:navis/services/notification_service.dart';
-import 'package:navis/services/worldstate.dart';
 import 'package:simple_animations/simple_animations.dart';
 
 import '../layout/static_box.dart';
-
-const stalling = Duration(milliseconds: 500);
 
 class CountdownBox extends StatelessWidget {
   const CountdownBox({this.expiry, this.size});
@@ -18,9 +14,6 @@ class CountdownBox extends StatelessWidget {
   Future<void> _listener(BuildContext context, AnimationStatus status) async {
     if (status == AnimationStatus.completed ||
         status == AnimationStatus.dismissed) {
-      final ws = WorldstateAPI();
-
-      await callNotifications(await ws.getWorldstate());
       BlocProvider.of<WorldstateBloc>(context).dispatch(UpdateEvent.update);
     }
   }
@@ -56,6 +49,7 @@ class CountdownBox extends StatelessWidget {
         end: DateTime.now().millisecondsSinceEpoch);
 
     return ControlledAnimation(
+      delay: const Duration(milliseconds: 500),
       duration: expiry.difference(DateTime.now()),
       tween: tween,
       playback: Playback.PLAY_FORWARD,
