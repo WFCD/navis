@@ -14,13 +14,7 @@ enum UpdateEvent { update }
 
 class WorldstateBloc extends Bloc<UpdateEvent, WorldStates>
     with EquatableMixinBase, EquatableMixin {
-  WorldstateBloc._({this.client});
-
-  factory WorldstateBloc.initialize({http.Client client}) {
-    if (client == null) return WorldstateBloc._(client: http.Client());
-
-    return WorldstateBloc._(client: client);
-  }
+  WorldstateBloc({this.client});
 
   final http.Client client;
 
@@ -33,7 +27,8 @@ class WorldstateBloc extends Bloc<UpdateEvent, WorldStates>
 
     if (event == UpdateEvent.update) {
       final prefs = await SharedPreferences.getInstance();
-      final state = await ws.getWorldstate(client, prefs.getString('platform'));
+      final state = await ws.getWorldstate(
+          client: client, platform: prefs.getString('platform'));
 
       yield WorldstateLoaded(state);
     }
@@ -43,12 +38,6 @@ class WorldstateBloc extends Bloc<UpdateEvent, WorldStates>
   void onError(Object error, StackTrace stacktrace) {
     scaffold.currentState.showSnackBar(const SnackBar(
         content: Text('Error connecting to warframestat.us API')));
-  }
-
-  @override
-  void dispose() {
-    client?.close();
-    super.dispose();
   }
 
   Future<void> update() async {

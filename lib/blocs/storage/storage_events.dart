@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:navis/blocs/storage/storage_states.dart';
+import 'package:navis/utils/enums.dart';
 
 abstract class ChangeEvent extends Equatable {}
 
@@ -18,9 +18,9 @@ class ChangeDateFormat extends ChangeEvent {
 }
 
 class ToggleNotification extends ChangeEvent {
-  ToggleNotification(this.key, this.value, [this.option]);
+  ToggleNotification(this.key, this.value, [this.options]);
 
   final String key;
   final bool value;
-  final String option;
+  final List<String> options;
 }

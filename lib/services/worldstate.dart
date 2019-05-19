@@ -10,7 +10,7 @@ class WorldstateAPI {
   static const String _baseRoute = 'https://api.warframestat.us/';
 
   Future<WorldState> getWorldstate(
-      [http.Client client, String platform]) async {
+      {http.Client client, String platform}) async {
     client ??= http.Client();
     platform ??= 'pc';
 

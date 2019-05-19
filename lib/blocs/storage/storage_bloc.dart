@@ -2,47 +2,50 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:navis/services/localstorage_service.dart';
+import 'package:navis/services/service_locator.dart';
 
 import 'storage_events.dart';
 import 'storage_states.dart';
 
 class StorageBloc extends Bloc<ChangeEvent, StorageState>
     with EquatableMixinBase, EquatableMixin {
+  final instance = locator<LocalStorageService>();
+
   @override
   StorageState get initialState => AppStart();
 
   @override
   Stream<StorageState> mapEventToState(ChangeEvent event) async* {
-    final state = MainStorageState();
-
-    if (event is RestoreEvent) {
-      await state.getPreferences();
-      yield state;
-    }
+    if (event is RestoreEvent) yield MainStorageState();
 
     if (event is ChangeDateFormat) {
-      state.saveDateFormat(event.dateformat);
-      await state.getPreferences();
-      yield state;
+      instance.dateformat = event.dateformat;
+
+      yield MainStorageState();
     }
 
     if (event is ChangePlatformEvent) {
-      state.savePlatform(event.platform);
-      await state.getPreferences();
-      yield state;
+      instance.platform = event.platform;
+
+      yield MainStorageState();
     }
 
     if (event is ToggleNotification) {
-      // need to populate missions and acolytes list with empty list on first install
-      await state.getPreferences();
+      instance.saveToDisk(event.key, event.value);
+      _firebaseTopic(event.key, event.value);
 
-      if (event.option != null)
-        state.toggleOption(event.key, event.value, event.option);
-      else
-        state.toggleOption(event.key, event.value);
-
-      await state.getPreferences();
-      yield state;
+      yield MainStorageState();
     }
+  }
+
+  void _firebaseTopic(String key, bool value) {
+    final firebase = locator<FirebaseMessaging>();
+
+    if (value)
+      firebase.subscribeToTopic(key);
+    else
+      firebase.unsubscribeFromTopic(key);
   }
 }

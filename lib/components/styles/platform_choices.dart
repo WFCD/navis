@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:navis/blocs/bloc.dart';
+import 'package:navis/utils/enums.dart';
 
 const pc = 'PC';
 const ps4 = 'Sony PlayStation 4';
@@ -33,8 +34,6 @@ class PlatformChoiceState extends State<PlatformChoice> {
           child: BlocBuilder<ChangeEvent, StorageState>(
               bloc: platform,
               builder: (context, storageState) {
-                //storageState.platform = Platforms.xb1;
-
                 return Row(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,

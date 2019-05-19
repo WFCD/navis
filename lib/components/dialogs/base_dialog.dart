@@ -40,13 +40,11 @@ class BaseDialog extends StatelessWidget {
         child: Column(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: List.unmodifiable(() sync* {
-              if (dialogTitle != null) yield _buildTitle(context);
-
-              yield content;
-
+            children: <Widget>[
+              if (dialogTitle != null) _buildTitle(context),
+              content,
               if (actions != null)
-                yield ButtonTheme.bar(child: ButtonBar(children: actions));
-            }())));
+                ButtonTheme.bar(child: ButtonBar(children: actions))
+            ]));
   }
 }

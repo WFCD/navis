@@ -6,14 +6,12 @@ import 'package:navis/global_keys.dart';
 class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final _navBloc = BlocProvider.of<NavigationBloc>(context);
-
     return Scaffold(
       key: scaffold,
       appBar: AppBar(title: const Text('Navis'), elevation: 6),
-      drawer: CustomDrawer(bloc: _navBloc),
-      body: BlocBuilder(
-        bloc: _navBloc,
+      drawer: CustomDrawer(bloc: BlocProvider.of<NavigationBloc>(context)),
+      body: BlocBuilder<RouteEvent, RouteState>(
+        bloc: BlocProvider.of<NavigationBloc>(context),
         builder: (BuildContext context, RouteState route) => route.widget,
       ),
     );

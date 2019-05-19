@@ -29,14 +29,10 @@ class _Orbiter extends State<Orbiter> {
               if (state is WorldstateLoaded) {
                 final news = state.worldState.news;
 
-                return CustomScrollView(slivers: <Widget>[
-                  SliverFixedExtentList(
-                      itemExtent: 200,
-                      delegate: SliverChildBuilderDelegate(
-                          (BuildContext context, int index) =>
-                              NewsCard(news: news[index]),
-                          childCount: news.length))
-                ]);
+                return ListView.builder(
+                    itemCount: news.length,
+                    itemBuilder: (context, index) =>
+                        NewsCard(news: news[index]));
               }
             }));
   }

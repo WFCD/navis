@@ -1,13 +1,4 @@
-enum StorageKey {
-  alerts,
-  baro,
-  darvo,
-  sorties,
-  news,
-  cycles,
-  fissures,
-  acolytes
-}
+import 'package:navis/utils/storage_keys.dart';
 
 // Do I even need this anymore?
 const rewards = {
@@ -56,56 +47,62 @@ const rewards = {
   'credits': 'Credits'
 };
 
-const simpleNotifications = [
+const simple = [
   {
     'name': 'Rare Alerts',
     'description': 'Rare alert notifications, mainly gifts of the lotus',
-    'key': 'alerts'
+    'key': alertsKey
   },
   {
     'name': 'Baro Ki\'Teer Arrival',
     'description': 'For when Baro has arrived',
-    'key': 'baro'
+    'key': baroKey
   },
   {
     'name': 'Darvo\'s Daily Deals',
     'description': 'Darvo\'s new find of the day',
-    'key': 'darvo'
+    'key': darvoKey
   },
   {
     'name': 'Sorties',
     'description': 'Notifications for new sorties',
-    'key': 'sorties'
+    'key': sortiesKey
   }
 ];
 
-const filteredNotifications = {
+const filtered = {
   'News': 'News notifications for Prime Access, Streams and Updates',
   'Cycles': 'Day/Night cycle notifications',
-  'Fissure Missions': 'Filter fissure notifications by prefered mission type',
+  //'Fissure Missions': 'Filter fissure notifications by prefered mission type',
   'Acolytes': 'Notification for when an Acolyte is found',
 };
 
 const cycles = {
-  'Cetus Day Start': 'day',
-  'Cetus Night Start': 'night',
-  'Orb Vallis Warm Cycle': 'warm',
-  'Orb Vallis Cold Cycle': 'cold'
+  earthDayKey: 'Earth Day Cycle',
+  earthNightKey: 'Earth Night Cycle',
+  dayKey: 'Cetus Day Cycle',
+  nightKey: 'Cetus Night Cycle',
+  warmKey: 'Orb Vallis Warm Cycle',
+  coldKey: 'Orb Vallis Cold Cycle'
 };
 
 const newsType = {
-  'Prime Access News': 'prime',
-  'Stream Announcements': 'stream',
-  'Warframe update News': 'update'
+  newsPrimeKey: 'Prime Access News',
+  newsStreamKey: 'Stream Announcements',
+  newsUpdateKey: 'Warframe update News'
 };
 
 const acolytes = {
-  'key': 'acolytes',
-  'acolytes': ['Angst', 'Malice', 'Mania', 'Misery', 'Torment', 'Violence']
+  angstkey: 'Angst',
+  maliceKey: 'Malice',
+  maniaKey: 'Mania',
+  miseryKey: 'Misery',
+  tormentKey: 'Torment',
+  violenceKey: 'Violence',
 };
 
 const missionTypes = {
-  'key': 'missions',
+  'key': 'missions_alert',
   'missions': [
     'Excavation',
     'Sabotage',

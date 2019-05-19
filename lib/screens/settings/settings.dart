@@ -9,9 +9,6 @@ import 'components/theme_choice.dart';
 class Settings extends StatelessWidget {
   const Settings({Key key}) : super(key: key);
 
-//temp flag while testing notifications
-  static const isDev = false;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,7 +18,7 @@ class Settings extends StatelessWidget {
           children: <Widget>[
             ThemeChoice(),
             const DateformatSetting(),
-            if (isDev) Notifications(),
+            Notifications(),
             Miscellaneous()
           ],
         ));

@@ -27,14 +27,12 @@ class Sorties extends StatelessWidget {
                         child: CountdownBox(expiry: sortie.expiry)),
                   );
 
-                  final List<Widget> missions = sortie.variants
-                      .map((variant) => _BuildMissions(variant))
-                      .toList();
-
-                  return Column(children: List.unmodifiable(() sync* {
-                    yield title;
-                    yield* missions;
-                  }()));
+                  return Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        title,
+                        for (Variants v in sortie.variants) _BuildMissions(v)
+                      ]);
                 }
 
                 return Container(
@@ -66,6 +64,7 @@ class _BuildMissions extends StatelessWidget {
       padding: const EdgeInsets.only(bottom: 4.0),
       margin: const EdgeInsets.only(bottom: 4.0, right: 4.0, left: 4.0),
       child: Column(
+          mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Text('${variants.missionType} - ${variants.node}', style: info),

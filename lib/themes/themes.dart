@@ -1,29 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:navis/services/localstorage_service.dart';
+import 'package:navis/services/service_locator.dart';
 
 class AppTheme {
-  Future<ThemeData> savedTheme() async {
-    final preferences = await SharedPreferences.getInstance();
-    final savedTheme = preferences.getInt('Theme') ?? 0;
+  final _preference = locator<LocalStorageService>();
 
-    if (savedTheme == 0) {
-      return darkTheme();
+  ThemeData savedTheme() {
+    if (_preference.darkMode) {
+      return dark();
     } else {
-      return lightTheme();
+      return light();
     }
   }
 
-  Future<void> save(int brightness,
-      {Color primaryColor, Color accentColor}) async {
-    final preferences = await SharedPreferences.getInstance();
+  void save(bool brightness, {Color primaryColor, Color accentColor}) {
+    _preference.darkMode = brightness;
 
-    preferences.setInt('Theme', brightness);
-
-    if (accentColor != null)
-      preferences.setInt('accentColor', accentColor.value);
-
-    if (primaryColor != null)
-      preferences.setInt('primaryColor', primaryColor.value);
+    if (primaryColor != null) _preference.primaryColor = primaryColor;
+    if (accentColor != null) _preference.accentColor = accentColor;
   }
 
   ThemeData defaultTheme({bool light = false}) {
@@ -36,40 +30,22 @@ class AppTheme {
         splashColor: Colors.blueAccent[400]);
   }
 
-  Future<ThemeData> darkTheme() async {
-    final preferences = await SharedPreferences.getInstance();
-    final primaryColor = preferences.getInt('primaryColor');
-    final accentColor = preferences.getInt('accentColor');
-
+  ThemeData dark() {
     return ThemeData(
         brightness: Brightness.dark,
-        primaryColor: primaryColor != null
-            ? Color(primaryColor)
-            : const Color.fromRGBO(26, 80, 144, .9),
-        accentColor:
-            accentColor != null ? Color(accentColor) : Colors.blueAccent[400],
+        primaryColor: _preference.primaryColor,
+        accentColor: _preference.accentColor,
         cardColor: const Color(0xFF2C2C2C),
         scaffoldBackgroundColor: const Color(0xFF212121),
         canvasColor: const Color(0xFF212121),
-        splashColor:
-            accentColor != null ? Color(accentColor) : Colors.blueAccent[400]);
+        splashColor: _preference.accentColor);
   }
 
-  Future<ThemeData> lightTheme() async {
-    final preferences = await SharedPreferences.getInstance();
-    final primaryColor = preferences.getInt('primaryColor');
-    final accentColor = preferences.getInt('accentColor');
-
+  ThemeData light() {
     return ThemeData(
         brightness: Brightness.light,
-        primaryColor: primaryColor != null
-            ? Color(primaryColor)
-            : const Color.fromRGBO(26, 80, 144, .9),
-        accentColor: accentColor != null
-            ? Color(accentColor)
-            : const Color.fromRGBO(26, 80, 144, .9),
-        splashColor: accentColor != null
-            ? Color(accentColor)
-            : const Color.fromRGBO(26, 80, 144, .9));
+        primaryColor: _preference.primaryColor,
+        accentColor: _preference.accentColor,
+        splashColor: _preference.accentColor);
   }
 }

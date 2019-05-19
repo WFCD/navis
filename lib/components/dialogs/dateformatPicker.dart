@@ -1,5 +1,6 @@
 import 'package:navis/blocs/bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:navis/utils/enums.dart';
 
 import 'base_dialog.dart';
 
@@ -25,7 +26,7 @@ class DateFormatPicker extends StatelessWidget with DialogWidget {
                     return RadioListTile(
                         title: Text(format),
                         value: v,
-                        groupValue: state.dateFormat,
+                        groupValue: state.dateformat,
                         activeColor: Theme.of(context).accentColor,
                         onChanged: (value) {
                           storage.dispatch(ChangeDateFormat(v));

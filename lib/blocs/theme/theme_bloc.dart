@@ -20,7 +20,7 @@ class ThemeBloc extends Bloc<ThemeEvent, ThemeState>
   @override
   Stream<ThemeState> mapEventToState(ThemeEvent event) async* {
     if (event is ThemeStart) {
-      final saved = await themes.savedTheme();
+      final saved = themes.savedTheme();
 
       yield ThemeState(theme: saved);
     }
@@ -28,26 +28,26 @@ class ThemeBloc extends Bloc<ThemeEvent, ThemeState>
     if (event is ThemeChange) {
       switch (event.brightness) {
         case Brightness.dark:
-          themes.save(0);
-          yield ThemeState(theme: await themes.darkTheme());
+          themes.save(true);
+          yield ThemeState(theme: themes.dark());
           break;
         case Brightness.light:
-          themes.save(1);
-          yield ThemeState(theme: await themes.lightTheme());
+          themes.save(false);
+          yield ThemeState(theme: themes.light());
       }
     }
 
     if (event is ThemeCustom) {
-      final base = await themes.savedTheme();
+      final base = themes.savedTheme();
 
-      if (base.brightness == Brightness.light) {
-        themes.save(1,
+      if (base.brightness != Brightness.light) {
+        themes.save(true,
             primaryColor: event.primaryColor, accentColor: event.accentColor);
-        yield ThemeState(theme: await themes.lightTheme());
+        yield ThemeState(theme: themes.dark());
       } else {
-        themes.save(0,
+        themes.save(false,
             primaryColor: event.primaryColor, accentColor: event.accentColor);
-        yield ThemeState(theme: await themes.darkTheme());
+        yield ThemeState(theme: themes.light());
       }
     }
   }

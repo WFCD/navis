@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:navis/blocs/bloc.dart';
+import 'package:navis/utils/enums.dart';
 import 'package:navis/utils/factionutils.dart';
 
 import 'static_box.dart';
@@ -31,7 +32,7 @@ class DateView extends StatelessWidget {
         return StaticBox(
             color: Colors.blueAccent[400],
             child: Text(
-                '${expiration(expiry, format: enumToDateformat(state.dateFormat))}',
+                '${expiration(expiry, format: enumToDateformat(state.dateformat))}',
                 style: const TextStyle(color: Colors.white)));
       },
     );

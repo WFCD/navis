@@ -101,10 +101,6 @@ class CustomDrawer extends StatelessWidget {
           title: 'Syndicate',
           routeType: RouteEvent.syndicates,
           callback: () => _changeRoute(context, RouteEvent.syndicates)),
-      /*DrawerItem(
-          icon: const Icon(PriceTag.tag),
-          title: 'Riven Market',
-          callback: () => _setBody(4))*/
     ];
 
     final List<Widget> _items = []

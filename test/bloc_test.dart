@@ -26,7 +26,7 @@ void main() {
   ThemeBloc themeBloc;
 
   setUpAll(() {
-    worldstateBloc = WorldstateBloc.initialize(client: client);
+    worldstateBloc = WorldstateBloc(client: client);
     //platformBloc = StorageBloc();
     themeBloc = ThemeBloc();
 
