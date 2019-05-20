@@ -38,10 +38,12 @@ class SyndicatesList extends StatelessWidget {
                               (Syndicate syn) => SyndicateStyle(syndicate: syn))
                           .toList()),
                   const SizedBox(height: 20),
-                  TimerBox(
-                      title: 'Season ends in:',
-                      time: state.worldState.nightwave.expiry),
-                  NightWaveStyle()
+                  if (state.worldState?.nightwave != null) ...{
+                    TimerBox(
+                        title: 'Season ends in:',
+                        time: state.worldState.nightwave?.expiry),
+                    NightWaveStyle()
+                  },
                 ]);
               }
             }));
