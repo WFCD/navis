@@ -17,11 +17,11 @@ class ColorPickerDialog extends StatelessWidget with DialogWidget {
     DialogWidget.openDialog(context, const ColorPickerDialog(false));
   }
 
-  void _submit(BuildContext context, ThemeBloc bloc, Color color) {
+  void _submit(BuildContext context, StorageBloc bloc, Color color) {
     if (primary) {
-      bloc.dispatch(ThemeCustom(primaryColor: color));
+      bloc.dispatch(ChangeThemeData(primaryColor: color));
     } else {
-      bloc.dispatch(ThemeCustom(accentColor: color));
+      bloc.dispatch(ChangeThemeData(accentColor: color));
     }
 
     Navigator.of(context).pop();
@@ -29,16 +29,15 @@ class ColorPickerDialog extends StatelessWidget with DialogWidget {
 
   @override
   Widget build(BuildContext context) {
-    final themeBloc = BlocProvider.of<ThemeBloc>(context);
+    final storage = BlocProvider.of<StorageBloc>(context);
 
-    return BlocBuilder(
-      bloc: themeBloc,
-      builder: (BuildContext context, ThemeState currentTheme) {
+    return BlocBuilder<ChangeEvent, StorageState>(
+      bloc: storage,
+      builder: (_, state) {
         Color tempColor;
 
-        final currentColor = primary
-            ? currentTheme.theme.primaryColor
-            : currentTheme.theme.accentColor;
+        final currentColor =
+            primary ? state.theme.primaryColor : state.theme.accentColor;
 
         return BaseDialog(
           dialogTitle: 'Select Color',
@@ -50,7 +49,7 @@ class ColorPickerDialog extends StatelessWidget with DialogWidget {
           actions: <Widget>[
             FlatButton(
               child: const Text('APPLY'),
-              onPressed: () => _submit(context, themeBloc, tempColor),
+              onPressed: () => _submit(context, storage, tempColor),
             )
           ],
         );

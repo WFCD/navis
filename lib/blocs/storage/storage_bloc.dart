@@ -4,7 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:navis/services/localstorage_service.dart';
-import 'package:navis/services/service_locator.dart';
+import 'package:navis/services/services.dart';
 
 import 'storage_events.dart';
 import 'storage_states.dart';
@@ -38,14 +38,27 @@ class StorageBloc extends Bloc<ChangeEvent, StorageState>
 
       yield MainStorageState();
     }
+
+    if (event is ChangeThemeData) {
+      if (event.enableDark != null) instance.darkMode = event.enableDark;
+
+      if (event.primaryColor != null)
+        instance.primaryColor = event.primaryColor;
+
+      if (event.accentColor != null) instance.accentColor = event.accentColor;
+
+      yield MainStorageState();
+    }
   }
 
   void _firebaseTopic(String key, bool value) {
     final firebase = locator<FirebaseMessaging>();
+    final instance = locator<LocalStorageService>();
+    final topic = '${instance.platform.toString().split('.').last}_$key';
 
     if (value)
-      firebase.subscribeToTopic(key);
+      firebase.subscribeToTopic(topic);
     else
-      firebase.unsubscribeFromTopic(key);
+      firebase.unsubscribeFromTopic(topic);
   }
 }
