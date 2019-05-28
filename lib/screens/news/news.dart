@@ -27,12 +27,10 @@ class _Orbiter extends State<Orbiter> {
               }
 
               if (state is WorldstateLoaded) {
-                final news = state.worldState.news;
-
                 return ListView.builder(
-                    itemCount: news.length,
+                    itemCount: state.news.length,
                     itemBuilder: (context, index) =>
-                        NewsCard(news: news[index]));
+                        NewsCard(news: state.news[index]));
               }
             }));
   }

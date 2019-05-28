@@ -3,7 +3,7 @@ import 'package:simple_animations/simple_animations.dart';
 import 'package:simple_animations/simple_animations/multi_track_tween.dart';
 
 class Indicator extends StatelessWidget {
-  Indicator(
+  const Indicator(
       {Key key,
       @required this.numberOfDot,
       this.position = 0,

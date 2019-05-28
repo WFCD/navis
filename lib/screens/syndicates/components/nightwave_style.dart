@@ -43,8 +43,7 @@ class NightWaveStyle extends StatelessWidget {
                                     .title
                                     .copyWith(
                                         color: Colors.white, fontSize: 20)),
-                            Text(
-                                'Season ${state.worldState.nightwave.season + 1}',
+                            Text('Season ${state.nightwave.season + 1}',
                                 textAlign: TextAlign.center,
                                 style: Theme.of(context).textTheme.subtitle)
                           ])));

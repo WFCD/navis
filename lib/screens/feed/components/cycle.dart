@@ -27,11 +27,9 @@ class CetusCycle extends StatelessWidget {
         title: _cycle(cycle),
         child: BlocBuilder(
             bloc: state,
-            builder: (context, currentState) {
-              if (currentState is WorldstateLoaded) {
-                final earth = cycle == Cycle.cetus
-                    ? currentState.worldState.cetus
-                    : currentState.worldState.earth;
+            builder: (context, state) {
+              if (state is WorldstateLoaded) {
+                final earth = cycle == Cycle.cetus ? state.cetus : state.earth;
                 const padding = SizedBox(height: 4);
 
                 return Column(

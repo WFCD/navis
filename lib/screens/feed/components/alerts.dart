@@ -18,13 +18,12 @@ class AlertTile extends StatelessWidget {
             bloc: state,
             builder: (context, state) {
               if (state is WorldstateLoaded) {
-                final alerts = state.worldState.alerts;
-                final List<Widget> allAlerts =
-                    alerts.map((alert) => _BuildAlerts(alert: alert)).toList();
-
-                return allAlerts.isEmpty
+                return state.alerts.isEmpty
                     ? const Center(child: Text('No alerts at this time'))
-                    : Column(children: allAlerts);
+                    : Column(children: <Widget>[
+                        ...state.alerts
+                            .map((alert) => _BuildAlerts(alert: alert))
+                      ]);
               }
             }));
   }

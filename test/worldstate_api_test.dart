@@ -4,6 +4,7 @@ import 'package:mockito/mockito.dart';
 import 'package:http/http.dart' as http;
 import 'package:navis/models/export.dart';
 import 'package:navis/services/worldstate.dart';
+import 'package:navis/utils/enums.dart';
 import 'package:test/test.dart';
 
 const mockstate = {
@@ -31,7 +32,8 @@ void main() {
       when(client.get('https://api.warframestat.us/pc'))
           .thenAnswer((_) async => http.Response(json.encode(mockstate), 200));
 
-      final state = await worldstateApi.getWorldstate(client: client);
+      final state =
+          await worldstateApi.getWorldstate(Platforms.pc, client: client);
 
       expect(state, const TypeMatcher<WorldState>());
     });
@@ -41,7 +43,7 @@ void main() {
           .thenAnswer((_) async => http.Response(json.encode(mockstate), 200));
 
       final state =
-          await worldstateApi.getWorldstate(client: client, platform: 'ps4');
+          await worldstateApi.getWorldstate(Platforms.ps4, client: client);
 
       expect(state, const TypeMatcher<WorldState>());
     });
@@ -51,7 +53,7 @@ void main() {
           .thenAnswer((_) async => http.Response(json.encode(mockstate), 200));
 
       final state =
-          await worldstateApi.getWorldstate(client: client, platform: 'xb1');
+          await worldstateApi.getWorldstate(Platforms.xb1, client: client);
 
       expect(state, const TypeMatcher<WorldState>());
     });
@@ -61,7 +63,7 @@ void main() {
           .thenAnswer((_) async => http.Response(json.encode(mockstate), 200));
 
       final state =
-          await worldstateApi.getWorldstate(client: client, platform: 'swi');
+          await worldstateApi.getWorldstate(Platforms.swi, client: client);
 
       expect(state, const TypeMatcher<WorldState>());
     });

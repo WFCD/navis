@@ -29,31 +29,27 @@ class Feed extends StatelessWidget {
               return const Center(child: CircularProgressIndicator());
 
             if (state is WorldstateLoaded) {
-              final bool isAlertFilled = state.worldState.alerts.isNotEmpty;
-
-              final List<Widget> children = [
-                const CetusCycle(cycle: Cycle.cetus),
-                OrbVallis(),
-                const CetusCycle(cycle: Cycle.earth),
-                isAlertFilled ? AlertTile() : Container(),
-                Fissure(),
-                const RepaintBoundary(child: InvasionCard()),
-                Trader(),
-                const Deals(),
-                Sorties()
-              ];
-
-              final List sliver = <Widget>[
-                SliverList(delegate: SliverChildListDelegate(children))
-              ];
+              final bool isAlertActive = state.alerts.isNotEmpty;
+              final bool isInvasionsActive = state.invasions.isNotEmpty;
+              final bool isFissureActive = state.fissures.isNotEmpty;
+              final isEventActive = state.events.isNotEmpty;
+              final areAcolytesActive = state.acolytes.isNotEmpty;
 
               return CustomScrollView(slivers: <Widget>[
-                if (state.worldState.events.isNotEmpty)
-                  SliverToBoxAdapter(
-                      child: EventPanel(events: state.worldState.events)),
-                if (state.worldState.persistentEnemies.isNotEmpty)
-                  SliverToBoxAdapter(child: Acolytes()),
-                ...sliver
+                SliverList(
+                    delegate: SliverChildListDelegate(<Widget>[
+                  if (isEventActive) EventPanel(events: state.events),
+                  if (areAcolytesActive) Acolytes(),
+                  const CetusCycle(cycle: Cycle.cetus),
+                  OrbVallis(),
+                  const CetusCycle(cycle: Cycle.earth),
+                  if (isAlertActive) AlertTile(),
+                  if (isFissureActive) Fissure(),
+                  if (isInvasionsActive) const InvasionCard(),
+                  Trader(),
+                  const Deals(),
+                  Sorties()
+                ]))
               ]);
             }
           }),

@@ -22,7 +22,7 @@ class _Trader extends State<Trader> {
           bloc: wstate,
           builder: (context, state) {
             if (state is WorldstateLoaded) {
-              final trader = state.worldState.trader;
+              final trader = state.trader;
 
               return Column(children: <Widget>[
                 RowItem(

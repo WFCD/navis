@@ -22,7 +22,7 @@ class SyndicatesList extends StatelessWidget {
                 return const Center(child: CircularProgressIndicator());
 
               if (state is WorldstateLoaded) {
-                final List<Syndicate> syndicates = state.worldState.syndicates;
+                final List<Syndicate> syndicates = state.syndicates;
 
                 if (syndicates[0].activation.isAfter(_currentTime) &&
                     syndicates[0].expiry.isBefore(_currentTime))
@@ -38,10 +38,9 @@ class SyndicatesList extends StatelessWidget {
                               (Syndicate syn) => SyndicateStyle(syndicate: syn))
                           .toList()),
                   const SizedBox(height: 20),
-                  if (state.worldState?.nightwave != null) ...{
+                  if (state.nightwave != null) ...{
                     TimerBox(
-                        title: 'Season ends in:',
-                        time: state.worldState.nightwave?.expiry),
+                        title: 'Season ends in:', time: state.nightwave.expiry),
                     NightWaveStyle()
                   },
                 ]);

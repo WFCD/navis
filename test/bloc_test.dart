@@ -23,12 +23,10 @@ void main() {
 
   WorldstateBloc worldstateBloc;
   //StorageBloc platformBloc;
-  ThemeBloc themeBloc;
 
   setUpAll(() {
     worldstateBloc = WorldstateBloc(client: client);
     //platformBloc = StorageBloc();
-    themeBloc = ThemeBloc();
 
     const MethodChannel('plugins.flutter.io/shared_preferences')
         .setMockMethodCallHandler((MethodCall methodCall) async {
@@ -63,18 +61,6 @@ void main() {
       expectLater(worldstateBloc.state, emitsInOrder([]));
 
       worldstateBloc.dispose();
-    });
-  });
-
-  group('Test Theme bloc', () {
-    test('Initial state is ThemeState with no themeData', () {
-      expect(themeBloc.initialState, const TypeMatcher<ThemeState>());
-    });
-
-    test('dispose does not create a new state', () {
-      expectLater(themeBloc.state, emitsInOrder([]));
-
-      themeBloc.dispose();
     });
   });
 }

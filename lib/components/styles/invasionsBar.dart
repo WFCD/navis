@@ -39,6 +39,7 @@ class InvasionBar extends StatelessWidget {
                       width: width,
                       padding: padding,
                       child: CustomPaint(
+                          willChange: true,
                           painter: _InvasionBar(
                               progress: progress,
                               progressColor: factionColor(attackingFaction),

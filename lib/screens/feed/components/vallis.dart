@@ -14,7 +14,7 @@ class OrbVallis extends StatelessWidget {
             bloc: wstate,
             builder: (context, state) {
               if (state is WorldstateLoaded) {
-                final vallis = state.worldState.vallis;
+                final vallis = state.vallis;
                 const padding = SizedBox(height: 4);
 
                 return Column(children: <Widget>[

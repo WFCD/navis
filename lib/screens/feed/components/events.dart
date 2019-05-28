@@ -19,20 +19,22 @@ class EventPanel extends StatefulWidget {
 class EventPanelState extends State<EventPanel> {
   StreamController<int> _currentPage;
   PageController pageController;
+  PageStorageBucket lastPage;
 
   @override
   void initState() {
     super.initState();
     _currentPage = BehaviorSubject<int>();
+    pageController = PageController(initialPage: 0);
+    lastPage = PageStorageBucket();
 
     _currentPage.sink.add(0);
-    pageController = PageController(initialPage: 0);
   }
 
   @override
   void didUpdateWidget(EventPanel oldWidget) {
     if (oldWidget.events.length != widget.events.length) {
-      _currentPage.sink.add(pageController.page.toInt());
+      _currentPage.sink.add(lastPage.readState(context));
     }
 
     super.didUpdateWidget(oldWidget);
@@ -46,49 +48,54 @@ class EventPanelState extends State<EventPanel> {
   }
 
   void onPageChanged(int index) {
-    _currentPage.sink.add(index);
+    lastPage.writeState(context, index);
+    _currentPage.sink.add(lastPage.readState(context));
   }
 
   @override
   Widget build(BuildContext context) {
     final bool enableDots = widget.events.length <= 1;
 
-    return SizedBox(
+    return Container(
         height: 140,
         width: MediaQuery.of(context).size.width,
         child: Material(
           color: Theme.of(context).cardColor,
           elevation: 6,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            mainAxisSize: MainAxisSize.max,
-            children: <Widget>[
-              Expanded(
-                  child: PageView(
-                controller: pageController,
-                scrollDirection: Axis.horizontal,
-                children:
-                    widget.events.map((e) => EventBuilder(event: e)).toList(),
-                onPageChanged: onPageChanged,
+          child: PageStorage(
+              bucket: lastPage,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisSize: MainAxisSize.max,
+                children: <Widget>[
+                  Expanded(
+                      child: PageView(
+                    controller: pageController,
+                    scrollDirection: Axis.horizontal,
+                    children: <Widget>[
+                      ...widget.events.map((e) => EventBuilder(event: e))
+                    ],
+                    onPageChanged: onPageChanged,
+                  )),
+                  if (!enableDots)
+                    StreamBuilder<int>(
+                      stream: _currentPage.stream,
+                      initialData: 0,
+                      builder:
+                          (BuildContext context, AsyncSnapshot<int> snapshot) {
+                        return Indicator(
+                          numberOfDot: widget.events.length,
+                          position: snapshot.data,
+                          dotSize: const Size.square(9.0),
+                          dotActiveSize: const Size(25.0, 9.0),
+                          dotActiveShape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8.0)),
+                          dotActiveColor: Theme.of(context).accentColor,
+                        );
+                      },
+                    ),
+                ],
               )),
-              if (!enableDots)
-                StreamBuilder(
-                  stream: _currentPage.stream.distinct(),
-                  initialData: 0,
-                  builder: (BuildContext context, AsyncSnapshot snapshot) {
-                    return Indicator(
-                      numberOfDot: widget.events.length,
-                      position: snapshot.data,
-                      dotSize: const Size.square(9.0),
-                      dotActiveSize: const Size(25.0, 9.0),
-                      dotActiveShape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8.0)),
-                      dotActiveColor: Theme.of(context).accentColor,
-                    );
-                  },
-                ),
-            ],
-          ),
         ));
   }
 }

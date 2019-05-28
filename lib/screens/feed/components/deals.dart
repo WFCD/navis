@@ -16,8 +16,6 @@ class Deals extends StatelessWidget {
           bloc: BlocProvider.of<WorldstateBloc>(context),
           builder: (_, state) {
             if (state is WorldstateLoaded) {
-              final deals = state.worldState.dailyDeals;
-
               final header = TableRow(children: <Widget>[
                 Text('Item', style: style),
                 Text('Discount', style: style),
@@ -31,9 +29,9 @@ class Deals extends StatelessWidget {
                   child: Table(
                     defaultVerticalAlignment: TableCellVerticalAlignment.middle,
                     defaultColumnWidth: FlexColumnWidth(),
-                    children: List.unmodifiable(() sync* {
-                      yield header;
-                      yield* deals.map((d) {
+                    children: <TableRow>[
+                      header,
+                      ...state.dailyDeals.map((d) {
                         final remaining = d.total - d.sold;
 
                         return TableRow(children: <Widget>[
@@ -43,8 +41,8 @@ class Deals extends StatelessWidget {
                           Text('$remaining/${d.total}', style: style),
                           CountdownBox(expiry: d.expiry),
                         ]);
-                      });
-                    }()),
+                      })
+                    ],
                   ));
             }
           },

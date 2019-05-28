@@ -14,12 +14,12 @@ class Acolytes extends StatelessWidget {
       bloc: state,
       builder: (context, state) {
         if (state is WorldstateLoaded) {
-          final enemies = state.worldState.persistentEnemies;
-
           return Tiles(
               title: 'Acolytes',
               child: Column(
-                children: enemies.map((e) => AcolyteProfile(enemy: e)).toList(),
+                children: <Widget>[
+                  ...state.acolytes.map((e) => AcolyteProfile(enemy: e))
+                ],
               ));
         }
       },

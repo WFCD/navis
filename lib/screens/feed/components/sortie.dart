@@ -15,23 +15,22 @@ class Sorties extends StatelessWidget {
             bloc: wstate,
             builder: (context, state) {
               if (state is WorldstateLoaded) {
-                final sortie = state.worldState.sortie;
-
-                if (sortie?.variants?.isNotEmpty ?? false) {
+                if (state.sortie?.variants?.isNotEmpty ?? false) {
                   final title = ListTile(
-                    leading: FactionIcon(sortie.faction, size: 45),
-                    title: Text(sortie.boss),
-                    subtitle: Text(sortie.faction),
+                    leading: FactionIcon(state.sortie.faction, size: 45),
+                    title: Text(state.sortie.boss),
+                    subtitle: Text(state.sortie.faction),
                     trailing: Container(
                         padding: const EdgeInsets.all(4.0),
-                        child: CountdownBox(expiry: sortie.expiry)),
+                        child: CountdownBox(expiry: state.sortie.expiry)),
                   );
 
                   return Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         title,
-                        for (Variants v in sortie.variants) _BuildMissions(v)
+                        for (Variants v in state.sortie.variants)
+                          _BuildMissions(v)
                       ]);
                 }
 

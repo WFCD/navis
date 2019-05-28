@@ -20,20 +20,14 @@ class Fissure extends StatelessWidget {
               return const Center(child: CircularProgressIndicator());
 
             if (state is WorldstateLoaded) {
-              final fissures = state.worldState.voidFissures;
-
               return ExpandedInfo(
-                header: Column(
-                    children: fissures
-                        .take(5)
-                        .map((f) => _BuildFissures(f))
-                        .toList()),
-                body: Column(
-                    children: fissures
-                        .skip(5)
-                        .map((f) => _BuildFissures(f))
-                        .toList()),
-                condition: fissures.length <= 5,
+                header: Column(children: <Widget>[
+                  ...state.fissures.take(5).map((f) => _BuildFissures(f))
+                ]),
+                body: Column(children: <Widget>[
+                  ...state.fissures.skip(5).map((f) => _BuildFissures(f))
+                ]),
+                condition: state.fissures.length <= 5,
                 padding: EdgeInsets.zero,
               );
             }
@@ -50,7 +44,7 @@ class _BuildFissures extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(children: <Widget>[
-      GetTierIcon(fissure.tier),
+      GetTierIcon(fissure.tier, Theme.of(context).iconTheme.color),
       const SizedBox(width: 8.0),
       Expanded(
           child: Container(

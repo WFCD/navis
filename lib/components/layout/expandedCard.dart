@@ -52,22 +52,23 @@ class _ExpandedInfoState extends State<ExpandedInfo> {
               firstChild: Container(),
               secondChild: widget.body,
             ),
-            ButtonTheme.bar(
-              padding: widget.padding,
-              child: ButtonBar(
-                  alignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    FlatButton(
-                        padding: const EdgeInsets.all(8.0),
-                        textColor: Theme.of(context).accentColor,
-                        onPressed: widget.condition
-                            ? null
-                            : () => isExpanded.sink.add(!action.data),
-                        child: action.data
-                            ? const Text('See less')
-                            : const Text('See more'))
-                  ]),
-            )
+            if (!widget.condition)
+              ButtonTheme.bar(
+                padding: widget.padding,
+                child: ButtonBar(
+                    alignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      FlatButton(
+                          padding: const EdgeInsets.all(8.0),
+                          textColor: Theme.of(context).accentColor,
+                          onPressed: widget.condition
+                              ? null
+                              : () => isExpanded.sink.add(!action.data),
+                          child: action.data
+                              ? const Text('See less')
+                              : const Text('See more'))
+                    ]),
+              )
           ]);
         });
   }

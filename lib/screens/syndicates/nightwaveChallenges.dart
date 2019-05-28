@@ -26,7 +26,7 @@ class NightwaveChallenges extends StatelessWidget {
           bloc: BlocProvider.of<WorldstateBloc>(context),
           builder: (_, state) {
             if (state is WorldstateLoaded) {
-              final nightwave = state.worldState.nightwave;
+              final nightwave = state.nightwave;
 
               final daily = nightwave.dailyChallenges
                   .map((c) => BountyType(challenge: c))
