@@ -51,28 +51,28 @@ class FactionIcon extends StatelessWidget {
 }
 
 class GetTierIcon extends StatelessWidget {
-  const GetTierIcon(this.tier);
+  const GetTierIcon(this.tier, [this.color = Colors.white]);
 
   final String tier;
 
   static const double _size = 30.0;
-  static const Color _color = Colors.white;
+  final Color color;
 
   @override
   Widget build(BuildContext context) {
     SvgPicture icon;
     switch (tier) {
       case 'Lith':
-        icon = SvgPicture.asset('assets/relics/Lith.svg', color: _color);
+        icon = SvgPicture.asset('assets/relics/Lith.svg', color: color);
         break;
       case 'Meso':
-        icon = SvgPicture.asset('assets/relics/Meso.svg', color: _color);
+        icon = SvgPicture.asset('assets/relics/Meso.svg', color: color);
         break;
       case 'Neo':
-        icon = SvgPicture.asset('assets/relics/Neo.svg', color: _color);
+        icon = SvgPicture.asset('assets/relics/Neo.svg', color: color);
         break;
       default:
-        icon = SvgPicture.asset('assets/relics/Axi.svg', color: _color);
+        icon = SvgPicture.asset('assets/relics/Axi.svg', color: color);
     }
 
     return SizedBox(height: _size, width: _size, child: icon);
