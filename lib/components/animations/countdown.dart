@@ -5,11 +5,41 @@ import 'package:simple_animations/simple_animations.dart';
 
 import '../layout/static_box.dart';
 
-class CountdownBox extends StatelessWidget {
+class CountdownBox extends StatefulWidget {
   const CountdownBox({this.expiry, this.size});
 
   final DateTime expiry;
   final double size;
+
+  @override
+  _CountdownBoxState createState() => _CountdownBoxState();
+}
+
+class _CountdownBoxState extends State<CountdownBox> {
+  Duration duration;
+  Tween tween;
+
+  @override
+  void initState() {
+    super.initState();
+
+    duration = widget.expiry.difference(DateTime.now());
+    tween = StepTween(
+        begin: widget.expiry.millisecondsSinceEpoch,
+        end: DateTime.now().millisecondsSinceEpoch);
+  }
+
+  @override
+  void didUpdateWidget(CountdownBox oldWidget) {
+    if (oldWidget.expiry != widget.expiry) {
+      duration = widget.expiry.difference(DateTime.now());
+      tween = StepTween(
+          begin: widget.expiry.millisecondsSinceEpoch,
+          end: DateTime.now().millisecondsSinceEpoch);
+    }
+
+    super.didUpdateWidget(oldWidget);
+  }
 
   Future<void> _listener(BuildContext context, AnimationStatus status) async {
     if (status == AnimationStatus.completed ||
@@ -44,24 +74,20 @@ class CountdownBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final tween = StepTween(
-        begin: expiry.millisecondsSinceEpoch,
-        end: DateTime.now().millisecondsSinceEpoch);
-
     return ControlledAnimation(
-      delay: const Duration(milliseconds: 500),
-      duration: expiry.difference(DateTime.now()),
+      //delay: const Duration(milliseconds: 250),
+      duration: duration,
       tween: tween,
       playback: Playback.PLAY_FORWARD,
       animationControllerStatusListener: (AnimationStatus status) =>
           _listener(context, status),
       builder: (context, value) {
-        final Duration duration = expiry.difference(DateTime.now());
+        final Duration duration = widget.expiry.difference(DateTime.now());
 
         return StaticBox(
             color: _containerColors(duration),
             child: Text(_timerVersions(duration),
-                style: TextStyle(fontSize: size, color: Colors.white)));
+                style: TextStyle(fontSize: widget.size, color: Colors.white)));
       },
     );
   }
