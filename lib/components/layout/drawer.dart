@@ -103,29 +103,28 @@ class CustomDrawer extends StatelessWidget {
           callback: () => _changeRoute(context, RouteEvent.syndicates)),
     ];
 
-    final List<Widget> _items = []
-      ..insert(0, Container(height: 76, color: Theme.of(context).accentColor))
-      ..add(Expanded(
-          child: ListView(
-              padding: EdgeInsets.zero,
-              children:
-                  _drawerItem.map((i) => _BuildDrawerItem(item: i)).toList())))
-      ..add(const PlatformChoice())
-      ..add(ListTile(
-        leading: const Icon(Icons.settings),
-        title: const Text('Settings'),
-        onTap: () {
-          Navigator.of(context).pop();
-          Navigator.of(context).pushNamed('/Settings');
-        },
-      ));
-    //..add(aboutTile());
-
     return SafeArea(
         child: Drawer(
             child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: _items)));
+                children: <Widget>[
+          Container(height: 76, color: Theme.of(context).accentColor),
+          Expanded(
+              child: ListView(
+                  padding: EdgeInsets.zero,
+                  children: _drawerItem
+                      .map((i) => _BuildDrawerItem(item: i))
+                      .toList())),
+          const PlatformChoice(),
+          ListTile(
+            leading: const Icon(Icons.settings),
+            title: const Text('Settings'),
+            onTap: () {
+              Navigator.of(context).pop();
+              Navigator.of(context).pushNamed('/Settings');
+            },
+          )
+        ])));
   }
 }
 
