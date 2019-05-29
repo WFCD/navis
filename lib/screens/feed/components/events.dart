@@ -19,14 +19,12 @@ class EventPanel extends StatefulWidget {
 class EventPanelState extends State<EventPanel> {
   StreamController<int> _currentPage;
   PageController pageController;
-  PageStorageBucket lastPage;
 
   @override
   void initState() {
     super.initState();
     _currentPage = BehaviorSubject<int>();
     pageController = PageController(initialPage: 0);
-    lastPage = PageStorageBucket();
 
     _currentPage.sink.add(0);
   }
@@ -34,7 +32,7 @@ class EventPanelState extends State<EventPanel> {
   @override
   void didUpdateWidget(EventPanel oldWidget) {
     if (oldWidget.events.length != widget.events.length) {
-      _currentPage.sink.add(lastPage.readState(context));
+      _currentPage.sink.add(0);
     }
 
     super.didUpdateWidget(oldWidget);
@@ -48,8 +46,7 @@ class EventPanelState extends State<EventPanel> {
   }
 
   void onPageChanged(int index) {
-    lastPage.writeState(context, index);
-    _currentPage.sink.add(lastPage.readState(context));
+    _currentPage.sink.add(index);
   }
 
   @override
@@ -63,7 +60,7 @@ class EventPanelState extends State<EventPanel> {
           color: Theme.of(context).cardColor,
           elevation: 6,
           child: PageStorage(
-              bucket: lastPage,
+              bucket: PageStorageBucket(),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 mainAxisSize: MainAxisSize.max,
