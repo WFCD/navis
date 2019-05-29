@@ -13,31 +13,31 @@ class PlatformIcon extends StatelessWidget {
 
   final Platforms platform;
 
-  String tooltip;
-  String assetPath;
-  Color platformColor;
+  static String _tooltip;
+  static String _assetPath;
+  static Color _platformColor;
 
   void _setValues() {
     switch (platform) {
       case Platforms.ps4:
-        tooltip = ps4;
-        assetPath = 'assets/platforms/ps4.svg';
-        platformColor = const Color(0xFF003791);
+        _tooltip = ps4;
+        _assetPath = 'assets/platforms/ps4.svg';
+        _platformColor = const Color(0xFF003791);
         break;
       case Platforms.xb1:
-        tooltip = xb1;
-        assetPath = 'assets/platforms/xbox1.svg';
-        platformColor = const Color(0xFF107c10);
+        _tooltip = xb1;
+        _assetPath = 'assets/platforms/xbox1.svg';
+        _platformColor = const Color(0xFF107c10);
         break;
       case Platforms.swi:
-        tooltip = swi;
-        assetPath = 'assets/platforms/switch.svg';
-        platformColor = const Color(0xFFe60012);
+        _tooltip = swi;
+        _assetPath = 'assets/platforms/switch.svg';
+        _platformColor = const Color(0xFFe60012);
         break;
       default:
-        tooltip = pc;
-        assetPath = 'assets/platforms/pc.svg';
-        platformColor = const Color(0xFFFACA04);
+        _tooltip = pc;
+        _assetPath = 'assets/platforms/pc.svg';
+        _platformColor = const Color(0xFFFACA04);
     }
   }
 
@@ -58,15 +58,15 @@ class PlatformIcon extends StatelessWidget {
         _setValues();
 
         return IconButton(
-          tooltip: tooltip,
+          tooltip: _tooltip,
           icon: SvgPicture.asset(
-            assetPath,
+            _assetPath,
             color: state.platform == platform
-                ? platformColor
+                ? _platformColor
                 : Theme.of(context).disabledColor,
             height: 25,
             width: 25,
-            semanticsLabel: tooltip,
+            semanticsLabel: _tooltip,
           ),
           onPressed: () => _onPressed(Platforms.pc),
         );
