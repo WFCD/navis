@@ -7,140 +7,105 @@ import 'package:navis/screens/maps/map.dart';
 
 import '../styles/platform_choices.dart';
 
-class DrawerItem {
-  const DrawerItem(
-      {this.icon, this.title, this.routeType, this.children, this.callback});
+class _BuildDrawerOptions extends StatelessWidget {
+  const _BuildDrawerOptions({Key key}) : super(key: key);
 
-  final Icon icon;
-  final String title;
-  final RouteEvent routeType;
-  final List<DrawerItem> children;
-  final VoidCallback callback;
-}
+  //temp flag
+  static bool _isDev = false;
 
-class _BuildDrawerItem extends StatelessWidget {
-  const _BuildDrawerItem({Key key, this.item}) : super(key: key);
-
-  final DrawerItem item;
+  static const _poe = 'https://hub.warframestat.us/#/poe/map';
+  static const _vallis = 'https://hub.warframestat.us/#/vallis/map';
+  static const _poeFishingData = 'https://hub.warframestat.us/#/poe/fish';
+  static const _vallisFishingData = 'https://hub.warframestat.us/#/vallis/fish';
+  static const _howToFish = 'https://hub.warframestat.us/#/poe/fish/howto';
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder(
-        bloc: BlocProvider.of<NavigationBloc>(context),
-        builder: (BuildContext context, RouteState route) {
-          if (item.children == null || item.children.isEmpty)
-            return ListTile(
-              leading: item.icon,
-              title: Text(item.title),
-              onTap: item.callback,
-              selected: item.routeType == route.route,
-            );
+    void _changeRoute(RouteEvent event) {
+      BlocProvider.of<NavigationBloc>(context).dispatch(event);
+      Navigator.of(context).pop();
+    }
 
-          return ExpansionTile(
-            leading: item.icon,
-            title: Text(item.title),
-            children:
-                item.children.map((i) => _BuildDrawerItem(item: i)).toList(),
-          );
-        });
+    assert(_isDev = true);
+    return BlocBuilder<RouteEvent, RouteState>(
+      bloc: BlocProvider.of<NavigationBloc>(context),
+      builder: (context, state) {
+        return Expanded(
+            child: ListView(padding: EdgeInsets.zero, children: <Widget>[
+          ListTile(
+            leading: const Icon(Icons.update),
+            title: const Text('News'),
+            onTap: () => _changeRoute(RouteEvent.news),
+            selected: state.route == RouteEvent.news,
+          ),
+          ListTile(
+            leading: const Icon(Icons.timer),
+            title: const Text('Timers'),
+            onTap: () => _changeRoute(RouteEvent.timers),
+            selected: state.route == RouteEvent.timers,
+          ),
+          ExpansionTile(
+            leading: const Icon(Icons.map),
+            title: const Text('Maps'),
+            children: <Widget>[
+              ListTile(
+                  title: const Text('Plains of Eidolon map'),
+                  onTap: () => _isDev
+                      ? _navigateToMap(context, Location.plains)
+                      : _launchUrl(context, _poe)),
+              ListTile(
+                  title: const Text('Orb Vallis map'),
+                  onTap: () => _launchUrl(context, _vallis)),
+              ListTile(
+                  title: const Text('PoE: Fishing Data'),
+                  onTap: () => _launchUrl(context, _poeFishingData)),
+              ListTile(
+                  title: const Text('Vallis: Fishing Data'),
+                  onTap: () => _launchUrl(context, _vallisFishingData)),
+              ListTile(
+                  title: const Text('How to Fish'),
+                  onTap: () => _launchUrl(context, _howToFish))
+            ],
+          ),
+          ListTile(
+            leading: const Icon(Standing.standing),
+            title: const Text('Syndicate'),
+            onTap: () => _changeRoute(RouteEvent.syndicates),
+            selected: state.route == RouteEvent.syndicates,
+          )
+        ]));
+      },
+    );
   }
 }
 
 class CustomDrawer extends StatelessWidget {
-  const CustomDrawer({@required this.bloc});
-
-  final NavigationBloc bloc;
-
-  void _changeRoute(BuildContext context, RouteEvent event) {
-    bloc.dispatch(event);
-    Navigator.of(context).pop();
-  }
-
-//temp flag
-  static const isDev = false;
+  const CustomDrawer();
 
   @override
   Widget build(BuildContext context) {
-    final List<DrawerItem> _drawerItem = [
-      DrawerItem(
-          icon: const Icon(Icons.update),
-          title: 'News',
-          routeType: RouteEvent.news,
-          callback: () => _changeRoute(context, RouteEvent.news)),
-      DrawerItem(
-          icon: const Icon(Icons.timer),
-          title: 'Timers',
-          routeType: RouteEvent.timers,
-          callback: () => _changeRoute(context, RouteEvent.timers)),
-      DrawerItem(icon: const Icon(Icons.map), title: 'Maps', children: <
-          DrawerItem>[
-        DrawerItem(
-            title: 'Plains',
-            callback: () => isDev
-                ? _navigateToMap(context, 'Ostrons')
-                : _launchUrl(context, 'https://hub.warframestat.us/#/poe/map')),
-        DrawerItem(
-            title: 'Vallis',
-            callback: () => _launchUrl(
-                context, 'https://hub.warframestat.us/#/vallis/map')),
-        DrawerItem(
-            title: 'PoE: Fishing Data',
-            callback: () =>
-                _launchUrl(context, 'https://hub.warframestat.us/#/poe/fish')),
-        DrawerItem(
-            title: 'Orb Vallis: Fishing Data',
-            callback: () => _launchUrl(
-                context, 'https://hub.warframestat.us/#/vallis/fish')),
-        DrawerItem(
-            title: 'How to Fish',
-            callback: () => _launchUrl(
-                context, 'https://hub.warframestat.us/#/poe/fish/howto'))
-      ]),
-      DrawerItem(
-          icon: const Icon(Standing.standing),
-          title: 'Syndicate',
-          routeType: RouteEvent.syndicates,
-          callback: () => _changeRoute(context, RouteEvent.syndicates)),
-    ];
-
     return SafeArea(
         child: Drawer(
-            child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-          Container(height: 76, color: Theme.of(context).accentColor),
-          Expanded(
-              child: ListView(
-                  padding: EdgeInsets.zero,
-                  children: _drawerItem
-                      .map((i) => _BuildDrawerItem(item: i))
-                      .toList())),
-          const PlatformChoice(),
-          ListTile(
-            leading: const Icon(Icons.settings),
-            title: const Text('Settings'),
-            onTap: () {
-              Navigator.of(context).pop();
-              Navigator.of(context).pushNamed('/Settings');
-            },
-          )
-        ])));
+            child: Column(children: <Widget>[
+      Container(height: 76, color: Theme.of(context).accentColor),
+      const _BuildDrawerOptions(),
+      const PlatformChoice(),
+      ListTile(
+        leading: const Icon(Icons.settings),
+        title: const Text('Settings'),
+        onTap: () {
+          Navigator.of(context).pop();
+          Navigator.of(context).pushNamed('/Settings');
+        },
+      )
+    ])));
   }
 }
 
-void _navigateToMap(BuildContext context, String syndicate) {
-  Location _locaton(String syndicateName) {
-    switch (syndicateName) {
-      case 'Ostrons':
-        return Location.plains;
-      default:
-        return Location.vallis;
-    }
-  }
-
+void _navigateToMap(BuildContext context, Location syndicate) {
   Navigator.of(context).pop();
-  Navigator.of(context).push(
-      MaterialPageRoute(builder: (_) => Maps(location: _locaton(syndicate))));
+  Navigator.of(context)
+      .push(MaterialPageRoute(builder: (_) => Maps(location: syndicate)));
 }
 
 Future<void> _launchUrl(BuildContext context, String url) async {

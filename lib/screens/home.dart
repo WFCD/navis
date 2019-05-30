@@ -8,8 +8,8 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffold,
-      appBar: AppBar(title: const Text('Navis'), elevation: 6),
-      drawer: CustomDrawer(bloc: BlocProvider.of<NavigationBloc>(context)),
+      appBar: AppBar(title: const Text('Navis')),
+      drawer: const CustomDrawer(),
       body: BlocBuilder<RouteEvent, RouteState>(
         bloc: BlocProvider.of<NavigationBloc>(context),
         builder: (BuildContext context, RouteState route) => route.widget,

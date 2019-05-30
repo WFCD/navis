@@ -59,16 +59,15 @@ class _ExpandedInfoState extends State<ExpandedInfo> {
                     alignment: MainAxisAlignment.center,
                     children: <Widget>[
                       FlatButton(
-                          padding: const EdgeInsets.all(8.0),
+                          padding: const EdgeInsets.all(16.0),
                           textColor: Theme.of(context).accentColor,
-                          onPressed: widget.condition
-                              ? null
-                              : () => isExpanded.sink.add(!action.data),
+                          onPressed: () => isExpanded.sink.add(!action.data),
                           child: action.data
                               ? const Text('See less')
                               : const Text('See more'))
                     ]),
-              )
+              ),
+            //const SizedBox(height: 8.0)
           ]);
         });
   }
