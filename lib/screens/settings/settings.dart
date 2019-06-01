@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:navis/global_keys.dart';
 
 import 'components/about.dart';
-import 'components/dateformat.dart';
+import 'components/display_choice.dart';
 import 'components/notifications.dart';
-import 'components/theme_choice.dart';
 
 class Settings extends StatelessWidget {
   const Settings({Key key}) : super(key: key);
@@ -16,8 +15,7 @@ class Settings extends StatelessWidget {
         appBar: AppBar(title: const Text('Settings')),
         body: ListView(
           children: <Widget>[
-            const ThemeChoice(),
-            const DateformatSetting(),
+            const DisplayChoices(),
             Notifications(),
             Miscellaneous()
           ],
