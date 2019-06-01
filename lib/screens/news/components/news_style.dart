@@ -46,42 +46,45 @@ class NewsCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+        margin: const EdgeInsets.fromLTRB(4.0, 2.0, 4.0, 2.0),
         child: InkWell(
-      onTap: () => _launchLink(news.link, context),
-      child: Container(
-          height: 200,
-          child: Stack(children: <Widget>[
-            CachedNetworkImage(
-              imageUrl: news.imageLink,
-              errorWidget: (context, url, error) =>
-                  Image.asset('assets/general/404.webp'),
-              imageBuilder: (context, provider) {
-                return Container(
-                  constraints: const BoxConstraints.expand(height: 200.0),
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(4.0),
-                      image:
-                          DecorationImage(image: provider, fit: BoxFit.cover)),
-                );
-              },
-            ),
-            Align(
-                alignment: Alignment.bottomCenter,
-                child: Container(
-                    height: 40,
-                    alignment: Alignment.center,
-                    decoration: const BoxDecoration(
-                        color: Color.fromRGBO(34, 34, 34, .4)),
-                    child: Text(
-                      '[${_timestamp(news.date)} ago] ${news.translations.en}',
-                      textAlign: TextAlign.center,
-                      style: Theme.of(context)
-                          .textTheme
-                          .title
-                          .copyWith(color: Colors.white, fontSize: 15),
-                    ))),
-          ])),
-    ));
+          onTap: () => _launchLink(news.link, context),
+          child: Container(
+              height: 200,
+              child: Stack(children: <Widget>[
+                CachedNetworkImage(
+                  imageUrl: news.imageLink,
+                  errorWidget: (context, url, error) =>
+                      Image.asset('assets/general/404.webp'),
+                  imageBuilder: (context, provider) {
+                    return Container(
+                      constraints: BoxConstraints.expand(
+                          height: 200.0,
+                          width: MediaQuery.of(context).size.width),
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(4.0),
+                          image: DecorationImage(
+                              image: provider, fit: BoxFit.cover)),
+                    );
+                  },
+                ),
+                Align(
+                    alignment: Alignment.bottomCenter,
+                    child: Container(
+                        height: 40,
+                        alignment: Alignment.center,
+                        decoration: const BoxDecoration(
+                            color: Color.fromRGBO(34, 34, 34, .4)),
+                        child: Text(
+                          '[${_timestamp(news.date)} ago] ${news.translations.en}',
+                          textAlign: TextAlign.center,
+                          style: Theme.of(context)
+                              .textTheme
+                              .title
+                              .copyWith(color: Colors.white, fontSize: 15),
+                        ))),
+              ])),
+        ));
   }
 }

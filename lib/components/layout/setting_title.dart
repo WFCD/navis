@@ -13,7 +13,7 @@ class SettingTitle extends StatelessWidget {
         .copyWith(fontSize: 15, color: Theme.of(context).accentColor);
 
     return Container(
-        margin: const EdgeInsets.only(top: 10.0, left: 8.0),
+        margin: const EdgeInsets.only(top: 4.0, left: 8.0),
         alignment: Alignment.centerLeft,
         child: Text(title, style: style));
   }

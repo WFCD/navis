@@ -51,7 +51,9 @@ class LocalStorageService {
   set primaryColor(Color primary) => saveToDisk(primaryColorKey, primary.value);
 
   Color get accentColor {
-    return Color(getFromDisk(accentColorKey) ?? Colors.blueAccent[400].value);
+    if (getFromDisk(accentColorKey) != null)
+      return Color(getFromDisk(accentColorKey));
+    return const Color(0xFF00BC8C);
   }
 
   set accentColor(Color accent) => saveToDisk(accentColorKey, accent.value);

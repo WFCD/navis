@@ -16,7 +16,7 @@ class Settings extends StatelessWidget {
         appBar: AppBar(title: const Text('Settings')),
         body: ListView(
           children: <Widget>[
-            ThemeChoice(),
+            const ThemeChoice(),
             const DateformatSetting(),
             Notifications(),
             Miscellaneous()

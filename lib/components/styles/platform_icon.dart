@@ -9,7 +9,7 @@ const xb1 = 'Microsoft Xbox One';
 const swi = 'Nintendo Switch';
 
 class PlatformIcon extends StatelessWidget {
-  PlatformIcon({Key key, this.platform}) : super(key: key);
+  const PlatformIcon({Key key, this.platform}) : super(key: key);
 
   final Platforms platform;
 
@@ -49,7 +49,7 @@ class PlatformIcon extends StatelessWidget {
     void _onPressed(Platforms platforms) {
       storage.dispatch(ChangePlatformEvent(platform));
       state.dispatch(UpdateEvent.update);
-      Navigator.of(context).pop();
+      //Navigator.of(context).pop();
     }
 
     return BlocBuilder<ChangeEvent, StorageState>(

@@ -28,6 +28,7 @@ class Tiles extends StatelessWidget {
       margin: const EdgeInsets.fromLTRB(6, 8, 6, 8),
       color: color,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
+      elevation: 6.0,
       child: Container(
           margin: const EdgeInsets.fromLTRB(4, 6, 4, 6),
           padding: const EdgeInsets.all(2),

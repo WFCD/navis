@@ -56,18 +56,21 @@ class _Trader extends State<Trader> {
                                   builder: (_) => VoidTraderInventory(
                                       inventory: trader.inventory))),
                           child: Container(
-                              width: 500.0,
-                              height: 30.0,
-                              alignment: Alignment.center,
-                              decoration: BoxDecoration(
-                                  color: Colors.blueAccent[400],
-                                  borderRadius: BorderRadius.circular(8.0)),
-                              child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: const <Widget>[
-                                    Text('Baro Ki\'Teeer Inventory',
-                                        style: TextStyle(fontSize: 17.0))
-                                  ])))
+                            width: 500.0,
+                            height: 30.0,
+                            alignment: Alignment.center,
+                            decoration: BoxDecoration(
+                              color: Colors.blueAccent[400],
+                              borderRadius: BorderRadius.circular(8.0),
+                            ),
+                            child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: const <Widget>[
+                                  Text('Baro Ki\'Teeer Inventory',
+                                      style: TextStyle(
+                                          fontSize: 17.0, color: Colors.white))
+                                ]),
+                          ))
                       : emptyBox,
                 ),
               ]);
