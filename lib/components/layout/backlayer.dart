@@ -3,8 +3,7 @@ import 'package:flutter_custom_tabs/flutter_custom_tabs.dart';
 import 'package:navis/blocs/bloc.dart';
 import 'package:navis/components/layout/setting_title.dart';
 import 'package:navis/global_keys.dart';
-import 'package:navis/screens/settings/components/dateformat.dart';
-import 'package:navis/screens/settings/components/theme_choice.dart';
+import 'package:navis/screens/settings/components/display_choice.dart';
 
 class Backlayer extends StatelessWidget {
   const Backlayer({Key key, this.controller}) : super(key: key);
@@ -23,8 +22,7 @@ class Backlayer extends StatelessWidget {
               _Pages(controller: controller),
               const SizedBox(height: 16.0),
               const SettingTitle(title: 'Settings'),
-              const ThemeChoice(enableTitle: false),
-              const DateformatSetting(enableTitle: false),
+              const DisplayChoices(enableTitle: false),
               ListTile(
                   title: const Text('More Settings'),
                   trailing: const Icon(Icons.arrow_forward),
