@@ -14,13 +14,13 @@ Cephalon Navis is an Android app inspired by [Warframe Hub](https://hub.warframe
 - Nightwaves
 - Baro Timer and Inventory
 - Display Soties and Invasions
-- Plains and Vallis maps (currently only PoE has the most available data)
-- Links to useful guides for new players to learn how to fish
+- Links to useful guides for new players to learn how to fish and maps
+- Darvo Deals
 - supports PC, PS4, Xbox and switch worldstates
 
 ### Upcoming Features:
-- Notifications
-- Flash sales and Darvo deal (These two depends on who actually uses it, so if you use it let me know)
+- Notifications (soon)
+- Flash sales (This depends on who actually uses it, so if you use it let me know)
 
 
 # Build Instructions
@@ -32,6 +32,9 @@ flutter packages get
 flutter build apk
 flutter install
 ```
+
+For Flutter 1.6.3+ replace ```flutter packages get``` with ```flutter pub get```  
+
 Optionally ```flutter build apk --target-platform=android-arm64``` will build for arm64 devices
 
 
