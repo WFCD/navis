@@ -6,7 +6,7 @@ import '../layout.dart';
 import 'invasionsBar.dart';
 
 class InvasionStyle extends StatelessWidget {
-  const InvasionStyle({this.invasion});
+  const InvasionStyle({Key key, this.invasion}) : super(key: key);
 
   final Invasion invasion;
 

@@ -8,10 +8,8 @@ import 'package:navis/components/layout.dart';
 class Acolytes extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final state = BlocProvider.of<WorldstateBloc>(context);
-
     return BlocBuilder(
-      bloc: state,
+      bloc: BlocProvider.of<WorldstateBloc>(context),
       builder: (context, state) {
         if (state is WorldstateLoaded) {
           return Tiles(

@@ -21,13 +21,11 @@ class InvasionCard extends StatelessWidget {
                   state.invasions.map((i) => InvasionStyle(invasion: i));
               final length = invasions.length;
 
-              return invasions.isEmpty
-                  ? const Center(child: Text('No Invasions at this time'))
-                  : ExpandedInfo(
-                      header: Column(children: <Widget>[...invasions.take(2)]),
-                      body: Column(children: <Widget>[...invasions.skip(2)]),
-                      condition: length < 3,
-                    );
+              return ExpandedInfo(
+                header: Column(children: <Widget>[...invasions.take(2)]),
+                body: Column(children: <Widget>[...invasions.skip(2)]),
+                condition: length < 3,
+              );
             }
           }),
     );

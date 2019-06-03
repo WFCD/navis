@@ -126,7 +126,11 @@ class _BackdropScaffoldState extends State<BackdropScaffold>
         behavior: HitTestBehavior.opaque,
         child: SizedBox.expand(
           child: Container(
-            color: Theme.of(context).canvasColor,
+            color: ColorTween(
+                    begin: Theme.of(context).canvasColor,
+                    end: Colors.transparent)
+                .animate(controller)
+                .value,
           ),
         ),
       ),
