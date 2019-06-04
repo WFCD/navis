@@ -1,7 +1,7 @@
 # Cephalon Navis
 [![Codemagic build status](https://api.codemagic.io/apps/5c82fa94767952001186ff26/5c82fa94767952001186ff25/status_badge.svg)](https://codemagic.io/apps/5c82fa94767952001186ff26/5c82fa94767952001186ff25/latest_build)
 
-<a href='https://play.google.com/store/apps/details?id=com.cephalon.navis&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src='en_get.svg' width="20%"/></a>
+<a href='https://play.google.com/store/apps/details?id=com.cephalon.navis&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src='en_get.svg' width="40%"/></a>
 
 
 Cephalon Navis is an Android app inspired by [Warframe Hub](https://hub.warframestat.us/). Navis for short uses the [WarframeStat.us API](https://docs.warframestat.us/) to display as much useful and necessary information to help you as you travel the solar system without leaving your game.
