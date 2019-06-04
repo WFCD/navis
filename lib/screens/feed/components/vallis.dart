@@ -4,14 +4,14 @@ import 'package:navis/components/animations.dart';
 import 'package:navis/components/layout.dart';
 
 class OrbVallis extends StatelessWidget {
+  const OrbVallis({Key key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    final wstate = BlocProvider.of<WorldstateBloc>(context);
-
     return Tiles(
         title: 'Orb Vallis Cycle',
         child: BlocBuilder(
-            bloc: wstate,
+            bloc: BlocProvider.of<WorldstateBloc>(context),
             builder: (context, state) {
               if (state is WorldstateLoaded) {
                 final vallis = state.vallis;
@@ -27,14 +27,14 @@ class OrbVallis extends StatelessWidget {
                   padding,
                   RowItem(
                     text:
-                        'Time till ${vallis.isWarm ? 'Cold Cycle' : 'Warm Cycle'} ',
+                        'Time until ${vallis.isWarm ? 'Cold Cycle' : 'Warm Cycle'} starts',
                     child: CountdownBox(expiry: vallis.expiry),
                   ),
                   padding,
                   RowItem(
                     text: vallis.isWarm
-                        ? 'Winter is coming in '
-                        : 'Warmer climate at ',
+                        ? 'Winter is coming in'
+                        : 'Warmer climate starts on',
                     child: DateView(expiry: vallis.expiry),
                   ),
                   padding

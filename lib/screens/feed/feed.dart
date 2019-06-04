@@ -32,23 +32,24 @@ class Feed extends StatelessWidget {
               final bool isAlertActive = state.alerts.isNotEmpty;
               final bool isInvasionsActive = state.invasions.isNotEmpty;
               final bool isFissureActive = state.fissures.isNotEmpty;
-              final isEventActive = state.events.isNotEmpty;
-              final areAcolytesActive = state.acolytes.isNotEmpty;
+              final bool isEventActive = state.events.isNotEmpty;
+              final bool areAcolytesActive = state.acolytes.isNotEmpty;
+              final bool areDealsActive = state.dailyDeals.isNotEmpty;
 
               return CustomScrollView(slivers: <Widget>[
                 SliverList(
                     delegate: SliverChildListDelegate(<Widget>[
                   if (isEventActive) EventPanel(events: state.events),
-                  if (areAcolytesActive) Acolytes(),
-                  const CetusCycle(cycle: Cycle.cetus),
-                  OrbVallis(),
-                  const CetusCycle(cycle: Cycle.earth),
-                  if (isAlertActive) AlertTile(),
-                  if (isFissureActive) Fissure(),
+                  if (areAcolytesActive) const Acolytes(),
+                  const CetusCycle(),
+                  const OrbVallis(),
+                  const EarthCycle(),
+                  if (isAlertActive) const AlertTile(),
+                  if (isFissureActive) const Fissure(),
                   if (isInvasionsActive) const InvasionCard(),
-                  Trader(),
-                  const Deals(),
-                  Sorties()
+                  const Trader(),
+                  if (areDealsActive) const Deals(),
+                  const Sorties()
                 ]))
               ]);
             }

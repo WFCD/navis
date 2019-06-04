@@ -30,14 +30,12 @@ class RowItem extends StatelessWidget {
         ? Theme.of(context).textTheme.caption.copyWith(fontSize: 13)
         : Theme.of(context).textTheme.subhead.copyWith(fontSize: size);
 
-    final List<Widget> children = [Text(text, style: style)];
-
     final _text = Container(
         child: Row(children: <Widget>[
       if (icons.isNotEmpty)
         ...icons.map((i) =>
             Padding(padding: const EdgeInsets.only(right: 4.0), child: i)),
-      ...children
+      Text(text, style: style)
     ]));
 
     return Container(

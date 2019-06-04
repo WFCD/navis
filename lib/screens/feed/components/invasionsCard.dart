@@ -10,11 +10,9 @@ class InvasionCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final wstate = BlocProvider.of<WorldstateBloc>(context);
-
     return Tiles(
       child: BlocBuilder(
-          bloc: wstate,
+          bloc: BlocProvider.of<WorldstateBloc>(context),
           builder: (context, state) {
             if (state is WorldstateLoaded) {
               final invasions =

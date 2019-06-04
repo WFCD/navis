@@ -27,7 +27,7 @@ class InvasionBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
+    return Container(
         color: Colors.transparent,
         child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,

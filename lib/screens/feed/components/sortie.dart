@@ -6,13 +6,13 @@ import 'package:navis/components/layout.dart';
 import 'package:navis/components/animations.dart';
 
 class Sorties extends StatelessWidget {
+  const Sorties({Key key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    final wstate = BlocProvider.of<WorldstateBloc>(context);
-
     return Tiles(
         child: BlocBuilder(
-            bloc: wstate,
+            bloc: BlocProvider.of<WorldstateBloc>(context),
             builder: (context, state) {
               if (state is WorldstateLoaded) {
                 if (state.sortie?.variants?.isNotEmpty ?? false) {

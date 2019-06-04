@@ -6,6 +6,8 @@ import 'package:navis/models/export.dart';
 import 'package:navis/components/layout.dart';
 
 class Acolytes extends StatelessWidget {
+  const Acolytes({Key key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder(

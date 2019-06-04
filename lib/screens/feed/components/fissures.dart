@@ -7,6 +7,8 @@ import 'package:navis/components/animations.dart';
 import 'package:navis/utils/factionutils.dart';
 
 class Fissure extends StatelessWidget {
+  const Fissure({Key key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     final state = BlocProvider.of<WorldstateBloc>(context);

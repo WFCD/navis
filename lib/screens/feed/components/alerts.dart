@@ -8,6 +8,8 @@ import 'package:navis/components/layout.dart';
 import 'package:navis/components/animations.dart';
 
 class AlertTile extends StatelessWidget {
+  const AlertTile({Key key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     final state = BlocProvider.of<WorldstateBloc>(context);
@@ -18,12 +20,9 @@ class AlertTile extends StatelessWidget {
             bloc: state,
             builder: (context, state) {
               if (state is WorldstateLoaded) {
-                return state.alerts.isEmpty
-                    ? const Center(child: Text('No alerts at this time'))
-                    : Column(children: <Widget>[
-                        ...state.alerts
-                            .map((alert) => _BuildAlerts(alert: alert))
-                      ]);
+                return Column(children: <Widget>[
+                  ...state.alerts.map((alert) => _BuildAlerts(alert: alert))
+                ]);
               }
             }));
   }

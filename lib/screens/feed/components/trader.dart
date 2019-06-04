@@ -5,22 +5,17 @@ import 'package:navis/components/layout.dart';
 
 import 'trader_inventory.dart';
 
-class Trader extends StatefulWidget {
-  @override
-  _Trader createState() => _Trader();
-}
-
-class _Trader extends State<Trader> {
+class Trader extends StatelessWidget {
+  const Trader({Key key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    final wstate = BlocProvider.of<WorldstateBloc>(context);
     final emptyBox = Container();
 
     return Tiles(
         title: 'Void Trader',
         child: BlocBuilder(
-          bloc: wstate,
-          builder: (context, state) {
+          bloc: BlocProvider.of<WorldstateBloc>(context),
+          builder: (BuildContext context, WorldStates state) {
             if (state is WorldstateLoaded) {
               final trader = state.trader;
 
