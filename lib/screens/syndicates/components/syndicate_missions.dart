@@ -28,7 +28,7 @@ class SyndicateJobsState extends State<SyndicateJobs> {
               final job = widget.jobs[index];
 
               return StickyHeader(
-                header: _buildMissionType(job, widget.faction, _),
+                header: MissionType(job: job, faction: widget.faction),
                 content: Column(
                   mainAxisSize: MainAxisSize.max,
                   children: job.rewardPool
@@ -40,21 +40,39 @@ class SyndicateJobsState extends State<SyndicateJobs> {
   }
 }
 
-Widget _buildMissionType(
-    Jobs job, OpenWorldFactions faction, BuildContext context) {
-  return Container(
-    height: 80.0,
-    color: buildColor(faction),
-    alignment: Alignment.centerLeft,
-    child: ListTile(
-        title: Text(job.type),
-        subtitle:
-            Text('Enemey Level ${job.enemyLevels[0]} - ${job.enemyLevels[1]}'),
-        trailing: Container(
-            child: Row(mainAxisSize: MainAxisSize.min, children: <Widget>[
-          const Icon(Standing.standing),
-          Text(
-              job.standingStages.cast<int>().reduce((a, b) => a + b).toString())
-        ]))),
-  );
+class MissionType extends StatelessWidget {
+  const MissionType({
+    Key key,
+    @required this.job,
+    @required this.faction,
+  }) : super(key: key);
+
+  final Jobs job;
+  final OpenWorldFactions faction;
+
+  @override
+  Widget build(BuildContext context) {
+    final textStyle = TextStyle(color: Colors.white);
+
+    return Container(
+      height: 80.0,
+      color: buildColor(faction),
+      alignment: Alignment.centerLeft,
+      child: ListTile(
+          title: Text(job.type, style: textStyle),
+          subtitle: Text(
+              'Enemey Level ${job.enemyLevels[0]} - ${job.enemyLevels[1]}',
+              style: textStyle),
+          trailing: Container(
+              child: Row(mainAxisSize: MainAxisSize.min, children: <Widget>[
+            const Icon(Standing.standing, color: Colors.white),
+            Text(
+                job.standingStages
+                    .cast<int>()
+                    .reduce((a, b) => a + b)
+                    .toString(),
+                style: textStyle)
+          ]))),
+    );
+  }
 }
