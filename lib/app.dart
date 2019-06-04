@@ -35,7 +35,10 @@ class NavisState extends State<Navis> with WidgetsBindingObserver {
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     if (state == AppLifecycleState.resumed) {
-      BlocProvider.of<WorldstateBloc>(context).dispatch(UpdateEvent.update);
+      Future.delayed(
+          const Duration(milliseconds: 500),
+          () => BlocProvider.of<WorldstateBloc>(context)
+              .dispatch(UpdateEvent.update));
     }
 
     super.didChangeAppLifecycleState(state);
