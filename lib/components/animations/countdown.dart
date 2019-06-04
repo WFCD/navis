@@ -19,24 +19,27 @@ class _CountdownBoxState extends State<CountdownBox> {
   Duration duration;
   Tween tween;
 
+  Future<void> setupDuration() async {
+    final duration = widget.expiry.difference(DateTime.now());
+    final tween = StepTween(
+        begin: widget.expiry.millisecondsSinceEpoch,
+        end: DateTime.now().millisecondsSinceEpoch);
+
+    setState(() {
+      this.duration = duration;
+      this.tween = tween;
+    });
+  }
+
   @override
   void initState() {
     super.initState();
-
-    duration = widget.expiry.difference(DateTime.now());
-    tween = StepTween(
-        begin: widget.expiry.millisecondsSinceEpoch,
-        end: DateTime.now().millisecondsSinceEpoch);
+    setupDuration();
   }
 
   @override
   void didUpdateWidget(CountdownBox oldWidget) {
-    if (oldWidget.expiry != widget.expiry) {
-      duration = widget.expiry.difference(DateTime.now());
-      tween = StepTween(
-          begin: widget.expiry.millisecondsSinceEpoch,
-          end: DateTime.now().millisecondsSinceEpoch);
-    }
+    if (oldWidget.expiry != widget.expiry) setupDuration();
 
     super.didUpdateWidget(oldWidget);
   }
@@ -75,7 +78,6 @@ class _CountdownBoxState extends State<CountdownBox> {
   @override
   Widget build(BuildContext context) {
     return ControlledAnimation(
-      //delay: const Duration(milliseconds: 250),
       duration: duration,
       tween: tween,
       playback: Playback.PLAY_FORWARD,
