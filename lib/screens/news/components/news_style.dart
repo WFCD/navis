@@ -1,32 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_custom_tabs/flutter_custom_tabs.dart';
-import 'package:navis/global_keys.dart';
 import 'package:navis/models/export.dart';
+import 'package:navis/utils/link_handler.dart';
 
 class NewsCard extends StatelessWidget {
   const NewsCard({this.news});
 
   final OrbiterNews news;
-
-  Future<void> _launchLink(String link, BuildContext context) async {
-    try {
-      await launch(link,
-          option: CustomTabsOption(
-              toolbarColor: Theme.of(context).primaryColor,
-              enableDefaultShare: true,
-              enableUrlBarHiding: true,
-              showPageTitle: true,
-              animation: CustomTabsAnimation.slideIn(),
-              extraCustomTabs: <String>['org.mozilla.firefox']));
-    } catch (err) {
-      scaffold.currentState.showSnackBar(SnackBar(
-          duration: const Duration(seconds: 5),
-          content: link.isEmpty
-              ? const Text('No valid link provided by API')
-              : const Text('No Browser detected')));
-    }
-  }
 
   String _timestamp(DateTime timestamp) {
     final Duration duration =
@@ -48,7 +28,7 @@ class NewsCard extends StatelessWidget {
     return Card(
         margin: const EdgeInsets.fromLTRB(4.0, 2.0, 4.0, 2.0),
         child: InkWell(
-          onTap: () => _launchLink(news.link, context),
+          onTap: () => launchLink(context, news.link, isStream: news.stream),
           child: Container(
               height: 200,
               child: Stack(children: <Widget>[

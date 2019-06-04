@@ -4,6 +4,7 @@ import 'package:navis/blocs/bloc.dart';
 import 'package:navis/components/layout/setting_title.dart';
 import 'package:navis/global_keys.dart';
 import 'package:navis/screens/settings/components/display_choice.dart';
+import 'package:navis/utils/link_handler.dart';
 
 class Backlayer extends StatelessWidget {
   const Backlayer({Key key, this.controller}) : super(key: key);
@@ -86,23 +87,23 @@ class _Pages extends StatelessWidget {
                   ListTile(
                       title: const Text('Plains of Eidolon map'),
                       dense: true,
-                      onTap: () => _launchUrl(context, _poe)),
+                      onTap: () => launchLink(context, _poe)),
                   ListTile(
                       title: const Text('Orb Vallis map'),
                       dense: isDense,
-                      onTap: () => _launchUrl(context, _vallis)),
+                      onTap: () => launchLink(context, _vallis)),
                   ListTile(
                       title: const Text('PoE: Fishing Data'),
                       dense: isDense,
-                      onTap: () => _launchUrl(context, _poeFishingData)),
+                      onTap: () => launchLink(context, _poeFishingData)),
                   ListTile(
                       title: const Text('Vallis: Fishing Data'),
                       dense: isDense,
-                      onTap: () => _launchUrl(context, _vallisFishingData)),
+                      onTap: () => launchLink(context, _vallisFishingData)),
                   ListTile(
                       title: const Text('How to Fish'),
                       dense: isDense,
-                      onTap: () => _launchUrl(context, _howToFish))
+                      onTap: () => launchLink(context, _howToFish))
                 ],
               ),
             ]);
@@ -116,19 +117,3 @@ class _Pages extends StatelessWidget {
   Navigator.of(context)
       .push(MaterialPageRoute(builder: (_) => Maps(location: syndicate)));
 }*/
-
-Future<void> _launchUrl(BuildContext context, String url) async {
-  try {
-    await launch(url,
-        option: CustomTabsOption(
-            toolbarColor: Theme.of(context).primaryColor,
-            enableDefaultShare: true,
-            enableUrlBarHiding: true,
-            showPageTitle: true,
-            animation: CustomTabsAnimation.slideIn(),
-            extraCustomTabs: <String>['org.mozilla.firefox']));
-  } catch (err) {
-    scaffold.currentState.showSnackBar(const SnackBar(
-        duration: Duration(seconds: 30), content: Text('No Browser detected')));
-  }
-}
