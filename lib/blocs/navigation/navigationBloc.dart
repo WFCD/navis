@@ -21,6 +21,9 @@ class NavigationBloc extends Bloc<RouteEvent, RouteState>
       case RouteEvent.fissures:
         yield FissureState();
         break;
+      case RouteEvent.sortie:
+        yield SortieState();
+        break;
       case RouteEvent.syndicates:
         yield SyndicatesState();
         break;

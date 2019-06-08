@@ -77,9 +77,10 @@ class DrawerOptions extends StatelessWidget {
                   leading: Icon(Icons.security),
                   title: const Text('Invasions')),
               ListTile(
-                enabled: false,
                 leading: Icon(Sortie.sortie),
                 title: const Text('Sorties'),
+                onTap: () => _onTap(context, RouteEvent.sortie),
+                selected: state.route == RouteEvent.sortie,
               ),
               ListTile(
                 leading: const Icon(Standing.standing),

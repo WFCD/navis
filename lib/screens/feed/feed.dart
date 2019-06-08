@@ -7,7 +7,6 @@ import 'components/cycle.dart';
 import 'components/deals.dart';
 import 'components/events.dart';
 import 'components/invasionsCard.dart';
-import 'components/sortie.dart';
 import 'components/trader.dart';
 import 'components/vallis.dart';
 
@@ -44,7 +43,6 @@ class Feed extends StatelessWidget {
                 if (isInvasionsActive) const InvasionCard(),
                 const Trader(),
                 if (areDealsActive) const Deals(),
-                const Sorties()
               ]);
             }
           }),

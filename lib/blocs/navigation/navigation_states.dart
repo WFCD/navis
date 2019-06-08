@@ -4,9 +4,10 @@ import 'package:flutter/widgets.dart';
 import 'package:navis/screens/feed/feed.dart';
 import 'package:navis/screens/fissures/fissures.dart';
 import 'package:navis/screens/news/news.dart';
+import 'package:navis/screens/sortie/sortie.dart';
 import 'package:navis/screens/syndicates/syndicates.dart';
 
-enum RouteEvent { news, timers, fissures, syndicates }
+enum RouteEvent { news, timers, fissures, sortie, syndicates }
 
 class RouteState extends Equatable {
   RouteEvent route;
@@ -30,13 +31,19 @@ class TimerState extends RouteState {
 }
 
 class FissureState extends RouteState {
-  VoidCallback onPressed;
-
   @override
   RouteEvent get route => RouteEvent.fissures;
 
   @override
   Widget get widget => const FissureList();
+}
+
+class SortieState extends RouteState {
+  @override
+  RouteEvent get route => RouteEvent.sortie;
+
+  @override
+  Widget get widget => const SortieScreen();
 }
 
 class SyndicatesState extends RouteState {

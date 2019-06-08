@@ -1,7 +1,8 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:navis/blocs/bloc.dart';
 import 'package:navis/global_keys.dart';
-import 'package:navis/utils/worldstate_utils.dart';
+import 'package:navis/models/worldstate/fissure.dart';
 
 import 'components/fissure_style.dart';
 
@@ -60,5 +61,16 @@ class _FissureListState extends State<FissureList> {
         ),
       )
     ]);
+  }
+}
+
+Future<void> precacheAssetImages(
+    BuildContext context, List<VoidFissure> fissures) async {
+  final _nodeBackground = RegExp(r'\(([^)]*)\)');
+
+  for (int i = 0; i < fissures.length; i++) {
+    final node = _nodeBackground.firstMatch(fissures[i].node).group(1);
+
+    await precacheImage(AssetImage('assets/skyboxes/$node.webp'), context);
   }
 }
