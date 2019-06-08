@@ -11,3 +11,5 @@ pubspec.lock
 keystore.jks
 android/key.properties
 android/app/google-services.json
+secrets.tar
+secrets.tar.enc

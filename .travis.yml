@@ -1,43 +1,23 @@
-os: linux
-
 language: android
-
+jdk: oraclejdk8
 licenses:
 - android-sdk-preview-license-.+
 - android-sdk-license-.+
 - google-gdk-license-.+
-
 android:
   components:
-  - tools
-  - platform-tools
   - build-tools-28.0.3
   - android-28
-
-jdk: oraclejdk8
-
-sudo: false
-
-addons:
-  apt:
-    # Flutter depends on /usr/lib/x86_64-linux-gnu/libstdc++.so.6 version GLIBCXX_3.4.18
-    sources:
-    - ubuntu-toolchain-r-test
-    packages:
-    - libstdc++6
-    - fonts-droid
-
-install:
-- git clone https://github.com/flutter/flutter.git -b beta --depth 1
+before_script:
+- openssl aes-256-cbc -K $encrypted_e52ce8830a54_key -iv $encrypted_e52ce8830a54_iv
+  -in secrets.tar.enc -out secrets.tar -d
+- tar xvf secrets.tar
+- git clone https://github.com/flutter/flutter.git -b beta
 - export PATH=./flutter/bin:$PATH
-- flutter doctor
-
 script:
 - flutter packages get
-- flutter analyze --no-pub --no-current-package lib/ test/
-- flutter test --no-pub test/
-- flutter build apk --debug
-
+- flutter test
+- flutter build apk
 cache:
   directories:
   - "$HOME/.pub-cache"
