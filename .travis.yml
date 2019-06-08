@@ -1,53 +1,43 @@
-matrix:
-  include:
-    - os: linux
-      language: android
-      licenses:
-        - 'android-sdk-preview-license-.+'
-        - 'android-sdk-license-.+'
-        - 'google-gdk-license-.+'
-      android:
-        components:
-          - tools
-          - platform-tools
-          - build-tools-28.0.3
-          - android-28
-          - sys-img-armeabi-v7a-google_apis-28
-          - extra-android-m2repository
-          - extra-google-m2repository
-          - extra-google-android-support
-      jdk: oraclejdk8
-      sudo: false
-      addons:
-        apt:
-          # Flutter depends on /usr/lib/x86_64-linux-gnu/libstdc++.so.6 version GLIBCXX_3.4.18
-          sources:
-            - ubuntu-toolchain-r-test # if we don't specify this, the libstdc++6 we get is the wrong version
-          packages:
-            - libstdc++6
-            - fonts-droid
-      before_script:
-        - wget http://services.gradle.org/distributions/gradle-5.4.1-bin.zip
-        - unzip -qq gradle-5.4.1-bin.zip
-        - export GRADLE_HOME=$PWD/gradle-5.4.1
-        - export PATH=$GRADLE_HOME/bin:$PATH
-        - git clone https://github.com/flutter/flutter.git -b beta
-      script:
-        - ./flutter/bin/flutter -v build apk
-    # Gonna keep this for later
-    # - os: osx
-    #   language: generic
-    #   osx_image: xcode8.3
-    #   before_script:
-    #     - pip install six
-    #     - brew update
-    #     - brew install --HEAD libimobiledevice
-    #     - brew install ideviceinstaller
-    #     - brew install ios-deploy
-    #     - git clone https://github.com/flutter/flutter.git -b alpha --depth 1
-    #   script:
-    #     - ./flutter/bin/flutter -v build ios --no-codesign
+os: linux
+
+language: android
+
+licenses:
+- android-sdk-preview-license-.+
+- android-sdk-license-.+
+- google-gdk-license-.+
+
+android:
+  components:
+  - tools
+  - platform-tools
+  - build-tools-28.0.3
+  - android-28
+
+jdk: oraclejdk8
+
+sudo: false
+
+addons:
+  apt:
+    # Flutter depends on /usr/lib/x86_64-linux-gnu/libstdc++.so.6 version GLIBCXX_3.4.18
+    sources:
+    - ubuntu-toolchain-r-test
+    packages:
+    - libstdc++6
+    - fonts-droid
+
+install:
+- git clone https://github.com/flutter/flutter.git -b beta --depth 1
+- export PATH=./flutter/bin:$PATH
+- flutter doctor
+
+script:
+- flutter packages get
+- flutter analyze --no-pub --no-current-package lib/ test/
+- flutter test --no-pub test/
+- flutter build apk --debug
 
 cache:
   directories:
-    - $HOME/.pub-cache
+  - "$HOME/.pub-cache"
