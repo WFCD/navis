@@ -217,5 +217,13 @@
     <orderEntry type="library" name="Gradle: androidx.test.espresso:espresso-core:3.2.0-beta01@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.test:monitor:1.2.0-beta01@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.test.espresso:espresso-idling-resource:3.2.0-beta01@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.google.firebase:firebase-iid:18.0.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.google.firebase:firebase-common:17.0.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.google.auto.value:auto-value-annotations:1.6.3@jar" level="project" />
+    <orderEntry type="library" name="Gradle: com.google.firebase:firebase-messaging:18.0.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.test.espresso:espresso-idling-resource:3.2.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.test:monitor:1.2.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.test:runner:1.2.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.test.espresso:espresso-core:3.2.0@aar" level="project" />
   </component>
 </module>

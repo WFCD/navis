@@ -6,9 +6,10 @@ import 'package:simple_animations/simple_animations.dart';
 import '../layout/static_box.dart';
 
 class CountdownBox extends StatefulWidget {
-  const CountdownBox({this.expiry, this.size});
+  const CountdownBox({this.expiry, this.color, this.size});
 
   final DateTime expiry;
+  final Color color;
   final double size;
 
   @override
@@ -20,7 +21,9 @@ class _CountdownBoxState extends State<CountdownBox> {
   Tween tween;
 
   Future<void> setupDuration() async {
-    final duration = widget.expiry.difference(DateTime.now());
+    final duration = Duration(
+        seconds: widget.expiry.millisecondsSinceEpoch -
+            DateTime.now().millisecondsSinceEpoch);
     final tween = StepTween(
         begin: widget.expiry.millisecondsSinceEpoch,
         end: DateTime.now().millisecondsSinceEpoch);
@@ -84,11 +87,12 @@ class _CountdownBoxState extends State<CountdownBox> {
       animationControllerStatusListener: (AnimationStatus status) =>
           _listener(context, status),
       builder: (context, value) {
-        final Duration duration = widget.expiry.difference(DateTime.now());
+        final duration = widget.expiry.difference(DateTime.now());
 
         return StaticBox(
-            color: _containerColors(duration),
+            color: widget.color ?? _containerColors(duration),
             child: Text(_timerVersions(duration),
+                textAlign: TextAlign.center,
                 style: TextStyle(fontSize: widget.size, color: Colors.white)));
       },
     );

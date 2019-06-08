@@ -52,7 +52,7 @@ class MissionType extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final textStyle = TextStyle(color: Colors.white);
+    const textStyle = TextStyle(color: Colors.white);
 
     return Container(
       height: 80.0,
