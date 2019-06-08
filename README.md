@@ -41,13 +41,7 @@ For Flutter 1.6.3+ replace ```flutter packages get``` with ```flutter pub get```
 Optionally ```flutter build apk --target-platform=android-arm64``` will build for arm64 devices
 
 
-make sure that you follow all the instructions and everything should run smoothly, unless there's a bug in which case report it so I can take care of it
-
-Some screen shots to show progress of what I have so far, animations is a lot smoother in person.
-
-![](demo.gif)
-
-keep in mind that I am an amateur at this, and I am still learning to code.
+make sure that you follow all the instructions and everything should run smoothly, unless there's a bug in which case report issues [here](https://github.com/WFCD/navis/issues) so that they may be fixed.
 
 *Note although the app was built using the flutter engine I have not tested it on IOS due to not owing a IDevice or OSX to test on. Might not even compile properly. And a few of the plugins used in this app are not compatible with IOS
 
