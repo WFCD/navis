@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:navis/utils/enums.dart';
 import 'package:navis/utils/storage_keys.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -42,21 +41,6 @@ class LocalStorageService {
 
   bool get darkMode => getFromDisk(darkModeKey) ?? true;
   set darkMode(bool value) => saveToDisk(darkModeKey, value);
-
-  Color get primaryColor {
-    return Color(getFromDisk(primaryColorKey) ??
-        const Color.fromRGBO(26, 80, 144, .9).value);
-  }
-
-  set primaryColor(Color primary) => saveToDisk(primaryColorKey, primary.value);
-
-  Color get accentColor {
-    if (getFromDisk(accentColorKey) != null)
-      return Color(getFromDisk(accentColorKey));
-    return const Color(0xFF00BC8C);
-  }
-
-  set accentColor(Color accent) => saveToDisk(accentColorKey, accent.value);
 
   Map<String, bool> get acolytes => {
         angstkey: getFromDisk(angstkey) ?? false,
