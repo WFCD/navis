@@ -3,14 +3,9 @@ import 'package:navis/blocs/bloc.dart';
 import 'package:navis/components/styles/platform_icon.dart';
 import 'package:navis/utils/enums.dart';
 
-class PlatformChoice extends StatefulWidget {
+class PlatformChoice extends StatelessWidget {
   const PlatformChoice({Key key}) : super(key: key);
 
-  @override
-  PlatformChoiceState createState() => PlatformChoiceState();
-}
-
-class PlatformChoiceState extends State<PlatformChoice> {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ChangeEvent, StorageState>(

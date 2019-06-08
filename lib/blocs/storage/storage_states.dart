@@ -29,14 +29,18 @@ class MainStorageState extends StorageState {
   @override
   ThemeData get theme {
     final enabled = instance.darkMode;
+
+    const primary = Color.fromRGBO(26, 80, 144, .9);
+    const accent = Color(0xFF00BC8C);
+
     return ThemeData(
         brightness: enabled ? Brightness.dark : Brightness.light,
-        primaryColor: instance.primaryColor,
-        accentColor: instance.accentColor,
+        primaryColor: primary,
+        accentColor: accent,
         cardColor: enabled ? const Color(0xFF2C2C2C) : null,
         scaffoldBackgroundColor: enabled ? const Color(0xFF212121) : null,
         canvasColor: enabled ? const Color(0xFF212121) : null,
-        splashColor: instance.accentColor);
+        splashColor: accent);
   }
 
   @override

@@ -1,4 +1,5 @@
-import 'package:navis/models/worldstate/worldstate.dart';
+import 'package:flutter/widgets.dart';
+import 'package:navis/models/export.dart';
 
 WorldState cleanState(WorldState state) {
   state.alerts.removeWhere((a) =>
@@ -25,4 +26,18 @@ WorldState cleanState(WorldState state) {
   state.voidFissures.sort((a, b) => a.tierNum.compareTo(b.tierNum));
 
   return state;
+}
+
+Future<void> precacheAssetImages(
+    BuildContext context, List<VoidFissure> fissures) async {
+  final _nodeBackground = RegExp(r'\(([^)]*)\)');
+
+  for (int i = 0; i < fissures.length; i++) {
+    final node = fissures[i].node;
+
+    await precacheImage(
+        AssetImage(
+            'assets/skyboxes/${_nodeBackground.firstMatch(node).group(1)}.webp'),
+        context);
+  }
 }

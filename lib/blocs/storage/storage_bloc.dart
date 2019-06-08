@@ -42,11 +42,6 @@ class StorageBloc extends Bloc<ChangeEvent, StorageState>
     if (event is ChangeThemeData) {
       if (event.enableDark != null) instance.darkMode = event.enableDark;
 
-      if (event.primaryColor != null)
-        instance.primaryColor = event.primaryColor;
-
-      if (event.accentColor != null) instance.accentColor = event.accentColor;
-
       yield MainStorageState();
     }
   }

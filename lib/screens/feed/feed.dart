@@ -6,7 +6,6 @@ import 'components/alerts.dart';
 import 'components/cycle.dart';
 import 'components/deals.dart';
 import 'components/events.dart';
-import 'components/fissures.dart';
 import 'components/invasionsCard.dart';
 import 'components/sortie.dart';
 import 'components/trader.dart';
@@ -31,26 +30,21 @@ class Feed extends StatelessWidget {
             if (state is WorldstateLoaded) {
               final bool isAlertActive = state.alerts.isNotEmpty;
               final bool isInvasionsActive = state.invasions.isNotEmpty;
-              final bool isFissureActive = state.fissures.isNotEmpty;
               final bool isEventActive = state.events.isNotEmpty;
               final bool areAcolytesActive = state.acolytes.isNotEmpty;
               final bool areDealsActive = state.dailyDeals.isNotEmpty;
 
-              return CustomScrollView(slivers: <Widget>[
-                SliverList(
-                    delegate: SliverChildListDelegate(<Widget>[
-                  if (isEventActive) EventPanel(events: state.events),
-                  if (areAcolytesActive) const Acolytes(),
-                  const CetusCycle(),
-                  const OrbVallis(),
-                  const EarthCycle(),
-                  if (isAlertActive) const AlertTile(),
-                  if (isFissureActive) const Fissure(),
-                  if (isInvasionsActive) const InvasionCard(),
-                  const Trader(),
-                  if (areDealsActive) const Deals(),
-                  const Sorties()
-                ]))
+              return ListView(children: <Widget>[
+                if (isEventActive) EventPanel(events: state.events),
+                if (areAcolytesActive) const Acolytes(),
+                const CetusCycle(),
+                const OrbVallis(),
+                const EarthCycle(),
+                if (isAlertActive) const AlertTile(),
+                if (isInvasionsActive) const InvasionCard(),
+                const Trader(),
+                if (areDealsActive) const Deals(),
+                const Sorties()
               ]);
             }
           }),
