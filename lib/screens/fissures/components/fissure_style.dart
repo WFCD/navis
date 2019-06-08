@@ -52,7 +52,7 @@ class FissureCard extends StatelessWidget {
                   colorFilter: ColorFilter.mode(
                       Colors.black.withOpacity(0.5), BlendMode.dstATop),
                   image: AssetImage(
-                      'assets/skyboxes/${_nodeBackground.firstMatch(fissure.node).group(1)}.webp'),
+                      'assets/skyboxes/${_nodeBackground.firstMatch(fissure.node).group(1)}.png'),
                   fit: BoxFit.cover)),
           child: Row(
             children: <Widget>[

@@ -37,7 +37,7 @@ Future<void> precacheAssetImages(
 
     await precacheImage(
         AssetImage(
-            'assets/skyboxes/${_nodeBackground.firstMatch(node).group(1)}.webp'),
+            'assets/skyboxes/${_nodeBackground.firstMatch(node).group(1)}.png'),
         context);
   }
 }
