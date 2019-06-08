@@ -7,16 +7,7 @@
 .vscode
 
 build/
-flutter_crashlytics/
 pubspec.lock
-assets/svg/
-lib/utils/keys.dart
-lib/resources/notifications.dart
+keystore.jks
 android/key.properties
 android/app/google-services.json
-assets/voidTrader.json
-assets/ghoulpurge.json
-assets/persistentEnemies.json
-assets/events.json
-assets/worldstate.json
-assets/globalUpgrades.json
