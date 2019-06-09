@@ -1,5 +1,5 @@
 # Cephalon Navis
-[![Codemagic build status](https://api.codemagic.io/apps/5c82fa94767952001186ff26/5c82fa94767952001186ff25/status_badge.svg)](https://codemagic.io/apps/5c82fa94767952001186ff26/5c82fa94767952001186ff25/latest_build)
+[![Build Status](https://travis-ci.com/WFCD/navis.svg?branch=master)](https://travis-ci.com/WFCD/navis)
 
 <a href='https://play.google.com/store/apps/details?id=com.cephalon.navis&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src='en_get.svg' width="40%"/></a>
 
