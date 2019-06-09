@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'package:mockito/mockito.dart';
 import 'package:navis/blocs/bloc.dart';
+import 'package:navis/services/services.dart';
 import 'package:test/test.dart';
 
 class MockClient extends Mock implements http.Client {}
@@ -18,23 +19,25 @@ const mockstate = {
   'persistentEnemies': []
 };
 
-void main() {
+Future<void> main() async {
   final client = MockClient();
 
   WorldstateBloc worldstateBloc;
   //StorageBloc platformBloc;
 
-  setUpAll(() {
-    worldstateBloc = WorldstateBloc(client: client);
-    //platformBloc = StorageBloc();
-
+  setUpAll(() async {
     const MethodChannel('plugins.flutter.io/shared_preferences')
         .setMockMethodCallHandler((MethodCall methodCall) async {
       if (methodCall.method == 'getAll') {
-        return <String, dynamic>{};
+        return <String, dynamic>{}; // set initial values here if desired
       }
       return null;
     });
+
+    await setupLocator();
+
+    worldstateBloc = WorldstateBloc(client: client);
+    //platformBloc = StorageBloc();
   });
 
   group('Test Worldstate bloc', () {
