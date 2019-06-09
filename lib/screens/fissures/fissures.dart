@@ -25,42 +25,24 @@ class _FissureListState extends State<FissureList> {
   Widget build(BuildContext context) {
     final ws = BlocProvider.of<WorldstateBloc>(context);
 
-    return Stack(children: <Widget>[
-      BlocBuilder<UpdateEvent, WorldStates>(
-        bloc: ws,
-        builder: (BuildContext context, WorldStates state) {
-          if (state is WorldstateLoaded) {
-            return CustomScrollView(slivers: <Widget>[
-              SliverFixedExtentList(
-                itemExtent: 145,
-                delegate: SliverChildBuilderDelegate(
-                    (BuildContext context, int index) =>
-                        FissureCard(fissure: state.fissures[index]),
-                    childCount: state.fissures.length),
-              ),
-            ]);
-          }
+    return BlocBuilder<UpdateEvent, WorldStates>(
+      bloc: ws,
+      builder: (BuildContext context, WorldStates state) {
+        if (state is WorldstateLoaded) {
+          return CustomScrollView(slivers: <Widget>[
+            SliverFixedExtentList(
+              itemExtent: 145,
+              delegate: SliverChildBuilderDelegate(
+                  (BuildContext context, int index) =>
+                      FissureCard(fissure: state.fissures[index]),
+                  childCount: state.fissures.length),
+            ),
+          ]);
+        }
 
-          return const Center(child: CircularProgressIndicator());
-        },
-      ),
-      Align(
-        alignment: Alignment.bottomRight,
-        child: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: FloatingActionButton(
-            child: Icon(Icons.refresh, color: Colors.white),
-            backgroundColor: Theme.of(context).accentColor,
-            onPressed: () {
-              ws.update();
-              scaffold.currentState.showSnackBar(SnackBar(
-                content: const Text('Updated Fissures'),
-              ));
-            },
-          ),
-        ),
-      )
-    ]);
+        return const Center(child: CircularProgressIndicator());
+      },
+    );
   }
 }
 
