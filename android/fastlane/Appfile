@@ -1,0 +1,2 @@
+json_key_file("/mnt/c/Users/darkl/documents/fastlane.json") # Path to the json secret file - Follow https://docs.fastlane.tools/actions/supply/#setup to get one
+package_name("com.cephalon.navis") # e.g. com.krausefx.app
