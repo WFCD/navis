@@ -95,13 +95,13 @@ class _CountdownBoxState extends State<CountdownBox> {
       builder: (context, value) {
         final duration = widget.expiry.difference(DateTime.now());
 
-        return StaticBox(
-            color: widget.color ?? _containerColors(duration),
-            padding: widget.padding,
-            margin: widget.margin,
-            child: Text(_timerVersions(duration),
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: widget.size, color: Colors.white)));
+        return StaticBox.text(
+          color: widget.color ?? _containerColors(duration),
+          padding: widget.padding,
+          margin: widget.margin,
+          size: widget.size,
+          text: _timerVersions(duration),
+        );
       },
     );
   }
