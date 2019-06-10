@@ -6,16 +6,19 @@ class StaticBox extends StatelessWidget {
       this.color,
       this.height,
       this.width,
-      this.padding = const EdgeInsets.all(3.0)});
+      this.padding = const EdgeInsets.all(4.0),
+      this.margin = const EdgeInsets.all(3.0)});
 
 //create simple text box with hard coded color of white
   factory StaticBox.text(
       {String text,
       Color color,
       double size,
-      EdgeInsets padding = const EdgeInsets.all(3.0)}) {
+      EdgeInsetsGeometry padding = const EdgeInsets.all(4.0),
+      EdgeInsetsGeometry margin = const EdgeInsets.all(3.0)}) {
     return StaticBox(
       padding: padding,
+      margin: margin,
       color: color,
       child: Text(text, style: TextStyle(color: Colors.white, fontSize: size)),
     );
@@ -25,15 +28,15 @@ class StaticBox extends StatelessWidget {
   final Widget child;
   final double height;
   final double width;
-  final EdgeInsetsGeometry padding;
+  final EdgeInsetsGeometry padding, margin;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-        padding: const EdgeInsets.all(4.0),
+        padding: padding,
         height: height,
         width: width,
-        margin: padding,
+        margin: margin,
         decoration: BoxDecoration(
             color: color,
             borderRadius: const BorderRadius.all(Radius.circular(3.0))),

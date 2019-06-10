@@ -31,8 +31,13 @@ class FissureCard extends StatelessWidget {
             const SizedBox(height: 16),
             Text('${fissure.tier} Fissure', style: info),
             Row(
+              mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
-                CountdownBox(expiry: fissure.expiry, color: Colors.transparent),
+                CountdownBox(
+                    expiry: fissure.expiry,
+                    color: Colors.transparent,
+                    padding: EdgeInsets.zero,
+                    margin: EdgeInsets.zero),
                 const Text('Remaining')
               ],
             )
@@ -51,7 +56,7 @@ class FissureCard extends StatelessWidget {
       child: Row(
         children: <Widget>[
           _buildDetails(context),
-          Spacer(),
+          const Spacer(),
           Container(
             margin: const EdgeInsets.only(right: 28),
             height: 67,

@@ -1,7 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:navis/blocs/bloc.dart';
-import 'package:navis/global_keys.dart';
 import 'package:navis/models/worldstate/fissure.dart';
 
 import 'components/fissure_style.dart';

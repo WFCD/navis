@@ -6,11 +6,17 @@ import 'package:simple_animations/simple_animations.dart';
 import '../layout/static_box.dart';
 
 class CountdownBox extends StatefulWidget {
-  const CountdownBox({this.expiry, this.color, this.size});
+  const CountdownBox(
+      {@required this.expiry,
+      this.color,
+      this.size,
+      this.padding,
+      this.margin});
 
   final DateTime expiry;
   final Color color;
   final double size;
+  final EdgeInsetsGeometry padding, margin;
 
   @override
   _CountdownBoxState createState() => _CountdownBoxState();
@@ -91,6 +97,8 @@ class _CountdownBoxState extends State<CountdownBox> {
 
         return StaticBox(
             color: widget.color ?? _containerColors(duration),
+            padding: widget.padding,
+            margin: widget.margin,
             child: Text(_timerVersions(duration),
                 textAlign: TextAlign.center,
                 style: TextStyle(fontSize: widget.size, color: Colors.white)));
