@@ -23,20 +23,16 @@ matrix:
         - flutter packages get
         - flutter test
         - flutter analyze
-        - flutter build apk
+        - flutter build apk --verbose
 
     - env: JOB=test-ipa-long-shot
       language: objective-c
-      osx_image: xcode8.3
+      osx_image: xcode10.2
       before_script:
-        - pip install six
-        - brew update
-        - brew install --HEAD libimobiledevice
-        - brew install ideviceinstaller
-        - brew install ios-deploy
         - git clone https://github.com/flutter/flutter.git -b beta
+        - export PATH=./flutter/bin:$PATH
       script:
-        - ./flutter/bin/flutter -v build ios --no-codesign    
+        - flutter build ios --no-codesign --verbose
 
 cache:
   directories:
