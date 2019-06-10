@@ -16,20 +16,20 @@ enum UpdateEvent { update }
 
 class WorldstateBloc extends Bloc<UpdateEvent, WorldStates>
     with EquatableMixinBase, EquatableMixin {
-  WorldstateBloc({this.client});
+  WorldstateBloc();
 
-  final http.Client client;
+  static final http.Client client = http.Client();
 
   @override
   WorldStates get initialState => WorldstateUninitialized();
 
   final instance = locator<LocalStorageService>();
-  final ws = WorldstateAPI();
+  final ws = locator<WorldstateAPI>();
 
   @override
   Stream<WorldStates> mapEventToState(UpdateEvent event) async* {
     if (event == UpdateEvent.update) {
-      final state = await ws.getWorldstate(instance.platform, client: client);
+      final state = await ws.getWorldstate(instance.platform);
       yield WorldstateLoaded(state);
     }
   }

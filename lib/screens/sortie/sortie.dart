@@ -3,8 +3,6 @@ import 'package:navis/blocs/bloc.dart';
 import 'package:navis/components/animations.dart';
 import 'package:navis/components/layout/image_card.dart';
 import 'package:navis/models/export.dart';
-import 'package:navis/utils/factionutils.dart';
-import 'package:navis/utils/notification_filters.dart';
 
 final _nodeBackground = RegExp(r'\(([^)]*)\)');
 

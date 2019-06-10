@@ -38,6 +38,7 @@ class FissureCard extends StatelessWidget {
                     color: Colors.transparent,
                     padding: EdgeInsets.zero,
                     margin: EdgeInsets.zero),
+                const SizedBox(width: 8.0),
                 const Text('Remaining')
               ],
             )

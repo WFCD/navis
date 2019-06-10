@@ -24,7 +24,7 @@ void main() {
   WorldstateAPI worldstateApi;
 
   setUpAll(() {
-    worldstateApi = WorldstateAPI();
+    worldstateApi = WorldstateAPI(client: client);
   });
 
   group('Test Worldstate APi', () {
@@ -32,8 +32,7 @@ void main() {
       when(client.get('https://api.warframestat.us/pc'))
           .thenAnswer((_) async => http.Response(json.encode(mockstate), 200));
 
-      final state =
-          await worldstateApi.getWorldstate(Platforms.pc, client: client);
+      final state = await worldstateApi.getWorldstate(Platforms.pc);
 
       expect(state, const TypeMatcher<WorldState>());
     });
@@ -42,8 +41,7 @@ void main() {
       when(client.get('https://api.warframestat.us/ps4'))
           .thenAnswer((_) async => http.Response(json.encode(mockstate), 200));
 
-      final state =
-          await worldstateApi.getWorldstate(Platforms.ps4, client: client);
+      final state = await worldstateApi.getWorldstate(Platforms.ps4);
 
       expect(state, const TypeMatcher<WorldState>());
     });
@@ -52,8 +50,7 @@ void main() {
       when(client.get('https://api.warframestat.us/xb1'))
           .thenAnswer((_) async => http.Response(json.encode(mockstate), 200));
 
-      final state =
-          await worldstateApi.getWorldstate(Platforms.xb1, client: client);
+      final state = await worldstateApi.getWorldstate(Platforms.xb1);
 
       expect(state, const TypeMatcher<WorldState>());
     });
@@ -62,8 +59,7 @@ void main() {
       when(client.get('https://api.warframestat.us/swi'))
           .thenAnswer((_) async => http.Response(json.encode(mockstate), 200));
 
-      final state =
-          await worldstateApi.getWorldstate(Platforms.swi, client: client);
+      final state = await worldstateApi.getWorldstate(Platforms.swi);
 
       expect(state, const TypeMatcher<WorldState>());
     });

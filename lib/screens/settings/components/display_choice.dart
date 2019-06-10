@@ -25,7 +25,7 @@ class DisplayChoices extends StatelessWidget {
             subtitle: Text('${enabled ? 'Disable' : 'Enable'} dark mode'),
             value: enabled,
             activeColor: Theme.of(context).accentColor,
-            onChanged: (b) => storage.dispatch(ChangeThemeData(enableDark: b)),
+            onChanged: (b) => storage.dispatch(ToggleDarkMode(enableDark: b)),
           ),
           ListTile(
               title: const Text('Dateformat'),

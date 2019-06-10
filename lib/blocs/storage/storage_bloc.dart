@@ -11,7 +11,10 @@ import 'storage_states.dart';
 
 class StorageBloc extends Bloc<ChangeEvent, StorageState>
     with EquatableMixinBase, EquatableMixin {
-  final instance = locator<LocalStorageService>();
+  StorageBloc({LocalStorageService instance})
+      : _instance = instance ?? locator<LocalStorageService>();
+
+  final LocalStorageService _instance;
 
   @override
   StorageState get initialState => AppStart();
@@ -21,26 +24,26 @@ class StorageBloc extends Bloc<ChangeEvent, StorageState>
     if (event is RestoreEvent) yield MainStorageState();
 
     if (event is ChangeDateFormat) {
-      instance.dateformat = event.dateformat;
+      _instance.dateformat = event.dateformat;
 
       yield MainStorageState();
     }
 
     if (event is ChangePlatformEvent) {
-      instance.platform = event.platform;
+      _instance.platform = event.platform;
 
       yield MainStorageState();
     }
 
     if (event is ToggleNotification) {
-      instance.saveToDisk(event.key, event.value);
+      _instance.saveToDisk(event.key, event.value);
       _firebaseTopic(event.key, event.value);
 
       yield MainStorageState();
     }
 
-    if (event is ChangeThemeData) {
-      if (event.enableDark != null) instance.darkMode = event.enableDark;
+    if (event is ToggleDarkMode) {
+      _instance.darkMode = event.enableDark;
 
       yield MainStorageState();
     }

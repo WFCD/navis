@@ -5,7 +5,11 @@ import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'package:mockito/mockito.dart';
 import 'package:navis/blocs/bloc.dart';
+import 'package:navis/services/localstorage_service.dart';
 import 'package:navis/services/services.dart';
+import 'package:navis/utils/enums.dart';
+import 'package:navis/utils/storage_keys.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:test/test.dart';
 
 class MockClient extends Mock implements http.Client {}
@@ -22,8 +26,9 @@ const mockstate = {
 Future<void> main() async {
   final client = MockClient();
 
-  WorldstateBloc worldstateBloc;
-  //StorageBloc platformBloc;
+  WorldstateBloc worldstate;
+  StorageBloc storage;
+  SharedPreferences prefs;
 
   setUpAll(() async {
     const MethodChannel('plugins.flutter.io/shared_preferences')
@@ -34,15 +39,18 @@ Future<void> main() async {
       return null;
     });
 
-    await setupLocator();
+    await setupLocator(client: client);
 
-    worldstateBloc = WorldstateBloc(client: client);
-    //platformBloc = StorageBloc();
+    worldstate = WorldstateBloc();
+    storage = StorageBloc(instance: await LocalStorageService.getInstance());
+    prefs = await SharedPreferences.getInstance();
+
+    SharedPreferences.setMockInitialValues({});
   });
 
   group('Test Worldstate bloc', () {
     test('Initial state is Worldstate Uninitialized', () {
-      expect(worldstateBloc.initialState,
+      expect(worldstate.initialState,
           const TypeMatcher<WorldstateUninitialized>());
     });
 
@@ -51,19 +59,42 @@ Future<void> main() async {
           .thenAnswer((_) async => http.Response(json.encode(mockstate), 200));
 
       expectLater(
-          worldstateBloc.state,
+          worldstate.state,
           emitsInOrder([
             const TypeMatcher<WorldstateUninitialized>(),
             const TypeMatcher<WorldstateLoaded>()
           ]));
 
-      worldstateBloc.dispatch(UpdateEvent.update);
+      worldstate.dispatch(UpdateEvent.update);
     });
 
     test('dispose does not create a new state', () {
-      expectLater(worldstateBloc.state, emitsInOrder([]));
+      expectLater(worldstate.state, emitsInOrder([]));
 
-      worldstateBloc.dispose();
+      worldstate.dispose();
     });
+  });
+
+  group('Storage bloc related test', () {
+    test('Test Dark Mode Toggle', () async {
+      storage.dispatch(ToggleDarkMode(enableDark: false));
+
+      // wait for shared_prefs to actually save fisrt
+      await Future.delayed(const Duration(milliseconds: 500));
+
+      expect(prefs.getBool(darkModeKey), false);
+    });
+  });
+
+  test('Make sure platform saves', () async {
+    // the default is pc so just need to make sure any other platform can be saved.
+    storage.dispatch(ChangePlatformEvent(Platforms.swi));
+
+    await Future.delayed(const Duration(milliseconds: 500));
+
+    final Platforms storedPlatform = Platforms.values.firstWhere(
+        (p) => p.toString() == 'Platforms.${prefs.getString(platformKey)}');
+
+    expect(storedPlatform, Platforms.swi);
   });
 }

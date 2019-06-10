@@ -2,9 +2,17 @@ matrix:
   allow_failures:
     - env: JOB=test-ipa-long-shot
   include:
+    - env: JOB=flutter-test
+      language: dart
+      before_script:
+         - git clone https://github.com/flutter/flutter.git -b beta
+         - export PATH=./flutter/bin:$PATH
+      script:
+        - flutter test --verbose 
+
     - env: JOB=test-apk
       language: android
-      jdk: oraclejdk8
+      jdk: oraclejdk8 # Android sdkmanager doesn't support jdk 9+
       licenses:
         - android-sdk-preview-license-.+
         - android-sdk-license-.+
@@ -20,9 +28,8 @@ matrix:
         - git clone https://github.com/flutter/flutter.git -b beta
         - export PATH=./flutter/bin:$PATH
       script:
-        - flutter packages get
-        - flutter test
-        - flutter build apk --verbose
+        - flutter pub get
+        - flutter build apk
 
     - env: JOB=test-ipa-long-shot
       language: objective-c
@@ -31,9 +38,10 @@ matrix:
         - git clone https://github.com/flutter/flutter.git -b beta
         - export PATH=./flutter/bin:$PATH
       script:
+        - flutter pub get
         - flutter build ios --no-codesign --verbose
 
 cache:
   directories:
-  - "$HOME/.pub-cache"
+    - "$HOME/.pub-cache"
 

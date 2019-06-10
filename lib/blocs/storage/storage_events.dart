@@ -1,5 +1,4 @@
 import 'package:equatable/equatable.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:navis/utils/enums.dart';
 
 abstract class ChangeEvent extends Equatable {
@@ -29,10 +28,8 @@ class ToggleNotification extends ChangeEvent {
   final List<String> options;
 }
 
-class ChangeThemeData extends ChangeEvent {
-  ChangeThemeData({this.enableDark, this.primaryColor, this.accentColor})
-      : super([enableDark, primaryColor, accentColor]);
+class ToggleDarkMode extends ChangeEvent {
+  ToggleDarkMode({this.enableDark}) : super([enableDark]);
 
   final bool enableDark;
-  final Color primaryColor, accentColor;
 }
