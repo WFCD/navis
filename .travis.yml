@@ -22,7 +22,6 @@ matrix:
       script:
         - flutter packages get
         - flutter test
-        - flutter analyze
         - flutter build apk --verbose
 
     - env: JOB=test-ipa-long-shot
