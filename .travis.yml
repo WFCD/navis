@@ -1,23 +1,43 @@
-language: android
-jdk: oraclejdk8
-licenses:
-- android-sdk-preview-license-.+
-- android-sdk-license-.+
-- google-gdk-license-.+
-android:
-  components:
-  - build-tools-28.0.3
-  - android-28
-before_script:
-- openssl aes-256-cbc -K $encrypted_2db283701f8c_key -iv $encrypted_2db283701f8c_iv 
-  -in secrets.tar.enc -out secrets.tar -d
-- tar xvf secrets.tar
-- git clone https://github.com/flutter/flutter.git -b beta
-- export PATH=./flutter/bin:$PATH
-script:
-- flutter packages get
-- flutter test
-- flutter build apk
+matrix:
+  allow_failures:
+    - env: JOB=test-ipa-long-shot
+  include:
+    - env: JOB=test-apk
+      language: android
+      jdk: oraclejdk8
+      licenses:
+        - android-sdk-preview-license-.+
+        - android-sdk-license-.+
+        - google-gdk-license-.+
+      android:
+        components:
+          - build-tools-28.0.3
+          - android-28
+      before_script:
+        - openssl aes-256-cbc -K $encrypted_2db283701f8c_key -iv $encrypted_2db283701f8c_iv 
+          -in secrets.tar.enc -out secrets.tar -d
+        - tar xvf secrets.tar
+        - git clone https://github.com/flutter/flutter.git -b beta
+        - export PATH=./flutter/bin:$PATH
+      script:
+        - flutter packages get
+        - flutter test
+        - flutter analyze
+        - flutter build apk
+
+    - env: JOB=test-ipa-long-shot
+      language: objective-c
+      osx_image: xcode8.3
+      before_script:
+        - pip install six
+        - brew update
+        - brew install --HEAD libimobiledevice
+        - brew install ideviceinstaller
+        - brew install ios-deploy
+        - git clone https://github.com/flutter/flutter.git -b beta
+      script:
+        - ./flutter/bin/flutter -v build ios --no-codesign    
+
 cache:
   directories:
   - "$HOME/.pub-cache"
