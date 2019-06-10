@@ -20,7 +20,9 @@ class StaticBox extends StatelessWidget {
       padding: padding,
       margin: margin,
       color: color,
-      child: Text(text, style: TextStyle(color: Colors.white, fontSize: size)),
+      child: Text(text,
+          textAlign: TextAlign.center,
+          style: TextStyle(color: Colors.white, fontSize: size)),
     );
   }
 

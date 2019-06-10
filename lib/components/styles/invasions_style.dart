@@ -31,14 +31,12 @@ class InvasionStyle extends StatelessWidget {
                 if (invasion.attackerReward.itemString.isNotEmpty)
                   StaticBox.text(
                     color: factionColor(attacking),
-                    padding: const EdgeInsets.only(right: 4.0, top: 8.0),
                     text: invasion.attackerReward.itemString,
                   ),
                 Container(),
                 if (invasion.defenderReward.itemString.isNotEmpty)
                   StaticBox.text(
                     color: factionColor(defending),
-                    padding: const EdgeInsets.only(left: 4.0, top: 8.0),
                     text: invasion.defenderReward.itemString,
                   )
               ]),
