@@ -10,8 +10,8 @@ class CountdownBox extends StatefulWidget {
       {@required this.expiry,
       this.color,
       this.size,
-      this.padding,
-      this.margin});
+      this.padding = const EdgeInsets.all(4.0),
+      this.margin = const EdgeInsets.all(3.0)});
 
   final DateTime expiry;
   final Color color;
