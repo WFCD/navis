@@ -49,7 +49,10 @@ flutter:
   assets:
     - assets/general/
     - assets/platforms/
-    - assets/factions/
+    - assets/factions/Corrupted/
+    - assets/factions/Grineer/
+    - assets/factions/Corpus/
+    - assets/factions/Infested/
     - assets/sigils/
     - assets/relics/
     - assets/skyboxes/
