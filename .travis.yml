@@ -1,6 +1,6 @@
 matrix:
-  allow_failures:
-    - env: JOB=test-ipa-long-shot
+  # allow_failures:
+  #   - env: JOB=test-ipa-long-shot
   include:
     - env: JOB=test-apk
       language: android
@@ -23,16 +23,17 @@ matrix:
         - flutter pub get
         - flutter test 
         - flutter build apk --verbose
-
-    - env: JOB=test-ipa-long-shot
-      language: objective-c
-      osx_image: xcode10.2
-      before_script:
-        - git clone https://github.com/flutter/flutter.git -b beta
-        - export PATH=./flutter/bin:$PATH
-      script:
-        - flutter pub get
-        - flutter build ios --no-codesign --verbose
+        
+    # I just needed to know what was missing from 
+    # - env: JOB=test-ipa-long-shot
+    #   language: objective-c
+    #   osx_image: xcode10.2
+    #   before_script:
+    #     - git clone https://github.com/flutter/flutter.git -b beta
+    #     - export PATH=./flutter/bin:$PATH
+    #   script:
+    #     - flutter pub get
+    #     - flutter build ios --no-codesign --verbose
 
 cache:
   directories:

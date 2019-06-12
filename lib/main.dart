@@ -9,15 +9,13 @@ import 'package:package_info/package_info.dart';
 import 'app.dart';
 
 Future<void> main() async {
-  final package = await PackageInfo.fromPlatform();
-
   await setupLocator();
   putLumberdashToWork(
       withClient: FirebaseLumberdash(
     firebaseAnalyticsClient: FirebaseAnalytics(),
     loggerName: 'Navis_Lumberdash',
     environment: 'production',
-    releaseVersion: package.version,
+    releaseVersion: locator<PackageInfo>().version,
   ));
 
   runApp(BlocProviderTree(blocProviders: [
