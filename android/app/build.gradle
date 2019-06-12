@@ -62,6 +62,7 @@ android {
 
     buildTypes {
         release {
+            versionNameSuffix "-${getDate()}"
             signingConfig signingConfigs.release
         }
     }
@@ -83,3 +84,7 @@ dependencies {
 
 apply plugin: 'io.fabric'
 apply plugin: 'com.google.gms.google-services'
+
+static def getDate() {
+    return new Date().format('yyyyMMdd')
+}

@@ -13,6 +13,8 @@ matrix:
         components:
           - build-tools-28.0.3
           - android-28
+      before_install:
+        - bundle install    
       before_script:
         - openssl aes-256-cbc -K $encrypted_2db283701f8c_key -iv $encrypted_2db283701f8c_iv 
           -in secrets.tar.enc -out secrets.tar -d
@@ -23,6 +25,7 @@ matrix:
         - flutter pub get
         - flutter test 
         - flutter build apk --verbose
+        - fastlane deploy_internal
         
     # I just needed to know what was missing from 
     # - env: JOB=test-ipa-long-shot

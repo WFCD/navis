@@ -13,17 +13,23 @@
 # Uncomment the line if you want fastlane to automatically update itself
 update_fastlane
 
+skip_docs
+
 default_platform(:android)
 
 platform :android do
-  desc "Runs all the tests"
-  lane :test do
-    gradle(task: "test")
-  end
-
   desc "Deploy a Internal version to the Google Play"
-  lane :deploy do
-    gradle(task: "clean assembleRelease")
-    upload_to_play_store(track: 'internal')
+  lane :deploy_internal do
+    begin
+    upload_to_play_store(
+      track: 'internal', 
+      apk: '../build/app/outputs/apk/release/app-release.apk',
+      skip_upload_screenshots: true,
+      skip_upload_images: true
+    )
+    rescue => exception
+      raise exception unless exception.message.include?('apkUpgradeVersionConflict')
+      puts 'Current version already present on the Play Store. Omitting this upload.'
+    end
   end
 end
