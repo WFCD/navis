@@ -24,6 +24,7 @@ platform :android do
     upload_to_play_store(
       track: 'internal', 
       apk: '../build/app/outputs/apk/release/app-release.apk',
+      json_key: 'app/fastlane.json',
       skip_upload_screenshots: true,
       skip_upload_images: true
     )
