@@ -14,7 +14,7 @@ matrix:
           - build-tools-28.0.3
           - android-28
       before_install:
-        - bundle install    
+        - bundle install --gemfile=android/Gemfile   
       before_script:
         - openssl aes-256-cbc -K $encrypted_2db283701f8c_key -iv $encrypted_2db283701f8c_iv 
           -in secrets.tar.enc -out secrets.tar -d
