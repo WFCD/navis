@@ -10,6 +10,13 @@ import 'app.dart';
 
 Future<void> main() async {
   await setupLocator();
+
+  runApp(BlocProviderTree(blocProviders: [
+    BlocProvider<StorageBloc>(bloc: StorageBloc()),
+    BlocProvider<WorldstateBloc>(bloc: WorldstateBloc()),
+    BlocProvider<NavigationBloc>(bloc: NavigationBloc())
+  ], child: const Navis()));
+
   putLumberdashToWork(
       withClient: FirebaseLumberdash(
     firebaseAnalyticsClient: FirebaseAnalytics(),
@@ -17,10 +24,4 @@ Future<void> main() async {
     environment: 'production',
     releaseVersion: locator<PackageInfo>().version,
   ));
-
-  runApp(BlocProviderTree(blocProviders: [
-    BlocProvider<StorageBloc>(bloc: StorageBloc()),
-    BlocProvider<WorldstateBloc>(bloc: WorldstateBloc()),
-    BlocProvider<NavigationBloc>(bloc: NavigationBloc())
-  ], child: const Navis()));
 }

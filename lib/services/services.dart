@@ -8,15 +8,18 @@ import 'package:package_info/package_info.dart';
 
 GetIt locator = GetIt();
 
-Future<void> setupLocator({http.Client client}) async {
+Future<void> setupLocator({http.Client client, bool isTest = false}) async {
   final messagingService = FirebaseMessaging();
   final localStorageService = await LocalStorageService.getInstance();
   final errorService = CrashlyticsService();
-  final package = await PackageInfo.fromPlatform();
 
   locator.registerSingleton<FirebaseMessaging>(messagingService);
   locator.registerSingleton<LocalStorageService>(localStorageService);
   locator.registerSingleton<CrashlyticsService>(errorService);
   locator.registerSingleton(WorldstateAPI(client: client));
-  locator.registerSingleton<PackageInfo>(package);
+
+  if (!isTest) {
+    final package = await PackageInfo.fromPlatform();
+    locator.registerSingleton<PackageInfo>(package);
+  }
 }

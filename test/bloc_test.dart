@@ -39,13 +39,11 @@ Future<void> main() async {
       return null;
     });
 
-    await setupLocator(client: client);
+    await setupLocator(client: client, isTest: true);
 
     worldstate = WorldstateBloc();
     storage = StorageBloc(instance: await LocalStorageService.getInstance());
     prefs = await SharedPreferences.getInstance();
-
-    SharedPreferences.setMockInitialValues({});
   });
 
   group('Test Worldstate bloc', () {
