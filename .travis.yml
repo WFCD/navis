@@ -25,7 +25,7 @@ matrix:
         - flutter pub get
         - flutter test 
         - flutter build apk --verbose
-        - fastlane deploy_internal
+        - cd android && fastlane deploy_internal
         
     # I just needed to know what was missing from 
     # - env: JOB=test-ipa-long-shot
