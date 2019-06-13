@@ -19,13 +19,14 @@ matrix:
         - openssl aes-256-cbc -K $encrypted_2db283701f8c_key -iv $encrypted_2db283701f8c_iv 
           -in secrets.tar.enc -out secrets.tar -d
         - tar xvf secrets.tar
-        - git clone https://github.com/flutter/flutter.git -b beta
+        - if [  ! -d "flutter" ] ; then git clone https://github.com/flutter/flutter.git -b beta; fi;
         - export PATH=./flutter/bin:$PATH
+        - flutter upgrade
       script:
         - flutter pub get
         - flutter test 
         - flutter build apk --verbose
-        - cd android && fastlane deploy_internal
+        - cd android && bundle exec fastlane deploy_internal
         
     # I just needed to know what was missing from 
     # - env: JOB=test-ipa-long-shot
@@ -39,6 +40,11 @@ matrix:
     #     - flutter build ios --no-codesign --verbose
 
 cache:
+  bundler: true
   directories:
     - "$HOME/.pub-cache"
+    - "$HOME/.gradle/caches/"
+    - "$HOME/.gradle/wrapper/"
+    - "$HOME/.android/build-cache"
+    - "$HOME/flutter"
 
