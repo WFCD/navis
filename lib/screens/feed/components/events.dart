@@ -54,7 +54,7 @@ class EventPanelState extends State<EventPanel> {
     final bool enableDots = widget.events.length <= 1;
 
     return Container(
-        height: 140,
+        height: 160,
         width: MediaQuery.of(context).size.width,
         child: Material(
           color: Theme.of(context).cardColor,
@@ -102,13 +102,36 @@ class EventBuilder extends StatelessWidget {
 
   final Event event;
 
-  Color _healthColor(double health) {
+  Color _healthColor() {
+    double health;
+    try {
+      health = event?.health != null
+          ? double.parse(event?.health)
+          : (100 - event.currentScore / event.maximumScore * 100).toDouble();
+    } catch (err) {
+      health = 100.0;
+    }
+
     if (health > 50.0)
       return Colors.green;
     else if (health <= 50.0 && health >= 10.0)
       return Colors.orange[700];
     else
       return Colors.red;
+  }
+
+  String _healthText() {
+    String health;
+
+    if (event?.health != null)
+      health = event?.health;
+    else if (event.currentScore != null && event.maximumScore != null) {
+      health = (100 - (event.currentScore / event.maximumScore) * 100)
+          .toStringAsFixed(2);
+    } else
+      health = 'unknown';
+
+    return '$health% Remaining';
   }
 
   Widget _addReward() {
@@ -146,13 +169,8 @@ class EventBuilder extends StatelessWidget {
               StaticBox.text(text: event.victimNode, color: Colors.red),
             space,
             StaticBox.text(
-              text: event?.health != null
-                  ? '${event?.health}% Remaining'
-                  : '${(100 - (event.currentScore / event.maximumScore) * 100).toStringAsFixed(2)}% Remaining',
-              color: _healthColor(event?.health != null
-                  ? double.parse(event?.health)
-                  : (100 - event.currentScore / event.maximumScore * 100)
-                      .toDouble()),
+              text: _healthText(),
+              color: _healthColor(),
             )
           ]),
           space,

@@ -67,7 +67,7 @@ android {
 
     buildTypes {
         release {
-            versionNameSuffix ".${getDate()}"
+            versionNameSuffix "${getDate()}"
             signingConfig signingConfigs.release
         }
     }
