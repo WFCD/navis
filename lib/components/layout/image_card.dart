@@ -27,7 +27,7 @@ class BackgroundImageCard extends StatelessWidget {
           decoration: BoxDecoration(
               image: DecorationImage(
             colorFilter: ColorFilter.mode(
-                Colors.black.withOpacity(0.5), BlendMode.dstATop),
+                Colors.black.withOpacity(0.25), BlendMode.overlay),
             image: provider,
             fit: BoxFit.cover,
           )),

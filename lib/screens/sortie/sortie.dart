@@ -30,7 +30,8 @@ class SortieScreen extends StatelessWidget {
                         Card(
                             color: Theme.of(context).primaryColor,
                             child: ListTile(
-                              title: const Text('Sortie will reset in: '),
+                              title: Text('Sortie will reset in: ',
+                                  style: TextStyle(color: Colors.white)),
                               trailing: CountdownBox(
                                   color: Colors.transparent,
                                   expiry: state.sortie.expiry,
@@ -66,13 +67,23 @@ class _BuildMission extends StatelessWidget {
   final String asset, faction, boss;
 
   Widget _buildDetails(BuildContext context) {
-    const node = TextStyle(
-        fontWeight: FontWeight.bold, fontStyle: FontStyle.normal, fontSize: 18);
-    const mode = TextStyle(
-        fontWeight: FontWeight.w500, fontStyle: FontStyle.normal, fontSize: 14);
+    final color = Colors.white;
+    final node = TextStyle(
+        fontWeight: FontWeight.bold,
+        fontStyle: FontStyle.normal,
+        fontSize: 18,
+        color: color);
+    final mode = TextStyle(
+        fontWeight: FontWeight.w500,
+        fontStyle: FontStyle.normal,
+        fontSize: 14,
+        color: color);
 
     final info = Theme.of(context).textTheme.caption.copyWith(
-        fontWeight: FontWeight.w500, fontStyle: FontStyle.normal, fontSize: 12);
+        fontWeight: FontWeight.w500,
+        fontStyle: FontStyle.normal,
+        fontSize: 12,
+        color: color);
 
     return Flexible(
       flex: 3,
@@ -93,18 +104,18 @@ class _BuildMission extends StatelessWidget {
     final bool isAssassination = variant.missionType == 'Assassination';
 
     return BackgroundImageCard(
-      height: 145,
+      height: 150,
       provider: AssetImage('assets/skyboxes/$node.webp'),
       child: Container(
-        padding: const EdgeInsets.only(left: 16, top: 16, bottom: 16),
+        padding: const EdgeInsets.only(left: 8, top: 16, bottom: 16),
         child: Row(children: <Widget>[
           _buildDetails(context),
-          const Spacer(flex: 2),
+          const Spacer(),
           Container(
-            margin: const EdgeInsets.all(16.0),
-            child: Image.asset(isAssassination
-                ? 'assets/factions/$faction/$boss.webp'
-                : asset),
+            child: Image.asset(
+                isAssassination ? 'assets/factions/$faction/$boss.webp' : asset,
+                height: 150,
+                width: 150),
           )
         ]),
       ),

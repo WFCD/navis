@@ -12,13 +12,23 @@ class FissureCard extends StatelessWidget {
   final _nodeBackground = RegExp(r'\(([^)]*)\)');
 
   Widget _buildDetails(BuildContext context) {
-    const node = TextStyle(
-        fontWeight: FontWeight.bold, fontStyle: FontStyle.normal, fontSize: 18);
-    const missionType = TextStyle(
-        fontWeight: FontWeight.w500, fontStyle: FontStyle.normal, fontSize: 14);
+    final color = Colors.white;
+    final node = TextStyle(
+        fontWeight: FontWeight.bold,
+        fontStyle: FontStyle.normal,
+        fontSize: 18,
+        color: color);
+    final missionType = TextStyle(
+        fontWeight: FontWeight.w500,
+        fontStyle: FontStyle.normal,
+        fontSize: 14,
+        color: color);
 
     final info = Theme.of(context).textTheme.caption.copyWith(
-        fontWeight: FontWeight.w500, fontStyle: FontStyle.normal, fontSize: 12);
+        fontWeight: FontWeight.w500,
+        fontStyle: FontStyle.normal,
+        fontSize: 12,
+        color: color);
 
     return Padding(
       padding: const EdgeInsets.only(left: 16, top: 16, bottom: 16),
@@ -39,7 +49,7 @@ class FissureCard extends StatelessWidget {
                     padding: EdgeInsets.zero,
                     margin: EdgeInsets.zero),
                 const SizedBox(width: 8.0),
-                const Text('Remaining')
+                Text('Remaining', style: TextStyle(color: color))
               ],
             )
           ]),
