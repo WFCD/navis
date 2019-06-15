@@ -66,6 +66,11 @@ android {
     }
 
     buildTypes {
+        debug {
+            versionNameSuffix "${getDate()}-debug"
+            signingConfig signingConfigs.debug
+        }
+
         release {
             versionNameSuffix "${getDate()}"
             signingConfig signingConfigs.release
