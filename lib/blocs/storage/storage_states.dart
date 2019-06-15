@@ -38,6 +38,7 @@ class MainStorageState extends StorageState {
         primaryColor: primary,
         accentColor: accent,
         cardColor: enabled ? const Color(0xFF2C2C2C) : null,
+        dialogBackgroundColor: enabled ? const Color(0xFF212121) : null,
         scaffoldBackgroundColor: enabled ? const Color(0xFF212121) : null,
         canvasColor: enabled ? const Color(0xFF212121) : null,
         splashColor: accent);

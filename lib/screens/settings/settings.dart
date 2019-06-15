@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:navis/components/styles/platform_choices.dart';
 import 'package:navis/global_keys.dart';
 
-import 'components/about.dart';
 import 'components/display_choice.dart';
 import 'components/notifications.dart';
 
@@ -20,7 +19,6 @@ class Settings extends StatelessWidget {
             const PlatformChoice(),
             const DisplayChoices(),
             Notifications(),
-            Miscellaneous()
           ],
         ));
   }
