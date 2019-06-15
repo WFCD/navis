@@ -30,7 +30,7 @@ class SortieScreen extends StatelessWidget {
                         Card(
                             color: Theme.of(context).primaryColor,
                             child: ListTile(
-                              title: Text('Sortie will reset in: ',
+                              title: const Text('Sortie will reset in: ',
                                   style: TextStyle(color: Colors.white)),
                               trailing: CountdownBox(
                                   color: Colors.transparent,
@@ -67,13 +67,13 @@ class _BuildMission extends StatelessWidget {
   final String asset, faction, boss;
 
   Widget _buildDetails(BuildContext context) {
-    final color = Colors.white;
-    final node = TextStyle(
+    const color = Colors.white;
+    const node = TextStyle(
         fontWeight: FontWeight.bold,
         fontStyle: FontStyle.normal,
         fontSize: 18,
         color: color);
-    final mode = TextStyle(
+    const mode = TextStyle(
         fontWeight: FontWeight.w500,
         fontStyle: FontStyle.normal,
         fontSize: 14,
