@@ -6,7 +6,6 @@ import 'components/alerts.dart';
 import 'components/cycle.dart';
 import 'components/deals.dart';
 import 'components/events.dart';
-import 'components/invasionsCard.dart';
 import 'components/trader.dart';
 import 'components/vallis.dart';
 
@@ -28,7 +27,6 @@ class Feed extends StatelessWidget {
 
             if (state is WorldstateLoaded) {
               final bool isAlertActive = state.alerts.isNotEmpty;
-              final bool isInvasionsActive = state.invasions.isNotEmpty;
               final bool isEventActive = state.events.isNotEmpty;
               final bool areAcolytesActive = state.acolytes.isNotEmpty;
               final bool areDealsActive = state.dailyDeals.isNotEmpty;
@@ -40,7 +38,6 @@ class Feed extends StatelessWidget {
                 const OrbVallis(),
                 const EarthCycle(),
                 if (isAlertActive) const AlertTile(),
-                if (isInvasionsActive) const InvasionCard(),
                 const Trader(),
                 if (areDealsActive) const Deals(),
               ]);
