@@ -5,7 +5,7 @@ import 'package:simple_animations/simple_animations.dart';
 
 import '../layout/static_box.dart';
 
-class CountdownBox extends StatefulWidget {
+class CountdownBox extends StatelessWidget {
   const CountdownBox(
       {@required this.expiry,
       this.color,
@@ -17,41 +17,6 @@ class CountdownBox extends StatefulWidget {
   final Color color;
   final double size;
   final EdgeInsetsGeometry padding, margin;
-
-  @override
-  _CountdownBoxState createState() => _CountdownBoxState();
-}
-
-class _CountdownBoxState extends State<CountdownBox> {
-  Duration duration;
-  Tween tween;
-
-  Future<void> setupDuration() async {
-    final duration = Duration(
-        seconds: widget.expiry.millisecondsSinceEpoch -
-            DateTime.now().millisecondsSinceEpoch);
-    final tween = StepTween(
-        begin: widget.expiry.millisecondsSinceEpoch,
-        end: DateTime.now().millisecondsSinceEpoch);
-
-    setState(() {
-      this.duration = duration;
-      this.tween = tween;
-    });
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    setupDuration();
-  }
-
-  @override
-  void didUpdateWidget(CountdownBox oldWidget) {
-    if (oldWidget.expiry != widget.expiry) setupDuration();
-
-    super.didUpdateWidget(oldWidget);
-  }
 
   Future<void> _listener(BuildContext context, AnimationStatus status) async {
     if (status == AnimationStatus.completed ||
@@ -86,6 +51,13 @@ class _CountdownBoxState extends State<CountdownBox> {
 
   @override
   Widget build(BuildContext context) {
+    final duration = Duration(
+        seconds: expiry.millisecondsSinceEpoch -
+            DateTime.now().millisecondsSinceEpoch);
+    final tween = StepTween(
+        begin: expiry.millisecondsSinceEpoch,
+        end: DateTime.now().millisecondsSinceEpoch);
+
     return ControlledAnimation(
       duration: duration,
       tween: tween,
@@ -93,14 +65,14 @@ class _CountdownBoxState extends State<CountdownBox> {
       animationControllerStatusListener: (AnimationStatus status) =>
           _listener(context, status),
       builder: (context, value) {
-        final duration = widget.expiry.difference(DateTime.now());
+        final duration = expiry.difference(DateTime.now());
 
         return StaticBox.text(
-          color: widget.color ?? _containerColors(duration),
-          padding: widget.padding,
-          margin: widget.margin,
-          size: widget.size,
+          size: size,
+          margin: margin,
+          padding: padding,
           text: _timerVersions(duration),
+          color: color ?? _containerColors(duration),
         );
       },
     );
