@@ -6,7 +6,6 @@ dependencies:
   flutter:
     sdk: flutter
   bloc: ^0.14.2
-  chewie: ^0.9.7
   codable: ^1.0.0
   equatable: ^0.2.5
   firebase_lumberdash: ^1.0.1
