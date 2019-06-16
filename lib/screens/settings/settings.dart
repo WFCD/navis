@@ -18,7 +18,7 @@ class Settings extends StatelessWidget {
             const SizedBox(height: 8.0),
             const PlatformChoice(),
             const DisplayChoices(),
-            Notifications(),
+            //Notifications(),
           ],
         ));
   }
