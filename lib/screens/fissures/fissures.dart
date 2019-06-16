@@ -5,20 +5,8 @@ import 'package:navis/models/worldstate/fissure.dart';
 
 import 'components/fissure_style.dart';
 
-class FissureList extends StatefulWidget {
+class FissureList extends StatelessWidget {
   const FissureList({Key key}) : super(key: key);
-
-  @override
-  _FissureListState createState() => _FissureListState();
-}
-
-class _FissureListState extends State<FissureList> {
-  @override
-  void didChangeDependencies() {
-    precacheAssetImages(context,
-        BlocProvider.of<WorldstateBloc>(context).currentState.fissures);
-    super.didChangeDependencies();
-  }
 
   @override
   Widget build(BuildContext context) {
