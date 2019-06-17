@@ -8,13 +8,6 @@ import 'package:navis/models/export.dart';
 class NightwaveChallenges extends StatelessWidget {
   const NightwaveChallenges();
 
-  int _sort(BountyType a, BountyType b) {
-    if (a.challenge.isElite ?? false)
-      return 0;
-    else
-      return 1;
-  }
-
   @override
   Widget build(BuildContext context) {
     final style = Theme.of(context).textTheme.subtitle.copyWith(fontSize: 15);
@@ -29,58 +22,47 @@ class NightwaveChallenges extends StatelessWidget {
               final nightwave = state.nightwave;
 
               final daily = nightwave.dailyChallenges
-                  .map((c) => BountyType(challenge: c))
-                  .toList();
+                  .map((c) => ChallengeType(challenge: c));
 
               final weekly = nightwave.weeklyChallenges
-                  .map((c) => BountyType(challenge: c))
-                  .toList();
+                  .map((c) => ChallengeType(challenge: c));
 
-              //make sure the daily that ends sooner and the elites are on top
-              daily.sort(
-                  (a, b) => a.challenge.expiry.compareTo(b.challenge.expiry));
-              weekly.sort(_sort);
-
-              return ListView(children: List.unmodifiable(() sync* {
-                yield Container(
-                    margin: const EdgeInsets.only(top: 10.0, left: 8.0),
-                    alignment: Alignment.centerLeft,
-                    child: Text('Daily', style: style));
-                yield* daily;
-
-                yield Container(
-                    margin: const EdgeInsets.only(top: 10.0, left: 8.0),
-                    alignment: Alignment.centerLeft,
-                    child: Text('Weekly', style: style));
-                yield* weekly;
-              }()));
+              return ListView(children: <Widget>[
+                SettingTitle(title: 'Daily', style: style),
+                ...daily,
+                SettingTitle(title: 'Weekly', style: style),
+                ...weekly
+              ]);
             }
           },
         ));
   }
 }
 
-class BountyType extends StatelessWidget {
-  const BountyType({Key key, this.challenge}) : super(key: key);
+class ChallengeType extends StatelessWidget {
+  const ChallengeType({Key key, this.challenge}) : super(key: key);
 
   final Challenge challenge;
 
-  Widget _type() => challenge.isDaily
-      ? CountdownBox(expiry: challenge.expiry)
-      : Container(height: 0, width: 0);
-
-  Color _setColor(BuildContext context) {
-    if (challenge?.isElite ?? false)
-      return Colors.red;
-    else if (challenge?.isDaily ?? false)
-      return Theme.of(context).accentColor;
-    else
-      return Colors.orange[700];
+  Widget _standingBadge() {
+    return StaticBox(
+        color: Colors.red,
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            const Icon(Standing.standing, color: Colors.white, size: 15),
+            Text('${challenge.reputation}',
+                style: TextStyle(color: Colors.white))
+          ],
+        ));
   }
 
   @override
   Widget build(BuildContext context) {
     final color = Theme.of(context).textTheme.caption.color;
+    final title = Theme.of(context).textTheme.subhead;
+    final desscription =
+        Theme.of(context).textTheme.body1.copyWith(fontSize: 14, color: color);
 
     return Card(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
@@ -90,31 +72,23 @@ class BountyType extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
-                  Container(
-                      child: Text(challenge.title,
-                          style: Theme.of(context).textTheme.subhead)),
+                  Container(child: Text(challenge.title, style: title)),
                   const SizedBox(height: 4.0),
-                  Container(
-                      child: Text(challenge.desc,
-                          style: Theme.of(context)
-                              .textTheme
-                              .body1
-                              .copyWith(fontSize: 14, color: color))),
+                  Container(child: Text(challenge.desc, style: desscription)),
                   const SizedBox(height: 8.0),
                   Row(
                       crossAxisAlignment: CrossAxisAlignment.end,
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: <Widget>[
-                        StaticBox(
-                            color: _setColor(context),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: <Widget>[
-                                const Icon(Standing.standing, size: 15),
-                                Text('${challenge.reputation}')
-                              ],
-                            )),
-                        _type()
+                        if (challenge?.isElite)
+                          StaticBox.text(
+                            color: Colors.red,
+                            text: 'Elite',
+                            size: 14,
+                          ),
+                        _standingBadge(),
+                        if (challenge?.isDaily)
+                          CountdownBox(expiry: challenge.expiry)
                       ]),
                 ])));
   }

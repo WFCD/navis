@@ -10,11 +10,26 @@ class Nightwave extends Coding {
   List<Challenge> possibleChallenges, _activeChallenges;
   List<String> rewardTypes;
 
-  List<Challenge> get dailyChallenges =>
-      _activeChallenges.where((c) => c.isDaily == true).toList();
+  List<Challenge> get dailyChallenges {
+    final daily = _activeChallenges.where((c) => c.isDaily == true).toList();
 
-  List<Challenge> get weeklyChallenges =>
-      _activeChallenges.where((c) => c.isDaily == false).toList();
+    daily.sort((a, b) => a.expiry.compareTo(b.expiry));
+
+    return daily;
+  }
+
+  List<Challenge> get weeklyChallenges {
+    final weekly = _activeChallenges.where((c) => c.isDaily == false).toList();
+
+    weekly.sort((a, b) {
+      if (a.isElite ?? false)
+        return 0;
+      else
+        return 1;
+    });
+
+    return weekly;
+  }
 
   @override
   Map<String, cast.Cast> get castMap =>
