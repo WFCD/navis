@@ -59,23 +59,33 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      key: scaffold,
-      appBar: AppBar(title: const Text('Navis')),
-      drawer: const LotusDrawer(),
-      body: Center(
-          child: BlocBuilder<RouteEvent, RouteState>(
-        bloc: BlocProvider.of<NavigationBloc>(context),
-        builder: (BuildContext context, RouteState route) {
-          return ControlledAnimation(
-            duration: const Duration(milliseconds: 500),
-            playback: Playback.PLAY_FORWARD,
-            tween: Tween(begin: 0.0, end: 1.0),
-            builder: (BuildContext context, dynamic value) =>
-                Opacity(opacity: value, child: route.widget),
-          );
-        },
-      )),
+    return WillPopScope(
+      child: Scaffold(
+        key: scaffold,
+        appBar: AppBar(title: const Text('Navis')),
+        drawer: const LotusDrawer(),
+        body: Center(
+            child: BlocBuilder<RouteEvent, RouteState>(
+          bloc: BlocProvider.of<NavigationBloc>(context),
+          builder: (BuildContext context, RouteState route) {
+            return ControlledAnimation(
+              duration: const Duration(milliseconds: 500),
+              playback: Playback.PLAY_FORWARD,
+              tween: Tween(begin: 0.0, end: 1.0),
+              builder: (BuildContext context, dynamic value) =>
+                  Opacity(opacity: value, child: route.widget),
+            );
+          },
+        )),
+      ),
+      onWillPop: () async {
+        if (!scaffold.currentState.isDrawerOpen) {
+          scaffold.currentState.openDrawer();
+        } else
+          Navigator.of(context).pop();
+
+        return false;
+      },
     );
   }
 }
