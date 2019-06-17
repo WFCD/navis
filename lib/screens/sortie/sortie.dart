@@ -14,6 +14,8 @@ class SortieScreen extends StatelessWidget {
     return Container(
         child: BlocBuilder(
             bloc: BlocProvider.of<WorldstateBloc>(context),
+            condition: (WorldStates previous, WorldStates current) =>
+                previous.sortie != current.sortie,
             builder: (BuildContext context, WorldStates state) {
               if (state is WorldstateLoaded) {
                 if (state.sortie?.variants?.isNotEmpty ?? false) {
@@ -67,30 +69,34 @@ class _BuildMission extends StatelessWidget {
   final String asset, faction, boss;
 
   Widget _buildDetails(BuildContext context) {
+    const shadow = Shadow(offset: Offset(1.0, 0.0), blurRadius: 3.0);
     const color = Colors.white;
-    const node = TextStyle(
+    const sortie = TextStyle(
         fontWeight: FontWeight.bold,
         fontStyle: FontStyle.normal,
         fontSize: 18,
-        color: color);
+        color: color,
+        shadows: <Shadow>[shadow]);
     const mode = TextStyle(
         fontWeight: FontWeight.w500,
         fontStyle: FontStyle.normal,
         fontSize: 14,
-        color: color);
+        color: color,
+        shadows: <Shadow>[shadow]);
 
     final info = Theme.of(context).textTheme.caption.copyWith(
         fontWeight: FontWeight.w500,
         fontStyle: FontStyle.normal,
         fontSize: 12,
-        color: color);
+        color: color,
+        shadows: <Shadow>[shadow]);
 
     return Flexible(
       flex: 3,
       child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Text('Sortie ${index + 1}', style: node),
+            Text('Sortie ${index + 1}', style: sortie),
             Text('${variant.missionType} - ${variant.node}', style: mode),
             const SizedBox(height: 16),
             Text(variant.modifierDescription, style: info, maxLines: 3)
