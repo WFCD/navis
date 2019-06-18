@@ -49,3 +49,6 @@ make sure that you follow all the instructions and everything should run smoothl
 
 For help getting started with Flutter, view our online
 [documentation](https://flutter.dev/docs).
+
+### Credits:
+- [planetary skyboxes](https://imgur.com/gallery/YktJ8)
