@@ -19,6 +19,7 @@ class NightwaveChallenges extends StatelessWidget {
           bloc: BlocProvider.of<WorldstateBloc>(context),
           builder: (_, state) {
             if (state is WorldstateLoaded) {
+              const padding = SizedBox(height: 8.0);
               final nightwave = state.nightwave;
 
               final daily = nightwave.dailyChallenges
@@ -28,8 +29,10 @@ class NightwaveChallenges extends StatelessWidget {
                   .map((c) => ChallengeType(challenge: c));
 
               return ListView(children: <Widget>[
+                padding,
                 SettingTitle(title: 'Daily', style: style),
                 ...daily,
+                padding,
                 SettingTitle(title: 'Weekly', style: style),
                 ...weekly
               ]);
@@ -87,8 +90,7 @@ class ChallengeType extends StatelessWidget {
                             size: 14,
                           ),
                         _standingBadge(),
-                        if (challenge?.isDaily)
-                          CountdownBox(expiry: challenge.expiry)
+                        CountdownBox(expiry: challenge.expiry)
                       ]),
                 ])));
   }
