@@ -50,7 +50,7 @@ class About extends StatelessWidget {
               text: 'https://github.com/WFCD/navis'),
           TextSpan(
               style: aboutTextStyle,
-              text: '\n\nReport issues or pull request to this prject\'s '),
+              text: '\n\nReport issues or feature request to this prject\'s '),
           _LinkTextSpan(
               context: context,
               style: linkStyle,
