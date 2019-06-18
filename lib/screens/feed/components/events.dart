@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:navis/components/animations.dart';
 import 'package:navis/models/export.dart';
 import 'package:navis/screens/syndicates/components/rewards.dart';
 import 'package:navis/components/layout.dart';
@@ -131,7 +132,7 @@ class EventBuilder extends StatelessWidget {
     } else
       health = 'unknown';
 
-    return '$health% Remaining';
+    return '$health% remaining';
   }
 
   Widget _addReward() {
@@ -148,6 +149,7 @@ class EventBuilder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const space = SizedBox(height: 4);
+    final String health = _healthText();
 
     return Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -168,10 +170,12 @@ class EventBuilder extends StatelessWidget {
             if (event.victimNode != null)
               StaticBox.text(text: event.victimNode, color: Colors.red),
             space,
-            StaticBox.text(
-              text: _healthText(),
-              color: _healthColor(),
-            )
+            if (!health.contains('unknown'))
+              StaticBox.text(
+                text: health,
+                color: _healthColor(),
+              ),
+            if (health.contains('unknown')) CountdownBox(expiry: event.expiry)
           ]),
           space,
           Row(
