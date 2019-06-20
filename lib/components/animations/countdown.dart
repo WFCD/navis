@@ -59,7 +59,9 @@ class CountdownBox extends StatelessWidget {
         end: DateTime.now().millisecondsSinceEpoch);
 
     return ControlledAnimation(
-      duration: duration,
+      duration: duration <= Duration.zero
+          ? const Duration(milliseconds: 500)
+          : duration,
       tween: tween,
       playback: Playback.PLAY_FORWARD,
       animationControllerStatusListener: (AnimationStatus status) =>
