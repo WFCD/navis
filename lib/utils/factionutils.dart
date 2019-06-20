@@ -7,7 +7,7 @@ enum OpenWorldFactions { cetus, fortuna }
 const grineer = 'assets/factions/Grineer/Grineer.svg';
 const corpus = 'assets/factions/Corpus/Corpus.svg';
 const corrupted = 'assets/factions/Corrupted/Corrupted.svg';
-const infested = 'assets/factions/Infested/Infested.svg';
+const infested = 'assets/factions/Infestation/Infested.svg';
 const ostrons = 'assets/sigils/OstronSigil.svg';
 const solaris = 'assets/sigils/SolarisUnited.svg';
 
