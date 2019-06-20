@@ -11,8 +11,14 @@ abstract class WorldstateObject extends Coding {
     super.decode(object);
 
     id = object.decode('id');
-    //activation = DateTime.parse(object.decode('activation'));
-    expiry = DateTime.parse(object.decode('expiry'));
+
+    try {
+      expiry = DateTime.parse(object.decode('expiry'));
+      activation = DateTime.parse(object.decode('activation'));
+    } catch (err) {
+      expiry = DateTime.now();
+      activation = DateTime.now();
+    }
   }
 
   @override
