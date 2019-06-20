@@ -28,13 +28,11 @@ class AlertTile extends StatelessWidget {
   }
 }
 
-final _nightmareIcon = RepaintBoundary(
-    child: SvgPicture.asset('assets/general/nightmare.svg',
-        color: Colors.red, height: 25, width: 25));
+final _nightmareIcon = SvgPicture.asset('assets/general/nightmare.svg',
+    color: Colors.red, height: 25, width: 25);
 
-final _archwingIcon = RepaintBoundary(
-    child: SvgPicture.asset('assets/general/archwing.svg',
-        color: Colors.blue, height: 25, width: 25));
+final _archwingIcon = SvgPicture.asset('assets/general/archwing.svg',
+    color: Colors.blue, height: 25, width: 25);
 
 class _BuildAlerts extends StatelessWidget {
   const _BuildAlerts({@required this.alert});
