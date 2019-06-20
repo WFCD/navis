@@ -55,7 +55,7 @@ class ChallengeType extends StatelessWidget {
           children: <Widget>[
             const Icon(Standing.standing, color: Colors.white, size: 15),
             Text('${challenge.reputation}',
-                style: TextStyle(color: Colors.white))
+                style: const TextStyle(color: Colors.white))
           ],
         ));
   }
