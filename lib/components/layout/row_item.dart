@@ -39,8 +39,6 @@ class RowItem extends StatelessWidget {
     ]));
 
     return Container(
-        child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[Expanded(child: _text), child]));
+        child: Row(children: <Widget>[_text, const Spacer(), child]));
   }
 }

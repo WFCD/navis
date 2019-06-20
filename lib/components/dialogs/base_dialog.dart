@@ -35,7 +35,6 @@ class BaseDialog extends StatelessWidget {
         margin: const EdgeInsets.fromLTRB(8.0, 10.0, 8.0, 14.0), child: child);
 
     return Dialog(
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
         child: Column(
             mainAxisSize: MainAxisSize.min,

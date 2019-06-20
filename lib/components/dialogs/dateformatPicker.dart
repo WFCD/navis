@@ -9,6 +9,19 @@ class DateFormatPicker extends StatelessWidget with DialogWidget {
     DialogWidget.openDialog(context, DateFormatPicker());
   }
 
+  Widget _buildRadio(BuildContext context, StorageState state, Formats v,
+      ValueChanged<dynamic> onChanged) {
+    final String format = v.toString().split('.').last;
+
+    return RadioListTile(
+      title: Text(format),
+      value: v,
+      groupValue: state.dateformat,
+      activeColor: Theme.of(context).accentColor,
+      onChanged: onChanged,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final storage = BlocProvider.of<StorageBloc>(context);
@@ -18,21 +31,13 @@ class DateFormatPicker extends StatelessWidget with DialogWidget {
         builder: (BuildContext context, StorageState state) {
           return BaseDialog(
               dialogTitle: 'Select Dateformat',
-              child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: Formats.values.map((v) {
-                    final String format = v.toString().split('.').last;
-
-                    return RadioListTile(
-                        title: Text(format),
-                        value: v,
-                        groupValue: state.dateformat,
-                        activeColor: Theme.of(context).accentColor,
-                        onChanged: (value) {
-                          storage.dispatch(ChangeDateFormat(v));
-                          Navigator.of(context).pop();
-                        });
-                  }).toList()),
+              child: Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
+                for (Formats v in Formats.values)
+                  _buildRadio(context, state, v, (value) {
+                    storage.dispatch(ChangeDateFormat(v));
+                    Navigator.of(context).pop();
+                  })
+              ]),
               actions: <Widget>[
                 FlatButton(
                   child: const Text('CANCEL'),
