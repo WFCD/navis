@@ -24,6 +24,7 @@ Future<void> launchLink(BuildContext context, String link,
               animation: custom.CustomTabsAnimation.slideIn(),
               extraCustomTabs: const <String>[
                 'org.mozilla.firefox',
+                'org.mozilla.fenix',
                 'com.microsoft.emmx'
               ]));
   } catch (err) {
