@@ -13,22 +13,27 @@ class FissureCard extends StatelessWidget {
 
   Widget _buildDetails(BuildContext context) {
     const color = Colors.white;
+    const shadow = Shadow(offset: Offset(1.0, 0.0), blurRadius: 3.0);
+
     const node = TextStyle(
         fontWeight: FontWeight.bold,
         fontStyle: FontStyle.normal,
         fontSize: 18,
-        color: color);
+        color: color,
+        shadows: <Shadow>[shadow]);
     const missionType = TextStyle(
         fontWeight: FontWeight.w500,
         fontStyle: FontStyle.normal,
         fontSize: 14,
-        color: color);
+        color: color,
+        shadows: <Shadow>[shadow]);
 
     final info = Theme.of(context).textTheme.caption.copyWith(
         fontWeight: FontWeight.w500,
         fontStyle: FontStyle.normal,
         fontSize: 12,
-        color: color);
+        color: color,
+        shadows: <Shadow>[shadow]);
 
     return Padding(
       padding: const EdgeInsets.only(left: 16, top: 16, bottom: 16),
