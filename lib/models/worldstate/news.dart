@@ -1,7 +1,7 @@
 import 'package:codable/codable.dart';
+import 'package:navis/models/abstract_classes.dart';
 
-class OrbiterNews extends Coding {
-  String id;
+class OrbiterNews extends WorldstateObject {
   String message, link, imageLink;
   DateTime date;
   bool priority, update, primeAccess, stream;
@@ -12,7 +12,6 @@ class OrbiterNews extends Coding {
   void decode(KeyedArchive object) {
     super.decode(object);
 
-    id = object.decode('id');
     message = object.decode('message');
     link = object.decode('link');
     imageLink = object.decode('imageLink');
@@ -26,14 +25,14 @@ class OrbiterNews extends Coding {
 
   @override
   void encode(KeyedArchive object) {
-    object.encode('id', id);
+    super.encode(object);
     object.encode('message', message);
     object.encode('link', link);
     object.encode('imageLink', imageLink);
     object.encode('date', date);
     object.encode('update', update);
     object.encode('stream', stream);
-    object.encode('translations', translations);
+    object.encodeObject('translations', translations);
   }
 }
 
