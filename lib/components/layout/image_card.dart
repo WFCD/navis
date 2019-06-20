@@ -20,7 +20,9 @@ class BackgroundImageCard extends StatelessWidget {
     return Card(
         elevation: 4,
         margin:
-            margin ?? const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
+            margin ?? const EdgeInsets.symmetric(vertical: 4, horizontal: 4),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
+        clipBehavior: Clip.hardEdge,
         child: Container(
           height: height,
           width: width,
