@@ -43,7 +43,6 @@ class _Translations extends Coding {
   @override
   void decode(KeyedArchive object) {
     super.decode(object);
-
     en = object.decode('en');
   }
 

@@ -2,7 +2,7 @@ import 'package:codable/codable.dart';
 
 class VoidFissure extends Coding {
   String id;
-  String node, missionType, enemy, tier, eta;
+  String node, missionType, enemy, tier;
   DateTime expiry;
   int tierNum;
   bool active, expired;
@@ -18,7 +18,6 @@ class VoidFissure extends Coding {
     tier = object.decode('tier');
     tierNum = object.decode('tierNum');
     expiry = DateTime.parse(object.decode('expiry'));
-    eta = object.decode('eta');
     active = object.decode('active');
     expired = object.decode('expired');
   }
@@ -32,7 +31,6 @@ class VoidFissure extends Coding {
     object.encode('tier', tier);
     object.encode('tierNum', tierNum);
     object.encode('expiry', expiry);
-    object.encode('eta', eta);
     object.encode('active', active);
     object.encode('expired', expired);
   }

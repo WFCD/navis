@@ -1,8 +1,8 @@
 import 'package:codable/codable.dart';
+import 'package:navis/models/abstract_classes.dart';
 
-class VoidTrader extends Coding {
-  String id, character, location;
-  DateTime activation, expiry;
+class VoidTrader extends WorldstateObject {
+  String character, location;
   bool active;
 
   List<Inventory> inventory;
@@ -11,9 +11,6 @@ class VoidTrader extends Coding {
   void decode(KeyedArchive object) {
     super.decode(object);
 
-    id = object.decode('id');
-    activation = DateTime.parse(object.decode('activation'));
-    expiry = DateTime.parse(object.decode('expiry')).toLocal();
     character = object.decode('character');
     location = object.decode('location');
     active = object.decode('active');
@@ -22,9 +19,7 @@ class VoidTrader extends Coding {
 
   @override
   void encode(KeyedArchive object) {
-    object.encode('id', id);
-    object.encode('activation', activation);
-    object.encode('expiry', expiry);
+    super.encode(object);
     object.encode('character', character);
     object.encode('location', location);
     object.encode('active', active);

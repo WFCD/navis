@@ -5,7 +5,7 @@ const earthCycle = Duration(hours: 4);
 const cetusDay = Duration(minutes: 100);
 const cetusNight = Duration(minutes: 50);
 
-class Earth extends WorldstateBase with CycleModel {
+class Earth extends WorldstateObject with CycleModel {
   bool isDay, isCetus;
 
   @override

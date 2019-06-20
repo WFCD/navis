@@ -1,8 +1,8 @@
 import 'package:codable/codable.dart';
+import 'package:navis/models/abstract_classes.dart';
 
-class Invasion extends Coding {
-  String id;
-  String node, desc, attackingFaction, defendingFaction, activation, eta;
+class Invasion extends WorldstateObject {
+  String node, desc, attackingFaction, defendingFaction, eta;
   bool vsInfestation, completed;
   num completion, count;
 
@@ -12,7 +12,6 @@ class Invasion extends Coding {
   void decode(KeyedArchive object) {
     super.decode(object);
 
-    id = object.decode('id');
     node = object.decode('node');
     desc = object.decode('desc');
     attackingFaction = object.decode('attackingFaction');
@@ -34,7 +33,7 @@ class Invasion extends Coding {
 
   @override
   void encode(KeyedArchive object) {
-    object.encode('id', id);
+    super.encode(object);
     object.encode('node', node);
     object.encode('desc', desc);
     object.encode('attackingFaction', attackingFaction);

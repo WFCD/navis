@@ -1,7 +1,7 @@
 import 'package:codable/codable.dart';
 import 'package:flutter/widgets.dart';
 
-abstract class WorldstateBase extends Coding {
+abstract class WorldstateObject extends Coding {
   String id;
   DateTime activation, expiry;
 
@@ -24,7 +24,7 @@ abstract class WorldstateBase extends Coding {
   }
 }
 
-mixin CycleModel on WorldstateBase {
+mixin CycleModel on WorldstateObject {
   String state;
   bool stateBool;
 

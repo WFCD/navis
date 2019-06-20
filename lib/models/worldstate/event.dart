@@ -1,10 +1,9 @@
 import 'package:codable/codable.dart';
+import 'package:navis/models/abstract_classes.dart';
 
 import 'syndicate.dart';
 
-class Event extends Coding {
-  String id;
-  DateTime expiry;
+class Event extends WorldstateObject {
   String faction,
       description,
       affiliatedWith,
@@ -20,8 +19,6 @@ class Event extends Coding {
   void decode(KeyedArchive object) {
     super.decode(object);
 
-    id = object.decode('id');
-    expiry = DateTime.parse(object.decode('expiry'));
     faction = object.decode('faction');
     description = object.decode('description');
     affiliatedWith = object.decode('affiliatedWith');
@@ -37,8 +34,7 @@ class Event extends Coding {
 
   @override
   void encode(KeyedArchive object) {
-    object.encode('id', id);
-    object.encode('expiry', expiry);
+    super.encode(object);
     object.encode('faction', faction);
     object.encode('description', description);
     object.encode('victimNode', victimNode);

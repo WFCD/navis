@@ -1,8 +1,7 @@
 import 'package:codable/codable.dart';
+import 'package:navis/models/abstract_classes.dart';
 
-class Sortie extends Coding {
-  String id;
-  DateTime expiry;
+class Sortie extends WorldstateObject {
   List<Variants> variants;
   String boss, faction;
 
@@ -10,8 +9,6 @@ class Sortie extends Coding {
   void decode(KeyedArchive object) {
     super.decode(object);
 
-    id = object.decode('id');
-    expiry = DateTime.parse(object.decode('expiry'));
     variants = object.decodeObjects('variants', () => Variants());
     boss = object.decode('boss');
     faction = object.decode('faction');
@@ -19,8 +16,7 @@ class Sortie extends Coding {
 
   @override
   void encode(KeyedArchive object) {
-    object.encode('id', id);
-    object.encode('expiry', expiry);
+    super.encode(object);
     object.encodeObjects('variants', variants);
     object.encode('boss', boss);
     object.encode('faction', faction);

@@ -1,9 +1,9 @@
 import 'package:codable/codable.dart';
 import 'package:codable/cast.dart' as cast;
+import 'package:navis/models/abstract_classes.dart';
 
-class Nightwave extends Coding {
-  String id, startString, tag;
-  DateTime activation, expiry;
+class Nightwave extends WorldstateObject {
+  String startString, tag;
   bool active;
   num season, phase;
 
@@ -39,10 +39,7 @@ class Nightwave extends Coding {
   void decode(KeyedArchive object) {
     super.decode(object);
 
-    id = object.decode('id');
-    activation = DateTime.parse(object.decode('activation'));
     startString = object.decode('startString');
-    expiry = DateTime.parse(object.decode('expiry'));
     active = object.decode('active');
     season = object.decode('season');
     tag = object.decode('tag');
@@ -59,10 +56,8 @@ class Nightwave extends Coding {
 
   @override
   void encode(KeyedArchive object) {
-    object.encode('id', id);
-    object.encode('activation', activation.toIso8601String());
+    super.encode(object);
     object.encode('startString', startString);
-    object.encode('expiry', expiry.toIso8601String());
     object.encode('active', active);
     object.encode('season', season);
     object.encode('tag', tag);
@@ -71,9 +66,8 @@ class Nightwave extends Coding {
   }
 }
 
-class Challenge extends Coding {
-  String id, startString, desc, title;
-  DateTime activation, expiry;
+class Challenge extends WorldstateObject {
+  String startString, desc, title;
   bool active, isDaily, isElite;
   num reputation;
 
@@ -81,10 +75,7 @@ class Challenge extends Coding {
   void decode(KeyedArchive object) {
     super.decode(object);
 
-    id = object.decode('id');
-    activation = DateTime.parse(object.decode('activation'));
     startString = object.decode('startString');
-    expiry = object.decode('expiry');
     active = object.decode('active');
     isDaily = object.decode('isDaily') ?? false;
     isElite = object.decode('isElite');
@@ -95,10 +86,8 @@ class Challenge extends Coding {
 
   @override
   void encode(KeyedArchive object) {
-    object.encode('id', id);
-    object.encode('activation', activation.toIso8601String());
+    super.encode(object);
     object.encode('startString', startString);
-    object.encode('expiry', expiry.toIso8601String());
     object.encode('active', active);
     object.encode('isDaily', isDaily);
     object.encode('isElite', isElite);

@@ -2,7 +2,7 @@ import 'package:codable/codable.dart';
 
 import '../abstract_classes.dart';
 
-class Vallis extends WorldstateBase with CycleModel {
+class Vallis extends WorldstateObject with CycleModel {
   bool isWarm;
 
   @override

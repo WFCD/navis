@@ -1,29 +1,20 @@
 import 'package:codable/codable.dart';
+import 'package:navis/models/abstract_classes.dart';
 
-class Alert extends Coding {
-  DateTime expiry;
-  String id, activation, eta;
+class Alert extends WorldstateObject {
   bool active;
   _Mission mission;
 
   @override
   void decode(KeyedArchive object) {
     super.decode(object);
-
-    id = object.decode('id');
-    activation = object.decode('activation');
-    expiry = DateTime.parse(object.decode('expiry'));
-    eta = object.decode('eta');
     active = object.decode('active');
     mission = object.decodeObject('mission', () => _Mission());
   }
 
   @override
   void encode(KeyedArchive object) {
-    object.encode('id', id);
-    object.encode('activation', activation);
-    object.encode('expiry', expiry);
-    object.encode('eta', eta);
+    super.encode(object);
     object.encode('active', active);
     object.encodeObject('mission', mission);
   }
