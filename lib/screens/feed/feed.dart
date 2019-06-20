@@ -3,11 +3,10 @@ import 'package:navis/blocs/bloc.dart';
 
 import 'components/acolytes.dart';
 import 'components/alerts.dart';
-import 'components/cycle.dart';
+import 'components/cycles.dart';
 import 'components/deals.dart';
 import 'components/events.dart';
 import 'components/trader.dart';
-import 'components/vallis.dart';
 
 class Feed extends StatelessWidget {
   const Feed({Key key = const PageStorageKey<String>('feed')})
@@ -34,9 +33,7 @@ class Feed extends StatelessWidget {
               return ListView(children: <Widget>[
                 if (isEventActive) EventPanel(events: state.events),
                 if (areAcolytesActive) const Acolytes(),
-                const CetusCycle(),
-                const OrbVallis(),
-                const EarthCycle(),
+                ...cycles,
                 if (isAlertActive) const AlertTile(),
                 const Trader(),
                 if (areDealsActive) const Deals(),

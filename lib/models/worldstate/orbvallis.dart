@@ -1,17 +1,17 @@
 import 'package:codable/codable.dart';
 
-class Vallis extends Coding {
-  String id;
-  DateTime expiry;
+import '../abstract_classes.dart';
+
+class Vallis extends WorldstateBase with CycleModel {
   bool isWarm;
+
+  @override
+  bool get stateBool => isWarm;
 
   @override
   void decode(KeyedArchive object) {
     super.decode(object);
-
-    id = object.decode('id');
     isWarm = object.decode('isWarm');
-    expiry = DateTime.parse(object.decode('expiry'));
 
     if (expiry.difference(DateTime.now().toUtc()) <=
         const Duration(seconds: 1)) {
@@ -25,7 +25,7 @@ class Vallis extends Coding {
 
   @override
   void encode(KeyedArchive object) {
-    object.encode('expiry', expiry.toIso8601String());
+    super.encode(object);
     object.encode('isWarm', isWarm);
   }
 }
