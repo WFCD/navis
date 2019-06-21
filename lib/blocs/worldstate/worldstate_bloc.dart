@@ -1,10 +1,12 @@
 import 'dart:async';
 
-import 'package:bloc/bloc.dart';
+import 'package:codable/codable.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:lumberdash/lumberdash.dart';
+import 'package:navis/models/export.dart';
 import 'package:navis/services/localstorage_service.dart';
 import 'package:navis/services/services.dart';
 
@@ -14,14 +16,15 @@ import 'worldstate_states.dart';
 
 enum UpdateEvent { update }
 
-class WorldstateBloc extends Bloc<UpdateEvent, WorldStates>
+class WorldstateBloc extends HydratedBloc<UpdateEvent, WorldStates>
     with EquatableMixinBase, EquatableMixin {
   WorldstateBloc();
 
   static final http.Client client = http.Client();
 
   @override
-  WorldStates get initialState => WorldstateUninitialized();
+  WorldStates get initialState =>
+      super.initialState ?? WorldstateUninitialized();
 
   final instance = locator<LocalStorageService>();
   final ws = locator<WorldstateAPI>();
@@ -51,5 +54,18 @@ class WorldstateBloc extends Bloc<UpdateEvent, WorldStates>
       action: SnackBarAction(
           label: 'RETRY', onPressed: () => dispatch(UpdateEvent.update)),
     ));
+  }
+
+  @override
+  WorldStates fromJson(Map<String, dynamic> json) {
+    final key = KeyedArchive.unarchive(json);
+    final worldstate = WorldState()..decode(key);
+
+    return WorldstateLoaded(worldstate);
+  }
+
+  @override
+  Map<String, dynamic> toJson(WorldStates state) {
+    return KeyedArchive.archive(state.worldstate);
   }
 }

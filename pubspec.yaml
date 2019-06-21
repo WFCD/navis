@@ -6,6 +6,7 @@ dependencies:
   flutter:
     sdk: flutter
   bloc: ^0.14.2
+  hydrated_bloc: ^0.2.1
   codable: ^1.0.0
   equatable: ^0.2.5
   firebase_lumberdash: ^1.0.1
@@ -24,6 +25,9 @@ dependencies:
   simple_animations: ^1.3.0
   get_it: ^1.0.3
   outline_material_icons: ^0.1.0
+
+dependency_overrides:
+  path_provider: ^1.1.0
 
 dev_dependencies:
   flutter_test:

@@ -3,7 +3,9 @@ import 'package:equatable/equatable.dart';
 import 'package:navis/models/export.dart';
 
 abstract class WorldStates extends Equatable {
-  WorldStates([List props = const []]) : super(props);
+  WorldStates([List props = const [], this.worldstate]) : super(props);
+
+  WorldState worldstate;
 
   String timestamp;
   List<OrbiterNews> news;
@@ -25,52 +27,51 @@ abstract class WorldStates extends Equatable {
 class WorldstateUninitialized extends WorldStates {}
 
 class WorldstateLoaded extends WorldStates {
-  WorldstateLoaded(this._worldstate) : super([_worldstate.timestamp]);
-
-  final WorldState _worldstate;
-
-  @override
-  String get timestamp => _worldstate.timestamp;
+  WorldstateLoaded(WorldState worldstate)
+      : super([worldstate.timestamp], worldstate);
 
   @override
-  List<OrbiterNews> get news => _worldstate.news;
+  String get timestamp => worldstate.timestamp;
 
   @override
-  List<Event> get events => _worldstate.events;
+  List<OrbiterNews> get news => worldstate.news;
 
   @override
-  List<Alert> get alerts => _worldstate.alerts;
+  List<Event> get events => worldstate.events;
 
   @override
-  Sortie get sortie => _worldstate.sortie;
+  List<Alert> get alerts => worldstate.alerts;
 
   @override
-  List<Syndicate> get syndicates => _worldstate.syndicates;
+  Sortie get sortie => worldstate.sortie;
 
   @override
-  List<VoidFissure> get fissures => _worldstate.voidFissures;
+  List<Syndicate> get syndicates => worldstate.syndicates;
 
   @override
-  List<Invasion> get invasions => _worldstate.invasions;
+  List<VoidFissure> get fissures => worldstate.voidFissures;
 
   @override
-  VoidTrader get trader => _worldstate.trader;
+  List<Invasion> get invasions => worldstate.invasions;
 
   @override
-  List<DarvoDeal> get dailyDeals => _worldstate.dailyDeals;
+  VoidTrader get trader => worldstate.trader;
 
   @override
-  List<PersistentEnemie> get acolytes => _worldstate.persistentEnemies;
+  List<DarvoDeal> get dailyDeals => worldstate.dailyDeals;
 
   @override
-  Earth get earth => _worldstate.earth;
+  List<PersistentEnemie> get acolytes => worldstate.persistentEnemies;
 
   @override
-  Earth get cetus => _worldstate.cetus;
+  Earth get earth => worldstate.earth;
 
   @override
-  Vallis get vallis => _worldstate.vallis;
+  Earth get cetus => worldstate.cetus;
 
   @override
-  Nightwave get nightwave => _worldstate?.nightwave;
+  Vallis get vallis => worldstate.vallis;
+
+  @override
+  Nightwave get nightwave => worldstate?.nightwave;
 }
