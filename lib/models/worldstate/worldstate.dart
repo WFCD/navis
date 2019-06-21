@@ -1,5 +1,7 @@
 import 'package:codable/codable.dart';
 import 'package:navis/models/export.dart';
+import 'package:navis/models/worldstate/arbitration.dart';
+import 'package:navis/models/worldstate/kuva.dart';
 
 class WorldState extends Coding {
   String timestamp;
@@ -17,6 +19,8 @@ class WorldState extends Coding {
   Earth cetus;
   Vallis vallis;
   Nightwave nightwave;
+  Arbitration arbitration;
+  List<KuvaNode> kuva;
 
   @override
   void decode(KeyedArchive object) {
@@ -38,6 +42,8 @@ class WorldState extends Coding {
     alerts = object.decodeObjects('alerts', () => Alert());
     syndicates = object.decodeObjects('syndicateMissions', () => Syndicate());
     voidFissures = object.decodeObjects('fissures', () => VoidFissure());
+    arbitration = object.decodeObject('arbitration', () => Arbitration());
+    kuva = object.decodeObjects('kuva', () => KuvaNode());
   }
 
   @override
@@ -49,6 +55,7 @@ class WorldState extends Coding {
     object.encodeObject('sortie', sortie);
     object.encodeObject('voidTrader', trader);
     object.encodeObject('nightwave', nightwave);
+    object.encodeObject('arbitration', arbitration);
     object.encodeObjects('dailyDeals', dailyDeals);
     object.encodeObjects('invasions', invasions);
     object.encodeObjects('events', events);
@@ -57,5 +64,6 @@ class WorldState extends Coding {
     object.encodeObjects('alerts', alerts);
     object.encodeObjects('syndicateMissions', syndicates);
     object.encodeObjects('fissures', voidFissures);
+    object.encodeObjects('kuva', kuva);
   }
 }
