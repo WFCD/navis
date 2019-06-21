@@ -48,13 +48,14 @@ class WorldState extends Coding {
     object.encodeObject('vallisCycle', vallis);
     object.encodeObject('sortie', sortie);
     object.encodeObject('voidTrader', trader);
+    object.encodeObject('nightwave', nightwave);
     object.encodeObjects('dailyDeals', dailyDeals);
     object.encodeObjects('invasions', invasions);
     object.encodeObjects('events', events);
     object.encodeObjects('persistentEnemies', persistentEnemies);
     object.encodeObjects('news', news);
     object.encodeObjects('alerts', alerts);
-    object.encodeObjects('syndicateMission', syndicates);
+    object.encodeObjects('syndicateMissions', syndicates);
     object.encodeObjects('fissures', voidFissures);
   }
 }

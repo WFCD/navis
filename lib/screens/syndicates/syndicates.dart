@@ -24,14 +24,15 @@ class SyndicatesList extends StatelessWidget {
               if (state is WorldstateLoaded) {
                 final List<Syndicate> syndicates = state.syndicates;
 
-                if (syndicates[0].activation.isAfter(_currentTime) &&
-                    syndicates[0].expiry.isBefore(_currentTime))
+                if (syndicates.first.activation.isAfter(_currentTime) &&
+                    syndicates.first.expiry.isBefore(_currentTime))
                   return const Center(
                       child: Text('Retrieving new bounties...'));
 
                 return ListView(children: <Widget>[
                   TimerBox(
-                      title: 'Bounties expire in:', time: syndicates[0].expiry),
+                      title: 'Bounties expire in:',
+                      time: syndicates.first.expiry),
                   Column(
                       children: syndicates
                           .map(

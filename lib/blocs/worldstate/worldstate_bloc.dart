@@ -22,12 +22,12 @@ class WorldstateBloc extends HydratedBloc<UpdateEvent, WorldStates>
 
   static final http.Client client = http.Client();
 
+  final instance = locator<LocalStorageService>();
+  final ws = locator<WorldstateAPI>();
+
   @override
   WorldStates get initialState =>
       super.initialState ?? WorldstateUninitialized();
-
-  final instance = locator<LocalStorageService>();
-  final ws = locator<WorldstateAPI>();
 
   @override
   Stream<WorldStates> mapEventToState(UpdateEvent event) async* {
