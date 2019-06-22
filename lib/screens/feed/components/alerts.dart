@@ -58,13 +58,12 @@ class _BuildAlerts extends StatelessWidget {
               child: alert.mission.reward.itemString.isEmpty
                   ? Container()
                   : StaticBox(
-                      padding: EdgeInsets.zero,
                       color: Colors.blueAccent[400],
                       child: Text(
                         alert.mission.reward.itemString,
                         style: const TextStyle(
                             fontWeight: FontWeight.bold,
-                            fontSize: 12.5,
+                            fontSize: 13,
                             color: Colors.white),
                       )),
             ),
