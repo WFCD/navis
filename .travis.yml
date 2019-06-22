@@ -24,7 +24,7 @@ matrix:
         - flutter upgrade
       script:
         - flutter pub get
-       #- flutter test 
+        - flutter test 
         - flutter build apk --verbose
         - cd android && bundle exec fastlane android deploy_beta
         

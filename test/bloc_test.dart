@@ -1,8 +1,11 @@
 import 'dart:convert';
+import 'dart:io';
 
 //import 'package:async/async.dart';
+import 'package:bloc/bloc.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
+import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:mockito/mockito.dart';
 import 'package:navis/blocs/bloc.dart';
 import 'package:navis/services/localstorage_service.dart';
@@ -31,6 +34,8 @@ Future<void> main() async {
   SharedPreferences prefs;
 
   setUpAll(() async {
+    final directory = await Directory.systemTemp.createTemp();
+
     const MethodChannel('plugins.flutter.io/shared_preferences')
         .setMockMethodCallHandler((MethodCall methodCall) async {
       if (methodCall.method == 'getAll') {
@@ -38,6 +43,19 @@ Future<void> main() async {
       }
       return null;
     });
+
+    // Mock out the MethodChannel for the path_provider plugin.
+    const MethodChannel('plugins.flutter.io/path_provider')
+        .setMockMethodCallHandler((MethodCall methodCall) async {
+      // If you're getting the apps documents directory, return the path to the
+      // temp directory on the test environment instead.
+      if (methodCall.method == 'getApplicationDocumentsDirectory') {
+        return directory.path;
+      }
+      return null;
+    });
+
+    BlocSupervisor.delegate = await HydratedBlocDelegate.build();
 
     await setupLocator(client: client, isTest: true);
 
