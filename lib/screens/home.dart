@@ -25,7 +25,6 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addObserver(this);
-    BlocProvider.of<StorageBloc>(context).dispatch(RestoreEvent());
     BlocProvider.of<WorldstateBloc>(context).dispatch(UpdateEvent.update);
     message.configure();
 

@@ -5,8 +5,6 @@ abstract class ChangeEvent extends Equatable {
   ChangeEvent([List props = const []]) : super(props);
 }
 
-class RestoreEvent extends ChangeEvent {}
-
 class ChangePlatformEvent extends ChangeEvent {
   ChangePlatformEvent(this.platform) : super([platform]);
 

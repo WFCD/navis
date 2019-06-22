@@ -15,8 +15,6 @@ abstract class StorageState {
   Map<String, bool> simple;
 }
 
-class AppStart extends StorageState {}
-
 class MainStorageState extends StorageState {
   final instance = locator<LocalStorageService>();
 

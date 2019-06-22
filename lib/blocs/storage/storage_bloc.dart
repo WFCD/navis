@@ -17,12 +17,10 @@ class StorageBloc extends Bloc<ChangeEvent, StorageState>
   final LocalStorageService _instance;
 
   @override
-  StorageState get initialState => AppStart();
+  StorageState get initialState => MainStorageState();
 
   @override
   Stream<StorageState> mapEventToState(ChangeEvent event) async* {
-    if (event is RestoreEvent) yield MainStorageState();
-
     if (event is ChangeDateFormat) {
       _instance.dateformat = event.dateformat;
 
