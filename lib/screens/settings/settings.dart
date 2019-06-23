@@ -14,10 +14,10 @@ class Settings extends StatelessWidget {
         key: settings,
         appBar: AppBar(title: const Text('Settings')),
         body: ListView(
-          children: <Widget>[
-            const SizedBox(height: 8.0),
-            const PlatformChoice(),
-            const DisplayChoices(),
+          children: const <Widget>[
+            SizedBox(height: 8.0),
+            PlatformChoice(),
+            DisplayChoices(),
             //Notifications(),
           ],
         ));

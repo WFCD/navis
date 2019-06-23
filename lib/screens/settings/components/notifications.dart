@@ -5,6 +5,8 @@ import 'package:navis/screens/settings/components/notification_components/filter
 import 'package:navis/utils/notification_filters.dart';
 
 class Notifications extends StatelessWidget {
+  const Notifications({Key key}) : super(key: key);
+
   void openDialog(BuildContext context, String type) {
     switch (type) {
       case 'Acolytes':

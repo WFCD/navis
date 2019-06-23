@@ -42,7 +42,7 @@ class DrawerOptions extends StatelessWidget {
                   onTap: () => _onTap(context, RouteEvent.timers),
                   selected: state.route == RouteEvent.timers),
               ListTile(
-                leading: Icon(VoidFissureIcon.void_icon),
+                leading: const Icon(VoidFissureIcon.void_icon),
                 title: const Text('Fissures'),
                 onTap: () => _onTap(context, RouteEvent.fissures),
                 selected: state.route == RouteEvent.fissures,
@@ -54,7 +54,7 @@ class DrawerOptions extends StatelessWidget {
                 selected: state.route == RouteEvent.invasions,
               ),
               ListTile(
-                leading: Icon(Sortie.sortie),
+                leading: const Icon(Sortie.sortie),
                 title: const Text('Sorties'),
                 onTap: () => _onTap(context, RouteEvent.sortie),
                 selected: state.route == RouteEvent.sortie,
