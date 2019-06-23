@@ -37,10 +37,7 @@ matrix:
     #     - export PATH=./flutter/bin:$PATH
     #   script:
     #     - flutter pub get
-    #     - flutter build ios --no-codesign --verbose
-
-git:
-  depth: false    
+    #     - flutter build ios --no-codesign --verbose 
 
 cache:
   bundler: true
