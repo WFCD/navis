@@ -17,9 +17,9 @@ class TableSearchBloc extends Bloc<SearchEvent, SearchState> {
     Stream<SearchState> Function(SearchEvent event) next,
   ) {
     return super.transform(
-      Observable<SearchEvent>(events).debounceTime(
-        const Duration(milliseconds: 500),
-      ),
+      Observable<SearchEvent>(events)
+          .distinct()
+          .debounceTime(const Duration(milliseconds: 500)),
       next,
     );
   }

@@ -27,6 +27,13 @@ class _SearchBarState extends State<SearchBar> {
   Widget build(BuildContext context) {
     final tableSearch = BlocProvider.of<TableSearchBloc>(context);
 
+    void dispatch(String text) => tableSearch.dispatch(TextChanged(text: text));
+
+    void clear() {
+      _textController.text = '';
+      tableSearch.dispatch(TextChanged(text: ''));
+    }
+
     return Container(
         padding: const EdgeInsets.only(left: 8.0, right: 8.0),
         margin: const EdgeInsets.only(bottom: 8.0),
@@ -34,21 +41,13 @@ class _SearchBarState extends State<SearchBar> {
         child: TextField(
           controller: _textController,
           autocorrect: false,
-          onChanged: (text) {
-            tableSearch.dispatch(
-              TextChanged(text: text),
-            );
-          },
+          onChanged: dispatch,
+          onSubmitted: dispatch,
+          textCapitalization: TextCapitalization.words,
           decoration: InputDecoration(
-            suffixIcon: GestureDetector(
-              child: Icon(Icons.clear),
-              onTap: () {
-                _textController.text = '';
-                tableSearch.dispatch(TextChanged(text: ''));
-              },
-            ),
+            suffixIcon: GestureDetector(child: Icon(Icons.clear), onTap: clear),
             border: InputBorder.none,
-            hintText: 'Enter a search term',
+            hintText: 'Search here...',
           ),
         ));
   }
