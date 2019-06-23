@@ -42,9 +42,7 @@ class TableSearchBloc extends Bloc<SearchEvent, SearchState> {
               await compute(search, SearchTable(searchTerm, droptable.table));
           yield SearchStateSuccess(results);
         } catch (error) {
-          // yield error is SearchResultError
-          //     ? SearchStateError(error.message)
-          //     : SearchStateError('something went wrong');
+          yield SearchStateError('something went wrong');
         }
       }
     }
