@@ -25,7 +25,7 @@ matrix:
       script:
         - flutter pub get
         - flutter test 
-        - flutter build apk --verbose
+        - flutter build apk
         - cd android && bundle exec fastlane android deploy_beta
         
     # I just needed to know what was missing from 

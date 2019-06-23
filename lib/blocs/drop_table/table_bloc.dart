@@ -18,7 +18,7 @@ class TableSearchBloc extends Bloc<SearchEvent, SearchState> {
   ) {
     return super.transform(
       Observable<SearchEvent>(events).debounceTime(
-        Duration(milliseconds: 500),
+        const Duration(milliseconds: 500),
       ),
       next,
     );
