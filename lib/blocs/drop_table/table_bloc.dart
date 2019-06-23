@@ -39,8 +39,8 @@ class TableSearchBloc extends Bloc<SearchEvent, SearchState> {
         yield SearchStateLoading();
         try {
           final results =
-              await compute(search, SearchTable(searchTerm, droptable.table));
-          yield SearchStateSuccess(results);
+              compute(search, SearchTable(searchTerm, droptable.table));
+          yield SearchStateSuccess(await results);
         } catch (error) {
           yield SearchStateError('something went wrong');
         }
@@ -50,9 +50,7 @@ class TableSearchBloc extends Bloc<SearchEvent, SearchState> {
 }
 
 List<Reward> search(SearchTable table) {
-  final regex = RegExp(table.term);
-
-  return table.rewards.where((r) => r.item.contains(regex)).toList();
+  return table.rewards.where((r) => r.item.contains(table.term)).toList();
 }
 
 class SearchTable {
