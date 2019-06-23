@@ -1,6 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:navis/screens/drops/drops_list.dart';
 import 'package:navis/screens/feed/feed.dart';
 import 'package:navis/screens/fissures/fissures.dart';
 import 'package:navis/screens/invasions/invasions.dart';
@@ -8,7 +9,15 @@ import 'package:navis/screens/news/news.dart';
 import 'package:navis/screens/sortie/sortie.dart';
 import 'package:navis/screens/syndicates/syndicates.dart';
 
-enum RouteEvent { news, timers, fissures, invasions, sortie, syndicates }
+enum RouteEvent {
+  news,
+  timers,
+  fissures,
+  invasions,
+  sortie,
+  syndicates,
+  droptable
+}
 
 class RouteState extends Equatable {
   RouteEvent route;
@@ -61,4 +70,12 @@ class SyndicatesState extends RouteState {
 
   @override
   Widget get widget => SyndicatesList();
+}
+
+class DropTableState extends RouteState {
+  @override
+  RouteEvent get route => RouteEvent.droptable;
+
+  @override
+  Widget get widget => const DropTableList();
 }

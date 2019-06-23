@@ -35,6 +35,8 @@ class NavigationBloc extends HydratedBloc<RouteEvent, RouteState>
         return SortieState();
       case RouteEvent.syndicates:
         return SyndicatesState();
+      case RouteEvent.droptable:
+        return DropTableState();
       default:
         return TimerState();
     }
