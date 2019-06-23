@@ -39,6 +39,9 @@ matrix:
     #     - flutter pub get
     #     - flutter build ios --no-codesign --verbose
 
+git:
+  depth: false    
+
 cache:
   bundler: true
   directories:
