@@ -64,12 +64,16 @@ class _DropTableListState extends State<DropTableList> {
               CustomScrollView(
                 slivers: <Widget>[
                   SliverFloatingBar(
-                    automaticallyImplyLeading: false,
-                    backgroundColor: Theme.of(context).primaryColor,
-                    floating: true,
-                    snap: true,
-                    title: const SearchBar(),
-                  ),
+                      automaticallyImplyLeading: false,
+                      backgroundColor: Theme.of(context).primaryColor,
+                      floating: true,
+                      snap: true,
+                      title: SearchBar(textController: _textController),
+                      trailing: IconButton(
+                        icon: Icon(Icons.clear,
+                            color: Theme.of(context).accentColor),
+                        onPressed: clear,
+                      )),
                   SliverList(
                     delegate: SliverChildBuilderDelegate(
                       (BuildContext context, int index) {
