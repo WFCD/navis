@@ -35,7 +35,7 @@ class About extends StatelessWidget {
         theme.textTheme.body2.copyWith(color: theme.accentColor);
 
     return AboutListTile(
-      icon: Icon(Icons.info),
+      icon: null,
       applicationIcon: _appIcon(),
       applicationName: 'Cephalon Navis',
       applicationVersion: locator<PackageInfo>().version,

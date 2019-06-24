@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:navis/components/layout/drawer_about.dart';
 import 'drawer_options.dart';
 
 class LotusDrawer extends StatelessWidget {
@@ -17,7 +16,7 @@ class LotusDrawer extends StatelessWidget {
               margin: const EdgeInsets.only(bottom: 8.0),
               decoration: BoxDecoration(color: Theme.of(context).primaryColor)),
           Expanded(child: DrawerOptions()),
-          Divider(color: Theme.of(context).accentColor, height: 4.0),
+          const Divider(height: 4.0),
           ListTile(
             leading: Icon(Icons.settings),
             title: const Text('Settings'),
@@ -26,7 +25,6 @@ class LotusDrawer extends StatelessWidget {
               Navigator.of(context).pushNamed('/Settings');
             },
           ),
-          const About()
         ])));
   }
 }

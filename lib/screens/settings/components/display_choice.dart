@@ -28,19 +28,11 @@ class DisplayChoices extends StatelessWidget {
             onChanged: (b) => storage.dispatch(ToggleDarkMode(enableDark: b)),
           ),
           ListTile(
-              title: const Text('Dateformat'),
-              subtitle: const Text(
-                  'Change the format used for timer expiration dates'),
-              onTap: () => DateFormatPicker.selectDateformat(context))
-          //Divider(color: Theme.of(context).accentColor),
-          /*ListTile(
-              title: const Text('Primary Color'),
-              subtitle: const Text('Most visible color'),
-              onTap: () => ColorPickerDialog.selectPrimary(context)),
-          ListTile(
-              title: const Text('Accent Color'),
-              subtitle: const Text('Color used to tint certaint text elements'),
-              onTap: () => ColorPickerDialog.selectAccent(context))*/
+            title: const Text('Dateformat'),
+            subtitle:
+                const Text('Change the format used for timer expiration dates'),
+            onTap: () => DateFormatPicker.selectDateformat(context),
+          )
         ]));
       },
     );
