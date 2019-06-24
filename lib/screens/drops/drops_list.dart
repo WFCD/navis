@@ -63,17 +63,21 @@ class _DropTableListState extends State<DropTableList> {
             return Stack(children: <Widget>[
               CustomScrollView(
                 slivers: <Widget>[
-                  SliverFloatingBar(
-                      automaticallyImplyLeading: false,
-                      backgroundColor: Theme.of(context).primaryColor,
-                      floating: true,
-                      snap: true,
-                      title: SearchBar(textController: _textController),
-                      trailing: IconButton(
-                        icon: Icon(Icons.clear,
-                            color: Theme.of(context).accentColor),
-                        onPressed: clear,
-                      )),
+                  SliverPadding(
+                    padding: const EdgeInsets.only(top: 8.0),
+                    sliver: SliverFloatingBar(
+                        elevation: 8.0,
+                        automaticallyImplyLeading: false,
+                        backgroundColor: Theme.of(context).primaryColor,
+                        floating: true,
+                        snap: true,
+                        title: SearchBar(textController: _textController),
+                        trailing: IconButton(
+                          icon: Icon(Icons.clear,
+                              color: Theme.of(context).accentColor),
+                          onPressed: clear,
+                        )),
+                  ),
                   SliverList(
                     delegate: SliverChildBuilderDelegate(
                       (BuildContext context, int index) {
