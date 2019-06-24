@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:codable/codable.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'package:navis/models/drop_tables/slim.dart';
 import 'package:navis/services/localstorage_service.dart';
@@ -21,33 +22,55 @@ class DropTableService {
   List<Reward> get table => _table;
 
   static Future<DropTableService> initilizeTable() async {
+    Map<String, dynamic> info;
+
     final _directory = await getApplicationDocumentsDirectory();
     final _slimTable = File('${_directory.path}/slimTable.json');
 
-    final info = json.decode((await http.get('$baseUrl/data/info.json')).body);
+    await http
+        .get('$baseUrl/data/info.json')
+        .then((response) => info = json.decode(response.body))
+        .catchError(
+            (error) => info = {'timestamp': _storageService.tableTimestamp});
 
-    if (info['timestamp'] != _storageService.tableTimestamp ||
-        !_slimTable.existsSync()) {
-      await getManifest(_slimTable, info['timestamp']);
+    final timestamp = DateTime.fromMillisecondsSinceEpoch(info['timestamp']);
+    final localTimestamp =
+        DateTime.fromMillisecondsSinceEpoch(_storageService.tableTimestamp);
+
+    await getManifest(_slimTable, timestamp, localTimestamp);
+
+    if (!_slimTable.existsSync()) {
+      _table ??= await compute(jsonToRewards, await _slimTable.readAsString());
+    } else {
+      _table ??= await compute(
+          jsonToRewards, await rootBundle.loadString('assets/slim.json'));
     }
 
-    _table ??= await compute(jsonToRewards, await _slimTable.readAsString());
     _instance ??= DropTableService();
 
     return _instance;
   }
 
-  static Future<void> getManifest(File source, int timestamp) async {
+  static Future<void> getManifest(
+      File source, DateTime timestamp, DateTime local) async {
     final open = source.openWrite();
 
-    final response = await _client
-        .send(http.Request('GET', Uri.parse('$baseUrl/data/all.slim.json')));
+    if (timestamp.isAfter(local)) {
+      await _client
+          .send(http.Request('GET', Uri.parse('$baseUrl/data/all.slim.json')))
+          .then((response) => response.stream.pipe(open))
+          .catchError((error) async {
+        final slim = await rootBundle.load('assets/slim.json');
+        final buffer = slim.buffer;
 
-    await response.stream.pipe(open);
+        source.writeAsBytes(
+            buffer.asUint8List(slim.offsetInBytes, slim.lengthInBytes));
+      });
+    }
 
     await open.close();
 
-    _storageService.tableTimestamp = timestamp;
+    _storageService.saveTimestamp(timestamp);
   }
 }
 

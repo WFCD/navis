@@ -73,9 +73,12 @@ class LocalStorageService {
         newsUpdateKey: getFromDisk(newsUpdateKey) ?? false
       };
 
-  int get tableTimestamp => getFromDisk('tableTimestamp');
+  int get tableTimestamp =>
+      getFromDisk('tableTimestamp') ?? DateTime.now().millisecondsSinceEpoch;
 
-  set tableTimestamp(int timestamp) => saveToDisk('tableTimestamp', timestamp);
+  void saveTimestamp(DateTime timestamp) {
+    saveToDisk('tableTimestamp', timestamp.millisecondsSinceEpoch);
+  }
 
   dynamic getFromDisk(String key) => _prefrence.get(key);
 

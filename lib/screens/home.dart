@@ -56,27 +56,41 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
     super.dispose();
   }
 
+  Widget _mainBody() {
+    return BlocBuilder<RouteEvent, RouteState>(
+      bloc: BlocProvider.of<NavigationBloc>(context),
+      builder: (BuildContext context, RouteState route) {
+        return ControlledAnimation(
+          duration: const Duration(milliseconds: 500),
+          playback: Playback.PLAY_FORWARD,
+          tween: Tween(begin: 0.0, end: 1.0),
+          builder: (BuildContext context, dynamic value) =>
+              Opacity(opacity: value, child: route.widget),
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
       child: Scaffold(
-        key: scaffold,
-        appBar: AppBar(title: const Text('Navis')),
-        drawer: const LotusDrawer(),
-        body: Center(
-            child: BlocBuilder<RouteEvent, RouteState>(
-          bloc: BlocProvider.of<NavigationBloc>(context),
-          builder: (BuildContext context, RouteState route) {
-            return ControlledAnimation(
-              duration: const Duration(milliseconds: 500),
-              playback: Playback.PLAY_FORWARD,
-              tween: Tween(begin: 0.0, end: 1.0),
-              builder: (BuildContext context, dynamic value) =>
-                  Opacity(opacity: value, child: route.widget),
-            );
-          },
-        )),
-      ),
+          key: scaffold,
+          appBar: AppBar(title: const Text('Navis')),
+          drawer: const LotusDrawer(),
+          body: BlocBuilder<UpdateEvent, WorldStates>(
+            bloc: BlocProvider.of<WorldstateBloc>(context),
+            builder: (BuildContext context, WorldStates state) {
+              if (state is WorldstateUninitialized)
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+
+              if (state is WorldstateLoaded) return _mainBody();
+
+              if (state is WorldstateError) return Container();
+            },
+          )),
       onWillPop: () async {
         if (!scaffold.currentState.isDrawerOpen) {
           scaffold.currentState.openDrawer();

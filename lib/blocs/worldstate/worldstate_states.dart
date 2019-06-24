@@ -26,6 +26,12 @@ abstract class WorldStates extends Equatable {
 
 class WorldstateUninitialized extends WorldStates {}
 
+class WorldstateError extends WorldStates {
+  WorldstateError(this.error) : super([error]);
+
+  final String error;
+}
+
 class WorldstateLoaded extends WorldStates {
   WorldstateLoaded(WorldState worldstate)
       : super([worldstate.timestamp], worldstate);

@@ -32,8 +32,12 @@ class WorldstateBloc extends HydratedBloc<UpdateEvent, WorldStates>
   @override
   Stream<WorldStates> mapEventToState(UpdateEvent event) async* {
     if (event == UpdateEvent.update) {
-      final state = await ws.getWorldstate(instance.platform);
-      yield WorldstateLoaded(state);
+      try {
+        final state = await ws.getWorldstate(instance.platform);
+        yield WorldstateLoaded(state);
+      } catch (error) {
+        yield WorldstateError('Error loading worldstate');
+      }
     }
   }
 
@@ -66,6 +70,8 @@ class WorldstateBloc extends HydratedBloc<UpdateEvent, WorldStates>
 
   @override
   Map<String, dynamic> toJson(WorldStates state) {
-    return KeyedArchive.archive(state.worldstate);
+    return state.worldstate != null
+        ? KeyedArchive.archive(state.worldstate)
+        : null;
   }
 }

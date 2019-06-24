@@ -58,5 +58,6 @@ flutter:
     - assets/sigils/
     - assets/relics/
     - assets/skyboxes/
+    - assets/slim.json
     #- assets/maps/
     #- assets/maps/imgs/
