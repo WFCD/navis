@@ -24,7 +24,7 @@ class DrawerOptions extends StatelessWidget {
     const bool isDense = true;
     final navigation = BlocProvider.of<NavigationBloc>(context);
 
-    return BlocBuilder<RouteEvent, RouteState>(
+    return BlocBuilder(
       bloc: navigation,
       builder: (BuildContext context, RouteState state) {
         return Container(
@@ -35,41 +35,41 @@ class DrawerOptions extends StatelessWidget {
                   leading: Icon(Icons.new_releases),
                   title: const Text('News'),
                   onTap: () => _onTap(context, RouteEvent.news),
-                  selected: state.route == RouteEvent.news),
+                  selected: state == RouteState.news),
               ListTile(
                   leading: Icon(Icons.timer),
                   title: const Text('Timers'),
                   onTap: () => _onTap(context, RouteEvent.timers),
-                  selected: state.route == RouteEvent.timers),
+                  selected: state == RouteState.timers),
               ListTile(
                 leading: const Icon(VoidFissureIcon.void_icon),
                 title: const Text('Fissures'),
                 onTap: () => _onTap(context, RouteEvent.fissures),
-                selected: state.route == RouteEvent.fissures,
+                selected: state == RouteState.fissures,
               ),
               ListTile(
                 leading: Icon(Icons.security),
                 title: const Text('Invasions'),
                 onTap: () => _onTap(context, RouteEvent.invasions),
-                selected: state.route == RouteEvent.invasions,
+                selected: state == RouteState.invasions,
               ),
               ListTile(
                 leading: const Icon(Sortie.sortie),
                 title: const Text('Sorties'),
                 onTap: () => _onTap(context, RouteEvent.sortie),
-                selected: state.route == RouteEvent.sortie,
+                selected: state == RouteState.sortie,
               ),
               ListTile(
                 leading: const Icon(Standing.standing),
                 title: const Text('Syndicates'),
                 onTap: () => _onTap(context, RouteEvent.syndicates),
-                selected: state.route == RouteEvent.syndicates,
+                selected: state == RouteState.syndicates,
               ),
               ListTile(
                 leading: const Icon(Icons.search),
                 title: const Text('Drop Rates'),
                 onTap: () => _onTap(context, RouteEvent.droptable),
-                selected: state.route == RouteEvent.droptable,
+                selected: state == RouteState.droptable,
               ),
               ExpansionTile(
                 leading: Icon(Icons.help),
