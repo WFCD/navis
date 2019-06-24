@@ -34,21 +34,17 @@ class _SearchBarState extends State<SearchBar> {
       tableSearch.dispatch(TextChanged(text: ''));
     }
 
-    return Container(
-        padding: const EdgeInsets.only(left: 8.0, right: 8.0),
-        margin: const EdgeInsets.only(bottom: 8.0),
-        color: Theme.of(context).primaryColor,
-        child: TextField(
-          controller: _textController,
-          autocorrect: false,
-          onChanged: dispatch,
-          onSubmitted: dispatch,
-          textCapitalization: TextCapitalization.words,
-          decoration: InputDecoration(
-            suffixIcon: GestureDetector(child: Icon(Icons.clear), onTap: clear),
-            border: InputBorder.none,
-            hintText: 'Search here...',
-          ),
-        ));
+    return TextField(
+      controller: _textController,
+      autocorrect: false,
+      onChanged: dispatch,
+      onSubmitted: dispatch,
+      textCapitalization: TextCapitalization.words,
+      decoration: InputDecoration(
+        suffixIcon: GestureDetector(child: Icon(Icons.clear), onTap: clear),
+        border: InputBorder.none,
+        hintText: 'Search here...',
+      ),
+    );
   }
 }
