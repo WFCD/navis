@@ -17,6 +17,7 @@ class LotusDrawer extends StatelessWidget {
               margin: const EdgeInsets.only(bottom: 8.0),
               decoration: BoxDecoration(color: Theme.of(context).primaryColor)),
           Expanded(child: DrawerOptions()),
+          Divider(color: Theme.of(context).accentColor, height: 4.0),
           ListTile(
             leading: Icon(Icons.settings),
             title: const Text('Settings'),
