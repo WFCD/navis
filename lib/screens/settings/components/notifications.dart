@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:navis/blocs/bloc.dart';
+import 'package:navis/components/dialogs.dart';
 import 'package:navis/components/layout.dart';
-import 'package:navis/screens/settings/components/notification_components/filter_dialog.dart';
 import 'package:navis/utils/notification_filters.dart';
 
 class Notifications extends StatelessWidget {
