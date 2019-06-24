@@ -15,9 +15,9 @@ Future<void> main() async {
   await setupLocator();
 
   runApp(BlocProviderTree(blocProviders: [
-    BlocProvider<StorageBloc>(bloc: StorageBloc()),
-    BlocProvider<WorldstateBloc>(bloc: WorldstateBloc()),
-    BlocProvider<NavigationBloc>(bloc: NavigationBloc())
+    BlocProvider<StorageBloc>(builder: (_) => StorageBloc()),
+    BlocProvider<WorldstateBloc>(builder: (_) => WorldstateBloc()),
+    BlocProvider<NavigationBloc>(builder: (_) => NavigationBloc())
   ], child: const Navis()));
 
   putLumberdashToWork(

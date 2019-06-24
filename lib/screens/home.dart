@@ -32,7 +32,6 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addObserver(this);
-    BlocProvider.of<WorldstateBloc>(context).dispatch(UpdateEvent.update);
     message.configure();
 
     timer = Timer.periodic(const Duration(minutes: 5), (t) {
@@ -54,12 +53,8 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
 
   @override
   void dispose() {
-    BlocProvider.of<StorageBloc>(context).dispose();
-    BlocProvider.of<WorldstateBloc>(context).dispose();
-
     timer?.cancel();
     WidgetsBinding.instance.removeObserver(this);
-
     super.dispose();
   }
 

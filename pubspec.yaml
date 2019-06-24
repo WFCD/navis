@@ -5,12 +5,12 @@ version: 1.2.5+28
 dependencies:
   flutter:
     sdk: flutter
-  bloc: ^0.14.2
+  bloc: ^0.14.4
   hydrated_bloc: ^0.2.1
   codable: ^1.0.0
   equatable: ^0.2.5
   firebase_lumberdash: ^1.0.1
-  flutter_bloc: ^0.15.1
+  flutter_bloc: ^0.18.2
   firebase_crashlytics: ^0.0.4+4
   flutter_custom_tabs: ^0.6.0
   #flutter_map: ^0.5.3+1
