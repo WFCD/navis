@@ -13,8 +13,10 @@ Future<void> setupLocator({http.Client client, bool isTest = false}) async {
   locator.registerSingleton<LocalStorageService>(
       await LocalStorageService.getInstance());
 
-  locator.registerSingleton<DropTableService>(
-      await DropTableService.initilizeTable());
+  if (!isTest) {
+    locator.registerSingleton<DropTableService>(
+        await DropTableService.initilizeTable());
+  }
 
   locator.registerSingleton<FirebaseMessaging>(FirebaseMessaging());
   locator.registerSingleton<CrashlyticsService>(CrashlyticsService());
