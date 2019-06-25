@@ -1,4 +1,7 @@
 matrix:
+  allow_failures:
+    - env: JOB=fastlane_deploy
+    
   include:
     - name: 'Flutter test and apk build' 
       language: android
@@ -26,8 +29,7 @@ matrix:
     - name: 'Fastlane Deploy'
       language: android
       jdk: oraclejdk8
-      env:
-        - TRAVIS_ALLOW_FAILURE=true
+      env: JOB=fastlane_deploy
       licenses: 
         - android-sdk-license-.+
         - android-sdk-preview-license-.+
