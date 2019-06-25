@@ -1,11 +1,11 @@
 import 'dart:async';
 
+import 'package:catcher/catcher_plugin.dart';
 import 'package:codable/codable.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:hydrated_bloc/hydrated_bloc.dart';
-import 'package:lumberdash/lumberdash.dart';
 import 'package:navis/models/export.dart';
 import 'package:navis/services/localstorage_service.dart';
 import 'package:navis/services/services.dart';
@@ -42,7 +42,7 @@ class WorldstateBloc extends HydratedBloc<UpdateEvent, WorldStates>
   @override
   void onError(Object error, StackTrace stacktrace) {
     _displayErrorMessage();
-    logError(error);
+    Catcher.reportCheckedError(error, stacktrace);
   }
 
   Future<void> update() async {
