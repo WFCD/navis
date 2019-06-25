@@ -1,8 +1,6 @@
 matrix:
-  # allow_failures:
-  #   - env: JOB=test-ipa-long-shot
   include:
-    - env: JOB=test-apk
+    - name: 'Flutter test and apk build' 
       language: android
       jdk: oraclejdk8 # Android sdkmanager doesn't support jdk 9+
       licenses:
@@ -12,9 +10,7 @@ matrix:
       android:
         components:
           - build-tools-28.0.3
-          - android-28
-      before_install:
-        - bundle install --gemfile=android/Gemfile   
+          - android-28 
       before_script:
         - openssl aes-256-cbc -K $encrypted_2db283701f8c_key -iv $encrypted_2db283701f8c_iv 
           -in secrets.tar.enc -out secrets.tar -d
@@ -26,18 +22,33 @@ matrix:
         - flutter pub get
         - flutter test 
         - flutter build apk
-        - cd android && bundle exec fastlane android deploy_beta
-        
-    # I just needed to know what was missing from 
-    # - env: JOB=test-ipa-long-shot
-    #   language: objective-c
-    #   osx_image: xcode10.2
-    #   before_script:
-    #     - git clone https://github.com/flutter/flutter.git -b beta
-    #     - export PATH=./flutter/bin:$PATH
-    #   script:
-    #     - flutter pub get
-    #     - flutter build ios --no-codesign --verbose 
+
+    - name: 'Fastlane Deploy'
+      language: android
+      jdk: oraclejdk8
+      env:
+        - TRAVIS_ALLOW_FAILURE=true
+      licenses: 
+        - android-sdk-license-.+
+        - android-sdk-preview-license-.+
+        - google-gdk-license-.+
+      android:
+        components: 
+          - build-tools-28.0.3
+          - android-28
+      before_install: 
+        - bundle install --gemfile=android/Gemfile
+      before_script:
+        - openssl aes-256-cbc -K $encrypted_2db283701f8c_key -iv $encrypted_2db283701f8c_iv 
+          -in secrets.tar.enc -out secrets.tar -d
+        - tar xvf secrets.tar
+        - if [  ! -d "flutter" ] ; then git clone https://github.com/flutter/flutter.git -b beta; fi;
+        - export PATH=./flutter/bin:$PATH
+        - flutter upgrade 
+      script:
+        - flutter pub get
+        - flutter build apk
+        - cd android && bundle exec fastlane android beta               
 
 cache:
   bundler: true

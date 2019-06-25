@@ -11,6 +11,7 @@
 #
 
 # Uncomment the line if you want fastlane to automatically update itself
+setup_travis
 update_fastlane
 
 skip_docs
@@ -18,8 +19,8 @@ skip_docs
 default_platform(:android)
 
 platform :android do
-  desc "Deploy a Internal version to the Google Play"
-  lane :deploy_beta do
+  desc "Deploy a beta version to the Google Play"
+  lane :beta do
     begin
     upload_to_play_store(
       track: 'beta', 
