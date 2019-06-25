@@ -48,7 +48,7 @@ matrix:
       script:
         - flutter pub get
         - flutter build apk
-        - cd android && bundle exec fastlane android beta               
+        - cd android && bundle exec fastlane beta               
 
 cache:
   bundler: true
