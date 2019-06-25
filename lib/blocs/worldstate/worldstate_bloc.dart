@@ -18,10 +18,6 @@ enum UpdateEvent { update }
 
 class WorldstateBloc extends HydratedBloc<UpdateEvent, WorldStates>
     with EquatableMixinBase, EquatableMixin {
-  WorldstateBloc() {
-    dispatch(UpdateEvent.update);
-  }
-
   static final http.Client client = http.Client();
 
   final instance = locator<LocalStorageService>();

@@ -4,8 +4,19 @@ import 'package:navis/blocs/bloc.dart';
 import 'package:navis/screens/home.dart';
 import 'package:navis/screens/settings/settings.dart';
 
-class Navis extends StatelessWidget {
+class Navis extends StatefulWidget {
   const Navis();
+
+  @override
+  _NavisState createState() => _NavisState();
+}
+
+class _NavisState extends State<Navis> {
+  @override
+  void initState() {
+    super.initState();
+    BlocProvider.of<WorldstateBloc>(context).dispatch(UpdateEvent.update);
+  }
 
   @override
   Widget build(BuildContext context) {
