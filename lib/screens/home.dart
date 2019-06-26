@@ -5,7 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:navis/blocs/bloc.dart';
-import 'package:navis/components/layout/drawer.dart';
+import 'package:navis/components/widgets.dart';
 import 'package:navis/global_keys.dart';
 import 'package:navis/screens/drops/drops_list.dart';
 import 'package:navis/screens/feed/feed.dart';

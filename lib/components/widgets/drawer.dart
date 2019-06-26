@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'drawer_options.dart';
+
+import '../layout/drawer_options.dart';
 
 class LotusDrawer extends StatelessWidget {
   const LotusDrawer({Key key}) : super(key: key);

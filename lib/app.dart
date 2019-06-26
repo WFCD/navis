@@ -2,9 +2,10 @@ import 'package:catcher/core/catcher.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/blocs/bloc.dart';
-import 'package:navis/components/layout/error_widget.dart';
 import 'package:navis/screens/home.dart';
 import 'package:navis/screens/settings/settings.dart';
+
+import 'components/widgets.dart';
 
 class Navis extends StatefulWidget {
   const Navis();

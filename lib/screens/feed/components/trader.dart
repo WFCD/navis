@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:navis/blocs/bloc.dart';
 import 'package:navis/components/animations.dart';
 import 'package:navis/components/layout.dart';
+import 'package:navis/components/widgets.dart';
 
 import 'trader_inventory.dart';
 

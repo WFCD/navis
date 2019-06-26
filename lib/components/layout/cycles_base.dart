@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:navis/components/widgets/date.dart';
 import 'package:navis/models/abstract_classes.dart';
 
 import '../animations.dart';

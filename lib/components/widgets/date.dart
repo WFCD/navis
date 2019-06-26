@@ -4,7 +4,7 @@ import 'package:navis/blocs/bloc.dart';
 import 'package:navis/utils/enums.dart';
 import 'package:navis/utils/factionutils.dart';
 
-import 'static_box.dart';
+import '../layout/static_box.dart';
 
 class DateView extends StatelessWidget {
   const DateView({Key key, this.expiry}) : super(key: key);
