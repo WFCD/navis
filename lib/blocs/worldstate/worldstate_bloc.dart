@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:catcher/catcher_plugin.dart';
 import 'package:codable/codable.dart';
@@ -11,7 +12,7 @@ import 'package:navis/services/localstorage_service.dart';
 import 'package:navis/services/services.dart';
 
 import '../../global_keys.dart';
-import '../../services/worldstate.dart';
+import '../../services/wfcd_api.dart';
 import 'worldstate_states.dart';
 
 enum UpdateEvent { update }
@@ -21,7 +22,7 @@ class WorldstateBloc extends HydratedBloc<UpdateEvent, WorldStates>
   static final http.Client client = http.Client();
 
   final instance = locator<LocalStorageService>();
-  final ws = locator<WorldstateAPI>();
+  final ws = locator<WFCD>();
 
   @override
   WorldStates get initialState =>
@@ -33,8 +34,8 @@ class WorldstateBloc extends HydratedBloc<UpdateEvent, WorldStates>
       try {
         final state = await ws.getWorldstate(instance.platform);
         yield WorldstateLoaded(state);
-      } catch (error) {
-        yield WorldstateError('Error loading worldstate');
+      } on SocketException {
+        yield WorldstateError('Device offline');
       }
     }
   }
