@@ -9,7 +9,11 @@ class DropTableList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      builder: (_) => TableSearchBloc(),
+      builder: (_) {
+        final table = TableSearchBloc();
+        table.initializeTable();
+        return table;
+      },
       child: const SearchBody(),
     );
   }
