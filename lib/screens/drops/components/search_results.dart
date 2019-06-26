@@ -8,9 +8,7 @@ class SearchResults extends StatelessWidget {
 
   String _parseHtmlString(String htmlString) {
     final document = parse(htmlString);
-    final parsedString = parse(document.body.text).documentElement.text;
-
-    return parsedString;
+    return parse(document.body.text).documentElement.text;
   }
 
   @override
@@ -31,7 +29,7 @@ class SearchResults extends StatelessWidget {
                 return Tiles(
                   child: ListTile(
                     title: Text(item.item),
-                    subtitle: Text('$place | ${item.chance}%'),
+                    subtitle: Text('$place | ${item.chance}% drop chance'),
                   ),
                 );
               }
