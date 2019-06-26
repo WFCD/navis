@@ -14,7 +14,7 @@ Future<void> main() async {
 
   final debugConfig = CatcherOptions(SilentReportMode(), [ConsoleHandler()]);
   final releaseConfig = CatcherOptions(
-      DialogReportMode(), [ConsoleHandler(), FileHandler(await getFile())]);
+      SilentReportMode(), [ConsoleHandler(), FileHandler(await getFile())]);
 
   await setupLocator();
 
