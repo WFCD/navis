@@ -11,20 +11,22 @@ import 'app.dart';
 
 Future<void> main() async {
   BlocSupervisor.delegate = await HydratedBlocDelegate.build();
-  await setupLocator();
 
   final debugConfig = CatcherOptions(SilentReportMode(), [ConsoleHandler()]);
-
   final releaseConfig = CatcherOptions(
       DialogReportMode(), [ConsoleHandler(), FileHandler(await getFile())]);
 
-  final app = BlocProviderTree(blocProviders: [
-    BlocProvider<StorageBloc>(builder: (_) => StorageBloc()),
-    BlocProvider<WorldstateBloc>(builder: (_) => WorldstateBloc()),
-    BlocProvider<NavigationBloc>(builder: (_) => NavigationBloc())
-  ], child: const Navis());
+  await setupLocator();
 
-  Catcher(app, debugConfig: debugConfig, releaseConfig: releaseConfig);
+  Catcher(
+    BlocProviderTree(blocProviders: [
+      BlocProvider<StorageBloc>(builder: (_) => StorageBloc()),
+      BlocProvider<WorldstateBloc>(builder: (_) => WorldstateBloc()),
+      BlocProvider<NavigationBloc>(builder: (_) => NavigationBloc())
+    ], child: const Navis()),
+    debugConfig: debugConfig,
+    releaseConfig: releaseConfig,
+  );
 }
 
 Future<File> getFile() async {
