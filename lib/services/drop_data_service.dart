@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:catcher/catcher_plugin.dart';
 import 'package:codable/codable.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';

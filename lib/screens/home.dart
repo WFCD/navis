@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:connectivity_widget/connectivity_widget.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -89,18 +88,11 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
   Widget build(BuildContext context) {
     return WillPopScope(
       child: Scaffold(
-          key: scaffold,
-          appBar: AppBar(title: const Text('Navis')),
-          drawer: const LotusDrawer(),
-          body: StreamBuilder<bool>(
-            initialData: true,
-            stream: ConnectivityUtils.instance.isPhoneConnectedStream,
-            builder: (BuildContext context, AsyncSnapshot snapshot) {
-              return snapshot.data
-                  ? _buildBody()
-                  : Center(child: const Text('Device is Offline'));
-            },
-          )),
+        key: scaffold,
+        appBar: AppBar(title: const Text('Navis')),
+        drawer: const LotusDrawer(),
+        body: _buildBody(),
+      ),
       onWillPop: () => willpop(context),
     );
   }
