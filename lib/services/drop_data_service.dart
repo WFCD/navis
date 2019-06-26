@@ -45,19 +45,23 @@ class DropTableService {
 
   static Future<List<Reward>> getManifest(
       File source, DateTime timestamp, DateTime local) async {
-    if (timestamp.isAfter(local) || source.existsSync() != true) {
+    if (timestamp.isAfter(local) || source.existsSync() == false) {
+      _storageService.saveTimestamp(timestamp);
+
       try {
         final response = await http.get('$baseUrl/data/all.slim.json');
-        source.writeAsString(response.body);
+        source.writeAsStringSync(response.body);
+
+        return await compute(jsonToRewards, response.body);
       } on SocketException {
         final slim = await rootBundle.loadString('assets/slim.json');
 
         source.writeAsStringSync(slim);
+        return await compute(jsonToRewards, slim);
       }
     }
 
-    _storageService.saveTimestamp(timestamp);
-    return compute(jsonToRewards, await source.readAsString());
+    return await compute(jsonToRewards, source.readAsStringSync());
   }
 }
 
