@@ -2,6 +2,7 @@ import 'package:catcher/core/catcher.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/blocs/bloc.dart';
+import 'package:navis/components/layout/error_widget.dart';
 import 'package:navis/screens/home.dart';
 import 'package:navis/screens/settings/settings.dart';
 
@@ -20,10 +21,8 @@ class _NavisState extends State<Navis> {
   }
 
   Widget _builder(BuildContext context, Widget widget) {
-    Catcher.addDefaultErrorWidget(
-        showStacktrace: true,
-        customTitle: 'An application Error has occured',
-        customDescription: 'There was unexpected error in the application');
+    ErrorWidget.builder =
+        (FlutterErrorDetails error) => NavisErrorWidget(details: error);
     return widget;
   }
 

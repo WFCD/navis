@@ -36,16 +36,16 @@ class PermissionsService {
             content: const Text(reason),
             actions: <Widget>[
               FlatButton(
-                child: const Text('APPLY'),
+                child: const Text('DENY'),
+                onPressed: () => Navigator.pop(context),
+              ),
+              FlatButton(
+                child: const Text('ALLOW'),
                 onPressed: () async {
                   requestStoragePermission();
                   Navigator.pop(context);
                 },
               ),
-              FlatButton(
-                child: const Text('CANCEL'),
-                onPressed: () => Navigator.pop(context),
-              )
             ],
           );
         });

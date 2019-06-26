@@ -13,8 +13,7 @@ Future<void> main() async {
   BlocSupervisor.delegate = await HydratedBlocDelegate.build();
   await setupLocator();
 
-  final debugConfig = CatcherOptions(
-      SilentReportMode(), [ConsoleHandler(), FileHandler(await getFile())]);
+  final debugConfig = CatcherOptions(SilentReportMode(), [ConsoleHandler()]);
 
   final releaseConfig = CatcherOptions(
       DialogReportMode(), [ConsoleHandler(), FileHandler(await getFile())]);

@@ -25,13 +25,14 @@ class DropTableService {
     Map<String, dynamic> info;
 
     final _directory = await getApplicationDocumentsDirectory();
-    final _slimTable = File('${_directory.path}/slimTable.json');
+    final _slimTable = File('${_directory.path}/drop_table.json');
 
-    await http
-        .get('$baseUrl/data/info.json')
-        .then((response) => info = json.decode(response.body))
-        .catchError(
-            (error) => info = {'timestamp': _storageService.tableTimestamp});
+    try {
+      final response = await http.get('$baseUrl/data/info.json');
+      info = json.decode(response.body);
+    } on SocketException {
+      info = {'timestamp': _storageService.tableTimestamp};
+    }
 
     final timestamp = DateTime.fromMillisecondsSinceEpoch(info['timestamp']);
     final localTimestamp =
@@ -39,13 +40,7 @@ class DropTableService {
 
     await getManifest(_slimTable, timestamp, localTimestamp);
 
-    if (!_slimTable.existsSync()) {
-      _table ??= await compute(jsonToRewards, await _slimTable.readAsString());
-    } else {
-      _table ??= await compute(
-          jsonToRewards, await rootBundle.loadString('assets/slim.json'));
-    }
-
+    _table ??= await compute(jsonToRewards, await _slimTable.readAsString());
     _instance ??= DropTableService();
 
     return _instance;
@@ -55,21 +50,21 @@ class DropTableService {
       File source, DateTime timestamp, DateTime local) async {
     final open = source.openWrite();
 
-    if (timestamp.isAfter(local)) {
-      await _client
-          .send(http.Request('GET', Uri.parse('$baseUrl/data/all.slim.json')))
-          .then((response) => response.stream.pipe(open))
-          .catchError((error) async {
-        final slim = await rootBundle.load('assets/slim.json');
-        final buffer = slim.buffer;
+    if (timestamp.isAfter(local) || source.existsSync()) {
+      try {
+        final response = await _client.send(
+            http.Request('GET', Uri.parse('$baseUrl/data/all.slim.json')));
 
-        source.writeAsBytes(
-            buffer.asUint8List(slim.offsetInBytes, slim.lengthInBytes));
-      });
+        response.stream.pipe(open);
+      } on SocketException {
+        final slim = await rootBundle.loadString('assets/slim.json');
+
+        source.writeAsStringSync(slim);
+        await open.close();
+      }
     }
 
     await open.close();
-
     _storageService.saveTimestamp(timestamp);
   }
 }
