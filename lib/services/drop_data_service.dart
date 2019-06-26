@@ -55,7 +55,7 @@ class DropTableService {
         final response = await _client.send(
             http.Request('GET', Uri.parse('$baseUrl/data/all.slim.json')));
 
-        response.stream.pipe(open);
+        await response.stream.pipe(open);
       } on SocketException {
         final slim = await rootBundle.loadString('assets/slim.json');
 
