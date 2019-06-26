@@ -1,23 +1,20 @@
-import 'dart:convert';
 import 'dart:io';
 
-//import 'package:async/async.dart';
 import 'package:bloc/bloc.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/services.dart';
-import 'package:http/http.dart' as http;
 import 'package:hydrated_bloc/hydrated_bloc.dart';
-import 'package:mockito/mockito.dart';
+
 import 'package:navis/blocs/bloc.dart';
 import 'package:navis/services/localstorage_service.dart';
 import 'package:navis/services/services.dart';
+import 'package:navis/services/wfcd_api.dart';
 import 'package:navis/utils/enums.dart';
 import 'package:navis/utils/storage_keys.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:test/test.dart';
 
-class MockClient extends Mock implements http.Client {}
-
-const mockstate = {
+Map<String, dynamic> mockstate = {
   'news': [],
   'alerts': [],
   'syndicateMissions': [],
@@ -27,7 +24,7 @@ const mockstate = {
 };
 
 Future<void> main() async {
-  final client = MockClient();
+  WFCD wfcd;
 
   WorldstateBloc worldstate;
   StorageBloc storage;
@@ -57,11 +54,12 @@ Future<void> main() async {
 
     BlocSupervisor.delegate = await HydratedBlocDelegate.build();
 
-    await setupLocator(client: client, isTest: true);
+    await setupLocator(isTest: true);
 
     worldstate = WorldstateBloc();
     storage = StorageBloc(instance: await LocalStorageService.getInstance());
     prefs = await SharedPreferences.getInstance();
+    wfcd = locator<WFCD>();
   });
 
   group('Test Worldstate bloc', () {
@@ -71,8 +69,10 @@ Future<void> main() async {
     });
 
     test('Worldstate is loaded correctly', () async {
-      when(client.get('https://api.warframestat.us/pc'))
-          .thenAnswer((_) async => http.Response(json.encode(mockstate), 200));
+      wfcd.warframestat.interceptors.add(InterceptorsWrapper(
+          onRequest: (option) => wfcd.warframestat.resolve(mockstate)));
+
+      worldstate.dispatch(UpdateEvent.update);
 
       expectLater(
           worldstate.state,
@@ -80,8 +80,6 @@ Future<void> main() async {
             const TypeMatcher<WorldstateUninitialized>(),
             const TypeMatcher<WorldstateLoaded>()
           ]));
-
-      worldstate.dispatch(UpdateEvent.update);
     });
 
     test('dispose does not create a new state', () {

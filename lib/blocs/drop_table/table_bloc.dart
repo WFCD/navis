@@ -1,15 +1,46 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:bloc/bloc.dart';
+import 'package:catcher/core/catcher.dart';
 import 'package:flutter/foundation.dart';
+import 'package:http/http.dart' as http;
 import 'package:navis/models/drop_tables/slim.dart';
-import 'package:navis/services/drop_data_service.dart';
+import 'package:navis/services/localstorage_service.dart';
 import 'package:navis/services/services.dart';
+import 'package:navis/services/wfcd_api.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:rxdart/rxdart.dart';
 
 import 'table_event.dart';
 import 'table_state.dart';
 
 class TableSearchBloc extends Bloc<SearchEvent, SearchState> {
-  final droptable = locator<DropTableService>();
+  final _storageService = locator<LocalStorageService>();
+  final wfcd = locator<WFCD>();
+
+  List<Reward> _table = [];
+
+  Future<void> initializeTable() async {
+    Map<String, dynamic> info;
+
+    final _directory = await getApplicationDocumentsDirectory();
+    final _slimTable = File('${_directory.path}/drop_table.json');
+
+    try {
+      final response = await http.get('$dropTableUrl/data/info.json');
+      info = json.decode(response.body);
+    } on SocketException {
+      info = {
+        'timestamp': _storageService.tableTimestamp.millisecondsSinceEpoch,
+      };
+    }
+
+    final timestamp = DateTime.fromMillisecondsSinceEpoch(info['timestamp']);
+    final localTimestamp = _storageService.tableTimestamp;
+
+    _table = await wfcd.getDropTable(_slimTable, timestamp, localTimestamp);
+  }
 
   @override
   Stream<SearchState> transform(
@@ -39,9 +70,11 @@ class TableSearchBloc extends Bloc<SearchEvent, SearchState> {
         yield SearchStateLoading();
         try {
           final results =
-              compute(search, SearchTable(searchTerm, droptable.table));
-          yield SearchStateSuccess(await results);
-        } catch (error) {
+              await compute(_search, SearchTable(searchTerm, _table));
+
+          yield SearchStateSuccess(results);
+        } catch (error, stackTrace) {
+          Catcher.reportCheckedError(error, stackTrace);
           yield SearchStateError('something went wrong');
         }
       }
@@ -49,8 +82,8 @@ class TableSearchBloc extends Bloc<SearchEvent, SearchState> {
   }
 }
 
-List<Reward> search(SearchTable table) {
-  return table.rewards.where((r) => r.item.contains(table.term)).toList();
+List<Reward> _search(SearchTable drops) {
+  return drops.rewards.where((r) => r.item.contains(drops.term)).toList();
 }
 
 class SearchTable {

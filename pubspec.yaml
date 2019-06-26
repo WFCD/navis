@@ -24,10 +24,10 @@ dependencies:
   floating_search_bar: ^0.2.0
   catcher: ^0.1.9
   permission_handler: ^3.1.0
+  dio: ^2.1.7
 
 dependency_overrides:
   path_provider: ^1.1.0
-  rxdart: ^0.22.0
 
 dev_dependencies:
   flutter_test:
@@ -35,7 +35,6 @@ dev_dependencies:
   flutter_driver:
     sdk: flutter
   test: ^1.6.1
-  mockito: ^4.0.0
 
 flutter:
   uses-material-design: true
