@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:connectivity_widget/connectivity_widget.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +15,9 @@ import 'package:navis/screens/invasions/invasions.dart';
 import 'package:navis/screens/news/news.dart';
 import 'package:navis/screens/sortie/sortie.dart';
 import 'package:navis/screens/syndicates/syndicates.dart';
+import 'package:navis/services/permission_service.dart';
 import 'package:navis/services/services.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:simple_animations/simple_animations.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -26,6 +29,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
   final message = locator<FirebaseMessaging>();
+  final permission = locator<PermissionsService>();
   Timer timer;
 
   @override
@@ -37,6 +41,14 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
     timer = Timer.periodic(const Duration(minutes: 5), (t) {
       BlocProvider.of<WorldstateBloc>(context).dispatch(UpdateEvent.update);
     });
+
+    permissions();
+  }
+
+  Future<void> permissions() async {
+    if (!await permission.hasPermission(PermissionGroup.storage)) {
+      permission.storagePermissionDialog(context);
+    }
   }
 
   @override
@@ -58,23 +70,19 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
     super.dispose();
   }
 
-  Widget _body(RouteState route) {
-    switch (route) {
-      case RouteState.news:
-        return const Orbiter();
-      case RouteState.fissures:
-        return const FissureList();
-      case RouteState.invasions:
-        return const InvasionsList();
-      case RouteState.sortie:
-        return const SortieScreen();
-      case RouteState.syndicates:
-        return SyndicatesList();
-      case RouteState.droptable:
-        return const DropTableList();
-      default:
-        return const Feed();
-    }
+  Widget _buildBody() {
+    return BlocBuilder<RouteEvent, RouteState>(
+      bloc: BlocProvider.of<NavigationBloc>(context),
+      builder: (BuildContext context, RouteState route) {
+        return ControlledAnimation(
+          duration: const Duration(milliseconds: 500),
+          playback: Playback.PLAY_FORWARD,
+          tween: Tween(begin: 0.0, end: 1.0),
+          builder: (BuildContext context, dynamic value) =>
+              Opacity(opacity: value, child: _body(route)),
+        );
+      },
+    );
   }
 
   @override
@@ -84,26 +92,44 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
           key: scaffold,
           appBar: AppBar(title: const Text('Navis')),
           drawer: const LotusDrawer(),
-          body: BlocBuilder<RouteEvent, RouteState>(
-            bloc: BlocProvider.of<NavigationBloc>(context),
-            builder: (BuildContext context, RouteState route) {
-              return ControlledAnimation(
-                duration: const Duration(milliseconds: 500),
-                playback: Playback.PLAY_FORWARD,
-                tween: Tween(begin: 0.0, end: 1.0),
-                builder: (BuildContext context, dynamic value) =>
-                    Opacity(opacity: value, child: _body(route)),
-              );
+          body: StreamBuilder<bool>(
+            initialData: true,
+            stream: ConnectivityUtils.instance.isPhoneConnectedStream,
+            builder: (BuildContext context, AsyncSnapshot snapshot) {
+              return snapshot.data
+                  ? _buildBody()
+                  : Center(child: const Text('Device is Offline'));
             },
           )),
-      onWillPop: () async {
-        if (!scaffold.currentState.isDrawerOpen) {
-          scaffold.currentState.openDrawer();
-        } else
-          Navigator.of(context).pop();
-
-        return false;
-      },
+      onWillPop: () => willpop(context),
     );
+  }
+}
+
+Future<bool> willpop(BuildContext context) async {
+  if (!scaffold.currentState.isDrawerOpen) {
+    scaffold.currentState.openDrawer();
+  } else
+    Navigator.of(context).pop();
+
+  return false;
+}
+
+Widget _body(RouteState route) {
+  switch (route) {
+    case RouteState.news:
+      return const Orbiter();
+    case RouteState.fissures:
+      return const FissureList();
+    case RouteState.invasions:
+      return const InvasionsList();
+    case RouteState.sortie:
+      return const SortieScreen();
+    case RouteState.syndicates:
+      return SyndicatesList();
+    case RouteState.droptable:
+      return const DropTableList();
+    default:
+      return const Feed();
   }
 }
