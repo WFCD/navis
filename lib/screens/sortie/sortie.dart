@@ -26,30 +26,27 @@ class SortieScreen extends StatelessWidget {
                   final medium = 'assets/factions/$faction/medium.webp';
                   final heavy = 'assets/factions/$faction/heavy.webp';
 
-                  return Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Card(
-                            color: Theme.of(context).primaryColor,
-                            child: ListTile(
-                              title: const Text('Sortie will reset in: ',
-                                  style: TextStyle(color: Colors.white)),
-                              trailing: CountdownBox(
-                                  color: Colors.transparent,
-                                  expiry: state.sortie.expiry,
-                                  size: 16),
-                            )),
-                        _BuildMission(
-                            variant: variants[0], index: 0, asset: light),
-                        _BuildMission(
-                            variant: variants[1], index: 1, asset: medium),
-                        _BuildMission(
-                            variant: variants[2],
-                            index: 2,
-                            asset: heavy,
-                            boss: state.sortie.boss,
-                            faction: state.sortie.faction)
-                      ]);
+                  return ListView(children: <Widget>[
+                    Card(
+                        color: Theme.of(context).primaryColor,
+                        child: ListTile(
+                          title: const Text('Sortie will reset in: ',
+                              style: TextStyle(color: Colors.white)),
+                          trailing: CountdownBox(
+                              color: Colors.transparent,
+                              expiry: state.sortie.expiry,
+                              size: 16),
+                        )),
+                    _BuildMission(variant: variants[0], index: 0, asset: light),
+                    _BuildMission(
+                        variant: variants[1], index: 1, asset: medium),
+                    _BuildMission(
+                        variant: variants[2],
+                        index: 2,
+                        asset: heavy,
+                        boss: state.sortie.boss,
+                        faction: state.sortie.faction)
+                  ]);
                 }
               }
             }));
@@ -91,16 +88,16 @@ class _BuildMission extends StatelessWidget {
         color: color,
         shadows: <Shadow>[shadow]);
 
-    return Flexible(
-      flex: 3,
-      child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Text('Sortie ${index + 1}', style: sortie),
-            Text('${variant.missionType} - ${variant.node}', style: mode),
-            const SizedBox(height: 16),
-            Text(variant.modifierDescription, style: info, maxLines: 3)
-          ]),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Container(child: Text('Sortie ${index + 1}', style: sortie)),
+        Container(
+            child:
+                Text('${variant.missionType} - ${variant.node}', style: mode)),
+        const SizedBox(height: 16),
+        Container(child: Text(variant.modifierDescription, style: info))
+      ],
     );
   }
 
@@ -115,8 +112,7 @@ class _BuildMission extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.only(left: 8, top: 16, bottom: 16),
         child: Row(children: <Widget>[
-          _buildDetails(context),
-          const Spacer(),
+          Expanded(child: _buildDetails(context)),
           Container(
             child: Image.asset(
                 isAssassination ? 'assets/factions/$faction/$boss.webp' : asset,
