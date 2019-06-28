@@ -8,7 +8,7 @@ default_platform(:android)
 # to build the app using the Flutter toolchain.
 platform :android do
   desc 'Push the built release APK to alpha or beta depending on current branch'
-  lane :deploy_play_store do
+  lane :beta do
     begin
       upload_to_play_store(
         track: 'beta',
