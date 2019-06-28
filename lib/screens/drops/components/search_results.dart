@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:html/parser.dart';
 import 'package:navis/blocs/bloc.dart';
-import 'package:navis/components/layout.dart';
 import 'package:navis/models/drop_tables/slim.dart';
 
 class SearchResults extends StatelessWidget {
