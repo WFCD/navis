@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:navis/blocs/bloc.dart';
+import 'package:navis/components/dialogs/permission_dialog.dart';
 import 'package:navis/components/widgets.dart';
 import 'package:navis/global_keys.dart';
 import 'package:navis/screens/drops/drops_list.dart';
@@ -46,7 +47,7 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
 
   Future<void> permissions() async {
     if (!await permission.hasPermission(PermissionGroup.storage)) {
-      permission.storagePermissionDialog(context);
+      PermissionsDialog.requestPermission(context, PermissionGroup.storage);
     }
   }
 
