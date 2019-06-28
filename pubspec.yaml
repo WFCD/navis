@@ -9,7 +9,7 @@ dependencies:
   hydrated_bloc: ^0.2.1
   codable: ^1.0.0
   equatable: ^0.2.5
-  flutter_bloc: ^0.18.2
+  flutter_bloc: ^0.18.3
   firebase_crashlytics: ^0.0.4+4
   flutter_custom_tabs: ^0.6.0
   intl: ^0.15.8
