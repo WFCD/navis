@@ -7,9 +7,10 @@ import 'package:navis/utils/factionutils.dart';
 import '../layout/static_box.dart';
 
 class DateView extends StatelessWidget {
-  const DateView({Key key, this.expiry}) : super(key: key);
+  const DateView({Key key, this.expiry, this.color}) : super(key: key);
 
   final DateTime expiry;
+  final Color color;
 
   DateFormat enumToDateformat(Formats format) {
     switch (format) {
@@ -30,7 +31,7 @@ class DateView extends StatelessWidget {
       bloc: storage,
       builder: (context, state) {
         return StaticBox(
-            color: Colors.blueAccent[400],
+            color: color ?? Colors.blueAccent[400],
             child: Text(
                 '${expiration(expiry, format: enumToDateformat(state.dateformat))}',
                 style: const TextStyle(color: Colors.white)));
