@@ -49,8 +49,10 @@ Future<void> main() async {
     storage = locator<LocalStorageService>();
     wfcd = WFCD();
 
-    wfcd.warframestat.interceptors.add(InterceptorsWrapper(
-        onRequest: (option) => wfcd.warframestat.resolve(mockstate)));
+    wfcd.warframestat.interceptors.add(InterceptorsWrapper(onRequest: (option) {
+      if (option.path.contains(RegExp(r'(pc)|(xb1)|(swi)')))
+        return wfcd.warframestat.resolve(mockstate);
+    }));
   });
 
   group('Test Worldstate APi', () {
