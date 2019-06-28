@@ -16,12 +16,12 @@ import 'table_event.dart';
 import 'table_state.dart';
 
 class TableSearchBloc extends Bloc<SearchEvent, SearchState> {
-  final _storageService = locator<LocalStorageService>();
-  final wfcd = locator<WFCD>();
+  static final _storageService = locator<LocalStorageService>();
+  static final wfcd = locator<WFCD>();
 
-  List<Reward> _table = [];
+  static List<Reward> _table = [];
 
-  Future<void> initializeTable() async {
+  static Future<void> initializeTable() async {
     Map<String, dynamic> info;
 
     final _directory = await getApplicationDocumentsDirectory();
@@ -83,7 +83,9 @@ class TableSearchBloc extends Bloc<SearchEvent, SearchState> {
 }
 
 List<Reward> _search(SearchTable drops) {
-  return drops.rewards.where((r) => r.item.contains(drops.term)).toList();
+  return drops.rewards
+      .where((r) => r.item.toLowerCase().contains(drops.term.toLowerCase()))
+      .toList();
 }
 
 class SearchTable {
