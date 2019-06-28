@@ -49,7 +49,7 @@ matrix:
         - flutter upgrade 
       script:
         - flutter pub get
-        - flutter build apk
+        - flutter build apk --release
         - cd android && bundle exec fastlane beta               
 
 cache:
