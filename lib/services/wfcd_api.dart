@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
@@ -20,10 +21,6 @@ class WFCD {
     ..options.baseUrl = statusUrl
     ..options.connectTimeout = 5000
     ..options.receiveTimeout = 3000;
-
-  final dropdata = Dio()
-    ..options.connectTimeout = 5000
-    ..options.receiveTimeout = 6000;
 
   static final _storageService = locator<LocalStorageService>();
 
@@ -49,8 +46,9 @@ class WFCD {
       _storageService.saveTimestamp(timestamp);
 
       try {
-        await dropdata.download(
-            '$dropTableUrl/data/all.slim.json', source.path);
+        final request = await warframestat.request('/drops');
+
+        await source.writeAsString(json.encode(request.data));
 
         return await compute(jsonToRewards, await source.readAsString());
       } on SocketException {
