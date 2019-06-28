@@ -4,9 +4,9 @@ import 'package:navis/utils/enums.dart';
 
 import 'base_dialog.dart';
 
-class DateFormatPicker extends StatelessWidget with DialogWidget {
+class DateFormatPicker extends StatelessWidget {
   static Future<void> selectDateformat(BuildContext context) async {
-    DialogWidget.openDialog(context, DateFormatPicker());
+    showDialog(context: context, builder: (_) => DateFormatPicker());
   }
 
   Widget _buildRadio(BuildContext context, StorageState state, Formats v,

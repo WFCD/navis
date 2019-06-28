@@ -4,16 +4,17 @@ import 'package:navis/components/dialogs/base_dialog.dart';
 
 enum FilterType { acolytes, news, cycles, fissure }
 
-class FilterDialog extends StatelessWidget with DialogWidget {
-  FilterDialog({this.options, this.type});
+class FilterDialog extends StatelessWidget {
+  const FilterDialog({this.options, this.type});
 
   final Map<String, String> options;
   final FilterType type;
 
   static Future<void> showFilters(BuildContext context,
       Map<String, String> options, FilterType type) async {
-    DialogWidget.openDialog(
-        context, FilterDialog(options: options, type: type));
+    showDialog(
+        context: context,
+        builder: (_) => FilterDialog(options: options, type: type));
   }
 
   Map<String, bool> _typeToInstance(StorageState state) {
@@ -46,7 +47,7 @@ class FilterDialog extends StatelessWidget with DialogWidget {
 
         return BaseDialog(
           dialogTitle: 'Filter Options',
-          child: Column(children: <Widget>[
+          child: Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
             for (String key in options.keys)
               CheckboxListTile(
                 title: Text(options[key]),
