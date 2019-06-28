@@ -5,7 +5,6 @@ import 'package:catcher/catcher_plugin.dart';
 import 'package:codable/codable.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:navis/models/export.dart';
 import 'package:navis/services/localstorage_service.dart';
@@ -19,8 +18,6 @@ enum UpdateEvent { update }
 
 class WorldstateBloc extends HydratedBloc<UpdateEvent, WorldStates>
     with EquatableMixinBase, EquatableMixin {
-  static final http.Client client = http.Client();
-
   final instance = locator<LocalStorageService>();
   final ws = locator<WFCD>();
 
@@ -42,8 +39,8 @@ class WorldstateBloc extends HydratedBloc<UpdateEvent, WorldStates>
 
   @override
   void onError(Object error, StackTrace stacktrace) {
-    _displayErrorMessage();
     Catcher.reportCheckedError(error, stacktrace);
+    _displayErrorMessage();
   }
 
   Future<void> update() async {
