@@ -1,0 +1,13 @@
+New:
+- new page for fissures, invasions and sorties  
+- move platform switches into settings  
+- new about dialog  
+- pressing back button now opens the drawer  
+- maps and related links have been move to "helpful links"  
+- removed custom primary and accent colors  
+
+Fixes:
+- fixed red screen when switching to plague star event
+
+I would have gotten then event fix out earlier when it happened but due to signing app problems,  
+I was unable to upload the fix till after the 15th.

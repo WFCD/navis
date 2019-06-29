@@ -1,0 +1,19 @@
+Navis for short uses the WarframeStat.us API to display as much useful and necessary information to help you as you travel the solar system without leaving your game.
+
+Features:
+   - Display game news including updates
+   - Supports displaying multiple events
+   - information on acolytes
+   - Cetus and Earth Day/Night cycle
+   - Orb vallis Warm/Cold cycle
+   - Ostron and Solaris United bounties with Timer
+   - Void Fissures
+   - Nightwaves
+   - Darvo's Daily "Deals"
+   - Baro Timer and Inventory
+   - Display Soties and Invasions
+   - links Plains and Vallis maps
+   - Links to useful guides for new players to learn how to fish
+   - supports PC, PS4, Xbox and Switch worldstates  
+
+Report bugs or Feature Request to https://github.com/WFCD/navis/issues

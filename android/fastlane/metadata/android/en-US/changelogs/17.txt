@@ -1,0 +1,5 @@
+New: 
+notifications for cycles and sorties.
+
+known issues:
+not all options actually work for now.

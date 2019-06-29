@@ -1,0 +1,3 @@
+events with an unknown amount of health will now use a timer instead  
+  
+Please report all issues to https://github.com/WFCD/navis/issues
