@@ -23,4 +23,8 @@ class Arbitration extends WorldstateObject {
     object.encode('planet', planet);
     object.encode('solnode', solnode);
   }
+
+  @override
+  List get props =>
+      super.props..addAll([solnode, planet, enemy, type, archwing, sharkwing]);
 }

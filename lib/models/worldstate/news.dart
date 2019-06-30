@@ -1,4 +1,5 @@
 import 'package:codable/codable.dart';
+import 'package:codable/cast.dart' as cast;
 import 'package:navis/models/abstract_classes.dart';
 
 class OrbiterNews extends WorldstateObject {
@@ -6,7 +7,11 @@ class OrbiterNews extends WorldstateObject {
   DateTime date;
   bool priority, update, primeAccess, stream;
 
-  _Translations translations;
+  Map<String, String> translations;
+
+  @override
+  Map<String, cast.Cast> get castMap =>
+      {'translations': const cast.Map(cast.String, cast.String)};
 
   @override
   void decode(KeyedArchive object) {
@@ -20,7 +25,7 @@ class OrbiterNews extends WorldstateObject {
     update = object.decode('update');
     primeAccess = object.decode('primeAccess');
     stream = object.decode('stream');
-    translations = object.decodeObject('translations', () => _Translations());
+    translations = object.decode('translations');
   }
 
   @override
@@ -32,21 +37,10 @@ class OrbiterNews extends WorldstateObject {
     object.encode('date', date);
     object.encode('update', update);
     object.encode('stream', stream);
-    object.encodeObject('translations', translations);
-  }
-}
-
-class _Translations extends Coding {
-  String en;
-
-  @override
-  void decode(KeyedArchive object) {
-    super.decode(object);
-    en = object.decode('en');
+    object.encode('translations', translations);
   }
 
   @override
-  void encode(KeyedArchive object) {
-    object.encode('en', en);
-  }
+  List get props => super.props
+    ..addAll([message, link, imageLink, date, update, stream, translations]);
 }

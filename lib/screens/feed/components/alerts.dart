@@ -18,6 +18,8 @@ class AlertTile extends StatelessWidget {
         title: 'Alerts',
         child: BlocBuilder(
             bloc: state,
+            condition: (WorldStates previous, WorldStates current) =>
+                previous.alerts != current.alerts,
             builder: (context, state) {
               if (state is WorldstateLoaded) {
                 return Column(children: <Widget>[

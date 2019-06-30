@@ -12,6 +12,8 @@ class EarthCycle extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<UpdateEvent, WorldStates>(
       bloc: BlocProvider.of<WorldstateBloc>(context),
+      condition: (WorldStates previous, WorldStates current) =>
+          previous.cetus.expiry.isBefore(current.cetus.expiry),
       builder: (BuildContext context, WorldStates state) {
         return Cycle(title: 'Earth Day/Night Cycle', cycle: state.earth);
       },

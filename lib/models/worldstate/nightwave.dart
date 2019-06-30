@@ -1,5 +1,6 @@
 import 'package:codable/codable.dart';
 import 'package:codable/cast.dart' as cast;
+import 'package:equatable/equatable.dart';
 import 'package:navis/models/abstract_classes.dart';
 
 class Nightwave extends WorldstateObject {
@@ -66,7 +67,8 @@ class Nightwave extends WorldstateObject {
   }
 }
 
-class Challenge extends WorldstateObject {
+class Challenge extends WorldstateObject
+    with EquatableMixinBase, EquatableMixin {
   String startString, desc, title;
   bool active, isDaily, isElite;
   num reputation;
@@ -95,4 +97,8 @@ class Challenge extends WorldstateObject {
     object.encode('desc', desc);
     object.encode('reputation', reputation);
   }
+
+  //expiry is the only thing we need to see in order to tell the difference for nightwaves
+  @override
+  List get props => [expiry];
 }

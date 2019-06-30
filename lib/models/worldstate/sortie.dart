@@ -1,9 +1,10 @@
 import 'package:codable/codable.dart';
+import 'package:equatable/equatable.dart';
 import 'package:navis/models/abstract_classes.dart';
 
 class Sortie extends WorldstateObject {
-  List<Variants> variants;
   String boss, faction;
+  List<Variants> variants;
 
   @override
   void decode(KeyedArchive object) {
@@ -21,9 +22,12 @@ class Sortie extends WorldstateObject {
     object.encode('boss', boss);
     object.encode('faction', faction);
   }
+
+  @override
+  List get props => super.props..addAll([boss, faction, variants]);
 }
 
-class Variants extends Coding {
+class Variants extends Coding with EquatableMixinBase, EquatableMixin {
   String missionType, modifier, modifierDescription, node;
 
   @override
@@ -43,4 +47,7 @@ class Variants extends Coding {
     object.encode('modifierDescription', modifierDescription);
     object.encode('node', node);
   }
+
+  @override
+  List get props => [missionType, modifier, modifierDescription, node];
 }

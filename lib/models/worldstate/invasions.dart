@@ -1,12 +1,13 @@
 import 'package:codable/codable.dart';
 import 'package:navis/models/abstract_classes.dart';
+import 'package:navis/models/worldstate/reward.dart';
 
 class Invasion extends WorldstateObject {
   String node, desc, attackingFaction, defendingFaction, eta;
   bool vsInfestation, completed;
   num completion, count;
 
-  _FactionReward attackerReward, defenderReward;
+  Reward attackerReward, defenderReward;
 
   @override
   void decode(KeyedArchive object) {
@@ -19,10 +20,8 @@ class Invasion extends WorldstateObject {
     activation = object.decode('activation');
     eta = object.decode('eta');
 
-    attackerReward =
-        object.decodeObject('attackerReward', () => _FactionReward());
-    defenderReward =
-        object.decodeObject('defenderReward', () => _FactionReward());
+    attackerReward = object.decodeObject('attackerReward', () => Reward());
+    defenderReward = object.decodeObject('defenderReward', () => Reward());
 
     vsInfestation = object.decode('vsInfestation');
     completed = object.decode('completed');
@@ -49,25 +48,5 @@ class Invasion extends WorldstateObject {
 
     object.encode('completion', completion);
     object.encode('count', count);
-  }
-}
-
-class _FactionReward extends Coding {
-  String itemString, asString, thumbnail;
-
-  @override
-  void decode(KeyedArchive object) {
-    super.decode(object);
-
-    itemString = object.decode('itemString');
-    asString = object.decode('asString');
-    thumbnail = object.decode('thumbnail');
-  }
-
-  @override
-  void encode(KeyedArchive object) {
-    object.encode('itemString', itemString);
-    object.encode('asString', asString);
-    object.encode('thumbnail', thumbnail);
   }
 }

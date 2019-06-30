@@ -26,4 +26,7 @@ class KuvaNode extends WorldstateObject {
     object.encode('enemy', enemy);
     object.encode('type', type);
   }
+
+  @override
+  List get props => super.props..addAll([solnode, node, planet, enemy, type]);
 }

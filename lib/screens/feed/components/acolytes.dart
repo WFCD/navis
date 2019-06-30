@@ -12,6 +12,8 @@ class Acolytes extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder(
       bloc: BlocProvider.of<WorldstateBloc>(context),
+      condition: (WorldStates previous, WorldStates current) =>
+          previous.acolytes != current.acolytes,
       builder: (context, state) {
         if (state is WorldstateLoaded) {
           return Tiles(

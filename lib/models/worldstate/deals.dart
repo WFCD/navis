@@ -27,4 +27,8 @@ class DarvoDeal extends WorldstateObject {
     object.encode('sold', sold);
     object.encode('discount', discount);
   }
+
+  @override
+  List get props => super.props
+    ..addAll([item, originalPrice, salePrice, total, sold, discount]);
 }

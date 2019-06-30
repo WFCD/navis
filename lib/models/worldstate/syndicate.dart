@@ -1,4 +1,6 @@
 import 'package:codable/codable.dart';
+import 'package:equatable/equatable.dart';
+import 'package:codable/cast.dart' as cast;
 import 'package:navis/models/abstract_classes.dart';
 
 class Syndicate extends WorldstateObject {
@@ -27,13 +29,21 @@ class Syndicate extends WorldstateObject {
     object.encode('active', active);
     object.encodeObjects('jobs', jobs);
   }
+
+  @override
+  List get props => super.props..addAll([name, active, jobs]);
 }
 
-class Jobs extends Coding {
+class Jobs extends Coding with EquatableMixinBase, EquatableMixin {
   String type;
-  List enemyLevels;
-  List standingStages;
   List rewardPool;
+  List<int> enemyLevels, standingStages;
+
+  @override
+  Map<String, cast.Cast> get castMap => {
+        'enemyLevels': const cast.List(cast.int),
+        'standingStages': const cast.List(cast.int)
+      };
 
   @override
   void decode(KeyedArchive object) {
@@ -56,4 +66,7 @@ class Jobs extends Coding {
     object.encode('standingStages', standingStages);
     object.encode('rewardPool', rewardPool);
   }
+
+  @override
+  List get props => [type, enemyLevels, standingStages, rewardPool];
 }

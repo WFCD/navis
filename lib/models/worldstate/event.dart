@@ -1,5 +1,6 @@
 import 'package:codable/codable.dart';
 import 'package:navis/models/abstract_classes.dart';
+import 'package:navis/models/worldstate/reward.dart';
 
 import 'syndicate.dart';
 
@@ -12,7 +13,7 @@ class Event extends WorldstateObject {
       node,
       tooltip;
   num currentScore, maximumScore;
-  List<_Rewards> rewards;
+  List<Reward> rewards;
   List<Jobs> jobs;
 
   @override
@@ -28,7 +29,7 @@ class Event extends WorldstateObject {
     maximumScore = object.decode('maximumScore');
     node = object.decode('node');
     tooltip = object.decode('tooltip');
-    rewards = object.decodeObjects('rewards', () => _Rewards());
+    rewards = object.decodeObjects('rewards', () => Reward());
     jobs = object.decodeObjects('jobs', () => Jobs());
   }
 
@@ -44,23 +45,17 @@ class Event extends WorldstateObject {
     object.encodeObjects('rewards', rewards);
     object.encodeObjects('jobs', jobs);
   }
-}
-
-class _Rewards extends Coding {
-  int credits;
-  String itemString;
 
   @override
-  void decode(KeyedArchive object) {
-    super.decode(object);
-
-    credits = object.decode('credits');
-    itemString = object.decode('itemString');
-  }
-
-  @override
-  void encode(KeyedArchive object) {
-    object.encode('credits', credits);
-    object.encode('itemString', itemString);
-  }
+  List get props => super.props
+    ..addAll([
+      faction,
+      description,
+      victimNode,
+      health,
+      node,
+      tooltip,
+      rewards,
+      jobs
+    ]);
 }

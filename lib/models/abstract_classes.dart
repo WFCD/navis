@@ -1,7 +1,9 @@
 import 'package:codable/codable.dart';
+import 'package:equatable/equatable.dart';
 import 'package:flutter/widgets.dart';
 
-abstract class WorldstateObject extends Coding {
+abstract class WorldstateObject extends Coding
+    with EquatableMixinBase, EquatableMixin {
   String id;
   DateTime activation, expiry;
 
@@ -28,6 +30,9 @@ abstract class WorldstateObject extends Coding {
     object.encode('activation', activation.toIso8601String());
     object.encode('expiry', expiry.toIso8601String());
   }
+
+  @override
+  List get props => [id, activation, expiry];
 }
 
 mixin CycleModel on WorldstateObject {

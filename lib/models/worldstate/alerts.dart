@@ -1,5 +1,7 @@
 import 'package:codable/codable.dart';
+import 'package:equatable/equatable.dart';
 import 'package:navis/models/abstract_classes.dart';
+import 'package:navis/models/worldstate/reward.dart';
 
 class Alert extends WorldstateObject {
   bool active;
@@ -18,14 +20,17 @@ class Alert extends WorldstateObject {
     object.encode('active', active);
     object.encodeObject('mission', mission);
   }
+
+  @override
+  List get props => super.props..addAll([active, mission]);
 }
 
-class _Mission extends Coding {
+class _Mission extends Coding with EquatableMixinBase, EquatableMixin {
   String node, type, faction;
   int minEnemyLevel, maxEnemyLevel, maxWaveNum;
   bool nightmare, archwingRequired;
 
-  _AlertRewards reward;
+  Reward reward;
 
   @override
   void decode(KeyedArchive object) {
@@ -38,7 +43,7 @@ class _Mission extends Coding {
     maxEnemyLevel = object.decode('maxEnemyLevel');
     nightmare = object.decode('nightmare');
     archwingRequired = object.decode('archwingRequired');
-    reward = object.decodeObject('reward', () => _AlertRewards());
+    reward = object.decodeObject('reward', () => Reward());
   }
 
   @override
@@ -52,27 +57,16 @@ class _Mission extends Coding {
     object.encode('archwingRequired', archwingRequired);
     object.encodeObject('reward', reward);
   }
-}
-
-class _AlertRewards extends Coding {
-  String itemString, thumbnail, asString;
-  int credits;
 
   @override
-  void decode(KeyedArchive object) {
-    super.decode(object);
-
-    itemString = object.decode('itemString');
-    asString = object.decode('asString');
-    credits = object.decode('credits');
-    thumbnail = object.decode('thumbnail');
-  }
-
-  @override
-  void encode(KeyedArchive object) {
-    object.encode('itemString', itemString);
-    object.encode('asString', asString);
-    object.encode('credits', credits);
-    object.encode('thumbnail', thumbnail);
-  }
+  List get props => [
+        node,
+        type,
+        faction,
+        minEnemyLevel,
+        maxEnemyLevel,
+        nightmare,
+        archwingRequired,
+        reward
+      ];
 }

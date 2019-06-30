@@ -1,9 +1,8 @@
 import 'package:codable/codable.dart';
+import 'package:navis/models/abstract_classes.dart';
 
-class VoidFissure extends Coding {
-  String id;
+class VoidFissure extends WorldstateObject {
   String node, missionType, enemy, tier;
-  DateTime expiry;
   int tierNum;
   bool active, expired;
 
@@ -11,27 +10,27 @@ class VoidFissure extends Coding {
   void decode(KeyedArchive object) {
     super.decode(object);
 
-    id = object.decode('id');
     node = object.decode('node');
     missionType = object.decode('missionType');
     enemy = object.decode('enemy');
     tier = object.decode('tier');
     tierNum = object.decode('tierNum');
-    expiry = DateTime.parse(object.decode('expiry'));
     active = object.decode('active');
     expired = object.decode('expired');
   }
 
   @override
   void encode(KeyedArchive object) {
-    object.encode('id', id);
+    super.encode(object);
     object.encode('node', node);
     object.encode('missionType', missionType);
     object.encode('enemy', enemy);
     object.encode('tier', tier);
     object.encode('tierNum', tierNum);
-    object.encode('expiry', expiry);
-    object.encode('active', active);
     object.encode('expired', expired);
   }
+
+  @override
+  List get props => super.props
+    ..addAll([node, missionType, enemy, tier, tierNum, active, expired]);
 }

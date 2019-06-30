@@ -5,7 +5,7 @@ WorldState cleanState(WorldState state) {
       a.active == false ||
       a.expiry.difference(DateTime.now().toUtc()) < const Duration(seconds: 1));
 
-  state.news.retainWhere((art) => art.translations.en != null);
+  state.news.retainWhere((art) => art.translations['en'] != null);
   state.news.sort((a, b) => b.date.compareTo(a.date));
 
   state.invasions.retainWhere(

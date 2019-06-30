@@ -1,10 +1,10 @@
 import 'package:codable/codable.dart';
+import 'package:equatable/equatable.dart';
 import 'package:navis/models/abstract_classes.dart';
 
 class VoidTrader extends WorldstateObject {
   String character, location;
   bool active;
-
   List<Inventory> inventory;
 
   @override
@@ -25,9 +25,13 @@ class VoidTrader extends WorldstateObject {
     object.encode('active', active);
     object.encodeObjects('inventory', inventory);
   }
+
+  @override
+  List get props =>
+      super.props..addAll([character, location, active, inventory]);
 }
 
-class Inventory extends Coding {
+class Inventory extends Coding with EquatableMixinBase, EquatableMixin {
   String item;
   int ducats, credits;
 
@@ -46,4 +50,7 @@ class Inventory extends Coding {
     object.encode('ducats', ducats);
     object.encode('credits', credits);
   }
+
+  @override
+  List get props => [item, ducats, credits];
 }

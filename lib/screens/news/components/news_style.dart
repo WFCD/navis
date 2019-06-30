@@ -57,7 +57,7 @@ class NewsCard extends StatelessWidget {
                         decoration: const BoxDecoration(
                             color: Color.fromRGBO(34, 34, 34, .4)),
                         child: Text(
-                          '[${_timestamp(news.date)} ago] ${news.translations.en}',
+                          '[${_timestamp(news.date)} ago] ${news.translations['en']}',
                           textAlign: TextAlign.center,
                           style: Theme.of(context)
                               .textTheme

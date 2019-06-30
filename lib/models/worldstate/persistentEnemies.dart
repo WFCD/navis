@@ -1,7 +1,7 @@
 import 'package:codable/codable.dart';
+import 'package:navis/models/abstract_classes.dart';
 
-class PersistentEnemie extends Coding {
-  String id;
+class PersistentEnemie extends WorldstateObject {
   String agentType, locationTag, lastDiscoveredAt;
   DateTime lastDiscoveredTime;
   int fleeDamage, region, rank;
@@ -28,7 +28,8 @@ class PersistentEnemie extends Coding {
 
   @override
   void encode(KeyedArchive object) {
-    object.encode('id', id);
+    super.encode(object);
+
     object.encode('agentType', agentType);
     object.encode('locationTag', locationTag);
     object.encode('lastDiscoveredTime', lastDiscoveredTime);
@@ -41,4 +42,19 @@ class PersistentEnemie extends Coding {
     object.encode('isDiscovered', isDiscovered);
     object.encode('isUsingTicketing', isUsingTicketing);
   }
+
+  @override
+  List get props => super.props
+    ..addAll([
+      agentType,
+      locationTag,
+      lastDiscoveredTime,
+      lastDiscoveredAt,
+      fleeDamage,
+      region,
+      rank,
+      healthPercent,
+      isDiscovered,
+      isUsingTicketing
+    ]);
 }
