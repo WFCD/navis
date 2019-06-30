@@ -1,6 +1,6 @@
 import 'package:codable/codable.dart';
 
-class Reward extends Coding {
+class Drop extends Coding {
   String place, item, rarity;
   num chance;
 

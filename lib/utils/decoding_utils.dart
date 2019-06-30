@@ -5,12 +5,12 @@ import 'package:navis/models/drop_tables/slim.dart';
 import 'package:navis/models/export.dart';
 import 'package:navis/utils/worldstate_utils.dart';
 
-List<Reward> jsonToRewards(String response) {
+List<Drop> jsonToRewards(String response) {
   final List<dynamic> drops = json.decode(response);
 
-  return drops.map<Reward>((d) {
+  return drops.map<Drop>((d) {
     final key = KeyedArchive.unarchive(d);
-    return Reward()..decode(key);
+    return Drop()..decode(key);
   }).toList();
 }
 

@@ -12,7 +12,7 @@ class SearchStateLoading extends SearchState {}
 class SearchStateSuccess extends SearchState {
   SearchStateSuccess(this.results) : super(props: [results]);
 
-  final List<Reward> results;
+  final List<Drop> results;
 }
 
 class SearchStateError extends SearchState {

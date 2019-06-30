@@ -40,7 +40,7 @@ class WFCD {
     return jsonToWorldstate(worldstate);
   }
 
-  Future<List<Reward>> getDropTable(
+  Future<List<Drop>> getDropTable(
       File source, DateTime timestamp, DateTime local) async {
     if (timestamp.isAfter(local) || source.existsSync() == false) {
       _storageService.saveTimestamp(timestamp);

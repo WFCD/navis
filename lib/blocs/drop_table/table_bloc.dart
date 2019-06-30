@@ -19,7 +19,7 @@ class TableSearchBloc extends Bloc<SearchEvent, SearchState> {
   static final _storageService = locator<LocalStorageService>();
   static final wfcd = locator<WFCD>();
 
-  static List<Reward> _table = [];
+  static List<Drop> _table = [];
 
   static Future<void> initializeTable() async {
     Map<String, dynamic> info;
@@ -82,7 +82,7 @@ class TableSearchBloc extends Bloc<SearchEvent, SearchState> {
   }
 }
 
-List<Reward> _search(SearchTable drops) {
+List<Drop> _search(SearchTable drops) {
   return drops.rewards
       .where((r) => r.item.toLowerCase().contains(drops.term.toLowerCase()))
       .toList();
@@ -92,5 +92,5 @@ class SearchTable {
   SearchTable(this.term, this.rewards);
 
   final String term;
-  final List<Reward> rewards;
+  final List<Drop> rewards;
 }

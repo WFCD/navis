@@ -18,7 +18,7 @@ class SearchResults extends StatelessWidget {
     return Colors.brown;
   }
 
-  Widget _result(BuildContext context, Reward drop) {
+  Widget _result(BuildContext context, Drop drop) {
     final theme = Theme.of(context);
 
     return Card(
