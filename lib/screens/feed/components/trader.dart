@@ -16,6 +16,8 @@ class Trader extends StatelessWidget {
         title: 'Void Trader',
         child: BlocBuilder(
           bloc: BlocProvider.of<WorldstateBloc>(context),
+          condition: (WorldStates previous, WorldStates current) =>
+              previous.trader != current.trader,
           builder: (BuildContext context, WorldStates state) {
             if (state is WorldstateLoaded) {
               final trader = state.trader;

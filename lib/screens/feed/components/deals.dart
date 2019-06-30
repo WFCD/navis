@@ -1,7 +1,8 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:navis/blocs/bloc.dart';
-import 'package:navis/components/layout.dart';
 import 'package:navis/components/animations.dart';
+import 'package:navis/components/layout.dart';
 
 class Deals extends StatelessWidget {
   const Deals({Key key}) : super(key: key);
@@ -14,6 +15,8 @@ class Deals extends StatelessWidget {
         title: 'Darvo Deals',
         child: BlocBuilder(
           bloc: BlocProvider.of<WorldstateBloc>(context),
+          condition: (WorldStates previous, WorldStates current) =>
+              listEquals(previous.dailyDeals, current.dailyDeals),
           builder: (_, state) {
             if (state is WorldstateLoaded) {
               final header = TableRow(children: <Widget>[

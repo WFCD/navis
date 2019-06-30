@@ -13,7 +13,7 @@ class EarthCycle extends StatelessWidget {
     return BlocBuilder<UpdateEvent, WorldStates>(
       bloc: BlocProvider.of<WorldstateBloc>(context),
       condition: (WorldStates previous, WorldStates current) =>
-          previous.cetus.expiry.isBefore(current.cetus.expiry),
+          previous.earth.expiry.isBefore(current.earth.expiry),
       builder: (BuildContext context, WorldStates state) {
         return Cycle(title: 'Earth Day/Night Cycle', cycle: state.earth);
       },
@@ -28,6 +28,8 @@ class CetusCycle extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<UpdateEvent, WorldStates>(
       bloc: BlocProvider.of<WorldstateBloc>(context),
+      condition: (WorldStates previous, WorldStates current) =>
+          previous.cetus.expiry.isBefore(current.cetus.expiry),
       builder: (BuildContext context, WorldStates state) {
         return Cycle(title: 'Cetus Day/Night Cycle', cycle: state.cetus);
       },
@@ -42,6 +44,8 @@ class OrbVallisCycle extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<UpdateEvent, WorldStates>(
       bloc: BlocProvider.of<WorldstateBloc>(context),
+      condition: (WorldStates previous, WorldStates current) =>
+          previous.vallis.expiry.isBefore(current.vallis.expiry),
       builder: (BuildContext context, WorldStates state) {
         return Cycle(title: 'Orb Vallis Warm/Cold Cycle', cycle: state.vallis);
       },

@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -19,7 +20,7 @@ class AlertTile extends StatelessWidget {
         child: BlocBuilder(
             bloc: state,
             condition: (WorldStates previous, WorldStates current) =>
-                previous.alerts != current.alerts,
+                listEquals(previous.alerts, current.alerts),
             builder: (context, state) {
               if (state is WorldstateLoaded) {
                 return Column(children: <Widget>[
