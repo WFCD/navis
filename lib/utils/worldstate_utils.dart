@@ -1,6 +1,6 @@
 import 'package:navis/models/export.dart';
 
-WorldState cleanState(WorldState state) {
+Worldstate cleanState(Worldstate state) {
   state.alerts.removeWhere((a) =>
       a.active == false ||
       a.expiry.difference(DateTime.now().toUtc()) < const Duration(seconds: 1));

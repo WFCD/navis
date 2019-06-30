@@ -24,7 +24,7 @@ class WFCD {
 
   static final _storageService = locator<LocalStorageService>();
 
-  Future<WorldState> getWorldstate(Platforms platform) async {
+  Future<Worldstate> getWorldstate(Platforms platform) async {
     platform ??= Platforms.pc;
     Map worldstate;
 
@@ -34,7 +34,7 @@ class WFCD {
 
       worldstate = response.data;
     } on SocketException {
-      return WorldState();
+      return Worldstate();
     }
 
     return jsonToWorldstate(worldstate);

@@ -3,7 +3,7 @@ import 'package:navis/models/export.dart';
 import 'package:navis/models/worldstate/arbitration.dart';
 import 'package:navis/models/worldstate/kuva.dart';
 
-class WorldState extends Coding {
+class Worldstate extends Coding {
   String timestamp;
   List<OrbiterNews> news;
   List<Event> events;

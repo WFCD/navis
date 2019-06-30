@@ -5,7 +5,7 @@ import 'package:navis/models/export.dart';
 abstract class WorldStates extends Equatable {
   WorldStates([List props = const [], this.worldstate]) : super(props);
 
-  WorldState worldstate;
+  Worldstate worldstate;
 
   String timestamp;
   List<OrbiterNews> news;
@@ -33,7 +33,7 @@ class WorldstateError extends WorldStates {
 }
 
 class WorldstateLoaded extends WorldStates {
-  WorldstateLoaded(WorldState worldstate)
+  WorldstateLoaded(Worldstate worldstate)
       : super([worldstate.timestamp], worldstate);
 
   @override

@@ -59,7 +59,7 @@ class WorldstateBloc extends HydratedBloc<UpdateEvent, WorldStates>
   @override
   WorldStates fromJson(Map<String, dynamic> json) {
     final key = KeyedArchive.unarchive(json);
-    final worldstate = WorldState()..decode(key);
+    final worldstate = Worldstate()..decode(key);
 
     return WorldstateLoaded(worldstate);
   }

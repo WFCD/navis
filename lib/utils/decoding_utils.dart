@@ -14,9 +14,9 @@ List<Drop> jsonToRewards(String response) {
   }).toList();
 }
 
-WorldState jsonToWorldstate(Map<String, dynamic> response) {
+Worldstate jsonToWorldstate(Map<String, dynamic> response) {
   final key = KeyedArchive.unarchive(response);
-  final WorldState state = WorldState()..decode(key);
+  final Worldstate state = Worldstate()..decode(key);
 
   return cleanState(state);
 }

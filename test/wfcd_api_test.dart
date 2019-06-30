@@ -58,22 +58,22 @@ Future<void> main() async {
   group('Test Worldstate APi', () {
     test('Test PC endpoint', () async {
       final state = await wfcd.getWorldstate(Platforms.pc);
-      expect(state, const TypeMatcher<WorldState>());
+      expect(state, const TypeMatcher<Worldstate>());
     });
 
     test('Test PS4 endpoint', () async {
       final state = await wfcd.getWorldstate(Platforms.ps4);
-      expect(state, const TypeMatcher<WorldState>());
+      expect(state, const TypeMatcher<Worldstate>());
     });
 
     test('Test Xbox one endpoint', () async {
       final state = await wfcd.getWorldstate(Platforms.xb1);
-      expect(state, const TypeMatcher<WorldState>());
+      expect(state, const TypeMatcher<Worldstate>());
     });
 
     test('Test Switch endpoint', () async {
       final state = await wfcd.getWorldstate(Platforms.swi);
-      expect(state, const TypeMatcher<WorldState>());
+      expect(state, const TypeMatcher<Worldstate>());
     });
   });
 
