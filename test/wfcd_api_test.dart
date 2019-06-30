@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
@@ -20,6 +21,7 @@ Map<String, dynamic> mockstate = {
 
 Future<void> main() async {
   final directory = await Directory.systemTemp.createTemp();
+  final asset = File('../assets/slim.json');
 
   WFCD wfcd;
   LocalStorageService storage;
@@ -49,9 +51,14 @@ Future<void> main() async {
     storage = locator<LocalStorageService>();
     wfcd = WFCD();
 
-    wfcd.warframestat.interceptors.add(InterceptorsWrapper(onRequest: (option) {
+    wfcd.warframestat.interceptors
+        .add(InterceptorsWrapper(onRequest: (option) async {
       if (option.path.contains(RegExp(r'(pc)|(xb1)|(swi)')))
         return wfcd.warframestat.resolve(mockstate);
+
+      if (option.path.contains('drops'))
+        return wfcd.warframestat
+            .resolve(json.decode(await asset.readAsString()));
     }));
   });
 
