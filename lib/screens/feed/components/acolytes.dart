@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:navis/blocs/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -13,7 +14,7 @@ class Acolytes extends StatelessWidget {
     return BlocBuilder(
       bloc: BlocProvider.of<WorldstateBloc>(context),
       condition: (WorldStates previous, WorldStates current) =>
-          previous.acolytes != current.acolytes,
+          listEquals(previous.acolytes, current.acolytes),
       builder: (context, state) {
         if (state is WorldstateLoaded) {
           return Tiles(
