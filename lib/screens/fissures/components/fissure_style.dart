@@ -3,13 +3,12 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:navis/components/animations/countdown.dart';
 import 'package:navis/components/layout.dart';
 import 'package:navis/models/worldstate/fissure.dart';
+import 'package:navis/utils/utils.dart';
 
 class FissureCard extends StatelessWidget {
-  FissureCard({Key key, @required this.fissure}) : super(key: key);
+  const FissureCard({Key key, @required this.fissure}) : super(key: key);
 
   final VoidFissure fissure;
-
-  final _nodeBackground = RegExp(r'\(([^)]*)\)');
 
   Widget _buildDetails(BuildContext context) {
     const color = Colors.white;
@@ -64,11 +63,9 @@ class FissureCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final relic = 'assets/relics/${fissure.tier}.svg';
-    final backgroundImage =
-        'assets/skyboxes/${_nodeBackground.firstMatch(fissure.node).group(1)}.webp';
 
     return BackgroundImageCard(
-      provider: AssetImage(backgroundImage),
+      provider: skybox(fissure.node),
       child: Row(
         children: <Widget>[
           _buildDetails(context),

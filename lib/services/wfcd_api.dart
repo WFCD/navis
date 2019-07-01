@@ -8,7 +8,7 @@ import 'package:flutter/services.dart';
 import 'package:navis/models/drop_tables/slim.dart';
 import 'package:navis/models/export.dart';
 import 'package:navis/services/services.dart';
-import 'package:navis/utils/decoding_utils.dart';
+import 'package:navis/utils/utils.dart';
 import 'package:navis/utils/enums.dart';
 
 import 'localstorage_service.dart';

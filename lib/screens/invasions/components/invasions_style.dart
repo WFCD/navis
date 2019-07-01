@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:navis/components/layout.dart';
 import 'package:navis/components/layout/static_box.dart';
 import 'package:navis/models/export.dart';
 import 'package:navis/utils/factionutils.dart';
+import 'package:navis/utils/utils.dart';
 
 class InvasionsStyle extends StatelessWidget {
   const InvasionsStyle({Key key, this.invasion}) : super(key: key);
@@ -10,56 +12,51 @@ class InvasionsStyle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
-      margin: const EdgeInsets.all(8.0),
-      clipBehavior: Clip.hardEdge,
-      child: Container(
-          height: 200,
-          alignment: Alignment.center,
-          child: Column(children: <Widget>[
-            const Spacer(),
-            Container(
-              padding: const EdgeInsets.only(left: 8.0, right: 8.0),
-              child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>[
-                    _BuildDetails(
-                      faction: invasion.attackingFaction,
-                      reward: invasion.attackerReward.itemString,
-                    ),
-                    const Spacer(),
-                    _BuildDetails(
-                      faction: invasion.defendingFaction,
-                      reward: invasion.defenderReward.itemString,
-                    )
-                  ]),
-            ),
-            const Spacer(),
-            _InvasionDetails(
-              node: invasion.node,
-              description: invasion.desc,
-              eta: invasion.eta,
-            ),
-            const SizedBox(height: 16.0),
-            Container(
-              height: 8.0,
-              alignment: Alignment.center,
-              padding: const EdgeInsets.only(left: 8.0, right: 8.0),
-              decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                stops: <double>[
-                  (invasion.completion / 100).toDouble(),
-                  (invasion.completion % 100 / 100).toDouble()
-                ],
-                colors: <Color>[
-                  factionColor(invasion.attackingFaction),
-                  factionColor(invasion.defendingFaction)
-                ],
-              )),
-            )
-          ])),
-    );
+    return BackgroundImageCard(
+        height: 200,
+        provider: skybox(invasion.node),
+        child: Column(children: <Widget>[
+          const Spacer(),
+          Container(
+            padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+            child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  _BuildDetails(
+                    faction: invasion.attackingFaction,
+                    reward: invasion.attackerReward.itemString,
+                  ),
+                  const Spacer(),
+                  _BuildDetails(
+                    faction: invasion.defendingFaction,
+                    reward: invasion.defenderReward.itemString,
+                  )
+                ]),
+          ),
+          const Spacer(),
+          _InvasionDetails(
+            node: invasion.node,
+            description: invasion.desc,
+            eta: invasion.eta,
+          ),
+          const SizedBox(height: 16.0),
+          Container(
+            height: 8.0,
+            alignment: Alignment.center,
+            padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+            decoration: BoxDecoration(
+                gradient: LinearGradient(
+              stops: <double>[
+                (invasion.completion / 100).toDouble(),
+                (invasion.completion % 100 / 100).toDouble()
+              ],
+              colors: <Color>[
+                factionColor(invasion.attackingFaction),
+                factionColor(invasion.defendingFaction)
+              ],
+            )),
+          )
+        ]));
   }
 }
 
@@ -89,10 +86,15 @@ class _InvasionDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    const shadow = Shadow(offset: Offset(1.0, 0.0), blurRadius: 4.0);
+
     return Container(
       child: Column(children: <Widget>[
         Text(node,
-            style: Theme.of(context).textTheme.subhead.copyWith(fontSize: 15)),
+            style: Theme.of(context)
+                .textTheme
+                .subhead
+                .copyWith(fontSize: 15, shadows: <Shadow>[shadow])),
         Text('$description ($eta)',
             style: TextStyle(color: Theme.of(context).textTheme.caption.color)),
       ]),
