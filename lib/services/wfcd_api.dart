@@ -19,8 +19,7 @@ const String dropTableUrl = 'https://drops.warframestat.us';
 class WFCD {
   final warframestat = Dio()
     ..options.baseUrl = statusUrl
-    ..options.connectTimeout = 5000
-    ..options.receiveTimeout = 3000;
+    ..options.connectTimeout = 5000;
 
   static final _storageService = locator<LocalStorageService>();
 
@@ -51,7 +50,7 @@ class WFCD {
         await source.writeAsString(json.encode(request.data));
 
         return await compute(jsonToRewards, await source.readAsString());
-      } on SocketException {
+      } on DioError {
         final slim = await rootBundle.loadString('assets/slim.json');
 
         source.writeAsStringSync(slim);
