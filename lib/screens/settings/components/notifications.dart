@@ -9,18 +9,18 @@ class Notifications extends StatelessWidget {
 
   void openDialog(BuildContext context, String type) {
     switch (type) {
-      case 'Acolytes':
+      /*case 'Acolytes':
         FilterDialog.showFilters(context, acolytes, FilterType.acolytes);
-        break;
+        break;*/
       case 'Cycles':
         FilterDialog.showFilters(context, cycles, FilterType.cycles);
         break;
-      case 'Fissure Missions':
+      /*case 'Fissure Missions':
         debugPrint('not implemented yet');
         break;
       case 'News':
         FilterDialog.showFilters(context, newsType, FilterType.news);
-        break;
+        break;*/
     }
   }
 
@@ -31,7 +31,7 @@ class Notifications extends StatelessWidget {
     return Container(
         child: Column(children: <Widget>[
       const SettingTitle(title: 'Notifications'),
-      for (Map<String, String> m in simple)
+      /*for (Map<String, String> m in simple)
         BlocBuilder<ChangeEvent, StorageState>(
             bloc: storage,
             builder: (context, state) {
@@ -42,7 +42,7 @@ class Notifications extends StatelessWidget {
                   activeColor: Theme.of(context).accentColor,
                   onChanged: (b) =>
                       storage.dispatch(ToggleNotification(m['key'], b)));
-            }),
+            }),*/
       for (String k in filtered.keys)
         ListTile(
             title: Text(k),

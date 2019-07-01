@@ -71,10 +71,10 @@ const simple = [
 ];
 
 const filtered = {
-  'News': 'News notifications for Prime Access, Streams and Updates',
+  //'News': 'News notifications for Prime Access, Streams and Updates',
   'Cycles': 'Day/Night cycle notifications',
   //'Fissure Missions': 'Filter fissure notifications by prefered mission type',
-  'Acolytes': 'Notification for when an Acolyte is found',
+  //'Acolytes': 'Notification for when an Acolyte is found',
 };
 
 const cycles = {
