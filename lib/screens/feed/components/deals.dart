@@ -48,6 +48,8 @@ class Deals extends StatelessWidget {
                     ],
                   ));
             }
+
+            return Container();
           },
         ));
   }

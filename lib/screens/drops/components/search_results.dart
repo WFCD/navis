@@ -57,6 +57,8 @@ class SearchResults extends StatelessWidget {
               if (state is SearchStateSuccess) {
                 return _result(context, state.results[index]);
               }
+
+              return Container();
             },
             childCount: childCount,
           ),

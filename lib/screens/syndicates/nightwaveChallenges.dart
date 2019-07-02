@@ -37,6 +37,8 @@ class NightwaveChallenges extends StatelessWidget {
                 ...weekly
               ]);
             }
+
+            return Container();
           },
         ));
   }

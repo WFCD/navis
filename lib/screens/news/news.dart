@@ -16,16 +16,14 @@ class Orbiter extends StatelessWidget {
         child: BlocBuilder(
             bloc: bloc,
             builder: (context, state) {
-              if (state is WorldstateUninitialized) {
-                return const Center(child: CircularProgressIndicator());
-              }
-
               if (state is WorldstateLoaded) {
                 return ListView.builder(
                     itemCount: state.news.length,
                     itemBuilder: (context, index) =>
                         NewsCard(news: state.news[index]));
               }
+
+              return const Center(child: CircularProgressIndicator());
             }));
   }
 }

@@ -53,12 +53,11 @@ Future<void> main() async {
 
     wfcd.warframestat.interceptors
         .add(InterceptorsWrapper(onRequest: (option) async {
-      if (option.path.contains(RegExp(r'(pc)|(xb1)|(swi)')))
-        return wfcd.warframestat.resolve(mockstate);
-
       if (option.path.contains('drops'))
         return wfcd.warframestat
             .resolve(json.decode(await asset.readAsString()));
+
+      return wfcd.warframestat.resolve(mockstate);
     }));
   });
 

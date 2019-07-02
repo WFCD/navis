@@ -18,9 +18,6 @@ class SyndicatesList extends StatelessWidget {
         child: BlocBuilder(
             bloc: bloc,
             builder: (context, state) {
-              if (state is WorldstateUninitialized)
-                return const Center(child: CircularProgressIndicator());
-
               if (state is WorldstateLoaded) {
                 final List<Syndicate> syndicates = state.syndicates;
 
@@ -46,6 +43,8 @@ class SyndicatesList extends StatelessWidget {
                   },
                 ]);
               }
+
+              return const Center(child: CircularProgressIndicator());
             }));
   }
 }
