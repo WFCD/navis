@@ -73,6 +73,8 @@ class Trader extends StatelessWidget {
                 ),
               ]);
             }
+
+            return Container();
           },
         ));
   }

@@ -27,6 +27,8 @@ class AlertTile extends StatelessWidget {
                   ...state.alerts.map((alert) => _BuildAlerts(alert: alert))
                 ]);
               }
+
+              return Container();
             }));
   }
 }

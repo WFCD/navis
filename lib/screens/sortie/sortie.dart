@@ -46,6 +46,8 @@ class SortieScreen extends StatelessWidget {
                   ]);
                 }
               }
+
+              return Container();
             }));
   }
 }

@@ -48,6 +48,8 @@ class NightWaveStyle extends StatelessWidget {
                                 style: Theme.of(context).textTheme.subtitle)
                           ])));
             }
+
+            return Container();
           },
         ),
       ),
