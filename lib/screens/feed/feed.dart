@@ -21,9 +21,6 @@ class Feed extends StatelessWidget {
       child: BlocBuilder(
           bloc: wstate,
           builder: (context, state) {
-            if (state is WorldstateUninitialized)
-              return const Center(child: CircularProgressIndicator());
-
             if (state is WorldstateLoaded) {
               final bool isAlertActive = state.alerts.isNotEmpty;
               final bool isEventActive = state.events.isNotEmpty;
@@ -31,7 +28,7 @@ class Feed extends StatelessWidget {
               final bool areDealsActive = state.dailyDeals.isNotEmpty;
 
               return ListView(children: <Widget>[
-                if (isEventActive) EventPanel(events: state.events),
+                if (isEventActive) const EventPanel(),
                 if (areAcolytesActive) const Acolytes(),
                 ...cycles,
                 if (isAlertActive) const AlertTile(),
@@ -39,6 +36,8 @@ class Feed extends StatelessWidget {
                 if (areDealsActive) const Deals(),
               ]);
             }
+
+            return const Center(child: CircularProgressIndicator());
           }),
     );
   }
