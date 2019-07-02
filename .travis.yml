@@ -24,7 +24,7 @@ matrix:
       script:
         - flutter pub get
         - flutter test 
-        - flutter build apk
+        - flutter build apk # we only need to see if an apk builds correctly so the quicker the better
 
     - name: 'Fastlane Deploy'
       language: android
@@ -49,7 +49,7 @@ matrix:
         - flutter upgrade 
       script:
         - flutter pub get
-        - flutter build apk --release
+        - flutter build appbundle # release is the default mode for build
         - cd android && bundle exec fastlane beta               
 
 cache:
