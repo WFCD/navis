@@ -1,8 +1,13 @@
+import 'package:navis/services/notification.dart';
 import 'package:navis/utils/enums.dart';
 import 'package:navis/utils/storage_keys.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'services.dart';
+
 class LocalStorageService {
+  final firebase = locator<NotificationService>();
+
   static LocalStorageService _instance;
   static SharedPreferences _prefrence;
 
@@ -14,13 +19,16 @@ class LocalStorageService {
   }
 
   Platforms get platform {
+    const defaultPlatform = Platforms.pc;
     final diskPlatform = getFromDisk(platformKey);
 
     if (diskPlatform != null)
       return Platforms.values
           .firstWhere((p) => p.toString() == 'Platforms.$diskPlatform');
 
-    return Platforms.pc;
+    firebase.subscribeToPlatform(currentPlatform: defaultPlatform);
+
+    return defaultPlatform;
   }
 
   set platform(Platforms value) =>
