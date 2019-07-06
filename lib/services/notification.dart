@@ -1,6 +1,5 @@
 import 'package:catcher/core/catcher.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:flutter/rendering.dart';
 import 'package:navis/utils/enums.dart';
 
 class NotificationService {

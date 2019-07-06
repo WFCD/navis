@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:catcher/core/catcher.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:navis/blocs/bloc.dart';
