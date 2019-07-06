@@ -1,6 +1,9 @@
 import 'dart:async';
 
+import 'package:catcher/core/catcher.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:navis/blocs/bloc.dart';
 import 'package:navis/components/animations.dart';
 import 'package:navis/models/export.dart';
 import 'package:navis/screens/syndicates/components/rewards.dart';
@@ -9,10 +12,7 @@ import 'package:navis/components/layout.dart';
 import 'package:rxdart/rxdart.dart';
 
 class EventPanel extends StatefulWidget {
-  const EventPanel({this.events});
-
-  final List<Event> events;
-
+  const EventPanel({Key key}) : super(key: key);
   @override
   EventPanelState createState() => EventPanelState();
 }
@@ -31,15 +31,6 @@ class EventPanelState extends State<EventPanel> {
   }
 
   @override
-  void didUpdateWidget(EventPanel oldWidget) {
-    if (oldWidget.events.length != widget.events.length) {
-      _currentPage.sink.add(0);
-    }
-
-    super.didUpdateWidget(oldWidget);
-  }
-
-  @override
   void dispose() {
     _currentPage?.close();
     pageController?.dispose();
@@ -52,49 +43,54 @@ class EventPanelState extends State<EventPanel> {
 
   @override
   Widget build(BuildContext context) {
-    final bool enableDots = widget.events.length <= 1;
-
-    return Container(
-        height: 160,
-        width: MediaQuery.of(context).size.width,
-        child: Material(
-          color: Theme.of(context).cardColor,
-          elevation: 6,
-          child: PageStorage(
-              bucket: PageStorageBucket(),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                mainAxisSize: MainAxisSize.max,
-                children: <Widget>[
-                  Expanded(
-                      child: PageView(
-                    controller: pageController,
-                    scrollDirection: Axis.horizontal,
+    return BlocBuilder(
+      bloc: BlocProvider.of<WorldstateBloc>(context),
+      condition: (WorldStates previous, WorldStates current) =>
+          listEquals(previous.events, current.events),
+      builder: (BuildContext context, WorldStates state) {
+        return Container(
+            height: 160,
+            width: MediaQuery.of(context).size.width,
+            child: Material(
+              color: Theme.of(context).cardColor,
+              elevation: 6,
+              child: PageStorage(
+                  bucket: PageStorageBucket(),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.max,
                     children: <Widget>[
-                      ...widget.events.map((e) => EventBuilder(event: e))
+                      Expanded(
+                          child: PageView(
+                        controller: pageController,
+                        scrollDirection: Axis.horizontal,
+                        children: <Widget>[
+                          ...state.events.map((e) => EventBuilder(event: e))
+                        ],
+                        onPageChanged: onPageChanged,
+                      )),
+                      if (state.events.length <= 1)
+                        StreamBuilder<int>(
+                          stream: _currentPage.stream,
+                          initialData: 0,
+                          builder: (BuildContext context,
+                              AsyncSnapshot<int> snapshot) {
+                            return Indicator(
+                              numberOfDot: state.events.length,
+                              position: snapshot.data,
+                              dotSize: const Size.square(9.0),
+                              dotActiveSize: const Size(25.0, 9.0),
+                              dotActiveShape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8.0)),
+                              dotActiveColor: Theme.of(context).accentColor,
+                            );
+                          },
+                        ),
                     ],
-                    onPageChanged: onPageChanged,
                   )),
-                  if (!enableDots)
-                    StreamBuilder<int>(
-                      stream: _currentPage.stream,
-                      initialData: 0,
-                      builder:
-                          (BuildContext context, AsyncSnapshot<int> snapshot) {
-                        return Indicator(
-                          numberOfDot: widget.events.length,
-                          position: snapshot.data,
-                          dotSize: const Size.square(9.0),
-                          dotActiveSize: const Size(25.0, 9.0),
-                          dotActiveShape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8.0)),
-                          dotActiveColor: Theme.of(context).accentColor,
-                        );
-                      },
-                    ),
-                ],
-              )),
-        ));
+            ));
+      },
+    );
   }
 }
 
@@ -124,8 +120,8 @@ class EventBuilder extends StatelessWidget {
   String _healthText() {
     String health;
 
-    if (event?.health != null)
-      health = event?.health;
+    if (event.health != null)
+      health = event.health;
     else if (event.currentScore != null && event.maximumScore != null) {
       health = (100 - (event.currentScore / event.maximumScore) * 100)
           .toStringAsFixed(2);
@@ -170,12 +166,13 @@ class EventBuilder extends StatelessWidget {
             if (event.victimNode != null)
               StaticBox.text(text: event.victimNode, color: Colors.red),
             space,
-            if (!health.contains('unknown'))
+            if (!health.contains(RegExp(r'(unknown)||(NaN)')))
               StaticBox.text(
                 text: health,
                 color: _healthColor(),
               ),
-            if (health.contains('unknown')) CountdownBox(expiry: event.expiry)
+            if (health.contains(RegExp(r'(unknown)||(NaN)')))
+              CountdownBox(expiry: event.expiry)
           ]),
           space,
           Row(
