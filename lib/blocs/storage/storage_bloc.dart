@@ -39,8 +39,10 @@ class StorageBloc extends Bloc<ChangeEvent, StorageState>
     }
 
     if (event is ToggleNotification) {
-      _instance.saveToDisk(event.key, event.value);
-      firebase.subscribeToNotification(event.key, event.value);
+      _instance.saveToDisk(
+        event.key,
+        firebase.subscribeToNotification(event.key, event.value),
+      );
 
       yield MainStorageState();
     }
