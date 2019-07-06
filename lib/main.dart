@@ -12,9 +12,11 @@ import 'app.dart';
 Future<void> main() async {
   BlocSupervisor.delegate = await HydratedBlocDelegate.build();
 
+  final crashLogs = await getFile();
+
   final debugConfig = CatcherOptions(SilentReportMode(), [ConsoleHandler()]);
   final releaseConfig = CatcherOptions(
-      SilentReportMode(), [ConsoleHandler(), FileHandler(await getFile())]);
+      SilentReportMode(), [ConsoleHandler(), FileHandler(crashLogs)]);
 
   await setupLocator();
 
@@ -31,5 +33,5 @@ Future<void> main() async {
 
 Future<File> getFile() async {
   final directory = await getExternalStorageDirectory();
-  return File('${directory.path}/navis/navis_logs.txt');
+  return File('${directory.path}/Navis/navis_logs.txt');
 }
