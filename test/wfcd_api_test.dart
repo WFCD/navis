@@ -35,7 +35,6 @@ Future<void> main() async {
       return null;
     });
 
-    // Mock out the MethodChannel for the path_provider plugin.
     const MethodChannel('plugins.flutter.io/path_provider')
         .setMockMethodCallHandler((MethodCall methodCall) async {
       // If you're getting the apps documents directory, return the path to the
@@ -45,6 +44,9 @@ Future<void> main() async {
       }
       return null;
     });
+
+    const MethodChannel('plugins.flutter.io/firebase_messaging')
+        .setMockMethodCallHandler((MethodCall methodCall) async {});
 
     await setupLocator(isTest: true);
 
