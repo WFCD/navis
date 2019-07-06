@@ -1,3 +1,4 @@
+import 'package:catcher/core/catcher.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/rendering.dart';
 import 'package:navis/utils/enums.dart';
@@ -10,7 +11,6 @@ class NotificationService {
 
     messaging.configure(onMessage: (Map<String, dynamic> message) {
       // TODO(SlayerOrnstein): add in app notification
-      //debugPrint(message.toString());
       return null;
     });
 
@@ -34,10 +34,19 @@ class NotificationService {
     return true;
   }
 
-  void subscribeToNotification(String notificationKey, bool condition) {
-    if (condition)
-      messaging.subscribeToTopic(notificationKey);
-    else
-      messaging.unsubscribeFromTopic(notificationKey);
+  bool subscribeToNotification(String notificationKey, bool condition) {
+    try {
+      if (condition) {
+        messaging.subscribeToTopic(notificationKey);
+        return true;
+      } else {
+        messaging.unsubscribeFromTopic(notificationKey);
+
+        return false;
+      }
+    } catch (error, stackTrace) {
+      Catcher.reportCheckedError(error, stackTrace);
+      return false;
+    }
   }
 }
