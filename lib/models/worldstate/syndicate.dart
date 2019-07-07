@@ -36,11 +36,12 @@ class Syndicate extends WorldstateObject {
 
 class Jobs extends Coding with EquatableMixinBase, EquatableMixin {
   String type;
-  List rewardPool;
+  List<String> rewardPool;
   List<int> enemyLevels, standingStages;
 
   @override
   Map<String, cast.Cast> get castMap => {
+        'rewardPool': const cast.AnyCast(),
         'enemyLevels': const cast.List(cast.int),
         'standingStages': const cast.List(cast.int)
       };
@@ -53,10 +54,11 @@ class Jobs extends Coding with EquatableMixinBase, EquatableMixin {
     enemyLevels = object.decode('enemyLevels');
     standingStages = object.decode('standingStages');
 
-    if (object.decode('rewardPool') is List)
-      rewardPool = object.decode('rewardPool');
-    else
+    if (object.decode('rewardPool') is List) {
+      rewardPool = List.castFrom<dynamic, String>(object.decode('rewardPool'));
+    } else {
       rewardPool = <String>[];
+    }
   }
 
   @override
