@@ -19,7 +19,7 @@ const String dropTableUrl = 'https://drops.warframestat.us';
 class WFCD {
   final warframestat = Dio()
     ..options.baseUrl = statusUrl
-    ..options.connectTimeout = 5000;
+    ..options.connectTimeout = 50000;
 
   static final _storageService = locator<LocalStorageService>();
 
