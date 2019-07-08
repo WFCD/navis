@@ -21,7 +21,7 @@ Future<void> main() async {
   await setupLocator();
 
   Catcher(
-    BlocProviderTree(blocProviders: [
+    MultiBlocProvider(providers: [
       BlocProvider<StorageBloc>(builder: (_) => StorageBloc()),
       BlocProvider<WorldstateBloc>(builder: (_) => WorldstateBloc()),
       BlocProvider<NavigationBloc>(builder: (_) => NavigationBloc())
