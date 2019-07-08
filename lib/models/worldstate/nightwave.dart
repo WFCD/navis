@@ -63,8 +63,13 @@ class Nightwave extends WorldstateObject {
     object.encode('season', season);
     object.encode('tag', tag);
     object.encode('phase', phase);
+    object.encodeObjects('possibleChallenges', possibleChallenges);
+    object.encodeObjects('activeChallenges', _activeChallenges);
     object.encode('rewardTypes', rewardTypes);
   }
+
+  @override
+  List get props => super.props..add([active, _activeChallenges]);
 }
 
 class Challenge extends WorldstateObject
