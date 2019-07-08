@@ -2,13 +2,14 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
-import 'package:flutter/services.dart';
 import 'package:navis/models/export.dart';
 import 'package:navis/services/localstorage_service.dart';
 import 'package:navis/services/services.dart';
 import 'package:navis/services/wfcd_api.dart';
 import 'package:navis/utils/enums.dart';
 import 'package:test/test.dart';
+
+import 'setup_methods.dart';
 
 Map<String, dynamic> mockstate = {
   'news': [],
@@ -27,28 +28,8 @@ Future<void> main() async {
   LocalStorageService storage;
 
   setUpAll(() async {
-    const MethodChannel('plugins.flutter.io/shared_preferences')
-        .setMockMethodCallHandler((MethodCall methodCall) async {
-      if (methodCall.method == 'getAll') {
-        return <String, dynamic>{}; // set initial values here if desired
-      }
-      return null;
-    });
-
-    const MethodChannel('plugins.flutter.io/path_provider')
-        .setMockMethodCallHandler((MethodCall methodCall) async {
-      // If you're getting the apps documents directory, return the path to the
-      // temp directory on the test environment instead.
-      if (methodCall.method == 'getApplicationDocumentsDirectory') {
-        return directory.path;
-      }
-      return null;
-    });
-
-    const MethodChannel('plugins.flutter.io/firebase_messaging')
-        .setMockMethodCallHandler((MethodCall methodCall) async {});
-
-    await setupLocator(isTest: true);
+    await setupPackageMockMethods();
+    await setupLocator();
 
     storage = locator<LocalStorageService>();
     wfcd = WFCD();

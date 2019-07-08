@@ -9,7 +9,7 @@ import 'wfcd_api.dart';
 
 GetIt locator = GetIt();
 
-Future<void> setupLocator({bool isTest = false}) async {
+Future<void> setupLocator() async {
   locator
       .registerSingleton<NotificationService>(NotificationService.initialize());
 
@@ -19,8 +19,5 @@ Future<void> setupLocator({bool isTest = false}) async {
   locator.registerSingleton<CrashlyticsService>(CrashlyticsService());
   locator.registerSingleton<WFCD>(WFCD());
   locator.registerSingleton<PermissionsService>(PermissionsService());
-
-  if (!isTest) {
-    locator.registerSingleton<PackageInfo>(await PackageInfo.fromPlatform());
-  }
+  locator.registerSingleton<PackageInfo>(await PackageInfo.fromPlatform());
 }

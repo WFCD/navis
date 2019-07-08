@@ -1,8 +1,5 @@
-import 'dart:io';
-
 import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter/services.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 
 import 'package:navis/blocs/bloc.dart';
@@ -13,6 +10,8 @@ import 'package:navis/utils/enums.dart';
 import 'package:navis/utils/storage_keys.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:test/test.dart';
+
+import 'setup_methods.dart';
 
 Map<String, dynamic> mockstate = {
   'news': [],
@@ -31,30 +30,10 @@ Future<void> main() async {
   SharedPreferences prefs;
 
   setUpAll(() async {
-    final directory = await Directory.systemTemp.createTemp();
-
-    const MethodChannel('plugins.flutter.io/shared_preferences')
-        .setMockMethodCallHandler((MethodCall methodCall) async {
-      if (methodCall.method == 'getAll') {
-        return <String, dynamic>{}; // set initial values here if desired
-      }
-      return null;
-    });
-
-    const MethodChannel('plugins.flutter.io/path_provider')
-        .setMockMethodCallHandler((MethodCall methodCall) async {
-      if (methodCall.method == 'getApplicationDocumentsDirectory') {
-        return directory.path;
-      }
-      return null;
-    });
-
-    const MethodChannel('plugins.flutter.io/firebase_messaging')
-        .setMockMethodCallHandler((MethodCall methodCall) async {});
+    await setupPackageMockMethods();
+    await setupLocator();
 
     BlocSupervisor.delegate = await HydratedBlocDelegate.build();
-
-    await setupLocator(isTest: true);
 
     worldstate = WorldstateBloc();
     storage = StorageBloc(instance: await LocalStorageService.getInstance());
