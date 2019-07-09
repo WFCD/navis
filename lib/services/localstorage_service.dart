@@ -1,5 +1,5 @@
 import 'package:navis/services/notification.dart';
-import 'package:navis/utils/enums.dart';
+import 'package:navis/utils/utils.dart';
 import 'package:navis/utils/storage_keys.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

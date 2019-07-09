@@ -3,7 +3,7 @@ import 'package:navis/components/layout.dart';
 import 'package:navis/components/layout/static_box.dart';
 import 'package:navis/models/export.dart';
 import 'package:navis/utils/factionutils.dart';
-import 'package:navis/utils/utils.dart';
+import 'package:navis/utils/worldstate_utils.dart';
 
 class InvasionsStyle extends StatelessWidget {
   const InvasionsStyle({Key key, this.invasion}) : super(key: key);

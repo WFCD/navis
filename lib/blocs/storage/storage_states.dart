@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:navis/services/localstorage_service.dart';
 import 'package:navis/services/services.dart';
-import 'package:navis/utils/enums.dart';
+import 'package:navis/utils/utils.dart';
 
 abstract class StorageState {
   Formats dateformat;

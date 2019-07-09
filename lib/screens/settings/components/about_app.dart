@@ -3,7 +3,7 @@ import 'package:navis/components/widgets.dart';
 import 'package:navis/components/layout/setting_title.dart';
 import 'package:navis/services/localstorage_service.dart';
 import 'package:navis/services/services.dart';
-import 'package:navis/utils/link_handler.dart';
+import 'package:navis/utils/utils.dart';
 
 class AboutApp extends StatelessWidget {
   AboutApp({Key key}) : super(key: key);

@@ -6,7 +6,7 @@ import 'package:navis/blocs/bloc.dart';
 import 'package:navis/services/localstorage_service.dart';
 import 'package:navis/services/services.dart';
 import 'package:navis/services/wfcd_api.dart';
-import 'package:navis/utils/enums.dart';
+import 'package:navis/utils/utils.dart';
 import 'package:navis/utils/storage_keys.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:test/test.dart';

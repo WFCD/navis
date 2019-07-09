@@ -2,7 +2,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:navis/services/services.dart';
-import 'package:navis/utils/link_handler.dart';
+import 'package:navis/utils/utils.dart';
 import 'package:package_info/package_info.dart';
 
 const _legalese = 'Warframe and the Warframe logo are registered trademarks '

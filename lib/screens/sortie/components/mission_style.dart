@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:navis/components/layout.dart';
 import 'package:navis/models/worldstate/sortie.dart';
-import 'package:navis/utils/utils.dart';
+import 'package:navis/utils/worldstate_utils.dart';
 
 class BuildMission extends StatelessWidget {
   const BuildMission(

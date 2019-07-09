@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:navis/blocs/bloc.dart';
-import 'package:navis/utils/enums.dart';
+import 'package:navis/utils/utils.dart';
 import 'package:navis/utils/factionutils.dart';
 
 import '../layout/static_box.dart';

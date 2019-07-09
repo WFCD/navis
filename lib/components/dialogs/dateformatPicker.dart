@@ -1,6 +1,6 @@
 import 'package:navis/blocs/bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:navis/utils/enums.dart';
+import 'package:navis/utils/utils.dart';
 
 import 'base_dialog.dart';
 

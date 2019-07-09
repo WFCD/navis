@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:navis/utils/enums.dart';
+import 'package:navis/utils/utils.dart';
 
 abstract class ChangeEvent extends Equatable {
   ChangeEvent([List props = const []]) : super(props);

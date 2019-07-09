@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:navis/blocs/bloc.dart';
-import 'package:navis/utils/enums.dart';
+import 'package:navis/utils/utils.dart';
 
 const pc = 'PC';
 const ps4 = 'Sony PlayStation 4';

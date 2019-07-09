@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:navis/blocs/bloc.dart';
 import 'package:navis/components/icons.dart';
-import 'package:navis/utils/link_handler.dart';
+import 'package:navis/utils/utils.dart';
 
 class DrawerOptions extends StatelessWidget {
   DrawerOptions({Key key}) : super(key: key);

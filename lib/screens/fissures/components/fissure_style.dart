@@ -3,7 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:navis/components/animations/countdown.dart';
 import 'package:navis/components/layout.dart';
 import 'package:navis/models/worldstate/fissure.dart';
-import 'package:navis/utils/utils.dart';
+import 'package:navis/utils/worldstate_utils.dart';
 
 class FissureCard extends StatelessWidget {
   const FissureCard({Key key, @required this.fissure}) : super(key: key);

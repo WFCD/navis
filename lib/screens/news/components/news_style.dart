@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:navis/models/export.dart';
-import 'package:navis/utils/link_handler.dart';
+import 'package:navis/utils/utils.dart';
 
 class NewsCard extends StatelessWidget {
   const NewsCard({this.news});
