@@ -21,8 +21,7 @@ class SyndicatesList extends StatelessWidget {
               if (state is WorldstateLoaded) {
                 final List<Syndicate> syndicates = state.syndicates;
 
-                if (syndicates.first.activation.isAfter(_currentTime) &&
-                    syndicates.first.expiry.isBefore(_currentTime))
+                if (syndicates.first.expiry.isBefore(_currentTime))
                   return const Center(
                       child: Text('Retrieving new bounties...'));
 
@@ -30,16 +29,15 @@ class SyndicatesList extends StatelessWidget {
                   TimerBox(
                       title: 'Bounties expire in:',
                       time: syndicates.first.expiry),
-                  Column(
-                      children: syndicates
-                          .map(
-                              (Syndicate syn) => SyndicateStyle(syndicate: syn))
-                          .toList()),
+                  Column(children: <Widget>[
+                    ...syndicates
+                        .map((Syndicate syn) => SyndicateStyle(syndicate: syn))
+                  ]),
                   const SizedBox(height: 20),
                   if (state.nightwave != null) ...{
                     TimerBox(
                         title: 'Season ends in:', time: state.nightwave.expiry),
-                    NightWaveStyle()
+                    NightWaveStyle(season: state.nightwave.season)
                   },
                 ]);
               }

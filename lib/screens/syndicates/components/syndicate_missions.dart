@@ -31,9 +31,9 @@ class SyndicateJobsState extends State<SyndicateJobs> {
                 header: MissionType(job: job, faction: widget.faction),
                 content: Column(
                   mainAxisSize: MainAxisSize.max,
-                  children: job.rewardPool
-                      .map((r) => ListTile(title: Text(r)))
-                      .toList(),
+                  children: <Widget>[
+                    ...job.rewardPool.map((r) => ListTile(title: Text(r)))
+                  ],
                 ),
               );
             }));
@@ -66,11 +66,7 @@ class MissionType extends StatelessWidget {
           trailing: Container(
               child: Row(mainAxisSize: MainAxisSize.min, children: <Widget>[
             const Icon(Standing.standing, color: Colors.white),
-            Text(
-                job.standingStages
-                    .cast<int>()
-                    .reduce((a, b) => a + b)
-                    .toString(),
+            Text(job.standingStages.reduce((a, b) => a + b).toString(),
                 style: textStyle)
           ]))),
     );
