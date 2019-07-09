@@ -68,7 +68,7 @@ class EventPanelState extends State<EventPanel> {
                         ],
                         onPageChanged: onPageChanged,
                       )),
-                      if (state.events.length <= 1)
+                      if (state.events.length > 1)
                         StreamBuilder<int>(
                           stream: _currentPage.stream,
                           initialData: 0,
