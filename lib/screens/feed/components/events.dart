@@ -101,8 +101,8 @@ class EventBuilder extends StatelessWidget {
   Color _healthColor() {
     double health;
     try {
-      health = event?.health != null
-          ? double.parse(event?.health)
+      health = event.health != null
+          ? double.parse(event.health)
           : (100 - event.currentScore / event.maximumScore * 100).toDouble();
     } catch (err) {
       health = 100.0;
@@ -165,12 +165,12 @@ class EventBuilder extends StatelessWidget {
             if (event.victimNode != null)
               StaticBox.text(text: event.victimNode, color: Colors.red),
             space,
-            if (!health.contains(RegExp(r'(unknown)||(NaN)')))
+            if (!health.contains(RegExp('(unknown)|(NaN)')))
               StaticBox.text(
                 text: health,
                 color: _healthColor(),
               ),
-            if (health.contains(RegExp(r'(unknown)||(NaN)')))
+            if (health.contains(RegExp('(unknown)|(NaN)')))
               CountdownBox(expiry: event.expiry)
           ]),
           space,
