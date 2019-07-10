@@ -5,7 +5,7 @@ import 'package:package_info/package_info.dart';
 import 'crashlytics_service.dart';
 import 'localstorage_service.dart';
 import 'permission_service.dart';
-import 'wfcd_api.dart';
+import 'wfcd_repository.dart';
 
 GetIt locator = GetIt();
 
@@ -17,7 +17,7 @@ Future<void> setupLocator() async {
       await LocalStorageService.getInstance());
 
   locator.registerSingleton<CrashlyticsService>(CrashlyticsService());
-  locator.registerSingleton<WFCD>(WFCD());
+  locator.registerSingleton<WfcdRepository>(WfcdRepository());
   locator.registerSingleton<PermissionsService>(PermissionsService());
   locator.registerSingleton<PackageInfo>(await PackageInfo.fromPlatform());
 }

@@ -1,46 +1,32 @@
-import 'dart:convert';
 import 'dart:io';
 
 import 'package:bloc/bloc.dart';
 import 'package:catcher/core/catcher.dart';
 import 'package:flutter/foundation.dart';
-import 'package:http/http.dart' as http;
 import 'package:navis/models/drop_tables/slim.dart';
-import 'package:navis/services/localstorage_service.dart';
 import 'package:navis/services/services.dart';
-import 'package:navis/services/wfcd_api.dart';
-import 'package:path_provider/path_provider.dart';
+import 'package:navis/services/wfcd_repository.dart';
+import 'package:navis/utils/worldstate_utils.dart';
 import 'package:rxdart/rxdart.dart';
 
 import 'table_event.dart';
 import 'table_state.dart';
 
 class TableSearchBloc extends Bloc<SearchEvent, SearchState> {
-  static final _storageService = locator<LocalStorageService>();
-  static final wfcd = locator<WFCD>();
-
-  static List<Drop> _table = [];
+  TableSearchBloc();
 
   static Future<void> initializeTable() async {
-    Map<String, dynamic> info;
+    List<Drop> table;
 
-    final _directory = await getApplicationDocumentsDirectory();
-    final _slimTable = File('${_directory.path}/drop_table.json');
+    final File file = await wfcd.updateDropTable();
+    table = await compute(jsonToRewards, await file.readAsString());
 
-    try {
-      final response = await http.get('$dropTableUrl/data/info.json');
-      info = json.decode(response.body);
-    } on SocketException {
-      info = {
-        'timestamp': _storageService.tableTimestamp.millisecondsSinceEpoch,
-      };
-    }
-
-    final timestamp = DateTime.fromMillisecondsSinceEpoch(info['timestamp']);
-    final localTimestamp = _storageService.tableTimestamp;
-
-    _table = await wfcd.getDropTable(_slimTable, timestamp, localTimestamp);
+    _table = table;
   }
+
+  static List<Drop> _table;
+
+  static final wfcd = locator<WfcdRepository>();
 
   @override
   Stream<SearchState> transform(

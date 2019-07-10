@@ -40,6 +40,7 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
     });
 
     permissions();
+    TableSearchBloc.initializeTable();
   }
 
   Future<void> permissions() async {
