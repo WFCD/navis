@@ -24,38 +24,45 @@ class CountdownBox extends StatelessWidget {
     }
   }
 
-  Color _containerColors(Duration timeLeft) {
+  Color _containerColors(
+    BuildContext context,
+    Duration timeLeft,
+    bool expired,
+  ) {
     const max = Duration(hours: 1);
     const minimum = Duration(minutes: 10);
 
-    if (timeLeft >= max)
-      return Colors.green;
-    else if (timeLeft < max && timeLeft > minimum)
-      return Colors.orange[700];
-    else
-      return Colors.red;
+    if (!expired) {
+      if (timeLeft >= max)
+        return Colors.green;
+      else if (timeLeft < max && timeLeft > minimum)
+        return Colors.orange[700];
+      else
+        return Colors.red;
+    }
+
+    return Theme.of(context).primaryColor;
   }
 
-  String _timerVersions(Duration time) {
+  String _timerVersions(Duration time, bool expired) {
     final String days = '${time.inDays}';
     final String hours = '${time.inHours % 24}';
     final String minutes = '${time.inMinutes % 60}'.padLeft(2, '0');
     final String seconds = '${time.inSeconds % 60}'.padLeft(2, '0');
 
-    if (time < const Duration(days: 1))
-      return '$hours:$minutes:$seconds';
-    else
-      return '$days\d $hours:$minutes:$seconds';
+    final bool is24hrs = time < const Duration(days: 1);
+
+    return "${expired ? 'Expired: -' : ''}${!is24hrs ? '$days\d' : ''} $hours:$minutes:$seconds";
   }
 
   @override
   Widget build(BuildContext context) {
+    final now = DateTime.now().toUtc();
+
     final duration = Duration(
-        seconds: expiry.millisecondsSinceEpoch -
-            DateTime.now().millisecondsSinceEpoch);
+        seconds: expiry.millisecondsSinceEpoch - now.millisecondsSinceEpoch);
     final tween = StepTween(
-        begin: expiry.millisecondsSinceEpoch,
-        end: DateTime.now().millisecondsSinceEpoch);
+        begin: expiry.millisecondsSinceEpoch, end: now.millisecondsSinceEpoch);
 
     return ControlledAnimation(
       duration: duration <= Duration.zero
@@ -66,14 +73,15 @@ class CountdownBox extends StatelessWidget {
       animationControllerStatusListener: (AnimationStatus status) =>
           _listener(context, status),
       builder: (context, value) {
-        final duration = expiry.difference(DateTime.now());
+        final duration = expiry.difference(DateTime.now().toUtc()).abs();
+        final expired = expiry.isBefore(DateTime.now().toUtc());
 
         return StaticBox.text(
           size: size,
           margin: margin,
           padding: padding,
-          text: _timerVersions(duration),
-          color: color ?? _containerColors(duration),
+          text: _timerVersions(duration, expired),
+          color: color ?? _containerColors(context, duration, expired),
         );
       },
     );
