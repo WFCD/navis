@@ -19,8 +19,7 @@ class CountdownBox extends StatelessWidget {
   final EdgeInsetsGeometry padding, margin;
 
   Future<void> _listener(BuildContext context, AnimationStatus status) async {
-    if (status == AnimationStatus.completed ||
-        status == AnimationStatus.dismissed) {
+    if (status == AnimationStatus.completed) {
       BlocProvider.of<WorldstateBloc>(context).dispatch(UpdateEvent.update);
     }
   }
