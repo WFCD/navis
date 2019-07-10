@@ -9,29 +9,28 @@ import 'package:path_provider/path_provider.dart';
 
 import 'app.dart';
 
-Future<void> main() async {
-  BlocSupervisor.delegate = await HydratedBlocDelegate.build();
+Future<File> getFile() async {
+  final directory = await getExternalStorageDirectory();
+  return File('${directory.path}/Navis/navis_logs.txt');
+}
 
-  final crashLogs = await getFile();
+Future<void> main() async {
+  await setupLocator();
+
+  BlocSupervisor.delegate = await HydratedBlocDelegate.build();
 
   final debugConfig = CatcherOptions(SilentReportMode(), [ConsoleHandler()]);
   final releaseConfig = CatcherOptions(
-      SilentReportMode(), [ConsoleHandler(), FileHandler(crashLogs)]);
-
-  await setupLocator();
+      SilentReportMode(), [ConsoleHandler(), FileHandler(await getFile())]);
 
   Catcher(
     MultiBlocProvider(providers: [
       BlocProvider<StorageBloc>(builder: (_) => StorageBloc()),
       BlocProvider<WorldstateBloc>(builder: (_) => WorldstateBloc()),
-      BlocProvider<NavigationBloc>(builder: (_) => NavigationBloc())
+      BlocProvider<NavigationBloc>(builder: (_) => NavigationBloc()),
+      BlocProvider<TableSearchBloc>(builder: (_) => TableSearchBloc())
     ], child: const Navis()),
     debugConfig: debugConfig,
     releaseConfig: releaseConfig,
   );
-}
-
-Future<File> getFile() async {
-  final directory = await getExternalStorageDirectory();
-  return File('${directory.path}/Navis/navis_logs.txt');
 }
