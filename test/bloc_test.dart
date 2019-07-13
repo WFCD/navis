@@ -1,11 +1,8 @@
 import 'package:bloc/bloc.dart';
-import 'package:dio/dio.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 
 import 'package:navis/blocs/bloc.dart';
-import 'package:navis/services/localstorage_service.dart';
-import 'package:navis/services/services.dart';
-import 'package:navis/services/wfcd_api.dart';
+import 'package:navis/services/repository.dart';
 import 'package:navis/utils/utils.dart';
 import 'package:navis/utils/storage_keys.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -23,7 +20,7 @@ Map<String, dynamic> mockstate = {
 };
 
 Future<void> main() async {
-  WFCD wfcd;
+  Repository repository;
 
   WorldstateBloc worldstate;
   StorageBloc storage;
@@ -31,14 +28,13 @@ Future<void> main() async {
 
   setUpAll(() async {
     await setupPackageMockMethods();
-    await setupLocator();
+    repository = await Repository.initialize();
 
     BlocSupervisor.delegate = await HydratedBlocDelegate.build();
 
-    worldstate = WorldstateBloc();
-    storage = StorageBloc(instance: await LocalStorageService.getInstance());
+    worldstate = WorldstateBloc(repository);
+    storage = StorageBloc(repository);
     prefs = await SharedPreferences.getInstance();
-    wfcd = locator<WFCD>();
   });
 
   group('Test Worldstate bloc', () {
@@ -48,9 +44,6 @@ Future<void> main() async {
     });
 
     test('Worldstate is loaded correctly', () async {
-      wfcd.warframestat.interceptors.add(InterceptorsWrapper(
-          onRequest: (option) => wfcd.warframestat.resolve(mockstate)));
-
       worldstate.dispatch(UpdateEvent.update);
 
       expectLater(

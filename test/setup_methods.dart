@@ -15,7 +15,8 @@ Future<void> setupPackageMockMethods() async {
 
   const MethodChannel('plugins.flutter.io/path_provider')
       .setMockMethodCallHandler((MethodCall methodCall) async {
-    if (methodCall.method == 'getApplicationDocumentsDirectory') {
+    if (methodCall.method == 'getApplicationDocumentsDirectory' ||
+        methodCall.method == 'getTemporaryDirectory') {
       return directory.path;
     }
     return null;

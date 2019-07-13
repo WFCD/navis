@@ -47,17 +47,17 @@ class Repository {
   static const _helper = ApiBaseHelper();
   static const String dropTable = 'https://drops.warframestat.us';
 
-  Future<Worldstate> getWorldstate() async {
-    final Platforms platform = storageService.platform;
+  Future<Worldstate> getWorldstate([Platforms platform]) async {
+    platform ??= storageService.platform;
     final response =
         await _helper.get('/${platform.toString().split('.').last}');
 
     return jsonToWorldstate(response);
   }
 
-  Future<File> updateDropTable() async {
+  Future<File> updateDropTable([File source]) async {
     final directory = await getApplicationDocumentsDirectory();
-    final source = File('${directory.path}/drop_table.json');
+    source ??= File('${directory.path}/drop_table.json');
 
     try {
       final timestamp = await dropTableTimestamp();
