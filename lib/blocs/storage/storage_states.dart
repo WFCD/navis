@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:navis/services/localstorage_service.dart';
-import 'package:navis/services/services.dart';
 import 'package:navis/utils/utils.dart';
 
 abstract class StorageState {
@@ -16,17 +15,19 @@ abstract class StorageState {
 }
 
 class MainStorageState extends StorageState {
-  final instance = locator<LocalStorageService>();
+  MainStorageState(this.storage);
+
+  final LocalStorageService storage;
 
   @override
-  Formats get dateformat => instance.dateformat;
+  Formats get dateformat => storage.dateformat;
 
   @override
-  Platforms get platform => instance.platform;
+  Platforms get platform => storage.platform;
 
   @override
   ThemeData get theme {
-    final enabled = instance.darkMode;
+    final enabled = storage.darkMode;
 
     const primary = Color.fromRGBO(26, 80, 144, .9);
     const accent = Color(0xFF00BC8C);
@@ -43,14 +44,14 @@ class MainStorageState extends StorageState {
   }
 
   @override
-  Map<String, bool> get acolytes => instance.acolytes;
+  Map<String, bool> get acolytes => storage.acolytes;
 
   @override
-  Map<String, bool> get cycles => instance.cycles;
+  Map<String, bool> get cycles => storage.cycles;
 
   @override
-  Map<String, bool> get news => instance.news;
+  Map<String, bool> get news => storage.news;
 
   @override
-  Map<String, bool> get simple => instance.simple;
+  Map<String, bool> get simple => storage.simple;
 }

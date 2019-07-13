@@ -38,16 +38,4 @@ abstract class WorldstateObject extends Coding
 mixin CycleModel on WorldstateObject {
   String state;
   bool stateBool;
-
-  @override
-  void decode(KeyedArchive object) {
-    super.decode(object);
-    state = object.decode('state');
-  }
-
-  @override
-  void encode(KeyedArchive object) {
-    super.encode(object);
-    object.encode('state', state);
-  }
 }

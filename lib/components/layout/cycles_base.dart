@@ -14,10 +14,10 @@ class Cycle extends StatelessWidget {
 
   String stateString() {
     if (cycle.id.contains(RegExp(r'cetus|earth'))) {
-      return cycle.stateBool ? 'Day' : 'Night';
+      return !cycle.stateBool ? 'Day' : 'Night';
     }
 
-    return cycle.stateBool ? 'Warm' : 'Cold';
+    return !cycle.stateBool ? 'Warm' : 'Cold';
   }
 
   @override

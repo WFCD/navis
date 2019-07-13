@@ -15,7 +15,7 @@ import 'package:navis/screens/news/news.dart';
 import 'package:navis/screens/sortie/sortie.dart';
 import 'package:navis/screens/syndicates/syndicates.dart';
 import 'package:navis/services/permission_service.dart';
-import 'package:navis/services/services.dart';
+import 'package:navis/services/repository.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:simple_animations/simple_animations.dart';
 
@@ -27,7 +27,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
-  final permission = locator<PermissionsService>();
+  PermissionsService permission;
   Timer timer;
 
   @override
@@ -35,12 +35,13 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
     super.initState();
     WidgetsBinding.instance.addObserver(this);
 
+    permission = RepositoryProvider.of<Repository>(context).permissionsService;
+
     timer = Timer.periodic(const Duration(minutes: 5), (t) {
       BlocProvider.of<WorldstateBloc>(context).dispatch(UpdateEvent.update);
     });
 
     permissions();
-    TableSearchBloc.initializeTable();
   }
 
   Future<void> permissions() async {
@@ -68,18 +69,31 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
     super.dispose();
   }
 
-  Widget _buildBody() {
-    return BlocBuilder<RouteEvent, RouteState>(
-      bloc: BlocProvider.of<NavigationBloc>(context),
-      builder: (BuildContext context, RouteState route) {
-        return ControlledAnimation(
-          duration: const Duration(milliseconds: 500),
-          playback: Playback.PLAY_FORWARD,
-          tween: Tween(begin: 0.0, end: 1.0),
-          builder: (BuildContext context, dynamic value) =>
-              Opacity(opacity: value, child: _body(route)),
-        );
+  Widget _buildBody(BuildContext context, WorldstateBloc bloc) {
+    return BlocListener(
+      bloc: bloc,
+      listener: (BuildContext context, WorldStates state) {
+        if (state is WorldstateError)
+          scaffold.currentState.showSnackBar(SnackBar(
+            content: Text(state.error),
+            action: SnackBarAction(
+              label: 'RETRY',
+              onPressed: () => bloc.update(),
+            ),
+          ));
       },
+      child: BlocBuilder<RouteEvent, RouteState>(
+        bloc: BlocProvider.of<NavigationBloc>(context),
+        builder: (BuildContext context, RouteState route) {
+          return ControlledAnimation(
+            duration: const Duration(milliseconds: 500),
+            playback: Playback.PLAY_FORWARD,
+            tween: Tween(begin: 0.0, end: 1.0),
+            builder: (BuildContext context, dynamic value) =>
+                Opacity(opacity: value, child: _body(route)),
+          );
+        },
+      ),
     );
   }
 
@@ -90,7 +104,7 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
         key: scaffold,
         appBar: AppBar(title: const Text('Navis')),
         drawer: const LotusDrawer(),
-        body: _buildBody(),
+        body: _buildBody(context, BlocProvider.of<WorldstateBloc>(context)),
       ),
       onWillPop: () => willpop(context),
     );

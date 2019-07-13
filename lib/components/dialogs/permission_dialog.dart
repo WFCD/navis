@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/components/dialogs/base_dialog.dart';
 import 'package:navis/services/permission_service.dart';
-import 'package:navis/services/services.dart';
+import 'package:navis/services/repository.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class PermissionsDialog extends StatelessWidget {
-  PermissionsDialog({Key key, @required this.permissionGroup})
+  const PermissionsDialog({Key key, @required this.permissionGroup})
       : super(key: key);
 
   final PermissionGroup permissionGroup;
-
-  final PermissionsService _handler = locator<PermissionsService>();
 
   static Future<void> requestPermission(
       BuildContext context, PermissionGroup permissionGroup) async {
@@ -19,16 +18,19 @@ class PermissionsDialog extends StatelessWidget {
         builder: (_) => PermissionsDialog(permissionGroup: permissionGroup));
   }
 
-  Future<void> _requestPermission() async {
+  Future<void> _requestPermission(PermissionsService handler) async {
     switch (permissionGroup) {
       case PermissionGroup.storage:
-        return await _handler.requestStoragePermission();
+        return await handler.requestStoragePermission();
       default:
     }
   }
 
   @override
   Widget build(BuildContext context) {
+    final PermissionsService handler =
+        RepositoryProvider.of<Repository>(context).permissionsService;
+
     final dialogTheme = DialogTheme.of(context);
 
     return BaseDialog(
@@ -46,7 +48,7 @@ class PermissionsDialog extends StatelessWidget {
         FlatButton(
           child: const Text('ALLOW'),
           onPressed: () async {
-            _requestPermission();
+            _requestPermission(handler);
             Navigator.pop(context);
           },
         ),

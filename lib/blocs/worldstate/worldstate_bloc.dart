@@ -3,23 +3,18 @@ import 'dart:async';
 import 'package:catcher/catcher_plugin.dart';
 import 'package:codable/codable.dart';
 import 'package:rxdart/rxdart.dart';
-import 'package:equatable/equatable.dart';
-import 'package:flutter/material.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:navis/models/export.dart';
-import 'package:navis/services/localstorage_service.dart';
-import 'package:navis/services/services.dart';
 
-import '../../global_keys.dart';
-import '../../services/wfcd_repository.dart';
+import '../../services/repository.dart';
 import 'worldstate_states.dart';
 
 enum UpdateEvent { update }
 
-class WorldstateBloc extends HydratedBloc<UpdateEvent, WorldStates>
-    with EquatableMixinBase, EquatableMixin {
-  final instance = locator<LocalStorageService>();
-  final ws = locator<WfcdRepository>();
+class WorldstateBloc extends HydratedBloc<UpdateEvent, WorldStates> {
+  WorldstateBloc(this.repository);
+
+  final Repository repository;
 
   @override
   WorldStates get initialState =>
@@ -28,19 +23,19 @@ class WorldstateBloc extends HydratedBloc<UpdateEvent, WorldStates>
   @override
   Stream<WorldStates> transform(Stream<UpdateEvent> events,
       Stream<WorldStates> Function(UpdateEvent event) next) {
-    return super.transform(Observable(events).distinct(), next);
+    return super.transform(
+        Observable(events).debounceTime(const Duration(milliseconds: 500)),
+        next);
   }
 
   @override
   Stream<WorldStates> mapEventToState(UpdateEvent event) async* {
     if (event == UpdateEvent.update) {
       try {
-        final state = await ws.getWorldstate(instance.platform);
+        final state = await repository.getWorldstate();
         yield WorldstateLoaded(state);
       } catch (e) {
-        _displayErrorMessage(e);
-        // yield WorldstateError(
-        //     'Error contacting api.warframestat.us error code: ${e.response.statusCode}');
+        yield WorldstateError(e.toString());
       }
     }
   }
@@ -51,17 +46,8 @@ class WorldstateBloc extends HydratedBloc<UpdateEvent, WorldStates>
   }
 
   Future<void> update() async {
-    await Future.delayed(
-        const Duration(milliseconds: 500), () => dispatch(UpdateEvent.update));
-  }
-
-  void _displayErrorMessage(dynamic error) {
-    scaffold.currentState.showSnackBar(SnackBar(
-      content: Text(error.toString()),
-      duration: const Duration(seconds: 1),
-      action: SnackBarAction(
-          label: 'RETRY', onPressed: () => dispatch(UpdateEvent.update)),
-    ));
+    dispatch(UpdateEvent.update);
+    await Future.delayed(const Duration(seconds: 2));
   }
 
   @override

@@ -4,8 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:catcher/core/catcher.dart';
 import 'package:flutter/foundation.dart';
 import 'package:navis/models/drop_tables/slim.dart';
-import 'package:navis/services/services.dart';
-import 'package:navis/services/wfcd_repository.dart';
+import 'package:navis/services/repository.dart';
 import 'package:navis/utils/worldstate_utils.dart';
 import 'package:rxdart/rxdart.dart';
 
@@ -13,20 +12,22 @@ import 'table_event.dart';
 import 'table_state.dart';
 
 class TableSearchBloc extends Bloc<SearchEvent, SearchState> {
-  TableSearchBloc();
+  TableSearchBloc(this.repository) {
+    _initializeTable();
+  }
 
-  static Future<void> initializeTable() async {
+  final Repository repository;
+
+  Future<void> _initializeTable() async {
     List<Drop> table;
 
-    final File file = await wfcd.updateDropTable();
+    final File file = await repository.updateDropTable();
     table = await compute(jsonToRewards, await file.readAsString());
 
     _table = table;
   }
 
   static List<Drop> _table;
-
-  static final wfcd = locator<WfcdRepository>();
 
   @override
   Stream<SearchState> transform(

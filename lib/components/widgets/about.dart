@@ -1,7 +1,8 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:navis/services/services.dart';
+import 'package:navis/services/repository.dart';
 import 'package:navis/utils/utils.dart';
 import 'package:package_info/package_info.dart';
 
@@ -29,6 +30,9 @@ class About extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final PackageInfo info =
+        RepositoryProvider.of<Repository>(context).packageInfo;
+
     final ThemeData theme = Theme.of(context);
     final TextStyle aboutTextStyle = theme.textTheme.body2;
     final TextStyle linkStyle =
@@ -38,7 +42,7 @@ class About extends StatelessWidget {
       icon: null,
       applicationIcon: _appIcon(),
       applicationName: 'Cephalon Navis',
-      applicationVersion: locator<PackageInfo>().version,
+      applicationVersion: info.version,
       aboutBoxChildren: <Widget>[
         RichText(
             text: TextSpan(children: <TextSpan>[

@@ -1,19 +1,14 @@
-import 'package:navis/services/notification.dart';
 import 'package:navis/utils/utils.dart';
 import 'package:navis/utils/storage_keys.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'services.dart';
-
 class LocalStorageService {
-  final firebase = locator<NotificationService>();
-
   static LocalStorageService _instance;
-  static SharedPreferences _prefrence;
+  static SharedPreferences _preferences;
 
   static Future<LocalStorageService> getInstance() async {
     _instance ??= LocalStorageService();
-    _prefrence ??= await SharedPreferences.getInstance();
+    _preferences ??= await SharedPreferences.getInstance();
 
     return _instance;
   }
@@ -25,8 +20,6 @@ class LocalStorageService {
     if (diskPlatform != null)
       return Platforms.values
           .firstWhere((p) => p.toString() == 'Platforms.$diskPlatform');
-
-    firebase.subscribeToPlatform(currentPlatform: defaultPlatform);
 
     return defaultPlatform;
   }
@@ -94,12 +87,12 @@ class LocalStorageService {
     saveToDisk('tableTimestamp', timestamp.millisecondsSinceEpoch);
   }
 
-  dynamic getFromDisk(String key) => _prefrence.get(key);
+  dynamic getFromDisk(String key) => _preferences.get(key);
 
   void saveToDisk<T>(String key, T value) {
-    if (value is String) _prefrence.setString(key, value);
-    if (value is bool) _prefrence.setBool(key, value);
-    if (value is int) _prefrence.setInt(key, value);
-    if (value is List<String>) _prefrence.setStringList(key, value);
+    if (value is String) _preferences.setString(key, value);
+    if (value is bool) _preferences.setBool(key, value);
+    if (value is int) _preferences.setInt(key, value);
+    if (value is List<String>) _preferences.setStringList(key, value);
   }
 }

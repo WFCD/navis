@@ -12,20 +12,29 @@ class Earth extends WorldstateObject with CycleModel {
   bool get stateBool => isDay;
 
   @override
+  DateTime get expiry {
+    if (super.expiry.isBefore(DateTime.now().toUtc())) {
+      isDay = !isDay;
+      if (isDay)
+        return isCetus
+            ? super.expiry.add(cetusDay)
+            : super.expiry.add(earthCycle);
+      else
+        return isCetus
+            ? super.expiry.add(cetusNight)
+            : super.expiry.add(earthCycle);
+    }
+
+    return super.expiry;
+  }
+
+  @override
   void decode(KeyedArchive object) {
     super.decode(object);
 
     isDay = object.decode('isDay');
     isCetus = object.decode('isCetus') ?? false;
-
-    if (expiry.difference(DateTime.now().toUtc()) <=
-        const Duration(seconds: 1)) {
-      isDay = !isDay;
-      if (isDay)
-        expiry = isCetus ? expiry.add(cetusDay) : expiry.add(earthCycle);
-      else
-        expiry = isCetus ? expiry.add(cetusNight) : expiry.add(earthCycle);
-    }
+    state = object.decode('state');
   }
 
   @override
@@ -33,5 +42,6 @@ class Earth extends WorldstateObject with CycleModel {
     super.encode(object);
     object.encode('isDay', isDay);
     object.encode('isCetus', isCetus);
+    object.encode('state', state);
   }
 }
