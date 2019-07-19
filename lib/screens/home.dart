@@ -62,79 +62,87 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
     super.didChangeAppLifecycleState(state);
   }
 
+  Future<bool> _willPop(BuildContext context) async {
+    if (!scaffold.currentState.isDrawerOpen) {
+      scaffold.currentState.openDrawer();
+    } else
+      Navigator.of(context).pop();
+
+    return false;
+  }
+
+  void _blocListener(
+    BuildContext context,
+    WorldStates state,
+    VoidCallback onPressed,
+  ) {
+    if (state is WorldstateError)
+      scaffold.currentState.showSnackBar(SnackBar(
+        content: Text(state.error),
+        action: SnackBarAction(
+          label: 'RETRY',
+          onPressed: onPressed,
+        ),
+      ));
+  }
+
+  Widget _body(RouteState route) {
+    switch (route) {
+      case RouteState.news:
+        return const Orbiter();
+      case RouteState.fissures:
+        return const FissureList();
+      case RouteState.invasions:
+        return const InvasionsList();
+      case RouteState.sortie:
+        return const SortieScreen();
+      case RouteState.syndicates:
+        return SyndicatesList();
+      case RouteState.droptable:
+        return const DropTableList();
+      default:
+        return const Feed();
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final bloc = BlocProvider.of<WorldstateBloc>(context);
+
+    return WillPopScope(
+      onWillPop: () => _willPop(context),
+      child: Scaffold(
+        key: scaffold,
+        appBar: AppBar(title: const Text('Navis')),
+        drawer: const LotusDrawer(),
+        body: BlocListener(
+          bloc: bloc,
+          listener: (BuildContext context, WorldStates state) => _blocListener(
+            context,
+            state,
+            () => bloc.dispatch(UpdateEvent.update),
+          ),
+          child: BlocBuilder<RouteEvent, RouteState>(
+            bloc: BlocProvider.of<NavigationBloc>(context),
+            builder: (BuildContext context, RouteState route) {
+              return ControlledAnimation(
+                duration: const Duration(milliseconds: 500),
+                playback: Playback.PLAY_FORWARD,
+                tween: Tween(begin: 0.0, end: 1.0),
+                builder: (BuildContext context, dynamic value) =>
+                    Opacity(opacity: value, child: _body(route)),
+              );
+            },
+          ),
+        ),
+      ),
+    );
+  }
+
   @override
   void dispose() {
     timer?.cancel();
     WidgetsBinding.instance.removeObserver(this);
     super.dispose();
-  }
-
-  Widget _buildBody(BuildContext context, WorldstateBloc bloc) {
-    return BlocListener(
-      bloc: bloc,
-      listener: (BuildContext context, WorldStates state) {
-        if (state is WorldstateError)
-          scaffold.currentState.showSnackBar(SnackBar(
-            content: Text(state.error),
-            action: SnackBarAction(
-              label: 'RETRY',
-              onPressed: () => bloc.update(),
-            ),
-          ));
-      },
-      child: BlocBuilder<RouteEvent, RouteState>(
-        bloc: BlocProvider.of<NavigationBloc>(context),
-        builder: (BuildContext context, RouteState route) {
-          return ControlledAnimation(
-            duration: const Duration(milliseconds: 500),
-            playback: Playback.PLAY_FORWARD,
-            tween: Tween(begin: 0.0, end: 1.0),
-            builder: (BuildContext context, dynamic value) =>
-                Opacity(opacity: value, child: _body(route)),
-          );
-        },
-      ),
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return WillPopScope(
-      child: Scaffold(
-        key: scaffold,
-        appBar: AppBar(title: const Text('Navis')),
-        drawer: const LotusDrawer(),
-        body: _buildBody(context, BlocProvider.of<WorldstateBloc>(context)),
-      ),
-      onWillPop: () => willpop(context),
-    );
-  }
-}
-
-Future<bool> willpop(BuildContext context) async {
-  if (!scaffold.currentState.isDrawerOpen) {
-    scaffold.currentState.openDrawer();
-  } else
-    Navigator.of(context).pop();
-
-  return false;
-}
-
-Widget _body(RouteState route) {
-  switch (route) {
-    case RouteState.news:
-      return const Orbiter();
-    case RouteState.fissures:
-      return const FissureList();
-    case RouteState.invasions:
-      return const InvasionsList();
-    case RouteState.sortie:
-      return const SortieScreen();
-    case RouteState.syndicates:
-      return SyndicatesList();
-    case RouteState.droptable:
-      return const DropTableList();
-    default:
-      return const Feed();
   }
 }

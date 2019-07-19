@@ -14,7 +14,7 @@ class ApiBaseHelper {
       final response = await http.get(base ?? _baseUrl + path);
       return _returnResponse(response);
     } on SocketException {
-      throw Exception();
+      throw FetchDataException('Device is offline');
     }
   }
 

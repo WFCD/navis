@@ -1,7 +1,7 @@
-import 'dart:io';
+//import 'dart:io';
 
 import 'package:navis/models/export.dart';
-import 'package:navis/services/localstorage_service.dart';
+//import 'package:navis/services/localstorage_service.dart';
 import 'package:navis/services/repository.dart';
 import 'package:navis/utils/utils.dart';
 import 'package:test/test.dart';
@@ -18,8 +18,8 @@ Map<String, dynamic> mockstate = {
 };
 
 Future<void> main() async {
-  final directory = await Directory.systemTemp.createTemp();
-  final asset = File('../assets/slim.json');
+  // final directory = await Directory.systemTemp.createTemp();
+  // final asset = File('../assets/slim.json');
 
   Repository repository;
 
