@@ -25,7 +25,7 @@ matrix:
       script:
         - flutter pub get
         - flutter test 
-        - flutter build apk # we only need to see if an apk builds correctly so the quicker the better
+        - flutter build apk --verbose # we only need to see if an apk builds correctly so the quicker the better
 
     - name: 'Fastlane Deploy'
       language: android
