@@ -6,14 +6,12 @@ matrix:
     - name: 'Flutter test and apk build' 
       language: android
       jdk: oraclejdk8 # Android sdkmanager doesn't support jdk 9+
-      licenses:
-        - android-sdk-preview-license-.+
-        - android-sdk-license-.+
-        - google-gdk-license-.+
       android:
         components:
-          - build-tools-28.0.3
-          - android-28 
+          - build-tools-29.0.0
+          - android-29
+          - tools
+          - platform-tools
       before_script:
         - openssl aes-256-cbc -K $encrypted_2db283701f8c_key -iv $encrypted_2db283701f8c_iv 
           -in secrets.tar.enc -out secrets.tar -d
@@ -30,14 +28,12 @@ matrix:
       language: android
       jdk: oraclejdk8
       env: JOB=fastlane_deploy
-      licenses: 
-        - android-sdk-license-.+
-        - android-sdk-preview-license-.+
-        - google-gdk-license-.+
       android:
         components: 
           - build-tools-29.0.0
           - android-29
+          - tools
+          - platform-tools
       before_install: 
         - bundle install --gemfile=android/Gemfile
       before_script:
