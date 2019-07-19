@@ -13,7 +13,7 @@ matrix:
         - google-gdk-license-.+
       android:
         components:
-          - build-tools-29.0.9
+          - build-tools-29.0.0
           - android-29    
       before_script:
         - openssl aes-256-cbc -K $encrypted_2db283701f8c_key -iv $encrypted_2db283701f8c_iv 
@@ -25,7 +25,6 @@ matrix:
       script:
         - flutter pub get
         - flutter test 
-        - yes | flutter doctor --android-licenses 
         - flutter build apk # we only need to see if an apk builds correctly so the quicker the better
 
     - name: 'Fastlane Deploy'
@@ -52,7 +51,6 @@ matrix:
         - flutter upgrade 
       script:
         - flutter pub get
-        - yes | flutter doctor --android-licenses 
         - flutter build appbundle # release is the default mode for build
         - cd android && bundle exec fastlane beta               
 
