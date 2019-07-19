@@ -6,12 +6,13 @@ import 'package:simple_animations/simple_animations.dart';
 import '../layout/static_box.dart';
 
 class CountdownBox extends StatelessWidget {
-  const CountdownBox(
-      {@required this.expiry,
-      this.color,
-      this.size,
-      this.padding = const EdgeInsets.all(4.0),
-      this.margin = const EdgeInsets.all(3.0)});
+  const CountdownBox({
+    @required this.expiry,
+    this.color,
+    this.size,
+    this.padding = const EdgeInsets.all(4.0),
+    this.margin = const EdgeInsets.all(3.0),
+  });
 
   final DateTime expiry;
   final Color color;
@@ -19,7 +20,8 @@ class CountdownBox extends StatelessWidget {
   final EdgeInsetsGeometry padding, margin;
 
   Future<void> _listener(BuildContext context, AnimationStatus status) async {
-    if (status == AnimationStatus.completed) {
+    if (status == AnimationStatus.completed ||
+        status == AnimationStatus.dismissed) {
       BlocProvider.of<WorldstateBloc>(context).dispatch(UpdateEvent.update);
     }
   }
@@ -60,14 +62,13 @@ class CountdownBox extends StatelessWidget {
     final now = DateTime.now().toUtc();
 
     final duration = Duration(
-        seconds: expiry.millisecondsSinceEpoch - now.millisecondsSinceEpoch);
+            seconds: expiry.millisecondsSinceEpoch - now.millisecondsSinceEpoch)
+        .abs();
     final tween = StepTween(
         begin: expiry.millisecondsSinceEpoch, end: now.millisecondsSinceEpoch);
 
     return ControlledAnimation(
-      duration: duration <= Duration.zero
-          ? const Duration(milliseconds: 500)
-          : duration,
+      duration: duration,
       tween: tween,
       playback: Playback.PLAY_FORWARD,
       animationControllerStatusListener: (AnimationStatus status) =>
