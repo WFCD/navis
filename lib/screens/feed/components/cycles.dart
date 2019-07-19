@@ -12,9 +12,12 @@ class EarthCycle extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<UpdateEvent, WorldStates>(
       bloc: BlocProvider.of<WorldstateBloc>(context),
-      condition: (WorldStates previous, WorldStates current) => true,
       builder: (BuildContext context, WorldStates state) {
-        return Cycle(title: 'Earth Day/Night Cycle', cycle: state.earth);
+        return Cycle(
+          title: 'Earth Day/Night Cycle',
+          cycle: state.earth,
+          planetCycle: PlanetCycle.earth,
+        );
       },
     );
   }
@@ -27,9 +30,12 @@ class CetusCycle extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<UpdateEvent, WorldStates>(
       bloc: BlocProvider.of<WorldstateBloc>(context),
-      condition: (WorldStates previous, WorldStates current) => true,
       builder: (BuildContext context, WorldStates state) {
-        return Cycle(title: 'Cetus Day/Night Cycle', cycle: state.cetus);
+        return Cycle(
+          title: 'Cetus Day/Night Cycle',
+          cycle: state.cetus,
+          planetCycle: PlanetCycle.earth,
+        );
       },
     );
   }
@@ -42,9 +48,12 @@ class OrbVallisCycle extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<UpdateEvent, WorldStates>(
       bloc: BlocProvider.of<WorldstateBloc>(context),
-      condition: (WorldStates previous, WorldStates current) => true,
       builder: (BuildContext context, WorldStates state) {
-        return Cycle(title: 'Orb Vallis Warm/Cold Cycle', cycle: state.vallis);
+        return Cycle(
+          title: 'Orb Vallis Warm/Cold Cycle',
+          cycle: state.vallis,
+          planetCycle: PlanetCycle.venus,
+        );
       },
     );
   }

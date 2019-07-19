@@ -6,18 +6,26 @@ import 'package:navis/models/abstract_classes.dart';
 import '../animations.dart';
 import '../layout.dart';
 
+enum PlanetCycle { earth, venus }
+
 class Cycle extends StatelessWidget {
-  const Cycle({@required this.title, @required this.cycle});
+  const Cycle({
+    @required this.title,
+    @required this.cycle,
+    @required this.planetCycle,
+  });
 
   final String title;
   final CycleModel cycle;
+  final PlanetCycle planetCycle;
 
   String stateString() {
-    if (cycle.id.contains(RegExp(r'cetus|earth'))) {
-      return !cycle.stateBool ? 'Day' : 'Night';
+    switch (planetCycle) {
+      case PlanetCycle.venus:
+        return !cycle.stateBool ? 'Warm' : 'Cold';
+      default:
+        return !cycle.stateBool ? 'Day' : 'Night';
     }
-
-    return !cycle.stateBool ? 'Warm' : 'Cold';
   }
 
   @override
