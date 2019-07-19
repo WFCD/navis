@@ -15,11 +15,6 @@ class Syndicate extends WorldstateObject {
     name = object.decode('syndicate');
     active = object.decode('active');
     jobs = object.decodeObjects('jobs', () => Jobs());
-
-    if (expiry == null)
-      expiry = DateTime.now().add(const Duration(minutes: 120));
-    else
-      expiry = DateTime.parse(object.decode('expiry')).toLocal();
   }
 
   @override

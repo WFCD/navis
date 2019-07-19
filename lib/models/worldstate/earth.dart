@@ -12,23 +12,6 @@ class Earth extends WorldstateObject with CycleModel {
   bool get stateBool => isDay;
 
   @override
-  DateTime get expiry {
-    if (super.expiry.isBefore(DateTime.now().toUtc())) {
-      isDay = !isDay;
-      if (isDay)
-        return isCetus
-            ? super.expiry.add(cetusDay)
-            : super.expiry.add(earthCycle);
-      else
-        return isCetus
-            ? super.expiry.add(cetusNight)
-            : super.expiry.add(earthCycle);
-    }
-
-    return super.expiry;
-  }
-
-  @override
   void decode(KeyedArchive object) {
     super.decode(object);
 

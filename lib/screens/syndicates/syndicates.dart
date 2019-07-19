@@ -7,8 +7,6 @@ import 'components/nightwave_style.dart';
 import 'components/syndicate_style.dart';
 
 class SyndicatesList extends StatelessWidget {
-  final _currentTime = DateTime.now();
-
   @override
   Widget build(BuildContext context) {
     final WorldstateBloc bloc = BlocProvider.of<WorldstateBloc>(context);
@@ -20,10 +18,6 @@ class SyndicatesList extends StatelessWidget {
             builder: (context, state) {
               if (state is WorldstateLoaded) {
                 final List<Syndicate> syndicates = state.syndicates;
-
-                if (syndicates.first.expiry.isBefore(_currentTime))
-                  return const Center(
-                      child: Text('Retrieving new bounties...'));
 
                 return ListView(children: <Widget>[
                   TimerBox(
