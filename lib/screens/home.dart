@@ -79,6 +79,7 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
     if (state is WorldstateError)
       scaffold.currentState.showSnackBar(SnackBar(
         content: Text(state.error),
+        duration: const Duration(minutes: 5),
         action: SnackBarAction(
           label: 'RETRY',
           onPressed: onPressed,
