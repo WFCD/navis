@@ -34,7 +34,7 @@ class _NavisState extends State<Navis> {
   Widget build(BuildContext context) {
     return RepositoryProvider.value(
       value: widget.repository,
-      child: BlocBuilder<ChangeEvent, StorageState>(
+      child: BlocBuilder<StorageBloc, StorageState>(
         bloc: BlocProvider.of<StorageBloc>(context),
         builder: (BuildContext context, StorageState state) {
           return MaterialApp(

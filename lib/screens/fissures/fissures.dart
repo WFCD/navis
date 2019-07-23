@@ -11,7 +11,7 @@ class FissureList extends StatelessWidget {
   Widget build(BuildContext context) {
     final ws = BlocProvider.of<WorldstateBloc>(context);
 
-    return BlocBuilder<UpdateEvent, WorldStates>(
+    return BlocBuilder<WorldstateBloc, WorldStates>(
       bloc: ws,
       builder: (BuildContext context, WorldStates state) {
         if (state is WorldstateLoaded) {

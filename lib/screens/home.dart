@@ -123,7 +123,7 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
             state,
             () => bloc.dispatch(UpdateEvent.update),
           ),
-          child: BlocBuilder<RouteEvent, RouteState>(
+          child: BlocBuilder<NavigationBloc, RouteState>(
             bloc: BlocProvider.of<NavigationBloc>(context),
             builder: (BuildContext context, RouteState route) {
               return ControlledAnimation(

@@ -6,10 +6,10 @@ dependencies:
   flutter:
     sdk: flutter
   bloc: ^0.14.4
-  hydrated_bloc: ^0.3.0
+  hydrated_bloc: ^0.3.1
   codable: ^1.0.0
   equatable: ^0.2.5
-  flutter_bloc: ^0.19.0
+  flutter_bloc: ^0.20.0
   firebase_crashlytics: ^0.0.4+4
   flutter_custom_tabs: ^0.6.0
   intl: ^0.15.8

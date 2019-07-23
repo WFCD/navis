@@ -8,7 +8,7 @@ class PlatformChoice extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ChangeEvent, StorageState>(
+    return BlocBuilder<StorageBloc, StorageState>(
       bloc: BlocProvider.of<StorageBloc>(context),
       builder: (context, storageState) {
         return Row(

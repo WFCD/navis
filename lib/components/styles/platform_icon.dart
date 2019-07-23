@@ -52,7 +52,7 @@ class PlatformIcon extends StatelessWidget {
       //Navigator.of(context).pop();
     }
 
-    return BlocBuilder<ChangeEvent, StorageState>(
+    return BlocBuilder<StorageBloc, StorageState>(
       bloc: storage,
       builder: (_, state) {
         _setValues();

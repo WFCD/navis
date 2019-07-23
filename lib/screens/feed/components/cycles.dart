@@ -10,7 +10,7 @@ class EarthCycle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<UpdateEvent, WorldStates>(
+    return BlocBuilder<WorldstateBloc, WorldStates>(
       bloc: BlocProvider.of<WorldstateBloc>(context),
       builder: (BuildContext context, WorldStates state) {
         return Cycle(
@@ -28,7 +28,7 @@ class CetusCycle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<UpdateEvent, WorldStates>(
+    return BlocBuilder<WorldstateBloc, WorldStates>(
       bloc: BlocProvider.of<WorldstateBloc>(context),
       builder: (BuildContext context, WorldStates state) {
         return Cycle(
@@ -46,7 +46,7 @@ class OrbVallisCycle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<UpdateEvent, WorldStates>(
+    return BlocBuilder<WorldstateBloc, WorldStates>(
       bloc: BlocProvider.of<WorldstateBloc>(context),
       builder: (BuildContext context, WorldStates state) {
         return Cycle(

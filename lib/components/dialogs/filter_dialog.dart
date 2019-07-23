@@ -40,7 +40,7 @@ class FilterDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     final storage = BlocProvider.of<StorageBloc>(context);
 
-    return BlocBuilder<ChangeEvent, StorageState>(
+    return BlocBuilder<StorageBloc, StorageState>(
       bloc: BlocProvider.of<StorageBloc>(context),
       builder: (context, state) {
         final instance = _typeToInstance(state);
