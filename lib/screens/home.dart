@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:navis/blocs/bloc.dart';
@@ -17,7 +16,6 @@ import 'package:navis/screens/syndicates/syndicates.dart';
 import 'package:navis/services/permission_service.dart';
 import 'package:navis/services/repository.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:simple_animations/simple_animations.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key key}) : super(key: key);
@@ -126,12 +124,9 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
           child: BlocBuilder<NavigationBloc, RouteState>(
             bloc: BlocProvider.of<NavigationBloc>(context),
             builder: (BuildContext context, RouteState route) {
-              return ControlledAnimation(
-                duration: const Duration(milliseconds: 500),
-                playback: Playback.PLAY_FORWARD,
-                tween: Tween(begin: 0.0, end: 1.0),
-                builder: (BuildContext context, dynamic value) =>
-                    Opacity(opacity: value, child: _body(route)),
+              return AnimatedSwitcher(
+                duration: const Duration(milliseconds: 200),
+                child: _body(route),
               );
             },
           ),
