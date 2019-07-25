@@ -13,3 +13,4 @@ android/key.properties
 android/app/google-services.json
 secrets.tar
 android/fastlane/report.xml
+**/*.g.dart
