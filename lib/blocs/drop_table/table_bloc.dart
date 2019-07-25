@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:bloc/bloc.dart';
 import 'package:catcher/core/catcher.dart';
 import 'package:flutter/foundation.dart';
-import 'package:navis/models/drop_tables/slim.dart';
+import 'package:navis/models/slim_drop_table.dart';
 import 'package:navis/services/repository.dart';
 import 'package:navis/utils/worldstate_utils.dart';
 import 'package:rxdart/rxdart.dart';

@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-part 'slim.g.dart';
+part 'slim_drop_table.g.dart';
 
 @JsonSerializable()
 class Drop extends Equatable {

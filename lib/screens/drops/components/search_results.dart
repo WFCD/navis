@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:html/parser.dart';
 import 'package:navis/blocs/bloc.dart';
-import 'package:navis/models/drop_tables/slim.dart';
+import 'package:navis/models/slim_drop_table.dart';
 
 class SearchResults extends StatelessWidget {
   const SearchResults({Key key}) : super(key: key);
