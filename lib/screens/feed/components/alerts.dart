@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/blocs/bloc.dart';
-import 'package:navis/models/export.dart';
 
 import 'package:navis/components/layout.dart';
 import 'package:navis/components/animations.dart';
+import 'package:worldstate_model/worldstate_model.dart';
 
 class AlertTile extends StatelessWidget {
   const AlertTile({Key key}) : super(key: key);

@@ -4,11 +4,11 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:navis/blocs/bloc.dart';
 import 'package:navis/components/animations.dart';
-import 'package:navis/models/export.dart';
 import 'package:navis/screens/syndicates/components/rewards.dart';
 import 'package:navis/components/layout.dart';
 
 import 'package:rxdart/rxdart.dart';
+import 'package:worldstate_model/worldstate_model.dart';
 
 class EventPanel extends StatefulWidget {
   const EventPanel({Key key}) : super(key: key);

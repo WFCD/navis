@@ -3,7 +3,7 @@ import 'package:navis/blocs/bloc.dart';
 import 'package:navis/components/animations.dart';
 import 'package:navis/components/icons.dart';
 import 'package:navis/components/layout.dart';
-import 'package:navis/models/export.dart';
+import 'package:worldstate_model/worldstate_model.dart';
 
 class NightwaveChallenges extends StatelessWidget {
   const NightwaveChallenges();

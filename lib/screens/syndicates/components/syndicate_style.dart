@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:navis/components/layout.dart';
-import 'package:navis/models/export.dart';
 import 'package:navis/utils/factionutils.dart';
+import 'package:worldstate_model/worldstate_model.dart';
 
 import 'syndicate_missions.dart';
 
@@ -15,7 +15,7 @@ class SyndicateStyle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bool ostron = syndicate.syndicate == 'Ostrons';
+    final bool ostron = syndicate.name == 'Ostrons';
 
     return Tiles(
       color: ostron ? ostronsColor : solarisColor,
@@ -24,13 +24,13 @@ class SyndicateStyle extends StatelessWidget {
         splashColor: Colors.transparent,
         child: Container(
           child: Row(mainAxisSize: MainAxisSize.max, children: <Widget>[
-            Container(child: FactionIcon(syndicate.syndicate, size: 60.0)),
+            Container(child: FactionIcon(syndicate.name, size: 60.0)),
             Expanded(
                 child: Column(
                     mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                  Text(syndicate.syndicate,
+                  Text(syndicate.name,
                       style: Theme.of(context)
                           .textTheme
                           .subhead
@@ -51,7 +51,7 @@ class SyndicateStyle extends StatelessWidget {
 void _navigateToBounties(BuildContext context, Syndicate syn) {
   Navigator.of(context).push(MaterialPageRoute(
       builder: (_) =>
-          SyndicateJobs(faction: _faction(syn.syndicate), jobs: syn.jobs)));
+          SyndicateJobs(faction: _faction(syn.name), jobs: syn.jobs)));
 }
 
 OpenWorldFactions _faction(String faction) {

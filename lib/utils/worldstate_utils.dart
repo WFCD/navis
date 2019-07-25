@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/widgets.dart';
 import 'package:navis/models/drop_tables/slim.dart';
-import 'package:navis/models/export.dart';
+import 'package:worldstate_model/worldstate_model.dart';
 
 Worldstate cleanState(Worldstate state) {
   state.alerts.removeWhere((a) =>
@@ -17,10 +17,10 @@ Worldstate cleanState(Worldstate state) {
 
   state.persistentEnemies.sort((a, b) => a.agentType.compareTo(b.agentType));
 
-  state.syndicateMissions.retainWhere((s) =>
-      s.syndicate.contains(RegExp('(Ostrons)|(Solaris United)')) == true);
+  state.syndicateMissions.retainWhere(
+      (s) => s.name.contains(RegExp('(Ostrons)|(Solaris United)')) == true);
 
-  state.syndicateMissions.sort((a, b) => a.syndicate.compareTo(b.syndicate));
+  state.syndicateMissions.sort((a, b) => a.name.compareTo(b.name));
 
   state.fissures.removeWhere((v) =>
       v.active == false ||

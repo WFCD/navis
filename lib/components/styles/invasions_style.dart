@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:navis/models/export.dart';
 import 'package:navis/utils/factionutils.dart';
+import 'package:worldstate_model/worldstate_model.dart';
 
 import '../layout.dart';
 import 'invasionsBar.dart';

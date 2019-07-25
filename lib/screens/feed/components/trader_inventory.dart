@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:navis/models/export.dart';
+import 'package:worldstate_model/worldstate_model.dart';
 
 class VoidTraderInventory extends StatefulWidget {
   const VoidTraderInventory({this.inventory});
 
-  final List<Inventory> inventory;
+  final List<InventoryItem> inventory;
 
   @override
   VoidTraderInventoryState createState() => VoidTraderInventoryState();
@@ -48,7 +48,7 @@ class VoidTraderInventoryState extends State<VoidTraderInventory> {
 class InventoryDataSource extends DataTableSource {
   InventoryDataSource({this.inventory});
 
-  final List<Inventory> inventory;
+  final List<InventoryItem> inventory;
 
   @override
   DataRow getRow(int index) {
@@ -60,7 +60,7 @@ class InventoryDataSource extends DataTableSource {
     return DataRow.byIndex(
         index: index,
         cells: <DataCell>[
-          DataCell(Text(product.item), onTap: () {}),
+          DataCell(Text(product.itemName), onTap: () {}),
           DataCell(Text('${product.ducats}'), onTap: () {}),
           DataCell(Text('${product.credits}cr'), onTap: () {})
         ],

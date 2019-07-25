@@ -2,9 +2,9 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:navis/blocs/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:navis/models/export.dart';
 
 import 'package:navis/components/layout.dart';
+import 'package:worldstate_model/worldstate_model.dart';
 
 class Acolytes extends StatelessWidget {
   const Acolytes({Key key}) : super(key: key);
@@ -34,7 +34,7 @@ class Acolytes extends StatelessWidget {
 class AcolyteProfile extends StatelessWidget {
   const AcolyteProfile({@required this.enemy});
 
-  final PersistentEnemie enemy;
+  final PersistentEnemies enemy;
 
   Color _healthColor(num health) {
     if (health > 50.0)

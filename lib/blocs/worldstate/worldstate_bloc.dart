@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:catcher/catcher_plugin.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
-import 'package:navis/models/export.dart';
+import 'package:worldstate_model/worldstate_model.dart';
 
 import '../../services/repository.dart';
 import 'worldstate_states.dart';

@@ -1,6 +1,6 @@
 //import 'package:equatable/equatable.dart';
 import 'package:equatable/equatable.dart';
-import 'package:navis/models/export.dart';
+import 'package:worldstate_model/worldstate_model.dart';
 
 abstract class WorldStates extends Equatable {
   WorldStates({this.worldstate, List props = const []})

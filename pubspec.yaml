@@ -24,6 +24,8 @@ dependencies:
   permission_handler: ^3.2.0
   flutter_brand_icons: ^1.0.0
   json_annotation: ^2.4.0
+  worldstate_model: 
+    git: https://github.com/SlayerOrnstein/worldstate_model.git
   
 dev_dependencies:
   flutter_test:

@@ -1,10 +1,10 @@
 //import 'dart:io';
 
-import 'package:navis/models/export.dart';
 //import 'package:navis/services/localstorage_service.dart';
 import 'package:navis/services/repository.dart';
 import 'package:navis/utils/utils.dart';
 import 'package:test/test.dart';
+import 'package:worldstate_model/worldstate_model.dart';
 
 import 'setup_methods.dart';
 

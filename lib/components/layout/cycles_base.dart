@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:navis/components/widgets/date.dart';
-import 'package:navis/models/abstract_classes.dart';
+import 'package:worldstate_model/worldstate_model.dart';
 
 import '../animations.dart';
 import '../layout.dart';
@@ -19,15 +19,6 @@ class Cycle extends StatelessWidget {
   final CycleModel cycle;
   final PlanetCycle planetCycle;
 
-  String stateString() {
-    switch (planetCycle) {
-      case PlanetCycle.venus:
-        return !cycle.getStateBool() ? 'Warm' : 'Cold';
-      default:
-        return !cycle.getStateBool() ? 'Day' : 'Night';
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     const padding = SizedBox(height: 8.0);
@@ -38,18 +29,18 @@ class Cycle extends StatelessWidget {
           children: <Widget>[
             RowItem.richText(
               title: 'Currently it is',
-              richText: toBeginningOfSentenceCase(cycle.getState()),
+              richText: toBeginningOfSentenceCase(cycle.state),
               color: cycle.getStateBool() ? Colors.yellow[700] : Colors.blue,
               size: 20.0,
             ),
             padding,
             RowItem(
-              text: 'Time until ${stateString()}',
+              text: 'Time until ${cycle.nextState()}',
               child: CountdownBox(expiry: cycle.expiry),
             ),
             padding,
             RowItem(
-                text: 'Time at ${stateString()}',
+                text: 'Time at ${cycle.nextState()}',
                 child: DateView(expiry: cycle.expiry)),
             padding
           ],

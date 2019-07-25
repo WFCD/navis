@@ -5,12 +5,12 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:http/http.dart' as http;
-import 'package:navis/models/worldstate/worldstate.dart';
 import 'package:navis/utils/api_base_helper.dart';
 import 'package:navis/utils/utils.dart';
 import 'package:navis/utils/worldstate_utils.dart';
 import 'package:package_info/package_info.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:worldstate_model/worldstate_model.dart';
 
 import 'localstorage_service.dart';
 import 'notification_service.dart';
