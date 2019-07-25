@@ -7,13 +7,12 @@ dependencies:
     sdk: flutter
   bloc: ^0.14.4
   hydrated_bloc: ^0.3.1
-  codable: ^1.0.0
-  equatable: ^0.2.5
+  equatable: ^0.3.0
   flutter_bloc: ^0.20.0
   firebase_crashlytics: ^0.0.4+4
   flutter_custom_tabs: ^0.6.0
   intl: ^0.15.8
-  package_info: ^0.4.0+5
+  package_info: ^0.4.0+6
   shared_preferences: ^0.5.3+4
   sticky_headers: ^0.1.7
   firebase_messaging: ^5.1.1
@@ -24,16 +23,17 @@ dependencies:
   catcher: ^0.1.9
   permission_handler: ^3.2.0
   flutter_brand_icons: ^1.0.0
-
-dependency_overrides:
-  path_provider: ^1.1.0
-
+  json_annotation: ^2.4.0
+  
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_driver:
     sdk: flutter
   test: ^1.6.1
+
+builders: 
+  json_serializable: ^3.1.0
 
 flutter:
   uses-material-design: true
