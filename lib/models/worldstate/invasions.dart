@@ -1,52 +1,35 @@
-import 'package:codable/codable.dart';
 import 'package:navis/models/abstract_classes.dart';
 import 'package:navis/models/worldstate/reward.dart';
+import 'package:json_annotation/json_annotation.dart';
 
+part 'invasions.g.dart';
+
+@JsonSerializable()
 class Invasion extends WorldstateObject {
-  String node, desc, attackingFaction, defendingFaction, eta;
-  bool vsInfestation, completed;
-  num completion, count;
+  Invasion(
+      {String id,
+      DateTime activation,
+      DateTime expiry,
+      this.node,
+      this.desc,
+      this.attackingFaction,
+      this.defendingFaction,
+      this.eta,
+      this.vsInfestation,
+      this.completed,
+      this.completion,
+      this.count,
+      this.attackerReward,
+      this.defenderReward})
+      : super(id: id, activation: activation, expiry: expiry);
 
-  Reward attackerReward, defenderReward;
+  factory Invasion.fromJson(Map<String, dynamic> json) =>
+      _$InvasionFromJson(json);
 
-  @override
-  void decode(KeyedArchive object) {
-    super.decode(object);
+  final String node, desc, attackingFaction, defendingFaction, eta;
+  final bool vsInfestation, completed;
+  final num completion, count;
+  final Reward attackerReward, defenderReward;
 
-    node = object.decode('node');
-    desc = object.decode('desc');
-    attackingFaction = object.decode('attackingFaction');
-    defendingFaction = object.decode('defendingFaction');
-    activation = object.decode('activation');
-    eta = object.decode('eta');
-
-    attackerReward = object.decodeObject('attackerReward', () => Reward());
-    defenderReward = object.decodeObject('defenderReward', () => Reward());
-
-    vsInfestation = object.decode('vsInfestation');
-    completed = object.decode('completed');
-
-    completion = object.decode('completion');
-    count = object.decode('count');
-  }
-
-  @override
-  void encode(KeyedArchive object) {
-    super.encode(object);
-    object.encode('node', node);
-    object.encode('desc', desc);
-    object.encode('attackingFaction', attackingFaction);
-    object.encode('defendingFaction', defendingFaction);
-    object.encode('activation', activation);
-    object.encode('eta', eta);
-
-    object.encodeObject('defenderReward', defenderReward);
-    object.encodeObject('attackerReward', attackerReward);
-
-    object.encode('vsInfestation', vsInfestation);
-    object.encode('completed', completed);
-
-    object.encode('completion', completion);
-    object.encode('count', count);
-  }
+  Map<String, dynamic> toJson() => _$InvasionToJson(this);
 }

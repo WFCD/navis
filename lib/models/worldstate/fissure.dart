@@ -1,36 +1,29 @@
-import 'package:codable/codable.dart';
 import 'package:navis/models/abstract_classes.dart';
+import 'package:json_annotation/json_annotation.dart';
 
+part 'fissure.g.dart';
+
+@JsonSerializable()
 class VoidFissure extends WorldstateObject {
-  String node, missionType, enemy, tier;
-  int tierNum;
-  bool active, expired;
+  VoidFissure({
+    String id,
+    DateTime activation,
+    DateTime expiry,
+    this.node,
+    this.missionType,
+    this.enemy,
+    this.tier,
+    this.tierNum,
+    this.active,
+    this.expired,
+  }) : super(id: id, activation: activation, expiry: expiry);
 
-  @override
-  void decode(KeyedArchive object) {
-    super.decode(object);
+  factory VoidFissure.fromJson(Map<String, dynamic> json) =>
+      _$VoidFissureFromJson(json);
 
-    node = object.decode('node');
-    missionType = object.decode('missionType');
-    enemy = object.decode('enemy');
-    tier = object.decode('tier');
-    tierNum = object.decode('tierNum');
-    active = object.decode('active');
-    expired = object.decode('expired');
-  }
+  final String node, missionType, enemy, tier;
+  final int tierNum;
+  final bool active, expired;
 
-  @override
-  void encode(KeyedArchive object) {
-    super.encode(object);
-    object.encode('node', node);
-    object.encode('missionType', missionType);
-    object.encode('enemy', enemy);
-    object.encode('tier', tier);
-    object.encode('tierNum', tierNum);
-    object.encode('expired', expired);
-  }
-
-  @override
-  List get props => super.props
-    ..addAll([node, missionType, enemy, tier, tierNum, active, expired]);
+  Map<String, dynamic> toJson() => _$VoidFissureToJson(this);
 }

@@ -45,8 +45,10 @@ class EventPanelState extends State<EventPanel> {
     return BlocBuilder(
       bloc: BlocProvider.of<WorldstateBloc>(context),
       condition: (WorldStates previous, WorldStates current) =>
-          listEquals(previous.events, current.events),
+          listEquals(previous.worldstate.events, current.worldstate.events),
       builder: (BuildContext context, WorldStates state) {
+        final events = state.worldstate.events ?? [];
+
         return Container(
             height: 160,
             width: MediaQuery.of(context).size.width,
@@ -64,18 +66,18 @@ class EventPanelState extends State<EventPanel> {
                         controller: pageController,
                         scrollDirection: Axis.horizontal,
                         children: <Widget>[
-                          ...state.events.map((e) => EventBuilder(event: e))
+                          ...events.map((e) => EventBuilder(event: e))
                         ],
                         onPageChanged: onPageChanged,
                       )),
-                      if (state.events.length > 1)
+                      if (events.length > 1)
                         StreamBuilder<int>(
                           stream: _currentPage.stream,
                           initialData: 0,
                           builder: (BuildContext context,
                               AsyncSnapshot<int> snapshot) {
                             return Indicator(
-                              numberOfDot: state.events.length,
+                              numberOfDot: events.length,
                               position: snapshot.data,
                               dotSize: const Size.square(9.0),
                               dotActiveSize: const Size(25.0, 9.0),

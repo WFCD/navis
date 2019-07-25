@@ -1,60 +1,34 @@
-import 'package:codable/codable.dart';
+import 'package:json_annotation/json_annotation.dart';
 import 'package:navis/models/abstract_classes.dart';
 
+part 'persistentEnemies.g.dart';
+
+@JsonSerializable()
 class PersistentEnemie extends WorldstateObject {
-  String agentType, locationTag, lastDiscoveredAt;
-  DateTime lastDiscoveredTime;
-  int fleeDamage, region, rank;
-  num healthPercent;
-  bool isDiscovered, isUsingTicketing;
+  PersistentEnemie({
+    String id,
+    DateTime activation,
+    DateTime expiry,
+    this.agentType,
+    this.locationTag,
+    this.lastDiscoveredAt,
+    this.lastDiscoveredTime,
+    this.fleeDamage,
+    this.region,
+    this.rank,
+    this.healthPercent,
+    this.isDiscovered,
+    this.isUsingTicketing,
+  }) : super(id: id, activation: activation, expiry: expiry);
 
-  @override
-  void decode(KeyedArchive object) {
-    super.decode(object);
+  factory PersistentEnemie.fromJson(Map<String, dynamic> json) =>
+      _$PersistentEnemieFromJson(json);
 
-    id = object.decode('id');
-    agentType = object.decode('agentType');
-    locationTag = object.decode('locationTag');
-    lastDiscoveredTime = DateTime.parse(object.decode('lastDiscoveredTime'));
-    lastDiscoveredAt = object.decode('lastDiscoveredAt');
+  final String agentType, locationTag, lastDiscoveredAt;
+  final DateTime lastDiscoveredTime;
+  final int fleeDamage, region, rank;
+  final num healthPercent;
+  final bool isDiscovered, isUsingTicketing;
 
-    fleeDamage = object.decode('fleeDamage');
-    region = object.decode('region');
-    rank = object.decode('rank');
-    healthPercent = object.decode('healthPercent');
-    isDiscovered = object.decode('isDiscovered');
-    isUsingTicketing = object.decode('isUsingTicketing');
-  }
-
-  @override
-  void encode(KeyedArchive object) {
-    super.encode(object);
-
-    object.encode('agentType', agentType);
-    object.encode('locationTag', locationTag);
-    object.encode('lastDiscoveredTime', lastDiscoveredTime);
-    object.encode('lastDiscovereAt', lastDiscoveredAt);
-
-    object.encode('fleeDamage', fleeDamage);
-    object.encode('region', region);
-    object.encode('rank', rank);
-    object.encode('healthPercent', healthPercent);
-    object.encode('isDiscovered', isDiscovered);
-    object.encode('isUsingTicketing', isUsingTicketing);
-  }
-
-  @override
-  List get props => super.props
-    ..addAll([
-      agentType,
-      locationTag,
-      lastDiscoveredTime,
-      lastDiscoveredAt,
-      fleeDamage,
-      region,
-      rank,
-      healthPercent,
-      isDiscovered,
-      isUsingTicketing
-    ]);
+  Map<String, dynamic> toJson() => _$PersistentEnemieToJson(this);
 }

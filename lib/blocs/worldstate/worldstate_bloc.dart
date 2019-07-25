@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:catcher/catcher_plugin.dart';
-import 'package:codable/codable.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:navis/models/export.dart';
@@ -52,16 +51,11 @@ class WorldstateBloc extends HydratedBloc<UpdateEvent, WorldStates> {
 
   @override
   WorldStates fromJson(Map<String, dynamic> json) {
-    final key = KeyedArchive.unarchive(json);
-    final worldstate = Worldstate()..decode(key);
-
-    return WorldstateLoaded(worldstate);
+    return WorldstateLoaded(Worldstate.fromJson(json));
   }
 
   @override
   Map<String, dynamic> toJson(WorldStates state) {
-    return state.worldstate != null
-        ? KeyedArchive.archive(state.worldstate)
-        : null;
+    return state.worldstate != null ? state.worldstate.toJson() : null;
   }
 }

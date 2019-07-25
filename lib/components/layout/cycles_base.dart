@@ -22,9 +22,9 @@ class Cycle extends StatelessWidget {
   String stateString() {
     switch (planetCycle) {
       case PlanetCycle.venus:
-        return !cycle.stateBool ? 'Warm' : 'Cold';
+        return !cycle.getStateBool() ? 'Warm' : 'Cold';
       default:
-        return !cycle.stateBool ? 'Day' : 'Night';
+        return !cycle.getStateBool() ? 'Day' : 'Night';
     }
   }
 
@@ -38,8 +38,8 @@ class Cycle extends StatelessWidget {
           children: <Widget>[
             RowItem.richText(
               title: 'Currently it is',
-              richText: toBeginningOfSentenceCase(cycle.state),
-              color: cycle.stateBool ? Colors.yellow[700] : Colors.blue,
+              richText: toBeginningOfSentenceCase(cycle.getState()),
+              color: cycle.getStateBool() ? Colors.yellow[700] : Colors.blue,
               size: 20.0,
             ),
             padding,

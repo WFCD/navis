@@ -20,8 +20,8 @@ class FissureList extends StatelessWidget {
               itemExtent: 145,
               delegate: SliverChildBuilderDelegate(
                   (BuildContext context, int index) =>
-                      FissureCard(fissure: state.fissures[index]),
-                  childCount: state.fissures.length),
+                      FissureCard(fissure: state.worldstate.fissures[index]),
+                  childCount: state.worldstate.fissures.length),
             ),
           ]);
         }

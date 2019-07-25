@@ -1,28 +1,17 @@
-import 'package:codable/codable.dart';
 import 'package:equatable/equatable.dart';
+import 'package:json_annotation/json_annotation.dart';
 
-class Reward extends Coding with EquatableMixinBase, EquatableMixin {
-  String itemString, thumbnail, asString;
-  int credits;
+part 'reward.g.dart';
 
-  @override
-  void decode(KeyedArchive object) {
-    super.decode(object);
+@JsonSerializable()
+class Reward extends Equatable {
+  Reward({this.itemString, this.thumbnail, this.asString, this.credits})
+      : super([itemString, thumbnail, asString, credits]);
 
-    itemString = object.decode('itemString');
-    asString = object.decode('asString');
-    credits = object.decode('credits');
-    thumbnail = object.decode('thumbnail');
-  }
+  factory Reward.fromJson(Map<String, dynamic> json) => _$RewardFromJson(json);
 
-  @override
-  void encode(KeyedArchive object) {
-    object.encode('itemString', itemString);
-    object.encode('asString', asString);
-    object.encode('credits', credits);
-    object.encode('thumbnail', thumbnail);
-  }
+  final String itemString, thumbnail, asString;
+  final int credits;
 
-  @override
-  List get props => [itemString, thumbnail, asString, credits];
+  Map<String, dynamic> toJson() => _$RewardToJson(this);
 }

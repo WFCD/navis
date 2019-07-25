@@ -1,46 +1,33 @@
-import 'package:codable/codable.dart';
-import 'package:codable/cast.dart' as cast;
+import 'package:json_annotation/json_annotation.dart';
 import 'package:navis/models/abstract_classes.dart';
 
+part 'news.g.dart';
+
+@JsonSerializable()
 class OrbiterNews extends WorldstateObject {
-  String message, link, imageLink;
-  DateTime date;
-  bool priority, update, primeAccess, stream;
+  OrbiterNews({
+    String id,
+    DateTime activation,
+    DateTime expiry,
+    this.message,
+    this.link,
+    this.imageLink,
+    this.date,
+    this.priority,
+    this.update,
+    this.primeAccess,
+    this.stream,
+    this.translations,
+  }) : super(id: id, activation: activation, expiry: expiry);
 
-  Map<String, String> translations;
+  factory OrbiterNews.fromJson(Map<String, dynamic> json) =>
+      _$OrbiterNewsFromJson(json);
 
-  @override
-  Map<String, cast.Cast> get castMap =>
-      {'translations': const cast.Map(cast.String, cast.String)};
+  final String message, link, imageLink;
+  final DateTime date;
+  final bool priority, update, primeAccess, stream;
 
-  @override
-  void decode(KeyedArchive object) {
-    super.decode(object);
+  final Map<String, String> translations;
 
-    message = object.decode('message');
-    link = object.decode('link');
-    imageLink = object.decode('imageLink');
-    priority = object.decode('priority');
-    date = DateTime.parse(object.decode('date'));
-    update = object.decode('update');
-    primeAccess = object.decode('primeAccess');
-    stream = object.decode('stream');
-    translations = object.decode('translations');
-  }
-
-  @override
-  void encode(KeyedArchive object) {
-    super.encode(object);
-    object.encode('message', message);
-    object.encode('link', link);
-    object.encode('imageLink', imageLink);
-    object.encode('date', date);
-    object.encode('update', update);
-    object.encode('stream', stream);
-    object.encode('translations', translations);
-  }
-
-  @override
-  List get props => super.props
-    ..addAll([message, link, imageLink, date, update, stream, translations]);
+  Map<String, dynamic> toJson() => _$OrbiterNewsToJson(this);
 }

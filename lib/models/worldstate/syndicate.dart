@@ -1,69 +1,50 @@
-import 'package:codable/codable.dart';
 import 'package:equatable/equatable.dart';
-import 'package:codable/cast.dart' as cast;
+import 'package:json_annotation/json_annotation.dart';
 import 'package:navis/models/abstract_classes.dart';
 
+part 'syndicate.g.dart';
+
+@JsonSerializable()
 class Syndicate extends WorldstateObject {
-  String name;
-  bool active;
-  List<Jobs> jobs;
+  Syndicate({
+    String id,
+    DateTime activation,
+    DateTime expiry,
+    this.syndicate,
+    this.active,
+    this.jobs,
+  }) : super(id: id, activation: activation, expiry: expiry);
 
-  @override
-  void decode(KeyedArchive object) {
-    super.decode(object);
+  factory Syndicate.fromJson(Map<String, dynamic> json) =>
+      _$SyndicateFromJson(json);
 
-    name = object.decode('syndicate');
-    active = object.decode('active');
-    jobs = object.decodeObjects('jobs', () => Jobs());
-  }
+  final String syndicate;
+  final bool active;
+  final List<Jobs> jobs;
 
-  @override
-  void encode(KeyedArchive object) {
-    super.encode(object);
-    object.encode('syndicate', name);
-    object.encode('active', active);
-    object.encodeObjects('jobs', jobs);
-  }
-
-  @override
-  List get props => super.props..addAll([name, active, jobs]);
+  Map<String, dynamic> toJson() => _$SyndicateToJson(this);
 }
 
-class Jobs extends Coding with EquatableMixinBase, EquatableMixin {
-  String type;
-  List<String> rewardPool;
-  List<int> enemyLevels, standingStages;
+@JsonSerializable()
+class Jobs extends Equatable {
+  Jobs({
+    this.type,
+    this.pool,
+    this.enemyLevels,
+    this.standingStages,
+  }) : super([type, pool, enemyLevels, standingStages]);
 
-  @override
-  Map<String, cast.Cast> get castMap => {
-        'rewardPool': const cast.AnyCast(),
-        'enemyLevels': const cast.List(cast.int),
-        'standingStages': const cast.List(cast.int)
-      };
+  factory Jobs.fromJson(Map<String, dynamic> json) => _$JobsFromJson(json);
 
-  @override
-  void decode(KeyedArchive object) {
-    super.decode(object);
+  final String type;
 
-    type = object.decode('type');
-    enemyLevels = object.decode('enemyLevels');
-    standingStages = object.decode('standingStages');
+  @JsonKey(name: 'rewardPool')
+  final dynamic pool;
 
-    if (object.decode('rewardPool') is List) {
-      rewardPool = List.castFrom<dynamic, String>(object.decode('rewardPool'));
-    } else {
-      rewardPool = <String>[];
-    }
-  }
+  final List<int> enemyLevels, standingStages;
 
-  @override
-  void encode(KeyedArchive object) {
-    object.encode('type', type);
-    object.encode('enemyLevels', enemyLevels);
-    object.encode('standingStages', standingStages);
-    object.encode('rewardPool', rewardPool);
-  }
+  Map<String, dynamic> toJson() => _$JobsToJson(this);
 
-  @override
-  List get props => [type, enemyLevels, standingStages, rewardPool];
+  List<String> get rewardPool =>
+      pool is List ? pool.cast<String>() : <String>[];
 }

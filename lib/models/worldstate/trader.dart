@@ -1,56 +1,41 @@
-import 'package:codable/codable.dart';
 import 'package:equatable/equatable.dart';
+import 'package:json_annotation/json_annotation.dart';
 import 'package:navis/models/abstract_classes.dart';
 
+part 'trader.g.dart';
+
+@JsonSerializable()
 class VoidTrader extends WorldstateObject {
-  String character, location;
-  bool active;
-  List<Inventory> inventory;
+  VoidTrader({
+    String id,
+    DateTime activation,
+    DateTime expiry,
+    this.character,
+    this.location,
+    this.active,
+    this.inventory,
+  }) : super(id: id, activation: activation, expiry: expiry);
 
-  @override
-  void decode(KeyedArchive object) {
-    super.decode(object);
+  factory VoidTrader.fromJson(Map<String, dynamic> json) =>
+      _$VoidTraderFromJson(json);
 
-    character = object.decode('character');
-    location = object.decode('location');
-    active = object.decode('active');
-    inventory = object.decodeObjects('inventory', () => Inventory());
-  }
+  final String character, location;
+  final bool active;
+  final List<Inventory> inventory;
 
-  @override
-  void encode(KeyedArchive object) {
-    super.encode(object);
-    object.encode('character', character);
-    object.encode('location', location);
-    object.encode('active', active);
-    object.encodeObjects('inventory', inventory);
-  }
-
-  @override
-  List get props =>
-      super.props..addAll([character, location, active, inventory]);
+  Map<String, dynamic> toJson() => _$VoidTraderToJson(this);
 }
 
-class Inventory extends Coding with EquatableMixinBase, EquatableMixin {
-  String item;
-  int ducats, credits;
+@JsonSerializable()
+class Inventory extends Equatable {
+  Inventory({this.item, this.ducats, this.credits})
+      : super([item, ducats, credits]);
 
-  @override
-  void decode(KeyedArchive object) {
-    super.decode(object);
+  factory Inventory.fromJson(Map<String, dynamic> json) =>
+      _$InventoryFromJson(json);
 
-    item = object.decode('item');
-    ducats = object.decode('ducats');
-    credits = object.decode('credits');
-  }
+  final String item;
+  final int ducats, credits;
 
-  @override
-  void encode(KeyedArchive object) {
-    object.encode('item', item);
-    object.encode('ducats', ducats);
-    object.encode('credits', credits);
-  }
-
-  @override
-  List get props => [item, ducats, credits];
+  Map<String, dynamic> toJson() => _$InventoryToJson(this);
 }

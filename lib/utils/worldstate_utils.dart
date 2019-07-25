@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:codable/codable.dart';
 import 'package:flutter/widgets.dart';
 import 'package:navis/models/drop_tables/slim.dart';
 import 'package:navis/models/export.dart';
@@ -18,32 +17,28 @@ Worldstate cleanState(Worldstate state) {
 
   state.persistentEnemies.sort((a, b) => a.agentType.compareTo(b.agentType));
 
-  state.syndicates.retainWhere(
-      (s) => s.name.contains(RegExp('(Ostrons)|(Solaris United)')) == true);
+  state.syndicateMissions.retainWhere((s) =>
+      s.syndicate.contains(RegExp('(Ostrons)|(Solaris United)')) == true);
 
-  state.syndicates.sort((a, b) => a.name.compareTo(b.name));
+  state.syndicateMissions.sort((a, b) => a.syndicate.compareTo(b.syndicate));
 
-  state.voidFissures.removeWhere((v) =>
+  state.fissures.removeWhere((v) =>
       v.active == false ||
       v.expiry.difference(DateTime.now().toUtc()) < const Duration(seconds: 1));
 
-  state.voidFissures.sort((a, b) => a.tierNum.compareTo(b.tierNum));
+  state.fissures.sort((a, b) => a.tierNum.compareTo(b.tierNum));
 
   return state;
 }
 
 List<Drop> jsonToRewards(String response) {
-  final List<dynamic> drops = json.decode(response);
+  final drops = json.decode(response).cast<Map<String, dynamic>>();
 
-  return drops.map<Drop>((d) {
-    final key = KeyedArchive.unarchive(d);
-    return Drop()..decode(key);
-  }).toList();
+  return drops.map<Drop>((d) => Drop.fromJson(d)).toList();
 }
 
-Worldstate jsonToWorldstate(Map<String, dynamic> response) {
-  final key = KeyedArchive.unarchive(response);
-  final Worldstate state = Worldstate()..decode(key);
+Worldstate jsonToWorldstate(Map<String, dynamic> json) {
+  final Worldstate state = Worldstate.fromJson(json);
 
   return cleanState(state);
 }

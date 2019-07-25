@@ -20,15 +20,14 @@ class AlertTile extends StatelessWidget {
         child: BlocBuilder(
             bloc: state,
             condition: (WorldStates previous, WorldStates current) =>
-                listEquals(previous.alerts, current.alerts),
+                listEquals(
+                    previous.worldstate.alerts, current.worldstate.alerts),
             builder: (context, state) {
-              if (state is WorldstateLoaded) {
-                return Column(children: <Widget>[
-                  ...state.alerts.map((alert) => _BuildAlerts(alert: alert))
-                ]);
-              }
+              final alerts = state.worldstate?.alerts ?? [];
 
-              return Container();
+              return Column(children: <Widget>[
+                ...alerts.map((alert) => _BuildAlerts(alert: alert))
+              ]);
             }));
   }
 }

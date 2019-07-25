@@ -22,10 +22,12 @@ class Feed extends StatelessWidget {
           bloc: wstate,
           builder: (context, state) {
             if (state is WorldstateLoaded) {
-              final bool isAlertActive = state.alerts.isNotEmpty;
-              final bool isEventActive = state.events.isNotEmpty;
-              final bool areAcolytesActive = state.acolytes.isNotEmpty;
-              final bool areDealsActive = state.dailyDeals.isNotEmpty;
+              final bool isAlertActive = state.worldstate.alerts.isNotEmpty;
+              final bool isEventActive = state.worldstate.events.isNotEmpty;
+              final bool areAcolytesActive =
+                  state.worldstate.persistentEnemies.isNotEmpty;
+              final bool areDealsActive =
+                  state.worldstate.dailyDeals.isNotEmpty;
 
               return ListView(children: <Widget>[
                 if (isEventActive) const EventPanel(),

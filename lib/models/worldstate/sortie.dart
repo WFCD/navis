@@ -1,53 +1,41 @@
-import 'package:codable/codable.dart';
 import 'package:equatable/equatable.dart';
+import 'package:json_annotation/json_annotation.dart';
 import 'package:navis/models/abstract_classes.dart';
 
+part 'sortie.g.dart';
+
+@JsonSerializable()
 class Sortie extends WorldstateObject {
-  String boss, faction;
-  List<Variants> variants;
+  Sortie({
+    String id,
+    DateTime activation,
+    DateTime expiry,
+    this.boss,
+    this.faction,
+    this.variants,
+  }) : super(id: id, activation: activation, expiry: expiry);
 
-  @override
-  void decode(KeyedArchive object) {
-    super.decode(object);
+  factory Sortie.fromJson(Map<String, dynamic> json) => _$SortieFromJson(json);
 
-    variants = object.decodeObjects('variants', () => Variants());
-    boss = object.decode('boss');
-    faction = object.decode('faction');
-  }
+  final String boss, faction;
+  final List<Variants> variants;
 
-  @override
-  void encode(KeyedArchive object) {
-    super.encode(object);
-    object.encodeObjects('variants', variants);
-    object.encode('boss', boss);
-    object.encode('faction', faction);
-  }
-
-  @override
-  List get props => super.props..addAll([boss, faction, variants]);
+  Map<String, dynamic> toJson() => _$SortieToJson(this);
 }
 
-class Variants extends Coding with EquatableMixinBase, EquatableMixin {
-  String missionType, modifier, modifierDescription, node;
+@JsonSerializable()
+class Variants extends Equatable {
+  Variants({
+    this.missionType,
+    this.modifier,
+    this.modifierDescription,
+    this.node,
+  }) : super([missionType, modifier, modifierDescription, node]);
 
-  @override
-  void decode(KeyedArchive object) {
-    super.decode(object);
+  factory Variants.fromJson(Map<String, dynamic> json) =>
+      _$VariantsFromJson(json);
 
-    missionType = object.decode('missionType');
-    modifier = object.decode('modifier');
-    modifierDescription = object.decode('modifierDescription');
-    node = object.decode('node');
-  }
+  final String missionType, modifier, modifierDescription, node;
 
-  @override
-  void encode(KeyedArchive object) {
-    object.encode('missionType', missionType);
-    object.encode('modifier', modifier);
-    object.encode('modifierDescription', modifierDescription);
-    object.encode('node', node);
-  }
-
-  @override
-  List get props => [missionType, modifier, modifierDescription, node];
+  Map<String, dynamic> toJson() => _$VariantsToJson(this);
 }

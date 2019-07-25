@@ -1,72 +1,50 @@
-import 'package:codable/codable.dart';
 import 'package:equatable/equatable.dart';
+import 'package:json_annotation/json_annotation.dart';
 import 'package:navis/models/abstract_classes.dart';
 import 'package:navis/models/worldstate/reward.dart';
 
+part 'alerts.g.dart';
+
+@JsonSerializable()
 class Alert extends WorldstateObject {
-  bool active;
-  _Mission mission;
+  Alert({
+    String id,
+    DateTime activation,
+    DateTime expiry,
+    this.active,
+    this.mission,
+  }) : super(id: id, activation: activation, expiry: expiry);
 
-  @override
-  void decode(KeyedArchive object) {
-    super.decode(object);
-    active = object.decode('active');
-    mission = object.decodeObject('mission', () => _Mission());
-  }
+  factory Alert.fromJson(Map<String, dynamic> json) => _$AlertFromJson(json);
 
-  @override
-  void encode(KeyedArchive object) {
-    super.encode(object);
-    object.encode('active', active);
-    object.encodeObject('mission', mission);
-  }
+  final bool active;
+  final Mission mission;
 
-  @override
-  List get props => super.props..addAll([active, mission]);
+  Map<String, dynamic> toJson() => _$AlertToJson(this);
 }
 
-class _Mission extends Coding with EquatableMixinBase, EquatableMixin {
-  String node, type, faction;
-  int minEnemyLevel, maxEnemyLevel, maxWaveNum;
-  bool nightmare, archwingRequired;
+@JsonSerializable()
+class Mission extends Equatable {
+  Mission({
+    this.node,
+    this.type,
+    this.faction,
+    this.minEnemyLevel,
+    this.maxEnemyLevel,
+    this.maxWaveNum,
+    this.nightmare,
+    this.archwingRequired,
+    this.reward,
+  });
 
-  Reward reward;
+  factory Mission.fromJson(Map<String, dynamic> json) =>
+      _$MissionFromJson(json);
 
-  @override
-  void decode(KeyedArchive object) {
-    super.decode(object);
+  final String node, type, faction;
+  final int minEnemyLevel, maxEnemyLevel, maxWaveNum;
+  final bool nightmare, archwingRequired;
 
-    node = object.decode('node');
-    type = object.decode('type');
-    faction = object.decode('faction');
-    minEnemyLevel = object.decode('minEnemyLevel');
-    maxEnemyLevel = object.decode('maxEnemyLevel');
-    nightmare = object.decode('nightmare');
-    archwingRequired = object.decode('archwingRequired');
-    reward = object.decodeObject('reward', () => Reward());
-  }
+  final Reward reward;
 
-  @override
-  void encode(KeyedArchive object) {
-    object.encode('node', node);
-    object.encode('type', type);
-    object.encode('faction', faction);
-    object.encode('minEnemyLevel', minEnemyLevel);
-    object.encode('maxEnemyLevel', maxEnemyLevel);
-    object.encode('nightmare', nightmare);
-    object.encode('archwingRequired', archwingRequired);
-    object.encodeObject('reward', reward);
-  }
-
-  @override
-  List get props => [
-        node,
-        type,
-        faction,
-        minEnemyLevel,
-        maxEnemyLevel,
-        nightmare,
-        archwingRequired,
-        reward
-      ];
+  Map<String, dynamic> toJson() => _$MissionToJson(this);
 }

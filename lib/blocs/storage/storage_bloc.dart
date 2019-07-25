@@ -1,14 +1,12 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:equatable/equatable.dart';
 import 'package:navis/services/repository.dart';
 
 import 'storage_events.dart';
 import 'storage_states.dart';
 
-class StorageBloc extends Bloc<ChangeEvent, StorageState>
-    with EquatableMixinBase, EquatableMixin {
+class StorageBloc extends Bloc<ChangeEvent, StorageState> {
   StorageBloc(this.repository);
 
   final Repository repository;

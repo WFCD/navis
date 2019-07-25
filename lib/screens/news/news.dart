@@ -18,9 +18,9 @@ class Orbiter extends StatelessWidget {
             builder: (context, state) {
               if (state is WorldstateLoaded) {
                 return ListView.builder(
-                    itemCount: state.news.length,
+                    itemCount: state.worldstate.news.length,
                     itemBuilder: (context, index) =>
-                        NewsCard(news: state.news[index]));
+                        NewsCard(news: state.worldstate.news[index]));
               }
 
               return const Center(child: CircularProgressIndicator());

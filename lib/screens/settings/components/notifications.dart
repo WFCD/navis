@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:navis/blocs/bloc.dart';
+//import 'package:navis/blocs/bloc.dart';
 import 'package:navis/components/dialogs.dart';
 import 'package:navis/components/layout.dart';
 import 'package:navis/utils/notification_filters.dart';
@@ -26,7 +26,7 @@ class Notifications extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final storage = BlocProvider.of<StorageBloc>(context);
+    //final storage = BlocProvider.of<StorageBloc>(context);
 
     return Container(
         child: Column(children: <Widget>[

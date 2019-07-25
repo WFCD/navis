@@ -1,24 +1,23 @@
-import 'package:codable/codable.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 import '../abstract_classes.dart';
 
+part 'orbvallis.g.dart';
+
+@JsonSerializable()
 class Vallis extends WorldstateObject with CycleModel {
-  bool isWarm;
+  Vallis({String id, DateTime activation, DateTime expiry, this.isWarm})
+      : super(id: id, activation: activation, expiry: expiry, props: [isWarm]);
+
+  factory Vallis.fromJson(Map<String, dynamic> json) => _$VallisFromJson(json);
+
+  final bool isWarm;
 
   @override
-  bool get stateBool => isWarm;
+  bool getStateBool() => isWarm;
 
   @override
-  void decode(KeyedArchive object) {
-    super.decode(object);
-    isWarm = object.decode('isWarm');
-    state = object.decode('state');
-  }
+  String getState() => isWarm ? 'Warm' : 'Cold';
 
-  @override
-  void encode(KeyedArchive object) {
-    super.encode(object);
-    object.encode('isWarm', isWarm);
-    object.encode('state', state);
-  }
+  Map<String, dynamic> toJson() => _$VallisToJson(this);
 }

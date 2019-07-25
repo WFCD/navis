@@ -1,30 +1,31 @@
-import 'package:codable/codable.dart';
+import 'package:json_annotation/json_annotation.dart';
 import 'package:navis/models/abstract_classes.dart';
+
+part 'earth.g.dart';
 
 const earthCycle = Duration(hours: 4);
 const cetusDay = Duration(minutes: 100);
 const cetusNight = Duration(minutes: 50);
 
+@JsonSerializable()
 class Earth extends WorldstateObject with CycleModel {
-  bool isDay, isCetus;
+  Earth({
+    String id,
+    //DateTime activation,
+    DateTime expiry,
+    this.isDay,
+    this.isCetus,
+  }) : super(id: id, expiry: expiry);
+
+  factory Earth.fromJson(Map<String, dynamic> json) => _$EarthFromJson(json);
+
+  final bool isDay, isCetus;
+
+  Map<String, dynamic> toJson() => _$EarthToJson(this);
 
   @override
-  bool get stateBool => isDay;
+  bool getStateBool() => isDay;
 
   @override
-  void decode(KeyedArchive object) {
-    super.decode(object);
-
-    isDay = object.decode('isDay');
-    isCetus = object.decode('isCetus') ?? false;
-    state = object.decode('state');
-  }
-
-  @override
-  void encode(KeyedArchive object) {
-    super.encode(object);
-    object.encode('isDay', isDay);
-    object.encode('isCetus', isCetus);
-    object.encode('state', state);
-  }
+  String getState() => isDay ? 'Day' : 'Night';
 }

@@ -1,4 +1,3 @@
-import 'package:equatable/equatable.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:rxdart/rxdart.dart';
 
@@ -22,8 +21,7 @@ enum RouteState {
   droptable
 }
 
-class NavigationBloc extends HydratedBloc<RouteEvent, RouteState>
-    with EquatableMixinBase, EquatableMixin {
+class NavigationBloc extends HydratedBloc<RouteEvent, RouteState> {
   @override
   RouteState get initialState => super.initialState ?? RouteState.timers;
 

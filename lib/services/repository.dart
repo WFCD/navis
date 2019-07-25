@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:http/http.dart' as http;
@@ -49,10 +50,10 @@ class Repository {
 
   Future<Worldstate> getWorldstate([Platforms platform]) async {
     platform ??= storageService.platform;
-    final response =
-        await _helper.get('/${platform.toString().split('.').last}');
+    final response = await _helper
+        .get('/${platform.toString().split('.').last}') as Map<String, dynamic>;
 
-    return jsonToWorldstate(response);
+    return compute(jsonToWorldstate, response);
   }
 
   Future<File> updateDropTable([File source]) async {

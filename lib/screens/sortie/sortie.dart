@@ -13,12 +13,14 @@ class SortieScreen extends StatelessWidget {
         child: BlocBuilder(
             bloc: BlocProvider.of<WorldstateBloc>(context),
             condition: (WorldStates previous, WorldStates current) =>
-                previous.sortie != current.sortie,
+                previous.worldstate.sortie != current.worldstate.sortie,
             builder: (BuildContext context, WorldStates state) {
               if (state is WorldstateLoaded) {
-                if (state.sortie?.variants?.isNotEmpty ?? false) {
-                  final variants = state.sortie.variants;
-                  final faction = state.sortie.faction;
+                final sortie = state.worldstate?.sortie;
+
+                if (sortie.variants?.isNotEmpty ?? false) {
+                  final variants = sortie.variants;
+                  final faction = sortie.faction;
 
                   final light = 'assets/factions/$faction/light.webp';
                   final medium = 'assets/factions/$faction/medium.webp';
@@ -32,7 +34,7 @@ class SortieScreen extends StatelessWidget {
                               style: TextStyle(color: Colors.white)),
                           trailing: CountdownBox(
                               color: Colors.transparent,
-                              expiry: state.sortie.expiry,
+                              expiry: sortie.expiry,
                               size: 16),
                         )),
                     BuildMission(variant: variants[0], index: 0, asset: light),
@@ -41,8 +43,8 @@ class SortieScreen extends StatelessWidget {
                         variant: variants[2],
                         index: 2,
                         asset: heavy,
-                        boss: state.sortie.boss,
-                        faction: state.sortie.faction)
+                        boss: sortie.boss,
+                        faction: sortie.faction)
                   ]);
                 }
               }

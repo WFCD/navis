@@ -1,28 +1,21 @@
-import 'package:codable/codable.dart';
+import 'package:equatable/equatable.dart';
+import 'package:json_annotation/json_annotation.dart';
 
-class Drop extends Coding {
-  String place, item, rarity;
-  num chance;
+part 'slim.g.dart';
 
-  @override
-  void decode(KeyedArchive object) {
-    super.decode(object);
+@JsonSerializable()
+class Drop extends Equatable {
+  Drop({this.place, this.item, this.rarity, this.dropChance})
+      : super([place, item, rarity, dropChance]);
 
-    place = object.decode('place');
-    item = object.decode('item');
-    rarity = object.decode('rarity');
+  factory Drop.fromJson(Map<String, dynamic> json) => _$DropFromJson(json);
 
-    if (object.decode('chance') is String) {
-      chance = num.parse(object.decode('chance'));
-    } else
-      chance = object.decode('chance');
-  }
+  final String place, item, rarity;
 
-  @override
-  void encode(KeyedArchive object) {
-    object.encode('place', place);
-    object.encode('item', item);
-    object.encode('rarity', rarity);
-    object.encode('chance', chance);
-  }
+  @JsonKey(name: 'chance')
+  final dynamic dropChance;
+
+  num get chance => dropChance is String ? num.parse(dropChance) : dropChance;
+
+  Map<String, dynamic> toJson() => _$DropToJson(this);
 }

@@ -17,7 +17,10 @@ class SyndicatesList extends StatelessWidget {
             bloc: bloc,
             builder: (context, state) {
               if (state is WorldstateLoaded) {
-                final List<Syndicate> syndicates = state.syndicates;
+                final List<Syndicate> syndicates =
+                    state.worldstate?.syndicateMissions ?? [];
+
+                final Nightwave nightwave = state.worldstate?.nightwave;
 
                 return ListView(children: <Widget>[
                   TimerBox(
@@ -28,10 +31,9 @@ class SyndicatesList extends StatelessWidget {
                         .map((Syndicate syn) => SyndicateStyle(syndicate: syn))
                   ]),
                   const SizedBox(height: 20),
-                  if (state.nightwave != null) ...{
-                    TimerBox(
-                        title: 'Season ends in:', time: state.nightwave.expiry),
-                    NightWaveStyle(season: state.nightwave.season)
+                  if (nightwave != null) ...{
+                    TimerBox(title: 'Season ends in:', time: nightwave.expiry),
+                    NightWaveStyle(season: nightwave.season)
                   },
                 ]);
               }

@@ -1,69 +1,63 @@
-import 'package:codable/codable.dart';
+import 'package:equatable/equatable.dart';
+import 'package:json_annotation/json_annotation.dart';
 import 'package:navis/models/export.dart';
-import 'package:navis/models/worldstate/arbitration.dart';
-import 'package:navis/models/worldstate/kuva.dart';
 
-class Worldstate extends Coding {
-  String timestamp;
-  List<OrbiterNews> news;
-  List<Event> events;
-  List<Alert> alerts;
-  Sortie sortie;
-  List<Syndicate> syndicates;
-  List<VoidFissure> voidFissures;
-  List<Invasion> invasions;
-  VoidTrader trader;
-  List<DarvoDeal> dailyDeals;
-  List<PersistentEnemie> persistentEnemies;
-  Earth earth;
-  Earth cetus;
-  Vallis vallis;
-  Nightwave nightwave;
-  Arbitration arbitration;
-  List<KuvaNode> kuva;
+part 'worldstate.g.dart';
 
-  @override
-  void decode(KeyedArchive object) {
-    super.decode(object);
+@JsonSerializable()
+class Worldstate extends Equatable {
+  Worldstate({
+    this.timestamp,
+    this.news,
+    this.events,
+    this.alerts,
+    this.sortie,
+    this.syndicateMissions,
+    this.fissures,
+    this.invasions,
+    this.voidTrader,
+    this.dailyDeals,
+    this.persistentEnemies,
+    this.earthCycle,
+    this.cetusCycle,
+    this.vallisCycle,
+    this.nightwave,
+  }) : super([
+          timestamp,
+          news,
+          events,
+          alerts,
+          sortie,
+          syndicateMissions,
+          fissures,
+          invasions,
+          voidTrader,
+          dailyDeals,
+          persistentEnemies,
+          earthCycle,
+          cetusCycle,
+          vallisCycle,
+          nightwave
+        ]);
 
-    timestamp = object.decode('timestamp');
-    cetus = object.decodeObject('cetusCycle', () => Earth());
-    earth = object.decodeObject('earthCycle', () => Earth());
-    vallis = object.decodeObject('vallisCycle', () => Vallis());
-    nightwave = object.decodeObject('nightwave', () => Nightwave());
-    sortie = object.decodeObject('sortie', () => Sortie());
-    trader = object.decodeObject('voidTrader', () => VoidTrader());
-    dailyDeals = object.decodeObjects('dailyDeals', () => DarvoDeal());
-    invasions = object.decodeObjects('invasions', () => Invasion());
-    events = object.decodeObjects('events', () => Event());
-    persistentEnemies =
-        object.decodeObjects('persistentEnemies', () => PersistentEnemie());
-    news = object.decodeObjects('news', () => OrbiterNews());
-    alerts = object.decodeObjects('alerts', () => Alert());
-    syndicates = object.decodeObjects('syndicateMissions', () => Syndicate());
-    voidFissures = object.decodeObjects('fissures', () => VoidFissure());
-    arbitration = object.decodeObject('arbitration', () => Arbitration());
-    kuva = object.decodeObjects('kuva', () => KuvaNode());
-  }
+  factory Worldstate.fromJson(Map<String, dynamic> json) =>
+      _$WorldstateFromJson(json);
 
-  @override
-  void encode(KeyedArchive object) {
-    object.encode('timestamp', timestamp);
-    object.encodeObject('cetusCycle', cetus);
-    object.encodeObject('earthCycle', earth);
-    object.encodeObject('vallisCycle', vallis);
-    object.encodeObject('sortie', sortie);
-    object.encodeObject('voidTrader', trader);
-    object.encodeObject('nightwave', nightwave);
-    object.encodeObject('arbitration', arbitration);
-    object.encodeObjects('dailyDeals', dailyDeals);
-    object.encodeObjects('invasions', invasions);
-    object.encodeObjects('events', events);
-    object.encodeObjects('persistentEnemies', persistentEnemies);
-    object.encodeObjects('news', news);
-    object.encodeObjects('alerts', alerts);
-    object.encodeObjects('syndicateMissions', syndicates);
-    object.encodeObjects('fissures', voidFissures);
-    object.encodeObjects('kuva', kuva);
-  }
+  final String timestamp;
+  final List<OrbiterNews> news;
+  final List<Event> events;
+  final List<Alert> alerts;
+  final Sortie sortie;
+  final List<Syndicate> syndicateMissions;
+  final List<VoidFissure> fissures;
+  final List<Invasion> invasions;
+  final VoidTrader voidTrader;
+  final List<DarvoDeal> dailyDeals;
+  final List<PersistentEnemie> persistentEnemies;
+  final Earth earthCycle;
+  final Earth cetusCycle;
+  final Vallis vallisCycle;
+  final Nightwave nightwave;
+
+  Map<String, dynamic> toJson() => _$WorldstateToJson(this);
 }

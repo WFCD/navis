@@ -20,12 +20,14 @@ class NightwaveChallenges extends StatelessWidget {
           builder: (_, state) {
             if (state is WorldstateLoaded) {
               const padding = SizedBox(height: 8.0);
-              final nightwave = state.nightwave;
+              final nightwave = state.worldstate.nightwave;
 
-              final daily = nightwave.dailyChallenges
+              final daily = nightwave
+                  .dailyChallenges()
                   .map((c) => ChallengeType(challenge: c));
 
-              final weekly = nightwave.weeklyChallenges
+              final weekly = nightwave
+                  .weeklyChallenges()
                   .map((c) => ChallengeType(challenge: c));
 
               return ListView(children: <Widget>[
