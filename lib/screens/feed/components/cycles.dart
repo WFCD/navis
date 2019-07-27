@@ -19,7 +19,6 @@ class EarthCycle extends StatelessWidget {
         return Cycle(
           title: 'Earth Day/Night Cycle',
           cycle: state.worldstate.earthCycle,
-          planetCycle: PlanetCycle.earth,
         );
       },
     );
@@ -40,7 +39,6 @@ class CetusCycle extends StatelessWidget {
         return Cycle(
           title: 'Cetus Day/Night Cycle',
           cycle: state.worldstate.cetusCycle,
-          planetCycle: PlanetCycle.earth,
         );
       },
     );
@@ -61,7 +59,6 @@ class OrbVallisCycle extends StatelessWidget {
         return Cycle(
           title: 'Orb Vallis Warm/Cold Cycle',
           cycle: state.worldstate.vallisCycle,
-          planetCycle: PlanetCycle.venus,
         );
       },
     );

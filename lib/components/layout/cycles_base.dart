@@ -6,18 +6,15 @@ import 'package:worldstate_model/worldstate_model.dart';
 import '../animations.dart';
 import '../layout.dart';
 
-enum PlanetCycle { earth, venus }
-
 class Cycle extends StatelessWidget {
   const Cycle({
     @required this.title,
     @required this.cycle,
-    @required this.planetCycle,
-  });
+  })  : assert(title != null),
+        assert(cycle != null);
 
   final String title;
   final CycleObject cycle;
-  final PlanetCycle planetCycle;
 
   @override
   Widget build(BuildContext context) {
