@@ -5,6 +5,7 @@
 .flutter-plugins
 .idea
 .vscode
+.gradle/
 
 build/
 pubspec.lock

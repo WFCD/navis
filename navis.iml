@@ -8,25 +8,11 @@
       <excludeFolder url="file://$MODULE_DIR$/.dart_tool" />
       <excludeFolder url="file://$MODULE_DIR$/.idea" />
       <excludeFolder url="file://$MODULE_DIR$/.pub" />
-      <excludeFolder url="file://$MODULE_DIR$/android_job_scheduler/.dart_tool" />
-      <excludeFolder url="file://$MODULE_DIR$/android_job_scheduler/.pub" />
-      <excludeFolder url="file://$MODULE_DIR$/android_job_scheduler/build" />
       <excludeFolder url="file://$MODULE_DIR$/build" />
-      <excludeFolder url="file://$MODULE_DIR$/get_version/.dart_tool" />
-      <excludeFolder url="file://$MODULE_DIR$/get_version/.pub" />
-      <excludeFolder url="file://$MODULE_DIR$/get_version/build" />
-      <excludeFolder url="file://$MODULE_DIR$/get_version/example/.dart_tool" />
-      <excludeFolder url="file://$MODULE_DIR$/get_version/example/.pub" />
-      <excludeFolder url="file://$MODULE_DIR$/get_version/example/build" />
-      <excludeFolder url="file://$MODULE_DIR$/market/.dart_tool" />
-      <excludeFolder url="file://$MODULE_DIR$/market/.pub" />
-      <excludeFolder url="file://$MODULE_DIR$/market/build" />
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="Dart SDK" level="project" />
     <orderEntry type="library" name="Flutter Plugins" level="project" />
     <orderEntry type="library" name="Dart Packages" level="project" />
-    <orderEntry type="library" name="KotlinJavaRuntime" level="project" />
-    <orderEntry type="library" name="Android Libraries" level="project" />
   </component>
 </module>
