@@ -17,7 +17,7 @@ class Feed extends StatelessWidget {
     final wstate = BlocProvider.of<WorldstateBloc>(context);
 
     return RefreshIndicator(
-      onRefresh: wstate.update,
+      onRefresh: () => wstate.update(),
       child: BlocBuilder(
           bloc: wstate,
           builder: (context, state) {

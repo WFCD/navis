@@ -14,18 +14,15 @@ import 'package:worldstate_model/worldstate_model.dart';
 
 import 'localstorage_service.dart';
 import 'notification_service.dart';
-import 'permission_service.dart';
 
 class Repository {
   const Repository({
     @required this.storageService,
     @required this.packageInfo,
     @required this.notificationService,
-    @required this.permissionsService,
   })  : assert(storageService != null),
         assert(packageInfo != null),
-        assert(notificationService != null),
-        assert(permissionsService != null);
+        assert(notificationService != null);
 
   static Future<Repository> initialize() async {
     final LocalStorageService _storageService =
@@ -36,14 +33,12 @@ class Repository {
       storageService: _storageService,
       packageInfo: _info,
       notificationService: NotificationService.initialize(),
-      permissionsService: PermissionsService(),
     );
   }
 
   final LocalStorageService storageService;
   final PackageInfo packageInfo;
   final NotificationService notificationService;
-  final PermissionsService permissionsService;
 
   static const _helper = ApiBaseHelper();
   static const String dropTable = 'https://drops.warframestat.us';

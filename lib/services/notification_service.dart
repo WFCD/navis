@@ -1,4 +1,4 @@
-import 'package:catcher/core/catcher.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:navis/utils/utils.dart';
 
@@ -8,10 +8,7 @@ class NotificationService {
   factory NotificationService.initialize() {
     final FirebaseMessaging messaging = FirebaseMessaging();
 
-    messaging.configure(onMessage: (Map<String, dynamic> message) {
-      // TODO(SlayerOrnstein): add in app notification
-      return null;
-    });
+    messaging.configure();
 
     return NotificationService._(messaging);
   }
@@ -44,7 +41,7 @@ class NotificationService {
         return false;
       }
     } catch (error, stackTrace) {
-      Catcher.reportCheckedError(error, stackTrace);
+      Crashlytics.instance.recordError(error, stackTrace);
       return false;
     }
   }

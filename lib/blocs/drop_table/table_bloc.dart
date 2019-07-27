@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:bloc/bloc.dart';
-import 'package:catcher/core/catcher.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:navis/models/slim_drop_table.dart';
 import 'package:navis/services/repository.dart';
@@ -61,10 +61,16 @@ class TableSearchBloc extends Bloc<SearchEvent, SearchState> {
 
           yield SearchStateSuccess(results);
         } catch (error, stackTrace) {
-          Catcher.reportCheckedError(error, stackTrace);
+          Crashlytics.instance.recordError(error, stackTrace);
           yield SearchStateError('something went wrong');
         }
       }
+    }
+
+    if (event is SearchSort) {
+      const sorted = null;
+
+      yield SearchStateSuccess(sorted);
     }
   }
 }

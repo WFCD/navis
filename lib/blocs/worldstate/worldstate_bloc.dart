@@ -1,8 +1,7 @@
 import 'dart:async';
 
-import 'package:catcher/catcher_plugin.dart';
-import 'package:rxdart/rxdart.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
+import 'package:rxdart/rxdart.dart';
 import 'package:worldstate_model/worldstate_model.dart';
 
 import '../../services/repository.dart';
@@ -39,14 +38,9 @@ class WorldstateBloc extends HydratedBloc<UpdateEvent, WorldStates> {
     }
   }
 
-  @override
-  void onError(Object error, StackTrace stacktrace) {
-    Catcher.reportCheckedError(error, stacktrace);
-  }
-
   Future<void> update() async {
     dispatch(UpdateEvent.update);
-    await Future.delayed(const Duration(seconds: 2));
+    await Future.delayed(const Duration(seconds: 1));
   }
 
   @override

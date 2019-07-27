@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:navis/blocs/bloc.dart';
-import 'package:navis/components/dialogs/permission_dialog.dart';
 import 'package:navis/components/widgets.dart';
 import 'package:navis/global_keys.dart';
 import 'package:navis/screens/drops/drops_list.dart';
@@ -13,9 +12,6 @@ import 'package:navis/screens/invasions/invasions.dart';
 import 'package:navis/screens/news/news.dart';
 import 'package:navis/screens/sortie/sortie.dart';
 import 'package:navis/screens/syndicates/syndicates.dart';
-import 'package:navis/services/permission_service.dart';
-import 'package:navis/services/repository.dart';
-import 'package:permission_handler/permission_handler.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key key}) : super(key: key);
@@ -25,7 +21,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
-  PermissionsService permission;
   Timer timer;
 
   @override
@@ -33,19 +28,9 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
     super.initState();
     WidgetsBinding.instance.addObserver(this);
 
-    permission = RepositoryProvider.of<Repository>(context).permissionsService;
-
     timer = Timer.periodic(const Duration(minutes: 5), (t) {
       BlocProvider.of<WorldstateBloc>(context).dispatch(UpdateEvent.update);
     });
-
-    permissions();
-  }
-
-  Future<void> permissions() async {
-    if (!await permission.hasPermission(PermissionGroup.storage)) {
-      PermissionsDialog.requestPermission(context, PermissionGroup.storage);
-    }
   }
 
   @override

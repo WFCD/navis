@@ -16,7 +16,7 @@ class Cycle extends StatelessWidget {
   });
 
   final String title;
-  final CycleModel cycle;
+  final CycleObject cycle;
   final PlanetCycle planetCycle;
 
   @override
@@ -30,17 +30,17 @@ class Cycle extends StatelessWidget {
             RowItem.richText(
               title: 'Currently it is',
               richText: toBeginningOfSentenceCase(cycle.state),
-              color: cycle.getStateBool() ? Colors.yellow[700] : Colors.blue,
+              color: cycle.getStateBool ? Colors.yellow[700] : Colors.blue,
               size: 20.0,
             ),
             padding,
             RowItem(
-              text: 'Time until ${cycle.nextState()}',
+              text: 'Time until ${cycle.nextState}',
               child: CountdownBox(expiry: cycle.expiry),
             ),
             padding,
             RowItem(
-                text: 'Time at ${cycle.nextState()}',
+                text: 'Time at ${cycle.nextState}',
                 child: DateView(expiry: cycle.expiry)),
             padding
           ],

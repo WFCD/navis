@@ -1,4 +1,3 @@
-import 'package:catcher/core/catcher.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/blocs/bloc.dart';
@@ -38,7 +37,6 @@ class _NavisState extends State<Navis> {
         bloc: BlocProvider.of<StorageBloc>(context),
         builder: (BuildContext context, StorageState state) {
           return MaterialApp(
-            navigatorKey: Catcher.navigatorKey,
             title: 'Navis',
             color: Colors.grey[900],
             theme: state.theme,
