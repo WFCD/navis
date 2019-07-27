@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:rxdart/rxdart.dart';
-import 'package:worldstate_model/worldstate_model.dart';
+import 'package:worldstate_model/worldstate_models.dart';
 
 import '../../services/repository.dart';
 import 'worldstate_states.dart';

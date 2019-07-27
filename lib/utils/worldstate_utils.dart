@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/widgets.dart';
 import 'package:navis/models/slim_drop_table.dart';
-import 'package:worldstate_model/worldstate_model.dart';
+import 'package:worldstate_model/worldstate_models.dart';
 
 Worldstate cleanState(Worldstate state) {
   state.alerts.removeWhere((a) =>

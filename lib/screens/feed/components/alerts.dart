@@ -6,7 +6,7 @@ import 'package:navis/blocs/bloc.dart';
 
 import 'package:navis/components/layout.dart';
 import 'package:navis/components/animations.dart';
-import 'package:worldstate_model/worldstate_model.dart';
+import 'package:worldstate_model/worldstate_models.dart';
 
 class AlertTile extends StatelessWidget {
   const AlertTile({Key key}) : super(key: key);

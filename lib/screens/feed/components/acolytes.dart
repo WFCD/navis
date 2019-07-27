@@ -4,7 +4,7 @@ import 'package:navis/blocs/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:navis/components/layout.dart';
-import 'package:worldstate_model/worldstate_model.dart';
+import 'package:worldstate_model/worldstate_models.dart';
 
 class Acolytes extends StatelessWidget {
   const Acolytes({Key key}) : super(key: key);

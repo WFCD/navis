@@ -8,7 +8,7 @@ import 'package:navis/screens/syndicates/components/rewards.dart';
 import 'package:navis/components/layout.dart';
 
 import 'package:rxdart/rxdart.dart';
-import 'package:worldstate_model/worldstate_model.dart';
+import 'package:worldstate_model/worldstate_models.dart';
 
 class EventPanel extends StatefulWidget {
   const EventPanel({Key key}) : super(key: key);

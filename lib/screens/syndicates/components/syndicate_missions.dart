@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:navis/components/icons.dart';
 import 'package:navis/utils/factionutils.dart';
 import 'package:sticky_headers/sticky_headers.dart';
-import 'package:worldstate_model/worldstate_model.dart';
+import 'package:worldstate_model/worldstate_models.dart';
 
 class SyndicateJobs extends StatefulWidget {
   const SyndicateJobs({this.faction, this.jobs});

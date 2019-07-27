@@ -10,7 +10,7 @@ import 'package:navis/utils/utils.dart';
 import 'package:navis/utils/worldstate_utils.dart';
 import 'package:package_info/package_info.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:worldstate_model/worldstate_model.dart';
+import 'package:worldstate_model/worldstate_models.dart';
 
 import 'localstorage_service.dart';
 import 'notification_service.dart';

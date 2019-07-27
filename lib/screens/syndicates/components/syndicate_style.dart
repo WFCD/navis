@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:navis/components/layout.dart';
 import 'package:navis/utils/factionutils.dart';
-import 'package:worldstate_model/worldstate_model.dart';
+import 'package:worldstate_model/worldstate_models.dart';
 
 import 'syndicate_missions.dart';
 
