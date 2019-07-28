@@ -78,7 +78,8 @@ class TableSearchBloc extends Bloc<SearchEvent, SearchState> {
 List<Drop> _search(SearchTable drops) {
   return drops.rewards
       .where((r) => r.item.toLowerCase().contains(drops.term.toLowerCase()))
-      .toList();
+      .toList()
+        ..sort((a, b) => a.chance.compareTo(b.chance));
 }
 
 class SearchTable {
