@@ -57,9 +57,12 @@ class Repository {
 
       if (timestamp.isAfter(storageService.tableTimestamp) ||
           !source.existsSync()) {
-        storageService.saveTimestamp(timestamp);
-        final response = await http.get('$dropTable/drops');
+        final response = await http.get('$dropTable/data/all.slim.json');
+
+        if (response.statusCode != 200) throw Exception();
+
         source.writeAsStringSync(response.body);
+        storageService.saveTimestamp(timestamp);
 
         return source;
       }
@@ -68,6 +71,10 @@ class Repository {
     } catch (e) {
       final slim = await rootBundle.loadString('assets/slim.json');
       source.writeAsStringSync(slim);
+
+      storageService.saveTimestamp(
+        DateTime.now().subtract(const Duration(days: 120)),
+      );
 
       return source;
     }
