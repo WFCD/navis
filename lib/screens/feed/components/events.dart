@@ -47,7 +47,7 @@ class EventPanelState extends State<EventPanel> {
       condition: (WorldStates previous, WorldStates current) =>
           listEquals(previous.worldstate.events, current.worldstate.events),
       builder: (BuildContext context, WorldStates state) {
-        final events = state.worldstate.events ?? [];
+        final events = state.worldstate?.events ?? [];
 
         return Container(
             height: 160,

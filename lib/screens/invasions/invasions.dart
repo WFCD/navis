@@ -11,10 +11,12 @@ class InvasionsList extends StatelessWidget {
     return BlocBuilder(
       bloc: BlocProvider.of<WorldstateBloc>(context),
       builder: (BuildContext context, WorldStates state) {
+        final invasions = state.worldstate?.invasions ?? [];
+
         return ListView.builder(
-          itemCount: state.worldstate.invasions.length,
+          itemCount: invasions.length,
           itemBuilder: (BuildContext context, int index) =>
-              InvasionsStyle(invasion: state.worldstate.invasions[index]),
+              InvasionsStyle(invasion: invasions[index]),
         );
       },
     );

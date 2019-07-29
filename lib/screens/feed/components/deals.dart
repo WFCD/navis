@@ -18,7 +18,7 @@ class Deals extends StatelessWidget {
           condition: (WorldStates previous, WorldStates current) => listEquals(
               previous.worldstate.dailyDeals, current.worldstate.dailyDeals),
           builder: (_, state) {
-            final dailyDeals = state.worldstate.dailyDeals ?? [];
+            final dailyDeals = state.worldstate?.dailyDeals ?? [];
 
             final header = TableRow(children: <Widget>[
               Text('Item', style: style),

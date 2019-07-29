@@ -18,7 +18,7 @@ class EarthCycle extends StatelessWidget {
       builder: (BuildContext context, WorldStates state) {
         return Cycle(
           title: 'Earth Day/Night Cycle',
-          cycle: state.worldstate.earthCycle,
+          cycle: state.worldstate?.earthCycle,
         );
       },
     );
@@ -38,7 +38,7 @@ class CetusCycle extends StatelessWidget {
       builder: (BuildContext context, WorldStates state) {
         return Cycle(
           title: 'Cetus Day/Night Cycle',
-          cycle: state.worldstate.cetusCycle,
+          cycle: state.worldstate?.cetusCycle,
         );
       },
     );
@@ -58,7 +58,7 @@ class OrbVallisCycle extends StatelessWidget {
       builder: (BuildContext context, WorldStates state) {
         return Cycle(
           title: 'Orb Vallis Warm/Cold Cycle',
-          cycle: state.worldstate.vallisCycle,
+          cycle: state.worldstate?.vallisCycle,
         );
       },
     );
