@@ -57,7 +57,7 @@ class BuildMission extends StatelessWidget {
 
     return BackgroundImageCard(
       height: 150,
-      provider: skybox(variant.node),
+      provider: skybox(context, variant.node),
       child: Container(
         padding: const EdgeInsets.only(left: 8, top: 16, bottom: 16),
         child: Row(children: <Widget>[

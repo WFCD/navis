@@ -14,7 +14,7 @@ class InvasionsStyle extends StatelessWidget {
   Widget build(BuildContext context) {
     return BackgroundImageCard(
         height: 200,
-        provider: skybox(invasion.node),
+        provider: skybox(context, invasion.node),
         child: Column(children: <Widget>[
           const Spacer(),
           Container(

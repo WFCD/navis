@@ -65,7 +65,7 @@ class FissureCard extends StatelessWidget {
     final relic = 'assets/relics/${fissure.tier}.svg';
 
     return BackgroundImageCard(
-      provider: skybox(fissure.node),
+      provider: skybox(context, fissure.node),
       child: Row(
         children: <Widget>[
           _buildDetails(context),
