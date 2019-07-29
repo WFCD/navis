@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:http/http.dart' as http;
 import 'package:navis/models/drop_table_info.dart';
+import 'package:navis/utils/worldstate_utils.dart';
 import 'package:package_info/package_info.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:wfcd_api_wrapper/wfcd_api_wrapper.dart';
@@ -45,7 +46,7 @@ class Repository {
     platform ??= storageService.platform;
     final response = await WorldstateApiWrapper.getInstance(platform);
 
-    return response.worldstate;
+    return cleanState(response.worldstate);
   }
 
   Future<File> updateDropTable([File source]) async {
