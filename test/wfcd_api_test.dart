@@ -2,8 +2,8 @@
 
 //import 'package:navis/services/localstorage_service.dart';
 import 'package:navis/services/repository.dart';
-import 'package:navis/utils/utils.dart';
 import 'package:test/test.dart';
+import 'package:wfcd_api_wrapper/wfcd_api_wrapper.dart';
 import 'package:worldstate_model/worldstate_models.dart';
 
 import 'setup_methods.dart';

@@ -5,8 +5,6 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../global_keys.dart';
 
-enum Platforms { pc, ps4, xb1, swi }
-
 enum Formats { mm_dd_yy, dd_mm_yy, month_day_year }
 
 Future<void> launchLink(BuildContext context, String link,

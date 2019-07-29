@@ -3,10 +3,10 @@ import 'package:hydrated_bloc/hydrated_bloc.dart';
 
 import 'package:navis/blocs/bloc.dart';
 import 'package:navis/services/repository.dart';
-import 'package:navis/utils/utils.dart';
 import 'package:navis/utils/storage_keys.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:test/test.dart';
+import 'package:wfcd_api_wrapper/wfcd_api_wrapper.dart';
 
 import 'setup_methods.dart';
 

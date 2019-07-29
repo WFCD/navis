@@ -5,11 +5,10 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:http/http.dart' as http;
-import 'package:navis/utils/api_base_helper.dart';
-import 'package:navis/utils/utils.dart';
-import 'package:navis/utils/worldstate_utils.dart';
+import 'package:navis/models/drop_table_info.dart';
 import 'package:package_info/package_info.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:wfcd_api_wrapper/wfcd_api_wrapper.dart';
 import 'package:worldstate_model/worldstate_models.dart';
 
 import 'localstorage_service.dart';
@@ -40,15 +39,13 @@ class Repository {
   final PackageInfo packageInfo;
   final NotificationService notificationService;
 
-  static const _helper = ApiBaseHelper();
   static const String dropTable = 'https://drops.warframestat.us';
 
   Future<Worldstate> getWorldstate([Platforms platform]) async {
     platform ??= storageService.platform;
-    final response = await _helper
-        .get('/${platform.toString().split('.').last}') as Map<String, dynamic>;
+    final response = await WorldstateApiWrapper.getInstance(platform);
 
-    return compute(jsonToWorldstate, response);
+    return response.worldstate;
   }
 
   Future<File> updateDropTable([File source]) async {
@@ -61,7 +58,7 @@ class Repository {
       if (timestamp.isAfter(storageService.tableTimestamp) ||
           !source.existsSync()) {
         storageService.saveTimestamp(timestamp);
-        final response = await _helper.get('$dropTable/drops');
+        final response = await http.get('$dropTable/drops');
         source.writeAsStringSync(response.body);
 
         return source;
@@ -77,13 +74,13 @@ class Repository {
   }
 
   Future<DateTime> dropTableTimestamp() async {
-    Map<String, dynamic> info;
+    Info info;
 
     try {
       final response = await http.get('$dropTable/data/info.json');
-      info = json.decode(response.body);
+      info = Info.fromJson(json.decode(response.body));
 
-      return DateTime.fromMillisecondsSinceEpoch(info['timestamp']);
+      return info.timestamp;
     } catch (e) {
       return storageService.tableTimestamp;
     }

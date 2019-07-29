@@ -24,6 +24,8 @@ dependencies:
   json_annotation: ^2.4.0
   worldstate_model: 
     git: https://github.com/SlayerOrnstein/worldstate_model.git
+  wfcd_api_wrapper:
+    git: https://github.com/SlayerOrnstein/wfcd_api_wrapper.git  
   
 dev_dependencies:
   flutter_test:
