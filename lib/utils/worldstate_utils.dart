@@ -37,16 +37,17 @@ List<Drop> jsonToRewards(String response) {
   return drops.map<Drop>((d) => Drop.fromJson(d)).toList();
 }
 
-Worldstate jsonToWorldstate(Map<String, dynamic> json) {
-  final Worldstate state = Worldstate.fromJson(json);
-
-  return cleanState(state);
-}
-
-ImageProvider skybox(String node) {
+ImageProvider skybox(BuildContext context, String node) {
   final _nodeBackground = RegExp(r'\(([^)]*)\)');
   final backgroundImage =
       'assets/skyboxes/${_nodeBackground.firstMatch(node).group(1)}.webp';
 
-  return AssetImage(backgroundImage);
+  bool isError = false;
+
+  precacheImage(AssetImage(backgroundImage), context,
+      onError: (error, stackTrace) => isError = true);
+
+  return isError
+      ? const AssetImage('assets/skyboxes/Derelict.webp')
+      : AssetImage(backgroundImage);
 }
