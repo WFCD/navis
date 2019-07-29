@@ -13,7 +13,7 @@ class SortieScreen extends StatelessWidget {
         child: BlocBuilder(
             bloc: BlocProvider.of<WorldstateBloc>(context),
             condition: (WorldStates previous, WorldStates current) =>
-                previous.worldstate.sortie != current.worldstate.sortie,
+                previous.worldstate?.sortie != current.worldstate?.sortie,
             builder: (BuildContext context, WorldStates state) {
               if (state is WorldstateLoaded) {
                 final sortie = state.worldstate?.sortie;
