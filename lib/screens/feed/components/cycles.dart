@@ -12,9 +12,12 @@ class EarthCycle extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<WorldstateBloc, WorldStates>(
       bloc: BlocProvider.of<WorldstateBloc>(context),
-      condition: (WorldStates previous, WorldStates current) => previous
-          .worldstate.earthCycle.expiry
-          ?.isBefore(current.worldstate.earthCycle?.expiry),
+      condition: (WorldStates previous, WorldStates current) {
+        final previousCycle = previous.worldstate.earthCycle;
+        final currentCycle = current.worldstate.earthCycle;
+
+        return (previousCycle.expiry.isBefore(currentCycle?.expiry)) ?? false;
+      },
       builder: (BuildContext context, WorldStates state) {
         return Cycle(
           title: 'Earth Day/Night Cycle',
@@ -32,9 +35,12 @@ class CetusCycle extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<WorldstateBloc, WorldStates>(
       bloc: BlocProvider.of<WorldstateBloc>(context),
-      condition: (WorldStates previous, WorldStates current) => previous
-          .worldstate.cetusCycle.expiry
-          ?.isBefore(current.worldstate.cetusCycle?.expiry),
+      condition: (WorldStates previous, WorldStates current) {
+        final previousCycle = previous.worldstate.cetusCycle;
+        final currentCycle = current.worldstate.cetusCycle;
+
+        return (previousCycle.expiry.isBefore(currentCycle?.expiry)) ?? false;
+      },
       builder: (BuildContext context, WorldStates state) {
         return Cycle(
           title: 'Cetus Day/Night Cycle',
@@ -52,9 +58,12 @@ class OrbVallisCycle extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<WorldstateBloc, WorldStates>(
       bloc: BlocProvider.of<WorldstateBloc>(context),
-      condition: (WorldStates previous, WorldStates current) => previous
-          .worldstate.vallisCycle.expiry
-          ?.isBefore(current.worldstate.vallisCycle?.expiry),
+      condition: (WorldStates previous, WorldStates current) {
+        final previousCycle = previous.worldstate.vallisCycle;
+        final currentCycle = current.worldstate.vallisCycle;
+
+        return (previousCycle.expiry.isBefore(currentCycle?.expiry)) ?? false;
+      },
       builder: (BuildContext context, WorldStates state) {
         return Cycle(
           title: 'Orb Vallis Warm/Cold Cycle',
