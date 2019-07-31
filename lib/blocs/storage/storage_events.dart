@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:navis/utils/utils.dart';
-import 'package:wfcd_api_wrapper/wfcd_api_wrapper.dart';
+import 'package:wfcd_api_wrapper/worldstate_wrapper.dart';
 
 abstract class ChangeEvent extends Equatable {
   ChangeEvent([List props = const []]) : super(props);

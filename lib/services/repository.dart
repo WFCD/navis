@@ -6,23 +6,26 @@ import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:http/http.dart' as http;
 import 'package:navis/models/drop_table_info.dart';
+import 'package:navis/utils/client.dart';
 import 'package:navis/utils/worldstate_utils.dart';
 import 'package:package_info/package_info.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:wfcd_api_wrapper/wfcd_api_wrapper.dart';
+import 'package:wfcd_api_wrapper/worldstate_wrapper.dart';
 import 'package:worldstate_model/worldstate_models.dart';
 
 import 'localstorage_service.dart';
 import 'notification_service.dart';
 
 class Repository {
-  const Repository({
+  Repository({
     @required this.storageService,
     @required this.packageInfo,
     @required this.notificationService,
   })  : assert(storageService != null),
         assert(packageInfo != null),
         assert(notificationService != null);
+
+  final client = MetricHttpClient(http.Client());
 
   static Future<Repository> initialize() async {
     final LocalStorageService _storageService =
@@ -44,7 +47,7 @@ class Repository {
 
   Future<Worldstate> getWorldstate([Platforms platform]) async {
     platform ??= storageService.platform;
-    final response = await WorldstateApiWrapper.getInstance(platform);
+    final response = await WorldstateApiWrapper.getInstance(platform, client);
 
     return cleanState(response.worldstate);
   }
@@ -58,7 +61,7 @@ class Repository {
 
       if (timestamp.isAfter(storageService.tableTimestamp) ||
           !source.existsSync()) {
-        final response = await http.get('$dropTable/data/all.slim.json');
+        final response = await client.get('$dropTable/data/all.slim.json');
 
         if (response.statusCode != 200) throw Exception();
 
@@ -85,7 +88,7 @@ class Repository {
     Info info;
 
     try {
-      final response = await http.get('$dropTable/data/info.json');
+      final response = await client.get('$dropTable/data/info.json');
       info = Info.fromJson(json.decode(response.body));
 
       return info.timestamp;

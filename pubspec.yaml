@@ -25,7 +25,8 @@ dependencies:
   worldstate_model: 
     git: https://github.com/SlayerOrnstein/worldstate_model.git
   wfcd_api_wrapper:
-    git: https://github.com/SlayerOrnstein/wfcd_api_wrapper.git  
+    git: https://github.com/SlayerOrnstein/wfcd_api_wrapper.git
+  firebase_performance: ^0.3.0+4  
   
 dev_dependencies:
   flutter_test:

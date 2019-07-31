@@ -1,7 +1,7 @@
 import 'package:navis/utils/utils.dart';
 import 'package:navis/utils/storage_keys.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:wfcd_api_wrapper/wfcd_api_wrapper.dart';
+import 'package:wfcd_api_wrapper/worldstate_wrapper.dart';
 
 class LocalStorageService {
   static LocalStorageService _instance;

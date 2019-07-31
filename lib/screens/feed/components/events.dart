@@ -4,9 +4,9 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:navis/blocs/bloc.dart';
 import 'package:navis/components/animations.dart';
-import 'package:navis/screens/syndicates/components/rewards.dart';
 import 'package:navis/components/layout.dart';
-
+import 'package:navis/screens/syndicates/components/rewards.dart';
+import 'package:navis/utils/worldstate_utils.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:worldstate_model/worldstate_models.dart';
 
@@ -45,7 +45,7 @@ class EventPanelState extends State<EventPanel> {
     return BlocBuilder(
       bloc: BlocProvider.of<WorldstateBloc>(context),
       condition: (WorldStates previous, WorldStates current) =>
-          listEquals(previous.worldstate.events, current.worldstate.events),
+          compareList(previous.worldstate?.events, current.worldstate?.events),
       builder: (BuildContext context, WorldStates state) {
         final events = state.worldstate?.events ?? [];
 

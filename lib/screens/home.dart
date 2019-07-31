@@ -12,6 +12,7 @@ import 'package:navis/screens/invasions/invasions.dart';
 import 'package:navis/screens/news/news.dart';
 import 'package:navis/screens/sortie/sortie.dart';
 import 'package:navis/screens/syndicates/syndicates.dart';
+import 'package:navis/services/repository.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key key}) : super(key: key);
@@ -27,6 +28,8 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addObserver(this);
+
+    RepositoryProvider.of<Repository>(context).notificationService.configure;
 
     timer = Timer.periodic(const Duration(minutes: 5), (t) {
       BlocProvider.of<WorldstateBloc>(context).dispatch(UpdateEvent.update);
@@ -48,10 +51,9 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
   Future<bool> _willPop(BuildContext context) async {
     if (!scaffold.currentState.isDrawerOpen) {
       scaffold.currentState.openDrawer();
+      return Future.value(false);
     } else
-      Navigator.of(context).pop();
-
-    return false;
+      return Future.value(true);
   }
 
   void _blocListener(

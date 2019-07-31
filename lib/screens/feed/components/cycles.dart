@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:navis/blocs/bloc.dart';
 import 'package:navis/components/layout/cycles_base.dart';
+import 'package:navis/utils/worldstate_utils.dart';
 
 const List<Widget> cycles = [CetusCycle(), EarthCycle(), OrbVallisCycle()];
 
@@ -13,10 +14,10 @@ class EarthCycle extends StatelessWidget {
     return BlocBuilder<WorldstateBloc, WorldStates>(
       bloc: BlocProvider.of<WorldstateBloc>(context),
       condition: (WorldStates previous, WorldStates current) {
-        final previousCycle = previous.worldstate.earthCycle;
-        final currentCycle = current.worldstate.earthCycle;
-
-        return (previousCycle.expiry.isBefore(currentCycle?.expiry)) ?? false;
+        return compareExpiry(
+          previous.worldstate.earthCycle?.expiry,
+          current.worldstate.earthCycle?.expiry,
+        );
       },
       builder: (BuildContext context, WorldStates state) {
         return Cycle(
@@ -36,10 +37,10 @@ class CetusCycle extends StatelessWidget {
     return BlocBuilder<WorldstateBloc, WorldStates>(
       bloc: BlocProvider.of<WorldstateBloc>(context),
       condition: (WorldStates previous, WorldStates current) {
-        final previousCycle = previous.worldstate.cetusCycle;
-        final currentCycle = current.worldstate.cetusCycle;
-
-        return (previousCycle.expiry.isBefore(currentCycle?.expiry)) ?? false;
+        return compareExpiry(
+          previous.worldstate.cetusCycle?.expiry,
+          current.worldstate.cetusCycle?.expiry,
+        );
       },
       builder: (BuildContext context, WorldStates state) {
         return Cycle(
@@ -59,10 +60,10 @@ class OrbVallisCycle extends StatelessWidget {
     return BlocBuilder<WorldstateBloc, WorldStates>(
       bloc: BlocProvider.of<WorldstateBloc>(context),
       condition: (WorldStates previous, WorldStates current) {
-        final previousCycle = previous.worldstate.vallisCycle;
-        final currentCycle = current.worldstate.vallisCycle;
-
-        return (previousCycle.expiry.isBefore(currentCycle?.expiry)) ?? false;
+        return compareExpiry(
+          previous.worldstate.vallisCycle?.expiry,
+          current.worldstate.vallisCycle?.expiry,
+        );
       },
       builder: (BuildContext context, WorldStates state) {
         return Cycle(
