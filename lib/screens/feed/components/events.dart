@@ -5,7 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:navis/blocs/bloc.dart';
 import 'package:navis/components/animations.dart';
 import 'package:navis/components/layout.dart';
-import 'package:navis/screens/syndicates/components/rewards.dart';
+import 'package:navis/screens/syndicates/components/syndicate_missions.dart';
+import 'package:navis/utils/factionutils.dart';
 import 'package:navis/utils/worldstate_utils.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:worldstate_model/worldstate_models.dart';
@@ -181,36 +182,28 @@ class EventBuilder extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 if (event.jobs?.isNotEmpty ?? false)
-                  ...event.jobs.map((j) => _BuildJob(j)),
+                  FlatButton(
+                    child: const Text('See Bounties'),
+                    color: Theme.of(context).primaryColor,
+                    padding: const EdgeInsets.only(left: 50.0, right: 50.0),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(4.0),
+                    ),
+                    onPressed: () => _navigateToBounties(context, event?.jobs),
+                  ),
                 if (event.rewards.isNotEmpty) _addReward()
               ])
         ]);
   }
 }
 
-class _BuildJob extends StatelessWidget {
-  const _BuildJob(this.job);
-
-  final Jobs job;
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      margin: const EdgeInsets.only(right: 3.0),
-      color: Colors.blueAccent[400],
-      child: InkWell(
-          onTap: () => Navigator.of(context).push(MaterialPageRoute(
-              builder: (_) => BountyRewards(
-                  missionTYpe: job.type,
-                  bountyRewards: job.rewardPool.cast<String>()))),
-          child: Container(
-              margin: const EdgeInsets.all(4.0),
-              padding: const EdgeInsets.all(4.0),
-              width: MediaQuery.of(context).size.width / 2.2,
-              alignment: Alignment.center,
-              child: Text(job.type,
-                  overflow: TextOverflow.ellipsis,
-                  textAlign: TextAlign.center))),
-    );
-  }
+void _navigateToBounties(BuildContext context, List<Jobs> jobs) {
+  Navigator.of(context).push(
+    MaterialPageRoute(
+      builder: (_) => SyndicateJobs(
+        faction: OpenWorldFactions.cetus,
+        jobs: jobs,
+      ),
+    ),
+  );
 }
