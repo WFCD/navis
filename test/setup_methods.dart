@@ -30,4 +30,10 @@ Future<void> setupPackageMockMethods() async {
     if (methodCall.method == 'getAll') return <String, dynamic>{};
     return null;
   });
+
+  const MethodChannel('plugins.flutter.io/firebase_performance')
+      .setMockMethodCallHandler((MethodCall methodCall) async {
+    if (methodCall.method == 'FirebasePerformance#newHttpMetric') return null;
+    return null;
+  });
 }
