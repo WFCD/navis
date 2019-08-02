@@ -7,6 +7,22 @@ import 'components/mission_style.dart';
 class SortieScreen extends StatelessWidget {
   const SortieScreen({Key key}) : super(key: key);
 
+  Widget _header(BuildContext context, DateTime expiry) {
+    return Card(
+        color: Theme.of(context).primaryColor,
+        child: ListTile(
+          title: const Text(
+            'Sortie will reset in: ',
+            style: TextStyle(color: Colors.white),
+          ),
+          trailing: CountdownBox(
+            color: Colors.transparent,
+            expiry: expiry,
+            size: 16,
+          ),
+        ));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -19,32 +35,13 @@ class SortieScreen extends StatelessWidget {
                 final sortie = state.worldstate?.sortie;
 
                 if (sortie.variants?.isNotEmpty ?? false) {
-                  final variants = sortie.variants;
-                  final faction = sortie.faction;
-
-                  final light = 'assets/factions/$faction/light.webp';
-                  final medium = 'assets/factions/$faction/medium.webp';
-                  final heavy = 'assets/factions/$faction/heavy.webp';
-
                   return ListView(children: <Widget>[
-                    Card(
-                        color: Theme.of(context).primaryColor,
-                        child: ListTile(
-                          title: const Text('Sortie will reset in: ',
-                              style: TextStyle(color: Colors.white)),
-                          trailing: CountdownBox(
-                              color: Colors.transparent,
-                              expiry: sortie.expiry,
-                              size: 16),
-                        )),
-                    BuildMission(variant: variants[0], index: 0, asset: light),
-                    BuildMission(variant: variants[1], index: 1, asset: medium),
-                    BuildMission(
-                        variant: variants[2],
-                        index: 2,
-                        asset: heavy,
-                        boss: sortie.boss,
-                        faction: sortie.faction)
+                    _header(context, sortie.expiry),
+                    BuildMissions(
+                      variants: sortie.variants,
+                      faction: sortie.faction,
+                      boss: sortie.boss,
+                    )
                   ]);
                 }
               }

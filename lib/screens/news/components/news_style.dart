@@ -38,14 +38,14 @@ class NewsCard extends StatelessWidget {
                       Image.asset('assets/general/404.webp'),
                   imageBuilder: (context, provider) {
                     return Container(
-                      constraints: BoxConstraints.expand(
-                          height: 200.0,
-                          width: MediaQuery.of(context).size.width),
+                      constraints: BoxConstraints.expand(height: 200.0),
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(4.0),
                           image: DecorationImage(
-                              image: provider, fit: BoxFit.cover)),
+                            image: provider,
+                            fit: BoxFit.cover,
+                          )),
                     );
                   },
                 ),
