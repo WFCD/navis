@@ -46,41 +46,59 @@ class Repository {
   static const String dropTable = 'https://drops.warframestat.us';
 
   Future<Worldstate> getWorldstate([Platforms platform]) async {
-    platform ??= storageService.platform;
-    final response = await WorldstateApiWrapper.getInstance(platform, client);
+    final directory = await getTemporaryDirectory();
+    final path = '${directory.path}/drop_table.json';
 
-    return cleanState(response.worldstate);
+    Worldstate worldstate;
+
+    try {
+      platform ??= storageService.platform;
+      final response = await WorldstateApiWrapper.getInstance(platform, client);
+
+      _saveFile(path, json.encode(response.worldstate.toJson()));
+
+      worldstate = cleanState(response.worldstate);
+    } catch (e) {
+      if (_checkFile(path)) {
+        final cached = _getFile(path).readAsStringSync();
+        final state = Worldstate.fromJson(json.decode(cached));
+
+        worldstate = cleanState(state);
+      }
+    }
+
+    return worldstate;
   }
 
-  Future<File> updateDropTable([File source]) async {
+  Future<File> updateDropTable() async {
     final directory = await getApplicationDocumentsDirectory();
-    source ??= File('${directory.path}/drop_table.json');
+    final path = '${directory.path}/drop_table.json';
 
     try {
       final timestamp = await dropTableTimestamp();
 
       if (timestamp.isAfter(storageService.tableTimestamp) ||
-          !source.existsSync()) {
+          !_checkFile(path)) {
         final response = await client.get('$dropTable/data/all.slim.json');
 
         if (response.statusCode != 200) throw Exception();
 
-        source.writeAsStringSync(response.body);
         storageService.saveTimestamp(timestamp);
 
-        return source;
+        return _saveFile(path, response.body);
       }
 
-      return source;
+      return _getFile(path);
     } catch (e) {
       final slim = await rootBundle.loadString('assets/slim.json');
-      source.writeAsStringSync(slim);
 
       storageService.saveTimestamp(
         DateTime.now().subtract(const Duration(days: 120)),
       );
 
-      return source;
+      _saveFile(path, slim);
+
+      return _getFile(path);
     }
   }
 
@@ -95,5 +113,17 @@ class Repository {
     } catch (e) {
       return storageService.tableTimestamp;
     }
+  }
+
+  bool _checkFile(String path) => File(path).existsSync();
+
+  File _getFile(String path) => File(path);
+
+  File _saveFile(String path, String data) {
+    final file = File(path);
+
+    file.writeAsStringSync(data);
+
+    return file;
   }
 }
