@@ -15,7 +15,7 @@ dependencies:
   package_info: ^0.4.0+6
   shared_preferences: ^0.5.3+4
   sticky_headers: ^0.1.7
-  firebase_messaging: ^5.1.1
+  firebase_messaging: ^5.1.2
   cached_network_image: ^1.1.0
   flutter_svg: ^0.13.1
   simple_animations: ^1.3.3
