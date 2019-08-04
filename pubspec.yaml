@@ -25,7 +25,7 @@ dependencies:
   worldstate_model: 
     git: 
       url: https://github.com/SlayerOrnstein/worldstate_model.git
-      ref: 3a796bc61bc9dcb48dcdf02e96fe2054698bc63f
+      ref: e66bfce2bd973eab1f91888e004c6d28e071051c
   wfcd_api_wrapper:
     git: https://github.com/SlayerOrnstein/wfcd_api_wrapper.git
   firebase_performance: ^0.3.0+4  
