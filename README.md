@@ -27,25 +27,43 @@ Cephalon Navis is an Android app inspired by [Warframe Hub](https://hub.warframe
 - Notifications (soon)
 - Flash sales (This depends on who actually uses it, so if you use it let me know)
 
+# Create Keystore 
+
+On Mac/Linux
+
+```
+keytool -genkey -v -keystore ~/key.jks -keyalg RSA -keysize 2048 -validity 10000 -alias key
+```
+
+this also works for Windows Subsystem for Linux.
+
+On Windows
+
+```
+keytool -genkey -v -keystore c:/Users/USER_NAME/key.jks -keyalg RSA -keysize 2048 -validity 10000 -alias key
+```
+
+## Refrence the Keystore 
+
+Rename `key.properties.example` to `key.properties` and fill in the information.  
+The `key.properties` is already refrenced in `app/build.gradle`.
+
+# Generate Firebase service JSON
+
+Best to let Google teach you this one https://firebase.google.com/docs/flutter/setup#configure_an_android_app
+
 
 # Build Instructions
-
-By default the apk is signed with a keystore to sign your version of navis just follow these [directions](https://flutter.dev/docs/deployment/android#signing-the-app). For convience there is a `key.properties.example`, rename it to `key.properties` and fill in the blanks with your keystore
-information.
-
-Next you need to generate a google-services.json from [firebase](https://firebase.google.com/docs/flutter/setup#configure_an_android_app), which is used to deliver push notifications (different for every firebase project)
 
 To build Navis need to install [Flutter](https://flutter.dev/docs/get-started/install) from the link below and follow all the instructions needed to get it running for your desired device* then simple run:
 
 ```
-flutter packages get
-flutter build apk
+flutter pub get
+flutter build apk // this will build a fat apk with arm and arm64 libs
 flutter install
 ```
 
-For Flutter 1.6.3+ replace `flutter packages get` with `flutter pub get`  
-
-Optionally `flutter build apk --target-platform=android-arm64` will build for arm64 devices
+Optionally `flutter build apk --target-platform=android-arm64` will build for arm64 devices and `flutter build apk --target-platform=android-arm` will build for arm devices
 
 
 make sure that you follow all the instructions and everything should run smoothly, unless there's a bug in which case report issues [here](https://github.com/WFCD/navis/issues) so that they may be fixed.
