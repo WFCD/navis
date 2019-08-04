@@ -8,7 +8,7 @@ class SyndicateJobs extends StatefulWidget {
   const SyndicateJobs({this.faction, this.jobs});
 
   final OpenWorldFactions faction;
-  final List<Jobs> jobs;
+  final List<Job> jobs;
 
   @override
   SyndicateJobsState createState() => SyndicateJobsState();
@@ -47,7 +47,7 @@ class MissionType extends StatelessWidget {
     @required this.faction,
   }) : super(key: key);
 
-  final Jobs job;
+  final Job job;
   final OpenWorldFactions faction;
 
   @override

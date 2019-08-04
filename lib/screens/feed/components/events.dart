@@ -197,7 +197,7 @@ class EventBuilder extends StatelessWidget {
   }
 }
 
-void _navigateToBounties(BuildContext context, List<Jobs> jobs) {
+void _navigateToBounties(BuildContext context, List<Job> jobs) {
   Navigator.of(context).push(
     MaterialPageRoute(
       builder: (_) => SyndicateJobs(

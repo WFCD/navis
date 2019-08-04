@@ -30,7 +30,12 @@ Cephalon Navis is an Android app inspired by [Warframe Hub](https://hub.warframe
 
 # Build Instructions
 
-To build Navis you must first install Flutter from the link below and follow all the instructions needed to get it running for your desired device* then simple run:
+By default the apk is signed with a keystore to sign your version of navis just follow these [directions](https://flutter.dev/docs/deployment/android#signing-the-app). For convience there is a `key.properties.example`, rename it to `key.properties` and fill in the blanks with your keystore
+information.
+
+Next you need to generate a google-services.json from [firebase](https://firebase.google.com/docs/flutter/setup#configure_an_android_app), which is used to deliver push notifications (different for every firebase project)
+
+To build Navis need to install [Flutter](https://flutter.dev/docs/get-started/install) from the link below and follow all the instructions needed to get it running for your desired device* then simple run:
 
 ```
 flutter packages get
@@ -38,9 +43,9 @@ flutter build apk
 flutter install
 ```
 
-For Flutter 1.6.3+ replace ```flutter packages get``` with ```flutter pub get```  
+For Flutter 1.6.3+ replace `flutter packages get` with `flutter pub get`  
 
-Optionally ```flutter build apk --target-platform=android-arm64``` will build for arm64 devices
+Optionally `flutter build apk --target-platform=android-arm64` will build for arm64 devices
 
 
 make sure that you follow all the instructions and everything should run smoothly, unless there's a bug in which case report issues [here](https://github.com/WFCD/navis/issues) so that they may be fixed.
