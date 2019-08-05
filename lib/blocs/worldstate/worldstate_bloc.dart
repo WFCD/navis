@@ -50,6 +50,7 @@ class WorldstateBloc extends HydratedBloc<UpdateEvent, WorldStates> {
 
   @override
   Map<String, dynamic> toJson(WorldStates state) {
-    return state.worldstate != null ? state.worldstate.toJson() : null;
+    return null;
+    //return state.worldstate != null ? state.worldstate.toJson() : null;
   }
 }

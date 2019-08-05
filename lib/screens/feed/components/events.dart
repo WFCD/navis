@@ -10,6 +10,7 @@ import 'package:navis/utils/factionutils.dart';
 import 'package:navis/utils/worldstate_utils.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:worldstate_model/worldstate_models.dart';
+import 'package:worldstate_model/worldstate_objects.dart';
 
 class EventPanel extends StatefulWidget {
   const EventPanel({Key key}) : super(key: key);
@@ -51,7 +52,7 @@ class EventPanelState extends State<EventPanel> {
         final events = state.worldstate?.events ?? [];
 
         return Container(
-            height: 160,
+            height: 200,
             width: MediaQuery.of(context).size.width,
             child: Material(
               color: Theme.of(context).cardColor,
@@ -101,16 +102,7 @@ class EventBuilder extends StatelessWidget {
 
   final Event event;
 
-  Color _healthColor() {
-    double health;
-    try {
-      health = event.health != null
-          ? double.parse(event.health)
-          : (100 - event.currentScore / event.maximumScore * 100).toDouble();
-    } catch (err) {
-      health = 100.0;
-    }
-
+  Color _healthColor(double health) {
     if (health > 50.0)
       return Colors.green;
     else if (health <= 50.0 && health >= 10.0)
@@ -119,35 +111,18 @@ class EventBuilder extends StatelessWidget {
       return Colors.red;
   }
 
-  String _healthText() {
-    String health;
-
-    if (event.health != null)
-      health = event.health;
-    else if (event.currentScore != null && event.maximumScore != null) {
-      health = (100 - (event.currentScore / event.maximumScore) * 100)
-          .toStringAsFixed(2);
-    } else
-      health = 'unknown';
-
-    return '$health% remaining';
-  }
-
-  Widget _addReward() {
-    final reward = event.rewards.firstWhere((r) => r.itemString.isNotEmpty);
-
-    final withCredits = '${reward.itemString} + ${reward.credits}cr';
-    final withoutCredits = reward.itemString;
-
-    return StaticBox.text(
-        color: Colors.green,
-        text: event.rewards.first.credits < 100 ? withoutCredits : withCredits);
+  Widget _addReward(List<String> rewards) {
+    return Wrap(
+      alignment: WrapAlignment.center,
+      children: <Widget>[
+        for (String r in rewards) StaticBox.text(color: Colors.green, text: r)
+      ],
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     const space = SizedBox(height: 4);
-    final String health = _healthText();
 
     return Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -168,31 +143,27 @@ class EventBuilder extends StatelessWidget {
             if (event.victimNode != null)
               StaticBox.text(text: event.victimNode, color: Colors.red),
             space,
-            if (!health.contains(RegExp('(unknown)|(NaN)')))
+            if (event.eventHealth != null)
               StaticBox.text(
-                text: health,
-                color: _healthColor(),
-              ),
-            if (health.contains(RegExp('(unknown)|(NaN)')))
+                text: '${event.eventHealth} remaining',
+                color: _healthColor(event.eventHealth),
+              )
+            else
               CountdownBox(expiry: event.expiry)
           ]),
           space,
-          Row(
-              mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                if (event.jobs?.isNotEmpty ?? false)
-                  FlatButton(
-                    child: const Text('See Bounties'),
-                    color: Theme.of(context).primaryColor,
-                    padding: const EdgeInsets.only(left: 50.0, right: 50.0),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(4.0),
-                    ),
-                    onPressed: () => _navigateToBounties(context, event?.jobs),
-                  ),
-                if (event.rewards.isNotEmpty) _addReward()
-              ])
+          if (event.jobs?.isNotEmpty ?? false)
+            FlatButton(
+              child: const Text('See Bounties'),
+              color: Theme.of(context).primaryColor,
+              padding: const EdgeInsets.only(left: 50.0, right: 50.0),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(4.0),
+              ),
+              onPressed: () => _navigateToBounties(context, event.jobs),
+            )
+          else
+            _addReward(event.eventRewards)
         ]);
   }
 }

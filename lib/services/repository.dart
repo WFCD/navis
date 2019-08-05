@@ -55,8 +55,6 @@ class Repository {
       platform ??= storageService.platform;
       final response = await WorldstateApiWrapper.getInstance(platform, client);
 
-      _saveFile(path, json.encode(response.worldstate.toJson()));
-
       worldstate = cleanState(response.worldstate);
     } catch (e) {
       if (_checkFile(path)) {
@@ -65,6 +63,12 @@ class Repository {
 
         worldstate = cleanState(state);
       }
+    }
+
+    try {
+      _saveFile(path, json.encode(worldstate.toJson()));
+    } catch (e) {
+      debugPrint(e.toString());
     }
 
     return worldstate;
