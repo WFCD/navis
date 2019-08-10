@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
 
 class BackgroundImageCard extends StatelessWidget {
-  const BackgroundImageCard(
-      {Key key,
-      @required this.provider,
-      @required this.child,
-      this.height,
-      this.width,
-      this.margin})
-      : super(key: key);
+  const BackgroundImageCard({
+    Key key,
+    @required this.provider,
+    @required this.child,
+    this.height,
+    this.width,
+    this.margin,
+    this.alignment,
+  }) : super(key: key);
 
   final ImageProvider provider;
   final Widget child;
   final EdgeInsets margin;
   final double height, width;
+  final Alignment alignment;
 
   @override
   Widget build(BuildContext context) {
@@ -26,6 +28,7 @@ class BackgroundImageCard extends StatelessWidget {
         child: Container(
           height: height,
           width: width,
+          alignment: alignment,
           decoration: BoxDecoration(
               image: DecorationImage(
             colorFilter: ColorFilter.mode(
