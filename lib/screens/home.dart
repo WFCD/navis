@@ -9,7 +9,6 @@ import 'package:navis/screens/drops/drops_list.dart';
 import 'package:navis/screens/feed/feed.dart';
 import 'package:navis/screens/fissures/fissures.dart';
 import 'package:navis/screens/invasions/invasions.dart';
-import 'package:navis/screens/news/news.dart';
 import 'package:navis/screens/sortie/sortie.dart';
 import 'package:navis/screens/syndicates/syndicates.dart';
 import 'package:navis/services/repository.dart';
@@ -74,8 +73,6 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
 
   Widget _body(RouteState route) {
     switch (route) {
-      case RouteState.news:
-        return const Orbiter();
       case RouteState.fissures:
         return const FissureList();
       case RouteState.invasions:
