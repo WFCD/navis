@@ -14,10 +14,15 @@ class Tiles extends StatelessWidget {
 
     return Padding(
       padding: const EdgeInsets.only(bottom: 8, top: 4),
-      child: Text(
-        title,
-        textAlign: TextAlign.center,
-        style: titleStyle,
+      child: Column(
+        children: <Widget>[
+          Text(
+            title,
+            textAlign: TextAlign.center,
+            style: titleStyle,
+          ),
+          const Divider(),
+        ],
       ),
     );
   }
@@ -34,7 +39,7 @@ class Tiles extends StatelessWidget {
           padding: const EdgeInsets.all(2),
           height: height,
           alignment: Alignment.center,
-          child: Column(children: <Widget>[
+          child: Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
             if (title != null) _buildTitle(context, title),
             child
           ])),
