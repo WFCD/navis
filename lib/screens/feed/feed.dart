@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:navis/blocs/bloc.dart';
+import 'package:navis/global_keys.dart';
+import 'package:navis/screens/feed/components/news_builder.dart';
 
 import 'components/acolytes.dart';
 import 'components/alerts.dart';
 import 'components/cycles.dart';
 import 'components/deals.dart';
-import 'components/events.dart';
+import 'components/events_builder.dart';
 import 'components/trader.dart';
 
 class Feed extends StatelessWidget {
@@ -30,6 +32,11 @@ class Feed extends StatelessWidget {
                   state.worldstate.dailyDeals.isNotEmpty;
 
               return ListView(children: <Widget>[
+                PageStorage(
+                  key: newsKey,
+                  bucket: newsBucket,
+                  child: const NewsBuilder(),
+                ),
                 if (isEventActive) const EventPanel(),
                 if (areAcolytesActive) const Acolytes(),
                 ...cycles,
