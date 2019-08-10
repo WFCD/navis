@@ -37,3 +37,17 @@ Future<void> launchLink(BuildContext context, String link,
             : const Text('No App compatible detected to open link')));
   }
 }
+
+String timestamp(DateTime timestamp) {
+  final Duration duration = timestamp.difference(DateTime.now().toUtc()).abs();
+
+  const Duration hour = Duration(hours: 1);
+  const Duration day = Duration(hours: 24);
+
+  if (duration < hour) {
+    return '${duration.inMinutes.floor()}m';
+  } else if (duration >= hour && duration < day) {
+    return '${duration.inHours.floor()}h ${(duration.inMinutes % 60).floor()}m';
+  } else
+    return '${duration.inDays.floor()}d';
+}

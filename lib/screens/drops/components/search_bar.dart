@@ -35,9 +35,9 @@ class _SearchBarState extends State<SearchBar> {
       sliver: SliverFloatingBar(
           elevation: 8.0,
           automaticallyImplyLeading: false,
-          backgroundColor: Theme.of(context).primaryColor,
           floating: true,
           snap: true,
+          backgroundColor: Theme.of(context).cardColor,
           title: TextField(
             controller: _textEditingController,
             autocorrect: false,
@@ -50,7 +50,7 @@ class _SearchBarState extends State<SearchBar> {
             ),
           ),
           trailing: IconButton(
-            icon: Icon(Icons.clear, color: Theme.of(context).accentColor),
+            icon: Icon(Icons.clear),
             onPressed: () {
               _textEditingController.text = '';
               BlocProvider.of<TableSearchBloc>(context)

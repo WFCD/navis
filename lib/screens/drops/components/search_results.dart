@@ -21,24 +21,19 @@ class SearchResults extends StatelessWidget {
   Widget _result(BuildContext context, Drop drop) {
     final theme = Theme.of(context);
 
-    return Card(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(8.0),
-      ),
-      child: Container(
-        padding: const EdgeInsets.all(20.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Text(drop.item, style: theme.textTheme.subhead),
-            const SizedBox(height: 4),
-            Text('${drop.chance}% Drop Chance',
-                style: theme.textTheme.caption
-                    .copyWith(color: _chance(drop.chance))),
-            const SizedBox(height: 4),
-            Text(_parseHtmlString(drop.place))
-          ],
-        ),
+    return Container(
+      padding: const EdgeInsets.all(20.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Text(drop.item, style: theme.textTheme.subhead),
+          const SizedBox(height: 4),
+          Text('${drop.chance}% Drop Chance',
+              style: theme.textTheme.caption
+                  .copyWith(color: _chance(drop.chance))),
+          const SizedBox(height: 4),
+          Text(_parseHtmlString(drop.place))
+        ],
       ),
     );
   }
