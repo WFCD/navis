@@ -1,29 +1,13 @@
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:rxdart/rxdart.dart';
 
-enum RouteEvent {
-  news,
-  timers,
-  fissures,
-  invasions,
-  sortie,
-  syndicates,
-  droptable
-}
+enum RouteEvent { home, fissures, invasions, sortie, syndicates, droptable }
 
-enum RouteState {
-  news,
-  timers,
-  fissures,
-  invasions,
-  sortie,
-  syndicates,
-  droptable
-}
+enum RouteState { home, fissures, invasions, sortie, syndicates, droptable }
 
 class NavigationBloc extends HydratedBloc<RouteEvent, RouteState> {
   @override
-  RouteState get initialState => super.initialState ?? RouteState.timers;
+  RouteState get initialState => super.initialState ?? RouteState.home;
 
   @override
   Stream<RouteState> mapEventToState(RouteEvent event) async* {
@@ -38,10 +22,8 @@ class NavigationBloc extends HydratedBloc<RouteEvent, RouteState> {
 
   RouteState eventToState(RouteEvent event) {
     switch (event) {
-      case RouteEvent.news:
-        return RouteState.news;
-      case RouteEvent.timers:
-        return RouteState.timers;
+      case RouteEvent.home:
+        return RouteState.home;
       case RouteEvent.fissures:
         return RouteState.fissures;
       case RouteEvent.invasions:
@@ -53,7 +35,7 @@ class NavigationBloc extends HydratedBloc<RouteEvent, RouteState> {
       case RouteEvent.droptable:
         return RouteState.droptable;
       default:
-        return RouteState.timers;
+        return RouteState.home;
     }
   }
 

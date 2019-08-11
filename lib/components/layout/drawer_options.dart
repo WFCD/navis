@@ -32,10 +32,10 @@ class DrawerOptions extends StatelessWidget {
             controller: _controller,
             children: <Widget>[
               ListTile(
-                  leading: Icon(Icons.menu),
-                  title: const Text('Feed'),
-                  onTap: () => _onTap(context, RouteEvent.timers),
-                  selected: state == RouteState.timers),
+                  leading: Icon(Icons.home),
+                  title: const Text('Home'),
+                  onTap: () => _onTap(context, RouteEvent.home),
+                  selected: state == RouteState.home),
               ListTile(
                 leading: const Icon(VoidFissureIcon.void_icon),
                 title: const Text('Fissures'),

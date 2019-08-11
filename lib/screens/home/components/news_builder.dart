@@ -3,8 +3,9 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:navis/blocs/bloc.dart';
 import 'package:navis/components/widgets.dart';
-import 'package:navis/screens/feed/components/news.dart';
 import 'package:rxdart/rxdart.dart';
+
+import 'news.dart';
 
 class NewsBuilder extends StatefulWidget {
   const NewsBuilder({Key key}) : super(key: key);

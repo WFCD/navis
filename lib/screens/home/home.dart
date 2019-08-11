@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:navis/blocs/bloc.dart';
 import 'package:navis/global_keys.dart';
-import 'package:navis/screens/feed/components/news_builder.dart';
+import 'package:navis/screens/home/components/news_builder.dart';
 
 import 'components/acolytes.dart';
 import 'components/alerts.dart';
@@ -10,8 +10,8 @@ import 'components/deals.dart';
 import 'components/events_builder.dart';
 import 'components/trader.dart';
 
-class Feed extends StatelessWidget {
-  const Feed({Key key = const PageStorageKey<String>('feed')})
+class Home extends StatelessWidget {
+  const Home({Key key = const PageStorageKey<String>('feed')})
       : super(key: key);
 
   @override

@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/blocs/bloc.dart';
-import 'package:navis/screens/home.dart';
+import 'package:navis/components/widgets.dart';
+import 'package:navis/screens/main_screen.dart';
 import 'package:navis/screens/settings/settings.dart';
 import 'package:navis/services/repository.dart';
-
-import 'components/widgets.dart';
 
 class Navis extends StatefulWidget {
   const Navis(this.repository);
@@ -40,7 +39,7 @@ class _NavisState extends State<Navis> {
             title: 'Navis',
             color: Colors.grey[900],
             theme: state.theme,
-            home: const HomeScreen(),
+            home: const MainScreen(),
             builder: _builder,
             routes: <String, WidgetBuilder>{
               '/Settings': (_) => const Settings()

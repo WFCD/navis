@@ -6,21 +6,21 @@ import 'package:navis/blocs/bloc.dart';
 import 'package:navis/components/widgets.dart';
 import 'package:navis/global_keys.dart';
 import 'package:navis/screens/drops/drops_list.dart';
-import 'package:navis/screens/feed/feed.dart';
+import 'package:navis/screens/home/home.dart';
 import 'package:navis/screens/fissures/fissures.dart';
 import 'package:navis/screens/invasions/invasions.dart';
 import 'package:navis/screens/sortie/sortie.dart';
 import 'package:navis/screens/syndicates/syndicates.dart';
 import 'package:navis/services/repository.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key key}) : super(key: key);
+class MainScreen extends StatefulWidget {
+  const MainScreen({Key key}) : super(key: key);
 
   @override
-  _HomeScreenState createState() => _HomeScreenState();
+  _MainScreenState createState() => _MainScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
+class _MainScreenState extends State<MainScreen> with WidgetsBindingObserver {
   Timer timer;
 
   @override
@@ -84,7 +84,7 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
       case RouteState.droptable:
         return const DropTableList();
       default:
-        return const Feed();
+        return const Home();
     }
   }
 
