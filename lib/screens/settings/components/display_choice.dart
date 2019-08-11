@@ -15,7 +15,7 @@ class DisplayChoices extends StatelessWidget {
     return BlocBuilder<StorageBloc, StorageState>(
       bloc: storage,
       builder: (_, state) {
-        final enabled = state.theme.brightness == Brightness.dark;
+        // final enabled = state.theme.brightness == Brightness.dark;
 
         return Container(
             child: Column(children: <Widget>[
