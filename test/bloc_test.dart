@@ -58,15 +58,6 @@ Future<void> main() async {
   });
 
   group('Storage bloc related test', () {
-    test('Test Dark Mode Toggle', () async {
-      storage.dispatch(ToggleDarkMode(enableDark: false));
-
-      // wait for shared_prefs to actually save fisrt
-      await Future.delayed(const Duration(milliseconds: 500));
-
-      expect(prefs.getBool(darkModeKey), false);
-    });
-
     test('Test dateformat dd_mm_yy', () async {
       final format = await testDateformat(storage, Formats.dd_mm_yy, prefs);
 

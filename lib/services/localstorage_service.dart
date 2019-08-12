@@ -41,9 +41,6 @@ class LocalStorageService {
   set dateformat(Formats value) =>
       saveToDisk(dateformatKey, value.toString().split('.').last);
 
-  bool get darkMode => getFromDisk(darkModeKey) ?? true;
-  set darkMode(bool value) => saveToDisk(darkModeKey, value);
-
   Map<String, bool> get acolytes => {
         angstkey: getFromDisk(angstkey) ?? false,
         maliceKey: getFromDisk(maliceKey) ?? false,

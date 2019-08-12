@@ -40,11 +40,5 @@ class StorageBloc extends Bloc<ChangeEvent, StorageState> {
 
       yield MainStorageState(repository.storageService);
     }
-
-    if (event is ToggleDarkMode) {
-      repository.storageService.darkMode = event.enableDark;
-
-      yield MainStorageState(repository.storageService);
-    }
   }
 }

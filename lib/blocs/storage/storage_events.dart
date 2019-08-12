@@ -26,9 +26,3 @@ class ToggleNotification extends ChangeEvent {
   final bool value;
   final List<String> options;
 }
-
-class ToggleDarkMode extends ChangeEvent {
-  ToggleDarkMode({this.enableDark}) : super([enableDark]);
-
-  final bool enableDark;
-}

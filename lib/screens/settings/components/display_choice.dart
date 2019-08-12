@@ -20,13 +20,6 @@ class DisplayChoices extends StatelessWidget {
         return Container(
             child: Column(children: <Widget>[
           if (enableTitle) const SettingTitle(title: 'Display'),
-          // SwitchListTile(
-          //   title: const Text('Dark Mode'),
-          //   subtitle: Text('${enabled ? 'Disable' : 'Enable'} dark mode'),
-          //   value: enabled,
-          //   activeColor: Theme.of(context).accentColor,
-          //   onChanged: (b) => storage.dispatch(ToggleDarkMode(enableDark: b)),
-          // ),
           ListTile(
             title: const Text('Dateformat'),
             subtitle:

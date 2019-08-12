@@ -27,24 +27,6 @@ class MainStorageState extends StorageState {
   Platforms get platform => storage.platform;
 
   @override
-  ThemeData get theme {
-    final enabled = storage.darkMode;
-
-    const primary = Color.fromRGBO(26, 80, 144, .9);
-    const accent = Color(0xFF00BC8C);
-
-    return ThemeData(
-        brightness: enabled ? Brightness.dark : Brightness.light,
-        primaryColor: primary,
-        accentColor: accent,
-        cardColor: enabled ? const Color(0xFF2C2C2C) : null,
-        dialogBackgroundColor: enabled ? const Color(0xFF212121) : null,
-        scaffoldBackgroundColor: enabled ? const Color(0xFF212121) : null,
-        canvasColor: enabled ? const Color(0xFF212121) : null,
-        splashColor: accent);
-  }
-
-  @override
   Map<String, bool> get acolytes => storage.acolytes;
 
   @override

@@ -28,24 +28,34 @@ class _NavisState extends State<Navis> {
     return widget;
   }
 
+  Widget _blocBuilder(BuildContext context, StorageState state) =>
+      const MainScreen();
+
   @override
   Widget build(BuildContext context) {
+    final theme = ThemeData(
+      brightness: Brightness.dark,
+      primaryColor: const Color.fromRGBO(26, 80, 144, .9),
+      accentColor: const Color(0xFF00BC8C),
+      cardColor: const Color(0xFF2C2C2C),
+      dialogBackgroundColor: const Color(0xFF212121),
+      scaffoldBackgroundColor: const Color(0xFF212121),
+      canvasColor: const Color(0xFF212121),
+      splashColor: const Color(0xFF00BC8C),
+    );
+
     return RepositoryProvider.value(
       value: widget.repository,
-      child: BlocBuilder<StorageBloc, StorageState>(
-        bloc: BlocProvider.of<StorageBloc>(context),
-        builder: (BuildContext context, StorageState state) {
-          return MaterialApp(
-            title: 'Navis',
-            color: Colors.grey[900],
-            theme: state.theme,
-            home: const MainScreen(),
-            builder: _builder,
-            routes: <String, WidgetBuilder>{
-              '/Settings': (_) => const Settings()
-            },
-          );
-        },
+      child: MaterialApp(
+        title: 'Navis',
+        color: Colors.grey[900],
+        theme: theme,
+        home: BlocBuilder<StorageBloc, StorageState>(
+          bloc: BlocProvider.of<StorageBloc>(context),
+          builder: _blocBuilder,
+        ),
+        builder: _builder,
+        routes: <String, WidgetBuilder>{'/Settings': (_) => const Settings()},
       ),
     );
   }
