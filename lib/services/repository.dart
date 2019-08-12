@@ -18,6 +18,7 @@ import 'notification_service.dart';
 
 class Repository {
   Repository({
+    @required this.client,
     @required this.storageService,
     @required this.packageInfo,
     @required this.notificationService,
@@ -25,20 +26,20 @@ class Repository {
         assert(packageInfo != null),
         assert(notificationService != null);
 
-  final client = MetricHttpClient(http.Client());
-
-  static Future<Repository> initialize() async {
+  static Future<Repository> initialize([http.Client client]) async {
     final LocalStorageService _storageService =
         await LocalStorageService.getInstance();
     final PackageInfo _info = await PackageInfo.fromPlatform();
 
     return Repository(
+      client: client ?? MetricHttpClient(http.Client()),
       storageService: _storageService,
       packageInfo: _info,
       notificationService: NotificationService.initialize(),
     );
   }
 
+  final http.Client client;
   final LocalStorageService storageService;
   final PackageInfo packageInfo;
   final NotificationService notificationService;

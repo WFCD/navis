@@ -1,13 +1,12 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/widgets.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
+import 'package:navis/app.dart';
 import 'package:navis/blocs/bloc.dart';
 import 'package:navis/services/repository.dart';
-import 'package:firebase_crashlytics/firebase_crashlytics.dart';
-
-import 'app.dart';
 
 void main() {
   FlutterError.onError = Crashlytics.instance.recordFlutterError;
