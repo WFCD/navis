@@ -6,7 +6,7 @@ import 'package:navis/components/widgets.dart';
 import 'package:navis/global_keys.dart';
 import 'package:navis/utils/worldstate_utils.dart';
 
-import 'events.dart';
+import 'events_widget.dart';
 
 class EventPanel extends StatelessWidget {
   const EventPanel({Key key}) : super(key: key);

@@ -69,27 +69,28 @@ class _CarouselState extends State<Carousel> {
               onPageChanged: onPageChanged,
             ),
           ),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: Container(
-              // color: const Color.fromRGBO(34, 34, 34, .4),
-              height: 20,
-              width: MediaQuery.of(context).size.width,
+          if (widget.enableIndicator)
+            Align(
               alignment: Alignment.bottomCenter,
-              child: StreamBuilder<int>(
-                stream: _currentPage.stream,
-                initialData: _page?.toInt() ?? 0,
-                builder: (BuildContext context, AsyncSnapshot<int> snapshot) {
-                  return Indicator(
-                    numberOfDot: widget.dotCount,
-                    position: snapshot.data,
-                    dotSize: const Size.square(9.0),
-                    dotActiveColor: Theme.of(context).accentColor,
-                  );
-                },
+              child: Container(
+                // color: const Color.fromRGBO(34, 34, 34, .4),
+                height: 20,
+                width: MediaQuery.of(context).size.width,
+                alignment: Alignment.bottomCenter,
+                child: StreamBuilder<int>(
+                  stream: _currentPage.stream,
+                  initialData: _page?.toInt() ?? 0,
+                  builder: (BuildContext context, AsyncSnapshot<int> snapshot) {
+                    return Indicator(
+                      numberOfDot: widget.dotCount,
+                      position: snapshot.data,
+                      dotSize: const Size.square(9.0),
+                      dotActiveColor: Theme.of(context).accentColor,
+                    );
+                  },
+                ),
               ),
-            ),
-          )
+            )
         ],
       ),
     );
