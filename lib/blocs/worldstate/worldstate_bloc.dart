@@ -22,7 +22,8 @@ class WorldstateBloc extends HydratedBloc<UpdateEvent, WorldStates> {
   Stream<WorldStates> transform(Stream<UpdateEvent> events,
       Stream<WorldStates> Function(UpdateEvent event) next) {
     return super.transform(
-        Observable(events).debounceTime(const Duration(milliseconds: 500)),
+        (events as Observable<UpdateEvent>)
+            .debounceTime(const Duration(milliseconds: 500)),
         next);
   }
 
@@ -45,11 +46,11 @@ class WorldstateBloc extends HydratedBloc<UpdateEvent, WorldStates> {
 
   @override
   WorldStates fromJson(Map<String, dynamic> json) {
-    return WorldstateLoaded(Worldstate.fromJson(json));
+    return WorldstateLoaded(json as Worldstate);
   }
 
   @override
   Map<String, dynamic> toJson(WorldStates state) {
-    return state.worldstate != null ? state.worldstate.toJson() : null;
+    return state.worldstate?.toJson();
   }
 }
