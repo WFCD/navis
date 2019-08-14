@@ -7,7 +7,7 @@ import 'components/acolytes.dart';
 import 'components/alerts.dart';
 import 'components/cycles.dart';
 import 'components/deals.dart';
-import 'components/events_builder.dart';
+import 'components/events_tile.dart';
 import 'components/trader.dart';
 
 class Home extends StatelessWidget {
