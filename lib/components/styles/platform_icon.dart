@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_brand_icons/flutter_brand_icons.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:navis/blocs/bloc.dart';
 import 'package:wfcd_api_wrapper/worldstate_wrapper.dart';
 
@@ -14,29 +14,29 @@ class PlatformIcon extends StatelessWidget {
   final Platforms platform;
 
   static String _tooltip;
-  static IconData _platformIcon;
+  static String _platformIcon;
   static Color _platformColor;
 
   void _setValues() {
     switch (platform) {
       case Platforms.ps4:
         _tooltip = ps4;
-        _platformIcon = BrandIcons.playstation;
+        _platformIcon = 'assets/platforms/playstation.svg';
         _platformColor = const Color(0xFF003791);
         break;
       case Platforms.xb1:
         _tooltip = xb1;
-        _platformIcon = BrandIcons.xbox;
+        _platformIcon = 'assets/platforms/xbox.svg';
         _platformColor = const Color(0xFF107C10);
         break;
       case Platforms.swi:
         _tooltip = swi;
-        _platformIcon = BrandIcons.nintendoswitch;
+        _platformIcon = 'assets/platforms/nintendoswitch.svg';
         _platformColor = const Color(0xFFE60012);
         break;
       default:
         _tooltip = pc;
-        _platformIcon = BrandIcons.steam;
+        _platformIcon = 'assets/platforms/steam.svg';
         _platformColor = const Color(0xFFFACA04);
     }
   }
@@ -56,14 +56,18 @@ class PlatformIcon extends StatelessWidget {
       bloc: storage,
       builder: (_, state) {
         _setValues();
+
         return IconButton(
           tooltip: _tooltip,
-          iconSize: 30,
-          icon: Icon(
+          splashColor: _platformColor,
+          icon: SvgPicture.asset(
             _platformIcon,
             color: state.platform == platform
                 ? _platformColor
                 : Theme.of(context).disabledColor,
+            width: 34,
+            height: 34,
+            semanticsLabel: _tooltip,
           ),
           onPressed: _onPressed,
         );
