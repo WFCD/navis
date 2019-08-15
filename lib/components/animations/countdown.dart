@@ -59,13 +59,11 @@ class CountdownBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final now = DateTime.now().toUtc();
+    final now = DateTime.now().toUtc().millisecondsSinceEpoch;
+    final _expiry = expiry?.millisecondsSinceEpoch ?? now;
 
-    final duration = Duration(
-            seconds: expiry.millisecondsSinceEpoch - now.millisecondsSinceEpoch)
-        .abs();
-    final tween = StepTween(
-        begin: expiry.millisecondsSinceEpoch, end: now.millisecondsSinceEpoch);
+    final duration = Duration(seconds: _expiry - now).abs();
+    final tween = StepTween(begin: _expiry, end: now);
 
     return ControlledAnimation(
       duration: duration,
