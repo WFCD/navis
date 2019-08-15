@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:navis/blocs/bloc.dart';
-import 'package:navis/global_keys.dart';
 import 'package:navis/screens/home/components/news_builder.dart';
 
 import 'components/acolytes.dart';
@@ -34,16 +33,12 @@ class Home extends StatelessWidget {
                   state.worldstate.dailyDeals?.isNotEmpty ?? false;
 
               return ListView(children: <Widget>[
-                PageStorage(
-                  key: newsKey,
-                  bucket: newsBucket,
-                  child: const NewsBuilder(),
-                ),
+                const NewsBuilder(),
                 if (isEventActive) const EventPanel(),
                 if (areAcolytesActive) const Acolytes(),
                 ...cycles,
                 if (isAlertActive) const AlertTile(),
-                const Trader(),
+                if (state.worldstate.voidTrader != null) const Trader(),
                 if (areDealsActive) const Deals(),
               ]);
             }
