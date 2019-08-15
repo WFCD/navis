@@ -62,18 +62,18 @@ Future<void> main() async {
     });
   });
 
-  group('Test Drop table endpoint', () {
-    test('Test file download', () async {
-      final directory = await Directory.systemTemp.createTemp();
-      final source = File('${directory.path}/drop_table.json');
+  // group('Test Drop table endpoint', () {
+  //   test('Test file download', () async {
+  //     final directory = await Directory.systemTemp.createTemp();
+  //     final source = File('${directory.path}/drop_table.json');
 
-      when(client.get('${Repository.dropTable}/data/all.slim.json')).thenAnswer(
-          (_) async => http.Response(
-              File('test/slim_mock_table.json').readAsStringSync(), 200));
+  //     when(client.get('${Repository.dropTable}/data/all.slim.json')).thenAnswer(
+  //         (_) async => http.Response(
+  //             File('test/slim_mock_table.json').readAsStringSync(), 200));
 
-      await repository.updateDropTable(source.path);
+  //     await repository.updateDropTable(source.path);
 
-      expectLater(source.existsSync(), true);
-    });
-  });
+  //     expectLater(source.existsSync(), true);
+  //   });
+  // });
 }
