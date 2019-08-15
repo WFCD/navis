@@ -75,36 +75,23 @@ class Repository {
     return worldstate;
   }
 
-  Future<File> updateDropTable() async {
+  Future<File> updateDropTable([String path]) async {
     final directory = await getApplicationDocumentsDirectory();
-    final path = '${directory.path}/drop_table.json';
+    final _path = '${directory.path}/drop_table.json';
 
-    try {
-      final timestamp = await dropTableTimestamp();
+    final timestamp = await dropTableTimestamp();
 
-      if (timestamp.isAfter(storageService.tableTimestamp) ||
-          !_checkFile(path)) {
-        final response = await client.get('$dropTable/data/all.slim.json');
+    if (timestamp.isAfter(storageService.tableTimestamp) || !_checkFile(path)) {
+      final response = await client.get('$dropTable/data/all.slim.json');
 
-        if (response.statusCode != 200) throw Exception();
+      if (response?.statusCode != 200) throw Exception();
 
-        storageService.saveTimestamp(timestamp);
+      storageService.saveTimestamp(timestamp);
 
-        return _saveFile(path, response.body);
-      }
-
-      return _getFile(path);
-    } catch (e) {
-      final slim = await rootBundle.loadString('assets/slim.json');
-
-      storageService.saveTimestamp(
-        DateTime.now().subtract(const Duration(days: 120)),
-      );
-
-      _saveFile(path, slim);
-
-      return _getFile(path);
+      return _saveFile(path ?? _path, response.body);
     }
+
+    return _getFile(path ?? _path);
   }
 
   Future<DateTime> dropTableTimestamp() async {

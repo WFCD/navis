@@ -1,61 +1,79 @@
-//import 'dart:io';
+import 'dart:io';
 
-//import 'package:navis/services/localstorage_service.dart';
+import 'package:http/http.dart' as http;
+import 'package:mockito/mockito.dart';
 import 'package:navis/services/repository.dart';
 import 'package:test/test.dart';
 import 'package:wfcd_api_wrapper/worldstate_wrapper.dart';
 import 'package:worldstate_model/worldstate_models.dart';
 
+import 'mock_class.dart';
 import 'setup_methods.dart';
 
-Map<String, dynamic> mockstate = {
-  'news': [],
-  'alerts': [],
-  'syndicateMissions': [],
-  'fissures': [],
-  'invasions': [],
-  'persistentEnemies': []
-};
-
 Future<void> main() async {
-  // final directory = await Directory.systemTemp.createTemp();
-  // final asset = File('../assets/slim.json');
+  final client = MockClient();
 
   Repository repository;
 
   setUpAll(() async {
     await setupPackageMockMethods();
-    repository = await Repository.initialize();
+    repository = await Repository.initialize(client);
   });
 
   group('Test Worldstate APi', () {
     test('Test PC endpoint', () async {
       final state = await repository.getWorldstate(Platforms.pc);
+
+      when(client.get('https://api.warframestat.us/pc/')).thenAnswer(
+          (_) async => http.Response(
+              File('test/mockstate.json').readAsStringSync(), 200));
+
       expect(state, const TypeMatcher<Worldstate>());
     });
 
     test('Test PS4 endpoint', () async {
       final state = await repository.getWorldstate(Platforms.ps4);
+
+      when(client.get('https://api.warframestat.us/ps4/')).thenAnswer(
+          (_) async => http.Response(
+              File('test/mockstate.json').readAsStringSync(), 200));
+
       expect(state, const TypeMatcher<Worldstate>());
     });
 
     test('Test Xbox one endpoint', () async {
       final state = await repository.getWorldstate(Platforms.xb1);
+
+      when(client.get('https://api.warframestat.us/xb1/')).thenAnswer(
+          (_) async => http.Response(
+              File('test/mockstate.json').readAsStringSync(), 200));
+
       expect(state, const TypeMatcher<Worldstate>());
     });
 
     test('Test Switch endpoint', () async {
       final state = await repository.getWorldstate(Platforms.swi);
+
+      when(client.get('https://api.warframestat.us/swi/')).thenAnswer(
+          (_) async => http.Response(
+              File('test/mockstate.json').readAsStringSync(), 200));
+
       expect(state, const TypeMatcher<Worldstate>());
     });
   });
 
-  // group('Test Drop table endpoint', () {
-  //   test('Check if file is downloaded', () async {
-  //     final source = File('${directory.path}/drop_table.json');
+  group('Test Drop table endpoint', () {
+    test('Test file download', () async {
+      final directory = await Directory.systemTemp.createTemp();
+      final source = File('${directory.path}/drop_table.json');
 
-  //     await repository.updateDropTable(source);
-  //     expectLater(source.existsSync(), true);
-  //   });
-  // });
+      when(client.get('${Repository.dropTable}/data/all.slim.json')).thenAnswer(
+          (_) async => http.Response(
+              File('test/mocktable.json').readAsStringSync(), 200));
+
+      await repository.updateDropTable(source.path);
+
+      expectLater(source.existsSync(), true);
+    });
+  });
 }
