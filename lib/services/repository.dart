@@ -89,7 +89,7 @@ class Repository {
 
       storageService.saveTimestamp(timestamp);
 
-      return _saveFile(path ?? _path, response.body);
+      return await _saveFile(path ?? _path, response.body);
     }
 
     return _getFile(path ?? _path);
@@ -112,11 +112,9 @@ class Repository {
 
   File _getFile(String path) => File(path);
 
-  File _saveFile(String path, String data) {
+  Future<File> _saveFile(String path, String data) async {
     final file = File(path);
 
-    file.writeAsStringSync(data);
-
-    return file;
+    return file.writeAsString(data);
   }
 }
