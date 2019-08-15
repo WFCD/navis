@@ -1,9 +1,10 @@
 import 'dart:convert';
+import 'dart:math';
 
+import 'package:collection/collection.dart';
 import 'package:flutter/widgets.dart';
 import 'package:navis/models/slim_drop_table.dart';
 import 'package:worldstate_model/worldstate_models.dart';
-import 'package:collection/collection.dart';
 
 Worldstate cleanState(Worldstate state) {
   state.alerts.removeWhere((a) =>
@@ -54,8 +55,8 @@ ImageProvider skybox(BuildContext context, String node) {
 }
 
 bool compareExpiry(DateTime previous, DateTime current) {
-  final forceFalse =
-      DateTime.now().subtract(Duration(milliseconds: previous.millisecond));
+  final forceFalse = DateTime.now().subtract(
+      Duration(milliseconds: previous?.millisecond ?? (24 * pow(3.6, 6))));
 
   return previous?.isBefore(current ?? forceFalse);
 }
