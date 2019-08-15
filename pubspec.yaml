@@ -7,10 +7,10 @@ dependencies:
     sdk: flutter
   bloc: ^0.14.4
   equatable: ^0.4.0
-  flutter_bloc: ^0.20.0
+  flutter_bloc: ^0.20.1
   firebase_crashlytics: ^0.1.0+2
   flutter_custom_tabs: ^0.6.0
-  hydrated_bloc: ^0.3.1
+  hydrated_bloc: ^0.3.2
   intl: ^0.15.8
   package_info: ^0.4.0+6
   shared_preferences: ^0.5.3+4
