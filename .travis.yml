@@ -19,7 +19,7 @@ matrix:
         - openssl aes-256-cbc -K $encrypted_2db283701f8c_key -iv $encrypted_2db283701f8c_iv 
           -in secrets.tar.enc -out secrets.tar -d
         - tar xvf secrets.tar
-        - if [  ! -d "flutter" ] ; then git clone https://github.com/flutter/flutter.git -b beta; fi;
+        - if [  ! -d "flutter" ] ; then git clone https://github.com/flutter/flutter.git -b stable; fi;
         - export PATH=./flutter/bin:$PATH
         - flutter upgrade
       script:
@@ -46,7 +46,7 @@ matrix:
         - openssl aes-256-cbc -K $encrypted_2db283701f8c_key -iv $encrypted_2db283701f8c_iv 
           -in secrets.tar.enc -out secrets.tar -d
         - tar xvf secrets.tar
-        - if [  ! -d "flutter" ] ; then git clone https://github.com/flutter/flutter.git -b beta; fi;
+        - if [  ! -d "flutter" ] ; then git clone https://github.com/flutter/flutter.git -b stable; fi;
         - export PATH=./flutter/bin:$PATH
         - flutter upgrade 
       script:
