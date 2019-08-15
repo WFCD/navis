@@ -83,7 +83,9 @@ class Repository {
     if (timestamp.isAfter(storageService.tableTimestamp) || !_checkFile(path)) {
       final response = await client.get('$dropTable/data/all.slim.json');
 
-      if (response?.statusCode != 200) throw Exception();
+      if (response?.statusCode != 200)
+        throw Exception(
+            'Drop table failed to download: ${response?.statusCode}');
 
       storageService.saveTimestamp(timestamp);
 
