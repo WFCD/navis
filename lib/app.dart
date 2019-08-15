@@ -5,6 +5,7 @@ import 'package:navis/components/widgets.dart';
 import 'package:navis/screens/main_screen.dart';
 import 'package:navis/screens/settings/settings.dart';
 import 'package:navis/services/repository.dart';
+import 'package:wfcd_api_wrapper/worldstate_wrapper.dart';
 
 class Navis extends StatefulWidget {
   const Navis(this.repository);
@@ -20,6 +21,11 @@ class _NavisState extends State<Navis> {
   void initState() {
     super.initState();
     BlocProvider.of<WorldstateBloc>(context).dispatch(UpdateEvent.update);
+
+    if (widget.repository.storageService.platform == null) {
+      widget.repository.notificationService
+          .subscribeToPlatform(currentPlatform: Platforms.pc);
+    }
   }
 
   Widget _builder(BuildContext context, Widget widget) {

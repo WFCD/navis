@@ -15,14 +15,14 @@ class LocalStorageService {
   }
 
   Platforms get platform {
-    const defaultPlatform = Platforms.pc;
     final diskPlatform = getFromDisk(platformKey);
 
     if (diskPlatform != null)
-      return Platforms.values
-          .firstWhere((p) => p.toString() == 'Platforms.$diskPlatform');
+      return Platforms.values.firstWhere(
+        (p) => p.toString() == 'Platforms.$diskPlatform',
+      );
 
-    return defaultPlatform;
+    return null;
   }
 
   set platform(Platforms value) =>

@@ -1,5 +1,6 @@
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/widgets.dart';
 import 'package:wfcd_api_wrapper/worldstate_wrapper.dart';
 
 class NotificationService {
@@ -7,6 +8,8 @@ class NotificationService {
 
   factory NotificationService.initialize() {
     final FirebaseMessaging messaging = FirebaseMessaging();
+
+    messaging.configure();
 
     return NotificationService._(messaging);
   }
@@ -31,6 +34,8 @@ class NotificationService {
   }
 
   bool subscribeToNotification(String notificationKey, bool condition) {
+    debugPrint(notificationKey);
+
     try {
       if (condition) {
         messaging.subscribeToTopic(notificationKey);

@@ -52,7 +52,7 @@ class Repository {
     Worldstate worldstate;
 
     try {
-      platform ??= storageService.platform;
+      platform ??= storageService.platform ?? Platforms.pc;
       final response = await WorldstateApiWrapper.getInstance(platform, client);
 
       worldstate = cleanState(response.worldstate);

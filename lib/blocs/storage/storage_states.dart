@@ -24,7 +24,7 @@ class MainStorageState extends StorageState {
   Formats get dateformat => storage.dateformat;
 
   @override
-  Platforms get platform => storage.platform;
+  Platforms get platform => storage.platform ?? Platforms.pc;
 
   @override
   Map<String, bool> get acolytes => storage.acolytes;

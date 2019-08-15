@@ -23,10 +23,11 @@ class StorageBloc extends Bloc<ChangeEvent, StorageState> {
     }
 
     if (event is ChangePlatformEvent) {
-      repository.storageService.platform = event.platform;
       repository.notificationService.subscribeToPlatform(
-          previousPlatform: currentState.platform,
+          previousPlatform: repository.storageService.platform,
           currentPlatform: event.platform);
+
+      repository.storageService.platform = event.platform;
 
       yield MainStorageState(repository.storageService);
     }
