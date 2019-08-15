@@ -46,34 +46,34 @@ class Trader extends StatelessWidget {
                     ? DateView(expiry: trader.expiry)
                     : DateView(expiry: trader.activation),
               ),
-              Padding(
-                padding:
-                    const EdgeInsets.only(bottom: 8.0, left: 5.0, right: 3.0),
-                child: trader.active
-                    ? InkWell(
-                        onTap: () => Navigator.of(context).push(
-                            MaterialPageRoute(
-                                maintainState: false,
-                                builder: (_) => VoidTraderInventory(
-                                    inventory: trader.inventory))),
-                        child: Container(
-                          width: 500.0,
-                          height: 30.0,
-                          alignment: Alignment.center,
-                          decoration: BoxDecoration(
-                            color: Colors.blueAccent[400],
-                            borderRadius: BorderRadius.circular(8.0),
-                          ),
-                          child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: const <Widget>[
-                                Text('Baro Ki\'Teeer Inventory',
-                                    style: TextStyle(
-                                        fontSize: 17.0, color: Colors.white))
-                              ]),
-                        ))
-                    : emptyBox,
-              ),
+              trader.active
+                  ? Padding(
+                      padding: const EdgeInsets.only(
+                          bottom: 8.0, left: 5.0, right: 3.0),
+                      child: InkWell(
+                          onTap: () => Navigator.of(context).push(
+                              MaterialPageRoute(
+                                  maintainState: false,
+                                  builder: (_) => VoidTraderInventory(
+                                      inventory: trader.inventory))),
+                          child: Container(
+                            width: 500.0,
+                            height: 30.0,
+                            alignment: Alignment.center,
+                            decoration: BoxDecoration(
+                              color: Colors.blueAccent[400],
+                              borderRadius: BorderRadius.circular(8.0),
+                            ),
+                            child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: const <Widget>[
+                                  Text('Baro Ki\'Teeer Inventory',
+                                      style: TextStyle(
+                                          fontSize: 17.0, color: Colors.white))
+                                ]),
+                          )),
+                    )
+                  : emptyBox,
             ]);
           },
         ));
