@@ -24,12 +24,14 @@ class Home extends StatelessWidget {
           bloc: wstate,
           builder: (context, state) {
             if (state is WorldstateLoaded) {
-              final bool isAlertActive = state.worldstate.alerts.isNotEmpty;
-              final bool isEventActive = state.worldstate.events.isNotEmpty;
+              final bool isAlertActive =
+                  state.worldstate.alerts?.isNotEmpty ?? false;
+              final bool isEventActive =
+                  state.worldstate.events?.isNotEmpty ?? false;
               final bool areAcolytesActive =
-                  state.worldstate.persistentEnemies.isNotEmpty;
+                  state.worldstate.persistentEnemies?.isNotEmpty ?? false;
               final bool areDealsActive =
-                  state.worldstate.dailyDeals.isNotEmpty;
+                  state.worldstate.dailyDeals?.isNotEmpty ?? false;
 
               return ListView(children: <Widget>[
                 PageStorage(

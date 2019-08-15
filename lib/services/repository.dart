@@ -76,11 +76,12 @@ class Repository {
 
   Future<File> updateDropTable([String path]) async {
     final directory = await getApplicationDocumentsDirectory();
-    final _path = '${directory.path}/drop_table.json';
+    final _path = path ?? '${directory.path}/drop_table.json';
 
     final timestamp = await dropTableTimestamp();
 
-    if (timestamp.isAfter(storageService.tableTimestamp) || !_checkFile(path)) {
+    if (timestamp.isAfter(storageService.tableTimestamp) ||
+        !_checkFile(_path)) {
       final response = await client.get('$dropTable/data/all.slim.json');
 
       if (response?.statusCode != 200)
@@ -89,10 +90,10 @@ class Repository {
 
       storageService.saveTimestamp(timestamp);
 
-      return await _saveFile(path ?? _path, response.body);
+      return await _saveFile(_path, response.body);
     }
 
-    return _getFile(path ?? _path);
+    return _getFile(_path);
   }
 
   Future<DateTime> dropTableTimestamp() async {
