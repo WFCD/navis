@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:navis/blocs/bloc.dart';
 import 'package:navis/components/widgets.dart';
+import 'package:navis/global_keys.dart';
 
 import 'news.dart';
 
@@ -15,16 +16,20 @@ class NewsBuilder extends StatelessWidget {
         child: Material(
           color: Theme.of(context).cardColor,
           elevation: 6,
-          child: BlocBuilder<WorldstateBloc, WorldStates>(
-              builder: (BuildContext context, WorldStates state) {
-            final news = state.worldstate?.news ?? [];
+          child: PageStorage(
+            key: newsKey,
+            bucket: newsBucket,
+            child: BlocBuilder<WorldstateBloc, WorldStates>(
+                builder: (BuildContext context, WorldStates state) {
+              final news = state.worldstate?.news ?? [];
 
-            return Carousel(
-              height: 200,
-              dotCount: news.length,
-              children: news.map((n) => NewsStyle(news: n)).toList(),
-            );
-          }),
+              return Carousel(
+                height: 200,
+                dotCount: news.length,
+                children: news.map((n) => NewsStyle(news: n)).toList(),
+              );
+            }),
+          ),
         ));
   }
 }
