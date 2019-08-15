@@ -68,8 +68,8 @@ Future<void> main() async {
       final source = File('${directory.path}/drop_table.json');
 
       when(client.get('${Repository.dropTable}/data/all.slim.json')).thenAnswer(
-          (_) async =>
-              http.Response(File('mocktable.json').readAsStringSync(), 200));
+          (_) async => http.Response(
+              File('test/slim_mock_table.json').readAsStringSync(), 200));
 
       await repository.updateDropTable(source.path);
 
