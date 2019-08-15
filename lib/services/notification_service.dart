@@ -34,8 +34,6 @@ class NotificationService {
   }
 
   bool subscribeToNotification(String notificationKey, bool condition) {
-    debugPrint(notificationKey);
-
     try {
       if (condition) {
         messaging.subscribeToTopic(notificationKey);
