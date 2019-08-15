@@ -67,7 +67,7 @@ class EventStyle extends StatelessWidget {
       const SizedBox(height: 4),
       if (event.eventHealth != null)
         StaticBox.text(
-          text: '${event.eventHealth} remaining',
+          text: '${event.eventHealth}% remaining',
           color: _healthColor(event.eventHealth),
         )
       else
