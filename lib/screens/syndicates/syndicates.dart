@@ -24,15 +24,19 @@ class SyndicatesList extends StatelessWidget {
 
                 return ListView(children: <Widget>[
                   TimerBox(
-                      title: 'Bounties expire in:',
-                      time: syndicates.first.expiry),
+                    title: 'Bounties expire in:',
+                    time: syndicates.first.expiry ?? DateTime.now(),
+                  ),
                   Column(children: <Widget>[
                     ...syndicates
                         .map((Syndicate syn) => SyndicateStyle(syndicate: syn))
                   ]),
                   const SizedBox(height: 20),
                   if (nightwave != null) ...{
-                    TimerBox(title: 'Season ends in:', time: nightwave.expiry),
+                    TimerBox(
+                      title: 'Season ends in:',
+                      time: nightwave?.expiry ?? DateTime.now(),
+                    ),
                     NightWaveStyle(season: nightwave.season)
                   },
                 ]);

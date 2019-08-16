@@ -31,22 +31,24 @@ class SortieScreen extends StatelessWidget {
             condition: (WorldStates previous, WorldStates current) =>
                 previous.worldstate?.sortie != current.worldstate?.sortie,
             builder: (BuildContext context, WorldStates state) {
-              if (state is WorldstateLoaded) {
-                final sortie = state.worldstate?.sortie;
+              final sortie = state.worldstate?.sortie;
 
-                if (sortie.variants?.isNotEmpty ?? false) {
-                  return ListView(children: <Widget>[
-                    _header(context, sortie.expiry),
-                    BuildMissions(
-                      variants: sortie.variants,
-                      faction: sortie.faction,
-                      boss: sortie.boss,
-                    )
-                  ]);
-                }
+              if (sortie?.variants?.isNotEmpty ?? false) {
+                return ListView(children: <Widget>[
+                  _header(context, sortie.expiry),
+                  BuildMissions(
+                    variants: sortie.variants,
+                    faction: sortie.faction,
+                    boss: sortie.boss,
+                  )
+                ]);
               }
 
-              return Container();
+              return Center(
+                  child: Column(children: const <Widget>[
+                Center(child: CircularProgressIndicator()),
+                Text('Waiting for new sortie...')
+              ]));
             }));
   }
 }

@@ -21,7 +21,9 @@ class EventPanel extends StatelessWidget {
             bloc: BlocProvider.of<WorldstateBloc>(context),
             condition: (WorldStates previous, WorldStates current) =>
                 compareList(
-                    previous.worldstate?.events, current.worldstate?.events),
+                  previous: previous.worldstate?.events,
+                  current: current.worldstate?.events,
+                ),
             builder: (BuildContext context, WorldStates state) {
               final events = state.worldstate?.events ?? [];
 

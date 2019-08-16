@@ -15,8 +15,8 @@ class EarthCycle extends StatelessWidget {
       bloc: BlocProvider.of<WorldstateBloc>(context),
       condition: (WorldStates previous, WorldStates current) {
         return compareExpiry(
-          previous.worldstate.earthCycle?.expiry,
-          current.worldstate.earthCycle?.expiry,
+          previous: previous.worldstate.earthCycle?.expiry,
+          current: current.worldstate.earthCycle?.expiry,
         );
       },
       builder: (BuildContext context, WorldStates state) {
@@ -38,8 +38,8 @@ class CetusCycle extends StatelessWidget {
       bloc: BlocProvider.of<WorldstateBloc>(context),
       condition: (WorldStates previous, WorldStates current) {
         return compareExpiry(
-          previous.worldstate.cetusCycle?.expiry,
-          current.worldstate.cetusCycle?.expiry,
+          previous: previous.worldstate.cetusCycle?.expiry,
+          current: current.worldstate.cetusCycle?.expiry,
         );
       },
       builder: (BuildContext context, WorldStates state) {
@@ -61,8 +61,8 @@ class OrbVallisCycle extends StatelessWidget {
       bloc: BlocProvider.of<WorldstateBloc>(context),
       condition: (WorldStates previous, WorldStates current) {
         return compareExpiry(
-          previous.worldstate.vallisCycle?.expiry,
-          current.worldstate.vallisCycle?.expiry,
+          previous: previous.worldstate.vallisCycle?.expiry,
+          current: current.worldstate.vallisCycle?.expiry,
         );
       },
       builder: (BuildContext context, WorldStates state) {

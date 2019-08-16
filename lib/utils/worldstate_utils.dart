@@ -54,14 +54,14 @@ ImageProvider skybox(BuildContext context, String node) {
       : AssetImage(backgroundImage);
 }
 
-bool compareExpiry(DateTime previous, DateTime current) {
+bool compareExpiry({DateTime previous, DateTime current}) {
   final forceFalse = DateTime.now().subtract(
       Duration(milliseconds: previous?.millisecond ?? (24 * pow(3.6, 6))));
 
   return previous?.isBefore(current ?? forceFalse);
 }
 
-bool compareList(List previous, List current) {
+bool compareList({List previous, List current}) {
   const _deep = DeepCollectionEquality();
 
   return !_deep.equals(previous ?? [], current ?? []);
