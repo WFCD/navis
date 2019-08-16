@@ -23,6 +23,8 @@ class Home extends StatelessWidget {
           bloc: wstate,
           builder: (context, state) {
             if (state is WorldstateLoaded) {
+              final bool areThereNews =
+                  state.worldstate.news?.isNotEmpty ?? false;
               final bool isAlertActive =
                   state.worldstate.alerts?.isNotEmpty ?? false;
               final bool isEventActive =
@@ -33,7 +35,7 @@ class Home extends StatelessWidget {
                   state.worldstate.dailyDeals?.isNotEmpty ?? false;
 
               return ListView(children: <Widget>[
-                const NewsBuilder(),
+                if (areThereNews) const NewsBuilder(),
                 if (isEventActive) const EventPanel(),
                 if (areAcolytesActive) const Acolytes(),
                 ...cycles,
