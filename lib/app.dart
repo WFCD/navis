@@ -41,7 +41,7 @@ class _NavisState extends State<Navis> {
   Widget build(BuildContext context) {
     final theme = ThemeData(
       brightness: Brightness.dark,
-      primaryColor: const Color.fromRGBO(26, 80, 144, .9),
+      primaryColor: const Color(0xE51A5090),
       accentColor: const Color(0xFF00BC8C),
       cardColor: const Color(0xFF2C2C2C),
       dialogBackgroundColor: const Color(0xFF212121),
