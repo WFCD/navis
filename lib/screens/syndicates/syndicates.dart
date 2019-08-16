@@ -25,7 +25,7 @@ class SyndicatesList extends StatelessWidget {
                 return ListView(children: <Widget>[
                   TimerBox(
                     title: 'Bounties expire in:',
-                    time: syndicates.first.expiry ?? DateTime.now(),
+                    time: syndicates.first?.expiry ?? DateTime.now(),
                   ),
                   Column(children: <Widget>[
                     ...syndicates
