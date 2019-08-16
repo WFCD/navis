@@ -9,46 +9,52 @@ class SortieScreen extends StatelessWidget {
 
   Widget _header(BuildContext context, DateTime expiry) {
     return Card(
-        color: Theme.of(context).primaryColor,
-        child: ListTile(
-          title: const Text(
-            'Sortie will reset in: ',
-            style: TextStyle(color: Colors.white),
-          ),
-          trailing: CountdownBox(
-            color: Colors.transparent,
-            expiry: expiry,
-            size: 16,
-          ),
-        ));
+      color: Theme.of(context).primaryColor,
+      child: ListTile(
+        title: const Text(
+          'Sortie will reset in: ',
+          style: TextStyle(color: Colors.white),
+        ),
+        trailing: CountdownBox(
+          color: Colors.transparent,
+          expiry: expiry,
+          size: 16,
+        ),
+      ),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        child: BlocBuilder(
-            bloc: BlocProvider.of<WorldstateBloc>(context),
-            condition: (WorldStates previous, WorldStates current) =>
-                previous.worldstate?.sortie != current.worldstate?.sortie,
-            builder: (BuildContext context, WorldStates state) {
-              final sortie = state.worldstate?.sortie;
+    return BlocBuilder(
+      bloc: BlocProvider.of<WorldstateBloc>(context),
+      condition: (WorldStates previous, WorldStates current) =>
+          previous.worldstate?.sortie != current.worldstate?.sortie,
+      builder: (BuildContext context, WorldStates state) {
+        final sortie = state.worldstate?.sortie;
 
-              if (sortie?.variants?.isNotEmpty ?? false) {
-                return ListView(children: <Widget>[
-                  _header(context, sortie.expiry),
-                  BuildMissions(
-                    variants: sortie.variants,
-                    faction: sortie.faction,
-                    boss: sortie.boss,
-                  )
-                ]);
-              }
+        if (sortie?.variants?.isNotEmpty ?? false) {
+          return ListView(children: <Widget>[
+            _header(context, sortie.expiry),
+            BuildMissions(
+              variants: sortie.variants,
+              faction: sortie.faction,
+              boss: sortie.boss,
+            )
+          ]);
+        }
 
-              return Center(
-                  child: Column(children: const <Widget>[
-                Center(child: CircularProgressIndicator()),
-                Text('Waiting for new sortie...')
-              ]));
-            }));
+        return Container(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: const <Widget>[
+              Center(child: CircularProgressIndicator()),
+              SizedBox(height: 16.0),
+              Text('Waiting for new sortie...')
+            ],
+          ),
+        );
+      },
+    );
   }
 }
