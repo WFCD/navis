@@ -19,15 +19,21 @@ class FissureList extends StatelessWidget {
           bloc: ws,
           builder: (BuildContext context, WorldStates state) {
             if (state is WorldstateLoaded) {
-              return CustomScrollView(slivers: <Widget>[
-                SliverFixedExtentList(
-                  itemExtent: 145,
-                  delegate: SliverChildBuilderDelegate(
-                      (BuildContext context, int index) => FissureCard(
-                          fissure: state.worldstate.fissures[index]),
-                      childCount: state.worldstate.fissures.length),
-                ),
-              ]);
+              final fissurs = state.worldstate?.fissures ?? [];
+
+              if (fissurs.isNotEmpty) {
+                return CustomScrollView(slivers: <Widget>[
+                  SliverFixedExtentList(
+                    itemExtent: 145,
+                    delegate: SliverChildBuilderDelegate(
+                        (BuildContext context, int index) => FissureCard(
+                            fissure: state.worldstate.fissures[index]),
+                        childCount: state.worldstate.fissures.length),
+                  ),
+                ]);
+              }
+
+              return const Center(child: Text('No fissures at this Time'));
             }
 
             return const Center(child: CircularProgressIndicator());

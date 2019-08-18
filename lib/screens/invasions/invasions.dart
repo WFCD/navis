@@ -17,13 +17,21 @@ class InvasionsList extends StatelessWidget {
         child: BlocBuilder(
           bloc: ws,
           builder: (BuildContext context, WorldStates state) {
-            final invasions = state.worldstate?.invasions ?? [];
+            if (state is WorldstateLoaded) {
+              final invasions = state.worldstate?.invasions ?? [];
 
-            return ListView.builder(
-              itemCount: invasions.length,
-              itemBuilder: (BuildContext context, int index) =>
-                  InvasionsStyle(invasion: invasions[index]),
-            );
+              if (invasions.isNotEmpty) {
+                return ListView.builder(
+                  itemCount: invasions.length,
+                  itemBuilder: (BuildContext context, int index) =>
+                      InvasionsStyle(invasion: invasions[index]),
+                );
+              }
+
+              return const Center(child: Text('No invasions at this Time'));
+            }
+
+            return const Center(child: CircularProgressIndicator());
           },
         ),
       ),
