@@ -20,7 +20,7 @@ class Trader extends StatelessWidget {
             final previousTrader = previous.worldstate?.voidTrader;
             final currentTrader = previous.worldstate?.voidTrader;
 
-            return (previousTrader?.id != currentTrader?.id) ?? false;
+            return previousTrader != currentTrader ?? false;
           },
           builder: (BuildContext context, WorldStates state) {
             final trader = state.worldstate?.voidTrader;
@@ -33,6 +33,7 @@ class Trader extends StatelessWidget {
                   child: CountdownBox(
                       expiry:
                           trader.active ? trader.expiry : trader.activation)),
+              const SizedBox(height: 4.0),
               trader.active
                   ? RowItem(
                       text: 'Loaction',
@@ -40,6 +41,7 @@ class Trader extends StatelessWidget {
                           color: Colors.blueAccent[400],
                           text: '${trader.location}'))
                   : emptyBox,
+              const SizedBox(height: 4.0),
               RowItem(
                 text: trader.active ? 'Leaves on' : 'Arrives on',
                 child: trader.active
@@ -48,8 +50,8 @@ class Trader extends StatelessWidget {
               ),
               trader.active
                   ? Padding(
-                      padding: const EdgeInsets.only(
-                          bottom: 8.0, left: 5.0, right: 3.0),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 4.0, vertical: 8.0),
                       child: InkWell(
                           onTap: () => Navigator.of(context).push(
                               MaterialPageRoute(
@@ -62,7 +64,7 @@ class Trader extends StatelessWidget {
                             alignment: Alignment.center,
                             decoration: BoxDecoration(
                               color: Colors.blueAccent[400],
-                              borderRadius: BorderRadius.circular(8.0),
+                              borderRadius: BorderRadius.circular(4.0),
                             ),
                             child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
