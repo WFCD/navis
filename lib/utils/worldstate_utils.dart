@@ -39,19 +39,26 @@ List<Drop> jsonToRewards(String response) {
   return drops.map<Drop>((d) => Drop.fromJson(d)).toList();
 }
 
-ImageProvider skybox(BuildContext context, String node) {
+bool _checkBackground(BuildContext context, String node) {
+  bool doesBackgroundExist = true;
+
+  precacheImage(AssetImage(getBackgroundPath(node)), context,
+      onError: (e, stack) => doesBackgroundExist = false);
+
+  return doesBackgroundExist;
+}
+
+String getBackgroundPath(String node) {
   final _nodeBackground = RegExp(r'\(([^)]*)\)');
-  final backgroundImage =
-      'assets/skyboxes/${_nodeBackground.firstMatch(node).group(1)}.webp';
 
-  bool isError = false;
+  return 'assets/skyboxes/${_nodeBackground.firstMatch(node).group(1)}.webp';
+}
 
-  precacheImage(AssetImage(backgroundImage), context,
-      onError: (error, stackTrace) => isError = true);
+ImageProvider skybox(BuildContext context, String node) {
+  if (_checkBackground(context, node))
+    return AssetImage(getBackgroundPath(node));
 
-  return isError
-      ? const AssetImage('assets/skyboxes/Derelict.webp')
-      : AssetImage(backgroundImage);
+  return const AssetImage('assets/skyboxes/Derelict.webp');
 }
 
 bool compareExpiry({DateTime previous, DateTime current}) {

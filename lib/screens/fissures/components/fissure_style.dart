@@ -62,8 +62,6 @@ class FissureCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final relic = 'assets/relics/${fissure.tier}.svg';
-
     return BackgroundImageCard(
       provider: skybox(context, fissure.node),
       child: Row(
@@ -74,7 +72,10 @@ class FissureCard extends StatelessWidget {
             margin: const EdgeInsets.only(right: 28),
             height: 67,
             width: 60,
-            child: SvgPicture.asset(relic, color: Colors.white),
+            child: SvgPicture.asset(
+              'assets/relics/${fissure.tier}.svg',
+              color: Colors.white,
+            ),
           )
         ],
       ),
