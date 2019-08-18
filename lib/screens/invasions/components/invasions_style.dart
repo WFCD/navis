@@ -83,22 +83,6 @@ class InvasionsStyle extends StatelessWidget {
             lineHeight: 15.0,
           ),
         ),
-        // Container(
-        //   height: 8.0,
-        //   alignment: Alignment.center,
-        //   padding: const EdgeInsets.only(left: 8.0, right: 8.0),
-        //   decoration: BoxDecoration(
-        //       gradient: LinearGradient(
-        //     stops: <double>[
-        //       (invasion.completion / 100).toDouble(),
-        //       (invasion.completion % 100 / 100).toDouble()
-        //     ],
-        //     colors: <Color>[
-        //       factionColor(invasion.attackingFaction),
-        //       factionColor(invasion.defendingFaction)
-        //     ],
-        //   )),
-        // )
       ]),
     );
   }
