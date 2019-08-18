@@ -38,8 +38,8 @@ class Home extends StatelessWidget {
                 if (areThereNews) const NewsBuilder(),
                 if (isEventActive) const EventPanel(),
                 if (areAcolytesActive) const Acolytes(),
-                ...cycles,
                 if (isAlertActive) const AlertTile(),
+                ...cycles,
                 if (state.worldstate.voidTrader != null) const Trader(),
                 if (areDealsActive) const Deals(),
               ]);
