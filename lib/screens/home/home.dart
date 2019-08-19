@@ -19,9 +19,9 @@ class Home extends StatelessWidget {
 
     return RefreshIndicator(
       onRefresh: () => wstate.update(),
-      child: BlocBuilder(
+      child: BlocBuilder<WorldstateBloc, WorldStates>(
           bloc: wstate,
-          builder: (context, state) {
+          builder: (BuildContext context, WorldStates state) {
             if (state is WorldstateLoaded) {
               final bool areThereNews =
                   state.worldstate.news?.isNotEmpty ?? false;
@@ -39,7 +39,9 @@ class Home extends StatelessWidget {
                 if (isEventActive) const EventPanel(),
                 if (areAcolytesActive) const Acolytes(),
                 if (isAlertActive) const AlertTile(),
-                ...cycles,
+                Cycles.cetus(state.worldstate.cetusCycle),
+                Cycles.earth(state.worldstate.earthCycle),
+                Cycles.orbValis(state.worldstate.vallisCycle),
                 if (state.worldstate.voidTrader != null) const Trader(),
                 if (areDealsActive) const Deals(),
               ]);
