@@ -38,13 +38,14 @@ class InvasionBar extends StatelessWidget {
             height: lineHeight * 2,
             width: width,
             padding: padding,
-            child: CustomPaint(
-              willChange: true,
-              painter: _InvasionBar(
-                progress: progress,
-                progressColor: factionColor(attackingFaction),
-                backgroundColor: factionColor(defendingFaction),
-                lineWidth: lineHeight,
+            child: RepaintBoundary(
+              child: CustomPaint(
+                painter: _InvasionBar(
+                  progress: progress,
+                  progressColor: factionColor(attackingFaction),
+                  backgroundColor: factionColor(defendingFaction),
+                  lineWidth: lineHeight,
+                ),
               ),
             ),
           ),
@@ -55,11 +56,12 @@ class InvasionBar extends StatelessWidget {
 }
 
 class _InvasionBar extends CustomPainter {
-  _InvasionBar(
-      {this.progress,
-      this.progressColor,
-      this.backgroundColor,
-      this.lineWidth}) {
+  _InvasionBar({
+    this.progress,
+    this.progressColor,
+    this.backgroundColor,
+    this.lineWidth,
+  }) {
     _attackingFaction.color = progressColor;
     _attackingFaction.style = PaintingStyle.stroke;
     _attackingFaction.strokeWidth = lineWidth;
