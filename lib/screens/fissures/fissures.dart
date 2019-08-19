@@ -13,32 +13,30 @@ class FissureList extends StatelessWidget {
 
     return RefreshIndicator(
       onRefresh: ws.update,
-      child: Padding(
-        padding: const EdgeInsets.only(top: 4.0, bottom: 4.0),
-        child: BlocBuilder<WorldstateBloc, WorldStates>(
-          bloc: ws,
-          builder: (BuildContext context, WorldStates state) {
-            if (state is WorldstateLoaded) {
-              final fissurs = state.worldstate?.fissures ?? [];
+      child: BlocBuilder<WorldstateBloc, WorldStates>(
+        bloc: ws,
+        builder: (BuildContext context, WorldStates state) {
+          if (state is WorldstateLoaded) {
+            final fissures = state.worldstate?.fissures ?? [];
 
-              if (fissurs.isNotEmpty) {
-                return CustomScrollView(slivers: <Widget>[
-                  SliverFixedExtentList(
-                    itemExtent: 145,
-                    delegate: SliverChildBuilderDelegate(
-                        (BuildContext context, int index) => FissureCard(
-                            fissure: state.worldstate.fissures[index]),
-                        childCount: state.worldstate.fissures.length),
-                  ),
-                ]);
-              }
-
-              return const Center(child: Text('No fissures at this Time'));
+            if (fissures.isNotEmpty) {
+              return ListView.builder(
+                itemCount: fissures.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 2.0, vertical: 4.0),
+                    child: FissureCard(fissure: fissures[index]),
+                  );
+                },
+              );
             }
 
-            return const Center(child: CircularProgressIndicator());
-          },
-        ),
+            return const Center(child: Text('No fissures at this Time'));
+          }
+
+          return const Center(child: CircularProgressIndicator());
+        },
       ),
     );
   }
