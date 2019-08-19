@@ -12,28 +12,25 @@ class InvasionsList extends StatelessWidget {
 
     return RefreshIndicator(
       onRefresh: ws.update,
-      child: Padding(
-        padding: const EdgeInsets.only(top: 4.0, bottom: 4.0),
-        child: BlocBuilder(
-          bloc: ws,
-          builder: (BuildContext context, WorldStates state) {
-            if (state is WorldstateLoaded) {
-              final invasions = state.worldstate?.invasions ?? [];
+      child: BlocBuilder(
+        bloc: ws,
+        builder: (BuildContext context, WorldStates state) {
+          if (state is WorldstateLoaded) {
+            final invasions = state.worldstate?.invasions ?? [];
 
-              if (invasions.isNotEmpty) {
-                return ListView.builder(
-                  itemCount: invasions.length,
-                  itemBuilder: (BuildContext context, int index) =>
-                      InvasionsStyle(invasion: invasions[index]),
-                );
-              }
-
-              return const Center(child: Text('No invasions at this Time'));
+            if (invasions.isNotEmpty) {
+              return ListView.builder(
+                itemCount: invasions.length,
+                itemBuilder: (BuildContext context, int index) =>
+                    InvasionsStyle(invasion: invasions[index]),
+              );
             }
 
-            return const Center(child: CircularProgressIndicator());
-          },
-        ),
+            return const Center(child: Text('No invasions at this Time'));
+          }
+
+          return const Center(child: CircularProgressIndicator());
+        },
       ),
     );
   }
