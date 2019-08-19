@@ -11,38 +11,6 @@ class InvasionsStyle extends StatelessWidget {
 
   final Invasion invasion;
 
-  Widget _buildDetails(String faction, String reward) {
-    return Container(
-      child: Column(children: <Widget>[
-        FactionIcon(faction, size: 50, hasColor: false),
-        const SizedBox(height: 8.0),
-        if (reward.isNotEmpty)
-          StaticBox.text(text: reward, color: factionColor(faction))
-      ]),
-    );
-  }
-
-  Widget _buildInvasionDetails(
-    BuildContext context,
-    String node,
-    String description,
-    String eta,
-  ) {
-    const shadow = Shadow(offset: Offset(1.0, 0.0), blurRadius: 4.0);
-
-    return Container(
-      child: Column(children: <Widget>[
-        Text(node,
-            style: Theme.of(context)
-                .textTheme
-                .subhead
-                .copyWith(fontSize: 15, shadows: <Shadow>[shadow])),
-        Text('$description ($eta)',
-            style: TextStyle(color: Theme.of(context).textTheme.caption.color)),
-      ]),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return BackgroundImageCard(
@@ -55,23 +23,22 @@ class InvasionsStyle extends StatelessWidget {
           child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                _buildDetails(
-                  invasion.attackingFaction,
-                  invasion.attackerReward.itemString,
+                _BuildDetails(
+                  faction: invasion.attackingFaction,
+                  reward: invasion.attackerReward.itemString,
                 ),
                 const Spacer(),
-                _buildDetails(
-                  invasion.defendingFaction,
-                  invasion.defenderReward.itemString,
+                _BuildDetails(
+                  faction: invasion.defendingFaction,
+                  reward: invasion.defenderReward.itemString,
                 )
               ]),
         ),
         const Spacer(),
-        _buildInvasionDetails(
-          context,
-          invasion.node,
-          invasion.desc,
-          invasion.eta,
+        _BuildInvasionDetails(
+          node: invasion.node,
+          description: invasion.desc,
+          eta: invasion.eta,
         ),
         const SizedBox(height: 8.0),
         Padding(
@@ -83,6 +50,56 @@ class InvasionsStyle extends StatelessWidget {
             lineHeight: 15.0,
           ),
         ),
+      ]),
+    );
+  }
+}
+
+class _BuildDetails extends StatelessWidget {
+  const _BuildDetails({Key key, this.faction, this.reward}) : super(key: key);
+
+  final String faction;
+  final String reward;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Column(children: <Widget>[
+        FactionIcon(faction, size: 50, hasColor: false),
+        const SizedBox(height: 8.0),
+        if (reward.isNotEmpty)
+          StaticBox.text(text: reward, color: factionColor(faction))
+      ]),
+    );
+  }
+}
+
+class _BuildInvasionDetails extends StatelessWidget {
+  const _BuildInvasionDetails({
+    Key key,
+    this.node,
+    this.description,
+    this.eta,
+  }) : super(key: key);
+
+  final String node;
+  final String description;
+  final String eta;
+
+  @override
+  Widget build(BuildContext context) {
+    const shadow = Shadow(offset: Offset(1.0, 0.0), blurRadius: 4.0);
+
+    final _node = Theme.of(context)
+        .textTheme
+        .subhead
+        .copyWith(fontSize: 15, shadows: <Shadow>[shadow]);
+    final _details = Theme.of(context).textTheme.caption.color;
+
+    return Container(
+      child: Column(children: <Widget>[
+        Text(node, style: _node),
+        Text('$description ($eta)', style: TextStyle(color: _details)),
       ]),
     );
   }
