@@ -24,15 +24,15 @@ class Home extends StatelessWidget {
           builder: (BuildContext context, WorldStates state) {
             if (state is WorldstateLoaded) {
               final bool areThereNews =
-                  state.worldstate.news?.isNotEmpty ?? false;
+                  state.worldstate?.news?.isNotEmpty ?? false;
               final bool isAlertActive =
-                  state.worldstate.alerts?.isNotEmpty ?? false;
+                  state.worldstate?.alerts?.isNotEmpty ?? false;
               final bool isEventActive =
-                  state.worldstate.events?.isNotEmpty ?? false;
+                  state.worldstate?.events?.isNotEmpty ?? false;
               final bool areAcolytesActive =
-                  state.worldstate.persistentEnemies?.isNotEmpty ?? false;
+                  state.worldstate?.persistentEnemies?.isNotEmpty ?? false;
               final bool areDealsActive =
-                  state.worldstate.dailyDeals?.isNotEmpty ?? false;
+                  state.worldstate?.dailyDeals?.isNotEmpty ?? false;
 
               return ListView(children: <Widget>[
                 if (areThereNews) const NewsBuilder(),
