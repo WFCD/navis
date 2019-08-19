@@ -1,8 +1,9 @@
 import 'dart:io';
 
 import 'package:bloc/bloc.dart';
-import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:navis/global_keys.dart';
 import 'package:navis/models/slim_drop_table.dart';
 import 'package:navis/services/repository.dart';
 import 'package:navis/utils/worldstate_utils.dart';
@@ -19,12 +20,21 @@ class TableSearchBloc extends Bloc<SearchEvent, SearchState> {
   final Repository repository;
 
   Future<void> _initializeTable() async {
-    List<Drop> table;
+    try {
+      _table = await _downloadItems();
 
-    final File file = await repository.updateDropTable();
-    table = await compute(jsonToRewards, await file.readAsString());
-
-    _table = table;
+      scaffold.currentState.showSnackBar(SnackBar(
+        content: const Text('Succesfully initialized Warframe items'),
+      ));
+    } catch (e) {
+      scaffold.currentState.showSnackBar(SnackBar(
+        content: const Text('Failed to initialized Warframe items'),
+        action: SnackBarAction(
+          label: 'RETRY',
+          onPressed: () => _initializeTable(),
+        ),
+      ));
+    }
   }
 
   static List<Drop> _table;
@@ -60,9 +70,8 @@ class TableSearchBloc extends Bloc<SearchEvent, SearchState> {
               await compute(_search, SearchTable(searchTerm, _table));
 
           yield SearchStateSuccess(results);
-        } catch (error, stackTrace) {
-          Crashlytics.instance.recordError(error, stackTrace);
-          yield SearchStateError('something went wrong');
+        } catch (e) {
+          yield SearchStateError(e.toString());
         }
       }
     }
@@ -72,6 +81,12 @@ class TableSearchBloc extends Bloc<SearchEvent, SearchState> {
 
       yield SearchStateSuccess(sorted);
     }
+  }
+
+  Future<List> _downloadItems() async {
+    final File file = await repository.updateItems();
+
+    return compute(jsonToRewards, await file.readAsString());
   }
 }
 

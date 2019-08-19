@@ -4,7 +4,6 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'package:http/http.dart' as http;
-import 'package:navis/models/drop_table_info.dart';
 import 'package:navis/utils/client.dart';
 import 'package:navis/utils/worldstate_utils.dart';
 import 'package:package_info/package_info.dart';
@@ -46,9 +45,6 @@ class Repository {
   static const String dropTable = 'https://drops.warframestat.us';
 
   Future<Worldstate> getWorldstate([Platforms platform]) async {
-    final directory = await getTemporaryDirectory();
-    final path = '${directory.path}/drop_table.json';
-
     Worldstate worldstate;
 
     try {
@@ -57,65 +53,55 @@ class Repository {
 
       worldstate = cleanState(response.worldstate);
     } catch (e) {
-      if (_checkFile(path)) {
-        final cached = _getFile(path).readAsStringSync();
-        final state = Worldstate.fromJson(json.decode(cached));
+      if (await _checkFile('/worldstate.json')) {
+        final cached = await _getFile('/worldstate.json');
+        final state =
+            Worldstate.fromJson(json.decode(cached.readAsStringSync()));
 
         worldstate = cleanState(state);
       }
     }
 
-    try {
-      _saveFile(path, json.encode(worldstate.toJson()));
-    } catch (e) {
-      debugPrint(e.toString());
-    }
+    _saveFile('/worldstate.json', json.encode(worldstate.toJson()));
 
     return worldstate;
   }
 
-  Future<File> updateDropTable([String path]) async {
-    final directory = await getApplicationDocumentsDirectory();
-    final _path = path ?? '${directory.path}/drop_table.json';
+  Future<File> updateItems([String path]) async {
+    final timestamp = storageService.tableTimestamp;
 
-    final timestamp = await dropTableTimestamp();
-
-    if (timestamp.isAfter(storageService.tableTimestamp) ||
-        !_checkFile(_path)) {
+    if (timestamp.difference(storageService.tableTimestamp) <
+            const Duration(days: 7) ||
+        !await _checkFile('/drop_table.json')) {
       final response = await client.get('$dropTable/data/all.slim.json');
 
       if (response?.statusCode != 200)
         throw Exception(
             'Drop table failed to download: ${response?.statusCode}');
 
-      storageService.saveTimestamp(timestamp);
+      storageService.saveTimestamp(DateTime.now());
 
-      return await _saveFile(_path, response.body);
+      return await _saveFile('/drop_table.json', response.body);
     }
 
-    return _getFile(_path);
+    return _getFile('/drop_table.json');
   }
 
-  Future<DateTime> dropTableTimestamp() async {
-    Info info;
+  Future<bool> _checkFile(String path) async =>
+      File(await _tempDirectory() + path).existsSync();
 
-    try {
-      final response = await client.get('$dropTable/data/info.json');
-      info = Info.fromJson(json.decode(response.body));
-
-      return info.timestamp;
-    } catch (e) {
-      return storageService.tableTimestamp;
-    }
-  }
-
-  bool _checkFile(String path) => File(path).existsSync();
-
-  File _getFile(String path) => File(path);
+  Future<File> _getFile(String path) async =>
+      File(await _tempDirectory() + path);
 
   Future<File> _saveFile(String path, String data) async {
-    final file = File(path);
+    final file = File(await _tempDirectory() + path);
 
     return file.writeAsString(data);
+  }
+
+  Future<String> _tempDirectory() async {
+    final directory = await getTemporaryDirectory();
+
+    return directory.path;
   }
 }
