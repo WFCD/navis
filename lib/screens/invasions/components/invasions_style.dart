@@ -14,32 +14,22 @@ class InvasionsStyle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BackgroundImageCard(
-      height: 200,
+      height: 150,
       elevation: 6.0,
       provider: skybox(context, invasion.node),
       child: Column(children: <Widget>[
-        const Spacer(),
-        Container(
-          padding: const EdgeInsets.symmetric(horizontal: 8.0),
-          child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                _BuildDetails(
-                  faction: invasion.attackingFaction,
-                  reward: invasion.attackerReward.itemString,
-                ),
-                const Spacer(),
-                _BuildDetails(
-                  faction: invasion.defendingFaction,
-                  reward: invasion.defenderReward.itemString,
-                )
-              ]),
-        ),
         const Spacer(),
         _BuildInvasionDetails(
           node: invasion.node,
           description: invasion.desc,
           eta: invasion.eta,
+        ),
+        const Spacer(),
+        _BuildRewards(
+          attackerReward: invasion.attackerReward.itemString,
+          defenderReward: invasion.defenderReward.itemString,
+          attackingFaction: invasion.attackingFaction,
+          defendingFaction: invasion.defendingFaction,
         ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 4.0, vertical: 8.0),
@@ -55,21 +45,35 @@ class InvasionsStyle extends StatelessWidget {
   }
 }
 
-class _BuildDetails extends StatelessWidget {
-  const _BuildDetails({Key key, this.faction, this.reward}) : super(key: key);
+class _BuildRewards extends StatelessWidget {
+  const _BuildRewards({
+    Key key,
+    this.attackerReward,
+    this.defenderReward,
+    this.attackingFaction,
+    this.defendingFaction,
+  }) : super(key: key);
 
-  final String faction;
-  final String reward;
+  final String attackerReward;
+  final String defenderReward;
+
+  final String attackingFaction;
+  final String defendingFaction;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Column(children: <Widget>[
-        FactionIcon(faction, size: 50, hasColor: false),
-        const SizedBox(height: 8.0),
-        if (reward.isNotEmpty)
-          StaticBox.text(text: reward, color: factionColor(faction))
-      ]),
+      margin: const EdgeInsets.symmetric(horizontal: 4.0),
+      child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            if (attackerReward.isNotEmpty)
+              StaticBox.text(
+                  text: attackerReward, color: factionColor(attackingFaction)),
+            if (defenderReward.isNotEmpty)
+              StaticBox.text(
+                  text: defenderReward, color: factionColor(defendingFaction))
+          ]),
     );
   }
 }

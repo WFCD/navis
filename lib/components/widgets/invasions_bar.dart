@@ -46,6 +46,13 @@ class InvasionBar extends StatelessWidget {
                   backgroundColor: factionColor(defendingFaction),
                   lineWidth: lineHeight,
                 ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    FactionIcon(attackingFaction, size: 16, hasColor: false),
+                    FactionIcon(defendingFaction, size: 16, hasColor: false),
+                  ],
+                ),
               ),
             ),
           ),
