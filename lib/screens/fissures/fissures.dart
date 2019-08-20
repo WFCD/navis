@@ -25,7 +25,9 @@ class FissureList extends StatelessWidget {
                 itemBuilder: (BuildContext context, int index) {
                   return Padding(
                     padding: const EdgeInsets.symmetric(
-                        horizontal: 2.0, vertical: 4.0),
+                      horizontal: 4.0,
+                      vertical: 2.0,
+                    ),
                     child: FissureCard(fissure: fissures[index]),
                   );
                 },

@@ -10,7 +10,42 @@ class FissureCard extends StatelessWidget {
 
   final VoidFissure fissure;
 
-  Widget _buildDetails(BuildContext context) {
+  @override
+  Widget build(BuildContext context) {
+    return BackgroundImageCard(
+      elevation: 6.0,
+      provider: skybox(context, fissure.node),
+      child: Row(
+        children: <Widget>[
+          _BuildDetails(fissure: fissure, context: context),
+          const Spacer(),
+          Container(
+            margin: const EdgeInsets.symmetric(horizontal: 28, vertical: 28),
+            height: 67,
+            width: 60,
+            child: SvgPicture.asset(
+              'assets/relics/${fissure.tier}.svg',
+              color: Colors.white,
+            ),
+          )
+        ],
+      ),
+    );
+  }
+}
+
+class _BuildDetails extends StatelessWidget {
+  const _BuildDetails({
+    Key key,
+    @required this.fissure,
+    @required this.context,
+  }) : super(key: key);
+
+  final VoidFissure fissure;
+  final BuildContext context;
+
+  @override
+  Widget build(BuildContext context) {
     const color = Colors.white;
     const shadow = Shadow(offset: Offset(1.0, 0.0), blurRadius: 3.0);
 
@@ -34,8 +69,8 @@ class FissureCard extends StatelessWidget {
         color: color,
         shadows: <Shadow>[shadow]);
 
-    return Padding(
-      padding: const EdgeInsets.only(left: 16, top: 16, bottom: 16),
+    return Container(
+      padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
       child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -57,28 +92,6 @@ class FissureCard extends StatelessWidget {
               ],
             )
           ]),
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return BackgroundImageCard(
-      provider: skybox(context, fissure.node),
-      child: Row(
-        children: <Widget>[
-          _buildDetails(context),
-          const Spacer(),
-          Container(
-            margin: const EdgeInsets.only(right: 28),
-            height: 67,
-            width: 60,
-            child: SvgPicture.asset(
-              'assets/relics/${fissure.tier}.svg',
-              color: Colors.white,
-            ),
-          )
-        ],
-      ),
     );
   }
 }

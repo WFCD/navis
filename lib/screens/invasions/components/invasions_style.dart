@@ -15,11 +15,12 @@ class InvasionsStyle extends StatelessWidget {
   Widget build(BuildContext context) {
     return BackgroundImageCard(
       height: 200,
+      elevation: 6.0,
       provider: skybox(context, invasion.node),
       child: Column(children: <Widget>[
         const Spacer(),
         Container(
-          padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+          padding: const EdgeInsets.symmetric(horizontal: 8.0),
           child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
@@ -40,9 +41,8 @@ class InvasionsStyle extends StatelessWidget {
           description: invasion.desc,
           eta: invasion.eta,
         ),
-        const SizedBox(height: 8.0),
         Padding(
-          padding: const EdgeInsets.fromLTRB(4.0, 0.0, 4.0, 8.0),
+          padding: const EdgeInsets.symmetric(horizontal: 4.0, vertical: 8.0),
           child: InvasionBar(
             attackingFaction: invasion.attackingFaction,
             defendingFaction: invasion.defendingFaction,

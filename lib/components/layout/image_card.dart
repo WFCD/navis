@@ -9,6 +9,7 @@ class BackgroundImageCard extends StatelessWidget {
     this.width,
     this.margin,
     this.alignment,
+    this.elevation = 1.0,
   }) : super(key: key);
 
   final ImageProvider provider;
@@ -16,27 +17,30 @@ class BackgroundImageCard extends StatelessWidget {
   final EdgeInsets margin;
   final double height, width;
   final Alignment alignment;
+  final double elevation;
 
   @override
   Widget build(BuildContext context) {
     return Card(
-        elevation: 4,
+        elevation: elevation,
         margin:
             margin ?? const EdgeInsets.symmetric(vertical: 4, horizontal: 4),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
         clipBehavior: Clip.hardEdge,
-        child: Container(
-          height: height,
-          width: width,
-          alignment: alignment,
-          decoration: BoxDecoration(
-              image: DecorationImage(
-            colorFilter: ColorFilter.mode(
-                Colors.black.withOpacity(0.25), BlendMode.overlay),
-            image: provider,
-            fit: BoxFit.cover,
-          )),
-          child: child,
+        child: RepaintBoundary(
+          child: Container(
+            height: height,
+            width: width,
+            alignment: alignment,
+            decoration: BoxDecoration(
+                image: DecorationImage(
+              colorFilter: ColorFilter.mode(
+                  Colors.black.withOpacity(0.25), BlendMode.overlay),
+              image: provider,
+              fit: BoxFit.cover,
+            )),
+            child: child,
+          ),
         ));
   }
 }
