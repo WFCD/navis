@@ -22,6 +22,7 @@ class FissureList extends StatelessWidget {
             if (fissures.isNotEmpty) {
               return ListView.builder(
                 itemCount: fissures.length,
+                cacheExtent: fissures.length / 2,
                 itemBuilder: (BuildContext context, int index) {
                   return Padding(
                     padding: const EdgeInsets.symmetric(

@@ -34,17 +34,20 @@ class Home extends StatelessWidget {
               final bool areDealsActive =
                   state.worldstate?.dailyDeals?.isNotEmpty ?? false;
 
-              return ListView(children: <Widget>[
-                if (areThereNews) const NewsBuilder(),
-                if (isEventActive) const EventPanel(),
-                if (areAcolytesActive) const Acolytes(),
-                if (isAlertActive) const AlertTile(),
-                Cycles.cetus(state.worldstate.cetusCycle),
-                Cycles.earth(state.worldstate.earthCycle),
-                Cycles.orbValis(state.worldstate.vallisCycle),
-                if (state.worldstate.voidTrader != null) const Trader(),
-                if (areDealsActive) const Deals(),
-              ]);
+              return ListView(
+                cacheExtent: 3,
+                children: <Widget>[
+                  if (areThereNews) const NewsBuilder(),
+                  if (isEventActive) const EventPanel(),
+                  if (areAcolytesActive) const Acolytes(),
+                  if (isAlertActive) const AlertTile(),
+                  Cycles.cetus(state.worldstate.cetusCycle),
+                  Cycles.earth(state.worldstate.earthCycle),
+                  Cycles.orbValis(state.worldstate.vallisCycle),
+                  if (state.worldstate.voidTrader != null) const Trader(),
+                  if (areDealsActive) const Deals(),
+                ],
+              );
             }
 
             return const Center(child: CircularProgressIndicator());

@@ -21,6 +21,7 @@ class InvasionsList extends StatelessWidget {
             if (invasions.isNotEmpty) {
               return ListView.builder(
                 itemCount: invasions.length,
+                cacheExtent: invasions.length / 2,
                 itemBuilder: (BuildContext context, int index) =>
                     InvasionsStyle(invasion: invasions[index]),
               );
