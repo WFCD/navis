@@ -69,10 +69,15 @@ class _BuildRewards extends StatelessWidget {
           children: <Widget>[
             if (attackerReward.isNotEmpty)
               StaticBox.text(
-                  text: attackerReward, color: factionColor(attackingFaction)),
+                text: attackerReward,
+                color: factionColor(attackingFaction),
+              ),
+            const Spacer(),
             if (defenderReward.isNotEmpty)
               StaticBox.text(
-                  text: defenderReward, color: factionColor(defendingFaction))
+                text: defenderReward,
+                color: factionColor(defendingFaction),
+              )
           ]),
     );
   }
