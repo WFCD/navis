@@ -44,8 +44,7 @@ class BaseDialog extends StatelessWidget {
               children: <Widget>[
                 if (dialogTitle != null) title,
                 content,
-                if (actions != null)
-                  ButtonTheme.bar(child: ButtonBar(children: actions))
+                if (actions != null) ButtonBar(children: <Widget>[...actions])
               ]),
         ));
   }
