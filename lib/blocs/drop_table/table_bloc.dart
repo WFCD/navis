@@ -40,11 +40,11 @@ class TableSearchBloc extends Bloc<SearchEvent, SearchState> {
   static List<Drop> _table;
 
   @override
-  Stream<SearchState> transform(
+  Stream<SearchState> transformEvents(
     Stream<SearchEvent> events,
     Stream<SearchState> Function(SearchEvent event) next,
   ) {
-    return super.transform(
+    return super.transformEvents(
       Observable<SearchEvent>(events)
           .distinct()
           .debounceTime(const Duration(milliseconds: 500)),

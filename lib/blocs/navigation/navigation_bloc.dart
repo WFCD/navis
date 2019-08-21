@@ -15,9 +15,10 @@ class NavigationBloc extends HydratedBloc<RouteEvent, RouteState> {
   }
 
   @override
-  Stream<RouteState> transform(Stream<RouteEvent> events,
+  Stream<RouteState> transformEvents(Stream<RouteEvent> events,
       Stream<RouteState> Function(RouteEvent event) next) {
-    return super.transform(Observable<RouteEvent>(events).distinct(), next);
+    return super
+        .transformEvents(Observable<RouteEvent>(events).distinct(), next);
   }
 
   RouteState eventToState(RouteEvent event) {
