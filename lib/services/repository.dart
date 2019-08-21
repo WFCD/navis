@@ -67,6 +67,14 @@ class Repository {
     return worldstate;
   }
 
+  Future<dynamic> searchItem(String searchTerm) async {
+    final response =
+        await http.get('https://api.warframestat.us/items/search/$searchTerm');
+    final data = json.decode(response.body);
+
+    return data;
+  }
+
   Future<File> updateItems([String path]) async {
     final timestamp = storageService.tableTimestamp;
 
