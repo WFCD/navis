@@ -1,6 +1,7 @@
+update_fastlane
+
 # Prevent Fastlane from overwriting README.md
 skip_docs
-update_fastlane
 
 default_platform(:android)
 
