@@ -22,7 +22,7 @@ class DropTableList extends StatelessWidget {
           if (state is SearchStateEmpty)
             const Center(
                 child: Text(
-                    'Type what you\'re looking for into the search above above!')),
+                    'Type what you\'re looking for into the search above!')),
           if (state is SearchStateError)
             const Center(child: Text('An unknown error has occured'))
         ]);
