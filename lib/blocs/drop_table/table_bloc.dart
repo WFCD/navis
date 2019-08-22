@@ -22,10 +22,6 @@ class TableSearchBloc extends Bloc<SearchEvent, SearchState> {
   Future<void> _initializeTable() async {
     try {
       _table = await _downloadItems();
-
-      scaffold.currentState.showSnackBar(SnackBar(
-        content: const Text('Succesfully initialized Warframe items'),
-      ));
     } catch (e) {
       scaffold.currentState.showSnackBar(SnackBar(
         content: const Text('Failed to initialized Warframe items'),
