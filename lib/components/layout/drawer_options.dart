@@ -72,7 +72,7 @@ class DrawerOptions extends StatelessWidget {
                 onExpansionChanged: (b) async {
                   if (b) {
                     // wait for tile to finish expanding before animating to the bottom
-                    await Future.delayed(const Duration(milliseconds: 100));
+                    await Future.delayed(const Duration(milliseconds: 200));
 
                     await _controller.animateTo(250.0,
                         duration: const Duration(milliseconds: 250),
