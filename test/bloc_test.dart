@@ -25,7 +25,7 @@ Future<void> main() async {
 
   setUpAll(() async {
     await setupPackageMockMethods();
-    repository = await Repository.initialize(client);
+    repository = await Repository.initialize(client: client);
 
     BlocSupervisor.delegate = await HydratedBlocDelegate.build();
 
