@@ -5,10 +5,10 @@ import 'package:flutter/widgets.dart';
 import 'package:navis/blocs/bloc.dart';
 import 'package:navis/components/widgets.dart';
 import 'package:navis/global_keys.dart';
-import 'package:navis/screens/drops/drops_list.dart';
-import 'package:navis/screens/home/home.dart';
 import 'package:navis/screens/fissures/fissures.dart';
+import 'package:navis/screens/home/home.dart';
 import 'package:navis/screens/invasions/invasions.dart';
+import 'package:navis/screens/search/search_screen.dart';
 import 'package:navis/screens/sortie/sortie.dart';
 import 'package:navis/screens/syndicates/syndicates.dart';
 
@@ -79,7 +79,7 @@ class _MainScreenState extends State<MainScreen> with WidgetsBindingObserver {
       case RouteState.syndicates:
         return SyndicatesList();
       case RouteState.droptable:
-        return const DropTableList();
+        return const SearchScreen();
       default:
         return const Home();
     }

@@ -62,7 +62,7 @@ class DrawerOptions extends StatelessWidget {
               ),
               ListTile(
                 leading: const Icon(Icons.search),
-                title: const Text('Drop Rates'),
+                title: const Text('Codex'),
                 onTap: () => _onTap(context, RouteEvent.droptable),
                 selected: state == RouteState.droptable,
               ),

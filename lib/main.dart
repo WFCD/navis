@@ -23,8 +23,7 @@ void main() {
           BlocProvider<WorldstateBloc>(
               builder: (_) => WorldstateBloc(repository)),
           BlocProvider<NavigationBloc>(builder: (_) => NavigationBloc()),
-          BlocProvider<TableSearchBloc>(
-              builder: (_) => TableSearchBloc(repository))
+          BlocProvider<SearchBloc>(builder: (_) => SearchBloc(repository))
         ],
         child: Navis(repository),
       ),
