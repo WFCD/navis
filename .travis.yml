@@ -22,10 +22,10 @@ before_script:
   - flutter upgrade
 script:
   - flutter pub get
-  - flutter test
+  # - flutter test
 
-  # builds apks for both arm and arm64, for github release.
-  - flutter build apk --target-platform android-arm,android-arm64 --split-per-abi
+  # builds apk for both arm and arm64, for github release.
+  - flutter build apk
 
   # build appbundle with both arm and arm64 libs for Google Play upload
   # using fastlane.
