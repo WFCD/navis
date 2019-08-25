@@ -28,13 +28,14 @@ class Repository {
   static Future<Repository> initialize({http.Client client}) async {
     WidgetsFlutterBinding.ensureInitialized();
 
+    final metricClient = MetricHttpClient(http.Client());
+
     final LocalStorageService _storageService =
         await LocalStorageService.getInstance();
     final PackageInfo _info = await PackageInfo.fromPlatform();
 
     return Repository(
-      worldstateApi:
-          WorldstateApiWrapper(client ?? MetricHttpClient(http.Client())),
+      worldstateApi: WorldstateApiWrapper(client ?? metricClient),
       storageService: _storageService,
       packageInfo: _info,
       notificationService: NotificationService.initialize(),
