@@ -25,7 +25,7 @@ class Carousel extends StatefulWidget {
 }
 
 class _CarouselState extends State<Carousel> {
-  double _page;
+  num _page;
   StreamController<int> _currentPage;
   PageController _pageController;
   PageStorageBucket _bucket;
