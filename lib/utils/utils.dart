@@ -35,7 +35,7 @@ Future<void> launchLink(BuildContext context, String link,
   } else {
     scaffold.currentState.showSnackBar(SnackBar(
       duration: const Duration(seconds: 5),
-      content: link.isEmpty
+      content: link?.isEmpty ?? true
           ? const Text('No valid link provided by API')
           : const Text('No App compatible detected to open link'),
     ));
