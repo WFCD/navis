@@ -3,7 +3,7 @@ import 'dart:math';
 
 import 'package:collection/collection.dart';
 import 'package:flutter/widgets.dart';
-import 'package:navis/models/slim_drop_table.dart';
+import 'package:warframe_items_model/warframe_items_model.dart';
 import 'package:worldstate_model/worldstate_models.dart';
 
 Worldstate cleanState(Worldstate state) {

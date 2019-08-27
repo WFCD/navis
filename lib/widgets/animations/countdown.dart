@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/blocs/bloc.dart';
 import 'package:simple_animations/simple_animations.dart';
 
-import '../layout/static_box.dart';
+import 'package:navis/widgets/widgets/static_box.dart';
 
 class CountdownBox extends StatelessWidget {
   const CountdownBox({

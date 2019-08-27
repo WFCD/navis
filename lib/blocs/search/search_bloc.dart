@@ -5,9 +5,9 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:navis/global_keys.dart';
-import 'package:navis/models/slim_drop_table.dart';
 import 'package:navis/services/repository.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:warframe_items_model/warframe_items_model.dart';
 
 import 'search_event.dart';
 import 'search_state.dart';
@@ -20,7 +20,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
 
   final Repository repository;
 
-  List<Drop> _dropTable;
+  List<SlimDrop> _dropTable;
 
   SearchTypes searchType = SearchTypes.drops;
 

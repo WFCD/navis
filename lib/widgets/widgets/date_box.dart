@@ -4,7 +4,7 @@ import 'package:navis/blocs/bloc.dart';
 import 'package:navis/utils/utils.dart';
 import 'package:navis/utils/factionutils.dart';
 
-import '../layout/static_box.dart';
+import 'package:navis/widgets/widgets/static_box.dart';
 
 class DateView extends StatelessWidget {
   const DateView({Key key, this.expiry, this.color}) : super(key: key);
@@ -26,15 +26,18 @@ class DateView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final storage = BlocProvider.of<StorageBloc>(context);
-    return BlocBuilder(
-      bloc: storage,
+    return BlocBuilder<StorageBloc, StorageState>(
+      bloc: BlocProvider.of<StorageBloc>(context),
       builder: (context, state) {
+        final dateFormat = enumToDateformat(state.dateformat);
+
         return StaticBox(
-            color: color ?? Colors.blueAccent[400],
-            child: Text(
-                '${expiration(expiry, format: enumToDateformat(state.dateformat))}',
-                style: const TextStyle(color: Colors.white)));
+          color: color ?? Colors.blueAccent[400],
+          child: Text(
+            '${expiration(expiry, format: dateFormat)}',
+            style: const TextStyle(color: Colors.white),
+          ),
+        );
       },
     );
   }

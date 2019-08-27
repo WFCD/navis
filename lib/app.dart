@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/blocs/bloc.dart';
-import 'package:navis/components/widgets.dart';
+import 'package:navis/widgets/widgets.dart';
 import 'package:navis/screens/main_screen.dart';
-import 'package:navis/screens/settings/settings.dart';
 import 'package:navis/services/repository.dart';
 import 'package:wfcd_api_wrapper/worldstate_wrapper.dart';
+
+import 'screens/settings.dart';
 
 class Navis extends StatefulWidget {
   const Navis(this.repository);

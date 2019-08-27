@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:navis/blocs/bloc.dart';
+import 'package:navis/widgets/widgets.dart';
 import 'package:wfcd_api_wrapper/worldstate_wrapper.dart';
-
-import 'platform_icon.dart';
 
 class PlatformChoice extends StatelessWidget {
   const PlatformChoice({Key key}) : super(key: key);

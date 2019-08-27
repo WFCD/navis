@@ -53,16 +53,16 @@ const simple = [
     'description': 'Rare alert notifications, mainly gifts of the lotus',
     'key': alertsKey
   },
-  {
-    'name': 'Baro Ki\'Teer Arrival',
-    'description': 'For when Baro has arrived',
-    'key': baroKey
-  },
-  {
-    'name': 'Darvo\'s Daily Deals',
-    'description': 'Darvo\'s new find of the day',
-    'key': darvoKey
-  },
+  // {
+  //   'name': 'Baro Ki\'Teer Arrival',
+  //   'description': 'For when Baro has arrived',
+  //   'key': baroKey
+  // },
+  // {
+  //   'name': 'Darvo\'s Daily Deals',
+  //   'description': 'Darvo\'s new find of the day',
+  //   'key': darvoKey
+  // },
   {
     'name': 'Sorties',
     'description': 'Notifications for new sorties',

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:navis/blocs/bloc.dart';
-import 'package:navis/components/dialogs/base_dialog.dart';
+
+import 'base_dialog.dart';
 
 enum FilterType { acolytes, news, cycles, fissure }
 

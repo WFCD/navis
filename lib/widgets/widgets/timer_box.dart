@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:navis/widgets/animations.dart';
 
-import 'package:navis/widgets/layout.dart';
+import 'row_item.dart';
 
 class TimerBox extends StatelessWidget {
   const TimerBox({@required this.title, @required this.time});

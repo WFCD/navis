@@ -3,14 +3,15 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:navis/blocs/bloc.dart';
-import 'package:navis/components/widgets.dart';
 import 'package:navis/global_keys.dart';
-import 'package:navis/screens/fissures/fissures.dart';
-import 'package:navis/screens/home/home.dart';
-import 'package:navis/screens/invasions/invasions.dart';
-import 'package:navis/screens/search/search_screen.dart';
-import 'package:navis/screens/sortie/sortie.dart';
-import 'package:navis/screens/syndicates/syndicates.dart';
+import 'package:navis/widgets/widgets.dart';
+
+import 'codex.dart';
+import 'fissures.dart';
+import 'home.dart';
+import 'invasions.dart';
+import 'sortie.dart';
+import 'syndicates.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({Key key}) : super(key: key);
@@ -79,7 +80,7 @@ class _MainScreenState extends State<MainScreen> with WidgetsBindingObserver {
       case RouteState.syndicates:
         return SyndicatesList();
       case RouteState.droptable:
-        return const SearchScreen();
+        return const Codex();
       default:
         return const Home();
     }

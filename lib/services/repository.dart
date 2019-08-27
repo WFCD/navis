@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:http/http.dart' as http;
 import 'package:navis/utils/client.dart';
@@ -47,7 +48,7 @@ class Repository {
   final PackageInfo packageInfo;
   final NotificationService notificationService;
 
-  Future<List<BasicItem>> searchItem(String searchTerm) async =>
+  Future<List<ItemObject>> searchItem(String searchTerm) async =>
       await worldstateApi.searchItems(searchTerm);
 
   Future<Worldstate> getWorldstate([Platforms platform]) async {
@@ -62,9 +63,12 @@ class Repository {
     final timestamp = await _getDropTableTimestamp();
 
     if (doesFileExist != true) {
-      await _downloadDropTable();
-
-      storageService.saveTimestamp(timestamp);
+      try {
+        await _downloadDropTable();
+        storageService.saveTimestamp(timestamp);
+      } catch (error) {
+        storageService.saveTimestamp(DateTime.now());
+      }
 
       return getFile('/drop_table.json');
     }

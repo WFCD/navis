@@ -1,8 +1,9 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:navis/components/layout.dart';
 import 'package:rxdart/rxdart.dart';
+
+import 'indicator.dart';
 
 class Carousel extends StatefulWidget {
   const Carousel({
