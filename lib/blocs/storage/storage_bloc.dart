@@ -1,45 +1,46 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:navis/services/localstorage_service.dart';
+import 'package:navis/services/notification_service.dart';
 import 'package:navis/services/repository.dart';
 
 import 'storage_events.dart';
 import 'storage_states.dart';
 
 class StorageBloc extends Bloc<ChangeEvent, StorageState> {
-  StorageBloc(this.repository);
+  StorageBloc(this.storage, this.notifications);
 
-  final Repository repository;
+  final LocalStorageService storage;
+  final NotificationService notifications;
 
   @override
-  StorageState get initialState => MainStorageState(repository.storageService);
+  StorageState get initialState => MainStorageState(storage);
 
   @override
   Stream<StorageState> mapEventToState(ChangeEvent event) async* {
     if (event is ChangeDateFormat) {
-      repository.storageService.dateformat = event.dateformat;
+      storage.dateformat = event.dateformat;
 
-      yield MainStorageState(repository.storageService);
+      yield MainStorageState(storage);
     }
 
     if (event is ChangePlatformEvent) {
-      repository.notificationService.subscribeToPlatform(
-          previousPlatform: repository.storageService.platform,
-          currentPlatform: event.platform);
+      notifications.subscribeToPlatform(
+          previousPlatform: storage.platform, currentPlatform: event.platform);
 
-      repository.storageService.platform = event.platform;
+      storage.platform = event.platform;
 
-      yield MainStorageState(repository.storageService);
+      yield MainStorageState(storage);
     }
 
     if (event is ToggleNotification) {
-      repository.storageService.saveToDisk(
+      storage.saveToDisk(
         event.key,
-        repository.notificationService
-            .subscribeToNotification(event.key, event.value),
+        notifications.subscribeToNotification(event.key, event.value),
       );
 
-      yield MainStorageState(repository.storageService);
+      yield MainStorageState(storage);
     }
   }
 }

@@ -5,7 +5,7 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:navis/global_keys.dart';
-import 'package:navis/services/repository.dart';
+import 'package:navis/services/worldstate_service.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:warframe_items_model/warframe_items_model.dart';
 
@@ -14,11 +14,11 @@ import 'search_state.dart';
 import 'search_utils.dart';
 
 class SearchBloc extends Bloc<SearchEvent, SearchState> {
-  SearchBloc(this.repository) {
+  SearchBloc(this.api) {
     _initializeTables();
   }
 
-  final Repository repository;
+  final WorldstateService api;
 
   List<SlimDrop> _dropTable;
 
@@ -26,7 +26,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
 
   Future<void> _initializeTables() async {
     try {
-      final File table = await repository.initializeDropTable();
+      final File table = await api.initializeDropTable();
 
       _dropTable = await compute(convertToDrop, table.readAsStringSync());
     } catch (error) {
@@ -69,7 +69,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
 
         try {
           final results = searchType != SearchTypes.drops
-              ? repository.searchItem(searchText)
+              ? api.searchItem(searchText)
               : compute(
                   searchDropTable, SearchDropTable(searchText, _dropTable));
 

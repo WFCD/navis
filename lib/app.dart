@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/blocs/bloc.dart';
+import 'package:navis/services/localstorage_service.dart';
 import 'package:navis/widgets/widgets.dart';
 import 'package:navis/screens/main_screen.dart';
 import 'package:navis/services/repository.dart';
@@ -23,8 +24,8 @@ class _NavisState extends State<Navis> {
     super.initState();
     BlocProvider.of<WorldstateBloc>(context).dispatch(UpdateEvent.update);
 
-    if (widget.repository.storageService.platform == null) {
-      widget.repository.notificationService
+    if (widget.repository.storage?.platform == null) {
+      widget.repository.notifications
           .subscribeToPlatform(currentPlatform: Platforms.pc);
     }
   }

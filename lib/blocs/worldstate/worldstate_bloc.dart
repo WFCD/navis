@@ -31,7 +31,7 @@ class WorldstateBloc extends HydratedBloc<UpdateEvent, WorldStates> {
   Stream<WorldStates> mapEventToState(UpdateEvent event) async* {
     if (event == UpdateEvent.update) {
       try {
-        final state = await repository.getWorldstate();
+        final state = await repository.worldstateService.getWorldstate();
         yield WorldstateLoaded(state);
       } catch (e) {
         yield WorldstateError(e.toString());

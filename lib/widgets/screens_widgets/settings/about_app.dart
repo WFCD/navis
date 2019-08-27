@@ -24,7 +24,7 @@ class AboutApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final repository = RepositoryProvider.of<Repository>(context);
-    final date = _dateFormat.format(repository.storageService.tableTimestamp);
+    final date = _dateFormat.format(repository.storage.tableTimestamp);
 
     return Column(
       children: <Widget>[
@@ -34,7 +34,8 @@ class AboutApp extends StatelessWidget {
           subtitle: Text('Last updated $date'),
           onTap: () async {
             _showSnackBar('Updating drop table');
-            final updateStatus = await repository.updateDropTable();
+            final updateStatus =
+                await repository.worldstateService.updateDropTable();
 
             if (updateStatus)
               _showSnackBar('Updated drop table');
