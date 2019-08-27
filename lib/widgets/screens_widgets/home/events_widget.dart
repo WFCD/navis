@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-
+import 'package:navis/screens/syndicate_bounties.dart';
 import 'package:navis/utils/factionutils.dart';
 import 'package:navis/widgets/animations.dart';
-import 'package:navis/widgets/screens_widgets/syndicates/syndicate_bounties.dart';
 import 'package:navis/widgets/widgets.dart';
 import 'package:worldstate_model/worldstate_models.dart';
 

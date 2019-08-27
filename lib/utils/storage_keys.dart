@@ -2,11 +2,6 @@
 const platformKey = 'platform';
 const String dateformatKey = 'dateformat';
 
-//theme related keys
-const darkModeKey = 'dark';
-const primaryColorKey = 'primaryColor';
-const accentColorKey = 'accentColor';
-
 //notification related keys
 const earthDayKey = 'earth_day';
 const earthNightKey = 'earth_night';
