@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:navis/blocs/bloc.dart';
-import 'package:navis/widgets/screens_widgets/codex/search_bar.dart';
-import 'package:navis/widgets/screens_widgets/codex/search_results.dart';
+import 'package:navis/widgets/screen_widgets/codex/codex.dart';
 
 class Codex extends StatelessWidget {
   const Codex({Key key}) : super(key: key);

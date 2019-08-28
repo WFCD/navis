@@ -3,7 +3,7 @@ import 'package:navis/blocs/bloc.dart';
 import 'package:navis/global_keys.dart';
 import 'package:navis/widgets/widgets.dart';
 
-import 'news.dart';
+import 'news_widget.dart';
 
 class NewsBuilder extends StatelessWidget {
   const NewsBuilder({Key key}) : super(key: key);
@@ -26,7 +26,7 @@ class NewsBuilder extends StatelessWidget {
               return Carousel(
                 height: 200,
                 dotCount: news.length,
-                children: news.map((n) => NewsStyle(news: n)).toList(),
+                children: news.map((n) => NewsWidget(news: n)).toList(),
               );
             }),
           ),

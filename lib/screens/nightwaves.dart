@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:navis/blocs/bloc.dart';
-import 'package:navis/widgets/screens_widgets/nightwave/challenges.dart';
+import 'package:navis/widgets/screen_widgets/nightwave/nightwave.dart';
 import 'package:navis/widgets/widgets.dart';
 
 class Nightwaves extends StatelessWidget {

@@ -1,12 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:navis/blocs/bloc.dart';
-import 'package:navis/widgets/screens_widgets/home/acolyte_builder.dart';
-import 'package:navis/widgets/screens_widgets/home/alert_builder.dart';
-import 'package:navis/widgets/screens_widgets/home/cycles.dart';
-import 'package:navis/widgets/screens_widgets/home/deals.dart';
-import 'package:navis/widgets/screens_widgets/home/events_builder.dart';
-import 'package:navis/widgets/screens_widgets/home/news_builder.dart';
-import 'package:navis/widgets/screens_widgets/home/trader.dart';
+import 'package:navis/widgets/screen_widgets/home/home.dart';
 
 class Home extends StatelessWidget {
   const Home({Key key = const PageStorageKey<String>('feed')})

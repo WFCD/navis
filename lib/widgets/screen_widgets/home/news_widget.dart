@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:navis/utils/utils.dart';
 import 'package:worldstate_model/models/news.dart';
 
-class NewsStyle extends StatelessWidget {
-  const NewsStyle({@required this.news});
+class NewsWidget extends StatelessWidget {
+  const NewsWidget({@required this.news});
 
   final OrbiterNews news;
 

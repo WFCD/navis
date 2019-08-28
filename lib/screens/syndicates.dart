@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:navis/blocs/bloc.dart';
-import 'package:navis/widgets/screens_widgets/syndicates/nightwave_widget.dart';
-import 'package:navis/widgets/screens_widgets/syndicates/syndicate_widget.dart';
+import 'package:navis/widgets/screen_widgets/syndicates/syndicates.dart';
 import 'package:navis/widgets/widgets.dart';
 
 import 'package:worldstate_model/worldstate_models.dart';

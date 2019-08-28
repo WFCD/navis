@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sticky_header/flutter_sticky_header.dart';
 import 'package:navis/utils/factionutils.dart';
-import 'package:navis/widgets/screens_widgets/syndicates/syndicate_bounty_widget.dart';
+import 'package:navis/widgets/screen_widgets/syndicates/syndicates.dart';
 import 'package:worldstate_model/worldstate_models.dart';
 
 class SyndicateJobs extends StatefulWidget {

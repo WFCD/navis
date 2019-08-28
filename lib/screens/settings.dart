@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:navis/global_keys.dart';
-import 'package:navis/widgets/screens_widgets/settings/about_app.dart';
-import 'package:navis/widgets/screens_widgets/settings/display_choice.dart';
-import 'package:navis/widgets/screens_widgets/settings/notifications.dart';
-import 'package:navis/widgets/screens_widgets/settings/platform_choices.dart';
+import 'package:navis/widgets/screen_widgets/settings/settings.dart';
 
 class Settings extends StatelessWidget {
   const Settings({Key key}) : super(key: key);
