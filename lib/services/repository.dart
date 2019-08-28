@@ -16,7 +16,7 @@ import 'notification_service.dart';
 
 class Repository {
   Repository({
-    @required this.client,
+    @required this.api,
     @required this.storageService,
     @required this.packageInfo,
     @required this.notificationService,
@@ -30,14 +30,14 @@ class Repository {
     final PackageInfo _info = await PackageInfo.fromPlatform();
 
     return Repository(
-      client: client ?? MetricHttpClient(http.Client()),
+      api: WorldstateApiWrapper(client ?? MetricHttpClient(http.Client())),
       storageService: _storageService,
       packageInfo: _info,
       notificationService: NotificationService.initialize(),
     );
   }
 
-  final http.Client client;
+  final WorldstateApiWrapper api;
   final LocalStorageService storageService;
   final PackageInfo packageInfo;
   final NotificationService notificationService;
@@ -49,9 +49,9 @@ class Repository {
 
     try {
       platform ??= storageService.platform ?? Platforms.pc;
-      final response = await WorldstateApiWrapper.getInstance(platform, client);
+      final response = await api.getWorldstate(platform);
 
-      worldstate = cleanState(response.worldstate);
+      worldstate = cleanState(response);
     } catch (e) {
       if (await _checkFile('/worldstate.json')) {
         final cached = await _getFile('/worldstate.json');
@@ -81,7 +81,7 @@ class Repository {
     if (timestamp.difference(storageService.tableTimestamp) <
             const Duration(days: 7) ||
         !await _checkFile('/drop_table.json')) {
-      final response = await client.get('$dropTable/data/all.slim.json');
+      final response = await api.client.get('$dropTable/data/all.slim.json');
 
       if (response?.statusCode != 200)
         throw Exception(

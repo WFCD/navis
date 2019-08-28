@@ -3,7 +3,6 @@ import 'dart:math';
 
 import 'package:collection/collection.dart';
 import 'package:flutter/widgets.dart';
-import 'package:navis/models/slim_drop_table.dart';
 import 'package:worldstate_model/worldstate_models.dart';
 
 Worldstate cleanState(Worldstate state) {
@@ -33,10 +32,8 @@ Worldstate cleanState(Worldstate state) {
   return state;
 }
 
-List<Drop> jsonToRewards(String response) {
-  final drops = json.decode(response).cast<Map<String, dynamic>>();
-
-  return drops.map<Drop>((d) => Drop.fromJson(d)).toList();
+List<Map<String, dynamic>> jsonToRewards(String response) {
+  return json.decode(response).cast<Map<String, dynamic>>();
 }
 
 bool _checkBackground(BuildContext context, String node) {

@@ -24,7 +24,7 @@ class DropTableList extends StatelessWidget {
                 child: Text(
                     'Type what you\'re looking for into the search above!')),
           if (state is SearchStateError)
-            const Center(child: Text('An unknown error has occured'))
+            Center(child: Text('An unknown error has occured: ${state.error}'))
         ]);
       },
     );

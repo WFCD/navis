@@ -4,7 +4,6 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:navis/global_keys.dart';
-import 'package:navis/models/slim_drop_table.dart';
 import 'package:navis/services/repository.dart';
 import 'package:navis/utils/worldstate_utils.dart';
 import 'package:rxdart/rxdart.dart';
@@ -33,7 +32,7 @@ class TableSearchBloc extends Bloc<SearchEvent, SearchState> {
     }
   }
 
-  static List<Drop> _table;
+  static List<Map<String, dynamic>> _table;
 
   @override
   Stream<SearchState> transformEvents(
@@ -86,16 +85,15 @@ class TableSearchBloc extends Bloc<SearchEvent, SearchState> {
   }
 }
 
-List<Drop> _search(SearchTable drops) {
+List<Map<String, dynamic>> _search(SearchTable drops) {
   return drops.rewards
-      .where((r) => r.item.toLowerCase().contains(drops.term.toLowerCase()))
-      .toList()
-        ..sort((a, b) => a.chance.compareTo(b.chance));
+      .where((r) => r['item'].toLowerCase().contains(drops.term.toLowerCase()))
+      .toList();
 }
 
 class SearchTable {
   SearchTable(this.term, this.rewards);
 
   final String term;
-  final List<Drop> rewards;
+  final List<Map<String, dynamic>> rewards;
 }

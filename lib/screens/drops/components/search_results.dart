@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:html/parser.dart';
 import 'package:navis/blocs/bloc.dart';
-import 'package:navis/models/slim_drop_table.dart';
 
 class SearchResults extends StatelessWidget {
   const SearchResults({Key key}) : super(key: key);
@@ -11,14 +10,16 @@ class SearchResults extends StatelessWidget {
     return parse(document.body.text).documentElement.text;
   }
 
-  Color _chance(num chance) {
-    if (chance < 25) return Colors.yellow;
-    if (chance > 25 && chance < 50) return const Color(0xFFc0c0c0);
+  Color _chance(dynamic chance) {
+    final number = chance is String ? double.parse(chance) : chance;
+
+    if (number < 25) return Colors.yellow;
+    if (number > 25 && number < 50) return const Color(0xFFc0c0c0);
 
     return Colors.brown;
   }
 
-  Widget _result(BuildContext context, Drop drop) {
+  Widget _result(BuildContext context, Map<String, dynamic> drop) {
     final theme = Theme.of(context);
 
     return Container(
@@ -26,13 +27,13 @@ class SearchResults extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Text(drop.item, style: theme.textTheme.subhead),
+          Text(drop['item'], style: theme.textTheme.subhead),
           const SizedBox(height: 4),
-          Text('${drop.chance}% Drop Chance',
+          Text('${drop['chance']}% Drop Chance',
               style: theme.textTheme.caption
-                  .copyWith(color: _chance(drop.chance))),
+                  .copyWith(color: _chance(drop['chance']))),
           const SizedBox(height: 4),
-          Text(_parseHtmlString(drop.place))
+          Text(_parseHtmlString(drop['place']))
         ],
       ),
     );
