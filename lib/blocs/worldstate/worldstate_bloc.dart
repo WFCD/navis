@@ -1,18 +1,18 @@
 import 'dart:async';
 
 import 'package:hydrated_bloc/hydrated_bloc.dart';
+import 'package:navis/services/worldstate_service.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:worldstate_model/worldstate_models.dart';
 
-import '../../services/repository.dart';
 import 'worldstate_states.dart';
 
 enum UpdateEvent { update }
 
 class WorldstateBloc extends HydratedBloc<UpdateEvent, WorldStates> {
-  WorldstateBloc(this.repository);
+  WorldstateBloc(this.api);
 
-  final Repository repository;
+  final WorldstateService api;
 
   @override
   WorldStates get initialState =>
@@ -31,7 +31,7 @@ class WorldstateBloc extends HydratedBloc<UpdateEvent, WorldStates> {
   Stream<WorldStates> mapEventToState(UpdateEvent event) async* {
     if (event == UpdateEvent.update) {
       try {
-        final state = await repository.worldstateService.getWorldstate();
+        final state = await api.getWorldstate();
         yield WorldstateLoaded(state);
       } catch (e) {
         yield WorldstateError(e.toString());

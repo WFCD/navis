@@ -29,7 +29,7 @@ void main() {
                   StorageBloc(repository.storage, repository.notifications),
             ),
             BlocProvider<WorldstateBloc>(
-              builder: (_) => WorldstateBloc(repository),
+              builder: (_) => WorldstateBloc(repository.worldstateService),
             ),
             BlocProvider<NavigationBloc>(
               builder: (_) => NavigationBloc(),
