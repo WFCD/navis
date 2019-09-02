@@ -23,7 +23,7 @@ class LotusDrawer extends StatelessWidget {
             title: const Text('Settings'),
             onTap: () {
               Navigator.of(context).pop();
-              Navigator.of(context).pushNamed('/Settings');
+              Navigator.of(context).pushNamed('/settings');
             },
           ),
         ])));

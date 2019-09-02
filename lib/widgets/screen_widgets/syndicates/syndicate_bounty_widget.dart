@@ -11,7 +11,7 @@ class SyndicateBounty extends StatelessWidget {
   }) : super(key: key);
 
   final Job job;
-  final OpenWorldFactions faction;
+  final SyndicateFactions faction;
 
   Widget _buildStanding() {
     return Container(

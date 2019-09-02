@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
 
-enum OpenWorldFactions { cetus, fortuna }
+enum SyndicateFactions { cetus, fortuna }
 
 const grineer = 'assets/factions/Grineer/Grineer.svg';
 const corpus = 'assets/factions/Corpus/Corpus.svg';
@@ -98,16 +98,27 @@ Color factionColor(String faction) {
   }
 }
 
-Color buildColor(OpenWorldFactions faction) {
+Color buildColor(SyndicateFactions faction) {
   const ostronsColor = Color.fromRGBO(183, 70, 36, 1.0);
   const solarisColor = Color.fromRGBO(206, 162, 54, 1.0);
 
-  return factionCheck(faction) == 'Ostrons' ? ostronsColor : solarisColor;
+  return syndicateFactionsToString(faction) == 'Ostrons'
+      ? ostronsColor
+      : solarisColor;
 }
 
-String factionCheck(OpenWorldFactions faction) {
+SyndicateFactions stringToSyndicateFaction(String faction) {
   switch (faction) {
-    case OpenWorldFactions.cetus:
+    case 'Ostrons':
+      return SyndicateFactions.cetus;
+    default:
+      return SyndicateFactions.fortuna;
+  }
+}
+
+String syndicateFactionsToString(SyndicateFactions faction) {
+  switch (faction) {
+    case SyndicateFactions.cetus:
       return 'Ostrons';
     default:
       return 'Solaris United';

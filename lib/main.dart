@@ -7,6 +7,7 @@ import 'package:flutter/widgets.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:navis/app.dart';
 import 'package:navis/blocs/bloc.dart';
+import 'package:navis/router.dart';
 import 'package:navis/services/repository.dart';
 import 'package:navis/utils/metric_client.dart';
 
@@ -20,6 +21,8 @@ void main() {
       BlocSupervisor.delegate = await HydratedBlocDelegate.build();
 
       await repository.initRepository();
+
+      defineRoutes(router);
 
       runApp(
         MultiBlocProvider(

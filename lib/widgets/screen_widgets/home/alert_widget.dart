@@ -44,11 +44,9 @@ class AlertWidget extends StatelessWidget {
                       )),
             ),
             RowItem(
-                text: '''
-                    ${alert.mission.type} (${alert.mission.faction}) 
-                    | Level: ${alert.mission.minEnemyLevel} - ${alert.mission.maxEnemyLevel} 
-                    | ${alert.mission.reward.credits}cr
-                    ''',
+                text: '${alert.mission.type} (${alert.mission.faction}) '
+                    '| Level: ${alert.mission.minEnemyLevel} - ${alert.mission.maxEnemyLevel} '
+                    '| ${alert.mission.reward.credits}cr',
                 caption: true,
                 child: CountdownBox(expiry: alert.expiry)),
           ]),

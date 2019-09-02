@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:navis/screens/nightwaves.dart';
 import 'package:navis/widgets/widgets.dart';
 
 class NightWaveWidget extends StatelessWidget {
@@ -7,16 +6,13 @@ class NightWaveWidget extends StatelessWidget {
 
   final int season;
 
-  void _navigateToChallenges(BuildContext context) => Navigator.of(context)
-      .push(MaterialPageRoute(builder: (_) => const Nightwaves()));
-
   @override
   Widget build(BuildContext context) {
     return BackgroundImageCard(
       height: 100,
       provider: const AssetImage('assets/general/banner.webp'),
       child: InkWell(
-        onTap: () => _navigateToChallenges(context),
+        onTap: () => Navigator.of(context).pushNamed('/nightwave'),
         child: Container(
           height: 40,
           alignment: Alignment.center,

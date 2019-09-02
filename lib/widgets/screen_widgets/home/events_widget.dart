@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:navis/screens/syndicate_bounties.dart';
-import 'package:navis/utils/factionutils.dart';
+import 'package:navis/router.dart';
 import 'package:navis/widgets/animations.dart';
 import 'package:navis/widgets/widgets.dart';
 import 'package:worldstate_model/worldstate_models.dart';
@@ -25,17 +24,6 @@ class EventWidget extends StatelessWidget {
       children: <Widget>[
         for (String r in rewards) StaticBox.text(color: Colors.green, text: r)
       ],
-    );
-  }
-
-  void _navigateToBounties(BuildContext context, List<Job> jobs) {
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (_) => SyndicateJobs(
-          faction: OpenWorldFactions.cetus,
-          jobs: jobs,
-        ),
-      ),
     );
   }
 
@@ -76,6 +64,8 @@ class EventWidget extends StatelessWidget {
   }
 
   Widget _buildFooter(BuildContext context) {
+    final syndicate = Syndicate(name: event.faction, jobs: event.jobs);
+
     if (event.jobs?.isNotEmpty ?? false) {
       return FlatButton(
         child: const Text('See Bounties'),
@@ -84,7 +74,7 @@ class EventWidget extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(4.0),
         ),
-        onPressed: () => _navigateToBounties(context, event.jobs),
+        onPressed: () => navigateToBounties(context, syndicate),
       );
     } else {
       return _addReward(event.eventRewards);
