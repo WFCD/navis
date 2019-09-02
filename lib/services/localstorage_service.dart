@@ -78,11 +78,11 @@ class LocalStorageService {
     if (timestamp != null)
       return DateTime.fromMillisecondsSinceEpoch(timestamp);
 
-    return DateTime.now();
+    return timestamp;
   }
 
   void saveTimestamp(DateTime timestamp) {
-    saveToDisk('tableTimestamp', timestamp.millisecondsSinceEpoch);
+    saveToDisk('tableTimestamp', timestamp?.millisecondsSinceEpoch);
   }
 
   dynamic getFromDisk(String key) => _preferences.get(key);

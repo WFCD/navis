@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 import 'package:navis/services/localstorage_service.dart';
 import 'package:navis/utils/file_utils.dart';
@@ -20,8 +21,15 @@ class WorldstateService {
 
   WorldstateApiWrapper _api;
 
-  Future<List<ItemObject>> searchItem(String searchTerm) async =>
-      await _api.searchItems(searchTerm);
+  // Sometimes the items list can be too long and so parsing needs to be moved to a new thread
+  // maybe paginat(?) the results in the future
+  Future<List<ItemObject>> search(String searchTerm) async {
+    return await compute(_search, _SearchItems(_api, searchTerm));
+  }
+
+  static Future<List<ItemObject>> _search(_SearchItems search) async {
+    return await search.api.searchItems(search.searchTerm);
+  }
 
   Future<Worldstate> getWorldstate([Platforms platform]) async {
     final worldstate =
@@ -38,12 +46,13 @@ class WorldstateService {
       try {
         await _downloadDropTable();
         storage.saveTimestamp(timestamp);
-      } catch (exception, stack) {
-        storage.saveTimestamp(DateTime.now());
-        Crashlytics.instance.recordError(exception, stack);
-      }
 
-      return getFile('/drop_table.json');
+        return getFile('/drop_table.json');
+      } catch (exception, stack) {
+        Crashlytics.instance.recordError(exception, stack);
+
+        return null;
+      }
     }
 
     return getFile('/drop_table.json');
@@ -80,4 +89,11 @@ class WorldstateService {
 
     await saveFile('/drop_table.json', response.body);
   }
+}
+
+class _SearchItems {
+  _SearchItems(this.api, this.searchTerm);
+
+  final WorldstateApiWrapper api;
+  final String searchTerm;
 }

@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:bloc/bloc.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:navis/global_keys.dart';
@@ -28,17 +29,20 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
     try {
       final File table = await api.initializeDropTable();
 
-      _dropTable = await compute(convertToDrop, table.readAsStringSync());
-    } catch (error) {
+      _dropTable = await compute(convertToDrop, table?.readAsStringSync());
+    } catch (error, stack) {
       scaffold.currentState.showSnackBar(
         SnackBar(
-          content: const Text('Failed to download drop table'),
+          content: const Text('Failed to download drop table,'
+              ' searching drop table will yield zero results until one is downloaded'),
           action: SnackBarAction(
             label: 'RETRY',
             onPressed: () => _initializeTables(),
           ),
         ),
       );
+
+      Crashlytics.instance.recordError(error, stack);
     }
   }
 
@@ -69,9 +73,9 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
 
         try {
           final results = searchType != SearchTypes.drops
-              ? api.searchItem(searchText)
-              : compute(
-                  searchDropTable, SearchDropTable(searchText, _dropTable));
+              ? api.search(searchText)
+              : compute(searchDropTable,
+                  SearchDropTable(searchText, _dropTable ?? []));
 
           yield SearchStateSuccess(await results);
         } catch (e) {
@@ -87,10 +91,15 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
     if (event is SortSearch) {
       if (searchType == SearchTypes.drops) {
         final sorted =
-            compute(sortDrops, SortedDrops(event.sortBy, event.results));
+            await compute(sortDrops, SortedDrops(event.sortBy, event.results));
 
-        yield SearchStateSuccess(await sorted);
+        yield SearchStateSuccess(sorted);
       }
     }
+  }
+
+  @override
+  void onError(Object error, StackTrace stacktrace) {
+    Crashlytics.instance.recordError(error, stacktrace);
   }
 }

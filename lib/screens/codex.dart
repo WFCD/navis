@@ -22,7 +22,8 @@ class Codex extends StatelessWidget {
             const Center(
                 child: Text(
                     'Type what you\'re looking for into the search above!')),
-          if (state is SearchStateError) Center(child: Text(state.error))
+          if (state is SearchStateError)
+            const Center(child: Text('An error has occurred'))
         ]);
       },
     );
