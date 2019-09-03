@@ -4,7 +4,7 @@ import 'package:navis/blocs/bloc.dart';
 import 'package:navis/router.dart';
 import 'package:navis/screens/nightwaves.dart';
 import 'package:navis/widgets/widgets.dart';
-import 'package:navis/screens/main_screen.dart';
+import 'package:navis/screens/app_scaffold.dart';
 import 'package:navis/services/repository.dart';
 import 'package:wfcd_api_wrapper/worldstate_wrapper.dart';
 
@@ -19,16 +19,31 @@ class Navis extends StatefulWidget {
   _NavisState createState() => _NavisState();
 }
 
-class _NavisState extends State<Navis> {
+class _NavisState extends State<Navis> with WidgetsBindingObserver {
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addObserver(this);
+
     BlocProvider.of<WorldstateBloc>(context).dispatch(UpdateEvent.update);
 
     if (widget.repository.storage?.platform == null) {
       widget.repository.notifications
           .subscribeToPlatform(currentPlatform: Platforms.pc);
     }
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.resumed) {
+      Future.delayed(
+        const Duration(seconds: 1),
+        () => BlocProvider.of<WorldstateBloc>(context)
+            .dispatch(UpdateEvent.update),
+      );
+    }
+
+    super.didChangeAppLifecycleState(state);
   }
 
   Widget _builder(BuildContext context, Widget widget) {
@@ -71,5 +86,11 @@ class _NavisState extends State<Navis> {
         },
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
   }
 }

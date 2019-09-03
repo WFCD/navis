@@ -18,7 +18,7 @@ class Codex extends StatelessWidget {
             const Center(child: Text('No Results')),
           if (state is SearchStateLoading)
             const Center(child: CircularProgressIndicator()),
-          if (state is SearchStateEmpty)
+          if (state is SearchStateEmpty || state is SearchListenerError)
             const Center(
                 child: Text(
                     'Type what you\'re looking for into the search above!')),

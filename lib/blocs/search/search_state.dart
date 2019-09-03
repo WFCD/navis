@@ -24,3 +24,10 @@ class SearchStateError extends SearchState {
 
   final String error;
 }
+
+// This is only an erro message for the bloc listener and should be ignore by the bloc builder in codex
+class SearchListenerError extends SearchState {
+  SearchListenerError(this.error) : super([error]);
+
+  final String error;
+}

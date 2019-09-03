@@ -20,29 +20,16 @@ class MainScreen extends StatefulWidget {
   _MainScreenState createState() => _MainScreenState();
 }
 
-class _MainScreenState extends State<MainScreen> with WidgetsBindingObserver {
+class _MainScreenState extends State<MainScreen> {
   Timer timer;
 
   @override
   void initState() {
-    super.initState();
-    WidgetsBinding.instance.addObserver(this);
-
     timer = Timer.periodic(const Duration(minutes: 5), (t) {
       BlocProvider.of<WorldstateBloc>(context).dispatch(UpdateEvent.update);
     });
-  }
 
-  @override
-  void didChangeAppLifecycleState(AppLifecycleState state) {
-    if (state == AppLifecycleState.resumed) {
-      Future.delayed(
-          const Duration(milliseconds: 500),
-          () => BlocProvider.of<WorldstateBloc>(context)
-              .dispatch(UpdateEvent.update));
-    }
-
-    super.didChangeAppLifecycleState(state);
+    super.initState();
   }
 
   Future<bool> _willPop(BuildContext context) async {
@@ -53,20 +40,25 @@ class _MainScreenState extends State<MainScreen> with WidgetsBindingObserver {
       return Future.value(true);
   }
 
-  void _blocListener(
-    BuildContext context,
-    WorldStates state,
-    VoidCallback onPressed,
-  ) {
-    if (state is WorldstateError)
-      scaffold.currentState.showSnackBar(SnackBar(
-        content: Text(state.error),
+  void showSnackbar(String content, [VoidCallback onPressed]) {
+    scaffold.currentState.showSnackBar(
+      SnackBar(
+        content: Text(content),
         duration: const Duration(minutes: 5),
-        action: SnackBarAction(
-          label: 'RETRY',
-          onPressed: onPressed,
-        ),
-      ));
+        action: onPressed != null
+            ? SnackBarAction(
+                label: 'RETRY',
+                onPressed: onPressed,
+              )
+            : null,
+      ),
+    );
+  }
+
+  void _blocListener<T>(BuildContext context, T state,
+      [VoidCallback onPressed]) {
+    if (state is WorldstateError) showSnackbar(state.error, onPressed);
+    if (state is SearchListenerError) showSnackbar(state.error);
   }
 
   Widget _body(RouteState route) {
@@ -88,23 +80,27 @@ class _MainScreenState extends State<MainScreen> with WidgetsBindingObserver {
 
   @override
   Widget build(BuildContext context) {
-    final bloc = BlocProvider.of<WorldstateBloc>(context);
-
     return WillPopScope(
       onWillPop: () => _willPop(context),
       child: Scaffold(
         key: scaffold,
         appBar: AppBar(title: const Text('Navis')),
         drawer: const LotusDrawer(),
-        body: BlocListener(
-          bloc: bloc,
-          listener: (BuildContext context, WorldStates state) => _blocListener(
-            context,
-            state,
-            () => bloc.dispatch(UpdateEvent.update),
-          ),
+        body: MultiBlocListener(
+          listeners: [
+            BlocListener<WorldstateBloc, WorldStates>(
+              listener: (context, state) => _blocListener(
+                context,
+                state,
+                () => BlocProvider.of<WorldstateBloc>(context)
+                    .dispatch(UpdateEvent.update),
+              ),
+            ),
+            BlocListener<SearchBloc, SearchState>(
+              listener: (context, state) => _blocListener(context, state),
+            )
+          ],
           child: BlocBuilder<NavigationBloc, RouteState>(
-            bloc: BlocProvider.of<NavigationBloc>(context),
             builder: (BuildContext context, RouteState route) {
               return AnimatedSwitcher(
                 duration: const Duration(milliseconds: 200),
@@ -120,7 +116,6 @@ class _MainScreenState extends State<MainScreen> with WidgetsBindingObserver {
   @override
   void dispose() {
     timer?.cancel();
-    WidgetsBinding.instance.removeObserver(this);
     super.dispose();
   }
 }

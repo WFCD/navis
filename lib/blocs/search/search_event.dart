@@ -28,3 +28,9 @@ class SortSearch extends SearchEvent {
   final List<dynamic> results;
   final Sort sortBy;
 }
+
+class SearchError extends SearchEvent {
+  SearchError(this.error) : super([error]);
+
+  final dynamic error;
+}

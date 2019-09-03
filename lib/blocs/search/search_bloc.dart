@@ -4,8 +4,6 @@ import 'dart:io';
 import 'package:bloc/bloc.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-import 'package:navis/global_keys.dart';
 import 'package:navis/services/worldstate_service.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:warframe_items_model/warframe_items_model.dart';
@@ -31,17 +29,8 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
 
       _dropTable = await compute(convertToDrop, table?.readAsStringSync());
     } catch (error, stack) {
-      scaffold.currentState.showSnackBar(
-        SnackBar(
-          content: const Text('Failed to download drop table,'
-              ' searching drop table will yield zero results until one is downloaded'),
-          action: SnackBarAction(
-            label: 'RETRY',
-            onPressed: () => _initializeTables(),
-          ),
-        ),
-      );
-
+      dispatch(SearchError(
+          'Downloading drop table failed, searching the drop table will not be possible'));
       Crashlytics.instance.recordError(error, stack);
     }
   }
@@ -95,6 +84,10 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
 
         yield SearchStateSuccess(sorted);
       }
+    }
+
+    if (event is SearchError) {
+      yield SearchListenerError(event.error);
     }
   }
 
