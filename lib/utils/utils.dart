@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_custom_tabs/flutter_custom_tabs.dart' as custom;
+import 'package:html/parser.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../global_keys.dart';
@@ -54,4 +55,9 @@ String timestamp(DateTime timestamp) {
     return '${duration.inHours.floor()}h ${(duration.inMinutes % 60).floor()}m';
   } else
     return '${duration.inDays.floor()}d';
+}
+
+String parseHtmlString(String htmlString) {
+  final document = parse(htmlString);
+  return parse(document.body.text).documentElement.text;
 }
