@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:navis/router.dart';
 import 'package:navis/utils/factionutils.dart';
 import 'package:navis/widgets/widgets.dart';
 import 'package:worldstate_model/worldstate_models.dart';
@@ -8,6 +7,8 @@ class SyndicateWidget extends StatelessWidget {
   const SyndicateWidget({this.syndicate});
 
   final Syndicate syndicate;
+
+  static const String route = '/syndicate';
 
   static const Color ostronsColor = Color.fromRGBO(183, 70, 36, 1.0);
   static const Color solarisColor = Color.fromRGBO(206, 162, 54, 1.0);
@@ -19,7 +20,8 @@ class SyndicateWidget extends StatelessWidget {
     return Tiles(
       color: ostron ? ostronsColor : solarisColor,
       child: InkWell(
-        onTap: () => navigateToBounties(context, syndicate),
+        onTap: () => Navigator.of(context)
+            .pushNamed('/syndicate_jobs', arguments: syndicate),
         splashColor: Colors.transparent,
         child: Container(
           child: Row(mainAxisSize: MainAxisSize.max, children: <Widget>[

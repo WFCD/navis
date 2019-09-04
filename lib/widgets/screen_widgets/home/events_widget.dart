@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:navis/router.dart';
 import 'package:navis/widgets/animations.dart';
 import 'package:navis/widgets/widgets.dart';
 import 'package:worldstate_model/worldstate_models.dart';
@@ -74,7 +73,8 @@ class EventWidget extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(4.0),
         ),
-        onPressed: () => navigateToBounties(context, syndicate),
+        onPressed: () => Navigator.of(context)
+            .pushNamed('/syndicate_jobs', arguments: syndicate),
       );
     } else {
       return _addReward(event.eventRewards);

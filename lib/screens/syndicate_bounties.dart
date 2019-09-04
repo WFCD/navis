@@ -5,25 +5,28 @@ import 'package:navis/widgets/screen_widgets/syndicates/syndicates.dart';
 import 'package:worldstate_model/worldstate_models.dart';
 
 class SyndicateJobs extends StatelessWidget {
-  const SyndicateJobs({this.faction, this.jobs});
-
-  final SyndicateFactions faction;
-  final List<Job> jobs;
+  const SyndicateJobs();
 
   @override
   Widget build(BuildContext context) {
+    final Syndicate syndicate = ModalRoute.of(context).settings.arguments;
+
     return SafeArea(
       child: Scaffold(
           appBar: AppBar(
-            title: Text(syndicateFactionsToString(faction)),
+            title: Text(syndicate.name),
             titleSpacing: 0.0,
-            backgroundColor: buildColor(faction),
+            backgroundColor:
+                buildColor(stringToSyndicateFaction(syndicate.name)),
           ),
           body: CustomScrollView(
             slivers: <Widget>[
-              for (Job job in jobs)
+              for (Job job in syndicate?.jobs ?? [])
                 SliverStickyHeader(
-                  header: SyndicateBounty(job: job, faction: faction),
+                  header: SyndicateBounty(
+                    job: job,
+                    faction: stringToSyndicateFaction(syndicate.name),
+                  ),
                   sliver: SliverList(
                     delegate: SliverChildBuilderDelegate(
                       (BuildContext context, int index) {
