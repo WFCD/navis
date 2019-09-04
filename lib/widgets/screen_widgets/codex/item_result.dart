@@ -33,8 +33,6 @@ class ItemResultWidget extends StatelessWidget {
             subtitle: Text(parseHtmlString(item.description ?? '')),
             dense: true,
             isThreeLine: true,
-            onTap: () =>
-                Navigator.of(context).pushNamed('/item', arguments: item),
           ),
           ButtonBar(children: <Widget>[
             // if (item is Warframe && (item as Warframe).components != null)
