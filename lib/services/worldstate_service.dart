@@ -27,19 +27,6 @@ class WorldstateService {
     return await compute(_search, _SearchItems(_api, searchTerm));
   }
 
-  static Future<List<ItemObject>> _search(_SearchItems search) async {
-    final items = await search.api.searchItems(search.searchTerm);
-
-    return items
-      ..removeWhere(
-        (i) =>
-            i.category == 'Skins' ||
-            i.category == 'Glyphs' ||
-            i.category == 'Misc' ||
-            i.wikiaUrl != null,
-      );
-  }
-
   Future<Worldstate> getWorldstate([Platforms platform]) async {
     final worldstate =
         await _api.getWorldstate(platform ?? storage.platform ?? Platforms.pc);
@@ -98,6 +85,16 @@ class WorldstateService {
 
     await saveFile('/drop_table.json', response.body);
   }
+}
+
+Future<List<ItemObject>> _search(_SearchItems search) async {
+  final items = await search.api.searchItems(search.searchTerm);
+
+  return items
+    ..removeWhere((i) =>
+        i.category == 'Skins' ||
+        i.category == 'Glyphs' ||
+        i.category == 'Misc');
 }
 
 class _SearchItems {
