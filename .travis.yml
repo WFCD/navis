@@ -23,7 +23,7 @@ jobs:
         - flutter upgrade
       script:
         - flutter pub get
-        # - flutter test
+        - flutter test
         - flutter build apk --target-platform android-arm
 
     - stage: Deploy
