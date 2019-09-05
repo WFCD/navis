@@ -3,23 +3,19 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/widgets.dart';
-import 'package:http/http.dart' as http;
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:navis/app.dart';
 import 'package:navis/blocs/bloc.dart';
 import 'package:navis/services/repository.dart';
-import 'package:navis/utils/metric_client.dart';
 
 void main() {
   FlutterError.onError = Crashlytics.instance.recordFlutterError;
 
   runZoned<Future<void>>(
     () async {
-      final repository = Repository(MetricHttpClient(http.Client()));
+      final repository = await Repository.initRepository();
 
       BlocSupervisor.delegate = await HydratedBlocDelegate.build();
-
-      await repository.initRepository();
 
       runApp(
         MultiBlocProvider(

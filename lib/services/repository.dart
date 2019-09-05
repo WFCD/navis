@@ -1,32 +1,37 @@
-import 'package:http/http.dart' as http;
+import 'package:http/http.dart';
 import 'package:navis/services/worldstate_service.dart';
+import 'package:navis/utils/metric_client.dart';
 import 'package:package_info/package_info.dart';
 
 import 'localstorage_service.dart';
 import 'notification_service.dart';
 
 class Repository {
-  Repository(this.client);
+  Repository(
+    this.storage,
+    this.notifications,
+    this.packageInfo,
+    this.worldstateService,
+  );
 
-  final http.Client client;
+  final LocalStorageService storage;
+  final NotificationService notifications;
+  final PackageInfo packageInfo;
+  final WorldstateService worldstateService;
 
-  Future<void> initRepository() async {
-    _storage ??= await LocalStorageService.getInstance();
-    _notifications ??= NotificationService.initialize();
-    _packageInfo ??= await PackageInfo.fromPlatform();
-    _worldstateService ??= WorldstateService(client, _storage);
+  static Future<Repository> initRepository({Client client}) async {
+    client ??= MetricHttpClient(Client());
+
+    final _storage = await LocalStorageService.getInstance();
+    final _notifications = NotificationService.initialize();
+    final _packageInfo = await PackageInfo.fromPlatform();
+    final _worldstateService = WorldstateService(client, _storage);
+
+    return Repository(
+      _storage,
+      _notifications,
+      _packageInfo,
+      _worldstateService,
+    );
   }
-
-  LocalStorageService _storage;
-  NotificationService _notifications;
-  PackageInfo _packageInfo;
-  WorldstateService _worldstateService;
-
-  WorldstateService get worldstateService => _worldstateService;
-
-  NotificationService get notifications => _notifications;
-
-  PackageInfo get packageInfo => _packageInfo;
-
-  LocalStorageService get storage => _storage;
 }

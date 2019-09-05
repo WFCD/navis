@@ -12,9 +12,8 @@ import 'package:worldstate_model/worldstate_models.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 
 class WorldstateService {
-  WorldstateService(this.client, this.storage) {
-    _api = WorldstateApiWrapper(client);
-  }
+  WorldstateService(this.client, this.storage)
+      : _api = WorldstateApiWrapper(client);
 
   final http.Client client;
   final LocalStorageService storage;
