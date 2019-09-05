@@ -24,7 +24,7 @@ jobs:
       script:
         - flutter pub get
         # - flutter test
-        - flutter build apk -target-platform android-arm
+        - flutter build apk --target-platform android-arm
 
     - name: Deploy
       if: tag IS present
