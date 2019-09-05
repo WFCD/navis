@@ -5,9 +5,13 @@ import 'package:warframe_items_model/warframe_items_model.dart';
 import 'search_event.dart';
 
 List<SlimDrop> convertToDrop(String data) {
-  final List<dynamic> table = json.decode(data);
+  final table = json.decode(data);
 
-  return table.map((d) => SlimDrop.fromJson(d)).toList();
+  if (table is Map<String, dynamic>) {
+    throw const FormatException('Invalid Drop Table Data');
+  }
+
+  return table.map<SlimDrop>((d) => SlimDrop.fromJson(d)).toList();
 }
 
 List<SlimDrop> sortDrops(SortedDrops dropInstance) {

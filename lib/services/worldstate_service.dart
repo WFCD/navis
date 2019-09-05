@@ -20,6 +20,8 @@ class WorldstateService {
 
   WorldstateApiWrapper _api;
 
+  static const dropTablePath = '/drop_table.json';
+
   // Sometimes the items list can be too long and so parsing needs to be moved to a new thread
   // maybe paginat(?) the results in the future
   Future<List<ItemObject>> search(String searchTerm) async {
@@ -34,7 +36,7 @@ class WorldstateService {
   }
 
   Future<File> initializeDropTable() async {
-    final doesFileExist = await checkFile('/drop_table.json');
+    final doesFileExist = await checkFile(dropTablePath);
     final timestamp = await _getDropTableTimestamp();
 
     if (doesFileExist != true) {
@@ -42,7 +44,7 @@ class WorldstateService {
         await _downloadDropTable();
         storage.saveTimestamp(timestamp);
 
-        return getFile('/drop_table.json');
+        return getFile(dropTablePath);
       } catch (exception, stack) {
         Crashlytics.instance.recordError(exception, stack);
 
@@ -80,9 +82,13 @@ class WorldstateService {
     final response = await client.get(dropTable);
 
     if (response?.statusCode != 200)
-      throw Exception('Drop table failed to download: ${response?.statusCode}');
+      throw Exception(
+          'Drop table failed to download. error: ${response?.statusCode}');
 
-    await saveFile('/drop_table.json', response.body);
+    if (!response.body.startsWith('['))
+      throw const FormatException('Invalid drop table provided by API');
+
+    await saveFile(dropTablePath, response.body);
   }
 }
 
