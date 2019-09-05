@@ -1,36 +1,58 @@
-name: Flutter test and apk build
-dist: trusty
-language: android
-jdk: oraclejdk8
-licenses:
-  - android-sdk-preview-license-.+
-  - android-sdk-license-.+
-  - google-gdk-license-.+
-android:
-  components:
-    - build-tools-28.0.3
-    - android-28
-before_install:
-  - bundle install --gemfile=android/Gemfile
-before_script:
-  - openssl aes-256-cbc -K $encrypted_2db283701f8c_key -iv $encrypted_2db283701f8c_iv
-    -in secrets.tar.enc -out secrets.tar -d
-  - tar xvf secrets.tar
-  - if [  ! -d "flutter" ] ; then git clone https://github.com/flutter/flutter.git
-    -b stable; fi;
-  - export PATH=./flutter/bin:$PATH
-  - flutter upgrade
-script:
-  - flutter pub get
-  # - flutter test
+jobs:
+  include:
+    - name: Compile Test
+      dist: trusty
+      stage: compile test
+      language: android
+      jdk: oraclejdk8
+      licenses:
+        - android-sdk-preview-license-.+
+        - android-sdk-license-.+
+        - google-gdk-license-.+
+      android:
+        components:
+          - build-tools-28.0.3
+          - android-28
+      before_script:
+        - openssl aes-256-cbc -K $encrypted_2db283701f8c_key -iv $encrypted_2db283701f8c_iv
+          -in secrets.tar.enc -out secrets.tar -d
+        - tar xvf secrets.tar
+        - if [  ! -d "flutter" ] ; then git clone https://github.com/flutter/flutter.git
+          -b stable; fi;
+        - export PATH=./flutter/bin:$PATH
+        - flutter upgrade
+      script:
+        - flutter pub get
+        # - flutter test
+        - flutter build apk -target-platform android-arm
 
-  # builds apk for both arm and arm64, for github release.
-  - flutter build apk
-
-  # build appbundle with both arm and arm64 libs for Google Play upload
-  # using fastlane.
-  - flutter build appbundle
-  - cd android && bundle exec fastlane beta
+    - name: Deploy
+      if: tag IS present
+      stage: deploy
+      language: android
+      jdk: oraclejdk8
+      licenses:
+        - android-sdk-preview-license-.+
+        - android-sdk-license-.+
+        - google-gdk-license-.+
+      android:
+        components:
+          - build-tools-28.0.3
+          - android-28
+      before_install:
+        - bundle install --gemfile=android/Gemfile
+      before_script:
+        - openssl aes-256-cbc -K $encrypted_2db283701f8c_key -iv $encrypted_2db283701f8c_iv
+          -in secrets.tar.enc -out secrets.tar -d
+        - tar xvf secrets.tar
+        - if [  ! -d "flutter" ] ; then git clone https://github.com/flutter/flutter.git
+          -b stable; fi;
+        - export PATH=./flutter/bin:$PATH
+        - flutter upgrade
+      script:
+        - flutter pub get
+        - flutter build appbundle
+        - cd android && bundle exec fastlane beta
 
 cache:
   bundler: true
