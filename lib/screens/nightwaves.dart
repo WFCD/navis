@@ -6,6 +6,8 @@ import 'package:navis/widgets/widgets.dart';
 class Nightwaves extends StatelessWidget {
   const Nightwaves();
 
+  static const route = '/nightwave';
+
   @override
   Widget build(BuildContext context) {
     final style = Theme.of(context).textTheme.subtitle.copyWith(fontSize: 15);

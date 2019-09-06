@@ -7,6 +7,8 @@ import 'package:worldstate_model/worldstate_models.dart';
 class SyndicateJobs extends StatelessWidget {
   const SyndicateJobs();
 
+  static const route = '/syndicate_jobs';
+
   @override
   Widget build(BuildContext context) {
     final Syndicate syndicate = ModalRoute.of(context).settings.arguments;

@@ -81,9 +81,9 @@ class _NavisState extends State<Navis> with WidgetsBindingObserver {
         ),
         builder: _builder,
         routes: <String, WidgetBuilder>{
-          '/settings': (_) => const Settings(),
-          '/nightwave': (_) => const Nightwaves(),
-          '/syndicate_jobs': (_) => const SyndicateJobs(),
+          Settings.route: (_) => const Settings(),
+          Nightwaves.route: (_) => const Nightwaves(),
+          SyndicateJobs.route: (_) => const SyndicateJobs(),
           //'/item': (_) => const ItemInfo()
         },
       ),

@@ -5,6 +5,8 @@ import 'package:navis/widgets/screen_widgets/settings/settings.dart';
 class Settings extends StatelessWidget {
   const Settings({Key key}) : super(key: key);
 
+  static const route = '/settings';
+
   @override
   Widget build(BuildContext context) {
     const padding = SizedBox(height: 8.0);
