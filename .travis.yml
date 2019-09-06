@@ -1,7 +1,6 @@
 jobs:
   include:
-    - stage: Compile Test
-      name: compile test
+    - name: Test
       dist: trusty
       language: android
       jdk: oraclejdk8
@@ -26,9 +25,8 @@ jobs:
         - flutter test
         - flutter build apk --target-platform android-arm
 
-    - stage: Deploy
+    - name: Deploy
       if: tag IS present
-      name: deploy
       language: android
       jdk: oraclejdk8
       licenses:
