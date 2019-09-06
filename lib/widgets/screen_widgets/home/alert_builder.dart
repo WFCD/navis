@@ -14,18 +14,23 @@ class AlertTile extends StatelessWidget {
     final state = BlocProvider.of<WorldstateBloc>(context);
 
     return Tiles(
-        title: 'Alerts',
-        child: BlocBuilder(
-            bloc: state,
-            condition: (WorldStates previous, WorldStates current) =>
-                listEquals(
-                    previous.worldstate.alerts, current.worldstate.alerts),
-            builder: (context, state) {
-              final alerts = state.worldstate?.alerts ?? [];
+      title: 'Alerts',
+      child: BlocBuilder(
+        bloc: state,
+        condition: (WorldStates previous, WorldStates current) {
+          final previousAlerts = previous.worldstate.alerts ?? [];
+          final currentAlerts = current.worldstate.alerts ?? [];
 
-              return Column(children: <Widget>[
-                ...alerts.map((alert) => AlertWidget(alert: alert))
-              ]);
-            }));
+          return listEquals(previousAlerts, currentAlerts);
+        },
+        builder: (context, state) {
+          final alerts = state.worldstate?.alerts ?? [];
+
+          return Column(children: <Widget>[
+            ...alerts.map((alert) => AlertWidget(alert: alert))
+          ]);
+        },
+      ),
+    );
   }
 }
