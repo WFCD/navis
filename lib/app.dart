@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/blocs/bloc.dart';
-//import 'package:navis/screens/item_info.dart';
+import 'package:navis/screens/app_scaffold.dart';
+import 'package:navis/screens/item_info.dart';
 import 'package:navis/screens/nightwaves.dart';
 import 'package:navis/screens/syndicate_bounties.dart';
-import 'package:navis/widgets/widgets.dart';
-import 'package:navis/screens/app_scaffold.dart';
 import 'package:navis/services/repository.dart';
+import 'package:navis/widgets/widgets.dart';
 import 'package:wfcd_api_wrapper/worldstate_wrapper.dart';
 
 import 'screens/settings.dart';
@@ -84,7 +84,7 @@ class _NavisState extends State<Navis> with WidgetsBindingObserver {
           Settings.route: (_) => const Settings(),
           Nightwaves.route: (_) => const Nightwaves(),
           SyndicateJobs.route: (_) => const SyndicateJobs(),
-          //'/item': (_) => const ItemInfo()
+          ItemInfo.route: (_) => const ItemInfo()
         },
       ),
     );
