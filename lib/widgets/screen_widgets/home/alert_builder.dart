@@ -18,8 +18,8 @@ class AlertTile extends StatelessWidget {
       child: BlocBuilder(
         bloc: state,
         condition: (WorldStates previous, WorldStates current) {
-          final previousAlerts = previous.worldstate.alerts ?? [];
-          final currentAlerts = current.worldstate.alerts ?? [];
+          final previousAlerts = previous.worldstate?.alerts ?? [];
+          final currentAlerts = current.worldstate?.alerts ?? [];
 
           return listEquals(previousAlerts, currentAlerts);
         },

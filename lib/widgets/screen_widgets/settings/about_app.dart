@@ -14,11 +14,21 @@ class AboutApp extends StatelessWidget {
   final _dateFormat = DateFormat.yMMMMd('en_US').add_jms();
 
   void _showSnackBar(String content) {
-    settings.currentState.showSnackBar(
+    settings.currentState?.showSnackBar(
       SnackBar(
         content: Text(content),
       ),
     );
+  }
+
+  Future<void> _updateTable(Repository repository) async {
+    _showSnackBar('Updating drop table');
+    final updateStatus = await repository.worldstateService.updateDropTable();
+
+    if (updateStatus)
+      _showSnackBar('Updated drop table');
+    else
+      _showSnackBar('Drop table is up-to-date');
   }
 
   @override
@@ -32,16 +42,7 @@ class AboutApp extends StatelessWidget {
         ListTile(
           title: const Text('Update Drop Table'),
           subtitle: Text('Last updated $date'),
-          onTap: () async {
-            _showSnackBar('Updating drop table');
-            final updateStatus =
-                await repository.worldstateService.updateDropTable();
-
-            if (updateStatus)
-              _showSnackBar('Updated drop table');
-            else
-              _showSnackBar('Drop table is up-to-date');
-          },
+          onTap: () => _updateTable(repository),
         ),
         ListTile(
           title: const Text('Report Issues'),
