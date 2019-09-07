@@ -21,7 +21,10 @@ class NewsWidget extends StatelessWidget {
           errorWidget: (BuildContext context, String url, Object error) {
             return Center(
               child: Column(
-                children: <Widget>[Icon(Icons.error), Text(error.toString())],
+                children: <Widget>[
+                  Icon(Icons.error),
+                  const Text('Unable to load image')
+                ],
               ),
             );
           },
