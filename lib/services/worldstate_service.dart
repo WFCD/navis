@@ -88,7 +88,8 @@ class WorldstateService {
     if (!response.body.startsWith('['))
       throw const FormatException('Invalid drop table provided by API');
 
-    await saveFile(dropTablePath, response.body);
+    await saveFile(
+        SaveFile(await tempDirectory() + dropTablePath, response.body));
   }
 }
 
