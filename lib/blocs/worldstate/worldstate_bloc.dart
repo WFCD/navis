@@ -23,7 +23,7 @@ class WorldstateBloc extends HydratedBloc<UpdateEvent, WorldStates> {
       Stream<WorldStates> Function(UpdateEvent event) next) {
     return super.transformEvents(
         (events as Observable<UpdateEvent>)
-            .debounceTime(const Duration(milliseconds: 400)),
+            .debounceTime(const Duration(milliseconds: 350)),
         next);
   }
 
