@@ -37,11 +37,7 @@ class _NavisState extends State<Navis> with WidgetsBindingObserver {
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     if (state == AppLifecycleState.resumed) {
-      Future.delayed(
-        const Duration(seconds: 1),
-        () => BlocProvider.of<WorldstateBloc>(context)
-            .dispatch(UpdateEvent.update),
-      );
+      BlocProvider.of<WorldstateBloc>(context).update();
     }
 
     super.didChangeAppLifecycleState(state);
@@ -58,15 +54,18 @@ class _NavisState extends State<Navis> with WidgetsBindingObserver {
 
   @override
   Widget build(BuildContext context) {
+    const background = Color(0xFF212121);
+    const accentColor = Color(0xFF00BC8C);
+
     final theme = ThemeData(
       brightness: Brightness.dark,
       primaryColor: const Color(0xE51A5090),
-      accentColor: const Color(0xFF00BC8C),
+      accentColor: accentColor,
       cardColor: const Color(0xFF2C2C2C),
-      dialogBackgroundColor: const Color(0xFF212121),
-      scaffoldBackgroundColor: const Color(0xFF212121),
+      dialogBackgroundColor: background,
+      scaffoldBackgroundColor: background,
       canvasColor: const Color(0xFF212121),
-      splashColor: const Color(0xFF00BC8C),
+      splashColor: accentColor,
     );
 
     return RepositoryProvider.value(
@@ -75,10 +74,7 @@ class _NavisState extends State<Navis> with WidgetsBindingObserver {
         title: 'Navis',
         color: Colors.grey[900],
         theme: theme,
-        home: BlocBuilder<StorageBloc, StorageState>(
-          bloc: BlocProvider.of<StorageBloc>(context),
-          builder: _blocBuilder,
-        ),
+        home: BlocBuilder<StorageBloc, StorageState>(builder: _blocBuilder),
         builder: _builder,
         routes: <String, WidgetBuilder>{
           Settings.route: (_) => const Settings(),

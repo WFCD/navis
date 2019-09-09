@@ -92,8 +92,9 @@ class _MainScreenState extends State<MainScreen> {
               listener: (context, state) => _blocListener(
                 context,
                 state,
-                () => BlocProvider.of<WorldstateBloc>(context)
-                    .dispatch(UpdateEvent.update),
+                () async {
+                  await BlocProvider.of<WorldstateBloc>(context).update();
+                },
               ),
             ),
             BlocListener<SearchBloc, SearchState>(
