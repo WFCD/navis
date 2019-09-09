@@ -8,7 +8,7 @@ List<SlimDrop> convertToDrop(String data) {
   final table = json.decode(data);
 
   if (table is Map<String, dynamic>) {
-    throw const FormatException('Invalid Drop Table Data');
+    return [];
   }
 
   return table.map<SlimDrop>((d) => SlimDrop.fromJson(d)).toList();
@@ -19,12 +19,14 @@ List<SlimDrop> sortDrops(SortedDrops dropInstance) {
   final drops = dropInstance.drops;
 
   switch (sortBy) {
-    case Sort.ab:
+    case Sort.a_b:
       return drops..sort((a, b) => a.item.compareTo(b.item));
-    case Sort.hl:
+    case Sort.high_low:
       return drops..sort((a, b) => b.chance.compareTo(a.chance));
-    default:
+    case Sort.low_high:
       return drops..sort((a, b) => a.chance.compareTo(b.chance));
+    default:
+      return drops..shuffle();
   }
 }
 
