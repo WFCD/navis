@@ -63,7 +63,7 @@ class EventWidget extends StatelessWidget {
   }
 
   Widget _buildFooter(BuildContext context) {
-    final syndicate = Syndicate(name: event.faction, jobs: event.jobs);
+    final syndicate = Syndicate(name: event.affiliatedWith, jobs: event.jobs);
 
     if (event.jobs?.isNotEmpty ?? false) {
       return FlatButton(
