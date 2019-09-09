@@ -1,25 +1,27 @@
+language: android
+jdk: oraclejdk8
+licenses:
+  - android-sdk-preview-license-.+
+  - android-sdk-license-.+
+  - google-gdk-license-.+
+android:
+  components:
+    - build-tools-28.0.3
+    - android-28
+before_install:
+  - bundle install --gemfile=android/Gemfile
+before_script:
+  - openssl aes-256-cbc -K $encrypted_2db283701f8c_key -iv $encrypted_2db283701f8c_iv
+    -in secrets.tar.enc -out secrets.tar -d
+  - tar xvf secrets.tar
+  - if [  ! -d "flutter" ] ; then git clone https://github.com/flutter/flutter.git
+    -b stable; fi;
+  - export PATH=./flutter/bin:$PATH
+  - flutter upgrade
+
 jobs:
   include:
     - name: Test
-      dist: trusty
-      language: android
-      jdk: oraclejdk8
-      licenses:
-        - android-sdk-preview-license-.+
-        - android-sdk-license-.+
-        - google-gdk-license-.+
-      android:
-        components:
-          - build-tools-28.0.3
-          - android-28
-      before_script:
-        - openssl aes-256-cbc -K $encrypted_2db283701f8c_key -iv $encrypted_2db283701f8c_iv
-          -in secrets.tar.enc -out secrets.tar -d
-        - tar xvf secrets.tar
-        - if [  ! -d "flutter" ] ; then git clone https://github.com/flutter/flutter.git
-          -b stable; fi;
-        - export PATH=./flutter/bin:$PATH
-        - flutter upgrade
       script:
         - flutter pub get
         - flutter test
@@ -27,26 +29,6 @@ jobs:
 
     - name: Deploy
       if: tag IS present
-      language: android
-      jdk: oraclejdk8
-      licenses:
-        - android-sdk-preview-license-.+
-        - android-sdk-license-.+
-        - google-gdk-license-.+
-      android:
-        components:
-          - build-tools-28.0.3
-          - android-28
-      before_install:
-        - bundle install --gemfile=android/Gemfile
-      before_script:
-        - openssl aes-256-cbc -K $encrypted_2db283701f8c_key -iv $encrypted_2db283701f8c_iv
-          -in secrets.tar.enc -out secrets.tar -d
-        - tar xvf secrets.tar
-        - if [  ! -d "flutter" ] ; then git clone https://github.com/flutter/flutter.git
-          -b stable; fi;
-        - export PATH=./flutter/bin:$PATH
-        - flutter upgrade
       script:
         - flutter pub get
         - flutter build apk
