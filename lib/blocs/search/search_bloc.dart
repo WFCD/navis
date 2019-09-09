@@ -62,11 +62,11 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
 
         try {
           final results = searchType != SearchTypes.drops
-              ? api.search(searchText)
-              : compute(searchDropTable,
+              ? await api.search(searchText)
+              : await compute(searchDropTable,
                   SearchDropTable(searchText, _dropTable ?? []));
 
-          yield SearchStateSuccess(await results);
+          yield SearchStateSuccess(results);
         } catch (e) {
           yield SearchStateError(e.toString());
         }
