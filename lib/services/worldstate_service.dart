@@ -9,7 +9,6 @@ import 'package:navis/utils/worldstate_utils.dart';
 import 'package:warframe_items_model/warframe_items_model.dart';
 import 'package:wfcd_api_wrapper/worldstate_wrapper.dart';
 import 'package:worldstate_model/worldstate_models.dart';
-import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 
 class WorldstateService {
   WorldstateService(this.client, this.storage)
@@ -39,17 +38,11 @@ class WorldstateService {
     final doesFileExist = await checkFile(dropTablePath);
     final timestamp = await _getDropTableTimestamp();
 
-    if (doesFileExist != true) {
-      try {
-        await _downloadDropTable();
-        storage.saveTimestamp(timestamp);
+    if (!doesFileExist) {
+      await _downloadDropTable();
+      storage.saveTimestamp(timestamp);
 
-        return getFile(dropTablePath);
-      } catch (exception, stack) {
-        Crashlytics.instance.recordError(exception, stack);
-
-        return null;
-      }
+      return getFile(dropTablePath);
     }
 
     return getFile('/drop_table.json');
