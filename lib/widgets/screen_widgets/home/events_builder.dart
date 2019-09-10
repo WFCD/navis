@@ -20,8 +20,8 @@ class EventBuilder extends StatelessWidget {
             bloc: BlocProvider.of<WorldstateBloc>(context),
             condition: (WorldStates previous, WorldStates current) {
               return compareList(
-                previous.worldstate.events,
-                current.worldstate.events,
+                previous.worldstate?.events,
+                current.worldstate?.events,
               );
             },
             builder: (BuildContext context, WorldStates state) {

@@ -14,8 +14,8 @@ class FissureList extends StatelessWidget {
       child: BlocBuilder<WorldstateBloc, WorldStates>(
         condition: (previous, current) {
           return compareList(
-            previous.worldstate.fissures,
-            current.worldstate.fissures,
+            previous.worldstate?.fissures,
+            current.worldstate?.fissures,
           );
         },
         builder: (BuildContext context, WorldStates state) {

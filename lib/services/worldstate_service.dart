@@ -17,7 +17,7 @@ class WorldstateService {
   final http.Client client;
   final LocalStorageService storage;
 
-  WorldstateApiWrapper _api;
+  final WorldstateApiWrapper _api;
 
   static const dropTablePath = '/drop_table.json';
 
