@@ -2,7 +2,9 @@ import 'dart:convert';
 
 import 'package:warframe_items_model/warframe_items_model.dart';
 
-import 'search_event.dart';
+enum Sort { unsorted, a_b, high_low, low_high }
+
+enum SearchTypes { drops, items }
 
 List<SlimDrop> convertToDrop(String data) {
   final table = json.decode(data);

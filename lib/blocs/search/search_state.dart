@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
-import 'search_event.dart';
+import 'search_utils.dart';
 
 @immutable
 abstract class SearchState extends Equatable {
@@ -13,7 +13,8 @@ class SearchStateLoading extends SearchState {}
 class SearchStateEmpty extends SearchState {}
 
 class SearchStateSuccess extends SearchState {
-  SearchStateSuccess(this.results, {this.sortBy = Sort.un}) : super([results]);
+  SearchStateSuccess(this.results, {this.sortBy = Sort.unsorted})
+      : super([results]);
 
   final List<dynamic> results;
   final Sort sortBy;

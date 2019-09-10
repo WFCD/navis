@@ -1,9 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
-enum SearchTypes { drops, items }
-
-enum Sort { un, ab, hl, lh }
+import 'search_utils.dart';
 
 @immutable
 abstract class SearchEvent extends Equatable {

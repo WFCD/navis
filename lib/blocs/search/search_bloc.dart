@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:bloc/bloc.dart';
-import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:navis/services/worldstate_service.dart';
 import 'package:rxdart/rxdart.dart';
@@ -28,10 +27,9 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
       final File table = await api.initializeDropTable();
 
       _dropTable = await compute(convertToDrop, table?.readAsStringSync());
-    } catch (error, stack) {
+    } catch (e) {
       dispatch(SearchError(
           'Downloading drop table failed, searching the drop table will not be possible'));
-      Crashlytics.instance.recordError(error, stack);
     }
   }
 
@@ -75,6 +73,8 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
 
     if (event is SwitchSearchType) {
       searchType = event.searchType;
+
+      yield SearchStateEmpty();
     }
 
     if (event is SortSearch) {
@@ -82,17 +82,12 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
         final sorted =
             await compute(sortDrops, SortedDrops(event.sortBy, event.results));
 
-        yield SearchStateSuccess(sorted);
+        yield SearchStateSuccess(sorted, sortBy: event.sortBy);
       }
     }
 
     if (event is SearchError) {
       yield SearchListenerError(event.error);
     }
-  }
-
-  @override
-  void onError(Object error, StackTrace stacktrace) {
-    Crashlytics.instance.recordError(error, stacktrace);
   }
 }
