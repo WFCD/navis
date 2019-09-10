@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:navis/blocs/bloc.dart';
+import 'package:navis/utils/worldstate_utils.dart';
 import 'package:navis/widgets/screen_widgets/fissures/fissures.dart';
 
 class FissureList extends StatelessWidget {
@@ -8,12 +9,15 @@ class FissureList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ws = BlocProvider.of<WorldstateBloc>(context);
-
     return RefreshIndicator(
-      onRefresh: ws.update,
+      onRefresh: BlocProvider.of<WorldstateBloc>(context).update,
       child: BlocBuilder<WorldstateBloc, WorldStates>(
-        bloc: ws,
+        condition: (previous, current) {
+          return compareList(
+            previous.worldstate.fissures,
+            current.worldstate.fissures,
+          );
+        },
         builder: (BuildContext context, WorldStates state) {
           if (state is WorldstateLoaded) {
             final fissures = state.worldstate?.fissures ?? [];

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:navis/blocs/bloc.dart';
+import 'package:navis/utils/worldstate_utils.dart';
 import 'package:navis/widgets/screen_widgets/invasions/invasions.dart';
 
 class InvasionsList extends StatelessWidget {
@@ -7,12 +8,15 @@ class InvasionsList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ws = BlocProvider.of<WorldstateBloc>(context);
-
     return RefreshIndicator(
-      onRefresh: ws.update,
-      child: BlocBuilder(
-        bloc: ws,
+      onRefresh: BlocProvider.of<WorldstateBloc>(context).update,
+      child: BlocBuilder<WorldstateBloc, WorldStates>(
+        condition: (previous, current) {
+          return compareList(
+            previous.worldstate.invasions,
+            current.worldstate.invasions,
+          );
+        },
         builder: (BuildContext context, WorldStates state) {
           if (state is WorldstateLoaded) {
             final invasions = state.worldstate?.invasions ?? [];

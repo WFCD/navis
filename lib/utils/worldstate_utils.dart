@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:math';
 
 import 'package:collection/collection.dart';
 import 'package:flutter/widgets.dart';
@@ -62,13 +61,10 @@ ImageProvider skybox(BuildContext context, String node) {
 }
 
 bool compareExpiry({DateTime previous, DateTime current}) {
-  final forceFalse = DateTime.now().subtract(
-      Duration(milliseconds: previous?.millisecond ?? (24 * pow(3.6, 6))));
-
-  return previous?.isBefore(current ?? forceFalse);
+  return previous?.isBefore(current ?? DateTime.now());
 }
 
-bool compareList({List previous, List current}) {
+bool compareList(List previous, List current) {
   const _deep = DeepCollectionEquality();
 
   return !_deep.equals(previous ?? [], current ?? []);
