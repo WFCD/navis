@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/blocs/bloc.dart';
+import 'package:navis/blocs/worldstate/worldstate_events.dart';
 import 'package:navis/screens/app_scaffold.dart';
 import 'package:navis/screens/codex_entry.dart';
 import 'package:navis/screens/nightwaves.dart';
@@ -26,7 +27,7 @@ class _NavisState extends State<Navis> with WidgetsBindingObserver {
     super.initState();
     WidgetsBinding.instance.addObserver(this);
 
-    BlocProvider.of<WorldstateBloc>(context).dispatch(UpdateEvent.update);
+    BlocProvider.of<WorldstateBloc>(context).dispatch(UpdateEvent());
 
     if (widget.repository.storage?.platform == null) {
       widget.repository.notifications

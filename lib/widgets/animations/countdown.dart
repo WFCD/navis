@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/blocs/bloc.dart';
+import 'package:navis/blocs/worldstate/worldstate_events.dart';
 import 'package:simple_animations/simple_animations.dart';
 
 import 'package:navis/widgets/widgets/static_box.dart';
@@ -22,7 +23,7 @@ class CountdownBox extends StatelessWidget {
   void _listener(BuildContext context, AnimationStatus status) {
     if (status == AnimationStatus.completed ||
         status == AnimationStatus.dismissed) {
-      BlocProvider.of<WorldstateBloc>(context).dispatch(UpdateEvent.update);
+      BlocProvider.of<WorldstateBloc>(context).dispatch(UpdateEvent());
     }
   }
 

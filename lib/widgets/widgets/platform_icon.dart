@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:navis/blocs/bloc.dart';
+import 'package:navis/blocs/worldstate/worldstate_events.dart';
 import 'package:wfcd_api_wrapper/worldstate_wrapper.dart';
 
 const pc = 'PC';
@@ -48,7 +49,7 @@ class PlatformIcon extends StatelessWidget {
 
     void _onPressed() {
       storage.dispatch(ChangePlatformEvent(platform));
-      state.dispatch(UpdateEvent.update);
+      state.dispatch(UpdateEvent());
       //Navigator.of(context).pop();
     }
 

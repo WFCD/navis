@@ -5,11 +5,10 @@ import 'package:navis/services/worldstate_service.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:worldstate_model/worldstate_models.dart';
 
+import 'worldstate_events.dart';
 import 'worldstate_states.dart';
 
-enum UpdateEvent { update }
-
-class WorldstateBloc extends HydratedBloc<UpdateEvent, WorldStates> {
+class WorldstateBloc extends HydratedBloc<WorldstateEvent, WorldStates> {
   WorldstateBloc(this.api);
 
   final WorldstateService api;
@@ -19,17 +18,17 @@ class WorldstateBloc extends HydratedBloc<UpdateEvent, WorldStates> {
       super.initialState ?? WorldstateUninitialized();
 
   @override
-  Stream<WorldStates> transformEvents(Stream<UpdateEvent> events,
+  Stream<WorldStates> transformEvents(Stream<WorldstateEvent> events,
       Stream<WorldStates> Function(UpdateEvent event) next) {
     return super.transformEvents(
-        (events as Observable<UpdateEvent>)
+        (events as Observable<WorldstateEvent>)
             .debounceTime(const Duration(milliseconds: 350)),
         next);
   }
 
   @override
-  Stream<WorldStates> mapEventToState(UpdateEvent event) async* {
-    if (event == UpdateEvent.update) {
+  Stream<WorldStates> mapEventToState(WorldstateEvent event) async* {
+    if (event is UpdateEvent) {
       try {
         final state = await api.getWorldstate();
         yield WorldstateLoaded(state);
@@ -40,7 +39,7 @@ class WorldstateBloc extends HydratedBloc<UpdateEvent, WorldStates> {
   }
 
   Future<void> update() async {
-    dispatch(UpdateEvent.update);
+    dispatch(UpdateEvent());
     await Future.delayed(const Duration(milliseconds: 600));
   }
 

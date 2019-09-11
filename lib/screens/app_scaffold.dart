@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:navis/blocs/bloc.dart';
+import 'package:navis/blocs/worldstate/worldstate_events.dart';
 import 'package:navis/global_keys.dart';
 import 'package:navis/widgets/widgets.dart';
 
@@ -26,7 +27,7 @@ class _MainScreenState extends State<MainScreen> {
   @override
   void initState() {
     timer = Timer.periodic(const Duration(minutes: 5), (t) {
-      BlocProvider.of<WorldstateBloc>(context).dispatch(UpdateEvent.update);
+      BlocProvider.of<WorldstateBloc>(context).dispatch(UpdateEvent());
     });
 
     super.initState();

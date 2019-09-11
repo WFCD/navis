@@ -2,9 +2,10 @@ import 'dart:io'; //ignore: unused_import
 
 import 'package:bloc/bloc.dart';
 import 'package:http/http.dart' as http;
-import 'package:http/testing.dart' as testing;
 import 'package:hydrated_bloc/hydrated_bloc.dart';
+import 'package:mockito/mockito.dart';
 import 'package:navis/blocs/bloc.dart';
+import 'package:navis/blocs/worldstate/worldstate_events.dart';
 import 'package:navis/constants/storage_keys.dart';
 import 'package:navis/services/repository.dart';
 import 'package:navis/utils/utils.dart';
@@ -14,8 +15,10 @@ import 'package:wfcd_api_wrapper/worldstate_wrapper.dart';
 
 import 'setup_methods.dart';
 
+class MockClient extends Mock implements http.Client {}
+
 Future<void> main() async {
-  final client = testing.MockClient((_) async => http.Response('{}', 200));
+  final client = MockClient();
 
   Repository repository;
   WorldstateBloc worldstate;
@@ -38,12 +41,15 @@ Future<void> main() async {
       expect(worldstate.initialState, WorldstateUninitialized());
     });
 
-    // test('Worldstate is loaded correctly', () async {
-    //   worldstate.dispatch(UpdateEvent.update);
+    test('Worldstate is loaded correctly', () async {
+      when(client.get('https://api.warframestat.us/pc')).thenAnswer((_) async =>
+          http.Response(File('test/worldstate.json').readAsStringSync(), 200));
 
-    //   expectLater(worldstate.state,
-    //       emitsThrough(const TypeMatcher<WorldstateLoaded>()));
-    // });
+      worldstate.dispatch(UpdateEvent());
+
+      expectLater(worldstate.state,
+          emitsThrough(const TypeMatcher<WorldstateLoaded>()));
+    });
 
     test('dispose does not create a new state', () {
       expectLater(worldstate.state, emitsInOrder([]));
