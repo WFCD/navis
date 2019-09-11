@@ -5,7 +5,7 @@ import 'search_utils.dart';
 
 @immutable
 abstract class SearchEvent extends Equatable {
-  SearchEvent([List props = const <dynamic>[]]) : super(props);
+  const SearchEvent([List props = const <dynamic>[]]) : super(props);
 }
 
 class TextChanged extends SearchEvent {

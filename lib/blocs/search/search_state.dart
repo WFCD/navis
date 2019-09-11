@@ -5,7 +5,7 @@ import 'search_utils.dart';
 
 @immutable
 abstract class SearchState extends Equatable {
-  SearchState([List props = const <dynamic>[]]) : super(props);
+  const SearchState([List props = const <dynamic>[]]) : super(props);
 }
 
 class SearchStateLoading extends SearchState {}

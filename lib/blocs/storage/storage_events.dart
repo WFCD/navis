@@ -3,7 +3,7 @@ import 'package:navis/utils/utils.dart';
 import 'package:wfcd_api_wrapper/worldstate_wrapper.dart';
 
 abstract class ChangeEvent extends Equatable {
-  ChangeEvent([List props = const []]) : super(props);
+  const ChangeEvent([List props = const []]) : super(props);
 }
 
 class ChangePlatformEvent extends ChangeEvent {
