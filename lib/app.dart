@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/blocs/bloc.dart';
 import 'package:navis/screens/app_scaffold.dart';
-import 'package:navis/screens/item_info.dart';
+import 'package:navis/screens/codex_entry.dart';
 import 'package:navis/screens/nightwaves.dart';
 import 'package:navis/screens/syndicate_bounties.dart';
 import 'package:navis/services/repository.dart';
@@ -80,7 +80,7 @@ class _NavisState extends State<Navis> with WidgetsBindingObserver {
           Settings.route: (_) => const Settings(),
           Nightwaves.route: (_) => const Nightwaves(),
           SyndicateJobs.route: (_) => const SyndicateJobs(),
-          ItemInfo.route: (_) => const ItemInfo()
+          CodexEntry.route: (_) => const CodexEntry()
         },
       ),
     );

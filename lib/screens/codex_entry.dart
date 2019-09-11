@@ -3,16 +3,16 @@ import 'package:navis/widgets/screen_widgets/items_info/items_info_widgets.dart'
 import 'package:navis/widgets/screen_widgets/items_info/warframe_stats.dart';
 import 'package:warframe_items_model/warframe_items_model.dart';
 
-class ItemInfo extends StatefulWidget {
-  const ItemInfo({Key key}) : super(key: key);
+class CodexEntry extends StatefulWidget {
+  const CodexEntry({Key key}) : super(key: key);
 
-  static const route = '/item';
+  static const route = '/entry';
 
   @override
-  _ItemInfoState createState() => _ItemInfoState();
+  _CodexEntryState createState() => _CodexEntryState();
 }
 
-class _ItemInfoState extends State<ItemInfo> {
+class _CodexEntryState extends State<CodexEntry> {
   ItemObject _item;
 
   @override
@@ -38,7 +38,7 @@ class _ItemInfoState extends State<ItemInfo> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('Item Entry'),
+          title: const Text('Codex Entry'),
           backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         ),
         body: SingleChildScrollView(

@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:navis/screens/codex_entry.dart';
 import 'package:navis/utils/utils.dart';
 import 'package:warframe_items_model/warframe_items_model.dart';
 
@@ -28,7 +29,8 @@ class ItemResultWidget extends StatelessWidget {
         subtitle: Text(parseHtmlString(item.description ?? '')),
         dense: true,
         isThreeLine: true,
-        onTap: () => Navigator.of(context).pushNamed('/item', arguments: item),
+        onTap: () =>
+            Navigator.of(context).pushNamed(CodexEntry.route, arguments: item),
       ),
     );
   }
