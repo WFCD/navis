@@ -1,5 +1,5 @@
+import 'package:navis/constants/storage_keys.dart';
 import 'package:navis/utils/utils.dart';
-import 'package:navis/utils/storage_keys.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wfcd_api_wrapper/worldstate_wrapper.dart';
 
@@ -15,7 +15,7 @@ class LocalStorageService {
   }
 
   Platforms get platform {
-    final diskPlatform = getFromDisk(platformKey);
+    final diskPlatform = getFromDisk(SettingsKeys.platformKey);
 
     if (diskPlatform != null)
       return Platforms.values.firstWhere(
@@ -26,10 +26,10 @@ class LocalStorageService {
   }
 
   set platform(Platforms value) =>
-      saveToDisk(platformKey, value.toString().split('.').last);
+      saveToDisk(SettingsKeys.platformKey, value.toString().split('.').last);
 
   Formats get dateformat {
-    final diskFormat = getFromDisk(dateformatKey);
+    final diskFormat = getFromDisk(SettingsKeys.dateformatKey);
 
     if (diskFormat != null)
       return Formats.values
@@ -39,37 +39,54 @@ class LocalStorageService {
   }
 
   set dateformat(Formats value) =>
-      saveToDisk(dateformatKey, value.toString().split('.').last);
+      saveToDisk(SettingsKeys.dateformatKey, value.toString().split('.').last);
 
   Map<String, bool> get acolytes => {
-        angstkey: getFromDisk(angstkey) ?? false,
-        maliceKey: getFromDisk(maliceKey) ?? false,
-        maniaKey: getFromDisk(maniaKey) ?? false,
-        miseryKey: getFromDisk(miseryKey) ?? false,
-        tormentKey: getFromDisk(tormentKey) ?? false,
-        violenceKey: getFromDisk(violenceKey) ?? false
+        NotificationKeys.angstkey:
+            getFromDisk(NotificationKeys.angstkey) ?? false,
+        NotificationKeys.maliceKey:
+            getFromDisk(NotificationKeys.maliceKey) ?? false,
+        NotificationKeys.maniaKey:
+            getFromDisk(NotificationKeys.maniaKey) ?? false,
+        NotificationKeys.miseryKey:
+            getFromDisk(NotificationKeys.miseryKey) ?? false,
+        NotificationKeys.tormentKey:
+            getFromDisk(NotificationKeys.tormentKey) ?? false,
+        NotificationKeys.violenceKey:
+            getFromDisk(NotificationKeys.violenceKey) ?? false
       };
 
   Map<String, bool> get simple => {
-        alertsKey: getFromDisk(alertsKey) ?? false,
-        baroKey: getFromDisk(baroKey) ?? false,
-        darvoKey: getFromDisk(darvoKey) ?? false,
-        sortiesKey: getFromDisk(sortiesKey) ?? false
+        NotificationKeys.alertsKey:
+            getFromDisk(NotificationKeys.alertsKey) ?? false,
+        NotificationKeys.baroKey:
+            getFromDisk(NotificationKeys.baroKey) ?? false,
+        NotificationKeys.darvoKey:
+            getFromDisk(NotificationKeys.darvoKey) ?? false,
+        NotificationKeys.sortiesKey:
+            getFromDisk(NotificationKeys.sortiesKey) ?? false
       };
 
   Map<String, bool> get cycles => {
-        earthDayKey: getFromDisk(earthDayKey) ?? false,
-        earthNightKey: getFromDisk(earthNightKey) ?? false,
-        dayKey: getFromDisk(dayKey) ?? false,
-        nightKey: getFromDisk(nightKey) ?? false,
-        warmKey: getFromDisk(warmKey) ?? false,
-        coldKey: getFromDisk(coldKey) ?? false
+        NotificationKeys.earthDayKey:
+            getFromDisk(NotificationKeys.earthDayKey) ?? false,
+        NotificationKeys.earthNightKey:
+            getFromDisk(NotificationKeys.earthNightKey) ?? false,
+        NotificationKeys.dayKey: getFromDisk(NotificationKeys.dayKey) ?? false,
+        NotificationKeys.nightKey:
+            getFromDisk(NotificationKeys.nightKey) ?? false,
+        NotificationKeys.warmKey:
+            getFromDisk(NotificationKeys.warmKey) ?? false,
+        NotificationKeys.coldKey: getFromDisk(NotificationKeys.coldKey) ?? false
       };
 
   Map<String, bool> get news => {
-        newsPrimeKey: getFromDisk(newsPrimeKey) ?? false,
-        newsStreamKey: getFromDisk(newsStreamKey) ?? false,
-        newsUpdateKey: getFromDisk(newsUpdateKey) ?? false
+        NotificationKeys.newsPrimeKey:
+            getFromDisk(NotificationKeys.newsPrimeKey) ?? false,
+        NotificationKeys.newsStreamKey:
+            getFromDisk(NotificationKeys.newsStreamKey) ?? false,
+        NotificationKeys.newsUpdateKey:
+            getFromDisk(NotificationKeys.newsUpdateKey) ?? false
       };
 
   DateTime get tableTimestamp {

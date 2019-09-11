@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:navis/blocs/bloc.dart';
 //import 'package:navis/blocs/bloc.dart';
-import 'package:navis/utils/notification_filters.dart';
+import 'package:navis/constants/notification_filters.dart';
 import 'package:navis/widgets/dialogs.dart';
 import 'package:navis/widgets/widgets.dart';
 

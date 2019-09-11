@@ -5,8 +5,8 @@ import 'package:http/http.dart' as http;
 import 'package:http/testing.dart' as testing;
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:navis/blocs/bloc.dart';
+import 'package:navis/constants/storage_keys.dart';
 import 'package:navis/services/repository.dart';
-import 'package:navis/utils/storage_keys.dart';
 import 'package:navis/utils/utils.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:test/test.dart';
@@ -108,8 +108,8 @@ Future<Platforms> testStorage(
 
   await Future.delayed(const Duration(milliseconds: 500));
 
-  return Platforms.values.firstWhere(
-      (p) => p.toString() == 'Platforms.${prefs.getString(platformKey)}');
+  return Platforms.values.firstWhere((p) =>
+      p.toString() == 'Platforms.${prefs.getString(SettingsKeys.platformKey)}');
 }
 
 Future<Formats> testDateformat(
@@ -121,6 +121,6 @@ Future<Formats> testDateformat(
 
   await Future.delayed(const Duration(milliseconds: 500));
 
-  return Formats.values.firstWhere(
-      (f) => f.toString() == 'Formats.${prefs.getString(dateformatKey)}');
+  return Formats.values.firstWhere((f) =>
+      f.toString() == 'Formats.${prefs.getString(SettingsKeys.dateformatKey)}');
 }

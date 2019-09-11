@@ -1,4 +1,4 @@
-import 'package:navis/utils/storage_keys.dart';
+import 'storage_keys.dart';
 
 // Do I even need this anymore?
 const rewards = {
@@ -51,7 +51,7 @@ const simple = [
   {
     'name': 'Rare Alerts',
     'description': 'Rare alert notifications, mainly gifts of the lotus',
-    'key': alertsKey
+    'key': NotificationKeys.alertsKey
   },
   // {
   //   'name': 'Baro Ki\'Teer Arrival',
@@ -66,7 +66,7 @@ const simple = [
   {
     'name': 'Sorties',
     'description': 'Notifications for new sorties',
-    'key': sortiesKey
+    'key': NotificationKeys.sortiesKey
   }
 ];
 
@@ -78,27 +78,27 @@ const filtered = {
 };
 
 const cycles = {
-  earthDayKey: 'Earth Day Cycle',
-  earthNightKey: 'Earth Night Cycle',
-  dayKey: 'Cetus Day Cycle',
-  nightKey: 'Cetus Night Cycle',
-  warmKey: 'Orb Vallis Warm Cycle',
-  coldKey: 'Orb Vallis Cold Cycle'
+  NotificationKeys.earthDayKey: 'Earth Day Cycle',
+  NotificationKeys.earthNightKey: 'Earth Night Cycle',
+  NotificationKeys.dayKey: 'Cetus Day Cycle',
+  NotificationKeys.nightKey: 'Cetus Night Cycle',
+  NotificationKeys.warmKey: 'Orb Vallis Warm Cycle',
+  NotificationKeys.coldKey: 'Orb Vallis Cold Cycle'
 };
 
 const newsType = {
-  newsPrimeKey: 'Prime Access News',
-  newsStreamKey: 'Stream Announcements',
-  newsUpdateKey: 'Warframe update News'
+  NotificationKeys.newsPrimeKey: 'Prime Access News',
+  NotificationKeys.newsStreamKey: 'Stream Announcements',
+  NotificationKeys.newsUpdateKey: 'Warframe update News'
 };
 
 const acolytes = {
-  angstkey: 'Angst',
-  maliceKey: 'Malice',
-  maniaKey: 'Mania',
-  miseryKey: 'Misery',
-  tormentKey: 'Torment',
-  violenceKey: 'Violence',
+  NotificationKeys.angstkey: 'Angst',
+  NotificationKeys.maliceKey: 'Malice',
+  NotificationKeys.maniaKey: 'Mania',
+  NotificationKeys.miseryKey: 'Misery',
+  NotificationKeys.tormentKey: 'Torment',
+  NotificationKeys.violenceKey: 'Violence',
 };
 
 const missionTypes = {
