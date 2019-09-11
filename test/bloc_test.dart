@@ -2,14 +2,12 @@ import 'dart:convert';
 import 'dart:io'; //ignore: unused_import
 
 import 'package:bloc/bloc.dart';
-import 'package:http/http.dart' as http;
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:mockito/mockito.dart';
 import 'package:navis/blocs/bloc.dart';
 import 'package:navis/blocs/worldstate/worldstate_events.dart';
 import 'package:navis/constants/storage_keys.dart';
 import 'package:navis/services/repository.dart';
-import 'package:navis/services/worldstate_service.dart';
 import 'package:navis/utils/utils.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:test/test.dart';
