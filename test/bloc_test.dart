@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io'; //ignore: unused_import
 
 import 'package:bloc/bloc.dart';
@@ -8,17 +9,20 @@ import 'package:navis/blocs/bloc.dart';
 import 'package:navis/blocs/worldstate/worldstate_events.dart';
 import 'package:navis/constants/storage_keys.dart';
 import 'package:navis/services/repository.dart';
+import 'package:navis/services/worldstate_service.dart';
 import 'package:navis/utils/utils.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:test/test.dart';
 import 'package:wfcd_api_wrapper/worldstate_wrapper.dart';
+import 'package:worldstate_model/worldstate_models.dart';
 
+import 'mocked_classes.dart';
 import 'setup_methods.dart';
 
-class MockClient extends Mock implements http.Client {}
-
 Future<void> main() async {
-  final client = MockClient();
+  final mockWorldstateService = MockWorldstateService();
+  // final mockLocalStorageService = MockLocalStrorageService();
+  // final mockNotificationService = MockNotificationService();
 
   Repository repository;
   WorldstateBloc worldstate;
@@ -27,11 +31,12 @@ Future<void> main() async {
 
   setUpAll(() async {
     await setupPackageMockMethods();
-    repository = await Repository.initRepository(client: client);
 
     BlocSupervisor.delegate = await HydratedBlocDelegate.build();
 
-    worldstate = WorldstateBloc(repository.worldstateService);
+    repository = await Repository.initRepository();
+
+    worldstate = WorldstateBloc(mockWorldstateService);
     storage = StorageBloc(repository.storage, repository.notifications);
     prefs = await SharedPreferences.getInstance();
   });
@@ -42,8 +47,11 @@ Future<void> main() async {
     });
 
     test('Worldstate is loaded correctly', () async {
-      when(client.get('https://api.warframestat.us/pc')).thenAnswer((_) async =>
-          http.Response(File('test/worldstate.json').readAsStringSync(), 200));
+      when(mockWorldstateService.getWorldstate()).thenAnswer((_) async {
+        final data = json.decode(await File('worldstate.json').readAsString());
+
+        return Worldstate.fromJson(data);
+      });
 
       worldstate.dispatch(UpdateEvent());
 
