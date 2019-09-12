@@ -21,10 +21,14 @@ class WorldstateService {
 
   static const dropTablePath = '/drop_table.json';
 
-  // Sometimes the items list can be too long and so parsing needs to be moved to a new thread
-  // maybe paginat(?) the results in the future
   Future<List<ItemObject>> search(String searchTerm) async {
-    return await compute(_search, _SearchItems(_api, searchTerm));
+    final items = await _api.searchItems(searchTerm);
+
+    return items
+      ..removeWhere((i) =>
+          i.category == 'Skins' ||
+          i.category == 'Glyphs' ||
+          i.category == 'Misc');
   }
 
   Future<Worldstate> getWorldstate([Platforms platform]) async {
@@ -84,21 +88,4 @@ class WorldstateService {
     await saveFile(
         SaveFile(await tempDirectory() + dropTablePath, response.body));
   }
-}
-
-Future<List<ItemObject>> _search(_SearchItems search) async {
-  final items = await search.api.searchItems(search.searchTerm);
-
-  return items
-    ..removeWhere((i) =>
-        i.category == 'Skins' ||
-        i.category == 'Glyphs' ||
-        i.category == 'Misc');
-}
-
-class _SearchItems {
-  _SearchItems(this.api, this.searchTerm);
-
-  final WorldstateApiWrapper api;
-  final String searchTerm;
 }
