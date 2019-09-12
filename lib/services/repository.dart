@@ -1,6 +1,5 @@
 import 'package:http/http.dart';
 import 'package:navis/services/worldstate_service.dart';
-import 'package:navis/utils/metric_client.dart';
 import 'package:package_info/package_info.dart';
 
 import 'localstorage_service.dart';
@@ -20,7 +19,7 @@ class Repository {
   final WorldstateService worldstateService;
 
   static Future<Repository> initRepository({Client client}) async {
-    client ??= MetricHttpClient(Client());
+    client ??= Client();
 
     final _storage = await LocalStorageService.getInstance();
     final _notifications = NotificationService.initialize();
