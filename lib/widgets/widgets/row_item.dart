@@ -32,10 +32,6 @@ class RowItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final style = caption
-        ? Theme.of(context).textTheme.caption.copyWith(fontSize: 13)
-        : Theme.of(context).textTheme.subhead.copyWith(fontSize: size);
-
     final _icons = Container(
         child: Row(children: <Widget>[
       if (icons.isNotEmpty)
