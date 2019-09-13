@@ -18,8 +18,7 @@ class SyndicateJobs extends StatelessWidget {
           appBar: AppBar(
             title: Text(syndicate.name),
             titleSpacing: 0.0,
-            backgroundColor:
-                buildColor(stringToSyndicateFaction(syndicate.name)),
+            backgroundColor: buildColor(syndicateStringToEnum(syndicate.name)),
           ),
           body: CustomScrollView(
             slivers: <Widget>[
@@ -27,7 +26,7 @@ class SyndicateJobs extends StatelessWidget {
                 SliverStickyHeader(
                   header: SyndicateBounty(
                     job: job,
-                    faction: stringToSyndicateFaction(syndicate.name),
+                    faction: syndicateStringToEnum(syndicate.name),
                   ),
                   sliver: SliverList(
                     delegate: SliverChildBuilderDelegate(

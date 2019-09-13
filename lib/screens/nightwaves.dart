@@ -20,8 +20,8 @@ class Nightwaves extends StatelessWidget {
           ),
           body: BlocBuilder<WorldstateBloc, WorldStates>(
             condition: (previous, current) {
-              return (previous.worldstate.nightwave !=
-                      current.worldstate.nightwave) ??
+              return (previous.worldstate?.nightwave !=
+                      current.worldstate?.nightwave) ??
                   false;
             },
             builder: (_, state) {

@@ -41,16 +41,20 @@ List<Drop> jsonToRewards(String response) {
 bool _checkBackground(BuildContext context, String node) {
   bool doesBackgroundExist = true;
 
-  precacheImage(AssetImage(getBackgroundPath(node)), context,
-      onError: (e, stack) => doesBackgroundExist = false);
+  precacheImage(
+    AssetImage(getBackgroundPath(node)),
+    context,
+    onError: (e, stack) => doesBackgroundExist = false,
+  );
 
   return doesBackgroundExist;
 }
 
 String getBackgroundPath(String node) {
-  final _nodeBackground = RegExp(r'\(([^)]*)\)');
+  final nodeRegExp = RegExp(r'\(([^)]*)\)');
+  final nodeBackground = nodeRegExp.firstMatch(node).group(1);
 
-  return 'assets/skyboxes/${_nodeBackground.firstMatch(node).group(1)}.webp';
+  return 'assets/skyboxes/$nodeBackground.webp';
 }
 
 ImageProvider skybox(BuildContext context, String node) {
@@ -61,7 +65,7 @@ ImageProvider skybox(BuildContext context, String node) {
 }
 
 bool compareExpiry({DateTime previous, DateTime current}) {
-  return previous?.isBefore(current ?? DateTime.now());
+  return previous?.isBefore(current ?? DateTime.now()) ?? false;
 }
 
 bool compareList(List previous, List current) {

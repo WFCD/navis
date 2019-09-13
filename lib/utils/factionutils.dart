@@ -56,13 +56,14 @@ class GetTierIcon extends StatelessWidget {
   const GetTierIcon(this.tier, [this.color = Colors.white]);
 
   final String tier;
+  final Color color;
 
   static const double _size = 30.0;
-  final Color color;
 
   @override
   Widget build(BuildContext context) {
     SvgPicture icon;
+
     switch (tier) {
       case 'Lith':
         icon = SvgPicture.asset('assets/relics/Lith.svg', color: color);
@@ -102,12 +103,12 @@ Color buildColor(SyndicateFactions faction) {
   const ostronsColor = Color.fromRGBO(183, 70, 36, 1.0);
   const solarisColor = Color.fromRGBO(206, 162, 54, 1.0);
 
-  return syndicateFactionsToString(faction) == 'Ostrons'
+  return syndicateEnumToString(faction) == 'Ostrons'
       ? ostronsColor
       : solarisColor;
 }
 
-SyndicateFactions stringToSyndicateFaction(String faction) {
+SyndicateFactions syndicateStringToEnum(String faction) {
   switch (faction) {
     case 'Ostrons':
       return SyndicateFactions.cetus;
@@ -116,7 +117,7 @@ SyndicateFactions stringToSyndicateFaction(String faction) {
   }
 }
 
-String syndicateFactionsToString(SyndicateFactions faction) {
+String syndicateEnumToString(SyndicateFactions faction) {
   switch (faction) {
     case SyndicateFactions.cetus:
       return 'Ostrons';
