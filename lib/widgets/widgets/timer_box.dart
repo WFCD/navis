@@ -16,9 +16,11 @@ class TimerBox extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: RowItem(
-            text: Text(title),
-            size: 20,
-            child: CountdownBox(expiry: time, size: 17.0)),
+          text: Text(title,
+              style: Theme.of(context).textTheme.title.copyWith(fontSize: 16)),
+          size: 20,
+          child: CountdownBox(expiry: time, size: 16),
+        ),
       ),
     );
   }

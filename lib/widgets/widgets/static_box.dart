@@ -35,13 +35,14 @@ class StaticBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        padding: padding,
-        height: height,
-        width: width,
-        margin: margin,
-        decoration: BoxDecoration(
-            color: color,
-            borderRadius: const BorderRadius.all(Radius.circular(3.0))),
-        child: child);
+      padding: padding,
+      height: height,
+      width: width,
+      margin: margin,
+      decoration: BoxDecoration(
+          color: color,
+          borderRadius: const BorderRadius.all(Radius.circular(3.0))),
+      child: child,
+    );
   }
 }
