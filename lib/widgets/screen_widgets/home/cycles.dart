@@ -9,25 +9,34 @@ class Cycles extends StatelessWidget {
   const Cycles();
 
   Widget _cycleRow(String title, CycleObject cycle, BuildContext context) {
+    final state = toBeginningOfSentenceCase(cycle.state);
+
     return Padding(
       padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
-      child: RowItem(
-        text: Text(title,
-            style: Theme.of(context).textTheme.subhead.copyWith(fontSize: 17)),
-        child: Row(
-          children: <Widget>[
-            Text(
-              toBeginningOfSentenceCase(cycle.state),
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 20.0,
-                color: cycle.getStateBool ? Colors.yellow[700] : Colors.blue,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Text(
+            '$title:',
+            style: Theme.of(context).textTheme.subhead.copyWith(fontSize: 17),
+          ),
+          const SizedBox(height: 4),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Text(
+                state,
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20.0,
+                  color: cycle.getStateBool ? Colors.yellow[700] : Colors.blue,
+                ),
               ),
-            ),
-            const SizedBox(width: 8.0),
-            CountdownBox(expiry: cycle.expiry),
-          ],
-        ),
+              CountdownBox(expiry: cycle.expiry),
+              DateView(expiry: cycle.expiry),
+            ],
+          ),
+        ],
       ),
     );
   }

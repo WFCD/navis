@@ -13,8 +13,8 @@ class InvasionsList extends StatelessWidget {
       child: BlocBuilder<WorldstateBloc, WorldStates>(
         condition: (previous, current) {
           return compareList(
-            previous.worldstate.invasions,
-            current.worldstate.invasions,
+            previous.worldstate?.invasions,
+            current.worldstate?.invasions,
           );
         },
         builder: (BuildContext context, WorldStates state) {

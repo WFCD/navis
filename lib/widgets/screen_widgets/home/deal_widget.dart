@@ -69,6 +69,8 @@ class _DealWidgetState extends State<DealWidget>
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   Chip(label: Text('${widget.deal.discount}% Discount')),
+
+                  // TODO(Orn): should probably put a plat icon here instead
                   Chip(label: Text('${widget.deal.salePrice}p')),
                   Chip(
                     label: Text(

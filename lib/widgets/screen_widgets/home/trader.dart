@@ -10,6 +10,7 @@ class Trader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final emptyBox = Container();
+    final title = Theme.of(context).textTheme.subhead;
 
     return Tiles(
         title: 'Void Trader',
@@ -26,23 +27,30 @@ class Trader extends StatelessWidget {
 
             return Column(children: <Widget>[
               RowItem(
-                  text: Text(trader.active
-                      ? '${trader.character} leaves in'
-                      : '${trader.character} arrives in'),
+                  text: Text(
+                    trader.active
+                        ? '${trader.character} leaves in'
+                        : '${trader.character} arrives in',
+                    style: title,
+                  ),
                   child: CountdownBox(
                       expiry:
                           trader.active ? trader.expiry : trader.activation)),
               const SizedBox(height: 4.0),
               trader.active
                   ? RowItem(
-                      text: const Text('Loaction'),
+                      text: Text('Loaction', style: title),
                       child: StaticBox.text(
-                          color: Colors.blueAccent[400],
-                          text: '${trader.location}'))
+                        text: '${trader.location}',
+                        color: Colors.blueAccent[400],
+                      ))
                   : emptyBox,
               const SizedBox(height: 4.0),
               RowItem(
-                text: Text(trader.active ? 'Leaves on' : 'Arrives on'),
+                text: Text(
+                  trader.active ? 'Leaves on' : 'Arrives on',
+                  style: title,
+                ),
                 child: trader.active
                     ? DateView(expiry: trader.expiry)
                     : DateView(expiry: trader.activation),
