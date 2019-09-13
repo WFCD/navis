@@ -44,15 +44,16 @@ class WarframeStats extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           _passive(context),
-          RowItem(text: 'Shield', child: Text('$shield')),
+          RowItem(text: const Text('Shield'), child: Text('$shield')),
           padding,
-          RowItem(text: 'Armor', child: Text('$armor')),
+          RowItem(text: const Text('Armor'), child: Text('$armor')),
           padding,
-          RowItem(text: 'Health', child: Text('$health')),
+          RowItem(text: const Text('Health'), child: Text('$health')),
           padding,
-          RowItem(text: 'Power', child: Text('$power')),
+          RowItem(text: const Text('Power'), child: Text('$power')),
           padding,
-          RowItem(text: 'Sprint Speed', child: Text('$sprintSpeed')),
+          RowItem(
+              text: const Text('Sprint Speed'), child: Text('$sprintSpeed')),
           padding
         ],
       ),

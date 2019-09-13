@@ -4,7 +4,7 @@ export 'alert_builder.dart';
 export 'alert_widget.dart';
 export 'arbitrations.dart';
 export 'cycles.dart';
-export 'deals.dart';
+export 'deals_builder.dart';
 export 'events_builder.dart';
 export 'events_widget.dart';
 export 'news_builder.dart';

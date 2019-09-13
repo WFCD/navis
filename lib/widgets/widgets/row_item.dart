@@ -12,14 +12,20 @@ class RowItem extends StatelessWidget {
   factory RowItem.richText(
       {String title, String richText, Color color, double size}) {
     return RowItem(
-        text: title,
-        child: Text(richText,
-            style: TextStyle(
-                fontWeight: FontWeight.bold, fontSize: size, color: color)));
+      text: Text(title),
+      child: Text(
+        richText,
+        style: TextStyle(
+          fontWeight: FontWeight.bold,
+          fontSize: size,
+          color: color,
+        ),
+      ),
+    );
   }
 
   final List<Widget> icons;
-  final String text;
+  final Widget text;
   final Widget child;
   final double size;
   final bool caption;
@@ -30,15 +36,17 @@ class RowItem extends StatelessWidget {
         ? Theme.of(context).textTheme.caption.copyWith(fontSize: 13)
         : Theme.of(context).textTheme.subhead.copyWith(fontSize: size);
 
-    final _text = Container(
+    final _icons = Container(
         child: Row(children: <Widget>[
       if (icons.isNotEmpty)
         ...icons.map((i) =>
             Padding(padding: const EdgeInsets.only(right: 4.0), child: i)),
-      Text(text, style: style)
     ]));
 
     return Container(
-        child: Row(children: <Widget>[_text, const Spacer(), child]));
+      child: Row(
+        children: <Widget>[_icons, text, const Spacer(), child],
+      ),
+    );
   }
 }

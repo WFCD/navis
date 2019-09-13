@@ -11,12 +11,9 @@ class AlertTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final state = BlocProvider.of<WorldstateBloc>(context);
-
     return Tiles(
       title: 'Alerts',
-      child: BlocBuilder(
-        bloc: state,
+      child: BlocBuilder<WorldstateBloc, WorldStates>(
         condition: (WorldStates previous, WorldStates current) {
           final previousAlerts = previous.worldstate?.alerts ?? [];
           final currentAlerts = current.worldstate?.alerts ?? [];

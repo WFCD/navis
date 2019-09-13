@@ -26,23 +26,23 @@ class Trader extends StatelessWidget {
 
             return Column(children: <Widget>[
               RowItem(
-                  text: trader.active
+                  text: Text(trader.active
                       ? '${trader.character} leaves in'
-                      : '${trader.character} arrives in',
+                      : '${trader.character} arrives in'),
                   child: CountdownBox(
                       expiry:
                           trader.active ? trader.expiry : trader.activation)),
               const SizedBox(height: 4.0),
               trader.active
                   ? RowItem(
-                      text: 'Loaction',
+                      text: const Text('Loaction'),
                       child: StaticBox.text(
                           color: Colors.blueAccent[400],
                           text: '${trader.location}'))
                   : emptyBox,
               const SizedBox(height: 4.0),
               RowItem(
-                text: trader.active ? 'Leaves on' : 'Arrives on',
+                text: Text(trader.active ? 'Leaves on' : 'Arrives on'),
                 child: trader.active
                     ? DateView(expiry: trader.expiry)
                     : DateView(expiry: trader.activation),

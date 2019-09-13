@@ -10,3 +10,6 @@ const newsKey = PageStorageKey('News');
 
 final eventsBucket = PageStorageBucket();
 const eventsKey = PageStorageKey('Events');
+
+final dealsBucket = PageStorageBucket();
+const dealskey = PageStorageKey('deals');

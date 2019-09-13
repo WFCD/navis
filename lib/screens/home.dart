@@ -13,15 +13,15 @@ class Home extends StatelessWidget {
       child: BlocBuilder<WorldstateBloc, WorldStates>(
           builder: (BuildContext context, WorldStates state) {
         if (state is WorldstateLoaded) {
-          final bool areThereNews = state.worldstate?.news?.isNotEmpty ?? false;
-          final bool isAlertActive =
-              state.worldstate?.alerts?.isNotEmpty ?? false;
-          final bool isEventActive =
-              state.worldstate?.events?.isNotEmpty ?? false;
+          final worldstate = state.worldstate;
+
+          final bool areThereNews = worldstate?.news?.isNotEmpty ?? false;
+          final bool isAlertActive = worldstate?.alerts?.isNotEmpty ?? false;
+          final bool isEventActive = worldstate?.events?.isNotEmpty ?? false;
           final bool areAcolytesActive =
-              state.worldstate?.persistentEnemies?.isNotEmpty ?? false;
+              worldstate?.persistentEnemies?.isNotEmpty ?? false;
           final bool areDealsActive =
-              state.worldstate?.dailyDeals?.isNotEmpty ?? false;
+              worldstate?.dailyDeals?.isNotEmpty ?? false;
 
           return ListView(
             cacheExtent: 3,
@@ -30,9 +30,7 @@ class Home extends StatelessWidget {
               if (isEventActive) const EventBuilder(),
               if (areAcolytesActive) const Acolytes(),
               if (isAlertActive) const AlertTile(),
-              Cycles.cetus(state.worldstate.cetusCycle),
-              Cycles.earth(state.worldstate.earthCycle),
-              Cycles.orbValis(state.worldstate.vallisCycle),
+              const Cycles(),
               if (state.worldstate.voidTrader != null) const Trader(),
               if (areDealsActive) const Deals(),
             ],

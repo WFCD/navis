@@ -24,7 +24,7 @@ class AcolyteWidget extends StatelessWidget {
         margin: const EdgeInsets.only(top: 4.0),
         child: Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
           RowItem(
-              text: 'Acolyte: ${enemy.agentType} | lvl: ${enemy.rank}',
+              text: Text('Acolyte: ${enemy.agentType} | lvl: ${enemy.rank}'),
               child: StaticBox.text(
                   size: 15,
                   text:

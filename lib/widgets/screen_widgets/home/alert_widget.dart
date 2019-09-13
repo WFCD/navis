@@ -30,7 +30,7 @@ class AlertWidget extends StatelessWidget {
                 if (archwing) _archwingIcon,
                 if (nightmare) _nightmareIcon
               ],
-              text: alert.mission.node,
+              text: Text(alert.mission.node),
               child: alert.mission.reward.itemString.isEmpty
                   ? Container()
                   : StaticBox(
@@ -44,9 +44,9 @@ class AlertWidget extends StatelessWidget {
                       )),
             ),
             RowItem(
-                text: '${alert.mission.type} (${alert.mission.faction}) '
+                text: Text('${alert.mission.type} (${alert.mission.faction}) '
                     '| Level: ${alert.mission.minEnemyLevel} - ${alert.mission.maxEnemyLevel} '
-                    '| ${alert.mission.reward.credits}cr',
+                    '| ${alert.mission.reward.credits}cr'),
                 caption: true,
                 child: CountdownBox(expiry: alert.expiry)),
           ]),
