@@ -89,6 +89,8 @@ class WorldstateService {
   }
 }
 
+// For some reaason I can pass down the instance and  it causes error on searches so for now
+// we simply create a new instance here
 Future<List<ItemObject>> _search(String searchTerm) async {
   final api = WorldstateApiWrapper(http.Client());
   final items = await api.searchItems(searchTerm);
