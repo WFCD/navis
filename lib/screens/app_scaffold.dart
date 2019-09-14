@@ -34,15 +34,15 @@ class _MainScreenState extends State<MainScreen> {
   }
 
   Future<bool> _willPop(BuildContext context) async {
-    if (!scaffold.currentState.isDrawerOpen) {
-      scaffold.currentState.openDrawer();
+    if (!appScaffold.currentState.isDrawerOpen) {
+      appScaffold.currentState.openDrawer();
       return Future.value(false);
     } else
       return Future.value(true);
   }
 
   void showSnackbar(String content, [VoidCallback onPressed]) {
-    scaffold.currentState.showSnackBar(
+    appScaffold.currentState.showSnackBar(
       SnackBar(
         content: Text(content),
         duration: const Duration(minutes: 5),
@@ -84,7 +84,7 @@ class _MainScreenState extends State<MainScreen> {
     return WillPopScope(
       onWillPop: () => _willPop(context),
       child: Scaffold(
-        key: scaffold,
+        key: appScaffold,
         appBar: AppBar(title: const Text('Navis')),
         drawer: const LotusDrawer(),
         body: MultiBlocListener(

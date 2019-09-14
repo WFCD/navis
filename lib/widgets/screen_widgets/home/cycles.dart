@@ -38,7 +38,7 @@ class Cycles extends StatelessWidget {
           const SizedBox(width: 8.0),
           Tooltip(
             message:
-                '$nextState at ${expiration(cycle.expiry, format: dateFormat)}',
+                '$nextState on ${expiration(cycle.expiry, format: dateFormat)}',
             showDuration: const Duration(seconds: 2, milliseconds: 500),
             child: CountdownBox(expiry: cycle.expiry),
           ),
