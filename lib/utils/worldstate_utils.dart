@@ -2,8 +2,11 @@ import 'dart:convert';
 
 import 'package:collection/collection.dart';
 import 'package:flutter/widgets.dart';
+import 'package:intl/intl.dart';
 import 'package:warframe_items_model/warframe_items_model.dart';
 import 'package:worldstate_model/worldstate_models.dart';
+
+import 'utils.dart';
 
 Worldstate cleanState(Worldstate state) {
   state.alerts.removeWhere((a) =>
@@ -72,4 +75,16 @@ bool compareList(List previous, List current) {
   const _deep = DeepCollectionEquality();
 
   return !_deep.equals(previous ?? [], current ?? []);
+}
+
+DateFormat enumToDateformat(Formats format) {
+  switch (format) {
+    case Formats.dd_mm_yy:
+      return DateFormat('hh:mm:ss dd/MM/yyyy');
+      break;
+    case Formats.month_day_year:
+      return DateFormat.yMMMMd('en_US').add_jms();
+    default:
+      return DateFormat.jms().add_yMd();
+  }
 }

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:navis/blocs/bloc.dart';
+import 'package:navis/services/repository.dart';
+import 'package:navis/utils/factionutils.dart';
+import 'package:navis/utils/worldstate_utils.dart';
 import 'package:navis/widgets/animations.dart';
 import 'package:navis/widgets/widgets.dart';
 import 'package:worldstate_model/worldstate_objects.dart';
@@ -9,32 +12,34 @@ class Cycles extends StatelessWidget {
   const Cycles();
 
   Widget _cycleRow(String title, CycleObject cycle, BuildContext context) {
+    final storage = RepositoryProvider.of<Repository>(context).storage;
     final state = toBeginningOfSentenceCase(cycle.state);
+    final nextState = toBeginningOfSentenceCase(cycle.nextState);
+    final dateFormat = enumToDateformat(storage.dateformat);
 
     return Padding(
       padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           Text(
-            '$title:',
+            title,
             style: Theme.of(context).textTheme.subhead.copyWith(fontSize: 17),
           ),
-          const SizedBox(height: 4),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Text(
-                state,
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20.0,
-                  color: cycle.getStateBool ? Colors.yellow[700] : Colors.blue,
-                ),
-              ),
-              CountdownBox(expiry: cycle.expiry),
-              DateView(expiry: cycle.expiry),
-            ],
+          const Spacer(),
+          Text(
+            state,
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 20.0,
+              color: cycle.getStateBool ? Colors.yellow[700] : Colors.blue,
+            ),
+          ),
+          const SizedBox(width: 8.0),
+          Tooltip(
+            message:
+                '$nextState at ${expiration(cycle.expiry, format: dateFormat)}',
+            child: CountdownBox(expiry: cycle.expiry),
           ),
         ],
       ),
