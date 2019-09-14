@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 import 'package:navis/services/localstorage_service.dart';
 import 'package:navis/utils/file_utils.dart';
@@ -21,13 +22,12 @@ class WorldstateService {
   static const dropTablePath = '/drop_table.json';
 
   Future<List<ItemObject>> search(String searchTerm) async {
-    final items = await _api.searchItems(searchTerm);
-
-    return items
-      ..removeWhere((i) =>
-          i.category == 'Skins' ||
-          i.category == 'Glyphs' ||
-          i.category == 'Misc');
+    try {
+      return await compute(_search, searchTerm);
+    } catch (e) {
+      debugPrint(e.toString());
+      return [];
+    }
   }
 
   Future<Worldstate> getWorldstate([Platforms platform]) async {
@@ -87,4 +87,14 @@ class WorldstateService {
     await saveFile(
         SaveFile(await tempDirectory() + dropTablePath, response.body));
   }
+}
+
+Future<List<ItemObject>> _search(String searchTerm) async {
+  final api = WorldstateApiWrapper(http.Client());
+  final items = await api.searchItems(searchTerm);
+
+  items.removeWhere((i) =>
+      i.category == 'Skins' || i.category == 'Glyphs' || i.category == 'Misc');
+
+  return items;
 }

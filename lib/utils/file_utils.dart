@@ -14,9 +14,8 @@ Future<String> tempDirectory() async {
   return directory.path;
 }
 
-Future<File> saveFile(SaveFile save) async {
-  return await compute(_saveFile, save);
-}
+// Move saving off the main thread because even 1 mb can lag a bit
+Future<File> saveFile(SaveFile save) async => compute(_saveFile, save);
 
 Future<File> _saveFile(SaveFile save) async {
   final file = File(save.path);

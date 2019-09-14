@@ -27,7 +27,7 @@ class _DealWidgetState extends State<DealWidget>
     return _itemFuture?.runOnce(() async {
       final List<ItemObject> items = await api.search(widget.deal.item);
 
-      return items.firstWhere((i) => widget.deal.item == i.name) ?? '';
+      return items?.firstWhere((i) => widget.deal.item == i.name) ?? '';
     });
   }
 
