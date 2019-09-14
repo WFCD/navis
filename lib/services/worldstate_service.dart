@@ -22,12 +22,7 @@ class WorldstateService {
   static const dropTablePath = '/drop_table.json';
 
   Future<List<ItemObject>> search(String searchTerm) async {
-    try {
-      return await compute(_search, searchTerm);
-    } catch (e) {
-      debugPrint(e.toString());
-      return [];
-    }
+    return compute(_search, searchTerm);
   }
 
   Future<Worldstate> getWorldstate([Platforms platform]) async {
