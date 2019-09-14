@@ -39,6 +39,7 @@ class Cycles extends StatelessWidget {
           Tooltip(
             message:
                 '$nextState at ${expiration(cycle.expiry, format: dateFormat)}',
+            showDuration: const Duration(seconds: 2, milliseconds: 500),
             child: CountdownBox(expiry: cycle.expiry),
           ),
         ],
@@ -49,17 +50,27 @@ class Cycles extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Tiles(
-      title: 'Cycles',
       child: BlocBuilder<WorldstateBloc, WorldStates>(
         builder: (context, state) {
           return Column(
             children: <Widget>[
-              _cycleRow('Cetus Cycle', state.worldstate?.cetusCycle, context),
-              const Divider(),
-              _cycleRow('Earth Cycle', state.worldstate?.earthCycle, context),
+              _cycleRow(
+                'Cetus Cycle',
+                state.worldstate?.cetusCycle,
+                context,
+              ),
               const Divider(),
               _cycleRow(
-                  'Orb Vallis Cycle', state.worldstate?.vallisCycle, context)
+                'Earth Cycle',
+                state.worldstate?.earthCycle,
+                context,
+              ),
+              const Divider(),
+              _cycleRow(
+                'Orb Vallis Cycle',
+                state.worldstate?.vallisCycle,
+                context,
+              )
             ],
           );
         },
