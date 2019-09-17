@@ -41,10 +41,10 @@ List<Drop> jsonToRewards(String response) {
   return drops.map<Drop>((d) => Drop.fromJson(d)).toList();
 }
 
-bool _checkBackground(BuildContext context, String node) {
+Future<bool> _checkBackground(BuildContext context, String node) async {
   bool doesBackgroundExist = true;
 
-  precacheImage(
+  await precacheImage(
     AssetImage(getBackgroundPath(node)),
     context,
     onError: (e, stack) => doesBackgroundExist = false,
@@ -61,10 +61,12 @@ String getBackgroundPath(String node) {
 }
 
 ImageProvider skybox(BuildContext context, String node) {
-  if (_checkBackground(context, node))
-    return AssetImage(getBackgroundPath(node));
+  const derelict = AssetImage('assets/skyboxes/Derelict.webp');
+  bool isError = false;
 
-  return const AssetImage('assets/skyboxes/Derelict.webp');
+  _checkBackground(context, node).then((data) => isError = data);
+
+  return isError ? derelict : AssetImage(getBackgroundPath(node));
 }
 
 bool compareExpiry({DateTime previous, DateTime current}) {
