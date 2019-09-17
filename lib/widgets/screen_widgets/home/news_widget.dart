@@ -16,6 +16,9 @@ class NewsWidget extends StatelessWidget {
           child: Stack(children: <Widget>[
         CachedNetworkImage(
           imageUrl: news.imageLink,
+          fit: BoxFit.cover,
+          height: 200,
+          width: MediaQuery.of(context).size.width,
           placeholder: (BuildContext context, String url) =>
               const Center(child: CircularProgressIndicator()),
           errorWidget: (BuildContext context, String url, Object error) {
@@ -26,17 +29,6 @@ class NewsWidget extends StatelessWidget {
                   const Text('Unable to load image')
                 ],
               ),
-            );
-          },
-          imageBuilder: (context, provider) {
-            return Container(
-              constraints: BoxConstraints.expand(height: 250.0),
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(4.0),
-                  image: DecorationImage(
-                    image: provider,
-                    fit: BoxFit.cover,
-                  )),
             );
           },
         ),

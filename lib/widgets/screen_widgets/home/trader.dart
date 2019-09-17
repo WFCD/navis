@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:navis/blocs/bloc.dart';
 import 'package:navis/widgets/animations.dart';
 import 'package:navis/widgets/widgets.dart';
-
-import 'trader_inventory.dart';
+import 'package:worldstate_model/worldstate_models.dart';
 
 class Trader extends StatelessWidget {
   const Trader({Key key}) : super(key: key);
@@ -56,35 +55,41 @@ class Trader extends StatelessWidget {
                     : DateView(expiry: trader.activation),
               ),
               trader.active
-                  ? Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 4.0, vertical: 8.0),
-                      child: InkWell(
-                          onTap: () => Navigator.of(context).push(
-                              MaterialPageRoute(
-                                  maintainState: false,
-                                  builder: (_) => VoidTraderInventory(
-                                      inventory: trader.inventory))),
-                          child: Container(
-                            width: 500.0,
-                            height: 30.0,
-                            alignment: Alignment.center,
-                            decoration: BoxDecoration(
-                              color: Colors.blueAccent[400],
-                              borderRadius: BorderRadius.circular(4.0),
-                            ),
-                            child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: const <Widget>[
-                                  Text('Baro Ki\'Teeer Inventory',
-                                      style: TextStyle(
-                                          fontSize: 17.0, color: Colors.white))
-                                ]),
-                          )),
-                    )
+                  ? _InventoryButton(inventory: trader.inventory)
                   : emptyBox,
             ]);
           },
         ));
+  }
+}
+
+class _InventoryButton extends StatelessWidget {
+  const _InventoryButton({Key key, @required this.inventory}) : super(key: key);
+
+  final List<InventoryItem> inventory;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 4.0, vertical: 8.0),
+      child: Material(
+        elevation: 2.0,
+        color: Colors.blueAccent[400],
+        borderRadius: BorderRadius.circular(4.0),
+        child: InkWell(
+          onTap: () => Navigator.of(context)
+              .pushNamed('inventory', arguments: inventory),
+          child: Container(
+              width: 500.0,
+              height: 30.0,
+              alignment: Alignment.center,
+              decoration: BoxDecoration(),
+              child: const Text(
+                'Baro Ki\'Teeer Inventory',
+                style: TextStyle(fontSize: 17.0, color: Colors.white),
+              )),
+        ),
+      ),
+    );
   }
 }

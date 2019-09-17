@@ -6,7 +6,7 @@ import 'package:navis/blocs/search/search_utils.dart';
 class SearchResultsSort extends StatelessWidget {
   const SearchResultsSort({Key key}) : super(key: key);
 
-  List<PopupMenuItem<Sort>> _itemBuilder(BuildContext context) {
+  List<PopupMenuItem<Sort>> _itemBuilder() {
     return Sort.values.map((v) {
       final option = v.toString().split('.').last.replaceAll('_', ' to ');
 
@@ -24,7 +24,7 @@ class SearchResultsSort extends StatelessWidget {
         return PopupMenuButton<Sort>(
           initialValue: type,
           icon: Icon(Icons.sort),
-          itemBuilder: _itemBuilder,
+          itemBuilder: (_) => _itemBuilder(),
           enabled: state is SearchStateSuccess,
           onSelected: (s) {
             if (state is SearchStateSuccess) {

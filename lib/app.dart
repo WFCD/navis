@@ -6,6 +6,7 @@ import 'package:navis/screens/app_scaffold.dart';
 import 'package:navis/screens/codex_entry.dart';
 import 'package:navis/screens/nightwaves.dart';
 import 'package:navis/screens/syndicate_bounties.dart';
+import 'package:navis/screens/trader_inventory.dart';
 import 'package:navis/services/repository.dart';
 import 'package:navis/widgets/widgets.dart';
 import 'package:wfcd_api_wrapper/worldstate_wrapper.dart';
@@ -81,7 +82,8 @@ class _NavisState extends State<Navis> with WidgetsBindingObserver {
           Settings.route: (_) => const Settings(),
           Nightwaves.route: (_) => const Nightwaves(),
           SyndicateJobs.route: (_) => const SyndicateJobs(),
-          CodexEntry.route: (_) => const CodexEntry()
+          CodexEntry.route: (_) => const CodexEntry(),
+          VoidTraderInventory.route: (_) => const VoidTraderInventory()
         },
       ),
     );

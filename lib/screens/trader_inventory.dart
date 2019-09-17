@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:worldstate_model/worldstate_models.dart';
 
 class VoidTraderInventory extends StatefulWidget {
-  const VoidTraderInventory({this.inventory});
+  const VoidTraderInventory({Key key}) : super(key: key);
 
-  final List<InventoryItem> inventory;
+  static const route = 'inventory';
 
   @override
   VoidTraderInventoryState createState() => VoidTraderInventoryState();
@@ -21,9 +21,12 @@ class VoidTraderInventoryState extends State<VoidTraderInventory> {
   ];
 
   @override
-  void initState() {
-    super.initState();
-    _source = InventoryDataSource(inventory: widget.inventory);
+  void didChangeDependencies() {
+    final inventory = ModalRoute.of(context).settings.arguments;
+
+    _source = InventoryDataSource(inventory: inventory);
+
+    super.didChangeDependencies();
   }
 
   @override
