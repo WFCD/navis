@@ -30,7 +30,10 @@ class NightWaveWidget extends StatelessWidget {
               Text(
                 'Season $season',
                 textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.subtitle,
+                style: Theme.of(context)
+                    .textTheme
+                    .subtitle
+                    .copyWith(color: Colors.white),
               )
             ],
           ),

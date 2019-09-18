@@ -14,18 +14,17 @@ class InvasionDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    const color = Colors.white;
     const shadow = Shadow(offset: Offset(1.0, 0.0), blurRadius: 4.0);
 
-    final _node = Theme.of(context)
-        .textTheme
-        .subhead
-        .copyWith(fontSize: 15, shadows: <Shadow>[shadow]);
-    final _details = Theme.of(context).textTheme.caption.color;
+    final _node = Typography.whiteMountainView.subhead
+        .copyWith(fontSize: 15, shadows: <Shadow>[shadow], color: color);
 
     return Container(
       child: Column(children: <Widget>[
         Text(node, style: _node),
-        Text('$description ($eta)', style: TextStyle(color: _details)),
+        Text('$description ($eta)',
+            style: Typography.whiteMountainView.caption),
       ]),
     );
   }

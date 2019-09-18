@@ -8,6 +8,7 @@ import 'package:navis/screens/nightwaves.dart';
 import 'package:navis/screens/syndicate_bounties.dart';
 import 'package:navis/screens/trader_inventory.dart';
 import 'package:navis/services/repository.dart';
+import 'package:navis/themes.dart';
 import 'package:navis/widgets/widgets.dart';
 import 'package:wfcd_api_wrapper/worldstate_wrapper.dart';
 
@@ -56,26 +57,12 @@ class _NavisState extends State<Navis> with WidgetsBindingObserver {
 
   @override
   Widget build(BuildContext context) {
-    const background = Color(0xFF212121);
-    const accentColor = Color(0xFF00BC8C);
-
-    final theme = ThemeData(
-      brightness: Brightness.dark,
-      primaryColor: const Color(0xE51A5090),
-      accentColor: accentColor,
-      cardColor: const Color(0xFF2C2C2C),
-      dialogBackgroundColor: background,
-      scaffoldBackgroundColor: background,
-      canvasColor: const Color(0xFF212121),
-      splashColor: accentColor,
-    );
-
     return RepositoryProvider.value(
       value: widget.repository,
       child: MaterialApp(
         title: 'Navis',
         color: Colors.grey[900],
-        theme: theme,
+        theme: AppTheme.theme.light,
         home: BlocBuilder<StorageBloc, StorageState>(builder: _blocBuilder),
         builder: _builder,
         routes: <String, WidgetBuilder>{
@@ -92,6 +79,7 @@ class _NavisState extends State<Navis> with WidgetsBindingObserver {
   @override
   void dispose() {
     WidgetsBinding.instance.removeObserver(this);
+    RepositoryProvider.of<Repository>(context).storage.dispose();
     super.dispose();
   }
 }

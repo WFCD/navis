@@ -39,6 +39,8 @@ class _CodexEntryState extends State<CodexEntry> {
       child: Scaffold(
         appBar: AppBar(
           title: const Text('Codex Entry'),
+          textTheme: Theme.of(context).textTheme,
+          iconTheme: Theme.of(context).iconTheme,
           backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         ),
         body: SingleChildScrollView(
