@@ -25,9 +25,7 @@ class _DealWidgetState extends State<DealWidget>
     final api = RepositoryProvider.of<Repository>(context).worldstateService;
 
     return _itemFuture?.runOnce(() async {
-      final List<ItemObject> items = await api.search(widget.deal.item);
-
-      return items?.firstWhere((i) => widget.deal.item == i.name) ?? '';
+      return await api.getDeal(widget.deal);
     });
   }
 
@@ -59,19 +57,22 @@ class _DealWidgetState extends State<DealWidget>
 
           return Container(
               child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              CachedNetworkImage(
-                imageUrl: item.imageUrl,
-                height: size.height,
-                width: size.width,
+              Center(
+                child: CachedNetworkImage(
+                  imageUrl: item.imageUrl,
+                  height: size.height,
+                  width: size.width,
+                ),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   Chip(label: Text('${widget.deal.discount}% Discount')),
-
-                  // TODO(Orn): should probably put a plat icon here instead
-                  Chip(label: Text('${widget.deal.salePrice}p')),
+                  Chip(
+                      label: Text(
+                          '${widget.deal.salePrice}p')), // TODO(Orn): should probably put a plat icon here instead
                   Chip(
                     label: Text(
                         '${widget.deal.total - widget.deal.sold}/${widget.deal.total} remaining'),

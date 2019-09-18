@@ -25,6 +25,24 @@ class WorldstateService {
     return compute(_search, searchTerm);
   }
 
+  Future<ItemObject> getDeal(DarvoDeal deal) async {
+    const cacheKey = 'dealId';
+    final cachedID = storage.getFromDisk(cacheKey);
+
+    if (cachedID != deal.id) {
+      final item = await _api.getItem(deal.item);
+
+      storage.saveToDisk('dealId', deal.id);
+      storage.saveToDisk('deal', json.encode(item.toJson()));
+
+      return item;
+    }
+
+    final item = json.decode(storage.getFromDisk('deal'));
+
+    return BasicItem.fromJson(item);
+  }
+
   Future<Worldstate> getWorldstate([Platforms platform]) async {
     final worldstate =
         await _api.getWorldstate(platform ?? storage.platform ?? Platforms.pc);

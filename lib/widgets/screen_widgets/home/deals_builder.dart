@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:navis/blocs/bloc.dart';
 import 'package:navis/global_keys.dart';
 import 'package:navis/widgets/widgets.dart';
-import 'package:worldstate_model/models/deals.dart';
+import 'package:worldstate_model/worldstate_models.dart';
 
 import 'deal_widget.dart';
 
