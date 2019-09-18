@@ -1,18 +1,30 @@
+import 'package:hive/hive.dart';
 import 'package:navis/constants/storage_keys.dart';
 import 'package:navis/utils/utils.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:wfcd_api_wrapper/worldstate_wrapper.dart';
 
 class LocalStorageService {
   static LocalStorageService _instance;
-  static SharedPreferences _preferences;
+  static Box _preferences;
 
   static Future<LocalStorageService> getInstance() async {
+    final directory = await getApplicationDocumentsDirectory();
+
+    Hive.init(directory.path);
+
     _instance ??= LocalStorageService();
-    _preferences ??= await SharedPreferences.getInstance();
+    _preferences ??= await Hive.openBox(
+      'settings',
+      compactionStrategy: (entries, deleted) {
+        return entries > 30 || deleted > 25;
+      },
+    );
 
     return _instance;
   }
+
+  Box get instance => Hive.box('settings');
 
   Platforms get platform {
     final diskPlatform = getFromDisk(SettingsKeys.platformKey);
@@ -104,10 +116,7 @@ class LocalStorageService {
 
   dynamic getFromDisk(String key) => _preferences.get(key);
 
-  void saveToDisk<T>(String key, T value) {
-    if (value is String) _preferences.setString(key, value);
-    if (value is bool) _preferences.setBool(key, value);
-    if (value is int) _preferences.setInt(key, value);
-    if (value is List<String>) _preferences.setStringList(key, value);
-  }
+  void saveToDisk<T>(String key, T value) => _preferences.put(key, value);
+
+  Future<void> dispose() async => await _preferences.close();
 }

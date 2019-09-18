@@ -13,7 +13,6 @@ dependencies:
   hydrated_bloc: ^0.4.0
   intl: ^0.15.8
   package_info: ^0.4.0+6
-  shared_preferences: ^0.5.3+4
   firebase_messaging: ^5.1.5
   cached_network_image: ^1.1.1
   flutter_svg: ^0.14.1
@@ -26,6 +25,7 @@ dependencies:
     git: https://github.com/SlayerOrnstein/wfcd_api_wrapper.git
   warframe_items_model:
     git: https://github.com/SlayerOrnstein/warframe_item_models.git
+  hive: ^1.0.0
 
 dev_dependencies:
   flutter_test:

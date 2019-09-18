@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io'; //ignore: unused_import
 
 import 'package:bloc/bloc.dart';
+import 'package:hive/hive.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:mockito/mockito.dart';
 import 'package:navis/blocs/bloc.dart';
@@ -9,7 +10,6 @@ import 'package:navis/blocs/worldstate/worldstate_events.dart';
 import 'package:navis/constants/storage_keys.dart';
 import 'package:navis/services/repository.dart';
 import 'package:navis/utils/utils.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:test/test.dart';
 import 'package:wfcd_api_wrapper/worldstate_wrapper.dart';
 import 'package:worldstate_model/worldstate_models.dart';
@@ -25,7 +25,7 @@ Future<void> main() async {
   Repository repository;
   WorldstateBloc worldstate;
   StorageBloc storage;
-  SharedPreferences prefs;
+  Box prefs;
 
   setUpAll(() async {
     await setupPackageMockMethods();
@@ -36,7 +36,7 @@ Future<void> main() async {
 
     worldstate = WorldstateBloc(mockWorldstateService);
     storage = StorageBloc(repository.storage, repository.notifications);
-    prefs = await SharedPreferences.getInstance();
+    prefs = await Hive.openBox('settings');
   });
 
   group('Test Worldstate bloc', () {
@@ -114,25 +114,25 @@ Future<void> main() async {
 Future<Platforms> testStorage(
   StorageBloc storage,
   Platforms platform,
-  SharedPreferences prefs,
+  Box prefs,
 ) async {
   storage.dispatch(ChangePlatformEvent(platform));
 
   await Future.delayed(const Duration(milliseconds: 500));
 
   return Platforms.values.firstWhere((p) =>
-      p.toString() == 'Platforms.${prefs.getString(SettingsKeys.platformKey)}');
+      p.toString() == 'Platforms.${prefs.get(SettingsKeys.platformKey)}');
 }
 
 Future<Formats> testDateformat(
   StorageBloc storage,
   Formats format,
-  SharedPreferences prefs,
+  Box prefs,
 ) async {
   storage.dispatch(ChangeDateFormat(format));
 
   await Future.delayed(const Duration(milliseconds: 500));
 
   return Formats.values.firstWhere((f) =>
-      f.toString() == 'Formats.${prefs.getString(SettingsKeys.dateformatKey)}');
+      f.toString() == 'Formats.${prefs.get(SettingsKeys.dateformatKey)}');
 }
