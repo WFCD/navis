@@ -38,6 +38,21 @@ class _CountdownBoxState extends State<CountdownBox> {
     _tween = StepTween(begin: _expiry, end: now);
   }
 
+  @override
+  void didUpdateWidget(CountdownBox oldWidget) {
+    final _now = DateTime.now().toUtc();
+
+    if (oldWidget.expiry != widget.expiry || oldWidget.expiry.isAfter(_now)) {
+      final now = _now.millisecondsSinceEpoch;
+      final expiry = widget.expiry?.millisecondsSinceEpoch ?? now;
+
+      _duration = Duration(seconds: expiry - now).abs();
+      _tween = StepTween(begin: expiry, end: now);
+    }
+
+    super.didUpdateWidget(oldWidget);
+  }
+
   void _listener(AnimationStatus status) {
     if (status == AnimationStatus.completed ||
         status == AnimationStatus.dismissed) {
