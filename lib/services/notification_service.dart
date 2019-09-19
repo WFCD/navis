@@ -8,14 +8,10 @@ class NotificationService {
   factory NotificationService.initialize() {
     final FirebaseMessaging messaging = FirebaseMessaging();
 
-    messaging.configure();
-
     return NotificationService._(messaging);
   }
 
   final FirebaseMessaging messaging;
-
-  void get configure => messaging.configure();
 
   bool subscribeToPlatform(
       {Platforms previousPlatform, Platforms currentPlatform}) {

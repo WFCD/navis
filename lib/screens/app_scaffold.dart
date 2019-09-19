@@ -2,9 +2,11 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:hive/hive.dart';
 import 'package:navis/blocs/bloc.dart';
 import 'package:navis/blocs/worldstate/worldstate_events.dart';
 import 'package:navis/global_keys.dart';
+import 'package:navis/services/repository.dart';
 import 'package:navis/widgets/widgets.dart';
 
 import 'codex.dart';
@@ -33,12 +35,18 @@ class _MainScreenState extends State<MainScreen> {
     super.initState();
   }
 
-  Future<bool> _willPop(BuildContext context) async {
-    if (!appScaffold.currentState.isDrawerOpen) {
-      appScaffold.currentState.openDrawer();
-      return Future.value(false);
-    } else
-      return Future.value(true);
+  Future<bool> _willPop() async {
+    final Box box = RepositoryProvider.of<Repository>(context).storage.instance;
+
+    if (box.get('backkey', defaultValue: false)) {
+      if (!appScaffold.currentState.isDrawerOpen) {
+        appScaffold.currentState.openDrawer();
+        return false;
+      } else
+        return true;
+    }
+
+    return true;
   }
 
   void showSnackbar(String content, [VoidCallback onPressed]) {
@@ -82,7 +90,7 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-      onWillPop: () => _willPop(context),
+      onWillPop: _willPop,
       child: Scaffold(
         key: appScaffold,
         appBar: AppBar(title: const Text('Navis')),

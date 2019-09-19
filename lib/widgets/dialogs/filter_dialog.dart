@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:navis/blocs/bloc.dart';
+import 'package:navis/services/localstorage_service.dart';
+import 'package:navis/services/repository.dart';
 
 import 'base_dialog.dart';
 
@@ -18,16 +22,16 @@ class FilterDialog extends StatelessWidget {
         builder: (_) => FilterDialog(options: options, type: type));
   }
 
-  Map<String, bool> _typeToInstance(StorageState state) {
+  Map<String, bool> _typeToInstance(LocalStorageService storage) {
     switch (type) {
       case FilterType.acolytes:
-        return state.acolytes;
+        return storage.acolytes;
         break;
       case FilterType.news:
-        return state.news;
+        return storage.news;
         break;
       case FilterType.cycles:
-        return state.cycles;
+        return storage.cycles;
         break;
       case FilterType.fissure:
         return <String, bool>{};
@@ -39,22 +43,22 @@ class FilterDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final storage = BlocProvider.of<StorageBloc>(context);
+    final storage = RepositoryProvider.of<Repository>(context).storage;
 
-    return BlocBuilder<StorageBloc, StorageState>(
-      bloc: BlocProvider.of<StorageBloc>(context),
-      builder: (context, state) {
-        final instance = _typeToInstance(state);
+    return WatchBoxBuilder(
+      box: storage.instance,
+      watchKeys: options.keys.toList(),
+      builder: (BuildContext context, Box box) {
+        final instance = _typeToInstance(storage);
 
         return BaseDialog(
-          dialogTitle: 'Filter Options',
+          dialogTitle: const Text('Filter Options'),
           child: Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
             for (String key in options.keys)
-              CheckboxListTile(
-                title: Text(options[key]),
+              NotificationCheckBox(
+                option: options[key],
+                optionKey: key,
                 value: instance[key],
-                activeColor: Theme.of(context).accentColor,
-                onChanged: (b) => storage.dispatch(ToggleNotification(key, b)),
               )
           ]),
           actions: <Widget>[
@@ -64,6 +68,38 @@ class FilterDialog extends StatelessWidget {
             ),
           ],
         );
+      },
+    );
+  }
+}
+
+class NotificationCheckBox extends StatelessWidget {
+  const NotificationCheckBox(
+      {Key key,
+      @required this.option,
+      @required this.optionKey,
+      @required this.value})
+      : assert(option != null),
+        assert(optionKey != null),
+        assert(value != null),
+        super(key: key);
+
+  final String option;
+  final String optionKey;
+  final bool value;
+
+  @override
+  Widget build(BuildContext context) {
+    final storage = RepositoryProvider.of<Repository>(context).storage;
+    final firebase = RepositoryProvider.of<Repository>(context).notifications;
+
+    return CheckboxListTile(
+      title: Text(option),
+      value: value,
+      activeColor: Theme.of(context).accentColor,
+      onChanged: (b) {
+        storage.saveToDisk(optionKey, b);
+        firebase.subscribeToNotification(optionKey, b);
       },
     );
   }

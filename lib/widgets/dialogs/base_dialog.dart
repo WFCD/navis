@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 
 class BaseDialog extends StatelessWidget {
-  const BaseDialog(
-      {this.dialogTitle, @required this.child, this.padding, this.actions});
+  const BaseDialog({
+    @required this.dialogTitle,
+    @required this.child,
+    this.padding,
+    this.actions,
+  });
 
-  final String dialogTitle;
+  final Widget dialogTitle;
   final Widget child;
   final EdgeInsetsGeometry padding;
   final List<Widget> actions;
@@ -19,7 +23,7 @@ class BaseDialog extends StatelessWidget {
       child: DefaultTextStyle(
         style: dialogTheme.titleTextStyle ?? Theme.of(context).textTheme.title,
         child: Semantics(
-          child: Text(dialogTitle),
+          child: dialogTitle,
           namesRoute: true,
           container: true,
         ),

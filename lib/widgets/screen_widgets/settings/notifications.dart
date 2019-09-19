@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:navis/blocs/bloc.dart';
 //import 'package:navis/blocs/bloc.dart';
 import 'package:navis/constants/notification_filters.dart';
+import 'package:navis/services/repository.dart';
 import 'package:navis/widgets/dialogs.dart';
 import 'package:navis/widgets/widgets.dart';
 
@@ -27,28 +30,58 @@ class Notifications extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final storage = BlocProvider.of<StorageBloc>(context);
-
     return Container(
-        child: Column(children: <Widget>[
-      const SettingTitle(title: 'Notifications'),
-      for (Map<String, String> m in simple)
-        BlocBuilder<StorageBloc, StorageState>(
-            bloc: storage,
-            builder: (context, state) {
-              return CheckboxListTile(
-                  title: Text(m['name']),
-                  subtitle: Text(m['description']),
-                  value: state.simple[m['key']],
-                  activeColor: Theme.of(context).accentColor,
-                  onChanged: (b) =>
-                      storage.dispatch(ToggleNotification(m['key'], b)));
-            }),
-      for (String k in filtered.keys)
-        ListTile(
+      child: Column(children: <Widget>[
+        const SettingTitle(title: 'Notifications'),
+        for (Map<String, String> m in simple)
+          _SimpleNotification(
+            name: m['name'],
+            description: m['description'],
+            optionKey: m['key'],
+          ),
+        for (String k in filtered.keys)
+          ListTile(
             title: Text(k),
             subtitle: Text(filtered[k]),
-            onTap: () => openDialog(context, k)),
-    ]));
+            onTap: () => openDialog(context, k),
+          ),
+      ]),
+    );
+  }
+}
+
+class _SimpleNotification extends StatelessWidget {
+  const _SimpleNotification({
+    Key key,
+    @required this.name,
+    @required this.description,
+    @required this.optionKey,
+  }) : super(key: key);
+
+  final String name;
+  final String description;
+  final String optionKey;
+
+  @override
+  Widget build(BuildContext context) {
+    final storage = RepositoryProvider.of<Repository>(context).storage;
+    final notification =
+        RepositoryProvider.of<Repository>(context).notifications;
+
+    return WatchBoxBuilder(
+      box: storage.instance,
+      builder: (BuildContext context, Box box) {
+        return CheckboxListTile(
+          title: Text(name),
+          subtitle: Text(description),
+          value: storage.simple[optionKey],
+          activeColor: Theme.of(context).accentColor,
+          onChanged: (b) {
+            box.put(optionKey, b);
+            notification.subscribeToNotification(optionKey, b);
+          },
+        );
+      },
+    );
   }
 }
