@@ -1,6 +1,7 @@
 class SettingsKeys {
   static const String platformKey = 'platform';
   static const String dateformatKey = 'dateformat';
+  static const String theme = 'theme';
 }
 
 class NotificationKeys {

@@ -1,5 +1,7 @@
+import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:navis/constants/storage_keys.dart';
+import 'package:navis/themes.dart';
 import 'package:navis/utils/utils.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:wfcd_api_wrapper/worldstate_wrapper.dart';
@@ -40,14 +42,23 @@ class LocalStorageService {
   set platform(Platforms value) =>
       saveToDisk(SettingsKeys.platformKey, value.toString().split('.').last);
 
+  ThemeData get theme {
+    switch (getFromDisk(SettingsKeys.theme, defaultValue: 1)) {
+      case 0:
+        return AppTheme.theme.light;
+      case 1:
+        return AppTheme.theme.dark;
+      default:
+        return AppTheme.theme.amoled;
+    }
+  }
+
   Formats get dateformat {
-    final diskFormat = getFromDisk(SettingsKeys.dateformatKey);
+    final diskFormat =
+        getFromDisk(SettingsKeys.dateformatKey, defaultValue: 'mm_dd_yy');
 
-    if (diskFormat != null)
-      return Formats.values
-          .firstWhere((f) => f.toString() == 'Formats.$diskFormat');
-
-    return Formats.mm_dd_yy;
+    return Formats.values
+        .firstWhere((f) => f.toString() == 'Formats.$diskFormat');
   }
 
   set dateformat(Formats value) =>
@@ -102,19 +113,20 @@ class LocalStorageService {
       };
 
   DateTime get tableTimestamp {
-    final timestamp = getFromDisk('tableTimestamp');
+    final timestamp = getFromDisk(
+      'tableTimestamp',
+      defaultValue: DateTime.now().millisecondsSinceEpoch,
+    );
 
-    if (timestamp != null)
-      return DateTime.fromMillisecondsSinceEpoch(timestamp);
-
-    return timestamp;
+    return DateTime.fromMillisecondsSinceEpoch(timestamp);
   }
 
   void saveTimestamp(DateTime timestamp) {
     saveToDisk('tableTimestamp', timestamp?.millisecondsSinceEpoch);
   }
 
-  dynamic getFromDisk(String key) => _preferences.get(key);
+  dynamic getFromDisk(String key, {dynamic defaultValue}) =>
+      _preferences.get(key, defaultValue: defaultValue);
 
   void saveToDisk<T>(String key, T value) => _preferences.put(key, value);
 

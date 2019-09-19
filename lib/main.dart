@@ -20,10 +20,6 @@ void main() {
       runApp(
         MultiBlocProvider(
           providers: [
-            BlocProvider<StorageBloc>(
-              builder: (_) =>
-                  StorageBloc(repository.storage, repository.notifications),
-            ),
             BlocProvider<WorldstateBloc>(
               builder: (_) => WorldstateBloc(repository.worldstateService),
             ),

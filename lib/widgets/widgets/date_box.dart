@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:navis/blocs/bloc.dart';
+import 'package:navis/constants/storage_keys.dart';
+import 'package:navis/services/repository.dart';
 import 'package:navis/utils/factionutils.dart';
 import 'package:navis/utils/worldstate_utils.dart';
 
@@ -13,9 +17,13 @@ class DateView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<StorageBloc, StorageState>(
-      builder: (context, state) {
-        final dateFormat = enumToDateformat(state.dateformat);
+    final storage = RepositoryProvider.of<Repository>(context).storage;
+
+    return WatchBoxBuilder(
+      box: storage.instance,
+      watchKeys: const [SettingsKeys.dateformatKey],
+      builder: (BuildContext context, Box state) {
+        final dateFormat = enumToDateformat(storage.dateformat);
 
         return StaticBox(
           color: color ?? Colors.blueAccent[400],

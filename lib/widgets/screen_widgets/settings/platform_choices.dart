@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:navis/blocs/bloc.dart';
+import 'package:navis/constants/storage_keys.dart';
+import 'package:navis/services/repository.dart';
 import 'package:navis/widgets/widgets.dart';
 import 'package:wfcd_api_wrapper/worldstate_wrapper.dart';
 
@@ -8,9 +12,10 @@ class PlatformChoice extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<StorageBloc, StorageState>(
-      bloc: BlocProvider.of<StorageBloc>(context),
-      builder: (context, storageState) {
+    return WatchBoxBuilder(
+      box: RepositoryProvider.of<Repository>(context).storage.instance,
+      watchKeys: const [SettingsKeys.platformKey],
+      builder: (BuildContext context, Box box) {
         return Row(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,

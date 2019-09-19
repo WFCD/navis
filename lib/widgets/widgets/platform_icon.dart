@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:navis/blocs/bloc.dart';
 import 'package:navis/blocs/worldstate/worldstate_events.dart';
+import 'package:navis/constants/storage_keys.dart';
+import 'package:navis/services/repository.dart';
 import 'package:wfcd_api_wrapper/worldstate_wrapper.dart';
 
 const pc = 'PC';
@@ -45,17 +49,24 @@ class PlatformIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final state = BlocProvider.of<WorldstateBloc>(context);
-    final storage = BlocProvider.of<StorageBloc>(context);
+    final storage = RepositoryProvider.of<Repository>(context).storage;
+    final notification =
+        RepositoryProvider.of<Repository>(context).notifications;
 
     void _onPressed() {
-      storage.dispatch(ChangePlatformEvent(platform));
+      notification.subscribeToPlatform(
+        previousPlatform: storage.platform,
+        currentPlatform: platform,
+      );
+
+      storage.platform = platform;
       state.dispatch(UpdateEvent());
-      //Navigator.of(context).pop();
     }
 
-    return BlocBuilder<StorageBloc, StorageState>(
-      bloc: storage,
-      builder: (_, state) {
+    return WatchBoxBuilder(
+      box: storage.instance,
+      watchKeys: const [SettingsKeys.platformKey],
+      builder: (BuildContext context, Box box) {
         _setValues();
 
         return IconButton(
@@ -63,7 +74,7 @@ class PlatformIcon extends StatelessWidget {
           splashColor: _platformColor,
           icon: SvgPicture.asset(
             _platformIcon,
-            color: state.platform == platform
+            color: (storage?.platform ?? Platforms.pc) == platform
                 ? _platformColor
                 : Theme.of(context).disabledColor,
             width: 34,
