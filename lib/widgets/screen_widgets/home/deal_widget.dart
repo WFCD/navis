@@ -58,6 +58,7 @@ class _DealWidgetState extends State<DealWidget>
           return Container(
               child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               Center(
                 child: CachedNetworkImage(
@@ -90,7 +91,7 @@ class _DealWidgetState extends State<DealWidget>
                       onPressed: () => launchLink(context, item.wikiaUrl),
                     )
                   ],
-                )
+                ),
             ],
           ));
         },

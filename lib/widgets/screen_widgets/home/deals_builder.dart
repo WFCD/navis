@@ -26,7 +26,7 @@ class Deals extends StatelessWidget {
                 state.worldstate?.dailyDeals ?? [];
 
             return Carousel(
-              height: 300,
+              height: 225,
               dotCount: dailyDeals.length,
               enableIndicator: dailyDeals.length > 1,
               children: dailyDeals.map((d) => DealWidget(deal: d)).toList(),
