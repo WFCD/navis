@@ -10,7 +10,7 @@ class Carousel extends StatefulWidget {
     Key key,
     @required this.children,
     @required this.dotCount,
-    this.height = 150,
+    this.height = 100,
     this.enableIndicator = true,
   })  : assert(children != null),
         assert(dotCount != null),
@@ -61,12 +61,16 @@ class _CarouselState extends State<Carousel> {
     return Stack(
       //fit: StackFit.expand,
       children: <Widget>[
-        Container(
-          height: widget.height,
-          child: PageView(
-            controller: _pageController,
-            children: widget.children,
-            onPageChanged: onPageChanged,
+        Align(
+          alignment: Alignment.center,
+          child: LimitedBox(
+            // height: widget.height,
+            maxHeight: widget.height / 0.7,
+            child: PageView(
+              controller: _pageController,
+              children: widget.children,
+              onPageChanged: onPageChanged,
+            ),
           ),
         ),
         if (widget.enableIndicator)
