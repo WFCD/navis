@@ -21,7 +21,7 @@ class Codex extends StatelessWidget {
           if (state is SearchStateEmpty || state is SearchListenerError)
             const Center(
                 child: Text(
-                    'Type what you\'re looking for into the search above!')),
+                    'Type what you\'re looking for into the search bar above!')),
           if (state is SearchStateError)
             const Center(child: Text('An error has occurred'))
         ]);
