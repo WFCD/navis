@@ -7,7 +7,7 @@ import 'package:navis/services/repository.dart';
 
 import 'base_dialog.dart';
 
-enum FilterType { acolytes, news, cycles, fissure }
+enum FilterType { acolytes, news, cycles, resources }
 
 class FilterDialog extends StatelessWidget {
   const FilterDialog({this.options, this.type});
@@ -26,16 +26,12 @@ class FilterDialog extends StatelessWidget {
     switch (type) {
       case FilterType.acolytes:
         return storage.acolytes;
-        break;
       case FilterType.news:
         return storage.news;
-        break;
       case FilterType.cycles:
         return storage.cycles;
-        break;
-      case FilterType.fissure:
-        return <String, bool>{};
-        break;
+      case FilterType.resources:
+        return storage.resources;
       default:
         return <String, bool>{};
     }
@@ -53,17 +49,19 @@ class FilterDialog extends StatelessWidget {
 
         return BaseDialog(
           dialogTitle: const Text('Filter Options'),
-          child: Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
-            for (String key in options.keys)
-              NotificationCheckBox(
-                option: options[key],
-                optionKey: key,
-                value: instance[key],
-              )
-          ]),
+          child: SingleChildScrollView(
+            child: Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
+              for (String key in options.keys)
+                NotificationCheckBox(
+                  option: options[key],
+                  optionKey: key,
+                  value: instance[key],
+                )
+            ]),
+          ),
           actions: <Widget>[
             FlatButton(
-              child: const Text('CANCEL'),
+              child: const Text('DISMISS'),
               onPressed: () => Navigator.of(context).pop(),
             ),
           ],
@@ -97,9 +95,10 @@ class NotificationCheckBox extends StatelessWidget {
       title: Text(option),
       value: value,
       activeColor: Theme.of(context).accentColor,
-      onChanged: (b) {
+      onChanged: (b) async {
+        // debugPrint(optionKey);
         storage.saveToDisk(optionKey, b);
-        firebase.subscribeToNotification(optionKey, b);
+        await firebase.subscribeToNotification(optionKey, b);
       },
     );
   }

@@ -13,28 +13,32 @@ class NotificationService {
 
   final FirebaseMessaging messaging;
 
-  bool subscribeToPlatform(
-      {Platforms previousPlatform, Platforms currentPlatform}) {
+  Future<bool> subscribeToPlatform(
+      {Platforms previousPlatform, Platforms currentPlatform}) async {
     if (previousPlatform == null) {
-      messaging.subscribeToTopic(currentPlatform.toString().split('.').last);
+      await messaging
+          .subscribeToTopic(currentPlatform.toString().split('.').last);
       return true;
     }
 
     if (previousPlatform == currentPlatform) return false;
 
-    messaging.unsubscribeFromTopic(previousPlatform.toString().split('.').last);
-    messaging.subscribeToTopic(currentPlatform.toString().split('.').last);
+    await messaging
+        .unsubscribeFromTopic(previousPlatform.toString().split('.').last);
+    await messaging
+        .subscribeToTopic(currentPlatform.toString().split('.').last);
 
     return true;
   }
 
-  bool subscribeToNotification(String notificationKey, bool condition) {
+  Future<bool> subscribeToNotification(
+      String notificationKey, bool condition) async {
     try {
       if (condition) {
-        messaging.subscribeToTopic(notificationKey);
+        await messaging.subscribeToTopic(notificationKey);
         return true;
       } else {
-        messaging.unsubscribeFromTopic(notificationKey);
+        await messaging.unsubscribeFromTopic(notificationKey);
 
         return false;
       }

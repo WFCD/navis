@@ -19,6 +19,9 @@ class Notifications extends StatelessWidget {
       case 'Cycles':
         FilterDialog.showFilters(context, cycles, FilterType.cycles);
         break;
+      case 'Resources':
+        FilterDialog.showFilters(context, resources, FilterType.resources);
+        break;
       /*case 'Fissure Missions':
         debugPrint('not implemented yet');
         break;

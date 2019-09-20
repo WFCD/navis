@@ -1,52 +1,5 @@
 import 'storage_keys.dart';
 
-// Do I even need this anymore?
-const rewards = {
-  'vauban': 'Vauban Parts',
-  'vandal': 'Vandadl Weapon Part',
-  'wraith': 'Wraith Weapon Part',
-  'skin': 'Skin Blueprint',
-  'helmet': 'Helmet Blueprint',
-  'nitain': 'Nitain Extract',
-  'mutalist': 'Mutalist Alad V Nav Coordinate',
-  'weapon': 'Weapon Blueprints',
-  'fieldron': 'Fieldron Sample',
-  'detonite': 'Detonite Ampule',
-  'mutagen': 'Mutagen Samples',
-  'aura': 'Aura Mods',
-  'neuralSensors': 'Neural Sensors',
-  'orokinCell': 'Orokin Cells',
-  'alloyPlate': 'Alloy Plates',
-  'circuits': 'Circuits',
-  'controlModule': 'Control Modules',
-  'ferrite': 'Ferrite',
-  'gallium': 'Gallium',
-  'morphics': 'Morphics',
-  'nanoSpores': 'Nano Spores',
-  'oxium': 'Oxium',
-  'rubedo': 'Rubedo',
-  'salvage': 'Salvage',
-  'plastids': 'Plastids',
-  'polymerBundle': 'Polymer Bundles',
-  'argonCrystal': 'Argon Crystals',
-  'cryotic': 'Cryotic',
-  'tellurium': 'Tellurium',
-  'neurodes': 'Neurodes',
-  'nightmare': 'Nightmare Mods',
-  'endo': 'Endo',
-  'reactor': 'Orokin Reactors',
-  'catalyst': 'Orokin Caralyst',
-  'forma': 'Forma',
-  'synthula': 'Synthula',
-  'exilus': 'Exilus Adapater',
-  'riven': 'Riven Mods',
-  'kavatGene': 'Kavat Genes',
-  'kubrowEgg': 'Kubrow Eggs',
-  'traces': 'Void Traces',
-  'other': 'Other Items',
-  'credits': 'Credits'
-};
-
 const simple = [
   {
     'name': 'Rare Alerts',
@@ -73,6 +26,7 @@ const simple = [
 const filtered = {
   //'News': 'News notifications for Prime Access, Streams and Updates',
   'Cycles': 'Day/Night cycle notifications',
+  'Resources': 'Resources mostly found in invasions'
   //'Fissure Missions': 'Filter fissure notifications by prefered mission type',
   //'Acolytes': 'Notification for when an Acolyte is found',
 };
@@ -99,6 +53,23 @@ const acolytes = {
   NotificationKeys.miseryKey: 'Misery',
   NotificationKeys.tormentKey: 'Torment',
   NotificationKeys.violenceKey: 'Violence',
+};
+
+const Map<String, String> resources = {
+  NotificationKeys.sniptronVandalBP: 'Snipetron Vandal Blueprint',
+  NotificationKeys.sheeveHeatsink: 'Sheev Heatsink',
+  NotificationKeys.deraVandalBarrel: 'Dera Vandal Barrel',
+  NotificationKeys.deraVandalBP: 'Dera Vandal Blueprint',
+  NotificationKeys.wraithTwinVIpersBarrel: 'Wraith Twin Vipers Barrel',
+  NotificationKeys.latronWraithReceiver: 'Latron Wraith Receiver',
+  NotificationKeys.fieldron: 'Fieldron',
+  NotificationKeys.detoniteInjector: 'Detonite Injector',
+  NotificationKeys.aladNavCoordinate: 'Mutalist Alad V Nav Coordinate',
+  NotificationKeys.mutagenMass: 'Mutagen Mass',
+  NotificationKeys.orokinCatalyst: 'Orokin Catalyst',
+  NotificationKeys.orokinReactor: 'Orokin Reactor',
+  NotificationKeys.forma: 'Forma',
+  NotificationKeys.exilusAdapter: 'Exilus Adapter'
 };
 
 const missionTypes = {

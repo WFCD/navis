@@ -41,7 +41,7 @@ class BaseDialog extends StatelessWidget {
 
     return Dialog(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
-        child: IntrinsicWidth(
+        child: Container(
           child: Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.stretch,
