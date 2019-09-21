@@ -6,6 +6,7 @@
 .idea
 .vscode
 .gradle/
+local.properties
 
 build/
 pubspec.lock
