@@ -1,8 +1,12 @@
 import 'package:floating_search_bar/ui/sliver_search_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:navis/blocs/bloc.dart';
 import 'package:navis/blocs/search/search_utils.dart';
+import 'package:navis/services/repository.dart';
+import 'package:navis/utils/utils.dart';
 
 import 'search_results_sort.dart';
 
@@ -41,15 +45,12 @@ class _SearchBarState extends State<SearchBar> {
     }).toList();
   }
 
-  void _onSelected(SearchTypes next, SearchTypes previous) {
-    if (next != null && next != previous) {
-      if (_textEditingController.text.isNotEmpty) {
-        _onClear();
-      }
+  void _onSelected(Box box, SearchTypes previous, SearchTypes next) {
+    if (previous != next) {
+      box.put('searchType', searchTypeToString(next));
 
-      BlocProvider.of<SearchBloc>(context).dispatch(SwitchSearchType(next));
-
-      setState(() {});
+      BlocProvider.of<SearchBloc>(context)
+          .dispatch(TextChanged(_textEditingController.text, type: next));
     }
   }
 
@@ -65,8 +66,6 @@ class _SearchBarState extends State<SearchBar> {
 
   @override
   Widget build(BuildContext context) {
-    final type = BlocProvider.of<SearchBloc>(context).searchType;
-
     return SliverPadding(
       padding: const EdgeInsets.only(top: 8.0),
       sliver: SliverFloatingBar(
@@ -87,8 +86,12 @@ class _SearchBarState extends State<SearchBar> {
           ),
         ),
         trailing: LimitedBox(
-          child: BlocBuilder<SearchBloc, SearchState>(
-            builder: (context, state) {
+          child: WatchBoxBuilder(
+            box: RepositoryProvider.of<Repository>(context).storage.instance,
+            watchKeys: const ['searchType'],
+            builder: (BuildContext context, Box box) {
+              final type = stringToSearchType(box.get('searchType'));
+
               return Row(
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
@@ -98,7 +101,7 @@ class _SearchBarState extends State<SearchBar> {
                   PopupMenuButton<SearchTypes>(
                     initialValue: type,
                     itemBuilder: _buildItems,
-                    onSelected: (t) => _onSelected(t, type),
+                    onSelected: (t) => _onSelected(box, type, t),
                   )
                 ],
               );

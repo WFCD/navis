@@ -9,15 +9,10 @@ abstract class SearchEvent extends Equatable {
 }
 
 class TextChanged extends SearchEvent {
-  TextChanged(this.text) : super([text]);
+  TextChanged(this.text, {this.type}) : super([text, type]);
 
   final String text;
-}
-
-class SwitchSearchType extends SearchEvent {
-  SwitchSearchType(this.searchType) : super([searchType]);
-
-  final SearchTypes searchType;
+  final SearchTypes type;
 }
 
 class SortSearch extends SearchEvent {

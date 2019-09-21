@@ -27,7 +27,8 @@ void main() {
               builder: (_) => NavigationBloc(),
             ),
             BlocProvider<SearchBloc>(
-              builder: (_) => SearchBloc(repository.worldstateService),
+              builder: (_) => SearchBloc(
+                  repository.worldstateService, repository.storage.instance),
             )
           ],
           child: Navis(repository),

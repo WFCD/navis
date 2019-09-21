@@ -106,10 +106,6 @@ class WorldstateService {
 // we simply create a new instance here
 Future<List<ItemObject>> _search(String searchTerm) async {
   final api = WorldstateApiWrapper(http.Client());
-  final items = await api.searchItems(searchTerm);
 
-  items.removeWhere((i) =>
-      i.category == 'Skins' || i.category == 'Glyphs' || i.category == 'Misc');
-
-  return items;
+  return await api.searchItems(searchTerm);
 }

@@ -2,8 +2,11 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:bloc/bloc.dart';
+import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
+import 'package:hive/hive.dart';
 import 'package:navis/services/worldstate_service.dart';
+import 'package:navis/utils/utils.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:warframe_items_model/warframe_items_model.dart';
 
@@ -12,15 +15,14 @@ import 'search_state.dart';
 import 'search_utils.dart';
 
 class SearchBloc extends Bloc<SearchEvent, SearchState> {
-  SearchBloc(this.api) {
+  SearchBloc(this.api, this.storage) {
     _initializeTables();
   }
 
   final WorldstateService api;
+  final Box storage;
 
   List<SlimDrop> _dropTable;
-
-  SearchTypes searchType = SearchTypes.drops;
 
   Future<void> _initializeTables() async {
     try {
@@ -46,10 +48,21 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
         next);
   }
 
+  Future<List<Equatable>> _search(SearchTypes type, String searchText) async {
+    final results = type != SearchTypes.drops
+        ? await api.search(searchText)
+        : await compute(
+            searchDropTable, SearchDropTable(searchText, _dropTable ?? []));
+
+    return results;
+  }
+
   @override
   Stream<SearchState> mapEventToState(
     SearchEvent event,
   ) async* {
+    final searchType = stringToSearchType(storage.get('searchType'));
+
     if (event is TextChanged) {
       final searchText = event.text;
 
@@ -59,22 +72,13 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
         yield SearchStateLoading();
 
         try {
-          final results = searchType != SearchTypes.drops
-              ? await api.search(searchText)
-              : await compute(searchDropTable,
-                  SearchDropTable(searchText, _dropTable ?? []));
+          final results = await _search(searchType, searchText);
 
           yield SearchStateSuccess(results);
         } catch (e) {
           yield SearchStateError(e.toString());
         }
       }
-    }
-
-    if (event is SwitchSearchType) {
-      searchType = event.searchType;
-
-      yield SearchStateEmpty();
     }
 
     if (event is SortSearch) {
