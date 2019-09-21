@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/blocs/bloc.dart';
 import 'package:navis/blocs/worldstate/worldstate_events.dart';
-import 'package:simple_animations/simple_animations.dart';
-
 import 'package:navis/widgets/widgets/static_box.dart';
+import 'package:simple_animations/simple_animations.dart';
 
 class CountdownBox extends StatefulWidget {
   const CountdownBox({

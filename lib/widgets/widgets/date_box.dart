@@ -6,7 +6,6 @@ import 'package:navis/constants/storage_keys.dart';
 import 'package:navis/services/repository.dart';
 import 'package:navis/utils/factionutils.dart';
 import 'package:navis/utils/worldstate_utils.dart';
-
 import 'package:navis/widgets/widgets/static_box.dart';
 
 class DateView extends StatelessWidget {

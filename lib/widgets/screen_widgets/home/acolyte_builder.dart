@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:navis/blocs/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:navis/blocs/bloc.dart';
 import 'package:navis/widgets/widgets.dart';
 
 import 'acolyte_widget.dart';
