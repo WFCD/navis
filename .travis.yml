@@ -31,6 +31,7 @@ jobs:
       if: tag IS present
       script:
         - flutter pub get
+        - flutter clean
         - flutter build apk
         - flutter build appbundle
         - cd android && bundle exec fastlane beta
