@@ -60,13 +60,14 @@ class ItemHeader extends StatelessWidget {
                   Expanded(child: info),
                 ],
               ),
-              FlatButton(
-                child: const Text('See Wikia'),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(4.0),
-                ),
-                onPressed: () => launchLink(context, wikiaUrl),
-              )
+              if (wikiaUrl != null)
+                FlatButton(
+                  child: const Text('See Wikia'),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(4.0),
+                  ),
+                  onPressed: () => launchLink(context, wikiaUrl),
+                )
             ],
           ),
         )
