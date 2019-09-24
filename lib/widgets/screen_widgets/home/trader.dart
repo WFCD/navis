@@ -83,7 +83,6 @@ class _InventoryButton extends StatelessWidget {
               width: 500.0,
               height: 30.0,
               alignment: Alignment.center,
-              decoration: BoxDecoration(),
               child: const Text(
                 'Baro Ki\'Teeer Inventory',
                 style: TextStyle(fontSize: 17.0, color: Colors.white),
