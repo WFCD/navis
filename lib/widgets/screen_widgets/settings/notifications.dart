@@ -23,10 +23,10 @@ class Notifications extends StatelessWidget {
         break;
       /*case 'Fissure Missions':
         debugPrint('not implemented yet');
-        break;
+        break;*/
       case 'News':
         FilterDialog.showFilters(context, newsType, FilterType.news);
-        break;*/
+        break;
     }
   }
 

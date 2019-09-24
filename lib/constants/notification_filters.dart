@@ -3,14 +3,14 @@ import 'storage_keys.dart';
 const simple = [
   {
     'name': 'Rare Alerts',
-    'description': 'Rare alert notifications, mainly gifts of the lotus',
+    'description': 'Rare alert notifications, mainly gifts of the lotus.',
     'key': NotificationKeys.alertsKey
   },
-  // {
-  //   'name': 'Baro Ki\'Teer Arrival',
-  //   'description': 'For when Baro has arrived',
-  //   'key': baroKey
-  // },
+  {
+    'name': 'Baro Ki\'Teer',
+    'description': 'For when Baro is arriving or leaving.',
+    'key': NotificationKeys.baroKey
+  },
   // {
   //   'name': 'Darvo\'s Daily Deals',
   //   'description': 'Darvo\'s new find of the day',
@@ -18,15 +18,15 @@ const simple = [
   // },
   {
     'name': 'Sorties',
-    'description': 'Notifications for new sorties',
+    'description': 'Notifications for new sorties.',
     'key': NotificationKeys.sortiesKey
   }
 ];
 
 const filtered = {
-  //'News': 'News notifications for Prime Access, Streams and Updates',
-  'Cycles': 'Day/Night cycle notifications',
-  'Resources': 'Resources mostly found in invasions'
+  'News': 'News notifications for Prime Access, Streams and Updates.',
+  'Cycles': 'Day/Night cycle notifications.',
+  'Resources': 'Resources mostly found in invasions.'
   //'Fissure Missions': 'Filter fissure notifications by prefered mission type',
   //'Acolytes': 'Notification for when an Acolyte is found',
 };
