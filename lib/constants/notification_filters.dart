@@ -57,11 +57,19 @@ const acolytes = {
 
 const Map<String, String> resources = {
   NotificationKeys.sniptronVandalBP: 'Snipetron Vandal Blueprint',
-  NotificationKeys.sheeveHeatsink: 'Sheev Heatsink',
-  NotificationKeys.deraVandalBarrel: 'Dera Vandal Barrel',
+  NotificationKeys.sheevHeatsink: 'Sheev Heatsink',
   NotificationKeys.deraVandalBP: 'Dera Vandal Blueprint',
-  NotificationKeys.wraithTwinVIpersBarrel: 'Wraith Twin Vipers Barrel',
+  NotificationKeys.deraVandalBarrel: 'Dera Vandal Barrel',
+  NotificationKeys.deraVandalReceiver: 'Dera Vandal Receiver',
+  NotificationKeys.deraVandalStock: 'Dera Vandal Stock',
+  NotificationKeys.wraithTwinVipersBP: 'Wraith Twin Vipers Blueprint',
+  NotificationKeys.wraithTwinVipersBarrels: 'Wraith Twin Vipers Barrel',
+  NotificationKeys.wraithTwinVipersReceivers: 'Wraith Twin Vipers Receivers',
+  NotificationKeys.wraithTwinVipersLink: 'Wraith Twin Vipers Link',
+  NotificationKeys.latronWraithBP: 'Latron Wraith Blueprint',
+  NotificationKeys.latronWraithBarrel: 'Latron Wraith Barrel',
   NotificationKeys.latronWraithReceiver: 'Latron Wraith Receiver',
+  NotificationKeys.latronWraithStock: 'Latron Wraith Stock',
   NotificationKeys.fieldron: 'Fieldron',
   NotificationKeys.detoniteInjector: 'Detonite Injector',
   NotificationKeys.aladNavCoordinate: 'Mutalist Alad V Nav Coordinate',
@@ -70,26 +78,4 @@ const Map<String, String> resources = {
   NotificationKeys.orokinReactor: 'Orokin Reactor',
   NotificationKeys.forma: 'Forma',
   NotificationKeys.exilusAdapter: 'Exilus Adapter'
-};
-
-const missionTypes = {
-  'key': 'missions_alert',
-  'missions': [
-    'Excavation',
-    'Sabotage',
-    'Mobile Defense',
-    'Assassination',
-    'Extermination',
-    'Hive',
-    'Defense',
-    'Interception',
-    'Rescue',
-    'Spy',
-    'Survival',
-    'Capture',
-    'Hijack',
-    'Assault',
-    'Defection',
-    'Free Roam',
-  ]
 };

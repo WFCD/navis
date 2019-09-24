@@ -34,7 +34,7 @@ class AboutApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final repository = RepositoryProvider.of<Repository>(context);
-    final date = _dateFormat.format(repository.storage.tableTimestamp);
+    final date = _dateFormat.format(repository.storage.tableTimestamp());
 
     return Column(
       children: <Widget>[

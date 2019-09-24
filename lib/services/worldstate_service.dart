@@ -67,7 +67,7 @@ class WorldstateService {
   Future<bool> updateDropTable() async {
     final timestamp = await _getDropTableTimestamp();
 
-    if (timestamp != storage.tableTimestamp) {
+    if (timestamp != storage.tableTimestamp()) {
       await _downloadDropTable();
 
       storage.saveTimestamp(timestamp);
