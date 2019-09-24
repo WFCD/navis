@@ -23,8 +23,13 @@ class InvasionDetails extends StatelessWidget {
     return Container(
       child: Column(children: <Widget>[
         Text(node, style: _node),
-        Text('$description ($eta)',
-            style: Typography.whiteMountainView.caption),
+        Text(
+          '$description ($eta)',
+          style: Theme.of(context)
+              .textTheme
+              .caption
+              .copyWith(shadows: <Shadow>[shadow]),
+        ),
       ]),
     );
   }
