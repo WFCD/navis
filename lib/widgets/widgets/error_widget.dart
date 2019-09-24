@@ -1,9 +1,17 @@
 import 'package:flutter/material.dart';
 
 class NavisErrorWidget extends StatelessWidget {
-  const NavisErrorWidget({Key key, this.showStacktrace = true, this.details})
-      : super(key: key);
+  const NavisErrorWidget({
+    Key key,
+    this.icon,
+    this.title,
+    this.description,
+    this.showStacktrace = true,
+    this.details,
+  }) : super(key: key);
 
+  final IconData icon;
+  final String title, description;
   final bool showStacktrace;
   final FlutterErrorDetails details;
 
@@ -12,15 +20,9 @@ class NavisErrorWidget extends StatelessWidget {
 
   Widget _getStackTraceWidget() {
     if (showStacktrace) {
-      return SizedBox(
-        height: 200.0,
-        child: ListView.builder(
-          padding: const EdgeInsets.all(8.0),
-          itemCount: 1,
-          itemBuilder: (BuildContext context, int index) {
-            return Text(details.exceptionAsString());
-          },
-        ),
+      return LimitedBox(
+        maxHeight: 100,
+        child: Text(details.exceptionAsString()),
       );
     } else {
       return Container();
@@ -30,18 +32,28 @@ class NavisErrorWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        margin: const EdgeInsets.all(20),
-        child: Center(
-            child:
-                Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-          Icon(Icons.announcement, color: Colors.red, size: 40),
-          Text(_title,
-              style: Theme.of(context).textTheme.title,
-              textAlign: TextAlign.center),
-          const SizedBox(height: 10),
-          const Text(_description, textAlign: TextAlign.center),
-          const SizedBox(height: 10),
-          _getStackTraceWidget()
-        ])));
+      margin: const EdgeInsets.all(20),
+      child: Center(
+        child: Column(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(icon ?? Icons.error_outline, color: Colors.red, size: 40),
+              const SizedBox(height: 8),
+              Text(
+                title ?? _title,
+                style: Theme.of(context).textTheme.title,
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 10),
+              Text(
+                description ?? _description,
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 10),
+              _getStackTraceWidget()
+            ]),
+      ),
+    );
   }
 }

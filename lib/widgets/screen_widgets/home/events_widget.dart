@@ -21,14 +21,14 @@ class EventWidget extends StatelessWidget {
           const SizedBox(height: 4),
           _EventMiddle(
             victimNode: event.victimNode,
-            health: event.eventHealth,
+            health: event.eventHealth ?? event.health,
             rewards: event.rewards,
             expiry: event.expiry,
           ),
           const SizedBox(height: 8),
           _EventFooter(
             affiliatedWith: event.affiliatedWith,
-            rewards: event.eventRewards,
+            rewards: event.eventRewards ?? event.health,
             jobs: event?.jobs,
           )
         ]);

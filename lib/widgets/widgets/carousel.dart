@@ -10,7 +10,7 @@ class Carousel extends StatefulWidget {
     Key key,
     @required this.children,
     @required this.dotCount,
-    this.height = 100,
+    this.height = 120,
     this.enableIndicator = true,
   })  : assert(children != null),
         assert(dotCount != null),

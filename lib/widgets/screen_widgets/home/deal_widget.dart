@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/services/repository.dart';
 import 'package:navis/utils/utils.dart';
 import 'package:navis/widgets/animations/countdown.dart';
+import 'package:navis/widgets/widgets.dart';
 import 'package:warframe_items_model/warframe_items_model.dart';
 import 'package:worldstate_model/worldstate_models.dart';
 
@@ -65,15 +66,29 @@ class _DealWidgetState extends State<DealWidget>
                   imageUrl: item.imageUrl,
                   height: size.height,
                   width: size.width,
+                  placeholder: (BuildContext context, String url) => Container(
+                    height: size.height,
+                    width: size.width,
+                    alignment: Alignment.center,
+                    child: const CircularProgressIndicator(),
+                  ),
+                  errorWidget:
+                      (BuildContext context, String url, Object error) {
+                    return const NavisErrorWidget(
+                      title: 'Item not found by API',
+                      description:
+                          'Sorry but it seems the item hasn\'t been added to the API yet.',
+                      showStacktrace: false,
+                    );
+                  },
                 ),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   Chip(label: Text('${widget.deal.discount}% Discount')),
-                  Chip(
-                      label: Text(
-                          '${widget.deal.salePrice}p')), // TODO(Orn): should probably put a plat icon here instead
+                  // TODO(Orn): should probably put a plat icon here instead
+                  Chip(label: Text('${widget.deal.salePrice}p')),
                   Chip(
                     label: Text(
                         '${widget.deal.total - widget.deal.sold}/${widget.deal.total} remaining'),
