@@ -15,16 +15,16 @@ import 'search_state.dart';
 import 'search_utils.dart';
 
 class SearchBloc extends Bloc<SearchEvent, SearchState> {
-  SearchBloc(this.api, this.storage) {
-    _initializeTables();
-  }
+  SearchBloc(this.api, this.storage);
 
   final WorldstateService api;
   final Box storage;
 
   List<SlimDrop> _dropTable;
 
-  Future<void> _initializeTables() async {
+  bool get isDropTableLoaded => _dropTable != null;
+
+  Future<void> loadDropTable() async {
     try {
       final File table = await api.initializeDropTable();
 
@@ -33,6 +33,10 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
       dispatch(SearchError(
           'Downloading drop table failed, searching the drop table will not be possible'));
     }
+  }
+
+  void unloadDropTable() {
+    _dropTable = null;
   }
 
   @override
@@ -93,5 +97,11 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
     if (event is SearchError) {
       yield SearchListenerError(event.error);
     }
+  }
+
+  @override
+  void dispose() {
+    _dropTable = null;
+    super.dispose();
   }
 }
