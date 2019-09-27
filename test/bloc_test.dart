@@ -7,6 +7,7 @@ import 'package:mockito/mockito.dart';
 import 'package:navis/blocs/bloc.dart';
 import 'package:navis/blocs/worldstate/worldstate_events.dart';
 import 'package:test/test.dart';
+import 'package:wfcd_api_wrapper/worldstate_wrapper.dart';
 import 'package:worldstate_model/worldstate_models.dart';
 
 import 'mocked_classes.dart';
@@ -38,8 +39,9 @@ Future<void> main() async {
     });
 
     test('Worldstate is loaded correctly', () async {
-      when(mockWorldstateService.getWorldstate()).thenAnswer((_) async {
-        final data = json.decode(await File('worldstate.json').readAsString());
+      when(mockWorldstateService.getWorldstate(Platforms.pc))
+          .thenAnswer((_) async {
+        final data = json.decode(File('worldstate.json').readAsStringSync());
 
         return Worldstate.fromJson(data);
       });
