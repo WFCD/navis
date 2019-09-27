@@ -29,7 +29,7 @@ class NightWaveWidget extends StatelessWidget {
           ),
           subtitle: Text(
             'Season $season',
-            style: Typography.whiteMountainView.subhead,
+            style: Typography.whiteMountainView.caption,
           ),
           onTap: () => Navigator.of(context).pushNamed('/nightwave'),
         ),
