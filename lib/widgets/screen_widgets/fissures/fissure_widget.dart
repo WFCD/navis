@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:navis/utils/worldstate_utils.dart';
+import 'package:navis/widgets/animations/countdown.dart';
 import 'package:navis/widgets/widgets.dart';
 import 'package:worldstate_model/worldstate_models.dart';
-
-import 'fissure_details.dart';
 
 class FissureWidget extends StatelessWidget {
   const FissureWidget({Key key, @required this.fissure}) : super(key: key);
@@ -13,23 +12,45 @@ class FissureWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    const size = Size(60, 60);
+    const color = Colors.white;
+    const shadow = Shadow(offset: Offset(1.0, 0.0), blurRadius: 3.0);
+
+    const _nodeStyle = TextStyle(
+        fontWeight: FontWeight.bold,
+        fontStyle: FontStyle.normal,
+        fontSize: 18,
+        color: color,
+        shadows: <Shadow>[shadow]);
+
+    const _missionTypeStyle = TextStyle(
+        fontWeight: FontWeight.w500,
+        fontStyle: FontStyle.normal,
+        fontSize: 14,
+        color: color,
+        shadows: <Shadow>[shadow]);
+
+    final tierIcon = SvgPicture.asset(
+      'assets/relics/${fissure.tier}.svg',
+      height: size.height,
+      width: size.width,
+      color: Colors.white,
+    );
+
     return BackgroundImageCard(
       elevation: 6.0,
       provider: skybox(context, fissure.node),
-      child: Row(
-        children: <Widget>[
-          FissureDetails(fissure: fissure, context: context),
-          const Spacer(),
-          Container(
-            margin: const EdgeInsets.symmetric(horizontal: 28, vertical: 28),
-            height: 67,
-            width: 60,
-            child: SvgPicture.asset(
-              'assets/relics/${fissure.tier}.svg',
-              color: Colors.white,
-            ),
-          )
-        ],
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 8),
+        child: ListTile(
+          leading: tierIcon,
+          title: Text(fissure.node, style: _nodeStyle),
+          subtitle: Text(
+            '${fissure.missionType} | ${fissure.tier}',
+            style: _missionTypeStyle,
+          ),
+          trailing: CountdownBox(expiry: fissure.expiry),
+        ),
       ),
     );
   }
