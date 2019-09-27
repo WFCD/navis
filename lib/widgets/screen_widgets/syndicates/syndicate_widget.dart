@@ -25,7 +25,11 @@ class SyndicateWidget extends StatelessWidget {
         splashColor: Colors.transparent,
         child: Container(
           child: Row(mainAxisSize: MainAxisSize.max, children: <Widget>[
-            Container(child: FactionIcon(syndicate.name, size: 60.0)),
+            Padding(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+              child: FactionIcon(syndicate.name, size: 60.0),
+            ),
             Expanded(
               child: Column(
                   mainAxisSize: MainAxisSize.min,

@@ -43,11 +43,12 @@ class FactionIcon extends StatelessWidget {
         assetName = infested;
     }
 
-    return SizedBox(
-      height: size,
-      width: size,
-      child: SvgPicture.asset(assetName,
-          color: hasColor ? factionColor(faction) : Colors.white),
+    return SizedBox.fromSize(
+      size: Size(size, size),
+      child: SvgPicture.asset(
+        assetName,
+        color: hasColor ? factionColor(faction) : Colors.white,
+      ),
     );
   }
 }
