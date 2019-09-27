@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:navis/widgets/widgets.dart';
 
 class NightWaveWidget extends StatelessWidget {
@@ -8,35 +9,23 @@ class NightWaveWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BackgroundImageCard(
-      height: 100,
-      provider: const AssetImage('assets/general/banner.webp'),
-      child: InkWell(
-        onTap: () => Navigator.of(context).pushNamed('/nightwave'),
-        child: Container(
-          height: 40,
-          alignment: Alignment.center,
-          decoration: const BoxDecoration(
-            color: Color.fromRGBO(34, 34, 34, .2),
-          ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Text('Nightwave',
-                  style: Theme.of(context).textTheme.title.copyWith(
-                        color: Colors.white,
-                        fontSize: 20,
-                      )),
-              Text(
-                'Season $season',
-                textAlign: TextAlign.center,
-                style: Theme.of(context)
-                    .textTheme
-                    .subtitle
-                    .copyWith(color: Colors.white),
-              )
-            ],
-          ),
+    const size = Size(60, 60);
+
+    final nightwaveIcon = SvgPicture.asset(
+      'assets/general/nightwave.svg',
+      height: size.height,
+      width: size.width,
+    );
+
+    return Tiles(
+      color: const Color(0xFF6c1822),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 4.0, vertical: 8.0),
+        child: ListTile(
+          leading: nightwaveIcon,
+          title: const Text('Nightwaves'),
+          subtitle: Text('Season $season'),
+          onTap: () => Navigator.of(context).pushNamed('/nightwave'),
         ),
       ),
     );

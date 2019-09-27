@@ -16,7 +16,7 @@ class Nightwaves extends StatelessWidget {
       child: Scaffold(
           appBar: AppBar(
             title: const Text('Nightwave'),
-            backgroundColor: Colors.red[800],
+            backgroundColor: const Color(0xFF6c1822),
           ),
           body: BlocBuilder<WorldstateBloc, WorldStates>(
             condition: (previous, current) {
