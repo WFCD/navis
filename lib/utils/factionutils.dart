@@ -12,8 +12,12 @@ const ostrons = 'assets/sigils/OstronSigil.svg';
 const solaris = 'assets/sigils/SolarisUnited.svg';
 
 class FactionIcon extends StatelessWidget {
-  const FactionIcon(this.faction, {Key key, this.size, this.hasColor = true})
-      : super(key: key);
+  const FactionIcon(
+    this.faction, {
+    Key key,
+    this.size = 16,
+    this.hasColor = true,
+  }) : super(key: key);
 
   final String faction;
   final double size;
@@ -43,12 +47,11 @@ class FactionIcon extends StatelessWidget {
         assetName = infested;
     }
 
-    return SizedBox.fromSize(
-      size: Size(size, size),
-      child: SvgPicture.asset(
-        assetName,
-        color: hasColor ? factionColor(faction) : Colors.white,
-      ),
+    return SvgPicture.asset(
+      assetName,
+      color: hasColor ? factionColor(faction) : Colors.white,
+      height: size,
+      width: size,
     );
   }
 }

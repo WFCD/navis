@@ -12,7 +12,7 @@ class NightWaveWidget extends StatelessWidget {
     const size = Size(60, 60);
 
     final nightwaveIcon = SvgPicture.asset(
-      'assets/general/nightwave.svg',
+      'assets/sigils/NightwaveSyndicate.svg',
       height: size.height,
       width: size.width,
     );

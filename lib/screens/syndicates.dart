@@ -23,10 +23,8 @@ class SyndicatesList extends StatelessWidget {
                   title: 'Bounties expire in:',
                   time: syndicates.first.expiry,
                 ),
-              Column(children: <Widget>[
-                ...syndicates
-                    .map((Syndicate syn) => SyndicateWidget(syndicate: syn))
-              ]),
+              ...syndicates
+                  .map((Syndicate syn) => SyndicateWidget(syndicate: syn)),
               const SizedBox(height: 20),
               if (nightwave != null) ...{
                 TimerBox(
