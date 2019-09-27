@@ -21,8 +21,14 @@ class SyndicateWidget extends StatelessWidget {
       color: ostron ? ostronsColor : solarisColor,
       child: ListTile(
         leading: FactionIcon(syndicate.name, size: 60.0),
-        title: Text(syndicate.name),
-        subtitle: const Text('Tap to see bounties'),
+        title: Text(
+          syndicate.name,
+          style: Typography.whiteMountainView.subhead,
+        ),
+        subtitle: Text(
+          'Tap to see bounties',
+          style: Typography.whiteMountainView.caption,
+        ),
         onTap: () => Navigator.of(context)
             .pushNamed('/syndicate_jobs', arguments: syndicate),
       ),

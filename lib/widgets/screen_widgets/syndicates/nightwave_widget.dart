@@ -23,8 +23,14 @@ class NightWaveWidget extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 4.0, vertical: 8.0),
         child: ListTile(
           leading: nightwaveIcon,
-          title: const Text('Nightwaves'),
-          subtitle: Text('Season $season'),
+          title: Text(
+            'Nightwaves',
+            style: Typography.whiteMountainView.subhead,
+          ),
+          subtitle: Text(
+            'Season $season',
+            style: Typography.whiteMountainView.subhead,
+          ),
           onTap: () => Navigator.of(context).pushNamed('/nightwave'),
         ),
       ),
