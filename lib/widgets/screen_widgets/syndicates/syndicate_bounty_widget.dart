@@ -34,7 +34,7 @@ class SyndicateBounty extends StatelessWidget {
       child: ListTile(
         title: Text(job.type, style: const TextStyle(color: Colors.white)),
         subtitle: Text(
-          'Enemey Level ${job.enemyLevels[0]} - ${job.enemyLevels[1]}',
+          'Enemy Level ${job.enemyLevels[0]} - ${job.enemyLevels[1]}',
           style: const TextStyle(color: Colors.white),
         ),
         trailing: _buildStanding(),
