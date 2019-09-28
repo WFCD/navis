@@ -37,7 +37,7 @@ class ItemHeader extends StatelessWidget {
         Align(
           alignment: Alignment.center,
           child: Container(
-            constraints: BoxConstraints.expand(height: 100),
+            constraints: const BoxConstraints.expand(height: 100),
             margin: const EdgeInsets.only(bottom: 144.0),
             color: Theme.of(context).cardColor,
           ),

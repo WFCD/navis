@@ -33,8 +33,8 @@ class _CodexState extends State<Codex> {
     return BlocBuilder<SearchBloc, SearchState>(
       builder: (BuildContext context, SearchState state) {
         return Stack(children: <Widget>[
-          CustomScrollView(
-            slivers: const <Widget>[SearchBar(), SearchResults()],
+          const CustomScrollView(
+            slivers: <Widget>[SearchBar(), SearchResults()],
           ),
           if (state is SearchStateSuccess && state.results.isEmpty)
             const Center(child: Text('No Results')),
