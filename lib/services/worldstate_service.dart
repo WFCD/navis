@@ -11,13 +11,10 @@ import 'package:wfcd_api_wrapper/worldstate_wrapper.dart';
 import 'package:worldstate_model/worldstate_models.dart';
 
 class WorldstateService {
-  WorldstateService(this.client, this.storage)
-      : _api = WorldstateApiWrapper(client);
+  WorldstateService(this.client, this.storage);
 
   final http.Client client;
   final LocalStorageService storage;
-
-  final WorldstateApiWrapper _api;
 
   static const dropTablePath = '/drop_table.json';
 
@@ -25,12 +22,24 @@ class WorldstateService {
     return compute(_search, searchTerm);
   }
 
+  static Future<List<ItemObject>> _search(String searchTerm) async {
+    final api = WorldstateApiWrapper(http.Client());
+
+    return await api.searchItems(searchTerm);
+  }
+
   Future<ItemObject> getDeal(DarvoDeal deal) async {
     const cacheKey = 'dealId';
+
     final cachedID = storage.getFromDisk(cacheKey);
 
     if (cachedID != deal.id) {
-      final item = await _api.getItem(deal.item);
+      final items = await search(deal.item);
+
+      final item = items.firstWhere(
+        (i) => i.name == deal.item,
+        orElse: () => BasicItem(name: deal.item, description: ''),
+      );
 
       storage.saveToDisk('dealId', deal.id);
       storage.saveToDisk('deal', json.encode(item.toJson()));
@@ -38,14 +47,20 @@ class WorldstateService {
       return item;
     }
 
-    final item = json.decode(storage.getFromDisk('deal'));
+    final item = json.decode(storage?.getFromDisk('deal'));
 
     return BasicItem.fromJson(item);
   }
 
   Future<Worldstate> getWorldstate([Platforms platform]) async {
-    final worldstate =
-        await _api.getWorldstate(platform ?? storage.platform ?? Platforms.pc);
+    final _platform = platform ?? storage.platform ?? Platforms.pc;
+
+    return compute(_retrieveWorldstate, _platform);
+  }
+
+  static Future<Worldstate> _retrieveWorldstate([Platforms platform]) async {
+    final api = WorldstateApiWrapper(http.Client());
+    final worldstate = await api.getWorldstate(platform);
 
     return cleanState(worldstate);
   }
@@ -61,7 +76,7 @@ class WorldstateService {
       return getFile(dropTablePath);
     }
 
-    return getFile('/drop_table.json');
+    return getFile(dropTablePath);
   }
 
   Future<bool> updateDropTable() async {
@@ -69,7 +84,6 @@ class WorldstateService {
 
     if (timestamp != storage.tableTimestamp()) {
       await _downloadDropTable();
-
       storage.saveTimestamp(timestamp);
 
       return true;
@@ -78,17 +92,17 @@ class WorldstateService {
     return false;
   }
 
-  Future<DateTime> _getDropTableTimestamp() async {
+  static Future<DateTime> _getDropTableTimestamp() async {
     const infoUrl = 'https://drops.warframestat.us/data/info.json';
-    final info = json.decode((await client.get(infoUrl)).body);
+    final info = json.decode((await http.get(infoUrl)).body);
 
     return DateTime.fromMillisecondsSinceEpoch(info['timestamp']);
   }
 
-  Future<void> _downloadDropTable([String path]) async {
+  static Future<void> _downloadDropTable([String path]) async {
     const dropTable = 'https://drops.warframestat.us/data/all.slim.json';
 
-    final response = await client.get(dropTable);
+    final response = await http.get(dropTable);
 
     if (response?.statusCode != 200)
       throw Exception(
@@ -100,12 +114,4 @@ class WorldstateService {
     await saveFile(
         SaveFile(await tempDirectory() + dropTablePath, response.body));
   }
-}
-
-// For some reaason I can pass down the instance and  it causes error on searches so for now
-// we simply create a new instance here
-Future<List<ItemObject>> _search(String searchTerm) async {
-  final api = WorldstateApiWrapper(http.Client());
-
-  return await api.searchItems(searchTerm);
 }

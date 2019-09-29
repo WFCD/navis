@@ -3,20 +3,25 @@ import 'package:equatable/equatable.dart';
 import 'package:worldstate_model/worldstate_models.dart';
 
 abstract class WorldStates extends Equatable {
-  WorldStates({this.worldstate, List props = const []})
-      : super([worldstate, ...props]);
+  const WorldStates({this.worldstate});
 
   final Worldstate worldstate;
+
+  @override
+  List<Object> get props => [worldstate];
 }
 
 class WorldstateUninitialized extends WorldStates {}
 
 class WorldstateError extends WorldStates {
-  WorldstateError(this.error) : super(props: [error]);
+  const WorldstateError(this.error);
 
   final String error;
+
+  @override
+  List<Object> get props => [error];
 }
 
 class WorldstateLoaded extends WorldStates {
-  WorldstateLoaded(Worldstate worldstate) : super(worldstate: worldstate);
+  const WorldstateLoaded(Worldstate worldstate) : super(worldstate: worldstate);
 }

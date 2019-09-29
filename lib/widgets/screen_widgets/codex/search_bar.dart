@@ -61,7 +61,7 @@ class _SearchBarState extends State<SearchBar> {
   void _onClear() {
     _textEditingController.clear();
     FocusScope.of(context).requestFocus(FocusNode());
-    BlocProvider.of<SearchBloc>(context).dispatch(TextChanged(''));
+    BlocProvider.of<SearchBloc>(context).dispatch(const TextChanged(''));
   }
 
   @override

@@ -3,8 +3,10 @@ import 'package:flutter/widgets.dart';
 
 @immutable
 abstract class WorldstateEvent extends Equatable {
-  const WorldstateEvent([List<dynamic> props = const <dynamic>[]])
-      : super(props);
+  const WorldstateEvent();
+
+  @override
+  List<Object> get props => const [];
 }
 
 class UpdateEvent extends WorldstateEvent {}

@@ -30,7 +30,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
 
       _dropTable = await compute(convertToDrop, table?.readAsStringSync());
     } catch (e) {
-      dispatch(SearchError(
+      dispatch(const SearchError(
           'Downloading drop table failed, searching the drop table will not be possible'));
     }
   }

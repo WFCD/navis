@@ -5,7 +5,10 @@ import 'search_utils.dart';
 
 @immutable
 abstract class SearchState extends Equatable {
-  const SearchState([List props = const <dynamic>[]]) : super(props);
+  const SearchState();
+
+  @override
+  List<Object> get props => const [];
 }
 
 class SearchStateLoading extends SearchState {}
@@ -13,22 +16,30 @@ class SearchStateLoading extends SearchState {}
 class SearchStateEmpty extends SearchState {}
 
 class SearchStateSuccess extends SearchState {
-  SearchStateSuccess(this.results, {this.sortBy = Sort.unsorted})
-      : super([results]);
+  const SearchStateSuccess(this.results, {this.sortBy = Sort.unsorted});
 
   final List<dynamic> results;
   final Sort sortBy;
+
+  @override
+  List<Object> get props => super.props..addAll([results, sortBy]);
 }
 
 class SearchStateError extends SearchState {
-  SearchStateError(this.error) : super([error]);
+  const SearchStateError(this.error);
 
   final String error;
+
+  @override
+  List<Object> get props => super.props..add(error);
 }
 
 // This is only an erro message for the bloc listener and should be ignore by the bloc builder in codex
 class SearchListenerError extends SearchState {
-  SearchListenerError(this.error) : super([error]);
+  const SearchListenerError(this.error);
 
   final String error;
+
+  @override
+  List<Object> get props => super.props..add(error);
 }

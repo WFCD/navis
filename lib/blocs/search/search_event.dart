@@ -5,25 +5,37 @@ import 'search_utils.dart';
 
 @immutable
 abstract class SearchEvent extends Equatable {
-  const SearchEvent([List props = const <dynamic>[]]) : super(props);
+  const SearchEvent();
+
+  @override
+  List<Object> get props => const [];
 }
 
 class TextChanged extends SearchEvent {
-  TextChanged(this.text, {this.type}) : super([text, type]);
+  const TextChanged(this.text, {this.type}) : super();
 
   final String text;
   final SearchTypes type;
+
+  @override
+  List<Object> get props => [text, type];
 }
 
 class SortSearch extends SearchEvent {
-  SortSearch(this.sortBy, this.results) : super([sortBy, results]);
+  const SortSearch(this.sortBy, this.results);
 
   final List<dynamic> results;
   final Sort sortBy;
+
+  @override
+  List<Object> get props => [sortBy, results];
 }
 
 class SearchError extends SearchEvent {
-  SearchError(this.error) : super([error]);
+  const SearchError(this.error);
 
   final dynamic error;
+
+  @override
+  List<Object> get props => [error];
 }
