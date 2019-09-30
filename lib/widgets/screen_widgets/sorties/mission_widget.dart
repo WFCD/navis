@@ -1,17 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:navis/utils/worldstate_utils.dart';
 import 'package:navis/widgets/widgets.dart';
-import 'package:worldstate_model/worldstate_models.dart';
 
-class SortieMission extends StatelessWidget {
-  const SortieMission({
-    @required this.variants,
+class MissionDetails extends StatelessWidget {
+  const MissionDetails({
+    Key key,
+    @required this.node,
+    @required this.missionType,
+    @required this.modifierDescription,
     @required this.faction,
     @required this.boss,
-  });
+    @required this.variantIndex,
+    this.isAssassination = false,
+  }) : super(key: key);
 
-  final List<Variants> variants;
-  final String faction, boss;
+  final String node, missionType, modifierDescription, faction, boss;
+  final int variantIndex;
+  final bool isAssassination;
 
   String _getAsset(int variantIndex) {
     final light = 'assets/factions/$faction/light.webp';
@@ -28,36 +33,24 @@ class SortieMission extends StatelessWidget {
     }
   }
 
-  Widget _buildDetails(BuildContext context, Variants variant) {
-    const shadow = Shadow(offset: Offset(1.0, 0.0), blurRadius: 3.0);
+  @override
+  Widget build(BuildContext context) {
     const color = Colors.white;
-    const sortie = TextStyle(
-        fontWeight: FontWeight.bold,
-        fontStyle: FontStyle.normal,
-        fontSize: 18,
-        color: color,
-        shadows: <Shadow>[shadow]);
-    const mode = TextStyle(
-        fontWeight: FontWeight.w500,
-        fontStyle: FontStyle.normal,
-        fontSize: 14,
-        color: color,
-        shadows: <Shadow>[shadow]);
+
+    final sortie = Theme.of(context).textTheme.subhead.copyWith(
+          fontWeight: FontWeight.bold,
+          fontStyle: FontStyle.normal,
+          color: color,
+        );
 
     final info = Theme.of(context).textTheme.caption.copyWith(
-        fontWeight: FontWeight.w500,
-        fontStyle: FontStyle.normal,
-        fontSize: 12,
-        color: color,
-        shadows: <Shadow>[shadow]);
-
-    final variantIndex = variants.indexOf(variant);
-    final isAssassination =
-        variant.missionType.toLowerCase().contains('assassination');
+          fontSize: 13,
+          fontStyle: FontStyle.normal,
+        );
 
     return BackgroundImageCard(
       height: 150,
-      provider: skybox(context, variant.node),
+      provider: skybox(context, node),
       child: Container(
         padding: const EdgeInsets.only(left: 8, top: 16, bottom: 16),
         child: Row(
@@ -66,24 +59,10 @@ class SortieMission extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Container(
-                    child: Text(
-                      'Sortie ${variantIndex + 1}',
-                      style: sortie,
-                    ),
-                  ),
-                  Container(
-                    child: Text(
-                      '${variant.missionType} - ${variant.node}',
-                      style: mode,
-                    ),
-                  ),
+                  Text('$missionType - $node', style: sortie),
                   const SizedBox(height: 16),
                   Container(
-                    child: Text(
-                      variant.modifierDescription,
-                      style: info,
-                    ),
+                    child: Text(modifierDescription, style: info),
                   )
                 ],
               ),
@@ -99,15 +78,6 @@ class SortieMission extends StatelessWidget {
           ],
         ),
       ),
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: Column(children: <Widget>[
-        for (Variants v in variants) _buildDetails(context, v)
-      ]),
     );
   }
 }
