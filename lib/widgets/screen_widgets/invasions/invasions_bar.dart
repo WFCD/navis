@@ -27,7 +27,7 @@ class InvasionBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      elevation: 6.0,
+      elevation: 4.0,
       color: Colors.transparent,
       clipBehavior: Clip.hardEdge,
       borderRadius: BorderRadius.circular(16.0),

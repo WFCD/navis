@@ -25,15 +25,23 @@ class InvasionReward extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             if (attackerReward.isNotEmpty)
-              StaticBox.text(
-                text: attackerReward,
-                color: factionColor(attackingFaction),
+              Material(
+                elevation: 4,
+                color: Colors.transparent,
+                child: StaticBox.text(
+                  text: attackerReward,
+                  color: factionColor(attackingFaction),
+                ),
               ),
             const Spacer(),
             if (defenderReward.isNotEmpty)
-              StaticBox.text(
-                text: defenderReward,
-                color: factionColor(defendingFaction),
+              Material(
+                elevation: 4,
+                color: Colors.transparent,
+                child: StaticBox.text(
+                  text: defenderReward,
+                  color: factionColor(defendingFaction),
+                ),
               )
           ]),
     );
