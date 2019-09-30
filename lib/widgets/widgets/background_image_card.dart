@@ -31,12 +31,13 @@ class BackgroundImageCard extends StatelessWidget {
         width: width,
         alignment: alignment,
         decoration: BoxDecoration(
-            image: DecorationImage(
-          colorFilter: ColorFilter.mode(
-              Colors.black.withOpacity(0.25), BlendMode.overlay),
-          image: provider,
-          fit: BoxFit.cover,
-        )),
+          image: DecorationImage(
+            colorFilter: ColorFilter.mode(
+                Colors.black.withOpacity(0.3), BlendMode.dstIn),
+            image: provider,
+            fit: BoxFit.cover,
+          ),
+        ),
         child: child,
       ),
     );
