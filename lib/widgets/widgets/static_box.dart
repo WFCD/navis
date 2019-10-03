@@ -10,20 +10,23 @@ class StaticBox extends StatelessWidget {
       this.margin = const EdgeInsets.all(3.0)});
 
 //create simple text box with hard coded color of white
-  factory StaticBox.text(
-      {String text,
-      Color color,
-      double size,
-      EdgeInsetsGeometry padding = const EdgeInsets.all(4.0),
-      EdgeInsetsGeometry margin = const EdgeInsets.all(3.0)}) {
+  factory StaticBox.text({
+    String text,
+    Color color,
+    double fontSize,
+    TextStyle style,
+    EdgeInsetsGeometry padding = const EdgeInsets.all(6.0),
+    EdgeInsetsGeometry margin = const EdgeInsets.all(3.0),
+  }) {
     return StaticBox(
-      padding: padding,
-      margin: margin,
-      color: color,
-      child: Text(text,
+        padding: padding,
+        margin: margin,
+        color: color,
+        child: Text(
+          text,
           textAlign: TextAlign.center,
-          style: TextStyle(color: Colors.white, fontSize: size)),
-    );
+          style: style ?? TextStyle(color: Colors.white, fontSize: fontSize),
+        ));
   }
 
   final Color color;

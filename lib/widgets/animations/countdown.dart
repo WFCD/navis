@@ -98,7 +98,7 @@ class _CountdownBoxState extends State<CountdownBox> {
         final expired = widget.expiry.isBefore(DateTime.now().toUtc());
 
         return StaticBox.text(
-          size: widget.size,
+          fontSize: widget.size,
           margin: widget.margin,
           padding: widget.padding,
           text: _timerVersions(duration, expired),

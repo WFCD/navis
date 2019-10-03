@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:navis/utils/size_config.dart';
 import 'package:navis/widgets/animations.dart';
 import 'package:navis/widgets/widgets.dart';
 import 'package:worldstate_model/worldstate_models.dart';
@@ -21,7 +22,7 @@ class EventWidget extends StatelessWidget {
           const SizedBox(height: 4),
           _EventMiddle(
             victimNode: event.victimNode,
-            health: event.eventHealth ?? event.health,
+            health: event.eventHealth.toDouble() ?? event.health,
             rewards: event.rewards,
             expiry: event.expiry,
           ),
@@ -51,16 +52,20 @@ class _EventHeader extends StatelessWidget {
       children: <Widget>[
         Container(
           margin: const EdgeInsets.only(bottom: 4, top: 3),
-          child: Text(description,
-              textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.title),
+          child: Text(
+            description,
+            textAlign: TextAlign.center,
+            style: Theme.of(context).textTheme.title,
+          ),
         ),
         if (tooltip != null)
           Container(
             margin: const EdgeInsets.only(bottom: 4),
-            child: Text(tooltip,
-                textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.subtitle),
+            child: Text(
+              tooltip,
+              textAlign: TextAlign.center,
+              style: Theme.of(context).textTheme.subtitle,
+            ),
           )
       ],
     );
@@ -92,19 +97,29 @@ class _EventMiddle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final fontSize = SizeConfig.widthMultiplier * 3.5;
+    final style =
+        Theme.of(context).textTheme.subhead.copyWith(fontSize: fontSize);
+
     return Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
       if (victimNode != null)
-        StaticBox.text(text: victimNode, color: Colors.red),
+        StaticBox.text(
+          text: victimNode,
+          color: Colors.red,
+          style: style,
+        ),
       if (rewards.where((r) => r.credits > 0).isNotEmpty)
         StaticBox.text(
           text: '${rewards.firstWhere((r) => r.credits > 0).credits}cr',
           color: Theme.of(context).primaryColor,
+          style: style,
         ),
       const SizedBox(height: 4),
       if (health != null)
         StaticBox.text(
           text: '${health.toStringAsFixed(2)}% remaining',
           color: _healthColor(health),
+          style: style,
         )
       else
         CountdownBox(expiry: expiry),
@@ -139,7 +154,12 @@ class _EventFooter extends StatelessWidget {
       return FlatButton(
         child: const Text('See Bounties'),
         color: Theme.of(context).primaryColor,
-        padding: const EdgeInsets.only(left: 50.0, right: 50.0),
+        padding: EdgeInsets.only(
+          left: SizeConfig.widthMultiplier * 15,
+          right: SizeConfig.widthMultiplier * 15,
+          bottom: SizeConfig.heightMultiplier * 2,
+          top: SizeConfig.heightMultiplier * 2,
+        ),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(4.0),
         ),

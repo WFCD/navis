@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:navis/utils/factionutils.dart';
+import 'package:navis/utils/size_config.dart';
 import 'package:navis/widgets/widgets.dart';
 import 'package:worldstate_model/worldstate_models.dart';
 
@@ -17,10 +18,13 @@ class SyndicateWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final bool ostron = syndicate.name == 'Ostrons';
 
+    final height = SizeConfig.heightMultiplier * 50;
+    final width = SizeConfig.widthMultiplier * 100;
+
     return Tiles(
       color: ostron ? ostronsColor : solarisColor,
       child: ListTile(
-        leading: FactionIcon(syndicate.name, size: 60.0),
+        leading: FactionIcon(syndicate.name, aspectRatio: width / height),
         title: Text(
           syndicate.name,
           style: Typography.whiteMountainView.subhead,

@@ -18,6 +18,7 @@ android/fastlane/report.xml
 **/*.g.dart
 .packages.generated
 flutter_*.log
+flutter_*.png
 ios/Flutter/flutter_export_environment.sh
 ios/Flutter/Generated.xcconfig
 ios/Runner/GeneratedPluginRegistrant.m

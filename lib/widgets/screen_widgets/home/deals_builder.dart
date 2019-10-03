@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:navis/blocs/bloc.dart';
 import 'package:navis/global_keys.dart';
+import 'package:navis/utils/size_config.dart';
 import 'package:navis/widgets/widgets.dart';
 import 'package:worldstate_model/worldstate_models.dart';
 
@@ -26,7 +27,7 @@ class Deals extends StatelessWidget {
                 state.worldstate?.dailyDeals ?? [];
 
             return Carousel(
-              height: 230,
+              height: SizeConfig.heightMultiplier * 35,
               dotCount: dailyDeals.length,
               enableIndicator: dailyDeals.length > 1,
               children: dailyDeals.map((d) => DealWidget(deal: d)).toList(),

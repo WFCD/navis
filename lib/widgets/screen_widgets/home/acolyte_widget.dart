@@ -26,7 +26,7 @@ class AcolyteWidget extends StatelessWidget {
           RowItem(
               text: Text('Acolyte: ${enemy.agentType} | lvl: ${enemy.rank}'),
               child: StaticBox.text(
-                  size: 15,
+                  fontSize: 15,
                   text:
                       'Health: ${(enemy.healthPercent * 100).toStringAsFixed(2)}%',
                   color: _healthColor(enemy.healthPercent * 100))),
@@ -49,7 +49,7 @@ class AcolyteWidget extends StatelessWidget {
                   color: enemy.isDiscovered
                       ? Colors.red[800]
                       : Colors.blueAccent[400],
-                  size: 15,
+                  fontSize: 15,
                   text:
                       '${enemy.isDiscovered ? 'Found' : 'Last seen'}: ${enemy.lastDiscoveredTime.difference(DateTime.now()).inMinutes.abs()}m ago',
                 )

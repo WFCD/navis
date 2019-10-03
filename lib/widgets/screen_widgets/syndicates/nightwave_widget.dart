@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:navis/utils/size_config.dart';
 import 'package:navis/widgets/widgets.dart';
 
 class NightWaveWidget extends StatelessWidget {
@@ -9,13 +10,12 @@ class NightWaveWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const size = Size(60, 60);
+    final height = SizeConfig.heightMultiplier * 50;
+    final width = SizeConfig.widthMultiplier * 100;
 
-    final nightwaveIcon = SvgPicture.asset(
-      'assets/sigils/NightwaveSyndicate.svg',
-      height: size.height,
-      width: size.width,
-    );
+    final nightwaveIcon = AspectRatio(
+        aspectRatio: width / height,
+        child: SvgPicture.asset('assets/sigils/NightwaveSyndicate.svg'));
 
     return Tiles(
       color: const Color(0xFF6c1822),

@@ -15,12 +15,12 @@ class FactionIcon extends StatelessWidget {
   const FactionIcon(
     this.faction, {
     Key key,
-    this.size = 16,
+    this.aspectRatio = 2 / 3,
     this.hasColor = true,
   }) : super(key: key);
 
   final String faction;
-  final double size;
+  final double aspectRatio;
   final bool hasColor;
 
   @override
@@ -47,11 +47,12 @@ class FactionIcon extends StatelessWidget {
         assetName = infested;
     }
 
-    return SvgPicture.asset(
-      assetName,
-      color: hasColor ? factionColor(faction) : Colors.white,
-      height: size,
-      width: size,
+    return AspectRatio(
+      aspectRatio: aspectRatio,
+      child: SvgPicture.asset(
+        assetName,
+        color: hasColor ? factionColor(faction) : Colors.white,
+      ),
     );
   }
 }

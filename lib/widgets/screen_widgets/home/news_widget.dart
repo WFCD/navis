@@ -8,6 +8,35 @@ class NewsWidget extends StatelessWidget {
 
   final OrbiterNews news;
 
+  Widget _imageBuilder(BuildContext context, ImageProvider imageProvider) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: <Widget>[
+        Expanded(
+          child: Container(
+            decoration: BoxDecoration(
+              image: DecorationImage(image: imageProvider, fit: BoxFit.cover),
+            ),
+          ),
+        )
+      ],
+    );
+  }
+
+  Widget _placeholder(BuildContext context, String url) =>
+      const Center(child: CircularProgressIndicator());
+
+  Widget _errorWidget(BuildContext context, String url, Object error) {
+    return Center(
+      child: Column(
+        children: <Widget>[
+          Icon(Icons.error),
+          const Text('Unable to load image')
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -17,20 +46,9 @@ class NewsWidget extends StatelessWidget {
         CachedNetworkImage(
           imageUrl: news.imageLink,
           fit: BoxFit.cover,
-          height: 200,
-          width: MediaQuery.of(context).size.width,
-          placeholder: (BuildContext context, String url) =>
-              const Center(child: CircularProgressIndicator()),
-          errorWidget: (BuildContext context, String url, Object error) {
-            return Center(
-              child: Column(
-                children: <Widget>[
-                  Icon(Icons.error),
-                  const Text('Unable to load image')
-                ],
-              ),
-            );
-          },
+          imageBuilder: _imageBuilder,
+          placeholder: _placeholder,
+          errorWidget: _errorWidget,
         ),
         Align(
             alignment: Alignment.bottomCenter,

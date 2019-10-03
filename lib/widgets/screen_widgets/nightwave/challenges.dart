@@ -49,7 +49,7 @@ class NightwaveChallenge extends StatelessWidget {
                       StaticBox.text(
                         color: Colors.red,
                         text: 'Elite',
-                        size: 14,
+                        fontSize: 14,
                       ),
                     _standingBadge(),
                     CountdownBox(expiry: challenge.expiry)

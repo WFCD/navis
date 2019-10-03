@@ -20,6 +20,7 @@ class SyndicateJobs extends StatelessWidget {
             titleSpacing: 0.0,
             backgroundColor: buildColor(syndicateStringToEnum(syndicate.name)),
           ),
+          // ignore: prefer_const_constructors
           body: CustomScrollView(
             slivers: <Widget>[
               for (Job job in syndicate?.jobs ?? [])

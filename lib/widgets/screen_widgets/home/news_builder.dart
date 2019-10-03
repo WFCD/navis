@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:navis/blocs/bloc.dart';
 import 'package:navis/global_keys.dart';
+import 'package:navis/utils/size_config.dart';
 import 'package:navis/widgets/widgets.dart';
 
 import 'news_widget.dart';
@@ -10,9 +11,10 @@ class NewsBuilder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final height = SizeConfig.heightMultiplier * 30;
+
     return Container(
-        height: 200,
-        width: MediaQuery.of(context).size.width,
+        height: height,
         child: Material(
           color: Theme.of(context).cardColor,
           elevation: 6,
@@ -24,7 +26,7 @@ class NewsBuilder extends StatelessWidget {
               final news = state.worldstate?.news ?? [];
 
               return Carousel(
-                height: 200,
+                height: height,
                 dotCount: news.length,
                 children: news.map((n) => NewsWidget(news: n)).toList(),
               );

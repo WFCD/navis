@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:navis/utils/size_config.dart';
 import 'package:navis/utils/worldstate_utils.dart';
 import 'package:navis/widgets/widgets.dart';
 
@@ -37,6 +38,9 @@ class MissionDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     const color = Colors.white;
 
+    final height = SizeConfig.heightMultiplier * 15;
+    final width = SizeConfig.widthMultiplier * 20;
+
     final sortie = Theme.of(context).textTheme.subhead.copyWith(
           fontWeight: FontWeight.bold,
           fontStyle: FontStyle.normal,
@@ -49,25 +53,27 @@ class MissionDetails extends StatelessWidget {
         );
 
     return BackgroundImageCard(
-      height: 150,
+      height: SizeConfig.heightMultiplier * 25,
       provider: skybox(context, node),
       child: Container(
         padding: const EdgeInsets.only(left: 8, top: 16, bottom: 16),
         child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Text('$missionType - $node', style: sortie),
-                  const SizedBox(height: 16),
-                  Container(
-                    child: Text(modifierDescription, style: info),
-                  )
-                ],
-              ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Text('$missionType - $node', style: sortie),
+                const SizedBox(height: 16),
+                LimitedBox(
+                  maxHeight: SizeConfig.heightMultiplier * 25,
+                  maxWidth: SizeConfig.widthMultiplier * 50,
+                  child: Text(modifierDescription, style: info),
+                )
+              ],
             ),
-            Container(
+            AspectRatio(
+              aspectRatio: width / height,
               child: Image.asset(
                 isAssassination
                     ? 'assets/factions/$faction/$boss.webp'

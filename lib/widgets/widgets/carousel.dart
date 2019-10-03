@@ -58,43 +58,40 @@ class _CarouselState extends State<Carousel> {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      fit: StackFit.loose,
-      alignment: AlignmentDirectional.bottomCenter,
-      children: <Widget>[
-        Align(
-          alignment: Alignment.center,
-          child: LimitedBox(
-            maxHeight: widget.height / 0.7,
-            child: PageView.builder(
-              controller: _pageController,
-              onPageChanged: onPageChanged,
-              itemCount: widget.children.length,
-              itemBuilder: (BuildContext context, int index) =>
-                  widget.children[index],
-            ),
+    return Container(
+      height: widget.height + 17.8,
+      child: Stack(
+        fit: StackFit.loose,
+        alignment: AlignmentDirectional.bottomCenter,
+        children: <Widget>[
+          PageView.builder(
+            controller: _pageController,
+            onPageChanged: onPageChanged,
+            itemCount: widget.children.length,
+            itemBuilder: (BuildContext context, int index) =>
+                widget.children[index],
           ),
-        ),
-        if (widget.enableIndicator)
-          Align(
-            heightFactor: 9.4,
-            alignment: Alignment.bottomCenter,
-            child: FittedBox(
-              child: StreamBuilder<int>(
-                stream: _currentPage.stream,
-                initialData: _page?.toInt() ?? 0,
-                builder: (BuildContext context, AsyncSnapshot<int> snapshot) {
-                  return Indicator(
-                    numberOfDot: widget.dotCount,
-                    position: snapshot.data,
-                    dotSize: const Size.square(9.0),
-                    dotActiveColor: Theme.of(context).accentColor,
-                  );
-                },
+          if (widget.enableIndicator)
+            Align(
+              heightFactor: 9.4,
+              alignment: Alignment.bottomCenter,
+              child: FittedBox(
+                child: StreamBuilder<int>(
+                  stream: _currentPage.stream,
+                  initialData: _page?.toInt() ?? 0,
+                  builder: (BuildContext context, AsyncSnapshot<int> snapshot) {
+                    return Indicator(
+                      numberOfDot: widget.dotCount,
+                      position: snapshot.data,
+                      dotSize: const Size.square(9.0),
+                      dotActiveColor: Theme.of(context).accentColor,
+                    );
+                  },
+                ),
               ),
-            ),
-          )
-      ],
+            )
+        ],
+      ),
     );
   }
 }

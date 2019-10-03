@@ -14,6 +14,7 @@ class LocalStorageService {
   static const String hive = 'settings';
 
   static Future<LocalStorageService> getInstance() async {
+    WidgetsFlutterBinding.ensureInitialized();
     final directory = await getApplicationDocumentsDirectory();
 
     Hive.init(directory.path);
