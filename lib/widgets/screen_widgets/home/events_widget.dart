@@ -12,9 +12,8 @@ class EventWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-        mainAxisAlignment: MainAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          const SizedBox(height: 4),
           _EventHeader(
             description: event.description,
             tooltip: event.tooltip,
@@ -31,7 +30,10 @@ class EventWidget extends StatelessWidget {
             affiliatedWith: event.affiliatedWith,
             rewards: event.eventRewards ?? event.health,
             jobs: event?.jobs,
-          )
+          ),
+          // This creates an empty space big enough to move the widgets up from the center
+          // just enough so it doesn't look to close to Carousel widget
+          const SizedBox(height: 16),
         ]);
   }
 }
