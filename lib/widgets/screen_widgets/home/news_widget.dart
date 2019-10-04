@@ -41,36 +41,39 @@ class NewsWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () => launchLink(context, news.link, isStream: news.stream),
-      child: Container(
-          child: Stack(children: <Widget>[
-        CachedNetworkImage(
-          imageUrl: news.imageLink,
-          fit: BoxFit.cover,
-          imageBuilder: _imageBuilder,
-          placeholder: _placeholder,
-          errorWidget: _errorWidget,
-        ),
-        Align(
+      child: Stack(
+        children: <Widget>[
+          CachedNetworkImage(
+            imageUrl: news.imageLink,
+            fit: BoxFit.cover,
+            imageBuilder: _imageBuilder,
+            placeholder: _placeholder,
+            errorWidget: _errorWidget,
+          ),
+          Align(
             alignment: Alignment.bottomCenter,
             child: Container(
-                height: 50,
-                alignment: Alignment.center,
-                decoration:
-                    const BoxDecoration(color: Color.fromRGBO(34, 34, 34, .4)),
-                child: Column(
-                  children: <Widget>[
-                    const SizedBox(height: 6.0),
-                    Text(
-                      '[${timestamp(news.date)} ago] ${news.translations['en']}',
-                      textAlign: TextAlign.center,
-                      style: Theme.of(context)
-                          .textTheme
-                          .title
-                          .copyWith(color: Colors.white, fontSize: 15),
-                    ),
-                  ],
-                ))),
-      ])),
+              height: 55.6,
+              width: MediaQuery.of(context).size.width,
+              decoration:
+                  const BoxDecoration(color: Color.fromRGBO(34, 34, 34, .4)),
+              child: Column(
+                children: <Widget>[
+                  const SizedBox(height: 8.0),
+                  Text(
+                    '[${timestamp(news.date)} ago] ${news.translations['en']}',
+                    textAlign: TextAlign.center,
+                    style: Theme.of(context)
+                        .textTheme
+                        .title
+                        .copyWith(color: Colors.white, fontSize: 15),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
