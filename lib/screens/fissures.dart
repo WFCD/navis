@@ -27,13 +27,7 @@ class FissureList extends StatelessWidget {
                 itemCount: fissures.length,
                 cacheExtent: fissures.length / 2,
                 itemBuilder: (BuildContext context, int index) {
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 4.0,
-                      vertical: 2.0,
-                    ),
-                    child: FissureWidget(fissure: fissures[index]),
-                  );
+                  return FissureWidget(fissure: fissures[index]);
                 },
               );
             }

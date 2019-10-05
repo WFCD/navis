@@ -11,6 +11,7 @@ import 'package:navis/screens/nightwaves.dart';
 import 'package:navis/screens/syndicate_bounties.dart';
 import 'package:navis/screens/trader_inventory.dart';
 import 'package:navis/services/repository.dart';
+import 'package:navis/themes.dart';
 import 'package:navis/utils/size_config.dart';
 import 'package:navis/widgets/widgets.dart';
 import 'package:wfcd_api_wrapper/worldstate_wrapper.dart';
@@ -73,6 +74,7 @@ class _NavisState extends State<Navis> with WidgetsBindingObserver {
                       title: 'Navis',
                       color: Colors.grey[900],
                       theme: widget.repository.storage.theme(),
+                      darkTheme: AppTheme.theme.dark,
                       home: const MainScreen(),
                       builder: _builder,
                       routes: <String, WidgetBuilder>{

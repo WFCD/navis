@@ -23,7 +23,7 @@ class StaticBox extends StatelessWidget {
     return StaticBox(
       padding: padding,
       margin: margin,
-      color: color,
+      color: color ?? Colors.blueAccent[400],
       child: Text(
         text,
         textAlign: TextAlign.center,

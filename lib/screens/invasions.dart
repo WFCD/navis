@@ -25,11 +25,8 @@ class InvasionsList extends StatelessWidget {
               return ListView.builder(
                 itemCount: invasions.length,
                 cacheExtent: 4,
-                itemBuilder: (BuildContext context, int index) => Padding(
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: 2.0, vertical: 4.0),
-                  child: InvasionWidget(invasion: invasions[index]),
-                ),
+                itemBuilder: (BuildContext context, int index) =>
+                    InvasionWidget(invasion: invasions[index]),
                 addAutomaticKeepAlives: false,
               );
             }

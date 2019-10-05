@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:navis/themes.dart';
 import 'package:navis/utils/size_config.dart';
 import 'package:navis/utils/worldstate_utils.dart';
 import 'package:navis/widgets/widgets.dart';
@@ -47,16 +48,16 @@ class MissionDetails extends StatelessWidget {
           color: color,
         );
 
-    final info = Theme.of(context).textTheme.caption.copyWith(
-          fontSize: 13,
-          fontStyle: FontStyle.normal,
-        );
+    final info = AppTheme.theme.dark.textTheme.caption.copyWith(
+      fontSize: 13,
+      fontStyle: FontStyle.normal,
+    );
 
     return BackgroundImageCard(
       height: SizeConfig.heightMultiplier * 25,
       provider: skybox(context, node),
       child: Container(
-        padding: const EdgeInsets.only(left: 8, top: 16, bottom: 16),
+        padding: const EdgeInsets.only(left: 16, top: 16, bottom: 16),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[

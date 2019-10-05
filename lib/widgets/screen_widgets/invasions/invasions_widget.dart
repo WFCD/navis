@@ -15,33 +15,36 @@ class InvasionWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BackgroundImageCard(
-      height: 150,
+      height: 160,
       elevation: 6.0,
       provider: skybox(context, invasion.node),
-      child: Column(children: <Widget>[
-        const Spacer(),
-        InvasionDetails(
-          node: invasion.node,
-          description: invasion.desc,
-          eta: invasion.eta,
-        ),
-        const Spacer(),
-        InvasionReward(
-          attackerReward: invasion.attackerReward.itemString,
-          defenderReward: invasion.defenderReward.itemString,
-          attackingFaction: invasion.attackingFaction,
-          defendingFaction: invasion.defendingFaction,
-        ),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 4.0, vertical: 8.0),
-          child: InvasionBar(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 24.0),
+        child: Column(children: <Widget>[
+          const Spacer(),
+          InvasionDetails(
+            node: invasion.node,
+            description: invasion.desc,
+            eta: invasion.eta,
+          ),
+          const Spacer(),
+          InvasionReward(
+            attackerReward: invasion.attackerReward.itemString,
+            defenderReward: invasion.defenderReward.itemString,
             attackingFaction: invasion.attackingFaction,
             defendingFaction: invasion.defendingFaction,
-            progress: invasion.completion / 100,
-            lineHeight: 15.0,
           ),
-        ),
-      ]),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 4.0, vertical: 8.0),
+            child: InvasionBar(
+              attackingFaction: invasion.attackingFaction,
+              defendingFaction: invasion.defendingFaction,
+              progress: invasion.completion / 100,
+              lineHeight: 15.0,
+            ),
+          ),
+        ]),
+      ),
     );
   }
 }

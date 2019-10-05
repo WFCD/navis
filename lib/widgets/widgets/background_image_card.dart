@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:navis/themes.dart';
 
 class BackgroundImageCard extends StatelessWidget {
   const BackgroundImageCard({
@@ -21,24 +22,28 @@ class BackgroundImageCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: elevation,
-      margin: margin ?? const EdgeInsets.symmetric(vertical: 4, horizontal: 4),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
-      clipBehavior: Clip.hardEdge,
-      child: Container(
-        height: height,
-        width: width,
-        alignment: alignment,
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            colorFilter: ColorFilter.mode(
-                Colors.black.withOpacity(0.3), BlendMode.dstIn),
-            image: provider,
-            fit: BoxFit.cover,
+    return Theme(
+      data: AppTheme.theme.dark,
+      child: Card(
+        elevation: elevation,
+        margin:
+            margin ?? const EdgeInsets.symmetric(vertical: 4, horizontal: 4),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
+        clipBehavior: Clip.hardEdge,
+        child: Container(
+          height: height,
+          width: width,
+          alignment: alignment,
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              colorFilter: ColorFilter.mode(
+                  Colors.black.withOpacity(0.3), BlendMode.dstIn),
+              image: provider,
+              fit: BoxFit.cover,
+            ),
           ),
+          child: child,
         ),
-        child: child,
       ),
     );
   }

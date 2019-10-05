@@ -24,7 +24,7 @@ class ThemePicker extends StatelessWidget {
     return WatchBoxBuilder(
       box: RepositoryProvider.of<Repository>(context).storage.instance,
       builder: (BuildContext context, Box box) {
-        final current = box.get(SettingsKeys.theme, defaultValue: 1);
+        final current = box.get(SettingsKeys.theme, defaultValue: 0);
         final accentColor = Theme.of(context).accentColor;
 
         return BaseDialog(

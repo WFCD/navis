@@ -47,13 +47,11 @@ class LocalStorageService {
       saveToDisk(SettingsKeys.platformKey, value.toString().split('.').last);
 
   ThemeData theme() {
-    switch (getFromDisk(SettingsKeys.theme, 1)) {
+    switch (getFromDisk(SettingsKeys.theme, 0)) {
       case 0:
         return AppTheme.theme.light;
-      case 1:
-        return AppTheme.theme.dark;
       default:
-        return AppTheme.theme.amoled;
+        return AppTheme.theme.dark;
     }
   }
 
