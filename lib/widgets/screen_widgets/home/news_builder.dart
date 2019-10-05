@@ -26,7 +26,6 @@ class NewsBuilder extends StatelessWidget {
               final news = state.worldstate?.news ?? [];
 
               return Carousel(
-                height: height,
                 dotCount: news.length,
                 children: news.map((n) => NewsWidget(news: n)).toList(),
               );

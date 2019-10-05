@@ -58,6 +58,7 @@ class NewsWidget extends StatelessWidget {
               decoration:
                   const BoxDecoration(color: Color.fromRGBO(34, 34, 34, .4)),
               child: Column(
+                mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
                   const SizedBox(height: 8.0),
                   Text(

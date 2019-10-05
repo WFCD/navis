@@ -11,30 +11,30 @@ class EventWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+    return Container(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
           _EventHeader(
             description: event.description,
             tooltip: event.tooltip,
           ),
-          const SizedBox(height: 4),
+          const SizedBox(height: 16),
           _EventMiddle(
             victimNode: event.victimNode,
             health: event.eventHealth.toDouble() ?? event.health,
             rewards: event.rewards,
             expiry: event.expiry,
           ),
-          const SizedBox(height: 8),
+          const SizedBox(height: 4),
           _EventFooter(
             affiliatedWith: event.affiliatedWith,
             rewards: event.eventRewards ?? event.health,
             jobs: event?.jobs,
           ),
-          // This creates an empty space big enough to move the widgets up from the center
-          // just enough so it doesn't look to close to Carousel widget
-          const SizedBox(height: 16),
-        ]);
+        ],
+      ),
+    );
   }
 }
 
@@ -52,12 +52,15 @@ class _EventHeader extends StatelessWidget {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
-        Container(
-          margin: const EdgeInsets.only(bottom: 4, top: 3),
+        Padding(
+          padding: const EdgeInsets.only(bottom: 4.0),
           child: Text(
             description,
             textAlign: TextAlign.center,
-            style: Theme.of(context).textTheme.title,
+            style: Theme.of(context)
+                .textTheme
+                .title
+                .copyWith(fontSize: SizeConfig.widthMultiplier * 5.9),
           ),
         ),
         if (tooltip != null)
@@ -66,9 +69,13 @@ class _EventHeader extends StatelessWidget {
             child: Text(
               tooltip,
               textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.subtitle,
+              style: Theme.of(context)
+                  .textTheme
+                  .caption
+                  .copyWith(fontSize: SizeConfig.widthMultiplier * 3.9),
             ),
-          )
+          ),
+        Divider(color: Theme.of(context).primaryColor),
       ],
     );
   }
@@ -99,7 +106,7 @@ class _EventMiddle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final fontSize = SizeConfig.widthMultiplier * 3.5;
+    final fontSize = SizeConfig.widthMultiplier * 3.9;
     final style =
         Theme.of(context).textTheme.subhead.copyWith(fontSize: fontSize);
 
@@ -141,17 +148,22 @@ class _EventFooter extends StatelessWidget {
   final List<String> rewards;
   final List<Job> jobs;
 
-  Widget _addReward() {
+  Widget _addReward(TextStyle style) {
     return Wrap(
       alignment: WrapAlignment.center,
       children: <Widget>[
-        for (String r in rewards) StaticBox.text(color: Colors.green, text: r)
+        for (String r in rewards)
+          StaticBox.text(text: r, style: style, color: Colors.green)
       ],
     );
   }
 
   @override
   Widget build(BuildContext context) {
+    final fontSize = SizeConfig.widthMultiplier * 3.9;
+    final style =
+        Theme.of(context).textTheme.subhead.copyWith(fontSize: fontSize);
+
     if (jobs?.isNotEmpty ?? false) {
       return FlatButton(
         child: const Text('See Bounties'),
@@ -173,7 +185,7 @@ class _EventFooter extends StatelessWidget {
         },
       );
     } else {
-      return _addReward();
+      return _addReward(style);
     }
   }
 }

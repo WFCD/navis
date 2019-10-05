@@ -18,15 +18,19 @@ class StaticBox extends StatelessWidget {
     EdgeInsetsGeometry padding = const EdgeInsets.all(6.0),
     EdgeInsetsGeometry margin = const EdgeInsets.all(3.0),
   }) {
+    final _textColor = Colors.white;
+
     return StaticBox(
-        padding: padding,
-        margin: margin,
-        color: color,
-        child: Text(
-          text,
-          textAlign: TextAlign.center,
-          style: style ?? TextStyle(color: Colors.white, fontSize: fontSize),
-        ));
+      padding: padding,
+      margin: margin,
+      color: color,
+      child: Text(
+        text,
+        textAlign: TextAlign.center,
+        style: style?.copyWith(color: _textColor) ??
+            TextStyle(color: _textColor, fontSize: fontSize),
+      ),
+    );
   }
 
   final Color color;

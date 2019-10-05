@@ -10,6 +10,7 @@ class CountdownBox extends StatefulWidget {
     @required this.expiry,
     this.color,
     this.size,
+    this.style,
     this.padding = const EdgeInsets.all(4.0),
     this.margin = const EdgeInsets.all(3.0),
   });
@@ -17,6 +18,7 @@ class CountdownBox extends StatefulWidget {
   final DateTime expiry;
   final Color color;
   final double size;
+  final TextStyle style;
   final EdgeInsetsGeometry padding, margin;
 
   @override
@@ -99,6 +101,7 @@ class _CountdownBoxState extends State<CountdownBox> {
 
         return StaticBox.text(
           fontSize: widget.size,
+          style: widget.style,
           margin: widget.margin,
           padding: widget.padding,
           text: _timerVersions(duration, expired),

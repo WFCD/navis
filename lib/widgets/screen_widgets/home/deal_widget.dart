@@ -31,34 +31,15 @@ class _DealWidgetState extends State<DealWidget>
     });
   }
 
-  Widget _placeholder(BuildContext context, String url) {
-    final height = SizeConfig.heightMultiplier * 25;
-    final width = SizeConfig.widthMultiplier * 45;
-
-    return AspectRatio(
-      aspectRatio: width / height,
-      child: Container(
-        alignment: Alignment.center,
-        child: const CircularProgressIndicator(),
-      ),
-    );
-  }
-
-  Widget _errorWidget(BuildContext context, String url, Object error) {
-    return const NavisErrorWidget(
-      title: 'Item not found by API',
-      description:
-          'Sorry but it seems the item hasn\'t been added to the API yet.',
-      showStacktrace: false,
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     super.build(context);
 
-    final height = SizeConfig.heightMultiplier * 30;
-    final width = SizeConfig.widthMultiplier * 30;
+    final fontSize = SizeConfig.widthMultiplier * 3.5;
+    final style = Theme.of(context)
+        .textTheme
+        .caption
+        .copyWith(fontSize: fontSize, fontWeight: FontWeight.bold);
 
     final primary = Theme.of(context).primaryColor;
 
@@ -71,56 +52,46 @@ class _DealWidgetState extends State<DealWidget>
         final item = snapshot.data;
 
         return Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              Row(
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  LimitedBox(
-                    maxHeight: height,
-                    maxWidth: width,
-                    child: CachedNetworkImage(
-                      imageUrl: item.imageUrl,
-                      placeholder: _placeholder,
-                      errorWidget: _errorWidget,
-                    ),
-                  ),
-                  const SizedBox(width: 24.0),
-                  Expanded(
-                    child: DealDetails(
-                      itemName: item.name,
-                      itemDescription: parseHtmlString(item.description),
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 8.0),
-              Wrap(
-                alignment: WrapAlignment.center,
-                children: <Widget>[
-                  StaticBox.text(
-                      text: '${widget.deal.discount}% Discount',
-                      color: primary),
-                  // TODO(Orn): should probably put a plat icon here instead
-                  StaticBox.text(
-                      text: '${widget.deal.salePrice}\p', color: primary),
-                  StaticBox.text(
-                      text:
-                          '${widget.deal.total - widget.deal.sold} / ${widget.deal.total} remaining',
-                      color: primary),
-                  CountdownBox(expiry: widget.deal.expiry),
-                ],
-              ),
-              if (item.wikiaUrl != null)
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: FlatButton(
-                    child: const Text('Wikia Page'),
-                    onPressed: () => launchLink(context, item?.wikiaUrl),
-                  ),
+          children: <Widget>[
+            Row(
+              children: <Widget>[
+                DealImage(
+                  imageUrl: item.imageUrl,
+                  wikiaUrl: item?.wikiaUrl,
                 ),
-            ]);
+                const SizedBox(width: 16.0),
+                DealDetails(
+                  itemName: item.name,
+                  itemDescription: parseHtmlString(item.description),
+                ),
+              ],
+            ),
+            const SizedBox(height: 16.0),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                StaticBox.text(
+                  text: '${widget.deal.discount}% Discount',
+                  color: primary,
+                  style: style,
+                ),
+                // TODO(Orn): should probably put a plat icon here instead
+                StaticBox.text(
+                  text: '${widget.deal.salePrice}\p',
+                  color: primary,
+                  style: style,
+                ),
+                StaticBox.text(
+                  text:
+                      '${widget.deal.total - widget.deal.sold} / ${widget.deal.total} remaining',
+                  color: primary,
+                  style: style,
+                ),
+                CountdownBox(expiry: widget.deal.expiry, style: style),
+              ],
+            ),
+          ],
+        );
       },
     );
   }
@@ -147,21 +118,81 @@ class DealDetails extends StatelessWidget {
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisSize: MainAxisSize.min,
+      mainAxisAlignment: MainAxisAlignment.start,
       children: <Widget>[
         Text(
           itemName,
           style: textTheme.subhead
-              .copyWith(fontSize: SizeConfig.textMultiplier * 2.5),
+              .copyWith(fontSize: SizeConfig.textMultiplier * 2.3),
         ),
-        const SizedBox(height: 4.0),
-        Text(
-          itemDescription,
-          style: textTheme.caption
-              .copyWith(fontSize: SizeConfig.textMultiplier * 2),
+        const SizedBox(height: 8.0),
+        Container(
+          height: SizeConfig.heightMultiplier * 15,
+          width: SizeConfig.widthMultiplier * 40,
+          child: Text(
+            itemDescription,
+            maxLines: 7,
+            overflow: TextOverflow.ellipsis,
+            style: textTheme.caption
+                .copyWith(fontSize: SizeConfig.textMultiplier * 1.9),
+          ),
         ),
         itemInfo ?? Container()
       ],
+    );
+  }
+}
+
+class DealImage extends StatelessWidget {
+  const DealImage({
+    Key key,
+    @required this.imageUrl,
+    this.wikiaUrl,
+  })  : assert(imageUrl != null),
+        super(key: key);
+
+  final String imageUrl;
+  final String wikiaUrl;
+
+  Widget _placeholder(BuildContext context, String url) {
+    final width = SizeConfig.widthMultiplier * 40;
+
+    return LimitedBox(
+      maxWidth: width,
+      child: Container(
+        alignment: Alignment.center,
+        child: const CircularProgressIndicator(),
+      ),
+    );
+  }
+
+  Widget _errorWidget(BuildContext context, String url, Object error) {
+    return const NavisErrorWidget(
+      title: 'Item not found by API',
+      description:
+          'Sorry but it seems the item hasn\'t been added to the API yet.',
+      showStacktrace: false,
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final width = SizeConfig.widthMultiplier * 40;
+
+    final image = LimitedBox(
+      maxWidth: width,
+      child: CachedNetworkImage(
+        imageUrl: imageUrl,
+        placeholder: _placeholder,
+        errorWidget: _errorWidget,
+      ),
+    );
+
+    if (wikiaUrl == null) return image;
+
+    return InkWell(
+      onTap: () => launchLink(context, wikiaUrl),
+      child: image,
     );
   }
 }
