@@ -58,30 +58,36 @@ class MissionDetails extends StatelessWidget {
       provider: skybox(context, node),
       child: Container(
         padding: const EdgeInsets.only(left: 16, top: 16, bottom: 16),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        child: Stack(
+          // mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Text('$missionType - $node', style: sortie),
-                const SizedBox(height: 16),
-                LimitedBox(
-                  maxHeight: SizeConfig.heightMultiplier * 25,
-                  maxWidth: SizeConfig.widthMultiplier * 50,
-                  child: Text(modifierDescription, style: info),
-                )
-              ],
-            ),
-            AspectRatio(
-              aspectRatio: width / height,
-              child: Image.asset(
-                isAssassination
-                    ? 'assets/factions/$faction/$boss.webp'
-                    : _getAsset(variantIndex),
-                fit: BoxFit.contain,
+            Container(
+              width: 250,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text('$missionType - $node', style: sortie),
+                  const SizedBox(height: 16),
+                  LimitedBox(
+                    maxHeight: SizeConfig.heightMultiplier * 25,
+                    maxWidth: SizeConfig.widthMultiplier * 50,
+                    child: Text(modifierDescription, style: info),
+                  )
+                ],
               ),
-            )
+            ),
+            Align(
+              alignment: Alignment.centerRight,
+              child: AspectRatio(
+                aspectRatio: width / height,
+                child: Image.asset(
+                  isAssassination
+                      ? 'assets/factions/$faction/$boss.webp'
+                      : _getAsset(variantIndex),
+                  fit: BoxFit.contain,
+                ),
+              ),
+            ),
           ],
         ),
       ),
