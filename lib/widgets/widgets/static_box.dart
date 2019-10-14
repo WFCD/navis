@@ -18,7 +18,7 @@ class StaticBox extends StatelessWidget {
     EdgeInsetsGeometry padding = const EdgeInsets.all(6.0),
     EdgeInsetsGeometry margin = const EdgeInsets.all(3.0),
   }) {
-    final _textColor = Colors.white;
+    const _textColor = Colors.white;
 
     return StaticBox(
       padding: padding,
