@@ -49,34 +49,37 @@ class _EventHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: <Widget>[
-        Padding(
-          padding: const EdgeInsets.only(bottom: 4.0),
-          child: Text(
-            description,
-            textAlign: TextAlign.center,
-            style: Theme.of(context)
-                .textTheme
-                .title
-                .copyWith(fontSize: SizeConfig.widthMultiplier * 5.9),
-          ),
-        ),
-        if (tooltip != null)
-          Container(
-            margin: const EdgeInsets.only(bottom: 4),
+    return Padding(
+      padding: const EdgeInsets.only(top: 8.0),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.only(bottom: 4.0),
             child: Text(
-              tooltip,
+              description,
               textAlign: TextAlign.center,
               style: Theme.of(context)
                   .textTheme
-                  .caption
-                  .copyWith(fontSize: SizeConfig.widthMultiplier * 3.9),
+                  .title
+                  .copyWith(fontSize: SizeConfig.widthMultiplier * 5.9),
             ),
           ),
-        Divider(color: Theme.of(context).primaryColor),
-      ],
+          if (tooltip != null)
+            Container(
+              margin: const EdgeInsets.only(bottom: 4),
+              child: Text(
+                tooltip,
+                textAlign: TextAlign.center,
+                style: Theme.of(context)
+                    .textTheme
+                    .caption
+                    .copyWith(fontSize: SizeConfig.widthMultiplier * 3.9),
+              ),
+            ),
+          Divider(color: Theme.of(context).primaryColor),
+        ],
+      ),
     );
   }
 }
