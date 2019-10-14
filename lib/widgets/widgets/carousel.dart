@@ -57,7 +57,7 @@ class _CarouselState extends State<Carousel> {
 
   @override
   Widget build(BuildContext context) {
-    final hegiht = SizeConfig.heightMultiplier * 30;
+    final hegiht = SizeConfig.heightMultiplier * 35.7;
     final width = SizeConfig.widthMultiplier * 20;
 
     return Stack(

@@ -50,15 +50,13 @@ class _DealWidgetState extends State<DealWidget>
           return const Center(child: CircularProgressIndicator());
 
         final item = snapshot.data;
+        final urlExist = item.wikiaUrl != null;
 
         return Column(
           children: <Widget>[
             Row(
               children: <Widget>[
-                DealImage(
-                  imageUrl: item.imageUrl,
-                  wikiaUrl: item?.wikiaUrl,
-                ),
+                DealImage(imageUrl: item.imageUrl),
                 const SizedBox(width: 16.0),
                 DealDetails(
                   itemName: item.name,
@@ -90,6 +88,15 @@ class _DealWidgetState extends State<DealWidget>
                 CountdownBox(expiry: widget.deal.expiry, style: style),
               ],
             ),
+            if (urlExist)
+              ButtonBar(
+                children: <Widget>[
+                  FlatButton(
+                    child: const Text('See Wikia'),
+                    onPressed: () => launchLink(context, item.wikiaUrl),
+                  ),
+                ],
+              )
           ],
         );
       },
@@ -147,12 +154,10 @@ class DealImage extends StatelessWidget {
   const DealImage({
     Key key,
     @required this.imageUrl,
-    this.wikiaUrl,
   })  : assert(imageUrl != null),
         super(key: key);
 
   final String imageUrl;
-  final String wikiaUrl;
 
   Widget _placeholder(BuildContext context, String url) {
     final width = SizeConfig.widthMultiplier * 40;
@@ -179,20 +184,13 @@ class DealImage extends StatelessWidget {
   Widget build(BuildContext context) {
     final width = SizeConfig.widthMultiplier * 40;
 
-    final image = LimitedBox(
+    return LimitedBox(
       maxWidth: width,
       child: CachedNetworkImage(
         imageUrl: imageUrl,
         placeholder: _placeholder,
         errorWidget: _errorWidget,
       ),
-    );
-
-    if (wikiaUrl == null) return image;
-
-    return InkWell(
-      onTap: () => launchLink(context, wikiaUrl),
-      child: image,
     );
   }
 }
