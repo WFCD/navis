@@ -41,7 +41,7 @@ class _DealWidgetState extends State<DealWidget>
         .caption
         .copyWith(fontSize: fontSize, fontWeight: FontWeight.bold);
 
-    final accent = Theme.of(context).accentColor;
+    final primary = Theme.of(context).primaryColor;
 
     return FutureBuilder<ItemObject>(
       future: _getItem(),
@@ -72,19 +72,19 @@ class _DealWidgetState extends State<DealWidget>
               children: <Widget>[
                 StaticBox.text(
                   text: '${widget.deal.discount}% Discount',
-                  color: accent,
+                  color: primary,
                   style: style,
                 ),
                 // TODO(Orn): should probably put a plat icon here instead
                 StaticBox.text(
                   text: '${widget.deal.salePrice}\p',
-                  color: accent,
+                  color: primary,
                   style: style,
                 ),
                 StaticBox.text(
                   text:
                       '${widget.deal.total - widget.deal.sold} / ${widget.deal.total} remaining',
-                  color: accent,
+                  color: primary,
                   style: style,
                 ),
                 CountdownBox(expiry: widget.deal.expiry, style: style),
