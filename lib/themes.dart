@@ -6,7 +6,7 @@ class AppTheme {
   static const theme = AppTheme._();
 
   static const _primaryColor = Color(0xE51A5090);
-  static final _accentColor = Colors.blueAccent[400];
+  static const _accentColor = Color(0xFF00BC8C);
 
   ThemeData get light => ThemeData(
         brightness: Brightness.light,
@@ -30,7 +30,7 @@ class AppTheme {
         brightness: Brightness.dark,
         primaryColorBrightness: Brightness.dark,
         accentColor: _accentColor,
-        primaryColor: const Color(0xFF1f1f1f),
+        primaryColor: _primaryColor,
         disabledColor: Colors.grey,
         cardColor: const Color(0xFF1d1d1d),
         dialogBackgroundColor: const Color(0xff191919),
