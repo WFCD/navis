@@ -15,24 +15,16 @@ class Home extends StatelessWidget {
         if (state is WorldstateLoaded) {
           final worldstate = state.worldstate;
 
-          final bool areThereNews = worldstate?.news?.isNotEmpty ?? false;
-          final bool isAlertActive = worldstate?.alerts?.isNotEmpty ?? false;
-          final bool isEventActive = worldstate?.events?.isNotEmpty ?? false;
-          final bool areAcolytesActive =
-              worldstate?.persistentEnemies?.isNotEmpty ?? false;
-          final bool areDealsActive =
-              worldstate?.dailyDeals?.isNotEmpty ?? false;
-
           return ListView(
             cacheExtent: 3,
             children: <Widget>[
-              if (areThereNews) const NewsBuilder(),
-              if (isEventActive) const EventBuilder(),
-              if (areAcolytesActive) const Acolytes(),
-              if (isAlertActive) const AlertTile(),
+              const NewsBuilder(),
+              if (worldstate.isEventActive) const EventBuilder(),
+              if (worldstate.areAcolytesActive) const Acolytes(),
+              if (worldstate.isAlertActive) const AlertTile(),
               const Cycles(),
-              if (state.worldstate.voidTrader != null) const Trader(),
-              if (areDealsActive) const Deals(),
+              const Trader(),
+              if (worldstate.areDealsActive) const Deals(),
             ],
           );
         }
