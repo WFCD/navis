@@ -3,6 +3,7 @@ export 'acolyte_widget.dart';
 export 'alert_builder.dart';
 export 'alert_widget.dart';
 export 'arbitrations.dart';
+export 'arbitrations.dart';
 export 'cycles_builder.dart';
 export 'deals_builder.dart';
 export 'events_builder.dart';
