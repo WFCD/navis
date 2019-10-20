@@ -21,7 +21,7 @@ class Home extends StatelessWidget {
               const NewsBuilder(),
               if (worldstate.isEventActive) const EventBuilder(),
               if (worldstate.areAcolytesActive) const Acolytes(),
-              if (worldstate.activeArbitration) const ArbitrationBuilder(),
+              const ArbitrationBuilder(),
               if (worldstate.isAlertActive) const AlertTile(),
               const Cycles(),
               const Trader(),
