@@ -11,6 +11,7 @@ class Carousel extends StatefulWidget {
     Key key,
     @required this.children,
     @required this.dotCount,
+    this.height,
     this.enableIndicator = true,
   })  : assert(children != null),
         assert(dotCount != null),
@@ -18,6 +19,7 @@ class Carousel extends StatefulWidget {
 
   final List<Widget> children;
   final int dotCount;
+  final double height;
   final bool enableIndicator;
 
   @override
@@ -57,14 +59,14 @@ class _CarouselState extends State<Carousel> {
 
   @override
   Widget build(BuildContext context) {
-    final hegiht = SizeConfig.heightMultiplier * 35.7;
+    final _height = SizeConfig.heightMultiplier * 35.7;
     final width = SizeConfig.widthMultiplier * 20;
 
     return Stack(
       alignment: AlignmentDirectional.bottomCenter,
       children: <Widget>[
         LimitedBox(
-          maxHeight: hegiht + 17,
+          maxHeight: widget.height ?? _height + 17,
           maxWidth: width,
           child: PageView.builder(
             controller: _pageController,

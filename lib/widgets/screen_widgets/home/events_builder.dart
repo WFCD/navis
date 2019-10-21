@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:navis/blocs/bloc.dart';
 import 'package:navis/global_keys.dart';
+import 'package:navis/utils/size_config.dart';
 import 'package:navis/utils/worldstate_utils.dart';
 import 'package:navis/widgets/widgets.dart';
 
@@ -16,23 +17,22 @@ class EventBuilder extends StatelessWidget {
       child: PageStorage(
         key: eventsKey,
         bucket: eventsBucket,
-        child: BlocBuilder(
-            bloc: BlocProvider.of<WorldstateBloc>(context),
+        child: BlocBuilder<WorldstateBloc, WorldStates>(
             condition: (WorldStates previous, WorldStates current) {
-              return compareList(
-                previous.worldstate?.events,
-                current.worldstate?.events,
-              );
-            },
-            builder: (BuildContext context, WorldStates state) {
-              final events = state.worldstate?.events ?? [];
+          return compareList(
+            previous.worldstate?.events,
+            current.worldstate?.events,
+          );
+        }, builder: (BuildContext context, WorldStates state) {
+          final events = state.worldstate?.events ?? [];
 
-              return Carousel(
-                dotCount: events.length,
-                enableIndicator: events.length > 1,
-                children: events.map((e) => EventWidget(event: e)).toList(),
-              );
-            }),
+          return Carousel(
+            height: SizeConfig.heightMultiplier * 30,
+            dotCount: events.length,
+            enableIndicator: events.length > 1,
+            children: events.map((e) => EventWidget(event: e)).toList(),
+          );
+        }),
       ),
     );
   }

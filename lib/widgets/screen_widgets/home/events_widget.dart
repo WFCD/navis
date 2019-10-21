@@ -77,7 +77,6 @@ class _EventHeader extends StatelessWidget {
                     .copyWith(fontSize: SizeConfig.widthMultiplier * 3.9),
               ),
             ),
-          Divider(color: Theme.of(context).primaryColor),
         ],
       ),
     );
@@ -171,6 +170,7 @@ class _EventFooter extends StatelessWidget {
       return FlatButton(
         child: const Text('See Bounties'),
         color: Theme.of(context).primaryColor,
+        textColor: Colors.white,
         padding: EdgeInsets.only(
           left: SizeConfig.widthMultiplier * 15,
           right: SizeConfig.widthMultiplier * 15,
