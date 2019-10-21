@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:navis/blocs/bloc.dart';
+import 'package:navis/utils/size_config.dart';
 import 'package:navis/utils/worldstate_utils.dart';
 import 'package:navis/widgets/animations.dart';
 import 'package:navis/widgets/widgets/background_image_card.dart';
@@ -35,26 +36,43 @@ class ArbitrationWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
+
     return BackgroundImageCard(
       provider: skybox(context, node),
       height: 150,
       child: Stack(
         alignment: AlignmentDirectional.center,
         children: <Widget>[
-          SvgPicture.asset('assets/sigils/hexis.svg', color: Colors.grey[600]),
-          Container(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                Text(node, style: Theme.of(context).textTheme.title),
-                const SizedBox(height: 4.0),
-                Text('$enemy | $type',
-                    style: Theme.of(context).textTheme.subhead),
-                const SizedBox(height: 8.0),
-                CountdownBox(expiry: expiry),
-              ],
-            ),
+          SvgPicture.asset(
+            'assets/sigils/hexis.svg',
+            color: Colors.grey[600],
+          ),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              Text(
+                node,
+                style: textTheme.subhead.copyWith(
+                  color: Colors.white,
+                  fontSize: SizeConfig.widthMultiplier * 6,
+                ),
+              ),
+              const SizedBox(height: 4.0),
+              Text(
+                '$enemy | $type',
+                style: textTheme.caption.copyWith(
+                  color: Colors.white,
+                  fontSize: SizeConfig.widthMultiplier * 3.5,
+                ),
+              ),
+              const SizedBox(height: 8.0),
+              CountdownBox(
+                expiry: expiry,
+                size: SizeConfig.widthMultiplier * 3.7,
+              ),
+            ],
           ),
         ],
       ),
