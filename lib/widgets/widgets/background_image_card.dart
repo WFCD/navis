@@ -8,8 +8,8 @@ class BackgroundImageCard extends StatelessWidget {
     @required this.child,
     this.height,
     this.width,
-    this.margin,
-    this.alignment,
+    this.margin = const EdgeInsets.symmetric(vertical: 4, horizontal: 4),
+    this.alignment = Alignment.center,
     this.elevation = 1.0,
   }) : super(key: key);
 
@@ -26,8 +26,7 @@ class BackgroundImageCard extends StatelessWidget {
       data: AppTheme.theme.dark,
       child: Card(
         elevation: elevation,
-        margin:
-            margin ?? const EdgeInsets.symmetric(vertical: 4, horizontal: 4),
+        margin: margin,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
         clipBehavior: Clip.hardEdge,
         child: Container(
