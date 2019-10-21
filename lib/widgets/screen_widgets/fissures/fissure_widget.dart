@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:navis/utils/worldstate_utils.dart';
 import 'package:navis/widgets/animations/countdown.dart';
 import 'package:navis/widgets/widgets.dart';
 import 'package:worldstate_model/worldstate_models.dart';
@@ -37,9 +36,9 @@ class FissureWidget extends StatelessWidget {
       color: Colors.white,
     );
 
-    return BackgroundImageCard(
+    return SkyboxCard(
       elevation: 6.0,
-      provider: skybox(context, fissure.node),
+      node: fissure.node,
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 8),
         child: ListTile(

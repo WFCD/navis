@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:navis/themes.dart';
 import 'package:navis/utils/size_config.dart';
-import 'package:navis/utils/worldstate_utils.dart';
 import 'package:navis/widgets/widgets.dart';
 
 class MissionDetails extends StatelessWidget {
@@ -53,9 +52,9 @@ class MissionDetails extends StatelessWidget {
       fontStyle: FontStyle.normal,
     );
 
-    return BackgroundImageCard(
+    return SkyboxCard(
       height: SizeConfig.heightMultiplier * 25,
-      provider: skybox(context, node),
+      node: node,
       child: Container(
         padding: const EdgeInsets.only(left: 16, top: 16, bottom: 16),
         child: Stack(

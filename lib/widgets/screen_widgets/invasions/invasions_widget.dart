@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:navis/utils/worldstate_utils.dart';
 import 'package:navis/widgets/widgets.dart';
 import 'package:worldstate_model/worldstate_models.dart';
 
@@ -14,10 +13,10 @@ class InvasionWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BackgroundImageCard(
+    return SkyboxCard(
       height: 160,
       elevation: 6.0,
-      provider: skybox(context, invasion.node),
+      node: invasion.node,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 24.0),
         child: Column(children: <Widget>[

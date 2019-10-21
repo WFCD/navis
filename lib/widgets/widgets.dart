@@ -1,4 +1,3 @@
-export 'widgets/background_image_card.dart';
 export 'widgets/cards.dart';
 export 'widgets/carousel.dart';
 export 'widgets/carousel.dart';
@@ -11,5 +10,6 @@ export 'widgets/indicator.dart';
 export 'widgets/platform_icon.dart';
 export 'widgets/row_item.dart';
 export 'widgets/setting_title.dart';
+export 'widgets/skybox_card.dart';
 export 'widgets/static_box.dart';
 export 'widgets/timer_box.dart';
