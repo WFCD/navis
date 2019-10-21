@@ -27,7 +27,8 @@ class Deals extends StatelessWidget {
 
             dailyDeals.retainWhere((d) {
               return d.total - d.sold > 0 ||
-                  d.expiry.difference(DateTime.now()) > Duration(seconds: 60);
+                  d.expiry.difference(DateTime.now()) >
+                      const Duration(seconds: 60);
             });
 
             return Carousel(

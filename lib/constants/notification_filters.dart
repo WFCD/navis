@@ -11,11 +11,11 @@ const simple = [
     'description': 'For when Baro is arriving or leaving.',
     'key': NotificationKeys.baroKey
   },
-  // {
-  //   'name': 'Darvo\'s Daily Deals',
-  //   'description': 'Darvo\'s new find of the day',
-  //   'key': darvoKey
-  // },
+  {
+    'name': 'Darvo\'s Daily Deals',
+    'description': 'Darvo\'s new find of the day',
+    'key': NotificationKeys.darvoKey
+  },
   {
     'name': 'Sorties',
     'description': 'Notifications for new sorties.',

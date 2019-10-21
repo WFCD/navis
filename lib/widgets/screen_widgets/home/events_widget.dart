@@ -61,8 +61,8 @@ class _EventHeader extends StatelessWidget {
               textAlign: TextAlign.center,
               style: Theme.of(context)
                   .textTheme
-                  .title
-                  .copyWith(fontSize: SizeConfig.widthMultiplier * 5.9),
+                  .subhead
+                  .copyWith(fontSize: SizeConfig.widthMultiplier * 6),
             ),
           ),
           if (tooltip != null)
@@ -74,7 +74,7 @@ class _EventHeader extends StatelessWidget {
                 style: Theme.of(context)
                     .textTheme
                     .caption
-                    .copyWith(fontSize: SizeConfig.widthMultiplier * 3.9),
+                    .copyWith(fontSize: SizeConfig.widthMultiplier * 3.2),
               ),
             ),
         ],
@@ -108,7 +108,7 @@ class _EventMiddle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final fontSize = SizeConfig.widthMultiplier * 3.9;
+    final fontSize = SizeConfig.widthMultiplier * 3.5;
     final style =
         Theme.of(context).textTheme.subhead.copyWith(fontSize: fontSize);
 
