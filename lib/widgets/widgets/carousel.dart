@@ -64,7 +64,7 @@ class _CarouselState extends State<Carousel> {
       alignment: AlignmentDirectional.bottomCenter,
       children: <Widget>[
         LimitedBox(
-          maxHeight: hegiht,
+          maxHeight: hegiht + 17,
           maxWidth: width,
           child: PageView.builder(
             controller: _pageController,

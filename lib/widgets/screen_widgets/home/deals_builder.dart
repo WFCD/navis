@@ -25,6 +25,11 @@ class Deals extends StatelessWidget {
             final List<DarvoDeal> dailyDeals =
                 state.worldstate?.dailyDeals ?? [];
 
+            dailyDeals.retainWhere((d) {
+              return d.total - d.sold > 0 ||
+                  d.expiry.difference(DateTime.now()) > Duration(seconds: 60);
+            });
+
             return Carousel(
               dotCount: dailyDeals.length,
               enableIndicator: dailyDeals.length > 1,
