@@ -23,5 +23,6 @@ class WorldstateError extends WorldStates {
 }
 
 class WorldstateLoaded extends WorldStates {
-  const WorldstateLoaded(Worldstate worldstate) : super(worldstate: worldstate);
+  const WorldstateLoaded([Worldstate worldstate])
+      : super(worldstate: worldstate);
 }
