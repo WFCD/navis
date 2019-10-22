@@ -29,7 +29,7 @@ class _MainScreenState extends State<MainScreen> {
   @override
   void initState() {
     timer = Timer.periodic(const Duration(minutes: 5), (t) {
-      BlocProvider.of<WorldstateBloc>(context).dispatch(UpdateEvent());
+      BlocProvider.of<WorldstateBloc>(context).add(UpdateEvent());
     });
 
     super.initState();

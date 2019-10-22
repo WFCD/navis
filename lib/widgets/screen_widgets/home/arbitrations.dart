@@ -80,7 +80,7 @@ class ArbitrationWidget extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 4.0),
-              if (archwingRequired ?? false)
+              if (archwingRequired)
                 SvgPicture.asset('assets/general/archwing.svg',
                     color: Colors.blue, height: 25, width: 25),
               const SizedBox(height: 4.0),

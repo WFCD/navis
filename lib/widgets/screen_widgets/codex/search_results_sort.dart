@@ -30,7 +30,7 @@ class SearchResultsSort extends StatelessWidget {
             if (state is SearchStateSuccess) {
               if (s != state.sortBy) {
                 BlocProvider.of<SearchBloc>(context)
-                    .dispatch(SortSearch(s, state.results));
+                    .add(SortSearch(s, state.results));
               }
             }
           },

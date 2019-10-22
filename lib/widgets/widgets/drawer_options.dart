@@ -10,7 +10,7 @@ class DrawerOptions extends StatelessWidget {
   final ScrollController _controller = ScrollController();
 
   void _onTap(BuildContext context, RouteEvent newRoute) {
-    BlocProvider.of<NavigationBloc>(context).dispatch(newRoute);
+    BlocProvider.of<NavigationBloc>(context).add(newRoute);
     Navigator.of(context).pop();
   }
 

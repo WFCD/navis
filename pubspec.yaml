@@ -5,12 +5,12 @@ version: 1.4.4+59
 dependencies:
   flutter:
     sdk: flutter
-  bloc: ^0.15.0
+  bloc: ^1.0.0
   equatable: ^0.6.0
-  flutter_bloc: ^0.21.0
+  flutter_bloc: ^1.0.0
   firebase_crashlytics: ^0.1.0+3
   flutter_custom_tabs: ^0.6.0
-  hydrated_bloc: ^0.4.0
+  hydrated_bloc: ^1.0.0
   intl: ^0.15.8
   package_info: ^0.4.0+6
   firebase_messaging: ^5.1.6

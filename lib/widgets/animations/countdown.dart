@@ -57,7 +57,7 @@ class _CountdownBoxState extends State<CountdownBox> {
   void _listener(AnimationStatus status) {
     if (status == AnimationStatus.completed ||
         status == AnimationStatus.dismissed) {
-      BlocProvider.of<WorldstateBloc>(context).dispatch(UpdateEvent());
+      BlocProvider.of<WorldstateBloc>(context).add(UpdateEvent());
     }
   }
 

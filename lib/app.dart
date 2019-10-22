@@ -33,7 +33,7 @@ class _NavisState extends State<Navis> with WidgetsBindingObserver {
     super.initState();
     WidgetsBinding.instance.addObserver(this);
 
-    BlocProvider.of<WorldstateBloc>(context).dispatch(UpdateEvent());
+    BlocProvider.of<WorldstateBloc>(context).add(UpdateEvent());
 
     if (widget.repository.storage.platform == null) {
       widget.repository.notifications

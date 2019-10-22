@@ -50,18 +50,18 @@ class _SearchBarState extends State<SearchBar> {
       box.put('searchType', searchTypeToString(next));
 
       BlocProvider.of<SearchBloc>(context)
-          .dispatch(TextChanged(_textEditingController.text, type: next));
+          .add(TextChanged(_textEditingController.text, type: next));
     }
   }
 
   void _dispatch(String text) {
-    BlocProvider.of<SearchBloc>(context).dispatch(TextChanged(text));
+    BlocProvider.of<SearchBloc>(context).add(TextChanged(text));
   }
 
   void _onClear() {
     _textEditingController.clear();
     FocusScope.of(context).requestFocus(FocusNode());
-    BlocProvider.of<SearchBloc>(context).dispatch(const TextChanged(''));
+    BlocProvider.of<SearchBloc>(context).add(const TextChanged(''));
   }
 
   @override

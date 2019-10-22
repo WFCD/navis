@@ -60,7 +60,7 @@ class PlatformIcon extends StatelessWidget {
       );
 
       storage.platform = platform;
-      state.dispatch(UpdateEvent());
+      state.add(UpdateEvent());
     }
 
     return WatchBoxBuilder(

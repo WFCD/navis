@@ -39,7 +39,7 @@ class WorldstateBloc extends HydratedBloc<WorldstateEvent, WorldStates> {
   }
 
   Future<void> update() async {
-    dispatch(UpdateEvent());
+    add(UpdateEvent());
     await Future.delayed(const Duration(milliseconds: 600));
   }
 

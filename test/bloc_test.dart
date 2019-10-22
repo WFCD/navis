@@ -46,7 +46,7 @@ Future<void> main() async {
         return Worldstate.fromJson(data);
       });
 
-      worldstate.dispatch(UpdateEvent());
+      worldstate.add(UpdateEvent());
 
       expectLater(worldstate.state,
           emitsThrough(const TypeMatcher<WorldstateLoaded>()));
@@ -55,7 +55,7 @@ Future<void> main() async {
     test('dispose does not create a new state', () {
       expectLater(worldstate.state, emitsInOrder([]));
 
-      worldstate.dispose();
+      worldstate.close();
     });
   });
 
