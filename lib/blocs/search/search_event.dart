@@ -12,7 +12,7 @@ abstract class SearchEvent extends Equatable {
 }
 
 class TextChanged extends SearchEvent {
-  const TextChanged(this.text, {this.type}) : super();
+  const TextChanged(this.text, {this.type});
 
   final String text;
   final SearchTypes type;

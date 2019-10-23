@@ -92,17 +92,17 @@ class WorldstateService {
     return false;
   }
 
-  static Future<DateTime> _getDropTableTimestamp() async {
+  Future<DateTime> _getDropTableTimestamp() async {
     const infoUrl = 'https://drops.warframestat.us/data/info.json';
     final info = json.decode((await http.get(infoUrl)).body);
 
     return DateTime.fromMillisecondsSinceEpoch(info['timestamp']);
   }
 
-  static Future<void> _downloadDropTable([String path]) async {
+  Future<void> _downloadDropTable([String path]) async {
     const dropTable = 'https://drops.warframestat.us/data/all.slim.json';
 
-    final response = await http.get(dropTable);
+    final response = await client.get(dropTable);
 
     if (response?.statusCode != 200)
       throw Exception(

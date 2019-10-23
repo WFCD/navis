@@ -1,42 +1,39 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:bloc/bloc.dart';
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:mockito/mockito.dart';
 import 'package:navis/blocs/bloc.dart';
+import 'package:navis/blocs/worldstate/worldstate_events.dart';
+import 'package:navis/services/worldstate_service.dart';
 import 'package:worldstate_model/worldstate_models.dart';
 
 import '../setup_methods.dart';
 
-class MockWorldstateBloc extends Mock implements WorldstateBloc {}
+class MockWorldstateService extends Mock implements WorldstateService {}
 
 void main() {
   final worldstateJson = File('./worldstate.json').readAsStringSync();
   final worldstate = Worldstate.fromJson(json.decode(worldstateJson));
 
+  WorldstateService api;
   WorldstateBloc worldstateBloc;
 
   setUpAll(() async {
-    await setupPackageMockMethods();
+    await mockSetup();
 
-    BlocSupervisor.delegate = await HydratedBlocDelegate.build();
-
-    worldstateBloc = MockWorldstateBloc();
+    api = MockWorldstateService();
+    worldstateBloc = WorldstateBloc(api);
   });
 
   test('Enusre that Worldstate is Loaded', () async {
-    whenListen(
-        worldstateBloc, Stream.fromIterable([WorldstateLoaded(worldstate)]));
+    when(api.getWorldstate()).thenAnswer((_) => Future.value(worldstate));
 
-    expectLater(worldstateBloc,
-        emitsInOrder(<WorldStates>[WorldstateLoaded(worldstate)]));
-  });
+    worldstateBloc.add(UpdateEvent());
 
-  test('Make sure nothing is emited after closing', () {
-    worldstateBloc.close();
-    expectLater(worldstateBloc, emitsInOrder([emitsDone]));
+    await Future.delayed(const Duration(milliseconds: 900));
+
+    expectLater(worldstateBloc.state, WorldstateLoaded(worldstate));
   });
 }

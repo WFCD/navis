@@ -1,22 +1,13 @@
 import 'dart:io';
 
+import 'package:bloc/bloc.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hive/hive.dart';
+import 'package:hydrated_bloc/hydrated_bloc.dart';
 
-Future<void> setupPackageMockMethods() async {
-  TestWidgetsFlutterBinding.ensureInitialized();
+Future<void> mockSetup() async {
   final directory = await Directory.systemTemp.createTemp();
-
-  Hive.init(directory.path);
-
-  const MethodChannel('plugins.flutter.io/shared_preferences')
-      .setMockMethodCallHandler((MethodCall methodCall) async {
-    if (methodCall.method == 'getAll') {
-      return <String, dynamic>{}; // set initial values here if desired
-    }
-    return null;
-  });
 
   const MethodChannel('plugins.flutter.io/path_provider')
       .setMockMethodCallHandler((MethodCall methodCall) async {
@@ -27,18 +18,6 @@ Future<void> setupPackageMockMethods() async {
     return null;
   });
 
-  const MethodChannel('plugins.flutter.io/firebase_messaging')
-      .setMockMethodCallHandler((MethodCall methodCall) async {});
-
-  const MethodChannel('plugins.flutter.io/package_info')
-      .setMockMethodCallHandler((MethodCall methodCall) async {
-    if (methodCall.method == 'getAll') return <String, dynamic>{};
-    return null;
-  });
-
-  const MethodChannel('plugins.flutter.io/firebase_performance')
-      .setMockMethodCallHandler((MethodCall methodCall) async {
-    if (methodCall.method == 'FirebasePerformance#newHttpMetric') return null;
-    return null;
-  });
+  BlocSupervisor.delegate = await HydratedBlocDelegate.build();
+  Hive.init(directory.path);
 }

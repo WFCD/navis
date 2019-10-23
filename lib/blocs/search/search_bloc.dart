@@ -20,15 +20,13 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
   final WorldstateService api;
   final Box storage;
 
-  List<SlimDrop> _dropTable;
-
-  bool get isDropTableLoaded => _dropTable != null;
+  List<SlimDrop> dropTable;
 
   Future<void> loadDropTable() async {
     try {
       final File table = await api.initializeDropTable();
 
-      _dropTable = await compute(convertToDrop, table?.readAsStringSync());
+      dropTable = await compute(convertToDrop, table?.readAsStringSync());
     } catch (e) {
       add(const SearchError(
           'Downloading drop table failed, searching the drop table will not be possible'));
@@ -36,8 +34,10 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
   }
 
   void unloadDropTable() {
-    _dropTable = null;
+    dropTable = null;
   }
+
+  bool get isDropTableLoaded => dropTable != null;
 
   @override
   SearchState get initialState => SearchStateEmpty();
@@ -56,7 +56,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
     final results = type != SearchTypes.drops
         ? await api.search(searchText)
         : await compute(
-            searchDropTable, SearchDropTable(searchText, _dropTable ?? []));
+            searchDropTable, SearchDropTable(searchText, dropTable ?? []));
 
     return results;
   }
@@ -101,7 +101,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
 
   @override
   void close() {
-    _dropTable = null;
+    dropTable = null;
     super.close();
   }
 }
