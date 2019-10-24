@@ -22,7 +22,7 @@ class SearchStateSuccess extends SearchState {
   final Sort sortBy;
 
   @override
-  List<Object> get props => super.props..addAll([results, sortBy]);
+  List<Object> get props => [results, sortBy];
 }
 
 class SearchStateError extends SearchState {
@@ -31,15 +31,15 @@ class SearchStateError extends SearchState {
   final String error;
 
   @override
-  List<Object> get props => super.props..add(error);
+  List<Object> get props => [error];
 }
 
-// This is only an erro message for the bloc listener and should be ignore by the bloc builder in codex
+// This is only an error message for the bloc listener and should be ignore by the bloc builder in codex
 class SearchListenerError extends SearchState {
   const SearchListenerError(this.error);
 
   final String error;
 
   @override
-  List<Object> get props => super.props..add(error);
+  List<Object> get props => [error];
 }
