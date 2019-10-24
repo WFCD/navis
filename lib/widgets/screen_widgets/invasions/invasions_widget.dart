@@ -14,7 +14,7 @@ class InvasionWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SkyboxCard(
-      height: 160,
+      height: 200,
       elevation: 6.0,
       node: invasion.node,
       child: Padding(
