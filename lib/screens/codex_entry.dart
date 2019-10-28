@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:navis/widgets/screen_widgets/items_info/items_info_widgets.dart';
-import 'package:navis/widgets/screen_widgets/items_info/warframe_stats.dart';
 import 'package:warframe_items_model/warframe_items_model.dart';
+
+import 'components/items_info/item_header.dart';
+import 'components/items_info/warframe_stats.dart';
 
 class CodexEntry extends StatefulWidget {
   const CodexEntry({Key key}) : super(key: key);

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:navis/blocs/bloc.dart';
-import 'package:navis/widgets/screen_widgets/codex/drop_result.dart';
-import 'package:navis/widgets/screen_widgets/codex/item_result.dart';
 import 'package:warframe_items_model/warframe_items_model.dart';
+
+import 'drop_result.dart';
+import 'item_result.dart';
 
 class SearchResults extends StatelessWidget {
   const SearchResults({Key key}) : super(key: key);

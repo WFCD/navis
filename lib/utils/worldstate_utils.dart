@@ -44,8 +44,10 @@ List<Drop> jsonToRewards(String response) {
 Future<bool> _checkBackground(BuildContext context, String node) async {
   bool doesBackgroundExist = true;
 
+  if (node == null || node == 'undefined') return false;
+
   await precacheImage(
-    AssetImage(getBackgroundPath(node)),
+    AssetImage(_getBackgroundPath(node)),
     context,
     onError: (e, stack) => doesBackgroundExist = false,
   );
@@ -53,7 +55,7 @@ Future<bool> _checkBackground(BuildContext context, String node) async {
   return doesBackgroundExist;
 }
 
-String getBackgroundPath(String node) {
+String _getBackgroundPath(String node) {
   final nodeRegExp = RegExp(r'\(([^)]*)\)');
   final nodeBackground = nodeRegExp.firstMatch(node).group(1);
 
@@ -66,7 +68,7 @@ ImageProvider skybox(BuildContext context, String node) {
 
   _checkBackground(context, node).then((data) => isError = data);
 
-  return isError ? derelict : AssetImage(getBackgroundPath(node));
+  return isError ? derelict : AssetImage(_getBackgroundPath(node));
 }
 
 bool compareExpiry({DateTime previous, DateTime current}) {

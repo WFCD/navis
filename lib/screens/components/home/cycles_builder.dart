@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:navis/blocs/bloc.dart';
-import 'package:navis/widgets/screen_widgets/home/cycle_widget.dart';
 import 'package:navis/widgets/widgets.dart';
+
+import 'cycle_widget.dart';
 
 class Cycles extends StatelessWidget {
   const Cycles();

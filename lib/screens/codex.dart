@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:navis/blocs/bloc.dart';
-import 'package:navis/widgets/screen_widgets/codex/codex.dart';
+
+import 'components/codex/codex.dart';
 
 class Codex extends StatefulWidget {
   const Codex({Key key}) : super(key: key);

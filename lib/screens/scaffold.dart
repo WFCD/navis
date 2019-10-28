@@ -66,7 +66,7 @@ class _MainScreenState extends State<MainScreen> {
 
   void _blocListener<T>(BuildContext context, T state,
       [VoidCallback onPressed]) {
-    if (state is WorldstateError) showSnackbar(state.error, onPressed);
+    if (state is WorldstateError) showSnackbar(state.error.message, onPressed);
     if (state is SearchListenerError) showSnackbar(state.error);
   }
 

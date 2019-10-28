@@ -33,7 +33,7 @@ class WorldstateBloc extends HydratedBloc<WorldstateEvent, WorldStates> {
         final state = await api.getWorldstate();
         yield WorldstateLoaded(state);
       } catch (e) {
-        yield WorldstateError(e.toString());
+        yield WorldstateError(e);
       }
     }
   }

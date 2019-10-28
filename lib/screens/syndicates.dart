@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:navis/blocs/bloc.dart';
-import 'package:navis/widgets/screen_widgets/syndicates/syndicates.dart';
 import 'package:navis/widgets/widgets.dart';
 import 'package:worldstate_model/worldstate_models.dart';
+
+import 'components/syndicates/syndicates.dart';
 
 class SyndicatesList extends StatelessWidget {
   @override

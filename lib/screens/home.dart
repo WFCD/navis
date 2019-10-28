@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:navis/blocs/bloc.dart';
-import 'package:navis/widgets/screen_widgets/home/home.dart';
+
+import 'components/home/home.dart';
 
 class Home extends StatelessWidget {
   const Home({Key key = const PageStorageKey<String>('feed')})
@@ -21,7 +22,7 @@ class Home extends StatelessWidget {
               const NewsBuilder(),
               if (worldstate.isEventActive) const EventBuilder(),
               if (worldstate.areAcolytesActive) const Acolytes(),
-              const ArbitrationBuilder(),
+              if (worldstate.activeArbitration) const ArbitrationBuilder(),
               if (worldstate.isAlertActive) const AlertTile(),
               const Cycles(),
               const Trader(),

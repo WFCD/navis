@@ -31,19 +31,22 @@ class SkyboxCard extends StatelessWidget {
         margin: margin,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
         clipBehavior: Clip.hardEdge,
-        child: Container(
-          height: height,
-          width: width,
-          alignment: alignment,
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              colorFilter: ColorFilter.mode(
-                  Colors.black.withOpacity(0.3), BlendMode.dstIn),
-              image: skybox(context, node),
-              fit: BoxFit.cover,
+        child: AnimatedSwitcher(
+          duration: const Duration(milliseconds: 200),
+          child: Container(
+            height: height,
+            width: width,
+            alignment: alignment,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                colorFilter: ColorFilter.mode(
+                    Colors.black.withOpacity(0.3), BlendMode.dstIn),
+                image: skybox(context, node),
+                fit: BoxFit.cover,
+              ),
             ),
+            child: child,
           ),
-          child: child,
         ),
       ),
     );

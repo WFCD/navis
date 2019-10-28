@@ -15,10 +15,11 @@ class ArbitrationBuilder extends StatelessWidget {
         final arbitration = state.worldstate.arbitration;
 
         return ArbitrationWidget(
-          node: arbitration.node,
-          type: arbitration.type,
-          enemy: arbitration.enemy,
-          expiry: arbitration.expiry,
+          node: arbitration?.node,
+          type: arbitration?.type,
+          enemy: arbitration?.enemy,
+          expiry:
+              arbitration?.expiry ?? DateTime.now().add(Duration(minutes: 1)),
           archwingRequired: arbitration.archwing || arbitration.sharkwing,
         );
       },
@@ -34,10 +35,7 @@ class ArbitrationWidget extends StatelessWidget {
     @required this.enemy,
     @required this.expiry,
     this.archwingRequired = false,
-  })  : assert(node != null),
-        assert(type != null),
-        assert(enemy != null),
-        assert(expiry != null),
+  })  : assert(expiry != null),
         super(key: key);
 
   final String node, type, enemy;
@@ -72,7 +70,7 @@ class ArbitrationWidget extends StatelessWidget {
               ),
               const SizedBox(height: 4.0),
               Text(
-                '$enemy | $type',
+                '${enemy ?? 'unknown'} | ${type ?? 'unknown'}',
                 textAlign: TextAlign.center,
                 style: textTheme.caption.copyWith(
                   color: Colors.white,
