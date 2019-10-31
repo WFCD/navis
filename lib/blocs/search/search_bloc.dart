@@ -70,10 +70,12 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
   Stream<SearchState> mapEventToState(
     SearchEvent event,
   ) async* {
-    final searchType = persistent?.searchType;
+    SearchTypes searchType = persistent?.searchType;
 
     if (event is TextChanged) {
       final searchText = event.text;
+
+      searchType ??= event.type;
 
       if (searchText.isEmpty) {
         yield SearchStateEmpty();

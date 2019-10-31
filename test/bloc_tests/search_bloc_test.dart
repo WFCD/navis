@@ -48,13 +48,15 @@ void main() {
   });
 
   test('Searching the drop table', () async {
-    expectLater(searchBloc, emits(const TypeMatcher<SearchStateSuccess>()));
+    expectLater(
+        searchBloc, emitsThrough(const TypeMatcher<SearchStateSuccess>()));
 
     searchBloc.add(const TextChanged('chroma', type: SearchTypes.drops));
   });
 
   test('Searching Warframe items', () async {
-    expectLater(searchBloc, emits(const TypeMatcher<SearchStateSuccess>()));
+    expectLater(
+        searchBloc, emitsThrough(const TypeMatcher<SearchStateSuccess>()));
 
     when(worldstateApiService.search('chroma'))
         .thenAnswer((_) async => Future.value(<ItemObject>[]));
