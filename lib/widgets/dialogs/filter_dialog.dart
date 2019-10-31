@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:navis/blocs/bloc.dart';
-import 'package:navis/services/localstorage_service.dart';
 import 'package:navis/services/repository.dart';
+import 'package:navis/services/storage/persistent_storage.service.dart';
 
 import 'base_dialog.dart';
 
@@ -22,7 +22,7 @@ class FilterDialog extends StatelessWidget {
         builder: (_) => FilterDialog(options: options, type: type));
   }
 
-  Map<String, bool> _typeToInstance(LocalStorageService storage) {
+  Map<String, bool> _typeToInstance(PersistentStorageService storage) {
     switch (type) {
       case FilterType.acolytes:
         return storage.acolytes;
@@ -39,13 +39,13 @@ class FilterDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final storage = RepositoryProvider.of<Repository>(context).storage;
+    final persistent = RepositoryProvider.of<Repository>(context).persistent;
 
     return WatchBoxBuilder(
-      box: storage.instance,
+      box: persistent.hiveBox,
       watchKeys: options.keys.toList(),
       builder: (BuildContext context, Box box) {
-        final instance = _typeToInstance(storage);
+        final instance = _typeToInstance(persistent);
 
         return BaseDialog(
           dialogTitle: const Text('Filter Options'),
@@ -88,7 +88,7 @@ class NotificationCheckBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final storage = RepositoryProvider.of<Repository>(context).storage;
+    final storage = RepositoryProvider.of<Repository>(context).persistent;
     final firebase = RepositoryProvider.of<Repository>(context).notifications;
 
     return CheckboxListTile(

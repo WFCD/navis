@@ -26,7 +26,7 @@ class DisplayChoices extends StatelessWidget {
           onTap: () => DateFormatPicker.selectDateformat(context),
         ),
         WatchBoxBuilder(
-          box: RepositoryProvider.of<Repository>(context).storage.instance,
+          box: RepositoryProvider.of<Repository>(context).persistent.hiveBox,
           watchKeys: const ['backkey'],
           builder: (BuildContext context, Box box) {
             return CheckboxListTile(

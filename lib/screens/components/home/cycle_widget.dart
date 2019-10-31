@@ -15,7 +15,7 @@ class CycleWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final storage = RepositoryProvider.of<Repository>(context).storage;
+    final storage = RepositoryProvider.of<Repository>(context).persistent;
     final state = toBeginningOfSentenceCase(cycle.state);
     final nextState = toBeginningOfSentenceCase(cycle.nextState);
     final dateFormat = enumToDateformat(storage.dateformat);

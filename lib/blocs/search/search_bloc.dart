@@ -4,9 +4,9 @@ import 'dart:io';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
-import 'package:hive/hive.dart';
-import 'package:navis/services/worldstate_service.dart';
-import 'package:navis/utils/utils.dart';
+import 'package:navis/services/storage/persistent_storage.service.dart';
+import 'package:navis/services/wfcd_api/drop_table_api.service.dart';
+import 'package:navis/services/wfcd_api/worldstate_api.service.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:warframe_items_model/warframe_items_model.dart';
 
@@ -15,16 +15,21 @@ import 'search_state.dart';
 import 'search_utils.dart';
 
 class SearchBloc extends Bloc<SearchEvent, SearchState> {
-  SearchBloc(this.api, this.storage);
+  SearchBloc(this.worldstateApiService, this.dropTableApiService,
+      [this.persistent]) {
+    persistent ??= PersistentStorageService.instance;
+  }
 
-  final WorldstateService api;
-  final Box storage;
+  final WorldstateApiService worldstateApiService;
+  final DropTableApiService dropTableApiService;
+
+  PersistentStorageService persistent;
 
   List<SlimDrop> dropTable;
 
   Future<void> loadDropTable() async {
     try {
-      final File table = await api.initializeDropTable();
+      final File table = await dropTableApiService.dropTable;
 
       dropTable = await compute(convertToDrop, table?.readAsStringSync());
     } catch (e) {
@@ -54,7 +59,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
 
   Future<List<Equatable>> _search(SearchTypes type, String searchText) async {
     final results = type != SearchTypes.drops
-        ? await api.search(searchText)
+        ? await worldstateApiService.search(searchText)
         : await compute(
             searchDropTable, SearchDropTable(searchText, dropTable ?? []));
 
@@ -65,7 +70,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
   Stream<SearchState> mapEventToState(
     SearchEvent event,
   ) async* {
-    final searchType = stringToSearchType(storage.get('searchType'));
+    final searchType = persistent.searchType;
 
     if (event is TextChanged) {
       final searchText = event.text;

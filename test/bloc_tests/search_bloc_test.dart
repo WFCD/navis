@@ -2,23 +2,23 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/foundation.dart';
-import 'package:hive/hive.dart';
 import 'package:mockito/mockito.dart';
 import 'package:navis/blocs/bloc.dart';
 import 'package:navis/blocs/search/search_bloc.dart';
 import 'package:navis/blocs/search/search_utils.dart';
-import 'package:navis/services/worldstate_service.dart';
+import 'package:navis/services/wfcd_api/drop_table_api.service.dart';
+import 'package:navis/services/wfcd_api/worldstate_api.service.dart';
 import 'package:test/test.dart';
 import 'package:warframe_items_model/warframe_items_model.dart';
 
+import '../mock_classes.dart';
 import '../setup_methods.dart';
-
-class MockWorldstateService extends Mock implements WorldstateService {}
 
 void main() {
   final dropTable = File('./drop_table.json');
 
-  WorldstateService api;
+  WorldstateApiService worldstateApiService;
+  DropTableApiService dropTableApiService;
 
   SearchBloc searchBloc;
   List<SlimDrop> localTable;
@@ -26,8 +26,8 @@ void main() {
   setUpAll(() async {
     await mockSetup();
 
-    api = MockWorldstateService();
-    searchBloc = SearchBloc(api, await Hive.openBox('test'));
+    worldstateApiService = MockWorldstateApiService();
+    searchBloc = SearchBloc(worldstateApiService, dropTableApiService);
 
     localTable = json
         .decode(dropTable.readAsStringSync())
@@ -37,7 +37,7 @@ void main() {
   });
 
   test('Make sure the drop table are loaded correctly', () async {
-    when(api.initializeDropTable())
+    when(dropTableApiService.initializeDropTable())
         .thenAnswer((_) async => Future.value(dropTable));
 
     await searchBloc.loadDropTable();
@@ -54,7 +54,8 @@ void main() {
   });
 
   test('Searching Warframe items', () async {
-    when(api.search('chroma')).thenAnswer((_) => Future.value(<ItemObject>[]));
+    when(worldstateApiService.search('chroma'))
+        .thenAnswer((_) => Future.value(<ItemObject>[]));
 
     searchBloc.add(const TextChanged('chroma', type: SearchTypes.items));
 

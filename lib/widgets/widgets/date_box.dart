@@ -16,13 +16,13 @@ class DateView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final storage = RepositoryProvider.of<Repository>(context).storage;
+    final persistent = RepositoryProvider.of<Repository>(context).persistent;
 
     return WatchBoxBuilder(
-      box: storage.instance,
+      box: persistent.hiveBox,
       watchKeys: const [SettingsKeys.dateformatKey],
       builder: (BuildContext context, Box state) {
-        final dateFormat = enumToDateformat(storage.dateformat);
+        final dateFormat = enumToDateformat(persistent.dateformat);
 
         return StaticBox(
           color: color ?? Colors.blueAccent[400],

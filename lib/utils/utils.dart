@@ -7,8 +7,6 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../global_keys.dart';
 
-enum Formats { mm_dd_yy, dd_mm_yy, month_day_year }
-
 Future<void> launchLink(BuildContext context, String link,
     {bool isStream = false}) async {
   const String warframeTwitch = 'twitch://open?stream=warframe';

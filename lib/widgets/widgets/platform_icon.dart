@@ -49,22 +49,22 @@ class PlatformIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final state = BlocProvider.of<WorldstateBloc>(context);
-    final storage = RepositoryProvider.of<Repository>(context).storage;
+    final persistent = RepositoryProvider.of<Repository>(context).persistent;
     final notification =
         RepositoryProvider.of<Repository>(context).notifications;
 
     void _onPressed() {
       notification.subscribeToPlatform(
-        previousPlatform: storage.platform,
+        previousPlatform: persistent.platform,
         currentPlatform: platform,
       );
 
-      storage.platform = platform;
+      persistent.platform = platform;
       state.add(UpdateEvent());
     }
 
     return WatchBoxBuilder(
-      box: storage.instance,
+      box: persistent.hiveBox,
       watchKeys: const [SettingsKeys.platformKey],
       builder: (BuildContext context, Box box) {
         _setValues();
@@ -74,7 +74,7 @@ class PlatformIcon extends StatelessWidget {
           splashColor: _platformColor,
           icon: SvgPicture.asset(
             _platformIcon,
-            color: (storage?.platform ?? Platforms.pc) == platform
+            color: (persistent.platform ?? Platforms.pc) == platform
                 ? _platformColor
                 : Theme.of(context).disabledColor,
             width: 34,

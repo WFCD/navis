@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:hydrated_bloc/hydrated_bloc.dart';
-import 'package:navis/services/worldstate_service.dart';
+import 'package:navis/services/wfcd_api/worldstate_api.service.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:worldstate_model/worldstate_models.dart';
 
@@ -11,7 +11,7 @@ import 'worldstate_states.dart';
 class WorldstateBloc extends HydratedBloc<WorldstateEvent, WorldStates> {
   WorldstateBloc(this.api);
 
-  final WorldstateService api;
+  final WorldstateApiService api;
 
   @override
   WorldStates get initialState =>

@@ -1,4 +1,3 @@
-import 'package:async/async.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -21,20 +20,9 @@ class DealWidget extends StatefulWidget {
 
 class _DealWidgetState extends State<DealWidget>
     with AutomaticKeepAliveClientMixin {
-  final AsyncMemoizer<ItemObject> _itemFuture = AsyncMemoizer();
-
-  Future<ItemObject> _getItem() async {
-    final api = RepositoryProvider.of<Repository>(context).worldstateService;
-
-    return _itemFuture?.runOnce(() async {
-      return await api.getDeal(widget.deal);
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     super.build(context);
-
     final fontSize = SizeConfig.widthMultiplier * 3.5;
     final style = Theme.of(context)
         .textTheme
@@ -44,61 +32,64 @@ class _DealWidgetState extends State<DealWidget>
     final primary = Theme.of(context).primaryColor;
 
     return FutureBuilder<ItemObject>(
-      future: _getItem(),
+      future: RepositoryProvider.of<Repository>(context)
+          .worldstateService
+          .getDealItem(widget.deal),
       builder: (BuildContext context, AsyncSnapshot<ItemObject> snapshot) {
-        if (!snapshot.hasData)
-          return const Center(child: CircularProgressIndicator());
+        if (snapshot.hasData) {
+          final item = snapshot.data;
+          final urlExist = item.wikiaUrl != null;
 
-        final item = snapshot.data;
-        final urlExist = item.wikiaUrl != null;
-
-        return Column(
-          children: <Widget>[
-            Row(
-              children: <Widget>[
-                DealImage(imageUrl: item.imageUrl),
-                const SizedBox(width: 16.0),
-                DealDetails(
-                  itemName: item.name,
-                  itemDescription: parseHtmlString(item.description),
-                ),
-              ],
-            ),
-            const SizedBox(height: 16.0),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                StaticBox.text(
-                  text: '${widget.deal.discount}% Discount',
-                  color: primary,
-                  style: style,
-                ),
-                // TODO(Orn): should probably put a plat icon here instead
-                StaticBox.text(
-                  text: '${widget.deal.salePrice}\p',
-                  color: primary,
-                  style: style,
-                ),
-                StaticBox.text(
-                  text:
-                      '${widget.deal.total - widget.deal.sold} / ${widget.deal.total} remaining',
-                  color: primary,
-                  style: style,
-                ),
-                CountdownBox(expiry: widget.deal.expiry, style: style),
-              ],
-            ),
-            if (urlExist)
-              ButtonBar(
+          return Column(
+            children: <Widget>[
+              Row(
                 children: <Widget>[
-                  FlatButton(
-                    child: const Text('See Wikia'),
-                    onPressed: () => launchLink(context, item.wikiaUrl),
+                  DealImage(imageUrl: item.imageUrl),
+                  const SizedBox(width: 16.0),
+                  DealDetails(
+                    itemName: item.name,
+                    itemDescription: parseHtmlString(item.description),
                   ),
                 ],
-              )
-          ],
-        );
+              ),
+              const SizedBox(height: 16.0),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  StaticBox.text(
+                    text: '${widget.deal.discount}% Discount',
+                    color: primary,
+                    style: style,
+                  ),
+                  // TODO(Orn): should probably put a plat icon here instead
+                  StaticBox.text(
+                    text: '${widget.deal.salePrice}\p',
+                    color: primary,
+                    style: style,
+                  ),
+                  StaticBox.text(
+                    text:
+                        '${widget.deal.total - widget.deal.sold} / ${widget.deal.total} remaining',
+                    color: primary,
+                    style: style,
+                  ),
+                  CountdownBox(expiry: widget.deal.expiry, style: style),
+                ],
+              ),
+              if (urlExist)
+                ButtonBar(
+                  children: <Widget>[
+                    FlatButton(
+                      child: const Text('See Wikia'),
+                      onPressed: () => launchLink(context, item.wikiaUrl),
+                    ),
+                  ],
+                )
+            ],
+          );
+        }
+
+        return const Center(child: CircularProgressIndicator());
       },
     );
   }

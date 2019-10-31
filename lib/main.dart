@@ -28,7 +28,7 @@ void main() {
             ),
             BlocProvider<SearchBloc>(
               builder: (_) => SearchBloc(
-                  repository.worldstateService, repository.storage.instance),
+                  repository.worldstateService, repository.dropTableApiService),
             )
           ],
           child: Navis(repository),

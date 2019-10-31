@@ -22,7 +22,7 @@ class ThemePicker extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return WatchBoxBuilder(
-      box: RepositoryProvider.of<Repository>(context).storage.instance,
+      box: RepositoryProvider.of<Repository>(context).persistent.hiveBox,
       builder: (BuildContext context, Box box) {
         final current = box.get(SettingsKeys.theme, defaultValue: 0);
         final accentColor = Theme.of(context).accentColor;

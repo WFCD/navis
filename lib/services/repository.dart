@@ -1,36 +1,45 @@
 import 'package:http/http.dart';
-import 'package:navis/services/worldstate_service.dart';
+import 'package:navis/services/storage/cache_storage.service.dart';
+import 'package:navis/services/wfcd_api/drop_table_api.service.dart';
 import 'package:package_info/package_info.dart';
 
-import 'localstorage_service.dart';
 import 'notification_service.dart';
+import 'storage/persistent_storage.service.dart';
+import 'wfcd_api/worldstate_api.service.dart';
 
 class Repository {
   Repository(
-    this.storage,
+    this.persistent,
+    this.cache,
     this.notifications,
     this.packageInfo,
     this.worldstateService,
+    this.dropTableApiService,
   );
 
-  final LocalStorageService storage;
+  final PersistentStorageService persistent;
+  final CacheStorageService cache;
   final NotificationService notifications;
   final PackageInfo packageInfo;
-  final WorldstateService worldstateService;
+  final WorldstateApiService worldstateService;
+  final DropTableApiService dropTableApiService;
 
   static Future<Repository> initRepository({Client client}) async {
-    client ??= Client();
+    final _persistent = PersistentStorageService();
+    final _cache = CacheStorageService();
 
-    final _storage = await LocalStorageService.getInstance();
-    final _notifications = NotificationService.initialize();
+    await _persistent.startInstance();
+    await _cache.startInstance();
+
     final _packageInfo = await PackageInfo.fromPlatform();
-    final _worldstateService = WorldstateService(client, _storage);
 
     return Repository(
-      _storage,
-      _notifications,
+      _persistent,
+      _cache,
+      NotificationService.initialize(),
       _packageInfo,
-      _worldstateService,
+      WorldstateApiService(),
+      DropTableApiService(),
     );
   }
 }

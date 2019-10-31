@@ -1,36 +1,41 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
+import 'package:navis/blocs/search/search_utils.dart';
 import 'package:navis/constants/notification_filters.dart' as filters;
 import 'package:navis/constants/storage_keys.dart';
+import 'package:navis/services/storage/storage_base.service.dart';
 import 'package:navis/themes.dart';
 import 'package:navis/utils/utils.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:wfcd_api_wrapper/worldstate_wrapper.dart';
 
-class LocalStorageService {
-  static LocalStorageService _instance;
-  static Box _preferences;
+import 'dateformat_enum.dart';
 
+class PersistentStorageService extends StorageService {
   static const String hive = 'settings';
 
-  static Future<LocalStorageService> getInstance() async {
-    WidgetsFlutterBinding.ensureInitialized();
+  static Box _box;
+  static PersistentStorageService _instance;
+
+  static PersistentStorageService get instance => _instance;
+
+  @override
+  Box get hiveBox => _box;
+
+  @override
+  Future<void> startInstance() async {
     final directory = await getApplicationDocumentsDirectory();
 
     Hive.init(directory.path);
 
-    _instance ??= LocalStorageService();
-    _preferences ??= await Hive.openBox(
+    _box ??= await Hive.openBox(
       hive,
       compactionStrategy: (entries, deleted) {
         return entries > 30 || deleted > 25;
       },
     );
-
-    return _instance;
+    _instance ??= PersistentStorageService();
   }
-
-  Box get instance => Hive.box(hive);
 
   Platforms get platform {
     final diskPlatform = getFromDisk(SettingsKeys.platformKey);
@@ -65,6 +70,12 @@ class LocalStorageService {
   set dateformat(Formats value) =>
       saveToDisk(SettingsKeys.dateformatKey, value.toString().split('.').last);
 
+  SearchTypes get searchType =>
+      stringToSearchType(getFromDisk('searchType', 'drops'));
+
+  set searchType(SearchTypes type) =>
+      saveToDisk('searchType', searchTypeToString(type));
+
   Map<String, bool> get acolytes =>
       {for (String a in filters.acolytes.keys) a: getFromDisk(a, false)};
 
@@ -82,21 +93,8 @@ class LocalStorageService {
   Map<String, bool> get resources =>
       {for (String r in filters.resources.keys) r: getFromDisk(r, false)};
 
-  DateTime tableTimestamp() {
-    final timestamp =
-        getFromDisk('tableTimestamp', DateTime.now().millisecondsSinceEpoch);
-
-    return DateTime.fromMillisecondsSinceEpoch(timestamp);
-  }
-
-  void saveTimestamp(DateTime timestamp) {
-    saveToDisk('tableTimestamp', timestamp?.millisecondsSinceEpoch);
-  }
-
   dynamic getFromDisk(String key, [dynamic defaultValue]) =>
-      _preferences.get(key, defaultValue: defaultValue);
+      _box.get(key, defaultValue: defaultValue);
 
-  void saveToDisk<T>(String key, T value) => _preferences.put(key, value);
-
-  Future<void> dispose() async => await _preferences.close();
+  void saveToDisk<T>(String key, T value) => _box.put(key, value);
 }

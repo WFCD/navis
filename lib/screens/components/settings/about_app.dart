@@ -23,7 +23,7 @@ class AboutApp extends StatelessWidget {
 
   Future<void> _updateTable(Repository repository) async {
     _showSnackBar('Updating drop table');
-    final updateStatus = await repository.worldstateService.updateDropTable();
+    final updateStatus = await repository.dropTableApiService.updateDropTable();
 
     if (updateStatus)
       _showSnackBar('Updated drop table');
@@ -34,7 +34,7 @@ class AboutApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final repository = RepositoryProvider.of<Repository>(context);
-    final date = _dateFormat.format(repository.storage.tableTimestamp());
+    final date = _dateFormat.format(repository.cache.getDropTableTimestamp);
 
     return Column(
       children: <Widget>[

@@ -66,17 +66,17 @@ class _SimpleNotification extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final storage = RepositoryProvider.of<Repository>(context).storage;
+    final persistent = RepositoryProvider.of<Repository>(context).persistent;
     final notification =
         RepositoryProvider.of<Repository>(context).notifications;
 
     return WatchBoxBuilder(
-      box: storage.instance,
+      box: persistent.hiveBox,
       builder: (BuildContext context, Box box) {
         return CheckboxListTile(
           title: Text(name),
           subtitle: Text(description),
-          value: storage.simple[optionKey],
+          value: persistent.simple[optionKey],
           activeColor: Theme.of(context).accentColor,
           onChanged: (b) {
             box.put(optionKey, b);

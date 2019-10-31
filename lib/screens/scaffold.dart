@@ -28,15 +28,19 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   void initState() {
+    super.initState();
     timer = Timer.periodic(const Duration(minutes: 5), (t) {
       BlocProvider.of<WorldstateBloc>(context).add(UpdateEvent());
     });
 
-    super.initState();
+    RepositoryProvider.of<Repository>(context)
+        .dropTableApiService
+        .initializeDropTable();
   }
 
   Future<bool> _willPop() async {
-    final Box box = RepositoryProvider.of<Repository>(context).storage.instance;
+    final Box box =
+        RepositoryProvider.of<Repository>(context).persistent.hiveBox;
 
     if (box.get('backkey', defaultValue: false)) {
       if (!appScaffold.currentState.isDrawerOpen) {
@@ -126,6 +130,8 @@ class _MainScreenState extends State<MainScreen> {
   @override
   void dispose() {
     timer?.cancel();
+    RepositoryProvider.of<Repository>(context).persistent.closeBoxInstance();
+    RepositoryProvider.of<Repository>(context).cache.closeBoxInstance();
     super.dispose();
   }
 }

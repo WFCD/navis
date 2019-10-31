@@ -87,7 +87,7 @@ class _SearchBarState extends State<SearchBar> {
         ),
         trailing: LimitedBox(
           child: WatchBoxBuilder(
-            box: RepositoryProvider.of<Repository>(context).storage.instance,
+            box: RepositoryProvider.of<Repository>(context).persistent.hiveBox,
             watchKeys: const ['searchType'],
             builder: (BuildContext context, Box box) {
               final type = stringToSearchType(box.get('searchType'));

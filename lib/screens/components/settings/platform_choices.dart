@@ -13,7 +13,7 @@ class PlatformChoice extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return WatchBoxBuilder(
-      box: RepositoryProvider.of<Repository>(context).storage.instance,
+      box: RepositoryProvider.of<Repository>(context).persistent.hiveBox,
       watchKeys: const [SettingsKeys.platformKey],
       builder: (BuildContext context, Box box) {
         return Row(
