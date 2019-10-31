@@ -27,6 +27,8 @@ void main() {
     await mockSetup();
 
     worldstateApiService = MockWorldstateApiService();
+    dropTableApiService = MockDropTableApiService();
+
     searchBloc = SearchBloc(worldstateApiService, dropTableApiService);
 
     localTable = json
@@ -37,7 +39,7 @@ void main() {
   });
 
   test('Make sure the drop table are loaded correctly', () async {
-    when(dropTableApiService.initializeDropTable())
+    when(dropTableApiService.dropTable)
         .thenAnswer((_) async => Future.value(dropTable));
 
     await searchBloc.loadDropTable();
@@ -46,21 +48,17 @@ void main() {
   });
 
   test('Searching the drop table', () async {
+    expectLater(searchBloc, emits(const TypeMatcher<SearchStateSuccess>()));
+
     searchBloc.add(const TextChanged('chroma', type: SearchTypes.drops));
-
-    await Future.delayed(const Duration(milliseconds: 900));
-
-    expectLater(searchBloc.state, const TypeMatcher<SearchStateSuccess>());
   });
 
   test('Searching Warframe items', () async {
+    expectLater(searchBloc, emits(const TypeMatcher<SearchStateSuccess>()));
+
     when(worldstateApiService.search('chroma'))
-        .thenAnswer((_) => Future.value(<ItemObject>[]));
+        .thenAnswer((_) async => Future.value(<ItemObject>[]));
 
     searchBloc.add(const TextChanged('chroma', type: SearchTypes.items));
-
-    await Future.delayed(const Duration(milliseconds: 900));
-
-    expectLater(searchBloc.state, const TypeMatcher<SearchStateSuccess>());
   });
 }
