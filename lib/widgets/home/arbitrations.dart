@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:navis/blocs/bloc.dart';
 import 'package:navis/utils/size_config.dart';
-import 'package:navis/widgets/animations.dart';
-import 'package:navis/widgets/widgets/skybox_card.dart';
+import 'package:navis/widgets/widgets.dart';
 
 class ArbitrationBuilder extends StatelessWidget {
   const ArbitrationBuilder({Key key}) : super(key: key);

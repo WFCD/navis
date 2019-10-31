@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:navis/blocs/bloc.dart';
-import 'package:navis/widgets/animations.dart';
-
-import 'components/sorties/sorties.dart';
+import 'package:navis/widgets/sorties/sorties.dart';
+import 'package:navis/widgets/widgets.dart';
 
 class SortieScreen extends StatelessWidget {
   const SortieScreen({Key key}) : super(key: key);

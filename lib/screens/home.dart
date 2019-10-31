@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:navis/blocs/bloc.dart';
-
-import 'components/home/home.dart';
+import 'package:navis/widgets/home/home.dart';
 
 class Home extends StatelessWidget {
   const Home({Key key = const PageStorageKey<String>('feed')})

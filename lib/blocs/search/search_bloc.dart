@@ -59,18 +59,18 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
 
   Future<List<Equatable>> _search(SearchTypes type, String searchText) async {
     final results = type != SearchTypes.drops
-        ? await worldstateApiService.search(searchText)
-        : await compute(
+        ? worldstateApiService.search(searchText)
+        : compute(
             searchDropTable, SearchDropTable(searchText, dropTable ?? []));
 
-    return results;
+    return await results;
   }
 
   @override
   Stream<SearchState> mapEventToState(
     SearchEvent event,
   ) async* {
-    final searchType = persistent.searchType;
+    final searchType = persistent?.searchType;
 
     if (event is TextChanged) {
       final searchText = event.text;

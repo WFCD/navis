@@ -7,7 +7,7 @@ import 'package:navis/blocs/bloc.dart';
 import 'package:navis/blocs/worldstate/worldstate_events.dart';
 import 'package:navis/global_keys.dart';
 import 'package:navis/services/repository.dart';
-import 'package:navis/widgets/widgets.dart';
+import 'package:navis/widgets/drawer/drawer.dart';
 
 import 'codex.dart';
 import 'fissures.dart';

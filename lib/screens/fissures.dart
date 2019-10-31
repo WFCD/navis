@@ -2,8 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:navis/blocs/bloc.dart';
 import 'package:navis/utils/worldstate_utils.dart';
-
-import 'components/fissures/fissure_widget.dart';
+import 'package:navis/widgets/fissures/fissures.dart';
 
 class FissureList extends StatelessWidget {
   const FissureList({Key key}) : super(key: key);

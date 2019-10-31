@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:navis/global_keys.dart';
-
-import 'components/settings/settings.dart';
+import 'package:navis/widgets/settings/settings.dart';
 
 class Settings extends StatelessWidget {
   const Settings({Key key}) : super(key: key);

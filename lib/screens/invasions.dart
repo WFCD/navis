@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:navis/blocs/bloc.dart';
 import 'package:navis/utils/worldstate_utils.dart';
-
-import 'components/invasions/invasions.dart';
+import 'package:navis/widgets/invasions/invasions.dart';
 
 class InvasionsList extends StatelessWidget {
   const InvasionsList({Key key}) : super(key: key);

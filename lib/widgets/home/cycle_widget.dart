@@ -4,7 +4,7 @@ import 'package:navis/blocs/bloc.dart';
 import 'package:navis/services/repository.dart';
 import 'package:navis/utils/factionutils.dart';
 import 'package:navis/utils/worldstate_utils.dart';
-import 'package:navis/widgets/animations.dart';
+import 'package:navis/widgets/widgets.dart';
 import 'package:worldstate_model/worldstate_objects.dart';
 
 class CycleWidget extends StatelessWidget {
