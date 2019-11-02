@@ -24,6 +24,7 @@ class PersistentStorageService extends StorageService {
 
   @override
   Future<void> startInstance() async {
+    super.startInstance();
     final directory = await getApplicationDocumentsDirectory();
 
     Hive.init(directory.path);

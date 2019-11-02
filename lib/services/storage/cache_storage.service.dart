@@ -19,6 +19,7 @@ class CacheStorageService extends StorageService {
 
   @override
   Future<void> startInstance() async {
+    super.startInstance();
     final directory = await getTemporaryDirectory();
 
     Hive.init(directory.path);
