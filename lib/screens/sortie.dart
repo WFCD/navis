@@ -28,8 +28,8 @@ class SortieScreen extends StatelessWidget {
     return BlocBuilder(
       bloc: BlocProvider.of<WorldstateBloc>(context),
       condition: (WorldStates previous, WorldStates current) {
-        return previous.worldstate?.sortie?.expiry !=
-                current.worldstate?.sortie?.expiry ??
+        return (previous.worldstate?.sortie?.expiry !=
+                current.worldstate?.sortie?.expiry) ??
             false;
       },
       builder: (BuildContext context, WorldStates state) {

@@ -29,10 +29,10 @@ class FissureWidget extends StatelessWidget {
         shadows: <Shadow>[shadow]);
 
     final tierIcon = SvgPicture.asset(
-      'assets/relics/${fissure.tier}.svg',
+      'assets/relics/${fissure.tierNum != 5 ? fissure.tier : 'Axi'}.svg',
       height: size.height,
       width: size.width,
-      color: Colors.white,
+      color: fissure.tierNum != 5 ? Colors.white : const Color(0xFFFA0808),
     );
 
     return SkyboxCard(

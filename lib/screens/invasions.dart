@@ -12,7 +12,7 @@ class InvasionsList extends StatelessWidget {
       onRefresh: BlocProvider.of<WorldstateBloc>(context).update,
       child: BlocBuilder<WorldstateBloc, WorldStates>(
         condition: (previous, current) {
-          return compareList(
+          return compareIds(
             previous.worldstate?.invasions,
             current.worldstate?.invasions,
           );

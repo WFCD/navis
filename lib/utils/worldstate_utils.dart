@@ -6,6 +6,7 @@ import 'package:intl/intl.dart';
 import 'package:navis/services/storage/dateformat_enum.dart';
 import 'package:warframe_items_model/warframe_items_model.dart';
 import 'package:worldstate_model/worldstate_models.dart';
+import 'package:worldstate_model/worldstate_objects.dart';
 
 Worldstate cleanState(Worldstate state) {
   state.alerts.removeWhere((a) =>
@@ -70,14 +71,14 @@ ImageProvider skybox(BuildContext context, String node) {
   return isError ? derelict : AssetImage(_getBackgroundPath(node));
 }
 
-bool compareExpiry({DateTime previous, DateTime current}) {
-  return previous?.isBefore(current ?? DateTime.now()) ?? false;
-}
-
-bool compareList(List previous, List current) {
+bool compareIds(
+    List<WorldstateObject> previous, List<WorldstateObject> current) {
   const _deep = DeepCollectionEquality();
 
-  return !_deep.equals(previous ?? [], current ?? []);
+  final previousIds = previous.map<String>((w) => w.id);
+  final currentIds = current.map<String>((w) => w.id);
+
+  return !_deep.equals(previousIds ?? [], currentIds ?? []);
 }
 
 DateFormat enumToDateformat(Formats format) {

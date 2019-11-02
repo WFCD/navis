@@ -19,7 +19,7 @@ class EventBuilder extends StatelessWidget {
         bucket: eventsBucket,
         child: BlocBuilder<WorldstateBloc, WorldStates>(
             condition: (WorldStates previous, WorldStates current) {
-          return compareList(
+          return compareIds(
             previous.worldstate?.events,
             current.worldstate?.events,
           );
