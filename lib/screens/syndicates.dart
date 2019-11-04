@@ -5,6 +5,46 @@ import 'package:navis/widgets/widgets.dart';
 import 'package:worldstate_model/worldstate_models.dart';
 
 class SyndicatesList extends StatelessWidget {
+  Widget _buildSyndicates(List<Syndicate> syndicates) {
+    return Column(
+      children: <Widget>[
+        TimerBox(
+          title: 'Bounties expire in:',
+          time: syndicates.first.expiry,
+        ),
+        ...syndicates
+            .map<SyndicateWidget>((syn) => SyndicateWidget(syndicate: syn)),
+      ],
+    );
+  }
+
+  Widget _buildNightwave(Nightwave nightwave) {
+    return Column(
+      children: <Widget>[
+        TimerBox(
+          title: 'Season ends in:',
+          time: nightwave.expiry,
+        ),
+        NightWaveWidget(season: nightwave.season)
+      ],
+    );
+  }
+
+  Widget _buildOthers(BuildContext context) {
+    return Column(
+      children: <Widget>[
+        SettingTitle(
+          title: 'Others',
+          alignment: Alignment.centerRight,
+          style: Theme.of(context).textTheme.title.copyWith(fontSize: 16),
+        ),
+        SyndicateWidget(
+          syndicate: Syndicate(name: 'Simaris', jobs: const <Job>[]),
+        )
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return RefreshIndicator(
@@ -19,21 +59,11 @@ class SyndicatesList extends StatelessWidget {
 
             return ListView(
               children: <Widget>[
-                if (syndicates.isNotEmpty)
-                  TimerBox(
-                    title: 'Bounties expire in:',
-                    time: syndicates.first.expiry,
-                  ),
-                ...syndicates
-                    .map((Syndicate syn) => SyndicateWidget(syndicate: syn)),
+                if (syndicates.isNotEmpty) _buildSyndicates(syndicates),
                 const SizedBox(height: 20),
-                if (nightwave != null) ...{
-                  TimerBox(
-                    title: 'Season ends in:',
-                    time: nightwave?.expiry ?? DateTime.now(),
-                  ),
-                  NightWaveWidget(season: nightwave.season)
-                },
+                if (nightwave != null) _buildNightwave(nightwave),
+                const SizedBox(height: 16),
+                _buildOthers(context)
               ],
             );
           }

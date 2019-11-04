@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:navis/utils/factionutils.dart';
 import 'package:navis/widgets/widgets.dart';
 import 'package:worldstate_model/worldstate_models.dart';
 
@@ -10,7 +10,6 @@ class FissureWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const size = Size(60, 60);
     const color = Colors.white;
     const shadow = Shadow(offset: Offset(1.0, 0.0), blurRadius: 3.0);
 
@@ -28,20 +27,13 @@ class FissureWidget extends StatelessWidget {
         color: color,
         shadows: <Shadow>[shadow]);
 
-    final tierIcon = SvgPicture.asset(
-      'assets/relics/${fissure.tierNum != 5 ? fissure.tier : 'Axi'}.svg',
-      height: size.height,
-      width: size.width,
-      color: fissure.tierNum != 5 ? Colors.white : const Color(0xFFFA0808),
-    );
-
     return SkyboxCard(
       elevation: 6.0,
       node: fissure.node,
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 8),
         child: ListTile(
-          leading: tierIcon,
+          leading: GetTierIcon(fissure.tier),
           title: Text(fissure.node, style: _nodeStyle),
           subtitle: Text(
             '${fissure.missionType} | ${fissure.tier}',

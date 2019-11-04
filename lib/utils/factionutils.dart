@@ -1,58 +1,41 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:intl/intl.dart';
-
-enum SyndicateFactions { cetus, fortuna }
-
-const grineer = 'assets/factions/Grineer/Grineer.svg';
-const corpus = 'assets/factions/Corpus/Corpus.svg';
-const corrupted = 'assets/factions/Corrupted/Corrupted.svg';
-const infested = 'assets/factions/Infestation/Infested.svg';
-const ostrons = 'assets/sigils/OstronSigil.svg';
-const solaris = 'assets/sigils/SolarisUnited.svg';
+import 'package:intl/intl.dart' as intl;
+import 'package:navis/utils/size_config.dart';
+import 'package:navis/widgets/icons.dart';
 
 class FactionIcon extends StatelessWidget {
   const FactionIcon(
     this.faction, {
     Key key,
-    this.aspectRatio = 2 / 3,
     this.hasColor = true,
   }) : super(key: key);
 
   final String faction;
-  final double aspectRatio;
+
   final bool hasColor;
 
   @override
   Widget build(BuildContext context) {
-    String assetName;
+    IconData icon;
 
     switch (faction) {
       case 'Grineer':
-        assetName = grineer;
+        icon = FactionIcons.grineer;
         break;
       case 'Corpus':
-        assetName = corpus;
+        icon = FactionIcons.corpus;
         break;
       case 'Corrupted':
-        assetName = corrupted;
-        break;
-      case 'Ostrons':
-        assetName = ostrons;
-        break;
-      case 'Solaris United':
-        assetName = solaris;
+        icon = FactionIcons.corrupted;
         break;
       default:
-        assetName = infested;
+        icon = FactionIcons.infested;
     }
 
-    return AspectRatio(
-      aspectRatio: aspectRatio,
-      child: SvgPicture.asset(
-        assetName,
-        color: hasColor ? factionColor(faction) : Colors.white,
-      ),
+    return Icon(
+      icon,
+      size: 15,
+      color: hasColor ? factionColor(faction) : Colors.white,
     );
   }
 }
@@ -63,27 +46,31 @@ class GetTierIcon extends StatelessWidget {
   final String tier;
   final Color color;
 
-  static const double _size = 30.0;
-
   @override
   Widget build(BuildContext context) {
-    SvgPicture icon;
+    IconData icon;
 
     switch (tier) {
       case 'Lith':
-        icon = SvgPicture.asset('assets/relics/Lith.svg', color: color);
+        icon = RelicIcons.lith;
         break;
       case 'Meso':
-        icon = SvgPicture.asset('assets/relics/Meso.svg', color: color);
+        icon = RelicIcons.meso;
         break;
       case 'Neo':
-        icon = SvgPicture.asset('assets/relics/Neo.svg', color: color);
+        icon = RelicIcons.neo;
         break;
       default:
-        icon = SvgPicture.asset('assets/relics/Axi.svg', color: color);
+        icon = RelicIcons.axi;
     }
 
-    return SizedBox(height: _size, width: _size, child: icon);
+    return Icon(
+      icon,
+      size: SizeConfig.widthMultiplier * 12,
+      color: tier == 'Requiem'
+          ? Colors.red
+          : color, // This is temporary until there is a more distinct icon for Requiem
+    );
   }
 }
 
@@ -95,43 +82,12 @@ Color factionColor(String faction) {
       return Colors.red[700];
     case 'Corrupted':
       return Colors.yellow[300];
-    case 'Ostrons':
-      return const Color.fromRGBO(232, 221, 175, 1.0);
-    case 'Solaris United':
-      return const Color.fromRGBO(152, 92, 67, 1.0);
     default:
       return Colors.green;
   }
 }
 
-Color buildColor(SyndicateFactions faction) {
-  const ostronsColor = Color.fromRGBO(183, 70, 36, 1.0);
-  const solarisColor = Color.fromRGBO(206, 162, 54, 1.0);
-
-  return syndicateEnumToString(faction) == 'Ostrons'
-      ? ostronsColor
-      : solarisColor;
-}
-
-SyndicateFactions syndicateStringToEnum(String faction) {
-  switch (faction) {
-    case 'Ostrons':
-      return SyndicateFactions.cetus;
-    default:
-      return SyndicateFactions.fortuna;
-  }
-}
-
-String syndicateEnumToString(SyndicateFactions faction) {
-  switch (faction) {
-    case SyndicateFactions.cetus:
-      return 'Ostrons';
-    default:
-      return 'Solaris United';
-  }
-}
-
-String expiration(DateTime expiry, {DateFormat format}) {
+String expiration(DateTime expiry, {intl.DateFormat format}) {
   try {
     return format.format(expiry.toLocal());
   } catch (err) {

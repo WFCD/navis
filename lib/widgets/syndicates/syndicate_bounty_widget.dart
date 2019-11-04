@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:navis/utils/factionutils.dart';
+import 'package:navis/utils/syndicate_utils.dart';
 import 'package:navis/widgets/icons.dart';
 import 'package:worldstate_model/worldstate_models.dart';
 
@@ -16,7 +16,7 @@ class SyndicateBounty extends StatelessWidget {
   Widget _buildStanding() {
     return Container(
       child: Row(mainAxisSize: MainAxisSize.min, children: <Widget>[
-        const Icon(Standing.standing, color: Colors.white),
+        const Icon(AppIcons.standing, color: Colors.white),
         Text(
           job.standingStages.reduce((a, b) => a + b).toString(),
           style: const TextStyle(color: Colors.white),
@@ -29,7 +29,7 @@ class SyndicateBounty extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 80.0,
-      color: buildColor(faction),
+      color: syndicateBackgroundColor(faction),
       alignment: Alignment.centerLeft,
       child: ListTile(
         title: Text(job.type, style: const TextStyle(color: Colors.white)),

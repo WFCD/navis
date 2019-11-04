@@ -26,8 +26,6 @@ class InvasionBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const aspectRatio = 2 / 3;
-
     return Material(
       elevation: 4.0,
       color: Colors.transparent,
@@ -52,12 +50,10 @@ class InvasionBar extends StatelessWidget {
                   children: <Widget>[
                     FactionIcon(
                       attackingFaction,
-                      aspectRatio: aspectRatio,
                       hasColor: false,
                     ),
                     FactionIcon(
                       defendingFaction,
-                      aspectRatio: aspectRatio,
                       hasColor: false,
                     ),
                   ],

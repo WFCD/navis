@@ -23,6 +23,7 @@ class DrawerOptions extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const bool isDense = true;
+
     final navigation = BlocProvider.of<NavigationBloc>(context);
 
     return BlocBuilder(
@@ -38,7 +39,7 @@ class DrawerOptions extends StatelessWidget {
                   onTap: () => _onTap(context, RouteEvent.home),
                   selected: state == RouteState.home),
               ListTile(
-                leading: const Icon(VoidFissureIcon.void_icon),
+                leading: Icon(AppIcons.voidfissure),
                 title: const Text('Fissures'),
                 onTap: () => _onTap(context, RouteEvent.fissures),
                 selected: state == RouteState.fissures,
@@ -50,13 +51,13 @@ class DrawerOptions extends StatelessWidget {
                 selected: state == RouteState.invasions,
               ),
               ListTile(
-                leading: const Icon(Sortie.sortie),
+                leading: Icon(AppIcons.sortie),
                 title: const Text('Sorties'),
                 onTap: () => _onTap(context, RouteEvent.sortie),
                 selected: state == RouteState.sortie,
               ),
               ListTile(
-                leading: const Icon(Standing.standing),
+                leading: Icon(AppIcons.standing),
                 title: const Text('Syndicates'),
                 onTap: () => _onTap(context, RouteEvent.syndicates),
                 selected: state == RouteState.syndicates,

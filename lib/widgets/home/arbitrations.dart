@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:navis/blocs/bloc.dart';
 import 'package:navis/utils/size_config.dart';
+import 'package:navis/widgets/icons.dart';
 import 'package:navis/widgets/widgets.dart';
 
 class ArbitrationBuilder extends StatelessWidget {
@@ -51,9 +52,10 @@ class ArbitrationWidget extends StatelessWidget {
       child: Stack(
         alignment: AlignmentDirectional.center,
         children: <Widget>[
-          SvgPicture.asset(
-            'assets/sigils/hexis.svg',
-            color: Colors.grey[600],
+          Icon(
+            SyndicateIcons.hexis,
+            size: SizeConfig.heightMultiplier * 21,
+            color: Colors.grey[700],
           ),
           Column(
             mainAxisAlignment: MainAxisAlignment.center,

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sticky_header/flutter_sticky_header.dart';
-import 'package:navis/utils/factionutils.dart';
+import 'package:navis/utils/syndicate_utils.dart';
 import 'package:navis/widgets/syndicates/syndicates.dart';
 import 'package:worldstate_model/worldstate_models.dart';
 
@@ -18,7 +18,8 @@ class SyndicateJobs extends StatelessWidget {
           appBar: AppBar(
             title: Text(syndicate.name),
             titleSpacing: 0.0,
-            backgroundColor: buildColor(syndicateStringToEnum(syndicate.name)),
+            backgroundColor:
+                syndicateBackgroundColor(syndicateStringToEnum(syndicate.name)),
           ),
           // ignore: prefer_const_constructors
           body: CustomScrollView(

@@ -14,7 +14,7 @@ class NightwaveChallenge extends StatelessWidget {
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            const Icon(Standing.standing, color: Colors.white, size: 15),
+            const Icon(AppIcons.standing, color: Colors.white, size: 15),
             Text('${challenge.reputation}',
                 style: const TextStyle(color: Colors.white))
           ],

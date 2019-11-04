@@ -20,9 +20,9 @@ class MissionDetails extends StatelessWidget {
   final bool isAssassination;
 
   String _getAsset(int variantIndex) {
-    final light = 'assets/factions/$faction/light.webp';
-    final medium = 'assets/factions/$faction/medium.webp';
-    final heavy = 'assets/factions/$faction/heavy.webp';
+    final light = 'assets/enemys/$faction/light.webp';
+    final medium = 'assets/enemys/$faction/medium.webp';
+    final heavy = 'assets/enemys/$faction/heavy.webp';
 
     switch (variantIndex) {
       case 0:
@@ -81,7 +81,7 @@ class MissionDetails extends StatelessWidget {
                 aspectRatio: width / height,
                 child: Image.asset(
                   isAssassination
-                      ? 'assets/factions/$faction/$boss.webp'
+                      ? 'assets/enemys/$faction/$boss.webp'
                       : _getAsset(variantIndex),
                   fit: BoxFit.contain,
                 ),
