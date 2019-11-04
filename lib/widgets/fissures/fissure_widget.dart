@@ -28,7 +28,6 @@ class FissureWidget extends StatelessWidget {
         shadows: <Shadow>[shadow]);
 
     return SkyboxCard(
-      elevation: 6.0,
       node: fissure.node,
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 8),

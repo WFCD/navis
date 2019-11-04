@@ -11,7 +11,6 @@ class SkyboxCard extends StatelessWidget {
     this.width,
     this.margin = const EdgeInsets.symmetric(vertical: 4, horizontal: 4),
     this.alignment = Alignment.center,
-    this.elevation = 6.0,
   })  : assert(node != null),
         assert(child != null),
         super(key: key);
@@ -19,7 +18,7 @@ class SkyboxCard extends StatelessWidget {
   final String node;
   final Widget child;
   final EdgeInsets margin;
-  final double height, width, elevation;
+  final double height, width;
   final Alignment alignment;
 
   @override
@@ -27,10 +26,7 @@ class SkyboxCard extends StatelessWidget {
     return Theme(
       data: AppTheme.theme.dark,
       child: Card(
-        elevation: elevation,
         margin: margin,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
-        clipBehavior: Clip.hardEdge,
         child: AnimatedSwitcher(
           duration: const Duration(milliseconds: 200),
           child: Container(

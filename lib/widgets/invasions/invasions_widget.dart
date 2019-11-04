@@ -15,7 +15,6 @@ class InvasionWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return SkyboxCard(
       height: 200,
-      elevation: 6.0,
       node: invasion.node,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 24.0),

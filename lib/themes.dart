@@ -25,17 +25,24 @@ class AppTheme {
   //       canvasColor: const Color(0xFF212121),
   //     );
 
-  // TODO(Orn): add amoled theme don't really like it but I must
   ThemeData get dark => ThemeData(
         brightness: Brightness.dark,
         primaryColorBrightness: Brightness.dark,
         accentColor: _accentColor,
         primaryColor: _primaryColor,
+        primarySwatch: Colors.grey,
         disabledColor: Colors.grey,
-        cardColor: const Color(0xFF1d1d1d),
-        dialogBackgroundColor: const Color(0xff191919),
+        cardTheme: CardTheme(
+          color: Colors.grey[900],
+          elevation: 6.0,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8.0),
+          ),
+          clipBehavior: Clip.hardEdge,
+        ),
+        dialogTheme: const DialogTheme(backgroundColor: Color(0xff191919)),
         canvasColor: const Color(0xff191919),
-        backgroundColor: const Color(0xff191919),
+        backgroundColor: Colors.grey[900],
         scaffoldBackgroundColor: const Color(0xFF121212),
       );
 }
