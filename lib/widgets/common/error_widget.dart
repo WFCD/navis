@@ -3,14 +3,12 @@ import 'package:flutter/material.dart';
 class NavisErrorWidget extends StatelessWidget {
   const NavisErrorWidget({
     Key key,
-    this.icon,
     this.title,
     this.description,
     this.showStacktrace = true,
     this.details,
   }) : super(key: key);
 
-  final IconData icon;
   final String title, description;
   final bool showStacktrace;
   final FlutterErrorDetails details;
@@ -38,7 +36,7 @@ class NavisErrorWidget extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Icon(icon ?? Icons.error_outline, color: Colors.red, size: 40),
+              Icon(Icons.error_outline, color: Colors.red, size: 40),
               const SizedBox(height: 8),
               Text(
                 title ?? _title,
