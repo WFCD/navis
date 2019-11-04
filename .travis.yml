@@ -15,7 +15,7 @@ before_script:
     -in secrets.tar.enc -out secrets.tar -d
   - tar xvf secrets.tar
   - if [  ! -d "flutter" ] ; then git clone https://github.com/flutter/flutter.git
-    -b stable; fi;
+    -b beta; fi;
   - export PATH=./flutter/bin:$PATH
   - flutter upgrade
 
