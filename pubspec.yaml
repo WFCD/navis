@@ -11,7 +11,7 @@ dependencies:
   firebase_crashlytics: ^0.1.0+3
   flutter_custom_tabs: ^0.6.0
   hydrated_bloc: ^1.0.0
-  intl: ^0.15.8
+  intl: ^0.16.0
   package_info: ^0.4.0+6
   firebase_messaging: ^5.1.6
   cached_network_image: ^1.1.1
@@ -40,24 +40,29 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   fonts:
-    - family: Standing
+    - family: AppIcons
       fonts:
-        - asset: assets/general/Standing.ttf
-    - family: Sortie
+        - asset: assets/icons/AppIcons.ttf
+    - family: PlatformIcons
       fonts:
-        - asset: assets/general/Sortie.ttf
-    - family: VoidFissure
+        - asset: assets/icons/PlatformIcons.ttf
+    - family: RelicIcons
       fonts:
-        - asset: assets/general/VoidFissure.ttf
+        - asset: assets/icons/RelicIcons.ttf
+    - family: FactionIcons
+      fonts:
+        - asset: assets/icons/FactionIcons.ttf
+    - family: SyndicateIcons
+      fonts:
+        - asset: assets/icons/SyndicateIcons.ttf
   assets:
-    - assets/general/
-    - assets/factions/Corrupted/
-    - assets/factions/Grineer/
-    - assets/factions/Corpus/
-    - assets/factions/Infestation/
-    - assets/platforms/
-    - assets/sigils/
-    - assets/relics/
+    - assets/icons/
+    - assets/wfcd_banner.svg
+    - assets/jsons/synthTargets.json
+    - assets/enemys/Corrupted/
+    - assets/enemys/Grineer/
+    - assets/enemys/Corpus/
+    - assets/enemys/Infestation/
     - assets/skyboxes/
     #- assets/maps/
     #- assets/maps/imgs/
