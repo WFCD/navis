@@ -7,6 +7,8 @@ import 'package:hive/hive.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 
 Future<void> mockSetup() async {
+  TestWidgetsFlutterBinding.ensureInitialized();
+
   final directory = await Directory.systemTemp.createTemp();
 
   const MethodChannel('plugins.flutter.io/path_provider')
