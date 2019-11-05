@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:navis/utils/factionutils.dart';
+
 import 'package:navis/widgets/widgets.dart';
 import 'package:worldstate_model/worldstate_models.dart';
+
+import 'fissure_icons.dart';
 
 class FissureWidget extends StatelessWidget {
   const FissureWidget({Key key, @required this.fissure}) : super(key: key);

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart' as intl;
-import 'package:navis/utils/size_config.dart';
 import 'package:navis/widgets/icons.dart';
 
 class FactionIcon extends StatelessWidget {
@@ -36,40 +35,6 @@ class FactionIcon extends StatelessWidget {
       icon,
       size: 15,
       color: hasColor ? factionColor(faction) : Colors.white,
-    );
-  }
-}
-
-class GetTierIcon extends StatelessWidget {
-  const GetTierIcon(this.tier, [this.color = Colors.white]);
-
-  final String tier;
-  final Color color;
-
-  @override
-  Widget build(BuildContext context) {
-    IconData icon;
-
-    switch (tier) {
-      case 'Lith':
-        icon = RelicIcons.lith;
-        break;
-      case 'Meso':
-        icon = RelicIcons.meso;
-        break;
-      case 'Neo':
-        icon = RelicIcons.neo;
-        break;
-      default:
-        icon = RelicIcons.axi;
-    }
-
-    return Icon(
-      icon,
-      size: SizeConfig.widthMultiplier * 12,
-      color: tier == 'Requiem'
-          ? Colors.red
-          : color, // This is temporary until there is a more distinct icon for Requiem
     );
   }
 }
