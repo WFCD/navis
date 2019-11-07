@@ -14,7 +14,7 @@ platform :android do
     begin
       upload_to_play_store(
         track: 'beta',
-        aab: '../build/app/outputs/bundle/release/app.aab',
+        aab: '../build/app/outputs/bundle/release/app-release.aab',
         json_key: 'app/fastlane.json',
         skip_upload_screenshots: true,
         skip_upload_images: true
