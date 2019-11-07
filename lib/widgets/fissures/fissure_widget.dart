@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:navis/utils/size_config.dart';
 
 import 'package:navis/widgets/widgets.dart';
 import 'package:worldstate_model/worldstate_models.dart';
@@ -32,7 +33,10 @@ class FissureWidget extends StatelessWidget {
     return SkyboxCard(
       node: fissure.node,
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 8),
+        padding: EdgeInsets.symmetric(
+          vertical: SizeConfig.heightMultiplier * 4,
+          horizontal: SizeConfig.widthMultiplier * 2,
+        ),
         child: ListTile(
           leading: GetTierIcon(fissure.tier),
           title: Text(fissure.node, style: _nodeStyle),

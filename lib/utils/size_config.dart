@@ -33,7 +33,7 @@ class SizeConfig {
     _blockSizeHorizontal = _screenWidth / 100;
     _blockSizeVertical = _screenHeight / 100;
 
-    textMultiplier = _blockSizeVertical;
+    textMultiplier = _blockSizeHorizontal;
     imageSizeMultiplier = _blockSizeHorizontal;
     heightMultiplier = _blockSizeVertical;
     widthMultiplier = _blockSizeHorizontal;

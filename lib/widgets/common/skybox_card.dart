@@ -9,7 +9,7 @@ class SkyboxCard extends StatelessWidget {
     @required this.child,
     this.height,
     this.width,
-    this.margin = const EdgeInsets.symmetric(vertical: 4, horizontal: 4),
+    this.margin = const EdgeInsets.symmetric(vertical: 3, horizontal: 3),
     this.alignment = Alignment.center,
   })  : assert(node != null),
         assert(child != null),

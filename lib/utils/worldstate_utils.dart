@@ -61,13 +61,13 @@ String _getBackgroundPath(String node) {
 }
 
 ImageProvider skybox(BuildContext context, String node) {
-  bool isError = true;
+  bool isError = false;
 
   _checkBackground(context, node).then((data) => isError = data);
 
-  return !isError
-      ? AssetImage(_getBackgroundPath(node))
-      : const AssetImage('assets/skyboxes/Derelict.webp');
+  return isError
+      ? const AssetImage('assets/skyboxes/Derelict.webp')
+      : AssetImage(_getBackgroundPath(node));
 }
 
 bool compareIds(

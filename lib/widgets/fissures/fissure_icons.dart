@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:navis/utils/size_config.dart';
 import 'package:navis/widgets/icons.dart';
 
 class GetTierIcon extends StatelessWidget {
@@ -29,6 +28,6 @@ class GetTierIcon extends StatelessWidget {
         icon = RelicIcons.requiem;
     }
 
-    return Icon(icon, size: SizeConfig.widthMultiplier * 12);
+    return Icon(icon, size: 50);
   }
 }

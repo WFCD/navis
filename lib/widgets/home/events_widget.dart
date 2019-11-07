@@ -61,7 +61,7 @@ class _EventHeader extends StatelessWidget {
               style: Theme.of(context)
                   .textTheme
                   .subhead
-                  .copyWith(fontSize: SizeConfig.widthMultiplier * 6),
+                  .copyWith(fontWeight: FontWeight.bold, fontSize: 25),
             ),
           ),
           if (tooltip != null)
@@ -73,7 +73,7 @@ class _EventHeader extends StatelessWidget {
                 style: Theme.of(context)
                     .textTheme
                     .caption
-                    .copyWith(fontSize: SizeConfig.widthMultiplier * 3.2),
+                    .copyWith(fontStyle: FontStyle.italic, fontSize: 15.5),
               ),
             ),
         ],
@@ -107,9 +107,10 @@ class _EventMiddle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final fontSize = SizeConfig.widthMultiplier * 3.5;
-    final style =
-        Theme.of(context).textTheme.subhead.copyWith(fontSize: fontSize);
+    final style = Theme.of(context)
+        .textTheme
+        .subhead
+        .copyWith(fontWeight: FontWeight.w500);
 
     return Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
       if (victimNode != null)
@@ -125,14 +126,11 @@ class _EventMiddle extends StatelessWidget {
           style: style,
         ),
       const SizedBox(height: 4),
-      if (health != null)
-        StaticBox.text(
-          text: '${health.toStringAsFixed(2)}% remaining',
-          color: _healthColor(health),
-          style: style,
-        )
-      else
-        CountdownBox(expiry: expiry),
+      StaticBox.text(
+        text: '${health.toStringAsFixed(2)}% remaining',
+        color: _healthColor(health),
+        style: style,
+      )
     ]);
   }
 }
@@ -161,9 +159,10 @@ class _EventFooter extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final fontSize = SizeConfig.widthMultiplier * 3.9;
-    final style =
-        Theme.of(context).textTheme.subhead.copyWith(fontSize: fontSize);
+    final style = Theme.of(context)
+        .textTheme
+        .subhead
+        .copyWith(fontWeight: FontWeight.w500);
 
     if (jobs?.isNotEmpty ?? false) {
       return FlatButton(
