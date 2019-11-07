@@ -44,8 +44,6 @@ List<Drop> jsonToRewards(String response) {
 Future<bool> _checkBackground(BuildContext context, String node) async {
   bool doesBackgroundExist = true;
 
-  if (node == null || node == 'undefined') return false;
-
   await precacheImage(
     AssetImage(_getBackgroundPath(node)),
     context,
@@ -57,22 +55,25 @@ Future<bool> _checkBackground(BuildContext context, String node) async {
 
 String _getBackgroundPath(String node) {
   final nodeRegExp = RegExp(r'\(([^)]*)\)');
-  final nodeBackground = nodeRegExp.firstMatch(node).group(1);
+  final nodeBackground = nodeRegExp.firstMatch(node)?.group(1);
 
   return 'assets/skyboxes/$nodeBackground.webp';
 }
 
 ImageProvider skybox(BuildContext context, String node) {
-  const derelict = AssetImage('assets/skyboxes/Derelict.webp');
-  bool isError = false;
+  bool isError = true;
 
   _checkBackground(context, node).then((data) => isError = data);
 
-  return isError ? derelict : AssetImage(_getBackgroundPath(node));
+  return !isError
+      ? AssetImage(_getBackgroundPath(node))
+      : const AssetImage('assets/skyboxes/Derelict.webp');
 }
 
 bool compareIds(
     List<WorldstateObject> previous, List<WorldstateObject> current) {
+  if (previous == null || current != null) return true;
+
   const _deep = DeepCollectionEquality();
 
   final previousIds = previous.map<String>((w) => w.id);
