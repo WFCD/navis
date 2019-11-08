@@ -26,7 +26,7 @@ class _DealWidgetState extends State<DealWidget>
     final style = Theme.of(context)
         .textTheme
         .caption
-        .copyWith(fontSize: fontSize, fontWeight: FontWeight.bold);
+        .copyWith(fontSize: fontSize, fontWeight: FontWeight.w300);
 
     final primary = Theme.of(context).primaryColor;
 
@@ -119,8 +119,7 @@ class DealDetails extends StatelessWidget {
       children: <Widget>[
         Text(
           itemName,
-          style: textTheme.subhead
-              .copyWith(fontSize: SizeConfig.textMultiplier * 2.3),
+          style: textTheme.subhead.copyWith(fontWeight: FontWeight.w500),
         ),
         const SizedBox(height: 8.0),
         Container(
@@ -130,8 +129,10 @@ class DealDetails extends StatelessWidget {
             itemDescription,
             maxLines: 7,
             overflow: TextOverflow.ellipsis,
-            style: textTheme.caption
-                .copyWith(fontSize: SizeConfig.textMultiplier * 1.9),
+            style: textTheme.caption.copyWith(
+              fontSize: 13,
+              fontStyle: FontStyle.italic,
+            ),
           ),
         ),
         itemInfo ?? Container()
