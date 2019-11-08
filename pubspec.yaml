@@ -28,6 +28,9 @@ dependencies:
   hive: ^1.1.1
   hive_flutter: ^0.2.1
 
+builders:
+  json_serializable: ^3.2.3
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

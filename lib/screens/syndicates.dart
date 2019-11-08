@@ -25,7 +25,10 @@ class SyndicatesList extends StatelessWidget {
           title: 'Season ends in:',
           time: nightwave.expiry,
         ),
-        NightWaveWidget(season: nightwave.season)
+        SyndicateWidget(
+          name: 'Nightwave',
+          caption: 'Season ${nightwave.season}',
+        )
       ],
     );
   }

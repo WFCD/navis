@@ -12,35 +12,38 @@ class GetSyndicateIcon extends StatelessWidget {
     this.size,
   }) : super(key: key);
 
-  final String syndicate;
+  final SyndicateFactions syndicate;
   final double size;
   final Color color;
 
   @override
   Widget build(BuildContext context) {
-    final _size = SizeConfig.widthMultiplier * 11.5;
+    final _size = SizeConfig.imageSizeMultiplier * 9;
 
     IconData icon;
 
     switch (syndicate) {
-      case 'Ostrons':
+      case SyndicateFactions.ostrons:
         icon = SyndicateIcons.ostronsigil;
         break;
-      case 'Solaris United':
+      case SyndicateFactions.solaris:
         icon = SyndicateIcons.solarisunited;
         break;
-      case 'Simaris':
+      case SyndicateFactions.simaris:
         icon = SyndicateIcons.simaris;
         break;
-      case 'Nightwave':
+      case SyndicateFactions.nightwave:
         icon = SyndicateIcons.nightwavesyndicate;
+        break;
+      default:
+        icon = SyndicateIcons.hexis;
         break;
     }
 
     return Icon(
       icon,
       size: size ?? _size,
-      color: color ?? syndicateIconColor(syndicateStringToEnum(syndicate)),
+      color: color ?? syndicateIconColor(syndicate),
       textDirection: TextDirection.ltr,
     );
   }
