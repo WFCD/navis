@@ -4,7 +4,7 @@ import 'dart:io';
 import 'package:http/http.dart' as http;
 import 'package:navis/services/storage/cache_storage.service.dart';
 import 'package:navis/utils/file_utils.dart';
-import 'package:wfcd_api_wrapper/worldstate_wrapper.dart';
+import 'package:wfcd_api_wrapper/worldstate_client.dart';
 
 class DropTableApiService {
   static const dropTablePath = '/drop_table.json';

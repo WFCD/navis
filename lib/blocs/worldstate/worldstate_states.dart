@@ -1,6 +1,6 @@
 //import 'package:equatable/equatable.dart';
 import 'package:equatable/equatable.dart';
-import 'package:wfcd_api_wrapper/worldstate_wrapper.dart';
+import 'package:wfcd_api_wrapper/worldstate_client.dart';
 import 'package:worldstate_model/worldstate_models.dart';
 
 abstract class WorldStates extends Equatable {

@@ -5,7 +5,7 @@ import 'package:navis/services/storage/cache_storage.service.dart';
 import 'package:navis/services/storage/persistent_storage.service.dart';
 import 'package:navis/utils/worldstate_utils.dart';
 import 'package:warframe_items_model/warframe_items_model.dart';
-import 'package:wfcd_api_wrapper/worldstate_wrapper.dart';
+import 'package:wfcd_api_wrapper/worldstate_client.dart';
 import 'package:worldstate_model/worldstate_models.dart';
 
 class WorldstateApiService {
@@ -23,7 +23,7 @@ class WorldstateApiService {
   }
 
   static Future<List<ItemObject>> _search(String searchTerm) async {
-    final api = WorldstateApiWrapper(http.Client());
+    final api = WorldstateClient(http.Client());
 
     return await api.searchItems(searchTerm);
   }
@@ -60,7 +60,7 @@ class WorldstateApiService {
   }
 
   static Future<Worldstate> _retrieveWorldstate([Platforms platform]) async {
-    final api = WorldstateApiWrapper(http.Client());
+    final api = WorldstateClient(http.Client());
     final worldstate = await api.getWorldstate(platform);
 
     return cleanState(worldstate);
