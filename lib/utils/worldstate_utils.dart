@@ -72,7 +72,7 @@ ImageProvider skybox(BuildContext context, String node) {
 
 bool compareIds(
     List<WorldstateObject> previous, List<WorldstateObject> current) {
-  if (previous == null || current != null) return true;
+  if (previous == null || current == null) return false;
 
   const _deep = DeepCollectionEquality();
 
