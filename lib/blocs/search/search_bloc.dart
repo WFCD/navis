@@ -107,7 +107,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
   }
 
   @override
-  void close() {
+  Future<void> close() async {
     dropTable = null;
     super.close();
   }

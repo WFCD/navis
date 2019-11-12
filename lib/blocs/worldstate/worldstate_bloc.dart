@@ -30,8 +30,9 @@ class WorldstateBloc extends HydratedBloc<WorldstateEvent, WorldStates> {
   Stream<WorldStates> mapEventToState(WorldstateEvent event) async* {
     if (event is UpdateEvent) {
       try {
-        final state = await api.getWorldstate();
-        yield WorldstateLoaded(state);
+        final worldstate = await api.getWorldstate();
+
+        yield WorldstateLoaded(worldstate);
       } catch (e) {
         yield WorldstateError(e);
       }
@@ -40,7 +41,7 @@ class WorldstateBloc extends HydratedBloc<WorldstateEvent, WorldStates> {
 
   Future<void> update() async {
     add(UpdateEvent());
-    await Future.delayed(const Duration(milliseconds: 600));
+    await Future.delayed(const Duration(milliseconds: 500));
   }
 
   @override
