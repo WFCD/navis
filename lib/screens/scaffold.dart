@@ -8,13 +8,8 @@ import 'package:navis/blocs/worldstate/worldstate_events.dart';
 import 'package:navis/global_keys.dart';
 import 'package:navis/services/repository.dart';
 import 'package:navis/widgets/drawer/drawer.dart';
-
-import 'codex.dart';
-import 'fissures.dart';
-import 'home.dart';
-import 'invasions.dart';
-import 'sortie.dart';
-import 'syndicates.dart';
+import 'package:navis/widgets/scaffold/scaffold_body.dart';
+import 'package:navis/widgets/scaffold/scaffold_listener.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({Key key}) : super(key: key);
@@ -53,44 +48,6 @@ class _MainScreenState extends State<MainScreen> {
     return true;
   }
 
-  void showSnackbar(String content, [VoidCallback onPressed]) {
-    appScaffold.currentState.showSnackBar(
-      SnackBar(
-        content: Text(content),
-        duration: const Duration(minutes: 5),
-        action: onPressed != null
-            ? SnackBarAction(
-                label: 'RETRY',
-                onPressed: onPressed,
-              )
-            : null,
-      ),
-    );
-  }
-
-  void _blocListener<T>(BuildContext context, T state,
-      [VoidCallback onPressed]) {
-    if (state is WorldstateError) showSnackbar(state.error.message, onPressed);
-    if (state is SearchListenerError) showSnackbar(state.error);
-  }
-
-  Widget _body(RouteState route) {
-    switch (route) {
-      case RouteState.fissures:
-        return const FissureList();
-      case RouteState.invasions:
-        return const InvasionsList();
-      case RouteState.sortie:
-        return const SortieScreen();
-      case RouteState.syndicates:
-        return SyndicatesList();
-      case RouteState.droptable:
-        return const Codex();
-      default:
-        return const Home();
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -99,29 +56,8 @@ class _MainScreenState extends State<MainScreen> {
         key: appScaffold,
         appBar: AppBar(title: const Text('Navis')),
         drawer: const LotusDrawer(),
-        body: MultiBlocListener(
-          listeners: [
-            BlocListener<WorldstateBloc, WorldStates>(
-              listener: (context, state) => _blocListener(
-                context,
-                state,
-                () async {
-                  await BlocProvider.of<WorldstateBloc>(context).update();
-                },
-              ),
-            ),
-            BlocListener<SearchBloc, SearchState>(
-              listener: (context, state) => _blocListener(context, state),
-            )
-          ],
-          child: BlocBuilder<NavigationBloc, RouteState>(
-            builder: (BuildContext context, RouteState route) {
-              return AnimatedSwitcher(
-                duration: const Duration(milliseconds: 200),
-                child: _body(route),
-              );
-            },
-          ),
+        body: const ScaffoldListenerWidget(
+          child: ScaffoldBody(),
         ),
       ),
     );
