@@ -1,6 +1,5 @@
 //import 'package:equatable/equatable.dart';
 import 'package:equatable/equatable.dart';
-import 'package:wfcd_api_wrapper/worldstate_client.dart';
 import 'package:worldstate_model/worldstate_models.dart';
 
 abstract class WorldStates extends Equatable {
@@ -17,7 +16,7 @@ class WorldstateUninitialized extends WorldStates {}
 class WorldstateError extends WorldStates {
   const WorldstateError(this.error);
 
-  final NetworkException error;
+  final dynamic error;
 
   @override
   List<Object> get props => [error];

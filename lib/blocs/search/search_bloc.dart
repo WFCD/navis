@@ -1,48 +1,18 @@
 import 'dart:async';
-import 'dart:io';
 
 import 'package:bloc/bloc.dart';
-import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
-import 'package:navis/services/storage/persistent_storage.service.dart';
-import 'package:navis/services/wfcd_api/drop_table_api.service.dart';
-import 'package:navis/services/wfcd_api/worldstate_api.service.dart';
+import 'package:navis/services/repository.dart';
 import 'package:rxdart/rxdart.dart';
-import 'package:warframe_items_model/warframe_items_model.dart';
 
 import 'search_event.dart';
 import 'search_state.dart';
 import 'search_utils.dart';
 
 class SearchBloc extends Bloc<SearchEvent, SearchState> {
-  SearchBloc(this.worldstateApiService, this.dropTableApiService,
-      [this.persistent]) {
-    persistent ??= PersistentStorageService.instance;
-  }
+  SearchBloc(this.repository);
 
-  final WorldstateApiService worldstateApiService;
-  final DropTableApiService dropTableApiService;
-
-  PersistentStorageService persistent;
-
-  List<SlimDrop> dropTable;
-
-  Future<void> loadDropTable() async {
-    try {
-      final File table = await dropTableApiService.dropTable;
-
-      dropTable = await compute(convertToDrop, table?.readAsStringSync());
-    } catch (e) {
-      add(const SearchError(
-          'Downloading drop table failed, searching the drop table will not be possible'));
-    }
-  }
-
-  void unloadDropTable() {
-    dropTable = null;
-  }
-
-  bool get isDropTableLoaded => dropTable != null;
+  final Repository repository;
 
   @override
   SearchState get initialState => SearchStateEmpty();
@@ -57,25 +27,14 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
         next);
   }
 
-  Future<List<Equatable>> _search(SearchTypes type, String searchText) async {
-    final results = type != SearchTypes.drops
-        ? worldstateApiService.search(searchText)
-        : compute(
-            searchDropTable, SearchDropTable(searchText, dropTable ?? []));
-
-    return await results;
-  }
-
   @override
   Stream<SearchState> mapEventToState(
     SearchEvent event,
   ) async* {
-    SearchTypes searchType = persistent?.searchType;
+    final type = repository.persistent.searchType;
 
     if (event is TextChanged) {
       final searchText = event.text;
-
-      searchType ??= event.type;
 
       if (searchText.isEmpty) {
         yield SearchStateEmpty();
@@ -83,7 +42,8 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
         yield SearchStateLoading();
 
         try {
-          final results = await _search(searchType, searchText);
+          final results =
+              await repository.search(searchText, searchTypes: type);
 
           yield SearchStateSuccess(results);
         } catch (e) {
@@ -93,7 +53,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
     }
 
     if (event is SortSearch) {
-      if (searchType == SearchTypes.drops) {
+      if (type == SearchTypes.drops) {
         final sorted =
             await compute(sortDrops, SortedDrops(event.sortBy, event.results));
 
@@ -104,11 +64,5 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
     if (event is SearchError) {
       yield SearchListenerError(event.error);
     }
-  }
-
-  @override
-  Future<void> close() async {
-    dropTable = null;
-    super.close();
   }
 }

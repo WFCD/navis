@@ -2,42 +2,33 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:navis/blocs/bloc.dart';
 import 'package:navis/utils/worldstate_utils.dart';
+import 'package:navis/widgets/common/list_screen.dart';
 import 'package:navis/widgets/fissures/fissures.dart';
+import 'package:worldstate_model/worldstate_models.dart';
 
-class FissureList extends StatelessWidget {
-  const FissureList({Key key}) : super(key: key);
+class FissureScreen extends StatelessWidget {
+  const FissureScreen({Key key}) : super(key: key);
+
+  bool condition(previous, current) {
+    return compareIds(
+      previous.worldstate?.fissures,
+      current.worldstate?.fissures,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
-    return RefreshIndicator(
-      onRefresh: BlocProvider.of<WorldstateBloc>(context).update,
-      child: BlocBuilder<WorldstateBloc, WorldStates>(
-        condition: (previous, current) {
-          return compareIds(
-            previous.worldstate?.fissures,
-            current.worldstate?.fissures,
-          );
-        },
-        builder: (BuildContext context, WorldStates state) {
-          if (state is WorldstateLoaded) {
-            final fissures = state.worldstate?.fissures ?? [];
+    return BlocBuilder<WorldstateBloc, WorldStates>(
+      condition: condition,
+      builder: (context, state) {
+        final fissures = state.worldstate?.fissures ?? <VoidFissure>[];
 
-            if (fissures.isNotEmpty) {
-              return ListView.builder(
-                itemCount: fissures.length,
-                cacheExtent: fissures.length / 2,
-                itemBuilder: (BuildContext context, int index) {
-                  return FissureWidget(fissure: fissures[index]);
-                },
-              );
-            }
-
-            return const Center(child: Text('No fissures at this Time'));
-          }
-
-          return const Center(child: CircularProgressIndicator());
-        },
-      ),
+        return ListScreen(
+          state: state,
+          noItemsText: 'No Fissures at this time',
+          items: fissures.map((f) => FissureWidget(fissure: f)).toList(),
+        );
+      },
     );
   }
 }

@@ -7,7 +7,7 @@ import 'package:navis/services/storage/storage_base.service.dart';
 import 'package:navis/themes.dart';
 import 'package:navis/utils/utils.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:wfcd_api_wrapper/worldstate_client.dart';
+import 'package:wfcd_api_wrapper/wfcd_wrapper.dart';
 
 import 'dateformat_enum.dart';
 

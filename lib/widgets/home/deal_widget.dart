@@ -8,20 +8,13 @@ import 'package:navis/widgets/widgets.dart';
 import 'package:warframe_items_model/warframe_items_model.dart';
 import 'package:worldstate_model/worldstate_models.dart';
 
-class DealWidget extends StatefulWidget {
+class DealWidget extends StatelessWidget {
   const DealWidget({Key key, this.deal}) : super(key: key);
 
   final DarvoDeal deal;
 
   @override
-  _DealWidgetState createState() => _DealWidgetState();
-}
-
-class _DealWidgetState extends State<DealWidget>
-    with AutomaticKeepAliveClientMixin {
-  @override
   Widget build(BuildContext context) {
-    super.build(context);
     final fontSize = SizeConfig.widthMultiplier * 3.5;
     final style = Theme.of(context)
         .textTheme
@@ -31,9 +24,7 @@ class _DealWidgetState extends State<DealWidget>
     final primary = Theme.of(context).primaryColor;
 
     return FutureBuilder<ItemObject>(
-      future: RepositoryProvider.of<Repository>(context)
-          .worldstateService
-          .getDealItem(widget.deal),
+      future: RepositoryProvider.of<Repository>(context).getDealItem(deal),
       builder: (BuildContext context, AsyncSnapshot<ItemObject> snapshot) {
         if (snapshot.hasData) {
           final item = snapshot.data;
@@ -56,23 +47,22 @@ class _DealWidgetState extends State<DealWidget>
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   StaticBox.text(
-                    text: '${widget.deal.discount}% Discount',
+                    text: '${deal.discount}% Discount',
                     color: primary,
                     style: style,
                   ),
                   // TODO(Orn): should probably put a plat icon here instead
                   StaticBox.text(
-                    text: '${widget.deal.salePrice}\p',
+                    text: '${deal.salePrice}\p',
                     color: primary,
                     style: style,
                   ),
                   StaticBox.text(
-                    text:
-                        '${widget.deal.total - widget.deal.sold} / ${widget.deal.total} remaining',
+                    text: '${deal.total - deal.sold} / ${deal.total} remaining',
                     color: primary,
                     style: style,
                   ),
-                  CountdownBox(expiry: widget.deal.expiry, style: style),
+                  CountdownBox(expiry: deal.expiry, style: style),
                 ],
               ),
               if (urlExist)
@@ -92,9 +82,6 @@ class _DealWidgetState extends State<DealWidget>
       },
     );
   }
-
-  @override
-  bool get wantKeepAlive => true;
 }
 
 class DealDetails extends StatelessWidget {

@@ -19,9 +19,8 @@ class AboutApp extends StatelessWidget {
   Future<void> _updateTable(BuildContext context) async {
     _showSnackBar(context, 'Updating drop table');
 
-    final updateStatus = await RepositoryProvider.of<Repository>(context)
-        .dropTableApiService
-        .updateDropTable();
+    final updateStatus =
+        await RepositoryProvider.of<Repository>(context).updateDropTable();
 
     if (updateStatus)
       _showSnackBar(context, 'Updated drop table');

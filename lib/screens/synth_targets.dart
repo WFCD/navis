@@ -1,55 +1,50 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:navis/models/target.dart';
+import 'package:navis/blocs/bloc.dart';
+import 'package:navis/services/repository.dart';
+import 'package:wfcd_api_wrapper/models.dart';
 
 class SynthTargetScreen extends StatelessWidget {
   const SynthTargetScreen({Key key}) : super(key: key);
 
   static const route = '/synthTargets';
 
-  Future<List<SynthTarget>> loadTargets() async {
-    final data = await rootBundle.loadString('assets/jsons/synthTargets.json');
+  Widget _buildTargets(BuildContext context, SynthTarget target) {
+    return Card(
+      child: ExpansionTile(
+        title: Text(target.name),
+        children: target.locations.map<Widget>((l) {
+          return ListTile(
+            title: Text('${l.planet} (${l.mission})'),
+            subtitle:
+                Text('${l.type} | ${l.faction} | ${l.spawnRate} spawn rate'),
+          );
+        }).toList(),
+      ),
+    );
+  }
 
-    final _targets = json.decode(data).cast<Map<String, dynamic>>();
-
-    return _targets.map<SynthTarget>((t) => SynthTarget.fromJson(t)).toList();
+  Widget _buildList(List<SynthTarget> targets) {
+    return ListView.builder(
+      itemCount: targets.length,
+      itemBuilder: (context, index) => _buildTargets(context, targets[index]),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
+    final warframestate =
+        RepositoryProvider.of<Repository>(context).warframestat;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Synthesis Targets'),
-        titleSpacing: 0.0,
         backgroundColor: const Color(0xFF5F3C0D),
       ),
       body: FutureBuilder<List<SynthTarget>>(
-        future: loadTargets(),
-        builder:
-            (BuildContext context, AsyncSnapshot<List<SynthTarget>> snapshot) {
-          if (snapshot.hasData) {
-            return ListView.builder(
-              itemCount: snapshot.data.length,
-              itemBuilder: (BuildContext context, int index) {
-                final target = snapshot.data[index];
+        future: warframestate.synthTargets(),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) return _buildList(snapshot.data);
 
-                return Card(
-                  child: ExpansionTile(
-                    title: Text(target.name),
-                    children: target.locations.map<Widget>((l) {
-                      return ListTile(
-                        title: Text('${l.planet} (${l.mission})'),
-                        subtitle: Text(
-                            '${l.type} | ${l.faction} | ${l.spawnRate} spawn rate'),
-                      );
-                    }).toList(),
-                  ),
-                );
-              },
-            );
-          }
           return const Center(child: CircularProgressIndicator());
         },
       ),

@@ -5,7 +5,9 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:navis/blocs/bloc.dart';
 import 'package:navis/blocs/worldstate/worldstate_events.dart';
-import 'package:navis/services/wfcd_api/worldstate_api.service.dart';
+import 'package:navis/services/repository.dart';
+import 'package:navis/services/storage/persistent_storage.service.dart';
+import 'package:wfcd_api_wrapper/wfcd_wrapper.dart';
 import 'package:worldstate_model/worldstate_models.dart';
 
 import '../mock_classes.dart';
@@ -15,18 +17,21 @@ void main() {
   final worldstateJson = File('./worldstate.json').readAsStringSync();
   final worldstate = Worldstate.fromJson(json.decode(worldstateJson));
 
-  WorldstateApiService api;
+  Repository repository;
+  PersistentStorageService storage;
   WorldstateBloc worldstateBloc;
 
   setUpAll(() async {
     await mockSetup();
 
-    api = MockWorldstateApiService();
-    worldstateBloc = WorldstateBloc(api);
+    repository = MockRepository();
+    worldstateBloc =
+        WorldstateBloc(api: repository.warframestat, persistent: storage);
   });
 
   test('Enusre that Worldstate is Loaded', () async {
-    when(api.getWorldstate()).thenAnswer((_) => Future.value(worldstate));
+    when(repository.warframestat.getWorldstate(Platforms.pc))
+        .thenAnswer((_) => Future.value(worldstate));
 
     worldstateBloc.add(UpdateEvent());
 

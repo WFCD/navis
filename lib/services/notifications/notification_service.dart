@@ -1,17 +1,19 @@
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:wfcd_api_wrapper/worldstate_client.dart';
+import 'package:wfcd_api_wrapper/wfcd_wrapper.dart';
 
 class NotificationService {
-  NotificationService._(this.messaging);
-
-  factory NotificationService.initialize() {
+  factory NotificationService() {
     final FirebaseMessaging messaging = FirebaseMessaging();
 
     return NotificationService._(messaging);
   }
 
+  NotificationService._(this.messaging);
+
   final FirebaseMessaging messaging;
+
+  static final notifications = NotificationService();
 
   Future<bool> subscribeToPlatform(
       {Platforms previousPlatform, Platforms currentPlatform}) async {

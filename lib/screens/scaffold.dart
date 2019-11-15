@@ -28,9 +28,7 @@ class _MainScreenState extends State<MainScreen> {
       BlocProvider.of<WorldstateBloc>(context).add(UpdateEvent());
     });
 
-    RepositoryProvider.of<Repository>(context)
-        .dropTableApiService
-        .initializeDropTable();
+    RepositoryProvider.of<Repository>(context).updateDropTable();
   }
 
   Future<bool> _willPop() async {

@@ -15,7 +15,7 @@ class ScaffoldBody extends StatelessWidget {
       case RouteState.fissures:
         return const FissureScreen();
       case RouteState.invasions:
-        return const InvasionsList();
+        return const InvasionsScreen();
       case RouteState.sortie:
         return const SortieScreen();
       case RouteState.syndicates:
@@ -32,7 +32,7 @@ class ScaffoldBody extends StatelessWidget {
     return BlocBuilder<NavigationBloc, RouteState>(
       builder: (BuildContext context, RouteState route) {
         return AnimatedSwitcher(
-          duration: const Duration(milliseconds: 200),
+          duration: const Duration(milliseconds: 250),
           child: _body(route),
         );
       },

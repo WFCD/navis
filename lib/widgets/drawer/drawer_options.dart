@@ -57,7 +57,7 @@ class DrawerOptions extends StatelessWidget {
                 selected: state == RouteState.sortie,
               ),
               ListTile(
-                leading: Icon(AppIcons.standing),
+                leading: const Icon(AppIcons.standing),
                 title: const Text('Syndicates'),
                 onTap: () => _onTap(context, RouteEvent.syndicates),
                 selected: state == RouteState.syndicates,

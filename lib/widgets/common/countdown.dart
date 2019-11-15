@@ -27,6 +27,8 @@ class CountdownBox extends StatefulWidget {
 }
 
 class _CountdownBoxState extends State<CountdownBox> {
+  bool _expired = false;
+
   Tween _tween;
   Duration _duration;
 
@@ -58,7 +60,12 @@ class _CountdownBoxState extends State<CountdownBox> {
   void _listener(AnimationStatus status) {
     if (status == AnimationStatus.completed ||
         status == AnimationStatus.dismissed) {
-      BlocProvider.of<WorldstateBloc>(context).add(UpdateEvent());
+      Future.delayed(
+        const Duration(seconds: 1),
+        () => BlocProvider.of<WorldstateBloc>(context).add(UpdateEvent()),
+      );
+
+      _expired = widget.expiry.isBefore(DateTime.now().toUtc());
     }
   }
 
@@ -98,15 +105,14 @@ class _CountdownBoxState extends State<CountdownBox> {
       animationControllerStatusListener: _listener,
       builder: (context, value) {
         final duration = widget.expiry.difference(DateTime.now().toUtc()).abs();
-        final expired = widget.expiry.isBefore(DateTime.now().toUtc());
 
         return StaticBox.text(
           fontSize: widget.size,
           style: widget.style,
           margin: widget.margin,
           padding: widget.padding,
-          text: _timerVersions(duration, expired),
-          color: widget.color ?? _containerColors(duration, expired),
+          text: _timerVersions(duration, _expired),
+          color: widget.color ?? _containerColors(duration, _expired),
         );
       },
     );

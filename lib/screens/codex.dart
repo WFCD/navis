@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:navis/blocs/bloc.dart';
+import 'package:navis/services/repository.dart';
 import 'package:navis/widgets/codex/codex.dart';
 
 class Codex extends StatefulWidget {
@@ -10,21 +11,19 @@ class Codex extends StatefulWidget {
 }
 
 class _CodexState extends State<Codex> {
-  SearchBloc bloc;
-  bool isDropTableLoaded;
+  Repository repository;
 
   @override
   void initState() {
     super.initState();
-    bloc = BlocProvider.of<SearchBloc>(context);
-    isDropTableLoaded = BlocProvider.of<SearchBloc>(context).isDropTableLoaded;
+    repository = RepositoryProvider.of<Repository>(context);
 
-    if (!isDropTableLoaded) bloc.loadDropTable();
+    repository.loadDropTable();
   }
 
   @override
   void dispose() {
-    if (isDropTableLoaded) bloc.unloadDropTable();
+    repository.disposeDropTable();
     super.dispose();
   }
 

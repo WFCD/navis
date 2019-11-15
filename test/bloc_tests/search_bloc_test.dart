@@ -1,13 +1,7 @@
-import 'dart:convert';
-import 'dart:io';
-
-import 'package:flutter/foundation.dart';
 import 'package:mockito/mockito.dart';
 import 'package:navis/blocs/bloc.dart';
 import 'package:navis/blocs/search/search_bloc.dart';
-import 'package:navis/blocs/search/search_utils.dart';
-import 'package:navis/services/wfcd_api/drop_table_api.service.dart';
-import 'package:navis/services/wfcd_api/worldstate_api.service.dart';
+import 'package:navis/services/repository.dart';
 import 'package:test/test.dart';
 import 'package:warframe_items_model/warframe_items_model.dart';
 
@@ -15,52 +9,52 @@ import '../mock_classes.dart';
 import '../setup_methods.dart';
 
 void main() {
-  final dropTable = File('./drop_table.json');
+  // final dropTable = File('./drop_table.json');
 
-  WorldstateApiService worldstateApiService;
-  DropTableApiService dropTableApiService;
+  Repository repository;
 
   SearchBloc searchBloc;
-  List<SlimDrop> localTable;
+  // List<SlimDrop> localTable;
 
   setUpAll(() async {
     await mockSetup();
 
-    worldstateApiService = MockWorldstateApiService();
-    dropTableApiService = MockDropTableApiService();
+    repository = MockRepository();
 
-    searchBloc = SearchBloc(worldstateApiService, dropTableApiService);
+    searchBloc = SearchBloc(repository);
 
-    localTable = json
-        .decode(dropTable.readAsStringSync())
-        .cast<Map<String, dynamic>>()
-        .map<SlimDrop>((d) => SlimDrop.fromJson(d))
-        .toList();
+    // localTable = json
+    //     .decode(dropTable.readAsStringSync())
+    //     .cast<Map<String, dynamic>>()
+    //     .map<SlimDrop>((d) => SlimDrop.fromJson(d))
+    //     .toList();
   });
 
-  test('Make sure the drop table are loaded correctly', () async {
-    when(dropTableApiService.dropTable)
-        .thenAnswer((_) async => Future.value(dropTable));
+  // test('Make sure the drop table are loaded correctly', () async {
+  //   when(repository.search('chroma'))
+  //       .thenAnswer((_) async => Future.value(<SlimDrop>[]));
 
-    await searchBloc.loadDropTable();
+  //   await searchBloc.loadDropTable();
 
-    expectLater(listEquals(searchBloc.dropTable, localTable), true);
-  });
+  //   expectLater(listEquals(searchBloc._dropTable, localTable), true);
+  // });
 
   test('Searching the drop table', () async {
     expectLater(
         searchBloc, emitsThrough(const TypeMatcher<SearchStateSuccess>()));
 
-    searchBloc.add(const TextChanged('chroma', type: SearchTypes.drops));
+    searchBloc.add(const TextChanged('chroma'));
   });
+
+  test('Test search type change', () {});
 
   test('Searching Warframe items', () async {
     expectLater(
         searchBloc, emitsThrough(const TypeMatcher<SearchStateSuccess>()));
 
-    when(worldstateApiService.search('chroma'))
+    when(repository.search('chroma'))
         .thenAnswer((_) async => Future.value(<ItemObject>[]));
 
-    searchBloc.add(const TextChanged('chroma', type: SearchTypes.items));
+    searchBloc.add(const TextChanged('chroma'));
   });
 }

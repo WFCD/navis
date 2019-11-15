@@ -1,42 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:navis/blocs/bloc.dart';
 import 'package:navis/utils/worldstate_utils.dart';
+import 'package:navis/widgets/common/list_screen.dart';
 import 'package:navis/widgets/invasions/invasions.dart';
 
-class InvasionsList extends StatelessWidget {
-  const InvasionsList({Key key}) : super(key: key);
+class InvasionsScreen extends StatelessWidget {
+  const InvasionsScreen({Key key}) : super(key: key);
+
+  bool condition(previous, current) {
+    return compareIds(
+      previous.worldstate?.invasions,
+      current.worldstate?.invasions,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
-    return RefreshIndicator(
-      onRefresh: BlocProvider.of<WorldstateBloc>(context).update,
-      child: BlocBuilder<WorldstateBloc, WorldStates>(
-        condition: (previous, current) {
-          return compareIds(
-            previous.worldstate?.invasions,
-            current.worldstate?.invasions,
-          );
-        },
-        builder: (BuildContext context, WorldStates state) {
-          if (state is WorldstateLoaded) {
-            final invasions = state.worldstate?.invasions ?? [];
+    return BlocBuilder<WorldstateBloc, WorldStates>(
+      condition: condition,
+      builder: (BuildContext context, WorldStates state) {
+        final invasions = state.worldstate?.invasions ?? [];
 
-            if (invasions.isNotEmpty) {
-              return ListView.builder(
-                itemCount: invasions.length,
-                cacheExtent: 4,
-                itemBuilder: (BuildContext context, int index) =>
-                    InvasionWidget(invasion: invasions[index]),
-                addAutomaticKeepAlives: false,
-              );
-            }
-
-            return const Center(child: Text('No invasions at this Time'));
-          }
-
-          return const Center(child: CircularProgressIndicator());
-        },
-      ),
+        return ListScreen(
+          state: state,
+          noItemsText: 'No invasions at this time',
+          items: invasions.map((i) => InvasionWidget(invasion: i)).toList(),
+        );
+      },
     );
   }
 }

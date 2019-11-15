@@ -1,17 +1,20 @@
 import 'dart:async';
 
 import 'package:hydrated_bloc/hydrated_bloc.dart';
-import 'package:navis/services/wfcd_api/worldstate_api.service.dart';
+import 'package:navis/services/storage/persistent_storage.service.dart';
+import 'package:navis/utils/worldstate_utils.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:wfcd_api_wrapper/wfcd_wrapper.dart';
 import 'package:worldstate_model/worldstate_models.dart';
 
 import 'worldstate_events.dart';
 import 'worldstate_states.dart';
 
 class WorldstateBloc extends HydratedBloc<WorldstateEvent, WorldStates> {
-  WorldstateBloc(this.api);
+  WorldstateBloc({this.api, this.persistent});
 
-  final WorldstateApiService api;
+  final WfcdWrapper api;
+  final PersistentStorageService persistent;
 
   @override
   WorldStates get initialState =>
@@ -30,9 +33,10 @@ class WorldstateBloc extends HydratedBloc<WorldstateEvent, WorldStates> {
   Stream<WorldStates> mapEventToState(WorldstateEvent event) async* {
     if (event is UpdateEvent) {
       try {
-        final worldstate = await api.getWorldstate();
+        final worldstate =
+            await api.getWorldstate(persistent.platform ?? Platforms.pc);
 
-        yield WorldstateLoaded(worldstate);
+        yield WorldstateLoaded(cleanState(worldstate));
       } catch (e) {
         yield WorldstateError(e);
       }
