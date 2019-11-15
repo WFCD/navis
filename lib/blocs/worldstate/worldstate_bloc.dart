@@ -34,7 +34,7 @@ class WorldstateBloc extends HydratedBloc<WorldstateEvent, WorldStates> {
     if (event is UpdateEvent) {
       try {
         final worldstate =
-            await api.getWorldstate(persistent.platform ?? Platforms.pc);
+            await api.getWorldstate(persistent?.platform ?? Platforms.pc);
 
         yield WorldstateLoaded(cleanState(worldstate));
       } catch (e) {

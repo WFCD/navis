@@ -1,7 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
-
-import 'search_utils.dart';
+import 'package:navis/utils/search_utils.dart';
 
 @immutable
 abstract class SearchEvent extends Equatable {

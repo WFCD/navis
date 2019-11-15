@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_custom_tabs/flutter_custom_tabs.dart' as custom;
 import 'package:html/parser.dart';
-import 'package:navis/blocs/search/search_utils.dart';
+import 'package:navis/utils/search_utils.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../global_keys.dart';

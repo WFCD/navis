@@ -1,7 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
-
-import 'search_utils.dart';
+import 'package:navis/utils/search_utils.dart';
 
 @immutable
 abstract class SearchState extends Equatable {
@@ -15,10 +14,10 @@ class SearchStateLoading extends SearchState {}
 
 class SearchStateEmpty extends SearchState {}
 
-class SearchStateSuccess extends SearchState {
+class SearchStateSuccess<T> extends SearchState {
   const SearchStateSuccess(this.results, {this.sortBy = Sort.unsorted});
 
-  final List<dynamic> results;
+  final List<T> results;
   final Sort sortBy;
 
   @override

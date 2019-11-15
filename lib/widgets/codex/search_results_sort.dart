@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:navis/blocs/bloc.dart';
-import 'package:navis/blocs/search/search_utils.dart';
+import 'package:navis/utils/search_utils.dart';
 
 class SearchResultsSort extends StatelessWidget {
   const SearchResultsSort({Key key}) : super(key: key);

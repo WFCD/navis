@@ -4,8 +4,8 @@ import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:navis/blocs/bloc.dart';
-import 'package:navis/blocs/search/search_utils.dart';
 import 'package:navis/services/repository.dart';
+import 'package:navis/utils/search_utils.dart';
 import 'package:navis/utils/utils.dart';
 
 import 'search_results_sort.dart';

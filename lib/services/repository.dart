@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:async/async.dart';
 import 'package:flutter/foundation.dart';
-import 'package:navis/blocs/search/search_utils.dart';
 import 'package:navis/services/notifications/notification_service.dart';
 import 'package:navis/services/storage/cache_storage.service.dart';
 import 'package:navis/utils/json_utils.dart';
@@ -82,15 +81,12 @@ class Repository {
 
   // The amount of search items can be very little or too much to do on the main thread
   // so to be safe keep off the main thread
-  Future<List> search(String searchTerm,
-      {SearchTypes searchTypes = SearchTypes.drops}) async {
-    switch (searchTypes) {
-      case SearchTypes.items:
-        return compute(_searchItems, searchTerm);
-      default:
-        return compute(
-            _searchDropTable, DropTableSearch(searchTerm, _dropTable));
-    }
+  Future<List<ItemObject>> searchItems(String term) async {
+    return compute(_searchItems, term);
+  }
+
+  Future<List<SlimDrop>> searchDrops(String term) {
+    return compute(_searchDropTable, DropTableSearch(term, _dropTable));
   }
 
   Future<ItemObject> getDealItem(DarvoDeal deal) async {
@@ -103,7 +99,7 @@ class Repository {
     final cachedDeal = cache.dealId;
 
     if ((cachedDeal != deal.id) ?? true) {
-      final items = await search(deal.item);
+      final items = await searchItems(deal.item);
 
       final item = items.firstWhere(
         (i) => i.name == deal.item,

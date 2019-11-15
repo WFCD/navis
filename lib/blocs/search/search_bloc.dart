@@ -3,11 +3,12 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/foundation.dart';
 import 'package:navis/services/repository.dart';
+import 'package:navis/utils/search_utils.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:warframe_items_model/warframe_items_model.dart';
 
 import 'search_event.dart';
 import 'search_state.dart';
-import 'search_utils.dart';
 
 class SearchBloc extends Bloc<SearchEvent, SearchState> {
   SearchBloc(this.repository);
@@ -31,7 +32,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
   Stream<SearchState> mapEventToState(
     SearchEvent event,
   ) async* {
-    final type = repository.persistent.searchType;
+    final type = repository.persistent?.searchType ?? SearchTypes.drops;
 
     if (event is TextChanged) {
       final searchText = event.text;
@@ -42,10 +43,15 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
         yield SearchStateLoading();
 
         try {
-          final results =
-              await repository.search(searchText, searchTypes: type);
+          if (type == SearchTypes.drops) {
+            final results = await repository.searchDrops(searchText);
 
-          yield SearchStateSuccess(results);
+            yield SearchStateSuccess<SlimDrop>(results);
+          } else {
+            final results = await repository.searchItems(searchText);
+
+            yield SearchStateSuccess<ItemObject>(results);
+          }
         } catch (e) {
           yield SearchStateError(e.toString());
         }
