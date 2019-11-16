@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/blocs/bloc.dart';
 import 'package:navis/blocs/worldstate/worldstate_events.dart';
-import 'package:simple_animations/simple_animations.dart';
 
 import 'static_box.dart';
 
@@ -26,11 +25,13 @@ class CountdownBox extends StatefulWidget {
   _CountdownBoxState createState() => _CountdownBoxState();
 }
 
-class _CountdownBoxState extends State<CountdownBox> {
+class _CountdownBoxState extends State<CountdownBox>
+    with TickerProviderStateMixin {
   bool _expired = false;
 
-  Tween _tween;
+  Animation<int> _tween;
   Duration _duration;
+  AnimationController _controller;
 
   @override
   void initState() {
@@ -39,11 +40,19 @@ class _CountdownBoxState extends State<CountdownBox> {
     final _expiry = widget.expiry?.millisecondsSinceEpoch ?? now;
 
     _duration = Duration(seconds: _expiry - now).abs();
-    _tween = StepTween(begin: _expiry, end: now);
+
+    _controller = AnimationController(duration: _duration, vsync: this)
+      ..addStatusListener(_listener);
+
+    _tween = StepTween(begin: _expiry, end: now).animate(_controller);
+
+    _controller.forward(from: 0.0);
   }
 
   @override
   void didUpdateWidget(CountdownBox oldWidget) {
+    super.didUpdateWidget(oldWidget);
+
     final _now = DateTime.now().toUtc();
 
     if (oldWidget.expiry != widget.expiry || oldWidget.expiry.isAfter(_now)) {
@@ -51,10 +60,16 @@ class _CountdownBoxState extends State<CountdownBox> {
       final expiry = widget.expiry?.millisecondsSinceEpoch ?? now;
 
       _duration = Duration(seconds: expiry - now).abs();
-      _tween = StepTween(begin: expiry, end: now);
-    }
 
-    super.didUpdateWidget(oldWidget);
+      _controller?.dispose();
+
+      _controller = AnimationController(duration: _duration, vsync: this)
+        ..addStatusListener(_listener);
+
+      _tween = StepTween(begin: expiry, end: now).animate(_controller);
+
+      _controller.forward(from: 0.0);
+    }
   }
 
   void _listener(AnimationStatus status) {
@@ -69,7 +84,64 @@ class _CountdownBoxState extends State<CountdownBox> {
     }
   }
 
-  Color _containerColors(Duration timeLeft, bool expired) {
+  @override
+  Widget build(BuildContext context) {
+    return _CountDown(
+      listenable: _tween,
+      expiry: widget.expiry,
+      expired: _expired,
+      color: widget.color,
+      margin: widget.margin,
+      padding: widget.padding,
+      style: widget.style,
+      fontSize: widget.size,
+    );
+  }
+
+  @override
+  void dispose() {
+    _controller?.dispose();
+    super.dispose();
+  }
+}
+
+class _CountDown extends AnimatedWidget {
+  const _CountDown({
+    @required Animation<int> listenable,
+    @required this.expiry,
+    @required this.expired,
+    this.margin,
+    this.padding,
+    this.color,
+    this.style,
+    this.fontSize,
+  })  : assert(listenable != null),
+        assert(expiry != null),
+        assert(expired != null),
+        assert(fontSize == null || style == null,
+            'Use fontSize parameter if you\'re going to use a TextStyle'),
+        super(listenable: listenable);
+
+  final DateTime expiry;
+  final double fontSize;
+  final TextStyle style;
+  final EdgeInsetsGeometry margin, padding;
+  final Color color;
+  final bool expired;
+
+  String _timerVersions(Duration time, bool expired) {
+    final String days = '${time.inDays}';
+    final String hours = '${time.inHours % 24}';
+    final String minutes = '${time.inMinutes % 60}'.padLeft(2, '0');
+    final String seconds = '${time.inSeconds % 60}'.padLeft(2, '0');
+
+    final bool is24hrs = time < const Duration(days: 1);
+
+    return "${expired ? 'Expired: -' : ''}${!is24hrs ? '$days\d' : ''} $hours:$minutes:$seconds";
+  }
+
+  Color _containerColors(
+      BuildContext context, Duration timeLeft, bool expired) {
     const max = Duration(hours: 1);
     const minimum = Duration(minutes: 10);
 
@@ -85,36 +157,17 @@ class _CountdownBoxState extends State<CountdownBox> {
     return Theme.of(context).primaryColor;
   }
 
-  String _timerVersions(Duration time, bool expired) {
-    final String days = '${time.inDays}';
-    final String hours = '${time.inHours % 24}';
-    final String minutes = '${time.inMinutes % 60}'.padLeft(2, '0');
-    final String seconds = '${time.inSeconds % 60}'.padLeft(2, '0');
-
-    final bool is24hrs = time < const Duration(days: 1);
-
-    return "${expired ? 'Expired: -' : ''}${!is24hrs ? '$days\d' : ''} $hours:$minutes:$seconds";
-  }
-
   @override
   Widget build(BuildContext context) {
-    return ControlledAnimation(
-      duration: _duration,
-      tween: _tween,
-      playback: Playback.PLAY_FORWARD,
-      animationControllerStatusListener: _listener,
-      builder: (context, value) {
-        final duration = widget.expiry.difference(DateTime.now().toUtc()).abs();
+    final duration = expiry.difference(DateTime.now().toUtc()).abs();
 
-        return StaticBox.text(
-          fontSize: widget.size,
-          style: widget.style,
-          margin: widget.margin,
-          padding: widget.padding,
-          text: _timerVersions(duration, _expired),
-          color: widget.color ?? _containerColors(duration, _expired),
-        );
-      },
+    return StaticBox.text(
+      fontSize: fontSize,
+      style: style,
+      margin: margin,
+      padding: padding,
+      text: _timerVersions(duration, expired),
+      color: color ?? _containerColors(context, duration, expired),
     );
   }
 }

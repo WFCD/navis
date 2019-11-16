@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:simple_animations/simple_animations.dart';
-import 'package:simple_animations/simple_animations/multi_track_tween.dart';
 
-class Indicator extends StatelessWidget {
+class Indicator extends StatefulWidget {
   const Indicator(
       {Key key,
       @required this.numberOfDot,
@@ -42,39 +40,88 @@ class Indicator extends StatelessWidget {
   final EdgeInsets dotSpacing;
 
   @override
-  Widget build(BuildContext context) {
-    final multiTracks = MultiTrackTween(<Track>[
-      Track('shape')
-        ..add(const Duration(milliseconds: 500),
-            ShapeBorderTween(begin: dotShape, end: dotActiveShape)),
-      Track('color')
-        ..add(const Duration(milliseconds: 350),
-            ColorTween(begin: dotColor, end: dotActiveColor))
-    ]);
+  _IndicatorState createState() => _IndicatorState();
+}
 
-    return Container(
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: <Widget>[
-          for (int i = 0; i < numberOfDot; i++)
-            ControlledAnimation(
-              duration: multiTracks.duration,
-              tween: multiTracks,
-              playback: (i == position)
-                  ? Playback.PLAY_FORWARD
-                  : Playback.PLAY_REVERSE,
-              builder: (context, tracks) {
-                return Container(
-                  width: ((i == position) ? dotActiveSize : dotSize).width,
-                  height: ((i == position) ? dotActiveSize : dotSize).height,
-                  margin: dotSpacing,
-                  decoration: ShapeDecoration(
-                      color: tracks['color'], shape: tracks['shape']),
-                );
-              },
-            )
-        ],
-      ),
+class _IndicatorState extends State<Indicator> with TickerProviderStateMixin {
+  final List<IndicatorInfo> _indicators = [];
+
+  @override
+  void initState() {
+    super.initState();
+
+    for (int i = 0; i < widget.numberOfDot; i++) {
+      final controller = AnimationController(
+          duration: const Duration(milliseconds: 250), vsync: this);
+
+      final shape =
+          ShapeBorderTween(begin: widget.dotShape, end: widget.dotActiveShape)
+              .animate(controller);
+
+      final color =
+          ColorTween(begin: widget.dotColor, end: widget.dotActiveColor)
+              .animate(controller);
+
+      _indicators.add(
+          IndicatorInfo(controller: controller, shape: shape, color: color));
+    }
+
+    _indicators[widget.position].controller.forward();
+  }
+
+  @override
+  void didUpdateWidget(Indicator oldWidget) {
+    super.didUpdateWidget(oldWidget);
+
+    if (oldWidget.position != widget.position) {
+      _indicators[oldWidget.position].controller.reverse();
+      _indicators[widget.position].controller.forward();
+    }
+  }
+
+  @override
+  void dispose() {
+    for (IndicatorInfo i in _indicators) i?.controller?.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: <Widget>[
+        for (IndicatorInfo info in _indicators)
+          AnimatedBuilder(
+            animation: info.controller,
+            builder: (BuildContext context, Widget child) {
+              final dotNumber = _indicators.indexOf(info);
+
+              return Container(
+                width: ((dotNumber == widget.position)
+                        ? widget.dotActiveSize
+                        : widget.dotSize)
+                    .width,
+                height: ((dotNumber == widget.position)
+                        ? widget.dotActiveSize
+                        : widget.dotSize)
+                    .height,
+                margin: widget.dotSpacing,
+                decoration: ShapeDecoration(
+                  color: info.color.value,
+                  shape: info.shape.value,
+                ),
+              );
+            },
+          )
+      ],
     );
   }
+}
+
+class IndicatorInfo {
+  IndicatorInfo({this.controller, this.shape, this.color});
+
+  final AnimationController controller;
+  final Animation<ShapeBorder> shape;
+  final Animation<Color> color;
 }
