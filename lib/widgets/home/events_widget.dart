@@ -61,7 +61,7 @@ class _EventHeader extends StatelessWidget {
               style: Theme.of(context)
                   .textTheme
                   .subhead
-                  .copyWith(fontWeight: FontWeight.bold, fontSize: 25),
+                  .copyWith(fontWeight: FontWeight.bold, fontSize: 20),
             ),
           ),
           if (tooltip != null)
@@ -73,7 +73,7 @@ class _EventHeader extends StatelessWidget {
                 style: Theme.of(context)
                     .textTheme
                     .caption
-                    .copyWith(fontStyle: FontStyle.italic, fontSize: 15.5),
+                    .copyWith(fontStyle: FontStyle.italic, fontSize: 15),
               ),
             ),
         ],
@@ -110,7 +110,7 @@ class _EventMiddle extends StatelessWidget {
     final style = Theme.of(context)
         .textTheme
         .subhead
-        .copyWith(fontWeight: FontWeight.w500);
+        .copyWith(fontWeight: FontWeight.w500, fontSize: 15);
 
     return Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
       if (victimNode != null)
@@ -162,7 +162,7 @@ class _EventFooter extends StatelessWidget {
     final style = Theme.of(context)
         .textTheme
         .subhead
-        .copyWith(fontWeight: FontWeight.w500);
+        .copyWith(fontWeight: FontWeight.w500, fontSize: 15);
 
     if (jobs?.isNotEmpty ?? false) {
       return FlatButton(

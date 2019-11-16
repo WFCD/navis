@@ -11,6 +11,11 @@ class ArbitrationBuilder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<WorldstateBloc, WorldStates>(
+      condition: (previous, current) {
+        return (previous.worldstate?.arbitration?.expiry !=
+                current.worldstate?.arbitration?.expiry) ??
+            false;
+      },
       builder: (context, state) {
         final arbitration = state.worldstate.arbitration;
 
@@ -54,8 +59,8 @@ class ArbitrationWidget extends StatelessWidget {
         children: <Widget>[
           Icon(
             SyndicateIcons.hexis,
-            size: SizeConfig.heightMultiplier * 21,
-            color: Colors.grey[700],
+            size: 125,
+            color: Colors.grey[600],
           ),
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
