@@ -21,20 +21,20 @@ class _SearchBarState extends State<SearchBar> {
   bool _active = false;
   TextEditingController _textEditingController;
 
+  @override
+  void initState() {
+    super.initState();
+
+    _textEditingController = TextEditingController()
+      ..addListener(_clearListener);
+  }
+
   void _clearListener() {
     final searching = _textEditingController.text.isNotEmpty;
 
     if (mounted && _active != searching) {
       setState(() => _active = searching);
     }
-  }
-
-  @override
-  void initState() {
-    _textEditingController = TextEditingController()
-      ..addListener(_clearListener);
-
-    super.initState();
   }
 
   List<PopupMenuItem<SearchTypes>> _buildItems(BuildContext context) {
@@ -66,6 +66,10 @@ class _SearchBarState extends State<SearchBar> {
 
   @override
   Widget build(BuildContext context) {
+    final backgroundColor = Theme.of(context).brightness == Brightness.dark
+        ? const Color(0xFF2C2C2C)
+        : Theme.of(context).cardColor;
+
     return SliverPadding(
       padding: const EdgeInsets.only(top: 8.0),
       sliver: SliverFloatingBar(
@@ -73,7 +77,7 @@ class _SearchBarState extends State<SearchBar> {
         automaticallyImplyLeading: false,
         floating: true,
         snap: true,
-        backgroundColor: Theme.of(context).cardColor,
+        backgroundColor: backgroundColor,
         title: TextField(
           controller: _textEditingController,
           autocorrect: false,
