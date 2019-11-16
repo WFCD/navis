@@ -3,14 +3,16 @@ import 'package:intl/intl.dart' as intl;
 import 'package:navis/widgets/icons.dart';
 
 class FactionIcon extends StatelessWidget {
-  const FactionIcon(
-    this.faction, {
+  const FactionIcon({
     Key key,
+    @required this.faction,
+    this.iconSize = 15,
     this.hasColor = true,
-  }) : super(key: key);
+  })  : assert(faction != null),
+        super(key: key);
 
   final String faction;
-
+  final double iconSize;
   final bool hasColor;
 
   @override
@@ -33,7 +35,7 @@ class FactionIcon extends StatelessWidget {
 
     return Icon(
       icon,
-      size: 15,
+      size: iconSize,
       color: hasColor ? factionColor(faction) : Colors.white,
     );
   }

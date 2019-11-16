@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:navis/widgets/widgets.dart';
-import 'package:simple_animations/simple_animations.dart';
 import 'package:worldstate_model/worldstate_models.dart';
 
 import 'invasion_details.dart';
@@ -17,15 +16,28 @@ class InvasionWidget extends StatefulWidget {
 }
 
 class _InvasionWidgetState extends State<InvasionWidget>
-    with AutomaticKeepAliveClientMixin {
+    with TickerProviderStateMixin, AutomaticKeepAliveClientMixin {
+  Animation<double> _progress;
+  AnimationController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _controller = AnimationController(
+        duration: const Duration(milliseconds: 300), vsync: this);
+
+    _progress =
+        Tween<double>(begin: 0, end: widget.invasion.completion.toDouble())
+            .chain(CurveTween(curve: Curves.easeInOut))
+            .animate(_controller);
+
+    _controller.forward();
+  }
+
   @override
   Widget build(BuildContext context) {
     super.build(context);
-
-    final completion = widget.invasion.completion.toDouble();
-
-    final tween = Tween<double>(begin: 0, end: completion)
-        .chain(CurveTween(curve: Curves.easeInOut));
 
     return SkyboxCard(
       height: 200,
@@ -48,14 +60,13 @@ class _InvasionWidgetState extends State<InvasionWidget>
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 4.0, vertical: 8.0),
-            child: ControlledAnimation(
-              duration: const Duration(milliseconds: 500),
-              tween: tween,
-              builder: (context, animation) {
+            child: AnimatedBuilder(
+              animation: _progress,
+              builder: (BuildContext context, Widget child) {
                 return InvasionBar(
                   attackingFaction: widget.invasion.attackingFaction,
                   defendingFaction: widget.invasion.defendingFaction,
-                  progress: animation / 100,
+                  progress: _progress.value / 100,
                   lineHeight: 15.0,
                 );
               },
@@ -68,4 +79,10 @@ class _InvasionWidgetState extends State<InvasionWidget>
 
   @override
   bool get wantKeepAlive => true;
+
+  @override
+  void dispose() {
+    _controller?.dispose();
+    super.dispose();
+  }
 }

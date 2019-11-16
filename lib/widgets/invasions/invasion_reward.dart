@@ -19,31 +19,41 @@ class InvasionReward extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 4.0),
-      child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            if (attackerReward.isNotEmpty)
-              Material(
-                elevation: 4,
-                color: Colors.transparent,
-                child: StaticBox.text(
-                  text: attackerReward,
-                  color: factionColor(attackingFaction),
-                ),
+    const iconSize = 20.0;
+
+    return Row(
+      children: <Widget>[
+        if (attackerReward.isNotEmpty)
+          Material(
+            elevation: 4,
+            color: Colors.transparent,
+            child: StaticBox(
+              icon: FactionIcon(
+                faction: attackingFaction,
+                iconSize: iconSize,
+                hasColor: false,
               ),
-            const Spacer(),
-            if (defenderReward.isNotEmpty)
-              Material(
-                elevation: 4,
-                color: Colors.transparent,
-                child: StaticBox.text(
-                  text: defenderReward,
-                  color: factionColor(defendingFaction),
-                ),
-              )
-          ]),
+              child: Text(attackerReward),
+              color: factionColor(attackingFaction),
+            ),
+          ),
+        const Spacer(),
+        if (defenderReward.isNotEmpty)
+          Material(
+            elevation: 4,
+            color: Colors.transparent,
+            child: StaticBox(
+              icon: FactionIcon(
+                faction: defendingFaction,
+                iconSize: iconSize,
+                hasColor: false,
+              ),
+              iconTrailing: true,
+              child: Text(defenderReward),
+              color: factionColor(defendingFaction),
+            ),
+          )
+      ],
     );
   }
 }
