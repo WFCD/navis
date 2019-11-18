@@ -57,7 +57,6 @@ flutter:
   assets:
     - assets/icons/
     - assets/wfcd_banner.svg
-    - assets/jsons/synthTargets.json
     - assets/enemys/Corrupted/
     - assets/enemys/Grineer/
     - assets/enemys/Corpus/
