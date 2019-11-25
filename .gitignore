@@ -22,3 +22,4 @@ flutter_*.png
 ios/Flutter/flutter_export_environment.sh
 ios/Flutter/Generated.xcconfig
 ios/Runner/GeneratedPluginRegistrant.m
+ios/Runner/GeneratedPluginRegistrant.h
