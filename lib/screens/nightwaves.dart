@@ -20,14 +20,14 @@ class Nightwaves extends StatelessWidget {
           ),
           body: BlocBuilder<WorldstateBloc, WorldStates>(
             condition: (previous, current) {
-              return (previous.worldstate.nightwave?.id !=
-                      current.worldstate.nightwave?.id) ??
+              return (previous.worldstate?.nightwave?.id !=
+                      current.worldstate?.nightwave?.id) ??
                   false;
             },
             builder: (_, state) {
               if (state is WorldstateLoaded) {
                 const padding = SizedBox(height: 8.0);
-                final nightwave = state.worldstate.nightwave;
+                final nightwave = state.worldstate?.nightwave;
 
                 final daily = nightwave
                     .dailyChallenges()
