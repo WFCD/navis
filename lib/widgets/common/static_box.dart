@@ -46,7 +46,7 @@ class StaticBox extends StatelessWidget {
   final EdgeInsetsGeometry padding, margin;
 
   void _addIcon(List<Widget> children) {
-    const padding = 8.0;
+    const padding = 5.0;
 
     if (iconTrailing) {
       children.add(
