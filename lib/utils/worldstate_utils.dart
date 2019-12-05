@@ -72,14 +72,14 @@ ImageProvider skybox(BuildContext context, String node) {
 
 bool compareIds(
     List<WorldstateObject> previous, List<WorldstateObject> current) {
-  if (previous == null || current == null) return false;
+  if (current == null) return false;
 
   const _deep = DeepCollectionEquality();
 
-  final previousIds = previous.map<String>((w) => w.id);
+  final previousIds = previous?.map<String>((w) => w.id);
   final currentIds = current.map<String>((w) => w.id);
 
-  return !_deep.equals(previousIds ?? [], currentIds ?? []);
+  return !_deep.equals(previousIds ?? [], currentIds);
 }
 
 DateFormat enumToDateformat(Formats format) {
