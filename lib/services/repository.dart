@@ -29,19 +29,25 @@ class Repository {
 
   List<SlimDrop> _dropTable;
 
-  Future<bool> get isDropTableDownloaded async {
+  Future<File> _dropTableFile() async {
     final temp = await getTemporaryDirectory();
     final table = File('${temp.path}/$_dropTableFileName');
+
+    return table;
+  }
+
+  Future<bool> get isDropTableDownloaded async {
+    final table = await _dropTableFile();
 
     return table.existsSync();
   }
 
   Future<void> loadDropTable() async {
-    final temp = await getTemporaryDirectory();
-    final table = File('${temp.path}/$_dropTableFileName');
+    final table = await _dropTableFile();
 
-    _dropTable ??=
-        await compute(JsonToObjects.convertToDrop, table.readAsStringSync());
+    if (!await isDropTableDownloaded) return;
+
+    _dropTable ??= await compute(toDrops, table.readAsStringSync());
   }
 
   void disposeDropTable() {
@@ -52,9 +58,7 @@ class Repository {
   // Prefer to download and update drop table from here
   // since this does the work in a different thread
   Future<bool> updateDropTable() async {
-    final temp = await getTemporaryDirectory();
-    final table = File('${temp.path}/$_dropTableFileName');
-
+    final table = await _dropTableFile();
     final instance = DropTableCache(cache.getDropTableTimestamp, table);
 
     final updateTimestamp = await compute(_updateDropTable, instance);

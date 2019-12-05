@@ -22,7 +22,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
   Stream<SearchState> transformEvents(Stream<SearchEvent> events,
       Stream<SearchState> Function(SearchEvent event) next) {
     return super.transformEvents(
-        (events as Observable<SearchEvent>)
+        Observable<SearchEvent>(events)
             .distinct()
             .debounceTime(const Duration(milliseconds: 500)),
         next);

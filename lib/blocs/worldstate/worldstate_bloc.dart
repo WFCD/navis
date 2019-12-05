@@ -24,8 +24,8 @@ class WorldstateBloc extends HydratedBloc<WorldstateEvent, WorldStates> {
   Stream<WorldStates> transformEvents(Stream<WorldstateEvent> events,
       Stream<WorldStates> Function(UpdateEvent event) next) {
     return super.transformEvents(
-        (events as Observable<WorldstateEvent>)
-            .debounceTime(const Duration(milliseconds: 350)),
+        Observable<WorldstateEvent>(events)
+            .debounceTime(const Duration(milliseconds: 400)),
         next);
   }
 
@@ -33,8 +33,8 @@ class WorldstateBloc extends HydratedBloc<WorldstateEvent, WorldStates> {
   Stream<WorldStates> mapEventToState(WorldstateEvent event) async* {
     if (event is UpdateEvent) {
       try {
-        final worldstate =
-            await api.getWorldstate(persistent?.platform ?? Platforms.pc);
+        final _platform = persistent?.platform ?? Platforms.pc;
+        final worldstate = await api.getWorldstate(_platform);
 
         yield WorldstateLoaded(cleanState(worldstate));
       } catch (e) {

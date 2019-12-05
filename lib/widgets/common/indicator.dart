@@ -46,13 +46,12 @@ class Indicator extends StatefulWidget {
 class _IndicatorState extends State<Indicator> with TickerProviderStateMixin {
   final List<IndicatorInfo> _indicators = [];
 
-  @override
-  void initState() {
-    super.initState();
-
+  void _buildControllers() {
     for (int i = 0; i < widget.numberOfDot; i++) {
       final controller = AnimationController(
-          duration: const Duration(milliseconds: 250), vsync: this);
+        duration: const Duration(milliseconds: 250),
+        vsync: this,
+      );
 
       final shape =
           ShapeBorderTween(begin: widget.dotShape, end: widget.dotActiveShape)
@@ -63,9 +62,20 @@ class _IndicatorState extends State<Indicator> with TickerProviderStateMixin {
               .animate(controller);
 
       _indicators.add(
-          IndicatorInfo(controller: controller, shape: shape, color: color));
+        IndicatorInfo(
+          controller: controller,
+          shape: shape,
+          color: color,
+        ),
+      );
     }
+  }
 
+  @override
+  void initState() {
+    super.initState();
+
+    _buildControllers();
     _indicators[widget.position].controller.forward();
   }
 
@@ -73,16 +83,20 @@ class _IndicatorState extends State<Indicator> with TickerProviderStateMixin {
   void didUpdateWidget(Indicator oldWidget) {
     super.didUpdateWidget(oldWidget);
 
+    if (oldWidget.numberOfDot != widget.numberOfDot) {
+      for (IndicatorInfo i in _indicators) i?.controller?.dispose();
+      _indicators.clear();
+      _buildControllers();
+    }
+
     if (oldWidget.position != widget.position) {
       _indicators[oldWidget.position].controller.reverse();
       _indicators[widget.position].controller.forward();
     }
   }
 
-  @override
-  void dispose() {
-    for (IndicatorInfo i in _indicators) i?.controller?.dispose();
-    super.dispose();
+  Size _getDotSize(int index) {
+    return index == widget.position ? widget.dotActiveSize : widget.dotSize;
   }
 
   @override
@@ -94,17 +108,11 @@ class _IndicatorState extends State<Indicator> with TickerProviderStateMixin {
           AnimatedBuilder(
             animation: info.controller,
             builder: (BuildContext context, Widget child) {
-              final dotNumber = _indicators.indexOf(info);
+              final index = _indicators.indexOf(info);
 
               return Container(
-                width: ((dotNumber == widget.position)
-                        ? widget.dotActiveSize
-                        : widget.dotSize)
-                    .width,
-                height: ((dotNumber == widget.position)
-                        ? widget.dotActiveSize
-                        : widget.dotSize)
-                    .height,
+                width: _getDotSize(index).width,
+                height: _getDotSize(index).height,
                 margin: widget.dotSpacing,
                 decoration: ShapeDecoration(
                   color: info.color.value,
@@ -115,6 +123,12 @@ class _IndicatorState extends State<Indicator> with TickerProviderStateMixin {
           )
       ],
     );
+  }
+
+  @override
+  void dispose() {
+    for (IndicatorInfo i in _indicators) i?.controller?.dispose();
+    super.dispose();
   }
 }
 
