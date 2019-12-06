@@ -34,10 +34,10 @@ Future<void> startApp() async {
   runApp(
     MultiBlocProvider(
       providers: [
-        BlocProvider<NavigationBloc>(builder: (_) => NavigationBloc()),
-        BlocProvider<SearchBloc>(builder: (_) => SearchBloc(repository)),
+        BlocProvider<NavigationBloc>(create: (_) => NavigationBloc()),
+        BlocProvider<SearchBloc>(create: (_) => SearchBloc(repository)),
         BlocProvider<WorldstateBloc>(
-          builder: (context) {
+          create: (context) {
             return WorldstateBloc(
               api: repository.warframestat,
               persistent: persistent,
