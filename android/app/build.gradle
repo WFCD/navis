@@ -66,11 +66,24 @@ android {
 
         release {
             signingConfig signingConfigs.release
-
             minifyEnabled true
             useProguard false
 
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    flavorDimensions 'stage'
+
+    productFlavors {
+        development {
+            dimension 'stage'
+            applicationIdSuffix '.dev'
+            versionNameSuffix '-dev'
+        }
+        
+        production {
+            dimension 'stage'
         }
     }
 }

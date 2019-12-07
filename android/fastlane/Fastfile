@@ -1,3 +1,4 @@
+setup_travis
 update_fastlane
 
 # Prevent Fastlane from overwriting README.md
@@ -9,11 +10,11 @@ default_platform(:android)
 # flutter build apk --release
 # to build the app using the Flutter toolchain.
 platform :android do
-  desc 'Push the built release APK to alpha or beta depending on current branch'
-  lane :beta do
+
+  desc 'Push the built app to release.'
+  lane :stable do
     begin
       upload_to_play_store(
-        track: 'beta',
         aab: '../build/app/outputs/bundle/release/app-release.aab',
         json_key: 'app/fastlane.json',
         skip_upload_screenshots: true,
@@ -24,4 +25,19 @@ platform :android do
       puts 'Current version already present on the Play Store. Omitting this upload.'
     end
   end
+
+  desc 'Push the built app to beta.'
+  lane :beta do
+    begin
+      upload_to_play_store(
+        aab: '../build/app/outputs/bundle/development/app-development-release.aab',
+        json_key: 'app/fastlane.json',
+        skip_upload_screenshots: true,
+        skip_upload_images: true
+      )
+    rescue => exception
+      raise exception unless exception.message.include?('apkNotificationMessageKeyUpgradeVersionConflict')
+      puts 'Current version already present on the Play Store. Omitting this upload.'
+    end
+  end      
 end
