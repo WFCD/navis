@@ -40,7 +40,7 @@ class NewsWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => launchLink(context, news.link, isStream: news.stream),
+      onTap: () => launchLink(context, news.link),
       child: Stack(
         children: <Widget>[
           CachedNetworkImage(
