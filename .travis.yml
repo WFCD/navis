@@ -25,7 +25,7 @@ jobs:
       script:
         - flutter pub get
         - flutter test
-        - flutter build apk --target-platform android-arm
+        - flutter build apk --flavor development --target-platform android-arm
 
     - name: Deploy beta
       if: tag IS present AND branch = beta
