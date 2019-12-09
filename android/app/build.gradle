@@ -78,8 +78,8 @@ android {
     productFlavors {
         development {
             dimension 'stage'
-            applicationIdSuffix '.dev'
-            versionNameSuffix '-dev'
+            applicationIdSuffix '.beta'
+            versionNameSuffix '-beta'
         }
         
         production {
