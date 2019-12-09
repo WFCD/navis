@@ -15,7 +15,7 @@ platform :android do
   lane :stable do
     begin
       upload_to_play_store(
-        aab: '../build/app/outputs/bundle/release/app-release.aab',
+        aab: '../build/app/outputs/bundle/productionRelease/app-production-release.aab',
         json_key: 'app/fastlane.json',
         skip_upload_screenshots: true,
         skip_upload_images: true
@@ -30,7 +30,7 @@ platform :android do
   lane :beta do
     begin
       upload_to_play_store(
-        aab: '../build/app/outputs/bundle/development/app-development-release.aab',
+        aab: '../build/app/outputs/bundle/developmentRelease/app-development-release.aab',
         json_key: 'app/fastlane.json',
         skip_upload_screenshots: true,
         skip_upload_images: true
