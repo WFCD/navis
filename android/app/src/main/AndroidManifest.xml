@@ -10,7 +10,7 @@
         tools:replace="android:label"
         android:name="io.flutter.app.FlutterApplication"
         android:icon='@mipmap/ic_launcher'
-        android:label="@string/app_name"
+        android:label="Navis"
         android:allowBackup="false">
         <activity
             android:name=".MainActivity"
