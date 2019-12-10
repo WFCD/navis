@@ -57,7 +57,7 @@ String _getBackgroundPath(String node) {
   final nodeRegExp = RegExp(r'\(([^)]*)\)');
   final nodeBackground = nodeRegExp.firstMatch(node)?.group(1);
 
-  return 'assets/skyboxes/$nodeBackground.webp';
+  return 'assets/skyboxes/${nodeBackground.replaceAll(' ', '_')}.webp';
 }
 
 ImageProvider skybox(BuildContext context, String node) {
