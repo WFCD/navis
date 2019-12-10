@@ -22,9 +22,9 @@ Cephalon Navis is an Android app inspired by [Warframe Hub](https://hub.warframe
 - Links to useful guides for new players to learn how to fish and maps
 - Darvo Deals
 - supports PC, PS4, Xbox and switch worldstates
+- Notifications (mostly done)
 
 ### Upcoming Features:
-- Notifications (soon)
 - Flash sales (This depends on who actually uses it, so if you use it let me know)
 
 # Create Keystore 
