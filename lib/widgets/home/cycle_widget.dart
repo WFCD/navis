@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:navis/blocs/bloc.dart';
 import 'package:navis/services/repository.dart';
-import 'package:navis/utils/factionutils.dart';
+import 'package:navis/utils/utils.dart';
+
 import 'package:navis/utils/worldstate_utils.dart';
 import 'package:navis/widgets/widgets.dart';
 import 'package:worldstate_model/worldstate_objects.dart';
@@ -40,8 +41,7 @@ class CycleWidget extends StatelessWidget {
           ),
           const SizedBox(width: 8.0),
           Tooltip(
-            message:
-                '$nextState on ${expiration(cycle.expiry, format: dateFormat)}',
+            message: '$nextState on ${cycle.expiry.format(dateFormat)}',
             showDuration: const Duration(seconds: 2, milliseconds: 500),
             child: CountdownBox(expiry: cycle.expiry),
           ),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:navis/utils/factionutils.dart';
+import 'package:navis/utils/faction_utils.dart';
 
 class InvasionBar extends StatelessWidget {
   const InvasionBar({

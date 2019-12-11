@@ -4,7 +4,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:navis/blocs/bloc.dart';
 import 'package:navis/constants/storage_keys.dart';
 import 'package:navis/services/repository.dart';
-import 'package:navis/utils/factionutils.dart';
+import 'package:navis/utils/utils.dart';
 import 'package:navis/utils/worldstate_utils.dart';
 
 import 'static_box.dart';
@@ -28,7 +28,7 @@ class DateView extends StatelessWidget {
         return StaticBox(
           color: color ?? Colors.blueAccent[400],
           child: Text(
-            '${expiration(expiry, format: dateFormat)}',
+            '${expiry.format(dateFormat)}',
             style: const TextStyle(color: Colors.white),
           ),
         );

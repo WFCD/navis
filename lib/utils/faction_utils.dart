@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart' as intl;
 import 'package:navis/widgets/icons.dart';
 
 class FactionIcon extends StatelessWidget {
@@ -51,13 +50,5 @@ Color factionColor(String faction) {
       return Colors.yellow[300];
     default:
       return Colors.green;
-  }
-}
-
-String expiration(DateTime expiry, {intl.DateFormat format}) {
-  try {
-    return format.format(expiry.toLocal());
-  } catch (err) {
-    return 'Fetching Date';
   }
 }

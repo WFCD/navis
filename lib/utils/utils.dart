@@ -1,7 +1,11 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_custom_tabs/flutter_custom_tabs.dart';
 import 'package:html/parser.dart';
+import 'package:intl/intl.dart' as intl;
+import 'package:warframe_items_model/warframe_items_model.dart';
 
 import '../global_keys.dart';
 
@@ -45,4 +49,22 @@ String timestamp(DateTime timestamp) {
 String parseHtmlString(String htmlString) {
   final document = parse(htmlString);
   return parse(document.body.text).documentElement.text;
+}
+
+List<SlimDrop> toDrops(String data) {
+  final table = json.decode(data);
+
+  if (table is Map<String, dynamic>) return [];
+
+  return table.map<SlimDrop>((d) => SlimDrop.fromJson(d)).toList();
+}
+
+extension DateTimeX on DateTime {
+  String format(intl.DateFormat format) {
+    try {
+      return format.format(toLocal());
+    } catch (err) {
+      return 'Fetching Date';
+    }
+  }
 }

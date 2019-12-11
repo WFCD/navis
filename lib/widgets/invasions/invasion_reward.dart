@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:navis/utils/factionutils.dart';
+import 'package:navis/utils/faction_utils.dart';
 import 'package:navis/widgets/widgets.dart';
 
 class InvasionReward extends StatelessWidget {
