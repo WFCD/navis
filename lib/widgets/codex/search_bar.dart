@@ -6,7 +6,6 @@ import 'package:intl/intl.dart';
 import 'package:navis/blocs/bloc.dart';
 import 'package:navis/services/repository.dart';
 import 'package:navis/utils/search_utils.dart';
-import 'package:navis/utils/utils.dart';
 
 import 'search_results_sort.dart';
 
@@ -37,17 +36,19 @@ class _SearchBarState extends State<SearchBar> {
     }
   }
 
-  List<PopupMenuItem<SearchTypes>> _buildItems(BuildContext context) {
-    return SearchTypes.values.map((v) {
+  List<PopupMenuItem<CodexDatabase>> _buildItems(BuildContext context) {
+    return CodexDatabase.values.map((v) {
       final option = toBeginningOfSentenceCase(v.toString().split('.').last);
 
-      return PopupMenuItem<SearchTypes>(child: Text(option), value: v);
+      return PopupMenuItem<CodexDatabase>(child: Text(option), value: v);
     }).toList();
   }
 
-  void _onSelected(Box box, SearchTypes previous, SearchTypes next) {
+  void _onSelected(CodexDatabase previous, CodexDatabase next) {
+    final persistent = RepositoryProvider.of<Repository>(context).persistent;
+
     if (previous != next) {
-      box.put('searchType', searchTypeToString(next));
+      persistent.searchType = next;
 
       BlocProvider.of<SearchBloc>(context)
           .add(TextChanged(_textEditingController.text, type: next));
@@ -70,6 +71,8 @@ class _SearchBarState extends State<SearchBar> {
         ? const Color(0xFF2C2C2C)
         : Theme.of(context).cardColor;
 
+    final persistent = RepositoryProvider.of<Repository>(context).persistent;
+
     return SliverPadding(
       padding: const EdgeInsets.only(top: 8.0),
       sliver: SliverFloatingBar(
@@ -91,21 +94,21 @@ class _SearchBarState extends State<SearchBar> {
         ),
         trailing: LimitedBox(
           child: WatchBoxBuilder(
-            box: RepositoryProvider.of<Repository>(context).persistent.hiveBox,
+            box: persistent.hiveBox,
             watchKeys: const ['searchType'],
             builder: (BuildContext context, Box box) {
-              final type = stringToSearchType(box.get('searchType'));
+              final type = persistent.searchType;
 
               return Row(
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
                   if (_active)
                     IconButton(icon: Icon(Icons.clear), onPressed: _onClear),
-                  if (type == SearchTypes.drops) const SearchResultsSort(),
-                  PopupMenuButton<SearchTypes>(
+                  if (type == CodexDatabase.drops) const SearchResultsSort(),
+                  PopupMenuButton<CodexDatabase>(
                     initialValue: type,
                     itemBuilder: _buildItems,
-                    onSelected: (t) => _onSelected(box, type, t),
+                    onSelected: (t) => _onSelected(type, t),
                   )
                 ],
               );

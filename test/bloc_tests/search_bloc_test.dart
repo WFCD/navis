@@ -29,7 +29,7 @@ void main() {
     expectLater(searchBloc,
         emitsThrough(const TypeMatcher<SearchStateSuccess<SlimDrop>>()));
 
-    searchBloc.add(const TextChanged('chroma', type: SearchTypes.drops));
+    searchBloc.add(const TextChanged('chroma', type: CodexDatabase.drops));
   });
 
   // test('Searching Warframe items', () {

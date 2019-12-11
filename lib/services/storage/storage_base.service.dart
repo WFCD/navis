@@ -10,7 +10,7 @@ abstract class StorageService {
   }
 
   Future<void> closeBoxInstance() async {
-    await hiveBox.compact();
+    // await hiveBox.compact();
     await hiveBox.close();
   }
 }

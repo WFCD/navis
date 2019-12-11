@@ -1,10 +1,7 @@
-import 'dart:convert';
-
 import 'package:collection/collection.dart';
 import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
 import 'package:navis/services/storage/dateformat_enum.dart';
-import 'package:warframe_items_model/warframe_items_model.dart';
 import 'package:worldstate_model/worldstate_models.dart';
 import 'package:worldstate_model/worldstate_objects.dart';
 
@@ -35,17 +32,11 @@ Worldstate cleanState(Worldstate state) {
   return state;
 }
 
-List<Drop> jsonToRewards(String response) {
-  final drops = json.decode(response).cast<Map<String, dynamic>>();
-
-  return drops.map<Drop>((d) => Drop.fromJson(d)).toList();
-}
-
 Future<bool> _checkBackground(BuildContext context, String node) async {
   bool doesBackgroundExist = true;
 
   await precacheImage(
-    AssetImage(_getBackgroundPath(node)),
+    AssetImage(node),
     context,
     onError: (e, stack) => doesBackgroundExist = false,
   );
@@ -61,13 +52,14 @@ String _getBackgroundPath(String node) {
 }
 
 ImageProvider skybox(BuildContext context, String node) {
+  final solNode = _getBackgroundPath(node);
   bool isError = false;
 
-  _checkBackground(context, node).then((data) => isError = data);
+  _checkBackground(context, solNode).then((data) => isError = data);
 
   return isError
       ? const AssetImage('assets/skyboxes/Derelict.webp')
-      : AssetImage(_getBackgroundPath(node));
+      : AssetImage(solNode);
 }
 
 bool compareIds(

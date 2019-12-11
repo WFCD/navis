@@ -2,7 +2,20 @@ import 'package:warframe_items_model/warframe_items_model.dart';
 
 enum Sort { unsorted, a_b, high_low, low_high }
 
-enum SearchTypes { drops, items }
+enum CodexDatabase { drops, items }
+
+extension CodexDatabaseX on CodexDatabase {
+  String toProperString() {
+    return toString().split('.').last;
+  }
+
+  static CodexDatabase parseString(String string) {
+    return CodexDatabase.values.firstWhere(
+      (v) => v.toString() == 'SearchTypes.$string',
+      orElse: () => CodexDatabase.drops,
+    );
+  }
+}
 
 List<SlimDrop> sortDrops(SortedDrops dropInstance) {
   final sortBy = dropInstance.sortBy;

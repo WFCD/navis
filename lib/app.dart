@@ -75,7 +75,7 @@ class _NavisState extends State<Navis> with WidgetsBindingObserver {
                   return MaterialApp(
                     title: 'Navis',
                     color: Colors.grey[900],
-                    theme: widget.repository.persistent.theme(),
+                    theme: widget.repository.persistent.theme,
                     darkTheme: AppTheme.theme.dark,
                     home: const MainScreen(),
                     builder: _builder,

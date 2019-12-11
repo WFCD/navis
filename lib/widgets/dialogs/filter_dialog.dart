@@ -97,7 +97,7 @@ class NotificationCheckBox extends StatelessWidget {
       activeColor: Theme.of(context).accentColor,
       onChanged: (b) async {
         // debugPrint(optionKey);
-        storage.saveToDisk(optionKey, b);
+        storage.hiveBox.put(optionKey, b);
         await firebase.subscribeToNotification(optionKey, b);
       },
     );

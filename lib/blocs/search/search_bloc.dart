@@ -32,7 +32,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
   Stream<SearchState> mapEventToState(
     SearchEvent event,
   ) async* {
-    final type = repository.persistent?.searchType ?? SearchTypes.drops;
+    final type = repository.persistent?.searchType ?? CodexDatabase.drops;
 
     if (event is TextChanged) {
       final searchText = event.text;
@@ -43,7 +43,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
         yield SearchStateLoading();
 
         try {
-          if (type == SearchTypes.drops) {
+          if (type == CodexDatabase.drops) {
             final results = await repository.searchDrops(searchText);
 
             yield SearchStateSuccess<SlimDrop>(results);
@@ -59,7 +59,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
     }
 
     if (event is SortSearch) {
-      if (type == SearchTypes.drops) {
+      if (type == CodexDatabase.drops) {
         final sorted =
             await compute(sortDrops, SortedDrops(event.sortBy, event.results));
 

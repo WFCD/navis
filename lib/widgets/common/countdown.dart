@@ -33,9 +33,7 @@ class _CountdownBoxState extends State<CountdownBox>
   Duration _duration;
   AnimationController _controller;
 
-  @override
-  void initState() {
-    super.initState();
+  void _setup() {
     final now = DateTime.now().toUtc().millisecondsSinceEpoch;
     final _expiry = widget.expiry?.millisecondsSinceEpoch ?? now;
 
@@ -50,25 +48,20 @@ class _CountdownBoxState extends State<CountdownBox>
   }
 
   @override
+  void initState() {
+    super.initState();
+    _setup();
+  }
+
+  @override
   void didUpdateWidget(CountdownBox oldWidget) {
     super.didUpdateWidget(oldWidget);
 
     final _now = DateTime.now().toUtc();
 
     if (oldWidget.expiry != widget.expiry || oldWidget.expiry.isAfter(_now)) {
-      final now = _now.millisecondsSinceEpoch;
-      final expiry = widget.expiry?.millisecondsSinceEpoch ?? now;
-
-      _duration = Duration(seconds: expiry - now).abs();
-
       _controller?.dispose();
-
-      _controller = AnimationController(duration: _duration, vsync: this)
-        ..addStatusListener(_listener);
-
-      _tween = StepTween(begin: expiry, end: now).animate(_controller);
-
-      _controller.forward(from: 0.0);
+      _setup();
     }
   }
 
@@ -80,7 +73,9 @@ class _CountdownBoxState extends State<CountdownBox>
         () => BlocProvider.of<WorldstateBloc>(context).add(UpdateEvent()),
       );
 
-      _expired = widget.expiry.isBefore(DateTime.now().toUtc());
+      setState(() {
+        _expired = widget.expiry.isBefore(DateTime.now().toUtc());
+      });
     }
   }
 

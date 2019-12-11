@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_custom_tabs/flutter_custom_tabs.dart';
 import 'package:html/parser.dart';
-import 'package:navis/utils/search_utils.dart';
 
 import '../global_keys.dart';
 
@@ -46,15 +45,4 @@ String timestamp(DateTime timestamp) {
 String parseHtmlString(String htmlString) {
   final document = parse(htmlString);
   return parse(document.body.text).documentElement.text;
-}
-
-SearchTypes stringToSearchType(String type) {
-  return SearchTypes.values.firstWhere(
-    (v) => v.toString() == 'SearchTypes.$type',
-    orElse: () => SearchTypes.drops,
-  );
-}
-
-String searchTypeToString(SearchTypes type) {
-  return type.toString().split('.').last;
 }

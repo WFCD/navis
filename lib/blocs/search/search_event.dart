@@ -14,7 +14,7 @@ class TextChanged extends SearchEvent {
   const TextChanged(this.text, {this.type});
 
   final String text;
-  final SearchTypes type;
+  final CodexDatabase type;
 
   @override
   List<Object> get props => [text, type];
