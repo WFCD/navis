@@ -17,7 +17,7 @@ before_install:
 before_script:
   - tar xvf secrets.tar
   - if [  ! -d "flutter" ] ; then git clone https://github.com/flutter/flutter.git -b
-    beta; fi;
+    stable; fi;
   - export PATH=./flutter/bin:$PATH
 
 jobs:
