@@ -95,7 +95,7 @@ class _SearchBarState extends State<SearchBar> {
         trailing: LimitedBox(
           child: WatchBoxBuilder(
             box: persistent.hiveBox,
-            watchKeys: const ['searchType'],
+            watchKeys: const ['database'],
             builder: (BuildContext context, Box box) {
               final type = persistent.searchType;
 

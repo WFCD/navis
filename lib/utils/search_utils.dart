@@ -11,7 +11,7 @@ extension CodexDatabaseX on CodexDatabase {
 
   static CodexDatabase parseString(String string) {
     return CodexDatabase.values.firstWhere(
-      (v) => v.toString() == 'SearchTypes.$string',
+      (v) => v.toString() == 'CodexDatabase.$string',
       orElse: () => CodexDatabase.drops,
     );
   }
