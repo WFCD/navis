@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
+import 'package:navis/global_keys.dart';
 import 'package:navis/services/repository.dart';
 import 'package:navis/utils/utils.dart';
 import 'package:navis/widgets/widgets.dart';
@@ -13,7 +14,7 @@ class AboutApp extends StatelessWidget {
   final _dateFormat = DateFormat.yMMMMd('en_US').add_jms();
 
   void _showSnackBar(BuildContext context, String content) {
-    Scaffold.of(context).showSnackBar(SnackBar(content: Text(content)));
+    settings.currentState?.showSnackBar(SnackBar(content: Text(content)));
   }
 
   Future<void> _updateTable(BuildContext context) async {
