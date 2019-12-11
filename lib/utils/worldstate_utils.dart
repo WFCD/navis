@@ -52,14 +52,16 @@ String _getBackgroundPath(String node) {
 }
 
 ImageProvider skybox(BuildContext context, String node) {
-  final solNode = _getBackgroundPath(node);
+  const derelict = AssetImage('assets/skyboxes/Derelict.webp');
+
   bool isError = false;
+  final solNode = _getBackgroundPath(node);
+
+  if (solNode == 'undefined') return derelict;
 
   _checkBackground(context, solNode).then((data) => isError = data);
 
-  return isError
-      ? const AssetImage('assets/skyboxes/Derelict.webp')
-      : AssetImage(solNode);
+  return isError ? derelict : AssetImage(solNode);
 }
 
 bool compareIds(
