@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:navis/blocs/bloc.dart';
 import 'package:navis/services/repository.dart';
-import 'package:navis/utils/utils.dart';
-
+import 'package:navis/utils/helper_utils.dart';
 import 'package:navis/utils/worldstate_utils.dart';
 import 'package:navis/widgets/widgets.dart';
 import 'package:worldstate_model/worldstate_objects.dart';

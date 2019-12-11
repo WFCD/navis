@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:navis/utils/utils.dart';
+import 'package:navis/utils/helper_utils.dart';
 
 import 'item_image.dart';
 
@@ -66,7 +66,7 @@ class ItemHeader extends StatelessWidget {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(4.0),
                   ),
-                  onPressed: () => launchLink(context, wikiaUrl),
+                  onPressed: () => launchLink(wikiaUrl),
                 )
             ],
           ),

@@ -4,7 +4,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:navis/blocs/bloc.dart';
 import 'package:navis/constants/storage_keys.dart';
 import 'package:navis/services/repository.dart';
-import 'package:navis/utils/utils.dart';
+import 'package:navis/utils/helper_utils.dart';
 import 'package:navis/utils/worldstate_utils.dart';
 
 import 'static_box.dart';

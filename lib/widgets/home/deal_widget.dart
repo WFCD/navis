@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/services/repository.dart';
 import 'package:navis/utils/size_config.dart';
-import 'package:navis/utils/utils.dart';
+import 'package:navis/utils/helper_utils.dart';
 import 'package:navis/widgets/widgets.dart';
 import 'package:warframe_items_model/warframe_items_model.dart';
 import 'package:worldstate_model/worldstate_models.dart';
@@ -70,7 +70,7 @@ class DealWidget extends StatelessWidget {
                   children: <Widget>[
                     FlatButton(
                       child: const Text('See Wikia'),
-                      onPressed: () => launchLink(context, item.wikiaUrl),
+                      onPressed: () => launchLink(item.wikiaUrl),
                     ),
                   ],
                 )

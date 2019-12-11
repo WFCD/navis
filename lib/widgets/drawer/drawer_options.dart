@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:navis/blocs/bloc.dart';
-import 'package:navis/utils/utils.dart';
+import 'package:navis/utils/helper_utils.dart';
 
 import '../icons.dart';
 
@@ -85,23 +85,23 @@ class DrawerOptions extends StatelessWidget {
                   ListTile(
                       title: const Text('Plains of Eidolon map'),
                       dense: true,
-                      onTap: () => launchLink(context, _poe)),
+                      onTap: () => launchLink(_poe)),
                   ListTile(
                       title: const Text('Orb Vallis map'),
                       dense: isDense,
-                      onTap: () => launchLink(context, _vallis)),
+                      onTap: () => launchLink(_vallis)),
                   ListTile(
                       title: const Text('PoE: Fishing Data'),
                       dense: isDense,
-                      onTap: () => launchLink(context, _poeFishingData)),
+                      onTap: () => launchLink(_poeFishingData)),
                   ListTile(
                       title: const Text('Vallis: Fishing Data'),
                       dense: isDense,
-                      onTap: () => launchLink(context, _vallisFishingData)),
+                      onTap: () => launchLink(_vallisFishingData)),
                   ListTile(
                       title: const Text('How to Fish'),
                       dense: isDense,
-                      onTap: () => launchLink(context, _howToFish))
+                      onTap: () => launchLink(_howToFish))
                 ],
               )
             ],

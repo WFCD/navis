@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:navis/services/repository.dart';
 import 'package:navis/utils/size_config.dart';
-import 'package:navis/utils/utils.dart';
+import 'package:navis/utils/helper_utils.dart';
 import 'package:navis/widgets/icons.dart';
 import 'package:package_info/package_info.dart';
 
@@ -39,7 +39,6 @@ class About extends StatelessWidget {
           text: TextSpan(children: <TextSpan>[
             TextSpan(style: aboutTextStyle, text: 'Homepage: '),
             _LinkTextSpan(
-              context: context,
               style: linkStyle,
               url: 'https://github.com/WFCD/navis',
               text: 'https://github.com/WFCD/navis',
@@ -49,7 +48,6 @@ class About extends StatelessWidget {
               text: '\n\nReport issues or feature request to this prject\'s ',
             ),
             _LinkTextSpan(
-              context: context,
               style: linkStyle,
               url: 'https://github.com/WFCD/navis/issues',
               text: 'issues tracker',
@@ -60,7 +58,6 @@ class About extends StatelessWidget {
                   '\n\nMore information on Warframe can be found on their official site\n',
             ),
             _LinkTextSpan(
-              context: context,
               style: linkStyle,
               url: 'https://www.warframe.com/',
               text: 'https://www.warframe.com/',
@@ -90,13 +87,9 @@ class _LinkTextSpan extends TextSpan {
   // manage the recognizer from outside the TextSpan, e.g. in the State of a
   // stateful widget that then hands the recognizer to the TextSpan.
 
-  _LinkTextSpan(
-      {BuildContext context, TextStyle style, String url, String text})
+  _LinkTextSpan({TextStyle style, String url, String text})
       : super(
             style: style,
             text: text ?? url,
-            recognizer: TapGestureRecognizer()
-              ..onTap = () {
-                launchLink(context, url);
-              });
+            recognizer: TapGestureRecognizer()..onTap = () => launchLink(url));
 }

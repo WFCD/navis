@@ -5,15 +5,16 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_custom_tabs/flutter_custom_tabs.dart';
 import 'package:html/parser.dart';
 import 'package:intl/intl.dart' as intl;
+import 'package:navis/themes.dart';
 import 'package:warframe_items_model/warframe_items_model.dart';
 
 import '../global_keys.dart';
 
-Future<void> launchLink(BuildContext context, String link) async {
+Future<void> launchLink(String link) async {
   try {
     await launch(link,
         option: CustomTabsOption(
-          toolbarColor: Theme.of(context).primaryColor,
+          toolbarColor: AppTheme.primaryColor,
           enableDefaultShare: true,
           enableUrlBarHiding: true,
           showPageTitle: true,
@@ -30,20 +31,6 @@ Future<void> launchLink(BuildContext context, String link) async {
       content: Text('No valid link provided by API'),
     ));
   }
-}
-
-String timestamp(DateTime timestamp) {
-  final Duration duration = timestamp.difference(DateTime.now().toUtc()).abs();
-
-  const Duration hour = Duration(hours: 1);
-  const Duration day = Duration(hours: 24);
-
-  if (duration < hour) {
-    return '${duration.inMinutes.floor()}m';
-  } else if (duration >= hour && duration < day) {
-    return '${duration.inHours.floor()}h ${(duration.inMinutes % 60).floor()}m';
-  } else
-    return '${duration.inDays.floor()}d';
 }
 
 String parseHtmlString(String htmlString) {
@@ -66,5 +53,19 @@ extension DateTimeX on DateTime {
     } catch (err) {
       return 'Fetching Date';
     }
+  }
+
+  String get timestamp {
+    final Duration duration = difference(DateTime.now().toUtc()).abs();
+
+    const Duration hour = Duration(hours: 1);
+    const Duration day = Duration(hours: 24);
+
+    if (duration < hour) {
+      return '${duration.inMinutes.floor()}m';
+    } else if (duration >= hour && duration < day) {
+      return '${duration.inHours.floor()}h ${(duration.inMinutes % 60).floor()}m';
+    } else
+      return '${duration.inDays.floor()}d';
   }
 }

@@ -8,6 +8,8 @@ class AppTheme {
   static const _primaryColor = Color(0xE51A5090);
   static const _accentColor = Color(0xFF00BC8C);
 
+  static Color get primaryColor => _primaryColor;
+
   ThemeData get light => ThemeData(
         brightness: Brightness.light,
         primaryColor: _primaryColor,

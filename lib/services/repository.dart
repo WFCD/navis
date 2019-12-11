@@ -4,7 +4,7 @@ import 'package:async/async.dart';
 import 'package:flutter/foundation.dart';
 import 'package:navis/services/notifications/notification_service.dart';
 import 'package:navis/services/storage/cache_storage.service.dart';
-import 'package:navis/utils/utils.dart';
+import 'package:navis/utils/helper_utils.dart';
 import 'package:package_info/package_info.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:warframe_items_model/warframe_items_model.dart';

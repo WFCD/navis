@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:navis/global_keys.dart';
 import 'package:navis/services/repository.dart';
-import 'package:navis/utils/utils.dart';
+import 'package:navis/utils/helper_utils.dart';
 import 'package:navis/widgets/widgets.dart';
 
 import 'about_widget.dart';
@@ -45,8 +45,7 @@ class AboutApp extends StatelessWidget {
         ListTile(
           title: const Text('Report Issues'),
           subtitle: const Text('Report bugs or Request a feature'),
-          onTap: () =>
-              launchLink(context, 'https://github.com/WFCD/navis/issues'),
+          onTap: () => launchLink('https://github.com/WFCD/navis/issues'),
         ),
         const About()
       ],
