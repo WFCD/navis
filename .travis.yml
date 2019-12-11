@@ -19,7 +19,6 @@ before_script:
   - if [  ! -d "flutter" ] ; then git clone https://github.com/flutter/flutter.git -b
     beta; fi;
   - export PATH=./flutter/bin:$PATH
-  - flutter upgrade
 
 jobs:
   include:
