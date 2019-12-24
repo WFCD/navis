@@ -26,8 +26,8 @@ const simple = [
 const filtered = {
   'News': 'News notifications for Prime Access, Streams and Updates.',
   'Cycles': 'Day/Night cycle notifications.',
-  'Resources': 'Resources mostly found in invasions.'
-  //'Fissure Missions': 'Filter fissure notifications by prefered mission type',
+  'Resources': 'Resources mostly found in invasions.',
+  'Fissure Missions': 'Filter fissure notifications by prefered mission type',
   //'Acolytes': 'Notification for when an Acolyte is found',
 };
 

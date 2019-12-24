@@ -2,27 +2,15 @@ import 'package:flutter/material.dart';
 
 class RowItem extends StatelessWidget {
   const RowItem({
-    this.icons = const <Widget>[],
+    Key key,
     @required this.text,
     @required this.child,
+    this.icons = const <Widget>[],
     this.size,
     this.caption = false,
-  });
-
-  factory RowItem.richText(
-      {String title, String richText, Color color, double size}) {
-    return RowItem(
-      text: Text(title),
-      child: Text(
-        richText,
-        style: TextStyle(
-          fontWeight: FontWeight.bold,
-          fontSize: size,
-          color: color,
-        ),
-      ),
-    );
-  }
+  })  : assert(text != null),
+        assert(child != null),
+        super(key: key);
 
   final List<Widget> icons;
   final Widget text;
@@ -30,19 +18,21 @@ class RowItem extends StatelessWidget {
   final double size;
   final bool caption;
 
+  void addIcons(List<Widget> children) {
+    final icons = this.icons.map<Widget>(
+        (i) => Padding(padding: const EdgeInsets.only(right: 4.0), child: i));
+
+    children.insertAll(0, icons);
+  }
+
   @override
   Widget build(BuildContext context) {
-    final _icons = Container(
-        child: Row(children: <Widget>[
-      if (icons.isNotEmpty)
-        ...icons.map((i) =>
-            Padding(padding: const EdgeInsets.only(right: 4.0), child: i)),
-    ]));
+    final children = <Widget>[text, const Spacer(), child];
 
-    return Container(
-      child: Row(
-        children: <Widget>[_icons, text, const Spacer(), child],
-      ),
+    if (icons.isNotEmpty) addIcons(children);
+
+    return FittedBox(
+      child: Row(mainAxisSize: MainAxisSize.min, children: children),
     );
   }
 }

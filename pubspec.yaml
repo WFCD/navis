@@ -18,13 +18,11 @@ dependencies:
   flutter_svg: ^0.14.3
   floating_search_bar: ^0.2.0
   flutter_sticky_header: ^0.4.0
-  worldstate_model:
+  worldstate_api_model:
     git: https://github.com/SlayerOrnstein/worldstate_model.git
-  wfcd_api_wrapper:
-    git: https://github.com/SlayerOrnstein/wfcd_api_wrapper.git
   warframe_items_model:
     git: https://github.com/SlayerOrnstein/warframe_item_models.git
-  hive: ^1.1.1
+  hive: ^1.2.0
   hive_flutter: ^0.2.1
 
 dev_dependencies:
@@ -35,6 +33,7 @@ dev_dependencies:
   test: ^1.6.3
   bloc_test: ^2.2.2
   mockito: ^4.1.1
+  extra_pedantic: ^1.1.1
 
 flutter:
   uses-material-design: true
