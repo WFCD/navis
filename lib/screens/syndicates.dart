@@ -41,8 +41,11 @@ class SyndicatesList extends StatelessWidget {
           alignment: Alignment.centerRight,
           style: Theme.of(context).textTheme.title.copyWith(fontSize: 16),
         ),
-        SyndicateWidget(
-          syndicate: Syndicate(name: 'Simaris', jobs: const <Job>[]),
+        const SyndicateWidget(
+          syndicate: Syndicate(
+            name: 'Simaris',
+            jobs: <Job>[],
+          ),
         )
       ],
     );

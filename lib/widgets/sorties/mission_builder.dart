@@ -10,14 +10,14 @@ class SortieMission extends StatelessWidget {
     @required this.boss,
   });
 
-  final List<Variants> variants;
+  final List<Variant> variants;
   final String faction, boss;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        for (Variants v in variants)
+        for (final v in variants)
           MissionDetails(
             node: v.node,
             modifierDescription: v.modifierDescription,
