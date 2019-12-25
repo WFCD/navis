@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:navis/widgets/common/timer.dart';
 
 import 'row_item.dart';
+import 'timer.dart';
 
 class StatusBanner extends StatelessWidget {
   const StatusBanner({@required this.title, @required this.time});

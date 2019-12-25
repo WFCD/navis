@@ -1,13 +1,13 @@
 import 'dart:io';
 
 import 'package:flutter/foundation.dart';
-import 'package:navis/resources/drop_table_api_provider.dart';
+import 'package:navis/resources/api/drop_table_client.dart';
 import 'package:path_provider/path_provider.dart';
 
 class DropTableRepository {
   const DropTableRepository();
 
-  static const DropTableApiProvider _dropTableProvider = DropTableApiProvider();
+  static const DropTableClient _dropTableProvider = DropTableClient();
 
   Future<DateTime> get timestamp => _dropTableProvider.dropsTimestamp();
 
@@ -32,7 +32,7 @@ class DropTableRepository {
   }
 
   static Future<void> _downloadDrops(File table) async {
-    const DropTableApiProvider _dropTableProvider = DropTableApiProvider();
+    const DropTableClient _dropTableProvider = DropTableClient();
     await _dropTableProvider.downloadDropTable(table);
   }
 

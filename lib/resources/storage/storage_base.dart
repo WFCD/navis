@@ -2,8 +2,8 @@ import 'package:flutter/widgets.dart';
 import 'package:hive/hive.dart';
 
 @immutable
-abstract class StorageRepository {
-  const StorageRepository(this.box);
+abstract class StorageResource {
+  const StorageResource(this.box);
 
   final Box box;
 

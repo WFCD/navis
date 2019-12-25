@@ -2,14 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:navis/constants/notification_filters.dart' as filters;
 import 'package:navis/constants/storage_keys.dart';
+import 'package:navis/resources/storage/storage_base.dart';
 import 'package:navis/utils/enums.dart';
 import 'package:navis/utils/extensions.dart';
 import 'package:navis/utils/theme.dart';
 
-import 'abstract_storage_repository.dart';
-
-class PersistentRepository extends StorageRepository {
-  const PersistentRepository(Box box) : super(box);
+class PersistentResource extends StorageResource {
+  const PersistentResource(Box box) : super(box);
 
   static const String hive = 'settings';
 

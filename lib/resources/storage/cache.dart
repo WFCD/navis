@@ -3,10 +3,10 @@ import 'dart:convert';
 import 'package:hive/hive.dart';
 import 'package:warframe_items_model/warframe_items_model.dart';
 
-import 'abstract_storage_repository.dart';
+import 'storage_base.dart';
 
-class CacheRepository extends StorageRepository {
-  const CacheRepository(Box box) : super(box);
+class CacheResource extends StorageResource {
+  const CacheResource(Box box) : super(box);
 
   Map<String, dynamic> get getDarvoDeal {
     final deal = box.get('deal', defaultValue: '{}') as String;

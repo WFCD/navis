@@ -2,8 +2,8 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:http/http.dart' as http;
 
-class DropTableApiProvider {
-  const DropTableApiProvider();
+class DropTableClient {
+  const DropTableClient();
 
   static const _baseUrl = 'https://drops.warframestat.us/data';
 

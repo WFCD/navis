@@ -7,8 +7,8 @@ import 'package:worldstate_api_model/misc.dart';
 import 'package:worldstate_api_model/worldstate_models.dart';
 import 'package:http/http.dart' as http;
 
-class WorldstateApiProvider {
-  const WorldstateApiProvider();
+class WorldstateClient {
+  const WorldstateClient();
 
   static const String _baseUrl = 'api.warframestat.us';
 

@@ -10,7 +10,8 @@ import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:navis/app.dart';
 import 'package:path_provider/path_provider.dart';
 
-import 'repositories/repositories.dart';
+import 'repository/repositories.dart';
+import 'resources/storage/storage_resources.dart';
 
 Future<void> main() async {
   FlutterError.onError = Crashlytics.instance.recordFlutterError;
@@ -23,8 +24,8 @@ Future<void> main() async {
   Hive.init(cacheDir.path);
 
   final persistent =
-      PersistentRepository(await Hive.openBox<dynamic>('persistent'));
-  final cache = CacheRepository(await Hive.openBox<dynamic>('cache'));
+      PersistentResource(await Hive.openBox<dynamic>('persistent'));
+  final cache = CacheResource(await Hive.openBox<dynamic>('cache'));
 
   const dropTableApi = DropTableRepository();
 
@@ -34,8 +35,8 @@ Future<void> main() async {
     runApp(
       MultiRepositoryProvider(
         providers: <RepositoryProvider>[
-          RepositoryProvider<PersistentRepository>.value(value: persistent),
-          RepositoryProvider<CacheRepository>.value(value: cache),
+          RepositoryProvider<PersistentResource>.value(value: persistent),
+          RepositoryProvider<CacheResource>.value(value: cache),
           RepositoryProvider<WorldstateRepository>(
             create: (_) => const WorldstateRepository(),
           ),

@@ -2,8 +2,8 @@ import 'dart:io';
 
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:navis/repositories/repositories.dart';
-import 'package:navis/resources/drop_table_api_provider.dart';
+import 'package:navis/repository/drop_table_repository.dart';
+import 'package:navis/resources/api/drop_table_client.dart';
 
 Future<void> main() async {
   const methodChannel = MethodChannel('plugins.flutter.io/path_provider');
@@ -12,11 +12,11 @@ Future<void> main() async {
 
   TestWidgetsFlutterBinding.ensureInitialized();
 
-  DropTableApiProvider api;
+  DropTableClient api;
   DropTableRepository repository;
 
   setUpAll(() {
-    api = const DropTableApiProvider();
+    api = const DropTableClient();
     repository = const DropTableRepository();
 
     methodChannel.setMockMethodCallHandler((MethodCall methodCall) async {
