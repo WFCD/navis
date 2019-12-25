@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:worldstate_model/worldstate_models.dart';
+import 'package:worldstate_api_model/worldstate_models.dart';
 
 class VoidTraderInventory extends StatefulWidget {
   const VoidTraderInventory({Key key}) : super(key: key);

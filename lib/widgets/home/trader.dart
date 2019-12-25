@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:navis/blocs/bloc.dart';
 import 'package:navis/widgets/widgets.dart';
-import 'package:worldstate_model/worldstate_models.dart';
+import 'package:worldstate_api_model/worldstate_models.dart';
 
 class Trader extends StatelessWidget {
   const Trader({Key key}) : super(key: key);

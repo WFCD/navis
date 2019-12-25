@@ -7,7 +7,7 @@ import 'package:navis/blocs/bloc.dart';
 import 'package:navis/blocs/worldstate/worldstate_events.dart';
 import 'package:navis/services/storage/persistent_storage.service.dart';
 import 'package:wfcd_api_wrapper/wfcd_wrapper.dart';
-import 'package:worldstate_model/worldstate_models.dart';
+import 'package:worldstate_api_model/worldstate_models.dart';
 
 import '../mock_classes.dart';
 import '../setup_methods.dart';

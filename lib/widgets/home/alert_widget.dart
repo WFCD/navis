@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:navis/widgets/widgets.dart';
-import 'package:worldstate_model/worldstate_models.dart';
+import 'package:worldstate_api_model/worldstate_models.dart';
 
 class AlertWidget extends StatelessWidget {
   AlertWidget({@required this.alert});

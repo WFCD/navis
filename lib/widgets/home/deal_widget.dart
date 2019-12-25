@@ -6,7 +6,7 @@ import 'package:navis/utils/size_config.dart';
 import 'package:navis/utils/helper_utils.dart';
 import 'package:navis/widgets/widgets.dart';
 import 'package:warframe_items_model/warframe_items_model.dart';
-import 'package:worldstate_model/worldstate_models.dart';
+import 'package:worldstate_api_model/worldstate_models.dart';
 
 class DealWidget extends StatelessWidget {
   const DealWidget({Key key, this.deal}) : super(key: key);

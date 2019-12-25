@@ -9,7 +9,7 @@ import 'package:package_info/package_info.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:warframe_items_model/warframe_items_model.dart';
 import 'package:wfcd_api_wrapper/wfcd_wrapper.dart';
-import 'package:worldstate_model/worldstate_models.dart';
+import 'package:worldstate_api_model/worldstate_models.dart';
 
 import 'storage/persistent_storage.service.dart';
 
