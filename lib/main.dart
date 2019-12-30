@@ -11,11 +11,12 @@ import 'package:navis/app.dart';
 import 'package:path_provider/path_provider.dart';
 
 import 'repository/repositories.dart';
-import 'resources/storage/storage_resources.dart';
+import 'resources/storage/cache.dart';
+import 'resources/storage/persistent.dart';
 
 Future<void> main() async {
-  FlutterError.onError = Crashlytics.instance.recordFlutterError;
   WidgetsFlutterBinding.ensureInitialized();
+  FlutterError.onError = Crashlytics.instance.recordFlutterError;
 
   final appDir = await getApplicationDocumentsDirectory();
   final cacheDir = await getTemporaryDirectory();
@@ -27,11 +28,9 @@ Future<void> main() async {
       PersistentResource(await Hive.openBox<dynamic>('persistent'));
   final cache = CacheResource(await Hive.openBox<dynamic>('cache'));
 
-  const dropTableApi = DropTableRepository();
-
   BlocSupervisor.delegate = await HydratedBlocDelegate.build();
 
-  runZoned<void>(() async {
+  runZoned<void>(() {
     runApp(
       MultiRepositoryProvider(
         providers: <RepositoryProvider>[
@@ -40,14 +39,11 @@ Future<void> main() async {
           RepositoryProvider<WorldstateRepository>(
             create: (_) => const WorldstateRepository(),
           ),
-          RepositoryProvider<DropTableRepository>.value(value: dropTableApi)
+          RepositoryProvider<DropTableRepository>(
+              create: (_) => DropTableRepository())
         ],
         child: const NavisApp(),
       ),
     );
-
-    // Run after the app us loaded this way it doesn't get in the way
-    // if it doesn't load.
-    await dropTableApi.initDrops();
   }, onError: Crashlytics.instance.recordError);
 }

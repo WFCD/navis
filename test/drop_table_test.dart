@@ -17,7 +17,7 @@ Future<void> main() async {
 
   setUpAll(() {
     api = const DropTableClient();
-    repository = const DropTableRepository();
+    repository = DropTableRepository();
 
     methodChannel.setMockMethodCallHandler((MethodCall methodCall) async {
       if (methodCall.method == 'getTemporaryDirectory') return directory.path;
