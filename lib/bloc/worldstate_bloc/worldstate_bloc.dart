@@ -5,7 +5,8 @@ import 'package:navis/repository/worldstate_repository.dart';
 import 'package:navis/utils/enums.dart';
 import 'package:worldstate_api_model/worldstate_models.dart';
 
-import './bloc.dart';
+import 'worldstate_event.dart';
+import 'worldstate_state.dart';
 
 class WorldstateBloc extends HydratedBloc<WorldstateEvent, WorldstateState> {
   WorldstateBloc(this.worldstateRepository);
