@@ -5,12 +5,11 @@ version: 1.5.5+66
 dependencies:
   flutter:
     sdk: flutter
-  bloc: ^2.0.0
   equatable: ^1.0.1
-  flutter_bloc: ^2.1.1
+  flutter_bloc: ^3.0.0
   firebase_crashlytics: ^0.1.2+2
   flutter_custom_tabs: ^0.6.0
-  hydrated_bloc: ^2.0.0
+  hydrated_bloc: ^3.0.0
   intl: ^0.16.0
   package_info: ^0.4.0+12
   firebase_messaging: ^6.0.2
@@ -23,15 +22,14 @@ dependencies:
   warframe_items_model:
     git: https://github.com/SlayerOrnstein/warframe_item_models.git
   hive: ^1.2.0
-  hive_flutter: ^0.2.1
-
+  
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_driver:
     sdk: flutter
   test: ^1.6.3
-  bloc_test: ^2.2.2
+  bloc_test: ^3.0.0
   mockito: ^4.1.1
   extra_pedantic: ^1.1.1
 
@@ -61,5 +59,5 @@ flutter:
     - assets/enemys/Corpus/
     - assets/enemys/Infestation/
     - assets/skyboxes/
-    #- assets/maps/
-    #- assets/maps/imgs/
+    - assets/maps/
+    # - assets/maps/imgs/
