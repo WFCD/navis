@@ -26,9 +26,13 @@ class DropTableRepository {
   }
 
   Future<List<SlimDrop>> search(String term) async {
-    final instance = DropSearchInstance(term, table);
+    if (table != null) {
+      final instance = DropSearchInstance(term, table);
 
-    return compute(_searcher, instance);
+      return compute(_searcher, instance);
+    }
+
+    return null;
   }
 
   Future<DateTime> updateDrops(DateTime timestamp) async {
