@@ -62,6 +62,9 @@ const acolytes = {
 
 const Map<String, String> resources = {
   NotificationKeys.sniptronVandalBP: 'Snipetron Vandal Blueprint',
+  NotificationKeys.sniptronVandalBarrel: 'Snipetron Vandal Barrel',
+  NotificationKeys.sniptronVandalReceiver: 'Snipetron Vandal Receiver',
+  NotificationKeys.sniptronVandalStock: 'Snipetron Vandal Stock',
   NotificationKeys.sheevBlade: 'Sheev Blade',
   NotificationKeys.sheevHeatsink: 'Sheev Heatsink',
   NotificationKeys.sheevHilt: 'Sheev Hilt',
@@ -84,5 +87,13 @@ const Map<String, String> resources = {
   NotificationKeys.orokinCatalyst: 'Orokin Catalyst',
   NotificationKeys.orokinReactor: 'Orokin Reactor',
   NotificationKeys.forma: 'Forma',
-  NotificationKeys.exilusAdapter: 'Exilus Adapter'
+  NotificationKeys.exilusAdapter: 'Exilus Adapter',
+  NotificationKeys.karakWraithBP: 'Karak Wraith Blueprint',
+  NotificationKeys.karakWraithBarrel: 'Karak Wraith Barrel',
+  NotificationKeys.karakWraithReceiver: 'Karak Wraith Receiver',
+  NotificationKeys.karakWraithStock: 'Karak Wraith Stock',
+  NotificationKeys.strunBP: 'Strun Wraith Blueprint',
+  NotificationKeys.strunBarrel: 'Strun Wraith Barrel',
+  NotificationKeys.strunReciever: 'Strun Wraith Reciever',
+  NotificationKeys.strunStock: 'Strun Wraith Stock'
 };

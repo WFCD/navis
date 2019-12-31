@@ -73,4 +73,9 @@ class NotificationKeys {
   static const String orokinReactor = 'orokin_reactor';
   static const String forma = 'forma';
   static const String exilusAdapter = 'exilus_adapter';
+
+  static const String strunBP = 'strun_bp';
+  static const String strunBarrel = 'strun_barrel';
+  static const String strunReciever = 'strun_reciever';
+  static const String strunStock = 'strun_stock';
 }
