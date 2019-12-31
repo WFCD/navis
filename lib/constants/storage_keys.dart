@@ -66,7 +66,7 @@ class NotificationKeys {
 
   static const String fieldron = 'fieldron';
   static const String detoniteInjector = 'detonite_injector';
-  static const String aladNavCoordinate = 'alad_nav_coordinate';
+  static const String aladNavCoordinate = 'mutalist_alad_nav_coordinate';
   static const String mutagenMass = 'mutagen_mass';
   static const String orokinCatalyst = 'orokin_catalyst';
   static const String orokinReactor = 'orokin_reactor';

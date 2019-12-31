@@ -1,3 +1,5 @@
+import 'dart:collection';
+
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -40,6 +42,8 @@ class FilterDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final persistent = RepositoryProvider.of<Repository>(context).persistent;
+    final _options =
+        SplayTreeMap<String, String>.from(options, (a, b) => a.compareTo(b));
 
     return WatchBoxBuilder(
       box: persistent.hiveBox,
@@ -51,9 +55,9 @@ class FilterDialog extends StatelessWidget {
           dialogTitle: const Text('Filter Options'),
           child: SingleChildScrollView(
             child: Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
-              for (String key in options.keys)
+              for (String key in _options.keys)
                 NotificationCheckBox(
-                  option: options[key],
+                  option: _options[key],
                   optionKey: key,
                   value: instance[key],
                 )
