@@ -1,3 +1,5 @@
+import 'dart:collection';
+
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:navis/constants/notification_filters.dart' as filters;
@@ -108,9 +110,11 @@ class PersistentStorageService extends StorageService {
   }
 
   Map<String, bool> get resources {
+    final resources = SplayTreeMap<String, String>.from(
+        filters.resources, (a, b) => a.compareTo(b));
+
     return {
-      for (String r in filters.resources.keys)
-        r: _box.get(r, defaultValue: false)
+      for (String r in resources.keys) r: _box.get(r, defaultValue: false)
     };
   }
 }
