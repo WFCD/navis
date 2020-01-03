@@ -19,13 +19,13 @@ class Home extends StatelessWidget {
             cacheExtent: 3,
             children: <Widget>[
               const NewsBuilder(),
-              if (worldstate.isEventActive) const EventBuilder(),
-              if (worldstate.areAcolytesActive) const Acolytes(),
-              if (worldstate.activeArbitration) const ArbitrationBuilder(),
-              if (worldstate.isAlertActive) const AlertTile(),
+              if (worldstate.eventsActive) const EventBuilder(),
+              if (worldstate.acolytesActive) const Acolytes(),
+              if (worldstate.arbitrationActive) const ArbitrationBuilder(),
+              if (worldstate.alertsActive) const AlertTile(),
               const Cycles(),
               const Trader(),
-              if (worldstate.areDealsActive) const Deals(),
+              if (worldstate.dealsActive) const Deals(),
             ],
           );
         }
