@@ -24,9 +24,11 @@ jobs:
   include:
     - name: Test
       script:
+        - 'if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then bash ./travis/run_on_pull_requests; fi'
+        - 'if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then bash ./travis/run_on_non_pull_requests; fi'
         - flutter pub get
         - flutter test
-        - flutter build apk --target-platform android-arm
+        - flutter build apk --debug --target-platform android-arm
 
     - name: Deploy
       if: tag IS present
