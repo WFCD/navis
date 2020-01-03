@@ -10,7 +10,7 @@ jobs:
         with:
           java-version: '12.x'
       - uses: subosito/flutter-action@v1
-      - run: flutter build apk  --release
+      - run: flutter build apk  --debug --split-per-abi
       - name: upload artifects
         uses: actions/upload-artifact@master
         with:
