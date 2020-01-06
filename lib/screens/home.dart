@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:navis/blocs/bloc.dart';
 import 'package:navis/widgets/home/home.dart';
 
+import '../widgets/home/home.dart';
+
 class Home extends StatelessWidget {
   const Home({Key key = const PageStorageKey<String>('feed')})
       : super(key: key);
@@ -9,23 +11,23 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RefreshIndicator(
-      onRefresh: () => BlocProvider.of<WorldstateBloc>(context).update(),
+      onRefresh: BlocProvider.of<WorldstateBloc>(context).update,
       child: BlocBuilder<WorldstateBloc, WorldStates>(
           builder: (BuildContext context, WorldStates state) {
         if (state is WorldstateLoaded) {
-          final worldstate = state.worldstate;
+          final _state = state.worldstate;
 
           return ListView(
             cacheExtent: 3,
             children: <Widget>[
-              const NewsBuilder(),
-              if (worldstate.eventsActive) const EventBuilder(),
-              if (worldstate.acolytesActive) const Acolytes(),
-              if (worldstate.arbitrationActive) const ArbitrationBuilder(),
-              if (worldstate.alertsActive) const AlertTile(),
+              NewsPanel(news: _state.news),
+              if (_state.eventsActive) EventsPanel(events: _state.events),
+              if (_state.arbitrationActive)
+                ArbitrationPanel(arbitration: _state.arbitration),
+              if (_state.alertsActive) AlertPanel(alerts: _state.alerts),
               const Cycles(),
-              const Trader(),
-              if (worldstate.dealsActive) const Deals(),
+              VoidTraderPanel(trader: _state.voidTrader),
+              if (_state.dealsActive) DarvoPanel(deals: _state.dailyDeals),
             ],
           );
         }

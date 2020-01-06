@@ -10,6 +10,11 @@ Worldstate cleanState(Worldstate state) {
       a.active == false ||
       a.expiry.difference(DateTime.now().toUtc()) < const Duration(seconds: 1));
 
+  state.dailyDeals.retainWhere((d) {
+    return d.total - d.sold > 0 ||
+        d.expiry.difference(DateTime.now()) > const Duration(seconds: 60);
+  });
+
   state.news.retainWhere((art) => art.translations['en'] != null);
   state.news.sort((a, b) => b.date.compareTo(a.date));
 

@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:navis/blocs/bloc.dart';
 import 'package:navis/widgets/widgets.dart';
 import 'package:worldstate_api_model/worldstate_models.dart';
 
-class Trader extends StatelessWidget {
-  const Trader({Key key}) : super(key: key);
+class VoidTraderPanel extends StatelessWidget {
+  const VoidTraderPanel({Key key, this.trader}) : super(key: key);
+
+  final VoidTrader trader;
+
   @override
   Widget build(BuildContext context) {
     final emptyBox = Container();
@@ -12,53 +14,39 @@ class Trader extends StatelessWidget {
 
     return Tiles(
         title: 'Void Trader',
-        child: BlocBuilder(
-          bloc: BlocProvider.of<WorldstateBloc>(context),
-          condition: (WorldStates previous, WorldStates current) {
-            final previousTrader = previous.worldstate?.voidTrader;
-            final currentTrader = previous.worldstate?.voidTrader;
-
-            return previousTrader != currentTrader ?? false;
-          },
-          builder: (BuildContext context, WorldStates state) {
-            final trader = state.worldstate?.voidTrader;
-
-            return Column(children: <Widget>[
-              RowItem(
-                  text: Text(
-                    trader.active
-                        ? '${trader.character} leaves in'
-                        : '${trader.character} arrives in',
-                    style: title,
-                  ),
-                  child: CountdownBox(
-                      expiry:
-                          trader.active ? trader.expiry : trader.activation)),
-              const SizedBox(height: 4.0),
-              trader.active
-                  ? RowItem(
-                      text: Text('Loaction', style: title),
-                      child: StaticBox.text(
-                        text: '${trader.location}',
-                        color: Colors.blueAccent[400],
-                      ))
-                  : emptyBox,
-              const SizedBox(height: 4.0),
-              RowItem(
-                text: Text(
-                  trader.active ? 'Leaves on' : 'Arrives on',
-                  style: title,
-                ),
-                child: trader.active
-                    ? DateView(expiry: trader.expiry)
-                    : DateView(expiry: trader.activation),
+        child: Column(children: <Widget>[
+          RowItem(
+              text: Text(
+                trader.active
+                    ? '${trader.character} leaves in'
+                    : '${trader.character} arrives in',
+                style: title,
               ),
-              trader.active
-                  ? _InventoryButton(inventory: trader.inventory)
-                  : emptyBox,
-            ]);
-          },
-        ));
+              child: CountdownBox(
+                  expiry: trader.active ? trader.expiry : trader.activation)),
+          const SizedBox(height: 4.0),
+          trader.active
+              ? RowItem(
+                  text: Text('Loaction', style: title),
+                  child: StaticBox.text(
+                    text: '${trader.location}',
+                    color: Colors.blueAccent[400],
+                  ))
+              : emptyBox,
+          const SizedBox(height: 4.0),
+          RowItem(
+            text: Text(
+              trader.active ? 'Leaves on' : 'Arrives on',
+              style: title,
+            ),
+            child: trader.active
+                ? DateView(expiry: trader.expiry)
+                : DateView(expiry: trader.activation),
+          ),
+          trader.active
+              ? _InventoryButton(inventory: trader.inventory)
+              : emptyBox,
+        ]));
   }
 }
 

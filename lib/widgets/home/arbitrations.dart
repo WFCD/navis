@@ -1,33 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:navis/blocs/bloc.dart';
 import 'package:navis/utils/size_config.dart';
 import 'package:navis/widgets/icons.dart';
 import 'package:navis/widgets/widgets.dart';
+import 'package:worldstate_api_model/worldstate_models.dart';
 
-class ArbitrationBuilder extends StatelessWidget {
-  const ArbitrationBuilder({Key key}) : super(key: key);
+class ArbitrationPanel extends StatelessWidget {
+  const ArbitrationPanel({Key key, this.arbitration}) : super(key: key);
+
+  final Arbitration arbitration;
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<WorldstateBloc, WorldStates>(
-      condition: (previous, current) {
-        return (previous.worldstate?.arbitration?.expiry !=
-                current.worldstate?.arbitration?.expiry) ??
-            false;
-      },
-      builder: (context, state) {
-        final arbitration = state.worldstate.arbitration;
-
-        return ArbitrationWidget(
-          node: arbitration?.node,
-          type: arbitration?.type,
-          enemy: arbitration?.enemy,
-          expiry: arbitration?.expiry ??
-              DateTime.now().add(const Duration(minutes: 1)),
-          archwingRequired: arbitration.archwing || arbitration.sharkwing,
-        );
-      },
+    return ArbitrationWidget(
+      node: arbitration?.node,
+      type: arbitration?.type,
+      enemy: arbitration?.enemy,
+      expiry:
+          arbitration?.expiry ?? DateTime.now().add(const Duration(minutes: 1)),
+      archwingRequired: arbitration.archwing || arbitration.sharkwing,
     );
   }
 }

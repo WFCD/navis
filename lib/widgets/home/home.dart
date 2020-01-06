@@ -9,4 +9,5 @@ export 'deals_builder.dart';
 export 'events_builder.dart';
 export 'events_widget.dart';
 export 'news_builder.dart';
+export 'sentient_outpost.dart';
 export 'trader.dart';
