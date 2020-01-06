@@ -22,14 +22,17 @@ class EventWidget extends StatelessWidget {
           _EventMiddle(
             victimNode: event.victimNode,
             health: event.eventHealth.toDouble() ?? event.health,
-            rewards: event.rewards,
             expiry: event.expiry,
           ),
           const SizedBox(height: 4),
           _EventFooter(
             affiliatedWith: event.affiliatedWith,
-            rewards: event.eventRewards ?? event.health,
+            rewards: event.eventRewards,
             jobs: event?.jobs,
+            credits: event.rewards
+                .where((r) => r.credits > 0)
+                .map((r) => r.credits)
+                .toList(),
           ),
         ],
       ),
@@ -87,13 +90,11 @@ class _EventMiddle extends StatelessWidget {
     Key key,
     @required this.victimNode,
     @required this.health,
-    @required this.rewards,
     @required this.expiry,
   }) : super(key: key);
 
   final String victimNode;
   final double health;
-  final List<Reward> rewards;
   final DateTime expiry;
 
   Color _healthColor(double health) {
@@ -119,12 +120,6 @@ class _EventMiddle extends StatelessWidget {
           color: Colors.red,
           style: style,
         ),
-      if (rewards.where((r) => r.credits > 0).isNotEmpty)
-        StaticBox.text(
-          text: '${rewards.firstWhere((r) => r.credits > 0).credits}cr',
-          color: Theme.of(context).primaryColor,
-          style: style,
-        ),
       const SizedBox(height: 4),
       StaticBox.text(
         text: '${health.toStringAsFixed(2)}% remaining',
@@ -140,17 +135,25 @@ class _EventFooter extends StatelessWidget {
     Key key,
     @required this.affiliatedWith,
     @required this.rewards,
+    @required this.credits,
     @required this.jobs,
   }) : super(key: key);
 
   final String affiliatedWith;
   final List<String> rewards;
+  final List<int> credits;
   final List<Job> jobs;
 
-  Widget _addReward(TextStyle style) {
+  Widget _addReward(BuildContext context, TextStyle style) {
     return Wrap(
       alignment: WrapAlignment.center,
       children: <Widget>[
+        if (credits.isNotEmpty)
+          StaticBox.text(
+            text: '${credits.fold(0, (a, b) => a + b)}cr',
+            color: Theme.of(context).primaryColor,
+            style: style,
+          ),
         for (String r in rewards)
           StaticBox.text(text: r, style: style, color: Colors.green)
       ],
@@ -186,7 +189,7 @@ class _EventFooter extends StatelessWidget {
         },
       );
     } else {
-      return _addReward(style);
+      return _addReward(context, style);
     }
   }
 }
