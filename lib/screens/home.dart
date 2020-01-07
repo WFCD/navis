@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:navis/blocs/bloc.dart';
 import 'package:navis/widgets/home/home.dart';
+import 'package:navis/widgets/home/sentient_outpost.dart';
 
 class Home extends StatelessWidget {
   const Home({Key key = const PageStorageKey<String>('feed')})
@@ -22,6 +23,8 @@ class Home extends StatelessWidget {
               if (worldstate.eventsActive) const EventBuilder(),
               if (worldstate.acolytesActive) const Acolytes(),
               if (worldstate.arbitrationActive) const ArbitrationBuilder(),
+              if (worldstate.outpostActive)
+                SentientOutpostPanel(outpost: worldstate.sentientOutposts),
               if (worldstate.alertsActive) const AlertTile(),
               const Cycles(),
               const Trader(),
