@@ -25,6 +25,8 @@ class Home extends StatelessWidget {
               if (_state.arbitrationActive)
                 ArbitrationPanel(arbitration: _state.arbitration),
               if (_state.alertsActive) AlertPanel(alerts: _state.alerts),
+              if (_state.outpostActive)
+                SentientOutpostPanel(outpost: _state.sentientOutposts),
               const Cycles(),
               VoidTraderPanel(trader: _state.voidTrader),
               if (_state.dealsActive) DarvoPanel(deals: _state.dailyDeals),
