@@ -10,32 +10,30 @@ class EventWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: <Widget>[
-          _EventHeader(
-            description: event.description,
-            tooltip: event.tooltip,
-          ),
-          const SizedBox(height: 16),
-          _EventMiddle(
-            victimNode: event.victimNode,
-            health: event.eventHealth.toDouble() ?? event.health,
-            expiry: event.expiry,
-          ),
-          const SizedBox(height: 4),
-          _EventFooter(
-            affiliatedWith: event.affiliatedWith,
-            rewards: event.eventRewards,
-            jobs: event?.jobs,
-            credits: event.rewards
-                .where((r) => r.credits > 0)
-                .map((r) => r.credits)
-                .toList(),
-          ),
-        ],
-      ),
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: <Widget>[
+        _EventHeader(
+          description: event.description,
+          tooltip: event.tooltip,
+        ),
+        const SizedBox(height: 16),
+        _EventMiddle(
+          victimNode: event.victimNode,
+          health: event.eventHealth.toDouble() ?? event.health,
+          expiry: event.expiry,
+        ),
+        const SizedBox(height: 4),
+        _EventFooter(
+          affiliatedWith: event.affiliatedWith,
+          rewards: event.eventRewards,
+          jobs: event?.jobs,
+          credits: event.rewards
+              .where((r) => r.credits > 0)
+              .map((r) => r.credits)
+              .toList(),
+        ),
+      ],
     );
   }
 }
@@ -113,20 +111,23 @@ class _EventMiddle extends StatelessWidget {
         .subhead
         .copyWith(fontWeight: FontWeight.w500, fontSize: 15);
 
-    return Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
-      if (victimNode != null)
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        if (victimNode != null)
+          StaticBox.text(
+            text: victimNode,
+            color: Colors.red,
+            style: style,
+          ),
+        const SizedBox(height: 4),
         StaticBox.text(
-          text: victimNode,
-          color: Colors.red,
+          text: '${health.toStringAsFixed(2)}% remaining',
+          color: _healthColor(health),
           style: style,
-        ),
-      const SizedBox(height: 4),
-      StaticBox.text(
-        text: '${health.toStringAsFixed(2)}% remaining',
-        color: _healthColor(health),
-        style: style,
-      )
-    ]);
+        )
+      ],
+    );
   }
 }
 

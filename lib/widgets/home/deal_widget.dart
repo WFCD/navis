@@ -32,15 +32,19 @@ class DealWidget extends StatelessWidget {
 
           return Column(
             children: <Widget>[
-              Row(
-                children: <Widget>[
-                  DealImage(imageUrl: item.imageUrl),
-                  const SizedBox(width: 16.0),
-                  DealDetails(
-                    itemName: item.name,
-                    itemDescription: parseHtmlString(item.description),
-                  ),
-                ],
+              Expanded(
+                child: Row(
+                  children: <Widget>[
+                    DealImage(imageUrl: item.imageUrl),
+                    const SizedBox(width: 8.0),
+                    Flexible(
+                      child: DealDetails(
+                        itemName: item.name,
+                        itemDescription: parseHtmlString(item.description),
+                      ),
+                    ),
+                  ],
+                ),
               ),
               const SizedBox(height: 16.0),
               Row(
@@ -109,17 +113,13 @@ class DealDetails extends StatelessWidget {
           style: textTheme.subhead.copyWith(fontWeight: FontWeight.w500),
         ),
         const SizedBox(height: 8.0),
-        Container(
-          height: SizeConfig.heightMultiplier * 15,
-          width: SizeConfig.widthMultiplier * 40,
-          child: Text(
-            itemDescription,
-            maxLines: 7,
-            overflow: TextOverflow.ellipsis,
-            style: textTheme.caption.copyWith(
-              fontSize: 13,
-              fontStyle: FontStyle.italic,
-            ),
+        Text(
+          itemDescription,
+          maxLines: 7,
+          overflow: TextOverflow.ellipsis,
+          style: textTheme.caption.copyWith(
+            fontSize: SizeConfig.textMultiplier * 3.5,
+            fontStyle: FontStyle.italic,
           ),
         ),
         itemInfo ?? Container()

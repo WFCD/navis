@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:navis/global_keys.dart';
+import 'package:navis/utils/size_config.dart';
 import 'package:navis/widgets/widgets.dart';
 import 'package:worldstate_api_model/worldstate_models.dart';
 
@@ -20,6 +21,7 @@ class DarvoPanel extends StatelessWidget {
         bucket: dealsBucket,
         child: Carousel(
           dotCount: deals.length,
+          height: SizeConfig.heightMultiplier * 36,
           enableIndicator: deals.length > 1,
           children: deals.map((d) => DealWidget(deal: d)).toList(),
         ),

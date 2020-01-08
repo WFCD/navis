@@ -59,43 +59,45 @@ class _CarouselState extends State<Carousel> {
 
   @override
   Widget build(BuildContext context) {
-    final _height = SizeConfig.heightMultiplier * 35.7;
+    final _height = SizeConfig.heightMultiplier * 25;
     final width = SizeConfig.widthMultiplier * 20;
 
-    return Stack(
-      alignment: AlignmentDirectional.bottomCenter,
-      children: <Widget>[
-        LimitedBox(
-          maxHeight: widget.height ?? _height + 17,
-          maxWidth: width,
-          child: PageView.builder(
-            controller: _pageController,
-            onPageChanged: onPageChanged,
-            itemCount: widget.children.length,
-            itemBuilder: (BuildContext context, int index) =>
-                widget.children[index],
-          ),
-        ),
-        if (widget.enableIndicator)
-          Align(
-            heightFactor: 9.4,
-            alignment: Alignment.bottomCenter,
-            child: FittedBox(
-              child: StreamBuilder<int>(
-                stream: _currentPage.stream,
-                initialData: _page?.toInt() ?? 0,
-                builder: (BuildContext context, AsyncSnapshot<int> snapshot) {
-                  return Indicator(
-                    numberOfDot: widget.dotCount,
-                    position: snapshot.data,
-                    dotSize: const Size.square(9.0),
-                    dotActiveColor: Theme.of(context).accentColor,
-                  );
-                },
-              ),
+    return Center(
+      child: Stack(
+        alignment: AlignmentDirectional.bottomCenter,
+        children: <Widget>[
+          LimitedBox(
+            maxHeight: widget.height ?? _height + 17,
+            maxWidth: width,
+            child: PageView.builder(
+              controller: _pageController,
+              onPageChanged: onPageChanged,
+              itemCount: widget.children.length,
+              itemBuilder: (BuildContext context, int index) =>
+                  widget.children[index],
             ),
-          )
-      ],
+          ),
+          if (widget.enableIndicator)
+            Align(
+              heightFactor: 9.4,
+              alignment: Alignment.bottomCenter,
+              child: FittedBox(
+                child: StreamBuilder<int>(
+                  stream: _currentPage.stream,
+                  initialData: _page?.toInt() ?? 0,
+                  builder: (BuildContext context, AsyncSnapshot<int> snapshot) {
+                    return Indicator(
+                      numberOfDot: widget.dotCount,
+                      position: snapshot.data,
+                      dotSize: const Size.square(9.0),
+                      dotActiveColor: Theme.of(context).accentColor,
+                    );
+                  },
+                ),
+              ),
+            )
+        ],
+      ),
     );
   }
 }

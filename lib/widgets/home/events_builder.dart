@@ -1,7 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:navis/global_keys.dart';
-import 'package:navis/utils/size_config.dart';
 import 'package:navis/widgets/widgets.dart';
 import 'package:worldstate_api_model/worldstate_models.dart';
 
@@ -19,7 +18,6 @@ class EventsPanel extends StatelessWidget {
         key: eventsKey,
         bucket: eventsBucket,
         child: Carousel(
-          height: SizeConfig.heightMultiplier * 30,
           dotCount: events.length,
           enableIndicator: events.length > 1,
           children: events.map((e) => EventWidget(event: e)).toList(),
