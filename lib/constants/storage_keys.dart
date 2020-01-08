@@ -34,6 +34,7 @@ class NotificationKeys {
   static const String sniptronVandalReceiver = 'sniptron_vandal_receiver';
   static const String sniptronVandalStock = 'sniptron_vandal_stock';
 
+  static const String sheevBP = 'sheev_bp';
   static const String sheevBlade = 'sheev_blade';
   static const String sheevHeatsink = 'sheev_heatsink';
   static const String sheevHilt = 'sheev_hilt';
