@@ -60,7 +60,7 @@ const Map<String, String> resources = {
   NotificationKeys.sniptronVandalBarrel: 'Snipetron Vandal Barrel',
   NotificationKeys.sniptronVandalReceiver: 'Snipetron Vandal Receiver',
   NotificationKeys.sniptronVandalStock: 'Snipetron Vandal Stock',
-  NotificationKeys.sheevBP: 'Sheeve Blueprint',
+  NotificationKeys.sheevBP: 'Sheev Blueprint',
   NotificationKeys.sheevBlade: 'Sheev Blade',
   NotificationKeys.sheevHeatsink: 'Sheev Heatsink',
   NotificationKeys.sheevHilt: 'Sheev Hilt',
