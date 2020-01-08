@@ -9,4 +9,5 @@ class FactionIcons {
   static const IconData grineer = IconData(0xe806, fontFamily: _kFontFam);
   static const IconData infested = IconData(0xe807, fontFamily: _kFontFam);
   static const IconData corpus = IconData(0xe808, fontFamily: _kFontFam);
+  static const IconData sentient = IconData(0xe809, fontFamily: _kFontFam);
 }
