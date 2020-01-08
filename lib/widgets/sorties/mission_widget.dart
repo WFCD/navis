@@ -52,6 +52,8 @@ class MissionDetails extends StatelessWidget {
       fontStyle: FontStyle.normal,
     );
 
+    final boss = this.boss.replaceAll(' ', '_');
+
     return SkyboxCard(
       height: SizeConfig.heightMultiplier * 25,
       node: node,
