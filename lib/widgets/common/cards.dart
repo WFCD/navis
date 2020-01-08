@@ -1,28 +1,29 @@
 import 'package:flutter/material.dart';
 
 class Tiles extends StatelessWidget {
-  const Tiles({this.title, @required this.child, this.height, this.color});
+  const Tiles({
+    Key key,
+    this.height,
+    this.color,
+    this.title,
+    @required this.child,
+  }) : super(key: key);
 
-  final String title;
-  final Widget child;
   final double height;
   final Color color;
+  final String title;
+  final Widget child;
 
   Widget _buildTitle(BuildContext context, String text) {
     final titleStyle =
-        Theme.of(context).textTheme.title.copyWith(fontWeight: FontWeight.bold);
+        Theme.of(context).textTheme.title.copyWith(fontWeight: FontWeight.w500);
 
     return Padding(
-      padding: const EdgeInsets.only(bottom: 8, top: 4),
-      child: Column(
-        children: <Widget>[
-          Text(
-            title,
-            textAlign: TextAlign.center,
-            style: titleStyle,
-          ),
-          const Divider(),
-        ],
+      padding: const EdgeInsets.symmetric(vertical: 6.0),
+      child: Text(
+        title,
+        textAlign: TextAlign.center,
+        style: titleStyle,
       ),
     );
   }
@@ -30,19 +31,22 @@ class Tiles extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: const EdgeInsets.fromLTRB(6, 8, 6, 8),
+      margin: const EdgeInsets.symmetric(horizontal: 6.0, vertical: 8.0),
       color: color,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
-      elevation: 6.0,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4.0)),
+      elevation: 4.0,
       child: Container(
-          margin: const EdgeInsets.fromLTRB(4, 6, 4, 6),
-          padding: const EdgeInsets.all(2),
-          height: height,
-          alignment: Alignment.center,
-          child: Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
-            if (title != null) _buildTitle(context, title),
-            child
-          ])),
+        margin: const EdgeInsets.symmetric(horizontal: 4.0, vertical: 6.0),
+        padding: const EdgeInsets.symmetric(horizontal: 4.0, vertical: 4.0),
+        height: height,
+        child: Column(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              if (title != null) _buildTitle(context, title),
+              child
+            ]),
+      ),
     );
   }
 }
