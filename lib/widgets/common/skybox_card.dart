@@ -29,19 +29,25 @@ class SkyboxCard extends StatelessWidget {
         margin: margin,
         child: AnimatedSwitcher(
           duration: const Duration(milliseconds: 200),
-          child: Container(
-            height: height,
-            width: width,
-            alignment: alignment,
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                colorFilter: ColorFilter.mode(
-                    Colors.black.withOpacity(0.3), BlendMode.dstIn),
-                image: skybox(context, node),
-                fit: BoxFit.cover,
-              ),
-            ),
-            child: child,
+          child: FutureBuilder<ImageProvider>(
+            initialData: const AssetImage('assets/skyboxes/Derelict.webp'),
+            future: skybox(context, node),
+            builder: (context, snapshot) {
+              return Container(
+                height: height,
+                width: width,
+                alignment: alignment,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    colorFilter: ColorFilter.mode(
+                        Colors.black.withOpacity(0.3), BlendMode.dstIn),
+                    image: snapshot.data,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                child: child,
+              );
+            },
           ),
         ),
       ),

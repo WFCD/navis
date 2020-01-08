@@ -37,18 +37,6 @@ Worldstate cleanState(Worldstate state) {
   return state;
 }
 
-Future<bool> _checkBackground(BuildContext context, String node) async {
-  bool doesBackgroundExist = true;
-
-  await precacheImage(
-    AssetImage(node),
-    context,
-    onError: (e, stack) => doesBackgroundExist = false,
-  );
-
-  return doesBackgroundExist;
-}
-
 String _getBackgroundPath(String node) {
   final nodeRegExp = RegExp(r'\(([^)]*)\)');
   final nodeBackground = nodeRegExp.firstMatch(node)?.group(1);
@@ -56,17 +44,20 @@ String _getBackgroundPath(String node) {
   return 'assets/skyboxes/${nodeBackground.replaceAll(' ', '_')}.webp';
 }
 
-ImageProvider skybox(BuildContext context, String node) {
+Future<ImageProvider> skybox(BuildContext context, String node) async {
   const derelict = AssetImage('assets/skyboxes/Derelict.webp');
-
-  bool isError = false;
   final solNode = _getBackgroundPath(node);
+  bool doesBackgroundExist = true;
 
   if (solNode == 'undefined') return derelict;
 
-  _checkBackground(context, solNode).then((data) => isError = data);
+  await precacheImage(
+    AssetImage(solNode),
+    context,
+    onError: (e, stack) => doesBackgroundExist = false,
+  );
 
-  return isError ? derelict : AssetImage(solNode);
+  return doesBackgroundExist ? AssetImage(solNode) : derelict;
 }
 
 bool compareIds(
