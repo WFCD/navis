@@ -40,23 +40,24 @@ class _InvasionWidgetState extends State<InvasionWidget>
     super.build(context);
 
     return SkyboxCard(
-      height: 200,
       node: widget.invasion.node,
+      margin: const EdgeInsets.symmetric(horizontal: 4, vertical: 4),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 24.0),
-        child: Column(children: <Widget>[
-          const Spacer(),
+        child: Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
           InvasionDetails(
             node: widget.invasion.node,
             description: widget.invasion.desc,
             eta: widget.invasion.eta,
           ),
-          const Spacer(),
-          InvasionReward(
-            attackerReward: widget.invasion.attackerReward.itemString,
-            defenderReward: widget.invasion.defenderReward.itemString,
-            attackingFaction: widget.invasion.attackingFaction,
-            defendingFaction: widget.invasion.defendingFaction,
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8.0),
+            child: InvasionReward(
+              attackerReward: widget.invasion.attackerReward.itemString,
+              defenderReward: widget.invasion.defenderReward.itemString,
+              attackingFaction: widget.invasion.attackingFaction,
+              defendingFaction: widget.invasion.defendingFaction,
+            ),
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 4.0, vertical: 8.0),

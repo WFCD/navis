@@ -44,14 +44,16 @@ class ArbitrationWidget extends StatelessWidget {
 
     return SkyboxCard(
       node: node,
-      height: 150,
       child: Stack(
         alignment: AlignmentDirectional.center,
         children: <Widget>[
-          Icon(
-            SyndicateIcons.hexis,
-            size: 125,
-            color: Colors.grey[600],
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8.0),
+            child: Icon(
+              SyndicateIcons.hexis,
+              size: 125,
+              color: Colors.grey[600],
+            ),
           ),
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
