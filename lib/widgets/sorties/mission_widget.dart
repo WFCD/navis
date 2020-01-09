@@ -55,23 +55,22 @@ class MissionDetails extends StatelessWidget {
     final boss = this.boss.replaceAll(' ', '_');
 
     return SkyboxCard(
-      height: SizeConfig.heightMultiplier * 25,
       node: node,
+      margin: const EdgeInsets.symmetric(horizontal: 3, vertical: 3),
       child: Container(
-        padding: const EdgeInsets.only(left: 16, top: 16, bottom: 16),
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
+        height: SizeConfig.heightMultiplier * 25,
         child: Stack(
-          // mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             Container(
               width: 250,
               child: Column(
+                mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Text('$missionType - $node', style: sortie),
                   const SizedBox(height: 16),
-                  LimitedBox(
-                    maxHeight: SizeConfig.heightMultiplier * 25,
-                    maxWidth: SizeConfig.widthMultiplier * 50,
+                  Expanded(
                     child: Text(modifierDescription, style: info),
                   )
                 ],
@@ -85,7 +84,6 @@ class MissionDetails extends StatelessWidget {
                   isAssassination
                       ? 'assets/enemys/$faction/$boss.webp'
                       : _getAsset(variantIndex),
-                  fit: BoxFit.contain,
                 ),
               ),
             ),
