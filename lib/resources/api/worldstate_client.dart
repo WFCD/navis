@@ -10,7 +10,7 @@ import 'package:http/http.dart' as http;
 class WorldstateClient {
   const WorldstateClient();
 
-  static const String _baseUrl = 'api.warframestat.us';
+  static const String _baseUrl = 'https://api.warframestat.us';
 
   Future<Worldstate> getWorldstate(Platforms platform) async {
     final path = platformToString(platform);
