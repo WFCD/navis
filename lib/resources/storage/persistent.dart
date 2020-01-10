@@ -3,9 +3,9 @@ import 'package:hive/hive.dart';
 import 'package:navis/constants/notification_filters.dart' as filters;
 import 'package:navis/constants/storage_keys.dart';
 import 'package:navis/resources/storage/storage_base.dart';
+import 'package:navis/themes.dart';
 import 'package:navis/utils/enums.dart';
-import 'package:navis/utils/extensions.dart';
-import 'package:navis/utils/theme.dart';
+// import 'package:navis/utils/extensions.dart';
 
 class PersistentResource extends StorageResource {
   const PersistentResource(Box box) : super(box);
@@ -32,9 +32,9 @@ class PersistentResource extends StorageResource {
 
     switch (flip) {
       case 0:
-        return AppTheme.light;
+        return AppTheme.theme.light;
       default:
-        return AppTheme.dark;
+        return AppTheme.theme.dark;
     }
   }
 
