@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:navis/blocs/bloc.dart';
-import 'package:navis/services/repository.dart';
+import 'package:navis/resources/storage/persistent.dart';
 import 'package:navis/utils/helper_utils.dart';
 import 'package:navis/utils/worldstate_utils.dart';
 import 'package:navis/widgets/widgets.dart';
@@ -15,7 +15,7 @@ class CycleWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final storage = RepositoryProvider.of<Repository>(context).persistent;
+    final storage = RepositoryProvider.of<PersistentResource>(context);
     final state = toBeginningOfSentenceCase(cycle.state);
     final nextState = toBeginningOfSentenceCase(cycle.nextState);
     final dateFormat = enumToDateformat(storage.dateformat);

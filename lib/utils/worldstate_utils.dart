@@ -1,9 +1,10 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
-import 'package:navis/services/storage/dateformat_enum.dart';
 import 'package:worldstate_api_model/worldstate_models.dart';
 import 'package:worldstate_api_model/worldstate_objects.dart';
+
+import 'enums.dart';
 
 Worldstate cleanState(Worldstate state) {
   state.alerts.removeWhere((a) =>

@@ -4,7 +4,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:navis/blocs/bloc.dart';
 import 'package:navis/constants/storage_keys.dart';
 import 'package:navis/services/repository.dart';
-import 'package:navis/services/storage/dateformat_enum.dart';
+import 'package:navis/utils/enums.dart';
 
 import 'base_dialog.dart';
 
@@ -24,7 +24,7 @@ class DateFormatPicker extends StatelessWidget {
         return BaseDialog(
             dialogTitle: const Text('Select Dateformat'),
             child: Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
-              for (Formats v in Formats.values)
+              for (final v in Formats.values)
                 DateFormatRadioListTile(
                   value: v,
                   groupValue: persistent.dateformat,

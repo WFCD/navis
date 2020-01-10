@@ -4,9 +4,9 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:navis/blocs/bloc.dart';
 import 'package:navis/constants/storage_keys.dart';
 import 'package:navis/services/repository.dart';
+import 'package:navis/utils/enums.dart';
 import 'package:navis/utils/size_config.dart';
 import 'package:navis/widgets/icons.dart';
-import 'package:wfcd_api_wrapper/wfcd_wrapper.dart';
 
 const pc = 'PC';
 const ps4 = 'Sony PlayStation 4';

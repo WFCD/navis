@@ -1,6 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
-import 'package:navis/utils/search_utils.dart';
+import 'package:navis/utils/enums.dart';
+import 'package:navis/utils/search_utils.dart' hide CodexDatabase;
 
 @immutable
 abstract class SearchEvent extends Equatable {

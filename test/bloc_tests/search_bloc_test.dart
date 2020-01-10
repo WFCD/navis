@@ -2,7 +2,7 @@ import 'package:mockito/mockito.dart';
 import 'package:navis/blocs/bloc.dart';
 import 'package:navis/blocs/search/search_bloc.dart';
 import 'package:navis/services/repository.dart';
-import 'package:navis/utils/search_utils.dart';
+import 'package:navis/utils/enums.dart';
 import 'package:test/test.dart';
 import 'package:warframe_items_model/warframe_items_model.dart';
 
