@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/blocs/bloc.dart';
-import 'package:navis/blocs/worldstate/worldstate_events.dart';
 
 import 'static_box.dart';
 
@@ -70,7 +69,7 @@ class _CountdownBoxState extends State<CountdownBox>
         status == AnimationStatus.dismissed) {
       Future.delayed(
         const Duration(seconds: 1),
-        () => BlocProvider.of<WorldstateBloc>(context).add(UpdateEvent()),
+        () => BlocProvider.of<WorldstateBloc>(context).update(),
       );
 
       setState(() {

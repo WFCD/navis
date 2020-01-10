@@ -12,21 +12,23 @@ class Cycles extends StatelessWidget {
     return Tiles(
       child: BlocBuilder<WorldstateBloc, WorldStates>(
         builder: (context, state) {
+          final worldstate = (state as WorldstateLoadSuccess).worldstate;
+
           return Column(
             children: <Widget>[
               CycleWidget(
                 title: 'Cetus Cycle',
-                cycle: state.worldstate?.cetusCycle,
+                cycle: worldstate?.cetusCycle,
               ),
               const Divider(),
               CycleWidget(
                 title: 'Earth Cycle',
-                cycle: state.worldstate?.earthCycle,
+                cycle: worldstate?.earthCycle,
               ),
               const Divider(),
               CycleWidget(
                 title: 'Orb Vallis Cycle',
-                cycle: state.worldstate?.vallisCycle,
+                cycle: worldstate?.vallisCycle,
               )
             ],
           );

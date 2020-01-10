@@ -28,7 +28,7 @@ class ListScreen extends StatelessWidget {
     final empty = Center(child: Text(noItemsText));
     const loading = Center(child: CircularProgressIndicator());
 
-    final crossFadeState = state is WorldstateLoaded
+    final crossFadeState = state is InitialWorldStates
         ? CrossFadeState.showSecond
         : CrossFadeState.showFirst;
 

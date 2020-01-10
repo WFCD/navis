@@ -1,7 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:navis/services/repository.dart';
+import 'package:navis/repository/worldstate_repository.dart';
+
 import 'package:navis/utils/size_config.dart';
 import 'package:navis/utils/helper_utils.dart';
 import 'package:navis/widgets/widgets.dart';
@@ -24,7 +25,8 @@ class DealWidget extends StatelessWidget {
     final primary = Theme.of(context).primaryColor;
 
     return FutureBuilder<ItemObject>(
-      future: RepositoryProvider.of<Repository>(context).getDealItem(deal),
+      future: RepositoryProvider.of<WorldstateRepository>(context)
+          .getItemDeal(deal),
       builder: (BuildContext context, AsyncSnapshot<ItemObject> snapshot) {
         if (snapshot.hasData) {
           final item = snapshot.data;

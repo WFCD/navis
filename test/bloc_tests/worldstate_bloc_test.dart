@@ -4,8 +4,7 @@ import 'dart:io';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:navis/blocs/bloc.dart';
-import 'package:navis/blocs/worldstate/worldstate_events.dart';
-import 'package:navis/services/storage/persistent_storage.service.dart';
+// import 'package:navis/services/storage/persistent_storage.service.dart';
 import 'package:wfcd_api_wrapper/wfcd_wrapper.dart';
 import 'package:worldstate_api_model/worldstate_models.dart';
 
@@ -17,24 +16,24 @@ void main() {
   final worldstate = Worldstate.fromJson(json.decode(worldstateJson));
 
   WfcdWrapper api;
-  PersistentStorageService storage;
+  // PersistentStorageService storage;
   WorldstateBloc worldstateBloc;
 
   setUpAll(() async {
     await mockSetup();
 
     api = MockWfcdWrapper();
-    worldstateBloc = WorldstateBloc(api: api, persistent: storage);
+    worldstateBloc = WorldstateBloc(null);
   });
 
   test('Enusre that Worldstate is Loaded', () async {
     when(api.getWorldstate(Platforms.pc))
         .thenAnswer((_) async => Future.value(worldstate));
 
-    worldstateBloc.add(UpdateEvent());
+    worldstateBloc.update();
 
     await Future.delayed(const Duration(milliseconds: 900));
 
-    expectLater(worldstateBloc.state, WorldstateLoaded(worldstate));
+    expectLater(worldstateBloc.state, WorldstateLoadSuccess(worldstate));
   });
 }

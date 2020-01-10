@@ -19,13 +19,8 @@ class Nightwaves extends StatelessWidget {
             backgroundColor: const Color(0xFF6C1822),
           ),
           body: BlocBuilder<WorldstateBloc, WorldStates>(
-            condition: (previous, current) {
-              return (previous.worldstate?.nightwave?.id !=
-                      current.worldstate?.nightwave?.id) ??
-                  false;
-            },
-            builder: (_, state) {
-              if (state is WorldstateLoaded) {
+            builder: (context, state) {
+              if (state is WorldstateLoadSuccess) {
                 const padding = SizedBox(height: 8.0);
                 final nightwave = state.worldstate?.nightwave;
 

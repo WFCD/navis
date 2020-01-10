@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:hive/hive.dart';
 import 'package:navis/blocs/bloc.dart';
-import 'package:navis/blocs/worldstate/worldstate_events.dart';
 import 'package:navis/global_keys.dart';
 import 'package:navis/services/repository.dart';
+import 'package:navis/utils/size_config.dart';
 import 'package:navis/widgets/drawer/drawer.dart';
 import 'package:navis/widgets/scaffold/scaffold_body.dart';
 import 'package:navis/widgets/scaffold/scaffold_listener.dart';
@@ -24,11 +24,10 @@ class _MainScreenState extends State<MainScreen> {
   @override
   void initState() {
     super.initState();
-    timer = Timer.periodic(const Duration(minutes: 5), (t) {
-      BlocProvider.of<WorldstateBloc>(context).add(UpdateEvent());
-    });
 
-    RepositoryProvider.of<Repository>(context).updateDropTable();
+    timer = Timer.periodic(const Duration(minutes: 5), (t) {
+      BlocProvider.of<WorldstateBloc>(context).update();
+    });
   }
 
   Future<bool> _willPop() async {
@@ -48,6 +47,10 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final media = MediaQuery.of(context);
+
+    SizeConfig().init(BoxConstraints.tight(media.size), media.orientation);
+
     return WillPopScope(
       onWillPop: _willPop,
       child: Scaffold(

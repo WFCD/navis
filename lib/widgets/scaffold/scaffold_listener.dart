@@ -11,7 +11,7 @@ class ScaffoldListenerWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<WorldstateBloc, WorldStates>(
       builder: (BuildContext context, WorldStates state) {
-        if (state is WorldstateError)
+        if (state is WorldstateLoadFailure)
           return NetworkErrorWidget(exception: state.error);
 
         return child;

@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:async/async.dart';
 import 'package:flutter/foundation.dart';
 import 'package:navis/services/notifications/notification_service.dart';
 import 'package:navis/services/storage/cache_storage.service.dart';
@@ -9,7 +8,6 @@ import 'package:package_info/package_info.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:warframe_items_model/warframe_items_model.dart';
 import 'package:wfcd_api_wrapper/wfcd_wrapper.dart';
-import 'package:worldstate_api_model/worldstate_models.dart';
 
 import 'storage/persistent_storage.service.dart';
 
@@ -22,8 +20,6 @@ class Repository {
 
   final notifications = NotificationService.notifications;
   final warframestat = WfcdWrapper();
-
-  final _itemFuture = AsyncMemoizer<ItemObject>();
 
   static const _dropTableFileName = 'drop_table.json';
 
@@ -91,31 +87,6 @@ class Repository {
 
   Future<List<SlimDrop>> searchDrops(String term) {
     return compute(_searchDropTable, DropTableSearch(term, _dropTable));
-  }
-
-  Future<ItemObject> getDealItem(DarvoDeal deal) async {
-    return _itemFuture.runOnce(() async {
-      return await _getDeal(deal);
-    });
-  }
-
-  Future<ItemObject> _getDeal(DarvoDeal deal) async {
-    final cachedDeal = cache.dealId;
-
-    if ((cachedDeal != deal.id) ?? true) {
-      final items = await searchItems(deal.item);
-
-      final item = items.firstWhere(
-        (i) => i.name == deal.item,
-        orElse: () => BasicItem(name: deal.item, description: ''),
-      );
-
-      cache.saveDarvoDealItem(deal.id, item);
-
-      return item;
-    }
-
-    return cache.dealItem;
   }
 
   static Future<List<ItemObject>> _searchItems(String searchTerm) async {

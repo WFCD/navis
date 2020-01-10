@@ -2,50 +2,41 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:navis/app.dart';
-import 'package:navis/blocs/bloc.dart';
-import 'package:navis/services/repository.dart';
-import 'package:navis/services/storage/cache_storage.service.dart';
-import 'package:navis/services/storage/persistent_storage.service.dart';
-import 'package:package_info/package_info.dart';
+import 'package:path_provider/path_provider.dart';
 
-void main() {
+import 'resources/storage/cache.dart';
+import 'resources/storage/persistent.dart';
+import 'widgets/wrappers/bloc_wrapper.dart';
+import 'widgets/wrappers/repository_wrapper.dart';
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   FlutterError.onError = Crashlytics.instance.recordFlutterError;
 
-  runZoned<Future<void>>(startApp, onError: Crashlytics.instance.recordError);
-}
+  final appDir = await getApplicationDocumentsDirectory();
+  final cacheDir = await getTemporaryDirectory();
 
-Future<void> startApp() async {
-  WidgetsFlutterBinding.ensureInitialized();
+  Hive.init(appDir.path);
+  Hive.init(cacheDir.path);
 
-  final cache = CacheStorageService();
-  final persistent = PersistentStorageService();
-
-  await cache.startInstance();
-  await persistent.startInstance();
-
-  final repository =
-      Repository(persistent, cache, await PackageInfo.fromPlatform());
+  final persistent =
+      PersistentResource(await Hive.openBox<dynamic>('persistent'));
+  final cache = CacheResource(await Hive.openBox<dynamic>('cache'));
 
   BlocSupervisor.delegate = await HydratedBlocDelegate.build();
 
-  runApp(
-    MultiBlocProvider(
-      providers: [
-        BlocProvider<NavigationBloc>(create: (_) => NavigationBloc()),
-        BlocProvider<SearchBloc>(create: (_) => SearchBloc(repository)),
-        BlocProvider<WorldstateBloc>(
-          create: (context) {
-            return WorldstateBloc(
-              api: repository.warframestat,
-              persistent: persistent,
-            );
-          },
-        ),
-      ],
-      child: Navis(repository),
-    ),
-  );
+  runZoned<void>(() {
+    runApp(
+      RepositoryWrapper(
+        persistentResource: persistent,
+        cacheResource: cache,
+        child: const BlocWrapper(child: Navis()),
+      ),
+    );
+  }, onError: Crashlytics.instance.recordError);
 }

@@ -57,7 +57,7 @@ class SyndicatesList extends StatelessWidget {
         onRefresh: () => BlocProvider.of<WorldstateBloc>(context).update(),
         child: BlocBuilder<WorldstateBloc, WorldStates>(
             builder: (BuildContext context, WorldStates state) {
-          if (state is WorldstateLoaded) {
+          if (state is WorldstateLoadSuccess) {
             final List<Syndicate> syndicates =
                 state.worldstate?.syndicateMissions ?? [];
 

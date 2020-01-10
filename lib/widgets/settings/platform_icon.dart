@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:navis/blocs/bloc.dart';
-import 'package:navis/blocs/worldstate/worldstate_events.dart';
 import 'package:navis/constants/storage_keys.dart';
 import 'package:navis/services/repository.dart';
 import 'package:navis/utils/size_config.dart';
@@ -63,7 +62,7 @@ class PlatformIcon extends StatelessWidget {
       );
 
       persistent.platform = platform;
-      state.add(UpdateEvent());
+      state.update();
     }
 
     return WatchBoxBuilder(

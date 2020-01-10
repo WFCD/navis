@@ -27,13 +27,8 @@ class SortieScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder(
       bloc: BlocProvider.of<WorldstateBloc>(context),
-      condition: (WorldStates previous, WorldStates current) {
-        return (previous.worldstate?.sortie?.expiry !=
-                current.worldstate?.sortie?.expiry) ??
-            false;
-      },
       builder: (BuildContext context, WorldStates state) {
-        final sortie = state.worldstate?.sortie;
+        final sortie = (state as WorldstateLoadSuccess).worldstate?.sortie;
 
         if (sortie?.variants?.isNotEmpty ?? false) {
           return ListView(children: <Widget>[

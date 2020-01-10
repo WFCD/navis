@@ -19,7 +19,8 @@ class InvasionsScreen extends StatelessWidget {
     return BlocBuilder<WorldstateBloc, WorldStates>(
       condition: condition,
       builder: (BuildContext context, WorldStates state) {
-        final invasions = state.worldstate?.invasions ?? [];
+        final invasions =
+            (state as WorldstateLoadSuccess).worldstate?.invasions ?? [];
 
         return ListScreen(
           state: state,

@@ -21,7 +21,9 @@ class FissureScreen extends StatelessWidget {
     return BlocBuilder<WorldstateBloc, WorldStates>(
       condition: condition,
       builder: (context, state) {
-        final fissures = state.worldstate?.fissures ?? <VoidFissure>[];
+        final fissures =
+            (state as WorldstateLoadSuccess).worldstate?.fissures ??
+                <VoidFissure>[];
 
         return ListScreen(
           state: state,

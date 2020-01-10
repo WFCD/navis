@@ -1,58 +1,59 @@
 import 'dart:async';
 
 import 'package:hydrated_bloc/hydrated_bloc.dart';
-import 'package:navis/services/storage/persistent_storage.service.dart';
-import 'package:navis/utils/worldstate_utils.dart';
-import 'package:rxdart/rxdart.dart';
-import 'package:wfcd_api_wrapper/wfcd_wrapper.dart';
+import 'package:navis/repository/worldstate_repository.dart';
+import 'package:navis/utils/enums.dart';
 import 'package:worldstate_api_model/worldstate_models.dart';
 
 import 'worldstate_events.dart';
 import 'worldstate_states.dart';
 
 class WorldstateBloc extends HydratedBloc<WorldstateEvent, WorldStates> {
-  WorldstateBloc({this.api, this.persistent});
+  WorldstateBloc(this.worldstateRepository);
 
-  final WfcdWrapper api;
-  final PersistentStorageService persistent;
+  final WorldstateRepository worldstateRepository;
 
-  @override
-  WorldStates get initialState =>
-      super.initialState ?? WorldstateUninitialized();
+  Platforms _platform;
 
   @override
-  Stream<WorldStates> transformEvents(Stream<WorldstateEvent> events,
-      Stream<WorldStates> Function(UpdateEvent event) next) {
-    return super.transformEvents(
-        events.debounceTime(const Duration(milliseconds: 400)), next);
+  WorldStates get initialState {
+    return super.initialState ?? InitialWorldStates();
   }
 
   @override
-  Stream<WorldStates> mapEventToState(WorldstateEvent event) async* {
-    if (event is UpdateEvent) {
-      try {
-        final _platform = persistent?.platform ?? Platforms.pc;
-        final worldstate = await api.getWorldstate(_platform);
+  Stream<WorldStates> mapEventToState(
+    WorldstateEvent event,
+  ) async* {
+    if (event is Updated) yield WorldstateLoadSuccess(event.worldstate);
 
-        yield WorldstateLoaded(cleanState(worldstate));
-      } catch (e) {
-        yield WorldstateError(e);
-      }
+    if (event is UpdatedPlatform) {
+      _platform = event.platform;
+      await update();
     }
   }
 
   Future<void> update() async {
-    add(UpdateEvent());
-    await Future.delayed(const Duration(milliseconds: 500));
+    try {
+      final state =
+          await worldstateRepository.getWorldstate(_platform ?? Platforms.pc);
+
+      add(Updated(state));
+    } catch (error) {
+      add(Failed(error));
+    }
   }
 
   @override
   WorldStates fromJson(Map<String, dynamic> json) {
-    return WorldstateLoaded(json as Worldstate);
+    final state = Worldstate.fromJson(json);
+
+    return WorldstateLoadSuccess(state);
   }
 
   @override
   Map<String, dynamic> toJson(WorldStates state) {
-    return state.worldstate?.toJson();
+    if (state is WorldstateLoadSuccess) return state.worldstate.toJson();
+
+    return null;
   }
 }

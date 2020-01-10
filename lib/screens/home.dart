@@ -14,7 +14,7 @@ class Home extends StatelessWidget {
       onRefresh: BlocProvider.of<WorldstateBloc>(context).update,
       child: BlocBuilder<WorldstateBloc, WorldStates>(
           builder: (BuildContext context, WorldStates state) {
-        if (state is WorldstateLoaded) {
+        if (state is WorldstateLoadSuccess) {
           final _state = state.worldstate;
 
           return ListView(

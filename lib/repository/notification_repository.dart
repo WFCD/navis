@@ -3,9 +3,15 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:navis/utils/enums.dart';
 
 class NotificationRepository {
-  final FirebaseMessaging _messaging = FirebaseMessaging();
+  factory NotificationRepository() => _instance;
 
-  Future<bool> subscribeToPlatform(
+  NotificationRepository._();
+
+  static final _instance = NotificationRepository._();
+
+  static final FirebaseMessaging _messaging = FirebaseMessaging();
+
+  static Future<bool> subscribeToPlatform(
       {Platforms previousPlatform, Platforms currentPlatform}) async {
     if (previousPlatform == null) {
       await _messaging
@@ -23,7 +29,7 @@ class NotificationRepository {
     return true;
   }
 
-  Future<bool> subscribeToNotification(
+  static Future<bool> subscribeToNotification(
       String notificationKey, bool condition) async {
     try {
       if (condition) {

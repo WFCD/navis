@@ -1,9 +1,17 @@
-//import 'package:equatable/equatable.dart';
 import 'package:equatable/equatable.dart';
 import 'package:worldstate_api_model/worldstate_models.dart';
 
 abstract class WorldStates extends Equatable {
-  const WorldStates({this.worldstate});
+  const WorldStates();
+}
+
+class InitialWorldStates extends WorldStates {
+  @override
+  List<Object> get props => [];
+}
+
+class WorldstateLoadSuccess extends WorldStates {
+  const WorldstateLoadSuccess(this.worldstate);
 
   final Worldstate worldstate;
 
@@ -11,18 +19,12 @@ abstract class WorldStates extends Equatable {
   List<Object> get props => [worldstate];
 }
 
-class WorldstateUninitialized extends WorldStates {}
+class WorldstateLoadFailure extends WorldStates {
+  const WorldstateLoadFailure(this.cachedWorldstate, this.error);
 
-class WorldstateError extends WorldStates {
-  const WorldstateError(this.error);
-
-  final dynamic error;
+  final Worldstate cachedWorldstate;
+  final Object error;
 
   @override
-  List<Object> get props => [error];
-}
-
-class WorldstateLoaded extends WorldStates {
-  const WorldstateLoaded([Worldstate worldstate])
-      : super(worldstate: worldstate);
+  List<Object> get props => [cachedWorldstate, error];
 }
