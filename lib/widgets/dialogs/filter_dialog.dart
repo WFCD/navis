@@ -1,11 +1,10 @@
 import 'dart:collection';
 
 import 'package:flutter/material.dart';
-import 'package:hive/hive.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 import 'package:navis/blocs/bloc.dart';
-import 'package:navis/services/repository.dart';
-import 'package:navis/services/storage/persistent_storage.service.dart';
+import 'package:navis/repository/repositories.dart';
+import 'package:navis/resources/storage/persistent.dart';
+import 'package:navis/widgets/common/resource_watcher.dart';
 
 import 'base_dialog.dart';
 
@@ -24,7 +23,7 @@ class FilterDialog extends StatelessWidget {
         builder: (_) => FilterDialog(options: options, type: type));
   }
 
-  Map<String, bool> _typeToInstance(PersistentStorageService storage) {
+  Map<String, bool> _typeToInstance(PersistentResource storage) {
     switch (type) {
       case FilterType.acolytes:
         return storage.acolytes;
@@ -41,16 +40,13 @@ class FilterDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final persistent = RepositoryProvider.of<Repository>(context).persistent;
+    final persistent = RepositoryProvider.of<PersistentResource>(context);
     final _options =
         SplayTreeMap<String, String>.from(options, (a, b) => a.compareTo(b));
+    final instance = _typeToInstance(persistent);
 
-    return WatchBoxBuilder(
-      box: persistent.hiveBox,
-      watchKeys: options.keys.toList(),
-      builder: (BuildContext context, Box box) {
-        final instance = _typeToInstance(persistent);
-
+    return PersistentWatcher(
+      builder: (context, box, child) {
         return BaseDialog(
           dialogTitle: const Text('Filter Options'),
           child: SingleChildScrollView(
@@ -92,8 +88,7 @@ class NotificationCheckBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final storage = RepositoryProvider.of<Repository>(context).persistent;
-    final firebase = RepositoryProvider.of<Repository>(context).notifications;
+    final storage = RepositoryProvider.of<PersistentResource>(context);
 
     return CheckboxListTile(
       title: Text(option),
@@ -101,8 +96,8 @@ class NotificationCheckBox extends StatelessWidget {
       activeColor: Theme.of(context).accentColor,
       onChanged: (b) async {
         // debugPrint(optionKey);
-        storage.hiveBox.put(optionKey, b);
-        await firebase.subscribeToNotification(optionKey, b);
+        storage.box.put(optionKey, b);
+        await NotificationRepository.subscribeToNotification(optionKey, b);
       },
     );
   }

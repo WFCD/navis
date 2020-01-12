@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hive/hive.dart';
 import 'package:navis/blocs/bloc.dart';
+import 'package:navis/constants/storage_keys.dart';
 import 'package:navis/repository/notification_repository.dart';
 import 'package:navis/resources/storage/persistent.dart';
 import 'package:navis/screens/codex_entry.dart';
@@ -58,20 +60,27 @@ class _NavisState extends State<Navis> with WidgetsBindingObserver {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Navis',
-      color: Colors.grey[900],
-      theme: AppTheme.theme.dark,
-      darkTheme: AppTheme.theme.dark,
-      home: const MainScreen(),
-      builder: _builder,
-      routes: <String, WidgetBuilder>{
-        Settings.route: (_) => const Settings(),
-        Nightwaves.route: (_) => const Nightwaves(),
-        SyndicateJobs.route: (_) => const SyndicateJobs(),
-        SynthTargetScreen.route: (_) => const SynthTargetScreen(),
-        CodexEntry.route: (_) => const CodexEntry(),
-        VoidTraderInventory.route: (_) => const VoidTraderInventory()
+    final storage = RepositoryProvider.of<PersistentResource>(context);
+
+    return ValueListenableBuilder<Box<dynamic>>(
+      valueListenable: storage.watchBox(key: SettingsKeys.theme),
+      builder: (context, box, child) {
+        return MaterialApp(
+          title: 'Navis',
+          color: Colors.grey[900],
+          theme: storage.theme,
+          darkTheme: AppTheme.theme.dark,
+          home: const MainScreen(),
+          builder: _builder,
+          routes: <String, WidgetBuilder>{
+            Settings.route: (_) => const Settings(),
+            Nightwaves.route: (_) => const Nightwaves(),
+            SyndicateJobs.route: (_) => const SyndicateJobs(),
+            SynthTargetScreen.route: (_) => const SynthTargetScreen(),
+            CodexEntry.route: (_) => const CodexEntry(),
+            VoidTraderInventory.route: (_) => const VoidTraderInventory()
+          },
+        );
       },
     );
   }

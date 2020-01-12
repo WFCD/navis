@@ -3,6 +3,7 @@ class SettingsKeys {
   static const String dateformatKey = 'dateformat';
   static const String theme = 'theme';
   static const String codexDatabase = 'database';
+  static const String backKey = 'back_key';
 }
 
 class NotificationKeys {

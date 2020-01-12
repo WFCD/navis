@@ -1,5 +1,7 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 @immutable
 abstract class StorageResource {
@@ -7,7 +9,7 @@ abstract class StorageResource {
 
   final Box box;
 
-  Stream<BoxEvent> get watchBox => box.watch();
+  ValueListenable<Box> watchBox({String key}) => box.listenable();
 
   Future<void> closeBoxInstance() async {
     // await hiveBox.compact();

@@ -31,7 +31,7 @@ class PersistentResource extends StorageResource {
     final int flip = box.get(SettingsKeys.theme, defaultValue: 0) as int;
 
     switch (flip) {
-      case 0:
+      case 1:
         return AppTheme.theme.light;
       default:
         return AppTheme.theme.dark;

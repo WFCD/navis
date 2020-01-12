@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:navis/global_keys.dart';
-import 'package:navis/services/repository.dart';
+import 'package:navis/repository/repositories.dart';
+import 'package:navis/resources/storage/cache.dart';
+import 'package:navis/resources/storage/persistent.dart';
 import 'package:navis/utils/helper_utils.dart';
 import 'package:navis/widgets/widgets.dart';
 
@@ -20,19 +22,23 @@ class AboutApp extends StatelessWidget {
   Future<void> _updateTable(BuildContext context) async {
     _showSnackBar(context, 'Updating drop table');
 
-    final updateStatus =
-        await RepositoryProvider.of<Repository>(context).updateDropTable();
+    final cache = RepositoryProvider.of<CacheResource>(context);
 
-    if (updateStatus)
+    final updatedTimestamp =
+        await RepositoryProvider.of<DropTableRepository>(context)
+            .updateDrops(cache.getDropTableTimestamp);
+
+    if (updatedTimestamp != cache.getDropTableTimestamp) {
       _showSnackBar(context, 'Updated drop table');
-    else
+      cache.saveDropTableTimestamp(updatedTimestamp);
+    } else {
       _showSnackBar(context, 'Drop table is up-to-date');
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    final repository = RepositoryProvider.of<Repository>(context);
-    final date = _dateFormat.format(repository.cache.getDropTableTimestamp);
+    final date = _dateFormat.format(DateTime.now());
 
     return Column(
       children: <Widget>[

@@ -23,7 +23,7 @@ class CacheResource extends StorageResource {
   }
 
   DateTime get getDropTableTimestamp {
-    return getDarvoDeal['timestamp'] as DateTime;
+    return box.get('timestamp', defaultValue: DateTime.now());
   }
 
   void saveDarvoDealItem(String id, ItemObject item) {

@@ -71,8 +71,8 @@ class DropTableRepository {
 }
 
 class DropSearchInstance {
-  final String term;
-
-  final List<SlimDrop> drops;
   const DropSearchInstance(this.term, this.drops);
+
+  final String term;
+  final List<SlimDrop> drops;
 }

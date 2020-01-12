@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:navis/blocs/bloc.dart';
-import 'package:navis/services/repository.dart';
+import 'package:navis/constants/storage_keys.dart';
+import 'package:navis/resources/storage/persistent.dart';
 import 'package:navis/widgets/dialogs.dart';
 import 'package:navis/widgets/widgets.dart';
 
@@ -11,6 +12,8 @@ class DisplayChoices extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final persistent = RepositoryProvider.of<PersistentResource>(context);
+
     return Container(
       child: Column(children: <Widget>[
         const SettingTitle(title: 'Behavior'),
@@ -25,10 +28,9 @@ class DisplayChoices extends StatelessWidget {
               const Text('Change the format used for timer expiration dates.'),
           onTap: () => DateFormatPicker.selectDateformat(context),
         ),
-        WatchBoxBuilder(
-          box: RepositoryProvider.of<Repository>(context).persistent.hiveBox,
-          watchKeys: const ['backkey'],
-          builder: (BuildContext context, Box box) {
+        ValueListenableBuilder<Box<dynamic>>(
+          valueListenable: persistent.watchBox(key: SettingsKeys.backKey),
+          builder: (context, box, child) {
             return CheckboxListTile(
               title: const Text('Back button opens drawer'),
               subtitle:

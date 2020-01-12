@@ -24,7 +24,7 @@ dependencies:
   warframe_items_model:
     git: https://github.com/SlayerOrnstein/warframe_item_models.git
   hive: ^1.1.1
-  hive_flutter: ^0.2.1
+  hive_flutter: ^0.3.0+1
 
 dev_dependencies:
   flutter_test:

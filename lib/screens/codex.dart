@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:navis/blocs/bloc.dart';
-import 'package:navis/services/repository.dart';
 import 'package:navis/widgets/codex/codex.dart';
 
 class Codex extends StatefulWidget {
@@ -11,19 +10,13 @@ class Codex extends StatefulWidget {
 }
 
 class _CodexState extends State<Codex> {
-  Repository repository;
-
   @override
   void initState() {
     super.initState();
-    repository = RepositoryProvider.of<Repository>(context);
-
-    repository.loadDropTable();
   }
 
   @override
   void dispose() {
-    repository.disposeDropTable();
     super.dispose();
   }
 
@@ -39,10 +32,10 @@ class _CodexState extends State<Codex> {
             const Center(child: Text('No Results')),
           if (state is SearchStateLoading)
             const Center(child: CircularProgressIndicator()),
-          if (state is SearchStateEmpty || state is SearchListenerError)
-            const Center(
-                child: Text(
-                    'Type what you\'re looking for into the search bar above!')),
+          // if (state is SearchStateEmpty || state is SearchListenerError)
+          //   const Center(
+          //       child: Text(
+          //           'Type what you\'re looking for into the search bar above!')),
           if (state is SearchStateError)
             const Center(child: Text('An error has occurred'))
         ]);

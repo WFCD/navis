@@ -5,6 +5,7 @@ import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:navis/app.dart';
 import 'package:path_provider/path_provider.dart';
@@ -18,10 +19,9 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   FlutterError.onError = Crashlytics.instance.recordFlutterError;
 
-  final appDir = await getApplicationDocumentsDirectory();
   final cacheDir = await getTemporaryDirectory();
 
-  Hive.init(appDir.path);
+  Hive.initFlutter();
   Hive.init(cacheDir.path);
 
   final persistent =

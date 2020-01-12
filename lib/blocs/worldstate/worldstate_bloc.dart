@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:hydrated_bloc/hydrated_bloc.dart';
-import 'package:navis/repository/worldstate_repository.dart';
+import 'package:navis/repository/repositories.dart';
 import 'package:navis/utils/enums.dart';
 import 'package:worldstate_api_model/worldstate_models.dart';
 

@@ -2,10 +2,8 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:hive/hive.dart';
 import 'package:navis/blocs/bloc.dart';
 import 'package:navis/global_keys.dart';
-import 'package:navis/services/repository.dart';
 import 'package:navis/utils/size_config.dart';
 import 'package:navis/widgets/drawer/drawer.dart';
 import 'package:navis/widgets/scaffold/scaffold_body.dart';
@@ -31,16 +29,16 @@ class _MainScreenState extends State<MainScreen> {
   }
 
   Future<bool> _willPop() async {
-    final Box box =
-        RepositoryProvider.of<Repository>(context).persistent.hiveBox;
+    // final Box box =
+    //     RepositoryProvider.of<Repository>(context).persistent.hiveBox;
 
-    if (box.get('backkey', defaultValue: false)) {
-      if (!appScaffold.currentState.isDrawerOpen) {
-        appScaffold.currentState.openDrawer();
-        return false;
-      } else
-        return true;
-    }
+    // if (box.get('backkey', defaultValue: false)) {
+    //   if (!appScaffold.currentState.isDrawerOpen) {
+    //     appScaffold.currentState.openDrawer();
+    //     return false;
+    //   } else
+    //     return true;
+    // }
 
     return true;
   }
@@ -67,8 +65,8 @@ class _MainScreenState extends State<MainScreen> {
   @override
   void dispose() {
     timer?.cancel();
-    RepositoryProvider.of<Repository>(context).persistent.closeBoxInstance();
-    RepositoryProvider.of<Repository>(context).cache.closeBoxInstance();
+    // RepositoryProvider.of<Repository>(context).persistent.closeBoxInstance();
+    // RepositoryProvider.of<Repository>(context).cache.closeBoxInstance();
     super.dispose();
   }
 }

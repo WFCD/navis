@@ -3,7 +3,8 @@ import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:navis/blocs/bloc.dart';
 import 'package:navis/constants/notification_filters.dart';
-import 'package:navis/services/repository.dart';
+import 'package:navis/repository/repositories.dart';
+import 'package:navis/resources/storage/persistent.dart';
 import 'package:navis/widgets/dialogs.dart';
 import 'package:navis/widgets/widgets.dart';
 
@@ -66,13 +67,11 @@ class _SimpleNotification extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final persistent = RepositoryProvider.of<Repository>(context).persistent;
-    final notification =
-        RepositoryProvider.of<Repository>(context).notifications;
+    final persistent = RepositoryProvider.of<PersistentResource>(context);
 
-    return WatchBoxBuilder(
-      box: persistent.hiveBox,
-      builder: (BuildContext context, Box box) {
+    return ValueListenableBuilder<Box<dynamic>>(
+      valueListenable: persistent.watchBox(), //persistent.hiveBox,
+      builder: (context, box, child) {
         return CheckboxListTile(
           title: Text(name),
           subtitle: Text(description),
@@ -80,7 +79,7 @@ class _SimpleNotification extends StatelessWidget {
           activeColor: Theme.of(context).accentColor,
           onChanged: (b) {
             box.put(optionKey, b);
-            notification.subscribeToNotification(optionKey, b);
+            NotificationRepository.subscribeToNotification(optionKey, b);
           },
         );
       },

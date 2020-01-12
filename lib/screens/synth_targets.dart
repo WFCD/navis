@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:navis/blocs/bloc.dart';
-import 'package:navis/services/repository.dart';
-import 'package:wfcd_api_wrapper/models.dart';
+import 'package:navis/repository/repositories.dart';
+import 'package:worldstate_api_model/misc.dart';
 
 class SynthTargetScreen extends StatelessWidget {
   const SynthTargetScreen({Key key}) : super(key: key);
@@ -32,8 +32,7 @@ class SynthTargetScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final warframestate =
-        RepositoryProvider.of<Repository>(context).warframestat;
+    final warframestate = RepositoryProvider.of<WorldstateRepository>(context);
 
     return Scaffold(
       appBar: AppBar(
@@ -41,7 +40,7 @@ class SynthTargetScreen extends StatelessWidget {
         backgroundColor: const Color(0xFF5F3C0D),
       ),
       body: FutureBuilder<List<SynthTarget>>(
-        future: warframestate.synthTargets(),
+        future: warframestate.getTargets(),
         builder: (context, snapshot) {
           if (snapshot.hasData) return _buildList(snapshot.data);
 

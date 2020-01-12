@@ -9,7 +9,7 @@ String platformToString(Platforms platform) =>
     platform.toString().split('.').last;
 
 List<ItemObject> jsonToItemObjects(String data) {
-  final searchs = json.decode(data) as List<Map<String, dynamic>>;
+  final searchs = json.decode(data).cast<Map<String, dynamic>>();
 
   return searchs.map<ItemObject>(_jsonToItemObject).toList();
 }
@@ -30,7 +30,7 @@ ItemObject _jsonToItemObject(Map<String, dynamic> item) {
 }
 
 List<SynthTarget> jsonToTargets(String data) {
-  final targets = json.decode(data) as List<Map<String, dynamic>>;
+  final targets = json.decode(data) as List<dynamic>;
 
   return targets.map<SynthTarget>((t) => SynthTarget.fromJson(t)).toList();
 }

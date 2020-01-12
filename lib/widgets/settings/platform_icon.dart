@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 import 'package:navis/blocs/bloc.dart';
 import 'package:navis/constants/storage_keys.dart';
-import 'package:navis/services/repository.dart';
+import 'package:navis/repository/notification_repository.dart';
+import 'package:navis/resources/storage/persistent.dart';
 import 'package:navis/utils/enums.dart';
 import 'package:navis/utils/size_config.dart';
 import 'package:navis/widgets/icons.dart';
@@ -51,12 +51,10 @@ class PlatformIcon extends StatelessWidget {
     final size = SizeConfig.imageSizeMultiplier * 8.5;
 
     final state = BlocProvider.of<WorldstateBloc>(context);
-    final persistent = RepositoryProvider.of<Repository>(context).persistent;
-    final notification =
-        RepositoryProvider.of<Repository>(context).notifications;
+    final persistent = RepositoryProvider.of<PersistentResource>(context);
 
     void _onPressed() {
-      notification.subscribeToPlatform(
+      NotificationRepository.subscribeToPlatform(
         previousPlatform: persistent.platform,
         currentPlatform: platform,
       );
@@ -65,10 +63,9 @@ class PlatformIcon extends StatelessWidget {
       state.update();
     }
 
-    return WatchBoxBuilder(
-      box: persistent.hiveBox,
-      watchKeys: const [SettingsKeys.platformKey],
-      builder: (BuildContext context, Box box) {
+    return ValueListenableBuilder<Box<dynamic>>(
+      valueListenable: persistent.watchBox(key: SettingsKeys.platformKey),
+      builder: (context, box, child) {
         _setValues();
 
         return IconButton(
@@ -76,7 +73,7 @@ class PlatformIcon extends StatelessWidget {
           splashColor: _platformColor,
           icon: Icon(
             _platformIcon,
-            color: (persistent.platform ?? Platforms.pc) == platform
+            color: persistent.platform == platform
                 ? _platformColor
                 : Theme.of(context).disabledColor,
             size: size,

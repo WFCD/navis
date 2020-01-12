@@ -18,9 +18,10 @@ class ListScreen extends StatelessWidget {
 
   Widget _buildList() {
     return ListView.builder(
-        itemCount: items.length,
-        cacheExtent: items.length / 2,
-        itemBuilder: (BuildContext context, int index) => items[index]);
+      itemCount: items.length,
+      cacheExtent: items.length / 2,
+      itemBuilder: (BuildContext context, int index) => items[index],
+    );
   }
 
   @override
@@ -28,7 +29,7 @@ class ListScreen extends StatelessWidget {
     final empty = Center(child: Text(noItemsText));
     const loading = Center(child: CircularProgressIndicator());
 
-    final crossFadeState = state is InitialWorldStates
+    final crossFadeState = state is WorldstateLoadSuccess
         ? CrossFadeState.showSecond
         : CrossFadeState.showFirst;
 

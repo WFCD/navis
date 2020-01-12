@@ -3,7 +3,7 @@ import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:navis/blocs/bloc.dart';
 import 'package:navis/constants/storage_keys.dart';
-import 'package:navis/services/repository.dart';
+import 'package:navis/resources/storage/persistent.dart';
 
 import 'base_dialog.dart';
 
@@ -21,10 +21,12 @@ class ThemePicker extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return WatchBoxBuilder(
-      box: RepositoryProvider.of<Repository>(context).persistent.hiveBox,
-      builder: (BuildContext context, Box box) {
-        final current = box.get(SettingsKeys.theme, defaultValue: 0);
+    final per = RepositoryProvider.of<PersistentResource>(context);
+
+    return ValueListenableBuilder(
+      valueListenable: per.watchBox(key: SettingsKeys.theme),
+      builder: (context, box, child) {
+        final current = per.theme;
         final accentColor = Theme.of(context).accentColor;
 
         return BaseDialog(
@@ -32,19 +34,19 @@ class ThemePicker extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
-              RadioListTile<int>(
+              RadioListTile<Brightness>(
                 title: const Text('Light'),
-                value: 0,
-                groupValue: current,
+                value: Brightness.light,
+                groupValue: current.brightness,
                 activeColor: accentColor,
-                onChanged: (b) => _onChanged(context, box, b),
+                onChanged: (b) => _onChanged(context, box, b.index),
               ),
-              RadioListTile<int>(
+              RadioListTile<Brightness>(
                 title: const Text('Dark'),
-                value: 1,
-                groupValue: current,
+                value: Brightness.dark,
+                groupValue: current.brightness,
                 activeColor: accentColor,
-                onChanged: (b) => _onChanged(context, box, b),
+                onChanged: (b) => _onChanged(context, box, b.index),
               )
             ],
           ),
