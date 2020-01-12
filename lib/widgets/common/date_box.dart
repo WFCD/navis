@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:navis/blocs/bloc.dart';
 import 'package:navis/resources/storage/persistent.dart';
-import 'package:navis/utils/helper_utils.dart';
+import 'package:navis/utils/extensions.dart';
 import 'package:navis/utils/worldstate_utils.dart';
 
 import 'static_box.dart';

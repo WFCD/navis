@@ -4,7 +4,11 @@ import 'package:navis/blocs/bloc.dart';
 import 'package:navis/resources/storage/persistent.dart';
 
 class PersistentWatcher extends StatelessWidget {
-  const PersistentWatcher({Key key, this.builder}) : super(key: key);
+  const PersistentWatcher({Key key, this.storageKey, this.builder})
+      : super(key: key);
+
+  /// Set persistent watcher to only rebuild when a specific stragoe key changes
+  final String storageKey;
 
   final ValueWidgetBuilder<Box<dynamic>> builder;
 
@@ -13,7 +17,7 @@ class PersistentWatcher extends StatelessWidget {
     final persistent = RepositoryProvider.of<PersistentResource>(context);
 
     return ValueListenableBuilder<Box<dynamic>>(
-      valueListenable: persistent.watchBox(),
+      valueListenable: persistent.watchBox(key: storageKey),
       builder: builder,
     );
   }

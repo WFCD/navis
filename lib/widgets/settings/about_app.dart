@@ -4,8 +4,7 @@ import 'package:intl/intl.dart';
 import 'package:navis/global_keys.dart';
 import 'package:navis/repository/repositories.dart';
 import 'package:navis/resources/storage/cache.dart';
-import 'package:navis/resources/storage/persistent.dart';
-import 'package:navis/utils/helper_utils.dart';
+import 'package:navis/utils/helper_methods.dart';
 import 'package:navis/widgets/widgets.dart';
 
 import 'about_widget.dart';

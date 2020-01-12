@@ -1,3 +1,5 @@
+import 'dart:collection';
+
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:navis/constants/notification_filters.dart' as filters;
@@ -12,15 +14,29 @@ class PersistentResource extends StorageResource {
 
   static const String hive = 'settings';
 
-  Platforms get platform {
-    final diskPlatform = box.get(SettingsKeys.platformKey) as String;
+  bool get initialStart {
+    return box.get('initialStart', defaultValue: true);
+  }
 
-    if (diskPlatform != null) {
-      return Platforms.values.firstWhere(
-        (p) => p.toString() == 'Platforms.$diskPlatform',
-      );
-    }
-    return null;
+  set initialStart(bool value) {
+    box.put('initialStart', value);
+  }
+
+  bool get backKey {
+    return box.get(SettingsKeys.backKey, defaultValue: false);
+  }
+
+  set backKey(bool value) {
+    box.put(SettingsKeys.backKey, value);
+  }
+
+  Platforms get platform {
+    final diskPlatform =
+        box.get(SettingsKeys.platformKey, defaultValue: 'pc') as String;
+
+    return Platforms.values.firstWhere(
+      (p) => p.toString() == 'Platforms.$diskPlatform',
+    );
   }
 
   set platform(Platforms value) {
@@ -36,6 +52,15 @@ class PersistentResource extends StorageResource {
       default:
         return AppTheme.theme.dark;
     }
+  }
+
+  void updateTheme(int value) {
+    if (value <= 1) {
+      box.put(SettingsKeys.theme, value);
+      return;
+    }
+
+    throw const FormatException('Value is not a valid theme index');
   }
 
   Formats get dateformat {
@@ -66,6 +91,10 @@ class PersistentResource extends StorageResource {
   }
 
   Map<String, bool> _toMap(List<String> keys) {
-    return {for (final s in keys) s: box.get(s, defaultValue: false) as bool};
+    final _keys = {
+      for (final s in keys) s: box.get(s, defaultValue: false) as bool
+    };
+
+    return SplayTreeMap.from(_keys);
   }
 }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:navis/blocs/bloc.dart';
-import 'package:navis/utils/helper_utils.dart';
+import 'package:navis/utils/helper_methods.dart';
 
 import '../icons.dart';
 

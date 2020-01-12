@@ -1,24 +1,41 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:navis/utils/helper_methods.dart';
 import 'package:navis/utils/size_config.dart';
-import 'package:navis/utils/helper_utils.dart';
 import 'package:navis/widgets/icons.dart';
 import 'package:package_info/package_info.dart';
 
-const _legalese = 'Warframe and the Warframe logo are registered trademarks '
-    'of Digital Extremes Ltd. Cephalon Navis nor WFCD are '
-    'affiliated with Digital Extremes Ltd. in any way.';
-
-class About extends StatelessWidget {
+class About extends StatefulWidget {
   const About({Key key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    // final PackageInfo info =
-    //     RepositoryProvider.of<Repository>(context).packageInfo;
+  _AboutState createState() => _AboutState();
+}
 
+class _AboutState extends State<About> {
+  static const _legalese =
+      'Warframe and the Warframe logo are registered trademarks '
+      'of Digital Extremes Ltd. Cephalon Navis nor WFCD are '
+      'affiliated with Digital Extremes Ltd. in any way.';
+
+  PackageInfo info;
+
+  @override
+  void initState() {
+    super.initState();
+
+    PackageInfo.fromPlatform().then((data) {
+      if (mounted) {
+        setState(() {
+          info = data;
+        });
+      }
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
     final TextStyle aboutTextStyle = theme.textTheme.body2;
     final TextStyle linkStyle =
@@ -32,7 +49,7 @@ class About extends StatelessWidget {
         color: const Color.fromRGBO(26, 80, 144, .9),
       ),
       applicationName: 'Cephalon Navis',
-      applicationVersion: '',
+      applicationVersion: info?.version,
       aboutBoxChildren: <Widget>[
         RichText(
           text: TextSpan(children: <TextSpan>[

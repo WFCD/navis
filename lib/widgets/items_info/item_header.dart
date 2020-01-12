@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:navis/utils/helper_utils.dart';
+import 'package:navis/utils/helper_methods.dart';
 
 import 'item_image.dart';
 

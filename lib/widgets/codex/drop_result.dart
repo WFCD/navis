@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:navis/utils/helper_utils.dart';
+import 'package:navis/utils/helper_methods.dart';
 import 'package:warframe_items_model/warframe_items_model.dart';
 
 class DropResultWidget extends StatelessWidget {

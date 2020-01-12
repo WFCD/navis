@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:navis/blocs/bloc.dart';
 import 'package:navis/global_keys.dart';
+import 'package:navis/resources/storage/persistent.dart';
 import 'package:navis/utils/size_config.dart';
 import 'package:navis/widgets/drawer/drawer.dart';
 import 'package:navis/widgets/scaffold/scaffold_body.dart';
@@ -29,16 +30,15 @@ class _MainScreenState extends State<MainScreen> {
   }
 
   Future<bool> _willPop() async {
-    // final Box box =
-    //     RepositoryProvider.of<Repository>(context).persistent.hiveBox;
+    final persistent = RepositoryProvider.of<PersistentResource>(context);
 
-    // if (box.get('backkey', defaultValue: false)) {
-    //   if (!appScaffold.currentState.isDrawerOpen) {
-    //     appScaffold.currentState.openDrawer();
-    //     return false;
-    //   } else
-    //     return true;
-    // }
+    if (persistent.backKey) {
+      if (!appScaffold.currentState.isDrawerOpen) {
+        appScaffold.currentState.openDrawer();
+        return false;
+      } else
+        return true;
+    }
 
     return true;
   }

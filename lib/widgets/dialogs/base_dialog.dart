@@ -40,16 +40,18 @@ class BaseDialog extends StatelessWidget {
     );
 
     return Dialog(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
-        child: Container(
-          child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: <Widget>[
-                if (dialogTitle != null) title,
-                content,
-                if (actions != null) ButtonBar(children: <Widget>[...actions])
-              ]),
-        ));
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
+      child: Container(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            if (dialogTitle != null) title,
+            content,
+            if (actions != null) ButtonBar(children: <Widget>[...actions])
+          ],
+        ),
+      ),
+    );
   }
 }

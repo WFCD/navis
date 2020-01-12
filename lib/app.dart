@@ -13,7 +13,6 @@ import 'package:navis/screens/syndicate_bounties.dart';
 import 'package:navis/screens/synth_targets.dart';
 import 'package:navis/screens/trader_inventory.dart';
 import 'package:navis/themes.dart';
-import 'package:navis/utils/enums.dart';
 import 'package:navis/widgets/widgets.dart';
 
 class Navis extends StatefulWidget {
@@ -31,8 +30,12 @@ class _NavisState extends State<Navis> with WidgetsBindingObserver {
 
     final persistent = RepositoryProvider.of<PersistentResource>(context);
 
-    if (persistent.platform == null) {
-      NotificationRepository.subscribeToPlatform(currentPlatform: Platforms.pc);
+    if (persistent.initialStart) {
+      NotificationRepository.subscribeToPlatform(
+        currentPlatform: persistent.platform,
+      );
+
+      persistent.initialStart = false;
     }
 
     BlocProvider.of<WorldstateBloc>(context).update();
@@ -45,11 +48,6 @@ class _NavisState extends State<Navis> with WidgetsBindingObserver {
     }
 
     super.didChangeAppLifecycleState(state);
-  }
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
   }
 
   Widget _builder(BuildContext context, Widget widget) {

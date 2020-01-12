@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:navis/utils/helper_utils.dart';
+import 'package:navis/utils/extensions.dart';
+import 'package:navis/utils/helper_methods.dart';
 import 'package:worldstate_api_model/worldstate_models.dart';
 
 class NewsWidget extends StatelessWidget {
