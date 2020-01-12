@@ -1,29 +1,29 @@
-import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter_test/flutter_test.dart';
+import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:mockito/mockito.dart';
 import 'package:navis/blocs/bloc.dart';
+import 'package:navis/repository/api/worldstate_repository.dart';
+import 'package:navis/utils/enums.dart';
 // import 'package:navis/services/storage/persistent_storage.service.dart';
-import 'package:wfcd_api_wrapper/wfcd_wrapper.dart';
 import 'package:worldstate_api_model/worldstate_models.dart';
 
 import '../mock_classes.dart';
-import '../setup_methods.dart';
 
 void main() {
-  final worldstateJson = File('./worldstate.json').readAsStringSync();
-  final worldstate = Worldstate.fromJson(json.decode(worldstateJson));
+  const worldstate = Worldstate();
 
-  WfcdWrapper api;
-  // PersistentStorageService storage;
+  WorldstateRepository api;
   WorldstateBloc worldstateBloc;
 
   setUpAll(() async {
-    await mockSetup();
+    final directory = await Directory.systemTemp.createTemp();
+    BlocSupervisor.delegate =
+        await HydratedBlocDelegate.build(storageDirectory: directory);
 
-    api = MockWfcdWrapper();
-    worldstateBloc = WorldstateBloc(null);
+    api = MockWorldstateRepository();
+    worldstateBloc = WorldstateBloc(api);
   });
 
   test('Enusre that Worldstate is Loaded', () async {
@@ -34,6 +34,6 @@ void main() {
 
     await Future.delayed(const Duration(milliseconds: 900));
 
-    expectLater(worldstateBloc.state, WorldstateLoadSuccess(worldstate));
+    expectLater(worldstateBloc.state, const WorldstateLoadSuccess(worldstate));
   });
 }

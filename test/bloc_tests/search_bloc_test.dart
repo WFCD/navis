@@ -1,46 +1,45 @@
 import 'package:mockito/mockito.dart';
 import 'package:navis/blocs/bloc.dart';
-import 'package:navis/blocs/search/search_bloc.dart';
-import 'package:navis/services/repository.dart';
-import 'package:navis/utils/enums.dart';
+import 'package:navis/repository/api/drop_table_repository.dart';
+import 'package:navis/repository/api/worldstate_repository.dart';
 import 'package:test/test.dart';
 import 'package:warframe_items_model/warframe_items_model.dart';
 
 import '../mock_classes.dart';
-import '../setup_methods.dart';
 
 void main() {
-  Repository repository;
+  WorldstateRepository client;
+  DropTableRepository dropTableRepository;
 
-  SearchBloc searchBloc;
+  DropTableSearchBloc drops;
+  WarframeItemSearchBloc items;
 
   setUpAll(() async {
-    await mockSetup();
+    client = MockWorldstateRepository();
+    dropTableRepository = MockDropTableRepository();
 
-    repository = MockRepository();
-
-    searchBloc = SearchBloc(repository);
+    drops = DropTableSearchBloc(dropTableRepository);
+    items = WarframeItemSearchBloc(client);
   });
 
-  test('Searching the drop table', () {
-    when(repository.searchDrops('chroma'))
+  test('Search the drop table', () {
+    when(dropTableRepository.search('chroma'))
         .thenAnswer((_) => Future.value(<SlimDrop>[]));
 
-    expectLater(searchBloc,
-        emitsThrough(const TypeMatcher<SearchStateSuccess<SlimDrop>>()));
+    expectLater(drops, emitsThrough(const SearchStateSuccess(<SlimDrop>[])));
 
-    searchBloc.add(const TextChanged('chroma', type: CodexDatabase.drops));
+    drops.add(const TextChanged('chroma'));
   });
 
-  // test('Searching Warframe items', () {
-  //   when(repository.searchItems('chroma'))
-  //       .thenAnswer((_) async => Future.value(<ItemObject>[]));
+  test('Search Warframe items', () {
+    when(client.searchItems('chroma'))
+        .thenAnswer((_) async => Future.value(<ItemObject>[]));
 
-  //   expectLater(
-  //     searchBloc,
-  //     emitsThrough(const SearchStateSuccess<ItemObject>(<ItemObject>[])),
-  //   );
+    expectLater(
+      items,
+      emitsThrough(const SearchStateSuccess(<ItemObject>[])),
+    );
 
-  //   searchBloc.add(const TextChanged('chroma', type: SearchTypes.items));
-  // });
+    items.add(const TextChanged('chroma'));
+  });
 }
