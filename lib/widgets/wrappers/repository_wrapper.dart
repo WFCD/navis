@@ -26,7 +26,7 @@ class RepositoryWrapper extends StatelessWidget {
           create: (_) => WorldstateRepository(cacheResource),
         ),
         RepositoryProvider<DropTableRepository>(
-          create: (_) => DropTableRepository(),
+          create: (_) => DropTableRepository(cacheResource),
         )
       ],
       child: child,

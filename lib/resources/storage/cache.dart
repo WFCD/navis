@@ -23,7 +23,10 @@ class CacheResource extends StorageResource {
   }
 
   DateTime get getDropTableTimestamp {
-    return box.get('timestamp', defaultValue: DateTime.now());
+    return box.get(
+      'timestamp',
+      defaultValue: DateTime.now().subtract(const Duration(days: 31)),
+    );
   }
 
   void saveDarvoDealItem(String id, ItemObject item) {

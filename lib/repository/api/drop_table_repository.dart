@@ -3,11 +3,14 @@ import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:navis/resources/api/drop_table_client.dart';
+import 'package:navis/resources/storage/cache.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:warframe_items_model/warframe_items_model.dart';
 
 class DropTableRepository {
-  DropTableRepository();
+  DropTableRepository(this.cache);
+
+  final CacheResource cache;
 
   List<SlimDrop> table;
 
@@ -23,6 +26,8 @@ class DropTableRepository {
     await compute<File, void>(_downloadDrops, table);
 
     this.table = await compute(_toDrops, table.readAsStringSync());
+
+    cache.saveDropTableTimestamp(await timestamp);
   }
 
   Future<List<SlimDrop>> search(String term) async {
@@ -55,7 +60,7 @@ class DropTableRepository {
   }
 
   static Future<List<SlimDrop>> _toDrops(String table) async {
-    final _table = json.decode(table) as List<Map<String, dynamic>>;
+    final _table = json.decode(table).cast<Map<String, dynamic>>();
 
     return _table.map<SlimDrop>((d) => SlimDrop.fromJson(d)).toList();
   }

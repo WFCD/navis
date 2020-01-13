@@ -4,6 +4,7 @@ import 'package:hive/hive.dart';
 import 'package:navis/blocs/bloc.dart';
 import 'package:navis/constants/storage_keys.dart';
 import 'package:navis/repository/notification_repository.dart';
+import 'package:navis/repository/repositories.dart';
 import 'package:navis/resources/storage/persistent.dart';
 import 'package:navis/screens/codex_entry.dart';
 import 'package:navis/screens/nightwaves.dart';
@@ -39,6 +40,7 @@ class _NavisState extends State<Navis> with WidgetsBindingObserver {
     }
 
     BlocProvider.of<WorldstateBloc>(context).update();
+    RepositoryProvider.of<DropTableRepository>(context).initDrops();
   }
 
   @override
