@@ -20,6 +20,11 @@ const simple = [
     'name': 'Sorties',
     'description': 'Notifications for new sorties.',
     'key': NotificationKeys.sortiesKey
+  },
+  {
+    'name': 'Sentient Outpost',
+    'description': 'Notifications for new sentient threats',
+    'key': NotificationKeys.sentientOutpost
   }
 ];
 

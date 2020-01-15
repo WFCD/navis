@@ -17,6 +17,7 @@ class NotificationKeys {
   static const String baroKey = 'baro';
   static const String darvoKey = 'darvo';
   static const String sortiesKey = 'sorties';
+  static const String sentientOutpost = 'sentient_outpost';
 
   static const String newsPrimeKey = 'news_prime';
   static const String newsStreamKey = 'news_stream';
