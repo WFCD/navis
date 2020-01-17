@@ -18,17 +18,17 @@ class EventWidget extends StatelessWidget {
             description: event.description,
             tooltip: event.tooltip,
           ),
-          const SizedBox(height: 16),
+          const SizedBox(height: 4),
           _EventMiddle(
             victimNode: event.victimNode,
-            health: event.eventHealth.toDouble() ?? event.health,
+            health: event.eventHealth,
             rewards: event.rewards,
             expiry: event.expiry,
           ),
           const SizedBox(height: 4),
           _EventFooter(
             affiliatedWith: event.affiliatedWith,
-            rewards: event.eventRewards ?? event.health,
+            rewards: event.eventRewards ?? [],
             jobs: event?.jobs,
           ),
         ],
@@ -126,11 +126,14 @@ class _EventMiddle extends StatelessWidget {
           style: style,
         ),
       const SizedBox(height: 4),
-      StaticBox.text(
-        text: '${health.toStringAsFixed(2)}% remaining',
-        color: _healthColor(health),
-        style: style,
-      )
+      if (health > 0)
+        StaticBox.text(
+          text: '${health.toStringAsFixed(2)}% remaining',
+          color: _healthColor(health),
+          style: style,
+        ),
+      if (health.isNaN)
+        CountdownBox(expiry: expiry, size: SizeConfig.textMultiplier * 4)
     ]);
   }
 }
