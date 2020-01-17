@@ -16,7 +16,7 @@ import 'package:navis/services/repository.dart';
 import 'package:navis/themes.dart';
 import 'package:navis/utils/size_config.dart';
 import 'package:navis/widgets/widgets.dart';
-import 'package:wfcd_api_wrapper/wfcd_wrapper.dart';
+import 'package:wfcd_client/enums.dart';
 
 class Navis extends StatefulWidget {
   const Navis(this.repository);

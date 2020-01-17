@@ -1,6 +1,6 @@
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:wfcd_api_wrapper/wfcd_wrapper.dart';
+import 'package:wfcd_client/enums.dart';
 
 // TODO(Orn): Find better way to manage firebase IDs on the same device.
 class NotificationService {

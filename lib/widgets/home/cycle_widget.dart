@@ -5,7 +5,7 @@ import 'package:navis/services/repository.dart';
 import 'package:navis/utils/helper_utils.dart';
 import 'package:navis/utils/worldstate_utils.dart';
 import 'package:navis/widgets/widgets.dart';
-import 'package:worldstate_model/worldstate_objects.dart';
+import 'package:worldstate_api_model/worldstate_objects.dart';
 
 class CycleWidget extends StatelessWidget {
   const CycleWidget({Key key, this.title, this.cycle}) : super(key: key);

@@ -8,8 +8,8 @@ import 'package:navis/utils/helper_utils.dart';
 import 'package:package_info/package_info.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:warframe_items_model/warframe_items_model.dart';
-import 'package:wfcd_api_wrapper/wfcd_wrapper.dart';
-import 'package:worldstate_model/worldstate_models.dart';
+import 'package:wfcd_client/clients.dart';
+import 'package:worldstate_api_model/worldstate_models.dart';
 
 import 'storage/persistent_storage.service.dart';
 
@@ -21,7 +21,7 @@ class Repository {
   final PackageInfo packageInfo;
 
   final notifications = NotificationService.notifications;
-  final warframestat = WfcdWrapper();
+  static const warframestat = WorldstateClient();
 
   final _itemFuture = AsyncMemoizer<ItemObject>();
 
@@ -72,11 +72,11 @@ class Repository {
   }
 
   static Future<DateTime> _updateDropTable(DropTableCache instance) async {
-    final warframestat = WfcdWrapper();
+    final warframestat = DropTableClient(instance.table);
     final timestamp = await warframestat.dropsTimestamp();
 
     if (timestamp != instance.localTimestamp) {
-      await warframestat.downloadDropTable(instance.table);
+      await warframestat.downloadDropTable();
       return timestamp;
     }
 
@@ -119,7 +119,7 @@ class Repository {
   }
 
   static Future<List<ItemObject>> _searchItems(String searchTerm) async {
-    final warframestat = WfcdWrapper();
+    const warframestat = WorldstateClient();
     final searchs = await warframestat.searchItems(searchTerm);
 
     return searchs;

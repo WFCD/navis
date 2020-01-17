@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:navis/blocs/bloc.dart';
 import 'package:navis/widgets/syndicates/syndicates.dart';
 import 'package:navis/widgets/widgets.dart';
-import 'package:worldstate_model/worldstate_models.dart';
+import 'package:worldstate_api_model/worldstate_models.dart';
 
 class SyndicatesList extends StatelessWidget {
   Widget _buildSyndicates(List<Syndicate> syndicates) {
@@ -41,8 +41,8 @@ class SyndicatesList extends StatelessWidget {
           alignment: Alignment.centerRight,
           style: Theme.of(context).textTheme.title.copyWith(fontSize: 16),
         ),
-        SyndicateWidget(
-          syndicate: Syndicate(name: 'Simaris', jobs: const <Job>[]),
+        const SyndicateWidget(
+          syndicate: Syndicate(name: 'Simaris', jobs: <Job>[]),
         )
       ],
     );

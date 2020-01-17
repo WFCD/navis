@@ -4,7 +4,7 @@ import 'package:navis/blocs/bloc.dart';
 import 'package:navis/utils/worldstate_utils.dart';
 import 'package:navis/widgets/common/list_screen.dart';
 import 'package:navis/widgets/fissures/fissures.dart';
-import 'package:worldstate_model/worldstate_models.dart';
+import 'package:worldstate_api_model/worldstate_models.dart';
 
 class FissureScreen extends StatelessWidget {
   const FissureScreen({Key key}) : super(key: key);

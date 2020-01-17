@@ -7,7 +7,7 @@ import 'package:navis/constants/storage_keys.dart';
 import 'package:navis/services/repository.dart';
 import 'package:navis/utils/size_config.dart';
 import 'package:navis/widgets/icons.dart';
-import 'package:wfcd_api_wrapper/wfcd_wrapper.dart';
+import 'package:wfcd_client/enums.dart';
 
 const pc = 'PC';
 const ps4 = 'Sony PlayStation 4';

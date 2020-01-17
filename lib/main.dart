@@ -39,7 +39,7 @@ Future<void> startApp() async {
         BlocProvider<WorldstateBloc>(
           create: (context) {
             return WorldstateBloc(
-              api: repository.warframestat,
+              api: Repository.warframestat,
               persistent: persistent,
             );
           },

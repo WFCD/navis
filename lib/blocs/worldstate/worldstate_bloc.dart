@@ -4,8 +4,9 @@ import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:navis/services/storage/persistent_storage.service.dart';
 import 'package:navis/utils/worldstate_utils.dart';
 import 'package:rxdart/rxdart.dart';
-import 'package:wfcd_api_wrapper/wfcd_wrapper.dart';
-import 'package:worldstate_model/worldstate_models.dart';
+import 'package:wfcd_client/clients.dart';
+import 'package:wfcd_client/enums.dart';
+import 'package:worldstate_api_model/worldstate_models.dart';
 
 import 'worldstate_events.dart';
 import 'worldstate_states.dart';
@@ -13,7 +14,7 @@ import 'worldstate_states.dart';
 class WorldstateBloc extends HydratedBloc<WorldstateEvent, WorldStates> {
   WorldstateBloc({this.api, this.persistent});
 
-  final WfcdWrapper api;
+  final WorldstateClient api;
   final PersistentStorageService persistent;
 
   @override

@@ -6,7 +6,7 @@ import 'package:navis/services/storage/storage_base.service.dart';
 import 'package:navis/themes.dart';
 import 'package:navis/utils/search_utils.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:wfcd_api_wrapper/wfcd_wrapper.dart';
+import 'package:wfcd_client/enums.dart';
 
 import 'dateformat_enum.dart';
 

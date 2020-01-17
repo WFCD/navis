@@ -18,10 +18,10 @@ dependencies:
   flutter_svg: ^0.14.3
   floating_search_bar: ^0.2.0
   flutter_sticky_header: ^0.4.0
-  worldstate_model:
+  worldstate_api_model:
     git: https://github.com/SlayerOrnstein/worldstate_model.git
-  wfcd_api_wrapper:
-    git: https://github.com/SlayerOrnstein/wfcd_api_wrapper.git
+  wfcd_client:
+    git: https://github.com/SlayerOrnstein/wfcd_client.git
   warframe_items_model:
     git: https://github.com/SlayerOrnstein/warframe_item_models.git
   hive: ^1.1.1
