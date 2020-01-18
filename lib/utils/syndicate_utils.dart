@@ -75,7 +75,7 @@ Color syndicateBackgroundColor(SyndicateFactions syndicate) {
     case SyndicateFactions.simaris:
       return const Color(0xFF5F3C0D);
     default:
-      return Colors.white;
+      return const Color(0xFF6A5574);
   }
 }
 
