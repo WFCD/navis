@@ -12,20 +12,20 @@ class EventWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           _EventHeader(
             description: event.description,
             tooltip: event.tooltip,
           ),
-          const SizedBox(height: 4),
+          const SizedBox(height: 8),
           _EventMiddle(
             victimNode: event.victimNode,
             health: event.eventHealth,
             rewards: event.rewards,
             expiry: event.expiry,
           ),
-          const SizedBox(height: 4),
+          const SizedBox(height: 8),
           _EventFooter(
             affiliatedWith: event.affiliatedWith,
             rewards: event.eventRewards ?? [],

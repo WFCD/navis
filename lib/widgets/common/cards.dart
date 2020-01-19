@@ -35,14 +35,18 @@ class Tiles extends StatelessWidget {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
       elevation: 6.0,
       child: Container(
-          margin: const EdgeInsets.fromLTRB(4, 6, 4, 6),
-          padding: const EdgeInsets.all(2),
-          height: height,
-          alignment: Alignment.center,
-          child: Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
-            if (title != null) _buildTitle(context, title),
-            child
-          ])),
+        margin: const EdgeInsets.fromLTRB(4, 6, 4, 6),
+        padding: const EdgeInsets.all(2),
+        height: height,
+        alignment: Alignment.center,
+        child: Column(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              if (title != null) _buildTitle(context, title),
+              child
+            ]),
+      ),
     );
   }
 }
