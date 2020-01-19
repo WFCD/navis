@@ -4,7 +4,7 @@ import 'package:navis/blocs/search/search_bloc.dart';
 import 'package:navis/services/repository.dart';
 import 'package:navis/utils/search_utils.dart';
 import 'package:test/test.dart';
-import 'package:warframe_items_model/warframe_items_model.dart';
+import 'package:worldstate_api_model/misc.dart';
 
 import '../mock_classes.dart';
 import '../setup_methods.dart';

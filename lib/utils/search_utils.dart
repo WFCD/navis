@@ -1,4 +1,4 @@
-import 'package:warframe_items_model/warframe_items_model.dart';
+import 'package:worldstate_api_model/misc.dart';
 
 enum Sort { unsorted, a_b, high_low, low_high }
 

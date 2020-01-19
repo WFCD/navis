@@ -6,7 +6,7 @@ import 'package:flutter_custom_tabs/flutter_custom_tabs.dart';
 import 'package:html/parser.dart';
 import 'package:intl/intl.dart' as intl;
 import 'package:navis/themes.dart';
-import 'package:warframe_items_model/warframe_items_model.dart';
+import 'package:worldstate_api_model/misc.dart';
 
 import '../global_keys.dart';
 

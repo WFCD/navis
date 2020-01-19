@@ -45,7 +45,7 @@ class CacheStorageService extends StorageService {
   ItemObject get dealItem {
     final item = getDarvoDeal['item'];
 
-    return BasicItem.fromJson(item);
+    return ItemObject.fromJson(item);
   }
 
   DateTime get getDropTableTimestamp {
