@@ -8,7 +8,7 @@ import 'package:wfcd_client/enums.dart';
 import 'package:worldstate_api_model/misc.dart';
 import 'package:worldstate_api_model/worldstate_models.dart';
 
-abstract class WfcdRemoteDataSource {
+abstract class WarframestatRemoteBase {
   Future<List<SynthTarget>> getSynthTargets();
 
   Future<Worldstate> getWorldstate(Platforms platform);
@@ -16,10 +16,10 @@ abstract class WfcdRemoteDataSource {
   Future<List<BaseItem>> searchItems(String term);
 }
 
-class WfcdClient implements WfcdRemoteDataSource {
+class WarframestatRemote implements WarframestatRemoteBase {
   final http.Client client;
 
-  const WfcdClient(this.client);
+  const WarframestatRemote(this.client);
 
   static const _baseUrl = 'https://api.warframestat.us';
 

@@ -3,7 +3,7 @@ import 'package:navis/core/error/exceptions.dart';
 import 'package:worldstate_api_model/misc.dart';
 import 'package:worldstate_api_model/worldstate_models.dart';
 
-abstract class WfcdCacheDataSource {
+abstract class WarframestateCacheBase {
   Worldstate getCachedState();
 
   Future<void> cacheWorldstate(Worldstate state);
@@ -13,10 +13,10 @@ abstract class WfcdCacheDataSource {
   Future<void> cacheSynthTargets(List<SynthTarget> targets);
 }
 
-class WfcdCacheSource implements WfcdCacheDataSource {
+class WarframestatCache implements WarframestateCacheBase {
   final Box cacheBox;
 
-  WfcdCacheSource(this.cacheBox);
+  WarframestatCache(this.cacheBox);
 
   static const Worldstate_Key = 'worldstate';
   static const SynthTargets_Key = 'synthTargets';
