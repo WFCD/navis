@@ -2,7 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:navis/core/data/datasources/warframestat_local.dart';
 import 'package:navis/core/data/datasources/warframestat_remote.dart';
-import 'package:navis/core/domian/repositories/worldstate_repository.dart';
+import 'package:navis/core/domian/repositories/warfamestat_repository.dart';
 import 'package:navis/core/error/exceptions.dart';
 import 'package:navis/core/error/failures.dart';
 import 'package:navis/core/network/network_info.dart';
