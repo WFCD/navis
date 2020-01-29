@@ -38,12 +38,13 @@ void main() {
   }
 
   group('getWorldstate', () {
-    final tWorldstate = Worldstate.fromJson(
-        json.decode(fixture('worldstate.json')) as Map<String, dynamic>);
+    final worldstate = fixture('worldstate.json');
+    final tWorldstate =
+        Worldstate.fromJson(json.decode(worldstate) as Map<String, dynamic>);
 
     test('should return an instance of Worldstate equal to tWorldstate',
         () async {
-      setUpMockHttpClientSuccess200(fixture('worldstate.json'));
+      setUpMockHttpClientSuccess200(worldstate);
 
       final result = await api.getWorldstate(Platforms.pc);
 
