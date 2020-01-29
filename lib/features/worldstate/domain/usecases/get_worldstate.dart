@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
-import 'package:navis/core/domian/repositories/warfamestat_repository.dart';
 import 'package:navis/core/error/failures.dart';
+import 'package:navis/features/worldstate/domain/repositories/warfamestat_repository.dart';
 import 'package:wfcd_client/enums.dart';
 import 'package:worldstate_api_model/worldstate_models.dart';
 

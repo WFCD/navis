@@ -1,13 +1,10 @@
-import 'dart:convert';
-
-import 'package:mockito/mockito.dart';
 import 'package:http/http.dart' as http;
-import 'package:navis/core/data/datasources/warframestat_remote.dart';
+import 'package:mockito/mockito.dart';
 import 'package:navis/core/error/exceptions.dart';
 import 'package:navis/core/utils/data_source_utils.dart';
+import 'package:navis/features/worldstate/data/datasources/warframestat_remote.dart';
 import 'package:test/test.dart';
 import 'package:wfcd_client/enums.dart';
-import 'package:worldstate_api_model/worldstate_models.dart';
 
 import '../../../fixtures/fixture_reader.dart';
 
