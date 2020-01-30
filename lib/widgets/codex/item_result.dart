@@ -7,7 +7,7 @@ import 'package:warframe_items_model/warframe_items_model.dart';
 class ItemResultWidget extends StatelessWidget {
   const ItemResultWidget({Key key, this.item}) : super(key: key);
 
-  final ItemObject item;
+  final BaseItem item;
 
   @override
   Widget build(BuildContext context) {

@@ -21,7 +21,7 @@ class EventWidget extends StatelessWidget {
           const SizedBox(height: 8),
           _EventMiddle(
             victimNode: event.victimNode,
-            health: event.eventHealth,
+            health: event.eventHealth.toDouble(),
             rewards: event.rewards,
             expiry: event.expiry,
           ),
@@ -126,7 +126,7 @@ class _EventMiddle extends StatelessWidget {
           style: style,
         ),
       const SizedBox(height: 4),
-      if (health > 0)
+      if (!health.isNaN)
         StaticBox.text(
           text: '${health.toStringAsFixed(2)}% remaining',
           color: _healthColor(health),

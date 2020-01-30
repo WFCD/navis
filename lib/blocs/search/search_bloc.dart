@@ -51,7 +51,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
           } else {
             final results = await repository.searchItems(searchText);
 
-            yield SearchStateSuccess<ItemObject>(results);
+            yield SearchStateSuccess<BaseItem>(results);
           }
         } catch (e) {
           yield SearchStateError(e.toString());

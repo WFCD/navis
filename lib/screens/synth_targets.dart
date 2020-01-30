@@ -31,7 +31,7 @@ class SynthTargetScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final warframestate = Repository.warframestat;
+    const warframestate = Repository.warframestat;
 
     return Scaffold(
       appBar: AppBar(

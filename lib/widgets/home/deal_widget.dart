@@ -23,9 +23,9 @@ class DealWidget extends StatelessWidget {
 
     final primary = Theme.of(context).primaryColor;
 
-    return FutureBuilder<ItemObject>(
+    return FutureBuilder<BaseItem>(
       future: RepositoryProvider.of<Repository>(context).getDealItem(deal),
-      builder: (BuildContext context, AsyncSnapshot<ItemObject> snapshot) {
+      builder: (BuildContext context, AsyncSnapshot<BaseItem> snapshot) {
         if (snapshot.hasData) {
           final item = snapshot.data;
           final urlExist = item.wikiaUrl != null;

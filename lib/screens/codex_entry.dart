@@ -13,7 +13,7 @@ class CodexEntry extends StatefulWidget {
 }
 
 class _CodexEntryState extends State<CodexEntry> {
-  ItemObject _item;
+  BaseItem _item;
 
   @override
   void didChangeDependencies() {
@@ -22,7 +22,7 @@ class _CodexEntryState extends State<CodexEntry> {
     super.didChangeDependencies();
   }
 
-  Widget _buildWarframeStats(Warframe warframe) {
+  Widget _buildWarframeStats(BioWeapon warframe) {
     return WarframeStats(
       health: warframe.health,
       shield: warframe.shield,
@@ -52,7 +52,7 @@ class _CodexEntryState extends State<CodexEntry> {
                 imageName: _item.imageName,
                 wikiaUrl: _item.wikiaUrl,
               ),
-              if (_item is Warframe) _buildWarframeStats(_item as Warframe)
+              if (_item is BioWeapon) _buildWarframeStats(_item as BioWeapon)
             ],
           ),
         ),

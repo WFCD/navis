@@ -42,10 +42,10 @@ class CacheStorageService extends StorageService {
 
   String get dealId => getDarvoDeal['id'] ?? '';
 
-  ItemObject get dealItem {
+  BaseItem get dealItem {
     final item = getDarvoDeal['item'];
 
-    return ItemObject.fromJson(item);
+    return BaseItem.fromJson(item);
   }
 
   DateTime get getDropTableTimestamp {
@@ -55,7 +55,7 @@ class CacheStorageService extends StorageService {
     );
   }
 
-  Future<void> saveDarvoDealItem(String id, ItemObject item) async {
+  Future<void> saveDarvoDealItem(String id, BaseItem item) async {
     final toSave = {'id': id, 'item': item.toJson()};
 
     _box.put('deal', json.encode(toSave));

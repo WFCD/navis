@@ -24,7 +24,7 @@ class Repository {
   final notifications = NotificationService.notifications;
   static const warframestat = WorldstateClient();
 
-  final _itemFuture = AsyncMemoizer<ItemObject>();
+  final _itemFuture = AsyncMemoizer<BaseItem>();
 
   static const _dropTableFileName = 'drop_table.json';
 
@@ -59,8 +59,9 @@ class Repository {
   // Prefer to download and update drop table from here
   // since this does the work in a different thread
   Future<bool> updateDropTable() async {
-    final table = await _dropTableFile();
-    final instance = DropTableCache(cache.getDropTableTimestamp, table);
+    final directory = await getTemporaryDirectory();
+    final instance =
+        DropTableCache(cache.getDropTableTimestamp, directory.path);
 
     final updateTimestamp = await compute(_updateDropTable, instance);
 
@@ -73,7 +74,7 @@ class Repository {
   }
 
   static Future<DateTime> _updateDropTable(DropTableCache instance) async {
-    final warframestat = DropTableClient(instance.table);
+    final warframestat = DropTableClient(instance.path);
     final timestamp = await warframestat.dropsTimestamp();
 
     if (timestamp != instance.localTimestamp) {
@@ -86,7 +87,7 @@ class Repository {
 
   // The amount of search items can be very little or too much to do on the main thread
   // so to be safe keep off the main thread
-  Future<List<ItemObject>> searchItems(String term) async {
+  Future<List<BaseItem>> searchItems(String term) async {
     return compute(_searchItems, term);
   }
 
@@ -94,13 +95,13 @@ class Repository {
     return compute(_searchDropTable, DropTableSearch(term, _dropTable));
   }
 
-  Future<ItemObject> getDealItem(DarvoDeal deal) async {
+  Future<BaseItem> getDealItem(DarvoDeal deal) async {
     return _itemFuture.runOnce(() async {
       return await _getDeal(deal);
     });
   }
 
-  Future<ItemObject> _getDeal(DarvoDeal deal) async {
+  Future<BaseItem> _getDeal(DarvoDeal deal) async {
     final cachedDeal = cache.dealId;
 
     if ((cachedDeal != deal.id) ?? true) {
@@ -108,7 +109,13 @@ class Repository {
 
       final item = items.firstWhere(
         (i) => i.name == deal.item,
-        orElse: () => ItemObject(name: deal.item, description: ''),
+        orElse: () => BaseItem(
+          name: deal.item,
+          description: '',
+          imageName: '',
+          tradable: false,
+          type: 'null',
+        ),
       );
 
       cache.saveDarvoDealItem(deal.id, item);
@@ -119,7 +126,7 @@ class Repository {
     return cache.dealItem;
   }
 
-  static Future<List<ItemObject>> _searchItems(String searchTerm) async {
+  static Future<List<BaseItem>> _searchItems(String searchTerm) async {
     const warframestat = WorldstateClient();
     final searchs = await warframestat.searchItems(searchTerm);
 
@@ -137,10 +144,10 @@ class Repository {
 }
 
 class DropTableCache {
-  DropTableCache(this.localTimestamp, this.table);
+  DropTableCache(this.localTimestamp, this.path);
 
   final DateTime localTimestamp;
-  final File table;
+  final String path;
 }
 
 class DropTableSearch {
