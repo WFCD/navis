@@ -5,7 +5,7 @@ class NavisErrorWidget extends StatelessWidget {
     Key key,
     this.title,
     this.description,
-    this.showStacktrace = true,
+    this.showStacktrace = false,
     this.details,
   }) : super(key: key);
 
@@ -17,6 +17,9 @@ class NavisErrorWidget extends StatelessWidget {
   static const _description = 'There was unexpected error in the application';
 
   Widget _getStackTraceWidget() {
+    bool showStack = showStacktrace;
+
+    assert(showStack = true);
     if (showStacktrace) {
       return LimitedBox(
         maxHeight: 100,
