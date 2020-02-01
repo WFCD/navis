@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:navis/l10n/localizations.dart';
 
 import '../injection_container.dart';
 import 'bloc/navigation_bloc.dart';
 import 'home.dart';
-import 'localizations.dart';
 import 'themes/themes.dart';
 
 class NavisApp extends StatelessWidget {

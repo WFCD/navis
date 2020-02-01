@@ -1,9 +1,9 @@
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 import 'package:navis/core/error/exceptions.dart';
-import 'package:navis/core/localizations.dart';
 import 'package:navis/core/utils/data_source_utils.dart';
 import 'package:navis/core/utils/extensions.dart';
+import 'package:navis/l10n/localizations.dart';
 import 'package:warframe_items_model/warframe_items_model.dart';
 import 'package:worldstate_api_model/misc.dart';
 import 'package:worldstate_api_model/worldstate_models.dart';
