@@ -6,7 +6,6 @@ import 'package:navis/core/network/network_info.dart';
 import 'package:navis/features/worldstate/data/datasources/warframestat_local.dart';
 import 'package:navis/features/worldstate/data/datasources/warframestat_remote.dart';
 import 'package:navis/features/worldstate/domain/repositories/warfamestat_repository.dart';
-import 'package:wfcd_client/enums.dart';
 import 'package:worldstate_api_model/misc.dart';
 import 'package:worldstate_api_model/worldstate_models.dart';
 
@@ -37,7 +36,8 @@ class WarframestatRepositoryImpl implements WarframestatRepository {
   }
 
   @override
-  Future<Either<Failure, Worldstate>> getWorldstate(Platforms platform) async {
+  Future<Either<Failure, Worldstate>> getWorldstate(
+      GamePlatforms platform) async {
     return _execute<Worldstate>(
       () => remote.getWorldstate(platform),
       cacheEndpoint: local.cacheWorldstate,

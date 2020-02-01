@@ -10,7 +10,6 @@ import 'package:navis/features/worldstate/data/datasources/warframestat_local.da
 import 'package:navis/features/worldstate/data/datasources/warframestat_remote.dart';
 import 'package:navis/features/worldstate/data/repositories/warframestat_repository_impl.dart';
 import 'package:navis/features/worldstate/domain/repositories/warfamestat_repository.dart';
-import 'package:wfcd_client/enums.dart';
 import 'package:worldstate_api_model/misc.dart';
 import 'package:worldstate_api_model/worldstate_models.dart';
 
@@ -61,13 +60,13 @@ void main() {
   }
 
   group('getWorldstate', () {
-    const tPlatform = Platforms.pc;
+    const tPlatform = GamePlatforms.pc;
     final tWorldstate = Worldstate.fromJson(
         json.decode(fixture('worldstate.json')) as Map<String, dynamic>);
 
     runTestOnline(() {
       test('make sure device is online', () async {
-        await repository.getWorldstate(Platforms.pc);
+        await repository.getWorldstate(GamePlatforms.pc);
 
         final result = await mockNetworkInfo.isConnected;
 
@@ -114,7 +113,7 @@ void main() {
 
     runTestOffline(() {
       test('make sure device is offline', () async {
-        await repository.getWorldstate(Platforms.pc);
+        await repository.getWorldstate(GamePlatforms.pc);
 
         final result = await mockNetworkInfo.isConnected;
 

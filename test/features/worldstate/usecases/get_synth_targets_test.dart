@@ -7,7 +7,6 @@ import 'package:navis/core/utils/data_source_utils.dart';
 import 'package:navis/features/worldstate/domain/repositories/warfamestat_repository.dart';
 import 'package:navis/features/worldstate/domain/usecases/get_synth_targets.dart';
 import 'package:worldstate_api_model/misc.dart';
-import 'package:worldstate_api_model/worldstate_models.dart';
 
 import '../../../fixtures/fixture_reader.dart';
 

@@ -3,9 +3,9 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:navis/core/error/failures.dart';
 import 'package:navis/core/utils/data_source_utils.dart';
+import 'package:navis/features/worldstate/data/datasources/warframestat_remote.dart';
 import 'package:navis/features/worldstate/domain/repositories/warfamestat_repository.dart';
 import 'package:navis/features/worldstate/domain/usecases/get_worldstate.dart';
-import 'package:wfcd_client/enums.dart';
 import 'package:worldstate_api_model/worldstate_models.dart';
 
 import '../../../fixtures/fixture_reader.dart';
@@ -28,10 +28,10 @@ void main() {
     when(mockRepository.getWorldstate(any))
         .thenAnswer((_) async => Right(tWorldstate));
 
-    final result = await getWorldstate(Platforms.pc);
+    final result = await getWorldstate(GamePlatforms.pc);
 
     expect(result, equals(Right<Failure, Worldstate>(tWorldstate)));
-    verify(mockRepository.getWorldstate(Platforms.pc));
+    verify(mockRepository.getWorldstate(GamePlatforms.pc));
     verifyNoMoreInteractions(mockRepository);
   });
 }

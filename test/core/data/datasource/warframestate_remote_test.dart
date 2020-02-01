@@ -4,7 +4,6 @@ import 'package:navis/core/error/exceptions.dart';
 import 'package:navis/core/utils/data_source_utils.dart';
 import 'package:navis/features/worldstate/data/datasources/warframestat_remote.dart';
 import 'package:test/test.dart';
-import 'package:wfcd_client/enums.dart';
 
 import '../../../fixtures/fixture_reader.dart';
 
@@ -53,7 +52,7 @@ void main() {
 
       final call = api.getWorldstate;
 
-      expect(() => call(Platforms.pc),
+      expect(() => call(GamePlatforms.pc),
           throwsA(const TypeMatcher<ServerException>()));
     });
   });
