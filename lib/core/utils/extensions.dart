@@ -1,5 +1,13 @@
-import 'package:wfcd_client/enums.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:navis/features/worldstate/data/datasources/warframestat_remote.dart';
 
-extension PlatformX on Platforms {
+extension PlatformX on GamePlatforms {
   String platformToString() => toString().split('.').last;
+}
+
+extension DateTimeX on DateTime {
+  String format(BuildContext context) {
+    return MaterialLocalizations.of(context).formatFullDate(this);
+  }
 }
