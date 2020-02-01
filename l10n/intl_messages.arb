@@ -1,0 +1,46 @@
+{
+  "@@locale": "en",
+  "@@last_modified": "2020-01-31T23:47:52.415131",
+  "errorTitle": "An application error has occurred",
+  "@errorTitle": {
+    "description": "error title",
+    "type": "text",
+    "placeholders": {}
+  },
+  "errorDescription": "There was unexpected error in core system.\nReporting error to system admin...",
+  "@errorDescription": {
+    "description": "error description",
+    "type": "text",
+    "placeholders": {}
+  },
+  "baroLeaving": "Baro Ki'Teer leaves in",
+  "@baroLeaving": {
+    "description": "displays remaining time before Baro Ki'Teer leaves",
+    "type": "text",
+    "placeholders": {}
+  },
+  "baroLocation": "Location",
+  "@baroLocation": {
+    "description": "shows Baro ki'Teer's current location",
+    "type": "text",
+    "placeholders": {}
+  },
+  "baroLeavesOn": "Leaves on",
+  "@baroLeavesOn": {
+    "description": "shows when Baro Ki'Teer is leaving",
+    "type": "text",
+    "placeholders": {}
+  },
+  "baroArrivesOn": "Arrives on",
+  "@baroArrivesOn": {
+    "description": "shows at when Baro Ki'Teer will arrive",
+    "type": "text",
+    "placeholders": {}
+  },
+  "baroInventory": "Baro Ki'Teeer Inventory",
+  "@baroInventory": {
+    "description": "Baro Ki'Teeer Inventory button label",
+    "type": "text",
+    "placeholders": {}
+  }
+}
