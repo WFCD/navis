@@ -1,5 +1,3 @@
-update_fastlane
-
 # Prevent Fastlane from overwriting README.md
 skip_docs
 
