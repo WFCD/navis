@@ -58,6 +58,15 @@ class NavisLocalizations {
     );
   }
 
+  String get baroArriving {
+    return Intl.message(
+      'Baro Ki\'Teer arrives in',
+      name: 'baroArrving',
+      desc: 'displays remaining time before Baro Ki\'Teer arrives',
+      locale: localeName,
+    );
+  }
+
   String get baroLocation {
     return Intl.message(
       'Location',
