@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:navis/features/worldstate/presentation/bloc/solsystem_bloc.dart';
-
-import '../injection_container.dart';
+import 'package:navis/core/bloc/navigation_bloc.dart';
 
 class Home extends StatelessWidget {
   const Home({Key key}) : super(key: key);
@@ -34,9 +32,13 @@ class Home extends StatelessWidget {
             ],
           ),
         ),
-        body: BlocProvider(
-          create: (_) => sl<SolsystemBloc>(),
-          child: Container(),
+        body: BlocBuilder<NavigationBloc, Widget>(
+          builder: (BuildContext context, Widget state) {
+            return AnimatedSwitcher(
+              duration: const Duration(milliseconds: 250),
+              child: state,
+            );
+          },
         ),
       ),
     );

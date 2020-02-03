@@ -16,31 +16,37 @@ import 'features/worldstate/domain/usecases/get_worldstate.dart';
 final GetIt sl = GetIt.instance;
 
 Future<void> init() async {
-  // Blocs
-  sl.registerFactory(() => NavigationBloc());
-  sl.registerFactory(() => SolsystemBloc(worldstate: sl<GetWorldstate>()));
-
-  // Usecases
-  sl.registerSingleton(() => GetWorldstate(sl<WarframestatRepositoryImpl>()));
-  sl.registerSingleton(() => GetSynthTargets(sl<WarframestatRepositoryImpl>()));
-
-  // Repository
-  sl.registerSingleton(
-    () => WarframestatRepositoryImpl(
-      local: sl<WarframestatCache>(),
-      remote: sl<WarframestatRemote>(),
-      networkInfo: sl<NetworkInfo>(),
-    ),
-  );
+  //! Core
+  sl.registerSingleton<NetworkInfoImpl>(
+      NetworkInfoImpl(DataConnectionChecker()));
 
   // Data sources
   final temp = await getTemporaryDirectory();
   Hive.init(temp.path);
 
-  sl.registerSingleton(() => WarframestatRemote(http.Client()));
-  sl.registerSingleton(
-      () async => WarframestatCache(await Hive.openBox<dynamic>('cache')));
+  sl.registerSingleton<WarframestatRemote>(WarframestatRemote(http.Client()));
 
-  //! Core
-  sl.registerSingleton(() => NetworkInfoImpl(DataConnectionChecker()));
+  sl.registerSingleton<WarframestatCache>(
+      WarframestatCache(await Hive.openBox<dynamic>('cache')));
+
+  // Repository
+  sl.registerSingleton<WarframestatRepositoryImpl>(
+    WarframestatRepositoryImpl(
+      local: sl<WarframestatCache>(),
+      remote: sl<WarframestatRemote>(),
+      networkInfo: sl<NetworkInfoImpl>(),
+    ),
+  );
+
+  // Usecases
+  sl.registerSingleton<GetWorldstate>(
+      GetWorldstate(sl<WarframestatRepositoryImpl>()));
+
+  sl.registerSingleton<GetSynthTargets>(
+      GetSynthTargets(sl<WarframestatRepositoryImpl>()));
+
+  // Blocs
+  sl.registerFactory<NavigationBloc>(() => NavigationBloc());
+  sl.registerFactory<SolsystemBloc>(
+      () => SolsystemBloc(worldstate: sl<GetWorldstate>()));
 }

@@ -1,15 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:navis/features/worldstate/data/datasources/warframestat_remote.dart';
+import 'package:navis/features/worldstate/presentation/bloc/solsystem_bloc.dart';
 import 'package:navis/l10n/localizations.dart';
 
-import '../injection_container.dart';
-import 'bloc/navigation_bloc.dart';
 import 'home.dart';
 import 'themes/themes.dart';
 
-class NavisApp extends StatelessWidget {
+class NavisApp extends StatefulWidget {
   const NavisApp({Key key}) : super(key: key);
+
+  @override
+  _NavisAppState createState() => _NavisAppState();
+}
+
+class _NavisAppState extends State<NavisApp> {
+  @override
+  void initState() {
+    super.initState();
+
+    BlocProvider.of<SolsystemBloc>(context)
+        .add(const SolupdateSystem(GamePlatforms.pc));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -18,10 +31,7 @@ class NavisApp extends StatelessWidget {
       color: Colors.grey[900],
       theme: NavisTheming.dark,
       darkTheme: NavisTheming.dark,
-      home: BlocProvider(
-        create: (_) => sl<NavigationBloc>(),
-        child: const Home(),
-      ),
+      home: const Home(),
       // builder: _builder,
       routes: <String, WidgetBuilder>{
         // Settings.route: (_) => const Settings(),
