@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:navis/core/themes/colors.dart';
 
 class StaticBox extends StatelessWidget {
   const StaticBox({
@@ -28,7 +29,7 @@ class StaticBox extends StatelessWidget {
     return StaticBox(
       padding: padding,
       margin: margin,
-      color: color ?? Colors.blueAccent[400],
+      color: color ?? primaryColor,
       child: Text(
         text,
         textAlign: TextAlign.center,
