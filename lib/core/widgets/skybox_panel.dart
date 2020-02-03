@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:navis/core/themes/themes.dart';
+import 'package:navis/core/utils/skybox.dart';
 
 class SkyboxPanel extends StatelessWidget {
   const SkyboxPanel({
@@ -18,8 +20,10 @@ class SkyboxPanel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final skybox = SkyBoxLoader(context, node);
+
     return Theme(
-      data: ThemeData.dark(),
+      data: NavisTheming.dark,
       child: Card(
         margin: margin,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4.0)),
@@ -27,7 +31,7 @@ class SkyboxPanel extends StatelessWidget {
           duration: const Duration(milliseconds: 200),
           child: FutureBuilder<ImageProvider>(
             initialData: const AssetImage('assets/skyboxes/Derelict.webp'),
-            // future: skybox(context, node),
+            future: skybox.load(),
             builder: (context, snapshot) {
               return Container(
                 alignment: alignment,

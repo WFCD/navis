@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/core/bloc/navigation_bloc.dart';
 
+import 'widgets/drawer_options.dart';
+
 class Home extends StatelessWidget {
   const Home({Key key}) : super(key: key);
 
@@ -19,7 +21,7 @@ class Home extends StatelessWidget {
                   margin: const EdgeInsets.only(bottom: 8.0),
                   decoration:
                       BoxDecoration(color: Theme.of(context).primaryColor)),
-              // Expanded(child: DrawerOptions()),
+              Expanded(child: DrawerOptions()),
               const Divider(height: 4.0),
               ListTile(
                 leading: Icon(Icons.settings),

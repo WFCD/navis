@@ -30,7 +30,7 @@ class SolsystemBloc extends HydratedBloc<SolsystemEvent, SolsystemState> {
     SolsystemEvent event,
   ) async* {
     if (event is SolupdateSystem) {
-      yield DetectingState();
+      // yield DetectingState();
       final worldstate = await getWorldstate(event.platform);
 
       yield* worldstate.fold(
@@ -46,6 +46,7 @@ class SolsystemBloc extends HydratedBloc<SolsystemEvent, SolsystemState> {
 
   Future<void> update() async {
     add(const SolupdateSystem(GamePlatforms.pc));
+    await Future<void>.delayed(const Duration(seconds: 1));
   }
 
   @override

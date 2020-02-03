@@ -11,7 +11,7 @@ import 'package:navis/features/worldstate/presentation/pages/syndicates.dart';
 enum NavigationEvent { feed, fissures, invasions, sorties, syndicates, codex }
 
 class NavigationBloc extends HydratedBloc<NavigationEvent, Widget> {
-  final _navigationMap = {
+  static final Map<NavigationEvent, Widget> navigationMap = {
     NavigationEvent.feed: const HomeFeedPage(),
     NavigationEvent.fissures: const FissuresPage(),
     NavigationEvent.invasions: const InvasionsPage(),
@@ -21,7 +21,7 @@ class NavigationBloc extends HydratedBloc<NavigationEvent, Widget> {
   };
 
   @override
-  Widget get initialState => const HomeFeedPage();
+  Widget get initialState => navigationMap[NavigationEvent.feed];
 
   @override
   Stream<Widget> transformEvents(Stream<NavigationEvent> events,
@@ -33,7 +33,7 @@ class NavigationBloc extends HydratedBloc<NavigationEvent, Widget> {
   Stream<Widget> mapEventToState(
     NavigationEvent event,
   ) async* {
-    yield _navigationMap[event];
+    yield navigationMap[event];
   }
 
   @override
@@ -41,13 +41,12 @@ class NavigationBloc extends HydratedBloc<NavigationEvent, Widget> {
     final event =
         NavigationEvent.values.firstWhere((n) => n.toString() == json['key']);
 
-    return _navigationMap[event];
+    return navigationMap[event];
   }
 
   @override
   Map<String, dynamic> toJson(Widget state) {
-    final key =
-        _navigationMap.keys.firstWhere((k) => _navigationMap[k] == state);
+    final key = navigationMap.keys.firstWhere((k) => navigationMap[k] == state);
 
     return <String, dynamic>{'key': key.toString()};
   }
