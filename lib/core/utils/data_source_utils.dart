@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:navis/core/utils/worldstate_util.dart';
 import 'package:warframe_items_model/warframe_items_model.dart';
 import 'package:worldstate_api_model/misc.dart';
 import 'package:worldstate_api_model/worldstate_models.dart';
@@ -7,7 +8,7 @@ import 'package:worldstate_api_model/worldstate_models.dart';
 Worldstate toWorldstate(String data) {
   final state = json.decode(data) as Map<String, dynamic>;
 
-  return Worldstate.fromJson(state);
+  return cleanState(Worldstate.fromJson(state));
 }
 
 List<SynthTarget> toTargets(String data) {
