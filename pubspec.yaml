@@ -65,5 +65,5 @@ flutter:
     - assets/enemys/Corpus/
     - assets/enemys/Infestation/
     - assets/skyboxes/
-    - assets/maps/
+    # - assets/maps/
     # - assets/maps/imgs/
