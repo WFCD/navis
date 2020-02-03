@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class SkyboxCard extends StatelessWidget {
-  const SkyboxCard({
+class SkyboxPanel extends StatelessWidget {
+  const SkyboxPanel({
     Key key,
     @required this.node,
     @required this.child,

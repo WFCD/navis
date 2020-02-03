@@ -35,10 +35,11 @@ class Panel extends StatelessWidget {
       color: color,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4.0)),
       elevation: 4.0,
-      child: Container(
+      child: AnimatedContainer(
         margin: const EdgeInsets.symmetric(horizontal: 4.0, vertical: 6.0),
         padding: const EdgeInsets.symmetric(horizontal: 4.0, vertical: 4.0),
         height: height,
+        duration: const Duration(milliseconds: 250),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.center,
