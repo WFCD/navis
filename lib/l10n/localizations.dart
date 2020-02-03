@@ -61,7 +61,7 @@ class NavisLocalizations {
   String get baroArriving {
     return Intl.message(
       'Baro Ki\'Teer arrives in',
-      name: 'baroArrving',
+      name: 'baroArriving',
       desc: 'displays remaining time before Baro Ki\'Teer arrives',
       locale: localeName,
     );

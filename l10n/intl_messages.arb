@@ -1,6 +1,6 @@
 {
   "@@locale": "en",
-  "@@last_modified": "2020-01-31T23:47:52.415131",
+  "@@last_modified": "2020-02-03T05:41:49.178911",
   "errorTitle": "An application error has occurred",
   "@errorTitle": {
     "description": "error title",
@@ -16,6 +16,12 @@
   "baroLeaving": "Baro Ki'Teer leaves in",
   "@baroLeaving": {
     "description": "displays remaining time before Baro Ki'Teer leaves",
+    "type": "text",
+    "placeholders": {}
+  },
+  "baroArriving": "Baro Ki'Teer arrives in",
+  "@baroArriving": {
+    "description": "displays remaining time before Baro Ki'Teer arrives",
     "type": "text",
     "placeholders": {}
   },
