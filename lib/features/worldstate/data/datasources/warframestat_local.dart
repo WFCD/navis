@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:hive/hive.dart';
 import 'package:navis/core/error/exceptions.dart';
 import 'package:worldstate_api_model/misc.dart';
@@ -51,16 +53,16 @@ class WarframestatCache implements WarframestateCacheBase {
   }
 
   @override
-  Future<void> cacheWorldstate(Worldstate state) async {
-    await cacheBox.put(Worldstate_Key, state.toJson());
+  Future<void> cacheWorldstate(Worldstate worldstate) async {
+    await cacheBox.put(Worldstate_Key, json.encode(worldstate.toJson()));
   }
 
   @override
   Worldstate getCachedState() {
-    final cached = cacheBox.get(Worldstate_Key) as Map<String, dynamic>;
+    final cached = cacheBox.get(Worldstate_Key) as String;
 
     if (cached != null) {
-      return Worldstate.fromJson(cached);
+      return Worldstate.fromJson(json.decode(cached) as Map<String, dynamic>);
     } else {
       throw CacheException();
     }
