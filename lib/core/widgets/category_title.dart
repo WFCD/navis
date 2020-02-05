@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 
-class SettingTitle extends StatelessWidget {
-  const SettingTitle({
-    this.title,
-    this.alignment = Alignment.centerLeft,
+class CategoryTitle extends StatelessWidget {
+  const CategoryTitle({
+    @required this.title,
     this.style,
+    this.alignment = Alignment.centerLeft,
+    this.addPadding = true,
   });
 
   final String title;
+  final bool addPadding;
   final AlignmentGeometry alignment;
   final TextStyle style;
 
@@ -19,7 +21,9 @@ class SettingTitle extends StatelessWidget {
         .copyWith(fontSize: 15, color: Theme.of(context).accentColor);
 
     return Container(
-      margin: const EdgeInsets.only(top: 4.0, left: 16.0, right: 16.0),
+      margin: addPadding
+          ? const EdgeInsets.only(top: 4.0, left: 16.0, right: 16.0)
+          : null,
       alignment: alignment,
       child: Text(title, style: style ?? _style),
     );

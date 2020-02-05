@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:navis/features/worldstate/data/datasources/warframestat_remote.dart';
 import 'package:navis/features/worldstate/presentation/bloc/solsystem_bloc.dart';
+import 'package:navis/features/worldstate/presentation/pages/event.dart';
 import 'package:navis/l10n/localizations.dart';
 
 import 'home.dart';
@@ -34,6 +35,7 @@ class _NavisAppState extends State<NavisApp> {
       home: const Home(),
       // builder: _builder,
       routes: <String, WidgetBuilder>{
+        EventInformation.route: (_) => const EventInformation()
         // Settings.route: (_) => const Settings(),
         // Nightwaves.route: (_) => const Nightwaves(),
         // SyndicateJobs.route: (_) => const SyndicateJobs(),

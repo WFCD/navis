@@ -42,7 +42,7 @@ android {
 
     defaultConfig {
         applicationId 'com.cephalon.navis'
-        minSdkVersion 16
+        minSdkVersion 20
         targetSdkVersion 28
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName + getDate()
