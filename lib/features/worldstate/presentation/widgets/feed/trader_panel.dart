@@ -19,31 +19,29 @@ class TraderPanel extends StatelessWidget {
     return Panel(
       title: 'Void Trader',
       child: Column(children: <Widget>[
-        RowItem(
-          text: Text(trader.active
+        ListTile(
+          title: Text(trader.active
               ? navisLocale.baroArriving
               : navisLocale.baroLeaving),
-          child: CountdownTimer(
+          trailing: CountdownTimer(
             expiry: trader.active ? trader.expiry : trader.activation,
           ),
         ),
-        const SizedBox(height: 2.0),
         if (trader.active)
-          RowItem(
-            text: const Text('Loaction'),
-            child: StaticBox.text(
+          ListTile(
+            title: const Text('Loaction'),
+            trailing: StaticBox.text(
               text: '${trader.location}',
               color: Theme.of(context).primaryColor,
             ),
           ),
-        const SizedBox(height: 2.0),
-        RowItem(
-          text: Text(
+        ListTile(
+          title: Text(
             trader.active
                 ? navisLocale.baroLeavesOn
                 : navisLocale.baroArrivesOn,
           ),
-          child: StaticBox.text(
+          trailing: StaticBox.text(
             color: Theme.of(context).primaryColor,
             text: formattedDate,
           ),

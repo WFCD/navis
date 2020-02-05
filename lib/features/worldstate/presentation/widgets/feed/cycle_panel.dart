@@ -41,12 +41,9 @@ class CycleWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8.0),
-      child: RowItem(
-        text: Text(cycleName),
-        child: CountdownTimer(expiry: cycle.expiry),
-      ),
+    return ListTile(
+      title: Text(cycleName),
+      trailing: CountdownTimer(expiry: cycle.expiry),
     );
   }
 }
