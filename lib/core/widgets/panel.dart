@@ -19,7 +19,7 @@ class Panel extends StatelessWidget {
         Theme.of(context).textTheme.title.copyWith(fontWeight: FontWeight.w500);
 
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 6.0),
+      padding: const EdgeInsets.only(top: 8.0),
       child: Text(
         title,
         textAlign: TextAlign.center,
@@ -31,13 +31,13 @@ class Panel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: const EdgeInsets.symmetric(horizontal: 6.0, vertical: 8.0),
+      margin: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0),
       color: color,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4.0)),
       elevation: 4.0,
       child: AnimatedContainer(
-        margin: const EdgeInsets.symmetric(horizontal: 4.0, vertical: 6.0),
-        padding: const EdgeInsets.symmetric(horizontal: 4.0, vertical: 4.0),
+        margin: const EdgeInsets.symmetric(horizontal: 2.0, vertical: 2.0),
+        padding: const EdgeInsets.symmetric(horizontal: 2.0, vertical: 2.0),
         height: height,
         duration: const Duration(milliseconds: 250),
         child: Column(
