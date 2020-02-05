@@ -17,6 +17,7 @@ class FissuresPage extends StatelessWidget {
 
             return ListView.builder(
               itemCount: worldstate.fissures.length,
+              cacheExtent: worldstate.fissures.length / 2,
               itemBuilder: (BuildContext context, int index) {
                 return FissureWidget(fissure: worldstate.fissures[index]);
               },
