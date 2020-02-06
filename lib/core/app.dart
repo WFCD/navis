@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:navis/core/widgets/widgets.dart';
 import 'package:navis/features/worldstate/data/datasources/warframestat_remote.dart';
 import 'package:navis/features/worldstate/presentation/bloc/solsystem_bloc.dart';
 import 'package:navis/features/worldstate/presentation/pages/event.dart';
@@ -25,6 +26,16 @@ class _NavisAppState extends State<NavisApp> {
         .add(const SolupdateSystem(GamePlatforms.pc));
   }
 
+  Widget _builder(BuildContext context, Widget widget) {
+    ErrorWidget.builder = (FlutterErrorDetails error) =>
+        NavisErrorWidget(
+          details: error,
+          showStacktrace: true,
+        );
+
+    return widget;
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -33,7 +44,7 @@ class _NavisAppState extends State<NavisApp> {
       theme: NavisTheming.dark,
       darkTheme: NavisTheming.dark,
       home: const Home(),
-      // builder: _builder,
+      builder: _builder,
       routes: <String, WidgetBuilder>{
         EventInformation.route: (_) => const EventInformation()
         // Settings.route: (_) => const Settings(),
