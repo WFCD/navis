@@ -44,10 +44,8 @@ class _NavisState extends State<Navis> with WidgetsBindingObserver {
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     if (state == AppLifecycleState.resumed) {
-      BlocProvider.of<WorldstateBloc>(context).update();
+      BlocProvider.of<WorldstateBloc>(context).add(UpdateEvent());
     }
-
-    super.didChangeAppLifecycleState(state);
   }
 
   Widget _builder(BuildContext context, Widget widget) {
