@@ -20,7 +20,7 @@ class NavisErrorWidget extends StatelessWidget {
     bool showStack = showStacktrace;
 
     assert(showStack = true);
-    if (showStacktrace) {
+    if (showStack) {
       return LimitedBox(
         maxHeight: 100,
         child: Text(details.exceptionAsString()),
