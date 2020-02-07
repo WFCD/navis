@@ -147,17 +147,28 @@ class _EventFooter extends StatelessWidget {
   }) : super(key: key);
 
   final String affiliatedWith;
-  final List<String> rewards;
+  final List<Reward> rewards;
   final List<Job> jobs;
 
-  Widget _addReward(TextStyle style) {
-    return Wrap(
-      alignment: WrapAlignment.center,
-      children: <Widget>[
-        for (String r in rewards)
-          StaticBox.text(text: r, style: style, color: Colors.green)
-      ],
-    );
+  List<Widget> _buildRewards(TextStyle style) {
+    List<Widget> rewards = [];
+
+    for (final reward in this.rewards) {
+      if (reward.itemString.contains('+')) {
+        final _reward = reward.itemString.split('+');
+
+        rewards.addAll([
+          StaticBox.text(
+              text: _reward.first, style: style, color: Colors.green),
+          StaticBox.text(text: _reward.last, style: style, color: Colors.green)
+        ]);
+      } else {
+        rewards.add(StaticBox.text(
+            text: reward.itemString, style: style, color: Colors.green));
+      }
+    }
+
+    return rewards;
   }
 
   @override
@@ -189,7 +200,10 @@ class _EventFooter extends StatelessWidget {
         },
       );
     } else {
-      return _addReward(style);
+      return Wrap(
+        alignment: WrapAlignment.center,
+        children: _buildRewards(style),
+      );
     }
   }
 }

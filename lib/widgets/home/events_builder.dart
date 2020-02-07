@@ -27,7 +27,7 @@ class EventBuilder extends StatelessWidget {
           final events = state.worldstate?.events ?? [];
 
           return Carousel(
-            height: SizeConfig.heightMultiplier * 30,
+            height: SizeConfig.heightMultiplier * 38,
             dotCount: events.length,
             enableIndicator: events.length > 1,
             children: events.map((e) => EventWidget(event: e)).toList(),
