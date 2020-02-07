@@ -12,9 +12,9 @@ class Notifications extends StatelessWidget {
 
   void openDialog(BuildContext context, String type) {
     switch (type) {
-      /*case 'Acolytes':
+      case 'Acolytes':
         FilterDialog.showFilters(context, acolytes, FilterType.acolytes);
-        break;*/
+        break;
       case 'Cycles':
         FilterDialog.showFilters(context, cycles, FilterType.cycles);
         break;
