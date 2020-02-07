@@ -151,7 +151,7 @@ class _EventFooter extends StatelessWidget {
   final List<Job> jobs;
 
   List<Widget> _buildRewards(TextStyle style) {
-    List<Widget> rewards = [];
+    final rewards = <Widget>[];
 
     for (final reward in this.rewards) {
       if (reward.itemString.contains('+')) {
