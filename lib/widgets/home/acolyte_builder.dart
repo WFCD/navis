@@ -11,21 +11,16 @@ class Acolytes extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder(
-      bloc: BlocProvider.of<WorldstateBloc>(context),
-      condition: (WorldStates previous, WorldStates current) => listEquals(
-          previous.worldstate?.persistentEnemies ?? [],
-          current.worldstate?.persistentEnemies ?? []),
+    return BlocBuilder<WorldstateBloc, WorldStates>(
       builder: (context, state) {
         final acolytes = state.worldstate?.persistentEnemies ?? [];
 
         return Tiles(
-            title: 'Acolytes',
-            child: Column(
-              children: <Widget>[
-                ...acolytes.map((e) => AcolyteWidget(enemy: e))
-              ],
-            ));
+          title: 'Acolytes',
+          child: Column(
+            children: acolytes.map((e) => AcolyteWidget(enemy: e)).toList(),
+          ),
+        );
       },
     );
   }
