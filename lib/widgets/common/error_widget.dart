@@ -13,9 +13,6 @@ class NavisErrorWidget extends StatelessWidget {
   final bool showStacktrace;
   final FlutterErrorDetails details;
 
-  static const _title = 'An application error has occurred';
-  static const _description = 'There was unexpected error in the application';
-
   Widget _getStackTraceWidget() {
     bool showStack = showStacktrace;
 
@@ -42,13 +39,13 @@ class NavisErrorWidget extends StatelessWidget {
               Icon(Icons.error_outline, color: Colors.red, size: 40),
               const SizedBox(height: 8),
               Text(
-                title ?? _title,
+                'There was unexpected error in core system.',
                 style: Theme.of(context).textTheme.title,
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 10),
-              Text(
-                description ?? _description,
+              const Text(
+                'Reporting error to system admin...',
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 10),

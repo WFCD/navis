@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:navis/services/storage/persistent_storage.service.dart';
 import 'package:navis/utils/worldstate_utils.dart';
@@ -38,8 +39,9 @@ class WorldstateBloc extends HydratedBloc<WorldstateEvent, WorldStates> {
         final worldstate = await api.getWorldstate(_platform);
 
         yield WorldstateLoaded(cleanState(worldstate));
-      } catch (e) {
-        yield WorldstateError(e);
+      } catch (exception, stack) {
+        Crashlytics.instance.recordError(exception, stack);
+        yield WorldstateError(exception);
       }
     }
   }
