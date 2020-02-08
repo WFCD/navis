@@ -14,8 +14,8 @@ class Acolytes extends StatelessWidget {
     return BlocBuilder(
       bloc: BlocProvider.of<WorldstateBloc>(context),
       condition: (WorldStates previous, WorldStates current) => listEquals(
-          previous.worldstate.persistentEnemies,
-          current.worldstate.persistentEnemies),
+          previous.worldstate?.persistentEnemies ?? [],
+          current.worldstate?.persistentEnemies ?? []),
       builder: (context, state) {
         final acolytes = state.worldstate?.persistentEnemies ?? [];
 
