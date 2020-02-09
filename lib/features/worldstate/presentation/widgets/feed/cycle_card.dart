@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:navis/core/widgets/widgets.dart';
 import 'package:worldstate_api_model/worldstate_objects.dart';
 
-class CyclePanel extends StatelessWidget {
-  const CyclePanel({Key key, @required this.cycles})
+class CycleCard extends StatelessWidget {
+  const CycleCard({Key key, @required this.cycles})
       : assert(cycles != null),
         super(key: key);
 
@@ -11,7 +11,7 @@ class CyclePanel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Panel(
+    return CustomCard(
         child: Column(
       children: <Widget>[
         for (final cycle in cycles)

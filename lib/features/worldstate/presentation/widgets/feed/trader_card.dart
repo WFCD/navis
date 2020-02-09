@@ -3,8 +3,8 @@ import 'package:navis/core/widgets/widgets.dart';
 import 'package:navis/l10n/localizations.dart';
 import 'package:worldstate_api_model/worldstate_models.dart';
 
-class TraderPanel extends StatelessWidget {
-  const TraderPanel({Key key, @required this.trader}) : super(key: key);
+class TraderCard extends StatelessWidget {
+  const TraderCard({Key key, @required this.trader}) : super(key: key);
 
   final VoidTrader trader;
 
@@ -16,7 +16,7 @@ class TraderPanel extends StatelessWidget {
     final formattedDate = materialLocale
         .formatFullDate(trader.active ? trader.expiry : trader.activation);
 
-    return Panel(
+    return CustomCard(
       title: 'Void Trader',
       child: Column(children: <Widget>[
         ListTile(

@@ -81,7 +81,7 @@ class EventStatus extends StatelessWidget {
         .caption
         .copyWith(fontStyle: FontStyle.italic, fontSize: 15);
 
-    return Panel(
+    return CustomCard(
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(

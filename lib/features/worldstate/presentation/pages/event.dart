@@ -1,8 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:navis/features/worldstate/data/datasources/event_info_parser.dart';
+import 'package:navis/features/worldstate/presentation/widgets/event/event_status.dart';
 import 'package:navis/features/worldstate/presentation/widgets/event/guide_player.dart';
-import 'package:navis/features/worldstate/presentation/widgets/event/status.dart';
 import 'package:navis/injection_container.dart';
 import 'package:worldstate_api_model/worldstate_models.dart';
 

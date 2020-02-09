@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/features/worldstate/presentation/bloc/solsystem_bloc.dart';
-import 'package:navis/features/worldstate/presentation/widgets/feed/cycle_panel.dart';
-import 'package:navis/features/worldstate/presentation/widgets/feed/event_panel.dart';
-import 'package:navis/features/worldstate/presentation/widgets/feed/feed_panels.dart';
+import 'package:navis/features/worldstate/presentation/widgets/feed/feed_cards.dart';
 
 class HomeFeedPage extends StatelessWidget {
   const HomeFeedPage({Key key}) : super(key: key);
@@ -20,8 +18,8 @@ class HomeFeedPage extends StatelessWidget {
             return ListView(
               children: <Widget>[
                 if (worldstate.eventsActive)
-                  EventPanel(events: worldstate.events),
-                CyclePanel(cycles: <CycleEntry>[
+                  EventCard(events: worldstate.events),
+                CycleCard(cycles: <CycleEntry>[
                   CycleEntry(
                     name: 'Earth Cycle',
                     cycle: worldstate.earthCycle,
@@ -35,7 +33,7 @@ class HomeFeedPage extends StatelessWidget {
                     cycle: worldstate.vallisCycle,
                   )
                 ]),
-                TraderPanel(trader: worldstate.voidTrader),
+                TraderCard(trader: worldstate.voidTrader),
               ],
             );
           }

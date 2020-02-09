@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:navis/core/widgets/panel.dart';
+import 'package:navis/core/widgets/widgets.dart';
 import 'package:navis/features/worldstate/presentation/pages/event.dart';
 import 'package:worldstate_api_model/worldstate_models.dart';
 
-class EventPanel extends StatelessWidget {
-  const EventPanel({Key key, this.events = const []}) : super(key: key);
+class EventCard extends StatelessWidget {
+  const EventCard({Key key, this.events = const []}) : super(key: key);
 
   final List<Event> events;
 
   @override
   Widget build(BuildContext context) {
-    return Panel(
+    return CustomCard(
       child: Column(children: <Widget>[
         for (final event in events)
           ListTile(

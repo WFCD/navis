@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class Panel extends StatelessWidget {
-  const Panel({
+class CustomCard extends StatelessWidget {
+  const CustomCard({
     Key key,
     this.height,
     this.color,
