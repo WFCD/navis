@@ -1,58 +1,52 @@
 language: android
 jdk: oraclejdk8
 licenses:
-  - android-sdk-preview-license-.+
-  - android-sdk-license-.+
-  - google-gdk-license-.+
+- android-sdk-preview-license-.+
+- android-sdk-license-.+
+- google-gdk-license-.+
 android:
   components:
-    - build-tools-28.0.3
-    - android-28
-
+  - build-tools-28.0.3
+  - android-28
 before_install:
-  - openssl aes-256-cbc -K $encrypted_2db283701f8c_key -iv $encrypted_2db283701f8c_iv
-    -in secrets.tar.enc -out secrets.tar -d
-  - bundle install --gemfile=android/Gemfile
-
+- openssl aes-256-cbc -K $encrypted_2db283701f8c_key -iv $encrypted_2db283701f8c_iv
+  -in secrets.tar.enc -out secrets.tar -d
+- bundle install --gemfile=android/Gemfile
 before_script:
-  - tar xvf secrets.tar
-  - if [  ! -d "flutter" ] ; then git clone https://github.com/flutter/flutter.git -b
-    stable; fi;
-  - export PATH=./flutter/bin:$PATH
-
+- tar xvf secrets.tar
+- if [  ! -d "flutter" ] ; then git clone https://github.com/flutter/flutter.git -b
+  stable; fi;
+- export PATH=./flutter/bin:$PATH
 jobs:
   include:
-    - name: Test
-      script:
-        - flutter pub get
-        - flutter test
-        - flutter build apk --target-platform android-arm
-
-    - name: Deploy
-      if: tag IS present
-      script:
-        - flutter pub get
-        - flutter clean
-        # Flutter builds release versions of the app by default and doesn't
-        # need to be explicitly set
-        - flutter build apk --split-per-abi
-        - flutter build appbundle
-        - cd android && bundle exec fastlane beta
-      deploy:
-        provider: releases
-        skip_cleanup: true
-        api_key:
-          secure: gIxJTtFOm1pJd5gfXuwbN4S8jImYIRQ1HhPb5NhhjGSg2WupsHm45GBBJAUdiUYpw3AOxEDR2FG5IIX+EBxJuuijlByJuxkiPX+EIbaRNIs5Dg8PuDxHN9Q3YgYKRvDM4ZQy99K2h/LLy8Bk7wazYx/JmnqKVLt6VVebfWDNnK0PXce6wyRH1rMc05VtgTku8LhMkryaOaMVX71XWNcwXq7mxO3KmVN0k8IIrZpBPpv01/rV6VuAndbvgxGFQ8AizL3xqGdaf1FG3wjhf1RrAUTrsEY0sEefJW0nEFZR9/NIYR2YyWvyWlYh6MY7XA6kVjUpTOgfR7x6PJpnEoWXij9TB7H7Pc3N40CGUt8uGo8+1qJ1zHH/YSBftEjPC0kT1vS0FTgEhyJ1tpXCyQvJJQOPK0YCU1tdYj+brl6dRxnush4sFTIxQpSSf+aJ8LAlZ5kz1aIiUld+KTeVbJg7Wto0qJEeG8IHHkvtMgzMwdjHQ3N1Go85zT5FQvXrit7ZGg8CAuFQYQcCdgu+k8iRs9XrxLLkMfRAPRJHlgpHLoWfUhaxlze9iXhnxxFBP3ixiNQTkfIJSwaJ69k9CiftwBATNdfodAx4b72MZE0CjGqztW1z0gIJ3/JTNByrhrv1Ld/tOEGQXSQL0SWdePJGZRuxNGD96DzgGoJzx9dVvFY=
-        file_glob: true
-        file: $TRAVIS_BUILD_DIR/build/app/outputs/apk/release/*.apk
-        on:
-          repo: WFCD/navis
-          tags: true
+  - name: Test
+    script:
+    - flutter pub get
+    - flutter test
+    - flutter build apk --target-platform android-arm
+  - name: Deploy
+    if: tag IS present
+    script:
+    - flutter pub get
+    - flutter clean
+    - flutter build apk --split-per-abi
+    - flutter build appbundle
+    - cd android && bundle exec fastlane beta
+    deploy:
+      provider: releases
+      skip_cleanup: true
+      api_key:
+        secure: gIxJTtFOm1pJd5gfXuwbN4S8jImYIRQ1HhPb5NhhjGSg2WupsHm45GBBJAUdiUYpw3AOxEDR2FG5IIX+EBxJuuijlByJuxkiPX+EIbaRNIs5Dg8PuDxHN9Q3YgYKRvDM4ZQy99K2h/LLy8Bk7wazYx/JmnqKVLt6VVebfWDNnK0PXce6wyRH1rMc05VtgTku8LhMkryaOaMVX71XWNcwXq7mxO3KmVN0k8IIrZpBPpv01/rV6VuAndbvgxGFQ8AizL3xqGdaf1FG3wjhf1RrAUTrsEY0sEefJW0nEFZR9/NIYR2YyWvyWlYh6MY7XA6kVjUpTOgfR7x6PJpnEoWXij9TB7H7Pc3N40CGUt8uGo8+1qJ1zHH/YSBftEjPC0kT1vS0FTgEhyJ1tpXCyQvJJQOPK0YCU1tdYj+brl6dRxnush4sFTIxQpSSf+aJ8LAlZ5kz1aIiUld+KTeVbJg7Wto0qJEeG8IHHkvtMgzMwdjHQ3N1Go85zT5FQvXrit7ZGg8CAuFQYQcCdgu+k8iRs9XrxLLkMfRAPRJHlgpHLoWfUhaxlze9iXhnxxFBP3ixiNQTkfIJSwaJ69k9CiftwBATNdfodAx4b72MZE0CjGqztW1z0gIJ3/JTNByrhrv1Ld/tOEGQXSQL0SWdePJGZRuxNGD96DzgGoJzx9dVvFY=
+      file_glob: true
+      file: "$TRAVIS_BUILD_DIR/build/app/outputs/apk/release/*.apk"
+      on:
+        repo: WFCD/navis
+        tags: true
 cache:
   bundler: true
   directories:
-    - "$HOME/.pub-cache"
-    - "$HOME/.gradle/caches/"
-    - "$HOME/.gradle/wrapper/"
-    - "$HOME/.android/build-cache"
-    - "$HOME/flutter"
+  - "$HOME/.pub-cache"
+  - "$HOME/.gradle/caches/"
+  - "$HOME/.gradle/wrapper/"
+  - "$HOME/.android/build-cache"
+  - "$HOME/flutter"
