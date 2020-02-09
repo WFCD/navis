@@ -1,0 +1,35 @@
+{
+    "Thermia Fractures": {
+        "keyArt": "https://vignette.wikia.nocookie.net/warframe/images/f/f2/OperationBuriedDebtsSplash.png/revision/latest?cb=20190309071414",
+        "howTo": [
+            {
+                "id": "JUCQO6Mywgg",
+                "title": "Warframe: Operation Rinse Repeat For A Few Hours",
+                "author": "Tactical Potato",
+                "pThumbnail": "https://yt3.ggpht.com/a/AGF-l7_pYlula3Y5_d0QclRjEjSMoYV1w75yS2tCBg=s48-c-k-c0xffffffff-no-rj-mo",
+                "link": "https://youtu.be/JUCQO6Mywgg"
+            }
+        ],
+        "translations": []
+    },
+    "Plague Star": {
+        "keyArt": "",
+        "howTo": [],
+        "translations": []
+    },
+    "Ghoul Purge": {
+        "keyArt": "",
+        "howTo": [],
+        "translations": []
+    },
+    "Balor Fomorian": {
+        "keyArt": "",
+        "howTo": [],
+        "translations": []
+    },
+    "Razorback Armada": {
+        "keyArt": "",
+        "howTo": [],
+        "translations": []
+    }
+}

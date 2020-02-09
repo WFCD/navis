@@ -10,6 +10,7 @@ import 'core/data/datasources/warframestat_local.dart';
 import 'core/data/datasources/warframestat_remote.dart';
 import 'core/data/repositories/warframestat_repository_impl.dart';
 import 'core/network/network_info.dart';
+import 'features/worldstate/data/datasources/event_info_parser.dart';
 import 'features/worldstate/domain/usecases/get_synth_targets.dart';
 import 'features/worldstate/domain/usecases/get_worldstate.dart';
 
@@ -19,6 +20,8 @@ Future<void> init() async {
   //! Core
   sl.registerSingleton<NetworkInfoImpl>(
       NetworkInfoImpl(DataConnectionChecker()));
+
+  sl.registerSingleton<EventInfoParser>(await EventInfoParser.loadEventData());
 
   // Data sources
   final temp = await getTemporaryDirectory();
