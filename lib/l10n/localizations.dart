@@ -2,6 +2,7 @@ import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
 import 'package:navis/l10n/messages_all.dart';
 
+// I'm adding this as I reimplement everything and is subject to change.
 class NavisLocalizations {
   static NavisLocalizations current;
 
@@ -26,6 +27,25 @@ class NavisLocalizations {
 
   static NavisLocalizations of(BuildContext context) {
     return Localizations.of<NavisLocalizations>(context, NavisLocalizations);
+  }
+
+  // Event page
+  String get eventDescription {
+    return Intl.message(
+      'Description',
+      name: 'eventDescription',
+      desc: 'Event description category title',
+      locale: localeName,
+    );
+  }
+
+  String get eventStatus {
+    return Intl.message(
+      'Event Status',
+      name: 'eventStatus',
+      desc: 'Event status category title',
+      locale: localeName,
+    );
   }
 
   // Error widget
@@ -99,6 +119,17 @@ class NavisLocalizations {
       'Baro Ki\'Teeer Inventory',
       name: 'baroInventory',
       desc: 'Baro Ki\'Teeer Inventory button label',
+      locale: localeName,
+    );
+  }
+
+  // Countdown tooltip
+  String countdownTooltip(String date) {
+    return Intl.message(
+      'Ends on $date',
+      name: 'countdownTooltip',
+      args: [date],
+      desc: 'Countdown tooltip with end date of the current running timer',
       locale: localeName,
     );
   }

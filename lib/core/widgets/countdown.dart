@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:navis/features/worldstate/presentation/bloc/solsystem_bloc.dart';
+import 'package:navis/l10n/localizations.dart';
 
 import '../utils/extensions.dart';
 import 'static_box.dart';
@@ -64,10 +67,10 @@ class _CountdownTimerState extends State<CountdownTimer>
 
   Future<void> _listener(AnimationStatus status) async {
     if (status == AnimationStatus.completed) {
-      // await Future<void>.delayed(
-      //   const Duration(seconds: 1),
-      //   () => BlocProvider.of<SolsystemBloc>(context).update(),
-      // );
+      await Future<void>.delayed(
+        const Duration(seconds: 1),
+        BlocProvider.of<SolsystemBloc>(context).update,
+      );
 
       final expired = widget.expiry.isBefore(DateTime.now().toUtc());
 
@@ -81,8 +84,10 @@ class _CountdownTimerState extends State<CountdownTimer>
 
   @override
   Widget build(BuildContext context) {
+    final localization = NavisLocalizations.of(context);
+
     return Tooltip(
-      message: 'Ends on ${widget.expiry.format(context)}',
+      message: localization.countdownTooltip(widget.expiry.format(context)),
       child: _CountdownAnimation(
         listenable: _tween,
         expiry: widget.expiry,
