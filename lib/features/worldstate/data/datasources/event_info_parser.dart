@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:navis/features/worldstate/data/models/event_info.dart';
 import 'package:navis/features/worldstate/domain/entities/event_info.dart';
