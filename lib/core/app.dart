@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:navis/core/widgets/widgets.dart';
-import 'package:navis/features/worldstate/data/datasources/warframestat_remote.dart';
+import 'package:navis/core/data/datasources/warframestat_remote.dart';
 import 'package:navis/features/worldstate/presentation/bloc/solsystem_bloc.dart';
 import 'package:navis/features/worldstate/presentation/pages/event.dart';
 import 'package:navis/l10n/localizations.dart';
@@ -27,8 +27,7 @@ class _NavisAppState extends State<NavisApp> {
   }
 
   Widget _builder(BuildContext context, Widget widget) {
-    ErrorWidget.builder = (FlutterErrorDetails error) =>
-        NavisErrorWidget(
+    ErrorWidget.builder = (FlutterErrorDetails error) => NavisErrorWidget(
           details: error,
           showStacktrace: true,
         );

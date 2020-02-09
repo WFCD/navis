@@ -3,15 +3,15 @@ import 'package:flutter/cupertino.dart';
 import 'package:navis/core/error/exceptions.dart';
 import 'package:navis/core/error/failures.dart';
 import 'package:navis/core/network/network_info.dart';
-import 'package:navis/features/worldstate/data/datasources/warframestat_local.dart';
-import 'package:navis/features/worldstate/data/datasources/warframestat_remote.dart';
-import 'package:navis/features/worldstate/domain/repositories/warfamestat_repository.dart';
+import 'package:navis/core/data/datasources/warframestat_local.dart';
+import 'package:navis/core/data/datasources/warframestat_remote.dart';
+import 'package:navis/core/domain/repositories/warfamestat_repository.dart';
 import 'package:worldstate_api_model/misc.dart';
 import 'package:worldstate_api_model/worldstate_models.dart';
 
-typedef ContactEndpoint<T> = Future<T> Function();
-typedef CacheEndpoint<T> = Future<void> Function(T toCache);
-typedef RestoreEndpoint<T> = T Function();
+typedef ExecuteCallback<T> = Future<T> Function();
+typedef CacheCallback<T> = Future<void> Function(T toCache);
+typedef RestoreCallback<T> = T Function();
 
 class WarframestatRepositoryImpl implements WarframestatRepository {
   final WarframestatCache local;
@@ -46,9 +46,9 @@ class WarframestatRepositoryImpl implements WarframestatRepository {
   }
 
   Future<Either<Failure, T>> _execute<T>(
-    ContactEndpoint<T> function, {
-    CacheEndpoint<T> cacheEndpoint,
-    RestoreEndpoint<T> restoreEndpoint,
+    ExecuteCallback<T> function, {
+    CacheCallback<T> cacheEndpoint,
+    RestoreCallback<T> restoreEndpoint,
   }) async {
     if (await networkInfo.isConnected) {
       try {

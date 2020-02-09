@@ -6,10 +6,10 @@ import 'package:navis/features/worldstate/presentation/bloc/solsystem_bloc.dart'
 import 'package:path_provider/path_provider.dart';
 
 import 'core/bloc/navigation_bloc.dart';
+import 'core/data/datasources/warframestat_local.dart';
+import 'core/data/datasources/warframestat_remote.dart';
+import 'core/data/repositories/warframestat_repository_impl.dart';
 import 'core/network/network_info.dart';
-import 'features/worldstate/data/datasources/warframestat_local.dart';
-import 'features/worldstate/data/datasources/warframestat_remote.dart';
-import 'features/worldstate/data/repositories/warframestat_repository_impl.dart';
 import 'features/worldstate/domain/usecases/get_synth_targets.dart';
 import 'features/worldstate/domain/usecases/get_worldstate.dart';
 

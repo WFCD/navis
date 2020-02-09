@@ -4,7 +4,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:navis/core/error/failures.dart';
-import 'package:navis/features/worldstate/data/datasources/warframestat_remote.dart';
+import 'package:navis/core/data/datasources/warframestat_remote.dart';
 import 'package:navis/features/worldstate/domain/usecases/get_worldstate.dart';
 import 'package:worldstate_api_model/worldstate_models.dart';
 
