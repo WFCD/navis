@@ -17,7 +17,6 @@ class EventInformation extends StatelessWidget {
     final eventInfo = sl<EventInfoParser>().eventInfo[event.description];
     final eventGuide = eventInfo.howTos.first;
 
-    // TODO: Make sure this setup works for all events
     return SafeArea(
       child: Scaffold(
         body: CustomScrollView(slivers: <Widget>[
