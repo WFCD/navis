@@ -4,7 +4,7 @@ import 'package:mockito/mockito.dart';
 import 'package:navis/core/error/failures.dart';
 import 'package:navis/core/usecases/usecases.dart';
 import 'package:navis/core/utils/data_source_utils.dart';
-import 'package:navis/features/worldstate/domain/repositories/warfamestat_repository.dart';
+import 'package:navis/core/domain/repositories/warfamestat_repository.dart';
 import 'package:navis/features/worldstate/domain/usecases/get_synth_targets.dart';
 import 'package:worldstate_api_model/misc.dart';
 

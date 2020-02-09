@@ -6,10 +6,10 @@ import 'package:mockito/mockito.dart';
 import 'package:navis/core/error/exceptions.dart';
 import 'package:navis/core/error/failures.dart';
 import 'package:navis/core/network/network_info.dart';
-import 'package:navis/features/worldstate/data/datasources/warframestat_local.dart';
-import 'package:navis/features/worldstate/data/datasources/warframestat_remote.dart';
-import 'package:navis/features/worldstate/data/repositories/warframestat_repository_impl.dart';
-import 'package:navis/features/worldstate/domain/repositories/warfamestat_repository.dart';
+import 'package:navis/core/data/datasources/warframestat_local.dart';
+import 'package:navis/core/data/datasources/warframestat_remote.dart';
+import 'package:navis/core/data/repositories/warframestat_repository_impl.dart';
+import 'package:navis/core/domain/repositories/warfamestat_repository.dart';
 import 'package:worldstate_api_model/misc.dart';
 import 'package:worldstate_api_model/worldstate_models.dart';
 

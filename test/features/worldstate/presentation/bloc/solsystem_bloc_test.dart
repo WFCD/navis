@@ -6,7 +6,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:mockito/mockito.dart';
 import 'package:navis/core/utils/data_source_utils.dart';
-import 'package:navis/features/worldstate/data/datasources/warframestat_remote.dart';
+import 'package:navis/core/data/datasources/warframestat_remote.dart';
 import 'package:navis/features/worldstate/domain/usecases/get_worldstate.dart';
 import 'package:navis/features/worldstate/presentation/bloc/solsystem_bloc.dart';
 
