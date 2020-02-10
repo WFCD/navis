@@ -10,7 +10,7 @@ dependencies:
   worldstate_api_model:
     git: https://github.com/SlayerOrnstein/worldstate_model.git
   warframe_items_model:
-    git: https://github.com/SlayerOrnstein/warframe_item_models.git  
+    git: https://github.com/SlayerOrnstein/warframe_item_models.git
   equatable: ^1.0.3
   flutter_bloc: ^3.2.0
   firebase_crashlytics: ^0.1.2+5
@@ -28,7 +28,7 @@ dependencies:
   dartz: ^0.8.9
   data_connection_checker: ^0.3.4
   youtube_player_flutter: ^6.0.3+2
-  
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -60,10 +60,10 @@ flutter:
   assets:
     - assets/icons/
     - assets/wfcd_banner.svg
-    - assets/enemys/Corrupted/
-    - assets/enemys/Grineer/
-    - assets/enemys/Corpus/
-    - assets/enemys/Infestation/
+    - assets/enemies/Corrupted/
+    - assets/enemies/Grineer/
+    - assets/enemies/Corpus/
+    - assets/enemies/Infestation/
     - assets/skyboxes/
     # - assets/maps/
     # - assets/maps/imgs/
