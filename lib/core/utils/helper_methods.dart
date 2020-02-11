@@ -5,13 +5,13 @@ import 'package:navis/core/themes/colors.dart';
 Future<void> launchLink(String link) async {
   try {
     await launch(link,
-        option: CustomTabsOption(
+        option: const CustomTabsOption(
           toolbarColor: primaryColor,
           enableDefaultShare: true,
           enableUrlBarHiding: true,
           showPageTitle: true,
           //animation: CustomTabsAnimation.slideIn(),
-          extraCustomTabs: const <String>[
+          extraCustomTabs: <String>[
             'org.mozilla.firefox',
             'org.mozilla.fenix',
             'com.microsoft.emmx'
