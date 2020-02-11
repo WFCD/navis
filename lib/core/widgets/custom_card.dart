@@ -3,14 +3,17 @@ import 'package:flutter/material.dart';
 class CustomCard extends StatelessWidget {
   const CustomCard({
     Key key,
-    this.height,
-    this.color,
     this.title,
     @required this.child,
+    this.height,
+    this.color,
+    this.margin = const EdgeInsets.symmetric(horizontal: 2.0, vertical: 2.0),
+    this.padding = const EdgeInsets.symmetric(horizontal: 2.0, vertical: 2.0),
   }) : super(key: key);
 
   final double height;
   final Color color;
+  final EdgeInsetsGeometry margin, padding;
   final String title;
   final Widget child;
 
@@ -36,8 +39,8 @@ class CustomCard extends StatelessWidget {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4.0)),
       elevation: 4.0,
       child: AnimatedContainer(
-        margin: const EdgeInsets.symmetric(horizontal: 2.0, vertical: 2.0),
-        padding: const EdgeInsets.symmetric(horizontal: 2.0, vertical: 2.0),
+        margin: margin,
+        padding: padding,
         height: height,
         duration: const Duration(milliseconds: 250),
         child: Column(
