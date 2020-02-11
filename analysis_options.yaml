@@ -1,1 +1,5 @@
 include: package:extra_pedantic/analysis_options_flutter.yaml
+
+analyzer:
+  exclude:
+    - lib/l10n/messages_*.dart
