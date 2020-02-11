@@ -5,6 +5,7 @@ class RowItem extends StatelessWidget {
     this.icons = const <Widget>[],
     @required this.text,
     @required this.child,
+    this.padding,
     this.size,
     this.caption = false,
   });
@@ -27,6 +28,7 @@ class RowItem extends StatelessWidget {
   final List<Widget> icons;
   final Widget text;
   final Widget child;
+  final EdgeInsetsGeometry padding;
   final double size;
   final bool caption;
 
@@ -40,6 +42,7 @@ class RowItem extends StatelessWidget {
     ]));
 
     return Container(
+      margin: padding,
       child: Row(
         children: <Widget>[_icons, text, const Spacer(), child],
       ),
