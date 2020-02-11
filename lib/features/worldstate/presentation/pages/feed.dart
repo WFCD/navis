@@ -19,6 +19,7 @@ class HomeFeedPage extends StatelessWidget {
               children: <Widget>[
                 if (worldstate.eventsActive)
                   EventCard(events: worldstate.events),
+                AcolyteCard(enemies: worldstate.persistentEnemies),
                 CycleCard(cycles: <CycleEntry>[
                   CycleEntry(
                     name: 'Earth Cycle',
