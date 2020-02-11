@@ -152,7 +152,7 @@ class _CountdownAnimation extends AnimatedWidget {
       if (timeLeft >= max) {
         return Colors.green;
       } else if (timeLeft <= max && timeLeft > minimum) {
-        return Colors.orange[700];
+        return Colors.orange[900];
       } else {
         return Colors.red;
       }
