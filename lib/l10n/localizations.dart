@@ -29,7 +29,111 @@ class NavisLocalizations {
     return Localizations.of<NavisLocalizations>(context, NavisLocalizations);
   }
 
+  // Acolyte card
+  String activeAcolyte(String agentType, int rank) {
+    return Intl.message(
+      '${agentType} | level: ${rank}',
+      name: 'activeAcolyte',
+      desc: 'acolyte title with level',
+      args: [agentType, rank],
+      locale: localeName,
+    );
+  }
+
+  String get locating {
+    return Intl.message(
+      'Locating...',
+      name: 'locating',
+      desc: 'Shows up when an acolyte\'s current location '
+          'is unknown, may be used in other parts of the app',
+      locale: localeName,
+    );
+  }
+
+  String get acolyteCurrentLocation {
+    return Intl.message(
+      'Current location',
+      name: 'acolyteCurrentLocation',
+      desc: 'Acolyte\'s current location',
+      locale: localeName,
+    );
+  }
+
+  String get acolytePassLocation {
+    return Intl.message(
+      'Last seen location',
+      name: 'acolytePassLocation',
+      desc: 'Acolyte\'s pass location',
+      locale: localeName,
+    );
+  }
+
+  String get acolyteFound {
+    return Intl.message(
+      'Found',
+      name: 'acolyteFound',
+      desc: 'The elapsed time after an acolyte was found',
+      locale: localeName,
+    );
+  }
+
+  String get acolyteLastSeen {
+    return Intl.message(
+      'Last seen',
+      name: 'acolyteLastSeen',
+      desc: 'The elapsed time since the acolyte was last seen',
+      locale: localeName,
+    );
+  }
+
+  String get acolyteHealth {
+    return Intl.message(
+      'Health',
+      name: 'acolyteHealth',
+      desc: 'Acolytes remaining health',
+      locale: localeName,
+    );
+  }
+
+  String get acolyteRank {
+    return Intl.message(
+      'Acolyte Level',
+      name: 'acolyteRank',
+      desc: 'An acolyte\'s current level',
+      locale: localeName,
+    );
+  }
+
+  String acolyteElapsedTime(int lastSeenTime) {
+    return Intl.message(
+      '$lastSeenTime minutes ago',
+      name: 'acolyteElapsedTime',
+      desc: 'Time since acolyte has either been found or last seen',
+      args: [lastSeenTime],
+      locale: localeName,
+    );
+  }
+
+  String get tapForMoreDetails {
+    return Intl.message(
+      'Tap for more details',
+      name: 'tapForMoreDetails',
+      desc: 'General description to tell the user that this object '
+          'takes you to a different page',
+      locale: localeName,
+    );
+  }
+
   // Event page
+  String get seeDetails {
+    return Intl.message(
+      'See details',
+      name: 'seeDetails',
+      desc: 'General button to see more details of given object',
+      locale: localeName,
+    );
+  }
+
   String get eventDescription {
     return Intl.message(
       'Description',
@@ -44,6 +148,15 @@ class NavisLocalizations {
       'Event Status',
       name: 'eventStatus',
       desc: 'Event status category title',
+      locale: localeName,
+    );
+  }
+
+  String get eventRewards {
+    return Intl.message(
+      'Rewards',
+      name: 'eventRewards',
+      desc: 'Event reward title',
       locale: localeName,
     );
   }
@@ -69,6 +182,15 @@ class NavisLocalizations {
   }
 
   // Baro Ki'Teer related locales
+  String get baroTitle {
+    return Intl.message(
+      'Void trader',
+      name: 'baroTitle',
+      desc: 'Title for Baro Ki\'Teer card',
+      locale: localeName,
+    );
+  }
+
   String get baroLeaving {
     return Intl.message(
       'Baro Ki\'Teer leaves in',

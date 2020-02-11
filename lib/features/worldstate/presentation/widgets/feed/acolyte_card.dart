@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:navis/core/widgets/widgets.dart';
 import 'package:navis/features/worldstate/presentation/pages/acolyte_profile.dart';
+import 'package:navis/l10n/localizations.dart';
 import 'package:worldstate_api_model/worldstate_models.dart';
 
 class AcolyteCard extends StatelessWidget {
@@ -35,6 +36,8 @@ class _AcolyteWidgetState extends State<AcolyteWidget>
     with TickerProviderStateMixin {
   AnimationController _controller;
   Animation<double> _opacity;
+
+  PersistentEnemies get enemy => widget.enemy;
 
   bool get _isDiscovered => widget.enemy.isDiscovered;
 
@@ -88,17 +91,19 @@ class _AcolyteWidgetState extends State<AcolyteWidget>
 
   @override
   Widget build(BuildContext context) {
+    final localizations = NavisLocalizations.of(context);
+
     return ListTile(
-      title: Text('${widget.enemy.agentType} | level: ${widget.enemy.rank}'),
-      subtitle: const Text('Tap for more details'),
+      title: Text(localizations.activeAcolyte(enemy.agentType, enemy.rank)),
+      subtitle: Text(localizations.tapForMoreDetails),
       trailing: StaticBox(
         color: _isDiscovered
             ? const Color(0xFFB00020)
             : Theme.of(context).primaryColor,
         icon: _searchStatus(),
         child: AnimatedCrossFade(
-          firstChild: Text(widget.enemy.lastDiscoveredAt),
-          secondChild: const Text('Locating...'),
+          firstChild: Text(enemy.lastDiscoveredAt),
+          secondChild: Text(localizations.locating),
           crossFadeState: _isDiscovered
               ? CrossFadeState.showFirst
               : CrossFadeState.showSecond,
