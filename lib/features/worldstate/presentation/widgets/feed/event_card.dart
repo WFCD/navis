@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:navis/core/widgets/widgets.dart';
 import 'package:navis/features/worldstate/presentation/pages/event.dart';
+import 'package:navis/l10n/localizations.dart';
 import 'package:worldstate_api_model/worldstate_models.dart';
 
 class EventCard extends StatelessWidget {
@@ -21,7 +22,7 @@ class EventCard extends StatelessWidget {
                 Navigator.of(context)
                     .pushNamed(EventInformation.route, arguments: event);
               },
-              child: const Text('See details'),
+              child: Text(NavisLocalizations.of(context).seeDetails),
             ),
           )
       ]),
