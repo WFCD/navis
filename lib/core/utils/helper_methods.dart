@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_custom_tabs/flutter_custom_tabs.dart';
 import 'package:navis/core/themes/colors.dart';
 
@@ -21,5 +22,15 @@ Future<void> launchLink(String link) async {
     //   duration: Duration(seconds: 5),
     //   content: Text('No valid link provided by API'),
     // ));
+  }
+}
+
+Color healthColor(double health) {
+  if (health > 50.0) {
+    return Colors.green;
+  } else if (health <= 50.0 && health >= 10.0) {
+    return Colors.orange[900];
+  } else {
+    return Colors.red;
   }
 }
