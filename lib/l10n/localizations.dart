@@ -260,7 +260,10 @@ class NavisLocalizations {
 class NavisLocalizationsDelegate
     extends LocalizationsDelegate<NavisLocalizations> {
   @override
-  bool isSupported(Locale locale) => ['en', 'es'].contains(locale.languageCode);
+  bool isSupported(Locale locale) {
+    return ['de', 'en', 'es', 'fr', 'it', 'ko', 'pl', 'pt', 'ru', 'tr', 'zh']
+        .contains(locale.languageCode);
+  }
 
   @override
   Future<NavisLocalizations> load(Locale locale) {
