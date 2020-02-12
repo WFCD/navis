@@ -1,0 +1,3 @@
+files:
+  - source: /l10n/intl_messages_en.arb
+    translation: /l10n/intl_messages_%two_letters_code%.arb
