@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-// TODO: Find more how-to guides for events might be slightly annoying older events
+// TODO: Find more how-to guides for events might be slightly annoying for older events
 // TODO: Make sure this setup works for all events
 class EventVideoPlayer extends StatefulWidget {
   const EventVideoPlayer({
