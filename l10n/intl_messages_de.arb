@@ -1,6 +1,5 @@
 {
-    "@@locale": "en",
-    "@@last_modified": "2020-02-11T17:47:29.044542",
+    "@@last_modified": "2020-02-12T11:21:07.513684",
     "activeAcolyte": "{agentType} | level: {rank}",
     "@activeAcolyte": {
         "description": "acolyte title with level",
