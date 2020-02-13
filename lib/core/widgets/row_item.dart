@@ -7,7 +7,6 @@ class RowItem extends StatelessWidget {
     @required this.child,
     this.padding,
     this.size,
-    this.caption = false,
   });
 
   factory RowItem.richText(
@@ -30,21 +29,20 @@ class RowItem extends StatelessWidget {
   final Widget child;
   final EdgeInsetsGeometry padding;
   final double size;
-  final bool caption;
 
   @override
   Widget build(BuildContext context) {
-    final _icons = Container(
-        child: Row(children: <Widget>[
-      if (icons.isNotEmpty)
-        ...icons.map((i) =>
-            Padding(padding: const EdgeInsets.only(right: 4.0), child: i)),
-    ]));
+    final _icons = icons.map((icon) {
+      return Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 4.0),
+        child: icon,
+      );
+    });
 
     return Container(
       margin: padding,
       child: Row(
-        children: <Widget>[_icons, text, const Spacer(), child],
+        children: <Widget>[..._icons, text, const Spacer(), child],
       ),
     );
   }
