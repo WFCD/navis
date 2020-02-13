@@ -22,11 +22,8 @@ jobs:
     - name: Test
       script:
         - flutter pub get
-
-        - flutter pub run intl_translation:generate_from_arb \
-          --output-dir=lib/l10n --no-use-deferred-loading \
-          lib/l10n/localizations.dart lib/l10n/intl_messages_*.arb
-
+        - flutter pub run intl_translation:generate_from_arb --output-dir=lib/l10n --no-use-deferred-loading
+          lib/l10n/localizations.dart l10n/intl_messages_*.arb
         - flutter test
         - flutter build apk --target-platform android-arm
     - name: Deploy
