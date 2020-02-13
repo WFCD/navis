@@ -29,6 +29,18 @@ class NavisLocalizations {
     return Localizations.of<NavisLocalizations>(context, NavisLocalizations);
   }
 
+  // Alert
+  String alertInfo(String type, String faction, int min, int max) {
+    return Intl.message(
+      '${type} (${faction}) | Level: ${min} - ${max}',
+      name: 'alertInfo',
+      desc: 'The information of the given alert, '
+          'such as mission type, faction and enemy level',
+      args: [type, faction, min, max],
+      locale: localeName,
+    );
+  }
+
   // Acolyte card
   String activeAcolyte(String agentType, int rank) {
     return Intl.message(
