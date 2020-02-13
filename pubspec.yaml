@@ -58,7 +58,6 @@ flutter:
       fonts:
         - asset: assets/icons/SyndicateIcons.ttf
   assets:
-    - assets/icons/
     - assets/wfcd_banner.svg
     - assets/enemies/corrupted/
     - assets/enemies/grineer/
