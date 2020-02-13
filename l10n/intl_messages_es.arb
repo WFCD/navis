@@ -1,5 +1,16 @@
 {
-    "@@last_modified": "2020-02-12T11:21:07.513684",
+    "@@last_modified": "2020-02-12T22:52:03.700403",
+    "alertInfo": "{type} ({faction}) | Level: {min} - {max}",
+    "@alertInfo": {
+        "description": "The information of the given alert, such as mission type, faction and enemy level",
+        "type": "text",
+        "placeholders": {
+            "type": {},
+            "faction": {},
+            "min": {},
+            "max": {}
+        }
+    },
     "activeAcolyte": "{agentType} | level: {rank}",
     "@activeAcolyte": {
         "description": "acolyte title with level",
