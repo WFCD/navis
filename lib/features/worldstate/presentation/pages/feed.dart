@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/features/worldstate/presentation/bloc/solsystem_bloc.dart';
 import 'package:navis/features/worldstate/presentation/widgets/feed/alerts_card.dart';
+import 'package:navis/features/worldstate/presentation/widgets/feed/arbitration_card.dart';
 import 'package:navis/features/worldstate/presentation/widgets/feed/feed_cards.dart';
 
 class HomeFeedPage extends StatelessWidget {
@@ -22,6 +23,8 @@ class HomeFeedPage extends StatelessWidget {
                   EventCard(events: worldstate.events),
                 if (worldstate.acolytesActive)
                   AcolyteCard(enemies: worldstate.persistentEnemies),
+                if (worldstate.arbitrationActive)
+                  ArbitrationCard(arbitration: worldstate.arbitration),
                 if (worldstate.alertsActive)
                   AlertsCard(alerts: worldstate.alerts),
                 CycleCard(cycles: <CycleEntry>[
