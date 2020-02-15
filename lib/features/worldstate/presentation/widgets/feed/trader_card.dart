@@ -29,7 +29,7 @@ class TraderCard extends StatelessWidget {
         ),
         if (trader.active)
           ListTile(
-            title: const Text('Loaction'),
+            title: Text(navisLocale.baroLocation),
             trailing: StaticBox.text(
               text: '${trader.location}',
               color: Theme.of(context).primaryColor,
