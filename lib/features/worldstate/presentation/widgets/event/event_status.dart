@@ -47,22 +47,22 @@ class EventStatus extends StatelessWidget {
     return rewards;
   }
 
-  Widget _buildStatus() {
+  Widget _buildStatus(TextStyle style) {
     return Container(
       child: Column(
         children: <Widget>[
           RowItem(
-            text: const Text('Node'),
+            text: Text('Node', style: style),
             child: StaticBox.text(text: node),
           ),
           const SizedBox(height: 8.0),
           RowItem(
-            text: const Text('Progress'),
+            text: Text('Progress', style: style),
             child: StaticBox.text(text: '${health.toStringAsFixed(2)} %'),
           ),
           const SizedBox(height: 8.0),
           RowItem(
-            text: const Text('Time left (ETA)'),
+            text: Text('Time left (ETA)', style: style),
             child: CountdownTimer(expiry: expiry),
           )
         ],
@@ -76,10 +76,8 @@ class EventStatus extends StatelessWidget {
     final localization = NavisLocalizations.of(context);
 
     final category = theme.textTheme.subhead.copyWith(color: theme.accentColor);
-    final tooltipStyle = Theme.of(context)
-        .textTheme
-        .caption
-        .copyWith(fontStyle: FontStyle.italic, fontSize: 15);
+    final tooltipStyle =
+        Theme.of(context).textTheme.subtitle.copyWith(fontSize: 15);
 
     return CustomCard(
       child: Padding(
@@ -92,15 +90,17 @@ class EventStatus extends StatelessWidget {
             Text(tooltip, style: tooltipStyle),
             const SizedBox(height: 20.0),
             _addCategory(localization.eventStatus, category),
-            _buildStatus(),
-            const SizedBox(height: 20.0),
-            _addCategory('Rewards', category),
-            const SizedBox(height: 2.0),
-            Wrap(
-              alignment: WrapAlignment.start,
-              spacing: 6.0,
-              children: _buildRewards(),
-            ),
+            _buildStatus(tooltipStyle),
+            if (rewards.isNotEmpty) ...{
+              const SizedBox(height: 20.0),
+              _addCategory('Rewards', category),
+              const SizedBox(height: 2.0),
+              Wrap(
+                alignment: WrapAlignment.start,
+                spacing: 6.0,
+                children: _buildRewards(),
+              ),
+            }
           ],
         ),
       ),
