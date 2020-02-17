@@ -39,7 +39,7 @@ class DrawerOptions extends StatelessWidget {
                     state == NavigationBloc.navigationMap[NavigationEvent.feed],
               ),
               ListTile(
-                leading: Icon(AppIcons.voidfissure),
+                leading: const Icon(AppIcons.voidfissure),
                 title: const Text('Fissures'),
                 onTap: () => _onTap(context, NavigationEvent.fissures),
                 selected: state ==
