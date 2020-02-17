@@ -164,6 +164,33 @@ class NavisLocalizations {
     );
   }
 
+  String get eventStatusNode {
+    return Intl.message(
+      'Node',
+      name: 'eventStatusNode',
+      desc: 'The node that the event is taking place in',
+      locale: localeName,
+    );
+  }
+
+  String get eventStatusProgress {
+    return Intl.message(
+      'Progress',
+      name: 'eventStatusProgress',
+      desc: 'The progress of the current event from 0 to 100 %',
+      locale: localeName,
+    );
+  }
+
+  String get eventStatusEta {
+    return Intl.message(
+      'Time left (ETA)',
+      name: 'eventStatusEta',
+      desc: 'Current events remaining estimated time',
+      locale: localeName,
+    );
+  }
+
   String get eventRewards {
     return Intl.message(
       'Rewards',

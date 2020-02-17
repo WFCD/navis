@@ -47,29 +47,6 @@ class EventStatus extends StatelessWidget {
     return rewards;
   }
 
-  Widget _buildStatus(TextStyle style) {
-    return Container(
-      child: Column(
-        children: <Widget>[
-          RowItem(
-            text: Text('Node', style: style),
-            child: StaticBox.text(text: node),
-          ),
-          const SizedBox(height: 8.0),
-          RowItem(
-            text: Text('Progress', style: style),
-            child: StaticBox.text(text: '${health.toStringAsFixed(2)} %'),
-          ),
-          const SizedBox(height: 8.0),
-          RowItem(
-            text: Text('Time left (ETA)', style: style),
-            child: CountdownTimer(expiry: expiry),
-          )
-        ],
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -90,7 +67,20 @@ class EventStatus extends StatelessWidget {
             Text(tooltip, style: tooltipStyle),
             const SizedBox(height: 20.0),
             _addCategory(localization.eventStatus, category),
-            _buildStatus(tooltipStyle),
+            RowItem(
+              text: Text(localization.eventStatusNode, style: tooltipStyle),
+              child: StaticBox.text(text: node),
+            ),
+            const SizedBox(height: 8.0),
+            RowItem(
+              text: Text(localization.eventStatusProgress, style: tooltipStyle),
+              child: StaticBox.text(text: '${health.toStringAsFixed(2)} %'),
+            ),
+            const SizedBox(height: 8.0),
+            RowItem(
+              text: Text(localization.eventStatusEta, style: tooltipStyle),
+              child: CountdownTimer(expiry: expiry),
+            ),
             if (rewards.isNotEmpty) ...{
               const SizedBox(height: 20.0),
               _addCategory('Rewards', category),
