@@ -13,7 +13,7 @@ class ArbitrationCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomCard(
       child: ListTile(
-        leading: Icon(SyndicateIcons.hexis, size: 50),
+        leading: const Icon(SyndicateIcons.hexis, size: 50),
         title: Text(arbitration.node),
         subtitle: Text('${arbitration.enemy} | ${arbitration.type}'),
         trailing: CountdownTimer(expiry: arbitration.expiry),
