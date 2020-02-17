@@ -10,6 +10,7 @@ class TraderCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    const padding = EdgeInsets.symmetric(horizontal: 4.0, vertical: 4.0);
     final navisLocale = NavisLocalizations.of(context);
     final materialLocale = MaterialLocalizations.of(context);
 
@@ -19,29 +20,32 @@ class TraderCard extends StatelessWidget {
     return CustomCard(
       title: 'Void Trader',
       child: Column(children: <Widget>[
-        ListTile(
-          title: Text(trader.active
+        RowItem(
+          text: Text(trader.active
               ? navisLocale.baroArriving
               : navisLocale.baroLeaving),
-          trailing: CountdownTimer(
+          padding: padding,
+          child: CountdownTimer(
             expiry: trader.active ? trader.expiry : trader.activation,
           ),
         ),
         if (trader.active)
-          ListTile(
-            title: Text(navisLocale.baroLocation),
-            trailing: StaticBox.text(
+          RowItem(
+            text: Text(navisLocale.baroLocation),
+            padding: padding,
+            child: StaticBox.text(
               text: '${trader.location}',
               color: Theme.of(context).primaryColor,
             ),
           ),
-        ListTile(
-          title: Text(
+        RowItem(
+          text: Text(
             trader.active
                 ? navisLocale.baroLeavesOn
                 : navisLocale.baroArrivesOn,
           ),
-          trailing: StaticBox.text(
+          padding: padding,
+          child: StaticBox.text(
             color: Theme.of(context).primaryColor,
             text: formattedDate,
           ),
