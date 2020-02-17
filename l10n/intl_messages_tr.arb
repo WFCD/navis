@@ -1,5 +1,5 @@
 {
-    "@@last_modified": "2020-02-12T22:52:03.700403",
+    "@@last_modified": "2020-02-17T10:15:22.399313",
     "alertInfo": "{type} ({faction}) | Level: {min} - {max}",
     "@alertInfo": {
         "description": "The information of the given alert, such as mission type, faction and enemy level",
@@ -91,6 +91,24 @@
     "eventStatus": "Event Status",
     "@eventStatus": {
         "description": "Event status category title",
+        "type": "text",
+        "placeholders": {}
+    },
+    "eventStatusNode": "Node",
+    "@eventStatusNode": {
+        "description": "The node that the event is taking place in",
+        "type": "text",
+        "placeholders": {}
+    },
+    "eventStatusProgress": "Progress",
+    "@eventStatusProgress": {
+        "description": "The progress of the current event from 0 to 100 %",
+        "type": "text",
+        "placeholders": {}
+    },
+    "eventStatusEta": "Time left (ETA)",
+    "@eventStatusEta": {
+        "description": "Current events remaining estimated time",
         "type": "text",
         "placeholders": {}
     },
