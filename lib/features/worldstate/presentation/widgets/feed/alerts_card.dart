@@ -47,7 +47,7 @@ class AlertWidget extends StatelessWidget {
               // Not sure we need to add nightmare icon since alerts have be axed
               // nightmare alerts haven't been a thing
               if (_mission.archwingRequired)
-                const Icon(AppIcons.archwing, size: 10)
+                const Icon(NavisSysIcons.archwing, size: 10)
             ],
             text: Text(_mission.node),
             child: _isRewarding

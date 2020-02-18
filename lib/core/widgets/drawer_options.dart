@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/core/bloc/navigation_bloc.dart';
 import 'package:navis/core/utils/helper_methods.dart';
 
-import 'app_icons.dart';
+import 'navis_sys_icons.dart';
 
 class DrawerOptions extends StatelessWidget {
   DrawerOptions({Key key}) : super(key: key);
@@ -39,7 +39,7 @@ class DrawerOptions extends StatelessWidget {
                     state == NavigationBloc.navigationMap[NavigationEvent.feed],
               ),
               ListTile(
-                leading: const Icon(AppIcons.voidfissure),
+                leading: const Icon(NavisSysIcons.voidfissure),
                 title: const Text('Fissures'),
                 onTap: () => _onTap(context, NavigationEvent.fissures),
                 selected: state ==

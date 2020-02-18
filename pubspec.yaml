@@ -42,9 +42,9 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   fonts:
-    - family: AppIcons
+    - family: NavisSysIcons
       fonts:
-        - asset: assets/icons/AppIcons.ttf
+        - asset: assets/icons/NavisSysIcons.ttf
     - family: PlatformIcons
       fonts:
         - asset: assets/icons/PlatformIcons.ttf

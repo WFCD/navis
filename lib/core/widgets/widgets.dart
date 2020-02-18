@@ -1,4 +1,3 @@
-export 'app_icons.dart';
 export 'category_title.dart';
 export 'countdown.dart';
 export 'countdown_banner.dart';
@@ -6,6 +5,7 @@ export 'custom_card.dart';
 export 'error_widget.dart';
 export 'faction_logo.dart';
 export 'indicator.dart';
+export 'navis_sys_icons.dart';
 export 'platform_icons.dart';
 export 'row_item.dart';
 export 'skybox_panel.dart';
