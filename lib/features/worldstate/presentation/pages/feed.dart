@@ -4,6 +4,7 @@ import 'package:navis/features/worldstate/presentation/bloc/solsystem_bloc.dart'
 import 'package:navis/features/worldstate/presentation/widgets/feed/alerts_card.dart';
 import 'package:navis/features/worldstate/presentation/widgets/feed/arbitration_card.dart';
 import 'package:navis/features/worldstate/presentation/widgets/feed/feed_cards.dart';
+import 'package:navis/features/worldstate/presentation/widgets/feed/kuva_card.dart';
 
 class HomeFeedPage extends StatelessWidget {
   const HomeFeedPage({Key key}) : super(key: key);
@@ -41,6 +42,7 @@ class HomeFeedPage extends StatelessWidget {
                     cycle: worldstate.vallisCycle,
                   )
                 ]),
+                if (worldstate.kuvaActive) KuvaCard(kuva: worldstate.kuva),
                 TraderCard(trader: worldstate.voidTrader),
               ],
             );

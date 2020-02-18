@@ -294,6 +294,15 @@ class NavisLocalizations {
       locale: localeName,
     );
   }
+
+  String get kuvaBanner {
+    return Intl.message(
+      'Kuva will refresh in',
+      name: 'kuvaBanner',
+      desc: 'Kuva refresh countdown title',
+      locale: localeName,
+    );
+  }
 }
 
 class NavisLocalizationsDelegate

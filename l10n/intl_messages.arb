@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2020-02-17T10:15:22.399313",
+  "@@last_modified": "2020-02-18T18:40:58.801316",
   "alertInfo": "{type} ({faction}) | Level: {min} - {max}",
   "@alertInfo": {
     "description": "The information of the given alert, such as mission type, faction and enemy level",
@@ -179,5 +179,11 @@
     "placeholders": {
       "date": {}
     }
+  },
+  "kuvaBanner": "Kuva will refresh in",
+  "@kuvaBanner": {
+    "description": "Kuva refresh countdown title",
+    "type": "text",
+    "placeholders": {}
   }
 }
