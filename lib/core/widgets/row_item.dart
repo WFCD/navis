@@ -34,7 +34,7 @@ class RowItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final _icons = icons.map((icon) {
       return Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 4.0),
+        padding: const EdgeInsets.symmetric(horizontal: 8.0),
         child: icon,
       );
     });
@@ -42,6 +42,8 @@ class RowItem extends StatelessWidget {
     return Container(
       margin: padding,
       child: Row(
+        crossAxisAlignment: CrossAxisAlignment.baseline,
+        textBaseline: TextBaseline.alphabetic,
         children: <Widget>[..._icons, text, const Spacer(), child],
       ),
     );
