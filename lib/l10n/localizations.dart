@@ -303,6 +303,51 @@ class NavisLocalizations {
       locale: localeName,
     );
   }
+
+  String get formorianTitle {
+    return Intl.message(
+      'Formorian',
+      name: 'formorianTitle',
+      desc: 'Formorian progress title',
+      locale: localeName,
+    );
+  }
+
+  String get razorbackTitle {
+    return Intl.message(
+      'Razerback',
+      name: 'razorbackTitle',
+      desc: 'Razorback progress title',
+      locale: localeName,
+    );
+  }
+
+  String get earthCycleTitle {
+    return Intl.message(
+      'Earth Cycle',
+      name: 'earthCycleTitle',
+      desc: 'Earth cycle title',
+      locale: localeName,
+    );
+  }
+
+  String get cetusCycleTitle {
+    return Intl.message(
+      'Cetus Cycle',
+      name: 'cetusCycleTitle',
+      desc: 'Cetus cycle title',
+      locale: localeName,
+    );
+  }
+
+  String get vallisCycleTitle {
+    return Intl.message(
+      'Vallis Cycle',
+      name: 'vallisCycleTitle',
+      desc: 'Vallis cycle title',
+      locale: localeName,
+    );
+  }
 }
 
 class NavisLocalizationsDelegate

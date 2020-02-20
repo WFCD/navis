@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/core/widgets/widgets.dart';
 import 'package:navis/features/worldstate/presentation/bloc/solsystem_bloc.dart';
 import 'package:navis/features/worldstate/presentation/widgets/feed/feed_cards.dart';
+import 'package:navis/l10n/localizations.dart';
 import 'package:worldstate_api_model/worldstate_models.dart';
 
 class HomeFeedPage extends StatelessWidget {
@@ -23,17 +24,17 @@ class HomeFeedPage extends StatelessWidget {
 
     return <CycleEntry>[
       CycleEntry(
-        name: 'Earth Cycle',
+        name: NavisLocalizations.current.earthCycleTitle,
         states: solCycle,
         cycle: worldstate.earthCycle,
       ),
       CycleEntry(
-        name: 'Cetus Cycle',
+        name: NavisLocalizations.current.cetusCycleTitle,
         states: solCycle,
         cycle: worldstate.cetusCycle,
       ),
       CycleEntry(
-        name: 'Vallis Cycle',
+        name: NavisLocalizations.current.vallisCycleTitle,
         states: tempCycle,
         cycle: worldstate.vallisCycle,
       )
@@ -43,13 +44,13 @@ class HomeFeedPage extends StatelessWidget {
   List<Progress> _buildProgress(Worldstate worldstate) {
     return <Progress>[
       Progress(
-        name: 'Fomorian',
+        name: NavisLocalizations.current.formorianTitle,
         color: factionColor('Grineer'),
         progress:
             double.parse(worldstate.constructionProgress.fomorianProgress),
       ),
       Progress(
-        name: 'Razerback',
+        name: NavisLocalizations.current.razorbackTitle,
         color: factionColor('Corpus'),
         progress:
             double.parse(worldstate.constructionProgress.razorbackProgress),
