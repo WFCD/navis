@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2020-02-20T02:39:23.567604",
+  "@@last_modified": "2020-02-20T02:53:16.698105",
   "alertInfo": "{type} ({faction}) | Level: {min} - {max}",
   "@alertInfo": {
     "description": "The information of the given alert, such as mission type, faction and enemy level",
