@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/core/widgets/widgets.dart';
 import 'package:navis/features/worldstate/presentation/bloc/solsystem_bloc.dart';
 import 'package:navis/features/worldstate/presentation/widgets/feed/feed_cards.dart';
+import 'package:navis/features/worldstate/presentation/widgets/feed/outpost_card.dart';
 import 'package:navis/l10n/localizations.dart';
 import 'package:worldstate_api_model/worldstate_models.dart';
 
@@ -80,6 +81,8 @@ class HomeFeedPage extends StatelessWidget {
                   ArbitrationCard(arbitration: worldstate.arbitration),
                 if (worldstate.alertsActive)
                   AlertsCard(alerts: worldstate.alerts),
+                if (worldstate.outpostActive)
+                  SentientOutpostCard(outpost: worldstate.sentientOutposts),
                 CycleCard(cycles: _buildCycles(worldstate)),
                 if (worldstate.kuvaActive) KuvaCard(kuva: worldstate.kuva),
                 TraderCard(trader: worldstate.voidTrader),
