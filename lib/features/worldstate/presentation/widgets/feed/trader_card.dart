@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:navis/core/widgets/widgets.dart';
+import 'package:navis/features/worldstate/presentation/pages/trader_inventory.dart';
 import 'package:navis/l10n/localizations.dart';
 import 'package:worldstate_api_model/worldstate_models.dart';
 
@@ -7,6 +8,29 @@ class TraderCard extends StatelessWidget {
   const TraderCard({Key key, @required this.trader}) : super(key: key);
 
   final VoidTrader trader;
+
+  Widget _buildButton(BuildContext context, List<InventoryItem> inventory) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 4.0, vertical: 8.0),
+      child: Material(
+        elevation: 2.0,
+        color: Colors.blueAccent[400],
+        borderRadius: BorderRadius.circular(4.0),
+        child: InkWell(
+          onTap: () => Navigator.of(context)
+              .pushNamed(BaroInventory.route, arguments: inventory),
+          child: Container(
+              width: 500.0,
+              height: 30.0,
+              alignment: Alignment.center,
+              child: Text(
+                NavisLocalizations.of(context).baroInventory,
+                style: TextStyle(fontSize: 17.0, color: Colors.white),
+              )),
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -51,18 +75,7 @@ class TraderCard extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 2.0),
-        if (trader.active)
-          ButtonBar(children: <Widget>[
-            OutlineButton(
-              onPressed: () {
-                Navigator.of(context)
-                    .pushNamed('inventory', arguments: trader.inventory);
-              },
-              // borderSide: BorderSide(color: Theme.of(context).primaryColor),
-              // textColor: Theme.of(context).primaryColor,
-              child: Text(navisLocale.baroInventory),
-            )
-          ])
+        if (trader.active) _buildButton(context, trader.inventory)
       ]),
     );
   }

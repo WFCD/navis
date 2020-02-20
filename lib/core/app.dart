@@ -8,6 +8,7 @@ import 'package:navis/core/data/datasources/warframestat_remote.dart';
 import 'package:navis/features/worldstate/presentation/bloc/solsystem_bloc.dart';
 import 'package:navis/features/worldstate/presentation/pages/acolyte_profile.dart';
 import 'package:navis/features/worldstate/presentation/pages/event.dart';
+import 'package:navis/features/worldstate/presentation/pages/trader_inventory.dart';
 import 'package:navis/l10n/localizations.dart';
 
 import 'home.dart';
@@ -65,13 +66,13 @@ class _NavisAppState extends State<NavisApp> with WidgetsBindingObserver {
       builder: _builder,
       routes: <String, WidgetBuilder>{
         EventInformation.route: (_) => const EventInformation(),
-        AcolyteProfile.route: (_) => const AcolyteProfile()
+        AcolyteProfile.route: (_) => const AcolyteProfile(),
         // Settings.route: (_) => const Settings(),
         // Nightwaves.route: (_) => const Nightwaves(),
         // SyndicateJobs.route: (_) => const SyndicateJobs(),
         // SynthTargetScreen.route: (_) => const SynthTargetScreen(),
         // CodexEntry.route: (_) => const CodexEntry(),
-        // VoidTraderInventory.route: (_) => const VoidTraderInventory()
+        BaroInventory.route: (_) => const BaroInventory()
       },
       supportedLocales: const [Locale('en'), Locale('es')],
       localizationsDelegates: [
