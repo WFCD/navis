@@ -25,7 +25,7 @@ class TraderCard extends StatelessWidget {
               alignment: Alignment.center,
               child: Text(
                 NavisLocalizations.of(context).baroInventory,
-                style: TextStyle(fontSize: 17.0, color: Colors.white),
+                style: const TextStyle(fontSize: 17.0, color: Colors.white),
               )),
         ),
       ),

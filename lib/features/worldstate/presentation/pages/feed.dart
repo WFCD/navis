@@ -40,6 +40,23 @@ class HomeFeedPage extends StatelessWidget {
     ];
   }
 
+  List<Progress> _buildProgress(Worldstate worldstate) {
+    return <Progress>[
+      Progress(
+        name: 'Fomorian',
+        color: factionColor('Grineer'),
+        progress:
+            double.parse(worldstate.constructionProgress.fomorianProgress),
+      ),
+      Progress(
+        name: 'Razerback',
+        color: factionColor('Corpus'),
+        progress:
+            double.parse(worldstate.constructionProgress.razorbackProgress),
+      )
+    ];
+  }
+
   @override
   Widget build(BuildContext context) {
     return RefreshIndicator(
@@ -55,6 +72,9 @@ class HomeFeedPage extends StatelessWidget {
                   EventCard(events: worldstate.events),
                 if (worldstate.acolytesActive)
                   AcolyteCard(enemies: worldstate.persistentEnemies),
+                ConstructionProgressCard(
+                  constructionProgress: _buildProgress(worldstate),
+                ),
                 if (worldstate.arbitrationActive)
                   ArbitrationCard(arbitration: worldstate.arbitration),
                 if (worldstate.alertsActive)
