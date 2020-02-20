@@ -5,7 +5,6 @@ import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:navis/features/worldstate/presentation/pages/feed.dart';
 import 'package:navis/features/worldstate/presentation/pages/fissures.dart';
 import 'package:navis/features/worldstate/presentation/pages/invasions.dart';
-import 'package:navis/features/worldstate/presentation/pages/sorties.dart';
 import 'package:navis/features/worldstate/presentation/pages/syndicates.dart';
 
 enum NavigationEvent { feed, fissures, invasions, sorties, syndicates, codex }
@@ -15,7 +14,6 @@ class NavigationBloc extends HydratedBloc<NavigationEvent, Widget> {
     NavigationEvent.feed: const HomeFeedPage(),
     NavigationEvent.fissures: const FissuresPage(),
     NavigationEvent.invasions: const InvasionsPage(),
-    NavigationEvent.sorties: const SortiePage(),
     NavigationEvent.syndicates: const SyndicatePage(),
     NavigationEvent.codex: Container()
   };
