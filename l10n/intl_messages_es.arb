@@ -1,5 +1,5 @@
 {
-    "@@last_modified": "2020-02-19T23:18:46.106617",
+    "@@last_modified": "2020-02-20T02:19:11.960104",
     "alertInfo": "{type} ({faction}) | Level: {min} - {max}",
     "@alertInfo": {
         "description": "The information of the given alert, such as mission type, faction and enemy level",
@@ -183,6 +183,36 @@
     "kuvaBanner": "Kuva will refresh in",
     "@kuvaBanner": {
         "description": "Kuva refresh countdown title",
+        "type": "text",
+        "placeholders": {}
+    },
+    "formorianTitle": "Formorian",
+    "@formorianTitle": {
+        "description": "Formorian progress title",
+        "type": "text",
+        "placeholders": {}
+    },
+    "razorbackTitle": "Razerback",
+    "@razorbackTitle": {
+        "description": "Razorback progress title",
+        "type": "text",
+        "placeholders": {}
+    },
+    "earthCycleTitle": "Earth Cycle",
+    "@earthCycleTitle": {
+        "description": "Earth cycle title",
+        "type": "text",
+        "placeholders": {}
+    },
+    "cetusCycleTitle": "Cetus Cycle",
+    "@cetusCycleTitle": {
+        "description": "Cetus cycle title",
+        "type": "text",
+        "placeholders": {}
+    },
+    "vallisCycleTitle": "Vallis Cycle",
+    "@vallisCycleTitle": {
+        "description": "Vallis cycle title",
         "type": "text",
         "placeholders": {}
     }
