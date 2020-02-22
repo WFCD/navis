@@ -19,7 +19,7 @@ class SentientOutpostCard extends StatelessWidget {
         leading: const Icon(FactionIcons.sentient, size: 50),
         title: Text(_mission.node),
         subtitle: Text('${_mission.faction} | ${_mission.type}'),
-        trailing: CountdownTimer(expiry: outpost.expiry),
+        // trailing: CountdownTimer(expiry: outpost.expiry),
       ),
     );
   }
