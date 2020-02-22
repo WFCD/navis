@@ -350,12 +350,27 @@ class NavisLocalizations {
   }
 }
 
+// Want to support another language?
+// Just add the two letter code here
+const supportedLocales = [
+  'de',
+  'en',
+  'es',
+  'fr',
+  'it',
+  'ko',
+  'pl',
+  'pt',
+  'ru',
+  'tr',
+  'zh'
+];
+
 class NavisLocalizationsDelegate
     extends LocalizationsDelegate<NavisLocalizations> {
   @override
   bool isSupported(Locale locale) {
-    return ['de', 'en', 'es', 'fr', 'it', 'ko', 'pl', 'pt', 'ru', 'tr', 'zh']
-        .contains(locale.languageCode);
+    return supportedLocales.contains(locale.languageCode);
   }
 
   @override
