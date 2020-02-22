@@ -28,6 +28,8 @@ dependencies:
   dartz: ^0.8.9
   data_connection_checker: ^0.3.4
   youtube_player_flutter: ^6.0.3+2
+  lumberdash: ^2.1.1
+  colorize_lumberdash: ^2.1.0
 
 dev_dependencies:
   flutter_test:
@@ -59,10 +61,10 @@ flutter:
         - asset: assets/icons/SyndicateIcons.ttf
   assets:
     - assets/wfcd_banner.svg
-    - assets/enemies/corrupted/
-    - assets/enemies/grineer/
-    - assets/enemies/corpus/
-    - assets/enemies/infestation/
+    # - assets/enemies/corrupted/
+    # - assets/enemies/grineer/
+    # - assets/enemies/corpus/
+    # - assets/enemies/infestation/
     - assets/enemies/stalker/
     - assets/skyboxes/
     - assets/event_info.json

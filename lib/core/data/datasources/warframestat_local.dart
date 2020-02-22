@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:hive/hive.dart';
+import 'package:lumberdash/lumberdash.dart';
 import 'package:navis/core/error/exceptions.dart';
 import 'package:worldstate_api_model/misc.dart';
 import 'package:worldstate_api_model/worldstate_models.dart';
@@ -48,13 +49,22 @@ class WarframestatCache implements WarframestateCacheBase {
   Future<void> cacheSynthTargets(List<SynthTarget> targets) async {
     final timestamp = DateTime.now().toIso8601String();
 
-    await cacheBox.put(Synth_Last_Update, timestamp);
-    await cacheBox.put(SynthTargets_Key, targets.map((t) => t.toJson()));
+    try {
+      await cacheBox.put(Synth_Last_Update, timestamp);
+      await cacheBox.put(SynthTargets_Key, targets.map((t) => t.toJson()));
+    } catch (err) {
+      logError('Fail to Cache SynthTargets: ${err.toString()}');
+      rethrow;
+    }
   }
 
   @override
   Future<void> cacheWorldstate(Worldstate worldstate) async {
-    await cacheBox.put(Worldstate_Key, json.encode(worldstate.toJson()));
+    await cacheBox
+        .put(Worldstate_Key, json.encode(worldstate.toJson()))
+        .catchError((Object error) {
+      logError('Failed to cache worldstate: ${error.toString()}');
+    });
   }
 
   @override

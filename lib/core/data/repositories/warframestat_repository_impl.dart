@@ -30,8 +30,8 @@ class WarframestatRepositoryImpl implements WarframestatRepository {
   Future<Either<Failure, List<SynthTarget>>> getSynthTargets() async {
     return _execute<List<SynthTarget>>(
       () => remote.getSynthTargets(),
-      cacheEndpoint: local.cacheSynthTargets,
-      restoreEndpoint: local.getCachedTargets,
+      executeCaching: local.cacheSynthTargets,
+      executeCacheRestore: local.getCachedTargets,
     );
   }
 
@@ -40,29 +40,29 @@ class WarframestatRepositoryImpl implements WarframestatRepository {
       GamePlatforms platform) async {
     return _execute<Worldstate>(
       () => remote.getWorldstate(platform),
-      cacheEndpoint: local.cacheWorldstate,
-      restoreEndpoint: local.getCachedState,
+      executeCaching: local.cacheWorldstate,
+      executeCacheRestore: local.getCachedState,
     );
   }
 
   Future<Either<Failure, T>> _execute<T>(
-    ExecuteCallback<T> function, {
-    CacheCallback<T> cacheEndpoint,
-    RestoreCallback<T> restoreEndpoint,
+    ExecuteCallback<T> execute, {
+    CacheCallback<T> executeCaching,
+    RestoreCallback<T> executeCacheRestore,
   }) async {
     if (await networkInfo.isConnected) {
       try {
-        final state = await function();
-        if (cacheEndpoint != null) await cacheEndpoint(state);
+        final state = await execute();
+        if (executeCaching != null) await executeCaching(state);
 
         return Right(state);
       } on ServerException {
         return Left(ServerFailure());
       }
     } else {
-      if (restoreEndpoint != null) {
+      if (executeCacheRestore != null) {
         try {
-          return Right(restoreEndpoint());
+          return Right(executeCacheRestore());
         } on CacheException {
           return Left(CacheFailure());
         }
