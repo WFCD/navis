@@ -13,13 +13,13 @@ class FissuresPage extends StatelessWidget {
       child: BlocBuilder<SolsystemBloc, SolsystemState>(
         builder: (BuildContext context, SolsystemState state) {
           if (state is SolState) {
-            final worldstate = state.worldstate;
+            final fissures = state.worldstate.fissures;
 
             return ListView.builder(
-              itemCount: worldstate.fissures.length,
-              cacheExtent: worldstate.fissures.length / 2,
+              itemCount: fissures.length,
+              cacheExtent: fissures.length / 2,
               itemBuilder: (BuildContext context, int index) {
-                return FissureWidget(fissure: worldstate.fissures[index]);
+                return FissureWidget(fissure: fissures[index]);
               },
             );
           }

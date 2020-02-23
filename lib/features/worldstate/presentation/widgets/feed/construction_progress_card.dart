@@ -12,7 +12,7 @@ class ConstructionProgressCard extends StatelessWidget {
 
   final List<Progress> constructionProgress;
 
-  Widget _paintProgress(Progress progress) {
+  Widget _paintProgress(Progress progress, TextStyle style) {
     const size = Size(60.0, 60.0);
 
     return Container(
@@ -25,7 +25,7 @@ class ConstructionProgressCard extends StatelessWidget {
         ),
         child: Container(
           alignment: Alignment.center,
-          child: Text(progress.progress.toString()),
+          child: Text('${progress.progress.toInt()}%', style: style),
         ),
       ),
     );
@@ -43,7 +43,7 @@ class ConstructionProgressCard extends StatelessWidget {
           for (final progress in constructionProgress)
             Column(
               children: <Widget>[
-                _paintProgress(progress),
+                _paintProgress(progress, textTheme.title),
                 const SizedBox(height: 16.0),
                 Text(progress.name, style: textTheme.title)
               ],
