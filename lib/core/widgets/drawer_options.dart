@@ -45,12 +45,13 @@ class DrawerOptions extends StatelessWidget {
                 selected: state ==
                     NavigationBloc.navigationMap[NavigationEvent.fissures],
               ),
-              // ListTile(
-              //   leading: Icon(Icons.security),
-              //   title: const Text('Invasions'),
-              //   onTap: () => _onTap(context, NavigationEvent.invasions),
-              //   selected: state == RouteState.invasions,
-              // ),
+              ListTile(
+                leading: Icon(Icons.security),
+                title: const Text('Invasions'),
+                onTap: () => _onTap(context, NavigationEvent.invasions),
+                selected: state ==
+                    NavigationBloc.navigationMap[NavigationEvent.invasions],
+              ),
               // ListTile(
               //   leading: Icon(AppIcons.sortie),
               //   title: const Text('Sorties'),
