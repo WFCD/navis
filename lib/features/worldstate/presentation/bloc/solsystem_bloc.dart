@@ -8,6 +8,7 @@ import 'package:navis/core/data/datasources/warframestat_remote.dart';
 import 'package:navis/features/worldstate/domain/usecases/get_worldstate.dart';
 import 'package:warframe_items_model/warframe_items_model.dart';
 import 'package:worldstate_api_model/worldstate_models.dart';
+import 'package:supercharged/supercharged.dart';
 
 part 'solsystem_event.dart';
 part 'solsystem_state.dart';
@@ -31,16 +32,21 @@ class SolsystemBloc extends HydratedBloc<SolsystemEvent, SolsystemState> {
     SolsystemEvent event,
   ) async* {
     if (event is SolupdateSystem) {
-      // yield DetectingState();
-      final worldstate = await getWorldstate(event.platform);
+      try {
+        final worldstate = await getWorldstate(event.platform);
 
-      yield SolState(worldstate: worldstate, dealInfo: null);
+        yield SolState(worldstate: worldstate, dealInfo: null);
+      } on ServerFailure {
+        yield const SystemError(SERVER_FAILURE_MESSAGE);
+      } on CacheFailure {
+        yield const SystemError(CACHE_FAILURE_MESSAGE);
+      }
     }
   }
 
   Future<void> update() async {
     add(const SolupdateSystem(GamePlatforms.pc));
-    await Future<void>.delayed(const Duration(seconds: 1));
+    await Future<void>.delayed(1.seconds);
   }
 
   @override
@@ -53,16 +59,5 @@ class SolsystemBloc extends HydratedBloc<SolsystemEvent, SolsystemState> {
     if (state is SolState) return state.worldstate.toJson();
 
     return null;
-  }
-}
-
-String _mapFailureToMessage(Failure failure) {
-  switch (failure.runtimeType) {
-    case ServerFailure:
-      return SERVER_FAILURE_MESSAGE;
-    case CacheFailure:
-      return CACHE_FAILURE_MESSAGE;
-    default:
-      return 'Unexpected Error';
   }
 }
