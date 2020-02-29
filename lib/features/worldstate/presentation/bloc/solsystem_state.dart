@@ -16,11 +16,19 @@ class DetectingState extends SolsystemState {
 
 class SolState extends SolsystemState {
   final Worldstate worldstate;
+  final BaseItem dealInfo;
 
-  const SolState(this.worldstate);
+  const SolState({this.worldstate, this.dealInfo});
 
   @override
-  List<Object> get props => [worldstate];
+  List<Object> get props => [worldstate, dealInfo];
+
+  SolState copyWith({Worldstate worldstate, BaseItem dealInfo}) {
+    return SolState(
+      worldstate: worldstate ?? this.worldstate,
+      dealInfo: dealInfo ?? this.dealInfo,
+    );
+  }
 }
 
 class SystemError extends SolsystemState {

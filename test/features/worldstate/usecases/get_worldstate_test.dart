@@ -1,12 +1,9 @@
-import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
-import 'package:navis/core/error/failures.dart';
-import 'package:navis/core/utils/data_source_utils.dart';
 import 'package:navis/core/data/datasources/warframestat_remote.dart';
 import 'package:navis/core/domain/repositories/warfamestat_repository.dart';
+import 'package:navis/core/utils/data_source_utils.dart';
 import 'package:navis/features/worldstate/domain/usecases/get_worldstate.dart';
-import 'package:worldstate_api_model/worldstate_models.dart';
 
 import '../../../fixtures/fixture_reader.dart';
 
@@ -26,11 +23,11 @@ void main() {
 
   test('should get worldstate from repository', () async {
     when(mockRepository.getWorldstate(any))
-        .thenAnswer((_) async => Right(tWorldstate));
+        .thenAnswer((_) async => tWorldstate);
 
     final result = await getWorldstate(GamePlatforms.pc);
 
-    expect(result, equals(Right<Failure, Worldstate>(tWorldstate)));
+    expect(result, equals(tWorldstate));
     verify(mockRepository.getWorldstate(GamePlatforms.pc));
     verifyNoMoreInteractions(mockRepository);
   });

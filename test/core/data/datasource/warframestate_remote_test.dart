@@ -34,16 +34,16 @@ void main() {
   }
 
   group('getWorldstate', () {
-    // final tWorldstate = toWorldstate(fixture('worldstate.json'));
+    final tWorldstate = toWorldstate(fixture('worldstate.json'));
 
-    // test('should return an instance of Worldstate equal to tWorldstate',
-    //     () async {
-    //   setUpMockHttpClientSuccess200(fixture('worldstate.json'));
+    test('should return an instance of Worldstate equal to tWorldstate',
+        () async {
+      setUpMockHttpClientSuccess200(fixture('worldstate.json'));
 
-    //   final result = await api.getWorldstate(Platforms.pc);
+      final result = await api.getWorldstate(GamePlatforms.pc);
 
-    //   expect(result, equals(tWorldstate));
-    // });
+      expect(result, equals(tWorldstate));
+    });
 
     test(
         'should throw a ServerException when the response code is 404 or other',

@@ -1,78 +1,75 @@
-import 'dart:convert';
-
 import 'package:hive/hive.dart';
 import 'package:lumberdash/lumberdash.dart';
 import 'package:navis/core/error/exceptions.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:warframe_items_model/warframe_items_model.dart';
 import 'package:worldstate_api_model/misc.dart';
 import 'package:worldstate_api_model/worldstate_models.dart';
 
-abstract class WarframestateCacheBase {
-  Worldstate getCachedState();
-
-  Future<void> cacheWorldstate(Worldstate state);
-
-  List<SynthTarget> getCachedTargets();
-
-  Future<void> cacheSynthTargets(List<SynthTarget> targets);
-}
+const Worldstate_Key = 'worldstate';
+const DarvoDeal_Key = 'darvo';
+const SynthTargets_Key = 'targets';
 
 class WarframestatCache implements WarframestateCacheBase {
-  final Box cacheBox;
+  static WarframestatCache _instance;
 
-  WarframestatCache(this.cacheBox);
-
-  static const Worldstate_Key = 'worldstate';
-  static const SynthTargets_Key = 'synthTargets';
-  static const Synth_Last_Update = 'synth_last_update';
-
-  // static Future<void> init({Box testBox}) async {
-  //   final temp = await getTemporaryDirectory();
-
-  //   Hive.init(temp.path);
-
-  //   if (testBox != null) {
-  //     _box = testBox;
-  //   }
-
-  //   _box ??= await Hive.openBox<dynamic>('cached_data');
-
-  //   return _instance ??= WorldstateCachedDataSource._();
-  // }
+  final Box<Map<String, dynamic>> box;
+  WarframestatCache._(this.box);
 
   DateTime get synthTargetLastUpdate {
-    final timestamp = cacheBox.get(Synth_Last_Update) as String;
+    final targets = box.get(SynthTargets_Key);
 
-    return DateTime.parse(timestamp);
+    return DateTime.parse(targets['timestamp'] as String);
   }
 
   @override
-  Future<void> cacheSynthTargets(List<SynthTarget> targets) async {
+  void cacheDealInfo(String id, BaseItem item) {
+    box.put(DarvoDeal_Key, <String, dynamic>{'id': id, 'item': item.toJson()});
+  }
+
+  String getCachedDealId() {
+    final instance = box.get(DarvoDeal_Key);
+
+    if (instance != null) return instance['id'] as String;
+
+    return null;
+  }
+
+  @override
+  void cacheSynthTargets(List<SynthTarget> targets) {
     final timestamp = DateTime.now().toIso8601String();
 
     try {
-      await cacheBox.put(Synth_Last_Update, timestamp);
-      await cacheBox.put(SynthTargets_Key, targets.map((t) => t.toJson()));
-    } catch (err) {
-      logError('Fail to Cache SynthTargets: ${err.toString()}');
+      box.put('targets', <String, dynamic>{
+        'timestamp': timestamp,
+        'synth_targets': targets.map((t) => t.toJson())
+      });
+    } catch (error) {
+      logError(error.toString());
       rethrow;
     }
   }
 
   @override
-  Future<void> cacheWorldstate(Worldstate worldstate) async {
-    await cacheBox
-        .put(Worldstate_Key, json.encode(worldstate.toJson()))
-        .catchError((Object error) {
-      logError('Failed to cache worldstate: ${error.toString()}');
+  void cacheWorldstate(Worldstate worldstate) {
+    box.put(Worldstate_Key, worldstate.toJson()).catchError((Object error) {
+      logError(error.toString());
     });
   }
 
   @override
+  BaseItem getCachedDeal() {
+    final instance = box.get(DarvoDeal_Key);
+
+    return BaseItem.fromJson(instance['item'] as Map<String, dynamic>);
+  }
+
+  @override
   Worldstate getCachedState() {
-    final cached = cacheBox.get(Worldstate_Key) as String;
+    final cached = box.get(Worldstate_Key);
 
     if (cached != null) {
-      return Worldstate.fromJson(json.decode(cached) as Map<String, dynamic>);
+      return Worldstate.fromJson(cached);
     } else {
       throw CacheException();
     }
@@ -80,7 +77,7 @@ class WarframestatCache implements WarframestateCacheBase {
 
   @override
   List<SynthTarget> getCachedTargets() {
-    final cached = cacheBox.get(SynthTargets_Key) as List<dynamic>;
+    final cached = box.get(SynthTargets_Key) as List<dynamic>;
 
     if (cached != null) {
       return cached
@@ -91,4 +88,33 @@ class WarframestatCache implements WarframestateCacheBase {
       throw CacheException();
     }
   }
+
+  static Future<WarframestatCache> getInstance() async {
+    if (_instance == null) {
+      final temp = await getTemporaryDirectory();
+
+      Hive.init(temp.path);
+
+      final box =
+          await Hive.openBox<Map<String, dynamic>>('cached_warframestat');
+
+      return _instance ??= WarframestatCache._(box);
+    }
+
+    return _instance;
+  }
+}
+
+abstract class WarframestateCacheBase {
+  void cacheDealInfo(String id, BaseItem item);
+
+  void cacheSynthTargets(List<SynthTarget> targets);
+
+  void cacheWorldstate(Worldstate state);
+
+  BaseItem getCachedDeal();
+
+  Worldstate getCachedState();
+
+  List<SynthTarget> getCachedTargets();
 }

@@ -37,18 +37,15 @@ class _BaroInventoryState extends State<BaroInventory> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Baro\'s Inventory')),
-      body: ListView(
-        children: <Widget>[
-          PaginatedDataTable(
-            header: const Text('Inventory'),
-            rowsPerPage: _rowsPerPage,
-            onRowsPerPageChanged: _onRowsPerPageChanged,
-            // onSelectAll: (selected) {},
-            columns: columns,
-            source: _source,
-          )
-        ],
-      ),
+      body: SingleChildScrollView(
+          child: PaginatedDataTable(
+        header: const Text('Inventory'),
+        rowsPerPage: _rowsPerPage,
+        onRowsPerPageChanged: _onRowsPerPageChanged,
+        // onSelectAll: (selected) {},
+        columns: columns,
+        source: _source,
+      )),
     );
   }
 }

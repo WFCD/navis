@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:html/parser.dart';
 import 'package:flutter_custom_tabs/flutter_custom_tabs.dart';
 import 'package:navis/core/themes/colors.dart';
 
@@ -33,4 +34,9 @@ Color healthColor(double health) {
   } else {
     return Colors.red;
   }
+}
+
+String parseHtmlString(String html) {
+  final document = parse(html);
+  return document.body.text;
 }

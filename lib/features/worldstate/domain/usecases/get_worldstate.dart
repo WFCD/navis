@@ -1,5 +1,3 @@
-import 'package:dartz/dartz.dart';
-import 'package:navis/core/error/failures.dart';
 import 'package:navis/core/usecases/usecases.dart';
 import 'package:navis/core/data/datasources/warframestat_remote.dart';
 import 'package:navis/core/domain/repositories/warfamestat_repository.dart';
@@ -11,7 +9,7 @@ class GetWorldstate extends Usecase<Worldstate, GamePlatforms> {
   const GetWorldstate(this.repository);
 
   @override
-  Future<Either<Failure, Worldstate>> call(GamePlatforms platform) {
+  Future<Worldstate> call(GamePlatforms platform) {
     return repository.getWorldstate(platform);
   }
 }

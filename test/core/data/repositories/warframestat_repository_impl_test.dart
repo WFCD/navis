@@ -1,15 +1,15 @@
 import 'dart:convert';
 
-import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
-import 'package:navis/core/error/exceptions.dart';
-import 'package:navis/core/error/failures.dart';
-import 'package:navis/core/network/network_info.dart';
 import 'package:navis/core/data/datasources/warframestat_local.dart';
 import 'package:navis/core/data/datasources/warframestat_remote.dart';
 import 'package:navis/core/data/repositories/warframestat_repository_impl.dart';
 import 'package:navis/core/domain/repositories/warfamestat_repository.dart';
+import 'package:navis/core/error/exceptions.dart';
+import 'package:navis/core/error/failures.dart';
+import 'package:navis/core/network/network_info.dart';
+import 'package:warframe_items_model/warframe_items_model.dart';
 import 'package:worldstate_api_model/misc.dart';
 import 'package:worldstate_api_model/worldstate_models.dart';
 
@@ -23,6 +23,7 @@ class MockNetworkInfo extends Mock implements NetworkInfo {}
 
 void main() {
   WarframestatRepository repository;
+
   WarframestatCache mockCache;
   WarframestatRemote mockRemote;
   NetworkInfo mockNetworkInfo;
@@ -65,15 +66,6 @@ void main() {
         json.decode(fixture('worldstate.json')) as Map<String, dynamic>);
 
     runTestOnline(() {
-      test('make sure device is online', () async {
-        await repository.getWorldstate(GamePlatforms.pc);
-
-        final result = await mockNetworkInfo.isConnected;
-
-        verify(mockNetworkInfo.isConnected);
-        expect(result, true);
-      });
-
       test(
           'should return instance of Worldstate when the call to remote data source is successful',
           () async {
@@ -83,7 +75,7 @@ void main() {
         final result = await repository.getWorldstate(tPlatform);
 
         verify(mockRemote.getWorldstate(tPlatform));
-        expect(result, equals(Right<Failure, Worldstate>(tWorldstate)));
+        expect(result, equals(tWorldstate));
       });
 
       test(
@@ -107,20 +99,11 @@ void main() {
 
         verify(mockRemote.getWorldstate(tPlatform));
         verifyZeroInteractions(mockCache);
-        expect(result, equals(Left<Failure, Worldstate>(ServerFailure())));
+        expect(result, equals(ServerFailure()));
       });
     });
 
     runTestOffline(() {
-      test('make sure device is offline', () async {
-        await repository.getWorldstate(GamePlatforms.pc);
-
-        final result = await mockNetworkInfo.isConnected;
-
-        verify(mockNetworkInfo.isConnected);
-        expect(result, false);
-      });
-
       test(
           'should return last locally cached data when the cached data is present',
           () async {
@@ -130,7 +113,7 @@ void main() {
 
         verifyZeroInteractions(mockRemote);
         verify(mockCache.getCachedState());
-        expect(result, equals(Right<Failure, Worldstate>(tWorldstate)));
+        expect(result, equals(tWorldstate));
       });
 
       test('should return CacheFailure when there is no cached data present',
@@ -141,7 +124,7 @@ void main() {
 
         verifyZeroInteractions(mockRemote);
         verify(mockCache.getCachedState());
-        expect(result, equals(Left<Failure, Worldstate>(CacheFailure())));
+        expect(result, equals(CacheFailure()));
       });
     });
   });
@@ -154,15 +137,6 @@ void main() {
             .toList();
 
     runTestOnline(() {
-      test('make sure device is online', () async {
-        await repository.getSynthTargets();
-
-        final result = await mockNetworkInfo.isConnected;
-
-        verify(mockNetworkInfo.isConnected);
-        expect(result, true);
-      });
-
       test(
           'should return a List of synthTarget instaces when the call to remote data source is successful',
           () async {
@@ -171,7 +145,7 @@ void main() {
         final results = await repository.getSynthTargets();
 
         verify(mockRemote.getSynthTargets());
-        expect(results, equals(Right<Failure, List<SynthTarget>>(tTargets)));
+        expect(results, equals(tTargets));
       });
 
       test(
@@ -194,8 +168,7 @@ void main() {
 
         verify(mockRemote.getSynthTargets());
         verifyZeroInteractions(mockCache);
-        expect(
-            results, equals(Left<Failure, List<SynthTarget>>(ServerFailure())));
+        expect(results, equals(ServerFailure()));
       });
     });
 
@@ -209,7 +182,7 @@ void main() {
 
         verifyZeroInteractions(mockRemote);
         verify(mockCache.getCachedTargets());
-        expect(results, equals(Right<Failure, List<SynthTarget>>(tTargets)));
+        expect(results, equals(tTargets));
       });
 
       test('should return CacheFailure when there is no cached data present',
@@ -220,8 +193,51 @@ void main() {
 
         verifyZeroInteractions(mockRemote);
         verify(mockCache.getCachedTargets());
-        expect(
-            result, equals(Left<Failure, List<SynthTarget>>(CacheFailure())));
+        expect(result, equals(CacheFailure()));
+      });
+    });
+  });
+
+  group('getDealInfo', () {
+    const tItem = BaseItem(
+      name: 'Chroma',
+      description: 'A master of the deadly elements, '
+          'Chroma can alter his damage output by changing '
+          'his Emissive Color.',
+      type: 'Warframe',
+      imageName: 'chroma.png',
+      tradable: false,
+    );
+
+    runTestOnline(() {
+      test('return test item when searching chroma', () async {
+        when(mockRemote.searchItems(any)).thenAnswer((_) async => [tItem]);
+
+        final result = await repository.getDealInfo('id', 'chroma');
+
+        verify(mockRemote.searchItems('chroma'));
+        expect(result, equals(tItem));
+      });
+
+      test('make sure the deal\'s Item info is cached properly', () async {
+        when(mockRemote.searchItems(any)).thenAnswer((_) async => [tItem]);
+
+        await repository.getDealInfo('id', 'chroma');
+
+        verify(mockRemote.searchItems('chroma'));
+        verify(mockCache.cacheDealInfo('id', tItem));
+      });
+
+      // Doesn't matter if there is a server problem it will always return from cache when the deal is the same
+      // as the previous one, having said that the deals card will also not render when there is a server problem
+      test('return the cached deal\'s item info ', () async {
+        when(mockCache.getCachedDealId()).thenAnswer((_) => 'id');
+        when(mockCache.getCachedDeal()).thenAnswer((_) => tItem);
+
+        await repository.getDealInfo('id', 'chroma');
+
+        verify(mockCache.getCachedDealId());
+        verify(mockCache.getCachedDeal());
       });
     });
   });

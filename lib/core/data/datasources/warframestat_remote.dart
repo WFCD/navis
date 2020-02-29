@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 import 'package:lumberdash/lumberdash.dart';
@@ -55,12 +57,16 @@ class WarframestatRemote implements WarframestatRemoteBase {
       'Accept-Language': NavisLocalizations.current?.localeName ?? 'en'
     };
 
-    final response = await client.get('$_baseUrl$path', headers: headers);
+    try {
+      final response = await client.get('$_baseUrl$path', headers: headers);
 
-    if (response.statusCode == 200) {
-      return response.body;
-    } else {
-      logError('Error connecting to server: ${response.statusCode}');
+      if (response.statusCode == 200) {
+        return response.body;
+      } else {
+        logError('Error connecting to server: ${response.statusCode}');
+        throw ServerException();
+      }
+    } on SocketException {
       throw ServerException();
     }
   }

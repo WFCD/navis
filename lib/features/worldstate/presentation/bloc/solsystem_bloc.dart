@@ -6,6 +6,7 @@ import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:navis/core/error/failures.dart';
 import 'package:navis/core/data/datasources/warframestat_remote.dart';
 import 'package:navis/features/worldstate/domain/usecases/get_worldstate.dart';
+import 'package:warframe_items_model/warframe_items_model.dart';
 import 'package:worldstate_api_model/worldstate_models.dart';
 
 part 'solsystem_event.dart';
@@ -33,14 +34,7 @@ class SolsystemBloc extends HydratedBloc<SolsystemEvent, SolsystemState> {
       // yield DetectingState();
       final worldstate = await getWorldstate(event.platform);
 
-      yield* worldstate.fold(
-        (failure) async* {
-          yield SystemError(_mapFailureToMessage(failure));
-        },
-        (worldstate) async* {
-          yield SolState(worldstate);
-        },
-      );
+      yield SolState(worldstate: worldstate, dealInfo: null);
     }
   }
 
@@ -51,7 +45,7 @@ class SolsystemBloc extends HydratedBloc<SolsystemEvent, SolsystemState> {
 
   @override
   SolsystemState fromJson(Map<String, dynamic> json) {
-    return SolState(Worldstate.fromJson(json));
+    return SolState(worldstate: Worldstate.fromJson(json));
   }
 
   @override

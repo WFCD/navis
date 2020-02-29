@@ -1,9 +1,7 @@
 import 'package:data_connection_checker/data_connection_checker.dart';
 import 'package:get_it/get_it.dart';
-import 'package:hive/hive.dart';
 import 'package:http/http.dart' as http;
 import 'package:navis/features/worldstate/presentation/bloc/solsystem_bloc.dart';
-import 'package:path_provider/path_provider.dart';
 
 import 'core/bloc/navigation_bloc.dart';
 import 'core/data/datasources/warframestat_local.dart';
@@ -24,13 +22,10 @@ Future<void> init() async {
   sl.registerSingleton<EventInfoParser>(await EventInfoParser.loadEventData());
 
   // Data sources
-  final temp = await getTemporaryDirectory();
-  Hive.init(temp.path);
-
   sl.registerSingleton<WarframestatRemote>(WarframestatRemote(http.Client()));
 
   sl.registerSingleton<WarframestatCache>(
-      WarframestatCache(await Hive.openBox<dynamic>('cache')));
+      await WarframestatCache.getInstance());
 
   // Repository
   sl.registerSingleton<WarframestatRepositoryImpl>(

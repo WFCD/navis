@@ -1,12 +1,11 @@
 import 'dart:io';
 
-import 'package:dartz/dartz.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:mockito/mockito.dart';
-import 'package:navis/core/utils/data_source_utils.dart';
 import 'package:navis/core/data/datasources/warframestat_remote.dart';
+import 'package:navis/core/utils/data_source_utils.dart';
 import 'package:navis/features/worldstate/domain/usecases/get_worldstate.dart';
 import 'package:navis/features/worldstate/presentation/bloc/solsystem_bloc.dart';
 
@@ -40,7 +39,7 @@ void main() {
     final tWorldstate = toWorldstate(fixture('worldstate.json'));
 
     setUp(() {
-      when(getWorldstate(any)).thenAnswer((_) async => Right(tWorldstate));
+      when(getWorldstate(any)).thenAnswer((_) async => tWorldstate);
     });
 
     test('should call getWorldstate', () async {

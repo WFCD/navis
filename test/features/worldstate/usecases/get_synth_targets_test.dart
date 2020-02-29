@@ -1,12 +1,9 @@
-import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
-import 'package:navis/core/error/failures.dart';
+import 'package:navis/core/domain/repositories/warfamestat_repository.dart';
 import 'package:navis/core/usecases/usecases.dart';
 import 'package:navis/core/utils/data_source_utils.dart';
-import 'package:navis/core/domain/repositories/warfamestat_repository.dart';
 import 'package:navis/features/worldstate/domain/usecases/get_synth_targets.dart';
-import 'package:worldstate_api_model/misc.dart';
 
 import '../../../fixtures/fixture_reader.dart';
 
@@ -26,11 +23,11 @@ void main() {
 
   test('should get SynthTargets from repository', () async {
     when(mockRepository.getSynthTargets())
-        .thenAnswer((_) async => Right(tSynthTargets));
+        .thenAnswer((_) async => tSynthTargets);
 
     final results = await getSynthTargets(NoParama());
 
-    expect(results, equals(Right<Failure, List<SynthTarget>>(tSynthTargets)));
+    expect(results, equals(tSynthTargets));
     verify(mockRepository.getSynthTargets());
     verifyNoMoreInteractions(mockRepository);
   });
