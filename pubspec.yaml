@@ -29,6 +29,7 @@ dependencies:
   youtube_player_flutter: ^6.0.3+2
   lumberdash: ^2.1.1
   colorize_lumberdash: ^2.1.0
+  supercharged: ^1.2.0
 
 dev_dependencies:
   flutter_test:
