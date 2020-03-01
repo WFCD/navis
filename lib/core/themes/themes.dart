@@ -39,6 +39,7 @@ class NavisTheming {
         clipBehavior: Clip.hardEdge,
       ),
       dialogTheme: const DialogTheme(backgroundColor: Color(0xff191919)),
+      dialogBackgroundColor: const Color(0xff191919),
       canvasColor: const Color(0xff191919),
       backgroundColor: Colors.grey[900],
       scaffoldBackgroundColor: const Color(0xFF121212),
