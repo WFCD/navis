@@ -95,11 +95,10 @@ void main() {
           () async {
         when(mockRemote.getWorldstate(any)).thenThrow(ServerException());
 
-        final result = await repository.getWorldstate(tPlatform);
+        final call = repository.getWorldstate;
 
-        verify(mockRemote.getWorldstate(tPlatform));
         verifyZeroInteractions(mockCache);
-        expect(result, equals(ServerFailure()));
+        expect(() => call(tPlatform), throwsA(ServerFailure()));
       });
     });
 
@@ -120,11 +119,9 @@ void main() {
           () async {
         when(mockCache.getCachedState()).thenThrow(CacheException());
 
-        final result = await repository.getWorldstate(tPlatform);
+        final call = repository.getWorldstate;
 
-        verifyZeroInteractions(mockRemote);
-        verify(mockCache.getCachedState());
-        expect(result, equals(CacheFailure()));
+        expect(() => call(tPlatform), throwsA(CacheFailure()));
       });
     });
   });
@@ -164,11 +161,7 @@ void main() {
           () async {
         when(mockRemote.getSynthTargets()).thenThrow(ServerException());
 
-        final results = await repository.getSynthTargets();
-
-        verify(mockRemote.getSynthTargets());
-        verifyZeroInteractions(mockCache);
-        expect(results, equals(ServerFailure()));
+        expect(repository.getSynthTargets, throwsA(ServerFailure()));
       });
     });
 
@@ -189,11 +182,7 @@ void main() {
           () async {
         when(mockCache.getCachedTargets()).thenThrow(CacheException());
 
-        final result = await repository.getSynthTargets();
-
-        verifyZeroInteractions(mockRemote);
-        verify(mockCache.getCachedTargets());
-        expect(result, equals(CacheFailure()));
+        expect(repository.getSynthTargets, throwsA(CacheFailure()));
       });
     });
   });

@@ -13,8 +13,8 @@ Worldstate cleanState(Worldstate state) {
         d.expiry.difference(DateTime.now()) > const Duration(seconds: 60);
   });
 
-  state.news.retainWhere(
-      (art) => art.translations[NavisLocalizations.current.localeName] != null);
+  state.news.retainWhere((art) =>
+      art.translations[NavisLocalizations.current?.localeName ?? 'en'] != null);
   state.news.sort((a, b) => b.date.compareTo(a.date));
 
   state.persistentEnemies.sort((a, b) => a.agentType.compareTo(b.agentType));
