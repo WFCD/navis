@@ -7,6 +7,7 @@ import 'package:youtube_explode_dart/youtube_explode_dart.dart' as yt;
 
 // TODO: Find more how-to guides for events might be slightly annoying for older events
 // TODO: Make sure this setup works for all events
+// TODO: find a way to adapt a stream to network speed, might come later with Youtube_explode
 class EventVideoPlayer extends StatefulWidget {
   const EventVideoPlayer({
     Key key,
