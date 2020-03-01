@@ -31,6 +31,7 @@ dependencies:
   lumberdash: ^2.1.1
   colorize_lumberdash: ^2.1.0
   supercharged: ^1.2.0
+  wakelock: ^0.1.3+4
 
 dev_dependencies:
   flutter_test:
