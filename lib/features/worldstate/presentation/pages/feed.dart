@@ -85,7 +85,10 @@ class HomeFeedPage extends StatelessWidget {
                 if (state.activeSiphons) KuvaCard(kuva: worldstate.kuva),
                 TraderCard(trader: worldstate.voidTrader),
                 if (state.activeSales)
-                  DarvoDealCard(deals: worldstate.dailyDeals),
+                  DarvoDealCard(
+                    deals: worldstate.dailyDeals,
+                    items: state.dealInfo,
+                  ),
                 SortieCard(sortie: worldstate.sortie)
               ],
             );
