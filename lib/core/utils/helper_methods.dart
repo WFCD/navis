@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:html/parser.dart';
 import 'package:flutter_custom_tabs/flutter_custom_tabs.dart';
+import 'package:html/parser.dart';
 import 'package:navis/core/themes/colors.dart';
 
 Future<void> launchLink(String link) async {

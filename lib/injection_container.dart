@@ -9,6 +9,7 @@ import 'core/data/datasources/warframestat_remote.dart';
 import 'core/data/repositories/warframestat_repository_impl.dart';
 import 'core/network/network_info.dart';
 import 'features/worldstate/data/datasources/event_info_parser.dart';
+import 'features/worldstate/domain/usecases/get_darvo_deal_info.dart';
 import 'features/worldstate/domain/usecases/get_synth_targets.dart';
 import 'features/worldstate/domain/usecases/get_worldstate.dart';
 
@@ -39,12 +40,18 @@ Future<void> init() async {
   // Usecases
   sl.registerSingleton<GetWorldstate>(
       GetWorldstate(sl<WarframestatRepositoryImpl>()));
-
+  sl.registerSingleton<GetDarvoDealInfo>(
+      GetDarvoDealInfo(sl<WarframestatRepositoryImpl>()));
   sl.registerSingleton<GetSynthTargets>(
       GetSynthTargets(sl<WarframestatRepositoryImpl>()));
 
   // Blocs
   sl.registerFactory<NavigationBloc>(() => NavigationBloc());
-  sl.registerFactory<SolsystemBloc>(
-      () => SolsystemBloc(worldstate: sl<GetWorldstate>()));
+  sl.registerFactory<SolsystemBloc>(() {
+    return SolsystemBloc(
+      getWorldstate: sl<GetWorldstate>(),
+      getDarvoDealInfo: sl<GetDarvoDealInfo>(),
+      getSynthTargets: sl<GetSynthTargets>(),
+    );
+  });
 }

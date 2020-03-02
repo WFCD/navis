@@ -9,13 +9,13 @@ class GetDarvoDealInfo extends Usecase<BaseItem, DealRequest> {
 
   @override
   Future<BaseItem> call(DealRequest request) async {
-    return repository.getDealInfo(request.id, request.itemNmae);
+    return repository.getDealInfo(request.id, request.itemName);
   }
 }
 
 class DealRequest {
   final String id;
-  final String itemNmae;
+  final String itemName;
 
-  const DealRequest(this.id, this.itemNmae);
+  const DealRequest(this.id, this.itemName);
 }

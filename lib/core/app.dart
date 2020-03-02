@@ -3,8 +3,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:navis/core/widgets/widgets.dart';
 import 'package:navis/core/data/datasources/warframestat_remote.dart';
+import 'package:navis/core/widgets/widgets.dart';
 import 'package:navis/features/worldstate/presentation/bloc/solsystem_bloc.dart';
 import 'package:navis/features/worldstate/presentation/pages/acolyte_profile.dart';
 import 'package:navis/features/worldstate/presentation/pages/event.dart';
@@ -30,11 +30,11 @@ class _NavisAppState extends State<NavisApp> with WidgetsBindingObserver {
     WidgetsBinding.instance.addObserver(this);
 
     BlocProvider.of<SolsystemBloc>(context)
-        .add(const SolupdateSystem(GamePlatforms.pc));
+        .add(const SyncSystemStatus(GamePlatforms.pc));
 
     _timer = Timer.periodic(const Duration(minutes: 5), (_) {
       BlocProvider.of<SolsystemBloc>(context)
-          .add(const SolupdateSystem(GamePlatforms.pc));
+          .add(const SyncSystemStatus(GamePlatforms.pc));
     });
   }
 
@@ -51,7 +51,7 @@ class _NavisAppState extends State<NavisApp> with WidgetsBindingObserver {
   void didChangeAppLifecycleState(AppLifecycleState state) {
     if (state == AppLifecycleState.resumed) {
       BlocProvider.of<SolsystemBloc>(context)
-          .add(const SolupdateSystem(GamePlatforms.pc));
+          .add(const SyncSystemStatus(GamePlatforms.pc));
     }
   }
 

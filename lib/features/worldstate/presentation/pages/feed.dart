@@ -70,22 +70,22 @@ class HomeFeedPage extends StatelessWidget {
 
             return ListView(
               children: <Widget>[
-                if (worldstate.eventsActive)
-                  EventCard(events: worldstate.events),
-                if (worldstate.acolytesActive)
+                if (state.eventsActive) EventCard(events: worldstate.events),
+                if (state.activeAcolytes)
                   AcolyteCard(enemies: worldstate.persistentEnemies),
                 ConstructionProgressCard(
                   constructionProgress: _buildProgress(worldstate),
                 ),
-                if (worldstate.arbitrationActive)
+                if (state.arbitrationActive)
                   ArbitrationCard(arbitration: worldstate.arbitration),
-                if (worldstate.alertsActive)
-                  AlertsCard(alerts: worldstate.alerts),
-                if (worldstate.outpostActive)
+                if (state.activeAlerts) AlertsCard(alerts: worldstate.alerts),
+                if (state.outpostDetected)
                   SentientOutpostCard(outpost: worldstate.sentientOutposts),
                 CycleCard(cycles: _buildCycles(worldstate)),
-                if (worldstate.kuvaActive) KuvaCard(kuva: worldstate.kuva),
+                if (state.activeSiphons) KuvaCard(kuva: worldstate.kuva),
                 TraderCard(trader: worldstate.voidTrader),
+                if (state.activeSales)
+                  DarvoDealCard(deals: worldstate.dailyDeals),
                 SortieCard(sortie: worldstate.sortie)
               ],
             );

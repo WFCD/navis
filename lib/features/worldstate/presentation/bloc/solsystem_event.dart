@@ -1,19 +1,19 @@
 part of 'solsystem_bloc.dart';
 
-abstract class SolsystemEvent extends Equatable {
-  const SolsystemEvent();
+abstract class SyncEvent extends Equatable {
+  const SyncEvent();
 }
 
-class SolupdateSystem extends SolsystemEvent {
+class SyncSystemStatus extends SyncEvent {
   final GamePlatforms platform;
 
-  const SolupdateSystem(this.platform);
+  const SyncSystemStatus(this.platform);
 
   @override
   List<Object> get props => [platform];
 }
 
-class SolupdateTargets extends SolsystemEvent {
+class SyncTargets extends SyncEvent {
   @override
   List<Object> get props => [];
 }

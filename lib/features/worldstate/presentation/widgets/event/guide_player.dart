@@ -3,7 +3,6 @@ import 'package:chewie/chewie.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:video_player/video_player.dart';
-import 'package:wakelock/wakelock.dart';
 import 'package:youtube_explode_dart/youtube_explode_dart.dart' as yt;
 
 // TODO: Find more how-to guides for events might be slightly annoying for older events
@@ -51,10 +50,7 @@ class _YoutubePlayerState extends State<EventVideoPlayer> {
 
       setState(() {
         _videoPlayerController =
-            VideoPlayerController.network(video.url.toString())
-              ..addListener(() {
-                Wakelock.toggle(on: _videoPlayerController.value.isPlaying);
-              });
+            VideoPlayerController.network(video.url.toString());
 
         _chewieController = ChewieController(
           videoPlayerController: _videoPlayerController,
@@ -62,6 +58,7 @@ class _YoutubePlayerState extends State<EventVideoPlayer> {
               video.videoResolution.width / video.videoResolution.height,
           autoInitialize: true,
           showControlsOnInitialize: false,
+          allowedScreenSleep: false,
           materialProgressColors: ChewieProgressColors(
             playedColor: Theme.of(context).accentColor,
             bufferedColor: Colors.grey[400],
