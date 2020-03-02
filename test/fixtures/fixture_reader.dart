@@ -1,8 +1,13 @@
 import 'dart:io';
+
 import 'package:path/path.dart' as p;
 
 String fixture(String name) {
-  final path = p.join(Directory.current.path, 'fixtures', name);
-
-  return File(path).readAsStringSync();
+  try {
+    return _file(p.join('test', 'fixtures', name));
+  } catch (err) {
+    return _file(p.join('fixtures', name));
+  }
 }
+
+String _file(String path) => File(path).readAsStringSync();
