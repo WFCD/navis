@@ -1,8 +1,10 @@
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
 import 'package:hive/hive.dart';
 import 'package:lumberdash/lumberdash.dart';
 import 'package:navis/core/error/exceptions.dart';
+import 'package:navis/core/utils/data_source_utils.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:warframe_items_model/warframe_items_model.dart';
 import 'package:worldstate_api_model/misc.dart';
@@ -21,11 +23,10 @@ class WarframestatCache implements WarframestateCacheBase {
   WarframestatCache._(this.box);
 
   DateTime get synthTargetLastUpdate {
-    final timestamp = box.get(SynthTargets_Timestamp);
+    String timestamp = box.get(SynthTargets_Timestamp);
+    timestamp ??= DateTime.now().toIso8601String();
 
-    if (timestamp != null) return DateTime.parse(timestamp);
-
-    return DateTime.now();
+    return DateTime.parse(timestamp);
   }
 
   @override
@@ -71,26 +72,24 @@ class WarframestatCache implements WarframestateCacheBase {
   }
 
   @override
-  Worldstate getCachedState() {
+  Future<Worldstate> getCachedState() async {
     final cached = box.get(Worldstate_Key);
 
     if (cached != null) {
-      return Worldstate.fromJson(json.decode(cached) as Map<String, dynamic>);
+      return compute<String, Worldstate>(toWorldstate, cached)
+          .catchError((Object error) => logError);
     } else {
       throw CacheException();
     }
   }
 
   @override
-  List<SynthTarget> getCachedTargets() {
+  Future<List<SynthTarget>> getCachedTargets() async {
     final cached = box.get(SynthTargets_Key);
-    final targets = json.decode(cached) as List<dynamic>;
 
     if (cached != null) {
-      return targets
-          .cast<Map<String, dynamic>>()
-          .map<SynthTarget>((c) => SynthTarget.fromJson(c))
-          .toList();
+      return compute<String, List<SynthTarget>>(toTargets, cached)
+          .catchError((Object error) => logError(error));
     } else {
       throw CacheException();
     }
@@ -120,7 +119,7 @@ abstract class WarframestateCacheBase {
 
   BaseItem getCachedDeal();
 
-  Worldstate getCachedState();
+  Future<Worldstate> getCachedState();
 
-  List<SynthTarget> getCachedTargets();
+  Future<List<SynthTarget>> getCachedTargets();
 }

@@ -106,7 +106,7 @@ void main() {
       test(
           'should return last locally cached data when the cached data is present',
           () async {
-        when(mockCache.getCachedState()).thenAnswer((_) => tWorldstate);
+        when(mockCache.getCachedState()).thenAnswer((_) async => tWorldstate);
 
         final result = await repository.getWorldstate(tPlatform);
 
@@ -169,7 +169,7 @@ void main() {
       test(
           'should return last locally cached data when the cached data is present',
           () async {
-        when(mockCache.getCachedTargets()).thenAnswer((_) => tTargets);
+        when(mockCache.getCachedTargets()).thenAnswer((_) async => tTargets);
 
         final results = await repository.getSynthTargets();
 

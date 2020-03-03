@@ -13,7 +13,7 @@ import 'package:worldstate_api_model/worldstate_models.dart';
 
 typedef CacheCallback<T> = void Function(T toCache);
 typedef ExecuteCallback<T> = Future<T> Function();
-typedef RestoreCallback<T> = T Function();
+typedef RestoreCallback<T> = Future<T> Function();
 
 class WarframestatRepositoryImpl implements WarframestatRepository {
   final WarframestatCache local;
@@ -56,9 +56,9 @@ class WarframestatRepositoryImpl implements WarframestatRepository {
 
   @override
   Future<List<SynthTarget>> getSynthTargets() async {
-    final previousTimestamp = local.synthTargetLastUpdate;
+    final timestamp = local.synthTargetLastUpdate;
 
-    if (previousTimestamp.difference(DateTime.now()) <= 7.days) {
+    if (timestamp.difference(DateTime.now()) >= 7.days) {
       return _execute<List<SynthTarget>>(
         () => remote.getSynthTargets(),
         executeCaching: local.cacheSynthTargets,
