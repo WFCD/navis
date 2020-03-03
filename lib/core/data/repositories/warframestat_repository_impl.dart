@@ -58,7 +58,7 @@ class WarframestatRepositoryImpl implements WarframestatRepository {
   Future<List<SynthTarget>> getSynthTargets() async {
     final timestamp = local.synthTargetLastUpdate;
 
-    if (timestamp.difference(DateTime.now()) >= 7.days) {
+    if (timestamp.difference(DateTime.now()) <= 7.days) {
       return _execute<List<SynthTarget>>(
         () => remote.getSynthTargets(),
         executeCaching: local.cacheSynthTargets,

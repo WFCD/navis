@@ -12,6 +12,7 @@ import 'package:navis/core/network/network_info.dart';
 import 'package:warframe_items_model/warframe_items_model.dart';
 import 'package:worldstate_api_model/misc.dart';
 import 'package:worldstate_api_model/worldstate_models.dart';
+import 'package:supercharged/supercharged.dart';
 
 import '../../../fixtures/fixture_reader.dart';
 
@@ -134,6 +135,11 @@ void main() {
             .toList();
 
     runTestOnline(() {
+      setUp(() {
+        when(mockCache.synthTargetLastUpdate)
+            .thenAnswer((_) => DateTime.now().subtract(10.days));
+      });
+
       test(
           'should return a List of synthTarget instaces when the call to remote data source is successful',
           () async {
@@ -166,6 +172,10 @@ void main() {
     });
 
     runTestOffline(() {
+      setUp(() {
+        when(mockCache.synthTargetLastUpdate).thenAnswer((_) => DateTime.now());
+      });
+
       test(
           'should return last locally cached data when the cached data is present',
           () async {
