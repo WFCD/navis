@@ -2,6 +2,7 @@ export 'category_title.dart';
 export 'countdown.dart';
 export 'countdown_banner.dart';
 export 'custom_card.dart';
+export 'dialog.dart';
 export 'error_widget.dart';
 export 'faction_logo.dart';
 export 'indicator.dart';
