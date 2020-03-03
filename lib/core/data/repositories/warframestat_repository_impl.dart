@@ -1,12 +1,12 @@
 import 'package:async/async.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:lumberdash/lumberdash.dart';
 import 'package:navis/core/data/datasources/warframestat_local.dart';
 import 'package:navis/core/data/datasources/warframestat_remote.dart';
 import 'package:navis/core/domain/repositories/warfamestat_repository.dart';
 import 'package:navis/core/error/exceptions.dart';
 import 'package:navis/core/error/failures.dart';
 import 'package:navis/core/network/network_info.dart';
+import 'package:supercharged/supercharged.dart';
 import 'package:warframe_items_model/warframe_items_model.dart';
 import 'package:worldstate_api_model/misc.dart';
 import 'package:worldstate_api_model/worldstate_models.dart';
@@ -36,7 +36,6 @@ class WarframestatRepositoryImpl implements WarframestatRepository {
   }
 
   Future<BaseItem> _getDealInfo(String id, String itemName) async {
-    logMessage(itemName);
     final cachedId = local.getCachedDealId();
 
     if (id != cachedId || id == null) {
@@ -57,11 +56,17 @@ class WarframestatRepositoryImpl implements WarframestatRepository {
 
   @override
   Future<List<SynthTarget>> getSynthTargets() async {
-    return _execute<List<SynthTarget>>(
-      () => remote.getSynthTargets(),
-      executeCaching: local.cacheSynthTargets,
-      executeCacheRestore: local.getCachedTargets,
-    );
+    final previousTimestamp = local.synthTargetLastUpdate;
+
+    if (previousTimestamp.difference(DateTime.now()) <= 7.days) {
+      return _execute<List<SynthTarget>>(
+        () => remote.getSynthTargets(),
+        executeCaching: local.cacheSynthTargets,
+        executeCacheRestore: local.getCachedTargets,
+      );
+    }
+
+    return local.getCachedTargets();
   }
 
   @override
