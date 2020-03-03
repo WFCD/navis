@@ -41,10 +41,10 @@ class DealWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final style = Theme.of(context)
+    final saleInfo = Theme.of(context)
         .textTheme
         .subtitle
-        .copyWith(fontWeight: FontWeight.w300);
+        .copyWith(fontWeight: FontWeight.w500);
 
     final primary = Theme.of(context).primaryColor;
 
@@ -66,20 +66,20 @@ class DealWidget extends StatelessWidget {
               StaticBox.text(
                 text: '${deal.discount}% Discount',
                 color: primary,
-                style: style,
+                style: saleInfo,
               ),
               // TODO: should probably put a plat icon here instead
               StaticBox.text(
                 text: '${deal.salePrice}\p',
                 color: primary,
-                style: style,
+                style: saleInfo,
               ),
               StaticBox.text(
                 text: '${deal.total - deal.sold} / ${deal.total} remaining',
                 color: primary,
-                style: style,
+                style: saleInfo,
               ),
-              CountdownTimer(expiry: deal.expiry, style: style),
+              CountdownTimer(expiry: deal.expiry, style: saleInfo),
             ],
           ),
           if (urlExist)
@@ -123,7 +123,7 @@ class DealDetails extends StatelessWidget {
           itemDescription,
           maxLines: 7,
           overflow: TextOverflow.ellipsis,
-          style: textTheme.subtitle.copyWith(fontStyle: FontStyle.italic),
+          style: textTheme.subtitle.copyWith(color: textTheme.caption.color),
         ),
       ],
     );
