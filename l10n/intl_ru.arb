@@ -1,5 +1,5 @@
 {
-    "@@last_modified": "2020-02-20T02:53:16.698105",
+    "@@last_modified": "2020-03-03T16:56:42.387837",
     "alertInfo": "{type} ({faction}) | Level: {min} - {max}",
     "@alertInfo": {
         "description": "The information of the given alert, such as mission type, faction and enemy level",
@@ -115,6 +115,12 @@
     "eventRewards": "Rewards",
     "@eventRewards": {
         "description": "Event reward title",
+        "type": "text",
+        "placeholders": {}
+    },
+    "bountyTitle": "Bounties",
+    "@bountyTitle": {
+        "description": "Bounty card title.",
         "type": "text",
         "placeholders": {}
     },
