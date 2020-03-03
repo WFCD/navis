@@ -17,13 +17,14 @@ before_script:
   - if [  ! -d "flutter" ] ; then git clone https://github.com/flutter/flutter.git -b
     stable; fi;
   - export PATH=./flutter/bin:$PATH
+  - flutter pub run intl_translation:generate_from_arb --output-dir=lib/l10n --no-use-deferred-loading
+    lib/l10n/localizations.dart l10n/intl_*.arb
+
 jobs:
   include:
     - name: Test
       script:
         - flutter pub get
-        - flutter pub run intl_translation:generate_from_arb --output-dir=lib/l10n --no-use-deferred-loading
-          lib/l10n/localizations.dart l10n/intl_*.arb
         - flutter test
         - flutter build apk --target-platform android-arm
     - name: Deploy
