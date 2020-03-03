@@ -19,7 +19,15 @@
     },
     "Ghoul Purge": {
         "keyArt": "https://i.imgur.com/lSyLCJY.jpg",
-        "howTo": [],
+        "howTo": [
+            {
+                "id": "QjMUwxZ6isk",
+                "title": "Warframe Ghoul Purge Event - Everything You Need to Know (Hunter Mods & Nitain Extract Farm)",
+                "author": "LeyzarGamingViews",
+                "pThumbnail": "https://yt3.ggpht.com/a/AATXAJwOj7kpz1bYqzNv385pLSXwGHr6bDEiYYE6fA=s288-c-k-c0xffffffff-no-rj-mo",
+                "link": "https://youtu.be/QjMUwxZ6isk"
+            }
+        ],
         "translations": []
     },
     "Balor Fomorian": {

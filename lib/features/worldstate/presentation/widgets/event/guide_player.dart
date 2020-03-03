@@ -61,7 +61,7 @@ class _YoutubePlayerState extends State<EventVideoPlayer> {
           allowedScreenSleep: false,
           materialProgressColors: ChewieProgressColors(
             playedColor: Theme.of(context).accentColor,
-            bufferedColor: Colors.grey[400],
+            bufferedColor: Colors.white,
           ),
         );
       });
