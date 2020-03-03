@@ -17,10 +17,11 @@ const SynthTargets_Key = 'targets';
 const SynthTargets_Timestamp = 'target_timestamp';
 
 class WarframestatCache implements WarframestateCacheBase {
-  static WarframestatCache _instance;
+  WarframestatCache._(this.box);
 
   final Box<String> box;
-  WarframestatCache._(this.box);
+
+  static WarframestatCache _instance;
 
   DateTime get synthTargetLastUpdate {
     String timestamp = box.get(SynthTargets_Timestamp);

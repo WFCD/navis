@@ -22,9 +22,9 @@ abstract class WarframestatRemoteBase {
 enum GamePlatforms { pc, ps4, xb1, swi }
 
 class WarframestatRemote implements WarframestatRemoteBase {
-  final http.Client client;
-
   const WarframestatRemote(this.client);
+
+  final http.Client client;
 
   static const _baseUrl = 'https://api.warframestat.us';
 

@@ -1,19 +1,13 @@
 import 'package:flutter/cupertino.dart';
 
 class EventInfo {
+  const EventInfo({@required this.keyArt, @required this.howTos});
+
   final String keyArt;
   final List<HowTo> howTos;
-
-  const EventInfo({@required this.keyArt, @required this.howTos});
 }
 
 class HowTo {
-  final String id;
-  final String title;
-  final String author;
-  final String pThumbnail;
-  final String link;
-
   const HowTo({
     @required this.id,
     @required this.title,
@@ -21,4 +15,10 @@ class HowTo {
     @required this.pThumbnail,
     @required this.link,
   });
+
+  final String id;
+  final String title;
+  final String author;
+  final String pThumbnail;
+  final String link;
 }

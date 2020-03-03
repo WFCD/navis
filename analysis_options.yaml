@@ -7,3 +7,6 @@ analyzer:
 linter:
   rules:
     - prefer_single_quotes
+    - unnecessary_brace_in_string_interps
+    - sort_constructors_first
+    - unnecessary_this

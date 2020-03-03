@@ -4,9 +4,9 @@ import 'package:navis/core/usecases/usecases.dart';
 import 'package:worldstate_api_model/worldstate_models.dart';
 
 class GetWorldstate extends Usecase<Worldstate, GamePlatforms> {
-  final WarframestatRepository repository;
-
   const GetWorldstate(this.repository);
+
+  final WarframestatRepository repository;
 
   @override
   Future<Worldstate> call(GamePlatforms platform) {

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:navis/core/widgets/widgets.dart';
+import 'package:navis/l10n/localizations.dart';
 import 'package:worldstate_api_model/worldstate_models.dart';
 
 class EventBounties extends StatelessWidget {
@@ -11,7 +12,7 @@ class EventBounties extends StatelessWidget {
     return jobs.map<Widget>((j) {
       return ListTile(
         title: Text(j.type),
-        subtitle: Text('Enemy level ${j.enemyLevels[0]} - ${j.enemyLevels[1]}'),
+        subtitle: Text('Level: ${j.enemyLevels[0]} - ${j.enemyLevels[1]}'),
         onTap: () => _showDialog(
             context, j.type, (j.pool as List<dynamic>).cast<String>()),
       );
@@ -22,7 +23,7 @@ class EventBounties extends StatelessWidget {
     showDialog<void>(
       context: context,
       builder: (BuildContext context) {
-        return AlertDialog(
+        return NavisDialog(
           title: Text(type),
           contentPadding:
               const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0),
@@ -37,7 +38,7 @@ class EventBounties extends StatelessWidget {
           actions: <Widget>[
             FlatButton(
                 onPressed: () => Navigator.pop(context),
-                child: const Text('DISMISS'))
+                child: Text(MaterialLocalizations.of(context).closeButtonLabel))
           ],
         );
       },
@@ -52,7 +53,7 @@ class EventBounties extends StatelessWidget {
     return CustomCard(
       child: Column(children: <Widget>[
         CategoryTitle(
-          title: 'Bounties',
+          title: NavisLocalizations.of(context).bountyTitle,
           style: category,
           addPadding: true,
         ),

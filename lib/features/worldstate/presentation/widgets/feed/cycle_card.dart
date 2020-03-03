@@ -27,10 +27,6 @@ class CycleCard extends StatelessWidget {
 }
 
 class CycleEntry {
-  final List<Icon> states;
-  final String name;
-  final CycleObject cycle;
-
   const CycleEntry({
     @required this.states,
     @required this.name,
@@ -38,6 +34,10 @@ class CycleEntry {
   })  : assert(states != null),
         assert(name != null),
         assert(cycle != null);
+
+  final List<Icon> states;
+  final String name;
+  final CycleObject cycle;
 }
 
 class CycleWidget extends StatelessWidget {

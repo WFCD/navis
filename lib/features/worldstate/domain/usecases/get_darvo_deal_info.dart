@@ -3,9 +3,9 @@ import 'package:navis/core/usecases/usecases.dart';
 import 'package:warframe_items_model/warframe_items_model.dart';
 
 class GetDarvoDealInfo extends Usecase<BaseItem, DealRequest> {
-  final WarframestatRepository repository;
-
   const GetDarvoDealInfo(this.repository);
+
+  final WarframestatRepository repository;
 
   @override
   Future<BaseItem> call(DealRequest request) async {
@@ -14,8 +14,8 @@ class GetDarvoDealInfo extends Usecase<BaseItem, DealRequest> {
 }
 
 class DealRequest {
+  const DealRequest(this.id, this.itemName);
+
   final String id;
   final String itemName;
-
-  const DealRequest(this.id, this.itemName);
 }

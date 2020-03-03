@@ -4,13 +4,13 @@ import 'package:navis/l10n/messages_all.dart';
 
 // I'm adding this as I reimplement everything and is subject to change.
 class NavisLocalizations {
-  static NavisLocalizations current;
-
-  final String localeName;
-
   NavisLocalizations._(this.localeName) {
     current = this;
   }
+
+  static NavisLocalizations current;
+
+  final String localeName;
 
   static Future<NavisLocalizations> load(Locale locale) {
     final name = locale.countryCode == null || locale.countryCode.isEmpty
@@ -32,7 +32,7 @@ class NavisLocalizations {
   // Alert
   String alertInfo(String type, String faction, int min, int max) {
     return Intl.message(
-      '${type} (${faction}) | Level: ${min} - ${max}',
+      '$type ($faction) | Level: $min - $max',
       name: 'alertInfo',
       desc: 'The information of the given alert, '
           'such as mission type, faction and enemy level',
@@ -44,7 +44,7 @@ class NavisLocalizations {
   // Acolyte card
   String activeAcolyte(String agentType, int rank) {
     return Intl.message(
-      '${agentType} | level: ${rank}',
+      '$agentType | level: $rank',
       name: 'activeAcolyte',
       desc: 'acolyte title with level',
       args: [agentType, rank],
@@ -196,6 +196,15 @@ class NavisLocalizations {
       'Rewards',
       name: 'eventRewards',
       desc: 'Event reward title',
+      locale: localeName,
+    );
+  }
+
+  String get bountyTitle {
+    return Intl.message(
+      'Bounties',
+      name: 'bountyTitle',
+      desc: 'Bounty card title.',
       locale: localeName,
     );
   }

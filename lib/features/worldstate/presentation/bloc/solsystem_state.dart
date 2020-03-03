@@ -72,9 +72,9 @@ class SolState extends SolsystemState {
 }
 
 class SystemError extends SolsystemState {
-  final String message;
-
   const SystemError(this.message);
+
+  final String message;
 
   @override
   List<Object> get props => [message];

@@ -55,15 +55,15 @@ class ConstructionProgressCard extends StatelessWidget {
 }
 
 class Progress {
-  final double progress;
-  final Color color;
-  final String name;
-
   const Progress({
     @required this.progress,
     this.name = 'Unknown',
     this.color = Colors.white,
   }) : assert(progress != null || progress < 0);
+
+  final double progress;
+  final Color color;
+  final String name;
 }
 
 class ProgressPainter extends CustomPainter {

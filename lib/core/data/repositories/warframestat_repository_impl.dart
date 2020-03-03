@@ -16,10 +16,6 @@ typedef ExecuteCallback<T> = Future<T> Function();
 typedef RestoreCallback<T> = Future<T> Function();
 
 class WarframestatRepositoryImpl implements WarframestatRepository {
-  final WarframestatCache local;
-  final WarframestatRemote remote;
-  final NetworkInfo networkInfo;
-
   WarframestatRepositoryImpl({
     @required this.local,
     @required this.remote,
@@ -27,6 +23,10 @@ class WarframestatRepositoryImpl implements WarframestatRepository {
   })  : assert(local != null),
         assert(remote != null),
         assert(networkInfo != null);
+
+  final WarframestatCache local;
+  final WarframestatRemote remote;
+  final NetworkInfo networkInfo;
 
   final _memoizer = AsyncMemoizer<BaseItem>();
 

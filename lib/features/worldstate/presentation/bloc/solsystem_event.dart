@@ -5,9 +5,9 @@ abstract class SyncEvent extends Equatable {
 }
 
 class SyncSystemStatus extends SyncEvent {
-  final GamePlatforms platform;
-
   const SyncSystemStatus(this.platform);
+
+  final GamePlatforms platform;
 
   @override
   List<Object> get props => [platform];
