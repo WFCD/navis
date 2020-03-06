@@ -15,6 +15,7 @@ Future<void> launchLink(String link) async {
           extraCustomTabs: <String>[
             'org.mozilla.firefox',
             'org.mozilla.fenix',
+            'org.mozilla.fenix.nightly',
             'com.microsoft.emmx'
           ],
         ));
