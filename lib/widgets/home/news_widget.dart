@@ -37,6 +37,13 @@ class NewsWidget extends StatelessWidget {
     );
   }
 
+  // encoode the news image link, just in case really.
+  String _imageLink(String url) {
+    final encoded = Uri.encodeFull(url);
+
+    return 'https://cdn.warframestat.us/o_webp/$encoded';
+  }
+
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -44,7 +51,7 @@ class NewsWidget extends StatelessWidget {
       child: Stack(
         children: <Widget>[
           CachedNetworkImage(
-            imageUrl: news.imageLink,
+            imageUrl: _imageLink(news.imageLink),
             fit: BoxFit.cover,
             imageBuilder: _imageBuilder,
             placeholder: _placeholder,
