@@ -41,6 +41,7 @@ Future<void> startApp() async {
             return WorldstateBloc(
               api: Repository.warframestat,
               persistent: persistent,
+              cache: cache,
             );
           },
         ),

@@ -1,7 +1,10 @@
 import 'dart:async';
+import 'dart:convert';
+import 'dart:io';
 
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
+import 'package:navis/services/storage/cache_storage.service.dart';
 import 'package:navis/services/storage/persistent_storage.service.dart';
 import 'package:navis/utils/worldstate_utils.dart';
 import 'package:rxdart/rxdart.dart';
@@ -13,10 +16,11 @@ import 'worldstate_events.dart';
 import 'worldstate_states.dart';
 
 class WorldstateBloc extends HydratedBloc<WorldstateEvent, WorldStates> {
-  WorldstateBloc({this.api, this.persistent});
+  WorldstateBloc({this.api, this.persistent, this.cache});
 
   final WorldstateClient api;
   final PersistentStorageService persistent;
+  final CacheStorageService cache;
 
   @override
   WorldStates get initialState =>
@@ -38,11 +42,27 @@ class WorldstateBloc extends HydratedBloc<WorldstateEvent, WorldStates> {
         final _platform = persistent?.platform ?? Platforms.pc;
         final worldstate = await api.getWorldstate(_platform);
 
+        cache.hiveBox.put('worldstate', json.encode(worldstate.toJson()));
+
         yield WorldstateLoaded(cleanState(worldstate));
       } catch (exception, stack) {
-        Crashlytics.instance.recordError(exception, stack);
-        yield WorldstateError(exception);
+        yield _exceptionHandler(exception, stack);
       }
+    }
+  }
+
+  dynamic _exceptionHandler(dynamic exception, StackTrace stack) {
+    switch (exception.runtimeType) {
+      case FormatException:
+        continue exceptions;
+
+      exceptions:
+      case SocketException:
+        final worldstate = json.decode(cache.hiveBox.get('worldstate'));
+        return WorldstateLoaded(cleanState(worldstate));
+      default:
+        Crashlytics.instance.recordError(exception, stack);
+        return WorldstateError(exception);
     }
   }
 
