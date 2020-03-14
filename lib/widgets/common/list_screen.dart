@@ -18,9 +18,10 @@ class ListScreen extends StatelessWidget {
 
   Widget _buildList() {
     return ListView.builder(
-        itemCount: items.length,
-        cacheExtent: items.length / 2,
-        itemBuilder: (BuildContext context, int index) => items[index]);
+      itemCount: items.length,
+      cacheExtent: 500,
+      itemBuilder: (BuildContext context, int index) => items[index],
+    );
   }
 
   @override

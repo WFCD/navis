@@ -17,7 +17,7 @@ class Home extends StatelessWidget {
           final worldstate = state.worldstate;
 
           return ListView(
-            cacheExtent: 3,
+            cacheExtent: 500,
             children: <Widget>[
               const NewsBuilder(),
               if (worldstate.eventsActive) const EventBuilder(),
