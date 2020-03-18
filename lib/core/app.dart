@@ -74,7 +74,7 @@ class _NavisAppState extends State<NavisApp> with WidgetsBindingObserver {
         // CodexEntry.route: (_) => const CodexEntry(),
         BaroInventory.route: (_) => const BaroInventory()
       },
-      supportedLocales: const AppLocalizationDelegate().supportedLocales,
+      supportedLocales: NavisLocalizations.delegate.supportedLocales,
       localizationsDelegates: const [
         AppLocalizationDelegate(),
         GlobalMaterialLocalizations.delegate,

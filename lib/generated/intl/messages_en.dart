@@ -57,12 +57,16 @@ class MessageLookup extends MessageLookupByLibrary {
     "eventStatusEta" : MessageLookupByLibrary.simpleMessage("Time left (ETA)"),
     "eventStatusNode" : MessageLookupByLibrary.simpleMessage("Node"),
     "eventStatusProgress" : MessageLookupByLibrary.simpleMessage("Progress"),
+    "fissuresTitle" : MessageLookupByLibrary.simpleMessage("Fissures"),
     "formorianTitle" : MessageLookupByLibrary.simpleMessage("Formorian"),
+    "invasionsTitle" : MessageLookupByLibrary.simpleMessage("Invasions"),
     "kuvaBanner" : MessageLookupByLibrary.simpleMessage("Kuva will refresh in"),
     "locating" : MessageLookupByLibrary.simpleMessage("Locating..."),
     "razorbackTitle" : MessageLookupByLibrary.simpleMessage("Razerback"),
     "seeDetails" : MessageLookupByLibrary.simpleMessage("See details"),
+    "syndicatesTitle" : MessageLookupByLibrary.simpleMessage("Syndicates"),
     "tapForMoreDetails" : MessageLookupByLibrary.simpleMessage("Tap for more details"),
+    "timersTitle" : MessageLookupByLibrary.simpleMessage("Timers"),
     "vallisCycleTitle" : MessageLookupByLibrary.simpleMessage("Vallis Cycle")
   };
 }

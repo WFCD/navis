@@ -343,6 +343,42 @@ class NavisLocalizations {
       args: [],
     );
   }
+
+  String get timersTitle {
+    return Intl.message(
+      'Timers',
+      name: 'timersTitle',
+      desc: 'Times title',
+      args: [],
+    );
+  }
+
+  String get fissuresTitle {
+    return Intl.message(
+      'Fissures',
+      name: 'fissuresTitle',
+      desc: 'Fissures title',
+      args: [],
+    );
+  }
+
+  String get invasionsTitle {
+    return Intl.message(
+      'Invasions',
+      name: 'invasionsTitle',
+      desc: 'Invasions title',
+      args: [],
+    );
+  }
+
+  String get syndicatesTitle {
+    return Intl.message(
+      'Syndicates',
+      name: 'syndicatesTitle',
+      desc: 'Syndicates title',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<NavisLocalizations> {

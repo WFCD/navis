@@ -221,5 +221,29 @@
       "description": "Vallis cycle title",
       "type": "text",
       "placeholders": {}
+    },
+    "timersTitle": "Timers",
+    "@timersTitle": {
+      "description": "Times title",
+      "type": "text",
+      "placeholders": {}
+    },
+    "fissuresTitle": "Fissures",
+    "@fissuresTitle": {
+      "description": "Fissures title",
+      "type": "text",
+      "placeholders": {}
+    },
+    "invasionsTitle": "Invasions",
+    "@invasionsTitle": {
+      "description": "Invasions title",
+      "type": "text",
+      "placeholders": {}
+    },
+    "syndicatesTitle": "Syndicates",
+    "@syndicatesTitle": {
+      "description": "Syndicates title",
+      "type": "text",
+      "placeholders": {}
     }
   }

@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:navis/generated/l10n.dart';
 
 import 'fissures.dart';
 import 'invasions.dart';
@@ -17,12 +18,7 @@ class HomeFeedPage extends StatefulWidget {
 class _HomeFeedPageState extends State<HomeFeedPage>
     with SingleTickerProviderStateMixin {
   static const _pages = [Timers(), FissuresPage(), InvasionsPage(), SizedBox()];
-  static const _tabs = [
-    Tab(text: 'Timers'),
-    Tab(text: 'Fissure'),
-    Tab(text: 'Invasions'),
-    Tab(text: 'Syndicates')
-  ];
+  static const _tabs = ['Timers', 'Fissure', 'Invasions', 'Syndicates'];
 
   StreamController<int> _streamController;
   TabController _tabController;
@@ -37,8 +33,25 @@ class _HomeFeedPageState extends State<HomeFeedPage>
       });
   }
 
+  String _getTabLocale(String name) {
+    final localizations = NavisLocalizations.of(context);
+
+    switch (name) {
+      case 'Fissures':
+        return localizations.fissuresTitle;
+      case 'Invasions':
+        return localizations.invasionsTitle;
+      case 'Syndicates':
+        return localizations.syndicatesTitle;
+      default:
+        return localizations.timersTitle;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    final tabs = _tabs.map((t) => Tab(text: _getTabLocale(t))).toList();
+
     return NestedScrollView(
       headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
         return <Widget>[
@@ -59,7 +72,7 @@ class _HomeFeedPageState extends State<HomeFeedPage>
                           .body2
                           .color
                           .withOpacity(.7),
-                      tabs: _tabs,
+                      tabs: tabs,
                     );
                   },
                 ),
