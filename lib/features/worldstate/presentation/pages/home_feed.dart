@@ -18,7 +18,7 @@ class HomeFeedPage extends StatefulWidget {
 class _HomeFeedPageState extends State<HomeFeedPage>
     with SingleTickerProviderStateMixin {
   static const _pages = [Timers(), FissuresPage(), InvasionsPage(), SizedBox()];
-  static const _tabs = ['Timers', 'Fissure', 'Invasions', 'Syndicates'];
+  static const _tabs = ['Timers', 'Fissures', 'Invasions', 'Syndicates'];
 
   StreamController<int> _streamController;
   TabController _tabController;
