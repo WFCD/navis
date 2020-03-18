@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:navis/core/utils/helper_methods.dart';
 import 'package:navis/core/widgets/widgets.dart';
-import 'package:navis/l10n/localizations.dart';
+import 'package:navis/generated/l10n.dart';
 
 class AcolyteStatus extends StatelessWidget {
   const AcolyteStatus({

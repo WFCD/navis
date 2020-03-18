@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/core/bloc/navigation_bloc.dart';
 import 'package:navis/core/utils/helper_methods.dart';
 
-import 'navis_sys_icons.dart';
+// import 'navis_sys_icons.dart';
 
 class DrawerOptions extends StatelessWidget {
   DrawerOptions({Key key}) : super(key: key);
@@ -38,20 +38,20 @@ class DrawerOptions extends StatelessWidget {
                 selected:
                     state == NavigationBloc.navigationMap[NavigationEvent.feed],
               ),
-              ListTile(
-                leading: const Icon(NavisSysIcons.voidfissure),
-                title: const Text('Fissures'),
-                onTap: () => _onTap(context, NavigationEvent.fissures),
-                selected: state ==
-                    NavigationBloc.navigationMap[NavigationEvent.fissures],
-              ),
-              ListTile(
-                leading: Icon(Icons.security),
-                title: const Text('Invasions'),
-                onTap: () => _onTap(context, NavigationEvent.invasions),
-                selected: state ==
-                    NavigationBloc.navigationMap[NavigationEvent.invasions],
-              ),
+              // ListTile(
+              //   leading: const Icon(NavisSysIcons.voidfissure),
+              //   title: const Text('Fissures'),
+              //   onTap: () => _onTap(context, NavigationEvent.fissures),
+              //   selected: state ==
+              //       NavigationBloc.navigationMap[NavigationEvent.fissures],
+              // ),
+              // ListTile(
+              //   leading: Icon(Icons.security),
+              //   title: const Text('Invasions'),
+              //   onTap: () => _onTap(context, NavigationEvent.invasions),
+              //   selected: state ==
+              //       NavigationBloc.navigationMap[NavigationEvent.invasions],
+              // ),
               // ListTile(
               //   leading: Icon(AppIcons.sortie),
               //   title: const Text('Sorties'),

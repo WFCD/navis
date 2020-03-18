@@ -20,15 +20,17 @@ void main() {
   });
 
   final tWorldstate = toWorldstate(fixture('worldstate.json'));
+  const tInstance = GetWorldstateInstance(GamePlatforms.pc, locale: 'en');
 
   test('should get worldstate from repository', () async {
     when(mockRepository.getWorldstate(any))
         .thenAnswer((_) async => tWorldstate);
 
-    final result = await getWorldstate(GamePlatforms.pc);
+    final result = await getWorldstate(tInstance);
 
     expect(result, equals(tWorldstate));
-    verify(mockRepository.getWorldstate(GamePlatforms.pc));
+    verify(mockRepository.getWorldstate(tInstance.platform,
+        locale: tInstance.locale));
     verifyNoMoreInteractions(mockRepository);
   });
 }

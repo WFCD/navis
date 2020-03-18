@@ -4,7 +4,8 @@ import 'package:worldstate_api_model/misc.dart';
 import 'package:worldstate_api_model/worldstate_models.dart';
 
 abstract class WarframestatRepository {
-  Future<Worldstate> getWorldstate(GamePlatforms platform);
+  Future<Worldstate> getWorldstate(GamePlatforms platform,
+      {String locale = 'en'});
 
   Future<List<SynthTarget>> getSynthTargets();
 

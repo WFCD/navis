@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:navis/core/widgets/skybox_panel.dart';
 import 'package:worldstate_api_model/worldstate_models.dart';
 
 import 'invasion_progress.dart';
@@ -60,42 +59,38 @@ class _InvasionWidgetState extends State<InvasionWidget>
   Widget build(BuildContext context) {
     super.build(context);
 
-    return SkyboxPanel(
-      node: widget.invasion.node,
-      child: Container(
-        height: 200,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 24.0),
-          child: Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
-            const Spacer(),
-            _buildDetails(
-              widget.invasion.node,
-              widget.invasion.desc,
-              widget.invasion.eta,
+    return Container(
+      height: 200,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 24.0),
+        child: Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
+          const Spacer(),
+          _buildDetails(
+            widget.invasion.node,
+            widget.invasion.desc,
+            widget.invasion.eta,
+          ),
+          const Spacer(),
+          InvasionReward(
+            attackerReward: widget.invasion.attackerReward.itemString,
+            defenderReward: widget.invasion.defenderReward.itemString,
+            attackingFaction: widget.invasion.attackingFaction,
+            defendingFaction: widget.invasion.defendingFaction,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 4.0, vertical: 8.0),
+            child: AnimatedBuilder(
+              animation: _progress,
+              builder: (BuildContext context, Widget child) {
+                return InvasionProgress(
+                  progress: _progress.value / 100,
+                  attackingFaction: widget.invasion.attackingFaction,
+                  defendingFaction: widget.invasion.defendingFaction,
+                );
+              },
             ),
-            const Spacer(),
-            InvasionReward(
-              attackerReward: widget.invasion.attackerReward.itemString,
-              defenderReward: widget.invasion.defenderReward.itemString,
-              attackingFaction: widget.invasion.attackingFaction,
-              defendingFaction: widget.invasion.defendingFaction,
-            ),
-            Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 4.0, vertical: 8.0),
-              child: AnimatedBuilder(
-                animation: _progress,
-                builder: (BuildContext context, Widget child) {
-                  return InvasionProgress(
-                    progress: _progress.value / 100,
-                    attackingFaction: widget.invasion.attackingFaction,
-                    defendingFaction: widget.invasion.defendingFaction,
-                  );
-                },
-              ),
-            ),
-          ]),
-        ),
+          ),
+        ]),
       ),
     );
   }

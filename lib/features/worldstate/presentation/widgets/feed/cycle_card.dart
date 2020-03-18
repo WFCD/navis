@@ -62,12 +62,19 @@ class CycleWidget extends StatelessWidget {
     final textTheme = Theme.of(context).textTheme;
 
     return ListTile(
-      leading: cycle.getStateBool ? stateOne : stateTwo,
       title: Text(
         cycleName,
         style: textTheme.subhead.copyWith(fontWeight: FontWeight.w600),
       ),
-      trailing: CountdownTimer(expiry: cycle.expiry),
+      trailing: Container(
+          child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          if (cycle.getStateBool) stateOne else stateTwo,
+          const SizedBox(width: 6.0),
+          CountdownTimer(expiry: cycle.expiry),
+        ],
+      )),
     );
   }
 }

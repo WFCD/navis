@@ -45,20 +45,15 @@ class FissureWidget extends StatelessWidget {
       shadows: <Shadow>[shadow],
     );
 
-    return SkyboxPanel(
-      node: fissure.node,
-      margin: const EdgeInsets.symmetric(horizontal: 3, vertical: 3),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 20),
-        child: ListTile(
-          leading: Icon(_getIcon(), size: 50),
-          title: Text(fissure.node, style: _nodeStyle),
-          subtitle: Text(
-            '${fissure.missionType} | ${fissure.tier}',
-            style: _missionTypeStyle,
-          ),
-          trailing: CountdownTimer(expiry: fissure.expiry),
+    return CustomCard(
+      child: ListTile(
+        leading: Icon(_getIcon(), size: 50),
+        title: Text(fissure.node, style: _nodeStyle),
+        subtitle: Text(
+          '${fissure.missionType} | ${fissure.tier}',
+          style: _missionTypeStyle,
         ),
+        trailing: CountdownTimer(expiry: fissure.expiry),
       ),
     );
   }

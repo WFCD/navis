@@ -11,7 +11,7 @@ dependencies:
     git: https://github.com/SlayerOrnstein/worldstate_model.git
   warframe_items_model:
     git: https://github.com/SlayerOrnstein/warframe_item_models.git
-  equatable: ^1.1.0
+  equatable: ^1.1.1
   flutter_bloc: ^3.2.0
   firebase_crashlytics: ^0.1.3
   flutter_custom_tabs: ^0.6.0
@@ -20,10 +20,10 @@ dependencies:
   package_info: ^0.4.0+14
   firebase_messaging: ^6.0.9
   cached_network_image: ^2.0.0
-  flutter_svg: ^0.17.2
+  flutter_svg: ^0.17.3+1
   floating_search_bar: ^0.3.0
   flutter_sticky_header: ^0.4.2
-  hive: ^1.4.0+1
+  hive: ^1.4.1+1
   get_it: ^4.0.0
   data_connection_checker: ^0.3.4
   youtube_explode_dart: ^0.0.10
@@ -67,7 +67,11 @@ flutter:
     # - assets/enemies/corpus/
     # - assets/enemies/infestation/
     - assets/enemies/stalker/
-    - assets/skyboxes/
+    # - assets/skyboxes/
     - assets/event_info.json
     # - assets/maps/
     # - assets/maps/imgs/
+
+flutter_intl:
+  enabled: true
+  class_name: NavisLocalizations
