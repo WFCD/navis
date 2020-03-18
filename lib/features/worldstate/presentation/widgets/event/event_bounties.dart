@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:navis/core/widgets/widgets.dart';
-import 'package:navis/l10n/localizations.dart';
+import 'package:navis/generated/l10n.dart';
 import 'package:worldstate_api_model/worldstate_models.dart';
 
 class EventBounties extends StatelessWidget {

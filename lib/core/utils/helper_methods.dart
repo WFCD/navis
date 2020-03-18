@@ -11,7 +11,6 @@ Future<void> launchLink(String link) async {
           enableDefaultShare: true,
           enableUrlBarHiding: true,
           showPageTitle: true,
-          //animation: CustomTabsAnimation.slideIn(),
           extraCustomTabs: <String>[
             'org.mozilla.firefox',
             'org.mozilla.fenix',

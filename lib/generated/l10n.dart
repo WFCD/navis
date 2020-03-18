@@ -1,54 +1,49 @@
-import 'package:flutter/widgets.dart';
+// GENERATED CODE - DO NOT MODIFY BY HAND
+import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:navis/l10n/messages_all.dart';
+import 'intl/messages_all.dart';
 
-// I'm adding this as I reimplement everything and is subject to change.
+// **************************************************************************
+// Generator: Flutter Intl IDE plugin
+// Made by Localizely
+// **************************************************************************
+
 class NavisLocalizations {
-  NavisLocalizations._(this.localeName) {
-    current = this;
-  }
-
-  static NavisLocalizations current;
-
-  final String localeName;
+  NavisLocalizations(this.localeName);
+  
+  static const AppLocalizationDelegate delegate =
+    AppLocalizationDelegate();
 
   static Future<NavisLocalizations> load(Locale locale) {
-    final name = locale.countryCode == null || locale.countryCode.isEmpty
-        ? locale.languageCode
-        : locale.toString();
-
-    final localeName = Intl.canonicalizedLocale(name);
-
+    final String name = (locale.countryCode?.isEmpty ?? false) ? locale.languageCode : locale.toString();
+    final String localeName = Intl.canonicalizedLocale(name);
     return initializeMessages(localeName).then((_) {
       Intl.defaultLocale = localeName;
-      return NavisLocalizations._(localeName);
+      return NavisLocalizations(localeName);
     });
-  }
+  } 
 
   static NavisLocalizations of(BuildContext context) {
     return Localizations.of<NavisLocalizations>(context, NavisLocalizations);
   }
 
-  // Alert
-  String alertInfo(String type, String faction, int min, int max) {
+  final String localeName;
+
+  String alertInfo(dynamic type, dynamic faction, dynamic min, dynamic max) {
     return Intl.message(
       '$type ($faction) | Level: $min - $max',
       name: 'alertInfo',
-      desc: 'The information of the given alert, '
-          'such as mission type, faction and enemy level',
+      desc: 'The information of the given alert, such as mission type, faction and enemy level',
       args: [type, faction, min, max],
-      locale: localeName,
     );
   }
 
-  // Acolyte card
-  String activeAcolyte(String agentType, int rank) {
+  String activeAcolyte(dynamic agentType, dynamic rank) {
     return Intl.message(
       '$agentType | level: $rank',
       name: 'activeAcolyte',
       desc: 'acolyte title with level',
       args: [agentType, rank],
-      locale: localeName,
     );
   }
 
@@ -56,9 +51,8 @@ class NavisLocalizations {
     return Intl.message(
       'Locating...',
       name: 'locating',
-      desc: 'Shows up when an acolyte\'s current location '
-          'is unknown, may be used in other parts of the app',
-      locale: localeName,
+      desc: 'Shows up when an acolyte\'s current location is unknown, may be used in other parts of the app',
+      args: [],
     );
   }
 
@@ -67,7 +61,7 @@ class NavisLocalizations {
       'Current location',
       name: 'acolyteCurrentLocation',
       desc: 'Acolyte\'s current location',
-      locale: localeName,
+      args: [],
     );
   }
 
@@ -76,7 +70,7 @@ class NavisLocalizations {
       'Last seen location',
       name: 'acolytePassLocation',
       desc: 'Acolyte\'s pass location',
-      locale: localeName,
+      args: [],
     );
   }
 
@@ -85,7 +79,7 @@ class NavisLocalizations {
       'Found',
       name: 'acolyteFound',
       desc: 'The elapsed time after an acolyte was found',
-      locale: localeName,
+      args: [],
     );
   }
 
@@ -94,7 +88,7 @@ class NavisLocalizations {
       'Last seen',
       name: 'acolyteLastSeen',
       desc: 'The elapsed time since the acolyte was last seen',
-      locale: localeName,
+      args: [],
     );
   }
 
@@ -103,7 +97,7 @@ class NavisLocalizations {
       'Health',
       name: 'acolyteHealth',
       desc: 'Acolytes remaining health',
-      locale: localeName,
+      args: [],
     );
   }
 
@@ -112,17 +106,16 @@ class NavisLocalizations {
       'Acolyte Level',
       name: 'acolyteRank',
       desc: 'An acolyte\'s current level',
-      locale: localeName,
+      args: [],
     );
   }
 
-  String acolyteElapsedTime(int lastSeenTime) {
+  String acolyteElapsedTime(dynamic lastSeenTime) {
     return Intl.message(
       '$lastSeenTime minutes ago',
       name: 'acolyteElapsedTime',
       desc: 'Time since acolyte has either been found or last seen',
       args: [lastSeenTime],
-      locale: localeName,
     );
   }
 
@@ -130,19 +123,17 @@ class NavisLocalizations {
     return Intl.message(
       'Tap for more details',
       name: 'tapForMoreDetails',
-      desc: 'General description to tell the user that this object '
-          'takes you to a different page',
-      locale: localeName,
+      desc: 'General description to tell the user that this object takes you to a different page',
+      args: [],
     );
   }
 
-  // Event page
   String get seeDetails {
     return Intl.message(
       'See details',
       name: 'seeDetails',
       desc: 'General button to see more details of given object',
-      locale: localeName,
+      args: [],
     );
   }
 
@@ -151,7 +142,7 @@ class NavisLocalizations {
       'Description',
       name: 'eventDescription',
       desc: 'Event description category title',
-      locale: localeName,
+      args: [],
     );
   }
 
@@ -160,7 +151,7 @@ class NavisLocalizations {
       'Event Status',
       name: 'eventStatus',
       desc: 'Event status category title',
-      locale: localeName,
+      args: [],
     );
   }
 
@@ -169,7 +160,7 @@ class NavisLocalizations {
       'Node',
       name: 'eventStatusNode',
       desc: 'The node that the event is taking place in',
-      locale: localeName,
+      args: [],
     );
   }
 
@@ -178,7 +169,7 @@ class NavisLocalizations {
       'Progress',
       name: 'eventStatusProgress',
       desc: 'The progress of the current event from 0 to 100 %',
-      locale: localeName,
+      args: [],
     );
   }
 
@@ -187,7 +178,7 @@ class NavisLocalizations {
       'Time left (ETA)',
       name: 'eventStatusEta',
       desc: 'Current events remaining estimated time',
-      locale: localeName,
+      args: [],
     );
   }
 
@@ -196,7 +187,7 @@ class NavisLocalizations {
       'Rewards',
       name: 'eventRewards',
       desc: 'Event reward title',
-      locale: localeName,
+      args: [],
     );
   }
 
@@ -205,37 +196,34 @@ class NavisLocalizations {
       'Bounties',
       name: 'bountyTitle',
       desc: 'Bounty card title.',
-      locale: localeName,
+      args: [],
     );
   }
 
-  // Error widget
   String get errorTitle {
     return Intl.message(
       'An application error has occurred',
       name: 'errorTitle',
       desc: 'error title',
-      locale: localeName,
+      args: [],
     );
   }
 
   String get errorDescription {
     return Intl.message(
-      'There was unexpected error in core system.\n'
-      'Reporting error to system admin...',
+      'There was unexpected error in core system.\nReporting error to system admin...',
       name: 'errorDescription',
       desc: 'error description',
-      locale: localeName,
+      args: [],
     );
   }
 
-  // Baro Ki'Teer related locales
   String get baroTitle {
     return Intl.message(
       'Void trader',
       name: 'baroTitle',
       desc: 'Title for Baro Ki\'Teer card',
-      locale: localeName,
+      args: [],
     );
   }
 
@@ -244,7 +232,7 @@ class NavisLocalizations {
       'Baro Ki\'Teer leaves in',
       name: 'baroLeaving',
       desc: 'displays remaining time before Baro Ki\'Teer leaves',
-      locale: localeName,
+      args: [],
     );
   }
 
@@ -253,7 +241,7 @@ class NavisLocalizations {
       'Baro Ki\'Teer arrives in',
       name: 'baroArriving',
       desc: 'displays remaining time before Baro Ki\'Teer arrives',
-      locale: localeName,
+      args: [],
     );
   }
 
@@ -262,7 +250,7 @@ class NavisLocalizations {
       'Location',
       name: 'baroLocation',
       desc: 'shows Baro ki\'Teer\'s current location',
-      locale: localeName,
+      args: [],
     );
   }
 
@@ -271,7 +259,7 @@ class NavisLocalizations {
       'Leaves on',
       name: 'baroLeavesOn',
       desc: 'shows when Baro Ki\'Teer is leaving',
-      locale: localeName,
+      args: [],
     );
   }
 
@@ -280,7 +268,7 @@ class NavisLocalizations {
       'Arrives on',
       name: 'baroArrivesOn',
       desc: 'shows at when Baro Ki\'Teer will arrive',
-      locale: localeName,
+      args: [],
     );
   }
 
@@ -289,18 +277,16 @@ class NavisLocalizations {
       'Baro Ki\'Teeer Inventory',
       name: 'baroInventory',
       desc: 'Baro Ki\'Teeer Inventory button label',
-      locale: localeName,
+      args: [],
     );
   }
 
-  // Countdown tooltip
-  String countdownTooltip(String date) {
+  String countdownTooltip(dynamic date) {
     return Intl.message(
       'Ends on $date',
       name: 'countdownTooltip',
-      args: [date],
       desc: 'Countdown tooltip with end date of the current running timer',
-      locale: localeName,
+      args: [date],
     );
   }
 
@@ -309,7 +295,7 @@ class NavisLocalizations {
       'Kuva will refresh in',
       name: 'kuvaBanner',
       desc: 'Kuva refresh countdown title',
-      locale: localeName,
+      args: [],
     );
   }
 
@@ -318,7 +304,7 @@ class NavisLocalizations {
       'Formorian',
       name: 'formorianTitle',
       desc: 'Formorian progress title',
-      locale: localeName,
+      args: [],
     );
   }
 
@@ -327,7 +313,7 @@ class NavisLocalizations {
       'Razerback',
       name: 'razorbackTitle',
       desc: 'Razorback progress title',
-      locale: localeName,
+      args: [],
     );
   }
 
@@ -336,7 +322,7 @@ class NavisLocalizations {
       'Earth Cycle',
       name: 'earthCycleTitle',
       desc: 'Earth cycle title',
-      locale: localeName,
+      args: [],
     );
   }
 
@@ -345,7 +331,7 @@ class NavisLocalizations {
       'Cetus Cycle',
       name: 'cetusCycleTitle',
       desc: 'Cetus cycle title',
-      locale: localeName,
+      args: [],
     );
   }
 
@@ -354,39 +340,35 @@ class NavisLocalizations {
       'Vallis Cycle',
       name: 'vallisCycleTitle',
       desc: 'Vallis cycle title',
-      locale: localeName,
+      args: [],
     );
   }
 }
 
-// Want to support another language?
-// Just add the two letter code here
-const supportedLocales = [
-  'de',
-  'en',
-  'es',
-  'fr',
-  'it',
-  'ko',
-  'pl',
-  'pt',
-  'ru',
-  'tr',
-  'zh'
-];
+class AppLocalizationDelegate extends LocalizationsDelegate<NavisLocalizations> {
+  const AppLocalizationDelegate();
 
-class NavisLocalizationsDelegate
-    extends LocalizationsDelegate<NavisLocalizations> {
-  @override
-  bool isSupported(Locale locale) {
-    return supportedLocales.contains(locale.languageCode);
+  List<Locale> get supportedLocales {
+    return const <Locale>[
+      Locale.fromSubtags(languageCode: 'de'), Locale.fromSubtags(languageCode: 'en'), Locale.fromSubtags(languageCode: 'es'), Locale.fromSubtags(languageCode: 'fr'), Locale.fromSubtags(languageCode: 'it'), Locale.fromSubtags(languageCode: 'ko'), Locale.fromSubtags(languageCode: 'pl'), Locale.fromSubtags(languageCode: 'pt'), Locale.fromSubtags(languageCode: 'ru'), Locale.fromSubtags(languageCode: 'tr'), Locale.fromSubtags(languageCode: 'zh'),
+    ];
   }
 
   @override
-  Future<NavisLocalizations> load(Locale locale) {
-    return NavisLocalizations.load(locale);
-  }
-
+  bool isSupported(Locale locale) => _isSupported(locale);
   @override
-  bool shouldReload(LocalizationsDelegate<NavisLocalizations> old) => false;
+  Future<NavisLocalizations> load(Locale locale) => NavisLocalizations.load(locale);
+  @override
+  bool shouldReload(AppLocalizationDelegate old) => false;
+
+  bool _isSupported(Locale locale) {
+    if (locale != null) {
+      for (Locale supportedLocale in supportedLocales) {
+        if (supportedLocale.languageCode == locale.languageCode) {
+          return true;
+        }
+      }
+    }
+    return false;
+  }
 }

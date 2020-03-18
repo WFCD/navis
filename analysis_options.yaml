@@ -2,7 +2,8 @@ include: package:extra_pedantic/analysis_options_flutter.yaml
 
 analyzer:
   exclude:
-    - lib/l10n/messages_*.dart
+    - lib/generated/l10n.dart
+    - lib/generated/intl/messages_*.dart
 
 linter:
   rules:

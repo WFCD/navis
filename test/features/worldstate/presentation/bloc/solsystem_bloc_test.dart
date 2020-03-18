@@ -29,6 +29,8 @@ void main() {
   final tSynthTargets = toTargets(fixture('synthTargets.json'));
   final tResults = toBaseItems(fixture('darvo_deal_test.json'));
 
+  const tInstance = GetWorldstateInstance(GamePlatforms.pc, locale: null);
+
   GetWorldstate getWorldstate;
   GetDarvoDealInfo getDarvoDealInfo;
   GetSynthTargets getSynthTargets;
@@ -68,7 +70,7 @@ void main() {
       solsystemBloc.add(const SyncSystemStatus(GamePlatforms.pc));
       await untilCalled(getWorldstate(any));
 
-      verify(getWorldstate(GamePlatforms.pc));
+      verify(getWorldstate(tInstance));
     });
   });
 

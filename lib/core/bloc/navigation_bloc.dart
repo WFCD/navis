@@ -2,19 +2,13 @@ import 'dart:async';
 
 import 'package:flutter/widgets.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
-import 'package:navis/features/worldstate/presentation/pages/feed.dart';
-import 'package:navis/features/worldstate/presentation/pages/fissures.dart';
-import 'package:navis/features/worldstate/presentation/pages/invasions.dart';
-import 'package:navis/features/worldstate/presentation/pages/syndicates.dart';
+import 'package:navis/features/worldstate/presentation/pages/home_feed.dart';
 
-enum NavigationEvent { feed, fissures, invasions, sorties, syndicates, codex }
+enum NavigationEvent { feed, codex }
 
 class NavigationBloc extends HydratedBloc<NavigationEvent, Widget> {
   static final Map<NavigationEvent, Widget> navigationMap = {
     NavigationEvent.feed: const HomeFeedPage(),
-    NavigationEvent.fissures: const FissuresPage(),
-    NavigationEvent.invasions: const InvasionsPage(),
-    NavigationEvent.syndicates: const SyndicatePage(),
     NavigationEvent.codex: Container()
   };
 

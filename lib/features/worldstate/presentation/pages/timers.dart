@@ -4,14 +4,15 @@ import 'package:navis/core/widgets/widgets.dart';
 import 'package:navis/features/worldstate/presentation/bloc/solsystem_bloc.dart';
 import 'package:navis/features/worldstate/presentation/widgets/feed/feed_cards.dart';
 import 'package:navis/features/worldstate/presentation/widgets/feed/outpost_card.dart';
-import 'package:navis/l10n/localizations.dart';
+import 'package:navis/generated/l10n.dart';
 import 'package:worldstate_api_model/worldstate_models.dart';
 
-class HomeFeedPage extends StatelessWidget {
-  const HomeFeedPage({Key key}) : super(key: key);
+class Timers extends StatelessWidget {
+  const Timers({Key key}) : super(key: key);
 
-  List<CycleEntry> _buildCycles(Worldstate worldstate) {
-    const size = 30.0;
+  List<CycleEntry> _buildCycles(
+      NavisLocalizations localizations, Worldstate worldstate) {
+    const size = 28.0;
 
     final solCycle = <Icon>[
       Icon(NavisSysIcons.sun, color: Colors.amber, size: size),
@@ -25,33 +26,34 @@ class HomeFeedPage extends StatelessWidget {
 
     return <CycleEntry>[
       CycleEntry(
-        name: NavisLocalizations.current.earthCycleTitle,
+        name: localizations.earthCycleTitle,
         states: solCycle,
         cycle: worldstate.earthCycle,
       ),
       CycleEntry(
-        name: NavisLocalizations.current.cetusCycleTitle,
+        name: localizations.cetusCycleTitle,
         states: solCycle,
         cycle: worldstate.cetusCycle,
       ),
       CycleEntry(
-        name: NavisLocalizations.current.vallisCycleTitle,
+        name: localizations.vallisCycleTitle,
         states: tempCycle,
         cycle: worldstate.vallisCycle,
       )
     ];
   }
 
-  List<Progress> _buildProgress(Worldstate worldstate) {
+  List<Progress> _buildProgress(
+      NavisLocalizations localizations, Worldstate worldstate) {
     return <Progress>[
       Progress(
-        name: NavisLocalizations.current.formorianTitle,
+        name: localizations.formorianTitle,
         color: factionColor('Grineer'),
         progress:
             double.parse(worldstate.constructionProgress.fomorianProgress),
       ),
       Progress(
-        name: NavisLocalizations.current.razorbackTitle,
+        name: localizations.razorbackTitle,
         color: factionColor('Corpus'),
         progress:
             double.parse(worldstate.constructionProgress.razorbackProgress),
@@ -61,27 +63,31 @@ class HomeFeedPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final localizations = NavisLocalizations.of(context);
+
     return RefreshIndicator(
-      onRefresh: BlocProvider.of<SolsystemBloc>(context).update,
+      onRefresh: context.bloc<SolsystemBloc>().update,
       child: BlocBuilder<SolsystemBloc, SolsystemState>(
         builder: (BuildContext context, SolsystemState state) {
           if (state is SolState) {
             final worldstate = state.worldstate;
 
             return ListView(
+              cacheExtent: 500.0 * 2,
               children: <Widget>[
                 if (state.eventsActive) EventCard(events: worldstate.events),
                 if (state.activeAcolytes)
                   AcolyteCard(enemies: worldstate.persistentEnemies),
                 ConstructionProgressCard(
-                  constructionProgress: _buildProgress(worldstate),
+                  constructionProgress:
+                      _buildProgress(localizations, worldstate),
                 ),
                 if (state.arbitrationActive)
                   ArbitrationCard(arbitration: worldstate.arbitration),
                 if (state.activeAlerts) AlertsCard(alerts: worldstate.alerts),
                 if (state.outpostDetected)
                   SentientOutpostCard(outpost: worldstate.sentientOutposts),
-                CycleCard(cycles: _buildCycles(worldstate)),
+                CycleCard(cycles: _buildCycles(localizations, worldstate)),
                 if (state.activeSiphons) KuvaCard(kuva: worldstate.kuva),
                 TraderCard(trader: worldstate.voidTrader),
                 if (state.activeSales)

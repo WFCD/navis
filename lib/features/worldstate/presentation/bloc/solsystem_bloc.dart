@@ -33,6 +33,8 @@ class SolsystemBloc extends HydratedBloc<SyncEvent, SolsystemState> {
   final GetDarvoDealInfo getDarvoDealInfo;
   final GetSynthTargets getSynthTargets;
 
+  String currentLocale;
+
   @override
   SolsystemState get initialState => SolsystemInitial();
 
@@ -41,8 +43,10 @@ class SolsystemBloc extends HydratedBloc<SyncEvent, SolsystemState> {
     SyncEvent event,
   ) async* {
     if (event is SyncSystemStatus) {
+      final instance =
+          GetWorldstateInstance(event.platform, locale: currentLocale);
       try {
-        final worldstate = await getWorldstate(event.platform);
+        final worldstate = await getWorldstate(instance);
         final dealInfo = await _getDealInformation(worldstate.dailyDeals);
         final synthTargets = await getSynthTargets(NoParama());
 

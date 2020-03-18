@@ -6,7 +6,6 @@ import 'package:lumberdash/lumberdash.dart';
 import 'package:navis/core/error/exceptions.dart';
 import 'package:navis/core/utils/data_source_utils.dart';
 import 'package:navis/core/utils/extensions.dart';
-import 'package:navis/l10n/localizations.dart';
 import 'package:warframe_items_model/warframe_items_model.dart';
 import 'package:worldstate_api_model/misc.dart';
 import 'package:worldstate_api_model/worldstate_models.dart';
@@ -37,8 +36,10 @@ class WarframestatRemote implements WarframestatRemoteBase {
   }
 
   @override
-  Future<Worldstate> getWorldstate(GamePlatforms platform) async {
-    final data = await _baseCaller('/${platform.platformToString()}');
+  Future<Worldstate> getWorldstate(GamePlatforms platform,
+      {String locale = 'en'}) async {
+    final data =
+        await _baseCaller('/${platform.platformToString()}', locale: locale);
 
     return compute<String, Worldstate>(toWorldstate, data)
         .catchError((Object error) => logError);
@@ -52,10 +53,8 @@ class WarframestatRemote implements WarframestatRemoteBase {
         .catchError((Object error) => logError(error));
   }
 
-  Future<String> _baseCaller(String path) async {
-    final headers = {
-      'Accept-Language': NavisLocalizations.current?.localeName ?? 'en'
-    };
+  Future<String> _baseCaller(String path, {String locale}) async {
+    final headers = {'Accept-Language': locale ?? 'en'};
 
     try {
       final response = await client.get('$_baseUrl$path', headers: headers);

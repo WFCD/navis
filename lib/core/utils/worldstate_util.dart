@@ -1,7 +1,6 @@
-import 'package:navis/l10n/localizations.dart';
 import 'package:worldstate_api_model/worldstate_models.dart';
 
-Worldstate cleanState(Worldstate state) {
+Worldstate cleanState(Worldstate state, {String locale = 'en'}) {
   state.alerts.removeWhere((a) {
     return a.active == false ||
         a.expiry.difference(DateTime.now().toUtc()) <=
@@ -13,8 +12,7 @@ Worldstate cleanState(Worldstate state) {
         d.expiry.difference(DateTime.now()) > const Duration(seconds: 60);
   });
 
-  state.news.retainWhere((art) =>
-      art.translations[NavisLocalizations.current?.localeName ?? 'en'] != null);
+  state.news.retainWhere((art) => art.translations[locale] != null);
   state.news.sort((a, b) => b.date.compareTo(a.date));
 
   state.persistentEnemies.sort((a, b) => a.agentType.compareTo(b.agentType));

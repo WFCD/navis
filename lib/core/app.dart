@@ -9,7 +9,7 @@ import 'package:navis/features/worldstate/presentation/bloc/solsystem_bloc.dart'
 import 'package:navis/features/worldstate/presentation/pages/acolyte_profile.dart';
 import 'package:navis/features/worldstate/presentation/pages/event.dart';
 import 'package:navis/features/worldstate/presentation/pages/trader_inventory.dart';
-import 'package:navis/l10n/localizations.dart';
+import 'package:navis/generated/l10n.dart';
 
 import 'home.dart';
 import 'themes/themes.dart';
@@ -74,9 +74,9 @@ class _NavisAppState extends State<NavisApp> with WidgetsBindingObserver {
         // CodexEntry.route: (_) => const CodexEntry(),
         BaroInventory.route: (_) => const BaroInventory()
       },
-      supportedLocales: supportedLocales.map((locale) => Locale(locale)),
-      localizationsDelegates: [
-        NavisLocalizationsDelegate(),
+      supportedLocales: const AppLocalizationDelegate().supportedLocales,
+      localizationsDelegates: const [
+        AppLocalizationDelegate(),
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         // GlobalCupertinoLocalizations.delegate

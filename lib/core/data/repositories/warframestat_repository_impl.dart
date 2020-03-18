@@ -70,7 +70,8 @@ class WarframestatRepositoryImpl implements WarframestatRepository {
   }
 
   @override
-  Future<Worldstate> getWorldstate(GamePlatforms platform) async {
+  Future<Worldstate> getWorldstate(GamePlatforms platform,
+      {String locale = 'en'}) async {
     return _execute<Worldstate>(
       () => remote.getWorldstate(platform),
       executeCaching: local.cacheWorldstate,
