@@ -73,7 +73,8 @@ class StaticBox extends StatelessWidget {
 
     if (icon != null) _addIcon(children);
 
-    return Container(
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 250),
       padding: padding,
       height: height,
       width: width,
