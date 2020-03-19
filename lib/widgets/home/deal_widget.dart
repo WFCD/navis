@@ -16,10 +16,8 @@ class DealWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final fontSize = SizeConfig.widthMultiplier * 3.5;
-    final style = Theme.of(context)
-        .textTheme
-        .caption
-        .copyWith(fontSize: fontSize, fontWeight: FontWeight.w300);
+    final style = Theme.of(context).textTheme.caption.copyWith(
+        fontSize: fontSize, fontWeight: FontWeight.w300, color: Colors.white);
 
     final primary = Theme.of(context).primaryColor;
 
