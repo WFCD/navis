@@ -5,9 +5,7 @@ import 'invasion_progress.dart';
 import 'invasion_rewards.dart';
 
 class InvasionWidget extends StatefulWidget {
-  const InvasionWidget({Key key, @required this.invasion})
-      : assert(invasion != null),
-        super(key: key);
+  const InvasionWidget({Key key, this.invasion}) : super(key: key);
 
   final Invasion invasion;
 
@@ -97,10 +95,4 @@ class _InvasionWidgetState extends State<InvasionWidget>
 
   @override
   bool get wantKeepAlive => true;
-
-  @override
-  void dispose() {
-    _controller?.dispose();
-    super.dispose();
-  }
 }
