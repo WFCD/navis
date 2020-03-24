@@ -40,8 +40,15 @@ class WarframestatRepositoryImpl implements WarframestatRepository {
 
     if (id != cachedId || id == null) {
       final results = await remote.searchItems(itemName);
-      final item = results
-          .firstWhere((i) => i.name.toLowerCase() == itemName.toLowerCase());
+      final item = results.firstWhere(
+        (i) => i.name.toLowerCase() == itemName.toLowerCase(),
+        orElse: () => BaseItem(
+          name: itemName,
+          description: '',
+          type: '',
+          imageName: '',
+        ),
+      );
 
       local.cacheDealInfo(id, item);
       return item;
