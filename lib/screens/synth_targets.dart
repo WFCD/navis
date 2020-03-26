@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:navis/services/repository.dart';
-import 'package:worldstate_api_model/misc.dart';
+import 'package:worldstate_api_model/entities.dart';
 
 class SynthTargetScreen extends StatelessWidget {
   const SynthTargetScreen({Key key}) : super(key: key);

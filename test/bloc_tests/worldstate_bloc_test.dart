@@ -9,14 +9,14 @@ import 'package:navis/services/storage/cache_storage.service.dart';
 import 'package:navis/services/storage/persistent_storage.service.dart';
 import 'package:wfcd_client/clients.dart';
 import 'package:wfcd_client/enums.dart';
-import 'package:worldstate_api_model/worldstate_models.dart';
+import 'package:worldstate_api_model/models.dart';
 
 import '../mock_classes.dart';
 import '../setup_methods.dart';
 
 void main() {
   final worldstateJson = File('./worldstate.json').readAsStringSync();
-  final worldstate = Worldstate.fromJson(json.decode(worldstateJson));
+  final worldstate = WorldstateModel.fromJson(json.decode(worldstateJson));
   final storage = PersistentStorageService();
   final cache = CacheStorageService();
 

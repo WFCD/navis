@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:navis/widgets/widgets.dart';
-import 'package:worldstate_api_model/worldstate_models.dart';
+import 'package:worldstate_api_model/entities.dart';
 
 class AlertWidget extends StatelessWidget {
   AlertWidget({@required this.alert});
@@ -43,7 +43,7 @@ class AlertWidget extends StatelessWidget {
                       )),
             ),
             RowItem(
-                text: Text('${alert.mission.type} (${alert.mission.faction}) '
+                text: Text('${alert.type} (${alert.faction}) '
                     '| Level: ${alert.mission.minEnemyLevel} - ${alert.mission.maxEnemyLevel} '),
                 caption: true,
                 child: CountdownBox(expiry: alert.expiry)),

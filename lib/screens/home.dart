@@ -20,15 +20,15 @@ class Home extends StatelessWidget {
             cacheExtent: 500,
             children: <Widget>[
               const NewsBuilder(),
-              if (worldstate.eventsActive) const EventBuilder(),
-              if (worldstate.acolytesActive) const Acolytes(),
-              if (worldstate.arbitrationActive) const ArbitrationBuilder(),
-              if (worldstate.outpostActive)
+              if (worldstate.activeEvents) const EventBuilder(),
+              if (worldstate.enemyActive) const Acolytes(),
+              if (worldstate.activeArbitration) const ArbitrationBuilder(),
+              if (worldstate.anomalyDetected)
                 SentientOutpostPanel(outpost: worldstate.sentientOutposts),
-              if (worldstate.alertsActive) const AlertTile(),
+              if (worldstate.activeAlerts) const AlertTile(),
               const Cycles(),
               const Trader(),
-              if (worldstate.dealsActive) const Deals(),
+              if (worldstate.isSaleActive) const Deals(),
             ],
           );
         }

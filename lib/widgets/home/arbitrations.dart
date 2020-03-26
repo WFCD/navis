@@ -25,7 +25,7 @@ class ArbitrationBuilder extends StatelessWidget {
           enemy: arbitration?.enemy,
           expiry: arbitration?.expiry ??
               DateTime.now().add(const Duration(minutes: 1)),
-          archwingRequired: arbitration.archwing || arbitration.sharkwing,
+          archwingRequired: arbitration.archwingRequired,
         );
       },
     );

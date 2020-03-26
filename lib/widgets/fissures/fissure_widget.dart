@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:navis/utils/size_config.dart';
 
 import 'package:navis/widgets/widgets.dart';
-import 'package:worldstate_api_model/worldstate_models.dart';
+import 'package:worldstate_api_model/entities.dart';
 
 import 'fissure_icons.dart';
 

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:navis/utils/syndicate_utils.dart';
 import 'package:navis/widgets/icons.dart';
-import 'package:worldstate_api_model/worldstate_models.dart';
+import 'package:worldstate_api_model/entities.dart';
 
 class SyndicateBounty extends StatelessWidget {
   const SyndicateBounty({

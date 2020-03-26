@@ -6,7 +6,8 @@ import 'package:flutter_custom_tabs/flutter_custom_tabs.dart';
 import 'package:html/parser.dart';
 import 'package:intl/intl.dart' as intl;
 import 'package:navis/themes.dart';
-import 'package:worldstate_api_model/misc.dart';
+import 'package:worldstate_api_model/entities.dart';
+import 'package:worldstate_api_model/models.dart';
 
 import '../global_keys.dart';
 
@@ -43,7 +44,7 @@ List<SlimDrop> toDrops(String data) {
 
   if (table is Map<String, dynamic>) return [];
 
-  return table.map<SlimDrop>((d) => SlimDrop.fromJson(d)).toList();
+  return table.map<SlimDrop>((d) => SlimDropModel.fromJson(d)).toList();
 }
 
 extension DateTimeX on DateTime {

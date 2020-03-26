@@ -1,6 +1,5 @@
-//import 'package:equatable/equatable.dart';
 import 'package:equatable/equatable.dart';
-import 'package:worldstate_api_model/worldstate_models.dart';
+import 'package:worldstate_api_model/entities.dart';
 
 abstract class WorldStates extends Equatable {
   const WorldStates({this.worldstate});

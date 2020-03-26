@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:navis/utils/helper_utils.dart';
-import 'package:worldstate_api_model/worldstate_models.dart';
+import 'package:worldstate_api_model/entities.dart';
 
 class NewsWidget extends StatelessWidget {
   const NewsWidget({@required this.news});
@@ -37,13 +37,6 @@ class NewsWidget extends StatelessWidget {
     );
   }
 
-  // encoode the news image link, just in case really.
-  String _imageLink(String url) {
-    final encoded = Uri.encodeFull(url);
-
-    return 'https://cdn.warframestat.us/o_webp/$encoded';
-  }
-
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -51,7 +44,7 @@ class NewsWidget extends StatelessWidget {
       child: Stack(
         children: <Widget>[
           CachedNetworkImage(
-            imageUrl: _imageLink(news.imageLink),
+            imageUrl: news.proxyImage,
             fit: BoxFit.cover,
             imageBuilder: _imageBuilder,
             placeholder: _placeholder,
@@ -69,7 +62,7 @@ class NewsWidget extends StatelessWidget {
                 children: <Widget>[
                   const SizedBox(height: 8.0),
                   Text(
-                    '[${news.date.timestamp} ago] ${news.translations['en']}',
+                    '[${news.timestamp} ago] ${news.translations['en']}',
                     textAlign: TextAlign.center,
                     style: Theme.of(context)
                         .textTheme

@@ -10,7 +10,7 @@ import 'package:navis/utils/worldstate_utils.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:wfcd_client/clients.dart';
 import 'package:wfcd_client/enums.dart';
-import 'package:worldstate_api_model/worldstate_models.dart';
+import 'package:worldstate_api_model/models.dart';
 
 import 'worldstate_events.dart';
 import 'worldstate_states.dart';
@@ -41,10 +41,12 @@ class WorldstateBloc extends HydratedBloc<WorldstateEvent, WorldStates> {
       try {
         final _platform = persistent?.platform ?? Platforms.pc;
         final worldstate = await api.getWorldstate(_platform);
+        final cleanWorldstate = cleanState(worldstate);
 
-        cache.hiveBox.put('worldstate', json.encode(worldstate.toJson()));
+        cache.hiveBox.put('worldstate',
+            json.encode((cleanWorldstate as WorldstateModel).toJson()));
 
-        yield WorldstateLoaded(cleanState(worldstate));
+        yield WorldstateLoaded(cleanWorldstate);
       } catch (exception, stack) {
         yield _exceptionHandler(exception, stack);
       }
@@ -59,7 +61,8 @@ class WorldstateBloc extends HydratedBloc<WorldstateEvent, WorldStates> {
       exceptions:
       case SocketException:
         final worldstate = json.decode(cache.hiveBox.get('worldstate'));
-        return WorldstateLoaded(cleanState(worldstate));
+        return WorldstateLoaded(
+            cleanState(WorldstateModel.fromJson(worldstate)));
       default:
         Crashlytics.instance.recordError(exception, stack);
         return WorldstateError(exception);
@@ -73,11 +76,17 @@ class WorldstateBloc extends HydratedBloc<WorldstateEvent, WorldStates> {
 
   @override
   WorldStates fromJson(Map<String, dynamic> json) {
-    return WorldstateLoaded(json as Worldstate);
+    final worldstate = WorldstateModel.fromJson(json);
+
+    // worldstate is saved in cache in a cleaned state so there is no need
+    // to call cleanState() here.
+    return WorldstateLoaded(worldstate);
   }
 
   @override
   Map<String, dynamic> toJson(WorldStates state) {
-    return state.worldstate?.toJson();
+    final WorldstateModel model = state.worldstate;
+
+    return model?.toJson();
   }
 }

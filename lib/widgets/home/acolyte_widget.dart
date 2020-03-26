@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:navis/widgets/widgets.dart';
-import 'package:worldstate_api_model/worldstate_models.dart';
+import 'package:worldstate_api_model/entities.dart';
 
 class AcolyteWidget extends StatelessWidget {
   const AcolyteWidget({@required this.enemy});
 
-  final PersistentEnemies enemy;
+  final PersistentEnemy enemy;
 
   Color _healthColor(num health) {
     if (health > 50.0)

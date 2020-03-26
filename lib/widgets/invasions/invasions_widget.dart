@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:navis/widgets/widgets.dart';
-import 'package:worldstate_api_model/worldstate_models.dart';
+import 'package:worldstate_api_model/entities.dart';
 
 import 'invasion_details.dart';
 import 'invasion_reward.dart';
@@ -27,8 +27,8 @@ class InvasionWidget extends StatelessWidget {
           ),
           const Spacer(),
           InvasionReward(
-            attackerReward: invasion.attackerReward.itemString,
-            defenderReward: invasion.defenderReward.itemString,
+            attackerReward: invasion.attackerReward,
+            defenderReward: invasion.defenderReward,
             attackingFaction: invasion.attackingFaction,
             defendingFaction: invasion.defendingFaction,
           ),

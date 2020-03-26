@@ -22,14 +22,12 @@ dependencies:
     git: https://github.com/SlayerOrnstein/wfcd_client.git
   warframe_items_model:
     git: https://github.com/SlayerOrnstein/warframe_item_models.git
+  worldstate_api_model:
+    git: https://github.com/SlayerOrnstein/worldstate_model.git
   hive: ^1.1.1
   hive_flutter: ^0.2.1
 
 dependency_overrides:
-  worldstate_api_model:
-    git:
-      url: https://github.com/SlayerOrnstein/worldstate_model.git
-      ref: 0a5fd1d43ba7cf0e9c2096d199955ddf8e282fd6
 
 dev_dependencies:
   flutter_test:

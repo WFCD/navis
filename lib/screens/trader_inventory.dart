@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:worldstate_api_model/worldstate_models.dart';
+import 'package:worldstate_api_model/entities.dart';
 
 class VoidTraderInventory extends StatefulWidget {
   const VoidTraderInventory({Key key}) : super(key: key);
@@ -63,7 +63,7 @@ class InventoryDataSource extends DataTableSource {
     return DataRow.byIndex(
         index: index,
         cells: <DataCell>[
-          DataCell(Text(product.itemName), onTap: () {}),
+          DataCell(Text(product.item), onTap: () {}),
           DataCell(Text('${product.ducats}'), onTap: () {}),
           DataCell(Text('${product.credits}cr'), onTap: () {})
         ],
