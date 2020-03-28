@@ -45,7 +45,7 @@ class NavisErrorWidget extends StatelessWidget {
               ),
               const SizedBox(height: 10),
               const Text(
-                'Reporting error to system admin...',
+                'Sending error reports for analysis to crashlytics...',
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 10),
