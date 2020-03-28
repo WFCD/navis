@@ -41,6 +41,8 @@ class MissionDetails extends StatelessWidget {
     final height = SizeConfig.heightMultiplier * 15;
     final width = SizeConfig.widthMultiplier * 20;
 
+    final sortieBoss = boss.replaceAll(' ', '_');
+
     final sortie = Theme.of(context).textTheme.subhead.copyWith(
           fontWeight: FontWeight.bold,
           fontStyle: FontStyle.normal,
@@ -81,7 +83,7 @@ class MissionDetails extends StatelessWidget {
                 aspectRatio: width / height,
                 child: Image.asset(
                   isAssassination
-                      ? 'assets/enemys/$faction/$boss.webp'
+                      ? 'assets/enemys/$faction/$sortieBoss.webp'
                       : _getAsset(variantIndex),
                   fit: BoxFit.contain,
                 ),
