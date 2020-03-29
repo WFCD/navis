@@ -29,28 +29,30 @@ class NavisErrorWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.all(20),
-      child: Center(
-        child: Column(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(Icons.error_outline, color: Colors.red, size: 40),
-              const SizedBox(height: 8),
-              Text(
-                'There was unexpected error in core system.',
-                style: Theme.of(context).textTheme.title,
-                textAlign: TextAlign.center,
-              ),
-              const SizedBox(height: 10),
-              const Text(
-                'Sending error reports for analysis to crashlytics...',
-                textAlign: TextAlign.center,
-              ),
-              const SizedBox(height: 10),
-              _getStackTraceWidget()
-            ]),
+    return Material(
+      child: Container(
+        margin: const EdgeInsets.all(20),
+        child: Center(
+          child: Column(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(Icons.error_outline, color: Colors.red, size: 40),
+                const SizedBox(height: 8),
+                Text(
+                  'There was unexpected error in core system.',
+                  style: Theme.of(context).textTheme.title,
+                  textAlign: TextAlign.center,
+                ),
+                const SizedBox(height: 10),
+                const Text(
+                  'Sending error reports for analysis to crashlytics...',
+                  textAlign: TextAlign.center,
+                ),
+                const SizedBox(height: 10),
+                _getStackTraceWidget()
+              ]),
+        ),
       ),
     );
   }
