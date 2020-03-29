@@ -17,9 +17,11 @@ class ListScreen extends StatelessWidget {
   final String noItemsText;
 
   Widget _buildList() {
+    const extent = 500.0;
+
     return ListView.builder(
       itemCount: items.length,
-      cacheExtent: 500,
+      cacheExtent: extent * (items.length / 3),
       itemBuilder: (BuildContext context, int index) => items[index],
     );
   }
