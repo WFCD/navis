@@ -27,142 +27,135 @@ class CountdownBox extends StatefulWidget {
 
 class _CountdownBoxState extends State<CountdownBox>
     with TickerProviderStateMixin {
-  bool _expired = false;
-
-  Animation<int> _tween;
-  Duration _duration;
   AnimationController _controller;
+  Animation<int> _tween;
 
-  void _setup() {
-    final now = DateTime.now().toUtc().millisecondsSinceEpoch;
-    final _expiry = widget.expiry?.millisecondsSinceEpoch ?? now;
+  Color _warningLevel = Colors.green;
 
-    _duration = Duration(seconds: _expiry - now).abs();
+  DateTime get _now => DateTime.now();
+  DateTime get localExpiry => widget.expiry.toLocal();
 
-    _controller = AnimationController(duration: _duration, vsync: this)
-      ..addStatusListener(_listener);
+  bool get _expired => localExpiry.isBefore(_now);
+  Duration get _timeLeft => localExpiry.difference(_now);
 
-    _tween = StepTween(begin: _expiry, end: now).animate(_controller);
+  void _setupCountdown() {
+    final begin = _expired
+        ? _now.millisecondsSinceEpoch
+        : widget.expiry.millisecondsSinceEpoch;
 
-    _controller.forward(from: 0.0);
+    final end = _expired
+        ? _now.add(const Duration(seconds: 30)).millisecondsSinceEpoch
+        : _now.millisecondsSinceEpoch;
+
+    _controller = AnimationController(
+        duration: widget.expiry.difference(_now).abs(), vsync: this);
+
+    _tween = StepTween(begin: begin, end: end).animate(_controller);
+
+    if (widget.color != Colors.transparent) {
+      _tween.addListener(_detectWarningLevel);
+    }
+    _tween.addStatusListener(_onEnd);
+
+    _controller.forward();
+  }
+
+  void _detectWarningLevel() {
+    const max = Duration(hours: 1);
+    const minimum = Duration(minutes: 10);
+
+    Color newLevel;
+
+    if (!_expired) {
+      if (_timeLeft > max) {
+        newLevel = Colors.green;
+      } else if (_timeLeft < max && _timeLeft > minimum) {
+        newLevel = Colors.orange[700];
+      } else {
+        newLevel = Colors.red;
+      }
+    } else {
+      newLevel = Theme.of(context).primaryColor;
+    }
+
+    if (_warningLevel == newLevel) return;
+
+    if (mounted) {
+      setState(() {
+        _warningLevel = newLevel;
+      });
+    }
+  }
+
+  String _timerVersions() {
+    final String days = '${_timeLeft.inDays}';
+    final String hours = '${_timeLeft.inHours % 24}';
+    final String minutes = '${_timeLeft.inMinutes % 60}'.padLeft(2, '0');
+    final String seconds = '${_timeLeft.inSeconds % 60}'.padLeft(2, '0');
+
+    final bool is24hrs = _timeLeft < const Duration(days: 1);
+
+    return "${_expired ? 'Expired: -' : ''}${!is24hrs ? '$days\d' : ''} $hours:$minutes:$seconds";
+  }
+
+  void _onEnd(AnimationStatus status) {
+    if (status == AnimationStatus.completed) {
+      Future.delayed(
+        const Duration(milliseconds: 700),
+        () => context.bloc<WorldstateBloc>().add(UpdateEvent()),
+      );
+
+      if (mounted) setState(() {});
+    }
   }
 
   @override
   void initState() {
     super.initState();
-    _setup();
+    _setupCountdown();
   }
 
   @override
   void didUpdateWidget(CountdownBox oldWidget) {
     super.didUpdateWidget(oldWidget);
 
-    final _now = DateTime.now().toUtc();
-
-    if (oldWidget.expiry != widget.expiry || oldWidget.expiry.isAfter(_now)) {
+    if (oldWidget.expiry != widget.expiry || _expired) {
+      if (widget.color != Colors.transparent) {
+        _tween?.removeListener(_detectWarningLevel);
+      }
+      _tween?.removeStatusListener(_onEnd);
       _controller?.dispose();
-      _setup();
-    }
-  }
-
-  void _listener(AnimationStatus status) {
-    if (status == AnimationStatus.completed ||
-        status == AnimationStatus.dismissed) {
-      Future.delayed(
-        const Duration(seconds: 1),
-        () => BlocProvider.of<WorldstateBloc>(context).add(UpdateEvent()),
-      );
-
-      setState(() {
-        _expired = widget.expiry.isBefore(DateTime.now().toUtc());
-      });
+      _tween = null;
+      _setupCountdown();
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    return _CountDown(
-      listenable: _tween,
-      expiry: widget.expiry,
-      expired: _expired,
-      color: widget.color,
-      margin: widget.margin,
+    return StaticBox(
+      color: widget.color ?? _warningLevel,
       padding: widget.padding,
-      style: widget.style,
-      fontSize: widget.size,
+      margin: widget.margin,
+      child: AnimatedBuilder(
+        animation: _tween,
+        builder: (BuildContext context, Widget child) {
+          return Text(
+            _timerVersions(),
+            style: widget.style?.copyWith(color: Colors.white) ??
+                TextStyle(fontSize: widget.size, color: Colors.white),
+          );
+        },
+      ),
     );
   }
 
   @override
   void dispose() {
+    if (widget.color != Colors.transparent) {
+      _tween?.removeListener(_detectWarningLevel);
+    }
+    _tween?.removeStatusListener(_onEnd);
     _controller?.dispose();
     super.dispose();
-  }
-}
-
-class _CountDown extends AnimatedWidget {
-  const _CountDown({
-    @required Animation<int> listenable,
-    @required this.expiry,
-    @required this.expired,
-    this.margin,
-    this.padding,
-    this.color,
-    this.style,
-    this.fontSize,
-  })  : assert(listenable != null),
-        assert(expiry != null),
-        assert(expired != null),
-        assert(fontSize == null || style == null,
-            'Use fontSize parameter if you\'re going to use a TextStyle'),
-        super(listenable: listenable);
-
-  final DateTime expiry;
-  final double fontSize;
-  final TextStyle style;
-  final EdgeInsetsGeometry margin, padding;
-  final Color color;
-  final bool expired;
-
-  String _timerVersions(Duration time, bool expired) {
-    final String days = '${time.inDays}';
-    final String hours = '${time.inHours % 24}';
-    final String minutes = '${time.inMinutes % 60}'.padLeft(2, '0');
-    final String seconds = '${time.inSeconds % 60}'.padLeft(2, '0');
-
-    final bool is24hrs = time < const Duration(days: 1);
-
-    return "${expired ? 'Expired: -' : ''}${!is24hrs ? '$days\d' : ''} $hours:$minutes:$seconds";
-  }
-
-  Color _containerColors(
-      BuildContext context, Duration timeLeft, bool expired) {
-    const max = Duration(hours: 1);
-    const minimum = Duration(minutes: 10);
-
-    if (!expired) {
-      if (timeLeft >= max)
-        return Colors.green;
-      else if (timeLeft < max && timeLeft > minimum)
-        return Colors.orange[700];
-      else
-        return Colors.red;
-    }
-
-    return Theme.of(context).primaryColor;
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final duration = expiry.difference(DateTime.now().toUtc()).abs();
-
-    return StaticBox.text(
-      fontSize: fontSize,
-      style: style,
-      margin: margin,
-      padding: padding,
-      text: _timerVersions(duration, expired),
-      color: color ?? _containerColors(context, duration, expired),
-    );
   }
 }
