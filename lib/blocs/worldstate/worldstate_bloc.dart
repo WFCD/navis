@@ -30,7 +30,7 @@ class WorldstateBloc extends HydratedBloc<WorldstateEvent, WorldStates> {
   Stream<WorldStates> transformEvents(Stream<WorldstateEvent> events,
       Stream<WorldStates> Function(UpdateEvent event) next) {
     return super.transformEvents(
-        events.debounceTime(const Duration(milliseconds: 200)), next);
+        events.debounceTime(const Duration(milliseconds: 100)), next);
   }
 
   @override
@@ -68,8 +68,8 @@ class WorldstateBloc extends HydratedBloc<WorldstateEvent, WorldStates> {
   }
 
   Future<void> update() async {
-    add(UpdateEvent());
-    await Future.delayed(const Duration(milliseconds: 500));
+    await Future.delayed(
+        const Duration(milliseconds: 500), () => add(UpdateEvent()));
   }
 
   @override
