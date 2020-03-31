@@ -54,9 +54,9 @@ class PersistentStorageService extends StorageService {
 
     switch (flip) {
       case 0:
-        return AppTheme.theme.light;
+        return NavisThemes.light;
       default:
-        return AppTheme.theme.dark;
+        return NavisThemes.dark;
     }
   }
 

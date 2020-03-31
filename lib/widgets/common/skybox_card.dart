@@ -24,7 +24,7 @@ class SkyboxCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Theme(
-      data: AppTheme.theme.dark,
+      data: NavisThemes.dark,
       child: Card(
         margin: margin,
         child: AnimatedSwitcher(

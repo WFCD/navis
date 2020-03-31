@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:navis/themes.dart';
 import 'package:navis/utils/size_config.dart';
 import 'package:navis/widgets/widgets.dart';
 
@@ -49,7 +48,7 @@ class MissionDetails extends StatelessWidget {
           color: color,
         );
 
-    final info = AppTheme.theme.dark.textTheme.caption.copyWith(
+    final info = Typography.whiteMountainView.caption.copyWith(
       fontSize: 13,
       fontStyle: FontStyle.normal,
     );

@@ -1,33 +1,21 @@
 import 'package:flutter/material.dart';
 
-class AppTheme {
-  const AppTheme._();
-
-  static const theme = AppTheme._();
+class NavisThemes {
+  const NavisThemes._();
 
   static const _primaryColor = Color(0xE51A5090);
   static const _accentColor = Color(0xFF00BC8C);
 
   static Color get primaryColor => _primaryColor;
 
-  ThemeData get light => ThemeData(
+  static ThemeData get light => ThemeData(
         brightness: Brightness.light,
         primaryColor: _primaryColor,
         accentColor: _accentColor,
         splashColor: _accentColor,
       );
 
-  // ThemeData get dark => ThemeData(
-  //       brightness: Brightness.dark,
-  //       primaryColor: _primaryColor,
-  //       accentColor: _accentColor,
-  //       cardColor: const Color(0xFF2C2C2C),
-  //       dialogBackgroundColor: const Color(0xFF212121),
-  //       scaffoldBackgroundColor: const Color(0xFF212121),
-  //       canvasColor: const Color(0xFF212121),
-  //     );
-
-  ThemeData get dark => ThemeData(
+  static ThemeData get dark => ThemeData(
         brightness: Brightness.dark,
         primaryColorBrightness: Brightness.dark,
         accentColor: _accentColor,

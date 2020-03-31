@@ -23,8 +23,9 @@ class WorldstateBloc extends HydratedBloc<WorldstateEvent, WorldStates> {
   final CacheStorageService cache;
 
   @override
-  WorldStates get initialState =>
-      super.initialState ?? WorldstateUninitialized();
+  WorldStates get initialState {
+    return super.initialState ?? WorldstateUninitialized();
+  }
 
   @override
   Stream<WorldStates> transformEvents(Stream<WorldstateEvent> events,

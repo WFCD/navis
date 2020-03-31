@@ -15,7 +15,7 @@ Future<void> launchLink(String link) async {
   try {
     await launch(link,
         option: CustomTabsOption(
-          toolbarColor: AppTheme.primaryColor,
+          toolbarColor: NavisThemes.primaryColor,
           enableDefaultShare: true,
           enableUrlBarHiding: true,
           showPageTitle: true,
