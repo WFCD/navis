@@ -25,7 +25,7 @@ class EventWidget extends StatelessWidget {
             rewards: event.rewards,
             expiry: event.expiry,
           ),
-          const SizedBox(height: 8),
+          const SizedBox(height: 4),
           _EventFooter(
             affiliatedWith: event.affiliatedWith,
             rewards: event.eventRewards ?? [],
