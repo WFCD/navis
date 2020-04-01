@@ -26,6 +26,7 @@ dependencies:
     git: https://github.com/SlayerOrnstein/worldstate_model.git
   hive: ^1.1.1
   hive_flutter: ^0.2.1
+  implicitly_animated_reorderable_list: ^0.1.10
 
 dev_dependencies:
   flutter_test:
