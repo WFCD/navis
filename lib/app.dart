@@ -54,6 +54,17 @@ class _NavisState extends State<Navis> with WidgetsBindingObserver {
     return widget;
   }
 
+  ThemeMode _detectMode(ThemeData current) {
+    switch (current?.brightness) {
+      case Brightness.light:
+        return ThemeMode.light;
+      case Brightness.dark:
+        return ThemeMode.dark;
+      default:
+        return ThemeMode.system;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final repository = widget.repository;
@@ -73,7 +84,8 @@ class _NavisState extends State<Navis> with WidgetsBindingObserver {
                   return MaterialApp(
                     title: 'Navis',
                     color: Colors.grey[900],
-                    theme: widget.repository.persistent.theme,
+                    themeMode: _detectMode(widget.repository.persistent.theme),
+                    theme: NavisThemes.light,
                     darkTheme: NavisThemes.dark,
                     home: const MainScreen(),
                     builder: _builder,

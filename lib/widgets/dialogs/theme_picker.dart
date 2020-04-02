@@ -24,7 +24,7 @@ class ThemePicker extends StatelessWidget {
     return WatchBoxBuilder(
       box: RepositoryProvider.of<Repository>(context).persistent.hiveBox,
       builder: (BuildContext context, Box box) {
-        final current = box.get(SettingsKeys.theme, defaultValue: 0);
+        final current = box.get(SettingsKeys.theme, defaultValue: 2);
         final accentColor = Theme.of(context).accentColor;
 
         return BaseDialog(
@@ -42,6 +42,13 @@ class ThemePicker extends StatelessWidget {
               RadioListTile<int>(
                 title: const Text('Dark'),
                 value: 1,
+                groupValue: current,
+                activeColor: accentColor,
+                onChanged: (b) => _onChanged(context, box, b),
+              ),
+              RadioListTile<int>(
+                title: const Text('System'),
+                value: 2,
                 groupValue: current,
                 activeColor: accentColor,
                 onChanged: (b) => _onChanged(context, box, b),
