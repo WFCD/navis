@@ -20,7 +20,7 @@ class SentientOutpostPanel extends StatelessWidget {
         .subhead
         .copyWith(color: Colors.white, fontSize: fontSize);
 
-    // TODO(Ornstein): Need to get a veil proxima skybox but for now the derelict will do
+    // TODO(Ornstein): Need to get a veil proxima skybox but for now the Kuva Fortress will do
     return SkyboxCard(
       node: mission.node,
       child: Stack(
