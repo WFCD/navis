@@ -41,14 +41,14 @@ class _CountdownBoxState extends State<CountdownBox>
   void _setupCountdown() {
     final begin = _expired
         ? _now.millisecondsSinceEpoch
-        : widget.expiry.millisecondsSinceEpoch;
+        : localExpiry.millisecondsSinceEpoch;
 
     final end = _expired
         ? _now.add(const Duration(seconds: 30)).millisecondsSinceEpoch
         : _now.millisecondsSinceEpoch;
 
     _controller = AnimationController(
-        duration: widget.expiry.difference(_now).abs(), vsync: this);
+        duration: localExpiry.difference(_now).abs(), vsync: this);
 
     _tween = StepTween(begin: begin, end: end).animate(_controller);
 
