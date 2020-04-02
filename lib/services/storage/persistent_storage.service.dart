@@ -48,13 +48,15 @@ class PersistentStorageService extends StorageService {
   }
 
   ThemeData get theme {
-    final int flip = _box.get(SettingsKeys.theme, defaultValue: 0);
+    final int flip = _box.get(SettingsKeys.theme);
 
     switch (flip) {
       case 0:
         return NavisThemes.light;
-      default:
+      case 1:
         return NavisThemes.dark;
+      default:
+        return null;
     }
   }
 
