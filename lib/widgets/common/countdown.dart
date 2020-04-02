@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 import 'package:navis/blocs/bloc.dart';
 import 'package:navis/blocs/worldstate/worldstate_events.dart';
+import 'package:navis/generated/l10n.dart';
+import 'package:navis/utils/extensions.dart';
 
 import 'static_box.dart';
 
@@ -44,7 +47,7 @@ class _CountdownBoxState extends State<CountdownBox>
         : localExpiry.millisecondsSinceEpoch;
 
     final end = _expired
-        ? _now.add(const Duration(seconds: 30)).millisecondsSinceEpoch
+        ? localExpiry.millisecondsSinceEpoch
         : _now.millisecondsSinceEpoch;
 
     _controller = AnimationController(
@@ -132,19 +135,25 @@ class _CountdownBoxState extends State<CountdownBox>
 
   @override
   Widget build(BuildContext context) {
-    return StaticBox(
-      color: widget.color ?? _warningLevel,
-      padding: widget.padding,
-      margin: widget.margin,
-      child: AnimatedBuilder(
-        animation: _tween,
-        builder: (BuildContext context, Widget child) {
-          return Text(
-            _timerVersions(),
-            style: widget.style?.copyWith(color: Colors.white) ??
-                TextStyle(fontSize: widget.size, color: Colors.white),
-          );
-        },
+    final localizations = NavisLocalizations.of(context);
+    final endTime = localExpiry.format(Intl.getCurrentLocale());
+
+    return Tooltip(
+      message: localizations.countdownTooltip(endTime),
+      child: StaticBox(
+        color: widget.color ?? _warningLevel,
+        padding: widget.padding,
+        margin: widget.margin,
+        child: AnimatedBuilder(
+          animation: _tween,
+          builder: (BuildContext context, Widget child) {
+            return Text(
+              _timerVersions(),
+              style: widget.style?.copyWith(color: Colors.white) ??
+                  TextStyle(fontSize: widget.size, color: Colors.white),
+            );
+          },
+        ),
       ),
     );
   }

@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:navis/blocs/bloc.dart';
-import 'package:navis/services/repository.dart';
-import 'package:navis/utils/helper_utils.dart';
-import 'package:navis/utils/worldstate_utils.dart';
 import 'package:navis/widgets/widgets.dart';
 import 'package:worldstate_api_model/objects.dart';
 
@@ -15,10 +11,7 @@ class CycleWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final storage = RepositoryProvider.of<Repository>(context).persistent;
     final state = toBeginningOfSentenceCase(cycle.state);
-    final nextState = toBeginningOfSentenceCase(cycle.nextState);
-    final dateFormat = enumToDateformat(storage.dateformat);
 
     return Padding(
       padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
@@ -39,11 +32,7 @@ class CycleWidget extends StatelessWidget {
             ),
           ),
           const SizedBox(width: 8.0),
-          Tooltip(
-            message: '$nextState on ${cycle.expiry.format(dateFormat)}',
-            showDuration: const Duration(seconds: 2, milliseconds: 500),
-            child: CountdownBox(expiry: cycle.expiry),
-          ),
+          CountdownBox(expiry: cycle.expiry),
         ],
       ),
     );

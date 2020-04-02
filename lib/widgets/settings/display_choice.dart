@@ -19,12 +19,6 @@ class DisplayChoices extends StatelessWidget {
           subtitle: const Text('Choose app theme.'),
           onTap: () => ThemePicker.showThemes(context),
         ),
-        ListTile(
-          title: const Text('Dateformat'),
-          subtitle:
-              const Text('Change the format used for timer expiration dates.'),
-          onTap: () => DateFormatPicker.selectDateformat(context),
-        ),
         WatchBoxBuilder(
           box: RepositoryProvider.of<Repository>(context).persistent.hiveBox,
           watchKeys: const ['backkey'],

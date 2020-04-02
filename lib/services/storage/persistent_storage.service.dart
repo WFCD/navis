@@ -10,8 +10,6 @@ import 'package:navis/utils/search_utils.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:wfcd_client/enums.dart';
 
-import 'dateformat_enum.dart';
-
 class PersistentStorageService extends StorageService {
   static const String hive = 'settings';
 
@@ -58,18 +56,6 @@ class PersistentStorageService extends StorageService {
       default:
         return NavisThemes.dark;
     }
-  }
-
-  Formats get dateformat {
-    final diskFormat =
-        _box.get(SettingsKeys.dateformatKey, defaultValue: 'mm_dd_yy');
-
-    return Formats.values
-        .firstWhere((f) => f.toString() == 'Formats.$diskFormat');
-  }
-
-  set dateformat(Formats value) {
-    _box.put(SettingsKeys.dateformatKey, value.toString().split('.').last);
   }
 
   CodexDatabase get searchType {

@@ -4,6 +4,7 @@ import 'dart:io';
 
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
+import 'package:intl/intl.dart';
 import 'package:navis/services/storage/cache_storage.service.dart';
 import 'package:navis/services/storage/persistent_storage.service.dart';
 import 'package:navis/utils/worldstate_utils.dart';
@@ -39,7 +40,8 @@ class WorldstateBloc extends HydratedBloc<WorldstateEvent, WorldStates> {
     if (event is UpdateEvent) {
       try {
         final _platform = persistent?.platform ?? Platforms.pc;
-        final worldstate = await api.getWorldstate(_platform);
+        final worldstate = await api.getWorldstate(_platform,
+            language: Intl.getCurrentLocale() ?? 'en');
         final cleanWorldstate = cleanState(worldstate);
 
         cache.hiveBox.put('worldstate',

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:navis/blocs/bloc.dart';
+import 'package:navis/generated/l10n.dart';
 import 'package:navis/widgets/widgets.dart';
 import 'package:worldstate_api_model/entities.dart';
 
@@ -9,9 +10,10 @@ class Trader extends StatelessWidget {
   Widget build(BuildContext context) {
     final emptyBox = Container();
     final title = Theme.of(context).textTheme.subhead;
+    final localizations = NavisLocalizations.of(context);
 
     return Tiles(
-        title: 'Void Trader',
+        title: localizations.baroTitle,
         child: BlocBuilder(
           bloc: BlocProvider.of<WorldstateBloc>(context),
           condition: (WorldStates previous, WorldStates current) {
@@ -27,8 +29,8 @@ class Trader extends StatelessWidget {
               RowItem(
                   text: Text(
                     trader.active
-                        ? '${trader.character} leaves in'
-                        : '${trader.character} arrives in',
+                        ? localizations.baroLeaving
+                        : localizations.baroArriving,
                     style: title,
                   ),
                   child: CountdownBox(
@@ -37,7 +39,7 @@ class Trader extends StatelessWidget {
               const SizedBox(height: 4.0),
               trader.active
                   ? RowItem(
-                      text: Text('Loaction', style: title),
+                      text: Text(localizations.baroLocation, style: title),
                       child: StaticBox.text(
                         text: '${trader.location}',
                         color: Colors.blueAccent[400],
@@ -46,7 +48,9 @@ class Trader extends StatelessWidget {
               const SizedBox(height: 4.0),
               RowItem(
                 text: Text(
-                  trader.active ? 'Leaves on' : 'Arrives on',
+                  trader.active
+                      ? localizations.baroArrivesOn
+                      : localizations.baroArrivesOn,
                   style: title,
                 ),
                 child: trader.active
@@ -69,6 +73,8 @@ class _InventoryButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final localizations = NavisLocalizations.of(context);
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 4.0, vertical: 8.0),
       child: Material(
@@ -82,9 +88,9 @@ class _InventoryButton extends StatelessWidget {
               width: 500.0,
               height: 30.0,
               alignment: Alignment.center,
-              child: const Text(
-                'Baro Ki\'Teeer Inventory',
-                style: TextStyle(fontSize: 17.0, color: Colors.white),
+              child: Text(
+                localizations.baroInventory,
+                style: const TextStyle(fontSize: 17.0, color: Colors.white),
               )),
         ),
       ),

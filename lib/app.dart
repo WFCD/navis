@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:navis/blocs/bloc.dart';
 import 'package:navis/blocs/worldstate/worldstate_events.dart';
 import 'package:navis/constants/storage_keys.dart';
+import 'package:navis/generated/l10n.dart';
 import 'package:navis/screens/codex_entry.dart';
 import 'package:navis/screens/nightwaves.dart';
 import 'package:navis/screens/scaffold.dart';
@@ -85,6 +87,24 @@ class _NavisState extends State<Navis> with WidgetsBindingObserver {
                       CodexEntry.route: (_) => const CodexEntry(),
                       VoidTraderInventory.route: (_) =>
                           const VoidTraderInventory()
+                    },
+                    supportedLocales:
+                        NavisLocalizations.delegate.supportedLocales,
+                    localizationsDelegates: const [
+                      AppLocalizationDelegate(),
+                      GlobalMaterialLocalizations.delegate,
+                      GlobalWidgetsLocalizations.delegate,
+                    ],
+                    localeResolutionCallback:
+                        (Locale locale, Iterable<Locale> supportedLocales) {
+                      for (final supportedLocale in supportedLocales) {
+                        if (locale.languageCode ==
+                            supportedLocale.languageCode) {
+                          return supportedLocale;
+                        }
+                      }
+
+                      return supportedLocales.first;
                     },
                   );
                 },

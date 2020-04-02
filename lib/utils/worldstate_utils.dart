@@ -1,6 +1,4 @@
 import 'package:collection/collection.dart';
-import 'package:intl/intl.dart';
-import 'package:navis/services/storage/dateformat_enum.dart';
 import 'package:worldstate_api_model/entities.dart';
 import 'package:worldstate_api_model/objects.dart';
 
@@ -41,16 +39,4 @@ bool compareIds(
   final currentIds = current.map<String>((w) => w.id);
 
   return !_deep.equals(previousIds ?? [], currentIds);
-}
-
-DateFormat enumToDateformat(Formats format) {
-  switch (format) {
-    case Formats.dd_mm_yy:
-      return DateFormat('hh:mm:ss dd/MM/yyyy');
-      break;
-    case Formats.month_day_year:
-      return DateFormat.yMMMMd('en_US').add_jms();
-    default:
-      return DateFormat.jms().add_yMd();
-  }
 }

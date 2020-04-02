@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:navis/generated/l10n.dart';
 import 'package:navis/widgets/widgets.dart';
 import 'package:worldstate_api_model/entities.dart';
 
@@ -16,6 +17,8 @@ class AlertWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final localizations = NavisLocalizations.of(context);
+
     final archwing = alert.mission.archwingRequired;
     final nightmare = alert.mission.nightmare;
 
@@ -43,8 +46,8 @@ class AlertWidget extends StatelessWidget {
                       )),
             ),
             RowItem(
-                text: Text('${alert.type} (${alert.faction}) '
-                    '| Level: ${alert.mission.minEnemyLevel} - ${alert.mission.maxEnemyLevel} '),
+                text: Text(localizations.alertInfo(alert.type, alert.faction,
+                    alert.mission.minEnemyLevel, alert.mission.maxEnemyLevel)),
                 caption: true,
                 child: CountdownBox(expiry: alert.expiry)),
           ]),
