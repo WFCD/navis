@@ -1,5 +1,4 @@
 import 'package:collection/collection.dart';
-import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
 import 'package:navis/services/storage/dateformat_enum.dart';
 import 'package:worldstate_api_model/entities.dart';
@@ -30,38 +29,6 @@ Worldstate cleanState(Worldstate state) {
   state.fissures.sort((a, b) => a.tierNum.compareTo(b.tierNum));
 
   return state;
-}
-
-Future<bool> _checkBackground(BuildContext context, String node) async {
-  bool doesBackgroundExist = true;
-
-  await precacheImage(
-    AssetImage(node),
-    context,
-    onError: (e, stack) => doesBackgroundExist = false,
-  );
-
-  return doesBackgroundExist;
-}
-
-String _getBackgroundPath(String node) {
-  final nodeRegExp = RegExp(r'\(([^)]*)\)');
-  final nodeBackground = nodeRegExp.firstMatch(node)?.group(1);
-
-  return 'assets/skyboxes/${nodeBackground.replaceAll(' ', '_')}.webp';
-}
-
-ImageProvider skybox(BuildContext context, String node) {
-  const derelict = AssetImage('assets/skyboxes/Derelict.webp');
-
-  bool isError = false;
-  final solNode = _getBackgroundPath(node);
-
-  if (solNode == 'undefined') return derelict;
-
-  _checkBackground(context, solNode).then((data) => isError = data);
-
-  return isError ? derelict : AssetImage(solNode);
 }
 
 bool compareIds(
