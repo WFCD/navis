@@ -38,10 +38,12 @@ class WorldstateBloc extends HydratedBloc<WorldstateEvent, WorldStates> {
   @override
   Stream<WorldStates> mapEventToState(WorldstateEvent event) async* {
     if (event is UpdateEvent) {
+      final currentLocale = Intl.getCurrentLocale()?.split('_')?.first;
+
       try {
         final _platform = persistent?.platform ?? Platforms.pc;
-        final worldstate = await api.getWorldstate(_platform,
-            language: Intl.getCurrentLocale() ?? 'en');
+        final worldstate =
+            await api.getWorldstate(_platform, language: currentLocale ?? 'en');
         final cleanWorldstate = cleanState(worldstate);
 
         cache.hiveBox.put('worldstate',
