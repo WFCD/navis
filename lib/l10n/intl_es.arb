@@ -204,43 +204,43 @@
         "type": "text",
         "placeholders": {}
     },
-    "earthCycleTitle": "Earth Cycle",
+    "earthCycleTitle": "Ciclo de la Tierra",
     "@earthCycleTitle": {
         "description": "Earth cycle title",
         "type": "text",
         "placeholders": {}
     },
-    "cetusCycleTitle": "Cetus Cycle",
+    "cetusCycleTitle": "Ciclo de Cetus",
     "@cetusCycleTitle": {
         "description": "Cetus cycle title",
         "type": "text",
         "placeholders": {}
     },
-    "vallisCycleTitle": "Vallis Cycle",
+    "vallisCycleTitle": "Ciclo de Vallis",
     "@vallisCycleTitle": {
         "description": "Vallis cycle title",
         "type": "text",
         "placeholders": {}
     },
-    "timersTitle": "Timers",
+    "timersTitle": "Contadores",
     "@timersTitle": {
         "description": "Times title",
         "type": "text",
         "placeholders": {}
     },
-    "fissuresTitle": "Fissures",
+    "fissuresTitle": "Fisuras",
     "@fissuresTitle": {
         "description": "Fissures title",
         "type": "text",
         "placeholders": {}
     },
-    "invasionsTitle": "Invasions",
+    "invasionsTitle": "Invasiones",
     "@invasionsTitle": {
         "description": "Invasions title",
         "type": "text",
         "placeholders": {}
     },
-    "syndicatesTitle": "Syndicates",
+    "syndicatesTitle": "Sindicatos",
     "@syndicatesTitle": {
         "description": "Syndicates title",
         "type": "text",
