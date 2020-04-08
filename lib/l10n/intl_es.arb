@@ -1,6 +1,6 @@
 {
     "@@last_modified": "2020-03-03T16:56:42.387837",
-    "alertInfo": "{type} ({faction}) | Level: {min} - {max}",
+    "alertInfo": "{type} ({faction}) | Nivel: {min} - {max}",
     "@alertInfo": {
         "description": "The information of the given alert, such as mission type, faction and enemy level",
         "type": "text",
@@ -11,7 +11,7 @@
             "max": {}
         }
     },
-    "activeAcolyte": "{agentType} | level: {rank}",
+    "activeAcolyte": "{agentType} | Nivel: {rank}",
     "@activeAcolyte": {
         "description": "acolyte title with level",
         "type": "text",
@@ -20,7 +20,7 @@
             "rank": {}
         }
     },
-    "locating": "Locating...",
+    "locating": "Buscando...",
     "@locating": {
         "description": "Shows up when an acolyte's current location is unknown, may be used in other parts of the app",
         "type": "text",
