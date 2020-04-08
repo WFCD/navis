@@ -26,43 +26,43 @@
         "type": "text",
         "placeholders": {}
     },
-    "acolyteCurrentLocation": "Current location",
+    "acolyteCurrentLocation": "Ubicación actual",
     "@acolyteCurrentLocation": {
         "description": "Acolyte's current location",
         "type": "text",
         "placeholders": {}
     },
-    "acolytePassLocation": "Last seen location",
+    "acolytePassLocation": "Última ubicación conocida",
     "@acolytePassLocation": {
         "description": "Acolyte's pass location",
         "type": "text",
         "placeholders": {}
     },
-    "acolyteFound": "Found",
+    "acolyteFound": "Encontrado",
     "@acolyteFound": {
         "description": "The elapsed time after an acolyte was found",
         "type": "text",
         "placeholders": {}
     },
-    "acolyteLastSeen": "Last seen",
+    "acolyteLastSeen": "Visto por última vez",
     "@acolyteLastSeen": {
         "description": "The elapsed time since the acolyte was last seen",
         "type": "text",
         "placeholders": {}
     },
-    "acolyteHealth": "Health",
+    "acolyteHealth": "Salud",
     "@acolyteHealth": {
         "description": "Acolytes remaining health",
         "type": "text",
         "placeholders": {}
     },
-    "acolyteRank": "Acolyte Level",
+    "acolyteRank": "Nivel del acólito",
     "@acolyteRank": {
         "description": "An acolyte's current level",
         "type": "text",
         "placeholders": {}
     },
-    "acolyteElapsedTime": "{lastSeenTime} minutes ago",
+    "acolyteElapsedTime": "hace {lastSeenTime} minutos",
     "@acolyteElapsedTime": {
         "description": "Time since acolyte has either been found or last seen",
         "type": "text",
@@ -70,49 +70,49 @@
             "lastSeenTime": {}
         }
     },
-    "tapForMoreDetails": "Tap for more details",
+    "tapForMoreDetails": "Pulsa para más detalles",
     "@tapForMoreDetails": {
         "description": "General description to tell the user that this object takes you to a different page",
         "type": "text",
         "placeholders": {}
     },
-    "seeDetails": "See details",
+    "seeDetails": "Ver detalles",
     "@seeDetails": {
         "description": "General button to see more details of given object",
         "type": "text",
         "placeholders": {}
     },
-    "eventDescription": "Description",
+    "eventDescription": "Descripción",
     "@eventDescription": {
         "description": "Event description category title",
         "type": "text",
         "placeholders": {}
     },
-    "eventStatus": "Event Status",
+    "eventStatus": "Estado del evento",
     "@eventStatus": {
         "description": "Event status category title",
         "type": "text",
         "placeholders": {}
     },
-    "eventStatusNode": "Node",
+    "eventStatusNode": "Nodo",
     "@eventStatusNode": {
         "description": "The node that the event is taking place in",
         "type": "text",
         "placeholders": {}
     },
-    "eventStatusProgress": "Progress",
+    "eventStatusProgress": "Progreso",
     "@eventStatusProgress": {
         "description": "The progress of the current event from 0 to 100 %",
         "type": "text",
         "placeholders": {}
     },
-    "eventStatusEta": "Time left (ETA)",
+    "eventStatusEta": "Tiempo restante (estimado)",
     "@eventStatusEta": {
         "description": "Current events remaining estimated time",
         "type": "text",
         "placeholders": {}
     },
-    "eventRewards": "Rewards",
+    "eventRewards": "Recompensas",
     "@eventRewards": {
         "description": "Event reward title",
         "type": "text",
