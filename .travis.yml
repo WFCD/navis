@@ -6,6 +6,7 @@ android:
   components:
     - build-tools-28.0.3
     - android-28
+    - android-29
   licenses:
     - android-sdk-preview-license-.+
     - android-sdk-license-.+
@@ -19,9 +20,6 @@ before_script:
   - if [  ! -d "flutter" ] ; then git clone https://github.com/flutter/flutter.git -b
     stable; fi;
   - export PATH=./flutter/bin:$PATH
-  - flutter pub get
-  - flutter pub run intl_translation:generate_from_arb --output-dir=lib/generated/intl --no-use-deferred-loading
-    lib/generated/l10n.dart lib/l10n/intl_*.arb
 jobs:
   include:
     - name: Test
