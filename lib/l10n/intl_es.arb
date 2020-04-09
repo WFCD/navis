@@ -186,19 +186,19 @@
             "date": {}
         }
     },
-    "kuvaBanner": "Kuva will refresh in",
+    "kuvaBanner": "El kuva se actualizará en",
     "@kuvaBanner": {
         "description": "Kuva refresh countdown title",
         "type": "text",
         "placeholders": {}
     },
-    "formorianTitle": "Formorian",
+    "formorianTitle": "Fomoré",
     "@formorianTitle": {
         "description": "Formorian progress title",
         "type": "text",
         "placeholders": {}
     },
-    "razorbackTitle": "Razerback",
+    "razorbackTitle": "Razorback",
     "@razorbackTitle": {
         "description": "Razorback progress title",
         "type": "text",
