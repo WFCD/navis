@@ -194,7 +194,7 @@
     },
     "formorianTitle": "Formorian",
     "@formorianTitle": {
-        "description": "Formorian progress title",
+        "description": "Fomorian progress title",
         "type": "text",
         "placeholders": {}
     },
