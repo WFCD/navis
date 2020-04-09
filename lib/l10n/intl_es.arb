@@ -160,13 +160,13 @@
         "type": "text",
         "placeholders": {}
     },
-    "baroLeavesOn": "Se va en",
+    "baroLeavesOn": "Se va a las",
     "@baroLeavesOn": {
         "description": "shows when Baro Ki'Teer is leaving",
         "type": "text",
         "placeholders": {}
     },
-    "baroArrivesOn": "Llega en",
+    "baroArrivesOn": "Llega a las",
     "@baroArrivesOn": {
         "description": "shows at when Baro Ki'Teer will arrive",
         "type": "text",
