@@ -26,31 +26,31 @@
         "type": "text",
         "placeholders": {}
     },
-    "acolyteCurrentLocation": "Current location",
+    "acolyteCurrentLocation": "Текущее местоположение",
     "@acolyteCurrentLocation": {
         "description": "Acolyte's current location",
         "type": "text",
         "placeholders": {}
     },
-    "acolytePassLocation": "Last seen location",
+    "acolytePassLocation": "Последнее местоположение",
     "@acolytePassLocation": {
         "description": "Acolyte's pass location",
         "type": "text",
         "placeholders": {}
     },
-    "acolyteFound": "Found",
+    "acolyteFound": "Найдено",
     "@acolyteFound": {
         "description": "The elapsed time after an acolyte was found",
         "type": "text",
         "placeholders": {}
     },
-    "acolyteLastSeen": "Last seen",
+    "acolyteLastSeen": "Последние действия",
     "@acolyteLastSeen": {
         "description": "The elapsed time since the acolyte was last seen",
         "type": "text",
         "placeholders": {}
     },
-    "acolyteHealth": "Health",
+    "acolyteHealth": "Здравоохранение",
     "@acolyteHealth": {
         "description": "Acolytes remaining health",
         "type": "text",
@@ -192,13 +192,13 @@
         "type": "text",
         "placeholders": {}
     },
-    "formorianTitle": "Formorian",
+    "formorianTitle": "Fomorian",
     "@formorianTitle": {
-        "description": "Formorian progress title",
+        "description": "Fomorian progress title",
         "type": "text",
         "placeholders": {}
     },
-    "razorbackTitle": "Razerback",
+    "razorbackTitle": "Razorback",
     "@razorbackTitle": {
         "description": "Razorback progress title",
         "type": "text",
