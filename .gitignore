@@ -26,6 +26,3 @@ ios/Runner/GeneratedPluginRegistrant.h
 .env
 .flutter-plugins-dependencies
 /lib/l10n/messages_*.dart
-packages/warframe_items_model
-packages/wfcd_client
-packages/worldstate_model
