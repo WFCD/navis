@@ -26,7 +26,7 @@ class SkyboxCard extends StatelessWidget {
 
   String getBackgroundPath(String node) {
     const base =
-        'https://raw.githubusercontent.com/WFCD/navis/master/assets/skyboxes/';
+        'https://raw.githubusercontent.com/WFCD/navis/master/assets/skyboxes';
     final nodeRegExp = RegExp(r'\(([^)]*)\)');
     final nodeBackground = nodeRegExp.firstMatch(node)?.group(1);
 
