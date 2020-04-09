@@ -11,8 +11,8 @@ import 'package:navis/features/worldstate/domain/usecases/get_synth_targets.dart
 import 'package:navis/features/worldstate/domain/usecases/get_worldstate.dart';
 import 'package:supercharged/supercharged.dart';
 import 'package:warframe_items_model/warframe_items_model.dart';
-import 'package:worldstate_api_model/misc.dart';
-import 'package:worldstate_api_model/worldstate_models.dart';
+import 'package:worldstate_api_model/entities.dart';
+import 'package:worldstate_api_model/models.dart';
 
 part 'solsystem_event.dart';
 part 'solsystem_state.dart';
@@ -70,12 +70,14 @@ class SolsystemBloc extends HydratedBloc<SyncEvent, SolsystemState> {
 
   @override
   SolsystemState fromJson(Map<String, dynamic> json) {
-    return SolState(worldstate: Worldstate.fromJson(json));
+    return SolState(worldstate: WorldstateModel.fromJson(json));
   }
 
   @override
   Map<String, dynamic> toJson(SolsystemState state) {
-    if (state is SolState) return state.worldstate.toJson();
+    if (state is SolState) {
+      return (state.worldstate as WorldstateModel).toJson();
+    }
 
     return null;
   }

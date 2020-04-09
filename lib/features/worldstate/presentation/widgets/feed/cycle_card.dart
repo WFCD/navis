@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:navis/core/widgets/widgets.dart';
-import 'package:worldstate_api_model/worldstate_objects.dart';
+import 'package:worldstate_api_model/objects.dart';
 
 class CycleCard extends StatelessWidget {
   const CycleCard({Key key, @required this.cycles})

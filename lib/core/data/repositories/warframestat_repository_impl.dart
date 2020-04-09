@@ -8,8 +8,7 @@ import 'package:navis/core/error/failures.dart';
 import 'package:navis/core/network/network_info.dart';
 import 'package:supercharged/supercharged.dart';
 import 'package:warframe_items_model/warframe_items_model.dart';
-import 'package:worldstate_api_model/misc.dart';
-import 'package:worldstate_api_model/worldstate_models.dart';
+import 'package:worldstate_api_model/entities.dart';
 
 typedef CacheCallback<T> = void Function(T toCache);
 typedef ExecuteCallback<T> = Future<T> Function();

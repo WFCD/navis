@@ -4,7 +4,7 @@ import 'package:navis/core/utils/helper_methods.dart';
 import 'package:navis/core/widgets/custom_card.dart';
 import 'package:navis/core/widgets/widgets.dart';
 import 'package:warframe_items_model/warframe_items_model.dart';
-import 'package:worldstate_api_model/worldstate_models.dart';
+import 'package:worldstate_api_model/entities.dart';
 
 class DarvoDealCard extends StatefulWidget {
   const DarvoDealCard({Key key, this.deals, this.items}) : super(key: key);

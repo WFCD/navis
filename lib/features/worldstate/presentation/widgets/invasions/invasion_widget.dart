@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:worldstate_api_model/worldstate_models.dart';
+import 'package:worldstate_api_model/entities.dart';
 
 import 'invasion_progress.dart';
 import 'invasion_rewards.dart';
@@ -70,8 +70,8 @@ class _InvasionWidgetState extends State<InvasionWidget>
           ),
           const Spacer(),
           InvasionReward(
-            attackerReward: widget.invasion.attackerReward.itemString,
-            defenderReward: widget.invasion.defenderReward.itemString,
+            attackerReward: widget.invasion.attackerReward,
+            defenderReward: widget.invasion.defenderReward,
             attackingFaction: widget.invasion.attackingFaction,
             defendingFaction: widget.invasion.defendingFaction,
           ),

@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:navis/core/widgets/widgets.dart';
 import 'package:navis/features/worldstate/presentation/pages/acolyte_profile.dart';
 import 'package:navis/generated/l10n.dart';
-import 'package:worldstate_api_model/worldstate_models.dart';
+import 'package:worldstate_api_model/entities.dart';
 
 class AcolyteCard extends StatelessWidget {
   const AcolyteCard({Key key, this.enemies}) : super(key: key);
 
-  final List<PersistentEnemies> enemies;
+  final List<PersistentEnemy> enemies;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +26,7 @@ class AcolyteWidget extends StatefulWidget {
       : assert(enemy != null),
         super(key: key);
 
-  final PersistentEnemies enemy;
+  final PersistentEnemy enemy;
 
   @override
   _AcolyteWidgetState createState() => _AcolyteWidgetState();
@@ -37,7 +37,7 @@ class _AcolyteWidgetState extends State<AcolyteWidget>
   AnimationController _controller;
   Animation<double> _opacity;
 
-  PersistentEnemies get enemy => widget.enemy;
+  PersistentEnemy get enemy => widget.enemy;
 
   bool get _isDiscovered => widget.enemy.isDiscovered;
 

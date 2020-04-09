@@ -7,8 +7,8 @@ import 'package:navis/core/error/exceptions.dart';
 import 'package:navis/core/utils/data_source_utils.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:warframe_items_model/warframe_items_model.dart';
-import 'package:worldstate_api_model/misc.dart';
-import 'package:worldstate_api_model/worldstate_models.dart';
+import 'package:worldstate_api_model/entities.dart';
+import 'package:worldstate_api_model/models.dart';
 
 const Worldstate_Key = 'worldstate';
 const DarvoDeal_ID = 'darvo_id';
@@ -46,10 +46,11 @@ class WarframestatCache implements WarframestateCacheBase {
 
   @override
   void cacheSynthTargets(List<SynthTarget> targets) {
+    final models = targets.map((t) => (t as SynthTargetModel).toJson());
+
     try {
       box.put(SynthTargets_Timestamp, DateTime.now().toIso8601String());
-      box.put(SynthTargets_Key,
-          json.encode(targets.map((t) => t.toJson()).toList()));
+      box.put(SynthTargets_Key, json.encode(models.toList()));
     } catch (error) {
       logError(error.toString());
       rethrow;
@@ -58,9 +59,9 @@ class WarframestatCache implements WarframestateCacheBase {
 
   @override
   void cacheWorldstate(Worldstate worldstate) {
-    box
-        .put(Worldstate_Key, json.encode(worldstate.toJson()))
-        .catchError((Object error) {
+    final model = worldstate as WorldstateModel;
+
+    box.put(Worldstate_Key, json.encode(model)).catchError((Object error) {
       logError(error.toString());
     });
   }

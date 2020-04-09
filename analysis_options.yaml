@@ -4,6 +4,8 @@ analyzer:
   exclude:
     - lib/generated/l10n.dart
     - lib/generated/intl/messages_*.dart
+    - lib/src/**/*g.dart
+    - lib/src/models/**/*.g.dart
 
 linter:
   rules:

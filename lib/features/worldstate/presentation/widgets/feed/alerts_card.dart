@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:navis/core/widgets/row_item.dart';
 import 'package:navis/core/widgets/widgets.dart';
 import 'package:navis/generated/l10n.dart';
-import 'package:worldstate_api_model/worldstate_models.dart';
+import 'package:worldstate_api_model/entities.dart';
 
 class AlertsCard extends StatelessWidget {
   const AlertsCard({Key key, @required this.alerts})

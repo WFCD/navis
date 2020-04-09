@@ -2,20 +2,20 @@ import 'dart:convert';
 
 import 'package:navis/core/utils/worldstate_util.dart';
 import 'package:warframe_items_model/warframe_items_model.dart';
-import 'package:worldstate_api_model/misc.dart';
-import 'package:worldstate_api_model/worldstate_models.dart';
+import 'package:worldstate_api_model/entities.dart';
+import 'package:worldstate_api_model/models.dart';
 
 Worldstate toWorldstate(String data) {
   final state = json.decode(data) as Map<String, dynamic>;
 
-  return cleanState(Worldstate.fromJson(state));
+  return cleanState(WorldstateModel.fromJson(state));
 }
 
 List<SynthTarget> toTargets(String data) {
   final targets =
       (json.decode(data) as List<dynamic>).cast<Map<String, dynamic>>();
 
-  return targets.map<SynthTarget>((t) => SynthTarget.fromJson(t)).toList();
+  return targets.map<SynthTarget>((t) => SynthTargetModel.fromJson(t)).toList();
 }
 
 List<BaseItem> toBaseItems(String data) {

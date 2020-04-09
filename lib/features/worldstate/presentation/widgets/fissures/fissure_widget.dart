@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:navis/core/widgets/widgets.dart';
-import 'package:worldstate_api_model/worldstate_models.dart';
+import 'package:worldstate_api_model/entities.dart';
 
 import 'relic_icons.dart';
 

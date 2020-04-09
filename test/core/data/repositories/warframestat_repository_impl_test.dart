@@ -9,10 +9,10 @@ import 'package:navis/core/domain/repositories/warfamestat_repository.dart';
 import 'package:navis/core/error/exceptions.dart';
 import 'package:navis/core/error/failures.dart';
 import 'package:navis/core/network/network_info.dart';
-import 'package:warframe_items_model/warframe_items_model.dart';
-import 'package:worldstate_api_model/misc.dart';
-import 'package:worldstate_api_model/worldstate_models.dart';
 import 'package:supercharged/supercharged.dart';
+import 'package:warframe_items_model/warframe_items_model.dart';
+import 'package:worldstate_api_model/entities.dart';
+import 'package:worldstate_api_model/models.dart';
 
 import '../../../fixtures/fixture_reader.dart';
 
@@ -63,7 +63,7 @@ void main() {
 
   group('getWorldstate', () {
     const tPlatform = GamePlatforms.pc;
-    final tWorldstate = Worldstate.fromJson(
+    final tWorldstate = WorldstateModel.fromJson(
         json.decode(fixture('worldstate.json')) as Map<String, dynamic>);
 
     runTestOnline(() {
@@ -131,7 +131,7 @@ void main() {
     final tTargets =
         (json.decode(fixture('synthTargets.json')) as List<dynamic>)
             .cast<Map<String, dynamic>>()
-            .map<SynthTarget>((t) => SynthTarget.fromJson(t))
+            .map<SynthTarget>((t) => SynthTargetModel.fromJson(t))
             .toList();
 
     runTestOnline(() {

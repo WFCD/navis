@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:worldstate_api_model/worldstate_models.dart';
+import 'package:worldstate_api_model/entities.dart';
 
 // TODO: maybe add more functionality to Baro's Inventory
 class BaroInventory extends StatefulWidget {
@@ -65,7 +65,7 @@ class InventoryDataSource extends DataTableSource {
     return DataRow.byIndex(
         index: index,
         cells: <DataCell>[
-          DataCell(Text(product.itemName)),
+          DataCell(Text(product.item)),
           DataCell(Text('${product.ducats}')),
           DataCell(Text('${product.credits}cr'))
         ],

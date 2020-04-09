@@ -7,8 +7,7 @@ import 'package:navis/core/error/exceptions.dart';
 import 'package:navis/core/utils/data_source_utils.dart';
 import 'package:navis/core/utils/extensions.dart';
 import 'package:warframe_items_model/warframe_items_model.dart';
-import 'package:worldstate_api_model/misc.dart';
-import 'package:worldstate_api_model/worldstate_models.dart';
+import 'package:worldstate_api_model/entities.dart';
 
 abstract class WarframestatRemoteBase {
   Future<List<SynthTarget>> getSynthTargets();

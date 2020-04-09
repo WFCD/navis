@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:navis/core/widgets/widgets.dart';
-import 'package:worldstate_api_model/worldstate_models.dart';
+import 'package:worldstate_api_model/entities.dart';
 
 class SortieCard extends StatelessWidget {
   const SortieCard({Key key, @required this.sortie})

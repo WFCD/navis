@@ -8,9 +8,11 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   worldstate_api_model:
-    git: https://github.com/SlayerOrnstein/worldstate_model.git
+    path: packages/worldstate_model
   warframe_items_model:
-    git: https://github.com/SlayerOrnstein/warframe_item_models.git
+    path: packages/warframe_items_model
+  wfcd_client:
+    path: packages/wfcd_client
   equatable: ^1.1.1
   flutter_bloc: ^3.2.0
   firebase_crashlytics: ^0.1.3

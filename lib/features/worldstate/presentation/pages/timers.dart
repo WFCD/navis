@@ -5,7 +5,7 @@ import 'package:navis/features/worldstate/presentation/bloc/solsystem_bloc.dart'
 import 'package:navis/features/worldstate/presentation/widgets/feed/feed_cards.dart';
 import 'package:navis/features/worldstate/presentation/widgets/feed/outpost_card.dart';
 import 'package:navis/generated/l10n.dart';
-import 'package:worldstate_api_model/worldstate_models.dart';
+import 'package:worldstate_api_model/entities.dart';
 
 class Timers extends StatelessWidget {
   const Timers({Key key}) : super(key: key);

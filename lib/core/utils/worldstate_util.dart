@@ -1,4 +1,4 @@
-import 'package:worldstate_api_model/worldstate_models.dart';
+import 'package:worldstate_api_model/entities.dart';
 
 Worldstate cleanState(Worldstate state, {String locale = 'en'}) {
   state.alerts.removeWhere((a) {
