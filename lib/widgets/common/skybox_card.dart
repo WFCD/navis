@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:navis/themes.dart';
 
 class SkyboxCard extends StatelessWidget {
@@ -25,11 +26,11 @@ class SkyboxCard extends StatelessWidget {
 
   String getBackgroundPath(String node) {
     const base =
-        'https://raw.githubusercontent.com/WFCD/navis/master/assets/skyboxes';
+        'https://raw.githubusercontent.com/WFCD/navis/master/assets/skyboxes/';
     final nodeRegExp = RegExp(r'\(([^)]*)\)');
     final nodeBackground = nodeRegExp.firstMatch(node)?.group(1);
 
-    return '$base/${nodeBackground.replaceAll(' ', '_')}.webp';
+    return '$base/${Intl.getCurrentLocale() ?? 'en'}/${nodeBackground.replaceAll(' ', '_')}.webp';
   }
 
   Widget _imageBuilder(

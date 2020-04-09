@@ -299,16 +299,16 @@ class NavisLocalizations {
 
   String get formorianTitle {
     return Intl.message(
-      'Formorian',
+      'Fomorian',
       name: 'formorianTitle',
-      desc: 'Formorian progress title',
+      desc: 'Fomorian progress title',
       args: [],
     );
   }
 
   String get razorbackTitle {
     return Intl.message(
-      'Razerback',
+      'Razorback',
       name: 'razorbackTitle',
       desc: 'Razorback progress title',
       args: [],

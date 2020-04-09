@@ -19,54 +19,54 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'es';
 
-  static m0(lastSeenTime) => "${lastSeenTime} minutes ago";
+  static m0(lastSeenTime) => "hace ${lastSeenTime} minutos";
 
-  static m1(agentType, rank) => "${agentType} | level: ${rank}";
+  static m1(agentType, rank) => "${agentType} | Nivel: ${rank}";
 
-  static m2(type, faction, min, max) => "${type} (${faction}) | Level: ${min} - ${max}";
+  static m2(type, faction, min, max) => "${type} (${faction}) | Nivel: ${min} - ${max}";
 
-  static m3(date) => "Ends on ${date}";
+  static m3(date) => "Termina en ${date}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
-    "acolyteCurrentLocation" : MessageLookupByLibrary.simpleMessage("Current location"),
+    "acolyteCurrentLocation" : MessageLookupByLibrary.simpleMessage("Ubicación actual"),
     "acolyteElapsedTime" : m0,
-    "acolyteFound" : MessageLookupByLibrary.simpleMessage("Found"),
-    "acolyteHealth" : MessageLookupByLibrary.simpleMessage("Health"),
-    "acolyteLastSeen" : MessageLookupByLibrary.simpleMessage("Last seen"),
-    "acolytePassLocation" : MessageLookupByLibrary.simpleMessage("Last seen location"),
-    "acolyteRank" : MessageLookupByLibrary.simpleMessage("Acolyte Level"),
+    "acolyteFound" : MessageLookupByLibrary.simpleMessage("Encontrado"),
+    "acolyteHealth" : MessageLookupByLibrary.simpleMessage("Salud"),
+    "acolyteLastSeen" : MessageLookupByLibrary.simpleMessage("Visto por última vez"),
+    "acolytePassLocation" : MessageLookupByLibrary.simpleMessage("Última ubicación conocida"),
+    "acolyteRank" : MessageLookupByLibrary.simpleMessage("Nivel del acólito"),
     "activeAcolyte" : m1,
     "alertInfo" : m2,
-    "baroArrivesOn" : MessageLookupByLibrary.simpleMessage("Arrives on"),
-    "baroArriving" : MessageLookupByLibrary.simpleMessage("Baro Ki\'Teer arrives in"),
-    "baroInventory" : MessageLookupByLibrary.simpleMessage("Baro Ki\'Teeer Inventory"),
-    "baroLeavesOn" : MessageLookupByLibrary.simpleMessage("Leaves on"),
-    "baroLeaving" : MessageLookupByLibrary.simpleMessage("Baro Ki\'Teer leaves in"),
-    "baroLocation" : MessageLookupByLibrary.simpleMessage("Location"),
-    "baroTitle" : MessageLookupByLibrary.simpleMessage("Void trader"),
-    "bountyTitle" : MessageLookupByLibrary.simpleMessage("Bounties"),
-    "cetusCycleTitle" : MessageLookupByLibrary.simpleMessage("Cetus Cycle"),
+    "baroArrivesOn" : MessageLookupByLibrary.simpleMessage("Llega a las"),
+    "baroArriving" : MessageLookupByLibrary.simpleMessage("Baro Ki\'Teer llega en"),
+    "baroInventory" : MessageLookupByLibrary.simpleMessage("Inventario de Baro Ki\'teer"),
+    "baroLeavesOn" : MessageLookupByLibrary.simpleMessage("Se va a las"),
+    "baroLeaving" : MessageLookupByLibrary.simpleMessage("Baro Ki\'Teer se va en"),
+    "baroLocation" : MessageLookupByLibrary.simpleMessage("Ubicación"),
+    "baroTitle" : MessageLookupByLibrary.simpleMessage("Comerciante del vacío"),
+    "bountyTitle" : MessageLookupByLibrary.simpleMessage("Contratos"),
+    "cetusCycleTitle" : MessageLookupByLibrary.simpleMessage("Ciclo de Cetus"),
     "countdownTooltip" : m3,
-    "earthCycleTitle" : MessageLookupByLibrary.simpleMessage("Earth Cycle"),
-    "errorDescription" : MessageLookupByLibrary.simpleMessage("There was unexpected error in core system.\nReporting error to system admin..."),
-    "errorTitle" : MessageLookupByLibrary.simpleMessage("An application error has occurred"),
-    "eventDescription" : MessageLookupByLibrary.simpleMessage("Description"),
-    "eventRewards" : MessageLookupByLibrary.simpleMessage("Rewards"),
-    "eventStatus" : MessageLookupByLibrary.simpleMessage("Event Status"),
-    "eventStatusEta" : MessageLookupByLibrary.simpleMessage("Time left (ETA)"),
-    "eventStatusNode" : MessageLookupByLibrary.simpleMessage("Node"),
-    "eventStatusProgress" : MessageLookupByLibrary.simpleMessage("Progress"),
-    "fissuresTitle" : MessageLookupByLibrary.simpleMessage("Fissures"),
-    "formorianTitle" : MessageLookupByLibrary.simpleMessage("Formorian"),
-    "invasionsTitle" : MessageLookupByLibrary.simpleMessage("Invasions"),
-    "kuvaBanner" : MessageLookupByLibrary.simpleMessage("Kuva will refresh in"),
-    "locating" : MessageLookupByLibrary.simpleMessage("Locating..."),
-    "razorbackTitle" : MessageLookupByLibrary.simpleMessage("Razerback"),
-    "seeDetails" : MessageLookupByLibrary.simpleMessage("See details"),
-    "syndicatesTitle" : MessageLookupByLibrary.simpleMessage("Syndicates"),
-    "tapForMoreDetails" : MessageLookupByLibrary.simpleMessage("Tap for more details"),
-    "timersTitle" : MessageLookupByLibrary.simpleMessage("Timers"),
-    "vallisCycleTitle" : MessageLookupByLibrary.simpleMessage("Vallis Cycle")
+    "earthCycleTitle" : MessageLookupByLibrary.simpleMessage("Ciclo de la Tierra"),
+    "errorDescription" : MessageLookupByLibrary.simpleMessage("Hubo un error inesperado en el sistema central.\nReportando el error al administrador del sistema..."),
+    "errorTitle" : MessageLookupByLibrary.simpleMessage("Ocurrió un error en la aplicación"),
+    "eventDescription" : MessageLookupByLibrary.simpleMessage("Descripción"),
+    "eventRewards" : MessageLookupByLibrary.simpleMessage("Recompensas"),
+    "eventStatus" : MessageLookupByLibrary.simpleMessage("Estado del evento"),
+    "eventStatusEta" : MessageLookupByLibrary.simpleMessage("Tiempo restante (estimado)"),
+    "eventStatusNode" : MessageLookupByLibrary.simpleMessage("Nodo"),
+    "eventStatusProgress" : MessageLookupByLibrary.simpleMessage("Progreso"),
+    "fissuresTitle" : MessageLookupByLibrary.simpleMessage("Fisuras"),
+    "formorianTitle" : MessageLookupByLibrary.simpleMessage("Fomorian"),
+    "invasionsTitle" : MessageLookupByLibrary.simpleMessage("Invasiones"),
+    "kuvaBanner" : MessageLookupByLibrary.simpleMessage("El kuva se actualizará en"),
+    "locating" : MessageLookupByLibrary.simpleMessage("Buscando..."),
+    "razorbackTitle" : MessageLookupByLibrary.simpleMessage("Razorback"),
+    "seeDetails" : MessageLookupByLibrary.simpleMessage("Ver detalles"),
+    "syndicatesTitle" : MessageLookupByLibrary.simpleMessage("Sindicatos"),
+    "tapForMoreDetails" : MessageLookupByLibrary.simpleMessage("Pulsa para más detalles"),
+    "timersTitle" : MessageLookupByLibrary.simpleMessage("Contadores"),
+    "vallisCycleTitle" : MessageLookupByLibrary.simpleMessage("Ciclo de Vallis")
   };
 }

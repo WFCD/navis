@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:navis/utils/helper_utils.dart';
 import 'package:worldstate_api_model/entities.dart';
 
@@ -39,6 +40,8 @@ class NewsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final currentLocale = Intl.getCurrentLocale() ?? 'en';
+
     return InkWell(
       onTap: () => launchLink(news.link),
       child: Stack(
@@ -62,7 +65,7 @@ class NewsWidget extends StatelessWidget {
                 children: <Widget>[
                   const SizedBox(height: 8.0),
                   Text(
-                    '[${news.timestamp} ago] ${news.translations['en']}',
+                    '[${news.timestamp} ago] ${news.translations[currentLocale]}',
                     textAlign: TextAlign.center,
                     style: Theme.of(context)
                         .textTheme

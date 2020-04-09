@@ -1,4 +1,5 @@
 import 'package:collection/collection.dart';
+import 'package:intl/intl.dart';
 import 'package:worldstate_api_model/entities.dart';
 import 'package:worldstate_api_model/objects.dart';
 
@@ -7,7 +8,8 @@ Worldstate cleanState(Worldstate state) {
       a.active == false ||
       a.expiry.difference(DateTime.now().toUtc()) < const Duration(seconds: 1));
 
-  state.news.retainWhere((art) => art.translations['en'] != null);
+  state.news.retainWhere(
+      (art) => art.translations[Intl.getCurrentLocale() ?? 'en'] != null);
   state.news.sort((a, b) => b.date.compareTo(a.date));
 
   state.invasions.retainWhere(
