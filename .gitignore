@@ -25,3 +25,4 @@ ios/Runner/GeneratedPluginRegistrant.m
 ios/Runner/GeneratedPluginRegistrant.h
 .env
 .flutter-plugins-dependencies
+lib/generated/intl/messages_*.dart
