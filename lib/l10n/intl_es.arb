@@ -1,6 +1,6 @@
 {
     "@@last_modified": "2020-03-03T16:56:42.387837",
-    "alertInfo": "{type} ({faction}) | Nivel: {min} - {max}",
+    "alertInfo": "{type} ({faction}) | Level: {min} - {max}",
     "@alertInfo": {
         "description": "The information of the given alert, such as mission type, faction and enemy level",
         "type": "text",
@@ -11,7 +11,7 @@
             "max": {}
         }
     },
-    "activeAcolyte": "{agentType} | Nivel: {rank}",
+    "activeAcolyte": "{agentType} | level: {rank}",
     "@activeAcolyte": {
         "description": "acolyte title with level",
         "type": "text",
@@ -20,49 +20,49 @@
             "rank": {}
         }
     },
-    "locating": "Buscando...",
+    "locating": "Locating...",
     "@locating": {
         "description": "Shows up when an acolyte's current location is unknown, may be used in other parts of the app",
         "type": "text",
         "placeholders": {}
     },
-    "acolyteCurrentLocation": "Ubicación actual",
+    "acolyteCurrentLocation": "Current location",
     "@acolyteCurrentLocation": {
         "description": "Acolyte's current location",
         "type": "text",
         "placeholders": {}
     },
-    "acolytePassLocation": "Última ubicación conocida",
+    "acolytePassLocation": "Last seen location",
     "@acolytePassLocation": {
         "description": "Acolyte's pass location",
         "type": "text",
         "placeholders": {}
     },
-    "acolyteFound": "Encontrado",
+    "acolyteFound": "Found",
     "@acolyteFound": {
         "description": "The elapsed time after an acolyte was found",
         "type": "text",
         "placeholders": {}
     },
-    "acolyteLastSeen": "Visto por última vez",
+    "acolyteLastSeen": "Last seen",
     "@acolyteLastSeen": {
         "description": "The elapsed time since the acolyte was last seen",
         "type": "text",
         "placeholders": {}
     },
-    "acolyteHealth": "Salud",
+    "acolyteHealth": "Health",
     "@acolyteHealth": {
         "description": "Acolytes remaining health",
         "type": "text",
         "placeholders": {}
     },
-    "acolyteRank": "Nivel del acólito",
+    "acolyteRank": "Acolyte Level",
     "@acolyteRank": {
         "description": "An acolyte's current level",
         "type": "text",
         "placeholders": {}
     },
-    "acolyteElapsedTime": "hace {lastSeenTime} minutos",
+    "acolyteElapsedTime": "{lastSeenTime} minutes ago",
     "@acolyteElapsedTime": {
         "description": "Time since acolyte has either been found or last seen",
         "type": "text",
@@ -70,115 +70,115 @@
             "lastSeenTime": {}
         }
     },
-    "tapForMoreDetails": "Pulsa para más detalles",
+    "tapForMoreDetails": "Tap for more details",
     "@tapForMoreDetails": {
         "description": "General description to tell the user that this object takes you to a different page",
         "type": "text",
         "placeholders": {}
     },
-    "seeDetails": "Ver detalles",
+    "seeDetails": "See details",
     "@seeDetails": {
         "description": "General button to see more details of given object",
         "type": "text",
         "placeholders": {}
     },
-    "eventDescription": "Descripción",
+    "eventDescription": "Description",
     "@eventDescription": {
         "description": "Event description category title",
         "type": "text",
         "placeholders": {}
     },
-    "eventStatus": "Estado del evento",
+    "eventStatus": "Event Status",
     "@eventStatus": {
         "description": "Event status category title",
         "type": "text",
         "placeholders": {}
     },
-    "eventStatusNode": "Nodo",
+    "eventStatusNode": "Node",
     "@eventStatusNode": {
         "description": "The node that the event is taking place in",
         "type": "text",
         "placeholders": {}
     },
-    "eventStatusProgress": "Progreso",
+    "eventStatusProgress": "Progress",
     "@eventStatusProgress": {
         "description": "The progress of the current event from 0 to 100 %",
         "type": "text",
         "placeholders": {}
     },
-    "eventStatusEta": "Tiempo restante (estimado)",
+    "eventStatusEta": "Time left (ETA)",
     "@eventStatusEta": {
         "description": "Current events remaining estimated time",
         "type": "text",
         "placeholders": {}
     },
-    "eventRewards": "Recompensas",
+    "eventRewards": "Rewards",
     "@eventRewards": {
         "description": "Event reward title",
         "type": "text",
         "placeholders": {}
     },
-    "bountyTitle": "Contratos",
+    "bountyTitle": "Bounties",
     "@bountyTitle": {
         "description": "Bounty card title.",
         "type": "text",
         "placeholders": {}
     },
-    "errorTitle": "Ocurrió un error en la aplicación",
+    "errorTitle": "An application error has occurred",
     "@errorTitle": {
         "description": "error title",
         "type": "text",
         "placeholders": {}
     },
-    "errorDescription": "Hubo un error inesperado en el sistema central.\nReportando el error al administrador del sistema...",
+    "errorDescription": "There was unexpected error in core system.\nReporting error to system admin...",
     "@errorDescription": {
         "description": "error description",
         "type": "text",
         "placeholders": {}
     },
-    "baroTitle": "Comerciante del vacío",
+    "baroTitle": "Void trader",
     "@baroTitle": {
         "description": "Title for Baro Ki'Teer card",
         "type": "text",
         "placeholders": {}
     },
-    "baroLeaving": "Baro Ki'Teer se va en",
+    "baroLeaving": "Baro Ki'Teer leaves in",
     "@baroLeaving": {
         "description": "displays remaining time before Baro Ki'Teer leaves",
         "type": "text",
         "placeholders": {}
     },
-    "baroArriving": "Baro Ki'Teer llega en",
+    "baroArriving": "Baro Ki'Teer arrives in",
     "@baroArriving": {
         "description": "displays remaining time before Baro Ki'Teer arrives",
         "type": "text",
         "placeholders": {}
     },
-    "baroLocation": "Ubicación",
+    "baroLocation": "Location",
     "@baroLocation": {
         "description": "shows Baro ki'Teer's current location",
         "type": "text",
         "placeholders": {}
     },
-    "baroLeavesOn": "Se va a las",
+    "baroLeavesOn": "Leaves on",
     "@baroLeavesOn": {
         "description": "shows when Baro Ki'Teer is leaving",
         "type": "text",
         "placeholders": {}
     },
-    "baroArrivesOn": "Llega a las",
+    "baroArrivesOn": "Arrives on",
     "@baroArrivesOn": {
         "description": "shows at when Baro Ki'Teer will arrive",
         "type": "text",
         "placeholders": {}
     },
-    "baroInventory": "Inventario de Baro Ki'teer",
+    "baroInventory": "Baro Ki'Teeer Inventory",
     "@baroInventory": {
         "description": "Baro Ki'Teeer Inventory button label",
         "type": "text",
         "placeholders": {}
     },
-    "countdownTooltip": "Termina en {date}",
+    "countdownTooltip": "Ends on {date}",
     "@countdownTooltip": {
         "description": "Countdown tooltip with end date of the current running timer",
         "type": "text",
@@ -186,64 +186,124 @@
             "date": {}
         }
     },
-    "kuvaBanner": "El kuva se actualizará en",
+    "kuvaBanner": "Kuva will refresh in",
     "@kuvaBanner": {
         "description": "Kuva refresh countdown title",
         "type": "text",
         "placeholders": {}
     },
-    "formorianTitle": "Fomorian",
+    "formorianTitle": "Formorian",
     "@formorianTitle": {
         "description": "Fomorian progress title",
         "type": "text",
         "placeholders": {}
     },
-    "razorbackTitle": "Razorback",
+    "razorbackTitle": "Razerback",
     "@razorbackTitle": {
         "description": "Razorback progress title",
         "type": "text",
         "placeholders": {}
     },
-    "earthCycleTitle": "Ciclo de la Tierra",
+    "earthCycleTitle": "Earth Cycle",
     "@earthCycleTitle": {
         "description": "Earth cycle title",
         "type": "text",
         "placeholders": {}
     },
-    "cetusCycleTitle": "Ciclo de Cetus",
+    "cetusCycleTitle": "Cetus Cycle",
     "@cetusCycleTitle": {
         "description": "Cetus cycle title",
         "type": "text",
         "placeholders": {}
     },
-    "vallisCycleTitle": "Ciclo de Vallis",
+    "vallisCycleTitle": "Vallis Cycle",
     "@vallisCycleTitle": {
         "description": "Vallis cycle title",
         "type": "text",
         "placeholders": {}
     },
-    "timersTitle": "Contadores",
+    "timersTitle": "Timers",
     "@timersTitle": {
         "description": "Times title",
         "type": "text",
         "placeholders": {}
     },
-    "fissuresTitle": "Fisuras",
+    "fissuresTitle": "Fissures",
     "@fissuresTitle": {
         "description": "Fissures title",
         "type": "text",
         "placeholders": {}
     },
-    "invasionsTitle": "Invasiones",
+    "invasionsTitle": "Invasions",
     "@invasionsTitle": {
         "description": "Invasions title",
         "type": "text",
         "placeholders": {}
     },
-    "syndicatesTitle": "Sindicatos",
+    "syndicatesTitle": "Syndicates",
     "@syndicatesTitle": {
         "description": "Syndicates title",
         "type": "text",
         "placeholders": {}
+    },
+    "codexTitle": "Codex",
+    "@codexTitle": {
+        "description": "Codex title",
+        "type": "text",
+        "placeholders": {}
+    },
+    "helpfulLinksTitle": "Helpful Links",
+    "@helpfulLinksTitle": {
+        "description": "Helpful Links title",
+        "type": "text",
+        "placeholder": {}
+    },
+    "behaviorTitle": "Behavior",
+    "@behaviorTitle": {
+        "description": "Behavior category title",
+        "type": "text",
+        "placeholder": {}
+    },
+    "themeTitle": "Theme",
+    "@themeTitle": {
+        "description": "Theme title",
+        "type": "text",
+        "placeholder": {}
+    },
+    "themeDescription": "Choose app theme.",
+    "@themeDescription": {
+        "description": "Theme option description",
+        "typ": "text",
+        "placeholder": {}
+    },
+    "backOpensDrawerTitle": "Back button opens drawer",
+    "@backOpensDrawerTitle": {
+        "description": "Title for the option that allows back button to open the drawer",
+        "type": "text",
+        "placeholder": {}
+    },
+    "backOpensDrawerDescription": "Pressing the back button opens the drawer.",
+    "@backOpensDrawerDescription": {
+        "description": "Description for back button opens drawer option",
+        "type": "text",
+        "placeholder": {}
+    },
+    "notificationsTitle": "Notifications",
+    "@notificationsTitle": {
+        "description": "Notifications category title",
+        "type": "text",
+        "placeholder": {}
+    },
+    "rareAlertsTitle": "Rare Alerts",
+    "@rareAlertsTitle": {
+        "description": "Rare Alerts title",
+        "type": "text",
+        "placeholder": {}
+    },
+    "rareAlertsDescription": "Rare alert notifications, mainly gifts of the lotus.",
+    "@rareAlertsDescription": {
+        "description": "Description for rare alerts option",
+        "tpye": "text",
+        "placeholder": {}
     }
 }
