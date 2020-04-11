@@ -26,31 +26,31 @@
         "type": "text",
         "placeholders": {}
     },
-    "acolyteCurrentLocation": "Текущее местоположение",
+    "acolyteCurrentLocation": "Current location",
     "@acolyteCurrentLocation": {
         "description": "Acolyte's current location",
         "type": "text",
         "placeholders": {}
     },
-    "acolytePassLocation": "Последнее местоположение",
+    "acolytePassLocation": "Last seen location",
     "@acolytePassLocation": {
         "description": "Acolyte's pass location",
         "type": "text",
         "placeholders": {}
     },
-    "acolyteFound": "Найдено",
+    "acolyteFound": "Found",
     "@acolyteFound": {
         "description": "The elapsed time after an acolyte was found",
         "type": "text",
         "placeholders": {}
     },
-    "acolyteLastSeen": "Последние действия",
+    "acolyteLastSeen": "Last seen",
     "@acolyteLastSeen": {
         "description": "The elapsed time since the acolyte was last seen",
         "type": "text",
         "placeholders": {}
     },
-    "acolyteHealth": "Здравоохранение",
+    "acolyteHealth": "Health",
     "@acolyteHealth": {
         "description": "Acolytes remaining health",
         "type": "text",
@@ -192,13 +192,13 @@
         "type": "text",
         "placeholders": {}
     },
-    "formorianTitle": "Fomorian",
+    "formorianTitle": "Formorian",
     "@formorianTitle": {
         "description": "Fomorian progress title",
         "type": "text",
         "placeholders": {}
     },
-    "razorbackTitle": "Razorback",
+    "razorbackTitle": "Razerback",
     "@razorbackTitle": {
         "description": "Razorback progress title",
         "type": "text",
@@ -245,5 +245,65 @@
         "description": "Syndicates title",
         "type": "text",
         "placeholders": {}
+    },
+    "codexTitle": "Codex",
+    "@codexTitle": {
+        "description": "Codex title",
+        "type": "text",
+        "placeholders": {}
+    },
+    "helpfulLinksTitle": "Helpful Links",
+    "@helpfulLinksTitle": {
+        "description": "Helpful Links title",
+        "type": "text",
+        "placeholder": {}
+    },
+    "behaviorTitle": "Behavior",
+    "@behaviorTitle": {
+        "description": "Behavior category title",
+        "type": "text",
+        "placeholder": {}
+    },
+    "themeTitle": "Theme",
+    "@themeTitle": {
+        "description": "Theme title",
+        "type": "text",
+        "placeholder": {}
+    },
+    "themeDescription": "Choose app theme.",
+    "@themeDescription": {
+        "description": "Theme option description",
+        "typ": "text",
+        "placeholder": {}
+    },
+    "backOpensDrawerTitle": "Back button opens drawer",
+    "@backOpensDrawerTitle": {
+        "description": "Title for the option that allows back button to open the drawer",
+        "type": "text",
+        "placeholder": {}
+    },
+    "backOpensDrawerDescription": "Pressing the back button opens the drawer.",
+    "@backOpensDrawerDescription": {
+        "description": "Description for back button opens drawer option",
+        "type": "text",
+        "placeholder": {}
+    },
+    "notificationsTitle": "Notifications",
+    "@notificationsTitle": {
+        "description": "Notifications category title",
+        "type": "text",
+        "placeholder": {}
+    },
+    "rareAlertsTitle": "Rare Alerts",
+    "@rareAlertsTitle": {
+        "description": "Rare Alerts title",
+        "type": "text",
+        "placeholder": {}
+    },
+    "rareAlertsDescription": "Rare alert notifications, mainly gifts of the lotus.",
+    "@rareAlertsDescription": {
+        "description": "Description for rare alerts option",
+        "tpye": "text",
+        "placeholder": {}
     }
 }
