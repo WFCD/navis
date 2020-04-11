@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:navis/blocs/bloc.dart';
+import 'package:navis/generated/l10n.dart';
 import 'package:navis/utils/helper_utils.dart';
 
 import '../icons.dart';
@@ -24,6 +25,7 @@ class DrawerOptions extends StatelessWidget {
   Widget build(BuildContext context) {
     const bool isDense = true;
 
+    final local = NavisLocalizations.of(context);
     final navigation = BlocProvider.of<NavigationBloc>(context);
 
     return BlocBuilder(
@@ -40,13 +42,13 @@ class DrawerOptions extends StatelessWidget {
                   selected: state == RouteState.home),
               ListTile(
                 leading: Icon(AppIcons.voidfissure),
-                title: const Text('Fissures'),
+                title: Text(local.fissuresTitle),
                 onTap: () => _onTap(context, RouteEvent.fissures),
                 selected: state == RouteState.fissures,
               ),
               ListTile(
                 leading: Icon(Icons.security),
-                title: const Text('Invasions'),
+                title: Text(local.invasionsTitle),
                 onTap: () => _onTap(context, RouteEvent.invasions),
                 selected: state == RouteState.invasions,
               ),
@@ -58,19 +60,19 @@ class DrawerOptions extends StatelessWidget {
               ),
               ListTile(
                 leading: const Icon(AppIcons.standing),
-                title: const Text('Syndicates'),
+                title: Text(local.syndicatesTitle),
                 onTap: () => _onTap(context, RouteEvent.syndicates),
                 selected: state == RouteState.syndicates,
               ),
               ListTile(
                 leading: const Icon(Icons.search),
-                title: const Text('Codex'),
+                title: Text(local.codexTitle),
                 onTap: () => _onTap(context, RouteEvent.droptable),
                 selected: state == RouteState.droptable,
               ),
               ExpansionTile(
                 leading: Icon(Icons.help),
-                title: const Text('Helpful Links'),
+                title: Text(local.helpfulLinksTitle),
                 onExpansionChanged: (b) async {
                   if (b) {
                     // wait for tile to finish expanding before animating to the bottom

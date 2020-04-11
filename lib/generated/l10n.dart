@@ -377,6 +377,96 @@ class NavisLocalizations {
       args: [],
     );
   }
+
+  String get codexTitle {
+    return Intl.message(
+      'Codex',
+      name: 'codexTitle',
+      desc: 'Codex title',
+      args: [],
+    );
+  }
+
+  String get helpfulLinksTitle {
+    return Intl.message(
+      'Helpful Links',
+      name: 'helpfulLinksTitle',
+      desc: 'Helpful Links title',
+      args: [],
+    );
+  }
+
+  String get behaviorTitle {
+    return Intl.message(
+      'Behavior',
+      name: 'behaviorTitle',
+      desc: 'Behavior category title',
+      args: [],
+    );
+  }
+
+  String get themeTitle {
+    return Intl.message(
+      'Theme',
+      name: 'themeTitle',
+      desc: 'Theme title',
+      args: [],
+    );
+  }
+
+  String get themeDescription {
+    return Intl.message(
+      'Choose app theme.',
+      name: 'themeDescription',
+      desc: 'Theme option description',
+      args: [],
+    );
+  }
+
+  String get backOpensDrawerTitle {
+    return Intl.message(
+      'Back button opens drawer',
+      name: 'backOpensDrawerTitle',
+      desc: 'Title for the option that allows back button to open the drawer',
+      args: [],
+    );
+  }
+
+  String get backOpensDrawerDescription {
+    return Intl.message(
+      'Pressing the back button opens the drawer.',
+      name: 'backOpensDrawerDescription',
+      desc: 'Description for back button opens drawer option',
+      args: [],
+    );
+  }
+
+  String get notificationsTitle {
+    return Intl.message(
+      'Notifications',
+      name: 'notificationsTitle',
+      desc: 'Notifications category title',
+      args: [],
+    );
+  }
+
+  String get rareAlertsTitle {
+    return Intl.message(
+      'Rare Alerts',
+      name: 'rareAlertsTitle',
+      desc: 'Rare Alerts title',
+      args: [],
+    );
+  }
+
+  String get rareAlertsDescription {
+    return Intl.message(
+      'Rare alert notifications, mainly gifts of the lotus.',
+      name: 'rareAlertsDescription',
+      desc: 'Description for rare alerts option',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<NavisLocalizations> {
