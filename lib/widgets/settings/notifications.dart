@@ -3,6 +3,7 @@ import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:navis/blocs/bloc.dart';
 import 'package:navis/constants/notification_filters.dart';
+import 'package:navis/generated/l10n.dart';
 import 'package:navis/services/repository.dart';
 import 'package:navis/widgets/dialogs.dart';
 import 'package:navis/widgets/widgets.dart';
@@ -32,10 +33,12 @@ class Notifications extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final filters = LocalizedFilter(NavisLocalizations.of(context));
+
     return Container(
       child: Column(children: <Widget>[
         const SettingTitle(title: 'Notifications'),
-        for (Map<String, String> m in simple)
+        for (Map<String, String> m in filters.simpleFilters)
           _SimpleNotification(
             name: m['name'],
             description: m['description'],
@@ -76,7 +79,7 @@ class _SimpleNotification extends StatelessWidget {
         return CheckboxListTile(
           title: Text(name),
           subtitle: Text(description),
-          value: persistent.simple[optionKey],
+          value: persistent.simple(optionKey),
           activeColor: Theme.of(context).accentColor,
           onChanged: (b) {
             box.put(optionKey, b);

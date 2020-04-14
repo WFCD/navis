@@ -450,20 +450,92 @@ class NavisLocalizations {
     );
   }
 
-  String get rareAlertsTitle {
+  String get rareAlertsNotificationTitle {
     return Intl.message(
       'Rare Alerts',
-      name: 'rareAlertsTitle',
+      name: 'rareAlertsNotificationTitle',
       desc: 'Rare Alerts title',
       args: [],
     );
   }
 
-  String get rareAlertsDescription {
+  String get rareAlertsNotificationDescription {
     return Intl.message(
       'Rare alert notifications, mainly gifts of the lotus.',
-      name: 'rareAlertsDescription',
+      name: 'rareAlertsNotificationDescription',
       desc: 'Description for rare alerts option',
+      args: [],
+    );
+  }
+
+  String get baroNotificationTitle {
+    return Intl.message(
+      'Baro Ki\'Teer',
+      name: 'baroNotificationTitle',
+      desc: 'Baro\'s notification title',
+      args: [],
+    );
+  }
+
+  String get baroNotificationDescription {
+    return Intl.message(
+      'Notifications for both Baro\'s arrivial and departure.',
+      name: 'baroNotificationDescription',
+      desc: 'Notification description for both Baro\'s arrivial and departure.',
+      args: [],
+    );
+  }
+
+  String get darvoNotificationTitle {
+    return Intl.message(
+      'Darvo\'s Daily Deals',
+      name: 'darvoNotificationTitle',
+      desc: 'Notification title for darvo\'s daily deals',
+      args: [],
+    );
+  }
+
+  String get darvoNotificationDescription {
+    return Intl.message(
+      'Darvo\'s new find of the day.',
+      name: 'darvoNotificationDescription',
+      desc: 'Notification description for Darvo\'s Daily Deal',
+      args: [],
+    );
+  }
+
+  String get sortieNotificationTitle {
+    return Intl.message(
+      'Sortie',
+      name: 'sortieNotificationTitle',
+      desc: 'Notification title for sorties',
+      args: [],
+    );
+  }
+
+  String get sortieNotificationDescription {
+    return Intl.message(
+      'Notifications for new sorties.',
+      name: 'sortieNotificationDescription',
+      desc: 'description for sortie notification option',
+      args: [],
+    );
+  }
+
+  String get sentientOutpostNotificationTitle {
+    return Intl.message(
+      'Sentient Outpost',
+      name: 'sentientOutpostNotificationTitle',
+      desc: 'Notification title for sentient outpost',
+      args: [],
+    );
+  }
+
+  String get sentientOutpostNotificationDescription {
+    return Intl.message(
+      'Notifications for new sentient threats',
+      name: 'sentientOutpostNotificationDescription',
+      desc: 'Notification description for sentient outpost option',
       args: [],
     );
   }

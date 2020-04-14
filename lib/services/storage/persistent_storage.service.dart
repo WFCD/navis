@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:navis/constants/notification_filters.dart' as filters;
 import 'package:navis/constants/storage_keys.dart';
+import 'package:navis/generated/l10n.dart';
 import 'package:navis/services/storage/storage_base.service.dart';
 import 'package:navis/themes.dart';
 import 'package:navis/utils/search_utils.dart';
@@ -77,11 +78,8 @@ class PersistentStorageService extends StorageService {
     };
   }
 
-  Map<String, bool> get simple {
-    return {
-      for (Map<String, String> s in filters.simple)
-        s['key']: _box.get(s['key'], defaultValue: false)
-    };
+  bool simple(String key) {
+    return _box.get(key, defaultValue: false);
   }
 
   Map<String, bool> get cycles {

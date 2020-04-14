@@ -294,16 +294,64 @@
     "type": "text",
     "placeholder": {}
   },
-  "rareAlertsTitle": "Rare Alerts",
-  "@rareAlertsTitle": {
+  "rareAlertsNotificationTitle": "Rare Alerts",
+  "@rareAlertsNotificationTitle": {
     "description": "Rare Alerts title",
     "type": "text",
     "placeholder": {}
   },
-  "rareAlertsDescription": "Rare alert notifications, mainly gifts of the lotus.",
-  "@rareAlertsDescription": {
+  "rareAlertsNotificationDescription": "Rare alert notifications, mainly gifts of the lotus.",
+  "@rareAlertsNotificationDescription": {
     "description": "Description for rare alerts option",
-    "tpye": "text",
+    "type": "text",
+    "placeholder": {}
+  },
+  "baroNotificationTitle": "Baro Ki'Teer",
+  "@baroNotificationTitle": {
+    "description": "Baro's notification title",
+    "type": "text",
+    "placeholder": {}
+  },
+  "baroNotificationDescription": "Notifications for both Baro's arrivial and departure.",
+  "@baroNotificationDescription": {
+    "description": "Notification description for both Baro's arrivial and departure.",
+    "type": "text",
+    "placeholder": {}
+  },
+  "darvoNotificationTitle": "Darvo's Daily Deals",
+  "@darvoNotificationTitle": {
+    "description": "Notification title for darvo's daily deals",
+    "type": "text",
+    "placeholder": {}
+  },
+  "darvoNotificationDescription": "Darvo's new find of the day.",
+  "@darvoNotificationDescription": {
+    "description": "Notification description for Darvo's Daily Deal",
+    "type": "text",
+    "placeholder": {}
+  },
+  "sortieNotificationTitle": "Sortie",
+  "@sortieNotificationTitle": {
+    "description": "Notification title for sorties",
+    "type": "text",
+    "placeholder": {}
+  },
+  "sortieNotificationDescription": "Notifications for new sorties.",
+  "@sortieNotificationDescription": {
+    "description": "description for sortie notification option",
+    "type": "text",
+    "placeholder": {}
+  },
+  "sentientOutpostNotificationTitle": "Sentient Outpost",
+  "@sentientOutpostNotificationTitle": {
+    "description": "Notification title for sentient outpost",
+    "type": "text",
+    "placeholder": {}
+  },
+  "sentientOutpostNotificationDescription": "Notifications for new sentient threats",
+  "@sentientOutpostNotificationDescription": {
+    "description": "Notification description for sentient outpost option",
+    "type": "text",
     "placeholder": {}
   }
 }

@@ -1,32 +1,42 @@
+import 'package:navis/generated/l10n.dart';
+
 import 'storage_keys.dart';
 
-const simple = [
-  {
-    'name': 'Rare Alerts',
-    'description': 'Rare alert notifications, mainly gifts of the lotus.',
-    'key': NotificationKeys.alertsKey
-  },
-  {
-    'name': 'Baro Ki\'Teer',
-    'description': 'For when Baro is arriving or leaving.',
-    'key': NotificationKeys.baroKey
-  },
-  {
-    'name': 'Darvo\'s Daily Deals',
-    'description': 'Darvo\'s new find of the day',
-    'key': NotificationKeys.darvoKey
-  },
-  {
-    'name': 'Sorties',
-    'description': 'Notifications for new sorties.',
-    'key': NotificationKeys.sortiesKey
-  },
-  {
-    'name': 'Sentient Outpost',
-    'description': 'Notifications for new sentient threats',
-    'key': NotificationKeys.sentientOutpost
+class LocalizedFilter {
+  const LocalizedFilter(this.localizations);
+
+  final NavisLocalizations localizations;
+
+  List<Map<String, String>> get simpleFilters {
+    return [
+      {
+        'name': localizations.rareAlertsNotificationTitle,
+        'description': localizations.rareAlertsNotificationDescription,
+        'key': NotificationKeys.alertsKey
+      },
+      {
+        'name': localizations.baroNotificationTitle,
+        'description': localizations.baroNotificationDescription,
+        'key': NotificationKeys.baroKey
+      },
+      {
+        'name': localizations.darvoNotificationTitle,
+        'description': localizations.darvoNotificationDescription,
+        'key': NotificationKeys.darvoKey
+      },
+      {
+        'name': localizations.sortieNotificationTitle,
+        'description': localizations.sortieNotificationDescription,
+        'key': NotificationKeys.sortiesKey
+      },
+      {
+        'name': localizations.sentientOutpostNotificationTitle,
+        'description': localizations.sortieNotificationDescription,
+        'key': NotificationKeys.sentientOutpost
+      }
+    ];
   }
-];
+}
 
 const filtered = {
   'News': 'News notifications for Prime Access, Streams and Updates.',
