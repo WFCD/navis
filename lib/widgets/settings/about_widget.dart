@@ -8,12 +8,17 @@ import 'package:navis/utils/helper_utils.dart';
 import 'package:navis/widgets/icons.dart';
 import 'package:package_info/package_info.dart';
 
-const _legalese = 'Warframe and the Warframe logo are registered trademarks '
-    'of Digital Extremes Ltd. Cephalon Navis nor WFCD are '
-    'affiliated with Digital Extremes Ltd. in any way.';
-
 class About extends StatelessWidget {
   const About({Key key}) : super(key: key);
+
+  static const _mainPage = 'https://github.com/WFCD/navis';
+  static const _issuePage = 'https://github.com/WFCD/navis/issues';
+  static const _warframePage = 'https://www.warframe.com/';
+
+  static const _legalese =
+      'Warframe and the Warframe logo are registered trademarks '
+      'of Digital Extremes Ltd. Cephalon Navis nor WFCD are '
+      'affiliated with Digital Extremes Ltd. in any way.';
 
   @override
   Widget build(BuildContext context) {
@@ -40,16 +45,16 @@ class About extends StatelessWidget {
             TextSpan(style: aboutTextStyle, text: 'Homepage: '),
             _LinkTextSpan(
               style: linkStyle,
-              url: 'https://github.com/WFCD/navis',
-              text: 'https://github.com/WFCD/navis',
+              url: _mainPage,
+              text: _mainPage,
             ),
             TextSpan(
               style: aboutTextStyle,
-              text: '\n\nReport issues or feature request to this prject\'s ',
+              text: '\n\nReport issues or feature request for this project\'s ',
             ),
             _LinkTextSpan(
               style: linkStyle,
-              url: 'https://github.com/WFCD/navis/issues',
+              url: _issuePage,
               text: 'issues tracker',
             ),
             TextSpan(
@@ -59,8 +64,8 @@ class About extends StatelessWidget {
             ),
             _LinkTextSpan(
               style: linkStyle,
-              url: 'https://www.warframe.com/',
-              text: 'https://www.warframe.com/',
+              url: _warframePage,
+              text: _warframePage,
             )
           ]),
         ),
