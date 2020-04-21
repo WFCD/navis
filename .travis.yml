@@ -27,7 +27,7 @@ jobs:
         - flutter pub get
         - flutter test
         - flutter build apk --target-platform android-arm
-        - cd packages/wfcd_client && flutter pub run test
+        - cd packages/wfcd_client && flutter pub get && flutter pub run test
     - name: Deploy
       if: tag IS present
       script:
