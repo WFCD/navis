@@ -1,15 +1,6 @@
 import 'package:warframe_items_model/warframe_items_model.dart';
-import 'package:wfcd_client/enums.dart';
 import 'package:worldstate_api_model/entities.dart';
 import 'package:worldstate_api_model/models.dart';
-
-String platformToString(Platforms platform) {
-  return platform.toString().split('.').last;
-}
-
-String fullPath(Platforms platform, String subject) {
-  return '/${platformToString(platform)}/$subject';
-}
 
 List<BaseItem> toBaseItem(List<dynamic> data) {
   return data.map<BaseItem>((dynamic i) {

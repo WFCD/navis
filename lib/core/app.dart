@@ -3,13 +3,13 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:navis/core/data/datasources/warframestat_remote.dart';
 import 'package:navis/core/widgets/widgets.dart';
 import 'package:navis/features/worldstate/presentation/bloc/solsystem_bloc.dart';
 import 'package:navis/features/worldstate/presentation/pages/acolyte_profile.dart';
 import 'package:navis/features/worldstate/presentation/pages/event.dart';
 import 'package:navis/features/worldstate/presentation/pages/trader_inventory.dart';
 import 'package:navis/generated/l10n.dart';
+import 'package:wfcd_client/base.dart';
 
 import 'home.dart';
 import 'themes/themes.dart';

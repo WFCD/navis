@@ -9,38 +9,34 @@ import 'intl/messages_all.dart';
 // **************************************************************************
 
 class NavisLocalizations {
-  NavisLocalizations(this.localeName);
-
-  static const AppLocalizationDelegate delegate = AppLocalizationDelegate();
+  NavisLocalizations();
+  
+  static const AppLocalizationDelegate delegate =
+    AppLocalizationDelegate();
 
   static Future<NavisLocalizations> load(Locale locale) {
-    final String name = (locale.countryCode?.isEmpty ?? false)
-        ? locale.languageCode
-        : locale.toString();
+    final String name = (locale.countryCode?.isEmpty ?? false) ? locale.languageCode : locale.toString();
     final String localeName = Intl.canonicalizedLocale(name);
     return initializeMessages(localeName).then((_) {
       Intl.defaultLocale = localeName;
-      return NavisLocalizations(localeName);
+      return NavisLocalizations();
     });
-  }
+  } 
 
   static NavisLocalizations of(BuildContext context) {
     return Localizations.of<NavisLocalizations>(context, NavisLocalizations);
   }
 
-  final String localeName;
-
-  String alertInfo(dynamic type, dynamic faction, dynamic min, dynamic max) {
+  String alertInfo(Object type, Object faction, Object min, Object max) {
     return Intl.message(
       '$type ($faction) | Level: $min - $max',
       name: 'alertInfo',
-      desc:
-          'The information of the given alert, such as mission type, faction and enemy level',
+      desc: 'The information of the given alert, such as mission type, faction and enemy level',
       args: [type, faction, min, max],
     );
   }
 
-  String activeAcolyte(dynamic agentType, dynamic rank) {
+  String activeAcolyte(Object agentType, Object rank) {
     return Intl.message(
       '$agentType | level: $rank',
       name: 'activeAcolyte',
@@ -53,8 +49,7 @@ class NavisLocalizations {
     return Intl.message(
       'Locating...',
       name: 'locating',
-      desc:
-          'Shows up when an acolyte\'s current location is unknown, may be used in other parts of the app',
+      desc: 'Shows up when an acolyte\'s current location is unknown, may be used in other parts of the app',
       args: [],
     );
   }
@@ -113,7 +108,7 @@ class NavisLocalizations {
     );
   }
 
-  String acolyteElapsedTime(dynamic lastSeenTime) {
+  String acolyteElapsedTime(Object lastSeenTime) {
     return Intl.message(
       '$lastSeenTime minutes ago',
       name: 'acolyteElapsedTime',
@@ -126,8 +121,7 @@ class NavisLocalizations {
     return Intl.message(
       'Tap for more details',
       name: 'tapForMoreDetails',
-      desc:
-          'General description to tell the user that this object takes you to a different page',
+      desc: 'General description to tell the user that this object takes you to a different page',
       args: [],
     );
   }
@@ -285,7 +279,7 @@ class NavisLocalizations {
     );
   }
 
-  String countdownTooltip(dynamic date) {
+  String countdownTooltip(Object date) {
     return Intl.message(
       'Ends on $date',
       name: 'countdownTooltip',
@@ -305,16 +299,16 @@ class NavisLocalizations {
 
   String get formorianTitle {
     return Intl.message(
-      'Formorian',
+      'Fomorian',
       name: 'formorianTitle',
-      desc: 'Formorian progress title',
+      desc: 'Fomorian progress title',
       args: [],
     );
   }
 
   String get razorbackTitle {
     return Intl.message(
-      'Razerback',
+      'Razorback',
       name: 'razorbackTitle',
       desc: 'Razorback progress title',
       args: [],
@@ -385,31 +379,19 @@ class NavisLocalizations {
   }
 }
 
-class AppLocalizationDelegate
-    extends LocalizationsDelegate<NavisLocalizations> {
+class AppLocalizationDelegate extends LocalizationsDelegate<NavisLocalizations> {
   const AppLocalizationDelegate();
 
   List<Locale> get supportedLocales {
     return const <Locale>[
-      Locale.fromSubtags(languageCode: 'de'),
-      Locale.fromSubtags(languageCode: 'en'),
-      Locale.fromSubtags(languageCode: 'es'),
-      Locale.fromSubtags(languageCode: 'fr'),
-      Locale.fromSubtags(languageCode: 'it'),
-      Locale.fromSubtags(languageCode: 'ko'),
-      Locale.fromSubtags(languageCode: 'pl'),
-      Locale.fromSubtags(languageCode: 'pt'),
-      Locale.fromSubtags(languageCode: 'ru'),
-      Locale.fromSubtags(languageCode: 'tr'),
-      Locale.fromSubtags(languageCode: 'zh'),
+      Locale.fromSubtags(languageCode: 'en'), Locale.fromSubtags(languageCode: 'de'), Locale.fromSubtags(languageCode: 'es'), Locale.fromSubtags(languageCode: 'fr'), Locale.fromSubtags(languageCode: 'it'), Locale.fromSubtags(languageCode: 'ko'), Locale.fromSubtags(languageCode: 'pl'), Locale.fromSubtags(languageCode: 'pt'), Locale.fromSubtags(languageCode: 'ru'), Locale.fromSubtags(languageCode: 'tr'), Locale.fromSubtags(languageCode: 'zh'),
     ];
   }
 
   @override
   bool isSupported(Locale locale) => _isSupported(locale);
   @override
-  Future<NavisLocalizations> load(Locale locale) =>
-      NavisLocalizations.load(locale);
+  Future<NavisLocalizations> load(Locale locale) => NavisLocalizations.load(locale);
   @override
   bool shouldReload(AppLocalizationDelegate old) => false;
 

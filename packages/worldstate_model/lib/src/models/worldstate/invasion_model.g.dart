@@ -47,6 +47,6 @@ Map<String, dynamic> _$InvasionModelToJson(InvasionModel instance) =>
       'completed': instance.completed,
       'completion': instance.completion,
       'count': instance.count,
-      'attackerReward': instance.attackerRewardInfoModel,
-      'defenderReward': instance.defenderRewardInfoModel,
+      'attackerReward': instance.attackerRewardInfoModel?.toJson(),
+      'defenderReward': instance.defenderRewardInfoModel?.toJson(),
     };

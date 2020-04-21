@@ -91,10 +91,7 @@ class Timers extends StatelessWidget {
                 if (state.activeSiphons) KuvaCard(kuva: worldstate.kuva),
                 TraderCard(trader: worldstate.voidTrader),
                 if (state.activeSales)
-                  DarvoDealCard(
-                    deals: worldstate.dailyDeals,
-                    items: state.dealInfo,
-                  ),
+                  DarvoDealCard(deals: worldstate.dailyDeals),
                 SortieCard(sortie: worldstate.sortie)
               ],
             );

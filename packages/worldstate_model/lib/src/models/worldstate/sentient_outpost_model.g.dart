@@ -29,5 +29,5 @@ Map<String, dynamic> _$SentientOutpostModelToJson(
       'activation': instance.activation?.toIso8601String(),
       'expiry': instance.expiry?.toIso8601String(),
       'active': instance.active,
-      'mission': instance.missionModel,
+      'mission': instance.missionModel?.toJson(),
     };

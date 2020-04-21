@@ -32,5 +32,5 @@ Map<String, dynamic> _$MissionModelToJson(MissionModel instance) =>
       'maxWaveNum': instance.maxWaveNum,
       'nightmare': instance.nightmare,
       'archwingRequired': instance.archwingRequired,
-      'reward': instance.rewardModel,
+      'reward': instance.rewardModel?.toJson(),
     };

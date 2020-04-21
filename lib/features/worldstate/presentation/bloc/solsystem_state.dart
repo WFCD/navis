@@ -15,11 +15,10 @@ class DetectingState extends SolsystemState {
 }
 
 class SolState extends SolsystemState {
-  const SolState({this.worldstate, this.dealInfo, this.synthTargets});
+  const SolState(this.worldstate, this.dealInfo);
 
   final Worldstate worldstate;
   final List<BaseItem> dealInfo;
-  final List<SynthTarget> synthTargets;
 
   bool get activeAcolytes => worldstate.persistentEnemies?.isNotEmpty ?? false;
 
@@ -53,18 +52,6 @@ class SolState extends SolsystemState {
           return 1;
         }
       });
-  }
-
-  SolState copyWith({
-    Worldstate worldstate,
-    List<BaseItem> dealInfo,
-    List<SynthTarget> synthTargets,
-  }) {
-    return SolState(
-      worldstate: worldstate ?? this.worldstate,
-      dealInfo: dealInfo ?? this.dealInfo,
-      synthTargets: synthTargets ?? this.synthTargets,
-    );
   }
 
   @override

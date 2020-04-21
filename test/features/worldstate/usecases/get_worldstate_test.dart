@@ -1,36 +1,37 @@
+import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
-import 'package:navis/core/data/datasources/warframestat_remote.dart';
-import 'package:navis/core/domain/repositories/warfamestat_repository.dart';
 import 'package:navis/core/utils/data_source_utils.dart';
+import 'package:navis/features/worldstate/domain/repositories/worldstate_repository.dart';
 import 'package:navis/features/worldstate/domain/usecases/get_worldstate.dart';
+import 'package:wfcd_client/base.dart';
+import 'package:worldstate_api_model/entities.dart';
 
 import '../../../fixtures/fixture_reader.dart';
 
-class MockWarframestatRepository extends Mock
-    implements WarframestatRepository {}
+class MockWorldstateRepository extends Mock implements WorldstateRepository {}
 
 void main() {
   GetWorldstate getWorldstate;
-  WarframestatRepository mockRepository;
+  WorldstateRepository mockRepository;
 
   setUp(() {
-    mockRepository = MockWarframestatRepository();
+    mockRepository = MockWorldstateRepository();
     getWorldstate = GetWorldstate(mockRepository);
   });
 
   final tWorldstate = toWorldstate(fixture('worldstate.json'));
-  const tInstance = GetWorldstateInstance(GamePlatforms.pc, locale: 'en');
+  const tInstance = GetWorldstateInstance(GamePlatforms.pc, lang: 'en');
 
   test('should get worldstate from repository', () async {
     when(mockRepository.getWorldstate(any))
-        .thenAnswer((_) async => tWorldstate);
+        .thenAnswer((_) async => Right(tWorldstate));
 
     final result = await getWorldstate(tInstance);
 
-    expect(result, equals(tWorldstate));
-    verify(mockRepository.getWorldstate(tInstance.platform,
-        locale: tInstance.locale));
+    expect(result, equals(Right<Exception, Worldstate>(tWorldstate)));
+    verify(
+        mockRepository.getWorldstate(tInstance.platform, lang: tInstance.lang));
     verifyNoMoreInteractions(mockRepository);
   });
 }

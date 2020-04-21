@@ -1,31 +1,47 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/core/utils/helper_methods.dart';
 import 'package:navis/core/widgets/custom_card.dart';
 import 'package:navis/core/widgets/widgets.dart';
+import 'package:navis/features/worldstate/presentation/bloc/solsystem_bloc.dart';
 import 'package:warframe_items_model/warframe_items_model.dart';
 import 'package:worldstate_api_model/entities.dart';
+import 'package:supercharged/supercharged.dart';
 
 class DarvoDealCard extends StatefulWidget {
-  const DarvoDealCard({Key key, this.deals, this.items}) : super(key: key);
+  const DarvoDealCard({Key key, this.deals}) : super(key: key);
 
   final List<DarvoDeal> deals;
-  final List<BaseItem> items;
 
   @override
   _DarvoDealCardState createState() => _DarvoDealCardState();
 }
 
 class _DarvoDealCardState extends State<DarvoDealCard> {
+  List<BaseItem> items = [];
+
+  Future<void> getInformation() async {
+    final info = await context.bloc<SolsystemBloc>().getDealInformation();
+
+    items.addAll(info);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    getInformation();
+  }
+
   @override
   Widget build(BuildContext context) {
     final deal = widget.deals.first;
-    final item = widget.items.first;
 
     return CustomCard(
       child: DealWidget(
         deal: deal,
-        item: item,
+        item: items.firstOrNull(),
       ),
     );
   }
@@ -48,7 +64,7 @@ class DealWidget extends StatelessWidget {
 
     final primary = Theme.of(context).primaryColor;
 
-    final urlExist = item.wikiaUrl != null;
+    final urlExist = item?.wikiaUrl != null;
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 4.0, vertical: 4.0),
@@ -56,8 +72,8 @@ class DealWidget extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           DealDetails(
-            itemName: item.name,
-            itemDescription: parseHtmlString(item.description),
+            itemName: item?.name ?? '',
+            itemDescription: parseHtmlString(item?.description ?? ''),
           ),
           const SizedBox(height: 16.0),
           Row(

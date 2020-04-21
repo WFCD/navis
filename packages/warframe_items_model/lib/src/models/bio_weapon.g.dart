@@ -58,6 +58,8 @@ Map<String, dynamic> _$BioWeaponToJson(BioWeapon instance) => <String, dynamic>{
       'category': instance.category,
       'tradable': instance.tradable,
       'patchlogs': instance.patchlogs?.map((e) => e?.toJson())?.toList(),
+      'wikiaUrl': instance.wikiaUrl,
+      'wikiaThumbnail': instance.wikiaThumbnail,
       'aura': instance.aura,
       'health': instance.health,
       'shield': instance.shield,
@@ -76,7 +78,5 @@ Map<String, dynamic> _$BioWeaponToJson(BioWeapon instance) => <String, dynamic>{
       'passiveDescription': instance.passiveDescription,
       'introduced': instance.introduced,
       'sex': instance.sex,
-      'wikiaThumbnail': instance.wikiaThumbnail,
-      'wikiaUrl': instance.wikiaUrl,
       'color': instance.color,
     };

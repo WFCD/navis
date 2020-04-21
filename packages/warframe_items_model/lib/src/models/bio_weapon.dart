@@ -72,6 +72,7 @@ class BioWeapon extends BaseItem {
   List<Object> get props {
     return super.props
       ..addAll([
+        aura,
         health,
         shield,
         armor,
@@ -83,7 +84,13 @@ class BioWeapon extends BaseItem {
         skipBuildTimePrice,
         buildQuantity,
         consumeOnBuild,
-        components
+        components,
+        abilities,
+        polarities,
+        passiveDescription,
+        introduced,
+        sex,
+        color
       ]);
   }
 }

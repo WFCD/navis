@@ -3,14 +3,13 @@ import 'dart:async';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
-import 'package:navis/core/data/datasources/warframestat_remote.dart';
 import 'package:navis/core/error/failures.dart';
-import 'package:navis/core/usecases/usecases.dart';
 import 'package:navis/features/worldstate/domain/usecases/get_darvo_deal_info.dart';
 import 'package:navis/features/worldstate/domain/usecases/get_synth_targets.dart';
 import 'package:navis/features/worldstate/domain/usecases/get_worldstate.dart';
 import 'package:supercharged/supercharged.dart';
 import 'package:warframe_items_model/warframe_items_model.dart';
+import 'package:wfcd_client/base.dart';
 import 'package:worldstate_api_model/entities.dart';
 import 'package:worldstate_api_model/models.dart';
 
@@ -44,17 +43,11 @@ class SolsystemBloc extends HydratedBloc<SyncEvent, SolsystemState> {
   ) async* {
     if (event is SyncSystemStatus) {
       final instance =
-          GetWorldstateInstance(event.platform, locale: currentLocale);
+          GetWorldstateInstance(event.platform, lang: currentLocale);
       try {
-        final worldstate = await getWorldstate(instance);
-        final dealInfo = await _getDealInformation(worldstate.dailyDeals);
-        final synthTargets = await getSynthTargets(NoParama());
+        final either = await getWorldstate(instance);
 
-        yield SolState(
-          worldstate: worldstate,
-          dealInfo: dealInfo,
-          synthTargets: synthTargets,
-        );
+        yield either.fold((l) => throw Exception(), (r) => SolState(r, null));
       } on ServerFailure {
         yield const SystemError(SERVER_FAILURE_MESSAGE);
       } on CacheFailure {
@@ -68,9 +61,28 @@ class SolsystemBloc extends HydratedBloc<SyncEvent, SolsystemState> {
     await Future<void>.delayed(1.seconds);
   }
 
+  Future<List<BaseItem>> getDealInformation() async {
+    if (state is SolState) {
+      final deals = (state as SolState).worldstate.dailyDeals;
+      final info = <BaseItem>[];
+
+      for (final deal in deals) {
+        final request = DealRequest(deal.id, deal.item);
+        final either = await getDarvoDealInfo(request);
+
+        either.fold((l) => throw Exception(), (r) => info.add(r));
+      }
+
+      return info;
+    } else {
+      //TODO: return cached versions if possible
+      return null;
+    }
+  }
+
   @override
   SolsystemState fromJson(Map<String, dynamic> json) {
-    return SolState(worldstate: WorldstateModel.fromJson(json));
+    return SolState(WorldstateModel.fromJson(json), null);
   }
 
   @override
@@ -80,16 +92,5 @@ class SolsystemBloc extends HydratedBloc<SyncEvent, SolsystemState> {
     }
 
     return null;
-  }
-
-  Future<List<BaseItem>> _getDealInformation(List<DarvoDeal> deals) async {
-    final info = <BaseItem>[];
-
-    for (final deal in deals) {
-      final request = DealRequest(deal.id, deal.item);
-      info.add(await getDarvoDealInfo(request));
-    }
-
-    return info;
   }
 }

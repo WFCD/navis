@@ -20,5 +20,5 @@ SynthTargetModel _$SynthTargetModelFromJson(Map<String, dynamic> json) {
 Map<String, dynamic> _$SynthTargetModelToJson(SynthTargetModel instance) =>
     <String, dynamic>{
       'name': instance.name,
-      'locations': instance.locationModels,
+      'locations': instance.locationModels?.map((e) => e?.toJson())?.toList(),
     };

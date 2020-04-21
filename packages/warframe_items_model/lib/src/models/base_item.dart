@@ -57,7 +57,9 @@ class BaseItem extends Equatable {
       imageName,
       category,
       tradable,
-      patchlogs
+      patchlogs,
+      wikiaUrl,
+      wikiaThumbnail,
     ];
   }
 }
