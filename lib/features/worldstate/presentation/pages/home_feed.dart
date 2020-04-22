@@ -19,11 +19,14 @@ class _HomeFeedPageState extends State<HomeFeedPage>
     with SingleTickerProviderStateMixin {
   static const _pages = [Timers(), FissuresPage(), InvasionsPage(), SizedBox()];
 
+  List<Tab> tabs;
   TabController _tabController;
 
   @override
   void initState() {
     super.initState();
+
+    tabs = Tabs.values.map((t) => Tab(text: _getTabLocale(t))).toList();
     _tabController = TabController(length: Tabs.values.length, vsync: this);
   }
 
@@ -44,8 +47,6 @@ class _HomeFeedPageState extends State<HomeFeedPage>
 
   @override
   Widget build(BuildContext context) {
-    final tabs = Tabs.values.map((t) => Tab(text: _getTabLocale(t))).toList();
-
     return NestedScrollView(
       headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
         return <Widget>[
