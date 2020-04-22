@@ -3,15 +3,17 @@ import 'dart:io';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
-import 'package:navis/core/network/network_info.dart';
-import 'package:navis/features/worldstate/domain/repositories/worldstate_repository.dart';
 import 'package:warframe_items_model/warframe_items_model.dart';
 import 'package:wfcd_client/base.dart';
 import 'package:wfcd_client/locals.dart';
 import 'package:wfcd_client/remotes.dart';
+import 'package:wfcd_client/exceptions.dart';
 import 'package:worldstate_api_model/entities.dart';
 
-//TODO: replace Exceptions wiht custom ones
+import '../../../../core/error/failures.dart';
+import '../../../../core/network/network_info.dart';
+import '../../domain/repositories/worldstate_repository.dart';
+
 class WorldstateRepositoryImpl implements WorldstateRepository {
   WorldstateRepositoryImpl(this.networkInfo, this.cache);
 
@@ -19,7 +21,7 @@ class WorldstateRepositoryImpl implements WorldstateRepository {
   final WarframestatCache cache;
 
   @override
-  Future<Either<Exception, List<SynthTarget>>> getSynthTargets() async {
+  Future<Either<Failure, List<SynthTarget>>> getSynthTargets() async {
     return run<List<SynthTarget>, void>(
       _getTargets,
       null,
@@ -29,7 +31,7 @@ class WorldstateRepositoryImpl implements WorldstateRepository {
   }
 
   @override
-  Future<Either<Exception, Worldstate>> getWorldstate(GamePlatforms platform,
+  Future<Either<Failure, Worldstate>> getWorldstate(GamePlatforms platform,
       {String lang = 'en'}) async {
     final request = _WorldstateRequest(platform, lang: lang);
 
@@ -42,22 +44,23 @@ class WorldstateRepositoryImpl implements WorldstateRepository {
   }
 
   @override
-  Future<Either<Exception, BaseItem>> getDealInfo(
-      String id, String name) async {
+  Future<Either<Failure, BaseItem>> getDealInfo(String id, String name) async {
     if (await networkInfo.isConnected) {
       try {
         final item = await compute(_getDealInfo, name);
         cache.cacheDealInfo(id, item);
 
         return Right(item);
+      } on StateException {
+        return Left(ServerFailure());
       } on SocketException {
-        return Left(Exception());
+        return Left(OfflineFailure());
       }
     } else {
       try {
         return Right(cache.getCachedDeal());
-      } catch (e) {
-        return Left(Exception());
+      } on NotCachedException {
+        return Left(CacheFailure());
       }
     }
   }
@@ -83,7 +86,7 @@ class WorldstateRepositoryImpl implements WorldstateRepository {
         .firstWhere((r) => r.name.toLowerCase().contains(name.toLowerCase()));
   }
 
-  Future<Either<Exception, T>> run<T, P>(
+  Future<Either<Failure, T>> run<T, P>(
     Future<T> Function(P) callback,
     P param,
     void Function(T) caching,
@@ -96,13 +99,13 @@ class WorldstateRepositoryImpl implements WorldstateRepository {
 
         return Right(result);
       } on SocketException {
-        return Left(Exception());
+        return Left(OfflineFailure());
       }
     } else {
       try {
         return Right(restore());
       } catch (e) {
-        return Left(Exception());
+        return Left(CacheFailure());
       }
     }
   }

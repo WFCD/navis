@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
+import 'package:navis/core/error/failures.dart';
 import 'package:navis/core/usecases/usecases.dart';
 import 'package:navis/features/worldstate/domain/repositories/worldstate_repository.dart';
 import 'package:wfcd_client/base.dart';
@@ -11,7 +12,7 @@ class GetWorldstate extends Usecase<Worldstate, GetWorldstateInstance> {
   final WorldstateRepository repository;
 
   @override
-  Future<Either<Exception, Worldstate>> call(GetWorldstateInstance instance) {
+  Future<Either<Failure, Worldstate>> call(GetWorldstateInstance instance) {
     return repository.getWorldstate(instance.platform, lang: instance.lang);
   }
 }

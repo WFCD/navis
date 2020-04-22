@@ -1,6 +1,7 @@
 import 'package:hive/hive.dart';
 import 'package:warframe_items_model/warframe_items_model.dart';
 import 'package:wfcd_client/src/base/local/warframestate_local_base.dart';
+import 'package:wfcd_client/src/exceptions/exceptions.dart';
 import 'package:worldstate_api_model/entities.dart';
 import 'package:worldstate_api_model/models.dart';
 
@@ -27,23 +28,23 @@ class WarframestatCache implements WarframestateCacheBase {
 
   @override
   void cacheWorldstate(Worldstate state) {
-    final model = state as WorldstateModel;
-
-    _box.put(_state, model.toJson());
+    _box.put(_state, (state as WorldstateModel).toJson());
   }
 
   @override
-  BaseItem getCachedDeal() {
-    return _box.get(_dealItem) as BaseItem;
-  }
+  BaseItem getCachedDeal() => readDisk<BaseItem>(_dealItem);
 
   @override
-  Worldstate getCachedState() {
-    return _box.get(_state) as WorldstateModel;
-  }
+  Worldstate getCachedState() => readDisk<WorldstateModel>(_state);
 
   @override
-  List<SynthTarget> getCachedTargets() {
-    return _box.get(_targets) as List<SynthTarget>;
+  List<SynthTarget> getCachedTargets() => readDisk<List<SynthTarget>>(_targets);
+
+  T readDisk<T>(String key) {
+    final cache = _box.get(key) as T;
+
+    if (cache == null) throw NotCachedException();
+
+    return cache;
   }
 }

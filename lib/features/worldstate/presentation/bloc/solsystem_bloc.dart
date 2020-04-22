@@ -3,16 +3,18 @@ import 'dart:async';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
-import 'package:navis/core/error/failures.dart';
-import 'package:navis/core/utils/worldstate_util.dart';
-import 'package:navis/features/worldstate/domain/usecases/get_darvo_deal_info.dart';
-import 'package:navis/features/worldstate/domain/usecases/get_synth_targets.dart';
-import 'package:navis/features/worldstate/domain/usecases/get_worldstate.dart';
+import 'package:intl/intl.dart';
 import 'package:supercharged/supercharged.dart';
 import 'package:warframe_items_model/warframe_items_model.dart';
 import 'package:wfcd_client/base.dart';
 import 'package:worldstate_api_model/entities.dart';
 import 'package:worldstate_api_model/models.dart';
+
+import '../../../../core/error/exceptions.dart';
+import '../../../../core/error/failures.dart';
+import '../../../../core/utils/worldstate_util.dart';
+import '../../domain/usecases/get_darvo_deal_info.dart';
+import '../../domain/usecases/get_worldstate.dart';
 
 part 'solsystem_event.dart';
 part 'solsystem_state.dart';
@@ -24,16 +26,11 @@ class SolsystemBloc extends HydratedBloc<SyncEvent, SolsystemState> {
   SolsystemBloc({
     @required this.getWorldstate,
     @required this.getDarvoDealInfo,
-    @required this.getSynthTargets,
   })  : assert(getWorldstate != null),
-        assert(getDarvoDealInfo != null),
-        assert(getSynthTargets != null);
+        assert(getDarvoDealInfo != null);
 
   final GetWorldstate getWorldstate;
   final GetDarvoDealInfo getDarvoDealInfo;
-  final GetSynthTargets getSynthTargets;
-
-  String currentLocale;
 
   @override
   SolsystemState get initialState => SolsystemInitial();
@@ -43,18 +40,21 @@ class SolsystemBloc extends HydratedBloc<SyncEvent, SolsystemState> {
     SyncEvent event,
   ) async* {
     if (event is SyncSystemStatus) {
-      final instance =
-          GetWorldstateInstance(event.platform, lang: currentLocale);
+      final instance = GetWorldstateInstance(
+        event.platform,
+        lang: Intl.getCurrentLocale() ?? 'en',
+      );
+
       try {
         final either = await getWorldstate(instance);
 
         yield either.fold(
-          (l) => throw Exception(),
+          (l) => _matchFailure(l),
           (r) => SolState(cleanState(r)),
         );
-      } on ServerFailure {
+      } on ServerException {
         yield const SystemError(SERVER_FAILURE_MESSAGE);
-      } on CacheFailure {
+      } on CacheException {
         yield const SystemError(CACHE_FAILURE_MESSAGE);
       }
     }
@@ -98,5 +98,16 @@ class SolsystemBloc extends HydratedBloc<SyncEvent, SolsystemState> {
     }
 
     return null;
+  }
+
+  SolsystemState _matchFailure(Failure failure) {
+    switch (failure.runtimeType) {
+      case ServerFailure:
+        throw ServerException();
+      case CacheException:
+        throw CacheException();
+      default:
+        throw UnknownException();
+    }
   }
 }

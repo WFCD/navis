@@ -6,7 +6,6 @@ import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:mockito/mockito.dart';
 import 'package:navis/core/utils/data_source_utils.dart';
 import 'package:navis/features/worldstate/domain/usecases/get_darvo_deal_info.dart';
-import 'package:navis/features/worldstate/domain/usecases/get_synth_targets.dart';
 import 'package:navis/features/worldstate/domain/usecases/get_worldstate.dart';
 import 'package:navis/features/worldstate/presentation/bloc/solsystem_bloc.dart';
 import 'package:test/test.dart';
@@ -20,19 +19,14 @@ class MockGetWorldstate extends Mock implements GetWorldstate {}
 // ignore: must_be_immutable
 class MockGetDarvoDealInfo extends Mock implements GetDarvoDealInfo {}
 
-// ignore: must_be_immutable
-class MockGetSynthTargets extends Mock implements GetSynthTargets {}
-
 void main() {
   final tWorldstate = toWorldstate(fixture('worldstate.json'));
-  final tSynthTargets = toTargets(fixture('synthTargets.json'));
   final tResults = toBaseItems(fixture('darvo_deal_test.json'));
 
   const tInstance = GetWorldstateInstance(GamePlatforms.pc, lang: null);
 
   GetWorldstate getWorldstate;
   GetDarvoDealInfo getDarvoDealInfo;
-  GetSynthTargets getSynthTargets;
 
   SolsystemBloc solsystemBloc;
 
@@ -43,17 +37,14 @@ void main() {
 
     getWorldstate = MockGetWorldstate();
     getDarvoDealInfo = MockGetDarvoDealInfo();
-    getSynthTargets = MockGetSynthTargets();
 
     solsystemBloc = SolsystemBloc(
       getWorldstate: getWorldstate,
       getDarvoDealInfo: getDarvoDealInfo,
-      getSynthTargets: getSynthTargets,
     );
 
     when(getWorldstate(any)).thenAnswer((_) async => Right(tWorldstate));
     when(getDarvoDealInfo(any)).thenAnswer((_) async => Right(tResults.first));
-    when(getSynthTargets(any)).thenAnswer((_) async => Right(tSynthTargets));
   });
 
   tearDown(() {
