@@ -73,7 +73,7 @@ class Timers extends StatelessWidget {
             final worldstate = state.worldstate;
 
             return ListView(
-              cacheExtent: 500.0 * 2,
+              cacheExtent: 1000,
               children: <Widget>[
                 if (state.eventsActive) EventCard(events: worldstate.events),
                 if (state.activeAcolytes)
