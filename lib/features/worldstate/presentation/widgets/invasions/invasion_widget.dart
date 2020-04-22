@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:navis/core/widgets/skybox_card.dart';
 import 'package:worldstate_api_model/entities.dart';
 
 import 'invasion_progress.dart';
@@ -57,8 +58,9 @@ class _InvasionWidgetState extends State<InvasionWidget>
   Widget build(BuildContext context) {
     super.build(context);
 
-    return Container(
+    return SkyboxCard(
       height: 200,
+      node: widget.invasion.node,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 24.0),
         child: Column(mainAxisSize: MainAxisSize.min, children: <Widget>[

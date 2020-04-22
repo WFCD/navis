@@ -71,7 +71,7 @@ flutter:
     # - assets/enemies/corpus/
     # - assets/enemies/infestation/
     - assets/enemies/stalker/
-    # - assets/skyboxes/
+    - assets/Derelict.webp
     - assets/event_info.json
     # - assets/maps/
     # - assets/maps/imgs/

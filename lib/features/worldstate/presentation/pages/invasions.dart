@@ -17,7 +17,7 @@ class InvasionsPage extends StatelessWidget {
 
             return ListView.builder(
               itemCount: invasions.length,
-              cacheExtent: 500,
+              cacheExtent: (((invasions.length - 2) * 200) / 2).toDouble(),
               itemBuilder: (BuildContext context, int index) {
                 return InvasionWidget(invasion: invasions[index]);
               },

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:navis/core/widgets/skybox_card.dart';
 import 'package:navis/core/widgets/widgets.dart';
 import 'package:worldstate_api_model/entities.dart';
 
@@ -45,7 +46,9 @@ class FissureWidget extends StatelessWidget {
       shadows: <Shadow>[shadow],
     );
 
-    return CustomCard(
+    return SkyboxCard(
+      node: fissure.node,
+      height: 140,
       child: ListTile(
         leading: Icon(_getIcon(), size: 50),
         title: Text(fissure.node, style: _nodeStyle),
