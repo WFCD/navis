@@ -23,7 +23,7 @@ void main() {
   final tWorldstate = toWorldstate(fixture('worldstate.json'));
   final tResults = toBaseItems(fixture('darvo_deal_test.json'));
 
-  const tInstance = GetWorldstateInstance(GamePlatforms.pc, lang: null);
+  const tInstance = GetWorldstateInstance(GamePlatforms.pc, lang: 'en');
 
   GetWorldstate getWorldstate;
   GetDarvoDealInfo getDarvoDealInfo;
