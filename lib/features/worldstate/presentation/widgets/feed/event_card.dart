@@ -16,7 +16,7 @@ class EventCard extends StatelessWidget {
         for (final event in events)
           ListTile(
             title: Text(event.description),
-            subtitle: Text(event.tooltip ?? ''),
+            subtitle: event.tooltip != null ? Text(event.tooltip) : null,
             trailing: FlatButton(
               onPressed: () {
                 Navigator.of(context)
