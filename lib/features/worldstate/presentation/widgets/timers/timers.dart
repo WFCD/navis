@@ -6,5 +6,6 @@ export 'cycle_card.dart';
 export 'darvo_deal_card.dart';
 export 'event_card.dart';
 export 'kuva_card.dart';
+export 'outpost_card.dart';
 export 'sortie_card.dart';
 export 'trader_card.dart';

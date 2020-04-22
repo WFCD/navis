@@ -4,6 +4,7 @@ import 'package:navis/generated/l10n.dart';
 
 import 'fissures.dart';
 import 'invasions.dart';
+import 'syndicates.dart';
 import 'timers.dart';
 
 enum Tabs { Timers, Fissures, Invasions, Syndicates }
@@ -17,7 +18,12 @@ class HomeFeedPage extends StatefulWidget {
 
 class _HomeFeedPageState extends State<HomeFeedPage>
     with SingleTickerProviderStateMixin {
-  static const _pages = [Timers(), FissuresPage(), InvasionsPage(), SizedBox()];
+  static const _pages = [
+    Timers(),
+    FissuresPage(),
+    InvasionsPage(),
+    SyndicatePage()
+  ];
 
   List<Tab> tabs;
   TabController _tabController;
