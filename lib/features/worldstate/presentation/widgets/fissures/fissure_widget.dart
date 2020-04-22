@@ -10,6 +10,8 @@ class FissureWidget extends StatelessWidget {
 
   final VoidFissure fissure;
 
+  static const height = 140.0;
+
   IconData _getIcon() {
     switch (fissure.tier) {
       case 'Lith':
@@ -48,7 +50,7 @@ class FissureWidget extends StatelessWidget {
 
     return SkyboxCard(
       node: fissure.node,
-      height: 140,
+      height: height,
       child: ListTile(
         leading: Icon(_getIcon(), size: 50),
         title: Text(fissure.node, style: _nodeStyle),

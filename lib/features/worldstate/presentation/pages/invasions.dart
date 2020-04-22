@@ -14,10 +14,12 @@ class InvasionsPage extends StatelessWidget {
         builder: (BuildContext context, SolsystemState state) {
           if (state is SolState) {
             final invasions = state.worldstate.invasions;
+            final cacheExtent =
+                (invasions.length - 2) * (InvasionWidget.height * 2) / 2;
 
             return ListView.builder(
               itemCount: invasions.length,
-              cacheExtent: (((invasions.length - 2) * 200) / 2).toDouble(),
+              cacheExtent: cacheExtent,
               itemBuilder: (BuildContext context, int index) {
                 return InvasionWidget(invasion: invasions[index]);
               },

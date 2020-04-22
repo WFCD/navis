@@ -10,6 +10,8 @@ class InvasionWidget extends StatelessWidget {
 
   final Invasion invasion;
 
+  static const height = 200.0;
+
   Widget _buildDetails(
       BuildContext context, String node, String description, String eta) {
     const shadow = Shadow(offset: Offset(1.0, 0.0), blurRadius: 4.0);
@@ -34,7 +36,7 @@ class InvasionWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SkyboxCard(
-      height: 200,
+      height: height,
       node: invasion.node,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 24.0),
