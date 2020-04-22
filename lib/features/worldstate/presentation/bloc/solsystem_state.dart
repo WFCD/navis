@@ -19,39 +19,23 @@ class SolState extends SolsystemState {
 
   final Worldstate worldstate;
 
-  bool get activeAcolytes => worldstate.persistentEnemies?.isNotEmpty ?? false;
+  bool get activeAcolytes => worldstate.enemyActive;
 
-  bool get activeAlerts => worldstate.alerts?.isNotEmpty ?? false;
+  bool get activeAlerts => worldstate.activeAlerts;
 
-  bool get activeSales => worldstate.dailyDeals?.isNotEmpty ?? false;
+  bool get activeSales => worldstate.isSaleActive;
 
-  bool get activeSiphons => worldstate.kuva?.isNotEmpty ?? false;
+  bool get activeSiphons => worldstate.activeKuva;
 
-  bool get arbitrationActive => worldstate.arbitration?.node != null;
+  bool get arbitrationActive => worldstate.activeArbitration;
 
-  bool get eventsActive => worldstate.events?.isNotEmpty ?? false;
+  bool get eventsActive => worldstate.activeEvents;
 
-  bool get outpostDetected => worldstate.sentientOutposts?.active ?? false;
+  bool get outpostDetected => worldstate.anomalyDetected;
 
-  List<Challenge> get _activeChallenges {
-    return worldstate.nightwave.activeChallenges;
-  }
+  List<Challenge> get nightwaveDailies => worldstate.nightwave?.daily;
 
-  List<Challenge> get nightwaveDailies {
-    return _activeChallenges.where((c) => c.isDaily == true).toList()
-      ..sort((a, b) => a.expiry.compareTo(b.expiry));
-  }
-
-  List<Challenge> get nightwaveWeeklies {
-    return _activeChallenges.where((c) => c.isDaily == null).toList()
-      ..sort((a, b) {
-        if (a.isElite ?? false) {
-          return 0;
-        } else {
-          return 1;
-        }
-      });
-  }
+  List<Challenge> get nightwaveWeeklies => worldstate.nightwave?.weekly;
 
   @override
   List<Object> get props => [worldstate];
