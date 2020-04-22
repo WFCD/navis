@@ -82,6 +82,7 @@ class Timers extends StatelessWidget {
                   constructionProgress:
                       _buildProgress(localizations, worldstate),
                 ),
+                const DailyReward(),
                 if (state.arbitrationActive)
                   ArbitrationCard(arbitration: worldstate.arbitration),
                 if (state.activeAlerts) AlertsCard(alerts: worldstate.alerts),
