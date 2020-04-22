@@ -42,7 +42,7 @@ class SolsystemBloc extends HydratedBloc<SyncEvent, SolsystemState> {
     if (event is SyncSystemStatus) {
       final instance = GetWorldstateInstance(
         event.platform,
-        lang: Intl.getCurrentLocale() ?? 'en',
+        lang: Intl.getCurrentLocale().split('_').first ?? 'en',
       );
 
       try {
