@@ -4,6 +4,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:navis/core/error/failures.dart';
+import 'package:navis/core/utils/worldstate_util.dart';
 import 'package:navis/features/worldstate/domain/usecases/get_darvo_deal_info.dart';
 import 'package:navis/features/worldstate/domain/usecases/get_synth_targets.dart';
 import 'package:navis/features/worldstate/domain/usecases/get_worldstate.dart';
@@ -47,7 +48,10 @@ class SolsystemBloc extends HydratedBloc<SyncEvent, SolsystemState> {
       try {
         final either = await getWorldstate(instance);
 
-        yield either.fold((l) => throw Exception(), (r) => SolState(r, null));
+        yield either.fold(
+          (l) => throw Exception(),
+          (r) => SolState(cleanState(r)),
+        );
       } on ServerFailure {
         yield const SystemError(SERVER_FAILURE_MESSAGE);
       } on CacheFailure {
@@ -82,7 +86,9 @@ class SolsystemBloc extends HydratedBloc<SyncEvent, SolsystemState> {
 
   @override
   SolsystemState fromJson(Map<String, dynamic> json) {
-    return SolState(WorldstateModel.fromJson(json), null);
+    // Because worldstate is cleaned when it's cached there
+    // is no need to clean it when returning from cache
+    return SolState(WorldstateModel.fromJson(json));
   }
 
   @override

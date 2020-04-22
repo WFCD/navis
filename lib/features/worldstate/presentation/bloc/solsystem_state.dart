@@ -15,10 +15,9 @@ class DetectingState extends SolsystemState {
 }
 
 class SolState extends SolsystemState {
-  const SolState(this.worldstate, this.dealInfo);
+  const SolState(this.worldstate);
 
   final Worldstate worldstate;
-  final List<BaseItem> dealInfo;
 
   bool get activeAcolytes => worldstate.persistentEnemies?.isNotEmpty ?? false;
 
@@ -55,7 +54,7 @@ class SolState extends SolsystemState {
   }
 
   @override
-  List<Object> get props => [worldstate, dealInfo];
+  List<Object> get props => [worldstate];
 }
 
 class SystemError extends SolsystemState {
