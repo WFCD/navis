@@ -66,22 +66,25 @@ class SolsystemBloc extends HydratedBloc<SyncEvent, SolsystemState> {
   }
 
   Future<List<BaseItem>> getDealInformation() async {
-    if (state is SolState) {
-      final deals = (state as SolState).worldstate.dailyDeals;
-      final info = <BaseItem>[];
+    final deals = (state as SolState).worldstate?.dailyDeals ?? [];
+    final info = <BaseItem>[];
 
-      for (final deal in deals) {
-        final request = DealRequest(deal.id, deal.item);
-        final either = await getDarvoDealInfo(request);
+    for (final deal in deals) {
+      final request = DealRequest(deal.id, deal.item);
+      final either = await getDarvoDealInfo(request);
 
-        either.fold((l) => throw Exception(), (r) => info.add(r));
-      }
-
-      return info;
-    } else {
-      //TODO: return cached versions if possible
-      return null;
+      either.fold(
+        (l) => info.add(BaseItem(
+          name: deal.item,
+          description: '',
+          type: 'unknown',
+          imageName: '',
+        )),
+        (r) => info.add(r),
+      );
     }
+
+    return info;
   }
 
   @override
