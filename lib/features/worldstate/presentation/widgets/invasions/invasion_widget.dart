@@ -5,36 +5,13 @@ import 'package:worldstate_api_model/entities.dart';
 import 'invasion_progress.dart';
 import 'invasion_rewards.dart';
 
-class InvasionWidget extends StatefulWidget {
+class InvasionWidget extends StatelessWidget {
   const InvasionWidget({Key key, this.invasion}) : super(key: key);
 
   final Invasion invasion;
 
-  @override
-  _InvasionWidgetState createState() => _InvasionWidgetState();
-}
-
-class _InvasionWidgetState extends State<InvasionWidget>
-    with TickerProviderStateMixin, AutomaticKeepAliveClientMixin {
-  Animation<double> _progress;
-  AnimationController _controller;
-
-  @override
-  void initState() {
-    super.initState();
-
-    _controller = AnimationController(
-        duration: const Duration(milliseconds: 300), vsync: this);
-
-    _progress =
-        Tween<double>(begin: 0, end: widget.invasion.completion.toDouble())
-            .chain(CurveTween(curve: Curves.easeInOut))
-            .animate(_controller);
-
-    _controller.forward();
-  }
-
-  Widget _buildDetails(String node, String description, String eta) {
+  Widget _buildDetails(
+      BuildContext context, String node, String description, String eta) {
     const shadow = Shadow(offset: Offset(1.0, 0.0), blurRadius: 4.0);
 
     final _node = Typography.whiteMountainView.subhead
@@ -56,45 +33,36 @@ class _InvasionWidgetState extends State<InvasionWidget>
 
   @override
   Widget build(BuildContext context) {
-    super.build(context);
-
     return SkyboxCard(
       height: 200,
-      node: widget.invasion.node,
+      node: invasion.node,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 24.0),
         child: Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
           const Spacer(),
           _buildDetails(
-            widget.invasion.node,
-            widget.invasion.desc,
-            widget.invasion.eta,
+            context,
+            invasion.node,
+            invasion.desc,
+            invasion.eta,
           ),
           const Spacer(),
           InvasionReward(
-            attackerReward: widget.invasion.attackerReward,
-            defenderReward: widget.invasion.defenderReward,
-            attackingFaction: widget.invasion.attackingFaction,
-            defendingFaction: widget.invasion.defendingFaction,
+            attackerReward: invasion.attackerReward,
+            defenderReward: invasion.defenderReward,
+            attackingFaction: invasion.attackingFaction,
+            defendingFaction: invasion.defendingFaction,
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 4.0, vertical: 8.0),
-            child: AnimatedBuilder(
-              animation: _progress,
-              builder: (BuildContext context, Widget child) {
-                return InvasionProgress(
-                  progress: _progress.value / 100,
-                  attackingFaction: widget.invasion.attackingFaction,
-                  defendingFaction: widget.invasion.defendingFaction,
-                );
-              },
+            child: InvasionProgress(
+              progress: (invasion.completion / 100).toDouble(),
+              attackingFaction: invasion.attackingFaction,
+              defendingFaction: invasion.defendingFaction,
             ),
           ),
         ]),
       ),
     );
   }
-
-  @override
-  bool get wantKeepAlive => true;
 }
