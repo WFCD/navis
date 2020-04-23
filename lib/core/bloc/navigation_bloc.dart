@@ -4,16 +4,16 @@ import 'package:flutter/widgets.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:navis/features/worldstate/presentation/pages/home_feed.dart';
 
-enum NavigationEvent { feed, codex }
+enum NavigationEvent { timers, codex }
 
 class NavigationBloc extends HydratedBloc<NavigationEvent, Widget> {
   static final Map<NavigationEvent, Widget> navigationMap = {
-    NavigationEvent.feed: const HomeFeedPage(),
+    NavigationEvent.timers: const HomeFeedPage(),
     NavigationEvent.codex: Container()
   };
 
   @override
-  Widget get initialState => navigationMap[NavigationEvent.feed];
+  Widget get initialState => navigationMap[NavigationEvent.timers];
 
   @override
   Stream<Widget> transformEvents(Stream<NavigationEvent> events,

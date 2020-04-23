@@ -102,7 +102,7 @@ class DealWidget extends StatelessWidget {
             ButtonBar(
               children: <Widget>[
                 FlatButton(
-                  onPressed: () => launchLink(item.wikiaUrl),
+                  onPressed: () => launchLink(context, item.wikiaUrl),
                   child: const Text('See Wikia'),
                 ),
               ],

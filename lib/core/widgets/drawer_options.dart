@@ -34,36 +34,10 @@ class DrawerOptions extends StatelessWidget {
               ListTile(
                 leading: Icon(Icons.home),
                 title: const Text('Home'),
-                onTap: () => _onTap(context, NavigationEvent.feed),
-                selected:
-                    state == NavigationBloc.navigationMap[NavigationEvent.feed],
+                onTap: () => _onTap(context, NavigationEvent.timers),
+                selected: state ==
+                    NavigationBloc.navigationMap[NavigationEvent.timers],
               ),
-              // ListTile(
-              //   leading: const Icon(NavisSysIcons.voidfissure),
-              //   title: const Text('Fissures'),
-              //   onTap: () => _onTap(context, NavigationEvent.fissures),
-              //   selected: state ==
-              //       NavigationBloc.navigationMap[NavigationEvent.fissures],
-              // ),
-              // ListTile(
-              //   leading: Icon(Icons.security),
-              //   title: const Text('Invasions'),
-              //   onTap: () => _onTap(context, NavigationEvent.invasions),
-              //   selected: state ==
-              //       NavigationBloc.navigationMap[NavigationEvent.invasions],
-              // ),
-              // ListTile(
-              //   leading: Icon(AppIcons.sortie),
-              //   title: const Text('Sorties'),
-              //   onTap: () => _onTap(context, NavigationEvent.sorties),
-              //   selected: state == RouteState.sortie,
-              // ),
-              // ListTile(
-              //   leading: const Icon(AppIcons.standing),
-              //   title: const Text('Syndicates'),
-              //   onTap: () => _onTap(context, NavigationEvent.syndicates),
-              //   selected: state == RouteState.syndicates,
-              // ),
               // ListTile(
               //   leading: const Icon(Icons.search),
               //   title: const Text('Codex'),
@@ -87,24 +61,26 @@ class DrawerOptions extends StatelessWidget {
                 children: <Widget>[
                   ListTile(
                       title: const Text('Plains of Eidolon map'),
-                      dense: true,
-                      onTap: () => launchLink(_poe)),
+                      dense: isDense,
+                      onTap: () => launchLink(context, _poe, pop: true)),
                   ListTile(
                       title: const Text('Orb Vallis map'),
                       dense: isDense,
-                      onTap: () => launchLink(_vallis)),
+                      onTap: () => launchLink(context, _vallis, pop: true)),
                   ListTile(
                       title: const Text('PoE: Fishing Data'),
                       dense: isDense,
-                      onTap: () => launchLink(_poeFishingData)),
+                      onTap: () =>
+                          launchLink(context, _poeFishingData, pop: true)),
                   ListTile(
                       title: const Text('Vallis: Fishing Data'),
                       dense: isDense,
-                      onTap: () => launchLink(_vallisFishingData)),
+                      onTap: () =>
+                          launchLink(context, _vallisFishingData, pop: true)),
                   ListTile(
                       title: const Text('How to Fish'),
                       dense: isDense,
-                      onTap: () => launchLink(_howToFish))
+                      onTap: () => launchLink(context, _howToFish, pop: true))
                 ],
               )
             ],

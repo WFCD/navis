@@ -32,8 +32,14 @@ class _HomeFeedPageState extends State<HomeFeedPage>
   void initState() {
     super.initState();
 
-    tabs = Tabs.values.map((t) => Tab(text: _getTabLocale(t))).toList();
+    // tabs = Tabs.values.map((t) => Tab(text: _getTabLocale(t))).toList();
     _tabController = TabController(length: Tabs.values.length, vsync: this);
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    tabs = Tabs.values.map((t) => Tab(text: _getTabLocale(t))).toList();
   }
 
   String _getTabLocale(Tabs name) {
