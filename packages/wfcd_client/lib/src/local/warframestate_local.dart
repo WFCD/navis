@@ -1,7 +1,6 @@
 import 'package:hive/hive.dart';
 import 'package:warframe_items_model/warframe_items_model.dart';
 import 'package:wfcd_client/src/base/local/warframestate_local_base.dart';
-import 'package:wfcd_client/src/exceptions/exceptions.dart';
 import 'package:worldstate_api_model/entities.dart';
 import 'package:worldstate_api_model/models.dart';
 
