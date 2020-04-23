@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_custom_tabs/flutter_custom_tabs.dart' as customTabs;
+import 'package:flutter_custom_tabs/flutter_custom_tabs.dart' as custom_tabs;
 import 'package:html/parser.dart';
 import 'package:navis/core/themes/colors.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -10,9 +10,9 @@ Future<void> launchLink(BuildContext context, String link,
 
   if (await canLaunch(link)) {
     try {
-      await customTabs.launch(
+      await custom_tabs.launch(
         link,
-        option: const customTabs.CustomTabsOption(
+        option: const custom_tabs.CustomTabsOption(
           toolbarColor: primaryColor,
           enableDefaultShare: true,
           enableUrlBarHiding: true,
