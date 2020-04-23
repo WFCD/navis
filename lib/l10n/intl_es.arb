@@ -194,7 +194,7 @@
     },
     "formorianTitle": "Formorian",
     "@formorianTitle": {
-        "description": "Formorian progress title",
+        "description": "Fomorian progress title",
         "type": "text",
         "placeholders": {}
     },
@@ -245,5 +245,113 @@
         "description": "Syndicates title",
         "type": "text",
         "placeholders": {}
+    },
+    "codexTitle": "Codex",
+    "@codexTitle": {
+        "description": "Codex title",
+        "type": "text",
+        "placeholders": {}
+    },
+    "helpfulLinksTitle": "Helpful Links",
+    "@helpfulLinksTitle": {
+        "description": "Helpful Links title",
+        "type": "text",
+        "placeholder": {}
+    },
+    "behaviorTitle": "Behavior",
+    "@behaviorTitle": {
+        "description": "Behavior category title",
+        "type": "text",
+        "placeholder": {}
+    },
+    "themeTitle": "Theme",
+    "@themeTitle": {
+        "description": "Theme title",
+        "type": "text",
+        "placeholder": {}
+    },
+    "themeDescription": "Choose app theme.",
+    "@themeDescription": {
+        "description": "Theme option description",
+        "typ": "text",
+        "placeholder": {}
+    },
+    "backOpensDrawerTitle": "Back button opens drawer",
+    "@backOpensDrawerTitle": {
+        "description": "Title for the option that allows back button to open the drawer",
+        "type": "text",
+        "placeholder": {}
+    },
+    "backOpensDrawerDescription": "Pressing the back button opens the drawer.",
+    "@backOpensDrawerDescription": {
+        "description": "Description for back button opens drawer option",
+        "type": "text",
+        "placeholder": {}
+    },
+    "notificationsTitle": "Notifications",
+    "@notificationsTitle": {
+        "description": "Notifications category title",
+        "type": "text",
+        "placeholder": {}
+    },
+    "rareAlertsNotificationTitle": "Rare Alerts",
+    "@rareAlertsNotificationTitle": {
+        "description": "Rare Alerts title",
+        "type": "text",
+        "placeholder": {}
+    },
+    "rareAlertsNotificationDescription": "Rare alert notifications, mainly gifts of the lotus.",
+    "@rareAlertsNotificationDescription": {
+        "description": "Description for rare alerts option",
+        "type": "text",
+        "placeholder": {}
+    },
+    "baroNotificationTitle": "Baro Ki'Teer",
+    "@baroNotificationTitle": {
+        "description": "Baro's notification title",
+        "type": "text",
+        "placeholder": {}
+    },
+    "baroNotificationDescription": "Notifications for both Baro's arrivial and departure.",
+    "@baroNotificationDescription": {
+        "description": "Notification description for both Baro's arrivial and departure.",
+        "type": "text",
+        "placeholder": {}
+    },
+    "darvoNotificationTitle": "Darvo's Daily Deals",
+    "@darvoNotificationTitle": {
+        "description": "Notification title for darvo's daily deals",
+        "type": "text",
+        "placeholder": {}
+    },
+    "darvoNotificationDescription": "Darvo's new find of the day.",
+    "@darvoNotificationDescription": {
+        "description": "Notification description for Darvo's Daily Deal",
+        "type": "text",
+        "placeholder": {}
+    },
+    "sortieNotificationTitle": "Sortie",
+    "@sortieNotificationTitle": {
+        "description": "Notification title for sorties",
+        "type": "text",
+        "placeholder": {}
+    },
+    "sortieNotificationDescription": "Notifications for new sorties.",
+    "@sortieNotificationDescription": {
+        "description": "description for sortie notification option",
+        "type": "text",
+        "placeholder": {}
+    },
+    "sentientOutpostNotificationTitle": "Sentient Outpost",
+    "@sentientOutpostNotificationTitle": {
+        "description": "Notification title for sentient outpost",
+        "type": "text",
+        "placeholder": {}
+    },
+    "sentientOutpostNotificationDescription": "Notifications for new sentient threats",
+    "@sentientOutpostNotificationDescription": {
+        "description": "Notification description for sentient outpost option",
+        "type": "text",
+        "placeholder": {}
     }
 }

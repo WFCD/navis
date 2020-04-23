@@ -377,6 +377,168 @@ class NavisLocalizations {
       args: [],
     );
   }
+
+  String get codexTitle {
+    return Intl.message(
+      'Codex',
+      name: 'codexTitle',
+      desc: 'Codex title',
+      args: [],
+    );
+  }
+
+  String get helpfulLinksTitle {
+    return Intl.message(
+      'Helpful Links',
+      name: 'helpfulLinksTitle',
+      desc: 'Helpful Links title',
+      args: [],
+    );
+  }
+
+  String get behaviorTitle {
+    return Intl.message(
+      'Behavior',
+      name: 'behaviorTitle',
+      desc: 'Behavior category title',
+      args: [],
+    );
+  }
+
+  String get themeTitle {
+    return Intl.message(
+      'Theme',
+      name: 'themeTitle',
+      desc: 'Theme title',
+      args: [],
+    );
+  }
+
+  String get themeDescription {
+    return Intl.message(
+      'Choose app theme.',
+      name: 'themeDescription',
+      desc: 'Theme option description',
+      args: [],
+    );
+  }
+
+  String get backOpensDrawerTitle {
+    return Intl.message(
+      'Back button opens drawer',
+      name: 'backOpensDrawerTitle',
+      desc: 'Title for the option that allows back button to open the drawer',
+      args: [],
+    );
+  }
+
+  String get backOpensDrawerDescription {
+    return Intl.message(
+      'Pressing the back button opens the drawer.',
+      name: 'backOpensDrawerDescription',
+      desc: 'Description for back button opens drawer option',
+      args: [],
+    );
+  }
+
+  String get notificationsTitle {
+    return Intl.message(
+      'Notifications',
+      name: 'notificationsTitle',
+      desc: 'Notifications category title',
+      args: [],
+    );
+  }
+
+  String get rareAlertsNotificationTitle {
+    return Intl.message(
+      'Rare Alerts',
+      name: 'rareAlertsNotificationTitle',
+      desc: 'Rare Alerts title',
+      args: [],
+    );
+  }
+
+  String get rareAlertsNotificationDescription {
+    return Intl.message(
+      'Rare alert notifications, mainly gifts of the lotus.',
+      name: 'rareAlertsNotificationDescription',
+      desc: 'Description for rare alerts option',
+      args: [],
+    );
+  }
+
+  String get baroNotificationTitle {
+    return Intl.message(
+      'Baro Ki\'Teer',
+      name: 'baroNotificationTitle',
+      desc: 'Baro\'s notification title',
+      args: [],
+    );
+  }
+
+  String get baroNotificationDescription {
+    return Intl.message(
+      'Notifications for both Baro\'s arrivial and departure.',
+      name: 'baroNotificationDescription',
+      desc: 'Notification description for both Baro\'s arrivial and departure.',
+      args: [],
+    );
+  }
+
+  String get darvoNotificationTitle {
+    return Intl.message(
+      'Darvo\'s Daily Deals',
+      name: 'darvoNotificationTitle',
+      desc: 'Notification title for darvo\'s daily deals',
+      args: [],
+    );
+  }
+
+  String get darvoNotificationDescription {
+    return Intl.message(
+      'Darvo\'s new find of the day.',
+      name: 'darvoNotificationDescription',
+      desc: 'Notification description for Darvo\'s Daily Deal',
+      args: [],
+    );
+  }
+
+  String get sortieNotificationTitle {
+    return Intl.message(
+      'Sortie',
+      name: 'sortieNotificationTitle',
+      desc: 'Notification title for sorties',
+      args: [],
+    );
+  }
+
+  String get sortieNotificationDescription {
+    return Intl.message(
+      'Notifications for new sorties.',
+      name: 'sortieNotificationDescription',
+      desc: 'description for sortie notification option',
+      args: [],
+    );
+  }
+
+  String get sentientOutpostNotificationTitle {
+    return Intl.message(
+      'Sentient Outpost',
+      name: 'sentientOutpostNotificationTitle',
+      desc: 'Notification title for sentient outpost',
+      args: [],
+    );
+  }
+
+  String get sentientOutpostNotificationDescription {
+    return Intl.message(
+      'Notifications for new sentient threats',
+      name: 'sentientOutpostNotificationDescription',
+      desc: 'Notification description for sentient outpost option',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<NavisLocalizations> {

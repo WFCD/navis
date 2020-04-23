@@ -28,6 +28,7 @@ secrets.tar
 .pub/
 /build/
 /gen
+/lib/generated/intl/*.dart
 
 # Android related
 **/android/**/gradle-wrapper.jar

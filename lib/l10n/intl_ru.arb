@@ -1,6 +1,6 @@
 {
     "@@last_modified": "2020-03-03T16:56:42.387837",
-    "alertInfo": "{type} ({faction}) | Level: {min} - {max}",
+    "alertInfo": "{type} ({faction}) | Уровень: {min} - {max}",
     "@alertInfo": {
         "description": "The information of the given alert, such as mission type, faction and enemy level",
         "type": "text",
@@ -11,7 +11,7 @@
             "max": {}
         }
     },
-    "activeAcolyte": "{agentType} | level: {rank}",
+    "activeAcolyte": "{agentType} | Уровень: {rank}",
     "@activeAcolyte": {
         "description": "acolyte title with level",
         "type": "text",
@@ -20,49 +20,49 @@
             "rank": {}
         }
     },
-    "locating": "Locating...",
+    "locating": "Обнаружить...",
     "@locating": {
         "description": "Shows up when an acolyte's current location is unknown, may be used in other parts of the app",
         "type": "text",
         "placeholders": {}
     },
-    "acolyteCurrentLocation": "Current location",
+    "acolyteCurrentLocation": "Текущее местоположение",
     "@acolyteCurrentLocation": {
         "description": "Acolyte's current location",
         "type": "text",
         "placeholders": {}
     },
-    "acolytePassLocation": "Last seen location",
+    "acolytePassLocation": "Место последнего просмотра",
     "@acolytePassLocation": {
         "description": "Acolyte's pass location",
         "type": "text",
         "placeholders": {}
     },
-    "acolyteFound": "Found",
+    "acolyteFound": "Найдено",
     "@acolyteFound": {
         "description": "The elapsed time after an acolyte was found",
         "type": "text",
         "placeholders": {}
     },
-    "acolyteLastSeen": "Last seen",
+    "acolyteLastSeen": "Последняя активность",
     "@acolyteLastSeen": {
         "description": "The elapsed time since the acolyte was last seen",
         "type": "text",
         "placeholders": {}
     },
-    "acolyteHealth": "Health",
+    "acolyteHealth": "Здоровье",
     "@acolyteHealth": {
         "description": "Acolytes remaining health",
         "type": "text",
         "placeholders": {}
     },
-    "acolyteRank": "Acolyte Level",
+    "acolyteRank": "Уровень аколита",
     "@acolyteRank": {
         "description": "An acolyte's current level",
         "type": "text",
         "placeholders": {}
     },
-    "acolyteElapsedTime": "{lastSeenTime} minutes ago",
+    "acolyteElapsedTime": "{lastSeenTime} минут назад",
     "@acolyteElapsedTime": {
         "description": "Time since acolyte has either been found or last seen",
         "type": "text",
@@ -70,67 +70,67 @@
             "lastSeenTime": {}
         }
     },
-    "tapForMoreDetails": "Tap for more details",
+    "tapForMoreDetails": "Для получения более подробной информации",
     "@tapForMoreDetails": {
         "description": "General description to tell the user that this object takes you to a different page",
         "type": "text",
         "placeholders": {}
     },
-    "seeDetails": "See details",
+    "seeDetails": "Посмотреть подробности",
     "@seeDetails": {
         "description": "General button to see more details of given object",
         "type": "text",
         "placeholders": {}
     },
-    "eventDescription": "Description",
+    "eventDescription": "Описание",
     "@eventDescription": {
         "description": "Event description category title",
         "type": "text",
         "placeholders": {}
     },
-    "eventStatus": "Event Status",
+    "eventStatus": "Статус события",
     "@eventStatus": {
         "description": "Event status category title",
         "type": "text",
         "placeholders": {}
     },
-    "eventStatusNode": "Node",
+    "eventStatusNode": "Узел",
     "@eventStatusNode": {
         "description": "The node that the event is taking place in",
         "type": "text",
         "placeholders": {}
     },
-    "eventStatusProgress": "Progress",
+    "eventStatusProgress": "Прогресс",
     "@eventStatusProgress": {
         "description": "The progress of the current event from 0 to 100 %",
         "type": "text",
         "placeholders": {}
     },
-    "eventStatusEta": "Time left (ETA)",
+    "eventStatusEta": "Осталось (ETA, ожидаемое время прибытия)",
     "@eventStatusEta": {
         "description": "Current events remaining estimated time",
         "type": "text",
         "placeholders": {}
     },
-    "eventRewards": "Rewards",
+    "eventRewards": "Вознаграждения",
     "@eventRewards": {
         "description": "Event reward title",
         "type": "text",
         "placeholders": {}
     },
-    "bountyTitle": "Bounties",
+    "bountyTitle": "Поощрения",
     "@bountyTitle": {
         "description": "Bounty card title.",
         "type": "text",
         "placeholders": {}
     },
-    "errorTitle": "An application error has occurred",
+    "errorTitle": "Произошла ошибка приложения",
     "@errorTitle": {
         "description": "error title",
         "type": "text",
         "placeholders": {}
     },
-    "errorDescription": "There was unexpected error in core system.\nReporting error to system admin...",
+    "errorDescription": "Произошла непредвиденная ошибка в системе ядра(операционной системы).\nОшибка при отправке системным администраторам...",
     "@errorDescription": {
         "description": "error description",
         "type": "text",
@@ -194,7 +194,7 @@
     },
     "formorianTitle": "Formorian",
     "@formorianTitle": {
-        "description": "Formorian progress title",
+        "description": "Fomorian progress title",
         "type": "text",
         "placeholders": {}
     },
@@ -245,5 +245,113 @@
         "description": "Syndicates title",
         "type": "text",
         "placeholders": {}
+    },
+    "codexTitle": "Codex",
+    "@codexTitle": {
+        "description": "Codex title",
+        "type": "text",
+        "placeholders": {}
+    },
+    "helpfulLinksTitle": "Helpful Links",
+    "@helpfulLinksTitle": {
+        "description": "Helpful Links title",
+        "type": "text",
+        "placeholder": {}
+    },
+    "behaviorTitle": "Behavior",
+    "@behaviorTitle": {
+        "description": "Behavior category title",
+        "type": "text",
+        "placeholder": {}
+    },
+    "themeTitle": "Theme",
+    "@themeTitle": {
+        "description": "Theme title",
+        "type": "text",
+        "placeholder": {}
+    },
+    "themeDescription": "Choose app theme.",
+    "@themeDescription": {
+        "description": "Theme option description",
+        "typ": "text",
+        "placeholder": {}
+    },
+    "backOpensDrawerTitle": "Back button opens drawer",
+    "@backOpensDrawerTitle": {
+        "description": "Title for the option that allows back button to open the drawer",
+        "type": "text",
+        "placeholder": {}
+    },
+    "backOpensDrawerDescription": "Pressing the back button opens the drawer.",
+    "@backOpensDrawerDescription": {
+        "description": "Description for back button opens drawer option",
+        "type": "text",
+        "placeholder": {}
+    },
+    "notificationsTitle": "Notifications",
+    "@notificationsTitle": {
+        "description": "Notifications category title",
+        "type": "text",
+        "placeholder": {}
+    },
+    "rareAlertsNotificationTitle": "Rare Alerts",
+    "@rareAlertsNotificationTitle": {
+        "description": "Rare Alerts title",
+        "type": "text",
+        "placeholder": {}
+    },
+    "rareAlertsNotificationDescription": "Rare alert notifications, mainly gifts of the lotus.",
+    "@rareAlertsNotificationDescription": {
+        "description": "Description for rare alerts option",
+        "type": "text",
+        "placeholder": {}
+    },
+    "baroNotificationTitle": "Baro Ki'Teer",
+    "@baroNotificationTitle": {
+        "description": "Baro's notification title",
+        "type": "text",
+        "placeholder": {}
+    },
+    "baroNotificationDescription": "Notifications for both Baro's arrivial and departure.",
+    "@baroNotificationDescription": {
+        "description": "Notification description for both Baro's arrivial and departure.",
+        "type": "text",
+        "placeholder": {}
+    },
+    "darvoNotificationTitle": "Darvo's Daily Deals",
+    "@darvoNotificationTitle": {
+        "description": "Notification title for darvo's daily deals",
+        "type": "text",
+        "placeholder": {}
+    },
+    "darvoNotificationDescription": "Darvo's new find of the day.",
+    "@darvoNotificationDescription": {
+        "description": "Notification description for Darvo's Daily Deal",
+        "type": "text",
+        "placeholder": {}
+    },
+    "sortieNotificationTitle": "Sortie",
+    "@sortieNotificationTitle": {
+        "description": "Notification title for sorties",
+        "type": "text",
+        "placeholder": {}
+    },
+    "sortieNotificationDescription": "Notifications for new sorties.",
+    "@sortieNotificationDescription": {
+        "description": "description for sortie notification option",
+        "type": "text",
+        "placeholder": {}
+    },
+    "sentientOutpostNotificationTitle": "Sentient Outpost",
+    "@sentientOutpostNotificationTitle": {
+        "description": "Notification title for sentient outpost",
+        "type": "text",
+        "placeholder": {}
+    },
+    "sentientOutpostNotificationDescription": "Notifications for new sentient threats",
+    "@sentientOutpostNotificationDescription": {
+        "description": "Notification description for sentient outpost option",
+        "type": "text",
+        "placeholder": {}
     }
 }
