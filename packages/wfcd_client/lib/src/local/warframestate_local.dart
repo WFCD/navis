@@ -11,19 +11,18 @@ class WarframestatCache implements WarframestateCacheBase {
   final Box<dynamic> _box;
 
   static const String _dealId = 'dealId';
-  static const String _dealItem = 'dealItem';
   static const String _state = 'worldstate';
   static const String _targets = 'synthTargets';
 
   @override
   void cacheDealInfo(String id, BaseItem item) {
     _box.put(_dealId, id);
-    _box.put(_dealItem, item.toJson());
+    _box.put(id, item.toString());
   }
 
   @override
   void cacheSynthTargets(List<SynthTarget> targets) {
-    _box.put(_targets, targets.map((t) => t as SynthTargetModel));
+    _box.put(_targets, targets.map((t) => (t as SynthTargetModel).toJson()));
   }
 
   @override
@@ -32,18 +31,33 @@ class WarframestatCache implements WarframestateCacheBase {
   }
 
   @override
-  BaseItem getCachedDeal() => readDisk<BaseItem>(_dealItem);
+  String getCachedDealId() => readDisk<String>(_dealId);
 
   @override
-  Worldstate getCachedState() => readDisk<WorldstateModel>(_state);
+  BaseItem getCachedDeal(String id) {
+    final cached = readDisk<Map<String, dynamic>>(id);
+
+    return BaseItem.fromJson(cached);
+  }
 
   @override
-  List<SynthTarget> getCachedTargets() => readDisk<List<SynthTarget>>(_targets);
+  Worldstate getCachedState() {
+    final cached = readDisk<Map<String, dynamic>>(_state);
+
+    return WorldstateModel.fromJson(cached);
+  }
+
+  @override
+  List<SynthTarget> getCachedTargets() {
+    final cached = readDisk<Iterable<Map<String, dynamic>>>(_targets);
+
+    return cached.map((t) => SynthTargetModel.fromJson(t)).toList();
+  }
 
   T readDisk<T>(String key) {
     final cache = _box.get(key) as T;
 
-    if (cache == null) throw NotCachedException();
+    if (cache == null) return null;
 
     return cache;
   }

@@ -30,7 +30,6 @@ class _DarvoDealCardState extends State<DarvoDealCard> {
   @override
   void initState() {
     super.initState();
-
     getInformation();
   }
 
@@ -72,7 +71,7 @@ class DealWidget extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           DealDetails(
-            itemName: item?.name ?? '',
+            itemName: item?.name ?? deal.item ?? '',
             itemDescription: parseHtmlString(item?.description ?? ''),
           ),
           const SizedBox(height: 16.0),

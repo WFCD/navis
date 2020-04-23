@@ -8,7 +8,9 @@ abstract class WarframestateCacheBase {
 
   void cacheWorldstate(Worldstate state);
 
-  BaseItem getCachedDeal();
+  String getCachedDealId();
+
+  BaseItem getCachedDeal(String id);
 
   Worldstate getCachedState();
 

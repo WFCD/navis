@@ -14,10 +14,3 @@ class GetDarvoDealInfo extends Usecase<BaseItem, DealRequest> {
     return repository.getDealInfo(request.id, request.name);
   }
 }
-
-class DealRequest {
-  const DealRequest(this.id, this.name);
-
-  final String id;
-  final String name;
-}

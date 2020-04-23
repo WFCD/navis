@@ -7,7 +7,6 @@ import 'package:warframe_items_model/warframe_items_model.dart';
 import 'package:wfcd_client/base.dart';
 import 'package:wfcd_client/locals.dart';
 import 'package:wfcd_client/remotes.dart';
-import 'package:wfcd_client/exceptions.dart';
 import 'package:worldstate_api_model/entities.dart';
 
 import '../../../../core/error/failures.dart';
@@ -45,23 +44,31 @@ class WorldstateRepositoryImpl implements WorldstateRepository {
 
   @override
   Future<Either<Failure, BaseItem>> getDealInfo(String id, String name) async {
-    if (await networkInfo.isConnected) {
-      try {
-        final item = await compute(_getDealInfo, name);
-        cache.cacheDealInfo(id, item);
+    final cachedId = cache.getCachedDealId();
 
-        return Right(item);
-      } on StateException {
-        return Left(ServerFailure());
-      } on SocketException {
-        return Left(OfflineFailure());
-      }
-    } else {
+    Either<Failure, BaseItem> getCached() {
       try {
-        return Right(cache.getCachedDeal());
-      } on NotCachedException {
+        return Right(cache.getCachedDeal(id));
+      } catch (e) {
         return Left(CacheFailure());
       }
+    }
+
+    if (cachedId != id) {
+      if (await networkInfo.isConnected) {
+        try {
+          final deal = await compute(_getDealInfo, name);
+          cache.cacheDealInfo(id, deal);
+
+          return Right(deal);
+        } on SocketException {
+          return Left(OfflineFailure());
+        }
+      } else {
+        return getCached();
+      }
+    } else {
+      return getCached();
     }
   }
 
@@ -116,4 +123,11 @@ class _WorldstateRequest {
 
   final GamePlatforms platform;
   final String lang;
+}
+
+class DealRequest {
+  const DealRequest(this.id, this.name);
+
+  final String id;
+  final String name;
 }

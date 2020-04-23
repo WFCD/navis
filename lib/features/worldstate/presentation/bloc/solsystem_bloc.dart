@@ -13,6 +13,7 @@ import 'package:worldstate_api_model/models.dart';
 import '../../../../core/error/exceptions.dart';
 import '../../../../core/error/failures.dart';
 import '../../../../core/utils/worldstate_util.dart';
+import '../../data/repositories/worldstate_rep_impl.dart';
 import '../../domain/usecases/get_darvo_deal_info.dart';
 import '../../domain/usecases/get_worldstate.dart';
 

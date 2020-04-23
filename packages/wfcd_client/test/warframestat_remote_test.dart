@@ -84,7 +84,8 @@ void main() {
   group('WarframestatCache', () {
     group('worldstate', () {
       test('cache worldstate', () {
-        when<dynamic>(mockBox.get(any)).thenAnswer((_) => testWorldstate);
+        when<dynamic>(mockBox.get(any))
+            .thenAnswer((_) => testWorldstate.toJson());
 
         cache.cacheWorldstate(testWorldstate);
 
@@ -96,7 +97,8 @@ void main() {
 
     group('SynthTargets', () {
       test('cache SynthTargets', () {
-        when<dynamic>(mockBox.get(any)).thenAnswer((_) => testTargets);
+        when<dynamic>(mockBox.get(any))
+            .thenAnswer((_) => testTargets.map((t) => t.toJson()));
 
         cache.cacheSynthTargets(testTargets);
 
@@ -112,11 +114,11 @@ void main() {
         final dealItem =
             testDealResults.firstWhere((i) => deal.item.contains(i.name));
 
-        when<dynamic>(mockBox.get(any)).thenAnswer((_) => dealItem);
+        when<dynamic>(mockBox.get(any)).thenAnswer((_) => dealItem.toJson());
 
         cache.cacheDealInfo(deal.id, dealItem);
 
-        final cachedDeal = cache.getCachedDeal();
+        final cachedDeal = cache.getCachedDeal(deal.id);
 
         expect(cachedDeal, equals(dealItem));
       });
