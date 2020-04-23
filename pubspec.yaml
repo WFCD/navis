@@ -43,7 +43,7 @@ dev_dependencies:
     sdk: flutter
   test: ^1.6.3
   mockito: ^4.1.1
-  extra_pedantic: ^1.1.1
+  extra_pedantic: ^1.2.0
   intl_translation: ^0.17.7
 
 flutter:
