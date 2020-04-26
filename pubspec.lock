@@ -154,7 +154,7 @@ packages:
       name: dartz
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.8.9"
+    version: "0.9.0"
   data_connection_checker:
     dependency: "direct main"
     description:
@@ -275,7 +275,7 @@ packages:
       name: get_it
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.0.1"
+    version: "4.0.2"
   glob:
     dependency: transitive
     description:
