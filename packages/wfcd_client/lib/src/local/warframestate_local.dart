@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:hive/hive.dart';
 import 'package:warframe_items_model/warframe_items_model.dart';
 import 'package:wfcd_client/src/base/local/warframestate_local_base.dart';
@@ -16,7 +18,7 @@ class WarframestatCache implements WarframestateCacheBase {
   @override
   void cacheDealInfo(String id, BaseItem item) {
     _box.put(_dealId, id);
-    _box.put(id, item.toString());
+    _box.put(id, json.encode(item.toJson()));
   }
 
   @override
@@ -34,9 +36,9 @@ class WarframestatCache implements WarframestateCacheBase {
 
   @override
   BaseItem getCachedDeal(String id) {
-    final cached = readDisk<Map<String, dynamic>>(id);
+    final cached = readDisk<String>(id);
 
-    return BaseItem.fromJson(cached);
+    return BaseItem.fromJson(json.decode(cached) as Map<String, dynamic>);
   }
 
   @override

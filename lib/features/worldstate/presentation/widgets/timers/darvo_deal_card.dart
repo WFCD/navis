@@ -1,58 +1,52 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:async/async.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:navis/core/utils/helper_methods.dart';
-import 'package:navis/core/widgets/custom_card.dart';
-import 'package:navis/core/widgets/widgets.dart';
-import 'package:navis/features/worldstate/presentation/bloc/solsystem_bloc.dart';
+import 'package:supercharged/supercharged.dart';
 import 'package:warframe_items_model/warframe_items_model.dart';
 import 'package:worldstate_api_model/entities.dart';
-import 'package:supercharged/supercharged.dart';
 
-class DarvoDealCard extends StatefulWidget {
+import '../../../../../core/utils/helper_methods.dart';
+import '../../../../../core/widgets/custom_card.dart';
+import '../../../../../core/widgets/widgets.dart';
+import '../../../../../features/worldstate/presentation/bloc/solsystem_bloc.dart';
+
+class DarvoDealCard extends StatelessWidget {
   const DarvoDealCard({Key key, this.deals}) : super(key: key);
 
   final List<DarvoDeal> deals;
 
   @override
-  _DarvoDealCardState createState() => _DarvoDealCardState();
-}
-
-class _DarvoDealCardState extends State<DarvoDealCard> {
-  List<BaseItem> items = [];
-
-  Future<void> getInformation() async {
-    final info = await context.bloc<SolsystemBloc>().getDealInformation();
-
-    items.addAll(info);
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    getInformation();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    final deal = widget.deals.first;
+    final deal = deals.first;
 
     return CustomCard(
-      child: DealWidget(
-        deal: deal,
-        item: items.firstOrNull(),
-      ),
+      child: DealWidget(deal: deal),
     );
   }
 }
 
-class DealWidget extends StatelessWidget {
-  const DealWidget({Key key, @required this.deal, this.item})
+class DealWidget extends StatefulWidget {
+  const DealWidget({Key key, @required this.deal})
       : assert(deal != null),
         super(key: key);
 
   final DarvoDeal deal;
-  final BaseItem item;
+
+  @override
+  _DealWidgetState createState() => _DealWidgetState();
+}
+
+class _DealWidgetState extends State<DealWidget> {
+  final _mem = AsyncMemoizer<BaseItem>();
+
+  Future<BaseItem> _getDeal() async {
+    return _mem.runOnce(() async {
+      final items = await context.bloc<SolsystemBloc>().getDealInformation();
+
+      return items
+          .firstWhere((element) => element.name.contains(widget.deal.item));
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -63,52 +57,59 @@ class DealWidget extends StatelessWidget {
 
     final primary = Theme.of(context).primaryColor;
 
-    final urlExist = item?.wikiaUrl != null;
+    return FutureBuilder<BaseItem>(
+        future: _getDeal(),
+        builder: (BuildContext context, AsyncSnapshot<BaseItem> snapshot) {
+          final urlExist = snapshot.data?.wikiaUrl != null;
 
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 4.0, vertical: 4.0),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: <Widget>[
-          DealDetails(
-            itemName: item?.name ?? deal.item ?? '',
-            itemDescription: parseHtmlString(item?.description ?? ''),
-          ),
-          const SizedBox(height: 16.0),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              StaticBox.text(
-                text: '${deal.discount}% Discount',
-                color: primary,
-                style: saleInfo,
-              ),
-              // TODO: should probably put a plat icon here instead
-              StaticBox.text(
-                text: '${deal.salePrice}\p',
-                color: primary,
-                style: saleInfo,
-              ),
-              StaticBox.text(
-                text: '${deal.total - deal.sold} / ${deal.total} remaining',
-                color: primary,
-                style: saleInfo,
-              ),
-              CountdownTimer(expiry: deal.expiry, style: saleInfo),
-            ],
-          ),
-          if (urlExist)
-            ButtonBar(
+          return Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 4.0, vertical: 4.0),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
               children: <Widget>[
-                FlatButton(
-                  onPressed: () => launchLink(context, item.wikiaUrl),
-                  child: const Text('See Wikia'),
+                DealDetails(
+                  itemName: snapshot.data?.name ?? widget.deal.item ?? '',
+                  itemDescription:
+                      parseHtmlString(snapshot.data?.description ?? ''),
                 ),
+                const SizedBox(height: 16.0),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    StaticBox.text(
+                      text: '${widget.deal.discount}% Discount',
+                      color: primary,
+                      style: saleInfo,
+                    ),
+                    // TODO: should probably put a plat icon here instead
+                    StaticBox.text(
+                      text: '${widget.deal.salePrice}\p',
+                      color: primary,
+                      style: saleInfo,
+                    ),
+                    StaticBox.text(
+                      text:
+                          '${widget.deal.total - widget.deal.sold} / ${widget.deal.total} remaining',
+                      color: primary,
+                      style: saleInfo,
+                    ),
+                    CountdownTimer(expiry: widget.deal.expiry, style: saleInfo),
+                  ],
+                ),
+                if (urlExist)
+                  ButtonBar(
+                    children: <Widget>[
+                      FlatButton(
+                        onPressed: () =>
+                            launchLink(context, snapshot.data.wikiaUrl),
+                        child: const Text('See Wikia'),
+                      ),
+                    ],
+                  )
               ],
-            )
-        ],
-      ),
-    );
+            ),
+          );
+        });
   }
 }
 
