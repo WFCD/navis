@@ -58,7 +58,7 @@ class DealWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final saleInfo = Theme.of(context)
         .textTheme
-        .subtitle
+        .subtitle2
         .copyWith(fontWeight: FontWeight.w500);
 
     final primary = Theme.of(context).primaryColor;
@@ -131,14 +131,14 @@ class DealDetails extends StatelessWidget {
       children: <Widget>[
         Text(
           itemName,
-          style: textTheme.subhead.copyWith(fontWeight: FontWeight.w500),
+          style: textTheme.subtitle1.copyWith(fontWeight: FontWeight.w500),
         ),
         const SizedBox(height: 8.0),
         Text(
           itemDescription,
           maxLines: 7,
           overflow: TextOverflow.ellipsis,
-          style: textTheme.subtitle.copyWith(color: textTheme.caption.color),
+          style: textTheme.subtitle2.copyWith(color: textTheme.caption.color),
         ),
       ],
     );

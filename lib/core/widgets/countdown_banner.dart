@@ -26,7 +26,8 @@ class CountdownBanner extends StatelessWidget {
       color: color,
       child: RowItem(
         text: Text(message,
-            style: Theme.of(context).textTheme.title.copyWith(fontSize: 16)),
+            style:
+                Theme.of(context).textTheme.headline6.copyWith(fontSize: 16)),
         size: 20,
         child: CountdownTimer(expiry: time, size: 16),
       ),

@@ -16,7 +16,7 @@ class InvasionWidget extends StatelessWidget {
       BuildContext context, String node, String description, String eta) {
     const shadow = Shadow(offset: Offset(1.0, 0.0), blurRadius: 4.0);
 
-    final _node = Typography.whiteMountainView.subhead
+    final _node = Typography.whiteMountainView.subtitle1
         .copyWith(fontSize: 15, shadows: <Shadow>[shadow]);
 
     return Container(

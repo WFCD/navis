@@ -18,8 +18,10 @@ class CustomCard extends StatelessWidget {
   final Widget child;
 
   Widget _buildTitle(BuildContext context, String text) {
-    final titleStyle =
-        Theme.of(context).textTheme.title.copyWith(fontWeight: FontWeight.w500);
+    final titleStyle = Theme.of(context)
+        .textTheme
+        .headline6
+        .copyWith(fontWeight: FontWeight.w500);
 
     return Padding(
       padding: const EdgeInsets.only(top: 8.0),

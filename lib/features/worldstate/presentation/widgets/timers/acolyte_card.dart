@@ -71,9 +71,9 @@ class _AcolyteWidgetState extends State<AcolyteWidget>
       children: <Widget>[
         FadeTransition(
           opacity: _opacity,
-          child: Icon(Icons.gps_fixed),
+          child: const Icon(Icons.gps_fixed),
         ),
-        Icon(Icons.gps_not_fixed),
+        const Icon(Icons.gps_not_fixed),
       ],
     );
   }

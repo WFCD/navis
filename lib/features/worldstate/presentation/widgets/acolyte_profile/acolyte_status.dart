@@ -31,8 +31,8 @@ class AcolyteStatus extends StatelessWidget {
     const padding = EdgeInsets.symmetric(vertical: 4.0);
 
     final localizations = NavisLocalizations.of(context);
-    final statTitle = Theme.of(context).textTheme.subhead;
-    final statValue = Theme.of(context).textTheme.subtitle;
+    final statTitle = Theme.of(context).textTheme.subtitle1;
+    final statValue = Theme.of(context).textTheme.subtitle2;
 
     return CustomCard(
       margin: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0),

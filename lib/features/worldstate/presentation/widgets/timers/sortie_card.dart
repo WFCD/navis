@@ -13,8 +13,8 @@ class SortieCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
 
-    final boss = textTheme.title;
-    final nodeMission = textTheme.subhead.copyWith(fontSize: 15);
+    final boss = textTheme.headline6;
+    final nodeMission = textTheme.subtitle1.copyWith(fontSize: 15);
     final modifier = textTheme.caption.copyWith(fontSize: 13);
 
     return CustomCard(

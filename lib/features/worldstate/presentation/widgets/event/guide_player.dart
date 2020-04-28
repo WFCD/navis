@@ -90,7 +90,7 @@ class _YoutubePlayerState extends State<EventVideoPlayer> {
                 children: <Widget>[
                   Text(
                     widget.title,
-                    style: Theme.of(context).textTheme.subhead,
+                    style: Theme.of(context).textTheme.subtitle1,
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                   ),

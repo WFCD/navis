@@ -64,7 +64,7 @@ class CycleWidget extends StatelessWidget {
     return ListTile(
       title: Text(
         cycleName,
-        style: textTheme.subhead.copyWith(fontWeight: FontWeight.w600),
+        style: textTheme.subtitle1.copyWith(fontWeight: FontWeight.w600),
       ),
       trailing: Container(
           child: Row(

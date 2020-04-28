@@ -43,9 +43,9 @@ class ConstructionProgressCard extends StatelessWidget {
           for (final progress in constructionProgress)
             Column(
               children: <Widget>[
-                _paintProgress(progress, textTheme.title),
+                _paintProgress(progress, textTheme.headline6),
                 const SizedBox(height: 16.0),
-                Text(progress.name, style: textTheme.title)
+                Text(progress.name, style: textTheme.headline6)
               ],
             ),
         ],

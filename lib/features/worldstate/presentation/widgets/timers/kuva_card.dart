@@ -35,7 +35,7 @@ class KuvaCard extends StatelessWidget {
                   const SizedBox(width: 8.0),
                   Text(
                     '${kuva.node} | ${kuva.type} - ${kuva.enemy}',
-                    style: textTheme.body1.copyWith(fontSize: 15),
+                    style: textTheme.bodyText1.copyWith(fontSize: 15),
                   ),
                 ],
               ),

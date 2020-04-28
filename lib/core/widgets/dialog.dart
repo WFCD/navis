@@ -24,7 +24,8 @@ class NavisDialog extends StatelessWidget {
     final _title = Padding(
       padding: const EdgeInsets.fromLTRB(24.0, 24.0, 24.0, 20.0),
       child: DefaultTextStyle(
-        style: dialogTheme.titleTextStyle ?? Theme.of(context).textTheme.title,
+        style:
+            dialogTheme.titleTextStyle ?? Theme.of(context).textTheme.headline6,
         child: Semantics(
           namesRoute: true,
           container: true,
@@ -34,7 +35,7 @@ class NavisDialog extends StatelessWidget {
     );
 
     final _content = DefaultTextStyle(
-      style: dialogTheme.contentTextStyle ?? theme.textTheme.subhead,
+      style: dialogTheme.contentTextStyle ?? theme.textTheme.subtitle1,
       child: Flexible(
         child: Padding(
           padding:

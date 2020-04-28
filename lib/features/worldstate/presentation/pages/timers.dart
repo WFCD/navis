@@ -14,12 +14,12 @@ class Timers extends StatelessWidget {
       NavisLocalizations localizations, Worldstate worldstate) {
     const size = 28.0;
 
-    final solCycle = <Icon>[
+    const solCycle = <Icon>[
       Icon(NavisSysIcons.sun, color: Colors.amber, size: size),
       Icon(NavisSysIcons.moon, color: Colors.blue, size: size)
     ];
 
-    final tempCycle = <Icon>[
+    const tempCycle = <Icon>[
       Icon(NavisSysIcons.waves, color: Colors.red, size: size),
       Icon(NavisSysIcons.snow, color: Colors.blue, size: size)
     ];

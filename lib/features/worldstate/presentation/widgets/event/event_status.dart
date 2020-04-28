@@ -52,9 +52,10 @@ class EventStatus extends StatelessWidget {
     final theme = Theme.of(context);
     final localization = NavisLocalizations.of(context);
 
-    final category = theme.textTheme.subhead.copyWith(color: theme.accentColor);
+    final category =
+        theme.textTheme.subtitle1.copyWith(color: theme.accentColor);
     final tooltipStyle =
-        Theme.of(context).textTheme.subtitle.copyWith(fontSize: 15);
+        Theme.of(context).textTheme.subtitle2.copyWith(fontSize: 15);
 
     return CustomCard(
       child: Padding(

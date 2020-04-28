@@ -64,7 +64,7 @@ class _HomeFeedPageState extends State<HomeFeedPage>
         return <Widget>[
           SliverOverlapAbsorber(
             handle: NestedScrollView.sliverOverlapAbsorberHandleFor(context),
-            child: SliverToBoxAdapter(
+            sliver: SliverToBoxAdapter(
               child: Material(
                 color: Theme.of(context).canvasColor,
                 child: TabBar(
@@ -72,7 +72,7 @@ class _HomeFeedPageState extends State<HomeFeedPage>
                   labelColor: Theme.of(context).accentColor,
                   unselectedLabelColor: Theme.of(context)
                       .primaryTextTheme
-                      .body2
+                      .bodyText1
                       .color
                       .withOpacity(.7),
                   tabs: tabs,
