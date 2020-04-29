@@ -3,16 +3,18 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:navis/core/widgets/widgets.dart';
-import 'package:navis/features/worldstate/presentation/bloc/solsystem_bloc.dart';
-import 'package:navis/features/worldstate/presentation/pages/acolyte_profile.dart';
-import 'package:navis/features/worldstate/presentation/pages/event.dart';
-import 'package:navis/features/worldstate/presentation/pages/trader_inventory.dart';
-import 'package:navis/generated/l10n.dart';
 import 'package:wfcd_client/base.dart';
 
+import '../features/worldstate/presentation/bloc/solsystem_bloc.dart';
+import '../features/worldstate/presentation/pages/acolyte_profile.dart';
+import '../features/worldstate/presentation/pages/bounties.dart';
+import '../features/worldstate/presentation/pages/event.dart';
+import '../features/worldstate/presentation/pages/nightwaves.dart';
+import '../features/worldstate/presentation/pages/trader_inventory.dart';
+import '../generated/l10n.dart';
 import 'home.dart';
 import 'themes/themes.dart';
+import 'widgets/widgets.dart';
 
 class NavisApp extends StatefulWidget {
   const NavisApp({Key key}) : super(key: key);
@@ -68,8 +70,8 @@ class _NavisAppState extends State<NavisApp> with WidgetsBindingObserver {
         EventInformation.route: (_) => const EventInformation(),
         AcolyteProfile.route: (_) => const AcolyteProfile(),
         // Settings.route: (_) => const Settings(),
-        // Nightwaves.route: (_) => const Nightwaves(),
-        // SyndicateJobs.route: (_) => const SyndicateJobs(),
+        NightwavesPage.route: (_) => const NightwavesPage(),
+        BountiesPage.route: (_) => const BountiesPage(),
         // SynthTargetScreen.route: (_) => const SynthTargetScreen(),
         // CodexEntry.route: (_) => const CodexEntry(),
         BaroInventory.route: (_) => const BaroInventory()
