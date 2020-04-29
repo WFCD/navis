@@ -14,7 +14,8 @@ class ArbitrationCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomCard(
         child: ListTile(
-      leading: const Icon(SyndicateIcons.hexis, size: 50),
+      leading:
+          const Icon(SyndicateIcons.hexis, size: 50, color: Color(0xFFcfe1e4)),
       title: Row(
         children: <Widget>[
           if (arbitration.archwingRequired)

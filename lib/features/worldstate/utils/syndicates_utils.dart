@@ -13,7 +13,6 @@ const _nightwaveIconColor = Color(0xFFFFAEAA);
 // TODO: remove into their seperate features
 // const _simaris = Color(0xFF5F3C0D);
 // const _simarisIconColor = Color(0xFFEBD18F);
-// const _hexis = Color(0xFF6A5574);
 
 SyndicateFactions syndicateStringToEnum(String faction) {
   return SyndicateFactions.values.firstWhere((element) {
