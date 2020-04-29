@@ -48,8 +48,6 @@ class EventInformation extends StatelessWidget {
               if (eventInfo.howTos.isNotEmpty)
                 EventVideoPlayer(
                   id: eventInfo.howTos.first.id,
-                  title: eventInfo.howTos.first.title,
-                  author: eventInfo.howTos.first.author,
                   profileThumbnail: eventInfo.howTos.first.pThumbnail,
                   link: eventInfo.howTos.first.link,
                 )

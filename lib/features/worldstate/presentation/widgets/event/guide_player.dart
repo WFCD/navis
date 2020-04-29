@@ -12,16 +12,12 @@ class EventVideoPlayer extends StatefulWidget {
   const EventVideoPlayer({
     Key key,
     @required this.id,
-    @required this.title,
-    @required this.author,
     @required this.profileThumbnail,
     @required this.link,
   })  : assert(id != null),
         super(key: key);
 
   final String id;
-  final String title;
-  final String author;
   final String profileThumbnail;
   final String link;
 
@@ -32,23 +28,26 @@ class EventVideoPlayer extends StatefulWidget {
 class _YoutubePlayerState extends State<EventVideoPlayer> {
   ChewieController _chewieController;
   VideoPlayerController _videoPlayerController;
+  yt.Video _videoDetials;
+  yt.YoutubeExplode _exploded;
 
   @override
   void initState() {
     super.initState();
+    _exploded = yt.YoutubeExplode();
+
     _setupPlayer();
   }
 
   Future<void> _setupPlayer() async {
-    final exploded = yt.YoutubeExplode();
-    final videoMediaInfo = await exploded.getVideoMediaStream(widget.id);
-
     if (mounted) {
-      final video = videoMediaInfo.muxed.firstWhere((v) =>
+      final mediaInfo = await _exploded.getVideoMediaStream(widget.id);
+      final video = mediaInfo.muxed.firstWhere((v) =>
           v.videoQuality == yt.VideoQuality.high1080 ||
           v.videoQuality == yt.VideoQuality.high720);
 
       setState(() {
+        _videoDetials = mediaInfo.videoDetails;
         _videoPlayerController =
             VideoPlayerController.network(video.url.toString());
 
@@ -78,9 +77,7 @@ class _YoutubePlayerState extends State<EventVideoPlayer> {
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             if (_chewieController == null)
-              const Expanded(
-                child: Center(child: CircularProgressIndicator()),
-              )
+              const Expanded(child: Center(child: CircularProgressIndicator()))
             else
               Chewie(controller: _chewieController),
             Container(
@@ -89,7 +86,7 @@ class _YoutubePlayerState extends State<EventVideoPlayer> {
               child: Column(
                 children: <Widget>[
                   Text(
-                    widget.title,
+                    _videoDetials?.title ?? 'Loading..',
                     style: Theme.of(context).textTheme.subtitle1,
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
@@ -105,7 +102,7 @@ class _YoutubePlayerState extends State<EventVideoPlayer> {
                       ),
                       const SizedBox(width: 8.0),
                       Text(
-                        widget.author,
+                        _videoDetials?.author ?? '',
                         style: Theme.of(context).textTheme.caption,
                       ),
                       const Spacer(),
@@ -126,6 +123,7 @@ class _YoutubePlayerState extends State<EventVideoPlayer> {
 
   @override
   void dispose() {
+    _exploded.close();
     _videoPlayerController.dispose();
     _chewieController.dispose();
     super.dispose();
