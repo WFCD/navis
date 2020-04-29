@@ -75,14 +75,14 @@ class Timers extends StatelessWidget {
             return ListView(
               cacheExtent: 1000,
               children: <Widget>[
-                if (state.eventsActive) EventCard(events: worldstate.events),
-                if (state.activeAcolytes)
-                  AcolyteCard(enemies: worldstate.persistentEnemies),
+                const DailyReward(),
                 ConstructionProgressCard(
                   constructionProgress:
                       _buildProgress(localizations, worldstate),
                 ),
-                const DailyReward(),
+                if (state.eventsActive) EventCard(events: worldstate.events),
+                if (state.activeAcolytes)
+                  AcolyteCard(enemies: worldstate.persistentEnemies),
                 if (state.arbitrationActive)
                   ArbitrationCard(arbitration: worldstate.arbitration),
                 if (state.activeAlerts) AlertsCard(alerts: worldstate.alerts),
