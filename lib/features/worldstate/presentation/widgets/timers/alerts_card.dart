@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:navis/core/widgets/icons.dart';
 import 'package:navis/core/widgets/row_item.dart';
 import 'package:navis/core/widgets/widgets.dart';
 import 'package:navis/generated/l10n.dart';
@@ -47,7 +48,7 @@ class AlertWidget extends StatelessWidget {
               // Not sure we need to add nightmare icon since alerts have be axed
               // nightmare alerts haven't been a thing
               if (_mission.archwingRequired)
-                const Icon(NavisSysIcons.archwing, size: 10)
+                NavisSystemIconWidgets.archwingIcon
             ],
             text: Text(_mission.node),
             child: _isRewarding

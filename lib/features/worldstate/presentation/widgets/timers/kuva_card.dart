@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:navis/core/widgets/countdown_banner.dart';
+import 'package:navis/core/widgets/icons.dart';
 import 'package:navis/core/widgets/widgets.dart';
 import 'package:navis/generated/l10n.dart';
 import 'package:worldstate_api_model/entities.dart';
@@ -31,7 +32,8 @@ class KuvaCard extends StatelessWidget {
                 children: <Widget>[
                   const Icon(NavisSysIcons.kuva, color: Colors.red),
                   const SizedBox(width: 2.0),
-                  if (kuva.archwingRequired) const Icon(NavisSysIcons.archwing),
+                  if (kuva.archwingRequired)
+                    NavisSystemIconWidgets.archwingIcon,
                   const SizedBox(width: 8.0),
                   Text(
                     '${kuva.node} | ${kuva.type} - ${kuva.enemy}',
