@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:navis/core/widgets/custom_card.dart';
 import 'package:navis/features/worldstate/presentation/pages/bounties.dart';
 import 'package:navis/features/worldstate/presentation/pages/nightwaves.dart';
-import 'package:navis/features/worldstate/utils/syndicates_utils.dart';
+import 'package:navis/features/worldstate/utils/faction_utils.dart';
 import 'package:worldstate_api_model/entities.dart';
 
 import 'syndicate_icon.dart';
@@ -27,15 +27,15 @@ class SyndicateCard extends StatelessWidget {
     final _syndicate = syndicateStringToEnum(name ?? syndicate.name);
 
     switch (_syndicate) {
-      case SyndicateFactions.nightwave:
+      case SyndicateFaction.nightwave:
         Navigator.of(context).pushNamed(NightwavesPage.route);
         break;
-      case SyndicateFactions.solaris_united:
+      case SyndicateFaction.solaris_united:
         continue SYNDICATEJOBS;
         break;
 
       SYNDICATEJOBS:
-      case SyndicateFactions.ostrons:
+      case SyndicateFaction.ostrons:
         Navigator.of(context)
             .pushNamed(BountiesPage.route, arguments: syndicate);
         break;
@@ -59,7 +59,8 @@ class SyndicateCard extends StatelessWidget {
       customBorder:
           RoundedRectangleBorder(borderRadius: BorderRadius.circular(4.0)),
       child: CustomCard(
-        color: syndicateName.syndicateBackgroundColor(),
+        color: syndicateName.backgroundColor,
+        margin: EdgeInsets.zero,
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 4.0, vertical: 6.0),
           child: ListTile(

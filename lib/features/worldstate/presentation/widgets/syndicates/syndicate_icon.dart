@@ -1,40 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:navis/core/widgets/widgets.dart';
-import 'package:navis/features/worldstate/utils/syndicates_utils.dart';
+
+import '../../../utils/faction_utils.dart';
 
 class GetSyndicateIcon extends StatelessWidget {
-  const GetSyndicateIcon({
-    Key key,
-    this.syndicate,
-    this.color,
-    this.size,
-  }) : super(key: key);
+  const GetSyndicateIcon({Key key, this.syndicate}) : super(key: key);
 
-  final SyndicateFactions syndicate;
-  final double size;
-  final Color color;
+  final SyndicateFaction syndicate;
+
+  IconData _getIcon() {
+    switch (syndicate) {
+      case SyndicateFaction.ostrons:
+        return SyndicateGlyphs.ostron;
+      case SyndicateFaction.solaris_united:
+        return SyndicateGlyphs.solaris;
+      case SyndicateFaction.nightwave:
+        return SyndicateGlyphs.nightwave;
+      default:
+        return SyndicateGlyphs.simaris;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
-    IconData icon;
-
-    switch (syndicate) {
-      case SyndicateFactions.ostrons:
-        icon = SyndicateIcons.ostronsigil;
-        break;
-      case SyndicateFactions.solaris_united:
-        icon = SyndicateIcons.solarisunited;
-        break;
-      case SyndicateFactions.nightwave:
-        icon = SyndicateIcons.nightwavesyndicate;
-        break;
-    }
+    final widthFactor = MediaQuery.of(context).size.width / 100;
 
     return Icon(
-      icon,
-      size: size ?? 50.0,
-      color: color ?? syndicate.syndicateIconColor(),
-      textDirection: TextDirection.ltr,
+      _getIcon(),
+      size: widthFactor * 12,
+      color: syndicate.iconColor,
     );
   }
 }

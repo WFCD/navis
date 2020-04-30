@@ -61,9 +61,9 @@ flutter:
     - family: FactionIcons
       fonts:
         - asset: assets/icons/FactionIcons.ttf
-    - family: SyndicateIcons
+    - family: SyndicateGlyphs
       fonts:
-        - asset: assets/icons/SyndicateIcons.ttf
+        - asset: assets/icons/SyndicateGlyphs.ttf
   assets:
     - assets/wfcd_banner.svg
     # - assets/enemies/corrupted/

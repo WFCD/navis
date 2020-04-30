@@ -42,8 +42,8 @@ class _DealWidgetState extends State<DealWidget> {
     return _mem.runOnce(() async {
       final items = await context.bloc<SolsystemBloc>().getDealInformation();
 
-      return items
-          .firstWhere((element) => element.name.contains(widget.deal.item));
+      return items.firstWhere((element) =>
+          element.name.toLowerCase().contains(widget.deal.item.toLowerCase()));
     });
   }
 
@@ -65,6 +65,7 @@ class _DealWidgetState extends State<DealWidget> {
             padding: const EdgeInsets.symmetric(horizontal: 4.0, vertical: 4.0),
             child: Column(
               mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 DealDetails(
                   itemName: snapshot.data?.name ?? widget.deal.item ?? '',

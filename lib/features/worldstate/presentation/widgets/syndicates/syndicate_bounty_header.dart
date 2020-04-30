@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:navis/core/widgets/icons.dart';
-import 'package:navis/features/worldstate/utils/syndicates_utils.dart';
+import 'package:navis/features/worldstate/utils/faction_utils.dart';
 import 'package:worldstate_api_model/entities.dart';
 
 class SyndicateBountyHeader extends StatelessWidget {
@@ -11,7 +11,7 @@ class SyndicateBountyHeader extends StatelessWidget {
   }) : super(key: key);
 
   final Job job;
-  final SyndicateFactions faction;
+  final SyndicateFaction faction;
 
   Widget _buildStanding() {
     return Container(
@@ -29,7 +29,7 @@ class SyndicateBountyHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 80.0,
-      color: faction.syndicateBackgroundColor(),
+      color: faction.backgroundColor,
       alignment: Alignment.centerLeft,
       child: ListTile(
         title: Text(job.type, style: const TextStyle(color: Colors.white)),

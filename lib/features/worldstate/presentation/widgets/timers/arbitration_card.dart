@@ -12,15 +12,20 @@ class ArbitrationCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final widthFactor = MediaQuery.of(context).size.width / 100;
+
     return CustomCard(
         child: ListTile(
-      leading:
-          const Icon(SyndicateIcons.hexis, size: 50, color: Color(0xFFcfe1e4)),
+      leading: Icon(
+        SyndicateGlyphs.hexis,
+        size: widthFactor * 12,
+        color: const Color(0xFFcfe1e4),
+      ),
       title: Row(
         children: <Widget>[
           if (arbitration.archwingRequired)
-            Padding(
-              padding: const EdgeInsets.only(left: 6.0),
+            const Padding(
+              padding: EdgeInsets.only(left: 6.0),
               child: NavisSystemIconWidgets.archwingIcon,
             ),
           Text(arbitration.node),

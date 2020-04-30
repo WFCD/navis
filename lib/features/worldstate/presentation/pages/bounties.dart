@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_sticky_header/flutter_sticky_header.dart';
 import 'package:worldstate_api_model/entities.dart';
 
-import '../../utils/syndicates_utils.dart';
+import '../../utils/faction_utils.dart';
 import '../widgets/syndicates/syndicate_bounty_header.dart';
 
 class BountiesPage extends StatelessWidget {
@@ -14,7 +14,7 @@ class BountiesPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final syndicate = ModalRoute.of(context).settings.arguments as Syndicate;
     final backgroundColor =
-        syndicateStringToEnum(syndicate.name).syndicateBackgroundColor();
+        syndicateStringToEnum(syndicate.name).backgroundColor;
 
     return Scaffold(
       appBar: AppBar(
