@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/widgets.dart';
 
 class SkyBoxLoader {
@@ -8,7 +9,10 @@ class SkyBoxLoader {
   // precacheImage requires access to BuildContext
   final BuildContext context;
 
-  static const derelict = AssetImage('assets/skyboxes/Derelict.webp');
+  static const _baseUrl =
+      'https://raw.githubusercontent.com/WFCD/navis/n2.0/assets/skyboxes';
+
+  static const derelict = AssetImage('assets/Derelict.webp');
 
   Future<ImageProvider> load() async {
     final solNode = _getBackgroundPath();
@@ -17,18 +21,22 @@ class SkyBoxLoader {
     if (solNode == 'undefined') return derelict;
 
     await precacheImage(
-      AssetImage(solNode),
+      CachedNetworkImageProvider(solNode),
       context,
       onError: (dynamic e, stack) => isError = true,
     );
 
-    return isError ? derelict : AssetImage(solNode);
+    if (isError) {
+      return derelict;
+    } else {
+      return CachedNetworkImageProvider(solNode);
+    }
   }
 
   String _getBackgroundPath() {
     final nodeRegExp = RegExp(r'\(([^)]*)\)');
     final nodeBackground = nodeRegExp.firstMatch(node)?.group(1);
 
-    return 'assets/skyboxes/${nodeBackground.replaceAll(' ', '_')}.webp';
+    return '$_baseUrl/${nodeBackground.replaceAll(' ', '_')}.webp';
   }
 }

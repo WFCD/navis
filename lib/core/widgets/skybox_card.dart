@@ -1,7 +1,6 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:navis/core/themes/themes.dart';
+import 'package:navis/core/utils/skybox.dart';
 
 class SkyboxCard extends StatelessWidget {
   const SkyboxCard({
@@ -22,57 +21,35 @@ class SkyboxCard extends StatelessWidget {
   final double height, width;
   final Alignment alignment;
 
-  static const derelict = AssetImage('assets/Derelict.webp');
-
-  String getBackgroundPath(String node) {
-    const base =
-        'https://raw.githubusercontent.com/WFCD/navis/master/assets/skyboxes';
-    final nodeRegExp = RegExp(r'\(([^)]*)\)');
-    final nodeBackground = nodeRegExp.firstMatch(node)?.group(1);
-
-    return '$base/${Intl.getCurrentLocale() ?? 'en'}/${nodeBackground.replaceAll(' ', '_')}.webp';
-  }
-
-  Widget _imageBuilder(
-      BuildContext context, ImageProvider<dynamic> imageProvider) {
-    return Container(
-      height: height,
-      width: width,
-      alignment: alignment,
-      decoration: BoxDecoration(
-        image: DecorationImage(
-          colorFilter:
-              ColorFilter.mode(Colors.black.withOpacity(0.3), BlendMode.dstIn),
-          image: imageProvider,
-          fit: BoxFit.cover,
-        ),
-      ),
-      child: child,
-    );
-  }
-
-  Widget _placeHolder(BuildContext context, String string) {
-    return _imageBuilder(context, derelict);
-  }
-
   @override
   Widget build(BuildContext context) {
-    precacheImage(derelict, context);
+    final skybox = SkyBoxLoader(context, node);
 
     return Theme(
       data: NavisTheming.dark,
       child: Card(
         margin: margin,
-        child: AnimatedSwitcher(
-          duration: const Duration(milliseconds: 200),
-          child: CachedNetworkImage(
-            imageUrl: getBackgroundPath(node),
-            placeholder: _placeHolder,
-            errorWidget: (BuildContext context, String string, Object object) {
-              return _placeHolder(context, string);
-            },
-            imageBuilder: _imageBuilder,
-          ),
+        child: FutureBuilder<ImageProvider>(
+          initialData: SkyBoxLoader.derelict,
+          future: skybox.load(),
+          builder:
+              (BuildContext context, AsyncSnapshot<ImageProvider> snapshot) {
+            return AnimatedContainer(
+              height: height,
+              width: width,
+              duration: const Duration(milliseconds: 200),
+              alignment: alignment,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  colorFilter: ColorFilter.mode(
+                      Colors.black.withOpacity(0.3), BlendMode.dstIn),
+                  image: snapshot.data,
+                  fit: BoxFit.cover,
+                ),
+              ),
+              child: child,
+            );
+          },
         ),
       ),
     );
