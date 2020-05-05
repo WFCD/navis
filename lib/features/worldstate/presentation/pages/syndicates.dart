@@ -49,7 +49,8 @@ class SyndicatePage extends StatelessWidget {
               children: <Widget>[
                 _buildSyndicates(state.worldstate.syndicateMissions),
                 const SizedBox(height: 8.0),
-                _buildNightwave(state.worldstate.nightwave)
+                if (state.isNightwaveActive)
+                  _buildNightwave(state.worldstate.nightwave)
               ],
             );
           }
