@@ -353,5 +353,151 @@
     "description": "Notification description for sentient outpost option",
     "type": "text",
     "placeholder": {}
+  },
+  "warframeNewsNotificationTitle": "News",
+  "@warframeNewsNotificationTitle": {
+    "description": "Main Title for Warframe news notifications",
+    "type": "text",
+    "placeholder": {}
+  },
+  "warframeNewsNotificationDescription": "News notifications for Prime Access, Streams and Updates.",
+  "@warframeNewsNotificationDescription": {
+    "description": "Main description for Warframe news notifications",
+    "type": "text",
+    "placeholder": {}
+  },
+  "planetCyclesNotificationTitle": "Open World Cycles",
+  "@planetCycleNotificationTitle": {
+    "description": "Main title for open world notifications",
+    "type": "text",
+    "placeholder": {}
+  },
+  "planetCyclesNotificationDescription": "Open world notifications for their given cycles.",
+  "@planetCycleNotificationDescription": {
+    "description": "Main description for open world notifications",
+    "type": "text",
+    "placeholder": {}
+  },
+  "resourcesNotificationTitle": "Resources",
+  "@resourcesNotificationTitle": {
+    "description": "Main title for resource notifications",
+    "type": "text",
+    "placeholder": {}
+  },
+  "resourcesNotificationDescription": "Resources mostly found in invasions.",
+  "@resourcesNotificationDescription": {
+    "description": "Main description for resource notifications",
+    "type": "text",
+    "placeholder": {}
+  },
+  "fissuresNotificationTitle": "Fissure Missions",
+  "@fissuresNotificationTitle": {
+    "description": "Main title for fisssures notifications",
+    "type": "text",
+    "placeholder": {}
+  },
+  "fissuresNotificationDescription": "Filter fissure notifications by prefered mission type",
+  "@fissuresNotificationDescription": {
+    "description": "Main description for fissures notifications",
+    "type": "text",
+    "placeholder": {}
+  },
+  "acolytesNotificationTitle": "Acolytes",
+  "@acolytesNotificationTitle": {
+    "description": "Main title for acolyte notifications",
+    "type": "text",
+    "placeholder": {}
+  },
+  "acolytesNotificationDescription": "Notifies when an acolyte is found",
+  "@acolytesNotificationDescription": {
+    "description": "Main description for acolyte notifications",
+    "type": "text",
+    "placeholder": {}
+  },
+  "earthDayOption": "Earth Day",
+  "@earthDayOption": {
+    "description": "Earth cycle option",
+    "type": "text",
+    "placeholder": {}
+  },
+  "earthNightOption": "Earth Night",
+  "@earthNightOption": {
+    "description": "Earth cycle option",
+    "type": "text",
+    "placeholder": {}
+  },
+  "cetusDayOption": "Cetus Day",
+  "@cetusDayOption": {
+    "description": "Cetus cycle option",
+    "type": "text",
+    "placeholder": {}
+  },
+  "cetusNightOption": "Cetus Day",
+  "@cetusNightOption": {
+    "description": "Cetus cycle option",
+    "type": "text",
+    "placeholder": {}
+  },
+  "vallisWarmOption": "Orb Vallis Warm",
+  "@vallisWarmOption": {
+    "description": "Orb vallis cycle option",
+    "type": "text",
+    "placeholder": {}
+  },
+  "vallisColdOption": "Orb Vallis Cold",
+  "@vallisColdOption": {
+    "description": "Orb vallis cycle option",
+    "type": "text",
+    "placeholder": {}
+  },
+  "primeAccessNewsOption": "Prime Access",
+  "@primeAccessNewsOption": {
+    "description": "Warframe news option",
+    "type": "text",
+    "placeholder": {}
+  },
+  "streamNewsOption": "Stream Announcements",
+  "@streamNewsOption": {
+    "description": "Warframe news option",
+    "type": "text",
+    "placeholder": {}
+  },
+  "updateNewsOption": "Warframe Update News",
+  "@updateNewsOption": {
+    "description": "Warframe news option",
+    "type": "text",
+    "placeholder": {}
+  },
+  "updateDropTableTitle": "Update Drop Table",
+  "@updateDropTableTitle": {
+    "description": "Title for updaing drop tables",
+    "type": "text",
+    "placeholder": {}
+  },
+  "updateDropTableDescription": "Last updated {date}",
+  "@updateDropTableDescription": {
+    "description": "Description for updating drop table with date of the last update",
+    "type": "text",
+    "placeholder": {
+      "date": {}
+    }
+  },
+  "reportBugsTitle": "Report Bugs",
+  "@reportBugsTitle": {
+    "desciption": "Title for bug report link",
+    "type": "text",
+    "placeholder": {}
+  },
+  "reportBugsDescription": "Report bugs or Request a feature",
+  "@reportBugsDescription": {
+    "description": "Description for bug report link",
+    "type": "text",
+    "placeholder": {}
+  },
+  "aboutCategoryTitle": "About",
+  "@aboutCategoryTitle": {
+    "description": "Title for the about category of the settings page",
+    "type": "text",
+    "placeholder": {}
   }
 }

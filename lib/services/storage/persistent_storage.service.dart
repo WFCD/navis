@@ -1,10 +1,6 @@
-import 'dart:collection';
-
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
-import 'package:navis/constants/notification_filters.dart' as filters;
 import 'package:navis/constants/storage_keys.dart';
-import 'package:navis/generated/l10n.dart';
 import 'package:navis/services/storage/storage_base.service.dart';
 import 'package:navis/themes.dart';
 import 'package:navis/utils/search_utils.dart';
@@ -71,36 +67,11 @@ class PersistentStorageService extends StorageService {
     _box.put(SettingsKeys.codexDatabase, type.toProperString());
   }
 
-  Map<String, bool> get acolytes {
-    return {
-      for (String a in filters.acolytes.keys)
-        a: _box.get(a, defaultValue: false)
-    };
-  }
-
-  bool simple(String key) {
+  bool getToggle(String key) {
     return _box.get(key, defaultValue: false);
   }
 
-  Map<String, bool> get cycles {
-    return {
-      for (String c in filters.cycles.keys) c: _box.get(c, defaultValue: false)
-    };
-  }
-
-  Map<String, bool> get news {
-    return {
-      for (String n in filters.newsType.keys)
-        n: _box.get(n, defaultValue: false)
-    };
-  }
-
-  Map<String, bool> get resources {
-    final resources = SplayTreeMap<String, String>.from(
-        filters.resources, (a, b) => a.compareTo(b));
-
-    return {
-      for (String r in resources.keys) r: _box.get(r, defaultValue: false)
-    };
+  void setToggle(String key, bool value) {
+    _box.put(key, value);
   }
 }
