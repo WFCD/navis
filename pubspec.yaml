@@ -18,7 +18,7 @@ dependencies:
   package_info: ^0.4.0+16
   firebase_messaging: ^6.0.13
   cached_network_image: ^2.0.0
-  flutter_svg: ^0.14.3
+  flutter_svg: ^0.17.4
   floating_search_bar: ^0.2.0
   flutter_sticky_header: ^0.4.0
   wfcd_client:
