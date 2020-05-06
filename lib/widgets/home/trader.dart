@@ -9,7 +9,7 @@ class Trader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final emptyBox = Container();
-    final title = Theme.of(context).textTheme.subhead;
+    final title = Theme.of(context).textTheme.subtitle1;
     final localizations = NavisLocalizations.of(context);
 
     return Tiles(

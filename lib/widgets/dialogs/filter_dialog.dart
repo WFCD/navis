@@ -5,7 +5,6 @@ import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:navis/blocs/bloc.dart';
 import 'package:navis/services/repository.dart';
-import 'package:navis/services/storage/persistent_storage.service.dart';
 
 import 'base_dialog.dart';
 
@@ -24,21 +23,6 @@ class FilterDialog extends StatelessWidget {
         builder: (_) => FilterDialog(options: options, type: type));
   }
 
-  Map<String, bool> _typeToInstance(PersistentStorageService storage) {
-    switch (type) {
-      case FilterType.acolytes:
-        return storage.acolytes;
-      case FilterType.news:
-        return storage.news;
-      case FilterType.cycles:
-        return storage.cycles;
-      case FilterType.resources:
-        return storage.resources;
-      default:
-        return <String, bool>{};
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     final persistent = RepositoryProvider.of<Repository>(context).persistent;
@@ -49,8 +33,6 @@ class FilterDialog extends StatelessWidget {
       box: persistent.hiveBox,
       watchKeys: options.keys.toList(),
       builder: (BuildContext context, Box box) {
-        final instance = _typeToInstance(persistent);
-
         return BaseDialog(
           dialogTitle: const Text('Filter Options'),
           child: SingleChildScrollView(
@@ -59,7 +41,7 @@ class FilterDialog extends StatelessWidget {
                 NotificationCheckBox(
                   option: _options[key],
                   optionKey: key,
-                  value: instance[key],
+                  value: persistent.getToggle(key),
                 )
             ]),
           ),

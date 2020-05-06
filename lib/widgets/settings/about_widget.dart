@@ -2,6 +2,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:navis/constants/links.dart';
 import 'package:navis/services/repository.dart';
 import 'package:navis/utils/size_config.dart';
 import 'package:navis/utils/helper_utils.dart';
@@ -10,10 +11,6 @@ import 'package:package_info/package_info.dart';
 
 class About extends StatelessWidget {
   const About({Key key}) : super(key: key);
-
-  static const _mainPage = 'https://github.com/WFCD/navis';
-  static const _issuePage = 'https://github.com/WFCD/navis/issues';
-  static const _warframePage = 'https://www.warframe.com/';
 
   static const _legalese =
       'Warframe and the Warframe logo are registered trademarks '
@@ -26,9 +23,9 @@ class About extends StatelessWidget {
         RepositoryProvider.of<Repository>(context).packageInfo;
 
     final ThemeData theme = Theme.of(context);
-    final TextStyle aboutTextStyle = theme.textTheme.body2;
+    final TextStyle aboutTextStyle = theme.textTheme.bodyText1;
     final TextStyle linkStyle =
-        theme.textTheme.body2.copyWith(color: theme.accentColor);
+        theme.textTheme.bodyText1.copyWith(color: theme.accentColor);
 
     return AboutListTile(
       icon: null,
@@ -45,8 +42,8 @@ class About extends StatelessWidget {
             TextSpan(style: aboutTextStyle, text: 'Homepage: '),
             _LinkTextSpan(
               style: linkStyle,
-              url: _mainPage,
-              text: _mainPage,
+              url: mainPage,
+              text: mainPage,
             ),
             TextSpan(
               style: aboutTextStyle,
@@ -54,7 +51,7 @@ class About extends StatelessWidget {
             ),
             _LinkTextSpan(
               style: linkStyle,
-              url: _issuePage,
+              url: issuePage,
               text: 'issues tracker',
             ),
             TextSpan(
@@ -64,8 +61,8 @@ class About extends StatelessWidget {
             ),
             _LinkTextSpan(
               style: linkStyle,
-              url: _warframePage,
-              text: _warframePage,
+              url: warframePage,
+              text: warframePage,
             )
           ]),
         ),

@@ -14,7 +14,7 @@ import 'package:package_info/package_info.dart';
 void main() {
   FlutterError.onError = Crashlytics.instance.recordFlutterError;
 
-  runZoned<Future<void>>(startApp, onError: Crashlytics.instance.recordError);
+  runZonedGuarded(startApp, Crashlytics.instance.recordError);
 }
 
 Future<void> startApp() async {

@@ -104,7 +104,7 @@ class DealDetails extends StatelessWidget {
       children: <Widget>[
         Text(
           itemName,
-          style: textTheme.subhead.copyWith(fontWeight: FontWeight.w500),
+          style: textTheme.subtitle1.copyWith(fontWeight: FontWeight.w500),
         ),
         const SizedBox(height: 8.0),
         Container(

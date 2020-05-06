@@ -20,7 +20,7 @@ class WarframeStats extends StatelessWidget {
       margin: const EdgeInsets.only(bottom: 16.0),
       child: Column(
         children: <Widget>[
-          Text('Passive', style: Theme.of(context).textTheme.subhead),
+          Text('Passive', style: Theme.of(context).textTheme.subtitle1),
           const SizedBox(height: 8.0),
           Text(
             passive,

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
+import 'package:navis/constants/links.dart';
+import 'package:navis/generated/l10n.dart';
 import 'package:navis/global_keys.dart';
 import 'package:navis/services/repository.dart';
 import 'package:navis/utils/helper_utils.dart';
@@ -31,21 +33,22 @@ class AboutApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final localizations = NavisLocalizations.of(context);
     final repository = RepositoryProvider.of<Repository>(context);
     final date = _dateFormat.format(repository.cache.getDropTableTimestamp);
 
     return Column(
       children: <Widget>[
-        const SettingTitle(title: 'About'),
+        SettingTitle(title: localizations.aboutCategoryTitle),
         ListTile(
-          title: const Text('Update Drop Table'),
-          subtitle: Text('Last updated $date'),
+          title: Text(localizations.updateDropTableTitle),
+          subtitle: Text(localizations.updateDropTableDescription(date)),
           onTap: () => _updateTable(context),
         ),
         ListTile(
-          title: const Text('Report Issues'),
-          subtitle: const Text('Report bugs or Request a feature'),
-          onTap: () => launchLink('https://github.com/WFCD/navis/issues'),
+          title: Text(localizations.reportBugsTitle),
+          subtitle: Text(localizations.reportBugsDescription),
+          onTap: () => launchLink(issuePage),
         ),
         const About()
       ],

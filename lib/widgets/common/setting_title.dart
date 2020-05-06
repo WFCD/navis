@@ -15,7 +15,7 @@ class SettingTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     final _style = Theme.of(context)
         .textTheme
-        .subtitle
+        .subtitle2
         .copyWith(fontSize: 15, color: Theme.of(context).accentColor);
 
     return Container(

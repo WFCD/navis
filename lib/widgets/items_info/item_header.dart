@@ -20,7 +20,7 @@ class ItemHeader extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
-        Text(name, style: Theme.of(context).textTheme.title),
+        Text(name, style: Theme.of(context).textTheme.subtitle1),
         const SizedBox(height: 8.0),
         Text(
           '" $description "',

@@ -2,31 +2,35 @@ import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:navis/blocs/bloc.dart';
-import 'package:navis/constants/notification_filters.dart';
 import 'package:navis/generated/l10n.dart';
 import 'package:navis/services/repository.dart';
+import 'package:navis/utils/notification_filters.dart';
 import 'package:navis/widgets/dialogs.dart';
 import 'package:navis/widgets/widgets.dart';
 
 class Notifications extends StatelessWidget {
   const Notifications({Key key}) : super(key: key);
 
-  void openDialog(BuildContext context, String type) {
+  void openDialog(BuildContext context, LocalizedFilter filters, String type) {
     switch (type) {
-      case 'Acolytes':
-        FilterDialog.showFilters(context, acolytes, FilterType.acolytes);
+      case 'acolytes':
+        FilterDialog.showFilters(
+            context, filters.acolytes, FilterType.acolytes);
         break;
-      case 'Cycles':
-        FilterDialog.showFilters(context, cycles, FilterType.cycles);
+      case 'cycles':
+        FilterDialog.showFilters(
+            context, filters.planetCycles, FilterType.cycles);
         break;
-      case 'Resources':
-        FilterDialog.showFilters(context, resources, FilterType.resources);
+      case 'resources':
+        FilterDialog.showFilters(
+            context, filters.resources, FilterType.resources);
         break;
       /*case 'Fissure Missions':
         debugPrint('not implemented yet');
         break;*/
-      case 'News':
-        FilterDialog.showFilters(context, newsType, FilterType.news);
+      case 'news':
+        FilterDialog.showFilters(
+            context, filters.warframeNews, FilterType.news);
         break;
     }
   }
@@ -44,11 +48,11 @@ class Notifications extends StatelessWidget {
             description: m['description'],
             optionKey: m['key'],
           ),
-        for (String k in filtered.keys)
+        for (Map<String, String> k in filters.filtered)
           ListTile(
-            title: Text(k),
-            subtitle: Text(filtered[k]),
-            onTap: () => openDialog(context, k),
+            title: Text(k['title']),
+            subtitle: Text(k['description']),
+            onTap: () => openDialog(context, filters, k['type']),
           ),
       ]),
     );
@@ -79,10 +83,10 @@ class _SimpleNotification extends StatelessWidget {
         return CheckboxListTile(
           title: Text(name),
           subtitle: Text(description),
-          value: persistent.simple(optionKey),
+          value: persistent.getToggle(optionKey),
           activeColor: Theme.of(context).accentColor,
           onChanged: (b) {
-            box.put(optionKey, b);
+            persistent.setToggle(optionKey, b);
             notification.subscribeToNotification(optionKey, b);
           },
         );

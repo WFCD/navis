@@ -539,6 +539,222 @@ class NavisLocalizations {
       args: [],
     );
   }
+
+  String get warframeNewsNotificationTitle {
+    return Intl.message(
+      'News',
+      name: 'warframeNewsNotificationTitle',
+      desc: 'Main Title for Warframe news notifications',
+      args: [],
+    );
+  }
+
+  String get warframeNewsNotificationDescription {
+    return Intl.message(
+      'News notifications for Prime Access, Streams and Updates.',
+      name: 'warframeNewsNotificationDescription',
+      desc: 'Main description for Warframe news notifications',
+      args: [],
+    );
+  }
+
+  String get planetCyclesNotificationTitle {
+    return Intl.message(
+      'Open World Cycles',
+      name: 'planetCyclesNotificationTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get planetCyclesNotificationDescription {
+    return Intl.message(
+      'Open world notifications for their given cycles.',
+      name: 'planetCyclesNotificationDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get resourcesNotificationTitle {
+    return Intl.message(
+      'Resources',
+      name: 'resourcesNotificationTitle',
+      desc: 'Main title for resource notifications',
+      args: [],
+    );
+  }
+
+  String get resourcesNotificationDescription {
+    return Intl.message(
+      'Resources mostly found in invasions.',
+      name: 'resourcesNotificationDescription',
+      desc: 'Main description for resource notifications',
+      args: [],
+    );
+  }
+
+  String get fissuresNotificationTitle {
+    return Intl.message(
+      'Fissure Missions',
+      name: 'fissuresNotificationTitle',
+      desc: 'Main title for fisssures notifications',
+      args: [],
+    );
+  }
+
+  String get fissuresNotificationDescription {
+    return Intl.message(
+      'Filter fissure notifications by prefered mission type',
+      name: 'fissuresNotificationDescription',
+      desc: 'Main description for fissures notifications',
+      args: [],
+    );
+  }
+
+  String get acolytesNotificationTitle {
+    return Intl.message(
+      'Acolytes',
+      name: 'acolytesNotificationTitle',
+      desc: 'Main title for acolyte notifications',
+      args: [],
+    );
+  }
+
+  String get acolytesNotificationDescription {
+    return Intl.message(
+      'Notifies when an acolyte is found',
+      name: 'acolytesNotificationDescription',
+      desc: 'Main description for acolyte notifications',
+      args: [],
+    );
+  }
+
+  String get earthDayOption {
+    return Intl.message(
+      'Earth Day',
+      name: 'earthDayOption',
+      desc: 'Earth cycle option',
+      args: [],
+    );
+  }
+
+  String get earthNightOption {
+    return Intl.message(
+      'Earth Night',
+      name: 'earthNightOption',
+      desc: 'Earth cycle option',
+      args: [],
+    );
+  }
+
+  String get cetusDayOption {
+    return Intl.message(
+      'Cetus Day',
+      name: 'cetusDayOption',
+      desc: 'Cetus cycle option',
+      args: [],
+    );
+  }
+
+  String get cetusNightOption {
+    return Intl.message(
+      'Cetus Day',
+      name: 'cetusNightOption',
+      desc: 'Cetus cycle option',
+      args: [],
+    );
+  }
+
+  String get vallisWarmOption {
+    return Intl.message(
+      'Orb Vallis Warm',
+      name: 'vallisWarmOption',
+      desc: 'Orb vallis cycle option',
+      args: [],
+    );
+  }
+
+  String get vallisColdOption {
+    return Intl.message(
+      'Orb Vallis Cold',
+      name: 'vallisColdOption',
+      desc: 'Orb vallis cycle option',
+      args: [],
+    );
+  }
+
+  String get primeAccessNewsOption {
+    return Intl.message(
+      'Prime Access',
+      name: 'primeAccessNewsOption',
+      desc: 'Warframe news option',
+      args: [],
+    );
+  }
+
+  String get streamNewsOption {
+    return Intl.message(
+      'Stream Announcements',
+      name: 'streamNewsOption',
+      desc: 'Warframe news option',
+      args: [],
+    );
+  }
+
+  String get updateNewsOption {
+    return Intl.message(
+      'Warframe Update News',
+      name: 'updateNewsOption',
+      desc: 'Warframe news option',
+      args: [],
+    );
+  }
+
+  String get updateDropTableTitle {
+    return Intl.message(
+      'Update Drop Table',
+      name: 'updateDropTableTitle',
+      desc: 'Title for updaing drop tables',
+      args: [],
+    );
+  }
+
+  String updateDropTableDescription(Object date) {
+    return Intl.message(
+      'Last updated $date',
+      name: 'updateDropTableDescription',
+      desc: 'Description for updating drop table with date of the last update',
+      args: [date],
+    );
+  }
+
+  String get reportBugsTitle {
+    return Intl.message(
+      'Report Bugs',
+      name: 'reportBugsTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get reportBugsDescription {
+    return Intl.message(
+      'Report bugs or Request a feature',
+      name: 'reportBugsDescription',
+      desc: 'Description for bug report link',
+      args: [],
+    );
+  }
+
+  String get aboutCategoryTitle {
+    return Intl.message(
+      'About',
+      name: 'aboutCategoryTitle',
+      desc: 'Title for the about category of the settings page',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<NavisLocalizations> {
@@ -546,7 +762,17 @@ class AppLocalizationDelegate extends LocalizationsDelegate<NavisLocalizations> 
 
   List<Locale> get supportedLocales {
     return const <Locale>[
-      Locale.fromSubtags(languageCode: 'en'), Locale.fromSubtags(languageCode: 'de'), Locale.fromSubtags(languageCode: 'es'), Locale.fromSubtags(languageCode: 'fr'), Locale.fromSubtags(languageCode: 'it'), Locale.fromSubtags(languageCode: 'ko'), Locale.fromSubtags(languageCode: 'pl'), Locale.fromSubtags(languageCode: 'pt'), Locale.fromSubtags(languageCode: 'ru'), Locale.fromSubtags(languageCode: 'tr'), Locale.fromSubtags(languageCode: 'zh'),
+      Locale.fromSubtags(languageCode: 'en'),
+      Locale.fromSubtags(languageCode: 'de'),
+      Locale.fromSubtags(languageCode: 'es'),
+      Locale.fromSubtags(languageCode: 'fr'),
+      Locale.fromSubtags(languageCode: 'it'),
+      Locale.fromSubtags(languageCode: 'ko'),
+      Locale.fromSubtags(languageCode: 'pl'),
+      Locale.fromSubtags(languageCode: 'pt'),
+      Locale.fromSubtags(languageCode: 'ru'),
+      Locale.fromSubtags(languageCode: 'tr'),
+      Locale.fromSubtags(languageCode: 'zh'),
     ];
   }
 

@@ -51,8 +51,8 @@ class SyndicateWidget extends StatelessWidget {
     final textTheme = Theme.of(context).textTheme;
     final syndicateName = syndicateStringToEnum(name ?? syndicate.name);
 
-    final titleStyle = textTheme.subhead
-        .copyWith(color: Typography.whiteMountainView.subhead.color);
+    final titleStyle = textTheme.subtitle1
+        .copyWith(color: Typography.whiteMountainView.subtitle1.color);
 
     final captionStyle = textTheme.caption
         .copyWith(color: Typography.whiteMountainView.caption.color);
