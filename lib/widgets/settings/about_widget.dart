@@ -23,9 +23,9 @@ class About extends StatelessWidget {
         RepositoryProvider.of<Repository>(context).packageInfo;
 
     final ThemeData theme = Theme.of(context);
-    final TextStyle aboutTextStyle = theme.textTheme.body2;
+    final TextStyle aboutTextStyle = theme.textTheme.bodyText1;
     final TextStyle linkStyle =
-        theme.textTheme.body2.copyWith(color: theme.accentColor);
+        theme.textTheme.bodyText1.copyWith(color: theme.accentColor);
 
     return AboutListTile(
       icon: null,

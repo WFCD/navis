@@ -42,7 +42,7 @@ class MissionDetails extends StatelessWidget {
 
     final sortieBoss = boss.replaceAll(' ', '_');
 
-    final sortie = Theme.of(context).textTheme.subhead.copyWith(
+    final sortie = Theme.of(context).textTheme.subtitle1.copyWith(
           fontWeight: FontWeight.bold,
           fontStyle: FontStyle.normal,
           color: color,

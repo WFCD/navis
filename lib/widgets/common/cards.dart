@@ -9,8 +9,10 @@ class Tiles extends StatelessWidget {
   final Color color;
 
   Widget _buildTitle(BuildContext context, String text) {
-    final titleStyle =
-        Theme.of(context).textTheme.title.copyWith(fontWeight: FontWeight.bold);
+    final titleStyle = Theme.of(context)
+        .textTheme
+        .headline6
+        .copyWith(fontWeight: FontWeight.bold);
 
     return Padding(
       padding: const EdgeInsets.only(bottom: 8, top: 4),

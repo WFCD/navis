@@ -41,7 +41,7 @@ class NavisErrorWidget extends StatelessWidget {
                 const SizedBox(height: 8),
                 Text(
                   'There was unexpected error in core system.',
-                  style: Theme.of(context).textTheme.title,
+                  style: Theme.of(context).textTheme.headline6,
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 10),

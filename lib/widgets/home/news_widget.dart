@@ -69,7 +69,7 @@ class NewsWidget extends StatelessWidget {
                     textAlign: TextAlign.center,
                     style: Theme.of(context)
                         .textTheme
-                        .title
+                        .headline6
                         .copyWith(color: Colors.white, fontSize: 15),
                   ),
                 ],

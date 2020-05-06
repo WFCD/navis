@@ -15,7 +15,7 @@ class NetworkErrorWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final textTheme =
-        Theme.of(context).textTheme.subhead.copyWith(fontSize: 25);
+        Theme.of(context).textTheme.subtitle1.copyWith(fontSize: 25);
     final worldstateBloc = BlocProvider.of<WorldstateBloc>(context);
 
     return Center(

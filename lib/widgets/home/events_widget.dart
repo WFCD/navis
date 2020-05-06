@@ -60,7 +60,7 @@ class _EventHeader extends StatelessWidget {
               textAlign: TextAlign.center,
               style: Theme.of(context)
                   .textTheme
-                  .subhead
+                  .subtitle1
                   .copyWith(fontWeight: FontWeight.bold, fontSize: 20),
             ),
           ),
@@ -109,7 +109,7 @@ class _EventMiddle extends StatelessWidget {
   Widget build(BuildContext context) {
     final style = Theme.of(context)
         .textTheme
-        .subhead
+        .subtitle1
         .copyWith(fontWeight: FontWeight.w500, fontSize: 15);
 
     return Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
@@ -175,7 +175,7 @@ class _EventFooter extends StatelessWidget {
   Widget build(BuildContext context) {
     final style = Theme.of(context)
         .textTheme
-        .subhead
+        .subtitle1
         .copyWith(fontWeight: FontWeight.w500, fontSize: 15);
 
     if (jobs?.isNotEmpty ?? false) {

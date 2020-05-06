@@ -69,7 +69,7 @@ class ArbitrationWidget extends StatelessWidget {
               Text(
                 node,
                 textAlign: TextAlign.center,
-                style: textTheme.subhead.copyWith(
+                style: textTheme.subtitle1.copyWith(
                   color: Colors.white,
                   fontSize: SizeConfig.widthMultiplier * 6,
                 ),

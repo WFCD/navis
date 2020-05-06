@@ -10,7 +10,7 @@ class Nightwaves extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final style = Theme.of(context).textTheme.subtitle.copyWith(fontSize: 15);
+    final style = Theme.of(context).textTheme.subtitle2.copyWith(fontSize: 15);
 
     return SafeArea(
       child: Scaffold(

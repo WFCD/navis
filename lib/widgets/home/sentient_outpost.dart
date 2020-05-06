@@ -17,7 +17,7 @@ class SentientOutpostPanel extends StatelessWidget {
 
     final node = Theme.of(context)
         .textTheme
-        .subhead
+        .subtitle1
         .copyWith(color: Colors.white, fontSize: fontSize);
 
     // TODO(Ornstein): Need to get a veil proxima skybox but for now the Kuva Fortress will do
@@ -42,7 +42,7 @@ class SentientOutpostPanel extends StatelessWidget {
               const SizedBox(height: 4.0),
               Text(
                 '${mission.faction} | ${mission.type}',
-                style: Typography.whiteMountainView.subhead,
+                style: Typography.whiteMountainView.subtitle1,
               )
             ],
           )

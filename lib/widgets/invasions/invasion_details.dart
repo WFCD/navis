@@ -17,7 +17,7 @@ class InvasionDetails extends StatelessWidget {
     const color = Colors.white;
     const shadow = Shadow(offset: Offset(1.0, 0.0), blurRadius: 4.0);
 
-    final _node = Typography.whiteMountainView.subhead
+    final _node = Typography.whiteMountainView.subtitle1
         .copyWith(fontSize: 15, shadows: <Shadow>[shadow], color: color);
 
     return Container(

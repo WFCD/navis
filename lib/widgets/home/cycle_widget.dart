@@ -20,7 +20,7 @@ class CycleWidget extends StatelessWidget {
         children: <Widget>[
           Text(
             title,
-            style: Theme.of(context).textTheme.subhead.copyWith(fontSize: 17),
+            style: Theme.of(context).textTheme.subtitle1.copyWith(fontSize: 17),
           ),
           const Spacer(),
           Text(

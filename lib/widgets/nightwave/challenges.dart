@@ -24,9 +24,11 @@ class NightwaveChallenge extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final color = Theme.of(context).textTheme.caption.color;
-    final title = Theme.of(context).textTheme.subhead;
-    final desscription =
-        Theme.of(context).textTheme.body1.copyWith(fontSize: 14, color: color);
+    final title = Theme.of(context).textTheme.subtitle1;
+    final desscription = Theme.of(context)
+        .textTheme
+        .bodyText2
+        .copyWith(fontSize: 14, color: color);
 
     return Card(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
