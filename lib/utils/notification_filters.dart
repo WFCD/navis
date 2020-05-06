@@ -53,11 +53,11 @@ class LocalizedFilter {
         'description': localizations.resourcesNotificationDescription,
         'type': 'resources'
       },
-      {
-        'title': localizations.fissuresNotificationTitle,
-        'description': localizations.fissuresNotificationDescription,
-        'type': 'fissures'
-      },
+      // {
+      //   'title': localizations.fissuresNotificationTitle,
+      //   'description': localizations.fissuresNotificationDescription,
+      //   'type': 'fissures'
+      // },
       {
         'title': localizations.acolytesNotificationTitle,
         'description': localizations.acolytesNotificationDescription,
