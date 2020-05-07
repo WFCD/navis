@@ -6,7 +6,7 @@ matrix:
   include:
     - env: JOB=TEST
       language: android
-      jdk: openjdk
+      jdk: openjdk8
       os: linux
       dist: xenial
       android:
@@ -28,7 +28,7 @@ matrix:
 
     - env: JOB=APK
       language: android
-      jdk: openjdk
+      jdk: openjdk8
       os: linux
       dist: xenial
       android:
