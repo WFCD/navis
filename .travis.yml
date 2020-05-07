@@ -106,8 +106,8 @@ matrix:
           --no-use-deferred-loading lib/generated/l10n.dart lib/l10n/intl_*.arb
       script:
         - flutter clean
-        - flutter build apk --split-per-abi
-        - flutter build appbundle
+        - flutter build apk --split-per-abi --tree-shake-icons
+        - flutter build appbundle --tree-shake-icons
         - cd android && bundle exec fastlane beta
       deploy:
         provider: releases
