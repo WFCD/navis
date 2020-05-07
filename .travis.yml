@@ -64,7 +64,6 @@ matrix:
       before_script:
         - pip install six
         - brew update
-        - brew install
         - brew install --HEAD libimobiledevice
         - brew install ideviceinstaller
         - brew install ios-deploy
