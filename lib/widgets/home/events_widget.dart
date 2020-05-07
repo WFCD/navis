@@ -112,7 +112,7 @@ class _EventMiddle extends StatelessWidget {
         .subtitle1
         .copyWith(fontWeight: FontWeight.w500, fontSize: 15);
 
-    return Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
+    return Wrap(alignment: WrapAlignment.center, children: <Widget>[
       if (victimNode != null)
         StaticBox.text(
           text: victimNode,
