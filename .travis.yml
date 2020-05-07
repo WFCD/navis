@@ -49,6 +49,7 @@ matrix:
           1.17.0; fi;
         - export PATH=./flutter/bin:$PATH
       script:
+        - flutter pub get
         - mkdir lib/generated/intl && flutter pub run intl_translation:generate_from_arb --output-dir=lib/generated/intl
           --no-use-deferred-loading lib/generated/l10n.dart lib/l10n/intl_*.arb
         - flutter build apk --target-platform android-arm
@@ -72,6 +73,9 @@ matrix:
           1.17.0; fi;
         - export PATH=./flutter/bin:$PATH
       script:
+        - flutter pub get
+        - mkdir lib/generated/intl && flutter pub run intl_translation:generate_from_arb --output-dir=lib/generated/intl
+          --no-use-deferred-loading lib/generated/l10n.dart lib/l10n/intl_*.arb
         - flutter build ios --no-codesign
 
 cache:
