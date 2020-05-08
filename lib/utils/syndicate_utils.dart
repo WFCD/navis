@@ -19,7 +19,7 @@ class GetSyndicateIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _size = SizeConfig.imageSizeMultiplier * 10;
+    final _size = SizeConfig.imageSizeMultiplier * 12;
 
     IconData icon;
 
