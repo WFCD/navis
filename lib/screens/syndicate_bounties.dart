@@ -12,35 +12,33 @@ class SyndicateJobs extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Syndicate syndicate = ModalRoute.of(context).settings.arguments;
+    final backgroundColor =
+        syndicateBackgroundColor(syndicateStringToEnum(syndicate.name));
 
-    return SafeArea(
-      child: Scaffold(
-          appBar: AppBar(
-            title: Text(syndicate.name),
-            titleSpacing: 0.0,
-            backgroundColor:
-                syndicateBackgroundColor(syndicateStringToEnum(syndicate.name)),
-          ),
-          // ignore: prefer_const_constructors
-          body: CustomScrollView(
-            slivers: <Widget>[
-              for (Job job in syndicate?.jobs ?? [])
-                SliverStickyHeader(
-                  header: SyndicateBounty(
-                    job: job,
-                    faction: syndicateStringToEnum(syndicate.name),
+    return Scaffold(
+        appBar: AppBar(
+          title: Text(syndicate.name),
+          titleSpacing: 0.0,
+          backgroundColor: backgroundColor,
+        ),
+        body: CustomScrollView(
+          slivers: <Widget>[
+            for (Job job in syndicate?.jobs ?? [])
+              SliverStickyHeader(
+                header: SyndicateBounty(
+                  job: job,
+                  faction: syndicateStringToEnum(syndicate.name),
+                ),
+                sliver: SliverList(
+                  delegate: SliverChildBuilderDelegate(
+                    (BuildContext context, int index) {
+                      return ListTile(title: Text(job.rewardPool[index]));
+                    },
+                    childCount: job.rewardPool.length,
                   ),
-                  sliver: SliverList(
-                    delegate: SliverChildBuilderDelegate(
-                      (BuildContext context, int index) {
-                        return ListTile(title: Text(job.rewardPool[index]));
-                      },
-                      childCount: job.rewardPool.length,
-                    ),
-                  ),
-                )
-            ],
-          )),
-    );
+                ),
+              )
+          ],
+        ));
   }
 }
