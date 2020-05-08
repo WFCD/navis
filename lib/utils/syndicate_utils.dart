@@ -25,19 +25,19 @@ class GetSyndicateIcon extends StatelessWidget {
 
     switch (syndicate) {
       case SyndicateFactions.ostrons:
-        icon = SyndicateIcons.ostronsigil;
+        icon = SyndicateGlyphs.ostron;
         break;
       case SyndicateFactions.solaris:
-        icon = SyndicateIcons.solarisunited;
+        icon = SyndicateGlyphs.solaris;
         break;
       case SyndicateFactions.simaris:
-        icon = SyndicateIcons.simaris;
+        icon = SyndicateGlyphs.simaris;
         break;
       case SyndicateFactions.nightwave:
-        icon = SyndicateIcons.nightwavesyndicate;
+        icon = SyndicateGlyphs.nightwave;
         break;
       default:
-        icon = SyndicateIcons.hexis;
+        icon = SyndicateGlyphs.hexis;
         break;
     }
 

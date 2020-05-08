@@ -58,7 +58,7 @@ class ArbitrationWidget extends StatelessWidget {
         alignment: AlignmentDirectional.center,
         children: <Widget>[
           Icon(
-            SyndicateIcons.hexis,
+            SyndicateGlyphs.hexis,
             size: 125,
             color: Colors.grey[600],
           ),
