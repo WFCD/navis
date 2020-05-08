@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:navis/utils/size_config.dart';
+import 'package:navis/widgets/common/fa_icon.dart';
 import 'package:navis/widgets/icons.dart';
 
 enum SyndicateFactions { ostrons, solaris, simaris, nightwave, hexis }
@@ -18,7 +19,7 @@ class GetSyndicateIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _size = SizeConfig.imageSizeMultiplier * 9;
+    final _size = SizeConfig.imageSizeMultiplier * 10;
 
     IconData icon;
 
@@ -40,9 +41,9 @@ class GetSyndicateIcon extends StatelessWidget {
         break;
     }
 
-    return Icon(
+    return FaIcon(
       icon,
-      size: size ?? _size,
+      size: _size,
       color: color ?? syndicateIconColor(syndicate),
       textDirection: TextDirection.ltr,
     );
