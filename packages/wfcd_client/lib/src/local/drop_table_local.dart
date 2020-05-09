@@ -38,7 +38,7 @@ class DropTableLocal extends DropTableLocalBase {
           .toList();
     }
 
-    throw NotCachedException();
+    return null;
   }
 
   @override
@@ -47,7 +47,7 @@ class DropTableLocal extends DropTableLocalBase {
 
     if (timestamp != null) return DateTime.parse(timestamp);
 
-    throw NotCachedException();
+    return null;
   }
 
   @override
