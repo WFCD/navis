@@ -15,5 +15,5 @@ class SlimDrop extends Equatable {
   }
 
   @override
-  List<Object> get props => [place, item, rarity, chance];
+  List<Object> get props => [place, item, rarity, dropChance];
 }

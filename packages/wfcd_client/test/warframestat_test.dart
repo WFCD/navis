@@ -114,7 +114,8 @@ void main() {
         final dealItem =
             testDealResults.firstWhere((i) => deal.item.contains(i.name));
 
-        when<dynamic>(mockBox.get(any)).thenAnswer((_) => dealItem.toJson());
+        when<dynamic>(mockBox.get(any))
+            .thenAnswer((_) => json.encode(dealItem.toJson()));
 
         cache.cacheDealInfo(deal.id, dealItem);
 

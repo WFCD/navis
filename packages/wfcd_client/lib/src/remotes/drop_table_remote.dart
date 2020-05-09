@@ -6,6 +6,10 @@ import '../base/remote/drop_table_remote_base.dart';
 import '../constants/endpoints.dart';
 
 class DropTableRemote implements DropTableRemoteBase {
+  DropTableRemote(this._client);
+
+  final http.Client _client;
+
   @override
   Future<DateTime> dropsTimestamp() async {
     final info = json.decode(await _warframestatDrops('info.json'))
@@ -15,15 +19,12 @@ class DropTableRemote implements DropTableRemoteBase {
   }
 
   @override
-  Future<List<Map<String, dynamic>>> getDropTable() async {
-    final response = await _warframestatDrops('all.slim.json');
-
-    return (json.decode(response) as List<dynamic>)
-        .cast<Map<String, dynamic>>();
+  Future<String> getDropTable() {
+    return _warframestatDrops('all.slim.json');
   }
 
   Future<String> _warframestatDrops(String path) async {
-    final response = await http.get('$warframestatDropsEndpoint/$path');
+    final response = await _client.get('$warframestatDropsEndpoint/$path');
 
     return response.body;
   }
