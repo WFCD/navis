@@ -5,13 +5,11 @@ class CustomCard extends StatelessWidget {
     Key key,
     this.title,
     @required this.child,
-    this.height,
     this.color,
-    this.margin = const EdgeInsets.symmetric(horizontal: 2.0, vertical: 2.0),
+    this.margin = const EdgeInsets.symmetric(horizontal: 6.0, vertical: 6.0),
     this.padding = const EdgeInsets.symmetric(horizontal: 2.0, vertical: 2.0),
   }) : super(key: key);
 
-  final double height;
   final Color color;
   final EdgeInsetsGeometry margin, padding;
   final String title;
@@ -43,7 +41,6 @@ class CustomCard extends StatelessWidget {
       child: AnimatedContainer(
         margin: margin,
         padding: padding,
-        height: height,
         duration: const Duration(milliseconds: 250),
         child: Column(
           mainAxisSize: MainAxisSize.min,

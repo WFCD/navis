@@ -60,14 +60,10 @@ class SyndicateCard extends StatelessWidget {
           RoundedRectangleBorder(borderRadius: BorderRadius.circular(4.0)),
       child: CustomCard(
         color: syndicateName.backgroundColor,
-        margin: EdgeInsets.zero,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 4.0, vertical: 6.0),
-          child: ListTile(
-            leading: GetSyndicateIcon(syndicate: syndicateName),
-            title: Text(name ?? syndicate.name, style: titleStyle),
-            subtitle: Text(caption, style: captionStyle),
-          ),
+        child: ListTile(
+          leading: GetSyndicateIcon(syndicate: syndicateName),
+          title: Text(name ?? syndicate.name, style: titleStyle),
+          subtitle: Text(caption, style: captionStyle),
         ),
       ),
     );

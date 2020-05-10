@@ -23,11 +23,9 @@ class GetSyndicateIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final widthFactor = MediaQuery.of(context).size.width / 100;
-
     return Icon(
       _getIcon(),
-      size: widthFactor * 12,
+      size: 50,
       color: syndicate.iconColor,
     );
   }

@@ -57,6 +57,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.0"
+  breakpoint:
+    dependency: "direct main"
+    description:
+      name: breakpoint
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.1+2"
   cached_network_image:
     dependency: "direct main"
     description:
@@ -240,6 +247,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_staggered_grid_view:
+    dependency: "direct main"
+    description:
+      name: flutter_staggered_grid_view
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.3.0"
   flutter_sticky_header:
     dependency: "direct main"
     description:

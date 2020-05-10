@@ -13,11 +13,8 @@ class ConstructionProgressCard extends StatelessWidget {
   final List<Progress> constructionProgress;
 
   Widget _paintProgress(Progress progress, TextStyle style) {
-    const size = Size(60.0, 60.0);
-
-    return Container(
-      height: size.height,
-      width: size.width,
+    return SizedBox.fromSize(
+      size: const Size(70.0, 70.0),
       child: CustomPaint(
         foregroundPainter: ProgressPainter(
           completeColor: progress.color,
@@ -36,19 +33,21 @@ class ConstructionProgressCard extends StatelessWidget {
     final textTheme = Theme.of(context).textTheme;
 
     return CustomCard(
-      height: 120.0,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: <Widget>[
-          for (final progress in constructionProgress)
-            Column(
-              children: <Widget>[
-                _paintProgress(progress, textTheme.headline6),
-                const SizedBox(height: 16.0),
-                Text(progress.name, style: textTheme.headline6)
-              ],
-            ),
-        ],
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: <Widget>[
+            for (final progress in constructionProgress)
+              Column(
+                children: <Widget>[
+                  _paintProgress(progress, textTheme.headline6),
+                  const SizedBox(height: 16.0),
+                  Text(progress.name, style: textTheme.headline6)
+                ],
+              ),
+          ],
+        ),
       ),
     );
   }

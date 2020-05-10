@@ -73,8 +73,10 @@ class _DealWidgetState extends State<DealWidget> {
                       parseHtmlString(snapshot.data?.description ?? ''),
                 ),
                 const SizedBox(height: 16.0),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                Wrap(
+                  crossAxisAlignment: WrapCrossAlignment.center,
+                  spacing: 10.0,
+                  runSpacing: 5.0,
                   children: <Widget>[
                     StaticBox.text(
                       text: '${widget.deal.discount}% Discount',
@@ -89,7 +91,8 @@ class _DealWidgetState extends State<DealWidget> {
                     ),
                     StaticBox.text(
                       text:
-                          '${widget.deal.total - widget.deal.sold} / ${widget.deal.total} remaining',
+                      '${widget.deal.total - widget.deal.sold} / ${widget.deal
+                          .total}',
                       color: primary,
                       style: saleInfo,
                     ),
