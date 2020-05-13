@@ -6,3 +6,7 @@ analyzer:
     - lib/generated/intl/messages_*.dart
     - lib/src/**/*g.dart
     - lib/src/models/**/*.g.dart
+
+linter:
+  rules:
+    - prefer_const_constructors
