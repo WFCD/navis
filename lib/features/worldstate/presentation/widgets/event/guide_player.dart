@@ -71,19 +71,21 @@ class _YoutubePlayerState extends State<EventVideoPlayer> {
   Widget build(BuildContext context) {
     return Card(
       margin: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0),
-      child: Container(
-        height: 360,
+      child: LimitedBox(
+        maxHeight: (MediaQuery.of(context).size.width / 100) * 88,
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             if (_chewieController == null)
-              const Expanded(child: Center(child: CircularProgressIndicator()))
+              const Flexible(child: Center(child: CircularProgressIndicator()))
             else
               Chewie(controller: _chewieController),
             Container(
               margin:
                   const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
               child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Text(
                     _videoDetials?.title ?? 'Loading..',

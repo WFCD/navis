@@ -4,15 +4,19 @@ class CustomCard extends StatelessWidget {
   const CustomCard({
     Key key,
     this.title,
-    @required this.child,
     this.color,
     this.margin = const EdgeInsets.symmetric(horizontal: 6.0, vertical: 6.0),
     this.padding = const EdgeInsets.symmetric(horizontal: 2.0, vertical: 2.0),
+    this.addBanner = false,
+    this.bannerMessage,
+    @required this.child,
   }) : super(key: key);
 
+  final String title;
   final Color color;
   final EdgeInsetsGeometry margin, padding;
-  final String title;
+  final bool addBanner;
+  final String bannerMessage;
   final Widget child;
 
   Widget _buildTitle(BuildContext context, String text) {
@@ -31,26 +35,39 @@ class CustomCard extends StatelessWidget {
     );
   }
 
+  Widget _wrapWithBanner(BuildContext context, Widget child) {
+    assert(addBanner && bannerMessage != null,
+        'Banner message can\'t be null when addBanner is set to true');
+    return Banner(
+      message: bannerMessage,
+      location: BannerLocation.topEnd,
+      textStyle: Theme.of(context).textTheme.bodyText1,
+      child: child,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
+    final cardContent = AnimatedContainer(
+      margin: margin,
+      padding: padding,
+      duration: const Duration(milliseconds: 250),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          if (title != null) _buildTitle(context, title),
+          child
+        ],
+      ),
+    );
+
     return Card(
       margin: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0),
       color: color,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4.0)),
       elevation: 4.0,
-      child: AnimatedContainer(
-        margin: margin,
-        padding: padding,
-        duration: const Duration(milliseconds: 250),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            if (title != null) _buildTitle(context, title),
-            child
-          ],
-        ),
-      ),
+      child: addBanner ? _wrapWithBanner(context, cardContent) : cardContent,
     );
   }
 }

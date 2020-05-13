@@ -1,6 +1,7 @@
 import 'package:async/async.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:navis/core/utils/ui_util.dart';
 import 'package:warframe_items_model/warframe_items_model.dart';
 import 'package:worldstate_api_model/entities.dart';
 
@@ -19,6 +20,9 @@ class DarvoDealCard extends StatelessWidget {
     final deal = deals.first;
 
     return CustomCard(
+      title: 'Darvo\'s Daily Deal',
+      addBanner: true,
+      bannerMessage: '${deal.discount}% OFF',
       child: DealWidget(deal: deal),
     );
   }
@@ -54,35 +58,43 @@ class _DealWidgetState extends State<DealWidget> {
         .subtitle2
         .copyWith(fontWeight: FontWeight.w500);
 
+    final height = MediaQuery.of(context).size.longestSide / 100;
+
     final primary = Theme.of(context).primaryColor;
 
     return FutureBuilder<BaseItem>(
-        future: _getDeal(),
-        builder: (BuildContext context, AsyncSnapshot<BaseItem> snapshot) {
-          final urlExist = snapshot.data?.wikiaUrl != null;
+      future: _getDeal(),
+      builder: (BuildContext context, AsyncSnapshot<BaseItem> snapshot) {
+        final urlExist = snapshot.data?.wikiaUrl != null;
 
-          return Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 4.0, vertical: 4.0),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                DealDetails(
-                  itemName: snapshot.data?.name ?? widget.deal.item ?? '',
-                  itemDescription:
-                      parseHtmlString(snapshot.data?.description ?? ''),
+        return Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Center(
+                child: Container(
+                  height: height * 12,
+                  child: snapshot.data != null
+                      ? Image.network(snapshot.data.imageUrl)
+                      : const CircularProgressIndicator(),
                 ),
-                const SizedBox(height: 16.0),
-                Wrap(
+              ),
+              DealDetails(
+                itemName: snapshot.data?.name ?? widget.deal.item ?? '',
+                itemDescription:
+                    parseHtmlString(snapshot.data?.description ?? ''),
+              ),
+              const SizedBox(height: 16.0),
+              Wrap(
                   crossAxisAlignment: WrapCrossAlignment.center,
                   spacing: 10.0,
                   runSpacing: 5.0,
                   children: <Widget>[
-                    StaticBox.text(
-                      text: '${widget.deal.discount}% Discount',
-                      color: primary,
-                      style: saleInfo,
-                    ),
+                    // StaticBox.text(
+                    //   text: '${widget.deal.discount}% Discount',
+                    //   color: primary,
+                    //   style: saleInfo,
+                    // ),
                     // TODO: should probably put a plat icon here instead
                     StaticBox.text(
                       text: '${widget.deal.salePrice}\p',
@@ -91,28 +103,30 @@ class _DealWidgetState extends State<DealWidget> {
                     ),
                     StaticBox.text(
                       text:
-                      '${widget.deal.total - widget.deal.sold} / ${widget.deal
-                          .total}',
+                          '${widget.deal.total - widget.deal.sold} / ${widget.deal.total}',
                       color: primary,
                       style: saleInfo,
                     ),
-                    CountdownTimer(expiry: widget.deal.expiry, style: saleInfo),
-                  ],
-                ),
+                    CountdownTimer(
+                      expiry: widget.deal.expiry,
+                      style: saleInfo,
+                    ),
+                  ]),
+              ButtonBar(children: <Widget>[
                 if (urlExist)
-                  ButtonBar(
-                    children: <Widget>[
-                      FlatButton(
-                        onPressed: () =>
-                            launchLink(context, snapshot.data.wikiaUrl),
-                        child: const Text('See Wikia'),
-                      ),
-                    ],
-                  )
-              ],
-            ),
-          );
-        });
+                  FlatButton(
+                    onPressed: () =>
+                        launchLink(context, snapshot.data.wikiaUrl),
+                    color: Theme.of(context).primaryColor,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8.0),
+                    ),
+                    child: const Text('See Wikia'),
+                  ),
+              ])
+            ]);
+      },
+    );
   }
 }
 
@@ -131,7 +145,6 @@ class DealDetails extends StatelessWidget {
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: MainAxisAlignment.start,
       children: <Widget>[
         Text(
           itemName,
