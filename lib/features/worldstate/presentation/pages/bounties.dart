@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_sticky_header/flutter_sticky_header.dart';
 import 'package:worldstate_api_model/entities.dart';
 
 import '../../utils/faction_utils.dart';
-import '../widgets/syndicates/syndicate_bounty_header.dart';
+import '../widgets/syndicates/syndicate_bounties.dart';
 
 class BountiesPage extends StatelessWidget {
   const BountiesPage({Key key}) : super(key: key);
@@ -22,25 +21,7 @@ class BountiesPage extends StatelessWidget {
         titleSpacing: 0.0,
         backgroundColor: backgroundColor,
       ),
-      body: CustomScrollView(
-        slivers: <Widget>[
-          for (Job job in syndicate?.jobs ?? [])
-            SliverStickyHeader(
-              header: SyndicateBountyHeader(
-                job: job,
-                faction: syndicateStringToEnum(syndicate.name),
-              ),
-              sliver: SliverList(
-                delegate: SliverChildBuilderDelegate(
-                  (BuildContext context, int index) {
-                    return ListTile(title: Text(job.rewardPool[index]));
-                  },
-                  childCount: job.rewardPool.length,
-                ),
-              ),
-            )
-        ],
-      ),
+      body: SyndicateBounties(syndicate: syndicate),
     );
   }
 }

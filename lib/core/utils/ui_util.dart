@@ -21,6 +21,14 @@ class SizingInformation {
   final DeviceScreenType deviceScreenType;
   final Size screenSize;
   final Size localWidgetSize;
+
+  double get _blockSizeHorizontal => screenSize.shortestSide / 100;
+  double get _blockSizeVertical => screenSize.longestSide / 100;
+
+  double get textMultiplier => _blockSizeVertical;
+  double get imageSizeMultiplier => _blockSizeHorizontal;
+  double get heightMultiplier => _blockSizeVertical;
+  double get widthMultiplier => _blockSizeHorizontal;
 }
 
 extension on MediaQueryData {

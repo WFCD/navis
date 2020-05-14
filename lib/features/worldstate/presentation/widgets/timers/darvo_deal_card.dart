@@ -58,8 +58,6 @@ class _DealWidgetState extends State<DealWidget> {
         .subtitle2
         .copyWith(fontWeight: FontWeight.w500);
 
-    final height = MediaQuery.of(context).size.longestSide / 100;
-
     final primary = Theme.of(context).primaryColor;
 
     return FutureBuilder<BaseItem>(
@@ -72,11 +70,14 @@ class _DealWidgetState extends State<DealWidget> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Center(
-                child: Container(
-                  height: height * 12,
-                  child: snapshot.data != null
-                      ? Image.network(snapshot.data.imageUrl)
-                      : const CircularProgressIndicator(),
+                child: ResponsiveBuilder(
+                  builder: (BuildContext context, SizingInformation sizing) =>
+                      Container(
+                    height: sizing.imageSizeMultiplier * 30,
+                    child: snapshot.data != null
+                        ? Image.network(snapshot.data.imageUrl)
+                        : const CircularProgressIndicator(),
+                  ),
                 ),
               ),
               DealDetails(
@@ -119,7 +120,7 @@ class _DealWidgetState extends State<DealWidget> {
                         launchLink(context, snapshot.data.wikiaUrl),
                     color: Theme.of(context).primaryColor,
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8.0),
+                      borderRadius: BorderRadius.circular(2.0),
                     ),
                     child: const Text('See Wikia'),
                   ),
