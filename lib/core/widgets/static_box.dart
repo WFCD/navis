@@ -29,7 +29,7 @@ class StaticBox extends StatelessWidget {
     return StaticBox(
       padding: padding,
       margin: margin,
-      color: color ?? primaryColor,
+      color: color,
       child: Text(
         text,
         textAlign: TextAlign.center,
@@ -82,7 +82,7 @@ class StaticBox extends StatelessWidget {
       margin: margin,
       curve: Curves.easeInOut,
       decoration: BoxDecoration(
-        color: color,
+        color: color ?? primary,
         borderRadius: const BorderRadius.all(Radius.circular(3.0)),
       ),
       child: Row(

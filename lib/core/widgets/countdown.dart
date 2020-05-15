@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:navis/core/themes/colors.dart';
 import 'package:navis/features/worldstate/presentation/bloc/solsystem_bloc.dart';
 import 'package:navis/generated/l10n.dart';
 import 'package:wfcd_client/base.dart';
@@ -77,7 +78,7 @@ class _CountdownTimerState extends State<CountdownTimer>
         newLevel = Colors.red;
       }
     } else {
-      newLevel = Theme.of(context).primaryColor;
+      newLevel = primary;
     }
 
     if (_warningLevel == newLevel) return;

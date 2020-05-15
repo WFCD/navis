@@ -3,46 +3,42 @@ import 'package:flutter/material.dart';
 import 'colors.dart';
 
 class NavisTheming {
-  static ThemeData get light {
-    return ThemeData(
-      brightness: Brightness.light,
-      primaryColor: primaryColor,
-      accentColor: accentColor,
-      splashColor: accentColor,
-    );
-  }
+  static final _lightBase = ThemeData.from(
+      colorScheme: ColorScheme.light(
+    primary: primary,
+    primaryVariant: primaryVariant,
+    secondary: secondary,
+    secondaryVariant: secondaryVariant,
+  ));
 
-  // ThemeData get dark => ThemeData(
-  //       brightness: Brightness.dark,
-  //       primaryColor: _primaryColor,
-  //       accentColor: _accentColor,
-  //       cardColor: const Color(0xFF2C2C2C),
-  //       dialogBackgroundColor: const Color(0xFF212121),
-  //       scaffoldBackgroundColor: const Color(0xFF212121),
-  //       canvasColor: const Color(0xFF212121),
-  //     );
+  static final _darkBase = ThemeData.from(
+    colorScheme: ColorScheme.dark(
+      primary: primary,
+      primaryVariant: primaryVariant,
+      secondary: secondary,
+      secondaryVariant: secondaryVariant,
+    ),
+  );
 
-  static ThemeData get dark {
-    return ThemeData(
-      brightness: Brightness.dark,
-      primaryColorBrightness: Brightness.dark,
-      accentColor: accentColor,
-      primaryColor: primaryColor,
-      primarySwatch: Colors.grey,
-      disabledColor: Colors.grey,
-      cardTheme: CardTheme(
-        color: Colors.grey[900],
-        elevation: 6.0,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(8.0),
-        ),
-        clipBehavior: Clip.hardEdge,
-      ),
-      dialogTheme: const DialogTheme(backgroundColor: Color(0xff191919)),
-      dialogBackgroundColor: const Color(0xff191919),
-      canvasColor: const Color(0xff191919),
-      backgroundColor: Colors.grey[900],
-      scaffoldBackgroundColor: const Color(0xFF121212),
-    );
-  }
+  static final ThemeData light = _lightBase.copyWith(
+    cardTheme: _cardTheme,
+    appBarTheme: _appBarTheme,
+  );
+
+  static final ThemeData dark = _darkBase.copyWith(
+    cardTheme: _cardTheme.copyWith(color: Colors.grey[900]),
+    dialogTheme: const DialogTheme(backgroundColor: Color(0xff191919)),
+    dialogBackgroundColor: const Color(0xff191919),
+    canvasColor: const Color(0xff191919),
+    appBarTheme: _appBarTheme,
+  );
+
+  static final _appBarTheme = AppBarTheme(color: primary);
+
+  static final _cardTheme = CardTheme(
+    elevation: 6.0,
+    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4.0)),
+    margin: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0),
+    clipBehavior: Clip.hardEdge,
+  );
 }

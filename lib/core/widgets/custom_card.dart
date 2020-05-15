@@ -41,7 +41,9 @@ class CustomCard extends StatelessWidget {
     return Banner(
       message: bannerMessage,
       location: BannerLocation.topEnd,
-      textStyle: Theme.of(context).textTheme.bodyText1,
+      color: Colors.red[900],
+      textStyle:
+          Theme.of(context).textTheme.bodyText1.copyWith(color: Colors.white),
       child: child,
     );
   }
@@ -63,10 +65,7 @@ class CustomCard extends StatelessWidget {
     );
 
     return Card(
-      margin: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0),
       color: color,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4.0)),
-      elevation: 4.0,
       child: addBanner ? _wrapWithBanner(context, cardContent) : cardContent,
     );
   }

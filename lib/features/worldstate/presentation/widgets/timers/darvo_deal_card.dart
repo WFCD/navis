@@ -58,8 +58,6 @@ class _DealWidgetState extends State<DealWidget> {
         .subtitle2
         .copyWith(fontWeight: FontWeight.w500);
 
-    final primary = Theme.of(context).primaryColor;
-
     return FutureBuilder<BaseItem>(
       future: _getDeal(),
       builder: (BuildContext context, AsyncSnapshot<BaseItem> snapshot) {
@@ -99,13 +97,11 @@ class _DealWidgetState extends State<DealWidget> {
                     // TODO: should probably put a plat icon here instead
                     StaticBox.text(
                       text: '${widget.deal.salePrice}\p',
-                      color: primary,
                       style: saleInfo,
                     ),
                     StaticBox.text(
                       text:
                           '${widget.deal.total - widget.deal.sold} / ${widget.deal.total}',
-                      color: primary,
                       style: saleInfo,
                     ),
                     CountdownTimer(
@@ -118,7 +114,6 @@ class _DealWidgetState extends State<DealWidget> {
                   FlatButton(
                     onPressed: () =>
                         launchLink(context, snapshot.data.wikiaUrl),
-                    color: Theme.of(context).primaryColor,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(2.0),
                     ),

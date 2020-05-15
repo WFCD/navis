@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:navis/core/themes/colors.dart';
 import 'package:navis/core/widgets/widgets.dart';
 import 'package:navis/features/worldstate/presentation/pages/trader_inventory.dart';
 import 'package:navis/generated/l10n.dart';
@@ -14,7 +15,7 @@ class TraderCard extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 4.0, vertical: 8.0),
       child: Material(
         elevation: 2.0,
-        color: Colors.blueAccent[400],
+        color: primary,
         borderRadius: BorderRadius.circular(4.0),
         child: InkWell(
           onTap: () => Navigator.of(context)
@@ -59,7 +60,7 @@ class TraderCard extends StatelessWidget {
             padding: padding,
             child: StaticBox.text(
               text: '${trader.location}',
-              color: Theme.of(context).primaryColor,
+              color: primary,
             ),
           ),
         RowItem(
@@ -70,7 +71,7 @@ class TraderCard extends StatelessWidget {
           ),
           padding: padding,
           child: StaticBox.text(
-            color: Theme.of(context).primaryColor,
+            color: primary,
             text: formattedDate,
           ),
         ),

@@ -13,7 +13,7 @@ Future<void> launchLink(BuildContext context, String link,
       await custom_tabs.launch(
         link,
         option: const custom_tabs.CustomTabsOption(
-          toolbarColor: primaryColor,
+          toolbarColor: primary,
           enableDefaultShare: true,
           enableUrlBarHiding: true,
           showPageTitle: true,

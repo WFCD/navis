@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:navis/core/themes/colors.dart';
 import 'package:navis/generated/l10n.dart';
 
 import 'fissures.dart';
@@ -66,15 +67,17 @@ class _HomeFeedPageState extends State<HomeFeedPage>
             handle: NestedScrollView.sliverOverlapAbsorberHandleFor(context),
             sliver: SliverToBoxAdapter(
               child: Material(
-                color: Theme.of(context).canvasColor,
+                color: primary,
                 child: TabBar(
                   controller: _tabController,
-                  labelColor: Theme.of(context).accentColor,
+                  labelColor:
+                      Theme.of(context).primaryTextTheme.bodyText1.color,
                   unselectedLabelColor: Theme.of(context)
                       .primaryTextTheme
                       .bodyText1
                       .color
                       .withOpacity(.7),
+                  indicatorColor: Theme.of(context).accentColor,
                   tabs: tabs,
                 ),
               ),
