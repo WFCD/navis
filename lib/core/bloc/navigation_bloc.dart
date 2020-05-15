@@ -1,8 +1,10 @@
 import 'dart:async';
 
+import 'package:bloc/bloc.dart';
 import 'package:flutter/widgets.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:navis/features/worldstate/presentation/pages/home_feed.dart';
+import 'package:rxdart/rxdart.dart';
 
 enum NavigationEvent { timers, codex }
 
@@ -16,9 +18,11 @@ class NavigationBloc extends HydratedBloc<NavigationEvent, Widget> {
   Widget get initialState => navigationMap[NavigationEvent.timers];
 
   @override
-  Stream<Widget> transformEvents(Stream<NavigationEvent> events,
-      Stream<Widget> Function(NavigationEvent) next) {
-    return super.transformEvents(events.distinct(), next);
+  Stream<Transition<NavigationEvent, Widget>> transformEvents(
+    Stream<NavigationEvent> events,
+    TransitionFunction<NavigationEvent, Widget> transitionFn,
+  ) {
+    return events.switchMap(transitionFn);
   }
 
   @override
