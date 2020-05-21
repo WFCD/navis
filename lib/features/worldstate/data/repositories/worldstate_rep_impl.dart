@@ -86,8 +86,15 @@ class WorldstateRepositoryImpl implements WorldstateRepository {
   static Future<BaseItem> _getDealInfo(String name) async {
     final results = await _warframestat.searchItems(name);
 
-    return results
-        .firstWhere((r) => r.name.toLowerCase().contains(name.toLowerCase()));
+    return results.firstWhere(
+      (r) => r.name.toLowerCase().contains(name.toLowerCase()),
+      orElse: () => BaseItem(
+        name: null,
+        description: null,
+        imageName: null,
+        type: null,
+      ),
+    );
   }
 
   Future<Either<Failure, T>> run<T, P>(

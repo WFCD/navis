@@ -46,8 +46,11 @@ class _DealWidgetState extends State<DealWidget> {
     return _mem.runOnce(() async {
       final items = await context.bloc<SolsystemBloc>().getDealInformation();
 
-      return items.firstWhere((element) =>
-          element.name.toLowerCase().contains(widget.deal.item.toLowerCase()));
+      return items.firstWhere(
+        (element) =>
+            element.name.toLowerCase().contains(widget.deal.item.toLowerCase()),
+        orElse: () => null,
+      );
     });
   }
 
@@ -67,14 +70,26 @@ class _DealWidgetState extends State<DealWidget> {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Center(
-                child: ResponsiveBuilder(
-                  builder: (BuildContext context, SizingInformation sizing) =>
-                      Container(
-                    height: sizing.imageSizeMultiplier * 30,
-                    child: snapshot.data != null
-                        ? Image.network(snapshot.data.imageUrl)
-                        : const CircularProgressIndicator(),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Center(
+                  child: ResponsiveBuilder(
+                    builder: (BuildContext context, SizingInformation sizing) {
+                      if (snapshot.hasData && snapshot.data != null) {
+                        return LimitedBox(
+                          maxHeight: sizing.imageSizeMultiplier * 30,
+                          child: Image.network(snapshot.data.imageUrl),
+                        );
+                      } else if (snapshot.data == null) {
+                        return Icon(
+                          Icons.warning,
+                          size: 50,
+                          color: Theme.of(context).errorColor,
+                        );
+                      } else {
+                        return const CircularProgressIndicator();
+                      }
+                    },
                   ),
                 ),
               ),
