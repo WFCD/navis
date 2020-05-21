@@ -5,6 +5,7 @@ import 'package:navis/core/widgets/widgets.dart';
 import 'package:navis/features/worldstate/presentation/pages/bounties.dart';
 import 'package:navis/features/worldstate/presentation/pages/nightwaves.dart';
 import 'package:navis/features/worldstate/utils/faction_utils.dart';
+import 'package:navis/generated/l10n.dart';
 import 'package:worldstate_api_model/entities.dart';
 
 import 'syndicate_icon.dart';
@@ -12,11 +13,10 @@ import 'syndicate_icon.dart';
 class SyndicateCard extends StatelessWidget {
   const SyndicateCard({
     this.name,
-    this.caption = 'Tap to see bounties',
+    this.caption,
     this.syndicate,
     this.onTap,
-  })  : assert(caption != null),
-        assert(
+  }) : assert(
             name == null || syndicate == null,
             'If name is null then it will default\n'
             'to Syndicate.name instead');
@@ -74,7 +74,10 @@ class SyndicateCard extends StatelessWidget {
           child: ListTile(
             leading: GetSyndicateIcon(syndicate: syndicateName),
             title: Text(name ?? syndicate.name, style: titleStyle),
-            subtitle: Text(caption, style: captionStyle),
+            subtitle: Text(
+              caption ?? NavisLocalizations.of(context).tapForMoreDetails,
+              style: captionStyle,
+            ),
           ),
         ),
       );

@@ -73,52 +73,51 @@ class _YoutubePlayerState extends State<EventVideoPlayer> {
       margin: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0),
       child: LimitedBox(
         maxHeight: (MediaQuery.of(context).size.width / 100) * 88,
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            if (_chewieController == null)
-              const Flexible(child: Center(child: CircularProgressIndicator()))
-            else
-              Chewie(controller: _chewieController),
-            Container(
-              margin:
-                  const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
-              child: Column(
+        child: _chewieController == null
+            ? const Flexible(child: Center(child: CircularProgressIndicator()))
+            : Column(
                 mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Text(
-                    _videoDetials?.title ?? 'Loading..',
-                    style: Theme.of(context).textTheme.subtitle1,
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                  const SizedBox(height: 16.0),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: <Widget>[
-                      CircleAvatar(
-                        radius: 10.0,
-                        backgroundImage:
-                            CachedNetworkImageProvider(widget.profileThumbnail),
-                      ),
-                      const SizedBox(width: 8.0),
-                      Text(
-                        _videoDetials?.author ?? '',
-                        style: Theme.of(context).textTheme.caption,
-                      ),
-                      const Spacer(),
-                      IconButton(
-                        icon: Icon(Icons.open_in_new),
-                        onPressed: () => launch(widget.link),
-                      )
-                    ],
+                  Chewie(controller: _chewieController),
+                  Container(
+                    margin: const EdgeInsets.symmetric(
+                        horizontal: 16.0, vertical: 16.0),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text(
+                          _videoDetials.title,
+                          style: Theme.of(context).textTheme.subtitle1,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                        const SizedBox(height: 16.0),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: <Widget>[
+                            CircleAvatar(
+                              radius: 10.0,
+                              backgroundImage: CachedNetworkImageProvider(
+                                  widget.profileThumbnail),
+                            ),
+                            const SizedBox(width: 8.0),
+                            Text(
+                              _videoDetials.author,
+                              style: Theme.of(context).textTheme.caption,
+                            ),
+                            const Spacer(),
+                            IconButton(
+                              icon: Icon(Icons.open_in_new),
+                              onPressed: () => launch(widget.link),
+                            )
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ),
-            ),
-          ],
-        ),
       ),
     );
   }

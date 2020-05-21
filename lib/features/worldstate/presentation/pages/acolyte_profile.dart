@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:navis/features/worldstate/presentation/widgets/acolyte_profile/acolyte_status.dart';
-import 'package:navis/features/worldstate/presentation/widgets/acolyte_profile/profile_widgets.dart';
 import 'package:worldstate_api_model/entities.dart';
+
+import '../widgets/acolyte_profile/profile_widgets.dart';
 
 class AcolyteProfile extends StatelessWidget {
   const AcolyteProfile({Key key, this.enemy}) : super(key: key);

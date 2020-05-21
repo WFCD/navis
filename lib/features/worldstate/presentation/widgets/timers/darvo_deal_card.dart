@@ -20,7 +20,7 @@ class DarvoDealCard extends StatelessWidget {
     final deal = deals.first;
 
     return CustomCard(
-      title: 'Darvo\'s Daily Deal',
+      // title: NavisLocalizations.of(context).baroTitle,
       addBanner: true,
       bannerMessage: '${deal.discount}% OFF',
       child: DealWidget(deal: deal),
@@ -65,6 +65,7 @@ class _DealWidgetState extends State<DealWidget> {
       future: _getDeal(),
       builder: (BuildContext context, AsyncSnapshot<BaseItem> snapshot) {
         final urlExist = snapshot.data?.wikiaUrl != null;
+        final deal = snapshot.data;
 
         return Column(
             mainAxisSize: MainAxisSize.min,
@@ -75,12 +76,12 @@ class _DealWidgetState extends State<DealWidget> {
                 child: Center(
                   child: ResponsiveBuilder(
                     builder: (BuildContext context, SizingInformation sizing) {
-                      if (snapshot.hasData && snapshot.data != null) {
+                      if (snapshot.hasData) {
                         return LimitedBox(
                           maxHeight: sizing.imageSizeMultiplier * 30,
-                          child: Image.network(snapshot.data.imageUrl),
+                          child: Image.network(deal.imageUrl),
                         );
-                      } else if (snapshot.data == null) {
+                      } else if (!snapshot.hasData) {
                         return Icon(
                           Icons.warning,
                           size: 50,
@@ -94,9 +95,10 @@ class _DealWidgetState extends State<DealWidget> {
                 ),
               ),
               DealDetails(
-                itemName: snapshot.data?.name ?? widget.deal.item ?? '',
-                itemDescription:
-                    parseHtmlString(snapshot.data?.description ?? ''),
+                itemName: deal?.name ?? widget.deal.item,
+                itemDescription: deal?.description?.isNotEmpty ?? false
+                    ? parseHtmlString(deal?.description)
+                    : null,
               ),
               const SizedBox(height: 16.0),
               Wrap(
@@ -104,11 +106,6 @@ class _DealWidgetState extends State<DealWidget> {
                   spacing: 10.0,
                   runSpacing: 5.0,
                   children: <Widget>[
-                    // StaticBox.text(
-                    //   text: '${widget.deal.discount}% Discount',
-                    //   color: primary,
-                    //   style: saleInfo,
-                    // ),
                     // TODO: should probably put a plat icon here instead
                     StaticBox.text(
                       text: '${widget.deal.salePrice}\p',
@@ -127,8 +124,7 @@ class _DealWidgetState extends State<DealWidget> {
               ButtonBar(children: <Widget>[
                 if (urlExist)
                   FlatButton(
-                    onPressed: () =>
-                        launchLink(context, snapshot.data.wikiaUrl),
+                    onPressed: () => launchLink(context, deal.wikiaUrl),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(2.0),
                     ),
@@ -161,13 +157,15 @@ class DealDetails extends StatelessWidget {
           itemName,
           style: textTheme.subtitle1.copyWith(fontWeight: FontWeight.w500),
         ),
-        const SizedBox(height: 8.0),
-        Text(
-          itemDescription,
-          maxLines: 7,
-          overflow: TextOverflow.ellipsis,
-          style: textTheme.subtitle2.copyWith(color: textTheme.caption.color),
-        ),
+        if (itemDescription != null) ...{
+          const SizedBox(height: 8.0),
+          Text(
+            itemDescription,
+            maxLines: 7,
+            overflow: TextOverflow.ellipsis,
+            style: textTheme.subtitle2.copyWith(color: textTheme.caption.color),
+          ),
+        }
       ],
     );
   }

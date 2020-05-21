@@ -24,10 +24,10 @@ class SortieCard extends StatelessWidget {
           children: <Widget>[
             ListTile(
               leading: FactionIcon(
-                faction: sortie?.faction ?? 'Grineer',
+                faction: sortie.faction,
                 iconSize: 35.0,
               ),
-              title: Text(sortie?.boss ?? 'Clem', style: boss),
+              title: Text(sortie.boss, style: boss),
               trailing: CountdownTimer(
                 expiry: sortie?.expiry ??
                     DateTime.now().subtract(const Duration(seconds: 60)),
@@ -38,7 +38,6 @@ class SortieCard extends StatelessWidget {
                 title: Text('${variant.missionType} - ${variant.node}',
                     style: nodeMission),
                 subtitle: Text(variant.modifier, style: modifier),
-                // dense: true,
               )
           ]),
     );

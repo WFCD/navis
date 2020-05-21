@@ -88,12 +88,7 @@ class WorldstateRepositoryImpl implements WorldstateRepository {
 
     return results.firstWhere(
       (r) => r.name.toLowerCase().contains(name.toLowerCase()),
-      orElse: () => BaseItem(
-        name: null,
-        description: null,
-        imageName: null,
-        type: null,
-      ),
+      orElse: () => null,
     );
   }
 

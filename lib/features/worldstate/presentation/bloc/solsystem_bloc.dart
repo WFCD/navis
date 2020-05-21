@@ -70,12 +70,7 @@ class SolsystemBloc extends HydratedBloc<SyncEvent, SolsystemState> {
       final either = await getDarvoDealInfo(request);
 
       either.fold(
-        (l) => info.add(BaseItem(
-          name: deal.item,
-          description: '',
-          type: 'unknown',
-          imageName: '',
-        )),
+        (l) => null,
         (r) => info.add(r),
       );
     }

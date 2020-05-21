@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:navis/core/widgets/icons.dart';
+import 'package:navis/generated/l10n.dart';
 import 'package:supercharged/supercharged.dart';
 import 'package:worldstate_api_model/entities.dart';
 
@@ -36,7 +37,8 @@ class SyndicateBountyHeader extends StatelessWidget {
       child: ListTile(
         title: Text(job.type, style: const TextStyle(color: Colors.white)),
         subtitle: Text(
-          'Enemy Level ${job.enemyLevels[0]} - ${job.enemyLevels[1]}',
+          NavisLocalizations.of(context)
+              .levelInfo(job.enemyLevels.first, job.enemyLevels.last),
           style: const TextStyle(color: Colors.white),
         ),
         trailing: _buildStanding(),

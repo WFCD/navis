@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:navis/core/widgets/countdown.dart';
 import 'package:navis/core/widgets/custom_card.dart';
+import 'package:navis/generated/l10n.dart';
 
 class DailyReward extends StatelessWidget {
   const DailyReward({Key key}) : super(key: key);
@@ -16,7 +17,7 @@ class DailyReward extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomCard(
       child: ListTile(
-        title: const Text('Daily Reward Reset Timer:'),
+        title: Text(NavisLocalizations.of(context).dailyRewardTitle),
         trailing: CountdownTimer(expiry: endOfDay),
       ),
     );

@@ -84,7 +84,7 @@ class EventStatus extends StatelessWidget {
             ),
             if (rewards.isNotEmpty) ...{
               const SizedBox(height: 20.0),
-              _addCategory('Rewards', category),
+              _addCategory(localization.eventRewards, category),
               const SizedBox(height: 2.0),
               Wrap(
                 alignment: WrapAlignment.start,

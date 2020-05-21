@@ -5,7 +5,7 @@ import 'package:navis/core/widgets/custom_card.dart';
 
 // For now I've opted to not add unknown construction progress
 // because well it's unknown and I've never actually seen it change
-// will add it's actually using change
+// will add it when it actually changes
 class ConstructionProgressCard extends StatelessWidget {
   const ConstructionProgressCard({Key key, this.constructionProgress})
       : super(key: key);

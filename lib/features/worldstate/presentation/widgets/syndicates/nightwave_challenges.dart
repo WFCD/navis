@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/core/widgets/widgets.dart';
 import 'package:navis/features/worldstate/presentation/bloc/solsystem_bloc.dart';
+import 'package:navis/generated/l10n.dart';
 
 import 'nightwave_challenge.dart';
 
@@ -25,10 +26,16 @@ class NightwaveChalleneges extends StatelessWidget {
 
           return ListView(children: <Widget>[
             padding,
-            CategoryTitle(title: 'Daily', style: style),
+            CategoryTitle(
+              title: NavisLocalizations.of(context).dailyNightwaveTitle,
+              style: style,
+            ),
             ...daily,
             padding,
-            CategoryTitle(title: 'Weekly', style: style),
+            CategoryTitle(
+              title: NavisLocalizations.of(context).weeklyNightwaveTitle,
+              style: style,
+            ),
             ...weekly
           ]);
         }

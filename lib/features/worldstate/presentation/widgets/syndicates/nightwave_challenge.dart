@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:navis/core/widgets/icons.dart';
 import 'package:navis/core/widgets/widgets.dart';
+import 'package:navis/generated/l10n.dart';
 import 'package:worldstate_api_model/entities.dart';
 
 class NightwaveChallenge extends StatelessWidget {
@@ -10,15 +11,18 @@ class NightwaveChallenge extends StatelessWidget {
 
   Widget _standingBadge() {
     return StaticBox(
-        color: Colors.red,
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            NavisSystemIconWidgets.standingIcon,
-            Text('${challenge.reputation}',
-                style: const TextStyle(color: Colors.white))
-          ],
-        ));
+      color: Colors.red,
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          NavisSystemIconWidgets.standingIcon,
+          Text(
+            '${challenge.reputation}',
+            style: const TextStyle(color: Colors.white),
+          )
+        ],
+      ),
+    );
   }
 
   @override
@@ -49,7 +53,7 @@ class NightwaveChallenge extends StatelessWidget {
                     if (challenge?.isElite)
                       StaticBox.text(
                         color: Colors.red,
-                        text: 'Elite',
+                        text: NavisLocalizations.of(context).eliteBadgeTitle,
                         fontSize: 14,
                       ),
                     _standingBadge(),

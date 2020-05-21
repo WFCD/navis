@@ -65,8 +65,7 @@ class AlertWidget extends StatelessWidget {
           ),
           RowItem(
             text: Text(
-              locale.alertInfo(_mission.type, _mission.faction,
-                  _mission.minEnemyLevel, _mission.maxEnemyLevel),
+              '${_mission.type} (${_mission.faction}) | ${locale.levelInfo(_mission.minEnemyLevel, _mission.maxEnemyLevel)}',
               style: textTheme.caption,
             ),
             child: CountdownTimer(expiry: alert.expiry),

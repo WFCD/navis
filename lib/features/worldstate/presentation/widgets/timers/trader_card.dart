@@ -36,19 +36,19 @@ class TraderCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const padding = EdgeInsets.symmetric(horizontal: 4.0, vertical: 4.0);
-    final navisLocale = NavisLocalizations.of(context);
+    final localizations = NavisLocalizations.of(context);
     final materialLocale = MaterialLocalizations.of(context);
 
     final formattedDate = materialLocale
         .formatFullDate(trader.active ? trader.expiry : trader.activation);
 
     return CustomCard(
-      title: 'Void Trader',
+      title: localizations.baroTitle,
       child: Column(children: <Widget>[
         RowItem(
           text: Text(trader.active
-              ? navisLocale.baroArriving
-              : navisLocale.baroLeaving),
+              ? localizations.baroArriving
+              : localizations.baroLeaving),
           padding: padding,
           child: CountdownTimer(
             expiry: trader.active ? trader.expiry : trader.activation,
@@ -56,7 +56,7 @@ class TraderCard extends StatelessWidget {
         ),
         if (trader.active)
           RowItem(
-            text: Text(navisLocale.baroLocation),
+            text: Text(localizations.baroLocation),
             padding: padding,
             child: StaticBox.text(
               text: '${trader.location}',
@@ -66,8 +66,8 @@ class TraderCard extends StatelessWidget {
         RowItem(
           text: Text(
             trader.active
-                ? navisLocale.baroLeavesOn
-                : navisLocale.baroArrivesOn,
+                ? localizations.baroLeavesOn
+                : localizations.baroArrivesOn,
           ),
           padding: padding,
           child: StaticBox.text(

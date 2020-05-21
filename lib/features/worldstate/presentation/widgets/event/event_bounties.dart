@@ -9,10 +9,14 @@ class EventBounties extends StatelessWidget {
   final List<Job> jobs;
 
   List<Widget> _buildBounties(BuildContext context) {
+    final localization = NavisLocalizations.of(context);
+
     return jobs.map<Widget>((j) {
       return ListTile(
         title: Text(j.type),
-        subtitle: Text('Level: ${j.enemyLevels[0]} - ${j.enemyLevels[1]}'),
+        subtitle: Text(
+          localization.levelInfo(j.enemyLevels.first, j.enemyLevels.last),
+        ),
         onTap: () => _showDialog(context, j.type, j.rewardPool),
       );
     }).toList();
