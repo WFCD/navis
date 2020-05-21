@@ -32,7 +32,11 @@ class NavisErrorWidget extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Icon(Icons.error_outline, color: Colors.red, size: 40),
+                Icon(
+                  Icons.error_outline,
+                  color: Theme.of(context).errorColor,
+                  size: 40,
+                ),
                 const SizedBox(height: 8),
                 Text(
                   NavisLocalizations.of(context).errorTitle,

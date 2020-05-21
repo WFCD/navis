@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:navis/core/widgets/icons.dart';
-import 'package:navis/features/worldstate/utils/faction_utils.dart';
+import 'package:supercharged/supercharged.dart';
 import 'package:worldstate_api_model/entities.dart';
+
+import '../../../utils/faction_utils.dart';
 
 class SyndicateBountyHeader extends StatelessWidget {
   const SyndicateBountyHeader({
@@ -18,7 +20,7 @@ class SyndicateBountyHeader extends StatelessWidget {
       child: Row(mainAxisSize: MainAxisSize.min, children: <Widget>[
         NavisSystemIconWidgets.standingIcon,
         Text(
-          job.standingStages.reduce((a, b) => a + b).toString(),
+          job.standingStages.sum().toString(),
           style: const TextStyle(color: Colors.white),
         )
       ]),

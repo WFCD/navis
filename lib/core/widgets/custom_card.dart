@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:supercharged/supercharged.dart';
 
 class CustomCard extends StatelessWidget {
   const CustomCard({
@@ -53,7 +54,7 @@ class CustomCard extends StatelessWidget {
     final cardContent = AnimatedContainer(
       margin: margin,
       padding: padding,
-      duration: const Duration(milliseconds: 250),
+      duration: 250.milliseconds,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.center,

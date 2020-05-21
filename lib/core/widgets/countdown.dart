@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:navis/core/network/warframestat_remote.dart';
-import 'package:navis/core/themes/colors.dart';
-import 'package:navis/features/worldstate/presentation/bloc/solsystem_bloc.dart';
-import 'package:navis/generated/l10n.dart';
+import 'package:supercharged/supercharged.dart';
 
+import '../../features/worldstate/presentation/bloc/solsystem_bloc.dart';
+import '../../generated/l10n.dart';
+import '../network/warframestat_remote.dart';
+import '../themes/colors.dart';
 import '../utils/extensions.dart';
 import 'static_box.dart';
 
@@ -53,7 +54,7 @@ class _CountdownTimerState extends State<CountdownTimer>
     _controller = AnimationController(
         duration: localExpiry.difference(_now).abs(), vsync: this);
 
-    _tween = StepTween(begin: begin, end: end).animate(_controller);
+    _tween = begin.tweenTo(end).animate(_controller);
 
     if (widget.color != Colors.transparent) {
       _tween.addListener(_detectWarningLevel);
@@ -96,7 +97,7 @@ class _CountdownTimerState extends State<CountdownTimer>
     final String minutes = '${_timeLeft.inMinutes % 60}'.padLeft(2, '0');
     final String seconds = '${_timeLeft.inSeconds % 60}'.padLeft(2, '0');
 
-    final bool is24hrs = _timeLeft < const Duration(days: 1);
+    final bool is24hrs = _timeLeft < 1.days;
 
     return "${_expired ? 'Expired: -' : ''}${!is24hrs ? '$days\d' : ''} $hours:$minutes:$seconds";
   }
@@ -104,7 +105,7 @@ class _CountdownTimerState extends State<CountdownTimer>
   void _onEnd(AnimationStatus status) {
     if (status == AnimationStatus.completed) {
       Future.delayed(
-        const Duration(milliseconds: 700),
+        700.milliseconds,
         () => context
             .bloc<SolsystemBloc>()
             .add(const SyncSystemStatus(GamePlatforms.pc)),

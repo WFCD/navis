@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:navis/core/themes/themes.dart';
-import 'package:navis/core/utils/skybox.dart';
+import 'package:supercharged/supercharged.dart';
+
+import '../themes/themes.dart';
+import '../utils/skybox.dart';
 
 class SkyboxCard extends StatelessWidget {
   const SkyboxCard({
@@ -37,7 +39,7 @@ class SkyboxCard extends StatelessWidget {
             return AnimatedContainer(
               height: height,
               width: width,
-              duration: const Duration(milliseconds: 200),
+              duration: 200.milliseconds,
               alignment: alignment,
               decoration: BoxDecoration(
                 image: DecorationImage(

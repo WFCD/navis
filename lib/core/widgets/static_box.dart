@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:navis/core/themes/colors.dart';
+import 'package:supercharged/supercharged.dart';
+
+import '../themes/colors.dart';
 
 class StaticBox extends StatelessWidget {
   const StaticBox({
@@ -75,7 +77,7 @@ class StaticBox extends StatelessWidget {
     if (icon != null) _addIcon(children);
 
     return AnimatedContainer(
-      duration: const Duration(milliseconds: 250),
+      duration: 250.milliseconds,
       padding: padding,
       height: height,
       width: width,
