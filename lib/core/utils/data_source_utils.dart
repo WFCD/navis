@@ -42,6 +42,24 @@ List<BaseItem> toBaseItems(List<dynamic> data) {
       .toList();
 }
 
+List<SlimDrop> toDrops(List<dynamic> data) {
+  return data
+      .map((dynamic e) => SlimDropModel.fromJson(e as Map<String, dynamic>))
+      .toList();
+}
+
+List<RivenRoll> toRivens(String itemName, Map<String, dynamic> data) {
+  final rolls = <RivenRoll>[];
+
+  for (final key in (data[itemName] as Map<String, dynamic>).keys) {
+    final roll = data[itemName][key] as Map<String, dynamic>;
+
+    rolls.add(RivenRollModel.fromJson(roll));
+  }
+
+  return rolls;
+}
+
 List<SynthTarget> toSynthTargets(List<dynamic> data) {
   return data.map<SynthTarget>((dynamic t) {
     return SynthTargetModel.fromJson(t as Map<String, dynamic>);
@@ -52,10 +70,4 @@ Worldstate toWorldstate(String data) {
   final state = json.decode(data) as Map<String, dynamic>;
 
   return cleanState(WorldstateModel.fromJson(state));
-}
-
-List<SlimDrop> toDrops(List<dynamic> data) {
-  return data
-      .map((dynamic e) => SlimDropModel.fromJson(e as Map<String, dynamic>))
-      .toList();
 }

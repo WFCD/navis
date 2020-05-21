@@ -50,8 +50,13 @@ class WarframestatClient {
     return _search(name, 'drops/search', toDrops);
   }
 
-  Future<List<RivenRollModel>> searchRivens(String name) async {
-    return _search(name, '${platform.asString}/rivens/search', (data) => null);
+  Future<List<RivenRoll>> searchRivens(String name) async {
+    final term = name.toLowerCase();
+    final response =
+        await _warframestat('${platform.asString}/rivens/search/$term')
+            as Map<String, dynamic>;
+
+    return toRivens(name, response);
   }
 
   Future<List<T>> _search<T>(
