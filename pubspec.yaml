@@ -11,8 +11,6 @@ dependencies:
     path: packages/worldstate_model
   warframe_items_model:
     path: packages/warframe_items_model
-  wfcd_client:
-    path: packages/wfcd_client
   equatable: ^1.1.1
   bloc: ^4.0.0
   flutter_bloc: ^4.0.0
