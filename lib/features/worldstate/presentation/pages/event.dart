@@ -12,6 +12,8 @@ class EventInformation extends StatelessWidget {
 
   static const route = 'event_information';
 
+  static const _backup = 'https://i.imgur.com/CNrsc7V.png';
+
   @override
   Widget build(BuildContext context) {
     final event = ModalRoute.of(context).settings.arguments as Event;
@@ -27,7 +29,7 @@ class EventInformation extends StatelessWidget {
             flexibleSpace: FlexibleSpaceBar(
               title: Text(event.description),
               background: CachedNetworkImage(
-                imageUrl: eventInfo.keyArt,
+                imageUrl: eventInfo?.keyArt ?? _backup,
                 fit: BoxFit.cover,
                 color: const Color.fromRGBO(34, 34, 34, .4),
                 colorBlendMode: BlendMode.darken,
