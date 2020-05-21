@@ -1,0 +1,17 @@
+name: worldstate_api_model
+description: A starting point for Dart libraries or applications.
+version: 2.0.3
+author: Ludwig <blacklightinglr@gmail.com>
+
+environment:
+  sdk: ">=2.6.0 <3.0.0"
+
+dependencies:
+  equatable: ^1.1.1
+  json_annotation: ^3.0.1
+
+dev_dependencies:
+  extra_pedantic: ^1.2.0
+  test: ^1.6.1
+  json_serializable: ^3.3.0
+  build_runner: ^1.8.1

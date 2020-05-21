@@ -1,52 +1,34 @@
 import 'dart:async';
 
-import 'package:bloc/bloc.dart';
+import 'package:colorize_lumberdash/colorize_lumberdash.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
-import 'package:navis/app.dart';
-import 'package:navis/blocs/bloc.dart';
-import 'package:navis/services/repository.dart';
-import 'package:navis/services/storage/cache_storage.service.dart';
-import 'package:navis/services/storage/persistent_storage.service.dart';
-import 'package:package_info/package_info.dart';
+import 'package:lumberdash/lumberdash.dart';
+import 'package:navis/injection_container.dart';
 
-void main() {
+import 'core/app.dart';
+import 'core/bloc/navigation_bloc.dart';
+import 'features/worldstate/presentation/bloc/solsystem_bloc.dart';
+import 'injection_container.dart' as di;
+
+Future<void> main() async {
+  putLumberdashToWork(withClients: [ColorizeLumberdash()]);
+
+  WidgetsFlutterBinding.ensureInitialized();
   FlutterError.onError = Crashlytics.instance.recordFlutterError;
 
-  runZonedGuarded(startApp, Crashlytics.instance.recordError);
-}
+  await runZoned(() async {
+    BlocSupervisor.delegate = await HydratedBlocDelegate.build();
 
-Future<void> startApp() async {
-  WidgetsFlutterBinding.ensureInitialized();
-
-  final cache = CacheStorageService();
-  final persistent = PersistentStorageService();
-
-  await cache.startInstance();
-  await persistent.startInstance();
-
-  final repository =
-      Repository(persistent, cache, await PackageInfo.fromPlatform());
-
-  BlocSupervisor.delegate = await HydratedBlocDelegate.build();
-
-  runApp(
-    MultiBlocProvider(
+    await di.init();
+    runApp(MultiBlocProvider(
       providers: [
-        BlocProvider<NavigationBloc>(create: (_) => NavigationBloc()),
-        BlocProvider<SearchBloc>(create: (_) => SearchBloc(repository)),
-        BlocProvider<WorldstateBloc>(
-          create: (context) {
-            return WorldstateBloc(
-              api: Repository.warframestat,
-              persistent: persistent,
-              cache: cache,
-            );
-          },
-        ),
+        BlocProvider(create: (_) => sl<NavigationBloc>()),
+        BlocProvider(create: (_) => sl<SolsystemBloc>())
       ],
-      child: Navis(repository),
-    ),
-  );
+      child: const NavisApp(),
+    ));
+  }, onError: Crashlytics.instance.recordError);
 }

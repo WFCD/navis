@@ -1,0 +1,19 @@
+import 'package:flutter/material.dart';
+import 'package:navis/features/worldstate/presentation/widgets/syndicates/nightwave_challenges.dart';
+
+class NightwavesPage extends StatelessWidget {
+  const NightwavesPage({Key key}) : super(key: key);
+
+  static const route = '/nightwave';
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Nightwave'),
+        backgroundColor: const Color(0xFF6C1822),
+      ),
+      body: const NightwaveChalleneges(),
+    );
+  }
+}

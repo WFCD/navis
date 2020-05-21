@@ -1,8 +1,29 @@
-matrix:
-  fast_finish: true
-  allow_failures:
-    - env: JOB=APK
-    - env: JOB=IPA
+language: android
+jdk: openjdk8
+os: linux
+dist: xenial
+android:
+  components:
+    - build-tools-28.0.3
+    - android-28
+    - android-29
+  licenses:
+    - android-sdk-preview-license-.+
+    - android-sdk-license-.+
+    - google-gdk-license-.+
+before_install:
+  - openssl aes-256-cbc -K $encrypted_3b9f0b9d36d1_key -iv $encrypted_3b9f0b9d36d1_iv
+    -in secrets.tar.enc -out secrets.tar -d
+  - bundle install --gemfile=android/Gemfile
+before_script:
+  - tar xvf secrets.tar
+  - if [  ! -d "flutter" ] ; then git clone https://github.com/flutter/flutter.git -b
+    1.17.1; fi;
+  - export PATH=./flutter/bin:$PATH
+  - flutter pub get
+  - mkdir lib/generated/intl && flutter pub run intl_translation:generate_from_arb --output-dir=lib/generated/intl
+    --no-use-deferred-loading lib/generated/l10n.dart lib/l10n/intl_*.arb
+jobs:
   include:
     - env: JOB=TEST
       language: android
