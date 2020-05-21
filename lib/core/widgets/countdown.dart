@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:navis/core/network/warframestat_remote.dart';
 import 'package:navis/core/themes/colors.dart';
 import 'package:navis/features/worldstate/presentation/bloc/solsystem_bloc.dart';
 import 'package:navis/generated/l10n.dart';
-import 'package:wfcd_client/base.dart';
 
 import '../utils/extensions.dart';
 import 'static_box.dart';

@@ -3,11 +3,11 @@ import 'package:get_it/get_it.dart';
 import 'package:hive/hive.dart';
 import 'package:http/http.dart' as http;
 import 'package:path_provider/path_provider.dart';
-import 'package:wfcd_client/locals.dart';
-import 'package:wfcd_client/remotes.dart';
 
 import 'core/bloc/navigation_bloc.dart';
+import 'core/local/warframestate_local.dart';
 import 'core/network/network_info.dart';
+import 'core/network/warframestat_remote.dart';
 import 'features/worldstate/data/datasources/event_info_parser.dart';
 import 'features/worldstate/data/repositories/worldstate_rep_impl.dart';
 import 'features/worldstate/domain/usecases/get_darvo_deal_info.dart';
@@ -27,7 +27,7 @@ Future<void> init() async {
   sl.registerSingleton<EventInfoParser>(await EventInfoParser.loadEventData());
 
   // Data sources
-  sl.registerSingleton<WarframestatRemote>(WarframestatRemote(http.Client()));
+  sl.registerSingleton<WarframestatClient>(WarframestatClient(http.Client()));
 
   sl.registerSingleton<WarframestatCache>(
       WarframestatCache(await Hive.openBox<dynamic>('worldstate_cache')));

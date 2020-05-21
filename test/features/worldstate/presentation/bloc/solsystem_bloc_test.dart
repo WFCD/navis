@@ -1,15 +1,17 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:dartz/dartz.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:mockito/mockito.dart';
+import 'package:navis/core/network/warframestat_remote.dart';
+import 'package:navis/core/usecases/usecases.dart';
 import 'package:navis/core/utils/data_source_utils.dart';
 import 'package:navis/features/worldstate/domain/usecases/get_darvo_deal_info.dart';
 import 'package:navis/features/worldstate/domain/usecases/get_worldstate.dart';
 import 'package:navis/features/worldstate/presentation/bloc/solsystem_bloc.dart';
 import 'package:test/test.dart';
-import 'package:wfcd_client/base.dart';
 
 import '../../../../fixtures/fixture_reader.dart';
 
@@ -20,10 +22,11 @@ class MockGetWorldstate extends Mock implements GetWorldstate {}
 class MockGetDarvoDealInfo extends Mock implements GetDarvoDealInfo {}
 
 void main() {
-  final tWorldstate = toWorldstate(fixture('worldstate.json'));
-  final tResults = toBaseItems(fixture('darvo_deal_test.json'));
+  final worldstateFixture = fixture('worldstate.json');
+  final resultsFixture = fixture('darvo_deal_test.json');
 
-  const tInstance = GetWorldstateInstance(GamePlatforms.pc, lang: 'en');
+  final tWorldstate = toWorldstate(worldstateFixture);
+  final tResults = toBaseItems(json.decode(resultsFixture) as List<dynamic>);
 
   GetWorldstate getWorldstate;
   GetDarvoDealInfo getDarvoDealInfo;
@@ -60,7 +63,7 @@ void main() {
       solsystemBloc.add(const SyncSystemStatus(GamePlatforms.pc));
       await untilCalled(getWorldstate(any));
 
-      verify(getWorldstate(tInstance));
+      verify(getWorldstate(NoParama()));
     });
   });
 

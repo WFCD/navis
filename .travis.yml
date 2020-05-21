@@ -29,7 +29,6 @@ jobs:
       script:
         - flutter test
         - flutter build apk --target-platform android-arm
-        - flutter test packages/wfcd_client/test
     - name: Deploy
       if: tag IS present
       script:

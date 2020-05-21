@@ -2,11 +2,10 @@ import 'dart:convert';
 
 import 'package:hive/hive.dart';
 import 'package:warframe_items_model/warframe_items_model.dart';
-import 'package:wfcd_client/src/base/local/warframestate_local_base.dart';
 import 'package:worldstate_api_model/entities.dart';
 import 'package:worldstate_api_model/models.dart';
 
-class WarframestatCache implements WarframestateCacheBase {
+class WarframestatCache {
   WarframestatCache(this._box);
 
   final Box<dynamic> _box;
@@ -15,40 +14,33 @@ class WarframestatCache implements WarframestateCacheBase {
   static const String _state = 'worldstate';
   static const String _targets = 'synthTargets';
 
-  @override
   void cacheDealInfo(String id, BaseItem item) {
     _box.put(_dealId, id);
     _box.put(id, json.encode(item.toJson()));
   }
 
-  @override
   void cacheSynthTargets(List<SynthTarget> targets) {
     _box.put(_targets, targets.map((t) => (t as SynthTargetModel).toJson()));
   }
 
-  @override
   void cacheWorldstate(Worldstate state) {
     _box.put(_state, (state as WorldstateModel).toJson());
   }
 
-  @override
   String getCachedDealId() => readDisk<String>(_dealId);
 
-  @override
   BaseItem getCachedDeal(String id) {
     final cached = readDisk<String>(id);
 
     return BaseItem.fromJson(json.decode(cached) as Map<String, dynamic>);
   }
 
-  @override
   Worldstate getCachedState() {
     final cached = readDisk<Map<String, dynamic>>(_state);
 
     return WorldstateModel.fromJson(cached);
   }
 
-  @override
   List<SynthTarget> getCachedTargets() {
     final cached = readDisk<Iterable<Map<String, dynamic>>>(_targets);
 

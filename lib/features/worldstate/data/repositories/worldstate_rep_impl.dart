@@ -3,10 +3,11 @@ import 'dart:io';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
+import 'package:intl/intl.dart';
+import 'package:navis/core/local/warframestate_local.dart';
+import 'package:navis/core/network/warframestat_remote.dart';
+import 'package:navis/core/usecases/usecases.dart';
 import 'package:warframe_items_model/warframe_items_model.dart';
-import 'package:wfcd_client/base.dart';
-import 'package:wfcd_client/locals.dart';
-import 'package:wfcd_client/remotes.dart';
 import 'package:worldstate_api_model/entities.dart';
 
 import '../../../../core/error/failures.dart';
@@ -19,6 +20,10 @@ class WorldstateRepositoryImpl implements WorldstateRepository {
   final NetworkInfo networkInfo;
   final WarframestatCache cache;
 
+  static final _warframestat = WarframestatClient(http.Client())
+    ..platform = GamePlatforms.pc
+    ..language = Intl.getCurrentLocale();
+
   @override
   Future<Either<Failure, List<SynthTarget>>> getSynthTargets() async {
     return run<List<SynthTarget>, void>(
@@ -30,13 +35,10 @@ class WorldstateRepositoryImpl implements WorldstateRepository {
   }
 
   @override
-  Future<Either<Failure, Worldstate>> getWorldstate(GamePlatforms platform,
-      {String lang = 'en'}) async {
-    final request = _WorldstateRequest(platform, lang: lang);
-
-    return run<Worldstate, _WorldstateRequest>(
+  Future<Either<Failure, Worldstate>> getWorldstate() async {
+    return run<Worldstate, NoParama>(
       _getWorldstate,
-      request,
+      NoParama(),
       cache.cacheWorldstate,
       cache.getCachedState,
     );
@@ -72,22 +74,17 @@ class WorldstateRepositoryImpl implements WorldstateRepository {
     }
   }
 
-  static Future<Worldstate> _getWorldstate(_WorldstateRequest request) {
-    final warframestat = WarframestatRemote(http.Client());
-
-    return warframestat.getWorldstate(request.platform, language: request.lang);
+  static Future<Worldstate> _getWorldstate(NoParama noParama) {
+    return _warframestat.getWorldstate();
   }
 
   // Becasue compute needs an entry argument noParam can be anything
   static Future<List<SynthTarget>> _getTargets(dynamic noParam) {
-    final warframestat = WarframestatRemote(http.Client());
-
-    return warframestat.getSynthTargets();
+    return _warframestat.getSynthTargets();
   }
 
   static Future<BaseItem> _getDealInfo(String name) async {
-    final warframestat = WarframestatRemote(http.Client());
-    final results = await warframestat.searchItems(name);
+    final results = await _warframestat.searchItems(name);
 
     return results
         .firstWhere((r) => r.name.toLowerCase().contains(name.toLowerCase()));
@@ -116,13 +113,16 @@ class WorldstateRepositoryImpl implements WorldstateRepository {
       }
     }
   }
-}
 
-class _WorldstateRequest {
-  const _WorldstateRequest(this.platform, {this.lang = 'en'});
+  @override
+  void updateGamePlatform(GamePlatforms platform) {
+    _warframestat.platform = platform;
+  }
 
-  final GamePlatforms platform;
-  final String lang;
+  @override
+  void updateLanguage() {
+    _warframestat.language = Intl.getCurrentLocale();
+  }
 }
 
 class DealRequest {

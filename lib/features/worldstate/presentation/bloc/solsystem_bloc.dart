@@ -3,10 +3,10 @@ import 'dart:async';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
-import 'package:intl/intl.dart';
+import 'package:navis/core/network/warframestat_remote.dart';
+import 'package:navis/core/usecases/usecases.dart';
 import 'package:supercharged/supercharged.dart';
 import 'package:warframe_items_model/warframe_items_model.dart';
-import 'package:wfcd_client/base.dart';
 import 'package:worldstate_api_model/entities.dart';
 import 'package:worldstate_api_model/models.dart';
 
@@ -41,13 +41,8 @@ class SolsystemBloc extends HydratedBloc<SyncEvent, SolsystemState> {
     SyncEvent event,
   ) async* {
     if (event is SyncSystemStatus) {
-      final instance = GetWorldstateInstance(
-        event.platform,
-        lang: Intl.getCurrentLocale().split('_').first ?? 'en',
-      );
-
       try {
-        final either = await getWorldstate(instance);
+        final either = await getWorldstate(NoParama());
 
         yield either.fold(
           (l) => _matchFailure(l),

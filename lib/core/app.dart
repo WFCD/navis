@@ -3,7 +3,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:wfcd_client/base.dart';
+import 'package:navis/features/worldstate/data/repositories/worldstate_rep_impl.dart';
+import 'package:navis/injection_container.dart';
 
 import '../features/worldstate/presentation/bloc/solsystem_bloc.dart';
 import '../features/worldstate/presentation/pages/acolyte_profile.dart';
@@ -13,6 +14,7 @@ import '../features/worldstate/presentation/pages/nightwaves.dart';
 import '../features/worldstate/presentation/pages/trader_inventory.dart';
 import '../generated/l10n.dart';
 import 'home.dart';
+import 'network/warframestat_remote.dart';
 import 'themes/themes.dart';
 import 'widgets/widgets.dart';
 
@@ -55,6 +57,12 @@ class _NavisAppState extends State<NavisApp> with WidgetsBindingObserver {
       BlocProvider.of<SolsystemBloc>(context)
           .add(const SyncSystemStatus(GamePlatforms.pc));
     }
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    sl<WorldstateRepositoryImpl>().updateLanguage();
   }
 
   @override
