@@ -22,7 +22,7 @@ class WorldstateRepositoryImpl implements WorldstateRepository {
 
   static final _warframestat = WarframestatClient(http.Client())
     ..platform = GamePlatforms.pc
-    ..language = Intl.getCurrentLocale();
+    ..language = Intl.getCurrentLocale().split('_').first;
 
   @override
   Future<Either<Failure, List<SynthTarget>>> getSynthTargets() async {
