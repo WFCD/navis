@@ -192,13 +192,13 @@
         "type": "text",
         "placeholders": {}
     },
-    "formorianTitle": "Formorian",
+    "formorianTitle": "Fomorian",
     "@formorianTitle": {
         "description": "Fomorian progress title",
         "type": "text",
         "placeholders": {}
     },
-    "razorbackTitle": "Razerback",
+    "razorbackTitle": "Razorback",
     "@razorbackTitle": {
         "description": "Razorback progress title",
         "type": "text",
