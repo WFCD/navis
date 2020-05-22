@@ -136,49 +136,49 @@
         "type": "text",
         "placeholders": {}
     },
-    "baroTitle": "Void trader",
+    "baroTitle": "Торговец из Бездны",
     "@baroTitle": {
         "description": "Title for Baro Ki'Teer card",
         "type": "text",
         "placeholders": {}
     },
-    "baroLeaving": "Baro Ki'Teer leaves in",
+    "baroLeaving": "Баро Ки'Тиир пропадёт через",
     "@baroLeaving": {
         "description": "displays remaining time before Baro Ki'Teer leaves",
         "type": "text",
         "placeholders": {}
     },
-    "baroArriving": "Baro Ki'Teer arrives in",
+    "baroArriving": "Баро Ки'Тиир появится через",
     "@baroArriving": {
         "description": "displays remaining time before Baro Ki'Teer arrives",
         "type": "text",
         "placeholders": {}
     },
-    "baroLocation": "Location",
+    "baroLocation": "Реле",
     "@baroLocation": {
         "description": "shows Baro ki'Teer's current location",
         "type": "text",
         "placeholders": {}
     },
-    "baroLeavesOn": "Leaves on",
+    "baroLeavesOn": "Отбудет в",
     "@baroLeavesOn": {
         "description": "shows when Baro Ki'Teer is leaving",
         "type": "text",
         "placeholders": {}
     },
-    "baroArrivesOn": "Arrives on",
+    "baroArrivesOn": "Прибудет в",
     "@baroArrivesOn": {
         "description": "shows at when Baro Ki'Teer will arrive",
         "type": "text",
         "placeholders": {}
     },
-    "baroInventory": "Baro Ki'Teeer Inventory",
+    "baroInventory": "Товары Баро Ки'Тиира",
     "@baroInventory": {
         "description": "Baro Ki'Teeer Inventory button label",
         "type": "text",
         "placeholders": {}
     },
-    "countdownTooltip": "Ends on {date}",
+    "countdownTooltip": "Завершится {date}",
     "@countdownTooltip": {
         "description": "Countdown tooltip with end date of the current running timer",
         "type": "text",
@@ -186,7 +186,7 @@
             "date": {}
         }
     },
-    "kuvaBanner": "Kuva will refresh in",
+    "kuvaBanner": "Кува обновится через",
     "@kuvaBanner": {
         "description": "Kuva refresh countdown title",
         "type": "text",
@@ -204,55 +204,55 @@
         "type": "text",
         "placeholders": {}
     },
-    "earthCycleTitle": "Earth Cycle",
+    "earthCycleTitle": "Земля",
     "@earthCycleTitle": {
         "description": "Earth cycle title",
         "type": "text",
         "placeholders": {}
     },
-    "cetusCycleTitle": "Cetus Cycle",
+    "cetusCycleTitle": "Цетус",
     "@cetusCycleTitle": {
         "description": "Cetus cycle title",
         "type": "text",
         "placeholders": {}
     },
-    "vallisCycleTitle": "Vallis Cycle",
+    "vallisCycleTitle": "Долина Сфер",
     "@vallisCycleTitle": {
         "description": "Vallis cycle title",
         "type": "text",
         "placeholders": {}
     },
-    "timersTitle": "Timers",
+    "timersTitle": "Таймеры",
     "@timersTitle": {
         "description": "Times title",
         "type": "text",
         "placeholders": {}
     },
-    "fissuresTitle": "Fissures",
+    "fissuresTitle": "Разрывы Бездны",
     "@fissuresTitle": {
         "description": "Fissures title",
         "type": "text",
         "placeholders": {}
     },
-    "invasionsTitle": "Invasions",
+    "invasionsTitle": "Вторжения",
     "@invasionsTitle": {
         "description": "Invasions title",
         "type": "text",
         "placeholders": {}
     },
-    "syndicatesTitle": "Syndicates",
+    "syndicatesTitle": "Синдикаты",
     "@syndicatesTitle": {
         "description": "Syndicates title",
         "type": "text",
         "placeholders": {}
     },
-    "codexTitle": "Codex",
+    "codexTitle": "Кодекс",
     "@codexTitle": {
         "description": "Codex title",
         "type": "text",
         "placeholders": {}
     },
-    "helpfulLinksTitle": "Helpful Links",
+    "helpfulLinksTitle": "Полезные ссылки",
     "@helpfulLinksTitle": {
         "description": "Helpful Links title",
         "type": "text",
