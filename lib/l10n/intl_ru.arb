@@ -360,7 +360,7 @@
         "type": "text",
         "placeholder": {}
     },
-    "warframeNewsNotificationDescription": "Об обновлении Новостной ленты.",
+    "warframeNewsNotificationDescription": "News notifications for Prime Access, Streams and Updates.",
     "@warframeNewsNotificationDescription": {
         "description": "Main description for Warframe news notifications",
         "type": "text",
@@ -372,7 +372,7 @@
         "type": "text",
         "placeholder": {}
     },
-    "planetCyclesNotificationDescription": "Оповещение об открытых локациях, смена дня/ночи или температуры.",
+    "planetCyclesNotificationDescription": "Open world notifications for their given cycles.",
     "@planetCycleNotificationDescription": {
         "description": "Main description for open world notifications",
         "type": "text",
@@ -390,7 +390,7 @@
         "type": "text",
         "placeholder": {}
     },
-    "fissuresNotificationTitle": "Fissure Missions",
+    "fissuresNotificationTitle": "Разрывы Бездны",
     "@fissuresNotificationTitle": {
         "description": "Main title for fisssures notifications",
         "type": "text",
