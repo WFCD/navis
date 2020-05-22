@@ -258,7 +258,7 @@
         "type": "text",
         "placeholder": {}
     },
-    "behaviorTitle": "Behavior",
+    "behaviorTitle": "General",
     "@behaviorTitle": {
         "description": "Behavior category title",
         "type": "text",
@@ -276,7 +276,7 @@
         "typ": "text",
         "placeholder": {}
     },
-    "backOpensDrawerTitle": "Back button opens drawer",
+    "backOpensDrawerTitle": "El boton volver abre el menu",
     "@backOpensDrawerTitle": {
         "description": "Title for the option that allows back button to open the drawer",
         "type": "text",
@@ -324,145 +324,145 @@
         "type": "text",
         "placeholder": {}
     },
-    "darvoNotificationDescription": "Darvo's new find of the day.",
+    "darvoNotificationDescription": "El nuevo hallazgo de Darvo del día.",
     "@darvoNotificationDescription": {
         "description": "Notification description for Darvo's Daily Deal",
         "type": "text",
         "placeholder": {}
     },
-    "sortieNotificationTitle": "Sortie",
+    "sortieNotificationTitle": "Incursion",
     "@sortieNotificationTitle": {
         "description": "Notification title for sorties",
         "type": "text",
         "placeholder": {}
     },
-    "sortieNotificationDescription": "Notifications for new sorties.",
+    "sortieNotificationDescription": "Notificaciones para nuevas incursiones.",
     "@sortieNotificationDescription": {
         "description": "description for sortie notification option",
         "type": "text",
         "placeholder": {}
     },
-    "sentientOutpostNotificationTitle": "Sentient Outpost",
+    "sentientOutpostNotificationTitle": "Puesto avanzado sentient",
     "@sentientOutpostNotificationTitle": {
         "description": "Notification title for sentient outpost",
         "type": "text",
         "placeholder": {}
     },
-    "sentientOutpostNotificationDescription": "Notifications for new sentient threats",
+    "sentientOutpostNotificationDescription": "Notificaciones para nuevas amenazas sentient",
     "@sentientOutpostNotificationDescription": {
         "description": "Notification description for sentient outpost option",
         "type": "text",
         "placeholder": {}
     },
-    "warframeNewsNotificationTitle": "News",
+    "warframeNewsNotificationTitle": "Noticias",
     "@warframeNewsNotificationTitle": {
         "description": "Main Title for Warframe news notifications",
         "type": "text",
         "placeholder": {}
     },
-    "warframeNewsNotificationDescription": "News notifications for Prime Access, Streams and Updates.",
+    "warframeNewsNotificationDescription": "Notificaciones de noticias de acceso prime, directos y actualizaciones.",
     "@warframeNewsNotificationDescription": {
         "description": "Main description for Warframe news notifications",
         "type": "text",
         "placeholder": {}
     },
-    "planetCyclesNotificationTitle": "Open World Cycles",
+    "planetCyclesNotificationTitle": "Ciclos de los mundos abiertos",
     "@planetCycleNotificationTitle": {
         "description": "Main title for open world notifications",
         "type": "text",
         "placeholder": {}
     },
-    "planetCyclesNotificationDescription": "Open world notifications for their given cycles.",
+    "planetCyclesNotificationDescription": "Notificaciones para ciclos del mundo abierto.",
     "@planetCycleNotificationDescription": {
         "description": "Main description for open world notifications",
         "type": "text",
         "placeholder": {}
     },
-    "resourcesNotificationTitle": "Resources",
+    "resourcesNotificationTitle": "Recursos",
     "@resourcesNotificationTitle": {
         "description": "Main title for resource notifications",
         "type": "text",
         "placeholder": {}
     },
-    "resourcesNotificationDescription": "Resources mostly found in invasions.",
+    "resourcesNotificationDescription": "Recursos que se encuentran principalmente en las invasiones.",
     "@resourcesNotificationDescription": {
         "description": "Main description for resource notifications",
         "type": "text",
         "placeholder": {}
     },
-    "fissuresNotificationTitle": "Fissure Missions",
+    "fissuresNotificationTitle": "Misiones de fisuras",
     "@fissuresNotificationTitle": {
         "description": "Main title for fisssures notifications",
         "type": "text",
         "placeholder": {}
     },
-    "fissuresNotificationDescription": "Filter fissure notifications by prefered mission type",
+    "fissuresNotificationDescription": "Filtrar notificaciones de fisura por tipo de misión preferida",
     "@fissuresNotificationDescription": {
         "description": "Main description for fissures notifications",
         "type": "text",
         "placeholder": {}
     },
-    "acolytesNotificationTitle": "Acolytes",
+    "acolytesNotificationTitle": "Acolitos",
     "@acolytesNotificationTitle": {
         "description": "Main title for acolyte notifications",
         "type": "text",
         "placeholder": {}
     },
-    "acolytesNotificationDescription": "Notifies when an acolyte is found",
+    "acolytesNotificationDescription": "Notifica cuando se encuentra un acólito",
     "@acolytesNotificationDescription": {
         "description": "Main description for acolyte notifications",
         "type": "text",
         "placeholder": {}
     },
-    "earthDayOption": "Earth Day",
+    "earthDayOption": "Tierra de día",
     "@earthDayOption": {
         "description": "Earth cycle option",
         "type": "text",
         "placeholder": {}
     },
-    "earthNightOption": "Earth Night",
+    "earthNightOption": "Tierra de noche",
     "@earthNightOption": {
         "description": "Earth cycle option",
         "type": "text",
         "placeholder": {}
     },
-    "cetusDayOption": "Cetus Day",
+    "cetusDayOption": "Cetus de día",
     "@cetusDayOption": {
         "description": "Cetus cycle option",
         "type": "text",
         "placeholder": {}
     },
-    "cetusNightOption": "Cetus Day",
+    "cetusNightOption": "Cetus de noche",
     "@cetusNightOption": {
         "description": "Cetus cycle option",
         "type": "text",
         "placeholder": {}
     },
-    "vallisWarmOption": "Orb Vallis Warm",
+    "vallisWarmOption": "Valle de las orbes calido",
     "@vallisWarmOption": {
         "description": "Orb vallis cycle option",
         "type": "text",
         "placeholder": {}
     },
-    "vallisColdOption": "Orb Vallis Cold",
+    "vallisColdOption": "Valle de las orbes frio",
     "@vallisColdOption": {
         "description": "Orb vallis cycle option",
         "type": "text",
         "placeholder": {}
     },
-    "primeAccessNewsOption": "Prime Access",
+    "primeAccessNewsOption": "Acceso Prime",
     "@primeAccessNewsOption": {
         "description": "Warframe news option",
         "type": "text",
         "placeholder": {}
     },
-    "streamNewsOption": "Stream Announcements",
+    "streamNewsOption": "Anuncios de directos",
     "@streamNewsOption": {
         "description": "Warframe news option",
         "type": "text",
         "placeholder": {}
     },
-    "updateNewsOption": "Warframe Update News",
+    "updateNewsOption": "Noticias de Warframe",
     "@updateNewsOption": {
         "description": "Warframe news option",
         "type": "text",
