@@ -5,6 +5,7 @@ import 'dart:io';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:intl/intl.dart';
+import 'package:navis/blocs/bloc.dart';
 import 'package:navis/services/storage/cache_storage.service.dart';
 import 'package:navis/services/storage/persistent_storage.service.dart';
 import 'package:navis/utils/worldstate_utils.dart';
@@ -29,10 +30,14 @@ class WorldstateBloc extends HydratedBloc<WorldstateEvent, WorldStates> {
   }
 
   @override
-  Stream<WorldStates> transformEvents(Stream<WorldstateEvent> events,
-      Stream<WorldStates> Function(UpdateEvent event) next) {
+  Stream<Transition<WorldstateEvent, WorldStates>> transformEvents(
+    events,
+    transitionFn,
+  ) {
     return super.transformEvents(
-        events.debounceTime(const Duration(milliseconds: 100)), next);
+      events.debounceTime(const Duration(milliseconds: 100)),
+      transitionFn,
+    );
   }
 
   @override
