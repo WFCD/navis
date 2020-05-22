@@ -1,6 +1,6 @@
 {
     "@@last_modified": "2020-03-03T16:56:42.387837",
-    "alertInfo": "{type} ({faction}) | Level: {min} - {max}",
+    "alertInfo": "{type} ({faction}) | Nivel: {min} - {max}",
     "@alertInfo": {
         "description": "The information of the given alert, such as mission type, faction and enemy level",
         "type": "text",
@@ -11,7 +11,7 @@
             "max": {}
         }
     },
-    "activeAcolyte": "{agentType} | level: {rank}",
+    "activeAcolyte": "{agentType} | Nivel: {rank}",
     "@activeAcolyte": {
         "description": "acolyte title with level",
         "type": "text",
@@ -20,49 +20,49 @@
             "rank": {}
         }
     },
-    "locating": "Locating...",
+    "locating": "Desconocido...",
     "@locating": {
         "description": "Shows up when an acolyte's current location is unknown, may be used in other parts of the app",
         "type": "text",
         "placeholders": {}
     },
-    "acolyteCurrentLocation": "Current location",
+    "acolyteCurrentLocation": "Ubicación actual",
     "@acolyteCurrentLocation": {
         "description": "Acolyte's current location",
         "type": "text",
         "placeholders": {}
     },
-    "acolytePassLocation": "Last seen location",
+    "acolytePassLocation": "Ultima localización",
     "@acolytePassLocation": {
         "description": "Acolyte's pass location",
         "type": "text",
         "placeholders": {}
     },
-    "acolyteFound": "Found",
+    "acolyteFound": "Localizado",
     "@acolyteFound": {
         "description": "The elapsed time after an acolyte was found",
         "type": "text",
         "placeholders": {}
     },
-    "acolyteLastSeen": "Last seen",
+    "acolyteLastSeen": "Ultima vez visto",
     "@acolyteLastSeen": {
         "description": "The elapsed time since the acolyte was last seen",
         "type": "text",
         "placeholders": {}
     },
-    "acolyteHealth": "Health",
+    "acolyteHealth": "Salud",
     "@acolyteHealth": {
         "description": "Acolytes remaining health",
         "type": "text",
         "placeholders": {}
     },
-    "acolyteRank": "Acolyte Level",
+    "acolyteRank": "Nivel de acólito",
     "@acolyteRank": {
         "description": "An acolyte's current level",
         "type": "text",
         "placeholders": {}
     },
-    "acolyteElapsedTime": "{lastSeenTime} minutes ago",
+    "acolyteElapsedTime": "Hace {lastSeenTime} minutos",
     "@acolyteElapsedTime": {
         "description": "Time since acolyte has either been found or last seen",
         "type": "text",
@@ -70,115 +70,115 @@
             "lastSeenTime": {}
         }
     },
-    "tapForMoreDetails": "Tap for more details",
+    "tapForMoreDetails": "Pulsa para más detalles",
     "@tapForMoreDetails": {
         "description": "General description to tell the user that this object takes you to a different page",
         "type": "text",
         "placeholders": {}
     },
-    "seeDetails": "See details",
+    "seeDetails": "Ver detalles",
     "@seeDetails": {
         "description": "General button to see more details of given object",
         "type": "text",
         "placeholders": {}
     },
-    "eventDescription": "Description",
+    "eventDescription": "Descripción",
     "@eventDescription": {
         "description": "Event description category title",
         "type": "text",
         "placeholders": {}
     },
-    "eventStatus": "Event Status",
+    "eventStatus": "Estado del evento",
     "@eventStatus": {
         "description": "Event status category title",
         "type": "text",
         "placeholders": {}
     },
-    "eventStatusNode": "Node",
+    "eventStatusNode": "Nodo",
     "@eventStatusNode": {
         "description": "The node that the event is taking place in",
         "type": "text",
         "placeholders": {}
     },
-    "eventStatusProgress": "Progress",
+    "eventStatusProgress": "Progreso",
     "@eventStatusProgress": {
         "description": "The progress of the current event from 0 to 100 %",
         "type": "text",
         "placeholders": {}
     },
-    "eventStatusEta": "Time left (ETA)",
+    "eventStatusEta": "Tiempo restante (estimado)",
     "@eventStatusEta": {
         "description": "Current events remaining estimated time",
         "type": "text",
         "placeholders": {}
     },
-    "eventRewards": "Rewards",
+    "eventRewards": "Recompensas",
     "@eventRewards": {
         "description": "Event reward title",
         "type": "text",
         "placeholders": {}
     },
-    "bountyTitle": "Bounties",
+    "bountyTitle": "Contratos",
     "@bountyTitle": {
         "description": "Bounty card title.",
         "type": "text",
         "placeholders": {}
     },
-    "errorTitle": "An application error has occurred",
+    "errorTitle": "Ocurrió un error en la aplicación",
     "@errorTitle": {
         "description": "error title",
         "type": "text",
         "placeholders": {}
     },
-    "errorDescription": "There was unexpected error in core system.\nReporting error to system admin...",
+    "errorDescription": "Hubo un error inesperado en el sistema central.\nReportando el error al administrador del sistema...",
     "@errorDescription": {
         "description": "error description",
         "type": "text",
         "placeholders": {}
     },
-    "baroTitle": "Void trader",
+    "baroTitle": "Comerciante del vacío",
     "@baroTitle": {
         "description": "Title for Baro Ki'Teer card",
         "type": "text",
         "placeholders": {}
     },
-    "baroLeaving": "Baro Ki'Teer leaves in",
+    "baroLeaving": "Baro Ki'Teer se va en",
     "@baroLeaving": {
         "description": "displays remaining time before Baro Ki'Teer leaves",
         "type": "text",
         "placeholders": {}
     },
-    "baroArriving": "Baro Ki'Teer arrives in",
+    "baroArriving": "Baro Ki'Teer llega en",
     "@baroArriving": {
         "description": "displays remaining time before Baro Ki'Teer arrives",
         "type": "text",
         "placeholders": {}
     },
-    "baroLocation": "Location",
+    "baroLocation": "Localizacion",
     "@baroLocation": {
         "description": "shows Baro ki'Teer's current location",
         "type": "text",
         "placeholders": {}
     },
-    "baroLeavesOn": "Leaves on",
+    "baroLeavesOn": "Se va en",
     "@baroLeavesOn": {
         "description": "shows when Baro Ki'Teer is leaving",
         "type": "text",
         "placeholders": {}
     },
-    "baroArrivesOn": "Arrives on",
+    "baroArrivesOn": "Llega en",
     "@baroArrivesOn": {
         "description": "shows at when Baro Ki'Teer will arrive",
         "type": "text",
         "placeholders": {}
     },
-    "baroInventory": "Baro Ki'Teeer Inventory",
+    "baroInventory": "Inventario de Baro Ki'teer",
     "@baroInventory": {
         "description": "Baro Ki'Teeer Inventory button label",
         "type": "text",
         "placeholders": {}
     },
-    "countdownTooltip": "Ends on {date}",
+    "countdownTooltip": "Termina en {date}",
     "@countdownTooltip": {
         "description": "Countdown tooltip with end date of the current running timer",
         "type": "text",
@@ -186,7 +186,7 @@
             "date": {}
         }
     },
-    "kuvaBanner": "Kuva will refresh in",
+    "kuvaBanner": "El kuva se actualizará en",
     "@kuvaBanner": {
         "description": "Kuva refresh countdown title",
         "type": "text",
@@ -204,103 +204,103 @@
         "type": "text",
         "placeholders": {}
     },
-    "earthCycleTitle": "Earth Cycle",
+    "earthCycleTitle": "Ciclo de la Tierra",
     "@earthCycleTitle": {
         "description": "Earth cycle title",
         "type": "text",
         "placeholders": {}
     },
-    "cetusCycleTitle": "Cetus Cycle",
+    "cetusCycleTitle": "Ciclo de Cetus",
     "@cetusCycleTitle": {
         "description": "Cetus cycle title",
         "type": "text",
         "placeholders": {}
     },
-    "vallisCycleTitle": "Vallis Cycle",
+    "vallisCycleTitle": "Ciclo de Vallis",
     "@vallisCycleTitle": {
         "description": "Vallis cycle title",
         "type": "text",
         "placeholders": {}
     },
-    "timersTitle": "Timers",
+    "timersTitle": "Contadores",
     "@timersTitle": {
         "description": "Times title",
         "type": "text",
         "placeholders": {}
     },
-    "fissuresTitle": "Fissures",
+    "fissuresTitle": "Fisuras",
     "@fissuresTitle": {
         "description": "Fissures title",
         "type": "text",
         "placeholders": {}
     },
-    "invasionsTitle": "Invasions",
+    "invasionsTitle": "Invasiones",
     "@invasionsTitle": {
         "description": "Invasions title",
         "type": "text",
         "placeholders": {}
     },
-    "syndicatesTitle": "Syndicates",
+    "syndicatesTitle": "Sindicatos",
     "@syndicatesTitle": {
         "description": "Syndicates title",
         "type": "text",
         "placeholders": {}
     },
-    "codexTitle": "Codex",
+    "codexTitle": "Codice",
     "@codexTitle": {
         "description": "Codex title",
         "type": "text",
         "placeholders": {}
     },
-    "helpfulLinksTitle": "Helpful Links",
+    "helpfulLinksTitle": "Enlaces útiles",
     "@helpfulLinksTitle": {
         "description": "Helpful Links title",
         "type": "text",
         "placeholder": {}
     },
-    "behaviorTitle": "Behavior",
+    "behaviorTitle": "General",
     "@behaviorTitle": {
         "description": "Behavior category title",
         "type": "text",
         "placeholder": {}
     },
-    "themeTitle": "Theme",
+    "themeTitle": "Aspecto",
     "@themeTitle": {
         "description": "Theme title",
         "type": "text",
         "placeholder": {}
     },
-    "themeDescription": "Choose app theme.",
+    "themeDescription": "Elige el aspecto de la aplicación.",
     "@themeDescription": {
         "description": "Theme option description",
         "typ": "text",
         "placeholder": {}
     },
-    "backOpensDrawerTitle": "Back button opens drawer",
+    "backOpensDrawerTitle": "El boton volver abre el menu",
     "@backOpensDrawerTitle": {
         "description": "Title for the option that allows back button to open the drawer",
         "type": "text",
         "placeholder": {}
     },
-    "backOpensDrawerDescription": "Pressing the back button opens the drawer.",
+    "backOpensDrawerDescription": "El botón volver abre el menu.",
     "@backOpensDrawerDescription": {
         "description": "Description for back button opens drawer option",
         "type": "text",
         "placeholder": {}
     },
-    "notificationsTitle": "Notifications",
+    "notificationsTitle": "Notificaciones",
     "@notificationsTitle": {
         "description": "Notifications category title",
         "type": "text",
         "placeholder": {}
     },
-    "rareAlertsNotificationTitle": "Rare Alerts",
+    "rareAlertsNotificationTitle": "Alertas raras",
     "@rareAlertsNotificationTitle": {
         "description": "Rare Alerts title",
         "type": "text",
         "placeholder": {}
     },
-    "rareAlertsNotificationDescription": "Rare alert notifications, mainly gifts of the lotus.",
+    "rareAlertsNotificationDescription": "Notificaciones de alerta raras, principalmente regalos de lotus.",
     "@rareAlertsNotificationDescription": {
         "description": "Description for rare alerts option",
         "type": "text",
@@ -312,169 +312,169 @@
         "type": "text",
         "placeholder": {}
     },
-    "baroNotificationDescription": "Notifications for both Baro's arrivial and departure.",
+    "baroNotificationDescription": "Notificaciones de Baro de llegada y de salida.",
     "@baroNotificationDescription": {
         "description": "Notification description for both Baro's arrivial and departure.",
         "type": "text",
         "placeholder": {}
     },
-    "darvoNotificationTitle": "Darvo's Daily Deals",
+    "darvoNotificationTitle": "Oferta diaria de Darvo",
     "@darvoNotificationTitle": {
         "description": "Notification title for darvo's daily deals",
         "type": "text",
         "placeholder": {}
     },
-    "darvoNotificationDescription": "Darvo's new find of the day.",
+    "darvoNotificationDescription": "El nuevo hallazgo de Darvo del día.",
     "@darvoNotificationDescription": {
         "description": "Notification description for Darvo's Daily Deal",
         "type": "text",
         "placeholder": {}
     },
-    "sortieNotificationTitle": "Sortie",
+    "sortieNotificationTitle": "Incursion",
     "@sortieNotificationTitle": {
         "description": "Notification title for sorties",
         "type": "text",
         "placeholder": {}
     },
-    "sortieNotificationDescription": "Notifications for new sorties.",
+    "sortieNotificationDescription": "Notificaciones para nuevas incursiones.",
     "@sortieNotificationDescription": {
         "description": "description for sortie notification option",
         "type": "text",
         "placeholder": {}
     },
-    "sentientOutpostNotificationTitle": "Sentient Outpost",
+    "sentientOutpostNotificationTitle": "Puesto avanzado sentient",
     "@sentientOutpostNotificationTitle": {
         "description": "Notification title for sentient outpost",
         "type": "text",
         "placeholder": {}
     },
-    "sentientOutpostNotificationDescription": "Notifications for new sentient threats",
+    "sentientOutpostNotificationDescription": "Notificaciones para nuevas amenazas sentient",
     "@sentientOutpostNotificationDescription": {
         "description": "Notification description for sentient outpost option",
         "type": "text",
         "placeholder": {}
     },
-    "warframeNewsNotificationTitle": "News",
+    "warframeNewsNotificationTitle": "Noticias",
     "@warframeNewsNotificationTitle": {
         "description": "Main Title for Warframe news notifications",
         "type": "text",
         "placeholder": {}
     },
-    "warframeNewsNotificationDescription": "News notifications for Prime Access, Streams and Updates.",
+    "warframeNewsNotificationDescription": "Notificaciones de noticias de acceso prime, directos y actualizaciones.",
     "@warframeNewsNotificationDescription": {
         "description": "Main description for Warframe news notifications",
         "type": "text",
         "placeholder": {}
     },
-    "planetCyclesNotificationTitle": "Open World Cycles",
+    "planetCyclesNotificationTitle": "Ciclos de los mundos abiertos",
     "@planetCycleNotificationTitle": {
         "description": "Main title for open world notifications",
         "type": "text",
         "placeholder": {}
     },
-    "planetCyclesNotificationDescription": "Open world notifications for their given cycles.",
+    "planetCyclesNotificationDescription": "Notificaciones para ciclos del mundo abierto.",
     "@planetCycleNotificationDescription": {
         "description": "Main description for open world notifications",
         "type": "text",
         "placeholder": {}
     },
-    "resourcesNotificationTitle": "Resources",
+    "resourcesNotificationTitle": "Recursos",
     "@resourcesNotificationTitle": {
         "description": "Main title for resource notifications",
         "type": "text",
         "placeholder": {}
     },
-    "resourcesNotificationDescription": "Resources mostly found in invasions.",
+    "resourcesNotificationDescription": "Recursos que se encuentran principalmente en las invasiones.",
     "@resourcesNotificationDescription": {
         "description": "Main description for resource notifications",
         "type": "text",
         "placeholder": {}
     },
-    "fissuresNotificationTitle": "Fissure Missions",
+    "fissuresNotificationTitle": "Misiones de fisuras",
     "@fissuresNotificationTitle": {
         "description": "Main title for fisssures notifications",
         "type": "text",
         "placeholder": {}
     },
-    "fissuresNotificationDescription": "Filter fissure notifications by prefered mission type",
+    "fissuresNotificationDescription": "Filtrar notificaciones de fisura por tipo de misión preferida",
     "@fissuresNotificationDescription": {
         "description": "Main description for fissures notifications",
         "type": "text",
         "placeholder": {}
     },
-    "acolytesNotificationTitle": "Acolytes",
+    "acolytesNotificationTitle": "Acolitos",
     "@acolytesNotificationTitle": {
         "description": "Main title for acolyte notifications",
         "type": "text",
         "placeholder": {}
     },
-    "acolytesNotificationDescription": "Notifies when an acolyte is found",
+    "acolytesNotificationDescription": "Notifica cuando se encuentra un acólito",
     "@acolytesNotificationDescription": {
         "description": "Main description for acolyte notifications",
         "type": "text",
         "placeholder": {}
     },
-    "earthDayOption": "Earth Day",
+    "earthDayOption": "Tierra de día",
     "@earthDayOption": {
         "description": "Earth cycle option",
         "type": "text",
         "placeholder": {}
     },
-    "earthNightOption": "Earth Night",
+    "earthNightOption": "Tierra de noche",
     "@earthNightOption": {
         "description": "Earth cycle option",
         "type": "text",
         "placeholder": {}
     },
-    "cetusDayOption": "Cetus Day",
+    "cetusDayOption": "Cetus de día",
     "@cetusDayOption": {
         "description": "Cetus cycle option",
         "type": "text",
         "placeholder": {}
     },
-    "cetusNightOption": "Cetus Day",
+    "cetusNightOption": "Cetus de noche",
     "@cetusNightOption": {
         "description": "Cetus cycle option",
         "type": "text",
         "placeholder": {}
     },
-    "vallisWarmOption": "Orb Vallis Warm",
+    "vallisWarmOption": "Valle de las orbes calido",
     "@vallisWarmOption": {
         "description": "Orb vallis cycle option",
         "type": "text",
         "placeholder": {}
     },
-    "vallisColdOption": "Orb Vallis Cold",
+    "vallisColdOption": "Valle de las orbes frio",
     "@vallisColdOption": {
         "description": "Orb vallis cycle option",
         "type": "text",
         "placeholder": {}
     },
-    "primeAccessNewsOption": "Prime Access",
+    "primeAccessNewsOption": "Acceso Prime",
     "@primeAccessNewsOption": {
         "description": "Warframe news option",
         "type": "text",
         "placeholder": {}
     },
-    "streamNewsOption": "Stream Announcements",
+    "streamNewsOption": "Anuncios de directos",
     "@streamNewsOption": {
         "description": "Warframe news option",
         "type": "text",
         "placeholder": {}
     },
-    "updateNewsOption": "Warframe Update News",
+    "updateNewsOption": "Noticias de Warframe",
     "@updateNewsOption": {
         "description": "Warframe news option",
         "type": "text",
         "placeholder": {}
     },
-    "updateDropTableTitle": "Update Drop Table",
+    "updateDropTableTitle": "Actualizar la tabla de objetos",
     "@updateDropTableTitle": {
         "description": "Title for updaing drop tables",
         "type": "text",
         "placeholder": {}
     },
-    "updateDropTableDescription": "Last updated {date}",
+    "updateDropTableDescription": "Ultima vez actualizado {date}",
     "@updateDropTableDescription": {
         "description": "Description for updating drop table with date of the last update",
         "type": "text",
@@ -482,19 +482,19 @@
             "date": {}
         }
     },
-    "reportBugsTitle": "Report Bugs",
+    "reportBugsTitle": "Reportar errores",
     "@reportBugsTitle": {
         "desciption": "Title for bug report link",
         "type": "text",
         "placeholder": {}
     },
-    "reportBugsDescription": "Report bugs or Request a feature",
+    "reportBugsDescription": "Reportar errores o solicitar nuevas características",
     "@reportBugsDescription": {
         "description": "Description for bug report link",
         "type": "text",
         "placeholder": {}
     },
-    "aboutCategoryTitle": "About",
+    "aboutCategoryTitle": "Acerca de",
     "@aboutCategoryTitle": {
         "description": "Title for the about category of the settings page",
         "type": "text",
