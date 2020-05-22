@@ -468,13 +468,13 @@
         "type": "text",
         "placeholder": {}
     },
-    "updateDropTableTitle": "Update Drop Table",
+    "updateDropTableTitle": "Actualizar la tabla de objetos",
     "@updateDropTableTitle": {
         "description": "Title for updaing drop tables",
         "type": "text",
         "placeholder": {}
     },
-    "updateDropTableDescription": "Last updated {date}",
+    "updateDropTableDescription": "Ultima vez actualizado {date}",
     "@updateDropTableDescription": {
         "description": "Description for updating drop table with date of the last update",
         "type": "text",
@@ -482,19 +482,19 @@
             "date": {}
         }
     },
-    "reportBugsTitle": "Report Bugs",
+    "reportBugsTitle": "Reportar errores",
     "@reportBugsTitle": {
         "desciption": "Title for bug report link",
         "type": "text",
         "placeholder": {}
     },
-    "reportBugsDescription": "Report bugs or Request a feature",
+    "reportBugsDescription": "Reportar errores o solicitar nuevas características",
     "@reportBugsDescription": {
         "description": "Description for bug report link",
         "type": "text",
         "placeholder": {}
     },
-    "aboutCategoryTitle": "About",
+    "aboutCategoryTitle": "Acerca de",
     "@aboutCategoryTitle": {
         "description": "Title for the about category of the settings page",
         "type": "text",
