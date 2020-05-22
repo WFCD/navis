@@ -3,6 +3,7 @@ import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:navis/blocs/bloc.dart';
 import 'package:navis/constants/storage_keys.dart';
+import 'package:navis/generated/l10n.dart';
 import 'package:navis/services/repository.dart';
 
 import 'base_dialog.dart';
@@ -21,6 +22,8 @@ class ThemePicker extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final localizations = NavisLocalizations.of(context);
+
     return WatchBoxBuilder(
       box: RepositoryProvider.of<Repository>(context).persistent.hiveBox,
       builder: (BuildContext context, Box box) {
@@ -28,26 +31,26 @@ class ThemePicker extends StatelessWidget {
         final accentColor = Theme.of(context).accentColor;
 
         return BaseDialog(
-          dialogTitle: const Text('Themes'),
+          dialogTitle: Text(localizations.themeTitle),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               RadioListTile<int>(
-                title: const Text('Light'),
+                title: Text(localizations.lightThemeTitle),
                 value: 0,
                 groupValue: current,
                 activeColor: accentColor,
                 onChanged: (b) => _onChanged(context, box, b),
               ),
               RadioListTile<int>(
-                title: const Text('Dark'),
+                title: Text(localizations.darkThemeTitle),
                 value: 1,
                 groupValue: current,
                 activeColor: accentColor,
                 onChanged: (b) => _onChanged(context, box, b),
               ),
               RadioListTile<int>(
-                title: const Text('System'),
+                title: Text(localizations.systemThemeTitle),
                 value: 2,
                 groupValue: current,
                 activeColor: accentColor,
@@ -57,7 +60,7 @@ class ThemePicker extends StatelessWidget {
           ),
           actions: <Widget>[
             FlatButton(
-              child: const Text('CANCEL'),
+              child: Text(MaterialLocalizations.of(context).cancelButtonLabel),
               onPressed: () => Navigator.of(context).pop(),
             )
           ],

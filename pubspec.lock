@@ -755,7 +755,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "170a18683743f25e4ac4d7bca861f98f69b44eac"
+      resolved-ref: "60d09aec8bff3f604a9fe1717d6e4968884123f3"
       url: "https://github.com/SlayerOrnstein/warframe_item_models.git"
     source: git
     version: "1.2.0"

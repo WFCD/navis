@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:navis/blocs/bloc.dart';
+import 'package:navis/generated/l10n.dart';
 import 'package:navis/widgets/sorties/sorties.dart';
 import 'package:navis/widgets/widgets.dart';
 
@@ -10,8 +11,8 @@ class SortieScreen extends StatelessWidget {
     return Card(
       color: Theme.of(context).primaryColor,
       child: ListTile(
-        title: const Text(
-          'Sortie will reset in: ',
+        title: Text(
+          NavisLocalizations.of(context).sortieResetTime,
           style: TextStyle(color: Colors.white),
         ),
         trailing: CountdownBox(
@@ -49,10 +50,10 @@ class SortieScreen extends StatelessWidget {
         return Container(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: const <Widget>[
-              Center(child: CircularProgressIndicator()),
-              SizedBox(height: 16.0),
-              Text('Waiting for new sortie...')
+            children: <Widget>[
+              const Center(child: CircularProgressIndicator()),
+              const SizedBox(height: 16.0),
+              Text(NavisLocalizations.of(context).sortieReseting)
             ],
           ),
         );

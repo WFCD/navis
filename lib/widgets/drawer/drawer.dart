@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:navis/generated/l10n.dart';
 
 import 'drawer_options.dart';
 
@@ -21,7 +22,7 @@ class LotusDrawer extends StatelessWidget {
             const Divider(height: 4.0),
             ListTile(
               leading: Icon(Icons.settings),
-              title: const Text('Settings'),
+              title: Text(NavisLocalizations.of(context).settingsTitle),
               onTap: () {
                 Navigator.of(context).pop();
                 Navigator.of(context).pushNamed('/settings');

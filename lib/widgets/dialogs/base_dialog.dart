@@ -35,8 +35,9 @@ class BaseDialog extends StatelessWidget {
       style: dialogTheme.contentTextStyle ?? theme.textTheme.subtitle1,
       child: Flexible(
         child: Padding(
-            padding: padding ?? const EdgeInsets.fromLTRB(8.0, 10.0, 8.0, 14.0),
-            child: child),
+          padding: padding ?? const EdgeInsets.fromLTRB(8.0, 10.0, 8.0, 14.0),
+          child: child,
+        ),
       ),
     );
 

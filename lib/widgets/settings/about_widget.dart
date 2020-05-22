@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:navis/constants/links.dart';
+import 'package:navis/generated/l10n.dart';
 import 'package:navis/services/repository.dart';
 import 'package:navis/utils/size_config.dart';
 import 'package:navis/utils/helper_utils.dart';
@@ -12,19 +13,14 @@ import 'package:package_info/package_info.dart';
 class About extends StatelessWidget {
   const About({Key key}) : super(key: key);
 
-  static const _legalese =
-      'Warframe and the Warframe logo are registered trademarks '
-      'of Digital Extremes Ltd. Cephalon Navis nor WFCD are '
-      'affiliated with Digital Extremes Ltd. in any way.';
-
   @override
   Widget build(BuildContext context) {
-    final PackageInfo info =
-        RepositoryProvider.of<Repository>(context).packageInfo;
+    final localizations = NavisLocalizations.of(context);
+    final info = RepositoryProvider.of<Repository>(context).packageInfo;
 
-    final ThemeData theme = Theme.of(context);
-    final TextStyle aboutTextStyle = theme.textTheme.bodyText1;
-    final TextStyle linkStyle =
+    final theme = Theme.of(context);
+    final aboutTextStyle = theme.textTheme.bodyText1;
+    final linkStyle =
         theme.textTheme.bodyText1.copyWith(color: theme.accentColor);
 
     return AboutListTile(
@@ -39,7 +35,10 @@ class About extends StatelessWidget {
       aboutBoxChildren: <Widget>[
         RichText(
           text: TextSpan(children: <TextSpan>[
-            TextSpan(style: aboutTextStyle, text: 'Homepage: '),
+            TextSpan(
+              style: aboutTextStyle,
+              text: localizations.homePageTitle,
+            ),
             _LinkTextSpan(
               style: linkStyle,
               url: mainPage,
@@ -47,17 +46,16 @@ class About extends StatelessWidget {
             ),
             TextSpan(
               style: aboutTextStyle,
-              text: '\n\nReport issues or feature request for this project\'s ',
+              text: '\n\n${localizations.issueTrackerDescription} ',
             ),
             _LinkTextSpan(
               style: linkStyle,
               url: issuePage,
-              text: 'issues tracker',
+              text: localizations.issueTrackerTitle,
             ),
             TextSpan(
               style: aboutTextStyle,
-              text:
-                  '\n\nMore information on Warframe can be found on their official site\n',
+              text: '\n\n${localizations.warframeLinkTitle}\n',
             ),
             _LinkTextSpan(
               style: linkStyle,
@@ -69,7 +67,10 @@ class About extends StatelessWidget {
         const SizedBox(height: 24),
         SvgPicture.asset('assets/wfcd_banner.svg', height: 50),
         const SizedBox(height: 16),
-        Text(_legalese, style: Theme.of(context).textTheme.caption),
+        Text(
+          localizations.legalese,
+          style: Theme.of(context).textTheme.caption,
+        ),
       ],
     );
   }
