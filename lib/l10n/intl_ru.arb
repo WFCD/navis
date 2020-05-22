@@ -130,7 +130,7 @@
         "type": "text",
         "placeholders": {}
     },
-    "errorDescription": "Произошла непредвиденная ошибка в системе ядра(операционной системы).\nОшибка при отправке системным администраторам...",
+    "errorDescription": "Произошла непредвиденная ошибка в системе ядра (операционной системы).\nОшибка при отправке системным администраторам...",
     "@errorDescription": {
         "description": "error description",
         "type": "text",
@@ -192,13 +192,13 @@
         "type": "text",
         "placeholders": {}
     },
-    "formorianTitle": "Formorian",
+    "formorianTitle": "Fomorian",
     "@formorianTitle": {
         "description": "Fomorian progress title",
         "type": "text",
         "placeholders": {}
     },
-    "razorbackTitle": "Razerback",
+    "razorbackTitle": "Razorback",
     "@razorbackTitle": {
         "description": "Razorback progress title",
         "type": "text",
@@ -348,7 +348,7 @@
         "type": "text",
         "placeholder": {}
     },
-    "sentientOutpostNotificationDescription": "О появлении новой Аномалии Владеющих Разумом.",
+    "sentientOutpostNotificationDescription": "О появлении новой Аномалии Владеющих Разумом",
     "@sentientOutpostNotificationDescription": {
         "description": "Notification description for sentient outpost option",
         "type": "text",
@@ -360,7 +360,7 @@
         "type": "text",
         "placeholder": {}
     },
-    "warframeNewsNotificationDescription": "О Прайм Доступе, Стримах, Обновлениях...",
+    "warframeNewsNotificationDescription": "О Прайм Доступе, Стримах, Обновлениях.",
     "@warframeNewsNotificationDescription": {
         "description": "Main description for Warframe news notifications",
         "type": "text",
@@ -372,7 +372,7 @@
         "type": "text",
         "placeholder": {}
     },
-    "planetCyclesNotificationDescription": "О циклах на открытых локациях...",
+    "planetCyclesNotificationDescription": "О циклах на открытых локациях.",
     "@planetCycleNotificationDescription": {
         "description": "Main description for open world notifications",
         "type": "text",
@@ -384,7 +384,7 @@
         "type": "text",
         "placeholder": {}
     },
-    "resourcesNotificationDescription": "О наградах: чертежи и ресурсы ...",
+    "resourcesNotificationDescription": "О наградах: чертежи и ресурсы.",
     "@resourcesNotificationDescription": {
         "description": "Main description for resource notifications",
         "type": "text",
@@ -396,7 +396,7 @@
         "type": "text",
         "placeholder": {}
     },
-    "fissuresNotificationDescription": "О Разрывах Бездны для выбранного типа миссии...",
+    "fissuresNotificationDescription": "О Разрывах Бездны для выбранного типа миссии",
     "@fissuresNotificationDescription": {
         "description": "Main description for fissures notifications",
         "type": "text",
@@ -408,7 +408,7 @@
         "type": "text",
         "placeholder": {}
     },
-    "acolytesNotificationDescription": "Об обнаружении выбранного Послушника ...",
+    "acolytesNotificationDescription": "Об обнаружении выбранного Послушника",
     "@acolytesNotificationDescription": {
         "description": "Main description for acolyte notifications",
         "type": "text",
