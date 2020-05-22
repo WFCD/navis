@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:navis/generated/l10n.dart';
 import 'package:navis/screens/nightwaves.dart';
 import 'package:navis/screens/syndicate_bounties.dart';
 import 'package:navis/screens/synth_targets.dart';
@@ -10,10 +11,9 @@ import 'package:worldstate_api_model/entities.dart';
 class SyndicateWidget extends StatelessWidget {
   const SyndicateWidget({
     this.name,
-    this.caption = 'Tap to see bounties',
+    this.caption,
     this.syndicate,
-  })  : assert(caption != null),
-        assert(
+  }) : assert(
             name == null || syndicate == null,
             'If name is null then it will default\n'
             'to Syndicate.name instead');
@@ -67,7 +67,10 @@ class SyndicateWidget extends StatelessWidget {
         child: ListTile(
           leading: GetSyndicateIcon(syndicate: syndicateName),
           title: Text(name ?? syndicate.name, style: titleStyle),
-          subtitle: Text(caption, style: captionStyle),
+          subtitle: Text(
+            caption ?? NavisLocalizations.of(context).tapForMoreDetails,
+            style: captionStyle,
+          ),
           onTap: () => onTap(context),
         ),
       ),
