@@ -324,61 +324,61 @@
         "type": "text",
         "placeholder": {}
     },
-    "darvoNotificationDescription": "Darvo's new find of the day.",
+    "darvoNotificationDescription": "Об ежедневных новых товарах у Дарво.",
     "@darvoNotificationDescription": {
         "description": "Notification description for Darvo's Daily Deal",
         "type": "text",
         "placeholder": {}
     },
-    "sortieNotificationTitle": "Sortie",
+    "sortieNotificationTitle": "Вылазки",
     "@sortieNotificationTitle": {
         "description": "Notification title for sorties",
         "type": "text",
         "placeholder": {}
     },
-    "sortieNotificationDescription": "Notifications for new sorties.",
+    "sortieNotificationDescription": "Об обновлении ежедневной Вылазки.",
     "@sortieNotificationDescription": {
         "description": "description for sortie notification option",
         "type": "text",
         "placeholder": {}
     },
-    "sentientOutpostNotificationTitle": "Sentient Outpost",
+    "sentientOutpostNotificationTitle": "Аномалия",
     "@sentientOutpostNotificationTitle": {
         "description": "Notification title for sentient outpost",
         "type": "text",
         "placeholder": {}
     },
-    "sentientOutpostNotificationDescription": "Notifications for new sentient threats",
+    "sentientOutpostNotificationDescription": "О появлении новой Аномалии Владеющих Разумом.",
     "@sentientOutpostNotificationDescription": {
         "description": "Notification description for sentient outpost option",
         "type": "text",
         "placeholder": {}
     },
-    "warframeNewsNotificationTitle": "News",
+    "warframeNewsNotificationTitle": "Новости",
     "@warframeNewsNotificationTitle": {
         "description": "Main Title for Warframe news notifications",
         "type": "text",
         "placeholder": {}
     },
-    "warframeNewsNotificationDescription": "News notifications for Prime Access, Streams and Updates.",
+    "warframeNewsNotificationDescription": "Оповещение об обновлении Новостной ленты.",
     "@warframeNewsNotificationDescription": {
         "description": "Main description for Warframe news notifications",
         "type": "text",
         "placeholder": {}
     },
-    "planetCyclesNotificationTitle": "Open World Cycles",
+    "planetCyclesNotificationTitle": "Циклы планет",
     "@planetCycleNotificationTitle": {
         "description": "Main title for open world notifications",
         "type": "text",
         "placeholder": {}
     },
-    "planetCyclesNotificationDescription": "Open world notifications for their given cycles.",
+    "planetCyclesNotificationDescription": "Оповещение об открытых локациях, смена дня/ночи или температуры.",
     "@planetCycleNotificationDescription": {
         "description": "Main description for open world notifications",
         "type": "text",
         "placeholder": {}
     },
-    "resourcesNotificationTitle": "Resources",
+    "resourcesNotificationTitle": "Ресурсы",
     "@resourcesNotificationTitle": {
         "description": "Main title for resource notifications",
         "type": "text",
