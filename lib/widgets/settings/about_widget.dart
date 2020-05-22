@@ -5,10 +5,9 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:navis/constants/links.dart';
 import 'package:navis/generated/l10n.dart';
 import 'package:navis/services/repository.dart';
-import 'package:navis/utils/size_config.dart';
 import 'package:navis/utils/helper_utils.dart';
+import 'package:navis/utils/size_config.dart';
 import 'package:navis/widgets/icons.dart';
-import 'package:package_info/package_info.dart';
 
 class About extends StatelessWidget {
   const About({Key key}) : super(key: key);
