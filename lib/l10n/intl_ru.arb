@@ -360,7 +360,7 @@
         "type": "text",
         "placeholder": {}
     },
-    "warframeNewsNotificationDescription": "Оповещение об обновлении Новостной ленты.",
+    "warframeNewsNotificationDescription": "Об обновлении Новостной ленты.",
     "@warframeNewsNotificationDescription": {
         "description": "Main description for Warframe news notifications",
         "type": "text",
