@@ -312,7 +312,7 @@
         "type": "text",
         "placeholder": {}
     },
-    "baroNotificationDescription": "Оповещения о прибытии и отъезде Торговца из Бездны.",
+    "baroNotificationDescription": "Оповещения о прибытии и отбытии Торговца из Бездны.",
     "@baroNotificationDescription": {
         "description": "Notification description for both Baro's arrivial and departure.",
         "type": "text",
@@ -530,7 +530,7 @@
         "type": "text",
         "placeholder": {}
     },
-    "legalese": "Warframe and the Warframe logo are registered trademarks of Digital Extremes Ltd. Cephalon Navis nor WFCD are affiliated with Digital Extremes Ltd. in any way.",
+    "legalese": "Warframe и логотип Warframe являются зарегистрированными торговыми марками Digital Extremes Ltd. Cephalon Navis и WFCD никаким образом не связаны с Digital Extremes Ltd.",
     "@legalese": {
         "description": "Cephalon Navis legalese",
         "type": "text",
@@ -542,25 +542,25 @@
         "type": "text",
         "placeholder": {}
     },
-    "issueTrackerDescription": "Report issues or feature request for this project's",
+    "issueTrackerDescription": "Сообщить об ошибке или запросить новые функции для этого проекта",
     "@issueTrackerDescription": {
         "description": "Description for Navis's issue tracker",
         "type": "text",
         "placeholder": {}
     },
-    "issueTrackerTitle": "issues tracker",
+    "issueTrackerTitle": "Баг-трекер",
     "@issueTrackerTitle": {
         "description": "Display link to Navis's issue tracker",
         "type": "text",
         "placeholder": {}
     },
-    "warframeLinkTitle": "More information on Warframe can be found on their official site",
+    "warframeLinkTitle": "Больше информации о Warframe можно найти на их официальном сайте",
     "@warframeLinkTitle": {
         "description": "Description for Warframe's main site link",
         "type": "text",
         "placeholder": {}
     },
-    "settingsTitle": "Settings",
+    "settingsTitle": "Настройки",
     "@settingsTitle": {
         "description": "Settings title",
         "type": "text",
