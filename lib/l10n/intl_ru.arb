@@ -500,31 +500,31 @@
         "type": "text",
         "placeholder": {}
     },
-    "sortieResetTime": "Sortie will reset in",
+    "sortieResetTime": "Вылазка обновится через",
     "@sortieResetTime": {
         "description": "Title for sortie reset time",
         "type": "text",
         "placeholder": {}
     },
-    "sortieReseting": "Waiting for new sortie",
+    "sortieReseting": "Ожидаем новую Вылазку",
     "@sortieReseting": {
         "description": "Sortie reseting title",
         "type": "text",
         "placeholder": {}
     },
-    "lightThemeTitle": "Light",
+    "lightThemeTitle": "Светлая",
     "@lightThemeTitle": {
         "description": "Title for light theme",
         "type": "text",
         "placeholder": {}
     },
-    "darkThemeTitle": "Dark",
+    "darkThemeTitle": "Тёмная",
     "@darkThemeTitle": {
         "description": "Title for dark theme",
         "type": "text",
         "placeholder": {}
     },
-    "systemThemeTitle": "System",
+    "systemThemeTitle": "Системная",
     "@systemThemeTitle": {
         "description": "Title for system theme",
         "type": "text",
@@ -536,7 +536,7 @@
         "type": "text",
         "placeholder": {}
     },
-    "homePageTitle": "Homepage",
+    "homePageTitle": "Домашняя",
     "@homePageTitle": {
         "description": "Displayes a link to Navis's homepage",
         "type": "text",
