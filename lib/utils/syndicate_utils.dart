@@ -2,7 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:navis/utils/size_config.dart';
 import 'package:navis/widgets/icons.dart';
 
-enum SyndicateFactions { ostrons, solaris, simaris, nightwave, hexis }
+enum SyndicateFactions {
+  cetusSyndicate,
+  solarisSyndicate,
+  simaris,
+  nightwave,
+  hexis
+}
 
 class GetSyndicateIcon extends StatelessWidget {
   const GetSyndicateIcon({
@@ -23,10 +29,10 @@ class GetSyndicateIcon extends StatelessWidget {
     IconData icon;
 
     switch (syndicate) {
-      case SyndicateFactions.ostrons:
+      case SyndicateFactions.cetusSyndicate:
         icon = SyndicateIcons.ostronsigil;
         break;
-      case SyndicateFactions.solaris:
+      case SyndicateFactions.solarisSyndicate:
         icon = SyndicateIcons.solarisunited;
         break;
       case SyndicateFactions.simaris:
@@ -51,9 +57,9 @@ class GetSyndicateIcon extends StatelessWidget {
 
 Color syndicateIconColor(SyndicateFactions syndicate) {
   switch (syndicate) {
-    case SyndicateFactions.ostrons:
+    case SyndicateFactions.cetusSyndicate:
       return const Color(0xFFE8DDAF);
-    case SyndicateFactions.solaris:
+    case SyndicateFactions.solarisSyndicate:
       return const Color(0xFFD8C38F);
     case SyndicateFactions.nightwave:
       return const Color(0xFFFFAEAA);
@@ -66,9 +72,9 @@ Color syndicateIconColor(SyndicateFactions syndicate) {
 
 Color syndicateBackgroundColor(SyndicateFactions syndicate) {
   switch (syndicate) {
-    case SyndicateFactions.ostrons:
+    case SyndicateFactions.cetusSyndicate:
       return const Color(0xFFB74624);
-    case SyndicateFactions.solaris:
+    case SyndicateFactions.solarisSyndicate:
       return const Color(0xFF5F3C0D);
     case SyndicateFactions.nightwave:
       return const Color(0xFF6C1822);
@@ -80,11 +86,13 @@ Color syndicateBackgroundColor(SyndicateFactions syndicate) {
 }
 
 SyndicateFactions syndicateStringToEnum(String faction) {
-  switch (faction) {
-    case 'Ostrons':
-      return SyndicateFactions.ostrons;
-    case 'Solaris United':
-      return SyndicateFactions.solaris;
+  final cleaned = faction.replaceAll(RegExp(r'[0-9]'), '');
+
+  switch (cleaned) {
+    case 'CetusSyndicate':
+      return SyndicateFactions.cetusSyndicate;
+    case 'SolarisSyndicate':
+      return SyndicateFactions.solarisSyndicate;
     case 'Simaris':
       return SyndicateFactions.simaris;
     case 'Nightwave':
@@ -96,9 +104,9 @@ SyndicateFactions syndicateStringToEnum(String faction) {
 
 String syndicateEnumToString(SyndicateFactions faction) {
   switch (faction) {
-    case SyndicateFactions.ostrons:
+    case SyndicateFactions.cetusSyndicate:
       return 'Ostrons';
-    case SyndicateFactions.solaris:
+    case SyndicateFactions.solarisSyndicate:
       return 'Solaris United';
     case SyndicateFactions.simaris:
       return 'Simaris';

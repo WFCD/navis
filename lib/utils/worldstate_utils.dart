@@ -17,8 +17,7 @@ Worldstate cleanState(Worldstate state) {
 
   state.persistentEnemies.sort((a, b) => a.agentType.compareTo(b.agentType));
 
-  state.syndicateMissions.retainWhere(
-      (s) => s.name.contains(RegExp('(Ostrons)|(Solaris United)')) == true);
+  state.syndicateMissions.retainWhere((s) => s.jobs?.isNotEmpty ?? false);
 
   state.syndicateMissions.sort((a, b) => a.name.compareTo(b.name));
 

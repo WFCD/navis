@@ -24,7 +24,7 @@ class SyndicateWidget extends StatelessWidget {
   final Syndicate syndicate;
 
   void onTap(BuildContext context) {
-    final _syndicate = syndicateStringToEnum(name ?? syndicate.name);
+    final _syndicate = syndicateStringToEnum(name ?? syndicate.id);
 
     switch (_syndicate) {
       case SyndicateFactions.nightwave:
@@ -33,12 +33,12 @@ class SyndicateWidget extends StatelessWidget {
       case SyndicateFactions.simaris:
         Navigator.of(context).pushNamed(SynthTargetScreen.route);
         break;
-      case SyndicateFactions.solaris:
+      case SyndicateFactions.solarisSyndicate:
         continue SYNDICATEJOBS;
         break;
 
       SYNDICATEJOBS:
-      case SyndicateFactions.ostrons:
+      case SyndicateFactions.cetusSyndicate:
         Navigator.of(context)
             .pushNamed(SyndicateJobs.route, arguments: syndicate);
         break;
@@ -49,7 +49,7 @@ class SyndicateWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
-    final syndicateName = syndicateStringToEnum(name ?? syndicate.name);
+    final syndicateName = syndicateStringToEnum(name ?? syndicate.id);
 
     final titleStyle = textTheme.subtitle1
         .copyWith(color: Typography.whiteMountainView.subtitle1.color);
