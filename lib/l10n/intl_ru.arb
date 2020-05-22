@@ -56,7 +56,7 @@
         "type": "text",
         "placeholders": {}
     },
-    "acolyteRank": "Уровень аколита",
+    "acolyteRank": "Уровень Послушника",
     "@acolyteRank": {
         "description": "An acolyte's current level",
         "type": "text",
@@ -330,7 +330,7 @@
         "type": "text",
         "placeholder": {}
     },
-    "sortieNotificationTitle": "Вылазки",
+    "sortieNotificationTitle": "Вылазка",
     "@sortieNotificationTitle": {
         "description": "Notification title for sorties",
         "type": "text",
@@ -408,7 +408,7 @@
         "type": "text",
         "placeholder": {}
     },
-    "acolytesNotificationDescription": "Notifies when an acolyte is found",
+    "acolytesNotificationDescription": "Об обнаружении выбранного Послушника ...",
     "@acolytesNotificationDescription": {
         "description": "Main description for acolyte notifications",
         "type": "text",
@@ -420,7 +420,7 @@
         "type": "text",
         "placeholder": {}
     },
-    "earthNightOption": "Земля - Ночь",
+    "earthNightOption": "Ночь на Земле",
     "@earthNightOption": {
         "description": "Earth cycle option",
         "type": "text",
@@ -432,7 +432,7 @@
         "type": "text",
         "placeholder": {}
     },
-    "cetusNightOption": "Cetus Night",
+    "cetusNightOption": "Цетус - Ночь",
     "@cetusNightOption": {
         "description": "Cetus cycle option",
         "type": "text",
