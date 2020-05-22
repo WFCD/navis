@@ -432,7 +432,7 @@
     "type": "text",
     "placeholder": {}
   },
-  "cetusNightOption": "Cetus Day",
+  "cetusNightOption": "Cetus Night",
   "@cetusNightOption": {
     "description": "Cetus cycle option",
     "type": "text",

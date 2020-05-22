@@ -659,7 +659,7 @@ class NavisLocalizations {
 
   String get cetusNightOption {
     return Intl.message(
-      'Cetus Day',
+      'Cetus Night',
       name: 'cetusNightOption',
       desc: 'Cetus cycle option',
       args: [],
