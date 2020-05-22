@@ -384,7 +384,7 @@
         "type": "text",
         "placeholder": {}
     },
-    "resourcesNotificationDescription": "Resources mostly found in invasions.",
+    "resourcesNotificationDescription": "О наградах: чертежи и ресурсы ...",
     "@resourcesNotificationDescription": {
         "description": "Main description for resource notifications",
         "type": "text",
@@ -396,7 +396,7 @@
         "type": "text",
         "placeholder": {}
     },
-    "fissuresNotificationDescription": "Filter fissure notifications by prefered mission type",
+    "fissuresNotificationDescription": "О Разрывах Бездны для выбранного типа миссии...",
     "@fissuresNotificationDescription": {
         "description": "Main description for fissures notifications",
         "type": "text",
