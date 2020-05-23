@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:navis/core/themes/colors.dart';
 import 'package:navis/core/widgets/icons.dart';
 import 'package:navis/core/widgets/row_item.dart';
 import 'package:navis/core/widgets/widgets.dart';
@@ -65,7 +64,8 @@ class AlertWidget extends StatelessWidget {
           ),
           RowItem(
             text: Text(
-              '${_mission.type} (${_mission.faction}) | ${locale.levelInfo(_mission.minEnemyLevel, _mission.maxEnemyLevel)}',
+              '${_mission.type} (${_mission.faction}) '
+              '| ${locale.levelInfo(_mission.minEnemyLevel, _mission.maxEnemyLevel)}',
               style: textTheme.caption,
             ),
             child: CountdownTimer(expiry: alert.expiry),
