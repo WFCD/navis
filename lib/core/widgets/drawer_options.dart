@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/core/bloc/navigation_bloc.dart';
 import 'package:navis/core/utils/helper_methods.dart';
+import 'package:navis/core/widgets/widgets.dart';
 
 // import 'navis_sys_icons.dart';
 
@@ -38,12 +39,13 @@ class DrawerOptions extends StatelessWidget {
                 selected: state ==
                     NavigationBloc.navigationMap[NavigationEvent.timers],
               ),
-              // ListTile(
-              //   leading: const Icon(Icons.search),
-              //   title: const Text('Codex'),
-              //   onTap: () => _onTap(context, NavigationEvent.codex),
-              //   selected: state == RouteState.droptable,
-              // ),
+              ListTile(
+                leading: const Icon(SyndicateGlyphs.simaris),
+                title: const Text('SynthTargets'),
+                onTap: () => _onTap(context, NavigationEvent.synthTargets),
+                selected: state ==
+                    NavigationBloc.navigationMap[NavigationEvent.synthTargets],
+              ),
               ExpansionTile(
                 leading: const Icon(Icons.help),
                 title: const Text('Helpful Links'),

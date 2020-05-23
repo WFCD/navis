@@ -2,6 +2,9 @@ import 'package:data_connection_checker/data_connection_checker.dart';
 import 'package:get_it/get_it.dart';
 import 'package:hive/hive.dart';
 import 'package:http/http.dart' as http;
+import 'package:navis/features/synthtargets/data/repositories/synth_target_rep_impl.dart';
+import 'package:navis/features/synthtargets/domain/usecases/get_synth_targets.dart';
+import 'package:navis/features/synthtargets/presentation/bloc/synthtargets_bloc.dart';
 import 'package:path_provider/path_provider.dart';
 
 import 'core/bloc/navigation_bloc.dart';
@@ -36,16 +39,20 @@ Future<void> init() async {
   sl.registerSingleton<WorldstateRepositoryImpl>(
     WorldstateRepositoryImpl(sl<NetworkInfoImpl>(), sl<WarframestatCache>()),
   );
+  sl.registerSingleton<SynthRepositoryImpl>(
+    SynthRepositoryImpl(sl<NetworkInfoImpl>()),
+  );
 
   // Usecases
   sl.registerSingleton<GetWorldstate>(
-      GetWorldstate(sl<WorldstateRepositoryImpl>()));
+    GetWorldstate(sl<WorldstateRepositoryImpl>()),
+  );
   sl.registerSingleton<GetDarvoDealInfo>(
-      GetDarvoDealInfo(sl<WorldstateRepositoryImpl>()));
-
-  // This will be back
-  // sl.registerSingleton<GetSynthTargets>(
-  //     GetSynthTargets(sl<WorldstateRepositoryImpl>()));
+    GetDarvoDealInfo(sl<WorldstateRepositoryImpl>()),
+  );
+  sl.registerSingleton<GetSynthTargets>(
+    GetSynthTargets(sl<SynthRepositoryImpl>()),
+  );
 
   // Blocs
   sl.registerFactory<NavigationBloc>(() => NavigationBloc());
@@ -55,4 +62,5 @@ Future<void> init() async {
       getDarvoDealInfo: sl<GetDarvoDealInfo>(),
     );
   });
+  sl.registerFactory(() => SynthtargetsBloc(sl<GetSynthTargets>()));
 }

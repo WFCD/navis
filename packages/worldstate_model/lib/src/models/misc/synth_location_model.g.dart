@@ -13,6 +13,8 @@ SynthLocationModel _$SynthLocationModelFromJson(Map<String, dynamic> json) {
     planet: json['planet'] as String,
     level: json['level'] as String,
     type: json['type'] as String,
+    lastVerified: json['last_verified'] as String,
+    spawnRate: json['spawn_rate'] as String,
   );
 }
 
@@ -23,4 +25,6 @@ Map<String, dynamic> _$SynthLocationModelToJson(SynthLocationModel instance) =>
       'mission': instance.mission,
       'planet': instance.planet,
       'type': instance.type,
+      'last_verified': instance.lastVerified,
+      'spawn_rate': instance.spawnRate,
     };

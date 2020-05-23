@@ -11,21 +11,27 @@ class SynthLocationModel extends SynthLocation {
     String planet,
     String level,
     String type,
-    String last_verified,
-    String spawn_rate,
+    this.lastVerified,
+    this.spawnRate,
   }) : super(
           faction: faction,
           mission: mission,
           planet: planet,
           level: level,
           type: type,
-          lastVerified: last_verified,
-          spawnRate: spawn_rate,
+          lastVerified: lastVerified,
+          spawnRate: spawnRate,
         );
 
   factory SynthLocationModel.fromJson(Map<String, dynamic> json) {
     return _$SynthLocationModelFromJson(json);
   }
+
+  @JsonKey(name: 'last_verified')
+  final String lastVerified;
+
+  @JsonKey(name: 'spawn_rate')
+  final String spawnRate;
 
   Map<String, dynamic> toJson() => _$SynthLocationModelToJson(this);
 }

@@ -11,7 +11,6 @@ import 'package:worldstate_api_model/entities.dart';
 import 'package:worldstate_api_model/models.dart';
 
 import '../../../../core/error/exceptions.dart';
-import '../../../../core/error/failures.dart';
 import '../../../../core/utils/worldstate_util.dart';
 import '../../data/repositories/worldstate_rep_impl.dart';
 import '../../domain/usecases/get_darvo_deal_info.dart';
@@ -45,7 +44,7 @@ class SolsystemBloc extends HydratedBloc<SyncEvent, SolsystemState> {
         final either = await getWorldstate(NoParama());
 
         yield either.fold(
-          (l) => _matchFailure(l),
+          (l) => matchFailure(l),
           (r) => SolState(cleanState(r)),
         );
       } on ServerException {
@@ -92,16 +91,5 @@ class SolsystemBloc extends HydratedBloc<SyncEvent, SolsystemState> {
     }
 
     return null;
-  }
-
-  SolsystemState _matchFailure(Failure failure) {
-    switch (failure.runtimeType) {
-      case ServerFailure:
-        throw ServerException();
-      case CacheException:
-        throw CacheException();
-      default:
-        throw UnknownException();
-    }
   }
 }
