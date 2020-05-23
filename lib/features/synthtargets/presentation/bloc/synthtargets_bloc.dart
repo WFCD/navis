@@ -1,18 +1,21 @@
 import 'dart:async';
 
-import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:navis/core/error/exceptions.dart';
 import 'package:navis/core/usecases/usecases.dart';
+import 'package:navis/core/utils/data_source_utils.dart';
 import 'package:navis/features/synthtargets/domain/usecases/get_synth_targets.dart';
 import 'package:supercharged/supercharged.dart';
 import 'package:worldstate_api_model/entities.dart';
+import 'package:worldstate_api_model/models.dart';
 
 part 'synthtargets_state.dart';
 
 enum SynthtargetsEvent { update }
 
-class SynthtargetsBloc extends Bloc<SynthtargetsEvent, SynthtargetsState> {
+class SynthtargetsBloc
+    extends HydratedBloc<SynthtargetsEvent, SynthtargetsState> {
   SynthtargetsBloc(this.getSynthTargets) {
     add(SynthtargetsEvent.update);
   }
@@ -20,7 +23,9 @@ class SynthtargetsBloc extends Bloc<SynthtargetsEvent, SynthtargetsState> {
   final GetSynthTargets getSynthTargets;
 
   @override
-  SynthtargetsState get initialState => SynthtargetsInitial();
+  SynthtargetsState get initialState {
+    return super.initialState ?? SynthtargetsInitial();
+  }
 
   @override
   Stream<SynthtargetsState> mapEventToState(
@@ -38,5 +43,24 @@ class SynthtargetsBloc extends Bloc<SynthtargetsEvent, SynthtargetsState> {
 
   Future<void> refresh() async {
     await Future<void>.delayed(1.seconds, () => add(SynthtargetsEvent.update));
+  }
+
+  @override
+  SynthtargetsState fromJson(Map<String, dynamic> json) {
+    final targets = json['state'] as List<dynamic>;
+
+    return TargetsLocated(toSynthTargets(targets));
+  }
+
+  @override
+  Map<String, dynamic> toJson(SynthtargetsState state) {
+    if (state is TargetsLocated) {
+      final targets =
+          state.targets.map((e) => (e as SynthTargetModel).toJson()).toList();
+
+      return <String, dynamic>{'state': targets};
+    }
+
+    return null;
   }
 }
