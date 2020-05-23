@@ -10,9 +10,9 @@ class GetSyndicateIcon extends StatelessWidget {
 
   IconData _getIcon() {
     switch (syndicate) {
-      case SyndicateFaction.ostrons:
+      case SyndicateFaction.cetus:
         return SyndicateGlyphs.ostron;
-      case SyndicateFaction.solaris_united:
+      case SyndicateFaction.solaris:
         return SyndicateGlyphs.solaris;
       case SyndicateFaction.nightwave:
         return SyndicateGlyphs.nightwave;
@@ -23,7 +23,7 @@ class GetSyndicateIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Icon(
+    return FaIcon(
       _getIcon(),
       size: 50,
       color: syndicate.iconColor,

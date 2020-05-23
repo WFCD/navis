@@ -19,17 +19,17 @@ class SynthLocationModel extends SynthLocation {
           planet: planet,
           level: level,
           type: type,
-          lastVerified: lastVerified,
-          spawnRate: spawnRate,
         );
 
   factory SynthLocationModel.fromJson(Map<String, dynamic> json) {
     return _$SynthLocationModelFromJson(json);
   }
 
+  @override
   @JsonKey(name: 'last_verified')
   final String lastVerified;
 
+  @override
   @JsonKey(name: 'spawn_rate')
   final String spawnRate;
 

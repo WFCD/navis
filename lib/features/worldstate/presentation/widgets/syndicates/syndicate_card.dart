@@ -29,18 +29,18 @@ class SyndicateCard extends StatelessWidget {
   final void Function() onTap;
 
   void _onTap(BuildContext context) {
-    final _syndicate = syndicateStringToEnum(name ?? syndicate.name);
+    final _syndicate = syndicateStringToEnum(name ?? syndicate.id);
 
     switch (_syndicate) {
       case SyndicateFaction.nightwave:
         Navigator.of(context).pushNamed(NightwavesPage.route);
         break;
-      case SyndicateFaction.solaris_united:
+      case SyndicateFaction.solaris:
         continue SYNDICATEJOBS;
         break;
 
       SYNDICATEJOBS:
-      case SyndicateFaction.ostrons:
+      case SyndicateFaction.cetus:
         Navigator.of(context)
             .pushNamed(BountiesPage.route, arguments: syndicate);
         break;
@@ -51,7 +51,7 @@ class SyndicateCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
-    final syndicateName = syndicateStringToEnum(name ?? syndicate.name);
+    final syndicateName = syndicateStringToEnum(name ?? syndicate.id);
 
     final titleStyle = textTheme.subtitle1
         .copyWith(color: Typography.whiteMountainView.subtitle1.color);

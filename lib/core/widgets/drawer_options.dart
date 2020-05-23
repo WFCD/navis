@@ -40,7 +40,7 @@ class DrawerOptions extends StatelessWidget {
                     NavigationBloc.navigationMap[NavigationEvent.timers],
               ),
               ListTile(
-                leading: const Icon(SyndicateGlyphs.simaris),
+                leading: const FaIcon(SyndicateGlyphs.simaris),
                 title: const Text('SynthTargets'),
                 onTap: () => _onTap(context, NavigationEvent.synthTargets),
                 selected: state ==

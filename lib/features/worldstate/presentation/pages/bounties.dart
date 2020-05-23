@@ -12,8 +12,7 @@ class BountiesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final syndicate = ModalRoute.of(context).settings.arguments as Syndicate;
-    final backgroundColor =
-        syndicateStringToEnum(syndicate.name).backgroundColor;
+    final backgroundColor = syndicateStringToEnum(syndicate.id).backgroundColor;
 
     return Scaffold(
       appBar: AppBar(

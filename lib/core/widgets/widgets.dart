@@ -4,6 +4,7 @@ export 'countdown_banner.dart';
 export 'custom_card.dart';
 export 'dialog.dart';
 export 'error_widget.dart';
+export 'fa_icon.dart';
 export 'faction_logo.dart';
 export 'indicator.dart';
 export 'navis_sys_icons.dart';

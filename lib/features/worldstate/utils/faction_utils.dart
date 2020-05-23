@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:navis/core/themes/colors.dart';
 
 enum EnemyFaction { grineer, corpus, corrupted, infested }
 
-enum SyndicateFaction { ostrons, solaris_united, nightwave, cephalon_simaris }
+enum SyndicateFaction { cetus, solaris, nightwave, cephalon_simaris }
 
 Color factionColor(String faction) {
   switch (faction) {
@@ -35,9 +36,9 @@ const _corruptedIconColor = Color(0xFFe9a835);
 
 SyndicateFaction syndicateStringToEnum(String faction) {
   return SyndicateFaction.values.firstWhere((element) {
-    final syn = faction.toLowerCase().replaceAll(' ', '_');
+    final syn = faction.toLowerCase();
 
-    return element.toString().contains(syn);
+    return syn.contains(element.toString().split('.').last);
   }, orElse: () => null);
 }
 
@@ -49,27 +50,31 @@ String _toTitle<T>(T value) {
 extension SyndicateFactionX on SyndicateFaction {
   Color get iconColor {
     switch (this) {
-      case SyndicateFaction.ostrons:
+      case SyndicateFaction.cetus:
         return _ostronsIconColor;
-      case SyndicateFaction.solaris_united:
+      case SyndicateFaction.solaris:
         return _solarisIconColor;
       case SyndicateFaction.nightwave:
         return _nightwaveIconColor;
-      default:
+      case SyndicateFaction.cephalon_simaris:
         return _simarisIconColor;
+      default:
+        return Colors.white;
     }
   }
 
   Color get backgroundColor {
     switch (this) {
-      case SyndicateFaction.ostrons:
+      case SyndicateFaction.cetus:
         return _ostronsBackgroundColor;
-      case SyndicateFaction.solaris_united:
+      case SyndicateFaction.solaris:
         return _solarisBackgroundColor;
       case SyndicateFaction.cephalon_simaris:
         return _simarisBackgroundColor;
-      default:
+      case SyndicateFaction.nightwave:
         return _nightwaveBackgroundColor;
+      default:
+        return primary;
     }
   }
 
