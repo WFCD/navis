@@ -659,7 +659,7 @@ class NavisLocalizations {
 
   String get cetusNightOption {
     return Intl.message(
-      'Cetus Day',
+      'Cetus Night',
       name: 'cetusNightOption',
       desc: 'Cetus cycle option',
       args: [],
@@ -756,38 +756,101 @@ class NavisLocalizations {
     );
   }
 
-  String get dailyRewardTitle {
+  String get sortieResetTime {
     return Intl.message(
-      'Daily Reward Reset Timer',
-      name: 'dailyRewardTitle',
-      desc: 'Title for daily reward timer',
+      'Sortie will reset in',
+      name: 'sortieResetTime',
+      desc: 'Title for sortie reset time',
       args: [],
     );
   }
 
-  String get eliteBadgeTitle {
+  String get sortieReseting {
     return Intl.message(
-      'Elite',
-      name: 'eliteBadgeTitle',
-      desc: 'Nightwave Elite badge title',
+      'Waiting for new sortie',
+      name: 'sortieReseting',
+      desc: 'Sortie reseting title',
       args: [],
     );
   }
 
-  String get dailyNightwaveTitle {
+  String get lightThemeTitle {
     return Intl.message(
-      'Daily',
-      name: 'dailyNightwaveTitle',
-      desc: 'Nightwave daily title',
+      'Light',
+      name: 'lightThemeTitle',
+      desc: 'Title for light theme',
       args: [],
     );
   }
 
-  String get weeklyNightwaveTitle {
+  String get darkThemeTitle {
     return Intl.message(
-      'Weekly',
-      name: 'weeklyNightwaveTitle',
-      desc: 'Nightwave weekly title',
+      'Dark',
+      name: 'darkThemeTitle',
+      desc: 'Title for dark theme',
+      args: [],
+    );
+  }
+
+  String get systemThemeTitle {
+    return Intl.message(
+      'System',
+      name: 'systemThemeTitle',
+      desc: 'Title for system theme',
+      args: [],
+    );
+  }
+
+  String get legalese {
+    return Intl.message(
+      'Warframe and the Warframe logo are registered trademarks of Digital Extremes Ltd. Cephalon Navis nor WFCD are affiliated with Digital Extremes Ltd. in any way.',
+      name: 'legalese',
+      desc: 'Cephalon Navis legalese',
+      args: [],
+    );
+  }
+
+  String get homePageTitle {
+    return Intl.message(
+      'Homepage',
+      name: 'homePageTitle',
+      desc: 'Displayes a link to Navis\'s homepage',
+      args: [],
+    );
+  }
+
+  String get issueTrackerDescription {
+    return Intl.message(
+      'Report issues or feature request for this project\'s',
+      name: 'issueTrackerDescription',
+      desc: 'Description for Navis\'s issue tracker',
+      args: [],
+    );
+  }
+
+  String get issueTrackerTitle {
+    return Intl.message(
+      'issues tracker',
+      name: 'issueTrackerTitle',
+      desc: 'Display link to Navis\'s issue tracker',
+      args: [],
+    );
+  }
+
+  String get warframeLinkTitle {
+    return Intl.message(
+      'More information on Warframe can be found on their official site',
+      name: 'warframeLinkTitle',
+      desc: 'Description for Warframe\'s main site link',
+      args: [],
+    );
+  }
+
+  String get settingsTitle {
+    return Intl.message(
+      'Settings',
+      name: 'settingsTitle',
+      desc: 'Settings title',
       args: [],
     );
   }

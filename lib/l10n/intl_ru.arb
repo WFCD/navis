@@ -56,7 +56,7 @@
         "type": "text",
         "placeholders": {}
     },
-    "acolyteRank": "Уровень аколита",
+    "acolyteRank": "Уровень Послушника",
     "@acolyteRank": {
         "description": "An acolyte's current level",
         "type": "text",
@@ -130,55 +130,55 @@
         "type": "text",
         "placeholders": {}
     },
-    "errorDescription": "Произошла непредвиденная ошибка в системе ядра(операционной системы).\nОшибка при отправке системным администраторам...",
+    "errorDescription": "Произошла непредвиденная ошибка в системе ядра (операционной системы).\nОшибка при отправке системным администраторам...",
     "@errorDescription": {
         "description": "error description",
         "type": "text",
         "placeholders": {}
     },
-    "baroTitle": "Void trader",
+    "baroTitle": "Торговец из Бездны",
     "@baroTitle": {
         "description": "Title for Baro Ki'Teer card",
         "type": "text",
         "placeholders": {}
     },
-    "baroLeaving": "Baro Ki'Teer leaves in",
+    "baroLeaving": "Баро Ки'Тиир пропадёт через",
     "@baroLeaving": {
         "description": "displays remaining time before Baro Ki'Teer leaves",
         "type": "text",
         "placeholders": {}
     },
-    "baroArriving": "Baro Ki'Teer arrives in",
+    "baroArriving": "Баро Ки'Тиир появится через",
     "@baroArriving": {
         "description": "displays remaining time before Baro Ki'Teer arrives",
         "type": "text",
         "placeholders": {}
     },
-    "baroLocation": "Location",
+    "baroLocation": "Реле",
     "@baroLocation": {
         "description": "shows Baro ki'Teer's current location",
         "type": "text",
         "placeholders": {}
     },
-    "baroLeavesOn": "Leaves on",
+    "baroLeavesOn": "Отбудет в",
     "@baroLeavesOn": {
         "description": "shows when Baro Ki'Teer is leaving",
         "type": "text",
         "placeholders": {}
     },
-    "baroArrivesOn": "Arrives on",
+    "baroArrivesOn": "Прибудет в",
     "@baroArrivesOn": {
         "description": "shows at when Baro Ki'Teer will arrive",
         "type": "text",
         "placeholders": {}
     },
-    "baroInventory": "Baro Ki'Teeer Inventory",
+    "baroInventory": "Товары Баро Ки'Тиира",
     "@baroInventory": {
         "description": "Baro Ki'Teeer Inventory button label",
         "type": "text",
         "placeholders": {}
     },
-    "countdownTooltip": "Ends on {date}",
+    "countdownTooltip": "Завершится {date}",
     "@countdownTooltip": {
         "description": "Countdown tooltip with end date of the current running timer",
         "type": "text",
@@ -186,171 +186,383 @@
             "date": {}
         }
     },
-    "kuvaBanner": "Kuva will refresh in",
+    "kuvaBanner": "Кува обновится через",
     "@kuvaBanner": {
         "description": "Kuva refresh countdown title",
         "type": "text",
         "placeholders": {}
     },
-    "formorianTitle": "Formorian",
+    "formorianTitle": "Fomorian",
     "@formorianTitle": {
         "description": "Fomorian progress title",
         "type": "text",
         "placeholders": {}
     },
-    "razorbackTitle": "Razerback",
+    "razorbackTitle": "Razorback",
     "@razorbackTitle": {
         "description": "Razorback progress title",
         "type": "text",
         "placeholders": {}
     },
-    "earthCycleTitle": "Earth Cycle",
+    "earthCycleTitle": "Земля",
     "@earthCycleTitle": {
         "description": "Earth cycle title",
         "type": "text",
         "placeholders": {}
     },
-    "cetusCycleTitle": "Cetus Cycle",
+    "cetusCycleTitle": "Цетус",
     "@cetusCycleTitle": {
         "description": "Cetus cycle title",
         "type": "text",
         "placeholders": {}
     },
-    "vallisCycleTitle": "Vallis Cycle",
+    "vallisCycleTitle": "Долина Сфер",
     "@vallisCycleTitle": {
         "description": "Vallis cycle title",
         "type": "text",
         "placeholders": {}
     },
-    "timersTitle": "Timers",
+    "timersTitle": "Таймеры",
     "@timersTitle": {
         "description": "Times title",
         "type": "text",
         "placeholders": {}
     },
-    "fissuresTitle": "Fissures",
+    "fissuresTitle": "Разрывы Бездны",
     "@fissuresTitle": {
         "description": "Fissures title",
         "type": "text",
         "placeholders": {}
     },
-    "invasionsTitle": "Invasions",
+    "invasionsTitle": "Вторжения",
     "@invasionsTitle": {
         "description": "Invasions title",
         "type": "text",
         "placeholders": {}
     },
-    "syndicatesTitle": "Syndicates",
+    "syndicatesTitle": "Синдикаты",
     "@syndicatesTitle": {
         "description": "Syndicates title",
         "type": "text",
         "placeholders": {}
     },
-    "codexTitle": "Codex",
+    "codexTitle": "Кодекс",
     "@codexTitle": {
         "description": "Codex title",
         "type": "text",
         "placeholders": {}
     },
-    "helpfulLinksTitle": "Helpful Links",
+    "helpfulLinksTitle": "Полезные ссылки",
     "@helpfulLinksTitle": {
         "description": "Helpful Links title",
         "type": "text",
         "placeholder": {}
     },
-    "behaviorTitle": "Behavior",
+    "behaviorTitle": "Оформление",
     "@behaviorTitle": {
         "description": "Behavior category title",
         "type": "text",
         "placeholder": {}
     },
-    "themeTitle": "Theme",
+    "themeTitle": "Тема",
     "@themeTitle": {
         "description": "Theme title",
         "type": "text",
         "placeholder": {}
     },
-    "themeDescription": "Choose app theme.",
+    "themeDescription": "Выбрать тему оформления.",
     "@themeDescription": {
         "description": "Theme option description",
         "typ": "text",
         "placeholder": {}
     },
-    "backOpensDrawerTitle": "Back button opens drawer",
+    "backOpensDrawerTitle": "Кнопка \"Назад\" открывает меню",
     "@backOpensDrawerTitle": {
         "description": "Title for the option that allows back button to open the drawer",
         "type": "text",
         "placeholder": {}
     },
-    "backOpensDrawerDescription": "Pressing the back button opens the drawer.",
+    "backOpensDrawerDescription": "Нажатие кнопки \"Назад\" открывает боковое меню.",
     "@backOpensDrawerDescription": {
         "description": "Description for back button opens drawer option",
         "type": "text",
         "placeholder": {}
     },
-    "notificationsTitle": "Notifications",
+    "notificationsTitle": "Уведомления",
     "@notificationsTitle": {
         "description": "Notifications category title",
         "type": "text",
         "placeholder": {}
     },
-    "rareAlertsNotificationTitle": "Rare Alerts",
+    "rareAlertsNotificationTitle": "Редкие Тревоги",
     "@rareAlertsNotificationTitle": {
         "description": "Rare Alerts title",
         "type": "text",
         "placeholder": {}
     },
-    "rareAlertsNotificationDescription": "Rare alert notifications, mainly gifts of the lotus.",
+    "rareAlertsNotificationDescription": "Оповещение о редких Тревогах, в основном Дары Лотус.",
     "@rareAlertsNotificationDescription": {
         "description": "Description for rare alerts option",
         "type": "text",
         "placeholder": {}
     },
-    "baroNotificationTitle": "Baro Ki'Teer",
+    "baroNotificationTitle": "Баро Ки'Тиир",
     "@baroNotificationTitle": {
         "description": "Baro's notification title",
         "type": "text",
         "placeholder": {}
     },
-    "baroNotificationDescription": "Notifications for both Baro's arrivial and departure.",
+    "baroNotificationDescription": "Оповещения о прибытии и отбытии Торговца из Бездны.",
     "@baroNotificationDescription": {
         "description": "Notification description for both Baro's arrivial and departure.",
         "type": "text",
         "placeholder": {}
     },
-    "darvoNotificationTitle": "Darvo's Daily Deals",
+    "darvoNotificationTitle": "Предложения Дарво",
     "@darvoNotificationTitle": {
         "description": "Notification title for darvo's daily deals",
         "type": "text",
         "placeholder": {}
     },
-    "darvoNotificationDescription": "Darvo's new find of the day.",
+    "darvoNotificationDescription": "Об ежедневных новых товарах у Дарво.",
     "@darvoNotificationDescription": {
         "description": "Notification description for Darvo's Daily Deal",
         "type": "text",
         "placeholder": {}
     },
-    "sortieNotificationTitle": "Sortie",
+    "sortieNotificationTitle": "Вылазка",
     "@sortieNotificationTitle": {
         "description": "Notification title for sorties",
         "type": "text",
         "placeholder": {}
     },
-    "sortieNotificationDescription": "Notifications for new sorties.",
+    "sortieNotificationDescription": "Об обновлении ежедневной Вылазки.",
     "@sortieNotificationDescription": {
         "description": "description for sortie notification option",
         "type": "text",
         "placeholder": {}
     },
-    "sentientOutpostNotificationTitle": "Sentient Outpost",
+    "sentientOutpostNotificationTitle": "Аномалия",
     "@sentientOutpostNotificationTitle": {
         "description": "Notification title for sentient outpost",
         "type": "text",
         "placeholder": {}
     },
-    "sentientOutpostNotificationDescription": "Notifications for new sentient threats",
+    "sentientOutpostNotificationDescription": "О появлении новой Аномалии Владеющих Разумом",
     "@sentientOutpostNotificationDescription": {
         "description": "Notification description for sentient outpost option",
+        "type": "text",
+        "placeholder": {}
+    },
+    "warframeNewsNotificationTitle": "Новости",
+    "@warframeNewsNotificationTitle": {
+        "description": "Main Title for Warframe news notifications",
+        "type": "text",
+        "placeholder": {}
+    },
+    "warframeNewsNotificationDescription": "О Прайм Доступе, Стримах, Обновлениях.",
+    "@warframeNewsNotificationDescription": {
+        "description": "Main description for Warframe news notifications",
+        "type": "text",
+        "placeholder": {}
+    },
+    "planetCyclesNotificationTitle": "Циклы планет",
+    "@planetCycleNotificationTitle": {
+        "description": "Main title for open world notifications",
+        "type": "text",
+        "placeholder": {}
+    },
+    "planetCyclesNotificationDescription": "О циклах на открытых локациях.",
+    "@planetCycleNotificationDescription": {
+        "description": "Main description for open world notifications",
+        "type": "text",
+        "placeholder": {}
+    },
+    "resourcesNotificationTitle": "Ресурсы",
+    "@resourcesNotificationTitle": {
+        "description": "Main title for resource notifications",
+        "type": "text",
+        "placeholder": {}
+    },
+    "resourcesNotificationDescription": "О наградах: чертежи и ресурсы.",
+    "@resourcesNotificationDescription": {
+        "description": "Main description for resource notifications",
+        "type": "text",
+        "placeholder": {}
+    },
+    "fissuresNotificationTitle": "Разрывы Бездны",
+    "@fissuresNotificationTitle": {
+        "description": "Main title for fisssures notifications",
+        "type": "text",
+        "placeholder": {}
+    },
+    "fissuresNotificationDescription": "О Разрывах Бездны для выбранного типа миссии",
+    "@fissuresNotificationDescription": {
+        "description": "Main description for fissures notifications",
+        "type": "text",
+        "placeholder": {}
+    },
+    "acolytesNotificationTitle": "Послушники Сталкера",
+    "@acolytesNotificationTitle": {
+        "description": "Main title for acolyte notifications",
+        "type": "text",
+        "placeholder": {}
+    },
+    "acolytesNotificationDescription": "Об обнаружении выбранного Послушника",
+    "@acolytesNotificationDescription": {
+        "description": "Main description for acolyte notifications",
+        "type": "text",
+        "placeholder": {}
+    },
+    "earthDayOption": "Земля - День",
+    "@earthDayOption": {
+        "description": "Earth cycle option",
+        "type": "text",
+        "placeholder": {}
+    },
+    "earthNightOption": "Ночь на Земле",
+    "@earthNightOption": {
+        "description": "Earth cycle option",
+        "type": "text",
+        "placeholder": {}
+    },
+    "cetusDayOption": "Цетус - День",
+    "@cetusDayOption": {
+        "description": "Cetus cycle option",
+        "type": "text",
+        "placeholder": {}
+    },
+    "cetusNightOption": "Цетус - Ночь",
+    "@cetusNightOption": {
+        "description": "Cetus cycle option",
+        "type": "text",
+        "placeholder": {}
+    },
+    "vallisWarmOption": "Тепло в Долине Сфер",
+    "@vallisWarmOption": {
+        "description": "Orb vallis cycle option",
+        "type": "text",
+        "placeholder": {}
+    },
+    "vallisColdOption": "Долина Сфер - Холод",
+    "@vallisColdOption": {
+        "description": "Orb vallis cycle option",
+        "type": "text",
+        "placeholder": {}
+    },
+    "primeAccessNewsOption": "Прайм Доступ",
+    "@primeAccessNewsOption": {
+        "description": "Warframe news option",
+        "type": "text",
+        "placeholder": {}
+    },
+    "streamNewsOption": "Анонсы стримов",
+    "@streamNewsOption": {
+        "description": "Warframe news option",
+        "type": "text",
+        "placeholder": {}
+    },
+    "updateNewsOption": "Обновления и Патчи",
+    "@updateNewsOption": {
+        "description": "Warframe news option",
+        "type": "text",
+        "placeholder": {}
+    },
+    "updateDropTableTitle": "Обновить Дроп-лист",
+    "@updateDropTableTitle": {
+        "description": "Title for updaing drop tables",
+        "type": "text",
+        "placeholder": {}
+    },
+    "updateDropTableDescription": "Данные от {date}",
+    "@updateDropTableDescription": {
+        "description": "Description for updating drop table with date of the last update",
+        "type": "text",
+        "placeholder": {
+            "date": {}
+        }
+    },
+    "reportBugsTitle": "Сообщить об ошибке",
+    "@reportBugsTitle": {
+        "desciption": "Title for bug report link",
+        "type": "text",
+        "placeholder": {}
+    },
+    "reportBugsDescription": "Сообщить об ошибке или запросить новые функции",
+    "@reportBugsDescription": {
+        "description": "Description for bug report link",
+        "type": "text",
+        "placeholder": {}
+    },
+    "aboutCategoryTitle": "О приложении",
+    "@aboutCategoryTitle": {
+        "description": "Title for the about category of the settings page",
+        "type": "text",
+        "placeholder": {}
+    },
+    "sortieResetTime": "Вылазка обновится через",
+    "@sortieResetTime": {
+        "description": "Title for sortie reset time",
+        "type": "text",
+        "placeholder": {}
+    },
+    "sortieReseting": "Ожидаем новую Вылазку",
+    "@sortieReseting": {
+        "description": "Sortie reseting title",
+        "type": "text",
+        "placeholder": {}
+    },
+    "lightThemeTitle": "Светлая",
+    "@lightThemeTitle": {
+        "description": "Title for light theme",
+        "type": "text",
+        "placeholder": {}
+    },
+    "darkThemeTitle": "Тёмная",
+    "@darkThemeTitle": {
+        "description": "Title for dark theme",
+        "type": "text",
+        "placeholder": {}
+    },
+    "systemThemeTitle": "Системная",
+    "@systemThemeTitle": {
+        "description": "Title for system theme",
+        "type": "text",
+        "placeholder": {}
+    },
+    "legalese": "Warframe и логотип Warframe являются зарегистрированными торговыми марками Digital Extremes Ltd. Cephalon Navis и WFCD никаким образом не связаны с Digital Extremes Ltd.",
+    "@legalese": {
+        "description": "Cephalon Navis legalese",
+        "type": "text",
+        "placeholder": {}
+    },
+    "homePageTitle": "Домашняя",
+    "@homePageTitle": {
+        "description": "Displayes a link to Navis's homepage",
+        "type": "text",
+        "placeholder": {}
+    },
+    "issueTrackerDescription": "Сообщить об ошибке или запросить новые функции для этого проекта",
+    "@issueTrackerDescription": {
+        "description": "Description for Navis's issue tracker",
+        "type": "text",
+        "placeholder": {}
+    },
+    "issueTrackerTitle": "Баг-трекер",
+    "@issueTrackerTitle": {
+        "description": "Display link to Navis's issue tracker",
+        "type": "text",
+        "placeholder": {}
+    },
+    "warframeLinkTitle": "Больше информации о Warframe можно найти на их официальном сайте",
+    "@warframeLinkTitle": {
+        "description": "Description for Warframe's main site link",
+        "type": "text",
+        "placeholder": {}
+    },
+    "settingsTitle": "Настройки",
+    "@settingsTitle": {
+        "description": "Settings title",
         "type": "text",
         "placeholder": {}
     }
