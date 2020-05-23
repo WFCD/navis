@@ -74,7 +74,7 @@ class _YoutubePlayerState extends State<EventVideoPlayer> {
       child: LimitedBox(
         maxHeight: (MediaQuery.of(context).size.width / 100) * 88,
         child: _chewieController == null
-            ? const Flexible(child: Center(child: CircularProgressIndicator()))
+            ? const Center(child: CircularProgressIndicator())
             : Column(
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
