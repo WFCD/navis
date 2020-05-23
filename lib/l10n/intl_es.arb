@@ -432,7 +432,7 @@
         "type": "text",
         "placeholder": {}
     },
-    "cetusNightOption": "Cetus Night",
+    "cetusNightOption": "Cetus de noche",
     "@cetusNightOption": {
         "description": "Cetus cycle option",
         "type": "text",
@@ -500,67 +500,67 @@
         "type": "text",
         "placeholder": {}
     },
-    "sortieResetTime": "Sortie will reset in",
+    "sortieResetTime": "La incursion se restablecera en",
     "@sortieResetTime": {
         "description": "Title for sortie reset time",
         "type": "text",
         "placeholder": {}
     },
-    "sortieReseting": "Waiting for new sortie",
+    "sortieReseting": "Esperando por nueva incursion",
     "@sortieReseting": {
         "description": "Sortie reseting title",
         "type": "text",
         "placeholder": {}
     },
-    "lightThemeTitle": "Light",
+    "lightThemeTitle": "Claro",
     "@lightThemeTitle": {
         "description": "Title for light theme",
         "type": "text",
         "placeholder": {}
     },
-    "darkThemeTitle": "Dark",
+    "darkThemeTitle": "Oscuro",
     "@darkThemeTitle": {
         "description": "Title for dark theme",
         "type": "text",
         "placeholder": {}
     },
-    "systemThemeTitle": "System",
+    "systemThemeTitle": "Sistema",
     "@systemThemeTitle": {
         "description": "Title for system theme",
         "type": "text",
         "placeholder": {}
     },
-    "legalese": "Warframe and the Warframe logo are registered trademarks of Digital Extremes Ltd. Cephalon Navis nor WFCD are affiliated with Digital Extremes Ltd. in any way.",
+    "legalese": "El logotipo de Warframe y Warframe son marcas registradas de Digital Extremes Ltd. Cephalon Navis y WFCD están afiliados a Digital Extremes Ltd. de cualquier modo.",
     "@legalese": {
         "description": "Cephalon Navis legalese",
         "type": "text",
         "placeholder": {}
     },
-    "homePageTitle": "Homepage",
+    "homePageTitle": "Página Principal",
     "@homePageTitle": {
         "description": "Displayes a link to Navis's homepage",
         "type": "text",
         "placeholder": {}
     },
-    "issueTrackerDescription": "Report issues or feature request for this project's",
+    "issueTrackerDescription": "Reporta problemas o solicitudes para este proyecto",
     "@issueTrackerDescription": {
         "description": "Description for Navis's issue tracker",
         "type": "text",
         "placeholder": {}
     },
-    "issueTrackerTitle": "issues tracker",
+    "issueTrackerTitle": "registros de problemas",
     "@issueTrackerTitle": {
         "description": "Display link to Navis's issue tracker",
         "type": "text",
         "placeholder": {}
     },
-    "warframeLinkTitle": "More information on Warframe can be found on their official site",
+    "warframeLinkTitle": "Más información sobre Warframe se puede encontrar en su página oficial",
     "@warframeLinkTitle": {
         "description": "Description for Warframe's main site link",
         "type": "text",
         "placeholder": {}
     },
-    "settingsTitle": "Settings",
+    "settingsTitle": "Configuración",
     "@settingsTitle": {
         "description": "Settings title",
         "type": "text",
