@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:navis/core/themes/colors.dart';
 import 'package:navis/core/widgets/icons.dart';
 import 'package:navis/core/widgets/row_item.dart';
 import 'package:navis/core/widgets/widgets.dart';
@@ -55,7 +56,6 @@ class AlertWidget extends StatelessWidget {
                 ? Container()
                 : StaticBox.text(
                     text: _mission.reward.itemString,
-                    color: Theme.of(context).primaryColor,
                     style: const TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 13,
