@@ -26,7 +26,7 @@ class DisplayChoices extends StatelessWidget {
           box: RepositoryProvider.of<Repository>(context).persistent.hiveBox,
           watchKeys: const ['backkey'],
           builder: (BuildContext context, Box box) {
-            return CheckboxListTile(
+            return SwitchListTile(
               title: Text(localizations.backOpensDrawerTitle),
               subtitle: Text(localizations.backOpensDrawerDescription),
               value: box.get('backkey', defaultValue: false),

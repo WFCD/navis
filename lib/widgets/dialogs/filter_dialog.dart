@@ -47,7 +47,7 @@ class FilterDialog extends StatelessWidget {
           ),
           actions: <Widget>[
             FlatButton(
-              child: const Text('DISMISS'),
+              child: Text(MaterialLocalizations.of(context).closeButtonLabel),
               onPressed: () => Navigator.of(context).pop(),
             ),
           ],
@@ -82,7 +82,6 @@ class NotificationCheckBox extends StatelessWidget {
       value: value,
       activeColor: Theme.of(context).accentColor,
       onChanged: (b) async {
-        // debugPrint(optionKey);
         storage.hiveBox.put(optionKey, b);
         await firebase.subscribeToNotification(optionKey, b);
       },
