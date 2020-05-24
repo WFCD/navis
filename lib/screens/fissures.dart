@@ -23,13 +23,10 @@ class FissureScreen extends StatelessWidget {
       builder: (context, state) {
         final fissures = state.worldstate?.fissures ?? <VoidFissure>[];
 
-        return ListScreen<VoidFissure>(
+        return ListScreen(
           state: state,
-          emptyList: 'No Fissures at this time',
-          items: fissures,
-          buildWidget: (BuildContext context, VoidFissure fissure) {
-            return FissureWidget(fissure: fissure);
-          },
+          noItemsText: 'No Fissures at this time',
+          items: fissures.map((f) => FissureWidget(fissure: f)).toList(),
         );
       },
     );
