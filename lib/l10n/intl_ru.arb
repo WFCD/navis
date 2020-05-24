@@ -20,7 +20,7 @@
             "rank": {}
         }
     },
-    "locating": "Обнаружить...",
+    "locating": "Ожидаем...",
     "@locating": {
         "description": "Shows up when an acolyte's current location is unknown, may be used in other parts of the app",
         "type": "text",
@@ -38,7 +38,7 @@
         "type": "text",
         "placeholders": {}
     },
-    "acolyteFound": "Найдено",
+    "acolyteFound": "Найден",
     "@acolyteFound": {
         "description": "The elapsed time after an acolyte was found",
         "type": "text",
@@ -76,7 +76,7 @@
         "type": "text",
         "placeholders": {}
     },
-    "seeDetails": "Посмотреть подробности",
+    "seeDetails": "Подробнее",
     "@seeDetails": {
         "description": "General button to see more details of given object",
         "type": "text",
@@ -106,19 +106,19 @@
         "type": "text",
         "placeholders": {}
     },
-    "eventStatusEta": "Осталось (ETA, ожидаемое время прибытия)",
+    "eventStatusEta": "Осталось (приблизительно)",
     "@eventStatusEta": {
         "description": "Current events remaining estimated time",
         "type": "text",
         "placeholders": {}
     },
-    "eventRewards": "Вознаграждения",
+    "eventRewards": "Награды",
     "@eventRewards": {
         "description": "Event reward title",
         "type": "text",
         "placeholders": {}
     },
-    "bountyTitle": "Поощрения",
+    "bountyTitle": "Заказы",
     "@bountyTitle": {
         "description": "Bounty card title.",
         "type": "text",
