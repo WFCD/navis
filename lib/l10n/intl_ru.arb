@@ -76,7 +76,7 @@
         "type": "text",
         "placeholders": {}
     },
-    "seeDetails": "Посмотреть подробности",
+    "seeDetails": "Подробнее",
     "@seeDetails": {
         "description": "General button to see more details of given object",
         "type": "text",
@@ -106,19 +106,19 @@
         "type": "text",
         "placeholders": {}
     },
-    "eventStatusEta": "Осталось (ETA, ожидаемое время прибытия)",
+    "eventStatusEta": "Осталось (приблизительно)",
     "@eventStatusEta": {
         "description": "Current events remaining estimated time",
         "type": "text",
         "placeholders": {}
     },
-    "eventRewards": "Вознаграждения",
+    "eventRewards": "Награды",
     "@eventRewards": {
         "description": "Event reward title",
         "type": "text",
         "placeholders": {}
     },
-    "bountyTitle": "Поощрения",
+    "bountyTitle": "Заказы",
     "@bountyTitle": {
         "description": "Bounty card title.",
         "type": "text",
