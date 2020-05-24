@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:navis/utils/size_config.dart';
 import 'package:navis/widgets/common/fa_icon.dart';
 import 'package:navis/widgets/icons.dart';
 
