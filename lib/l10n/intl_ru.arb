@@ -20,7 +20,7 @@
             "rank": {}
         }
     },
-    "locating": "Обнаружить...",
+    "locating": "Ожидаем...",
     "@locating": {
         "description": "Shows up when an acolyte's current location is unknown, may be used in other parts of the app",
         "type": "text",
@@ -38,7 +38,7 @@
         "type": "text",
         "placeholders": {}
     },
-    "acolyteFound": "Найдено",
+    "acolyteFound": "Найден",
     "@acolyteFound": {
         "description": "The elapsed time after an acolyte was found",
         "type": "text",
