@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:navis/utils/size_config.dart';
+import 'package:navis/widgets/common/fa_icon.dart';
 import 'package:navis/widgets/icons.dart';
 
 enum SyndicateFactions {
@@ -24,31 +25,29 @@ class GetSyndicateIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _size = SizeConfig.imageSizeMultiplier * 9;
-
     IconData icon;
 
     switch (syndicate) {
       case SyndicateFactions.cetusSyndicate:
-        icon = SyndicateIcons.ostronsigil;
+        icon = SyndicateGlyphs.ostron;
         break;
       case SyndicateFactions.solarisSyndicate:
-        icon = SyndicateIcons.solarisunited;
+        icon = SyndicateGlyphs.solaris;
         break;
       case SyndicateFactions.simaris:
-        icon = SyndicateIcons.simaris;
+        icon = SyndicateGlyphs.simaris;
         break;
       case SyndicateFactions.nightwave:
-        icon = SyndicateIcons.nightwavesyndicate;
+        icon = SyndicateGlyphs.nightwave;
         break;
       default:
-        icon = SyndicateIcons.hexis;
+        icon = SyndicateGlyphs.hexis;
         break;
     }
 
-    return Icon(
+    return FaIcon(
       icon,
-      size: size ?? _size,
+      size: 50,
       color: color ?? syndicateIconColor(syndicate),
       textDirection: TextDirection.ltr,
     );
