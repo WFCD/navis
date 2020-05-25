@@ -11,7 +11,7 @@
             "max": {}
         }
     },
-    "activeAcolyte": "{agentType} | level: {rank}",
+    "activeAcolyte": "{agentType} | Level: {rank}",
     "@activeAcolyte": {
         "description": "acolyte title with level",
         "type": "text",
@@ -20,7 +20,7 @@
             "rank": {}
         }
     },
-    "locating": "Locating...",
+    "locating": "Lokalisiere...",
     "@locating": {
         "description": "Shows up when an acolyte's current location is unknown, may be used in other parts of the app",
         "type": "text",
@@ -100,7 +100,7 @@
         "type": "text",
         "placeholders": {}
     },
-    "eventStatusProgress": "Progress",
+    "eventStatusProgress": "Fortschritt",
     "@eventStatusProgress": {
         "description": "The progress of the current event from 0 to 100 %",
         "type": "text",
@@ -124,13 +124,13 @@
         "type": "text",
         "placeholders": {}
     },
-    "errorTitle": "An application error has occurred",
+    "errorTitle": "Ein Anwendungsfehler ist aufgetreten",
     "@errorTitle": {
         "description": "error title",
         "type": "text",
         "placeholders": {}
     },
-    "errorDescription": "There was unexpected error in core system.\nReporting error to system admin...",
+    "errorDescription": "Es gab einen unerwarteten Fehler im Kernsystem.\nFehler wird an den Systemadministrator gemeldet...",
     "@errorDescription": {
         "description": "error description",
         "type": "text",
@@ -142,43 +142,43 @@
         "type": "text",
         "placeholders": {}
     },
-    "baroLeaving": "Baro Ki'Teer leaves in",
+    "baroLeaving": "Baro Ki'Teer reist ab in",
     "@baroLeaving": {
         "description": "displays remaining time before Baro Ki'Teer leaves",
         "type": "text",
         "placeholders": {}
     },
-    "baroArriving": "Baro Ki'Teer arrives in",
+    "baroArriving": "Baro Ki'Teer kommt in",
     "@baroArriving": {
         "description": "displays remaining time before Baro Ki'Teer arrives",
         "type": "text",
         "placeholders": {}
     },
-    "baroLocation": "Location",
+    "baroLocation": "Ort",
     "@baroLocation": {
         "description": "shows Baro ki'Teer's current location",
         "type": "text",
         "placeholders": {}
     },
-    "baroLeavesOn": "Leaves on",
+    "baroLeavesOn": "Reist ab am",
     "@baroLeavesOn": {
         "description": "shows when Baro Ki'Teer is leaving",
         "type": "text",
         "placeholders": {}
     },
-    "baroArrivesOn": "Arrives on",
+    "baroArrivesOn": "Ankunft am",
     "@baroArrivesOn": {
         "description": "shows at when Baro Ki'Teer will arrive",
         "type": "text",
         "placeholders": {}
     },
-    "baroInventory": "Baro Ki'Teeer Inventory",
+    "baroInventory": "Baro Ki'Teer Inventar",
     "@baroInventory": {
         "description": "Baro Ki'Teeer Inventory button label",
         "type": "text",
         "placeholders": {}
     },
-    "countdownTooltip": "Ends on {date}",
+    "countdownTooltip": "Endet am {date}",
     "@countdownTooltip": {
         "description": "Countdown tooltip with end date of the current running timer",
         "type": "text",
@@ -204,19 +204,19 @@
         "type": "text",
         "placeholders": {}
     },
-    "earthCycleTitle": "Earth Cycle",
+    "earthCycleTitle": "Erde Zyklus",
     "@earthCycleTitle": {
         "description": "Earth cycle title",
         "type": "text",
         "placeholders": {}
     },
-    "cetusCycleTitle": "Cetus Cycle",
+    "cetusCycleTitle": "Cetus Zyklus",
     "@cetusCycleTitle": {
         "description": "Cetus cycle title",
         "type": "text",
         "placeholders": {}
     },
-    "vallisCycleTitle": "Vallis Cycle",
+    "vallisCycleTitle": "Vallis Zyklus",
     "@vallisCycleTitle": {
         "description": "Vallis cycle title",
         "type": "text",
@@ -252,13 +252,13 @@
         "type": "text",
         "placeholders": {}
     },
-    "helpfulLinksTitle": "Helpful Links",
+    "helpfulLinksTitle": "Hilfreiche Links",
     "@helpfulLinksTitle": {
         "description": "Helpful Links title",
         "type": "text",
         "placeholder": {}
     },
-    "behaviorTitle": "Behavior",
+    "behaviorTitle": "Verhalten",
     "@behaviorTitle": {
         "description": "Behavior category title",
         "type": "text",
@@ -288,7 +288,7 @@
         "type": "text",
         "placeholder": {}
     },
-    "notificationsTitle": "Notifications",
+    "notificationsTitle": "Benachrichtigungen",
     "@notificationsTitle": {
         "description": "Notifications category title",
         "type": "text",
@@ -312,7 +312,7 @@
         "type": "text",
         "placeholder": {}
     },
-    "baroNotificationDescription": "Notifications for both Baro's arrivial and departure.",
+    "baroNotificationDescription": "Benachrichtigungen zu Baro's Ankunft und Abreise.",
     "@baroNotificationDescription": {
         "description": "Notification description for both Baro's arrivial and departure.",
         "type": "text",
