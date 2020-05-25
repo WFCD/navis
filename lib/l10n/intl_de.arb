@@ -26,25 +26,25 @@
         "type": "text",
         "placeholders": {}
     },
-    "acolyteCurrentLocation": "Current location",
+    "acolyteCurrentLocation": "Aktueller Ort",
     "@acolyteCurrentLocation": {
         "description": "Acolyte's current location",
         "type": "text",
         "placeholders": {}
     },
-    "acolytePassLocation": "Last seen location",
+    "acolytePassLocation": "Zuletzt gesehener Ort",
     "@acolytePassLocation": {
         "description": "Acolyte's pass location",
         "type": "text",
         "placeholders": {}
     },
-    "acolyteFound": "Found",
+    "acolyteFound": "Gefunden",
     "@acolyteFound": {
         "description": "The elapsed time after an acolyte was found",
         "type": "text",
         "placeholders": {}
     },
-    "acolyteLastSeen": "Last seen",
+    "acolyteLastSeen": "Zuletzt gesehen",
     "@acolyteLastSeen": {
         "description": "The elapsed time since the acolyte was last seen",
         "type": "text",
@@ -62,7 +62,7 @@
         "type": "text",
         "placeholders": {}
     },
-    "acolyteElapsedTime": "{lastSeenTime} minutes ago",
+    "acolyteElapsedTime": "vor {lastSeenTime} Minuten",
     "@acolyteElapsedTime": {
         "description": "Time since acolyte has either been found or last seen",
         "type": "text",
@@ -76,19 +76,19 @@
         "type": "text",
         "placeholders": {}
     },
-    "seeDetails": "See details",
+    "seeDetails": "Details anzeigen",
     "@seeDetails": {
         "description": "General button to see more details of given object",
         "type": "text",
         "placeholders": {}
     },
-    "eventDescription": "Description",
+    "eventDescription": "Beschreibung",
     "@eventDescription": {
         "description": "Event description category title",
         "type": "text",
         "placeholders": {}
     },
-    "eventStatus": "Event Status",
+    "eventStatus": "Ereignisstatus",
     "@eventStatus": {
         "description": "Event status category title",
         "type": "text",
@@ -106,7 +106,7 @@
         "type": "text",
         "placeholders": {}
     },
-    "eventStatusEta": "Time left (ETA)",
+    "eventStatusEta": "Verbleibende Zeit (ETA)",
     "@eventStatusEta": {
         "description": "Current events remaining estimated time",
         "type": "text",
