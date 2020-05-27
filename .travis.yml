@@ -28,8 +28,8 @@ jobs:
       if: tag IS present
       script:
         - flutter clean
-        - flutter build apk --split-per-abi --tree-shake-icons
-        - flutter build appbundle --tree-shake-icons
+        - flutter build apk --split-per-abi
+        - flutter build appbundle
         - cd android && bundle exec fastlane beta
       deploy:
         provider: releases
