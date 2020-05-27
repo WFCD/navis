@@ -23,7 +23,7 @@ jobs:
     - name: Test
       script:
         - flutter test
-        - flutter build apk --target-platform=android-arm --tree-shake-icons
+        - flutter build apk --target-platform android-arm
     - name: Deploy
       if: tag IS present
       script:
