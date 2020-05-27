@@ -29,6 +29,7 @@ dependencies:
     git: https://github.com/SlayerOrnstein/worldstate_model.git
   hive: ^1.1.1
   hive_flutter: ^0.3.0+2
+  flutter_brand_icons: ^1.1.0
 
 dev_dependencies:
   flutter_test:
@@ -60,7 +61,7 @@ flutter:
 
   assets:
     - assets/icons/
-    - assets/wfcd_banner.svg
+    - assets/wfcd_logo_color.svg
     - assets/enemys/Corrupted/
     - assets/enemys/Grineer/
     - assets/enemys/Corpus/

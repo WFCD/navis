@@ -1,16 +1,18 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_brand_icons/flutter_brand_icons.dart';
 import 'package:navis/constants/links.dart';
 import 'package:navis/generated/l10n.dart';
 import 'package:navis/services/repository.dart';
 import 'package:navis/utils/helper_utils.dart';
-import 'package:navis/utils/size_config.dart';
+import 'package:navis/widgets/common/fa_icon.dart';
 import 'package:navis/widgets/icons.dart';
 
 class About extends StatelessWidget {
   const About({Key key}) : super(key: key);
+
+  static const double _iconSize = 30.0;
 
   @override
   Widget build(BuildContext context) {
@@ -18,6 +20,8 @@ class About extends StatelessWidget {
     final info = RepositoryProvider.of<Repository>(context).packageInfo;
 
     final theme = Theme.of(context);
+    final isDark = theme.brightness != Brightness.light;
+
     final aboutTextStyle = theme.textTheme.bodyText1;
     final linkStyle =
         theme.textTheme.bodyText1.copyWith(color: theme.accentColor);
@@ -26,22 +30,23 @@ class About extends StatelessWidget {
       icon: null,
       applicationIcon: Icon(
         AppIcons.nightmare,
-        size: SizeConfig.imageSizeMultiplier * 10,
-        color: const Color.fromRGBO(26, 80, 144, .9),
+        size: 60,
+        color: const Color(0xFF1565C0),
       ),
       applicationName: 'Cephalon Navis',
       applicationVersion: info.version,
       aboutBoxChildren: <Widget>[
+        const SizedBox(height: 12.0),
         RichText(
           text: TextSpan(children: <TextSpan>[
             TextSpan(
               style: aboutTextStyle,
-              text: localizations.homePageTitle,
+              text: '${localizations.homePageTitle} ',
             ),
             _LinkTextSpan(
               style: linkStyle,
-              url: mainPage,
-              text: mainPage,
+              url: projectPage,
+              text: projectPage,
             ),
             TextSpan(
               style: aboutTextStyle,
@@ -53,8 +58,12 @@ class About extends StatelessWidget {
               text: localizations.issueTrackerTitle,
             ),
             TextSpan(
-              style: aboutTextStyle,
-              text: '\n\n${localizations.warframeLinkTitle}\n',
+              style: Theme.of(context).textTheme.caption,
+              text: '\n\n${localizations.legalese}',
+            ),
+            TextSpan(
+              style: Theme.of(context).textTheme.caption,
+              text: '${localizations.warframeLinkTitle} ',
             ),
             _LinkTextSpan(
               style: linkStyle,
@@ -63,12 +72,34 @@ class About extends StatelessWidget {
             )
           ]),
         ),
-        const SizedBox(height: 24),
-        SvgPicture.asset('assets/wfcd_banner.svg', height: 50),
-        const SizedBox(height: 16),
-        Text(
-          localizations.legalese,
-          style: Theme.of(context).textTheme.caption,
+        const SizedBox(height: 12.0),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            IconButton(
+              icon: Icon(BrandIcons.discord, color: const Color(0xFF7289DA)),
+              iconSize: _iconSize,
+              splashColor: Colors.transparent,
+              onPressed: () => launchLink(discordInvite),
+            ),
+            const SizedBox(width: 25),
+            IconButton(
+              icon: Icon(
+                BrandIcons.github,
+                color: isDark ? Colors.white : const Color(0xFF181717),
+              ),
+              iconSize: _iconSize,
+              splashColor: Colors.transparent,
+              onPressed: () => launchLink(projectPage),
+            ),
+            const SizedBox(width: 25),
+            IconButton(
+              icon: FaIcon(AppIcons.wfcd, color: const Color(0xFF2e96ef)),
+              iconSize: _iconSize,
+              splashColor: Colors.transparent,
+              onPressed: () => launchLink(communityPage),
+            )
+          ],
         ),
       ],
     );

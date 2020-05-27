@@ -161,7 +161,7 @@ packages:
       name: firebase_messaging
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "6.0.15"
+    version: "6.0.16"
   floating_search_bar:
     dependency: "direct main"
     description:
@@ -181,6 +181,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.0.0"
+  flutter_brand_icons:
+    dependency: "direct main"
+    description:
+      name: flutter_brand_icons
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.1.0"
   flutter_cache_manager:
     dependency: transitive
     description:
@@ -289,7 +296,7 @@ packages:
       name: hydrated_bloc
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.0.0"
+    version: "4.1.0"
   image:
     dependency: transitive
     description:
@@ -408,7 +415,7 @@ packages:
       name: node_preamble
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.4.8"
+    version: "1.4.9"
   package_config:
     dependency: transitive
     description:
@@ -779,7 +786,7 @@ packages:
       name: webkit_inspection_protocol
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.7.1"
+    version: "0.7.3"
   wfcd_client:
     dependency: "direct main"
     description:
@@ -794,7 +801,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "9ea4360ecdc65cdf68a931c191877c1a9ca84b3c"
+      resolved-ref: "4616c76c67832f73051fc204a9d32cceb15c0d13"
       url: "https://github.com/SlayerOrnstein/worldstate_model.git"
     source: git
     version: "2.0.3"
