@@ -823,9 +823,11 @@ packages:
   warframe_items_model:
     dependency: "direct main"
     description:
-      path: "packages/warframe_items_model"
-      relative: true
-    source: path
+      path: "."
+      ref: HEAD
+      resolved-ref: "60d09aec8bff3f604a9fe1717d6e4968884123f3"
+      url: "https://github.com/SlayerOrnstein/warframe_item_models.git"
+    source: git
     version: "1.2.0"
   watcher:
     dependency: transitive
@@ -858,9 +860,11 @@ packages:
   worldstate_api_model:
     dependency: "direct main"
     description:
-      path: "packages/worldstate_model"
-      relative: true
-    source: path
+      path: "."
+      ref: HEAD
+      resolved-ref: "4616c76c67832f73051fc204a9d32cceb15c0d13"
+      url: "https://github.com/SlayerOrnstein/worldstate_model.git"
+    source: git
     version: "2.0.3"
   xml:
     dependency: transitive
