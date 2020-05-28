@@ -10,19 +10,18 @@ import 'intl/messages_all.dart';
 
 class NavisLocalizations {
   NavisLocalizations();
-
-  static const AppLocalizationDelegate delegate = AppLocalizationDelegate();
+  
+  static const AppLocalizationDelegate delegate =
+    AppLocalizationDelegate();
 
   static Future<NavisLocalizations> load(Locale locale) {
-    final name = (locale.countryCode?.isEmpty ?? false)
-        ? locale.languageCode
-        : locale.toString();
-    final localeName = Intl.canonicalizedLocale(name);
+    final name = (locale.countryCode?.isEmpty ?? false) ? locale.languageCode : locale.toString();
+    final localeName = Intl.canonicalizedLocale(name); 
     return initializeMessages(localeName).then((_) {
       Intl.defaultLocale = localeName;
       return NavisLocalizations();
     });
-  }
+  } 
 
   static NavisLocalizations of(BuildContext context) {
     return Localizations.of<NavisLocalizations>(context, NavisLocalizations);
@@ -50,8 +49,7 @@ class NavisLocalizations {
     return Intl.message(
       'Locating...',
       name: 'locating',
-      desc:
-          'Shows up when an acolyte\'s current location is unknown, may be used in other parts of the app',
+      desc: 'Shows up when an acolyte\'s current location is unknown, may be used in other parts of the app',
       args: [],
     );
   }
@@ -123,8 +121,7 @@ class NavisLocalizations {
     return Intl.message(
       'Tap for more details',
       name: 'tapForMoreDetails',
-      desc:
-          'General description to tell the user that this object takes you to a different page',
+      desc: 'General description to tell the user that this object takes you to a different page',
       args: [],
     );
   }
@@ -895,8 +892,7 @@ class NavisLocalizations {
   }
 }
 
-class AppLocalizationDelegate
-    extends LocalizationsDelegate<NavisLocalizations> {
+class AppLocalizationDelegate extends LocalizationsDelegate<NavisLocalizations> {
   const AppLocalizationDelegate();
 
   List<Locale> get supportedLocales {
@@ -918,14 +914,13 @@ class AppLocalizationDelegate
   @override
   bool isSupported(Locale locale) => _isSupported(locale);
   @override
-  Future<NavisLocalizations> load(Locale locale) =>
-      NavisLocalizations.load(locale);
+  Future<NavisLocalizations> load(Locale locale) => NavisLocalizations.load(locale);
   @override
   bool shouldReload(AppLocalizationDelegate old) => false;
 
   bool _isSupported(Locale locale) {
     if (locale != null) {
-      for (final supportedLocale in supportedLocales) {
+      for (var supportedLocale in supportedLocales) {
         if (supportedLocale.languageCode == locale.languageCode) {
           return true;
         }
