@@ -65,21 +65,22 @@ class _HomeFeedPageState extends State<HomeFeedPage>
         return <Widget>[
           SliverOverlapAbsorber(
             handle: NestedScrollView.sliverOverlapAbsorberHandleFor(context),
-            sliver: SliverToBoxAdapter(
-              child: Material(
-                color: primary,
-                child: TabBar(
-                  controller: _tabController,
-                  labelColor:
-                      Theme.of(context).primaryTextTheme.bodyText1.color,
-                  unselectedLabelColor: Theme.of(context)
-                      .primaryTextTheme
-                      .bodyText1
-                      .color
-                      .withOpacity(.7),
-                  indicatorColor: Theme.of(context).accentColor,
-                  tabs: tabs,
-                ),
+            sliver: SliverAppBar(
+              automaticallyImplyLeading: false,
+              titleSpacing: 0.0,
+              centerTitle: true,
+              floating: true,
+              snap: true,
+              title: TabBar(
+                controller: _tabController,
+                labelColor: Theme.of(context).primaryTextTheme.bodyText1.color,
+                unselectedLabelColor: Theme.of(context)
+                    .primaryTextTheme
+                    .bodyText1
+                    .color
+                    .withOpacity(.7),
+                indicatorColor: Theme.of(context).accentColor,
+                tabs: tabs,
               ),
             ),
           )
@@ -95,3 +96,21 @@ class _HomeFeedPageState extends State<HomeFeedPage>
     super.dispose();
   }
 }
+
+// SliverToBoxAdapter(
+//               child: Material(
+//                 color: primary,
+//                 child: TabBar(
+//                   controller: _tabController,
+//                   labelColor:
+//                       Theme.of(context).primaryTextTheme.bodyText1.color,
+//                   unselectedLabelColor: Theme.of(context)
+//                       .primaryTextTheme
+//                       .bodyText1
+//                       .color
+//                       .withOpacity(.7),
+//                   indicatorColor: Theme.of(context).accentColor,
+//                   tabs: tabs,
+//                 ),
+//               ),
+//             )
