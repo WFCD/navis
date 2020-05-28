@@ -30,7 +30,6 @@ class SyndicateBountyHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    debugPrint(faction.toString());
     return Container(
       height: 80.0,
       color: faction.backgroundColor,
