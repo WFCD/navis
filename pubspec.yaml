@@ -1,57 +1,52 @@
 name: navis
 description: Cephalon Navis is an Android app inspired by Warframe Hub.
-version: 2.0.0+80
+version: 1.5.15+76
 
 dependencies:
   flutter:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
-  worldstate_api_model:
-    path: packages/worldstate_model
-  warframe_items_model:
-    path: packages/warframe_items_model
+  cupertino_icons: ^0.1.3
+  bloc: ^3.0.0
   equatable: ^1.1.1
-  bloc: ^4.0.0
-  flutter_bloc: ^4.0.0
+  flutter_bloc: ^3.2.0
   firebase_crashlytics: ^0.1.3+3
   flutter_custom_tabs: ^0.6.0
-  hydrated_bloc: ^4.0.0
-  intl: ^0.16.1
-  package_info: ^0.4.0+18
-  firebase_messaging: ^6.0.15
+  hydrated_bloc: ^3.1.0
+  intl: ^0.16.0
+  intl_translation: ^0.17.7
+  package_info: ^0.4.0+17
+  firebase_messaging: ^6.0.13
   cached_network_image: ^2.2.0+1
   flutter_svg: ^0.17.4
   floating_search_bar: ^0.3.0
-  flutter_sticky_header: ^0.4.2
-  hive: ^1.4.1+1
-  get_it: ^4.0.2
-  data_connection_checker: ^0.3.4
-  youtube_explode_dart: ^0.0.16
-  chewie: ^0.9.10
-  lumberdash: ^2.1.1
-  colorize_lumberdash: ^2.1.0
-  dartz: ^0.9.1
-  breakpoint: ^1.0.1+2
-  flutter_staggered_grid_view: ^0.3.0
-  supercharged: ^1.5.1
+  flutter_sticky_header: ^0.4.0
+  wfcd_client:
+    git: https://github.com/SlayerOrnstein/wfcd_client.git
+  warframe_items_model:
+    git: https://github.com/SlayerOrnstein/warframe_item_models.git
+  worldstate_api_model:
+    git: https://github.com/SlayerOrnstein/worldstate_model.git
+  hive: ^1.1.1
+  hive_flutter: ^0.2.1
+  implicitly_animated_reorderable_list: ^0.2.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_driver:
     sdk: flutter
-  test: ^1.14.3
+  test: ^1.6.3
+  bloc_test: ^4.0.0
   mockito: ^4.1.1
-  extra_pedantic: ^1.2.0
-  intl_translation: ^0.17.9
 
 flutter:
   uses-material-design: true
   fonts:
-    - family: NavisSysIcons
+    - family: AppIcons
       fonts:
-        - asset: assets/icons/NavisSysIcons.ttf
+        - asset: assets/icons/AppIcons.ttf
     - family: PlatformIcons
       fonts:
         - asset: assets/icons/PlatformIcons.ttf
@@ -65,16 +60,16 @@ flutter:
       fonts:
         - asset: assets/icons/SyndicateGlyphs.ttf
   assets:
+    - assets/icons/
     - assets/wfcd_banner.svg
-    # - assets/enemies/corrupted/
-    # - assets/enemies/grineer/
-    # - assets/enemies/corpus/
-    # - assets/enemies/infestation/
-    - assets/enemies/stalker/
+    - assets/enemys/Corrupted/
+    - assets/enemys/Grineer/
+    - assets/enemys/Corpus/
+    - assets/enemys/Infestation/
     - assets/Derelict.webp
-    - assets/event_info.json
-    # - assets/maps/
-    # - assets/maps/imgs/
+    # - assets/skyboxes/
+    #- assets/maps/
+    #- assets/maps/imgs/
 
 flutter_intl:
   enabled: true

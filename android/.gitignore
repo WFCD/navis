@@ -1,7 +1,11 @@
-gradle-wrapper.jar
-/.gradle
-/captures/
-/gradlew
-/gradlew.bat
+*.iml
+*.class
+.gradle
 /local.properties
+/.idea/workspace.xml
+/.idea/libraries
+.DS_Store
+/build
+/captures
 GeneratedPluginRegistrant.java
+fastlane.json

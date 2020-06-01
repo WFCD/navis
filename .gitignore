@@ -9,8 +9,6 @@
 .history
 .svn/
 secrets.tar
-flutter_*.png
-flutter_*.mp4
 
 # IntelliJ related
 *.iml
