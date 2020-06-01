@@ -2,8 +2,7 @@ import 'package:async/async.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/core/utils/ui_util.dart';
-import 'package:warframe_items_model/warframe_items_model.dart';
-import 'package:worldstate_api_model/entities.dart';
+import 'package:warframestat_api_models/entities.dart';
 
 import '../../../../../core/utils/helper_methods.dart';
 import '../../../../../core/widgets/custom_card.dart';

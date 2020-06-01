@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:navis/core/widgets/icons.dart';
 import 'package:navis/generated/l10n.dart';
 import 'package:supercharged/supercharged.dart';
-import 'package:worldstate_api_model/entities.dart';
+import 'package:warframestat_api_models/entities.dart';
 
 import '../../../utils/faction_utils.dart';
 

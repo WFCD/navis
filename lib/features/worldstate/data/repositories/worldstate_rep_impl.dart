@@ -6,8 +6,7 @@ import 'package:http/http.dart' as http;
 import 'package:navis/core/local/user_settings.dart';
 import 'package:navis/core/local/warframestate_local.dart';
 import 'package:navis/core/network/warframestat_remote.dart';
-import 'package:warframe_items_model/warframe_items_model.dart';
-import 'package:worldstate_api_model/entities.dart';
+import 'package:warframestat_api_models/entities.dart';
 
 import '../../../../core/error/failures.dart';
 import '../../../../core/network/network_info.dart';

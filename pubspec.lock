@@ -147,7 +147,7 @@ packages:
       name: equatable
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.1.1"
+    version: "1.2.0"
   extra_pedantic:
     dependency: "direct dev"
     description:
@@ -799,15 +799,15 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.1.4+1"
-  warframe_items_model:
+  warframestat_api_models:
     dependency: "direct main"
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "60d09aec8bff3f604a9fe1717d6e4968884123f3"
-      url: "https://github.com/SlayerOrnstein/warframe_item_models.git"
+      resolved-ref: "720bda9ed5a4a80a828b3dde255dcb53d581b6a7"
+      url: "https://github.com/SlayerOrnstein/warframestat_api_models.git"
     source: git
-    version: "1.2.0"
+    version: "3.0.0"
   watcher:
     dependency: transitive
     description:
@@ -836,15 +836,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.7.2"
-  worldstate_api_model:
-    dependency: "direct main"
-    description:
-      path: "."
-      ref: HEAD
-      resolved-ref: "4616c76c67832f73051fc204a9d32cceb15c0d13"
-      url: "https://github.com/SlayerOrnstein/worldstate_model.git"
-    source: git
-    version: "2.0.3"
   xml:
     dependency: transitive
     description:
@@ -865,7 +856,7 @@ packages:
       name: youtube_explode_dart
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.0.16"
+    version: "0.0.17"
 sdks:
   dart: ">=2.7.0 <3.0.0"
   flutter: ">=1.16.0 <2.0.0"

@@ -3,7 +3,7 @@ import 'package:navis/core/widgets/countdown_banner.dart';
 import 'package:navis/core/widgets/icons.dart';
 import 'package:navis/core/widgets/widgets.dart';
 import 'package:navis/generated/l10n.dart';
-import 'package:worldstate_api_model/entities.dart';
+import 'package:warframestat_api_models/entities.dart';
 
 class KuvaCard extends StatelessWidget {
   const KuvaCard({Key key, this.kuva}) : super(key: key);

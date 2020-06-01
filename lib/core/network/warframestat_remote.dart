@@ -3,9 +3,7 @@ import 'dart:convert';
 import 'package:http/http.dart';
 import 'package:intl/intl.dart';
 import 'package:navis/core/utils/data_source_utils.dart';
-import 'package:warframe_items_model/warframe_items_model.dart';
-import 'package:worldstate_api_model/entities.dart';
-import 'package:worldstate_api_model/models.dart';
+import 'package:warframestat_api_models/warframestat_api_models.dart';
 
 enum GamePlatforms { pc, xb1, ps4, swi }
 

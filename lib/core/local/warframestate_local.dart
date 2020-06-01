@@ -1,11 +1,9 @@
 import 'dart:convert';
 
 import 'package:hive/hive.dart';
-import 'package:warframe_items_model/warframe_items_model.dart';
-import 'package:worldstate_api_model/entities.dart';
-import 'package:worldstate_api_model/models.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:logging/logging.dart';
+import 'package:warframestat_api_models/warframestat_api_models.dart';
 
 class WarframestatCache {
   WarframestatCache(this._box);
@@ -35,7 +33,7 @@ class WarframestatCache {
 
   void cacheDealInfo(String id, BaseItem item) {
     _box.put(_dealId, id);
-    _box.put(id, json.encode(item.toJson()));
+    _box.put(id, json.encode((item as BaseItemModel).toJson()));
   }
 
   void cacheSynthTargets(List<SynthTarget> targets) {
@@ -51,7 +49,7 @@ class WarframestatCache {
   BaseItem getCachedDeal(String id) {
     final cached = readDisk<String>(id);
 
-    return BaseItem.fromJson(json.decode(cached) as Map<String, dynamic>);
+    return BaseItemModel.fromJson(json.decode(cached) as Map<String, dynamic>);
   }
 
   Worldstate getCachedState() {

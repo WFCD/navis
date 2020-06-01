@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:worldstate_api_model/entities.dart';
+import 'package:warframestat_api_models/entities.dart';
 
 class TargetInfo extends StatelessWidget {
   const TargetInfo({Key key, this.target}) : super(key: key);

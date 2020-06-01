@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sticky_header/flutter_sticky_header.dart';
-import 'package:worldstate_api_model/entities.dart';
+import 'package:warframestat_api_models/entities.dart';
 
 import '../../../utils/faction_utils.dart';
 import 'syndicate_bounty_header.dart';

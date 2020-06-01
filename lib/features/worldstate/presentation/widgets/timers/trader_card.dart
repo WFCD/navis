@@ -3,7 +3,7 @@ import 'package:navis/core/themes/colors.dart';
 import 'package:navis/core/widgets/widgets.dart';
 import 'package:navis/features/worldstate/presentation/pages/trader_inventory.dart';
 import 'package:navis/generated/l10n.dart';
-import 'package:worldstate_api_model/entities.dart';
+import 'package:warframestat_api_models/entities.dart';
 
 class TraderCard extends StatelessWidget {
   const TraderCard({Key key, @required this.trader}) : super(key: key);

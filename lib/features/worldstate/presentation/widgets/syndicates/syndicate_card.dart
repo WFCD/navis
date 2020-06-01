@@ -6,7 +6,7 @@ import 'package:navis/features/worldstate/presentation/pages/bounties.dart';
 import 'package:navis/features/worldstate/presentation/pages/nightwaves.dart';
 import 'package:navis/features/worldstate/utils/faction_utils.dart';
 import 'package:navis/generated/l10n.dart';
-import 'package:worldstate_api_model/entities.dart';
+import 'package:warframestat_api_models/entities.dart';
 
 import 'syndicate_icon.dart';
 

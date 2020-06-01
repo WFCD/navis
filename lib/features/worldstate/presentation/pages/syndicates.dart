@@ -7,8 +7,7 @@ import 'package:navis/core/widgets/screen_type_builder.dart';
 import 'package:navis/features/worldstate/presentation/bloc/solsystem_bloc.dart';
 import 'package:navis/features/worldstate/presentation/widgets/syndicates/nightwave_challenges.dart';
 import 'package:navis/features/worldstate/presentation/widgets/syndicates/syndicate_bounties.dart';
-import 'package:worldstate_api_model/entities.dart';
-import 'package:worldstate_api_model/objects.dart';
+import 'package:warframestat_api_models/warframestat_api_models.dart';
 
 import '../widgets/syndicates/syndicate_card.dart';
 

@@ -6,9 +6,7 @@ import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:navis/core/network/warframestat_remote.dart';
 import 'package:navis/core/usecases/usecases.dart';
 import 'package:supercharged/supercharged.dart';
-import 'package:warframe_items_model/warframe_items_model.dart';
-import 'package:worldstate_api_model/entities.dart';
-import 'package:worldstate_api_model/models.dart';
+import 'package:warframestat_api_models/warframestat_api_models.dart';
 
 import '../../../../core/error/exceptions.dart';
 import '../../../../core/utils/worldstate_util.dart';

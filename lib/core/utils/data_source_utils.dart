@@ -1,9 +1,7 @@
 import 'dart:convert';
 
 import 'package:navis/core/utils/worldstate_util.dart';
-import 'package:warframe_items_model/warframe_items_model.dart';
-import 'package:worldstate_api_model/entities.dart';
-import 'package:worldstate_api_model/models.dart';
+import 'package:warframestat_api_models/warframestat_api_models.dart';
 
 // ignore: missing_return
 BaseItem toBaseItem(Map<String, dynamic> item) {
@@ -26,13 +24,13 @@ BaseItem toBaseItem(Map<String, dynamic> item) {
 
     warframe:
     case 'Warframes':
-      return BioWeapon.fromJson(item);
+      return BioWeaponModel.fromJson(item);
     weapon:
     case 'Primary':
-      return Weapon.fromJson(item);
+      return WeaponModel.fromJson(item);
 
     default:
-      return BaseItem.fromJson(item);
+      return BaseItemModel.fromJson(item);
   }
 }
 

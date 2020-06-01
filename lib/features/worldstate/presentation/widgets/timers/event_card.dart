@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:navis/core/widgets/widgets.dart';
 import 'package:navis/features/worldstate/presentation/pages/event.dart';
 import 'package:navis/generated/l10n.dart';
-import 'package:worldstate_api_model/entities.dart';
+import 'package:warframestat_api_models/entities.dart';
 
 class EventCard extends StatelessWidget {
   const EventCard({Key key, this.events = const []}) : super(key: key);

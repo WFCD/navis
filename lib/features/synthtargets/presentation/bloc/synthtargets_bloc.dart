@@ -7,8 +7,8 @@ import 'package:navis/core/usecases/usecases.dart';
 import 'package:navis/core/utils/data_source_utils.dart';
 import 'package:navis/features/synthtargets/domain/usecases/get_synth_targets.dart';
 import 'package:supercharged/supercharged.dart';
-import 'package:worldstate_api_model/entities.dart';
-import 'package:worldstate_api_model/models.dart';
+import 'package:warframestat_api_models/entities.dart';
+import 'package:warframestat_api_models/models.dart';
 
 part 'synthtargets_state.dart';
 
@@ -55,8 +55,9 @@ class SynthtargetsBloc
   @override
   Map<String, dynamic> toJson(SynthtargetsState state) {
     if (state is TargetsLocated) {
-      final targets =
-          state.targets.map((e) => (e as SynthTargetModel).toJson()).toList();
+      final targets = state.targets
+          .map((dynamic e) => (e as SynthTargetModel).toJson())
+          .toList();
 
       return <String, dynamic>{'state': targets};
     }

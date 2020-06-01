@@ -5,7 +5,7 @@ import 'package:navis/features/worldstate/presentation/widgets/event/event_bount
 import 'package:navis/features/worldstate/presentation/widgets/event/event_status.dart';
 import 'package:navis/features/worldstate/presentation/widgets/event/guide_player.dart';
 import 'package:navis/injection_container.dart';
-import 'package:worldstate_api_model/entities.dart';
+import 'package:warframestat_api_models/entities.dart';
 
 class EventInformation extends StatelessWidget {
   const EventInformation({Key key}) : super(key: key);

@@ -5,7 +5,7 @@ import 'package:navis/core/error/failures.dart';
 import 'package:navis/core/network/network_info.dart';
 import 'package:navis/core/network/warframestat_remote.dart';
 import 'package:navis/core/usecases/usecases.dart';
-import 'package:worldstate_api_model/entities.dart';
+import 'package:warframestat_api_models/entities.dart';
 
 import '../../domain/repositories/synth_target_repository.dart';
 

@@ -1,4 +1,4 @@
-import 'package:worldstate_api_model/entities.dart';
+import 'package:warframestat_api_models/entities.dart';
 
 Worldstate cleanState(Worldstate state, {String locale = 'en'}) {
   state.alerts.removeWhere((a) {

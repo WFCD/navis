@@ -5,7 +5,7 @@ import 'package:navis/core/usecases/usecases.dart';
 import 'package:navis/core/utils/data_source_utils.dart';
 import 'package:navis/features/worldstate/domain/repositories/worldstate_repository.dart';
 import 'package:navis/features/worldstate/domain/usecases/get_worldstate.dart';
-import 'package:worldstate_api_model/entities.dart';
+import 'package:warframestat_api_models/entities.dart';
 
 import '../../../fixtures/fixture_reader.dart';
 
