@@ -4,11 +4,30 @@ import 'package:hive/hive.dart';
 import 'package:warframe_items_model/warframe_items_model.dart';
 import 'package:worldstate_api_model/entities.dart';
 import 'package:worldstate_api_model/models.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:logging/logging.dart';
 
 class WarframestatCache {
   WarframestatCache(this._box);
 
   final Box<dynamic> _box;
+
+  static WarframestatCache _instance;
+
+  static final _logger = Logger('WarframestatCache');
+
+  static Future<WarframestatCache> initCache() async {
+    _logger.info('Initializing WarframestatCache Hive');
+    final temp = await getTemporaryDirectory();
+    Hive.init(temp.path);
+
+    final box = await Hive.openBox<dynamic>('worldstate_cache').catchError(
+      (Object error, StackTrace stack) =>
+          _logger.severe('Unable to open Hive box', error, stack),
+    );
+
+    return _instance ??= WarframestatCache(box);
+  }
 
   static const String _dealId = 'dealId';
   static const String _state = 'worldstate';
