@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:warframestat_api_models/warframestat_api_models.dart';
+import 'package:warframe_items_model/warframe_items_model.dart';
 
 import 'storage_base.service.dart';
 
@@ -45,7 +45,7 @@ class CacheStorageService extends StorageService {
   BaseItem get dealItem {
     final item = getDarvoDeal['item'];
 
-    return BaseItemModel.fromJson(item);
+    return BaseItem.fromJson(item);
   }
 
   DateTime get getDropTableTimestamp {
@@ -56,7 +56,7 @@ class CacheStorageService extends StorageService {
   }
 
   Future<void> saveDarvoDealItem(String id, BaseItem item) async {
-    final toSave = {'id': id, 'item': (item as BaseItemModel).toJson()};
+    final toSave = {'id': id, 'item': item.toJson()};
 
     _box.put('deal', json.encode(toSave));
   }

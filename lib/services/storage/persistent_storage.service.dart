@@ -5,7 +5,7 @@ import 'package:navis/services/storage/storage_base.service.dart';
 import 'package:navis/themes.dart';
 import 'package:navis/utils/search_utils.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:wfcd_client/base.dart';
+import 'package:wfcd_client/enums.dart';
 
 class PersistentStorageService extends StorageService {
   static const String hive = 'settings';
@@ -29,18 +29,18 @@ class PersistentStorageService extends StorageService {
     _instance ??= PersistentStorageService();
   }
 
-  GamePlatforms get platform {
+  Platforms get platform {
     final diskPlatform = _box.get(SettingsKeys.platformKey);
 
     if (diskPlatform != null)
-      return GamePlatforms.values.firstWhere(
-        (p) => p.asString.contains(diskPlatform),
+      return Platforms.values.firstWhere(
+        (p) => p.toString() == 'Platforms.$diskPlatform',
       );
 
     return null;
   }
 
-  set platform(GamePlatforms value) {
+  set platform(Platforms value) {
     _box.put(SettingsKeys.platformKey, value.toString().split('.').last);
   }
 

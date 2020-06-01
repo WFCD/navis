@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:warframestat_api_models/entities.dart';
+import 'package:worldstate_api_model/entities.dart';
 
 abstract class WorldStates extends Equatable {
   const WorldStates({this.worldstate});

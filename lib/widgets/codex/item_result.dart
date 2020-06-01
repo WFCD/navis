@@ -2,7 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:navis/screens/codex_entry.dart';
 import 'package:navis/utils/helper_utils.dart';
-import 'package:warframestat_api_models/entities.dart';
+import 'package:warframe_items_model/warframe_items_model.dart';
 
 class ItemResultWidget extends StatelessWidget {
   const ItemResultWidget({Key key, this.item}) : super(key: key);

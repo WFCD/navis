@@ -4,7 +4,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:navis/blocs/bloc.dart';
 import 'package:navis/constants/storage_keys.dart';
 import 'package:navis/services/repository.dart';
-import 'package:wfcd_client/base.dart';
+import 'package:wfcd_client/enums.dart';
 
 import 'platform_icon.dart';
 
@@ -21,10 +21,10 @@ class PlatformChoice extends StatelessWidget {
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: const <Widget>[
-            PlatformIcon(platform: GamePlatforms.pc),
-            PlatformIcon(platform: GamePlatforms.ps4),
-            PlatformIcon(platform: GamePlatforms.xb1),
-            PlatformIcon(platform: GamePlatforms.swi)
+            PlatformIcon(platform: Platforms.pc),
+            PlatformIcon(platform: Platforms.ps4),
+            PlatformIcon(platform: Platforms.xb1),
+            PlatformIcon(platform: Platforms.swi)
           ],
         );
       },

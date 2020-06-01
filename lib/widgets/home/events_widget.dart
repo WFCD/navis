@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:navis/generated/l10n.dart';
 import 'package:navis/utils/size_config.dart';
 import 'package:navis/widgets/widgets.dart';
-import 'package:warframestat_api_models/entities.dart';
+import 'package:worldstate_api_model/entities.dart';
 
 class EventWidget extends StatelessWidget {
   const EventWidget({this.event});

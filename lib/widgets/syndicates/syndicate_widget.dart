@@ -6,7 +6,7 @@ import 'package:navis/screens/synth_targets.dart';
 import 'package:navis/utils/size_config.dart';
 import 'package:navis/utils/syndicate_utils.dart';
 import 'package:navis/widgets/widgets.dart';
-import 'package:warframestat_api_models/entities.dart';
+import 'package:worldstate_api_model/entities.dart';
 
 class SyndicateWidget extends StatelessWidget {
   const SyndicateWidget({

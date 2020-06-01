@@ -8,23 +8,25 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   bloc: ^4.0.0
-  equatable: ^1.2.0
+  equatable: ^1.1.1
   flutter_bloc: ^4.0.0
   firebase_crashlytics: ^0.1.3+3
   flutter_custom_tabs: ^0.6.0
-  hydrated_bloc: ^4.1.1
+  hydrated_bloc: ^4.0.0
   intl: ^0.16.0
   intl_translation: ^0.17.7
   package_info: ^0.4.0+17
-  firebase_messaging: ^6.0.16
+  firebase_messaging: ^6.0.13
   cached_network_image: ^2.2.0+1
   flutter_svg: ^0.17.4
   floating_search_bar: ^0.3.0
   flutter_sticky_header: ^0.4.0
   wfcd_client:
     git: https://github.com/SlayerOrnstein/wfcd_client.git
-  warframestat_api_models:
-    git: https://github.com/SlayerOrnstein/warframestat_api_models.git
+  warframe_items_model:
+    git: https://github.com/SlayerOrnstein/warframe_item_models.git
+  worldstate_api_model:
+    git: https://github.com/SlayerOrnstein/worldstate_model.git
   hive: ^1.1.1
   hive_flutter: ^0.3.0+2
   flutter_brand_icons: ^1.1.0

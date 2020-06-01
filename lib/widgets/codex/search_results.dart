@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:navis/blocs/bloc.dart';
-import 'package:warframestat_api_models/entities.dart';
+import 'package:worldstate_api_model/entities.dart';
 
 import 'drop_result.dart';
 import 'item_result.dart';

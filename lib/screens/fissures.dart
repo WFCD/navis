@@ -4,7 +4,7 @@ import 'package:navis/blocs/bloc.dart';
 import 'package:navis/utils/worldstate_utils.dart';
 import 'package:navis/widgets/common/list_screen.dart';
 import 'package:navis/widgets/fissures/fissures.dart';
-import 'package:warframestat_api_models/entities.dart';
+import 'package:worldstate_api_model/entities.dart';
 
 class FissureScreen extends StatelessWidget {
   const FissureScreen({Key key}) : super(key: key);

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:navis/generated/l10n.dart';
 import 'package:navis/widgets/widgets.dart';
-import 'package:warframestat_api_models/entities.dart';
+import 'package:worldstate_api_model/entities.dart';
 
 class AlertWidget extends StatelessWidget {
   AlertWidget({@required this.alert});

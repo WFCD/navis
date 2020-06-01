@@ -13,7 +13,7 @@ class SortieScreen extends StatelessWidget {
       child: ListTile(
         title: Text(
           NavisLocalizations.of(context).sortieResetTime,
-          style: const TextStyle(color: Colors.white),
+          style: TextStyle(color: Colors.white),
         ),
         trailing: CountdownBox(
           color: Colors.transparent,

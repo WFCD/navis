@@ -7,8 +7,9 @@ import 'package:navis/blocs/bloc.dart';
 import 'package:navis/blocs/worldstate/worldstate_events.dart';
 import 'package:navis/services/storage/cache_storage.service.dart';
 import 'package:navis/services/storage/persistent_storage.service.dart';
-import 'package:warframestat_api_models/warframestat_api_models.dart';
-import 'package:wfcd_client/remotes.dart';
+import 'package:wfcd_client/clients.dart';
+import 'package:wfcd_client/enums.dart';
+import 'package:worldstate_api_model/models.dart';
 
 import '../mock_classes.dart';
 import '../setup_methods.dart';
@@ -19,13 +20,13 @@ void main() {
   final storage = PersistentStorageService();
   final cache = CacheStorageService();
 
-  WarframestatRemote api;
+  WorldstateClient api;
   WorldstateBloc worldstateBloc;
 
   setUpAll(() async {
     await mockSetup();
 
-    api = MockWarframestatRemote();
+    api = MockWfcdWrapper();
 
     await storage.startInstance();
     await cache.startInstance();
@@ -35,7 +36,7 @@ void main() {
   });
 
   test('Enusre that Worldstate is Loaded', () async {
-    when(api.getWorldstate(any, language: anyNamed('language')))
+    when(api.getWorldstate(Platforms.pc))
         .thenAnswer((_) async => Future.value(worldstate));
 
     worldstateBloc.add(UpdateEvent());

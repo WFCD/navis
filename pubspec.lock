@@ -140,7 +140,7 @@ packages:
       name: equatable
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.2.0"
+    version: "1.1.1"
   file:
     dependency: transitive
     description:
@@ -194,7 +194,7 @@ packages:
       name: flutter_cache_manager
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.3.0"
+    version: "1.2.2"
   flutter_custom_tabs:
     dependency: "direct main"
     description:
@@ -296,7 +296,7 @@ packages:
       name: hydrated_bloc
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.1.1"
+    version: "4.1.0"
   image:
     dependency: transitive
     description:
@@ -609,7 +609,7 @@ packages:
       name: sqflite
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.3.0+2"
+    version: "1.3.0+1"
   sqflite_common:
     dependency: transitive
     description:
@@ -750,15 +750,15 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.2.6+2"
-  warframestat_api_models:
+  warframe_items_model:
     dependency: "direct main"
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "720bda9ed5a4a80a828b3dde255dcb53d581b6a7"
-      url: "https://github.com/SlayerOrnstein/warframestat_api_models.git"
+      resolved-ref: "60d09aec8bff3f604a9fe1717d6e4968884123f3"
+      url: "https://github.com/SlayerOrnstein/warframe_item_models.git"
     source: git
-    version: "3.0.0"
+    version: "1.2.0"
   watcher:
     dependency: transitive
     description:
@@ -792,10 +792,19 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "07d04740e74983cf8a338d36f6c0cfd8be0dd989"
+      resolved-ref: "7856a170144667651ccb6b879cea66f6019e3356"
       url: "https://github.com/SlayerOrnstein/wfcd_client.git"
     source: git
     version: "2.2.0"
+  worldstate_api_model:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: HEAD
+      resolved-ref: "4616c76c67832f73051fc204a9d32cceb15c0d13"
+      url: "https://github.com/SlayerOrnstein/worldstate_model.git"
+    source: git
+    version: "2.0.3"
   xml:
     dependency: transitive
     description:
