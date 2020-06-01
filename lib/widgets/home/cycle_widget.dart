@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:navis/widgets/widgets.dart';
-import 'package:worldstate_api_model/objects.dart';
+import 'package:warframestat_api_models/objects.dart';
 
 class CycleWidget extends StatelessWidget {
   const CycleWidget({Key key, this.title, this.cycle}) : super(key: key);

@@ -18,7 +18,7 @@ import 'package:navis/services/repository.dart';
 import 'package:navis/themes.dart';
 import 'package:navis/utils/size_config.dart';
 import 'package:navis/widgets/widgets.dart';
-import 'package:wfcd_client/enums.dart';
+import 'package:wfcd_client/base.dart';
 
 class Navis extends StatefulWidget {
   const Navis(this.repository);
@@ -39,7 +39,7 @@ class _NavisState extends State<Navis> with WidgetsBindingObserver {
 
     if (widget.repository.persistent.platform == null) {
       widget.repository.notifications
-          .subscribeToPlatform(currentPlatform: Platforms.pc);
+          .subscribeToPlatform(currentPlatform: GamePlatforms.pc);
     }
   }
 

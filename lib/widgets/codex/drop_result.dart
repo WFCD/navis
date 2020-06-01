@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:navis/utils/helper_utils.dart';
-import 'package:worldstate_api_model/entities.dart';
+import 'package:warframestat_api_models/entities.dart';
 
 class DropResultWidget extends StatelessWidget {
   const DropResultWidget({Key key, this.drop}) : super(key: key);

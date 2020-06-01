@@ -7,7 +7,7 @@ import 'package:navis/constants/storage_keys.dart';
 import 'package:navis/services/repository.dart';
 import 'package:navis/utils/size_config.dart';
 import 'package:navis/widgets/icons.dart';
-import 'package:wfcd_client/enums.dart';
+import 'package:wfcd_client/base.dart';
 
 const pc = 'PC';
 const ps4 = 'Sony PlayStation 4';
@@ -17,7 +17,7 @@ const swi = 'Nintendo Switch';
 class PlatformIcon extends StatelessWidget {
   const PlatformIcon({Key key, this.platform}) : super(key: key);
 
-  final Platforms platform;
+  final GamePlatforms platform;
 
   static String _tooltip;
   static IconData _platformIcon;
@@ -25,17 +25,17 @@ class PlatformIcon extends StatelessWidget {
 
   void _setValues() {
     switch (platform) {
-      case Platforms.ps4:
+      case GamePlatforms.ps4:
         _tooltip = ps4;
         _platformIcon = PlatformIcons.playstation;
         _platformColor = const Color(0xFF003791);
         break;
-      case Platforms.xb1:
+      case GamePlatforms.xb1:
         _tooltip = xb1;
         _platformIcon = PlatformIcons.xbox;
         _platformColor = const Color(0xFF107C10);
         break;
-      case Platforms.swi:
+      case GamePlatforms.swi:
         _tooltip = swi;
         _platformIcon = PlatformIcons.nintendoswitch;
         _platformColor = const Color(0xFFE60012);
@@ -77,7 +77,7 @@ class PlatformIcon extends StatelessWidget {
           splashColor: _platformColor,
           icon: Icon(
             _platformIcon,
-            color: (persistent.platform ?? Platforms.pc) == platform
+            color: (persistent.platform ?? GamePlatforms.pc) == platform
                 ? _platformColor
                 : Theme.of(context).disabledColor,
             size: size,
