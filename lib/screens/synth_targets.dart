@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:navis/services/repository.dart';
-import 'package:worldstate_api_model/entities.dart';
+import 'package:warframestat_api_models/entities.dart';
 
 class SynthTargetScreen extends StatelessWidget {
   const SynthTargetScreen({Key key}) : super(key: key);
@@ -31,7 +31,7 @@ class SynthTargetScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const warframestate = Repository.warframestat;
+    final warframestat = Repository.warframestat;
 
     return Scaffold(
       appBar: AppBar(
@@ -39,7 +39,7 @@ class SynthTargetScreen extends StatelessWidget {
         backgroundColor: const Color(0xFF5F3C0D),
       ),
       body: FutureBuilder<List<SynthTarget>>(
-        future: warframestate.synthTargets(),
+        future: warframestat.getSynthTargets(),
         builder: (context, snapshot) {
           if (snapshot.hasData) return _buildList(snapshot.data);
 

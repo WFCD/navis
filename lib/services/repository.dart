@@ -2,14 +2,16 @@ import 'dart:io';
 
 import 'package:async/async.dart';
 import 'package:flutter/foundation.dart';
+import 'package:hive/hive.dart';
+import 'package:http/http.dart' as http;
 import 'package:navis/services/notifications/notification_service.dart';
 import 'package:navis/services/storage/cache_storage.service.dart';
 import 'package:navis/utils/helper_utils.dart';
 import 'package:package_info/package_info.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:warframe_items_model/warframe_items_model.dart';
-import 'package:wfcd_client/clients.dart';
-import 'package:worldstate_api_model/entities.dart';
+import 'package:warframestat_api_models/entities.dart';
+import 'package:wfcd_client/locals.dart';
+import 'package:wfcd_client/remotes.dart';
 
 import 'storage/persistent_storage.service.dart';
 
@@ -21,11 +23,12 @@ class Repository {
   final PackageInfo packageInfo;
 
   final notifications = NotificationService.notifications;
-  static const warframestat = WorldstateClient();
 
   final _itemFuture = AsyncMemoizer<BaseItem>();
 
   static const _dropTableFileName = 'drop_table.json';
+
+  static final warframestat = WarframestatRemote(http.Client());
 
   List<SlimDrop> _dropTable;
 
@@ -73,11 +76,18 @@ class Repository {
   }
 
   static Future<DateTime> _updateDropTable(DropTableCache instance) async {
-    final warframestat = DropTableClient(instance.path);
-    final timestamp = await warframestat.dropsTimestamp();
+    Hive.init(instance.path);
+    final box = await Hive.openBox<dynamic>('drop-table');
+
+    final dropTableRemote = DropTableRemote(http.Client());
+
+    final dropTableLocal = DropTableLocal(Directory(instance.path), box);
+    final timestamp = await dropTableRemote.dropsTimestamp();
 
     if (timestamp != instance.localTimestamp) {
-      await warframestat.downloadDropTable();
+      final table = await dropTableRemote.getDropTable();
+
+      dropTableLocal.saveDropTable(table);
       return timestamp;
     }
 
@@ -126,7 +136,7 @@ class Repository {
   }
 
   static Future<List<BaseItem>> _searchItems(String searchTerm) async {
-    const warframestat = WorldstateClient();
+    final warframestat = WarframestatRemote(http.Client());
     final searchs = await warframestat.searchItems(searchTerm);
 
     return searchs;

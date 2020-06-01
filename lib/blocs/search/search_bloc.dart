@@ -5,8 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:navis/services/repository.dart';
 import 'package:navis/utils/search_utils.dart';
 import 'package:rxdart/rxdart.dart';
-import 'package:warframe_items_model/warframe_items_model.dart';
-import 'package:worldstate_api_model/entities.dart';
+import 'package:warframestat_api_models/warframestat_api_models.dart';
 
 import 'search_event.dart';
 import 'search_state.dart';
