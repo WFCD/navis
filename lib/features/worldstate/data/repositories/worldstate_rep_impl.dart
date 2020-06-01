@@ -3,10 +3,9 @@ import 'dart:io';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
-import 'package:intl/intl.dart';
+import 'package:navis/core/local/user_settings.dart';
 import 'package:navis/core/local/warframestate_local.dart';
 import 'package:navis/core/network/warframestat_remote.dart';
-import 'package:navis/core/usecases/usecases.dart';
 import 'package:warframe_items_model/warframe_items_model.dart';
 import 'package:worldstate_api_model/entities.dart';
 
@@ -15,14 +14,13 @@ import '../../../../core/network/network_info.dart';
 import '../../domain/repositories/worldstate_repository.dart';
 
 class WorldstateRepositoryImpl implements WorldstateRepository {
-  WorldstateRepositoryImpl(this.networkInfo, this.cache);
+  WorldstateRepositoryImpl(this.networkInfo, this.cache, this.usersettings);
 
   final NetworkInfo networkInfo;
   final WarframestatCache cache;
+  final Usersettings usersettings;
 
-  static final _warframestat = WarframestatClient(http.Client())
-    ..platform = GamePlatforms.pc
-    ..language = Intl.getCurrentLocale().split('_').first;
+  static final _warframestat = WarframestatClient(http.Client());
 
   @override
   Future<Either<Failure, List<SynthTarget>>> getSynthTargets() async {
@@ -36,9 +34,9 @@ class WorldstateRepositoryImpl implements WorldstateRepository {
 
   @override
   Future<Either<Failure, Worldstate>> getWorldstate() async {
-    return run<Worldstate, NoParama>(
+    return run<Worldstate, GamePlatforms>(
       _getWorldstate,
-      NoParama(),
+      usersettings.platform,
       cache.cacheWorldstate,
       cache.getCachedState,
     );
@@ -74,8 +72,8 @@ class WorldstateRepositoryImpl implements WorldstateRepository {
     }
   }
 
-  static Future<Worldstate> _getWorldstate(NoParama noParama) {
-    return _warframestat.getWorldstate();
+  static Future<Worldstate> _getWorldstate(GamePlatforms platform) {
+    return _warframestat.getWorldstate(platform);
   }
 
   // Becasue compute needs an entry argument noParam can be anything
@@ -114,16 +112,6 @@ class WorldstateRepositoryImpl implements WorldstateRepository {
         return Left(CacheFailure());
       }
     }
-  }
-
-  @override
-  void updateGamePlatform(GamePlatforms platform) {
-    _warframestat.platform = platform;
-  }
-
-  @override
-  void updateLanguage() {
-    _warframestat.language = Intl.getCurrentLocale();
   }
 }
 
