@@ -28,10 +28,10 @@ class About extends StatelessWidget {
 
     return AboutListTile(
       icon: null,
-      applicationIcon: const Icon(
+      applicationIcon: Icon(
         AppIcons.nightmare,
         size: 60,
-        color: Color(0xFF1565C0),
+        color: const Color(0xFF1565C0),
       ),
       applicationName: 'Cephalon Navis',
       applicationVersion: info.version,
