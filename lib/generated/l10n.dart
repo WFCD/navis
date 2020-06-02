@@ -15,8 +15,8 @@ class NavisLocalizations {
     AppLocalizationDelegate();
 
   static Future<NavisLocalizations> load(Locale locale) {
-    final String name = (locale.countryCode?.isEmpty ?? false) ? locale.languageCode : locale.toString();
-    final String localeName = Intl.canonicalizedLocale(name);
+    final name = (locale.countryCode?.isEmpty ?? false) ? locale.languageCode : locale.toString();
+    final localeName = Intl.canonicalizedLocale(name); 
     return initializeMessages(localeName).then((_) {
       Intl.defaultLocale = localeName;
       return NavisLocalizations();
@@ -659,7 +659,7 @@ class NavisLocalizations {
 
   String get cetusNightOption {
     return Intl.message(
-      'Cetus Day',
+      'Cetus Night',
       name: 'cetusNightOption',
       desc: 'Cetus cycle option',
       args: [],
@@ -755,6 +755,105 @@ class NavisLocalizations {
       args: [],
     );
   }
+
+  String get sortieResetTime {
+    return Intl.message(
+      'Sortie will reset in',
+      name: 'sortieResetTime',
+      desc: 'Title for sortie reset time',
+      args: [],
+    );
+  }
+
+  String get sortieReseting {
+    return Intl.message(
+      'Waiting for new sortie',
+      name: 'sortieReseting',
+      desc: 'Sortie reseting title',
+      args: [],
+    );
+  }
+
+  String get lightThemeTitle {
+    return Intl.message(
+      'Light',
+      name: 'lightThemeTitle',
+      desc: 'Title for light theme',
+      args: [],
+    );
+  }
+
+  String get darkThemeTitle {
+    return Intl.message(
+      'Dark',
+      name: 'darkThemeTitle',
+      desc: 'Title for dark theme',
+      args: [],
+    );
+  }
+
+  String get systemThemeTitle {
+    return Intl.message(
+      'System',
+      name: 'systemThemeTitle',
+      desc: 'Title for system theme',
+      args: [],
+    );
+  }
+
+  String get legalese {
+    return Intl.message(
+      'Warframe and the Warframe logo are registered trademarks of Digital Extremes Ltd. Cephalon Navis nor WFCD are affiliated with Digital Extremes Ltd. in any way.',
+      name: 'legalese',
+      desc: 'Cephalon Navis legalese',
+      args: [],
+    );
+  }
+
+  String get homePageTitle {
+    return Intl.message(
+      'Homepage',
+      name: 'homePageTitle',
+      desc: 'Displayes a link to Navis\'s homepage',
+      args: [],
+    );
+  }
+
+  String get issueTrackerDescription {
+    return Intl.message(
+      'Report issues or feature request for this project\'s',
+      name: 'issueTrackerDescription',
+      desc: 'Description for Navis\'s issue tracker',
+      args: [],
+    );
+  }
+
+  String get issueTrackerTitle {
+    return Intl.message(
+      'issues tracker',
+      name: 'issueTrackerTitle',
+      desc: 'Display link to Navis\'s issue tracker',
+      args: [],
+    );
+  }
+
+  String get warframeLinkTitle {
+    return Intl.message(
+      'More information on Warframe can be found on their official site',
+      name: 'warframeLinkTitle',
+      desc: 'Description for Warframe\'s main site link',
+      args: [],
+    );
+  }
+
+  String get settingsTitle {
+    return Intl.message(
+      'Settings',
+      name: 'settingsTitle',
+      desc: 'Settings title',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<NavisLocalizations> {
@@ -785,7 +884,7 @@ class AppLocalizationDelegate extends LocalizationsDelegate<NavisLocalizations> 
 
   bool _isSupported(Locale locale) {
     if (locale != null) {
-      for (Locale supportedLocale in supportedLocales) {
+      for (var supportedLocale in supportedLocales) {
         if (supportedLocale.languageCode == locale.languageCode) {
           return true;
         }

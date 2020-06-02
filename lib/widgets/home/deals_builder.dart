@@ -4,7 +4,7 @@ import 'package:navis/blocs/bloc.dart';
 import 'package:navis/global_keys.dart';
 import 'package:navis/utils/size_config.dart';
 import 'package:navis/widgets/widgets.dart';
-import 'package:worldstate_api_model/entities.dart';
+import 'package:warframestat_api_models/entities.dart';
 
 import 'deal_widget.dart';
 

@@ -1,62 +1,34 @@
 import 'package:flutter/material.dart';
-import 'package:implicitly_animated_reorderable_list/implicitly_animated_reorderable_list.dart';
-import 'package:implicitly_animated_reorderable_list/transitions.dart';
 import 'package:navis/blocs/bloc.dart';
-import 'package:worldstate_api_model/objects.dart';
 
-typedef BuildWorldstateObjectWidget<T extends WorldstateObject> = Widget
-    Function(BuildContext context, T object);
-
-class ListScreen<T extends WorldstateObject> extends StatelessWidget {
+class ListScreen extends StatelessWidget {
   const ListScreen({
     Key key,
     @required this.state,
-    @required this.emptyList,
     @required this.items,
-    @required this.buildWidget,
+    @required this.noItemsText,
   })  : assert(state != null),
         assert(items != null),
-        assert(emptyList != null),
+        assert(noItemsText != null),
         super(key: key);
 
   final WorldStates state;
-  final String emptyList;
-  final List<T> items;
-  final BuildWorldstateObjectWidget<T> buildWidget;
+  final List<Widget> items;
+  final String noItemsText;
 
   Widget _buildList() {
-    return ImplicitlyAnimatedList<T>(
-      items: items,
-      areItemsTheSame: (a, b) => a.id == b.id,
-      insertDuration: const Duration(milliseconds: 250),
-      removeDuration: const Duration(milliseconds: 250),
-      itemBuilder: (BuildContext context, Animation<double> animation, T object,
-          int index) {
-        return SizeFadeTransition(
-          animation: animation,
-          sizeFraction: 0.7,
-          child: buildWidget(context, object),
-        );
-      },
-      removeItemBuilder:
-          (BuildContext context, Animation<double> animation, T object) {
-        return FadeTransition(
-          opacity: animation,
-          child: buildWidget(context, object),
-        );
-      },
-    );
+    const extent = 500.0;
 
-    // return ListView.builder(
-    //   itemCount: items.length,
-    //   cacheExtent: extent * (items.length / 3),
-    //   itemBuilder: (BuildContext context, int index) => items[index],
-    // );
+    return ListView.builder(
+      itemCount: items.length,
+      cacheExtent: extent * (items.length / 3),
+      itemBuilder: (BuildContext context, int index) => items[index],
+    );
   }
 
   @override
   Widget build(BuildContext context) {
-    final empty = Center(child: Text(emptyList));
+    final empty = Center(child: Text(noItemsText));
     const loading = Center(child: CircularProgressIndicator());
 
     final crossFadeState = state is WorldstateLoaded

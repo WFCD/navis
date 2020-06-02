@@ -41,13 +41,13 @@ class DrawerOptions extends StatelessWidget {
                   onTap: () => _onTap(context, RouteEvent.home),
                   selected: state == RouteState.home),
               ListTile(
-                leading: Icon(AppIcons.voidfissure),
+                leading: const Icon(AppIcons.voidfissure),
                 title: Text(local.fissuresTitle),
                 onTap: () => _onTap(context, RouteEvent.fissures),
                 selected: state == RouteState.fissures,
               ),
               ListTile(
-                leading: Icon(Icons.security),
+                leading: const Icon(Icons.security),
                 title: Text(local.invasionsTitle),
                 onTap: () => _onTap(context, RouteEvent.invasions),
                 selected: state == RouteState.invasions,

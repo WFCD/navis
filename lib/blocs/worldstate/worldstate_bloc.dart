@@ -5,13 +5,14 @@ import 'dart:io';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:intl/intl.dart';
+import 'package:navis/blocs/bloc.dart';
 import 'package:navis/services/storage/cache_storage.service.dart';
 import 'package:navis/services/storage/persistent_storage.service.dart';
 import 'package:navis/utils/worldstate_utils.dart';
 import 'package:rxdart/rxdart.dart';
-import 'package:wfcd_client/clients.dart';
-import 'package:wfcd_client/enums.dart';
-import 'package:worldstate_api_model/models.dart';
+import 'package:warframestat_api_models/models.dart';
+import 'package:wfcd_client/base.dart';
+import 'package:wfcd_client/remotes.dart';
 
 import 'worldstate_events.dart';
 import 'worldstate_states.dart';
@@ -19,7 +20,7 @@ import 'worldstate_states.dart';
 class WorldstateBloc extends HydratedBloc<WorldstateEvent, WorldStates> {
   WorldstateBloc({this.api, this.persistent, this.cache});
 
-  final WorldstateClient api;
+  final WarframestatRemote api;
   final PersistentStorageService persistent;
   final CacheStorageService cache;
 
@@ -29,10 +30,14 @@ class WorldstateBloc extends HydratedBloc<WorldstateEvent, WorldStates> {
   }
 
   @override
-  Stream<WorldStates> transformEvents(Stream<WorldstateEvent> events,
-      Stream<WorldStates> Function(UpdateEvent event) next) {
+  Stream<Transition<WorldstateEvent, WorldStates>> transformEvents(
+    events,
+    transitionFn,
+  ) {
     return super.transformEvents(
-        events.debounceTime(const Duration(milliseconds: 100)), next);
+      events.debounceTime(const Duration(milliseconds: 100)),
+      transitionFn,
+    );
   }
 
   @override
@@ -41,7 +46,7 @@ class WorldstateBloc extends HydratedBloc<WorldstateEvent, WorldStates> {
       final currentLocale = Intl.getCurrentLocale()?.split('_')?.first;
 
       try {
-        final _platform = persistent?.platform ?? Platforms.pc;
+        final _platform = persistent?.platform ?? GamePlatforms.pc;
         final worldstate =
             await api.getWorldstate(_platform, language: currentLocale ?? 'en');
         final cleanWorldstate = cleanState(worldstate);

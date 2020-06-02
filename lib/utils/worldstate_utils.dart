@@ -1,7 +1,6 @@
 import 'package:collection/collection.dart';
 import 'package:intl/intl.dart';
-import 'package:worldstate_api_model/entities.dart';
-import 'package:worldstate_api_model/objects.dart';
+import 'package:warframestat_api_models/warframestat_api_models.dart';
 
 Worldstate cleanState(Worldstate state) {
   state.alerts.removeWhere((a) =>
@@ -17,8 +16,7 @@ Worldstate cleanState(Worldstate state) {
 
   state.persistentEnemies.sort((a, b) => a.agentType.compareTo(b.agentType));
 
-  state.syndicateMissions.retainWhere(
-      (s) => s.name.contains(RegExp('(Ostrons)|(Solaris United)')) == true);
+  state.syndicateMissions.retainWhere((s) => s.jobs?.isNotEmpty ?? false);
 
   state.syndicateMissions.sort((a, b) => a.name.compareTo(b.name));
 

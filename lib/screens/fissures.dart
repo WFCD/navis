@@ -4,7 +4,7 @@ import 'package:navis/blocs/bloc.dart';
 import 'package:navis/utils/worldstate_utils.dart';
 import 'package:navis/widgets/common/list_screen.dart';
 import 'package:navis/widgets/fissures/fissures.dart';
-import 'package:worldstate_api_model/entities.dart';
+import 'package:warframestat_api_models/entities.dart';
 
 class FissureScreen extends StatelessWidget {
   const FissureScreen({Key key}) : super(key: key);
@@ -23,13 +23,10 @@ class FissureScreen extends StatelessWidget {
       builder: (context, state) {
         final fissures = state.worldstate?.fissures ?? <VoidFissure>[];
 
-        return ListScreen<VoidFissure>(
+        return ListScreen(
           state: state,
-          emptyList: 'No Fissures at this time',
-          items: fissures,
-          buildWidget: (BuildContext context, VoidFissure fissure) {
-            return FissureWidget(fissure: fissure);
-          },
+          noItemsText: 'No Fissures at this time',
+          items: fissures.map((f) => FissureWidget(fissure: f)).toList(),
         );
       },
     );

@@ -80,7 +80,7 @@ class _SimpleNotification extends StatelessWidget {
     return WatchBoxBuilder(
       box: persistent.hiveBox,
       builder: (BuildContext context, Box box) {
-        return CheckboxListTile(
+        return SwitchListTile(
           title: Text(name),
           subtitle: Text(description),
           value: persistent.getToggle(optionKey),

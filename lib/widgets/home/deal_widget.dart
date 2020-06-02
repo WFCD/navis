@@ -5,8 +5,7 @@ import 'package:navis/services/repository.dart';
 import 'package:navis/utils/size_config.dart';
 import 'package:navis/utils/helper_utils.dart';
 import 'package:navis/widgets/widgets.dart';
-import 'package:warframe_items_model/warframe_items_model.dart';
-import 'package:worldstate_api_model/entities.dart';
+import 'package:warframestat_api_models/entities.dart';
 
 class DealWidget extends StatelessWidget {
   const DealWidget({Key key, this.deal}) : super(key: key);
@@ -31,6 +30,7 @@ class DealWidget extends StatelessWidget {
           return Column(
             children: <Widget>[
               Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
                   DealImage(imageUrl: item.imageUrl),
                   const SizedBox(width: 16.0),
@@ -40,9 +40,10 @@ class DealWidget extends StatelessWidget {
                   ),
                 ],
               ),
-              const SizedBox(height: 16.0),
+              const SizedBox(height: 8.0),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
                   StaticBox.text(
                     text: '${deal.discount}% Discount',
@@ -148,19 +149,38 @@ class DealImage extends StatelessWidget {
   }
 
   Widget _errorWidget(BuildContext context, String url, Object error) {
-    return const NavisErrorWidget(
-      title: 'Item not found by API',
-      description:
-          'Sorry but it seems the item hasn\'t been added to the API yet.',
-      showStacktrace: false,
+    return Container(
+      margin: const EdgeInsets.all(20),
+      child: Center(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(
+              Icons.error_outline,
+              color: Theme.of(context).errorColor,
+              size: 40,
+            ),
+            const SizedBox(height: 8),
+            Text(
+              'Image not found',
+              style: Theme.of(context).textTheme.headline6,
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(height: 10),
+          ],
+        ),
+      ),
     );
   }
 
   @override
   Widget build(BuildContext context) {
+    final height = SizeConfig.heightMultiplier * 25;
     final width = SizeConfig.widthMultiplier * 40;
 
     return LimitedBox(
+      maxHeight: height,
       maxWidth: width,
       child: CachedNetworkImage(
         imageUrl: imageUrl,

@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:navis/generated/l10n.dart';
 import 'package:navis/screens/nightwaves.dart';
 import 'package:navis/screens/syndicate_bounties.dart';
 import 'package:navis/screens/synth_targets.dart';
 import 'package:navis/utils/size_config.dart';
 import 'package:navis/utils/syndicate_utils.dart';
 import 'package:navis/widgets/widgets.dart';
-import 'package:worldstate_api_model/entities.dart';
+import 'package:warframestat_api_models/entities.dart';
 
 class SyndicateWidget extends StatelessWidget {
   const SyndicateWidget({
     this.name,
-    this.caption = 'Tap to see bounties',
+    this.caption,
     this.syndicate,
-  })  : assert(caption != null),
-        assert(
+  }) : assert(
             name == null || syndicate == null,
             'If name is null then it will default\n'
             'to Syndicate.name instead');
@@ -24,7 +24,7 @@ class SyndicateWidget extends StatelessWidget {
   final Syndicate syndicate;
 
   void onTap(BuildContext context) {
-    final _syndicate = syndicateStringToEnum(name ?? syndicate.name);
+    final _syndicate = syndicateStringToEnum(name ?? syndicate.id);
 
     switch (_syndicate) {
       case SyndicateFactions.nightwave:
@@ -33,12 +33,12 @@ class SyndicateWidget extends StatelessWidget {
       case SyndicateFactions.simaris:
         Navigator.of(context).pushNamed(SynthTargetScreen.route);
         break;
-      case SyndicateFactions.solaris:
+      case SyndicateFactions.solarisSyndicate:
         continue SYNDICATEJOBS;
         break;
 
       SYNDICATEJOBS:
-      case SyndicateFactions.ostrons:
+      case SyndicateFactions.cetusSyndicate:
         Navigator.of(context)
             .pushNamed(SyndicateJobs.route, arguments: syndicate);
         break;
@@ -49,7 +49,7 @@ class SyndicateWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
-    final syndicateName = syndicateStringToEnum(name ?? syndicate.name);
+    final syndicateName = syndicateStringToEnum(name ?? syndicate.id);
 
     final titleStyle = textTheme.subtitle1
         .copyWith(color: Typography.whiteMountainView.subtitle1.color);
@@ -67,7 +67,10 @@ class SyndicateWidget extends StatelessWidget {
         child: ListTile(
           leading: GetSyndicateIcon(syndicate: syndicateName),
           title: Text(name ?? syndicate.name, style: titleStyle),
-          subtitle: Text(caption, style: captionStyle),
+          subtitle: Text(
+            caption ?? NavisLocalizations.of(context).tapForMoreDetails,
+            style: captionStyle,
+          ),
           onTap: () => onTap(context),
         ),
       ),

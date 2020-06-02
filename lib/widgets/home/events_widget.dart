@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:navis/generated/l10n.dart';
 import 'package:navis/utils/size_config.dart';
 import 'package:navis/widgets/widgets.dart';
-import 'package:worldstate_api_model/entities.dart';
+import 'package:warframestat_api_models/entities.dart';
 
 class EventWidget extends StatelessWidget {
   const EventWidget({this.event});
@@ -180,7 +181,7 @@ class _EventFooter extends StatelessWidget {
 
     if (jobs?.isNotEmpty ?? false) {
       return FlatButton(
-        child: const Text('See Bounties'),
+        child: Text(NavisLocalizations.of(context).bountyTitle),
         color: Theme.of(context).primaryColor,
         textColor: Colors.white,
         padding: EdgeInsets.only(

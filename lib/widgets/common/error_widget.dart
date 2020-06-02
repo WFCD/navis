@@ -40,13 +40,14 @@ class NavisErrorWidget extends StatelessWidget {
                 Icon(Icons.error_outline, color: Colors.red, size: 40),
                 const SizedBox(height: 8),
                 Text(
-                  'There was unexpected error in core system.',
+                  title ?? 'There was unexpected error in core system.',
                   style: Theme.of(context).textTheme.headline6,
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 10),
-                const Text(
-                  'Sending error reports for analysis to crashlytics...',
+                Text(
+                  description ??
+                      'Sending error reports for analysis to crashlytics...',
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 10),

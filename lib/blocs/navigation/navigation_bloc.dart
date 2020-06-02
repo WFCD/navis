@@ -1,4 +1,5 @@
 import 'package:hydrated_bloc/hydrated_bloc.dart';
+import 'package:navis/blocs/bloc.dart';
 
 enum RouteEvent { home, fissures, invasions, sortie, syndicates, droptable }
 
@@ -14,9 +15,11 @@ class NavigationBloc extends HydratedBloc<RouteEvent, RouteState> {
   }
 
   @override
-  Stream<RouteState> transformEvents(Stream<RouteEvent> events,
-      Stream<RouteState> Function(RouteEvent event) next) {
-    return super.transformEvents(events.distinct(), next);
+  Stream<Transition<RouteEvent, RouteState>> transformEvents(
+    events,
+    transitionFn,
+  ) {
+    return super.transformEvents(events.distinct(), transitionFn);
   }
 
   RouteState eventToState(RouteEvent event) {
