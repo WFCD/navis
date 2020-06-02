@@ -9,6 +9,7 @@
 .history
 .svn/
 secrets.tar
+.flutter-plugins-dependencies
 
 # IntelliJ related
 *.iml
@@ -73,6 +74,10 @@ android/app/.classpath
 **/ios/Flutter/flutter_assets/
 **/ios/ServiceDefinitions.json
 **/ios/Runner/GeneratedPluginRegistrant.*
+ios/Flutter/flutter_export_environment.sh
+ios/Runner/GoogleService-Info.plist
+ios/Runner.app.dSYM.zip
+ios/Runner.ipa
 
 # Exceptions to above rules.
 !**/ios/**/default.mode1v3
@@ -80,6 +85,3 @@ android/app/.classpath
 !**/ios/**/default.pbxuser
 !**/ios/**/default.perspectivev3
 !/packages/flutter_tools/test/data/dart_dependencies_test/**/.packages
-.flutter-plugins-dependencies
-ios/Flutter/flutter_export_environment.sh
-ios/Runner/GoogleService-Info.plist
