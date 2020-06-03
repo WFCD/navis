@@ -20,11 +20,6 @@ platform :ios do
     get_push_certificate
     sync_code_signing(type: "appstore")
 
-    
-    # Build against latest flutter toolchain first
-    sh("./flutter/bin/flutter", "clean")
-    sh("./flutter/bin/flutter", "build", "ios", "--release")
-
     # This will build again, becasue currently flutter builds an .app
     # instead of a .ipa which isn't good for deployment to App Store
     build_ios_app(scheme: "Runner", export_method: "app-store")
