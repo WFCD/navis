@@ -14,13 +14,12 @@ matrix:
           - build-tools-28.0.3
           - android-28
       before_script:
-        - if [  ! -d "flutter" ] ; then git clone https://github.com/flutter/flutter.git -b
-          1.17.0; fi;
+        - if [  ! -d "flutter" ] ; then git clone https://github.com/flutter/flutter.git
+          -b 1.17.0; fi;
         - export PATH=./flutter/bin:$PATH
       script:
         - flutter pub get
         - flutter test
-
     - env: JOB=APK
       language: android
       jdk: openjdk8
@@ -35,15 +34,15 @@ matrix:
           -in secrets.tar.enc -out secrets.tar -d
       before_script:
         - tar xvf secrets.tar
-        - if [  ! -d "flutter" ] ; then git clone https://github.com/flutter/flutter.git -b
-          1.17.0; fi;
+        - if [  ! -d "flutter" ] ; then git clone https://github.com/flutter/flutter.git
+          -b 1.17.0; fi;
         - export PATH=./flutter/bin:$PATH
       script:
         - flutter pub get
-        - mkdir lib/generated/intl && flutter pub run intl_translation:generate_from_arb --output-dir=lib/generated/intl
-          --no-use-deferred-loading lib/generated/l10n.dart lib/l10n/intl_*.arb
+        - mkdir lib/generated/intl && flutter pub run intl_translation:generate_from_arb
+          --output-dir=lib/generated/intl --no-use-deferred-loading lib/generated/l10n.dart
+          lib/l10n/intl_*.arb
         - flutter build apk --target-platform android-arm
-
     - env: JOB=IPA
       os: osx
       osx_image: xcode11.4
@@ -58,15 +57,17 @@ matrix:
         - brew install ideviceinstaller
         - brew install ios-deploy
         - tar xvf secrets.tar
-        - if [  ! -d "flutter" ] ; then git clone https://github.com/flutter/flutter.git -b
-          1.17.0; fi;
+        - if [  ! -d "flutter" ] ; then git clone https://github.com/flutter/flutter.git
+          -b 1.17.0; fi;
         - export PATH=./flutter/bin:$PATH
+        - bundle install --gemfile=android/Gemfile
       script:
         - flutter pub get
-        - mkdir lib/generated/intl && flutter pub run intl_translation:generate_from_arb --output-dir=lib/generated/intl
-          --no-use-deferred-loading lib/generated/l10n.dart lib/l10n/intl_*.arb
-        - flutter build ios --no-codesign
-
+        - mkdir lib/generated/intl && flutter pub run intl_translation:generate_from_arb
+          --output-dir=lib/generated/intl --no-use-deferred-loading lib/generated/l10n.dart
+          lib/l10n/intl_*.arb
+        - flutter build ios
+        - cd ios && bundle exec fastlane ios beta
     - env: JOB=DEPLOY-ANDROID
       if: tag IS present
       language: android
@@ -88,12 +89,13 @@ matrix:
         - bundle install --gemfile=android/Gemfile
       before_script:
         - tar xvf secrets.tar
-        - if [  ! -d "flutter" ] ; then git clone https://github.com/flutter/flutter.git -b
-          1.17.0; fi;
+        - if [  ! -d "flutter" ] ; then git clone https://github.com/flutter/flutter.git
+          -b 1.17.0; fi;
         - export PATH=./flutter/bin:$PATH
         - flutter pub get
-        - mkdir lib/generated/intl && flutter pub run intl_translation:generate_from_arb --output-dir=lib/generated/intl
-          --no-use-deferred-loading lib/generated/l10n.dart lib/l10n/intl_*.arb
+        - mkdir lib/generated/intl && flutter pub run intl_translation:generate_from_arb
+          --output-dir=lib/generated/intl --no-use-deferred-loading lib/generated/l10n.dart
+          lib/l10n/intl_*.arb
       script:
         - flutter clean
         - flutter build apk --split-per-abi --tree-shake-icons
@@ -110,7 +112,11 @@ matrix:
         on:
           repo: WFCD/navis
           tags: true
-
 cache:
   directories:
-    - $HOME/.pub-cache
+    - "$HOME/.pub-cache"
+env:
+  global:
+    - secure: odoBtXHI6TkWCGqvfWqabObO4gK3sBd/F9AkdtB4nDy5xfhvJnpOqhE3oJmDWoOugQ6BT3rNUEI+i1X6SwNkNZEnxzius9ywBSt8RaJXUfhGAk1JFcImwM/02SeQhadNI3Pr5/JcQTKatJwEBa8i89z6u8ycyokh30a8NZxQ6JkQoCasUfK4eZq6y+WU0bN0wzRcXbfCgZXQeoF4Wvt8Jhhc0UKgN78y/0oYL6g48+kMFGABoabxG4W4M3v3379eZu9cXrANOqUTTJgJCeIUySiGxm6hu2LEdtRSKrfy29kcOS5hj7j6ockT/+WLbfZiY/c2wJCjgRlFGHbDNHSkGZWbAnOQMTPFQ3grnd3Bp/w4YkcHsH9YLD3ri6lr38Xs+2FkQxBi+3tcrAIj+BcqPqL0DoumJ5Jj+j8F9GRGT5U1yMYi3A+uyUmNDNHCoKKBg6jw+WxnpvPaBKZI7Lla/TXjazjlROVloAfsNg4BFecA39ccPOJtouRzRVluSOVzGNeHjr8Wm9jrQR2+LSUXJCZOAIbL0a3vrtmzYNjJW04TX/0m0NUmjb9GOJl+0uqpVQ0a3P+xFjrI5wWEte9WF4C1niog9hak/Sr+qHsPwJtxNWwFv8HC/3ENQGGM+0mnNrHZmYjYZWRdaG8NWAgkcWwoDYEGQk87j+hFz8r/82Q=
+    - secure: lmRo8K0LumQEPVSYUqIzSxqqDE+UYXHJCrvRRmjVSWrq1nrlUJdnur8TVQP0ETu95AyFrUesDNYlFjhBymBP4yim/MqsIJrDXU4TgpxY3G9ZYvO0GKeoaFRGflyh989ZvzaNDf3QWLrRfTxlrk65lMa+nEqSZZNSdg01EaSPc50wZdluz6smFIpqZl+vLBYfjacqdjOjnz0n88YkxzLofcLpX9JJ+P2pfzMYRbG8qnBF4HOAZzFTG4ropmTLX4gSuMeuUO5gedE66LiZN9BEkZprtW5ieH2DGnB0cWHAaWgtRU+cJblwLjp5qcOoRCX3fnO5A9BbqwQlXkQIhCRCDe/cjzQ2NSjf3qjE9IJJ36LY3XjB0QV51c5hY2RlBdI5RzPU/HLzyUG6fN1l6QzdSh4F4UsCK4frOt1uSpgAOybVlMg/XGIJD3le9MFFBe5AUoI+6iiAhtwyxE4Ykha70qUwIxuGpGM1Ka4WJAyBGAkMZkcGnXWwZnzlTXghtNS2gBEyag7z8KMhFesUplKgkLSQK2QnV1vmc5vBsgu53NIqj/b++rHBvI5+Yw62ojNlAa3nF+b4DbIt8Yhgz2nsCfxb8cUzm3+Ol1hWUWeKTa8VDLLavq5LFkrKdzJRbz/O2VbMoNYESOp0CX23//HDAwvlUUJJH4/hJzyYVW3D1ug=
+    - secure: RofbPPFVnNGdXkmDCtD1BAwxKR1OzL7Z4AIW7FihNLI3CGicxxavwOClnDwwbDrK+NfWV1YKBiWT1DjJjtKiOx3vmBacCtikDxnzDpBMSe7gpTs4P01NyiGb+vgwViz+TrZQzExmyCz/Lf917h/Fd198jmCMrIz42ldojd8pcY7d83/Py+xKqYrSz+hPEoi/T9GOgA38cJE8Az5a8X0xmUcm6Wq83DQ3rrDZEZBZIY45NjoMUIzGNKK6QR2DvZQRS18Pz1/tgG1VFgeCt3TSEtxI+zvgKs/hycA0FNrE41uGrQ3JVy/7pu7ioiosO0RVHuWnYVqkvYNhlbpVLeOlUD1Y1KGq5HaX+HoOrknPiukoPhLhqm+H2lFDrmsamf+Ov3mveP3WhvttsAQuBOgCasddwmEKuVgirBZAeDSJL2kDj82QNXXmob+7p5L1F/rZG2dVAZYwWAcVD5Xj7j8Rs5LHOwV9dxvWdtYF81BagN+SEUTZH5M7BhsfOFyInYy4ClVUP4xzwOxWdPCK7DpxoYF8K1E/mlZr+y4dF3w1cOUF0rhhMWwtAPbtpBXa5PewZxh8B4HFMo53NagM8W72EIXoJ2efbPjCrb89Dp+24+NQKacTqf0rmJZMbtAtgv9moTEXMcrVixbfdZsLBH8RT6wh3ZdweaYaGazIT2DwkW8=
