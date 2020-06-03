@@ -22,8 +22,8 @@ platform :ios do
 
     
     # Build against latest flutter toolchain first
-    sh("flutter", "clean")
-    sh("flutter", "build", "ios", "--release")
+    sh("./flutter/bin/flutter", "clean")
+    sh("./flutter/bin/flutter", "build", "ios", "--release")
 
     # This will build again, becasue currently flutter builds an .app
     # instead of a .ipa which isn't good for deployment to App Store
