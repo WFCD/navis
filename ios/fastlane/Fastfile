@@ -9,7 +9,8 @@
 #
 #     https://docs.fastlane.tools/plugins/available-plugins
 #
-setup_travis
+
+# Uncomment the line if you want fastlane to automatically update itself
 update_fastlane
 
 default_platform(:ios)
@@ -19,14 +20,7 @@ platform :ios do
   lane :beta do
     get_push_certificate
     sync_code_signing(type: "appstore")
-
-    # Build against latest flutter toolchain first
-    sh("flutter", "clean")
-    sh("flutter", "build", "ios", "--release")
-
-    # This will build again, becasue currently flutter builds an .app
-    # instead of a .ipa which isn't good for deployment to App Store
-    build_ios_app(scheme: "Runner", export_method: "app-store")
+    build_ios_app(scheme: "Runner")
     upload_to_testflight(skip_waiting_for_build_processing: true)
   end
 end
