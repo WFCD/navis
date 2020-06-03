@@ -76,7 +76,7 @@ matrix:
           --output-dir=lib/generated/intl --no-use-deferred-loading lib/generated/l10n.dart
           lib/l10n/intl_*.arb
         - flutter clean
-        - flutter build ios
+        - flutter build ios --no-codesign
         - cd ios && bundle exec fastlane ios beta
     - env: JOB=DEPLOY-ANDROID
       if: tag IS present
