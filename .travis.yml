@@ -1,14 +1,24 @@
+env:
+  global:
+    - secure: lcrVr6Xw0trnEfJdmG5KavH9yy7Wt6HmcxKSUNQir2lRPpU/5vv/zVuWeyQ8VqoG/wOqOUZZbwcCMT8/Vn0nB7ZL4oOaTCf6nvFqjKlDsCRTopmoJhNBOBXSyPLLL7t6lvWSfUI/o4xG0i0ndhQjEX1doY7brmQcxNhDGCNjr/ap/tkL+JwifTJOaYGs9xYwqR2xcJLWNGdFyKQK1GlEokYdIsFOKxvXLgU0tBj+u1tAO4OBOr42yzlRl5zuN8CB/rznGZXwTLQr+SbWbrU9ysgS6w+QUXK/+gEtTmLVn1PjjolDguruoW7D5e05KcalKvacih/vHoGgsmzzYbgnAGj2z5k8ndGjX9Kj7/jBf3z65kbEuM5u/tbgseIxC6j03Cbh6Ahx/hBT2BfZkhrllmoJxdtqY8lMjk7JiNMs85wKeuGsFZsWnyjAk3HXmQwVrZsSxQB42iyjAo0Kv3ubh5Rt/JDVxzfYDzYzJOmhTcGKG+iZm9SaGGwATH10s2ULSse03rpcgmBNzPBWWv+4j5h59CQr1I1eFAusfFH2mFmLipgMwf+t1mhfmtQ+MsOofw3fuqNJ2dlBTz6cASHpaB5iarSfNIwDqGZncybOJzDpIWnZk4K55zPwJCx5j0DzGCWUAH+3+KkfEN6VfoC1pQof61FaiCgyyQIPYDwuiMc=
+    - secure: "mhmW0q/UKdzRbjqrXV7JEsUvhOG5q1/ccsftIqrUmwkFBV6FxGCY3KoXhu1/EZI/xlucPA8v3ImLPKmh2rrqTmunAkjmmzqlq/1yC8dcO9old+FhHC1UvYEI9mTjwyjyeGVwg5auaCiLCFbOlBN6ia1BlIVRfGMDGWc7CeOYpW0sR7agz2iRKRV/JhrSf3jcIQ0QhdcFbvr+cIK3o5oHi4kpxAX3/MUV8o+OZ2m1V3ajVqEwwCkvwm1B94X1r5j24D5Y9l3dW4lNpCNd1FI1ha5s93dHH26CMfhqF21X20r6gdJihEAXAT/I4FM1RXJSJs1ULKCosYRAb6x7Y7O6O13r/Q5uVbYvLnEhl2enW/iRC/nu2cjnBvHqKObVzbh5ItBabsgprGUMaw8b7+H98LFplLcdVc2XEUC/hQWUu0lHdXzCwT7B0sDHGlp6D6ICbu5sTU3ekQ47RB9diD2qkjQDR7qwW5TnszF5K0nMSWuCGSaTcC2JRklzgFogBY7ZVOKFuqR38EEGuiBJyvb0IrjNhQ97FVzR3V2QJVFVgq52HhU+yy0KdUQ0xlbRpSxyZF5twy7kHe3Bvqqq0bZLkNYGX+kD5hmsdmjC8crYE32dYqKnVSiqshyBVITh7FNuIbgNnLTOiqYn4t7i/8C1wbsbuqte7JCd35PTQoTlytI="
+    - secure: "htn36mYZHlB/GYmNEDjh030n9+pBDCgfKuwEhBBzNZd4gW3yweXw1L0jC189pyhWbtceaDu7grpftwpj0GvTghA3AAkX+JH57YW2RscaM5SRLeL8tdUGVJS4z/xqOLVBerFEZZGlqeZaYo++lAbg0Eyidt8mFbiZRJ2SHNnJXfqlRnVh4EXmHYPKKxLF0MWN434Z72EC09H52zUAT3iFsedXuuyVSaeHL8fcCP225YqyGniwoolS6xzkkGuru/D+54ppB3rprk4fwn/fG63wkzoWvHoqog5b3fKITHWv09DptwP4CuTONp4j/h7BSxv9FNIfn1zIzQGUTSf9uUTJ+PsFyrIWHRjwn8C8jlsOspm9A6XSEZx8VXBpWGHL53ZeUIagou7C9INhNNJrPJ393tkn6/5+BwxfHQeaXvBOG/FSXCHcv09J4koO16wj0rt8IhBRwH4N8fneQApm/Vo2GAORF4k7O/6rHHNaFqlmbXOUlz/tgxeErQIAG9ZUFblT1uZuxeH6rmkn9pOTtKra2R7zNkHRaM3HDRA16BKMpYZ+EX/6CDDFSi1VfWH1mX2UnnOpZApblbtPYdZMwaRYtv8DsQp58HgTvDAA/z6S+Panhy41OA42knXfP1fD8viGv5csC6RDRPtwHKqAyrO9/KWBto0iKh4rUdC2Gk4e++8="
+
+cache:
+  directories:
+    - "$HOME/.pub-cache"
+
 matrix:
   fast_finish: true
   allow_failures:
     - env: JOB=APK
     - env: JOB=IPA
   include:
-    - env: JOB=TEST
-      language: android
-      jdk: openjdk8
-      os: linux
+    - os: linux
       dist: xenial
+      jdk: openjdk8
+      language: android
+      env: JOB=TEST
       android:
         components:
           - build-tools-28.0.3
@@ -20,11 +30,12 @@ matrix:
       script:
         - flutter pub get
         - flutter test
-    - env: JOB=APK
-      language: android
-      jdk: openjdk8
-      os: linux
+
+    - os: linux
       dist: xenial
+      jdk: openjdk8
+      language: android
+      env: JOB=APK
       android:
         components:
           - build-tools-28.0.3
@@ -43,14 +54,11 @@ matrix:
           --output-dir=lib/generated/intl --no-use-deferred-loading lib/generated/l10n.dart
           lib/l10n/intl_*.arb
         - flutter build apk --target-platform android-arm
-    - env:
-        - JOB=IPA
-        - secure: lcrVr6Xw0trnEfJdmG5KavH9yy7Wt6HmcxKSUNQir2lRPpU/5vv/zVuWeyQ8VqoG/wOqOUZZbwcCMT8/Vn0nB7ZL4oOaTCf6nvFqjKlDsCRTopmoJhNBOBXSyPLLL7t6lvWSfUI/o4xG0i0ndhQjEX1doY7brmQcxNhDGCNjr/ap/tkL+JwifTJOaYGs9xYwqR2xcJLWNGdFyKQK1GlEokYdIsFOKxvXLgU0tBj+u1tAO4OBOr42yzlRl5zuN8CB/rznGZXwTLQr+SbWbrU9ysgS6w+QUXK/+gEtTmLVn1PjjolDguruoW7D5e05KcalKvacih/vHoGgsmzzYbgnAGj2z5k8ndGjX9Kj7/jBf3z65kbEuM5u/tbgseIxC6j03Cbh6Ahx/hBT2BfZkhrllmoJxdtqY8lMjk7JiNMs85wKeuGsFZsWnyjAk3HXmQwVrZsSxQB42iyjAo0Kv3ubh5Rt/JDVxzfYDzYzJOmhTcGKG+iZm9SaGGwATH10s2ULSse03rpcgmBNzPBWWv+4j5h59CQr1I1eFAusfFH2mFmLipgMwf+t1mhfmtQ+MsOofw3fuqNJ2dlBTz6cASHpaB5iarSfNIwDqGZncybOJzDpIWnZk4K55zPwJCx5j0DzGCWUAH+3+KkfEN6VfoC1pQof61FaiCgyyQIPYDwuiMc=
-        - secure: "mhmW0q/UKdzRbjqrXV7JEsUvhOG5q1/ccsftIqrUmwkFBV6FxGCY3KoXhu1/EZI/xlucPA8v3ImLPKmh2rrqTmunAkjmmzqlq/1yC8dcO9old+FhHC1UvYEI9mTjwyjyeGVwg5auaCiLCFbOlBN6ia1BlIVRfGMDGWc7CeOYpW0sR7agz2iRKRV/JhrSf3jcIQ0QhdcFbvr+cIK3o5oHi4kpxAX3/MUV8o+OZ2m1V3ajVqEwwCkvwm1B94X1r5j24D5Y9l3dW4lNpCNd1FI1ha5s93dHH26CMfhqF21X20r6gdJihEAXAT/I4FM1RXJSJs1ULKCosYRAb6x7Y7O6O13r/Q5uVbYvLnEhl2enW/iRC/nu2cjnBvHqKObVzbh5ItBabsgprGUMaw8b7+H98LFplLcdVc2XEUC/hQWUu0lHdXzCwT7B0sDHGlp6D6ICbu5sTU3ekQ47RB9diD2qkjQDR7qwW5TnszF5K0nMSWuCGSaTcC2JRklzgFogBY7ZVOKFuqR38EEGuiBJyvb0IrjNhQ97FVzR3V2QJVFVgq52HhU+yy0KdUQ0xlbRpSxyZF5twy7kHe3Bvqqq0bZLkNYGX+kD5hmsdmjC8crYE32dYqKnVSiqshyBVITh7FNuIbgNnLTOiqYn4t7i/8C1wbsbuqte7JCd35PTQoTlytI="
-        - secure: "htn36mYZHlB/GYmNEDjh030n9+pBDCgfKuwEhBBzNZd4gW3yweXw1L0jC189pyhWbtceaDu7grpftwpj0GvTghA3AAkX+JH57YW2RscaM5SRLeL8tdUGVJS4z/xqOLVBerFEZZGlqeZaYo++lAbg0Eyidt8mFbiZRJ2SHNnJXfqlRnVh4EXmHYPKKxLF0MWN434Z72EC09H52zUAT3iFsedXuuyVSaeHL8fcCP225YqyGniwoolS6xzkkGuru/D+54ppB3rprk4fwn/fG63wkzoWvHoqog5b3fKITHWv09DptwP4CuTONp4j/h7BSxv9FNIfn1zIzQGUTSf9uUTJ+PsFyrIWHRjwn8C8jlsOspm9A6XSEZx8VXBpWGHL53ZeUIagou7C9INhNNJrPJ393tkn6/5+BwxfHQeaXvBOG/FSXCHcv09J4koO16wj0rt8IhBRwH4N8fneQApm/Vo2GAORF4k7O/6rHHNaFqlmbXOUlz/tgxeErQIAG9ZUFblT1uZuxeH6rmkn9pOTtKra2R7zNkHRaM3HDRA16BKMpYZ+EX/6CDDFSi1VfWH1mX2UnnOpZApblbtPYdZMwaRYtv8DsQp58HgTvDAA/z6S+Panhy41OA42knXfP1fD8viGv5csC6RDRPtwHKqAyrO9/KWBto0iKh4rUdC2Gk4e++8="
-      os: osx
+
+    - os: osx
       osx_image: xcode11.5
       language: swift
+      env: JOB=IPA
       before_install:
         - openssl aes-256-cbc -K $encrypted_3b9f0b9d36d1_key -iv $encrypted_3b9f0b9d36d1_iv
           -in secrets.tar.enc -out secrets.tar -d
@@ -72,6 +80,7 @@ matrix:
           --output-dir=lib/generated/intl --no-use-deferred-loading lib/generated/l10n.dart
           lib/l10n/intl_*.arb
         - cd ios && bundle exec fastlane ios beta
+
     - env: JOB=DEPLOY-ANDROID
       if: tag IS present
       language: android
@@ -116,6 +125,3 @@ matrix:
         on:
           repo: WFCD/navis
           tags: true
-cache:
-  directories:
-    - "$HOME/.pub-cache"
