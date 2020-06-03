@@ -60,7 +60,7 @@ matrix:
         - if [  ! -d "flutter" ] ; then git clone https://github.com/flutter/flutter.git
           -b 1.17.0; fi;
         - export PATH=./flutter/bin:$PATH
-        - bundle install --gemfile=android/Gemfile
+        - bundle install --gemfile=ios/Gemfile
       script:
         - flutter pub get
         - mkdir lib/generated/intl && flutter pub run intl_translation:generate_from_arb
