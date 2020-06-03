@@ -43,13 +43,19 @@ matrix:
           --output-dir=lib/generated/intl --no-use-deferred-loading lib/generated/l10n.dart
           lib/l10n/intl_*.arb
         - flutter build apk --target-platform android-arm
-    - env: JOB=IPA
+    - env:
+        - JOB=IPA
+        - secure: lcrVr6Xw0trnEfJdmG5KavH9yy7Wt6HmcxKSUNQir2lRPpU/5vv/zVuWeyQ8VqoG/wOqOUZZbwcCMT8/Vn0nB7ZL4oOaTCf6nvFqjKlDsCRTopmoJhNBOBXSyPLLL7t6lvWSfUI/o4xG0i0ndhQjEX1doY7brmQcxNhDGCNjr/ap/tkL+JwifTJOaYGs9xYwqR2xcJLWNGdFyKQK1GlEokYdIsFOKxvXLgU0tBj+u1tAO4OBOr42yzlRl5zuN8CB/rznGZXwTLQr+SbWbrU9ysgS6w+QUXK/+gEtTmLVn1PjjolDguruoW7D5e05KcalKvacih/vHoGgsmzzYbgnAGj2z5k8ndGjX9Kj7/jBf3z65kbEuM5u/tbgseIxC6j03Cbh6Ahx/hBT2BfZkhrllmoJxdtqY8lMjk7JiNMs85wKeuGsFZsWnyjAk3HXmQwVrZsSxQB42iyjAo0Kv3ubh5Rt/JDVxzfYDzYzJOmhTcGKG+iZm9SaGGwATH10s2ULSse03rpcgmBNzPBWWv+4j5h59CQr1I1eFAusfFH2mFmLipgMwf+t1mhfmtQ+MsOofw3fuqNJ2dlBTz6cASHpaB5iarSfNIwDqGZncybOJzDpIWnZk4K55zPwJCx5j0DzGCWUAH+3+KkfEN6VfoC1pQof61FaiCgyyQIPYDwuiMc=
+        - secure: "mhmW0q/UKdzRbjqrXV7JEsUvhOG5q1/ccsftIqrUmwkFBV6FxGCY3KoXhu1/EZI/xlucPA8v3ImLPKmh2rrqTmunAkjmmzqlq/1yC8dcO9old+FhHC1UvYEI9mTjwyjyeGVwg5auaCiLCFbOlBN6ia1BlIVRfGMDGWc7CeOYpW0sR7agz2iRKRV/JhrSf3jcIQ0QhdcFbvr+cIK3o5oHi4kpxAX3/MUV8o+OZ2m1V3ajVqEwwCkvwm1B94X1r5j24D5Y9l3dW4lNpCNd1FI1ha5s93dHH26CMfhqF21X20r6gdJihEAXAT/I4FM1RXJSJs1ULKCosYRAb6x7Y7O6O13r/Q5uVbYvLnEhl2enW/iRC/nu2cjnBvHqKObVzbh5ItBabsgprGUMaw8b7+H98LFplLcdVc2XEUC/hQWUu0lHdXzCwT7B0sDHGlp6D6ICbu5sTU3ekQ47RB9diD2qkjQDR7qwW5TnszF5K0nMSWuCGSaTcC2JRklzgFogBY7ZVOKFuqR38EEGuiBJyvb0IrjNhQ97FVzR3V2QJVFVgq52HhU+yy0KdUQ0xlbRpSxyZF5twy7kHe3Bvqqq0bZLkNYGX+kD5hmsdmjC8crYE32dYqKnVSiqshyBVITh7FNuIbgNnLTOiqYn4t7i/8C1wbsbuqte7JCd35PTQoTlytI="
+        - secure: "htn36mYZHlB/GYmNEDjh030n9+pBDCgfKuwEhBBzNZd4gW3yweXw1L0jC189pyhWbtceaDu7grpftwpj0GvTghA3AAkX+JH57YW2RscaM5SRLeL8tdUGVJS4z/xqOLVBerFEZZGlqeZaYo++lAbg0Eyidt8mFbiZRJ2SHNnJXfqlRnVh4EXmHYPKKxLF0MWN434Z72EC09H52zUAT3iFsedXuuyVSaeHL8fcCP225YqyGniwoolS6xzkkGuru/D+54ppB3rprk4fwn/fG63wkzoWvHoqog5b3fKITHWv09DptwP4CuTONp4j/h7BSxv9FNIfn1zIzQGUTSf9uUTJ+PsFyrIWHRjwn8C8jlsOspm9A6XSEZx8VXBpWGHL53ZeUIagou7C9INhNNJrPJ393tkn6/5+BwxfHQeaXvBOG/FSXCHcv09J4koO16wj0rt8IhBRwH4N8fneQApm/Vo2GAORF4k7O/6rHHNaFqlmbXOUlz/tgxeErQIAG9ZUFblT1uZuxeH6rmkn9pOTtKra2R7zNkHRaM3HDRA16BKMpYZ+EX/6CDDFSi1VfWH1mX2UnnOpZApblbtPYdZMwaRYtv8DsQp58HgTvDAA/z6S+Panhy41OA42knXfP1fD8viGv5csC6RDRPtwHKqAyrO9/KWBto0iKh4rUdC2Gk4e++8="
       os: osx
-      osx_image: xcode11.4
-      language: generic
+      osx_image: xcode11.5
+      language: swift
       before_install:
         - openssl aes-256-cbc -K $encrypted_3b9f0b9d36d1_key -iv $encrypted_3b9f0b9d36d1_iv
           -in secrets.tar.enc -out secrets.tar -d
+        - echo -e "machine github.com\n  login $GIT_TOKEN" >> ~/.netrc
+        - bundle install --gemfile=ios/Gemfile
       before_script:
         - pip install six
         - brew update
@@ -60,7 +66,6 @@ matrix:
         - if [  ! -d "flutter" ] ; then git clone https://github.com/flutter/flutter.git
           -b 1.17.0; fi;
         - export PATH=./flutter/bin:$PATH
-        - bundle install --gemfile=ios/Gemfile
       script:
         - flutter pub get
         - mkdir lib/generated/intl && flutter pub run intl_translation:generate_from_arb
@@ -114,8 +119,3 @@ matrix:
 cache:
   directories:
     - "$HOME/.pub-cache"
-env:
-  global:
-    - secure: odoBtXHI6TkWCGqvfWqabObO4gK3sBd/F9AkdtB4nDy5xfhvJnpOqhE3oJmDWoOugQ6BT3rNUEI+i1X6SwNkNZEnxzius9ywBSt8RaJXUfhGAk1JFcImwM/02SeQhadNI3Pr5/JcQTKatJwEBa8i89z6u8ycyokh30a8NZxQ6JkQoCasUfK4eZq6y+WU0bN0wzRcXbfCgZXQeoF4Wvt8Jhhc0UKgN78y/0oYL6g48+kMFGABoabxG4W4M3v3379eZu9cXrANOqUTTJgJCeIUySiGxm6hu2LEdtRSKrfy29kcOS5hj7j6ockT/+WLbfZiY/c2wJCjgRlFGHbDNHSkGZWbAnOQMTPFQ3grnd3Bp/w4YkcHsH9YLD3ri6lr38Xs+2FkQxBi+3tcrAIj+BcqPqL0DoumJ5Jj+j8F9GRGT5U1yMYi3A+uyUmNDNHCoKKBg6jw+WxnpvPaBKZI7Lla/TXjazjlROVloAfsNg4BFecA39ccPOJtouRzRVluSOVzGNeHjr8Wm9jrQR2+LSUXJCZOAIbL0a3vrtmzYNjJW04TX/0m0NUmjb9GOJl+0uqpVQ0a3P+xFjrI5wWEte9WF4C1niog9hak/Sr+qHsPwJtxNWwFv8HC/3ENQGGM+0mnNrHZmYjYZWRdaG8NWAgkcWwoDYEGQk87j+hFz8r/82Q=
-    - secure: lmRo8K0LumQEPVSYUqIzSxqqDE+UYXHJCrvRRmjVSWrq1nrlUJdnur8TVQP0ETu95AyFrUesDNYlFjhBymBP4yim/MqsIJrDXU4TgpxY3G9ZYvO0GKeoaFRGflyh989ZvzaNDf3QWLrRfTxlrk65lMa+nEqSZZNSdg01EaSPc50wZdluz6smFIpqZl+vLBYfjacqdjOjnz0n88YkxzLofcLpX9JJ+P2pfzMYRbG8qnBF4HOAZzFTG4ropmTLX4gSuMeuUO5gedE66LiZN9BEkZprtW5ieH2DGnB0cWHAaWgtRU+cJblwLjp5qcOoRCX3fnO5A9BbqwQlXkQIhCRCDe/cjzQ2NSjf3qjE9IJJ36LY3XjB0QV51c5hY2RlBdI5RzPU/HLzyUG6fN1l6QzdSh4F4UsCK4frOt1uSpgAOybVlMg/XGIJD3le9MFFBe5AUoI+6iiAhtwyxE4Ykha70qUwIxuGpGM1Ka4WJAyBGAkMZkcGnXWwZnzlTXghtNS2gBEyag7z8KMhFesUplKgkLSQK2QnV1vmc5vBsgu53NIqj/b++rHBvI5+Yw62ojNlAa3nF+b4DbIt8Yhgz2nsCfxb8cUzm3+Ol1hWUWeKTa8VDLLavq5LFkrKdzJRbz/O2VbMoNYESOp0CX23//HDAwvlUUJJH4/hJzyYVW3D1ug=
-    - secure: RofbPPFVnNGdXkmDCtD1BAwxKR1OzL7Z4AIW7FihNLI3CGicxxavwOClnDwwbDrK+NfWV1YKBiWT1DjJjtKiOx3vmBacCtikDxnzDpBMSe7gpTs4P01NyiGb+vgwViz+TrZQzExmyCz/Lf917h/Fd198jmCMrIz42ldojd8pcY7d83/Py+xKqYrSz+hPEoi/T9GOgA38cJE8Az5a8X0xmUcm6Wq83DQ3rrDZEZBZIY45NjoMUIzGNKK6QR2DvZQRS18Pz1/tgG1VFgeCt3TSEtxI+zvgKs/hycA0FNrE41uGrQ3JVy/7pu7ioiosO0RVHuWnYVqkvYNhlbpVLeOlUD1Y1KGq5HaX+HoOrknPiukoPhLhqm+H2lFDrmsamf+Ov3mveP3WhvttsAQuBOgCasddwmEKuVgirBZAeDSJL2kDj82QNXXmob+7p5L1F/rZG2dVAZYwWAcVD5Xj7j8Rs5LHOwV9dxvWdtYF81BagN+SEUTZH5M7BhsfOFyInYy4ClVUP4xzwOxWdPCK7DpxoYF8K1E/mlZr+y4dF3w1cOUF0rhhMWwtAPbtpBXa5PewZxh8B4HFMo53NagM8W72EIXoJ2efbPjCrb89Dp+24+NQKacTqf0rmJZMbtAtgv9moTEXMcrVixbfdZsLBH8RT6wh3ZdweaYaGazIT2DwkW8=
