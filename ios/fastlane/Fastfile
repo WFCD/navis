@@ -17,8 +17,8 @@ default_platform(:ios)
 platform :ios do
   desc "Push a new beta build to TestFlight"
   lane :beta do
+    sync_code_signing(type: "development")
     get_push_certificate
-    sync_code_signing(type: "appstore")
 
     # This will build again, becasue currently flutter builds an .app
     # instead of a .ipa which isn't good for deployment to App Store
