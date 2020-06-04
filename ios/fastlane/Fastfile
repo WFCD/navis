@@ -22,7 +22,7 @@ platform :ios do
 
     # This will build again, becasue currently flutter builds an .app
     # instead of a .ipa which isn't good for deployment to App Store
-    build_ios_app(scheme: "Runner", export_method: "app-store")
+    build_ios_app(scheme: "Runner", export_method: "development")
     upload_to_testflight(skip_waiting_for_build_processing: true)
   end
 end
