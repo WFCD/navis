@@ -192,13 +192,13 @@
         "type": "text",
         "placeholders": {}
     },
-    "formorianTitle": "Formorian",
+    "formorianTitle": "巨人战舰",
     "@formorianTitle": {
         "description": "Fomorian progress title",
         "type": "text",
         "placeholders": {}
     },
-    "razorbackTitle": "Razerback",
+    "razorbackTitle": "利刃豺狼",
     "@razorbackTitle": {
         "description": "Razorback progress title",
         "type": "text",
