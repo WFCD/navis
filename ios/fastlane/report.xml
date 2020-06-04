@@ -5,32 +5,17 @@
     
     
       
-      <testcase classname="fastlane.lanes" name="0: setup_travis" time="0.001228">
+      <testcase classname="fastlane.lanes" name="0: setup_travis" time="0.001322">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="1: update_fastlane" time="0.228157">
+      <testcase classname="fastlane.lanes" name="1: update_fastlane" time="0.108003">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="2: default_platform" time="0.00032">
-        
-      </testcase>
-    
-      
-      <testcase classname="fastlane.lanes" name="3: get_push_certificate" time="1.545943">
-        
-      </testcase>
-    
-      
-      <testcase classname="fastlane.lanes" name="4: sync_code_signing" time="3.612972">
-        
-      </testcase>
-    
-      
-      <testcase classname="fastlane.lanes" name="5: build_ios_app" time="7.891858">
+      <testcase classname="fastlane.lanes" name="2: default_platform" time="0.000231">
         
       </testcase>
     

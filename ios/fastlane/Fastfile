@@ -18,12 +18,12 @@ platform :ios do
   desc "Push a new beta build to TestFlight"
   lane :beta do
     begin
-      sync_code_signing(type: "development")
-      get_push_certificate(development: true)
+      sync_code_signing(type: "appstore")
+      get_push_certificate
 
       # This will build again, becasue currently flutter builds an .app
       # instead of a .ipa which isn't good for deployment to App Store
-      build_ios_app(scheme: "Runner", export_method: "development")
+      build_ios_app(scheme: "Runner", export_method: "app-store")
       upload_to_testflight(skip_waiting_for_build_processing: true)
     rescue => exception
       raise exception unless exception.message.include?('')
