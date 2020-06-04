@@ -77,3 +77,4 @@ flutter_intl:
 flutter_native_splash:
   image: assets/nightmare.png
   color: "FFFFFF"
+  android: false
