@@ -9,9 +9,6 @@ cache:
     - "$HOME/.pub-cache"
 matrix:
   fast_finish: true
-  allow_failures:
-    - env: JOB=APK
-    - env: JOB=IPA
   include:
     - os: linux
       dist: xenial
@@ -59,8 +56,6 @@ matrix:
       before_install:
         - openssl aes-256-cbc -K $encrypted_3b9f0b9d36d1_key -iv $encrypted_3b9f0b9d36d1_iv
           -in secrets.tar.enc -out secrets.tar -d
-        - echo -e "machine github.com\n  login $GIT_TOKEN" >> ~/.netrc
-        - bundle install --gemfile=ios/Gemfile
       before_script:
         - pip install six
         - brew update
@@ -76,9 +71,7 @@ matrix:
         - mkdir lib/generated/intl && flutter pub run intl_translation:generate_from_arb
           --output-dir=lib/generated/intl --no-use-deferred-loading lib/generated/l10n.dart
           lib/l10n/intl_*.arb
-        - flutter clean
         - travis_wait flutter build ios --no-codesign
-        - cd ios && bundle exec fastlane ios beta
     - env: JOB=DEPLOY-ANDROID
       if: tag IS present
       language: android
@@ -123,3 +116,30 @@ matrix:
         on:
           repo: WFCD/navis
           tags: true
+    - os: osx
+      osx_image: xcode11.5
+      language: swift
+      env: JOB=DEPLOY-iOS
+      before_install:
+        - openssl aes-256-cbc -K $encrypted_3b9f0b9d36d1_key -iv $encrypted_3b9f0b9d36d1_iv
+          -in secrets.tar.enc -out secrets.tar -d
+        - echo -e "machine github.com\n  login $GIT_TOKEN" >> ~/.netrc
+        - bundle install --gemfile=ios/Gemfile
+      before_script:
+        - pip install six
+        - brew update
+        - brew install libimobiledevice
+        - brew install ideviceinstaller
+        - brew install ios-deploy
+        - tar xvf secrets.tar
+        - if [  ! -d "flutter" ] ; then git clone https://github.com/flutter/flutter.git
+          -b 1.17.0; fi;
+        - export PATH=./flutter/bin:$PATH
+      script:
+        - flutter pub get
+        - mkdir lib/generated/intl && flutter pub run intl_translation:generate_from_arb
+          --output-dir=lib/generated/intl --no-use-deferred-loading lib/generated/l10n.dart
+          lib/l10n/intl_*.arb
+        - flutter clean
+        - travis_wait flutter build ios --no-codesign
+        - cd ios && bundle exec fastlane ios beta
