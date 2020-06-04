@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:navis/services/repository.dart';
 import 'package:navis/utils/search_utils.dart';
@@ -53,8 +54,9 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
 
             yield SearchStateSuccess<BaseItem>(results);
           }
-        } catch (e) {
-          yield SearchStateError(e.toString());
+        } catch (exception, stack) {
+          Crashlytics.instance.recordError(exception, stack);
+          yield SearchStateError(exception.toString());
         }
       }
     }
