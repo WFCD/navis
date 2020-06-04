@@ -52,7 +52,7 @@ class _MainScreenState extends State<MainScreen> {
       onWillPop: _willPop,
       child: Scaffold(
         key: appScaffold,
-        appBar: AppBar(title: const Text('Navis')),
+        appBar: AppBar(title: const Text('')),
         drawer: const LotusDrawer(),
         body: const ScaffoldListenerWidget(
           child: ScaffoldBody(),

@@ -2,6 +2,8 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:navis/app.dart';
@@ -15,6 +17,8 @@ void main() {
   FlutterError.onError = Crashlytics.instance.recordFlutterError;
 
   runZonedGuarded(startApp, Crashlytics.instance.recordError);
+
+  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(statusBarColor: Colors.transparent));
 }
 
 Future<void> startApp() async {
