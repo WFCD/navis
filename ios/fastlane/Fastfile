@@ -17,12 +17,17 @@ default_platform(:ios)
 platform :ios do
   desc "Push a new beta build to TestFlight"
   lane :beta do
-    sync_code_signing(type: "development")
-    get_push_certificate
+    begin
+      sync_code_signing(type: "development")
+      get_push_certificate(development: true)
 
-    # This will build again, becasue currently flutter builds an .app
-    # instead of a .ipa which isn't good for deployment to App Store
-    build_ios_app(scheme: "Runner", export_method: "development")
-    upload_to_testflight(skip_waiting_for_build_processing: true)
+      # This will build again, becasue currently flutter builds an .app
+      # instead of a .ipa which isn't good for deployment to App Store
+      build_ios_app(scheme: "Runner", export_method: "development")
+      upload_to_testflight(skip_waiting_for_build_processing: true)
+    rescue => exception
+      raise exception unless exception.message.include?('')
+      puts 'Current version already present. Omitting this upload'
+    end
   end
 end
