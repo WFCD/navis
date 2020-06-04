@@ -13,34 +13,32 @@ class SyndicateJobs extends StatelessWidget {
   Widget build(BuildContext context) {
     final Syndicate syndicate = ModalRoute.of(context).settings.arguments;
 
-    return SafeArea(
-      child: Scaffold(
-          appBar: AppBar(
-            title: Text(syndicate.name),
-            titleSpacing: 0.0,
-            backgroundColor:
-                syndicateBackgroundColor(syndicateStringToEnum(syndicate.id)),
-          ),
-          // ignore: prefer_const_constructors
-          body: CustomScrollView(
-            slivers: <Widget>[
-              for (Job job in syndicate?.jobs ?? [])
-                SliverStickyHeader(
-                  header: SyndicateBounty(
-                    job: job,
-                    faction: syndicateStringToEnum(syndicate.id),
-                  ),
-                  sliver: SliverList(
-                    delegate: SliverChildBuilderDelegate(
-                      (BuildContext context, int index) {
-                        return ListTile(title: Text(job.rewardPool[index]));
-                      },
-                      childCount: job.rewardPool.length,
-                    ),
-                  ),
-                )
-            ],
-          )),
-    );
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(syndicate.name),
+        titleSpacing: 0.0,
+        backgroundColor:
+            syndicateBackgroundColor(syndicateStringToEnum(syndicate.id)),
+      ),
+      // ignore: prefer_const_constructors
+      body: CustomScrollView(
+        slivers: <Widget>[
+          for (Job job in syndicate?.jobs ?? [])
+            SliverStickyHeader(
+              header: SyndicateBounty(
+                job: job,
+                faction: syndicateStringToEnum(syndicate.id),
+              ),
+              sliver: SliverList(
+                delegate: SliverChildBuilderDelegate(
+                  (BuildContext context, int index) {
+                    return ListTile(title: Text(job.rewardPool[index]));
+                  },
+                  childCount: job.rewardPool.length,
+                ),
+              ),
+            )
+        ],
+      ));
   }
 }
