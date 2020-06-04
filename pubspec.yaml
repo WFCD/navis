@@ -75,5 +75,5 @@ flutter_intl:
   class_name: NavisLocalizations
 
 flutter_native_splash:
-  image: assets/navis_icon.png
+  image: assets/nightmare.png
   color: "FFFFFF"
