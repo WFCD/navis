@@ -71,7 +71,7 @@ matrix:
         - mkdir lib/generated/intl && flutter pub run intl_translation:generate_from_arb
           --output-dir=lib/generated/intl --no-use-deferred-loading lib/generated/l10n.dart
           lib/l10n/intl_*.arb
-        - travis_wait flutter build ios --no-codesign
+        - travis_wait 30 flutter build ios --no-codesign
     - env: JOB=DEPLOY-ANDROID
       if: tag IS present
       language: android
@@ -137,7 +137,7 @@ matrix:
           --output-dir=lib/generated/intl --no-use-deferred-loading lib/generated/l10n.dart
           lib/l10n/intl_*.arb
         - flutter clean
-        - travis_wait flutter build ios --no-codesign
+        - travis_wait 30 flutter build ios --no-codesign
         - cd ios && bundle exec fastlane ios beta
       deploy:
         provider: releases
