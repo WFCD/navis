@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:navis/widgets/common/fa_icon.dart';
 import 'package:navis/widgets/icons.dart';
 
 class GetTierIcon extends StatelessWidget {
@@ -28,6 +29,6 @@ class GetTierIcon extends StatelessWidget {
         icon = RelicIcons.requiem;
     }
 
-    return Icon(icon, size: 50);
+    return FaIcon(icon, size: 50);
   }
 }

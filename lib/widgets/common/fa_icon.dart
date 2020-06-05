@@ -1,7 +1,9 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 
-// Borrowed from FontAwsome package
+// So I borrowed this from the Font_Awsome package, becauase of the docs you
+// see below as I didn't want to add the whole package for one or two icons
+// the icons that will mainly use this are one like simiras
 
 /// Creates an Icon Widget that works for non-material Icons, such as the
 /// Font Awesome Icons.
