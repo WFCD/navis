@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:navis/blocs/bloc.dart';
 import 'package:navis/widgets/syndicates/syndicates.dart';
 import 'package:navis/widgets/widgets.dart';
-import 'package:worldstate_api_model/entities.dart';
+import 'package:warframestat_api_models/entities.dart';
 
 class SyndicatesList extends StatelessWidget {
   Widget _buildSyndicates(List<Syndicate> syndicates) {

@@ -1,25 +1,39 @@
 import 'dart:io';
 
 import 'package:bloc/bloc.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hive/hive.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
+import 'package:mockito/mockito.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:path_provider_platform_interface/path_provider_platform_interface.dart';
+import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
 Future<void> mockSetup() async {
   TestWidgetsFlutterBinding.ensureInitialized();
 
   final directory = await Directory.systemTemp.createTemp();
 
-  const MethodChannel('plugins.flutter.io/path_provider')
-      .setMockMethodCallHandler((MethodCall methodCall) async {
-    if (methodCall.method == 'getApplicationDocumentsDirectory' ||
-        methodCall.method == 'getTemporaryDirectory') {
-      return directory.path;
-    }
-    return null;
-  });
+  PathProviderPlatform.instance = MockPathProviderPlatform();
+
+  disablePathProviderPlatformOverride = true;
 
   BlocSupervisor.delegate = await HydratedBlocDelegate.build();
   Hive.init(directory.path);
+}
+
+class MockPathProviderPlatform extends Mock
+    with MockPlatformInterfaceMixin
+    implements PathProviderPlatform {
+  @override
+  Future<String> getApplicationDocumentsPath() => _testDirectory();
+
+  @override
+  Future<String> getTemporaryPath() => _testDirectory();
+
+  Future<String> _testDirectory() async {
+    final directory = await Directory.systemTemp.createTemp();
+
+    return directory.path;
+  }
 }

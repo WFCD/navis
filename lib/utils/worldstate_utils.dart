@@ -1,7 +1,6 @@
 import 'package:collection/collection.dart';
 import 'package:intl/intl.dart';
-import 'package:worldstate_api_model/entities.dart';
-import 'package:worldstate_api_model/objects.dart';
+import 'package:warframestat_api_models/warframestat_api_models.dart';
 
 Worldstate cleanState(Worldstate state) {
   state.alerts.removeWhere((a) =>
