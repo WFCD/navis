@@ -16,6 +16,11 @@ default_platform(:android)
 platform :android do
   desc 'Push the built release to Google Play beta track'
   lane :beta do
+    tag_name = ENV["TRAVIS_TAG"]
+    directory = "#{ENV["TRAVIS_BUILD_DIR"]}/build/app/outputs/apk/release"
+
+    analyze_commits(match: tag_name)
+
     begin
       upload_to_play_store(
         track: 'beta',
@@ -23,6 +28,16 @@ platform :android do
         json_key: 'app/fastlane.json',
         skip_upload_screenshots: true,
         skip_upload_images: true
+      )
+
+      set_github_release(
+        repository_name: 'WFCD/navis',
+        api_token: ENV["GIT_TOKEN"],
+        name: tag_name,
+        tag_name: tag_name,
+        description: "#{conventional_changelog}",
+        commitish: 'stable',
+        upload_assets: ["#{directory}/app-arm64-v8a-release.apk", "#{directory}/app-armeabi-v7a-release.apk", "#{directory}/app-x86_64-release.apk"]
       )
     rescue => exception
       raise exception unless exception.message.include?('apkNotificationMessageKeyUpgradeVersionConflict')
