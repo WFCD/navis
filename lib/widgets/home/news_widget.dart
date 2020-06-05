@@ -70,7 +70,7 @@ class NewsWidget extends StatelessWidget {
                     style: Theme.of(context)
                         .textTheme
                         .headline6
-                        .copyWith(color: Colors.white, fontSize: 15),
+                        .copyWith(color: Colors.white, fontSize: 14),
                   ),
                 ],
               ),
