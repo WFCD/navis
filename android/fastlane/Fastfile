@@ -8,14 +8,11 @@
 # For a list of all available plugins, check out
 #
 #     https://docs.fastlane.tools/plugins/available-plugins
-setuo_travis
+setup_travis
 update_fastlane
 
 default_platform(:android)
 
-# This should be run after running
-# flutter build apk --release
-# to build the app using the Flutter toolchain.
 platform :android do
   desc 'Push the built release to Google Play beta track'
   lane :beta do
