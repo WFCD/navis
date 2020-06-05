@@ -26,7 +26,7 @@ platform :ios do
       build_ios_app(scheme: "Runner", export_method: "app-store")
       upload_to_testflight(skip_waiting_for_build_processing: true)
     rescue => exception
-      raise exception unless exception.message.include?('ITMS-90189')
+      raise exception unless exception.message.include?('Error uploading ipa file')
       puts 'Current version already present. Omitting this upload'
     end
   end
