@@ -33,7 +33,7 @@ class NavisTheming {
     appBarTheme: _appBarTheme,
   );
 
-  static final _appBarTheme = AppBarTheme(color: primary);
+  static const _appBarTheme = AppBarTheme(color: primary);
 
   static final _cardTheme = CardTheme(
     elevation: 6.0,
