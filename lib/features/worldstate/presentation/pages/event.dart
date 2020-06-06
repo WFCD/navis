@@ -19,44 +19,42 @@ class EventInformation extends StatelessWidget {
     final event = ModalRoute.of(context).settings.arguments as Event;
     final eventInfo = sl<EventInfoParser>().eventInfo[event.description];
 
-    return SafeArea(
-      child: Scaffold(
-        body: CustomScrollView(slivers: <Widget>[
-          SliverAppBar(
-            pinned: true,
-            expandedHeight: 150.0,
-            backgroundColor: Theme.of(context).canvasColor,
-            flexibleSpace: FlexibleSpaceBar(
-              title: Text(event.description),
-              background: CachedNetworkImage(
-                imageUrl: eventInfo?.keyArt ?? _backup,
-                fit: BoxFit.cover,
-                color: const Color.fromRGBO(34, 34, 34, .4),
-                colorBlendMode: BlendMode.darken,
-              ),
+    return Scaffold(
+      body: CustomScrollView(slivers: <Widget>[
+        SliverAppBar(
+          pinned: true,
+          expandedHeight: 150.0,
+          // backgroundColor: Theme.of(context).canvasColor,
+          flexibleSpace: FlexibleSpaceBar(
+            title: Text(event.description),
+            background: CachedNetworkImage(
+              imageUrl: eventInfo?.keyArt ?? _backup,
+              fit: BoxFit.cover,
+              color: const Color.fromRGBO(34, 34, 34, .4),
+              colorBlendMode: BlendMode.darken,
             ),
           ),
-          SliverList(
-            delegate: SliverChildListDelegate.fixed(<Widget>[
-              EventStatus(
-                description: event.description,
-                tooltip: event.tooltip,
-                node: event.victimNode ?? event.node,
-                health: event.eventHealth,
-                expiry: event.expiry,
-                rewards: event.eventRewards,
-              ),
-              if (event.jobs != null) EventBounties(jobs: event.jobs),
-              if (eventInfo.howTos.isNotEmpty)
-                EventVideoPlayer(
-                  id: eventInfo.howTos.first.id,
-                  profileThumbnail: eventInfo.howTos.first.pThumbnail,
-                  link: eventInfo.howTos.first.link,
-                )
-            ]),
-          ),
-        ]),
-      ),
+        ),
+        SliverList(
+          delegate: SliverChildListDelegate.fixed(<Widget>[
+            EventStatus(
+              description: event.description,
+              tooltip: event.tooltip,
+              node: event.victimNode ?? event.node,
+              health: event.eventHealth,
+              expiry: event.expiry,
+              rewards: event.eventRewards,
+            ),
+            if (event.jobs != null) EventBounties(jobs: event.jobs),
+            if (eventInfo.howTos.isNotEmpty)
+              EventVideoPlayer(
+                id: eventInfo.howTos.first.id,
+                profileThumbnail: eventInfo.howTos.first.pThumbnail,
+                link: eventInfo.howTos.first.link,
+              )
+          ]),
+        ),
+      ]),
     );
   }
 }
