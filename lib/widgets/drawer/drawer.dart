@@ -15,6 +15,7 @@ class LotusDrawer extends StatelessWidget {
           Column(mainAxisAlignment: MainAxisAlignment.start, children: <Widget>[
         Container(
           height: 20 * SizeConfig.heightMultiplier,
+          width: double.infinity,
           margin: const EdgeInsets.only(bottom: 8.0),
           decoration: BoxDecoration(
             color: Theme.of(context).primaryColor,
