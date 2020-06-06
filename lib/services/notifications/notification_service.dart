@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:flutter/foundation.dart';
 import 'package:wfcd_client/base.dart';
 
 // TODO(Orn): Find better way to manage firebase IDs on the same device.
@@ -13,9 +12,9 @@ class NotificationService {
     if (Platform.isIOS) {
       messaging.requestNotificationPermissions(const IosNotificationSettings(
           sound: true, badge: true, alert: true, provisional: true));
-
-      messaging.getToken().then((token) => debugPrint(' Device token: $token'));
     }
+
+    messaging.configure();
 
     return NotificationService._(messaging);
   }
