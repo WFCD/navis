@@ -2,10 +2,12 @@ import 'dart:async';
 
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
-import 'package:navis/injection_container.dart';
 import 'package:logging/logging.dart';
+import 'package:navis/injection_container.dart';
 
 import 'core/app.dart';
 import 'core/bloc/navigation_bloc.dart';
@@ -19,6 +21,9 @@ Future<void> main() async {
 
   WidgetsFlutterBinding.ensureInitialized();
   FlutterError.onError = Crashlytics.instance.recordFlutterError;
+
+  SystemChrome.setSystemUIOverlayStyle(
+      const SystemUiOverlayStyle(statusBarColor: Colors.transparent));
 
   await runZoned(() async {
     BlocSupervisor.delegate = await HydratedBlocDelegate.build();

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:navis/core/bloc/navigation_bloc.dart';
+import 'package:navis/core/utils/ui_util.dart';
 
 import 'themes/colors.dart';
 import 'widgets/drawer_options.dart';
@@ -10,6 +12,8 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final mediaQuery = MediaQuery.of(context);
+
     return Scaffold(
       appBar: AppBar(title: const Text('Navis')),
       drawer: Drawer(
@@ -17,9 +21,24 @@ class Home extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
             Container(
-              height: 100,
-              margin: const EdgeInsets.only(bottom: 8.0),
-              color: primary,
+              height: 20 * (mediaQuery.size.height / 100),
+              width: double.infinity,
+              decoration: BoxDecoration(
+                color: Theme.of(context).primaryColor,
+                image: const DecorationImage(
+                  image: AssetImage('assets/skyboxes/Void.webp'),
+                  fit: BoxFit.cover,
+                ),
+              ),
+              child: SafeArea(
+                  bottom: false,
+                  left: false,
+                  right: false,
+                  top: true,
+                  child: SvgPicture.asset(
+                    'assets/wfcd_logo_color.svg',
+                    color: Colors.white.withOpacity(0.5),
+                  )),
             ),
             Expanded(child: DrawerOptions()),
             const Divider(height: 4.0),
