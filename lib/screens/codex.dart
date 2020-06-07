@@ -41,8 +41,11 @@ class _CodexState extends State<Codex> {
             const Center(child: CircularProgressIndicator()),
           if (state is SearchStateEmpty || state is SearchListenerError)
             const Center(
-                child: Text(
-                    'Type what you\'re looking for into the search bar above!')),
+              child: Text(
+                'Type what you\'re looking for into the search bar above!',
+                textAlign: TextAlign.center,
+              ),
+            ),
           if (state is SearchStateError)
             const Center(child: Text('An error has occurred'))
         ]);
