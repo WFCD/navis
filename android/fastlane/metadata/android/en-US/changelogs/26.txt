@@ -1,1 +1,0 @@
-Please report all issues to https://github.com/WFCD/navis/issues

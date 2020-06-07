@@ -1,6 +1,0 @@
-New
-- added 'elite' tag for nightwaves  
-- added countdown timer for all nightwaves  
-- added sortie infested enemy icons  
-  
-You can now report issues to the project's repository by following the issue tracker link under the about page in the drawer

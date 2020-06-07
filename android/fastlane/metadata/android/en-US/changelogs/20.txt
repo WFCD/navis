@@ -1,4 +1,0 @@
-temporally replaced in-app maps with web link while I rework them
-added some fish related web links for vallis
-
-I did  some other things but it was mostly code improvements so maybe I broke something
