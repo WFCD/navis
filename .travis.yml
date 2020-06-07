@@ -34,9 +34,9 @@ matrix:
       before_install:
         - nvm install --lts
         - if [  ! -d "flutter" ] ; then git clone https://github.com/flutter/flutter.git
-          -b 1.17.0; fi;
+          -b 1.17.3; fi;
         - export PATH="./flutter/bin":$PATH
-        - export PATH="./flutter/bin/cache/dart-sdk/bin":$PATH
+        - export PATH="$PATH":"./flutter/bin/cache/dart-sdk/bin"
         - export PATH="$PATH":"$HOME/.pub-cache/bin"
       install:
         - npm install -g semantic-release
