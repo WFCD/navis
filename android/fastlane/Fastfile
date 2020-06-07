@@ -20,8 +20,6 @@ platform :android do
         track: 'beta',
         aab: '../build/app/outputs/bundle/release/app-release.aab',
         json_key: 'app/fastlane.json',
-        skip_upload_screenshots: true,
-        skip_upload_images: true
       )
     rescue => exception
       raise exception unless exception.message.include?('apkNotificationMessageKeyUpgradeVersionConflict')
