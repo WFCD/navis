@@ -120,9 +120,10 @@ matrix:
           lib/l10n/intl_*.arb
       script:
         - flutter clean
-        - flutter build apk --split-per-abi
         - flutter build appbundle
         - cd android && bundle exec fastlane beta
+        - flutter clean
+        - flutter build apk --split-per-abi
       deploy:
         provider: releases
         cleanup: false
@@ -154,11 +155,11 @@ matrix:
         - if [  ! -d "flutter" ] ; then git clone https://github.com/flutter/flutter.git
           -b 1.17.0; fi;
         - export PATH=./flutter/bin:$PATH
-      script:
         - flutter pub get
         - mkdir lib/generated/intl && flutter pub run intl_translation:generate_from_arb
           --output-dir=lib/generated/intl --no-use-deferred-loading lib/generated/l10n.dart
           lib/l10n/intl_*.arb
+      script:
         - flutter clean
         - travis_wait 30 flutter build ios --no-codesign
         - cd ios && bundle exec fastlane ios beta
