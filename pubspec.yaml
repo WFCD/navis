@@ -1,5 +1,5 @@
 name: navis
-version: 1.7.0+85
+version: 1.6.8+86
 description: Cephalon Navis is an Android app inspired by Warframe Hub.
 dependencies: 
   cupertino_icons: ^0.1.3
