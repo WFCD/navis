@@ -43,6 +43,7 @@ matrix:
         - npm install -g @semantic-release/exec
         - npm install -g @semantic-release/git
         - flutter pub pub global activate pubspec_version
+        - chmod +x deploy.sh
       script:
         - semantic-release
     - os: linux
