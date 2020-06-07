@@ -37,6 +37,7 @@ matrix:
         - if [  ! -d "flutter" ] ; then git clone https://github.com/flutter/flutter.git
           -b 1.17.3; fi;
         - export PATH=./flutter/bin:$PATH
+        - export PATH=./flutter/bin/cache/dart-sdk/bin:$PATH
         - export PATH="$PATH":"$HOME/.pub-cache/bin"
       install:
         - npm install -g semantic-release
