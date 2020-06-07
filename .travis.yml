@@ -33,15 +33,15 @@ matrix:
       if: branch = master && type NOT IN (pull_request)
       before_install:
         - nvm install --lts
-      before_script:
+        - if [  ! -d "flutter" ] ; then git clone https://github.com/flutter/flutter.git
+          -b 1.17.0; fi;
+        - export PATH="./flutter/bin":$PATH
+        - export PATH="./flutter/bin/cache/dart-sdk/bin":$PATH
+        - export PATH="$PATH":"$HOME/.pub-cache/bin"
+      install:
         - npm install -g semantic-release
         - npm install -g @semantic-release/exec
         - npm install -g @semantic-release/git
-        - if [  ! -d "flutter" ] ; then git clone https://github.com/flutter/flutter.git
-          -b 1.17.0; fi;
-        - export PATH=./flutter/bin:$PATH
-        - export PATH=./flutter/bin/cache/dart-sdk/bin:$PATH
-        - export PATH="$PATH":"$HOME/.pub-cache/bin"
         - pub global activate pubspec_version
       script:
         - semantic-release
