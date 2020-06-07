@@ -32,10 +32,11 @@ matrix:
       env: JOB=semantic-releases
       if: branch = master && type NOT IN (pull_request)
       before_install:
+        - sudo apt install -y apt-transport-https
         - nvm install --lts
         - if [  ! -d "flutter" ] ; then git clone https://github.com/flutter/flutter.git
           -b 1.17.3; fi;
-        - export PATH="./flutter/bin":$PATH
+        - export PATH="$PATH":"./flutter/bin"
         - export PATH="$PATH":"./flutter/bin/cache/dart-sdk/bin"
         - export PATH="$PATH":"$HOME/.pub-cache/bin"
       install:
