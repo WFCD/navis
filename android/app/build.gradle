@@ -45,7 +45,7 @@ android {
         minSdkVersion 16
         targetSdkVersion 28
         versionCode flutterVersionCode.toInteger()
-        versionName flutterVersionName + getDate()
+        versionName flutterVersionName
     }
 
     signingConfigs {
@@ -80,10 +80,6 @@ flutter {
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-}
-
-static def getDate() {
-    return new Date().format('yyyyMMdd')
 }
 
 apply plugin: 'io.fabric'
