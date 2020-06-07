@@ -1,12 +1,7 @@
 name: navis
+version: 1.7.0+85
 description: Cephalon Navis is an Android app inspired by Warframe Hub.
-version: 1.6.7+84
-
-dependencies:
-  flutter:
-    sdk: flutter
-  flutter_localizations:
-    sdk: flutter
+dependencies: 
   cupertino_icons: ^0.1.3
   bloc: ^4.0.0
   equatable: ^1.1.1
@@ -22,43 +17,54 @@ dependencies:
   flutter_svg: ^0.17.4
   floating_search_bar: ^0.3.0
   flutter_sticky_header: ^0.4.0
-  wfcd_client:
-    git: https://github.com/SlayerOrnstein/wfcd_client.git
-  warframestat_api_models:
-    git: https://github.com/SlayerOrnstein/warframestat_api_models.git
   hive: ^1.1.1
   hive_flutter: ^0.3.0+2
   flutter_brand_icons: ^1.1.0
-
-dev_dependencies:
-  flutter_test:
+  flutter: 
     sdk: flutter
-  flutter_driver:
+  flutter_localizations: 
     sdk: flutter
+  wfcd_client: 
+    git: https://github.com/SlayerOrnstein/wfcd_client.git
+  warframestat_api_models: 
+    git: https://github.com/SlayerOrnstein/warframestat_api_models.git
+dev_dependencies: 
   test: ^1.6.3
   bloc_test: ^5.1.0
   mockito: ^4.1.1
   flutter_native_splash: ^0.1.9
-
-flutter:
-  uses-material-design: true
-  fonts:
-    - family: AppIcons
-      fonts:
-        - asset: assets/icons/AppIcons.ttf
-    - family: PlatformIcons
-      fonts:
-        - asset: assets/icons/PlatformIcons.ttf
-    - family: RelicIcons
-      fonts:
-        - asset: assets/icons/RelicIcons.ttf
-    - family: FactionIcons
-      fonts:
-        - asset: assets/icons/FactionIcons.ttf
-    - family: SyndicateGlyphs
-      fonts:
-        - asset: assets/icons/SyndicateGlyphs.ttf
-  assets:
+  flutter_test: 
+    sdk: flutter
+  flutter_driver: 
+    sdk: flutter
+flutter: 
+  fonts: 
+    - 
+      family: AppIcons
+      fonts: 
+        - 
+          asset: assets/icons/AppIcons.ttf
+    - 
+      family: PlatformIcons
+      fonts: 
+        - 
+          asset: assets/icons/PlatformIcons.ttf
+    - 
+      family: RelicIcons
+      fonts: 
+        - 
+          asset: assets/icons/RelicIcons.ttf
+    - 
+      family: FactionIcons
+      fonts: 
+        - 
+          asset: assets/icons/FactionIcons.ttf
+    - 
+      family: SyndicateGlyphs
+      fonts: 
+        - 
+          asset: assets/icons/SyndicateGlyphs.ttf
+  assets: 
     - assets/icons/
     - assets/wfcd_logo_color.svg
     - assets/enemys/Corrupted/
@@ -67,15 +73,11 @@ flutter:
     - assets/enemys/Infestation/
     - assets/Derelict.webp
     - assets/skyboxes/Void.webp
-    # - assets/skyboxes/
-    #- assets/maps/
-    #- assets/maps/imgs/
-
-flutter_intl:
-  enabled: true
+  uses-material-design: true
+flutter_intl: 
   class_name: NavisLocalizations
-
-flutter_native_splash:
+  enabled: true
+flutter_native_splash: 
   image: assets/nightmare.png
-  color: "FFFFFF"
+  color: FFFFFF
   android: false

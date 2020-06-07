@@ -15,6 +15,7 @@ matrix:
       jdk: openjdk8
       language: android
       env: JOB=TEST
+      if: NOT tag IS present
       android:
         components:
           - build-tools-28.0.3
@@ -26,11 +27,23 @@ matrix:
       script:
         - flutter pub get
         - flutter test
+    - language: dart
+      os: linux
+      env: JOB=semantic-releases
+      if: branch = master && type NOT IN (pull_request)
+      before_script:
+        - npm install -g semantic-release
+        - npm install -g @semantic-release/exec
+        - npm install -g @semantic-release/git
+        - pub global activate pubspec_version
+      script:
+        - semantic-release
     - os: linux
       dist: xenial
       jdk: openjdk8
       language: android
       env: JOB=APK
+      if: NOT tag IS present
       android:
         components:
           - build-tools-28.0.3
@@ -53,6 +66,7 @@ matrix:
       osx_image: xcode11.5
       language: swift
       env: JOB=IPA
+      if: NOT tag IS present
       before_install:
         - openssl aes-256-cbc -K $encrypted_3b9f0b9d36d1_key -iv $encrypted_3b9f0b9d36d1_iv
           -in secrets.tar.enc -out secrets.tar -d
@@ -100,6 +114,17 @@ matrix:
         - flutter build apk --split-per-abi
         - flutter build appbundle
         - cd android && bundle exec fastlane beta
+      deploy:
+        provider: releases
+        cleanup: false
+        skip_cleanup: true
+        token:
+          secure: gIxJTtFOm1pJd5gfXuwbN4S8jImYIRQ1HhPb5NhhjGSg2WupsHm45GBBJAUdiUYpw3AOxEDR2FG5IIX+EBxJuuijlByJuxkiPX+EIbaRNIs5Dg8PuDxHN9Q3YgYKRvDM4ZQy99K2h/LLy8Bk7wazYx/JmnqKVLt6VVebfWDNnK0PXce6wyRH1rMc05VtgTku8LhMkryaOaMVX71XWNcwXq7mxO3KmVN0k8IIrZpBPpv01/rV6VuAndbvgxGFQ8AizL3xqGdaf1FG3wjhf1RrAUTrsEY0sEefJW0nEFZR9/NIYR2YyWvyWlYh6MY7XA6kVjUpTOgfR7x6PJpnEoWXij9TB7H7Pc3N40CGUt8uGo8+1qJ1zHH/YSBftEjPC0kT1vS0FTgEhyJ1tpXCyQvJJQOPK0YCU1tdYj+brl6dRxnush4sFTIxQpSSf+aJ8LAlZ5kz1aIiUld+KTeVbJg7Wto0qJEeG8IHHkvtMgzMwdjHQ3N1Go85zT5FQvXrit7ZGg8CAuFQYQcCdgu+k8iRs9XrxLLkMfRAPRJHlgpHLoWfUhaxlze9iXhnxxFBP3ixiNQTkfIJSwaJ69k9CiftwBATNdfodAx4b72MZE0CjGqztW1z0gIJ3/JTNByrhrv1Ld/tOEGQXSQL0SWdePJGZRuxNGD96DzgGoJzx9dVvFY=
+        file_glob: true
+        file: "$TRAVIS_BUILD_DIR/build/app/outputs/apk/release/*.apk"
+        on:
+          repo: WFCD/navis
+          tags: true
     - env: JOB=DEPLOY-iOS
       if: tag IS present
       os: osx
@@ -134,7 +159,6 @@ matrix:
         skip_cleanup: true
         token:
           secure: gIxJTtFOm1pJd5gfXuwbN4S8jImYIRQ1HhPb5NhhjGSg2WupsHm45GBBJAUdiUYpw3AOxEDR2FG5IIX+EBxJuuijlByJuxkiPX+EIbaRNIs5Dg8PuDxHN9Q3YgYKRvDM4ZQy99K2h/LLy8Bk7wazYx/JmnqKVLt6VVebfWDNnK0PXce6wyRH1rMc05VtgTku8LhMkryaOaMVX71XWNcwXq7mxO3KmVN0k8IIrZpBPpv01/rV6VuAndbvgxGFQ8AizL3xqGdaf1FG3wjhf1RrAUTrsEY0sEefJW0nEFZR9/NIYR2YyWvyWlYh6MY7XA6kVjUpTOgfR7x6PJpnEoWXij9TB7H7Pc3N40CGUt8uGo8+1qJ1zHH/YSBftEjPC0kT1vS0FTgEhyJ1tpXCyQvJJQOPK0YCU1tdYj+brl6dRxnush4sFTIxQpSSf+aJ8LAlZ5kz1aIiUld+KTeVbJg7Wto0qJEeG8IHHkvtMgzMwdjHQ3N1Go85zT5FQvXrit7ZGg8CAuFQYQcCdgu+k8iRs9XrxLLkMfRAPRJHlgpHLoWfUhaxlze9iXhnxxFBP3ixiNQTkfIJSwaJ69k9CiftwBATNdfodAx4b72MZE0CjGqztW1z0gIJ3/JTNByrhrv1Ld/tOEGQXSQL0SWdePJGZRuxNGD96DzgGoJzx9dVvFY=
-        file_glob: true
         file: "$TRAVIS_BUILD_DIR/ios/Runner.ipa"
         on:
           repo: WFCD/navis
