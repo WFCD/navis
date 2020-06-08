@@ -6,6 +6,8 @@ class CacheException implements Exception {}
 
 class UnknownException implements Exception {}
 
+class OfflineException implements Exception {}
+
 T matchFailure<T>(Failure failure) {
   switch (failure.runtimeType) {
     case ServerFailure:
