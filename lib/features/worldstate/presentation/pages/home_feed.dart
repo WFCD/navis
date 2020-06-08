@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:navis/core/widgets/sliver_top_bar.dart';
 import 'package:navis/generated/l10n.dart';
 
 import 'fissures.dart';
@@ -64,13 +65,10 @@ class _HomeFeedPageState extends State<HomeFeedPage>
         return <Widget>[
           SliverOverlapAbsorber(
             handle: NestedScrollView.sliverOverlapAbsorberHandleFor(context),
-            sliver: SliverAppBar(
-              automaticallyImplyLeading: false,
-              titleSpacing: 0.0,
-              centerTitle: true,
+            sliver: SliverTopbar(
               floating: true,
               snap: true,
-              title: TabBar(
+              child: TabBar(
                 controller: _tabController,
                 labelColor: Theme.of(context).primaryTextTheme.bodyText1.color,
                 unselectedLabelColor: Theme.of(context)
