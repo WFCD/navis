@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:navis/core/themes/colors.dart';
 import 'package:navis/features/worldstate/data/datasources/event_info_parser.dart';
 import 'package:navis/features/worldstate/presentation/widgets/event/event_bounties.dart';
 import 'package:navis/features/worldstate/presentation/widgets/event/event_status.dart';
@@ -24,7 +25,7 @@ class EventInformation extends StatelessWidget {
         SliverAppBar(
           pinned: true,
           expandedHeight: 150.0,
-          // backgroundColor: Theme.of(context).canvasColor,
+          backgroundColor: Theme.of(context).primaryColor,
           flexibleSpace: FlexibleSpaceBar(
             title: Text(event.description),
             background: CachedNetworkImage(
