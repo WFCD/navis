@@ -13,7 +13,7 @@ class Home extends StatelessWidget {
     final mediaQuery = MediaQuery.of(context);
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Navis')),
+      appBar: AppBar(),
       drawer: Drawer(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
