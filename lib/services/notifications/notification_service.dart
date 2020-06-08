@@ -9,10 +9,8 @@ class NotificationService {
   factory NotificationService() {
     final FirebaseMessaging messaging = FirebaseMessaging();
 
-    if (Platform.isIOS) {
-      messaging.requestNotificationPermissions(const IosNotificationSettings(
-          sound: true, badge: true, alert: true, provisional: true));
-    }
+    messaging.requestNotificationPermissions(const IosNotificationSettings(
+        sound: true, badge: true, alert: true, provisional: true));
 
     messaging.configure();
 
