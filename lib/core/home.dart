@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:navis/core/bloc/navigation_bloc.dart';
-import 'package:navis/core/utils/ui_util.dart';
 
-import 'themes/colors.dart';
 import 'widgets/drawer_options.dart';
 
 class Home extends StatelessWidget {
