@@ -72,7 +72,7 @@ class _YoutubePlayerState extends State<EventVideoPlayer> {
     return Card(
       margin: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0),
       child: LimitedBox(
-        maxHeight: (MediaQuery.of(context).size.width / 100) * 88,
+        maxHeight: (MediaQuery.of(context).size.width / 100) * 90,
         child: _chewieController == null
             ? const Center(child: CircularProgressIndicator())
             : Column(
