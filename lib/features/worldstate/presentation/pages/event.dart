@@ -1,6 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:navis/core/themes/colors.dart';
 import 'package:navis/features/worldstate/data/datasources/event_info_parser.dart';
 import 'package:navis/features/worldstate/presentation/widgets/event/event_bounties.dart';
 import 'package:navis/features/worldstate/presentation/widgets/event/event_status.dart';
