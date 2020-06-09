@@ -1,5 +1,7 @@
 env:
   global:
+    - FLUTTER_VERSION="1.7.3"
+    - FLUTTER_SDK_PATH="$HOME/flutter/bin"
     - secure: LwkRxAWhLvQgaGNGcYqxCGty3RccGAGF/HBkYvc8TLbl6/2QutYLKwdcznDQ/fTRnm1VWTbMsgc7U8J3QWfqi32LEiJVuGA2Kd6r55SeUXIaAcoCHOtmaNxHcIcpwg/nRRsOdYRNGxzCoDldDW6EReBGzfX7m6TS2FjUZ7ukUm1xC6cOrUtdWrri+BQgufEMgMtGGnjANFq/pDoMRX0M2TR7xlPwRBxztgdA9fFaE/zIFIGM6KfS4LMlHrYXiKOjdkGyu1Il+heuPyk+uQVRZNemNtzs86Cm5RvGNQaCqr6DLYocMo04SQkZ9Wer3i/krWs0gp7rMj7mcXDHROkj9kcHvvtBhjai+F1v1/QARd0L9xm9e28yRcFuCmtoWi35ycS7MSnLUCKQD+LR4mmagDQjKhde5SHNDjiXpD7EIc/jQ+eGh6upcozuEbtK1Y29Tr+xYFq7foMWRRyIZkZihEoWadMlWm9MO+HHVwYQT5jTX6oblvDsJJ8jzjkVyO4Ysm6RLpeoaNSyfJGOZ5yXZXkMmxXjV0SKhgf0tmRiyyxAAyO/le4LwaHEpzN7Wpgun6ZuelbAiHDBRX5ITZ3nQudNdg97zx7Z3NO0J0UJN+c9j+J0kg8JegNtDKkQ9RzkiHnZsi0k3a5eS3DrhPIevAho1kg0+nnM7cpkk9H9QcU=
     - secure: JaRInLgEsBEurKaz2PwbQyeP3O+kbECU7QLb/p7dGXzXMgrPInrp6tI1DudJKhuq2bZLhiig0jlOntSE8mAw+FZrTlZT09xNELkwORSLgttVF4Yjym8zrd2aoYoorx8s8HwTEUA1YfU11LSXoPOTq8u1yynNKbW1VXdLuBSYJCIfxRjjiIBEJGI36SQjrL5yABE8yVyus2sJ/BbtUCtb6unsi29VcWpyCZCfs0OF+lDhxIv5H6OIds/4X45BHmdF7Y621lmER7yvwJ+zCCTfR90ntlLC8+hyt0/OFYlwNznF4HjsS22OlqUEVuPE7tZzbnE8YhVG6n16ziZermk+dj1+5855AxJf1ytrgryHd3eY42gQua6Rk4Lo8AgW15PIdRHdaVS4mVcYnTucqnv1RTYvQ2iSJgO0pFG5QiuRYRp2Sj1lGYP3pTc/j9Bg2Qgl7al4D0bLAunNC1Yo/jxmIGbq6roUxGu+5SOL8lXoWhoxk0DF0BuwXLZHoAj/W+rf4QcFpxpv6DHvTHkV36AeBQ/ncIhvxxC5vq1MsGgehBM4wzfRcus4tOxBTNvKuFVgZ94V2ABfWxZgZ87s+dtb+1pJ5TlecEVxTMcPuaNcPRumbWEo/rrzXYdvu4h+Nr7OSA+i70GytZe1Zbwt9fGl6tqW1T/tErtB8Skhql6Qd9E=
     - secure: toqrJswAKkw4vY3xgHkImrbOEC9Xj92r0dT1bgMxLbY259pIdGeDXxyR3NKS4wFbrNql0JHQHODOStsoJ99BrqWbc3Ah00Kxho37yEwvB959uVvGnX/n9uo7HLAu/A7bb77w7yP2rtv2Wg4O/IoqZl3kPxEmohhHijaC3Jyh8sNEOLlCXfnP/kos7dmQchX63uIP97Hnqj2ZUfFczni3RtScnEgHfsDzOzaYCyM8qGv4C+BfC2oBy/FoiYg8M5Ew+XWsNmlsVsa/Z4CFkiVeIhxrJF15NkXPEw0UficVlG2obQqpZri6kHfE32rsuiCk9I1Vxf4erb+fzNB2xTn58asSyJte1RPqAKTJeJadvVdq/odMvhT72xl92x7JPB6cU0bUMpKGZlSZbvgQ0WJQUpPSKjfJASKdUQdaKS0MnfCuokF4mVeK28v1NbCPlg0DwUQJtlF1pHG7Q3vLwjM9WgJ7Kh3j256L4Dxj8AWkCRALl41qhuap0E6lO3BI84GN7w3ncTCYIi1cMaVUZXIx9qHX9it5RbzUsasaw9eD55xPinQS7dHiQwJi4VtZ6H3/esommWMoiR+1pFV1LT3EbqcREk3dCfzF2u7WYm1CgLd90ISdYyg4WVQyvh+I2mwetCGitaelbpPqWSKysmQtzi3JB5u7qsG/wLAHaLLmOCM=
@@ -22,8 +24,8 @@ matrix:
           - android-28
       before_script:
         - if [  ! -d "flutter" ] ; then git clone https://github.com/flutter/flutter.git
-          -b 1.17.0; fi;
-        - export PATH=./flutter/bin:$PATH
+          -b $FLUTTER_VERSION; fi;
+        - export PATH="$PATH:$FLUTTER_SDK_PATH"
       script:
         - flutter pub get
         - flutter test
@@ -35,10 +37,10 @@ matrix:
         - sudo apt install -y apt-transport-https
         - nvm install --lts
         - if [  ! -d "flutter" ] ; then git clone https://github.com/flutter/flutter.git
-          -b 1.17.3; fi;
-        - export PATH=./flutter/bin:$PATH
-        - export PATH=./flutter/bin/cache/dart-sdk/bin:$PATH
-        - export PATH="$PATH":"$HOME/.pub-cache/bin"
+          -b $FLUTTER_VERSION; fi;
+        - export PATH="$PATH:$FLUTTER_SDK_PATH"
+        - export PATH="$PATH:$FLUTTER_SDK_PATH/cache/dart-sdk/bin"
+        - export PATH="$PATH:$HOME/.pub-cache/bin"
       install:
         - npm install -g semantic-release
         - npm install -g @semantic-release/exec
@@ -63,8 +65,8 @@ matrix:
       before_script:
         - tar xvf secrets.tar
         - if [  ! -d "flutter" ] ; then git clone https://github.com/flutter/flutter.git
-          -b 1.17.0; fi;
-        - export PATH=./flutter/bin:$PATH
+          -b $FLUTTER_VERSION; fi;
+        - export PATH="$PATH:$FLUTTER_SDK_PATH"
       script:
         - flutter pub get
         - mkdir lib/generated/intl && flutter pub run intl_translation:generate_from_arb
@@ -79,6 +81,9 @@ matrix:
       before_install:
         - openssl aes-256-cbc -K $encrypted_3b9f0b9d36d1_key -iv $encrypted_3b9f0b9d36d1_iv
           -in secrets.tar.enc -out secrets.tar -d
+        - if [  ! -d "flutter" ] ; then git clone https://github.com/flutter/flutter.git
+          -b $FLUTTER_VERSION; fi;
+        - export PATH="$PATH:$FLUTTER_SDK_PATH"
       before_script:
         - pip install six
         - brew update
@@ -86,9 +91,6 @@ matrix:
         - brew install ideviceinstaller
         - brew install ios-deploy
         - tar xvf secrets.tar
-        - if [  ! -d "flutter" ] ; then git clone https://github.com/flutter/flutter.git
-          -b 1.17.0; fi;
-        - export PATH=./flutter/bin:$PATH
       script:
         - flutter pub get
         - mkdir lib/generated/intl && flutter pub run intl_translation:generate_from_arb
@@ -109,11 +111,11 @@ matrix:
         - openssl aes-256-cbc -K $encrypted_3b9f0b9d36d1_key -iv $encrypted_3b9f0b9d36d1_iv
           -in secrets.tar.enc -out secrets.tar -d
         - bundle install --gemfile=android/Gemfile
+        - if [  ! -d "flutter" ] ; then git clone https://github.com/flutter/flutter.git
+          -b $FLUTTER_VERSION; fi;
+        - export PATH="$PATH:$FLUTTER_SDK_PATH"
       before_script:
         - tar xvf secrets.tar
-        - if [  ! -d "flutter" ] ; then git clone https://github.com/flutter/flutter.git
-          -b 1.17.0; fi;
-        - export PATH=./flutter/bin:$PATH
         - flutter pub get
         - mkdir lib/generated/intl && flutter pub run intl_translation:generate_from_arb
           --output-dir=lib/generated/intl --no-use-deferred-loading lib/generated/l10n.dart
@@ -121,7 +123,7 @@ matrix:
       script:
         - flutter clean
         - flutter build appbundle
-        - cd android && bundle exec fastlane beta
+        - cd android && bundle exec fastlane beta && cd ..
         - flutter clean
         - flutter build apk --split-per-abi
       deploy:
@@ -145,6 +147,9 @@ matrix:
           -in secrets.tar.enc -out secrets.tar -d
         - echo -e "machine github.com\n  login $GIT_TOKEN" >> ~/.netrc
         - bundle install --gemfile=ios/Gemfile
+        - if [  ! -d "flutter" ] ; then git clone https://github.com/flutter/flutter.git
+          -b $FLUTTER_VERSION; fi;
+        - export PATH="$PATH:$FLUTTER_SDK_PATH"
       before_script:
         - pip install six
         - brew update
@@ -152,9 +157,6 @@ matrix:
         - brew install ideviceinstaller
         - brew install ios-deploy
         - tar xvf secrets.tar
-        - if [  ! -d "flutter" ] ; then git clone https://github.com/flutter/flutter.git
-          -b 1.17.0; fi;
-        - export PATH=./flutter/bin:$PATH
         - flutter pub get
         - mkdir lib/generated/intl && flutter pub run intl_translation:generate_from_arb
           --output-dir=lib/generated/intl --no-use-deferred-loading lib/generated/l10n.dart
