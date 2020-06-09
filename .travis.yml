@@ -9,6 +9,7 @@ env:
 cache:
   directories:
     - "$HOME/.pub-cache"
+    - "$HOME/flutter"
 matrix:
   fast_finish: true
   include:
@@ -24,7 +25,7 @@ matrix:
           - android-28
       before_script:
         - if [  ! -d "flutter" ] ; then git clone https://github.com/flutter/flutter.git
-          -b $FLUTTER_VERSION; fi;
+          -b $FLUTTER_VERSION $HOME/flutter; fi;
         - export PATH="$PATH:$FLUTTER_SDK_PATH"
       script:
         - flutter pub get
@@ -37,7 +38,7 @@ matrix:
         - sudo apt install -y apt-transport-https
         - nvm install --lts
         - if [  ! -d "flutter" ] ; then git clone https://github.com/flutter/flutter.git
-          -b $FLUTTER_VERSION; fi;
+          -b $FLUTTER_VERSION $HOME/flutter; fi;
         - export PATH="$PATH:$FLUTTER_SDK_PATH"
         - export PATH="$PATH:$FLUTTER_SDK_PATH/cache/dart-sdk/bin"
         - export PATH="$PATH:$HOME/.pub-cache/bin"
@@ -65,7 +66,7 @@ matrix:
       before_script:
         - tar xvf secrets.tar
         - if [  ! -d "flutter" ] ; then git clone https://github.com/flutter/flutter.git
-          -b $FLUTTER_VERSION; fi;
+          -b $FLUTTER_VERSION $HOME/flutter; fi;
         - export PATH="$PATH:$FLUTTER_SDK_PATH"
       script:
         - flutter pub get
@@ -82,7 +83,7 @@ matrix:
         - openssl aes-256-cbc -K $encrypted_3b9f0b9d36d1_key -iv $encrypted_3b9f0b9d36d1_iv
           -in secrets.tar.enc -out secrets.tar -d
         - if [  ! -d "flutter" ] ; then git clone https://github.com/flutter/flutter.git
-          -b $FLUTTER_VERSION; fi;
+          -b $FLUTTER_VERSION $HOME/flutter; fi;
         - export PATH="$PATH:$FLUTTER_SDK_PATH"
       before_script:
         - pip install six
@@ -112,7 +113,7 @@ matrix:
           -in secrets.tar.enc -out secrets.tar -d
         - bundle install --gemfile=android/Gemfile
         - if [  ! -d "flutter" ] ; then git clone https://github.com/flutter/flutter.git
-          -b $FLUTTER_VERSION; fi;
+          -b $FLUTTER_VERSION $HOME/flutter; fi;
         - export PATH="$PATH:$FLUTTER_SDK_PATH"
       before_script:
         - tar xvf secrets.tar
@@ -148,7 +149,7 @@ matrix:
         - echo -e "machine github.com\n  login $GIT_TOKEN" >> ~/.netrc
         - bundle install --gemfile=ios/Gemfile
         - if [  ! -d "flutter" ] ; then git clone https://github.com/flutter/flutter.git
-          -b $FLUTTER_VERSION; fi;
+          -b $FLUTTER_VERSION $HOME/flutter; fi;
         - export PATH="$PATH:$FLUTTER_SDK_PATH"
       before_script:
         - pip install six
