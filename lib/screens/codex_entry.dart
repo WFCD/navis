@@ -35,26 +35,21 @@ class _CodexEntryState extends State<CodexEntry> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          title: const Text('Codex Entry'),
-          textTheme: Theme.of(context).textTheme,
-          iconTheme: Theme.of(context).iconTheme,
-          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        ),
-        body: SingleChildScrollView(
-          child: Column(
-            children: <Widget>[
-              ItemHeader(
-                name: _item.name,
-                description: _item.description,
-                imageName: _item.imageName,
-                wikiaUrl: _item.wikiaUrl,
-              ),
-              if (_item is BioWeapon) _buildWarframeStats(_item as BioWeapon)
-            ],
-          ),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(_item.name),
+        backgroundColor: Theme.of(context).canvasColor,
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: <Widget>[
+            ItemHeader(
+              description: _item.description,
+              imageName: _item.imageName,
+              wikiaUrl: _item.wikiaUrl,
+            ),
+            if (_item is BioWeapon) _buildWarframeStats(_item as BioWeapon)
+          ],
         ),
       ),
     );

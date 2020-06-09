@@ -12,7 +12,6 @@ class ItemImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Material(
       borderRadius: BorderRadius.circular(4.0),
-      elevation: 2.0,
       clipBehavior: Clip.hardEdge,
       child: CachedNetworkImage(
         imageUrl: 'https://cdn.warframestat.us/img/$imageName',
