@@ -61,14 +61,18 @@ class Repository {
   // Prefer to download and update drop table from here
   // since this does the work in a different thread
   Future<bool> updateDropTable() async {
-    final directory = await getTemporaryDirectory();
+    final dropTableRemote = DropTableRemote(http.Client());
+    final directory = await getApplicationDocumentsDirectory();
+
     final instance =
         DropTableCache(cache.getDropTableTimestamp, directory.path);
 
-    final updateTimestamp = await compute(_updateDropTable, instance);
+    final timestamp = await dropTableRemote.dropsTimestamp();
+    final localTable = await _dropTableFile();
 
-    if (updateTimestamp != instance.localTimestamp) {
-      cache.saveDropTableTimestamp(updateTimestamp);
+    if (timestamp != instance.localTimestamp || !localTable.existsSync()) {
+      await compute(_updateDropTable, instance);
+      cache.saveDropTableTimestamp(timestamp);
       return true;
     }
 
@@ -83,8 +87,9 @@ class Repository {
 
     final dropTableLocal = DropTableLocal(Directory(instance.path), box);
     final timestamp = await dropTableRemote.dropsTimestamp();
+    final localTable = await dropTableLocal.getDropTable();
 
-    if (timestamp != instance.localTimestamp) {
+    if (timestamp != instance.localTimestamp || localTable == null) {
       final table = await dropTableRemote.getDropTable();
 
       dropTableLocal.saveDropTable(table);
