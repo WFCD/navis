@@ -33,7 +33,7 @@ class Repository {
   List<SlimDrop> _dropTable;
 
   Future<File> _dropTableFile() async {
-    final temp = await getTemporaryDirectory();
+    final temp = await getApplicationDocumentsDirectory();
     final table = File('${temp.path}/$_dropTableFileName');
 
     return table;
