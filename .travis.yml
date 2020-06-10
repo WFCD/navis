@@ -27,7 +27,6 @@ addons:
 cache:
   directories:
     - "$HOME/.pub-cache"
-    - "$HOME/flutter"
 matrix:
   fast_finish: true
   include:
