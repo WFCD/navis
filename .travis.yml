@@ -47,6 +47,14 @@ matrix:
       os: linux
       env: JOB=semantic-releases
       if: branch = master && type NOT IN (pull_request)
+      addons:
+        apt:
+          update: true
+          sources:
+            - sourceline: "https://storage.googleapis.com/download.dartlang.org/linux/debian/dart_stable.list"
+              key_url: "https://dl-ssl.google.com/linux/linux_signing_key.pub"
+          packages:
+            - dart
       before_install:
         - nvm install --lts
         - export PATH="$PATH:$HOME/.pub-cache/bin"
@@ -54,7 +62,7 @@ matrix:
         - npm install -g semantic-release
         - npm install -g @semantic-release/exec
         - npm install -g @semantic-release/git
-        - flutter pub pub global activate pubspec_version
+        - pub global activate pubspec_version
         - chmod +x deploy.sh
         - export PATH="$PATH:$FLUTTER_SDK_PATH/cache/dart-sdk/bin"
       script:
