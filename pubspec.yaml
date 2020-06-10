@@ -28,7 +28,6 @@ dependencies:
   youtube_explode_dart: ^0.0.17
   chewie: ^0.9.10
   dartz: ^0.9.1
-  breakpoint: ^1.0.1+2
   flutter_staggered_grid_view: ^0.3.0
   supercharged: ^1.6.0
   font_awesome_flutter: ^8.8.1
@@ -42,7 +41,6 @@ dev_dependencies:
   mockito: ^4.1.1
   extra_pedantic: ^1.2.0
   intl_translation: ^0.17.9
-  flutter_native_splash: ^0.1.9
 
 flutter:
   uses-material-design: true
@@ -79,8 +77,3 @@ flutter:
 flutter_intl:
   enabled: true
   class_name: NavisLocalizations
-
-flutter_native_splash:
-  image: assets/nightmare.png
-  color: "FFFFFF"
-  android: false
