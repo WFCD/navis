@@ -1,10 +1,12 @@
 {
   "@@last_modified": "2020-03-03T16:56:42.387837",
-  "levelInfo": "Level: {min} - {max}",
-  "@levelInfo": {
-    "description": "The information of the current enemy levels",
+  "alertInfo": "{type} ({faction}) | Level: {min} - {max}",
+  "@alertInfo": {
+    "description": "The information of the given alert, such as mission type, faction and enemy level",
     "type": "text",
     "placeholders": {
+      "type": {},
+      "faction": {},
       "min": {},
       "max": {}
     }
@@ -561,30 +563,6 @@
   "settingsTitle": "Settings",
   "@settingsTitle": {
     "description": "Settings title",
-    "type": "text",
-    "placeholder": {}
-  },
-  "dailyRewardTitle": "Daily Reward Reset Timer",
-  "@dailyRewardTitle": {
-    "description": "Title for daily reward timer",
-    "type": "text",
-    "placeholder": {}
-  },
-  "eliteBadgeTitle": "Elite",
-  "@eliteBadgeTitle": {
-    "description": "Nightwave Elite badge title",
-    "type": "text",
-    "placeholder": {}
-  },
-  "dailyNightwaveTitle": "Daily",
-  "@dailyNightwaveTitle": {
-    "description": "Nightwave daily title",
-    "type": "text",
-    "placeholder": {}
-  },
-  "weeklyNightwaveTitle": "Weekly",
-  "@weeklyNightwaveTitle": {
-    "description": "Nightwave weekly title",
     "type": "text",
     "placeholder": {}
   }
