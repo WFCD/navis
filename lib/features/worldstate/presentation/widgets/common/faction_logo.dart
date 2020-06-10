@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../utils/faction_utils.dart';
 import 'faction_icons.dart';
 
 class FactionIcon extends StatelessWidget {
@@ -35,18 +36,5 @@ class FactionIcon extends StatelessWidget {
       default:
         return _buildIcon(FactionIcons.infested);
     }
-  }
-}
-
-Color factionColor(String faction) {
-  switch (faction) {
-    case 'Corpus':
-      return Colors.blue;
-    case 'Grineer':
-      return Colors.red[700];
-    case 'Corrupted':
-      return Colors.yellow[300];
-    default:
-      return Colors.green;
   }
 }

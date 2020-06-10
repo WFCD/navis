@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:supercharged/supercharged.dart';
 
-import '../themes/themes.dart';
-import '../utils/skybox.dart';
+import '../../../../../core/themes/themes.dart';
+import '../../../../../core/utils/skybox.dart';
 
 class SkyboxCard extends StatelessWidget {
   const SkyboxCard({

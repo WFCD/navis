@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:navis/core/widgets/widgets.dart';
+
+import '../../../utils/faction_utils.dart';
 
 class InvasionProgress extends StatelessWidget {
   const InvasionProgress({

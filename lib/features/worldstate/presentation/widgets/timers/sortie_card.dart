@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:navis/core/widgets/widgets.dart';
 import 'package:warframestat_api_models/entities.dart';
 
+import '../common/faction_logo.dart';
+
 class SortieCard extends StatelessWidget {
   const SortieCard({Key key, @required this.sortie})
       : assert(sortie != null),

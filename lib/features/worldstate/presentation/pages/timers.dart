@@ -5,6 +5,7 @@ import 'package:navis/generated/l10n.dart';
 import 'package:warframestat_api_models/entities.dart';
 
 import '../../../../core/widgets/widgets.dart';
+import '../../utils/faction_utils.dart';
 import '../bloc/solsystem_bloc.dart';
 import '../widgets/timers/timers.dart';
 

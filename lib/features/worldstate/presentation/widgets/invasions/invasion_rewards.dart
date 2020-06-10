@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:navis/core/widgets/widgets.dart';
 
+import '../../../utils/faction_utils.dart';
+import '../common/faction_logo.dart';
+
 class InvasionReward extends StatelessWidget {
   const InvasionReward({
     Key key,
