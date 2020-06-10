@@ -34,6 +34,17 @@ BaseItem toBaseItem(Map<String, dynamic> item) {
   }
 }
 
+Map<String, dynamic> fromBaseItem(BaseItem item) {
+  switch (item.runtimeType) {
+    case BioWeapon:
+      return (item as BioWeaponModel).toJson();
+    case Weapon:
+      return (item as WeaponModel).toJson();
+    default:
+      return (item as BaseItemModel).toJson();
+  }
+}
+
 List<BaseItem> toBaseItems(List<dynamic> data) {
   return data
       .map<BaseItem>((dynamic i) => toBaseItem(i as Map<String, dynamic>))

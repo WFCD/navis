@@ -3,15 +3,18 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/widgets.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
-import 'package:navis/features/synthtargets/presentation/pages/targets.dart';
-import 'package:navis/features/worldstate/presentation/pages/home_feed.dart';
 import 'package:rxdart/rxdart.dart';
 
-enum NavigationEvent { timers, synthTargets }
+import '../../features/codex/presentation/pages/codex_search_screen.dart';
+import '../../features/synthtargets/presentation/pages/targets.dart';
+import '../../features/worldstate/presentation/pages/home_feed.dart';
+
+enum NavigationEvent { timers, codex, synthTargets }
 
 class NavigationBloc extends HydratedBloc<NavigationEvent, Widget> {
   static final Map<NavigationEvent, Widget> navigationMap = {
     NavigationEvent.timers: const HomeFeedPage(),
+    NavigationEvent.codex: const CodexSearchScreen(),
     NavigationEvent.synthTargets: const SynthTargetsPage()
   };
 

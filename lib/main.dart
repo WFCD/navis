@@ -11,6 +11,7 @@ import 'package:navis/injection_container.dart';
 
 import 'core/app.dart';
 import 'core/bloc/navigation_bloc.dart';
+import 'features/codex/presentation/bloc/search_bloc.dart';
 import 'features/worldstate/presentation/bloc/solsystem_bloc.dart';
 import 'injection_container.dart' as di;
 
@@ -32,7 +33,8 @@ Future<void> main() async {
     runApp(MultiBlocProvider(
       providers: [
         BlocProvider(create: (_) => sl<NavigationBloc>()),
-        BlocProvider(create: (_) => sl<SolsystemBloc>())
+        BlocProvider(create: (_) => sl<SolsystemBloc>()),
+        BlocProvider(create: (_) => sl<SearchBloc>())
       ],
       child: const NavisApp(),
     ));

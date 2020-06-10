@@ -2,6 +2,7 @@ import 'package:data_connection_checker/data_connection_checker.dart';
 import 'package:get_it/get_it.dart';
 import 'package:http/http.dart' as http;
 import 'package:navis/core/local/user_settings.dart';
+import 'package:navis/features/codex/domian/usercases/search_items.dart';
 import 'package:navis/features/synthtargets/data/repositories/synth_target_rep_impl.dart';
 import 'package:navis/features/synthtargets/domain/usecases/get_synth_targets.dart';
 import 'package:navis/features/synthtargets/presentation/bloc/synthtargets_bloc.dart';
@@ -10,6 +11,9 @@ import 'core/bloc/navigation_bloc.dart';
 import 'core/local/warframestate_local.dart';
 import 'core/network/network_info.dart';
 import 'core/network/warframestat_remote.dart';
+import 'features/codex/data/repositories/codex_repository_impl.dart';
+import 'features/codex/domian/repositories/codex_repository.dart';
+import 'features/codex/presentation/bloc/search_bloc.dart';
 import 'features/synthtargets/domain/repositories/synth_target_repository.dart';
 import 'features/worldstate/data/datasources/event_info_parser.dart';
 import 'features/worldstate/data/repositories/worldstate_rep_impl.dart';
@@ -51,6 +55,7 @@ Future<void> init() async {
   sl.registerSingleton<SynthRepository>(
     SynthRepositoryImpl(sl<NetworkInfo>()),
   );
+  sl.registerSingleton<CodexRepository>(CodexRepositoryImpl(sl<NetworkInfo>()));
 
   // Usecases
   sl.registerSingleton<GetWorldstate>(
@@ -62,6 +67,7 @@ Future<void> init() async {
   sl.registerSingleton<GetSynthTargets>(
     GetSynthTargets(sl<SynthRepository>()),
   );
+  sl.registerSingleton<SearchItems>(SearchItems(sl<CodexRepository>()));
 
   // Blocs
   sl.registerFactory<NavigationBloc>(() => NavigationBloc());
@@ -71,5 +77,8 @@ Future<void> init() async {
       getDarvoDealInfo: sl<GetDarvoDealInfo>(),
     );
   });
+
   sl.registerFactory(() => SynthtargetsBloc(sl<GetSynthTargets>()));
+
+  sl.registerFactory<SearchBloc>(() => SearchBloc(sl<SearchItems>()));
 }
