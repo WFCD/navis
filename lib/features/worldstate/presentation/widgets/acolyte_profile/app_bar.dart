@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:navis/core/utils/skybox.dart';
+import 'package:navis/injection_container.dart';
+
+import '../../../services/skybox.dart';
 
 class AcolyteAppBar extends StatelessWidget {
   const AcolyteAppBar(
@@ -24,8 +26,6 @@ class AcolyteAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final skybox = SkyBoxLoader(context, region);
-
     return SliverAppBar(
       title: Text(acolyteName),
       backgroundColor: Colors.red[900],
@@ -40,8 +40,8 @@ class AcolyteAppBar extends StatelessWidget {
         ),
         centerTitle: true,
         background: FutureBuilder<ImageProvider>(
-            initialData: SkyBoxLoader.derelict,
-            future: skybox.load(),
+            initialData: SkyboxService.derelict,
+            future: sl<SkyboxService>().getSkybox(context, region),
             builder:
                 (BuildContext context, AsyncSnapshot<ImageProvider> snapshot) {
               return _buildSkybox(snapshot.data);

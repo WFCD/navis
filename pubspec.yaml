@@ -25,7 +25,7 @@ dependencies:
   hive: ^1.4.1+1
   get_it: ^4.0.2
   data_connection_checker: ^0.3.4
-  youtube_explode_dart: ^0.0.17
+  youtube_explode_dart: ^1.0.0
   chewie: ^0.9.10
   dartz: ^0.9.1
   flutter_staggered_grid_view: ^0.3.0
@@ -71,6 +71,7 @@ flutter:
     - assets/skyboxes/Void.webp
     - assets/event_info.json
     - assets/wfcd_logo_color.svg
+    - assets/skybox_nodes.json
     # - assets/maps/
     # - assets/maps/imgs/
 

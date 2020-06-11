@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:navis/injection_container.dart';
 import 'package:supercharged/supercharged.dart';
 
 import '../../../../../core/themes/themes.dart';
-import '../../../../../core/utils/skybox.dart';
+import '../../../services/skybox.dart';
 
 class SkyboxCard extends StatelessWidget {
   const SkyboxCard({
@@ -25,15 +26,13 @@ class SkyboxCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final skybox = SkyBoxLoader(context, node);
-
     return Theme(
       data: NavisTheming.dark,
       child: Card(
         margin: margin,
         child: FutureBuilder<ImageProvider>(
-          initialData: SkyBoxLoader.derelict,
-          future: skybox.load(),
+          initialData: SkyboxService.derelict,
+          future: sl<SkyboxService>().getSkybox(context, node),
           builder:
               (BuildContext context, AsyncSnapshot<ImageProvider> snapshot) {
             return AnimatedContainer(

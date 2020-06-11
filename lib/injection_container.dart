@@ -1,26 +1,27 @@
 import 'package:data_connection_checker/data_connection_checker.dart';
 import 'package:get_it/get_it.dart';
 import 'package:http/http.dart' as http;
-import 'package:navis/core/local/user_settings.dart';
-import 'package:navis/features/codex/domian/usercases/search_items.dart';
-import 'package:navis/features/synthtargets/data/repositories/synth_target_rep_impl.dart';
-import 'package:navis/features/synthtargets/domain/usecases/get_synth_targets.dart';
-import 'package:navis/features/synthtargets/presentation/bloc/synthtargets_bloc.dart';
 
 import 'core/bloc/navigation_bloc.dart';
+import 'core/local/user_settings.dart';
 import 'core/local/warframestate_local.dart';
 import 'core/network/network_info.dart';
 import 'core/network/warframestat_remote.dart';
 import 'features/codex/data/repositories/codex_repository_impl.dart';
 import 'features/codex/domian/repositories/codex_repository.dart';
+import 'features/codex/domian/usercases/search_items.dart';
 import 'features/codex/presentation/bloc/search_bloc.dart';
+import 'features/synthtargets/data/repositories/synth_target_rep_impl.dart';
 import 'features/synthtargets/domain/repositories/synth_target_repository.dart';
+import 'features/synthtargets/domain/usecases/get_synth_targets.dart';
+import 'features/synthtargets/presentation/bloc/synthtargets_bloc.dart';
 import 'features/worldstate/data/datasources/event_info_parser.dart';
 import 'features/worldstate/data/repositories/worldstate_rep_impl.dart';
 import 'features/worldstate/domain/repositories/worldstate_repository.dart';
 import 'features/worldstate/domain/usecases/get_darvo_deal_info.dart';
 import 'features/worldstate/domain/usecases/get_worldstate.dart';
 import 'features/worldstate/presentation/bloc/solsystem_bloc.dart';
+import 'features/worldstate/services/skybox.dart';
 
 final GetIt sl = GetIt.instance;
 
@@ -40,6 +41,9 @@ Future<void> init() async {
   sl.registerSingletonAsync<WarframestatCache>(
     () => WarframestatCache.initCache(),
   );
+
+  sl.registerSingletonAsync<SkyboxService>(
+      () async => SkyboxService.loadSkyboxData());
 
   await sl.isReady<WarframestatCache>();
   await sl.isReady<Usersettings>();
