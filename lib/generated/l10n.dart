@@ -8,12 +8,8 @@ import 'intl/messages_all.dart';
 // Made by Localizely
 // **************************************************************************
 
-// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars
-
 class NavisLocalizations {
   NavisLocalizations();
-  
-  static NavisLocalizations current;
   
   static const AppLocalizationDelegate delegate =
     AppLocalizationDelegate();
@@ -23,9 +19,7 @@ class NavisLocalizations {
     final localeName = Intl.canonicalizedLocale(name); 
     return initializeMessages(localeName).then((_) {
       Intl.defaultLocale = localeName;
-      NavisLocalizations.current = NavisLocalizations();
-      
-      return NavisLocalizations.current;
+      return NavisLocalizations();
     });
   } 
 
@@ -33,7 +27,6 @@ class NavisLocalizations {
     return Localizations.of<NavisLocalizations>(context, NavisLocalizations);
   }
 
-  /// `Level: {min} - {max}`
   String levelInfo(Object min, Object max) {
     return Intl.message(
       'Level: $min - $max',
@@ -43,7 +36,6 @@ class NavisLocalizations {
     );
   }
 
-  /// `{agentType} | level: {rank}`
   String activeAcolyte(Object agentType, Object rank) {
     return Intl.message(
       '$agentType | level: $rank',
@@ -53,7 +45,6 @@ class NavisLocalizations {
     );
   }
 
-  /// `Locating...`
   String get locating {
     return Intl.message(
       'Locating...',
@@ -63,7 +54,6 @@ class NavisLocalizations {
     );
   }
 
-  /// `Current location`
   String get acolyteCurrentLocation {
     return Intl.message(
       'Current location',
@@ -73,7 +63,6 @@ class NavisLocalizations {
     );
   }
 
-  /// `Last seen location`
   String get acolytePassLocation {
     return Intl.message(
       'Last seen location',
@@ -83,7 +72,6 @@ class NavisLocalizations {
     );
   }
 
-  /// `Found`
   String get acolyteFound {
     return Intl.message(
       'Found',
@@ -93,7 +81,6 @@ class NavisLocalizations {
     );
   }
 
-  /// `Last seen`
   String get acolyteLastSeen {
     return Intl.message(
       'Last seen',
@@ -103,7 +90,6 @@ class NavisLocalizations {
     );
   }
 
-  /// `Health`
   String get acolyteHealth {
     return Intl.message(
       'Health',
@@ -113,7 +99,6 @@ class NavisLocalizations {
     );
   }
 
-  /// `Acolyte Level`
   String get acolyteRank {
     return Intl.message(
       'Acolyte Level',
@@ -123,7 +108,6 @@ class NavisLocalizations {
     );
   }
 
-  /// `{lastSeenTime} minutes ago`
   String acolyteElapsedTime(Object lastSeenTime) {
     return Intl.message(
       '$lastSeenTime minutes ago',
@@ -133,7 +117,6 @@ class NavisLocalizations {
     );
   }
 
-  /// `Tap for more details`
   String get tapForMoreDetails {
     return Intl.message(
       'Tap for more details',
@@ -143,7 +126,6 @@ class NavisLocalizations {
     );
   }
 
-  /// `See details`
   String get seeDetails {
     return Intl.message(
       'See details',
@@ -153,7 +135,6 @@ class NavisLocalizations {
     );
   }
 
-  /// `Description`
   String get eventDescription {
     return Intl.message(
       'Description',
@@ -163,7 +144,6 @@ class NavisLocalizations {
     );
   }
 
-  /// `Event Status`
   String get eventStatus {
     return Intl.message(
       'Event Status',
@@ -173,7 +153,6 @@ class NavisLocalizations {
     );
   }
 
-  /// `Node`
   String get eventStatusNode {
     return Intl.message(
       'Node',
@@ -183,7 +162,6 @@ class NavisLocalizations {
     );
   }
 
-  /// `Progress`
   String get eventStatusProgress {
     return Intl.message(
       'Progress',
@@ -193,7 +171,6 @@ class NavisLocalizations {
     );
   }
 
-  /// `Time left (ETA)`
   String get eventStatusEta {
     return Intl.message(
       'Time left (ETA)',
@@ -203,7 +180,6 @@ class NavisLocalizations {
     );
   }
 
-  /// `Rewards`
   String get eventRewards {
     return Intl.message(
       'Rewards',
@@ -213,7 +189,6 @@ class NavisLocalizations {
     );
   }
 
-  /// `Bounties`
   String get bountyTitle {
     return Intl.message(
       'Bounties',
@@ -223,7 +198,6 @@ class NavisLocalizations {
     );
   }
 
-  /// `An application error has occurred`
   String get errorTitle {
     return Intl.message(
       'An application error has occurred',
@@ -233,7 +207,6 @@ class NavisLocalizations {
     );
   }
 
-  /// `There was unexpected error in core system.\nReporting error to system admin...`
   String get errorDescription {
     return Intl.message(
       'There was unexpected error in core system.\nReporting error to system admin...',
@@ -243,7 +216,6 @@ class NavisLocalizations {
     );
   }
 
-  /// `Void trader`
   String get baroTitle {
     return Intl.message(
       'Void trader',
@@ -253,7 +225,6 @@ class NavisLocalizations {
     );
   }
 
-  /// `Baro Ki'Teer leaves in`
   String get baroLeaving {
     return Intl.message(
       'Baro Ki\'Teer leaves in',
@@ -263,7 +234,6 @@ class NavisLocalizations {
     );
   }
 
-  /// `Baro Ki'Teer arrives in`
   String get baroArriving {
     return Intl.message(
       'Baro Ki\'Teer arrives in',
@@ -273,7 +243,6 @@ class NavisLocalizations {
     );
   }
 
-  /// `Location`
   String get baroLocation {
     return Intl.message(
       'Location',
@@ -283,7 +252,6 @@ class NavisLocalizations {
     );
   }
 
-  /// `Leaves on`
   String get baroLeavesOn {
     return Intl.message(
       'Leaves on',
@@ -293,7 +261,6 @@ class NavisLocalizations {
     );
   }
 
-  /// `Arrives on`
   String get baroArrivesOn {
     return Intl.message(
       'Arrives on',
@@ -303,7 +270,6 @@ class NavisLocalizations {
     );
   }
 
-  /// `Baro Ki'Teeer Inventory`
   String get baroInventory {
     return Intl.message(
       'Baro Ki\'Teeer Inventory',
@@ -313,7 +279,6 @@ class NavisLocalizations {
     );
   }
 
-  /// `Ends on {date}`
   String countdownTooltip(Object date) {
     return Intl.message(
       'Ends on $date',
@@ -323,7 +288,6 @@ class NavisLocalizations {
     );
   }
 
-  /// `Kuva will refresh in`
   String get kuvaBanner {
     return Intl.message(
       'Kuva will refresh in',
@@ -333,7 +297,6 @@ class NavisLocalizations {
     );
   }
 
-  /// `Fomorian`
   String get formorianTitle {
     return Intl.message(
       'Fomorian',
@@ -343,7 +306,6 @@ class NavisLocalizations {
     );
   }
 
-  /// `Razorback`
   String get razorbackTitle {
     return Intl.message(
       'Razorback',
@@ -353,7 +315,6 @@ class NavisLocalizations {
     );
   }
 
-  /// `Earth Cycle`
   String get earthCycleTitle {
     return Intl.message(
       'Earth Cycle',
@@ -363,7 +324,6 @@ class NavisLocalizations {
     );
   }
 
-  /// `Cetus Cycle`
   String get cetusCycleTitle {
     return Intl.message(
       'Cetus Cycle',
@@ -373,7 +333,6 @@ class NavisLocalizations {
     );
   }
 
-  /// `Vallis Cycle`
   String get vallisCycleTitle {
     return Intl.message(
       'Vallis Cycle',
@@ -383,7 +342,6 @@ class NavisLocalizations {
     );
   }
 
-  /// `Timers`
   String get timersTitle {
     return Intl.message(
       'Timers',
@@ -393,7 +351,6 @@ class NavisLocalizations {
     );
   }
 
-  /// `Fissures`
   String get fissuresTitle {
     return Intl.message(
       'Fissures',
@@ -403,7 +360,6 @@ class NavisLocalizations {
     );
   }
 
-  /// `Invasions`
   String get invasionsTitle {
     return Intl.message(
       'Invasions',
@@ -413,7 +369,6 @@ class NavisLocalizations {
     );
   }
 
-  /// `Syndicates`
   String get syndicatesTitle {
     return Intl.message(
       'Syndicates',
@@ -423,7 +378,6 @@ class NavisLocalizations {
     );
   }
 
-  /// `Codex`
   String get codexTitle {
     return Intl.message(
       'Codex',
@@ -433,7 +387,6 @@ class NavisLocalizations {
     );
   }
 
-  /// `Helpful Links`
   String get helpfulLinksTitle {
     return Intl.message(
       'Helpful Links',
@@ -443,7 +396,6 @@ class NavisLocalizations {
     );
   }
 
-  /// `Behavior`
   String get behaviorTitle {
     return Intl.message(
       'Behavior',
@@ -453,7 +405,6 @@ class NavisLocalizations {
     );
   }
 
-  /// `Theme`
   String get themeTitle {
     return Intl.message(
       'Theme',
@@ -463,7 +414,6 @@ class NavisLocalizations {
     );
   }
 
-  /// `Choose app theme.`
   String get themeDescription {
     return Intl.message(
       'Choose app theme.',
@@ -473,7 +423,6 @@ class NavisLocalizations {
     );
   }
 
-  /// `Back button opens drawer`
   String get backOpensDrawerTitle {
     return Intl.message(
       'Back button opens drawer',
@@ -483,7 +432,6 @@ class NavisLocalizations {
     );
   }
 
-  /// `Pressing the back button opens the drawer.`
   String get backOpensDrawerDescription {
     return Intl.message(
       'Pressing the back button opens the drawer.',
@@ -493,7 +441,6 @@ class NavisLocalizations {
     );
   }
 
-  /// `Notifications`
   String get notificationsTitle {
     return Intl.message(
       'Notifications',
@@ -503,7 +450,6 @@ class NavisLocalizations {
     );
   }
 
-  /// `Rare Alerts`
   String get rareAlertsNotificationTitle {
     return Intl.message(
       'Rare Alerts',
@@ -513,7 +459,6 @@ class NavisLocalizations {
     );
   }
 
-  /// `Rare alert notifications, mainly gifts of the lotus.`
   String get rareAlertsNotificationDescription {
     return Intl.message(
       'Rare alert notifications, mainly gifts of the lotus.',
@@ -523,7 +468,6 @@ class NavisLocalizations {
     );
   }
 
-  /// `Baro Ki'Teer`
   String get baroNotificationTitle {
     return Intl.message(
       'Baro Ki\'Teer',
@@ -533,7 +477,6 @@ class NavisLocalizations {
     );
   }
 
-  /// `Notifications for both Baro's arrivial and departure.`
   String get baroNotificationDescription {
     return Intl.message(
       'Notifications for both Baro\'s arrivial and departure.',
@@ -543,7 +486,6 @@ class NavisLocalizations {
     );
   }
 
-  /// `Darvo's Daily Deals`
   String get darvoNotificationTitle {
     return Intl.message(
       'Darvo\'s Daily Deals',
@@ -553,7 +495,6 @@ class NavisLocalizations {
     );
   }
 
-  /// `Darvo's new find of the day.`
   String get darvoNotificationDescription {
     return Intl.message(
       'Darvo\'s new find of the day.',
@@ -563,7 +504,6 @@ class NavisLocalizations {
     );
   }
 
-  /// `Sortie`
   String get sortieNotificationTitle {
     return Intl.message(
       'Sortie',
@@ -573,7 +513,6 @@ class NavisLocalizations {
     );
   }
 
-  /// `Notifications for new sorties.`
   String get sortieNotificationDescription {
     return Intl.message(
       'Notifications for new sorties.',
@@ -583,7 +522,6 @@ class NavisLocalizations {
     );
   }
 
-  /// `Sentient Outpost`
   String get sentientOutpostNotificationTitle {
     return Intl.message(
       'Sentient Outpost',
@@ -593,7 +531,6 @@ class NavisLocalizations {
     );
   }
 
-  /// `Notifications for new sentient threats`
   String get sentientOutpostNotificationDescription {
     return Intl.message(
       'Notifications for new sentient threats',
@@ -603,7 +540,6 @@ class NavisLocalizations {
     );
   }
 
-  /// `News`
   String get warframeNewsNotificationTitle {
     return Intl.message(
       'News',
@@ -613,7 +549,6 @@ class NavisLocalizations {
     );
   }
 
-  /// `News notifications for Prime Access, Streams and Updates.`
   String get warframeNewsNotificationDescription {
     return Intl.message(
       'News notifications for Prime Access, Streams and Updates.',
@@ -623,7 +558,6 @@ class NavisLocalizations {
     );
   }
 
-  /// `Open World Cycles`
   String get planetCyclesNotificationTitle {
     return Intl.message(
       'Open World Cycles',
@@ -633,7 +567,6 @@ class NavisLocalizations {
     );
   }
 
-  /// `Open world notifications for their given cycles.`
   String get planetCyclesNotificationDescription {
     return Intl.message(
       'Open world notifications for their given cycles.',
@@ -643,7 +576,6 @@ class NavisLocalizations {
     );
   }
 
-  /// `Resources`
   String get resourcesNotificationTitle {
     return Intl.message(
       'Resources',
@@ -653,7 +585,6 @@ class NavisLocalizations {
     );
   }
 
-  /// `Resources mostly found in invasions.`
   String get resourcesNotificationDescription {
     return Intl.message(
       'Resources mostly found in invasions.',
@@ -663,7 +594,6 @@ class NavisLocalizations {
     );
   }
 
-  /// `Fissure Missions`
   String get fissuresNotificationTitle {
     return Intl.message(
       'Fissure Missions',
@@ -673,7 +603,6 @@ class NavisLocalizations {
     );
   }
 
-  /// `Filter fissure notifications by prefered mission type`
   String get fissuresNotificationDescription {
     return Intl.message(
       'Filter fissure notifications by prefered mission type',
@@ -683,7 +612,6 @@ class NavisLocalizations {
     );
   }
 
-  /// `Acolytes`
   String get acolytesNotificationTitle {
     return Intl.message(
       'Acolytes',
@@ -693,7 +621,6 @@ class NavisLocalizations {
     );
   }
 
-  /// `Notifies when an acolyte is found`
   String get acolytesNotificationDescription {
     return Intl.message(
       'Notifies when an acolyte is found',
@@ -703,7 +630,6 @@ class NavisLocalizations {
     );
   }
 
-  /// `Earth Day`
   String get earthDayOption {
     return Intl.message(
       'Earth Day',
@@ -713,7 +639,6 @@ class NavisLocalizations {
     );
   }
 
-  /// `Earth Night`
   String get earthNightOption {
     return Intl.message(
       'Earth Night',
@@ -723,7 +648,6 @@ class NavisLocalizations {
     );
   }
 
-  /// `Cetus Day`
   String get cetusDayOption {
     return Intl.message(
       'Cetus Day',
@@ -733,7 +657,6 @@ class NavisLocalizations {
     );
   }
 
-  /// `Cetus Night`
   String get cetusNightOption {
     return Intl.message(
       'Cetus Night',
@@ -743,7 +666,6 @@ class NavisLocalizations {
     );
   }
 
-  /// `Orb Vallis Warm`
   String get vallisWarmOption {
     return Intl.message(
       'Orb Vallis Warm',
@@ -753,7 +675,6 @@ class NavisLocalizations {
     );
   }
 
-  /// `Orb Vallis Cold`
   String get vallisColdOption {
     return Intl.message(
       'Orb Vallis Cold',
@@ -763,7 +684,6 @@ class NavisLocalizations {
     );
   }
 
-  /// `Prime Access`
   String get primeAccessNewsOption {
     return Intl.message(
       'Prime Access',
@@ -773,7 +693,6 @@ class NavisLocalizations {
     );
   }
 
-  /// `Stream Announcements`
   String get streamNewsOption {
     return Intl.message(
       'Stream Announcements',
@@ -783,7 +702,6 @@ class NavisLocalizations {
     );
   }
 
-  /// `Warframe Update News`
   String get updateNewsOption {
     return Intl.message(
       'Warframe Update News',
@@ -793,7 +711,6 @@ class NavisLocalizations {
     );
   }
 
-  /// `Update Drop Table`
   String get updateDropTableTitle {
     return Intl.message(
       'Update Drop Table',
@@ -803,7 +720,6 @@ class NavisLocalizations {
     );
   }
 
-  /// `Last updated {date}`
   String updateDropTableDescription(Object date) {
     return Intl.message(
       'Last updated $date',
@@ -813,7 +729,6 @@ class NavisLocalizations {
     );
   }
 
-  /// `Report Bugs`
   String get reportBugsTitle {
     return Intl.message(
       'Report Bugs',
@@ -823,7 +738,6 @@ class NavisLocalizations {
     );
   }
 
-  /// `Report bugs or Request a feature`
   String get reportBugsDescription {
     return Intl.message(
       'Report bugs or Request a feature',
@@ -833,7 +747,6 @@ class NavisLocalizations {
     );
   }
 
-  /// `About`
   String get aboutCategoryTitle {
     return Intl.message(
       'About',
@@ -843,7 +756,6 @@ class NavisLocalizations {
     );
   }
 
-  /// `Sortie will reset in`
   String get sortieResetTime {
     return Intl.message(
       'Sortie will reset in',
@@ -853,7 +765,6 @@ class NavisLocalizations {
     );
   }
 
-  /// `Waiting for new sortie`
   String get sortieReseting {
     return Intl.message(
       'Waiting for new sortie',
@@ -863,7 +774,6 @@ class NavisLocalizations {
     );
   }
 
-  /// `Light`
   String get lightThemeTitle {
     return Intl.message(
       'Light',
@@ -873,7 +783,6 @@ class NavisLocalizations {
     );
   }
 
-  /// `Dark`
   String get darkThemeTitle {
     return Intl.message(
       'Dark',
@@ -883,7 +792,6 @@ class NavisLocalizations {
     );
   }
 
-  /// `System`
   String get systemThemeTitle {
     return Intl.message(
       'System',
@@ -893,7 +801,6 @@ class NavisLocalizations {
     );
   }
 
-  /// `Warframe and the Warframe logo are registered trademarks of Digital Extremes Ltd. Cephalon Navis nor WFCD are affiliated with Digital Extremes Ltd. in any way.`
   String get legalese {
     return Intl.message(
       'Warframe and the Warframe logo are registered trademarks of Digital Extremes Ltd. Cephalon Navis nor WFCD are affiliated with Digital Extremes Ltd. in any way.',
@@ -903,7 +810,6 @@ class NavisLocalizations {
     );
   }
 
-  /// `Homepage`
   String get homePageTitle {
     return Intl.message(
       'Homepage',
@@ -913,7 +819,6 @@ class NavisLocalizations {
     );
   }
 
-  /// `Report issues or feature request for this project's`
   String get issueTrackerDescription {
     return Intl.message(
       'Report issues or feature request for this project\'s',
@@ -923,7 +828,6 @@ class NavisLocalizations {
     );
   }
 
-  /// `issues tracker`
   String get issueTrackerTitle {
     return Intl.message(
       'issues tracker',
@@ -933,7 +837,6 @@ class NavisLocalizations {
     );
   }
 
-  /// `More information on Warframe can be found on their official site`
   String get warframeLinkTitle {
     return Intl.message(
       'More information on Warframe can be found on their official site',
@@ -943,7 +846,6 @@ class NavisLocalizations {
     );
   }
 
-  /// `Settings`
   String get settingsTitle {
     return Intl.message(
       'Settings',
@@ -953,7 +855,6 @@ class NavisLocalizations {
     );
   }
 
-  /// `Daily Reward Reset Timer`
   String get dailyRewardTitle {
     return Intl.message(
       'Daily Reward Reset Timer',
@@ -963,7 +864,6 @@ class NavisLocalizations {
     );
   }
 
-  /// `Elite`
   String get eliteBadgeTitle {
     return Intl.message(
       'Elite',
@@ -973,7 +873,6 @@ class NavisLocalizations {
     );
   }
 
-  /// `Daily`
   String get dailyNightwaveTitle {
     return Intl.message(
       'Daily',
@@ -983,7 +882,6 @@ class NavisLocalizations {
     );
   }
 
-  /// `Weekly`
   String get weeklyNightwaveTitle {
     return Intl.message(
       'Weekly',
