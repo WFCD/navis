@@ -1,6 +1,8 @@
 import 'package:data_connection_checker/data_connection_checker.dart';
 import 'package:get_it/get_it.dart';
 import 'package:http/http.dart' as http;
+import 'package:navis/core/services/notifications.dart';
+import 'package:package_info/package_info.dart';
 
 import 'core/bloc/navigation_bloc.dart';
 import 'core/local/user_settings.dart';
@@ -26,12 +28,15 @@ import 'features/worldstate/services/skybox.dart';
 final GetIt sl = GetIt.instance;
 
 Future<void> init() async {
-  //! Core
+  // Core
   sl.registerSingleton<NetworkInfo>(NetworkInfoImpl(DataConnectionChecker()));
 
   sl.registerSingletonAsync<EventInfoParser>(
     () => EventInfoParser.loadEventData(),
   );
+
+  sl.registerSingletonAsync<PackageInfo>(() => PackageInfo.fromPlatform());
+  sl.registerFactory<NotificationService>(() => NotificationService());
 
   // Data sources
   sl.registerSingleton<WarframestatClient>(WarframestatClient(http.Client()));

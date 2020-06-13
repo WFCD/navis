@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:navis/core/settings/settings.dart';
 
 import '../features/worldstate/presentation/bloc/solsystem_bloc.dart';
 import '../features/worldstate/presentation/pages/acolyte_profile.dart';
@@ -69,7 +70,7 @@ class _NavisAppState extends State<NavisApp> with WidgetsBindingObserver {
       routes: <String, WidgetBuilder>{
         EventInformation.route: (_) => const EventInformation(),
         AcolyteProfile.route: (_) => const AcolyteProfile(),
-        // Settings.route: (_) => const Settings(),
+        Settings.route: (_) => const Settings(),
         NightwavesPage.route: (_) => const NightwavesPage(),
         BountiesPage.route: (_) => const BountiesPage(),
         // SynthTargetScreen.route: (_) => const SynthTargetScreen(),

@@ -5,7 +5,7 @@ import 'package:navis/constants/storage_keys.dart';
 import 'package:navis/core/network/warframestat_remote.dart';
 import 'package:path_provider/path_provider.dart';
 
-class Usersettings {
+class Usersettings with ChangeNotifier {
   Usersettings(this._box);
 
   final Box<dynamic> _box;
@@ -38,7 +38,9 @@ class Usersettings {
   }
 
   set platform(GamePlatforms value) {
+    _logger.info('setting new platform ${value.asString}');
     _box.put(SettingsKeys.platformKey, value.asString);
+    notifyListeners();
   }
 
   ThemeMode get theme {
@@ -52,7 +54,12 @@ class Usersettings {
 
   set theme(ThemeMode mode) {
     _box.put(SettingsKeys.theme, mode.toString().split('.').last);
+    notifyListeners();
   }
+
+  bool get backkey => getToggle(SettingsKeys.backKey);
+
+  set backkey(bool value) => setToggle(SettingsKeys.backKey, value);
 
   bool getToggle(String key) {
     return _box.get(key, defaultValue: false) as bool;
@@ -60,5 +67,6 @@ class Usersettings {
 
   void setToggle(String key, bool value) {
     _box.put(key, value);
+    notifyListeners();
   }
 }
