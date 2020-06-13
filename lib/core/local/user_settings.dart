@@ -34,7 +34,7 @@ class Usersettings with ChangeNotifier {
       return GamePlatformsX.fromString(value);
     }
 
-    return GamePlatforms.pc;
+    return null;
   }
 
   set platform(GamePlatforms value) {
