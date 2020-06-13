@@ -16,25 +16,23 @@ class FactionIcon extends StatelessWidget {
   final double iconSize;
   final bool hasColor;
 
-  Widget _buildIcon(IconData iconData) {
+  @override
+  Widget build(BuildContext context) {
     return Icon(
-      iconData,
+      () {
+        switch (faction) {
+          case 'Grineer':
+            return FactionIcons.grineer;
+          case 'Corpus':
+            return FactionIcons.corpus;
+          case 'Corrupted':
+            return FactionIcons.corrupted;
+          default:
+            return FactionIcons.infested;
+        }
+      }(),
       size: iconSize,
       color: hasColor ? factionColor(faction) : Colors.white,
     );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    switch (faction) {
-      case 'Grineer':
-        return _buildIcon(FactionIcons.grineer);
-      case 'Corpus':
-        return _buildIcon(FactionIcons.corpus);
-      case 'Corrupted':
-        return _buildIcon(FactionIcons.corrupted);
-      default:
-        return _buildIcon(FactionIcons.infested);
-    }
   }
 }

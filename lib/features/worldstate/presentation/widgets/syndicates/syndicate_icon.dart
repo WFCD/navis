@@ -8,25 +8,23 @@ class GetSyndicateIcon extends StatelessWidget {
 
   final SyndicateFaction syndicate;
 
-  IconData _getIcon() {
-    switch (syndicate) {
-      case SyndicateFaction.cetus:
-        return SyndicateGlyphs.ostron;
-      case SyndicateFaction.solaris:
-        return SyndicateGlyphs.solaris;
-      case SyndicateFaction.nightwave:
-        return SyndicateGlyphs.nightwave;
-      case SyndicateFaction.cephalon_simaris:
-        return SyndicateGlyphs.simaris;
-      default:
-        return NavisSysIcons.nightmare;
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return FaIcon(
-      _getIcon(),
+      () {
+        switch (syndicate) {
+          case SyndicateFaction.cetus:
+            return SyndicateGlyphs.ostron;
+          case SyndicateFaction.solaris:
+            return SyndicateGlyphs.solaris;
+          case SyndicateFaction.nightwave:
+            return SyndicateGlyphs.nightwave;
+          case SyndicateFaction.cephalon_simaris:
+            return SyndicateGlyphs.simaris;
+          default:
+            return NavisSysIcons.nightmare;
+        }
+      }(),
       size: 50,
       color: syndicate.iconColor,
     );

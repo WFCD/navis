@@ -12,21 +12,6 @@ class FissureWidget extends StatelessWidget {
 
   static const height = 140.0;
 
-  IconData _getIcon() {
-    switch (fissure.tier) {
-      case 'Lith':
-        return RelicIcons.lith;
-      case 'Meso':
-        return RelicIcons.meso;
-      case 'Neo':
-        return RelicIcons.neo;
-      case 'Axi':
-        return RelicIcons.axi;
-      default:
-        return RelicIcons.requiem;
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     const color = Colors.white;
@@ -52,7 +37,23 @@ class FissureWidget extends StatelessWidget {
       node: fissure.node,
       height: height,
       child: ListTile(
-        leading: Icon(_getIcon(), size: 50),
+        leading: Icon(
+          () {
+            switch (fissure.tier) {
+              case 'Lith':
+                return RelicIcons.lith;
+              case 'Meso':
+                return RelicIcons.meso;
+              case 'Neo':
+                return RelicIcons.neo;
+              case 'Axi':
+                return RelicIcons.axi;
+              default:
+                return RelicIcons.requiem;
+            }
+          }(),
+          size: 50,
+        ),
         title: Text(fissure.node, style: _nodeStyle),
         subtitle: Text(
           '${fissure.missionType} | ${fissure.tier}',
