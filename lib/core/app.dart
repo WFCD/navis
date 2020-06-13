@@ -3,7 +3,10 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:navis/core/local/user_settings.dart';
+import 'package:navis/core/services/notifications.dart';
 import 'package:navis/core/settings/settings.dart';
+import 'package:navis/injection_container.dart';
 
 import '../features/worldstate/presentation/bloc/solsystem_bloc.dart';
 import '../features/worldstate/presentation/pages/acolyte_profile.dart';
@@ -39,6 +42,11 @@ class _NavisAppState extends State<NavisApp> with WidgetsBindingObserver {
       BlocProvider.of<SolsystemBloc>(context)
           .add(const SyncSystemStatus(GamePlatforms.pc));
     });
+
+    if (sl<Usersettings>().platform == null) {
+      sl<Usersettings>().platform = GamePlatforms.pc;
+      sl<NotificationService>().subscribeToPlatform(GamePlatforms.pc);
+    }
   }
 
   Widget _builder(BuildContext context, Widget widget) {
