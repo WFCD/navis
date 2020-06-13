@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/core/local/user_settings.dart';
 import 'package:navis/core/network/warframestat_remote.dart';
 import 'package:navis/core/services/notifications.dart';
 import 'package:navis/core/widgets/widgets.dart';
+import 'package:navis/features/worldstate/presentation/bloc/solsystem_bloc.dart';
 import 'package:navis/injection_container.dart';
 import 'package:provider/provider.dart';
 
@@ -65,13 +67,14 @@ class PlatformIcon extends StatelessWidget {
     }
   }
 
-  void _onPressed() {
+  void _onPressed(BuildContext context) {
     sl<NotificationService>()
         .unsubscribeFromPlatform(sl<Usersettings>().platform);
 
     sl<NotificationService>().subscribeToPlatform(platform);
-
     sl<Usersettings>().platform = platform;
+
+    BlocProvider.of<SolsystemBloc>(context).update();
   }
 
   @override
@@ -92,7 +95,7 @@ class PlatformIcon extends StatelessWidget {
         size: size,
         semanticLabel: _tooltip,
       ),
-      onPressed: _onPressed,
+      onPressed: () => _onPressed(context),
     );
   }
 }
