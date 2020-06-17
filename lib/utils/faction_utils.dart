@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:navis/widgets/icons.dart';
+import 'package:navis/themes.dart';
 
 class FactionIcon extends StatelessWidget {
   const FactionIcon({
@@ -48,7 +49,9 @@ Color factionColor(String faction) {
       return Colors.red[700];
     case 'Corrupted':
       return Colors.yellow[300];
-    default:
+    case 'Infested':
       return Colors.green;
+    default:
+      return NavisThemes.primaryColor;
   }
 }
