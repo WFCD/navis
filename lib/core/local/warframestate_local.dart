@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:hive/hive.dart';
+import 'package:navis/core/utils/data_source_utils.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:logging/logging.dart';
 import 'package:warframestat_api_models/warframestat_api_models.dart';
@@ -33,7 +34,7 @@ class WarframestatCache {
 
   void cacheDealInfo(String id, BaseItem item) {
     _box.put(_dealId, id);
-    _box.put(id, json.encode((item as BaseItemModel).toJson()));
+    _box.put(id, json.encode(fromBaseItem(item)));
   }
 
   void cacheSynthTargets(List<SynthTarget> targets) {

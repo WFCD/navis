@@ -1,12 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_brand_icons/flutter_brand_icons.dart';
 import 'package:navis/core/local/user_settings.dart';
 import 'package:navis/core/network/warframestat_remote.dart';
 import 'package:navis/core/services/notifications.dart';
-import 'package:navis/core/widgets/widgets.dart';
 import 'package:navis/features/worldstate/presentation/bloc/solsystem_bloc.dart';
 import 'package:navis/injection_container.dart';
 import 'package:provider/provider.dart';
+
+const pc = 'PC';
+const ps4 = 'Sony PlayStation 4';
+const xb1 = 'Microsoft Xbox One';
+const swi = 'Nintendo Switch';
+
+const pcColor = Color(0xFFFACA04);
+const ps4Color = Color(0xFF003791);
+const xb1Color = Color(0xFF107C10);
+const swiColor = Color(0xFFE60012);
 
 class PlatformSelect extends StatelessWidget {
   const PlatformSelect({Key key}) : super(key: key);
@@ -19,53 +29,49 @@ class PlatformSelect extends StatelessWidget {
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: const <Widget>[
-          PlatformIcon(platform: GamePlatforms.pc),
-          PlatformIcon(platform: GamePlatforms.ps4),
-          PlatformIcon(platform: GamePlatforms.xb1),
-          PlatformIcon(platform: GamePlatforms.swi)
+          PlatformIconButton(
+            platform: GamePlatforms.pc,
+            platformIcon: BrandIcons.steam,
+            platformName: pc,
+            platformColor: pcColor,
+          ),
+          PlatformIconButton(
+            platform: GamePlatforms.ps4,
+            platformIcon: BrandIcons.playstation,
+            platformName: ps4,
+            platformColor: ps4Color,
+          ),
+          PlatformIconButton(
+            platform: GamePlatforms.xb1,
+            platformIcon: BrandIcons.xbox,
+            platformName: xb1,
+            platformColor: xb1Color,
+          ),
+          PlatformIconButton(
+            platform: GamePlatforms.swi,
+            platformIcon: BrandIcons.nintendoswitch,
+            platformName: swi,
+            platformColor: swiColor,
+          )
         ],
       ),
     );
   }
 }
 
-const pc = 'PC';
-const ps4 = 'Sony PlayStation 4';
-const xb1 = 'Microsoft Xbox One';
-const swi = 'Nintendo Switch';
-
-class PlatformIcon extends StatelessWidget {
-  const PlatformIcon({Key key, this.platform}) : super(key: key);
+class PlatformIconButton extends StatelessWidget {
+  const PlatformIconButton({
+    Key key,
+    @required this.platform,
+    @required this.platformIcon,
+    @required this.platformColor,
+    @required this.platformName,
+  }) : super(key: key);
 
   final GamePlatforms platform;
-
-  static String _tooltip;
-  static IconData _platformIcon;
-  static Color _platformColor;
-
-  void _setValues() {
-    switch (platform) {
-      case GamePlatforms.ps4:
-        _tooltip = ps4;
-        _platformIcon = PlatformIcons.playstation;
-        _platformColor = const Color(0xFF003791);
-        break;
-      case GamePlatforms.xb1:
-        _tooltip = xb1;
-        _platformIcon = PlatformIcons.xbox;
-        _platformColor = const Color(0xFF107C10);
-        break;
-      case GamePlatforms.swi:
-        _tooltip = swi;
-        _platformIcon = PlatformIcons.nintendoswitch;
-        _platformColor = const Color(0xFFE60012);
-        break;
-      default:
-        _tooltip = pc;
-        _platformIcon = PlatformIcons.steam;
-        _platformColor = const Color(0xFFFACA04);
-    }
-  }
+  final IconData platformIcon;
+  final Color platformColor;
+  final String platformName;
 
   void _onPressed(BuildContext context) {
     sl<NotificationService>()
@@ -82,18 +88,16 @@ class PlatformIcon extends StatelessWidget {
     final size = (MediaQuery.of(context).size.shortestSide / 100) * 8.5;
     final currentPlatform = context.watch<Usersettings>().platform;
 
-    _setValues();
-
     return IconButton(
-      tooltip: _tooltip,
-      splashColor: _platformColor,
+      tooltip: platformName,
+      splashColor: platformColor,
       icon: Icon(
-        _platformIcon,
-        color: (currentPlatform ?? GamePlatforms.pc) == platform
-            ? _platformColor
+        platformIcon,
+        color: currentPlatform == platform
+            ? platformColor
             : Theme.of(context).disabledColor,
         size: size,
-        semanticLabel: _tooltip,
+        semanticLabel: platformName,
       ),
       onPressed: () => _onPressed(context),
     );
