@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 
 import 'about_app.dart';
 import 'behavior.dart';
+import 'notifications.dart';
 
 class Settings extends StatelessWidget {
   const Settings({Key key}) : super(key: key);
@@ -17,7 +18,7 @@ class Settings extends StatelessWidget {
     final children = [
       const PlatformSelect(),
       const Behavior(),
-      // const Notifications(),
+      const Notifications(),
       const AboutApp()
     ];
 

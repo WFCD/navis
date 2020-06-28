@@ -80,11 +80,5 @@ class NotificationKeys {
   static const String strunReciever = 'strun_reciever';
   static const String strunStock = 'strun_stock';
 
-  static const String lith = 'lith';
-  static const String meso = 'meso';
-  static const String axi = 'axi';
-  static const String requiem = 'requiem';
-
-  static const excavation = 'excavation';
-  static const mobileDefense = 'mobile_defense';
+  static const String fissureT1Excavation = 'fissures.t1.excavation';
 }
