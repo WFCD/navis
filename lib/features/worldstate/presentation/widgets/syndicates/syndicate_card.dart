@@ -67,16 +67,17 @@ class SyndicateCard extends StatelessWidget {
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(4.0)),
         child: CustomCard(
           color: syndicateName.backgroundColor,
-          margin: EdgeInsets.symmetric(
-            horizontal: sizing.widthMultiplier * .8,
-            vertical: sizing.heightMultiplier * .8,
-          ),
-          child: ListTile(
-            leading: GetSyndicateIcon(syndicate: syndicateName),
-            title: Text(name ?? syndicate.name, style: titleStyle),
-            subtitle: Text(
-              caption ?? NavisLocalizations.of(context).tapForMoreDetails,
-              style: captionStyle,
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+              vertical: sizing.heightMultiplier * 2,
+            ),
+            child: ListTile(
+              leading: GetSyndicateIcon(syndicate: syndicateName),
+              title: Text(name ?? syndicate.name, style: titleStyle),
+              subtitle: Text(
+                caption ?? NavisLocalizations.of(context).tapForMoreDetails,
+                style: captionStyle,
+              ),
             ),
           ),
         ),

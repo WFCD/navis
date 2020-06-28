@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:supercharged/supercharged.dart';
 
 class CustomCard extends StatelessWidget {
   const CustomCard({
@@ -51,23 +50,21 @@ class CustomCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final cardContent = AnimatedContainer(
-      margin: margin,
-      padding: padding,
-      duration: 250.milliseconds,
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          if (title != null) _buildTitle(context, title),
-          child
-        ],
-      ),
-    );
+    final cardContent = title != null
+        ? Column(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[_buildTitle(context, title), child],
+          )
+        : child;
 
     return Card(
       color: color,
-      child: addBanner ? _wrapWithBanner(context, cardContent) : cardContent,
+      margin: margin,
+      child: Padding(
+        padding: padding ?? EdgeInsets.zero,
+        child: addBanner ? _wrapWithBanner(context, cardContent) : cardContent,
+      ),
     );
   }
 }

@@ -79,6 +79,4 @@ class NotificationKeys {
   static const String strunBarrel = 'strun_barrel';
   static const String strunReciever = 'strun_reciever';
   static const String strunStock = 'strun_stock';
-
-  static const String fissureT1Excavation = 'fissures.t1.excavation';
 }

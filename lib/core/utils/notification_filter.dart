@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:intl/intl.dart';
 import 'package:navis/constants/storage_keys.dart';
 import 'package:navis/generated/l10n.dart';
