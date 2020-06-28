@@ -317,6 +317,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.6.1+1"
+  json_annotation:
+    dependency: transitive
+    description:
+      name: json_annotation
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.0.1"
   logging:
     dependency: transitive
     description:
@@ -742,6 +749,15 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.1.4+1"
+  warframestat_api_models:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: HEAD
+      resolved-ref: "450e13910b32db7ca02bc94a9813fefdc88ae686"
+      url: "https://github.com/SlayerOrnstein/warframestat_api_models.git"
+    source: git
+    version: "3.3.4"
   watcher:
     dependency: transitive
     description:

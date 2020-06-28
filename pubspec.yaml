@@ -31,6 +31,8 @@ dependencies:
   mockito: ^4.1.1
   extra_pedantic: ^1.2.0
   intl_translation: ^0.17.9
+  warframestat_api_models:
+    git: https://github.com/SlayerOrnstein/warframestat_api_models.git
 
 flutter:
   uses-material-design: true
