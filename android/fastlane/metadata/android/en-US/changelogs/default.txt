@@ -1,0 +1,2 @@
+full changelog:
+https://github.com/WFCD/navis/releases/latest

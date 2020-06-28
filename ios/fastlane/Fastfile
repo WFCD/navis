@@ -24,7 +24,7 @@ platform :ios do
       # This will build again, becasue currently flutter builds an .app
       # instead of a .ipa which isn't good for deployment to App Store
       build_ios_app(scheme: "Runner", export_method: "app-store")
-      upload_to_testflight(skip_waiting_for_build_processing: true)
+      upload_to_testflight(changelog: "Stability testing", distribute_external: true, groups: ["Zariman Ten Zero"])
     rescue => exception
       raise exception unless exception.message.include?('Error uploading ipa file')
       puts 'Current version already present. Omitting this upload'
