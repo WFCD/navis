@@ -1,10 +1,10 @@
 import 'package:dartz/dartz.dart';
-import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:navis/core/usecases/usecases.dart';
 import 'package:navis/core/utils/data_source_utils.dart';
 import 'package:navis/features/worldstate/domain/repositories/worldstate_repository.dart';
 import 'package:navis/features/worldstate/domain/usecases/get_worldstate.dart';
+import 'package:test/test.dart';
 import 'package:warframestat_api_models/entities.dart';
 
 import '../../../fixtures/fixture_reader.dart';
