@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:logging/logging.dart';
 import 'package:navis/constants/storage_keys.dart';
-import 'package:navis/core/network/warframestat_remote.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:wfcd_client/wfcd_client.dart';
 
 class Usersettings with ChangeNotifier {
   Usersettings(this._box);

@@ -5,8 +5,8 @@ import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 import 'package:navis/core/local/user_settings.dart';
 import 'package:navis/core/local/warframestate_local.dart';
-import 'package:navis/core/network/warframestat_remote.dart';
 import 'package:warframestat_api_models/entities.dart';
+import 'package:wfcd_client/wfcd_client.dart';
 
 import '../../../../core/error/failures.dart';
 import '../../../../core/network/network_info.dart';

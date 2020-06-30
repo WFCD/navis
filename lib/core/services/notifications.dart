@@ -1,6 +1,6 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:logging/logging.dart';
-import 'package:navis/core/network/warframestat_remote.dart';
+import 'package:wfcd_client/wfcd_client.dart';
 
 class NotificationService {
   factory NotificationService() {
@@ -9,7 +9,7 @@ class NotificationService {
     messaging.requestNotificationPermissions(const IosNotificationSettings(
         sound: true, badge: true, alert: true, provisional: true));
 
-    messaging.configure();
+    // messaging.configure();
 
     return NotificationService._(messaging);
   }

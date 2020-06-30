@@ -3,12 +3,12 @@ import 'package:get_it/get_it.dart';
 import 'package:http/http.dart' as http;
 import 'package:navis/core/services/notifications.dart';
 import 'package:package_info/package_info.dart';
+import 'package:wfcd_client/wfcd_client.dart';
 
 import 'core/bloc/navigation_bloc.dart';
 import 'core/local/user_settings.dart';
 import 'core/local/warframestate_local.dart';
 import 'core/network/network_info.dart';
-import 'core/network/warframestat_remote.dart';
 import 'features/codex/data/repositories/codex_repository_impl.dart';
 import 'features/codex/domian/repositories/codex_repository.dart';
 import 'features/codex/domian/usercases/search_items.dart';

@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_brand_icons/flutter_brand_icons.dart';
-import 'package:navis/core/local/user_settings.dart';
-import 'package:navis/core/network/warframestat_remote.dart';
-import 'package:navis/core/services/notifications.dart';
-import 'package:navis/features/worldstate/presentation/bloc/solsystem_bloc.dart';
-import 'package:navis/injection_container.dart';
 import 'package:provider/provider.dart';
+import 'package:wfcd_client/wfcd_client.dart';
+
+import '../../features/worldstate/presentation/bloc/solsystem_bloc.dart';
+import '../../injection_container.dart';
+import '../local/user_settings.dart';
+import '../services/notifications.dart';
 
 const pc = 'PC';
 const ps4 = 'Sony PlayStation 4';

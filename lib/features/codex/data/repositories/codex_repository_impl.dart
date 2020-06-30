@@ -5,9 +5,9 @@ import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 import 'package:navis/core/error/failures.dart';
 import 'package:navis/core/network/network_info.dart';
-import 'package:navis/core/network/warframestat_remote.dart';
 import 'package:navis/features/codex/domian/repositories/codex_repository.dart';
 import 'package:warframestat_api_models/entities.dart';
+import 'package:wfcd_client/wfcd_client.dart';
 
 class CodexRepositoryImpl extends CodexRepository {
   const CodexRepositoryImpl(this.networkInfo);

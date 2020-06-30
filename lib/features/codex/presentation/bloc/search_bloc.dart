@@ -3,10 +3,10 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:navis/core/error/exceptions.dart';
-import 'package:navis/core/utils/data_source_utils.dart';
 import 'package:navis/features/codex/domian/usercases/search_items.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:supercharged/supercharged.dart';
+import 'package:wfcd_client/wfcd_client.dart';
 
 import 'search_event.dart';
 import 'search_state.dart';

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:supercharged/supercharged.dart';
+import 'package:wfcd_client/wfcd_client.dart';
 
 import '../../features/worldstate/presentation/bloc/solsystem_bloc.dart';
 import '../../generated/l10n.dart';
-import '../network/warframestat_remote.dart';
 import '../themes/colors.dart';
 import '../utils/extensions.dart';
 import 'static_box.dart';

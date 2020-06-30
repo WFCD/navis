@@ -4,11 +4,11 @@ import 'package:equatable/equatable.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:navis/core/error/exceptions.dart';
 import 'package:navis/core/usecases/usecases.dart';
-import 'package:navis/core/utils/data_source_utils.dart';
 import 'package:navis/features/synthtargets/domain/usecases/get_synth_targets.dart';
 import 'package:supercharged/supercharged.dart';
 import 'package:warframestat_api_models/entities.dart';
 import 'package:warframestat_api_models/models.dart';
+import 'package:wfcd_client/wfcd_client.dart';
 
 part 'synthtargets_state.dart';
 
