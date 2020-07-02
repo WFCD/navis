@@ -7,14 +7,14 @@ packages:
       name: _fe_analyzer_shared
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.0.0"
+    version: "5.0.0"
   analyzer:
     dependency: transitive
     description:
       name: analyzer
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.39.10"
+    version: "0.39.11"
   archive:
     dependency: transitive
     description:
@@ -482,7 +482,7 @@ packages:
       name: path_provider_linux
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.0.1+1"
+    version: "0.0.1+2"
   path_provider_macos:
     dependency: transitive
     description:
@@ -746,7 +746,7 @@ packages:
       name: url_launcher_web
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.1.1+6"
+    version: "0.1.2"
   uuid:
     dependency: transitive
     description:
@@ -767,7 +767,7 @@ packages:
       name: video_player
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.10.11+1"
+    version: "0.10.11+2"
   video_player_platform_interface:
     dependency: transitive
     description:
@@ -781,7 +781,7 @@ packages:
       name: video_player_web
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.1.3+1"
+    version: "0.1.3+2"
   vm_service:
     dependency: transitive
     description:
@@ -831,7 +831,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "06157f9845741916cff5a227c0a5c775c49a609d"
+      resolved-ref: "922f12245c3f3c98bf6afbace179d6c322418e7f"
       url: "https://github.com/SlayerOrnstein/wfcd_client.git"
     source: git
     version: "2.2.0"
@@ -862,7 +862,7 @@ packages:
       name: youtube_explode_dart
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.3.3"
+    version: "1.4.0"
 sdks:
   dart: ">=2.8.0 <3.0.0"
   flutter: ">=1.16.0 <2.0.0"
