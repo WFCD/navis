@@ -2,6 +2,7 @@ import 'package:data_connection_checker/data_connection_checker.dart';
 import 'package:get_it/get_it.dart';
 import 'package:http/http.dart' as http;
 import 'package:navis/core/services/notifications.dart';
+import 'package:navis/core/services/videos.dart';
 import 'package:package_info/package_info.dart';
 import 'package:wfcd_client/wfcd_client.dart';
 
@@ -34,6 +35,8 @@ Future<void> init() async {
   sl.registerSingletonAsync<EventInfoParser>(
     () => EventInfoParser.loadEventData(),
   );
+
+  sl.registerSingleton<VideoService>(VideoService());
 
   sl.registerSingletonAsync<PackageInfo>(() => PackageInfo.fromPlatform());
   sl.registerFactory<NotificationService>(() => NotificationService());

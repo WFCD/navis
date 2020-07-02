@@ -42,6 +42,9 @@ class _YoutubePlayerState extends State<EventVideoPlayer> {
       videoInformation =
           await sl<VideoService>().getVideoInformation(widget.id);
 
+      _videoPlayerController = VideoPlayerController.network(
+          videoInformation.muxedStreamInfo.first.url.toString());
+
       setState(() {
         _chewieController = ChewieController(
           videoPlayerController: _videoPlayerController,
