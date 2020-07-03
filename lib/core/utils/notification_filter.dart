@@ -170,8 +170,8 @@ class LocalizedFilter {
       for (final objective in objectives) {
         final cleaned = objective.replaceAll('_', ' ');
 
-        filters['fissures.$tier.$objective'] =
-            '$tier ${toBeginningOfSentenceCase(cleaned)} Fissure';
+        filters['$tier.$objective'] =
+            '$tier ${toBeginningOfSentenceCase(cleaned)}';
       }
     }
 
