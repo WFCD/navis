@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:navis/core/settings/settings.dart';
 import 'package:wfcd_client/wfcd_client.dart';
 
 import '../features/worldstate/presentation/bloc/solsystem_bloc.dart';
@@ -13,7 +12,10 @@ import '../features/worldstate/presentation/pages/event.dart';
 import '../features/worldstate/presentation/pages/nightwaves.dart';
 import '../features/worldstate/presentation/pages/trader_inventory.dart';
 import '../generated/l10n.dart';
+import '../injection_container.dart';
 import 'home.dart';
+import 'services/notifications.dart';
+import 'settings/settings.dart';
 import 'themes/themes.dart';
 import 'widgets/widgets.dart';
 
@@ -39,6 +41,8 @@ class _NavisAppState extends State<NavisApp> with WidgetsBindingObserver {
       BlocProvider.of<SolsystemBloc>(context)
           .add(const SyncSystemStatus(GamePlatforms.pc));
     });
+
+    sl<NotificationService>().configure();
   }
 
   Widget _builder(BuildContext context, Widget widget) {

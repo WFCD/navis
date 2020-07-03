@@ -1,4 +1,5 @@
 import 'package:data_connection_checker/data_connection_checker.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:get_it/get_it.dart';
 import 'package:http/http.dart' as http;
 import 'package:navis/core/services/notifications.dart';
@@ -39,7 +40,8 @@ Future<void> init() async {
   sl.registerSingleton<VideoService>(VideoService());
 
   sl.registerSingletonAsync<PackageInfo>(() => PackageInfo.fromPlatform());
-  sl.registerFactory<NotificationService>(() => NotificationService());
+  sl.registerSingleton<NotificationService>(
+      NotificationService(FirebaseMessaging()));
 
   // Data sources
   sl.registerSingleton<WarframestatClient>(WarframestatClient(http.Client()));

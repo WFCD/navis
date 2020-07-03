@@ -30,14 +30,12 @@ Future<void> main() async {
       const SystemUiOverlayStyle(statusBarColor: Colors.transparent));
 
   await runZoned(() async {
-    BlocSupervisor.delegate = await HydratedBlocDelegate.build();
+    HydratedBloc.storage = await HydratedStorage.build();
 
     await di.init();
-
     if (sl<Usersettings>().platform == null) {
       sl<Usersettings>().platform = GamePlatforms.pc;
-      await sl<NotificationService>()
-          .subscribeToPlatform(sl<Usersettings>().platform);
+      await sl<NotificationService>().subscribeToPlatform(GamePlatforms.pc);
     }
 
     runApp(MultiBlocProvider(
