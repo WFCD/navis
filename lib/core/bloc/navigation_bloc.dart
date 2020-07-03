@@ -12,14 +12,13 @@ import '../../features/worldstate/presentation/pages/home_feed.dart';
 enum NavigationEvent { timers, codex, synthTargets }
 
 class NavigationBloc extends HydratedBloc<NavigationEvent, Widget> {
+  NavigationBloc() : super(navigationMap[NavigationEvent.timers]);
+
   static final Map<NavigationEvent, Widget> navigationMap = {
     NavigationEvent.timers: const HomeFeedPage(),
     NavigationEvent.codex: const CodexSearchScreen(),
     NavigationEvent.synthTargets: const SynthTargetsPage()
   };
-
-  @override
-  Widget get initialState => navigationMap[NavigationEvent.timers];
 
   @override
   Stream<Transition<NavigationEvent, Widget>> transformEvents(

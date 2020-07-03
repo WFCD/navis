@@ -25,13 +25,11 @@ class SolsystemBloc extends HydratedBloc<SyncEvent, SolsystemState> {
     @required this.getWorldstate,
     @required this.getDarvoDealInfo,
   })  : assert(getWorldstate != null),
-        assert(getDarvoDealInfo != null);
+        assert(getDarvoDealInfo != null),
+        super(SolsystemInitial());
 
   final GetWorldstate getWorldstate;
   final GetDarvoDealInfo getDarvoDealInfo;
-
-  @override
-  SolsystemState get initialState => SolsystemInitial();
 
   @override
   Stream<SolsystemState> mapEventToState(

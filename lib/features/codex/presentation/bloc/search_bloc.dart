@@ -12,12 +12,9 @@ import 'search_event.dart';
 import 'search_state.dart';
 
 class SearchBloc extends HydratedBloc<SearchEvent, SearchState> {
-  SearchBloc(this.searchItems);
+  SearchBloc(this.searchItems) : super(CodexSearchEmpty());
 
   final SearchItems searchItems;
-
-  @override
-  SearchState get initialState => CodexSearchEmpty();
 
   @override
   Stream<Transition<SearchEvent, SearchState>> transformEvents(

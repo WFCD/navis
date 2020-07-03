@@ -16,16 +16,11 @@ enum SynthtargetsEvent { update }
 
 class SynthtargetsBloc
     extends HydratedBloc<SynthtargetsEvent, SynthtargetsState> {
-  SynthtargetsBloc(this.getSynthTargets) {
+  SynthtargetsBloc(this.getSynthTargets) : super(SynthtargetsInitial()) {
     add(SynthtargetsEvent.update);
   }
 
   final GetSynthTargets getSynthTargets;
-
-  @override
-  SynthtargetsState get initialState {
-    return super.initialState ?? SynthtargetsInitial();
-  }
 
   @override
   Stream<SynthtargetsState> mapEventToState(

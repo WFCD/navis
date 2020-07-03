@@ -2,7 +2,6 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:dartz/dartz.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:mockito/mockito.dart';
 import 'package:navis/core/usecases/usecases.dart';
@@ -35,7 +34,7 @@ void main() {
   SolsystemBloc solsystemBloc;
 
   setUp(() async {
-    BlocSupervisor.delegate = await HydratedBlocDelegate.build(
+    HydratedBloc.storage = await HydratedStorage.build(
       storageDirectory: Directory.systemTemp,
     );
 
@@ -56,7 +55,7 @@ void main() {
   });
 
   test('initialState should be [SolsystemInitial]', () {
-    expect(solsystemBloc.initialState, equals(SolsystemInitial()));
+    expect(solsystemBloc.state, equals(SolsystemInitial()));
   });
 
   group('update system status', () {
