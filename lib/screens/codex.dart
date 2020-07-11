@@ -1,31 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:navis/blocs/bloc.dart';
-import 'package:navis/services/repository.dart';
 import 'package:navis/widgets/codex/codex.dart';
 
-class Codex extends StatefulWidget {
+class Codex extends StatelessWidget {
   const Codex({Key key}) : super(key: key);
-
-  @override
-  _CodexState createState() => _CodexState();
-}
-
-class _CodexState extends State<Codex> {
-  Repository repository;
-
-  @override
-  void initState() {
-    super.initState();
-    repository = RepositoryProvider.of<Repository>(context);
-
-    repository.loadDropTable();
-  }
-
-  @override
-  void dispose() {
-    repository.disposeDropTable();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {

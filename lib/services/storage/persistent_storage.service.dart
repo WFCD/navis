@@ -5,7 +5,7 @@ import 'package:navis/services/storage/storage_base.service.dart';
 import 'package:navis/themes.dart';
 import 'package:navis/utils/search_utils.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:wfcd_client/base.dart';
+import 'package:wfcd_client/wfcd_client.dart';
 
 class PersistentStorageService extends StorageService {
   static const String hive = 'settings';

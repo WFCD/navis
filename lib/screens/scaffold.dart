@@ -27,8 +27,6 @@ class _MainScreenState extends State<MainScreen> {
     timer = Timer.periodic(const Duration(minutes: 5), (t) {
       BlocProvider.of<WorldstateBloc>(context).add(UpdateEvent());
     });
-
-    RepositoryProvider.of<Repository>(context).updateDropTable();
   }
 
   Future<bool> _willPop() async {

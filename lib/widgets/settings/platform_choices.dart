@@ -4,7 +4,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:navis/blocs/bloc.dart';
 import 'package:navis/constants/storage_keys.dart';
 import 'package:navis/services/repository.dart';
-import 'package:wfcd_client/base.dart';
+import 'package:wfcd_client/wfcd_client.dart';
 
 import 'platform_icon.dart';
 

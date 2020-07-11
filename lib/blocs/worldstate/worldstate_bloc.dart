@@ -11,8 +11,7 @@ import 'package:navis/services/storage/persistent_storage.service.dart';
 import 'package:navis/utils/worldstate_utils.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:warframestat_api_models/models.dart';
-import 'package:wfcd_client/base.dart';
-import 'package:wfcd_client/remotes.dart';
+import 'package:wfcd_client/wfcd_client.dart';
 
 import 'worldstate_events.dart';
 import 'worldstate_states.dart';
@@ -21,7 +20,7 @@ class WorldstateBloc extends HydratedBloc<WorldstateEvent, WorldStates> {
   WorldstateBloc({this.api, this.persistent, this.cache})
       : super(WorldstateUninitialized());
 
-  final WarframestatRemote api;
+  final WarframestatClient api;
   final PersistentStorageService persistent;
   final CacheStorageService cache;
 
@@ -40,11 +39,11 @@ class WorldstateBloc extends HydratedBloc<WorldstateEvent, WorldStates> {
   Stream<WorldStates> mapEventToState(WorldstateEvent event) async* {
     if (event is UpdateEvent) {
       final currentLocale = Intl.getCurrentLocale()?.split('_')?.first;
+      final locale = SupportedLocaleX.fromLocaleCode(currentLocale);
 
       try {
         final _platform = persistent?.platform ?? GamePlatforms.pc;
-        final worldstate =
-            await api.getWorldstate(_platform, language: currentLocale ?? 'en');
+        final worldstate = await api.getWorldstate(_platform, language: locale);
         final cleanWorldstate = cleanState(worldstate);
 
         cache.hiveBox.put('worldstate',

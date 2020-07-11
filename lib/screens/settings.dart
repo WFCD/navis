@@ -16,7 +16,7 @@ class Settings extends StatelessWidget {
       ),
       const DisplayChoices(),
       const Notifications(),
-      AboutApp()
+      const AboutApp()
     ];
 
     return Scaffold(

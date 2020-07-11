@@ -8,7 +8,7 @@ import 'package:navis/blocs/worldstate/worldstate_events.dart';
 import 'package:navis/services/storage/cache_storage.service.dart';
 import 'package:navis/services/storage/persistent_storage.service.dart';
 import 'package:warframestat_api_models/warframestat_api_models.dart';
-import 'package:wfcd_client/remotes.dart';
+import 'package:wfcd_client/wfcd_client.dart';
 
 import '../mock_classes.dart';
 import '../setup_methods.dart';
@@ -19,7 +19,7 @@ void main() {
   final storage = PersistentStorageService();
   final cache = CacheStorageService();
 
-  WarframestatRemote api;
+  WarframestatClient api;
   WorldstateBloc worldstateBloc;
 
   setUpAll(() async {
