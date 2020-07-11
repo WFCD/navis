@@ -18,16 +18,12 @@ import 'worldstate_events.dart';
 import 'worldstate_states.dart';
 
 class WorldstateBloc extends HydratedBloc<WorldstateEvent, WorldStates> {
-  WorldstateBloc({this.api, this.persistent, this.cache});
+  WorldstateBloc({this.api, this.persistent, this.cache})
+      : super(WorldstateUninitialized());
 
   final WarframestatRemote api;
   final PersistentStorageService persistent;
   final CacheStorageService cache;
-
-  @override
-  WorldStates get initialState {
-    return super.initialState ?? WorldstateUninitialized();
-  }
 
   @override
   Stream<Transition<WorldstateEvent, WorldStates>> transformEvents(

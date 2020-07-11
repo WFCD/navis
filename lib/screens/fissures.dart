@@ -19,7 +19,7 @@ class FissureScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<WorldstateBloc, WorldStates>(
-      condition: condition,
+      buildWhen: condition,
       builder: (context, state) {
         final fissures = state.worldstate?.fissures ?? <VoidFissure>[];
 

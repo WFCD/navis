@@ -11,7 +11,7 @@ class ArbitrationBuilder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<WorldstateBloc, WorldStates>(
-      condition: (previous, current) {
+      buildWhen: (previous, current) {
         return (previous.worldstate?.arbitration?.expiry !=
                 current.worldstate?.arbitration?.expiry) ??
             false;

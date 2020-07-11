@@ -17,7 +17,7 @@ class InvasionsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<WorldstateBloc, WorldStates>(
-      condition: condition,
+      buildWhen: condition,
       builder: (BuildContext context, WorldStates state) {
         final invasions = state.worldstate?.invasions ?? [];
 

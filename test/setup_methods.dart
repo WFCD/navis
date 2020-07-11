@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:bloc/bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hive/hive.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
@@ -18,7 +17,7 @@ Future<void> mockSetup() async {
 
   disablePathProviderPlatformOverride = true;
 
-  BlocSupervisor.delegate = await HydratedBlocDelegate.build();
+  HydratedBloc.storage = await HydratedStorage.build();
   Hive.init(directory.path);
 }
 

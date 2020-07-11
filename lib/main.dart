@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:bloc/bloc.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -18,7 +17,8 @@ void main() {
 
   runZonedGuarded(startApp, Crashlytics.instance.recordError);
 
-  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(statusBarColor: Colors.transparent));
+  SystemChrome.setSystemUIOverlayStyle(
+      const SystemUiOverlayStyle(statusBarColor: Colors.transparent));
 }
 
 Future<void> startApp() async {
@@ -33,7 +33,7 @@ Future<void> startApp() async {
   final repository =
       Repository(persistent, cache, await PackageInfo.fromPlatform());
 
-  BlocSupervisor.delegate = await HydratedBlocDelegate.build();
+  HydratedBloc.storage = await HydratedStorage.build();
 
   runApp(
     MultiBlocProvider(

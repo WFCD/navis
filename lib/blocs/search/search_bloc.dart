@@ -12,12 +12,9 @@ import 'search_event.dart';
 import 'search_state.dart';
 
 class SearchBloc extends Bloc<SearchEvent, SearchState> {
-  SearchBloc(this.repository);
+  SearchBloc(this.repository) : super(SearchStateEmpty());
 
   final Repository repository;
-
-  @override
-  SearchState get initialState => SearchStateEmpty();
 
   @override
   Stream<Transition<SearchEvent, SearchState>> transformEvents(

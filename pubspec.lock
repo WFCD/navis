@@ -42,14 +42,14 @@ packages:
       name: bloc
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.0.0"
+    version: "5.0.1"
   bloc_test:
     dependency: "direct dev"
     description:
       name: bloc_test
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "5.1.0"
+    version: "6.0.1"
   boolean_selector:
     dependency: transitive
     description:
@@ -127,6 +127,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.16.1"
+  cubit:
+    dependency: transitive
+    description:
+      name: cubit
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.1.2"
+  cubit_test:
+    dependency: transitive
+    description:
+      name: cubit_test
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.1.1"
   cupertino_icons:
     dependency: "direct main"
     description:
@@ -154,7 +168,7 @@ packages:
       name: equatable
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.2.0"
+    version: "1.2.2"
   file:
     dependency: transitive
     description:
@@ -194,7 +208,7 @@ packages:
       name: flutter_bloc
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.0.0"
+    version: "5.0.1"
   flutter_brand_icons:
     dependency: "direct main"
     description:
@@ -209,6 +223,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.4.0"
+  flutter_cubit:
+    dependency: transitive
+    description:
+      name: flutter_cubit
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.1.1"
   flutter_custom_tabs:
     dependency: "direct main"
     description:
@@ -317,7 +338,14 @@ packages:
       name: hydrated_bloc
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.1.1"
+    version: "5.0.3"
+  hydrated_cubit:
+    dependency: transitive
+    description:
+      name: hydrated_cubit
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.1.4"
   image:
     dependency: transitive
     description:

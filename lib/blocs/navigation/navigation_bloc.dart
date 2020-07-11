@@ -6,8 +6,7 @@ enum RouteEvent { home, fissures, invasions, sortie, syndicates, droptable }
 enum RouteState { home, fissures, invasions, sortie, syndicates, droptable }
 
 class NavigationBloc extends HydratedBloc<RouteEvent, RouteState> {
-  @override
-  RouteState get initialState => super.initialState ?? RouteState.home;
+  NavigationBloc() : super(RouteState.home);
 
   @override
   Stream<RouteState> mapEventToState(RouteEvent event) async* {

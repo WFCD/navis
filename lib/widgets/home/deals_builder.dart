@@ -20,7 +20,7 @@ class Deals extends StatelessWidget {
         bucket: dealsBucket,
         child: BlocBuilder(
           bloc: BlocProvider.of<WorldstateBloc>(context),
-          condition: (WorldStates previous, WorldStates current) => listEquals(
+          buildWhen: (WorldStates previous, WorldStates current) => listEquals(
               previous.worldstate?.dailyDeals, current.worldstate?.dailyDeals),
           builder: (_, state) {
             final List<DarvoDeal> dailyDeals =
