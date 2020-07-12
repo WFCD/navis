@@ -8,7 +8,7 @@ import 'package:navis/services/repository.dart';
 
 import 'base_dialog.dart';
 
-enum FilterType { acolytes, news, cycles, resources }
+enum FilterType { acolytes, news, cycles, resources, fissures }
 
 class FilterDialog extends StatelessWidget {
   const FilterDialog({this.options, this.type});

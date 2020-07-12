@@ -1,3 +1,4 @@
+import 'package:intl/intl.dart';
 import 'package:navis/constants/storage_keys.dart';
 import 'package:navis/generated/l10n.dart';
 
@@ -53,11 +54,11 @@ class LocalizedFilter {
         'description': localizations.resourcesNotificationDescription,
         'type': 'resources'
       },
-      // {
-      //   'title': localizations.fissuresNotificationTitle,
-      //   'description': localizations.fissuresNotificationDescription,
-      //   'type': 'fissures'
-      // },
+      {
+        'title': localizations.fissuresNotificationTitle,
+        'description': localizations.fissuresNotificationDescription,
+        'type': 'fissures'
+      },
       {
         'title': localizations.acolytesNotificationTitle,
         'description': localizations.acolytesNotificationDescription,
@@ -134,5 +135,46 @@ class LocalizedFilter {
       NotificationKeys.strunReciever: 'Strun Wraith Reciever',
       NotificationKeys.strunStock: 'Strun Wraith Stock'
     };
+  }
+
+  Map<String, String> get fissures {
+    const tiers = <String>['Lith', 'Meso', 'Neo', 'Axi', 'Requiem'];
+    const commonTypes = <String>[
+      'disruption',
+      'exterminate',
+      'mobile_defense',
+      'rescue',
+      'spy',
+      'survival',
+    ];
+
+    const missionTypes = <String>[
+      'capture',
+      'defense',
+      'excavation',
+      'interception',
+      'hijack',
+      'sabotage',
+      ...commonTypes
+    ];
+
+    final filters = <String, String>{};
+
+    for (final tier in tiers) {
+      List<String> objectives = missionTypes;
+
+      if (tier == 'Requiem') {
+        objectives = commonTypes;
+      }
+
+      for (final objective in objectives) {
+        final cleaned = objective.replaceAll('_', ' ');
+
+        filters['$tier.$objective'] =
+            '$tier ${toBeginningOfSentenceCase(cleaned)}';
+      }
+    }
+
+    return filters;
   }
 }

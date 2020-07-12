@@ -25,9 +25,10 @@ class Notifications extends StatelessWidget {
         FilterDialog.showFilters(
             context, filters.resources, FilterType.resources);
         break;
-      /*case 'Fissure Missions':
-        debugPrint('not implemented yet');
-        break;*/
+      case 'fissures':
+        FilterDialog.showFilters(
+            context, filters.fissures, FilterType.fissures);
+        break;
       case 'news':
         FilterDialog.showFilters(
             context, filters.warframeNews, FilterType.news);

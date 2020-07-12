@@ -32,16 +32,13 @@ class PersistentStorageService extends StorageService {
   GamePlatforms get platform {
     final diskPlatform = _box.get(SettingsKeys.platformKey);
 
-    if (diskPlatform != null)
-      return GamePlatforms.values.firstWhere(
-        (p) => p.asString.contains(diskPlatform),
-      );
+    if (diskPlatform != null) return GamePlatformsX.fromString(diskPlatform);
 
     return null;
   }
 
   set platform(GamePlatforms value) {
-    _box.put(SettingsKeys.platformKey, value.toString().split('.').last);
+    _box.put(SettingsKeys.platformKey, value.asString);
   }
 
   ThemeData get theme {

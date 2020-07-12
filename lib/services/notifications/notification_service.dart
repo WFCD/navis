@@ -24,17 +24,14 @@ class NotificationService {
   Future<bool> subscribeToPlatform(
       {GamePlatforms previousPlatform, GamePlatforms currentPlatform}) async {
     if (previousPlatform == null) {
-      await messaging
-          .subscribeToTopic(currentPlatform.toString().split('.').last);
+      await messaging.subscribeToTopic(currentPlatform.asString);
       return true;
     }
 
     if (previousPlatform == currentPlatform) return false;
 
-    await messaging
-        .unsubscribeFromTopic(previousPlatform.toString().split('.').last);
-    await messaging
-        .subscribeToTopic(currentPlatform.toString().split('.').last);
+    await messaging.unsubscribeFromTopic(previousPlatform.asString);
+    await messaging.subscribeToTopic(currentPlatform.asString);
 
     return true;
   }
