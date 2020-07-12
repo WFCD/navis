@@ -94,7 +94,7 @@ class About extends StatelessWidget {
             ),
             const SizedBox(width: 25),
             IconButton(
-              icon: FaIcon(AppIcons.wfcd, color: const Color(0xFF2e96ef)),
+              icon: const FaIcon(AppIcons.wfcd, color: Color(0xFF2e96ef)),
               iconSize: _iconSize,
               splashColor: Colors.transparent,
               onPressed: () => launchLink(communityPage),
