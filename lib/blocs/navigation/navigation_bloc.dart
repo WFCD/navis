@@ -1,11 +1,10 @@
-import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:navis/blocs/bloc.dart';
 
 enum RouteEvent { home, fissures, invasions, sortie, syndicates, droptable }
 
 enum RouteState { home, fissures, invasions, sortie, syndicates, droptable }
 
-class NavigationBloc extends HydratedBloc<RouteEvent, RouteState> {
+class NavigationBloc extends Bloc<RouteEvent, RouteState> {
   NavigationBloc() : super(RouteState.home);
 
   @override
@@ -23,8 +22,6 @@ class NavigationBloc extends HydratedBloc<RouteEvent, RouteState> {
 
   RouteState eventToState(RouteEvent event) {
     switch (event) {
-      case RouteEvent.home:
-        return RouteState.home;
       case RouteEvent.fissures:
         return RouteState.fissures;
       case RouteEvent.invasions:
@@ -40,16 +37,16 @@ class NavigationBloc extends HydratedBloc<RouteEvent, RouteState> {
     }
   }
 
-  @override
-  RouteState fromJson(Map<String, dynamic> json) {
-    final route = RouteEvent.values
-        .firstWhere((v) => v.toString() == 'RouteEvent.${json['last']}');
+  // @override
+  // RouteState fromJson(Map<String, dynamic> json) {
+  //   final route = RouteState.values
+  //       .firstWhere((v) => v.toString().contains(json['last']));
 
-    return eventToState(route);
-  }
+  //   return route;
+  // }
 
-  @override
-  Map<String, dynamic> toJson(RouteState state) {
-    return {'last': state.toString().split('.').last};
-  }
+  // @override
+  // Map<String, dynamic> toJson(RouteState state) {
+  //   return {'last': state.toString()};
+  // }
 }
