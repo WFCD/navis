@@ -5,9 +5,14 @@ import 'package:navis/features/worldstate/data/models/event_info.dart';
 import 'package:navis/features/worldstate/domain/entities/event_info.dart';
 
 class EventInfoParser {
-  const EventInfoParser._(this.eventInfo);
+  const EventInfoParser._(this._eventInfo);
 
-  final Map<String, EventInfo> eventInfo;
+  final Map<String, EventInfo> _eventInfo;
+
+  static const _emptyEvent = EventInfo(
+    keyArt: 'https://i.imgur.com/CNrsc7V.png',
+    howTos: [],
+  );
 
   static EventInfoParser _instance;
 
@@ -20,5 +25,13 @@ class EventInfoParser {
             name, EventInfoModel.fromJson(info as Map<String, dynamic>)));
 
     return EventInfoParser._(info);
+  }
+
+  EventInfo getEventInfo(String eventName) {
+    final info = _eventInfo[eventName.split(':').last.trim()];
+
+    if (info != null) return info;
+
+    return _emptyEvent;
   }
 }
