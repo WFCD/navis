@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:navis/core/bloc/navigation_bloc.dart';
+import 'package:navis/resources/resources.dart';
 
 import 'widgets/drawer_options.dart';
 
@@ -24,7 +25,7 @@ class Home extends StatelessWidget {
               decoration: BoxDecoration(
                 color: Theme.of(context).primaryColor,
                 image: const DecorationImage(
-                  image: AssetImage('assets/skyboxes/Void.webp'),
+                  image: AssetImage(Resources.voidSkybox),
                   fit: BoxFit.cover,
                 ),
               ),
@@ -34,7 +35,7 @@ class Home extends StatelessWidget {
                   right: false,
                   top: true,
                   child: SvgPicture.asset(
-                    'assets/wfcd_logo_color.svg',
+                    Resources.wfcdLogo,
                     color: Colors.white.withOpacity(0.5),
                   )),
             ),

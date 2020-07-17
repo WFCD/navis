@@ -2,8 +2,6 @@ import 'package:data_connection_checker/data_connection_checker.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:get_it/get_it.dart';
 import 'package:http/http.dart' as http;
-import 'package:navis/core/services/notifications.dart';
-import 'package:navis/core/services/videos.dart';
 import 'package:package_info/package_info.dart';
 import 'package:wfcd_client/wfcd_client.dart';
 
@@ -11,6 +9,8 @@ import 'core/bloc/navigation_bloc.dart';
 import 'core/local/user_settings.dart';
 import 'core/local/warframestate_local.dart';
 import 'core/network/network_info.dart';
+import 'core/services/notifications.dart';
+import 'core/services/videos.dart';
 import 'features/codex/data/repositories/codex_repository_impl.dart';
 import 'features/codex/domian/repositories/codex_repository.dart';
 import 'features/codex/domian/usercases/search_items.dart';
@@ -20,12 +20,12 @@ import 'features/synthtargets/domain/repositories/synth_target_repository.dart';
 import 'features/synthtargets/domain/usecases/get_synth_targets.dart';
 import 'features/synthtargets/presentation/bloc/synthtargets_bloc.dart';
 import 'features/worldstate/data/datasources/event_info_parser.dart';
+import 'features/worldstate/data/datasources/skybox_parser.dart';
 import 'features/worldstate/data/repositories/worldstate_rep_impl.dart';
 import 'features/worldstate/domain/repositories/worldstate_repository.dart';
 import 'features/worldstate/domain/usecases/get_darvo_deal_info.dart';
 import 'features/worldstate/domain/usecases/get_worldstate.dart';
 import 'features/worldstate/presentation/bloc/solsystem_bloc.dart';
-import 'features/worldstate/services/skybox.dart';
 
 final GetIt sl = GetIt.instance;
 

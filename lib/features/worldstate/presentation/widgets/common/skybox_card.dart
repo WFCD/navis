@@ -3,7 +3,7 @@ import 'package:navis/injection_container.dart';
 import 'package:supercharged/supercharged.dart';
 
 import '../../../../../core/themes/themes.dart';
-import '../../../services/skybox.dart';
+import '../../../data/datasources/skybox_parser.dart';
 
 class SkyboxCard extends StatelessWidget {
   const SkyboxCard({

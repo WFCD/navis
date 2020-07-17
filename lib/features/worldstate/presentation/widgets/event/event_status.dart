@@ -63,10 +63,12 @@ class EventStatus extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            _addCategory(localization.eventDescription, category),
-            const SizedBox(height: 2.0),
-            Text(tooltip, style: tooltipStyle),
-            const SizedBox(height: 20.0),
+            if (tooltip != null) ...{
+              _addCategory(localization.eventDescription, category),
+              const SizedBox(height: 2.0),
+              Text(tooltip, style: tooltipStyle),
+              const SizedBox(height: 20.0),
+            },
             _addCategory(localization.eventStatus, category),
             RowItem(
               text: Text(localization.eventStatusNode, style: tooltipStyle),

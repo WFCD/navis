@@ -17,7 +17,7 @@ class EventInformation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final event = ModalRoute.of(context).settings.arguments as Event;
-    final eventInfo = sl<EventInfoParser>().eventInfo[event.description];
+    final eventInfo = sl<EventInfoParser>().getEventInfo(event.description);
 
     return Scaffold(
       body: CustomScrollView(slivers: <Widget>[
@@ -46,7 +46,7 @@ class EventInformation extends StatelessWidget {
               rewards: event.eventRewards,
             ),
             if (event.jobs != null) EventBounties(jobs: event.jobs),
-            if (eventInfo.howTos.isNotEmpty)
+            if (eventInfo?.howTos?.isNotEmpty ?? false)
               EventVideoPlayer(
                 id: eventInfo.howTos.first.id,
                 profileThumbnail: eventInfo.howTos.first.pThumbnail,

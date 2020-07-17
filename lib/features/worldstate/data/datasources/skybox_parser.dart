@@ -3,19 +3,20 @@ import 'dart:convert';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
+import 'package:navis/resources/resources.dart';
 
 class SkyboxService {
   static const _baseUrl =
       'https://raw.githubusercontent.com/WFCD/navis/master/assets/skyboxes';
 
-  static const derelict = AssetImage('assets/Derelict.webp');
+  static const derelict = AssetImage(Resources.derelictSkybox);
 
   static Map<String, List<String>> _skyboxData;
 
   static SkyboxService _instance;
 
   static Future<SkyboxService> loadSkyboxData() async {
-    final data = await rootBundle.loadString('assets/skybox_nodes.json');
+    final data = await rootBundle.loadString(Resources.skyboxNodes);
 
     _skyboxData ??= (json.decode(data) as Map<String, dynamic>)
         .map<String, List<String>>((key, dynamic value) =>

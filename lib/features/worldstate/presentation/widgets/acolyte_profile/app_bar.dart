@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:navis/injection_container.dart';
 
-import '../../../services/skybox.dart';
+import '../../../data/datasources/skybox_parser.dart';
 
 class AcolyteAppBar extends StatelessWidget {
   const AcolyteAppBar(
