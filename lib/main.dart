@@ -12,8 +12,11 @@ import 'package:navis/services/storage/cache_storage.service.dart';
 import 'package:navis/services/storage/persistent_storage.service.dart';
 import 'package:package_info/package_info.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   FlutterError.onError = Crashlytics.instance.recordFlutterError;
+
+  HydratedBloc.storage = await HydratedStorage.build();
 
   runZonedGuarded(startApp, Crashlytics.instance.recordError);
 
@@ -22,8 +25,6 @@ void main() {
 }
 
 Future<void> startApp() async {
-  WidgetsFlutterBinding.ensureInitialized();
-
   final cache = CacheStorageService();
   final persistent = PersistentStorageService();
 
@@ -32,8 +33,6 @@ Future<void> startApp() async {
 
   final repository =
       Repository(persistent, cache, await PackageInfo.fromPlatform());
-
-  HydratedBloc.storage = await HydratedStorage.build();
 
   runApp(
     MultiBlocProvider(

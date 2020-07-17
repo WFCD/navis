@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -30,6 +32,8 @@ class Navis extends StatefulWidget {
 }
 
 class _NavisState extends State<Navis> with WidgetsBindingObserver {
+  Timer _timer;
+
   @override
   void initState() {
     super.initState();
@@ -41,6 +45,10 @@ class _NavisState extends State<Navis> with WidgetsBindingObserver {
       widget.repository.notifications
           .subscribeToPlatform(currentPlatform: GamePlatforms.pc);
     }
+
+    _timer = Timer.periodic(const Duration(minutes: 5), (t) {
+      BlocProvider.of<WorldstateBloc>(context).add(UpdateEvent());
+    });
   }
 
   @override
@@ -131,6 +139,9 @@ class _NavisState extends State<Navis> with WidgetsBindingObserver {
   @override
   void dispose() {
     WidgetsBinding.instance.removeObserver(this);
+    _timer?.cancel();
+    RepositoryProvider.of<Repository>(context).persistent.closeBoxInstance();
+    RepositoryProvider.of<Repository>(context).cache.closeBoxInstance();
     super.dispose();
   }
 }
