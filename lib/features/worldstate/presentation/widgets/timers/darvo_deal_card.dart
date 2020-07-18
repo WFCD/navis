@@ -1,4 +1,5 @@
 import 'package:async/async.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/core/utils/ui_util.dart';
@@ -71,67 +72,90 @@ class _DealWidgetState extends State<DealWidget> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Center(
-                  child: ResponsiveBuilder(
-                    builder: (BuildContext context, SizingInformation sizing) {
-                      if (snapshot.hasData) {
-                        return LimitedBox(
-                          maxHeight: sizing.imageSizeMultiplier * 30,
-                          child: Image.network(deal.imageUrl),
-                        );
-                      } else if (!snapshot.hasData) {
-                        return Icon(
-                          Icons.warning,
-                          size: 50,
-                          color: Theme.of(context).errorColor,
-                        );
-                      } else {
-                        return const CircularProgressIndicator();
-                      }
-                    },
-                  ),
-                ),
-              ),
-              DealDetails(
-                itemName: deal?.name ?? widget.deal.item,
-                itemDescription: deal?.description?.isNotEmpty ?? false
-                    ? parseHtmlString(deal?.description)
-                    : null,
-              ),
-              const SizedBox(height: 16.0),
-              Wrap(
-                  crossAxisAlignment: WrapCrossAlignment.center,
-                  spacing: 10.0,
-                  runSpacing: 5.0,
+                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    // TODO: should probably put a plat icon here instead
-                    StaticBox.text(
-                      text: '${widget.deal.salePrice}\p',
-                      style: saleInfo,
+                    if (snapshot.hasData) ItemImage(imageUrl: deal.imageUrl),
+                    DealDetails(
+                      itemName: deal?.name ?? widget.deal.item,
+                      itemDescription: deal?.description?.isNotEmpty ?? false
+                          ? parseHtmlString(deal?.description)
+                          : null,
                     ),
-                    StaticBox.text(
-                      text:
-                          '${widget.deal.total - widget.deal.sold} / ${widget.deal.total}',
-                      style: saleInfo,
-                    ),
-                    CountdownTimer(
-                      expiry: widget.deal.expiry,
-                      style: saleInfo,
-                    ),
-                  ]),
-              ButtonBar(children: <Widget>[
-                if (urlExist)
-                  FlatButton(
-                    onPressed: () => launchLink(context, deal.wikiaUrl),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(2.0),
-                    ),
-                    child: const Text('See Wikia'),
-                  ),
-              ])
+                    const SizedBox(height: 16.0),
+                    Wrap(
+                        crossAxisAlignment: WrapCrossAlignment.center,
+                        spacing: 10.0,
+                        runSpacing: 5.0,
+                        children: <Widget>[
+                          // TODO: should probably put a plat icon here instead
+                          StaticBox.text(
+                            text: '${widget.deal.salePrice}\p',
+                            style: saleInfo,
+                          ),
+                          StaticBox.text(
+                            text:
+                                '${widget.deal.total - widget.deal.sold} / ${widget.deal.total}',
+                            style: saleInfo,
+                          ),
+                          CountdownTimer(
+                            expiry: widget.deal.expiry,
+                            style: saleInfo,
+                          ),
+                        ]),
+                    ButtonBar(children: <Widget>[
+                      if (urlExist)
+                        FlatButton(
+                          onPressed: () => launchLink(context, deal.wikiaUrl),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(2.0),
+                          ),
+                          child: const Text('See Wikia'),
+                        ),
+                    ])
+                  ],
+                ),
+              )
             ]);
       },
+    );
+  }
+}
+
+class ItemImage extends StatelessWidget {
+  const ItemImage({Key key, @required this.imageUrl})
+      : assert(imageUrl != null),
+        super(key: key);
+
+  final String imageUrl;
+
+  @override
+  Widget build(BuildContext context) {
+    final error = Icon(
+      Icons.error_outline,
+      size: 50,
+      color: Theme.of(context).errorColor,
+    );
+
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Center(
+        child: ResponsiveBuilder(
+          builder: (BuildContext context, SizingInformation sizing) {
+            return LimitedBox(
+              maxHeight: sizing.imageSizeMultiplier * 30,
+              child: CachedNetworkImage(
+                imageUrl: imageUrl,
+                errorWidget: (context, url, dynamic object) => error,
+                placeholder: (context, url) => const Center(
+                  child: CircularProgressIndicator(),
+                ),
+              ),
+            );
+          },
+        ),
+      ),
     );
   }
 }
