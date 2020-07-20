@@ -14,6 +14,7 @@ dependencies:
   flutter_custom_tabs: ^0.6.0
   hydrated_bloc: ^5.0.1
   intl: ^0.16.0
+  intl_translation: ^0.17.7
   package_info: ^0.4.0+17
   firebase_messaging: ^6.0.16
   cached_network_image: ^2.2.0+1
