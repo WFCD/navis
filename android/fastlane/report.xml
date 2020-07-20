@@ -5,32 +5,17 @@
     
     
       
-      <testcase classname="fastlane.lanes" name="0: setup_travis" time="0.0021536">
+      <testcase classname="fastlane.lanes" name="0: update_fastlane" time="0.0465408">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="1: update_fastlane" time="0.0305551">
+      <testcase classname="fastlane.lanes" name="1: default_platform" time="0.0005205">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="2: default_platform" time="0.0004107">
-        
-      </testcase>
-    
-      
-      <testcase classname="fastlane.lanes" name="3: analyze_commits" time="1.9822651">
-        
-      </testcase>
-    
-      
-      <testcase classname="fastlane.lanes" name="4: conventional_changelog" time="0.1383785">
-        
-      </testcase>
-    
-      
-      <testcase classname="fastlane.lanes" name="5: set_github_release" time="0.2940486">
+      <testcase classname="fastlane.lanes" name="2: upload_to_play_store" time="124.7828554">
         
       </testcase>
     
