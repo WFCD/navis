@@ -1,17 +1,15 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:navis/core/error/exceptions.dart';
 import 'package:navis/features/codex/domian/usercases/search_items.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:supercharged/supercharged.dart';
-import 'package:wfcd_client/wfcd_client.dart';
 
 import 'search_event.dart';
 import 'search_state.dart';
 
-class SearchBloc extends HydratedBloc<SearchEvent, SearchState> {
+class SearchBloc extends Bloc<SearchEvent, SearchState> {
   SearchBloc(this.searchItems) : super(CodexSearchEmpty());
 
   final SearchItems searchItems;
@@ -51,23 +49,5 @@ class SearchBloc extends HydratedBloc<SearchEvent, SearchState> {
         }
       }
     }
-  }
-
-  @override
-  SearchState fromJson(Map<String, dynamic> json) {
-    final results = toBaseItems(json['results'] as List<dynamic>);
-
-    return CodexSuccessfulSearch(results);
-  }
-
-  @override
-  Map<String, dynamic> toJson(SearchState state) {
-    // if (state is CodexSuccessfulSearch) {
-    //   final results = state.results.map((e) => fromBaseItem(e)).toList();
-
-    //   return <String, dynamic>{'results': results};
-    // }
-
-    return null;
   }
 }
