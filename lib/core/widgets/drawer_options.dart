@@ -42,6 +42,13 @@ class DrawerOptions extends StatelessWidget {
                     NavigationBloc.navigationMap[NavigationEvent.timers],
               ),
               ListTile(
+                leading: Icon(Icons.web),
+                title: const Text('Warframe News'),
+                onTap: () => _onTap(context, NavigationEvent.warframe_news),
+                selected: state ==
+                    NavigationBloc.navigationMap[NavigationEvent.warframe_news],
+              ),
+              ListTile(
                 leading: const Icon(Icons.search),
                 title: const Text('Codex'),
                 onTap: () => _onTap(context, NavigationEvent.codex),
