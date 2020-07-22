@@ -9,10 +9,10 @@ import 'package:warframestat_api_models/warframestat_api_models.dart';
 import 'package:wfcd_client/wfcd_client.dart';
 
 import '../../../../core/error/exceptions.dart';
-import '../../../../core/utils/worldstate_util.dart';
 import '../../data/repositories/worldstate_rep_impl.dart';
 import '../../domain/usecases/get_darvo_deal_info.dart';
 import '../../domain/usecases/get_worldstate.dart';
+import '../../utils/worldstate_util.dart';
 
 part 'solsystem_event.dart';
 part 'solsystem_state.dart';
