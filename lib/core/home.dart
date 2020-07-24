@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:navis/core/bloc/navigation_bloc.dart';
 import 'package:navis/resources/resources.dart';
 
+import 'utils/extensions.dart';
 import 'widgets/drawer_options.dart';
 
 class Home extends StatelessWidget {
@@ -43,7 +44,7 @@ class Home extends StatelessWidget {
             const Divider(height: 4.0),
             ListTile(
               leading: const Icon(Icons.settings),
-              title: const Text('Settings'),
+              title: Text(context.locale.settingsTitle),
               onTap: () {
                 Navigator.of(context).pop();
                 Navigator.of(context).pushNamed('/settings');

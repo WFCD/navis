@@ -3,7 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/core/bloc/navigation_bloc.dart';
 import 'package:navis/core/utils/helper_methods.dart';
 import 'package:navis/core/widgets/widgets.dart';
-import 'package:navis/generated/l10n.dart';
+
+import '../utils/extensions.dart';
 
 // import 'navis_sys_icons.dart';
 
@@ -26,7 +27,6 @@ class DrawerOptions extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const bool isDense = true;
-    final navisLocalizations = NavisLocalizations.of(context);
 
     return BlocBuilder<NavigationBloc, Widget>(
       builder: (BuildContext context, Widget state) {
@@ -36,7 +36,7 @@ class DrawerOptions extends StatelessWidget {
             children: <Widget>[
               ListTile(
                 leading: const Icon(Icons.home),
-                title: Text(navisLocalizations.homePageTitle),
+                title: Text(context.locale.homePageTitle),
                 onTap: () => _onTap(context, NavigationEvent.timers),
                 selected: state ==
                     NavigationBloc.navigationMap[NavigationEvent.timers],
@@ -50,7 +50,7 @@ class DrawerOptions extends StatelessWidget {
               ),
               ListTile(
                 leading: const Icon(Icons.search),
-                title: const Text('Codex'),
+                title: Text(context.locale.codexTitle),
                 onTap: () => _onTap(context, NavigationEvent.codex),
                 selected: state ==
                     NavigationBloc.navigationMap[NavigationEvent.codex],
@@ -64,7 +64,7 @@ class DrawerOptions extends StatelessWidget {
               ),
               ExpansionTile(
                 leading: const Icon(Icons.help),
-                title: Text(navisLocalizations.helpfulLinksTitle),
+                title: Text(context.locale.helpfulLinksTitle),
                 onExpansionChanged: (b) async {
                   if (b) {
                     // wait for tile to finish expanding before animating to the bottom
