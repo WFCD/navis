@@ -47,7 +47,15 @@
   },
   "Dog Days": {
     "keyArt": "https://content.invisioncic.com/Mwarframe/monthly_2020_07/WF_DogDays_Keyart_4K.thumb.png.d0ff1b703574a94da2a075fd21c00e4a.png",
-    "howTo": [],
+    "howTo": [
+      {
+        "id": "-V5IroPjJPU",
+        "title": "",
+        "author": "",
+        "pThumbnail": "https://yt3.ggpht.com/a/AATXAJyIoRVPA4fR5eKP9vbNmLgGIMCf_OOv3OA7obJY=s48-c-k-c0xffffffff-no-rj-mo",
+        "link": "https://youtu.be/-V5IroPjJPU"
+      }
+    ],
     "translations": []
   }
 }
