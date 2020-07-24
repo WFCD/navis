@@ -1,5 +1,7 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:navis/injection_container.dart';
+import 'package:navis/resources/resources.dart';
 
 import '../../../data/datasources/skybox_parser.dart';
 
@@ -13,7 +15,9 @@ class AcolyteAppBar extends StatelessWidget {
   final String acolyteName;
   final String region;
 
-  Widget _buildSkybox(ImageProvider imageProvider) {
+  static const _derelict = AssetImage(Resources.derelictSkybox);
+
+  Widget _imageBuilder(ImageProvider imageProvider) {
     return Container(
       decoration: BoxDecoration(
         image: DecorationImage(
@@ -39,13 +43,14 @@ class AcolyteAppBar extends StatelessWidget {
           ),
         ),
         centerTitle: true,
-        background: FutureBuilder<ImageProvider>(
-            initialData: SkyboxService.derelict,
-            future: sl<SkyboxService>().getSkybox(context, region),
-            builder:
-                (BuildContext context, AsyncSnapshot<ImageProvider> snapshot) {
-              return _buildSkybox(snapshot.data);
-            }),
+        background: CachedNetworkImage(
+          imageUrl: sl<SkyboxService>().getSkybox(region),
+          imageBuilder: (context, imageProvider) =>
+              _imageBuilder(imageProvider),
+          placeholder: (context, url) => _imageBuilder(_derelict),
+          errorWidget: (context, url, dynamic error) =>
+              _imageBuilder(_derelict),
+        ),
       ),
     );
   }

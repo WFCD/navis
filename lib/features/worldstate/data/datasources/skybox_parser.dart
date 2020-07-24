@@ -1,15 +1,11 @@
 import 'dart:convert';
 
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 import 'package:navis/resources/resources.dart';
 
 class SkyboxService {
   static const _baseUrl =
       'https://raw.githubusercontent.com/WFCD/navis/master/assets/skyboxes';
-
-  static const derelict = AssetImage(Resources.derelictSkybox);
 
   static Map<String, List<String>> _skyboxData;
 
@@ -25,30 +21,19 @@ class SkyboxService {
     return _instance ??= SkyboxService();
   }
 
-  Future<ImageProvider> getSkybox(BuildContext context, String node) async {
+  String getSkybox(String node) {
     final parsedNode = _parseNodePlanet(node);
-    final containsNode = _skyboxData.containsKey(parsedNode) ||
-        _skyboxData.containsValue(parsedNode);
 
-    if (!containsNode) return derelict;
-
-    try {
-      String solNode;
-
+    // ignore: missing_return
+    final solNode = () {
       for (final key in _skyboxData.keys) {
         if (key == parsedNode || _skyboxData[key].contains(parsedNode)) {
-          solNode = '$_baseUrl/${key.replaceAll(' ', '_')}.webp';
-          break;
+          return '$_baseUrl/${key.replaceAll(' ', '_')}.webp';
         }
       }
+    }();
 
-      final image = CachedNetworkImageProvider(solNode);
-      await precacheImage(image, context);
-
-      return image;
-    } catch (e) {
-      return derelict;
-    }
+    return solNode ?? Resources.derelictSkybox;
   }
 
   String _parseNodePlanet(String node) {
