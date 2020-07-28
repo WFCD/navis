@@ -1,10 +1,10 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/core/widgets/countdown_banner.dart';
 import 'package:navis/core/widgets/screen_type_builder.dart';
 import 'package:navis/features/worldstate/presentation/bloc/solsystem_bloc.dart';
+import 'package:navis/features/worldstate/presentation/widgets/common/refresh_indicator_bloc_screen.dart';
 import 'package:navis/features/worldstate/presentation/widgets/syndicates/nightwave_challenges.dart';
 import 'package:navis/features/worldstate/presentation/widgets/syndicates/syndicate_bounties.dart';
 import 'package:warframestat_api_models/warframestat_api_models.dart';
@@ -16,20 +16,17 @@ class SyndicatePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return RefreshIndicator(
-      onRefresh: context.bloc<SolsystemBloc>().update,
-      child: BlocBuilder<SolsystemBloc, SolsystemState>(
-        builder: (BuildContext context, SolsystemState state) {
-          if (state is SolState) {
-            return ScreenTypeBuilder(
-              mobile: SyndicatePageMobile(state: state),
-              tablet: SyndicatePageTablet(state: state),
-            );
-          }
+    return RefreshIndicatorBlocScreen(
+      builder: (BuildContext context, SolsystemState state) {
+        if (state is SolState) {
+          return ScreenTypeBuilder(
+            mobile: SyndicatePageMobile(state: state),
+            tablet: SyndicatePageTablet(state: state),
+          );
+        }
 
-          return const Center(child: CircularProgressIndicator());
-        },
-      ),
+        return const Center(child: CircularProgressIndicator());
+      },
     );
   }
 }

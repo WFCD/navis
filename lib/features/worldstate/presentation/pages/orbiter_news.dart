@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/core/widgets/widgets.dart';
+import 'package:navis/features/worldstate/presentation/widgets/common/refresh_indicator_bloc_screen.dart';
 import 'package:navis/features/worldstate/presentation/widgets/orbiter_news/news_widget.dart';
 import 'package:warframestat_api_models/entities.dart';
 
@@ -25,7 +25,7 @@ class OrbiterNewsPage extends StatelessWidget {
     final theme = Theme.of(context);
     final textTheme = theme.textTheme;
 
-    return BlocBuilder<SolsystemBloc, SolsystemState>(
+    return RefreshIndicatorBlocScreen(
       builder: (context, state) {
         if (state is SolState) {
           final news = state.worldstate?.news ?? [];

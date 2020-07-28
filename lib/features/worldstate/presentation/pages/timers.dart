@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:navis/features/worldstate/presentation/widgets/common/refresh_indicator_bloc_screen.dart';
 import 'package:navis/generated/l10n.dart';
 import 'package:warframestat_api_models/entities.dart';
 
@@ -14,20 +14,17 @@ class Timers extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return RefreshIndicator(
-      onRefresh: context.bloc<SolsystemBloc>().update,
-      child: BlocBuilder<SolsystemBloc, SolsystemState>(
-        builder: (BuildContext context, SolsystemState state) {
-          if (state is SolState) {
-            return ScreenTypeBuilder(
-              mobile: MobileTimers(state),
-              tablet: TabletTimers(state),
-            );
-          }
+    return RefreshIndicatorBlocScreen(
+      builder: (BuildContext context, SolsystemState state) {
+        if (state is SolState) {
+          return ScreenTypeBuilder(
+            mobile: MobileTimers(state),
+            tablet: TabletTimers(state),
+          );
+        }
 
-          return const Center(child: CircularProgressIndicator());
-        },
-      ),
+        return const Center(child: CircularProgressIndicator());
+      },
     );
   }
 }
