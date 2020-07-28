@@ -793,16 +793,6 @@ class NavisLocalizations {
     );
   }
 
-  /// `Update Drop Table`
-  String get updateDropTableTitle {
-    return Intl.message(
-      'Update Drop Table',
-      name: 'updateDropTableTitle',
-      desc: 'Title for updaing drop tables',
-      args: [],
-    );
-  }
-
   /// `Last updated {date}`
   String updateDropTableDescription(Object date) {
     return Intl.message(
@@ -839,26 +829,6 @@ class NavisLocalizations {
       'About',
       name: 'aboutCategoryTitle',
       desc: 'Title for the about category of the settings page',
-      args: [],
-    );
-  }
-
-  /// `Sortie will reset in`
-  String get sortieResetTime {
-    return Intl.message(
-      'Sortie will reset in',
-      name: 'sortieResetTime',
-      desc: 'Title for sortie reset time',
-      args: [],
-    );
-  }
-
-  /// `Waiting for new sortie`
-  String get sortieReseting {
-    return Intl.message(
-      'Waiting for new sortie',
-      name: 'sortieReseting',
-      desc: 'Sortie reseting title',
       args: [],
     );
   }

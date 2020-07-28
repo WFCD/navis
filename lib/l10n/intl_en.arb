@@ -466,12 +466,6 @@
     "type": "text",
     "placeholder": {}
   },
-  "updateDropTableTitle": "Update Drop Table",
-  "@updateDropTableTitle": {
-    "description": "Title for updaing drop tables",
-    "type": "text",
-    "placeholder": {}
-  },
   "updateDropTableDescription": "Last updated {date}",
   "@updateDropTableDescription": {
     "description": "Description for updating drop table with date of the last update",
@@ -495,18 +489,6 @@
   "aboutCategoryTitle": "About",
   "@aboutCategoryTitle": {
     "description": "Title for the about category of the settings page",
-    "type": "text",
-    "placeholder": {}
-  },
-  "sortieResetTime": "Sortie will reset in",
-  "@sortieResetTime": {
-    "description": "Title for sortie reset time",
-    "type": "text",
-    "placeholder": {}
-  },
-  "sortieReseting": "Waiting for new sortie",
-  "@sortieReseting": {
-    "description": "Sortie reseting title",
     "type": "text",
     "placeholder": {}
   },
