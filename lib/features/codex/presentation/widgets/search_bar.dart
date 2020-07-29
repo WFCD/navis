@@ -55,7 +55,7 @@ class _CodexSearchBarState extends State<CodexSearchBar> {
               onChanged: _dispatch,
               onSubmitted: _dispatch,
               textCapitalization: TextCapitalization.words,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 border: InputBorder.none,
                 hintText: 'Search here...',
               ),
@@ -64,7 +64,7 @@ class _CodexSearchBarState extends State<CodexSearchBar> {
         ),
         if (_active)
           IconButton(
-            icon: Icon(Icons.clear),
+            icon: const Icon(Icons.clear),
             onPressed: _onClear,
           ),
       ],

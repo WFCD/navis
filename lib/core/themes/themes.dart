@@ -4,7 +4,7 @@ import 'colors.dart';
 
 class NavisTheming {
   static final _lightBase = ThemeData.from(
-      colorScheme: ColorScheme.light(
+      colorScheme: const ColorScheme.light(
     primary: primary,
     primaryVariant: primaryVariant,
     secondary: secondary,
@@ -12,7 +12,7 @@ class NavisTheming {
   ));
 
   static final _darkBase = ThemeData.from(
-    colorScheme: ColorScheme.dark(
+    colorScheme: const ColorScheme.dark(
       primary: primary,
       primaryVariant: primaryVariant,
       secondary: secondary,
