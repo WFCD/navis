@@ -16,31 +16,46 @@ class CodexResult extends StatelessWidget {
       builder: (BuildContext context, SizingInformation sizeInfo) {
         return CustomCard(
           child: Container(
-            height: sizeInfo.heightMultiplier * 20,
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
+            height: sizeInfo.heightMultiplier * 25,
+            child: Column(
               children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.only(top: 8.0, left: 8.0),
-                  child: ItemContent(
-                    name: item.name,
-                    description: item.description ?? '',
-                    imageUrl: item.imageUrl,
-                  ),
-                ),
-                // const Spacer(),
-                Center(
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                    child: CircleAvatar(
-                      radius: sizeInfo.widthMultiplier * 12,
-                      backgroundColor: Theme.of(context).cardTheme.color,
-                      backgroundImage:
-                          CachedNetworkImageProvider(item.imageUrl),
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.only(top: 8.0, left: 8.0),
+                      child: ItemContent(
+                        name: item.name,
+                        description: item.description ?? '',
+                        imageUrl: item.imageUrl,
+                        wikiaUrl: item.wikiaUrl,
+                      ),
                     ),
-                  ),
-                )
+                    // const Spacer(),
+                    Center(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                        child: CircleAvatar(
+                          radius: sizeInfo.widthMultiplier * 12,
+                          backgroundColor: Theme.of(context).cardTheme.color,
+                          backgroundImage:
+                              CachedNetworkImageProvider(item.imageUrl),
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+                if (item.wikiaUrl != null)
+                  ButtonBar(
+                    alignment: MainAxisAlignment.start,
+                    children: <Widget>[
+                      FlatButton(
+                        onPressed: () {},
+                        child: const Text('See wikia'),
+                      )
+                    ],
+                  )
               ],
             ),
           ),
@@ -56,12 +71,13 @@ class ItemContent extends StatelessWidget {
     @required this.name,
     @required this.description,
     @required this.imageUrl,
+    this.wikiaUrl,
   })  : assert(name != null),
         assert(description != null),
         assert(imageUrl != null),
         super(key: key);
 
-  final String name, description, imageUrl;
+  final String name, description, imageUrl, wikiaUrl;
 
   @override
   Widget build(BuildContext context) {
@@ -89,7 +105,7 @@ class ItemContent extends StatelessWidget {
                   textAlign: TextAlign.start,
                   overflow: TextOverflow.ellipsis,
                 ),
-              )
+              ),
             ],
           ),
         );
