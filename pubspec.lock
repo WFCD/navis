@@ -845,7 +845,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "35289fa2030c19d38efd6d6019e570708a9fcb0f"
+      resolved-ref: "3af7980102a8fdd23496a1c34075cfc271804248"
       url: "https://github.com/SlayerOrnstein/wfcd_client.git"
     source: git
     version: "2.2.0"
