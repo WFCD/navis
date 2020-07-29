@@ -96,8 +96,8 @@ class FilterDialog extends StatelessWidget {
   final Map<String, String> options;
 
   static Future<void> showFilters(
-      BuildContext context, Map<String, String> options) async {
-    await showDialog<void>(
+      BuildContext context, Map<String, String> options) {
+    return showDialog<void>(
       context: context,
       builder: (_) {
         return ChangeNotifierProvider.value(

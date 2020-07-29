@@ -46,9 +46,11 @@ class Usersettings with ChangeNotifier {
   ThemeMode get theme {
     final value = _box.get(SettingsKeys.theme) as String;
 
+    if (value == null) return ThemeMode.system;
+
     return ThemeMode.values.firstWhere(
       (element) => element.toString().contains(value),
-      orElse: () => null,
+      orElse: () => ThemeMode.system,
     );
   }
 

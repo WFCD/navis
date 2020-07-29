@@ -9,6 +9,7 @@ import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:logging/logging.dart';
 import 'package:navis/injection_container.dart';
 import 'package:wfcd_client/wfcd_client.dart';
+import 'package:provider/provider.dart';
 
 import 'core/app.dart';
 import 'core/bloc/navigation_bloc.dart';
@@ -38,13 +39,18 @@ Future<void> main() async {
       await sl<NotificationService>().subscribeToPlatform(GamePlatforms.pc);
     }
 
-    runApp(MultiBlocProvider(
-      providers: [
-        BlocProvider(create: (_) => sl<NavigationBloc>()),
-        BlocProvider(create: (_) => sl<SolsystemBloc>()),
-        BlocProvider(create: (_) => sl<SearchBloc>())
-      ],
-      child: const NavisApp(),
-    ));
+    runApp(
+      MultiBlocProvider(
+        providers: [
+          BlocProvider(create: (_) => sl<NavigationBloc>()),
+          BlocProvider(create: (_) => sl<SolsystemBloc>()),
+          BlocProvider(create: (_) => sl<SearchBloc>()),
+        ],
+        child: ChangeNotifierProvider.value(
+          value: sl<Usersettings>(),
+          child: const NavisApp(),
+        ),
+      ),
+    );
   }, onError: Crashlytics.instance.recordError);
 }

@@ -3,7 +3,9 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:navis/core/local/user_settings.dart';
 import 'package:wfcd_client/wfcd_client.dart';
+import 'package:provider/provider.dart';
 
 import '../features/worldstate/presentation/bloc/solsystem_bloc.dart';
 import '../features/worldstate/presentation/pages/acolyte_profile.dart';
@@ -67,6 +69,7 @@ class _NavisAppState extends State<NavisApp> with WidgetsBindingObserver {
     return MaterialApp(
       title: 'Navis',
       color: Colors.grey[900],
+      themeMode: context.watch<Usersettings>().theme,
       theme: NavisTheming.light,
       darkTheme: NavisTheming.dark,
       home: const Home(),
