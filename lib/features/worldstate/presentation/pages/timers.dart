@@ -34,13 +34,13 @@ List<CycleEntry> _buildCycles(
   const size = 28.0;
 
   const solCycle = <Icon>[
-    Icon(NavisSysIcons.sun, color: Colors.amber, size: size),
-    Icon(NavisSysIcons.moon, color: Colors.blue, size: size)
+    Icon(Icons.brightness_7, color: Colors.amber, size: size),
+    Icon(Icons.brightness_3, color: Colors.blue, size: size)
   ];
 
   const tempCycle = <Icon>[
-    Icon(NavisSysIcons.waves, color: Colors.red, size: size),
-    Icon(NavisSysIcons.snow, color: Colors.blue, size: size)
+    Icon(NavisSysIcons.heat_wave, color: Colors.red, size: size),
+    Icon(Icons.ac_unit, color: Colors.blue, size: size)
   ];
 
   return <CycleEntry>[
