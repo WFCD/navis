@@ -14,13 +14,11 @@ class EventVideoPlayer extends StatefulWidget {
     Key key,
     @required this.id,
     @required this.profileThumbnail,
-    @required this.link,
   })  : assert(id != null),
         super(key: key);
 
   final String id;
   final String profileThumbnail;
-  final String link;
 
   @override
   _YoutubePlayerState createState() => _YoutubePlayerState();
@@ -78,7 +76,7 @@ class _YoutubePlayerState extends State<EventVideoPlayer> {
                     description: videoInformation.description,
                     author: videoInformation.author,
                     profileThumbnail: widget.profileThumbnail,
-                    link: widget.link,
+                    link: videoInformation.url,
                   )
                 ],
               ),

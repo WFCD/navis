@@ -50,7 +50,6 @@ class EventInformation extends StatelessWidget {
               EventVideoPlayer(
                 id: eventInfo.howTos.first.id,
                 profileThumbnail: eventInfo.howTos.first.pThumbnail,
-                link: eventInfo.howTos.first.link,
               )
           ]),
         ),

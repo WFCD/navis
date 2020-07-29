@@ -10,15 +10,9 @@ class EventInfo {
 class HowTo {
   const HowTo({
     @required this.id,
-    @required this.title,
-    @required this.author,
     @required this.pThumbnail,
-    @required this.link,
   });
 
   final String id;
-  final String title;
-  final String author;
   final String pThumbnail;
-  final String link;
 }

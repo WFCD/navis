@@ -27,35 +27,23 @@ class EventInfoModel extends EventInfo {
 class HowToModel extends HowTo {
   const HowToModel({
     @required String id,
-    @required String title,
-    @required String author,
     @required String pThumbnail,
-    @required String link,
   }) : super(
           id: id,
-          title: title,
-          author: author,
           pThumbnail: pThumbnail,
-          link: link,
         );
 
   factory HowToModel.fromJson(Map<String, dynamic> json) {
     return HowToModel(
       id: json['id'] as String,
-      title: json['title'] as String,
-      author: json['author'] as String,
       pThumbnail: json['pThumbnail'] as String,
-      link: json['link'] as String,
     );
   }
 
   Map<String, dynamic> toJson() {
     return <String, dynamic>{
       'id': id,
-      'title': title,
-      'author': author,
       'pThumbnail': pThumbnail,
-      'link': link,
     };
   }
 }
