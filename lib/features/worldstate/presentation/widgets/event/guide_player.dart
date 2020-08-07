@@ -133,7 +133,7 @@ class PlayerInformation extends StatelessWidget {
               ),
               const Spacer(),
               IconButton(
-                icon: Icon(Icons.open_in_new),
+                icon: const Icon(Icons.open_in_new),
                 onPressed: () => launch(link),
               )
             ],
