@@ -18,7 +18,7 @@ dependencies:
   package_info: ^0.4.0+17
   firebase_messaging: ^6.0.16
   cached_network_image: ^2.2.0+1
-  flutter_svg: ^0.17.4
+  flutter_svg: ^0.18.0
   flutter_sticky_header: ^0.4.2
   hive: ^1.4.1+1
   get_it: ^4.0.2
