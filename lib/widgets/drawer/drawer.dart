@@ -20,7 +20,7 @@ class LotusDrawer extends StatelessWidget {
           Expanded(child: DrawerOptions()),
           const Divider(height: 4.0),
           ListTile(
-            leading: Icon(Icons.settings),
+            leading: const Icon(Icons.settings),
             title: Text(NavisLocalizations.of(context).settingsTitle),
             onTap: () {
               Navigator.of(context).pop();

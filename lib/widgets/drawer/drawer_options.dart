@@ -36,7 +36,7 @@ class DrawerOptions extends StatelessWidget {
             controller: _controller,
             children: <Widget>[
               ListTile(
-                  leading: Icon(Icons.home),
+                  leading: const Icon(Icons.home),
                   title: const Text('Home'),
                   onTap: () => _onTap(context, RouteEvent.home),
                   selected: state == RouteState.home),
@@ -53,7 +53,7 @@ class DrawerOptions extends StatelessWidget {
                 selected: state == RouteState.invasions,
               ),
               ListTile(
-                leading: Icon(AppIcons.sortie),
+                leading: const Icon(AppIcons.sortie),
                 title: const Text('Sorties'),
                 onTap: () => _onTap(context, RouteEvent.sortie),
                 selected: state == RouteState.sortie,
@@ -71,7 +71,7 @@ class DrawerOptions extends StatelessWidget {
                 selected: state == RouteState.droptable,
               ),
               ExpansionTile(
-                leading: Icon(Icons.help),
+                leading: const Icon(Icons.help),
                 title: Text(local.helpfulLinksTitle),
                 onExpansionChanged: (b) async {
                   if (b) {

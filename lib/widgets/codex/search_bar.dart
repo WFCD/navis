@@ -87,7 +87,7 @@ class _SearchBarState extends State<SearchBar> {
           onChanged: _dispatch,
           onSubmitted: _dispatch,
           textCapitalization: TextCapitalization.words,
-          decoration: InputDecoration(
+          decoration: const InputDecoration(
             border: InputBorder.none,
             hintText: 'Search here...',
           ),
@@ -103,7 +103,8 @@ class _SearchBarState extends State<SearchBar> {
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
                   if (_active)
-                    IconButton(icon: Icon(Icons.clear), onPressed: _onClear),
+                    IconButton(
+                        icon: const Icon(Icons.clear), onPressed: _onClear),
                   if (type == CodexDatabase.drops) const SearchResultsSort(),
                   PopupMenuButton<CodexDatabase>(
                     initialValue: type,

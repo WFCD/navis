@@ -23,7 +23,7 @@ class SearchResultsSort extends StatelessWidget {
 
         return PopupMenuButton<Sort>(
           initialValue: type,
-          icon: Icon(Icons.sort),
+          icon: const Icon(Icons.sort),
           itemBuilder: (_) => _itemBuilder(),
           enabled: state is SearchStateSuccess,
           onSelected: (s) {

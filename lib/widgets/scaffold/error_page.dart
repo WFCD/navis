@@ -22,7 +22,7 @@ class NetworkErrorWidget extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          Icon(Icons.error_outline, size: 95, color: Colors.red),
+          const Icon(Icons.error_outline, size: 95, color: Colors.red),
           const SizedBox(height: 8.0),
           Text(
             'There was unexpected error.',

@@ -77,7 +77,7 @@ class About extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             IconButton(
-              icon: Icon(BrandIcons.discord, color: const Color(0xFF7289DA)),
+              icon: const Icon(BrandIcons.discord, color: Color(0xFF7289DA)),
               iconSize: _iconSize,
               splashColor: Colors.transparent,
               onPressed: () => launchLink(discordInvite),
