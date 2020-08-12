@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -8,7 +10,7 @@ class SkyboxCard extends StatelessWidget {
     Key key,
     @required this.node,
     @required this.child,
-    this.height,
+    this.height = 150,
     this.width,
     this.margin = const EdgeInsets.symmetric(vertical: 3, horizontal: 3),
     this.alignment = Alignment.center,
@@ -33,8 +35,7 @@ class SkyboxCard extends StatelessWidget {
     return '$base/${Intl.getCurrentLocale() ?? 'en'}/${nodeBackground.replaceAll(' ', '_')}.webp';
   }
 
-  Widget _imageBuilder(
-      BuildContext context, ImageProvider<dynamic> imageProvider) {
+  Widget _imageBuilder(BuildContext context, ImageProvider imageProvider) {
     return Container(
       height: height,
       width: width,
@@ -47,31 +48,32 @@ class SkyboxCard extends StatelessWidget {
           fit: BoxFit.cover,
         ),
       ),
-      child: child,
     );
-  }
-
-  Widget _placeHolder(BuildContext context, String string) {
-    return _imageBuilder(context, derelict);
   }
 
   @override
   Widget build(BuildContext context) {
-    precacheImage(derelict, context);
-
     return Theme(
       data: NavisThemes.dark,
       child: Card(
         margin: margin,
         child: AnimatedSwitcher(
           duration: const Duration(milliseconds: 200),
-          child: CachedNetworkImage(
-            imageUrl: getBackgroundPath(node),
-            placeholder: _placeHolder,
-            errorWidget: (BuildContext context, String string, Object object) {
-              return _placeHolder(context, string);
-            },
-            imageBuilder: _imageBuilder,
+          child: Container(
+            width: width,
+            height: height,
+            child: Stack(
+              alignment: Alignment.center,
+              children: <Widget>[
+                CachedNetworkImage(
+                  imageUrl: getBackgroundPath(node),
+                  imageBuilder: _imageBuilder,
+                  placeholder: (context, url) =>
+                      _imageBuilder(context, derelict),
+                ),
+                child
+              ],
+            ),
           ),
         ),
       ),
