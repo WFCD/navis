@@ -14,8 +14,7 @@ class Trader extends StatelessWidget {
 
     return Tiles(
         title: localizations.baroTitle,
-        child: BlocBuilder(
-          bloc: BlocProvider.of<WorldstateBloc>(context),
+        child: BlocBuilder<WorldstateBloc, WorldStates>(
           buildWhen: (WorldStates previous, WorldStates current) {
             final previousTrader = previous.worldstate?.voidTrader;
             final currentTrader = previous.worldstate?.voidTrader;

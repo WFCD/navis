@@ -26,10 +26,8 @@ class DrawerOptions extends StatelessWidget {
     const bool isDense = true;
 
     final local = NavisLocalizations.of(context);
-    final navigation = BlocProvider.of<NavigationBloc>(context);
 
-    return BlocBuilder(
-      bloc: navigation,
+    return BlocBuilder<NavigationBloc, RouteState>(
       builder: (BuildContext context, RouteState state) {
         return Container(
           child: ListView(

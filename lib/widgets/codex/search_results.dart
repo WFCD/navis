@@ -10,8 +10,7 @@ class SearchResults extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder(
-      bloc: BlocProvider.of<SearchBloc>(context),
+    return BlocBuilder<SearchBloc, SearchState>(
       builder: (BuildContext context, SearchState state) {
         if (state is SearchStateSuccess) {
           final results = state.results ?? [];

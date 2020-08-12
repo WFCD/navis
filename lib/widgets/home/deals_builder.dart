@@ -18,8 +18,7 @@ class Deals extends StatelessWidget {
       child: PageStorage(
         key: dealskey,
         bucket: dealsBucket,
-        child: BlocBuilder(
-          bloc: BlocProvider.of<WorldstateBloc>(context),
+        child: BlocBuilder<WorldstateBloc, WorldStates>(
           buildWhen: (WorldStates previous, WorldStates current) => listEquals(
               previous.worldstate?.dailyDeals, current.worldstate?.dailyDeals),
           builder: (_, state) {
