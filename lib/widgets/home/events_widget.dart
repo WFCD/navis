@@ -194,7 +194,7 @@ class _EventFooter extends StatelessWidget {
           borderRadius: BorderRadius.circular(4.0),
         ),
         onPressed: () {
-          final syndicate = Syndicate(name: affiliatedWith, jobs: jobs);
+          final syndicate = Syndicate(id: affiliatedWith, jobs: jobs);
 
           Navigator.of(context)
               .pushNamed('/syndicate_jobs', arguments: syndicate);

@@ -24,7 +24,7 @@ class SyndicateWidget extends StatelessWidget {
   final Syndicate syndicate;
 
   void onTap(BuildContext context) {
-    final _syndicate = syndicateStringToEnum(name ?? syndicate.id);
+    final _syndicate = toSyndicateFactions(name ?? syndicate.id);
 
     switch (_syndicate) {
       case SyndicateFactions.nightwave:
@@ -49,7 +49,7 @@ class SyndicateWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
-    final syndicateName = syndicateStringToEnum(name ?? syndicate.id);
+    final syndicateName = toSyndicateFactions(name ?? syndicate.id);
 
     final titleStyle = textTheme.subtitle1
         .copyWith(color: Typography.whiteMountainView.subtitle1.color);
@@ -58,7 +58,7 @@ class SyndicateWidget extends StatelessWidget {
         .copyWith(color: Typography.whiteMountainView.caption.color);
 
     return Tiles(
-      color: syndicateBackgroundColor(syndicateName),
+      color: syndicateName.bannerColor(),
       child: Padding(
         padding: EdgeInsets.symmetric(
           horizontal: SizeConfig.widthMultiplier * 1,

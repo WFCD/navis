@@ -47,70 +47,79 @@ class GetSyndicateIcon extends StatelessWidget {
     return FaIcon(
       icon,
       size: 50,
-      color: color ?? syndicateIconColor(syndicate),
+      color: color ?? syndicate.iconColor(),
       textDirection: TextDirection.ltr,
     );
   }
 }
 
-Color syndicateIconColor(SyndicateFactions syndicate) {
-  switch (syndicate) {
-    case SyndicateFactions.cetusSyndicate:
-      return const Color(0xFFE8DDAF);
-    case SyndicateFactions.solarisSyndicate:
-      return const Color(0xFFD8C38F);
-    case SyndicateFactions.nightwave:
-      return const Color(0xFFFFAEAA);
-    case SyndicateFactions.simaris:
-      return const Color(0xFFEBD18F);
-    default:
-      return Colors.white;
-  }
-}
-
-Color syndicateBackgroundColor(SyndicateFactions syndicate) {
-  switch (syndicate) {
-    case SyndicateFactions.cetusSyndicate:
-      return const Color(0xFFB74624);
-    case SyndicateFactions.solarisSyndicate:
-      return const Color(0xFF5F3C0D);
-    case SyndicateFactions.nightwave:
-      return const Color(0xFF6C1822);
-    case SyndicateFactions.simaris:
-      return const Color(0xFF5F3C0D);
-    default:
-      return const Color(0xFF6A5574);
-  }
-}
-
-SyndicateFactions syndicateStringToEnum(String faction) {
+// ignore: missing_return
+SyndicateFactions toSyndicateFactions(String faction) {
   final cleaned = faction.replaceAll(RegExp(r'[0-9]'), '');
 
   switch (cleaned) {
     case 'CetusSyndicate':
-      return SyndicateFactions.cetusSyndicate;
+      continue ostrons;
+
     case 'SolarisSyndicate':
       return SyndicateFactions.solarisSyndicate;
     case 'Simaris':
       return SyndicateFactions.simaris;
     case 'Nightwave':
       return SyndicateFactions.nightwave;
+
+    ostrons:
+    case 'Ostrons':
+      return SyndicateFactions.cetusSyndicate;
+
     default:
       return SyndicateFactions.hexis;
   }
 }
 
-String syndicateEnumToString(SyndicateFactions faction) {
-  switch (faction) {
-    case SyndicateFactions.cetusSyndicate:
-      return 'Ostrons';
-    case SyndicateFactions.solarisSyndicate:
-      return 'Solaris United';
-    case SyndicateFactions.simaris:
-      return 'Simaris';
-    case SyndicateFactions.nightwave:
-      return 'Nightwave';
-    default:
-      return 'Hexis';
+extension SyndicateFactionX on SyndicateFactions {
+  Color iconColor() {
+    switch (this) {
+      case SyndicateFactions.cetusSyndicate:
+        return const Color(0xFFE8DDAF);
+      case SyndicateFactions.solarisSyndicate:
+        return const Color(0xFFD8C38F);
+      case SyndicateFactions.nightwave:
+        return const Color(0xFFFFAEAA);
+      case SyndicateFactions.simaris:
+        return const Color(0xFFEBD18F);
+      default:
+        return Colors.white;
+    }
+  }
+
+  Color bannerColor() {
+    switch (this) {
+      case SyndicateFactions.cetusSyndicate:
+        return const Color(0xFFB74624);
+      case SyndicateFactions.solarisSyndicate:
+        return const Color(0xFF5F3C0D);
+      case SyndicateFactions.nightwave:
+        return const Color(0xFF6C1822);
+      case SyndicateFactions.simaris:
+        return const Color(0xFF5F3C0D);
+      default:
+        return const Color(0xFF6A5574);
+    }
+  }
+
+  String asString() {
+    switch (this) {
+      case SyndicateFactions.cetusSyndicate:
+        return 'Ostrons';
+      case SyndicateFactions.solarisSyndicate:
+        return 'Solaris United';
+      case SyndicateFactions.simaris:
+        return 'Simaris';
+      case SyndicateFactions.nightwave:
+        return 'Nightwave';
+      default:
+        return 'Hexis';
+    }
   }
 }

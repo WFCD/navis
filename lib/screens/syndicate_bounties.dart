@@ -12,12 +12,11 @@ class SyndicateJobs extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Syndicate syndicate = ModalRoute.of(context).settings.arguments;
-    final backgroundColor =
-        syndicateBackgroundColor(syndicateStringToEnum(syndicate.id));
+    final backgroundColor = toSyndicateFactions(syndicate.id).bannerColor();
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(syndicate.name),
+        title: Text(syndicate.name ?? syndicate.id),
         titleSpacing: 0.0,
         backgroundColor: backgroundColor,
       ),
@@ -26,7 +25,7 @@ class SyndicateJobs extends StatelessWidget {
           SliverStickyHeader(
             header: SyndicateBounty(
               job: job,
-              faction: syndicateStringToEnum(syndicate.id),
+              faction: toSyndicateFactions(syndicate.id),
             ),
             sliver: SliverList(
               delegate: SliverChildBuilderDelegate(

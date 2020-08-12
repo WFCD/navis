@@ -29,7 +29,7 @@ class SyndicateBounty extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 80.0,
-      color: syndicateBackgroundColor(faction),
+      color: faction.bannerColor(),
       alignment: Alignment.centerLeft,
       child: ListTile(
         title: Text(job.type, style: const TextStyle(color: Colors.white)),
