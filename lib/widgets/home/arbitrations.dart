@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:navis/blocs/bloc.dart';
-import 'package:navis/utils/size_config.dart';
 import 'package:navis/widgets/icons.dart';
 import 'package:navis/widgets/widgets.dart';
 
