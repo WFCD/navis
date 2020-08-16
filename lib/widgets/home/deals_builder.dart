@@ -33,7 +33,7 @@ class Deals extends StatelessWidget {
 
             return Carousel(
               dotCount: dailyDeals.length,
-              height: SizeConfig.heightMultiplier * 33,
+              height: SizeConfig.heightMultiplier * 34.7,
               enableIndicator: dailyDeals.length > 1,
               children: dailyDeals.map((d) => DealWidget(deal: d)).toList(),
             );
