@@ -49,52 +49,26 @@ class ArbitrationWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final textTheme = Theme.of(context).textTheme;
+    // final textTheme = Theme.of(context).textTheme;
 
     return SkyboxCard(
       node: node,
       height: 150,
-      child: Stack(
-        alignment: AlignmentDirectional.center,
-        children: <Widget>[
-          Icon(
-            SyndicateGlyphs.hexis,
-            size: 125,
-            color: Colors.grey[600],
-          ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              Text(
-                node,
-                textAlign: TextAlign.center,
-                style: textTheme.subtitle1.copyWith(
-                  color: Colors.white,
-                  fontSize: SizeConfig.widthMultiplier * 6,
-                ),
-              ),
-              const SizedBox(height: 4.0),
-              Text(
-                '${enemy ?? 'unknown'} | ${type ?? 'unknown'}',
-                textAlign: TextAlign.center,
-                style: textTheme.caption.copyWith(
-                  color: Colors.white,
-                  fontSize: SizeConfig.widthMultiplier * 3.2,
-                ),
-              ),
-              const SizedBox(height: 4.0),
-              if (archwingRequired)
-                SvgPicture.asset('assets/general/archwing.svg',
+      child: ListTile(
+        leading: const Icon(SyndicateGlyphs.hexis, size: 50),
+        title: Row(
+          children: <Widget>[
+            if (archwingRequired)
+              Padding(
+                padding: const EdgeInsets.only(left: 6.0),
+                child: SvgPicture.asset('assets/general/archwing.svg',
                     color: Colors.blue, height: 25, width: 25),
-              const SizedBox(height: 4.0),
-              CountdownBox(
-                expiry: expiry,
-                size: SizeConfig.widthMultiplier * 3.7,
               ),
-            ],
-          ),
-        ],
+            Text(node),
+          ],
+        ),
+        subtitle: Text('$enemy | $type'),
+        trailing: CountdownBox(expiry: expiry),
       ),
     );
   }
