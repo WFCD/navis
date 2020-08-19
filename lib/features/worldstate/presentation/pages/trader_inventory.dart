@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:navis/core/widgets/widgets.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 import 'package:warframestat_api_models/entities.dart';
 
 import '../widgets/trader_inventory/inventory_tables.dart';
@@ -17,9 +17,9 @@ class BaroInventory extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(title: const Text('Baro\'s Inventory')),
-      body: ScreenTypeBuilder(
-        mobile: MobileInventoryDataTable(inventory: inventory),
-        tablet: TabletInventoryDataTable(inventory: inventory),
+      body: ScreenTypeLayout.builder(
+        mobile: (_) => MobileInventoryDataTable(inventory: inventory),
+        tablet: (_) => TabletInventoryDataTable(inventory: inventory),
       ),
     );
   }

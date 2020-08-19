@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:navis/core/utils/ui_util.dart';
 import 'package:navis/core/widgets/custom_card.dart';
 import 'package:navis/core/widgets/widgets.dart';
 import 'package:navis/features/worldstate/presentation/pages/bounties.dart';
 import 'package:navis/features/worldstate/presentation/pages/nightwaves.dart';
 import 'package:navis/features/worldstate/utils/faction_utils.dart';
 import 'package:navis/generated/l10n.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 import 'package:warframestat_api_models/entities.dart';
 
 import 'syndicate_icon.dart';
@@ -69,7 +69,7 @@ class SyndicateCard extends StatelessWidget {
           color: syndicateName.backgroundColor,
           child: Padding(
             padding: EdgeInsets.symmetric(
-              vertical: sizing.heightMultiplier * 2,
+              vertical: getValueForScreenType(context: context, mobile: 18),
             ),
             child: ListTile(
               leading: GetSyndicateIcon(syndicate: syndicateName),

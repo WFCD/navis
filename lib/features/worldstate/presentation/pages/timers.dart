@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:navis/features/worldstate/presentation/widgets/common/refresh_indicator_bloc_screen.dart';
 import 'package:navis/generated/l10n.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 import 'package:warframestat_api_models/entities.dart';
 
 import '../../../../core/widgets/widgets.dart';
 import '../../utils/faction_utils.dart';
 import '../bloc/solsystem_bloc.dart';
+import '../widgets/common/refresh_indicator_bloc_screen.dart';
 import '../widgets/timers/timers.dart';
 
 class Timers extends StatelessWidget {
@@ -17,9 +18,9 @@ class Timers extends StatelessWidget {
     return RefreshIndicatorBlocScreen(
       builder: (BuildContext context, SolsystemState state) {
         if (state is SolState) {
-          return ScreenTypeBuilder(
-            mobile: MobileTimers(state),
-            tablet: TabletTimers(state),
+          return ScreenTypeLayout.builder(
+            mobile: (_) => MobileTimers(state),
+            tablet: (_) => TabletTimers(state),
           );
         }
 

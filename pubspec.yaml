@@ -33,6 +33,8 @@ dependencies:
     git: https://github.com/SlayerOrnstein/warframestat_api_models.git
   wfcd_client:
     git: https://github.com/SlayerOrnstein/wfcd_client.git
+  responsive_builder: ^0.2.0+2
+  flutter_local_notifications: ^1.4.4+3
 
 dev_dependencies:
   flutter_test:

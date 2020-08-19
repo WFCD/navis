@@ -2,11 +2,11 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:navis/core/widgets/countdown_banner.dart';
-import 'package:navis/core/widgets/screen_type_builder.dart';
 import 'package:navis/features/worldstate/presentation/bloc/solsystem_bloc.dart';
 import 'package:navis/features/worldstate/presentation/widgets/common/refresh_indicator_bloc_screen.dart';
 import 'package:navis/features/worldstate/presentation/widgets/syndicates/nightwave_challenges.dart';
 import 'package:navis/features/worldstate/presentation/widgets/syndicates/syndicate_bounties.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 import 'package:warframestat_api_models/warframestat_api_models.dart';
 
 import '../widgets/syndicates/syndicate_card.dart';
@@ -19,9 +19,9 @@ class SyndicatePage extends StatelessWidget {
     return RefreshIndicatorBlocScreen(
       builder: (BuildContext context, SolsystemState state) {
         if (state is SolState) {
-          return ScreenTypeBuilder(
-            mobile: SyndicatePageMobile(state: state),
-            tablet: SyndicatePageTablet(state: state),
+          return ScreenTypeLayout.builder(
+            mobile: (_) => SyndicatePageMobile(state: state),
+            tablet: (_) => SyndicatePageTablet(state: state),
           );
         }
 

@@ -1,8 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:navis/core/utils/ui_util.dart';
 import 'package:navis/core/widgets/custom_card.dart';
-import 'package:navis/core/widgets/responsive_builder.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 import 'package:warframestat_api_models/entities.dart';
 
 class CodexResult extends StatelessWidget {
@@ -16,7 +15,7 @@ class CodexResult extends StatelessWidget {
       builder: (BuildContext context, SizingInformation sizeInfo) {
         return CustomCard(
           child: Container(
-            height: sizeInfo.heightMultiplier * 25,
+            height: getValueForScreenType(context: context, mobile: 150),
             child: Column(
               children: <Widget>[
                 Row(
@@ -37,7 +36,10 @@ class CodexResult extends StatelessWidget {
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 20.0),
                         child: CircleAvatar(
-                          radius: sizeInfo.widthMultiplier * 12,
+                          radius: getValueForScreenType(
+                            context: context,
+                            mobile: 25,
+                          ),
                           backgroundColor: Theme.of(context).cardTheme.color,
                           backgroundImage:
                               CachedNetworkImageProvider(item.imageUrl),
@@ -97,7 +99,6 @@ class ItemContent extends StatelessWidget {
               ),
               const SizedBox(height: 12),
               Container(
-                width: sizeInfo.widthMultiplier * 60,
                 child: Text(
                   description,
                   style: textTheme.caption,

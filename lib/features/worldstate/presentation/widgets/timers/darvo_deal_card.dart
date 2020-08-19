@@ -2,7 +2,7 @@ import 'package:async/async.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:navis/core/utils/ui_util.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 import 'package:warframestat_api_models/entities.dart';
 
 import '../../../../../core/utils/helper_methods.dart';
@@ -144,7 +144,7 @@ class ItemImage extends StatelessWidget {
         child: ResponsiveBuilder(
           builder: (BuildContext context, SizingInformation sizing) {
             return LimitedBox(
-              maxHeight: sizing.imageSizeMultiplier * 30,
+              maxHeight: getValueForScreenType(context: context, mobile: 150),
               child: CachedNetworkImage(
                 imageUrl: imageUrl,
                 errorWidget: (context, url, dynamic object) => error,
