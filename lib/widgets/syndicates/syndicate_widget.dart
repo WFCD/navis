@@ -43,6 +43,8 @@ class SyndicateWidget extends StatelessWidget {
             .pushNamed(SyndicateJobs.route, arguments: syndicate);
         break;
       default:
+        Navigator.of(context)
+            .pushNamed(SyndicateJobs.route, arguments: syndicate);
     }
   }
 

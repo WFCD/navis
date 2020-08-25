@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:navis/themes.dart';
 import 'package:navis/widgets/common/fa_icon.dart';
 import 'package:navis/widgets/icons.dart';
 
@@ -7,7 +8,8 @@ enum SyndicateFactions {
   solarisSyndicate,
   simaris,
   nightwave,
-  hexis
+  hexis,
+  unknown
 }
 
 class GetSyndicateIcon extends StatelessWidget {
@@ -39,9 +41,11 @@ class GetSyndicateIcon extends StatelessWidget {
       case SyndicateFactions.nightwave:
         icon = SyndicateGlyphs.nightwave;
         break;
-      default:
+      case SyndicateFactions.hexis:
         icon = SyndicateGlyphs.hexis;
         break;
+      default:
+        icon = AppIcons.nightmare;
     }
 
     return FaIcon(
@@ -73,7 +77,7 @@ SyndicateFactions toSyndicateFactions(String faction) {
       return SyndicateFactions.cetusSyndicate;
 
     default:
-      return SyndicateFactions.hexis;
+      return SyndicateFactions.unknown;
   }
 }
 
@@ -103,8 +107,10 @@ extension SyndicateFactionX on SyndicateFactions {
         return const Color(0xFF6C1822);
       case SyndicateFactions.simaris:
         return const Color(0xFF5F3C0D);
-      default:
+      case SyndicateFactions.hexis:
         return const Color(0xFF6A5574);
+      default:
+        return NavisThemes.primaryColor;
     }
   }
 
@@ -119,7 +125,7 @@ extension SyndicateFactionX on SyndicateFactions {
       case SyndicateFactions.nightwave:
         return 'Nightwave';
       default:
-        return 'Hexis';
+        return 'Unknown';
     }
   }
 }
