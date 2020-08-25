@@ -49,12 +49,6 @@ class _Header extends StatelessWidget {
             width: double.infinity,
             fit: BoxFit.cover,
           ),
-          ClipRect(
-            child: BackdropFilter(
-              filter: ImageFilter.blur(sigmaX: 2, sigmaY: 1),
-              child: Container(color: Colors.transparent),
-            ),
-          ),
           SafeArea(
             bottom: false,
             left: false,
