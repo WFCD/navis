@@ -4,14 +4,15 @@ import 'package:navis/widgets/widgets.dart';
 import 'package:warframestat_api_models/objects.dart';
 
 class CycleWidget extends StatelessWidget {
-  const CycleWidget({Key key, this.title, this.cycle}) : super(key: key);
+  const CycleWidget({Key key, this.title, this.customState, this.cycle})
+      : super(key: key);
 
-  final String title;
+  final String title, customState;
   final CycleObject cycle;
 
   @override
   Widget build(BuildContext context) {
-    final state = toBeginningOfSentenceCase(cycle.state);
+    final state = toBeginningOfSentenceCase(customState ?? cycle.state);
 
     return Padding(
       padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
