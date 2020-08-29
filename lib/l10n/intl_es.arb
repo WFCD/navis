@@ -20,7 +20,7 @@
             "rank": {}
         }
     },
-    "locating": "Desconocido...",
+    "locating": "Localizando...",
     "@locating": {
         "description": "Shows up when an acolyte's current location is unknown, may be used in other parts of the app",
         "type": "text",
@@ -222,7 +222,7 @@
         "type": "text",
         "placeholders": {}
     },
-    "cambionCycleTitle": "Cambion Cycle",
+    "cambionCycleTitle": "Ciclo de Cambion",
     "@cambionCycleTitle": {
         "description": "Cambion Cycle title",
         "type": "text",
