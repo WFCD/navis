@@ -30,7 +30,15 @@ class Cycles extends StatelessWidget {
               CycleWidget(
                 title: localizations.vallisCycleTitle,
                 cycle: state.worldstate?.vallisCycle,
-              )
+              ),
+              const Divider(),
+              CycleWidget(
+                title: localizations.cambionCycleTitle,
+                customState: state.worldstate.cetusCycle?.isDay ?? false
+                    ? 'Fass'
+                    : 'Vome',
+                cycle: state.worldstate?.cetusCycle,
+              ),
             ],
           );
         },

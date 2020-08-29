@@ -383,6 +383,16 @@ class NavisLocalizations {
     );
   }
 
+  /// `Cambion Cycle`
+  String get cambionCycleTitle {
+    return Intl.message(
+      'Cambion Cycle',
+      name: 'cambionCycleTitle',
+      desc: 'Cambion Cycle title',
+      args: [],
+    );
+  }
+
   /// `Timers`
   String get timersTitle {
     return Intl.message(
