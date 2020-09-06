@@ -222,7 +222,7 @@
         "type": "text",
         "placeholders": {}
     },
-    "cambionCycleTitle": "Cambion Cycle",
+    "cambionCycleTitle": "Камбион",
     "@cambionCycleTitle": {
         "description": "Cambion Cycle title",
         "type": "text",
