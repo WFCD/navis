@@ -9,13 +9,12 @@ before_install:
   - openssl aes-256-cbc -K $encrypted_3b9f0b9d36d1_key -iv $encrypted_3b9f0b9d36d1_iv
     -in secrets.tar.enc -out secrets.tar -d
   - tar xvf secrets.tar
-  - if [  ! -d "flutter" ] ; then git clone https://github.com/flutter/flutter.git
-    -b $FLUTTER_VERSION $HOME/flutter; fi;
+  - if [  ! -d "flutter" ] ; then git clone https://github.com/flutter/flutter.git -b
+    $FLUTTER_VERSION $HOME/flutter; fi;
   - export PATH="$PATH:$FLUTTER_SDK_PATH"
   - flutter pub get
-  - mkdir lib/generated/intl && flutter pub run intl_translation:generate_from_arb
-    --output-dir=lib/generated/intl --no-use-deferred-loading lib/generated/l10n.dart
-    lib/l10n/intl_*.arb
+  - mkdir lib/generated/intl && flutter pub run intl_translation:generate_from_arb --output-dir=lib/generated/intl
+    --no-use-deferred-loading lib/generated/l10n.dart lib/l10n/intl_*.arb
 addons:
   homebrew:
     update: true
@@ -39,6 +38,8 @@ matrix:
         components:
           - build-tools-28.0.3
           - android-28
+          - build-tools-29.0.3
+          - android-29
       script:
         - flutter pub get
         - flutter test
@@ -50,8 +51,10 @@ matrix:
         apt:
           update: true
           sources:
-            - sourceline: "deb [arch=amd64] https://storage.googleapis.com/download.dartlang.org/linux/debian stable main"
-              key_url: "https://dl-ssl.google.com/linux/linux_signing_key.pub"
+            - sourceline:
+                deb [arch=amd64] https://storage.googleapis.com/download.dartlang.org/linux/debian
+                stable main
+              key_url: https://dl-ssl.google.com/linux/linux_signing_key.pub
           packages:
             - apt-transport-https
             - dart
@@ -77,6 +80,8 @@ matrix:
         components:
           - build-tools-28.0.3
           - android-28
+          - build-tools-29.0.3
+          - android-29
       script:
         - flutter build apk --target-platform android-arm
     - os: osx
@@ -98,6 +103,8 @@ matrix:
         components:
           - build-tools-28.0.3
           - android-28
+          - build-tools-29.0.3
+          - android-29
       install:
         - bundle install --gemfile=android/Gemfile
       script:

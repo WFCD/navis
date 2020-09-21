@@ -1,6 +1,6 @@
 {
     "@@last_modified": "2020-03-03T16:56:42.387837",
-    "alertInfo": "{type} ({faction}) | Level: {min} - {max}",
+    "alertInfo": "{type} ({faction}) | 레벨: {min} - {max}",
     "@alertInfo": {
         "description": "The information of the given alert, such as mission type, faction and enemy level",
         "type": "text",
@@ -11,7 +11,7 @@
             "max": {}
         }
     },
-    "activeAcolyte": "{agentType} | level: {rank}",
+    "activeAcolyte": "{agentType} | 레벨: {rank}",
     "@activeAcolyte": {
         "description": "acolyte title with level",
         "type": "text",
@@ -20,49 +20,49 @@
             "rank": {}
         }
     },
-    "locating": "Locating...",
+    "locating": "추적 중...",
     "@locating": {
         "description": "Shows up when an acolyte's current location is unknown, may be used in other parts of the app",
         "type": "text",
         "placeholders": {}
     },
-    "acolyteCurrentLocation": "Current location",
+    "acolyteCurrentLocation": "현재 위치",
     "@acolyteCurrentLocation": {
         "description": "Acolyte's current location",
         "type": "text",
         "placeholders": {}
     },
-    "acolytePassLocation": "Last seen location",
+    "acolytePassLocation": "마지막으로 확인된 위치",
     "@acolytePassLocation": {
         "description": "Acolyte's pass location",
         "type": "text",
         "placeholders": {}
     },
-    "acolyteFound": "Found",
+    "acolyteFound": "발견",
     "@acolyteFound": {
         "description": "The elapsed time after an acolyte was found",
         "type": "text",
         "placeholders": {}
     },
-    "acolyteLastSeen": "Last seen",
+    "acolyteLastSeen": "마지막으로 확인됨",
     "@acolyteLastSeen": {
         "description": "The elapsed time since the acolyte was last seen",
         "type": "text",
         "placeholders": {}
     },
-    "acolyteHealth": "Health",
+    "acolyteHealth": "체력",
     "@acolyteHealth": {
         "description": "Acolytes remaining health",
         "type": "text",
         "placeholders": {}
     },
-    "acolyteRank": "Acolyte Level",
+    "acolyteRank": "어콜라이트 레벨",
     "@acolyteRank": {
         "description": "An acolyte's current level",
         "type": "text",
         "placeholders": {}
     },
-    "acolyteElapsedTime": "{lastSeenTime} minutes ago",
+    "acolyteElapsedTime": "{lastSeenTime}분 전",
     "@acolyteElapsedTime": {
         "description": "Time since acolyte has either been found or last seen",
         "type": "text",
@@ -70,115 +70,115 @@
             "lastSeenTime": {}
         }
     },
-    "tapForMoreDetails": "Tap for more details",
+    "tapForMoreDetails": "자세히 알아보려면 탭하세요",
     "@tapForMoreDetails": {
         "description": "General description to tell the user that this object takes you to a different page",
         "type": "text",
         "placeholders": {}
     },
-    "seeDetails": "See details",
+    "seeDetails": "자세히",
     "@seeDetails": {
         "description": "General button to see more details of given object",
         "type": "text",
         "placeholders": {}
     },
-    "eventDescription": "Description",
+    "eventDescription": "설명",
     "@eventDescription": {
         "description": "Event description category title",
         "type": "text",
         "placeholders": {}
     },
-    "eventStatus": "Event Status",
+    "eventStatus": "이벤트 상태",
     "@eventStatus": {
         "description": "Event status category title",
         "type": "text",
         "placeholders": {}
     },
-    "eventStatusNode": "Node",
+    "eventStatusNode": "노드",
     "@eventStatusNode": {
         "description": "The node that the event is taking place in",
         "type": "text",
         "placeholders": {}
     },
-    "eventStatusProgress": "Progress",
+    "eventStatusProgress": "진행도",
     "@eventStatusProgress": {
         "description": "The progress of the current event from 0 to 100 %",
         "type": "text",
         "placeholders": {}
     },
-    "eventStatusEta": "Time left (ETA)",
+    "eventStatusEta": "남은 시간 (ETA)",
     "@eventStatusEta": {
         "description": "Current events remaining estimated time",
         "type": "text",
         "placeholders": {}
     },
-    "eventRewards": "Rewards",
+    "eventRewards": "보상",
     "@eventRewards": {
         "description": "Event reward title",
         "type": "text",
         "placeholders": {}
     },
-    "bountyTitle": "Bounties",
+    "bountyTitle": "의뢰",
     "@bountyTitle": {
         "description": "Bounty card title.",
         "type": "text",
         "placeholders": {}
     },
-    "errorTitle": "An application error has occurred",
+    "errorTitle": "애플리케이션에 오류가 발생했습니다",
     "@errorTitle": {
         "description": "error title",
         "type": "text",
         "placeholders": {}
     },
-    "errorDescription": "There was unexpected error in core system.\nReporting error to system admin...",
+    "errorDescription": "코어 시스템에 알 수 없는 오류가 발생했습니다.\n시스템 관리자에게 오류를 보고하는 중입니다...",
     "@errorDescription": {
         "description": "error description",
         "type": "text",
         "placeholders": {}
     },
-    "baroTitle": "Void trader",
+    "baroTitle": "보이드 상인",
     "@baroTitle": {
         "description": "Title for Baro Ki'Teer card",
         "type": "text",
         "placeholders": {}
     },
-    "baroLeaving": "Baro Ki'Teer leaves in",
+    "baroLeaving": "바로 키 티어 출발까지",
     "@baroLeaving": {
         "description": "displays remaining time before Baro Ki'Teer leaves",
         "type": "text",
         "placeholders": {}
     },
-    "baroArriving": "Baro Ki'Teer arrives in",
+    "baroArriving": "바로 키 티어 도착까지",
     "@baroArriving": {
         "description": "displays remaining time before Baro Ki'Teer arrives",
         "type": "text",
         "placeholders": {}
     },
-    "baroLocation": "Location",
+    "baroLocation": "위치",
     "@baroLocation": {
         "description": "shows Baro ki'Teer's current location",
         "type": "text",
         "placeholders": {}
     },
-    "baroLeavesOn": "Leaves on",
+    "baroLeavesOn": "출발 시간",
     "@baroLeavesOn": {
         "description": "shows when Baro Ki'Teer is leaving",
         "type": "text",
         "placeholders": {}
     },
-    "baroArrivesOn": "Arrives on",
+    "baroArrivesOn": "도착 시간",
     "@baroArrivesOn": {
         "description": "shows at when Baro Ki'Teer will arrive",
         "type": "text",
         "placeholders": {}
     },
-    "baroInventory": "Baro Ki'Teeer Inventory",
+    "baroInventory": "바로 키 티어 인벤토리",
     "@baroInventory": {
         "description": "Baro Ki'Teeer Inventory button label",
         "type": "text",
         "placeholders": {}
     },
-    "countdownTooltip": "Ends on {date}",
+    "countdownTooltip": "종료까지 {date} 남음",
     "@countdownTooltip": {
         "description": "Countdown tooltip with end date of the current running timer",
         "type": "text",
@@ -186,7 +186,7 @@
             "date": {}
         }
     },
-    "kuvaBanner": "Kuva will refresh in",
+    "kuvaBanner": "쿠바 갱신까지",
     "@kuvaBanner": {
         "description": "Kuva refresh countdown title",
         "type": "text",
@@ -204,277 +204,283 @@
         "type": "text",
         "placeholders": {}
     },
-    "earthCycleTitle": "Earth Cycle",
+    "earthCycleTitle": "지구 주기",
     "@earthCycleTitle": {
         "description": "Earth cycle title",
         "type": "text",
         "placeholders": {}
     },
-    "cetusCycleTitle": "Cetus Cycle",
+    "cetusCycleTitle": "시터스 주기",
     "@cetusCycleTitle": {
         "description": "Cetus cycle title",
         "type": "text",
         "placeholders": {}
     },
-    "vallisCycleTitle": "Vallis Cycle",
+    "vallisCycleTitle": "협곡 주기",
     "@vallisCycleTitle": {
         "description": "Vallis cycle title",
         "type": "text",
         "placeholders": {}
     },
-    "timersTitle": "Timers",
+    "cambionCycleTitle": "캠비온 주기",
+    "@cambionCycleTitle": {
+        "description": "Cambion Cycle title",
+        "type": "text",
+        "placeholders": {}
+    },
+    "timersTitle": "타이머",
     "@timersTitle": {
         "description": "Times title",
         "type": "text",
         "placeholders": {}
     },
-    "fissuresTitle": "Fissures",
+    "fissuresTitle": "균열",
     "@fissuresTitle": {
         "description": "Fissures title",
         "type": "text",
         "placeholders": {}
     },
-    "invasionsTitle": "Invasions",
+    "invasionsTitle": "침공",
     "@invasionsTitle": {
         "description": "Invasions title",
         "type": "text",
         "placeholders": {}
     },
-    "syndicatesTitle": "Syndicates",
+    "syndicatesTitle": "신디케이트",
     "@syndicatesTitle": {
         "description": "Syndicates title",
         "type": "text",
         "placeholders": {}
     },
-    "codexTitle": "Codex",
+    "codexTitle": "코덱스",
     "@codexTitle": {
         "description": "Codex title",
         "type": "text",
         "placeholders": {}
     },
-    "helpfulLinksTitle": "Helpful Links",
+    "helpfulLinksTitle": "도움되는 링크",
     "@helpfulLinksTitle": {
         "description": "Helpful Links title",
         "type": "text",
         "placeholder": {}
     },
-    "behaviorTitle": "Behavior",
+    "behaviorTitle": "동작",
     "@behaviorTitle": {
         "description": "Behavior category title",
         "type": "text",
         "placeholder": {}
     },
-    "themeTitle": "Theme",
+    "themeTitle": "테마",
     "@themeTitle": {
         "description": "Theme title",
         "type": "text",
         "placeholder": {}
     },
-    "themeDescription": "Choose app theme.",
+    "themeDescription": "앱 테마를 선택해주세요.",
     "@themeDescription": {
         "description": "Theme option description",
         "typ": "text",
         "placeholder": {}
     },
-    "backOpensDrawerTitle": "Back button opens drawer",
+    "backOpensDrawerTitle": "이전 버튼으로 앱 서랍 열기",
     "@backOpensDrawerTitle": {
         "description": "Title for the option that allows back button to open the drawer",
         "type": "text",
         "placeholder": {}
     },
-    "backOpensDrawerDescription": "Pressing the back button opens the drawer.",
+    "backOpensDrawerDescription": "이전 버튼을 누르면 앱 서랍을 엽니다.",
     "@backOpensDrawerDescription": {
         "description": "Description for back button opens drawer option",
         "type": "text",
         "placeholder": {}
     },
-    "notificationsTitle": "Notifications",
+    "notificationsTitle": "알림",
     "@notificationsTitle": {
         "description": "Notifications category title",
         "type": "text",
         "placeholder": {}
     },
-    "rareAlertsNotificationTitle": "Rare Alerts",
+    "rareAlertsNotificationTitle": "레어 얼럿",
     "@rareAlertsNotificationTitle": {
         "description": "Rare Alerts title",
         "type": "text",
         "placeholder": {}
     },
-    "rareAlertsNotificationDescription": "Rare alert notifications, mainly gifts of the lotus.",
+    "rareAlertsNotificationDescription": "주로 로터스의 선물같은 레어 얼럿 알림입니다.",
     "@rareAlertsNotificationDescription": {
         "description": "Description for rare alerts option",
         "type": "text",
         "placeholder": {}
     },
-    "baroNotificationTitle": "Baro Ki'Teer",
+    "baroNotificationTitle": "바로 키 티어",
     "@baroNotificationTitle": {
         "description": "Baro's notification title",
         "type": "text",
         "placeholder": {}
     },
-    "baroNotificationDescription": "Notifications for both Baro's arrivial and departure.",
+    "baroNotificationDescription": "바로의 도착과 출발 모두에 대한 알림을 받습니다.",
     "@baroNotificationDescription": {
         "description": "Notification description for both Baro's arrivial and departure.",
         "type": "text",
         "placeholder": {}
     },
-    "darvoNotificationTitle": "Darvo's Daily Deals",
+    "darvoNotificationTitle": "다르보의 제안",
     "@darvoNotificationTitle": {
         "description": "Notification title for darvo's daily deals",
         "type": "text",
         "placeholder": {}
     },
-    "darvoNotificationDescription": "Darvo's new find of the day.",
+    "darvoNotificationDescription": "다르보의 일일 제안입니다.",
     "@darvoNotificationDescription": {
         "description": "Notification description for Darvo's Daily Deal",
         "type": "text",
         "placeholder": {}
     },
-    "sortieNotificationTitle": "Sortie",
+    "sortieNotificationTitle": "출격",
     "@sortieNotificationTitle": {
         "description": "Notification title for sorties",
         "type": "text",
         "placeholder": {}
     },
-    "sortieNotificationDescription": "Notifications for new sorties.",
+    "sortieNotificationDescription": "새 출격이 나오면 알림을 받습니다.",
     "@sortieNotificationDescription": {
         "description": "description for sortie notification option",
         "type": "text",
         "placeholder": {}
     },
-    "sentientOutpostNotificationTitle": "Sentient Outpost",
+    "sentientOutpostNotificationTitle": "센티언트 전초 기지",
     "@sentientOutpostNotificationTitle": {
         "description": "Notification title for sentient outpost",
         "type": "text",
         "placeholder": {}
     },
-    "sentientOutpostNotificationDescription": "Notifications for new sentient threats",
+    "sentientOutpostNotificationDescription": "새 센티언트 위협에 대한 알림을 받습니다",
     "@sentientOutpostNotificationDescription": {
         "description": "Notification description for sentient outpost option",
         "type": "text",
         "placeholder": {}
     },
-    "warframeNewsNotificationTitle": "News",
+    "warframeNewsNotificationTitle": "새 소식",
     "@warframeNewsNotificationTitle": {
         "description": "Main Title for Warframe news notifications",
         "type": "text",
         "placeholder": {}
     },
-    "warframeNewsNotificationDescription": "News notifications for Prime Access, Streams and Updates.",
+    "warframeNewsNotificationDescription": "프라임 엑세스, 방송, 업데이트에 대한 소식 알림을 받습니다.",
     "@warframeNewsNotificationDescription": {
         "description": "Main description for Warframe news notifications",
         "type": "text",
         "placeholder": {}
     },
-    "planetCyclesNotificationTitle": "Open World Cycles",
+    "planetCyclesNotificationTitle": "오픈 월드 주기",
     "@planetCycleNotificationTitle": {
         "description": "Main title for open world notifications",
         "type": "text",
         "placeholder": {}
     },
-    "planetCyclesNotificationDescription": "Open world notifications for their given cycles.",
+    "planetCyclesNotificationDescription": "오픈 월드의 주기에 대한 알림을 받습니다.",
     "@planetCycleNotificationDescription": {
         "description": "Main description for open world notifications",
         "type": "text",
         "placeholder": {}
     },
-    "resourcesNotificationTitle": "Resources",
+    "resourcesNotificationTitle": "자원",
     "@resourcesNotificationTitle": {
         "description": "Main title for resource notifications",
         "type": "text",
         "placeholder": {}
     },
-    "resourcesNotificationDescription": "Resources mostly found in invasions.",
+    "resourcesNotificationDescription": "자원은 대부분 침공에서 찾을 수 있습니다.",
     "@resourcesNotificationDescription": {
         "description": "Main description for resource notifications",
         "type": "text",
         "placeholder": {}
     },
-    "fissuresNotificationTitle": "Fissure Missions",
+    "fissuresNotificationTitle": "균열 미션",
     "@fissuresNotificationTitle": {
         "description": "Main title for fisssures notifications",
         "type": "text",
         "placeholder": {}
     },
-    "fissuresNotificationDescription": "Filter fissure notifications by prefered mission type",
+    "fissuresNotificationDescription": "균열 알림을 선호하는 미션 유형으로 필터하기",
     "@fissuresNotificationDescription": {
         "description": "Main description for fissures notifications",
         "type": "text",
         "placeholder": {}
     },
-    "acolytesNotificationTitle": "Acolytes",
+    "acolytesNotificationTitle": "어콜라이트",
     "@acolytesNotificationTitle": {
         "description": "Main title for acolyte notifications",
         "type": "text",
         "placeholder": {}
     },
-    "acolytesNotificationDescription": "Notifies when an acolyte is found",
+    "acolytesNotificationDescription": "어콜라이트를 발견하면 알림 받기",
     "@acolytesNotificationDescription": {
         "description": "Main description for acolyte notifications",
         "type": "text",
         "placeholder": {}
     },
-    "earthDayOption": "Earth Day",
+    "earthDayOption": "지구 낮",
     "@earthDayOption": {
         "description": "Earth cycle option",
         "type": "text",
         "placeholder": {}
     },
-    "earthNightOption": "Earth Night",
+    "earthNightOption": "지구 저녁",
     "@earthNightOption": {
         "description": "Earth cycle option",
         "type": "text",
         "placeholder": {}
     },
-    "cetusDayOption": "Cetus Day",
+    "cetusDayOption": "시터스 낮",
     "@cetusDayOption": {
         "description": "Cetus cycle option",
         "type": "text",
         "placeholder": {}
     },
-    "cetusNightOption": "Cetus Night",
+    "cetusNightOption": "시터스 저녁",
     "@cetusNightOption": {
         "description": "Cetus cycle option",
         "type": "text",
         "placeholder": {}
     },
-    "vallisWarmOption": "Orb Vallis Warm",
+    "vallisWarmOption": "오브 협곡 따듯함",
     "@vallisWarmOption": {
         "description": "Orb vallis cycle option",
         "type": "text",
         "placeholder": {}
     },
-    "vallisColdOption": "Orb Vallis Cold",
+    "vallisColdOption": "오브 협곡 추움",
     "@vallisColdOption": {
         "description": "Orb vallis cycle option",
         "type": "text",
         "placeholder": {}
     },
-    "primeAccessNewsOption": "Prime Access",
+    "primeAccessNewsOption": "프라임 액세스",
     "@primeAccessNewsOption": {
         "description": "Warframe news option",
         "type": "text",
         "placeholder": {}
     },
-    "streamNewsOption": "Stream Announcements",
+    "streamNewsOption": "방송 공지",
     "@streamNewsOption": {
         "description": "Warframe news option",
         "type": "text",
         "placeholder": {}
     },
-    "updateNewsOption": "Warframe Update News",
+    "updateNewsOption": "Warframe 업데이트 소식",
     "@updateNewsOption": {
         "description": "Warframe news option",
         "type": "text",
         "placeholder": {}
     },
-    "updateDropTableTitle": "Update Drop Table",
+    "updateDropTableTitle": "드롭 테이블 업데이트",
     "@updateDropTableTitle": {
         "description": "Title for updaing drop tables",
         "type": "text",
         "placeholder": {}
     },
-    "updateDropTableDescription": "Last updated {date}",
+    "updateDropTableDescription": "{date}에 마지막으로 업데이트됨",
     "@updateDropTableDescription": {
         "description": "Description for updating drop table with date of the last update",
         "type": "text",
@@ -482,85 +488,85 @@
             "date": {}
         }
     },
-    "reportBugsTitle": "Report Bugs",
+    "reportBugsTitle": "버그 제보",
     "@reportBugsTitle": {
         "desciption": "Title for bug report link",
         "type": "text",
         "placeholder": {}
     },
-    "reportBugsDescription": "Report bugs or Request a feature",
+    "reportBugsDescription": "버그 제보 또는 기능 제안",
     "@reportBugsDescription": {
         "description": "Description for bug report link",
         "type": "text",
         "placeholder": {}
     },
-    "aboutCategoryTitle": "About",
+    "aboutCategoryTitle": "소개",
     "@aboutCategoryTitle": {
         "description": "Title for the about category of the settings page",
         "type": "text",
         "placeholder": {}
     },
-    "sortieResetTime": "Sortie will reset in",
+    "sortieResetTime": "출격 초기화 시간",
     "@sortieResetTime": {
         "description": "Title for sortie reset time",
         "type": "text",
         "placeholder": {}
     },
-    "sortieReseting": "Waiting for new sortie",
+    "sortieReseting": "새 출격을 기다리는 중",
     "@sortieReseting": {
         "description": "Sortie reseting title",
         "type": "text",
         "placeholder": {}
     },
-    "lightThemeTitle": "Light",
+    "lightThemeTitle": "라이트",
     "@lightThemeTitle": {
         "description": "Title for light theme",
         "type": "text",
         "placeholder": {}
     },
-    "darkThemeTitle": "Dark",
+    "darkThemeTitle": "다크",
     "@darkThemeTitle": {
         "description": "Title for dark theme",
         "type": "text",
         "placeholder": {}
     },
-    "systemThemeTitle": "System",
+    "systemThemeTitle": "시스템 설정",
     "@systemThemeTitle": {
         "description": "Title for system theme",
         "type": "text",
         "placeholder": {}
     },
-    "legalese": "Warframe and the Warframe logo are registered trademarks of Digital Extremes Ltd. Cephalon Navis nor WFCD are affiliated with Digital Extremes Ltd. in any way.",
+    "legalese": "Warframe과 Warframe 로고는 Digital Extremes Ltd.의 등록 상표입니다. Cephalon Navis 및 WFCD 역시 Digital Extremes Ltd.와 관계 없습니다.",
     "@legalese": {
         "description": "Cephalon Navis legalese",
         "type": "text",
         "placeholder": {}
     },
-    "homePageTitle": "Homepage",
+    "homePageTitle": "홈페이지",
     "@homePageTitle": {
         "description": "Displayes a link to Navis's homepage",
         "type": "text",
         "placeholder": {}
     },
-    "issueTrackerDescription": "Report issues or feature request for this project's",
+    "issueTrackerDescription": "이 프로젝트의 이슈를 제보하거나 기능 제안하기",
     "@issueTrackerDescription": {
         "description": "Description for Navis's issue tracker",
         "type": "text",
         "placeholder": {}
     },
-    "issueTrackerTitle": "issues tracker",
+    "issueTrackerTitle": "이슈 트래커",
     "@issueTrackerTitle": {
         "description": "Display link to Navis's issue tracker",
         "type": "text",
         "placeholder": {}
     },
-    "warframeLinkTitle": "More information on Warframe can be found on their official site",
+    "warframeLinkTitle": "Warframe에 관한 더 많은 정보는 공식 사이트에서 찾을 수 있습니다",
     "@warframeLinkTitle": {
         "description": "Description for Warframe's main site link",
         "type": "text",
         "placeholder": {}
     },
-    "settingsTitle": "Settings",
+    "settingsTitle": "설정",
     "@settingsTitle": {
         "description": "Settings title",
         "type": "text",

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:navis/core/widgets/widgets.dart';
+import 'package:warframestat_api_models/entities.dart';
 
 import '../../../utils/faction_utils.dart';
 import '../common/faction_logo.dart';
@@ -7,21 +8,15 @@ import '../common/faction_logo.dart';
 class InvasionReward extends StatelessWidget {
   const InvasionReward({
     Key key,
-    @required this.attackerReward,
-    @required this.defenderReward,
-    @required this.attackingFaction,
-    @required this.defendingFaction,
-  })  : assert(attackerReward != null),
-        assert(defenderReward != null),
-        assert(attackingFaction != null),
-        assert(defendingFaction != null),
+    @required this.attacker,
+    @required this.defender,
+    this.vsInfestation = false,
+  })  : assert(attacker != null),
+        assert(defender != null),
         super(key: key);
 
-  final String attackerReward;
-  final String defenderReward;
-
-  final String attackingFaction;
-  final String defendingFaction;
+  final Faction attacker, defender;
+  final bool vsInfestation;
 
   @override
   Widget build(BuildContext context) {
@@ -29,36 +24,35 @@ class InvasionReward extends StatelessWidget {
 
     return Row(
       children: <Widget>[
-        if (attackerReward.isNotEmpty)
+        if (!vsInfestation)
           Material(
             elevation: 4,
             color: Colors.transparent,
             child: StaticBox(
               icon: FactionIcon(
-                faction: attackingFaction,
+                faction: attacker.factionKey,
                 iconSize: iconSize,
                 hasColor: false,
               ),
-              color: factionColor(attackingFaction),
-              child: Text(attackerReward),
+              color: factionColor(attacker.factionKey),
+              child: Text(attacker.reward.itemString),
             ),
           ),
         const Spacer(),
-        if (defenderReward.isNotEmpty)
-          Material(
-            elevation: 4,
-            color: Colors.transparent,
-            child: StaticBox(
-              icon: FactionIcon(
-                faction: defendingFaction,
-                iconSize: iconSize,
-                hasColor: false,
-              ),
-              iconTrailing: true,
-              color: factionColor(defendingFaction),
-              child: Text(defenderReward),
+        Material(
+          elevation: 4,
+          color: Colors.transparent,
+          child: StaticBox(
+            icon: FactionIcon(
+              faction: defender.factionKey,
+              iconSize: iconSize,
+              hasColor: false,
             ),
-          )
+            iconTrailing: true,
+            color: factionColor(defender.factionKey),
+            child: Text(defender.reward.itemString),
+          ),
+        ),
       ],
     );
   }

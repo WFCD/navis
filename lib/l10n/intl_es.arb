@@ -20,7 +20,7 @@
             "rank": {}
         }
     },
-    "locating": "Desconocido...",
+    "locating": "Localizando...",
     "@locating": {
         "description": "Shows up when an acolyte's current location is unknown, may be used in other parts of the app",
         "type": "text",
@@ -219,6 +219,12 @@
     "vallisCycleTitle": "Ciclo de Vallis",
     "@vallisCycleTitle": {
         "description": "Vallis cycle title",
+        "type": "text",
+        "placeholders": {}
+    },
+    "cambionCycleTitle": "Ciclo de Cambion",
+    "@cambionCycleTitle": {
+        "description": "Cambion Cycle title",
         "type": "text",
         "placeholders": {}
     },

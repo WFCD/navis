@@ -220,6 +220,12 @@
     "type": "text",
     "placeholders": {}
   },
+  "cambionCycleTitle": "Cambion Cycle",
+  "@cambionCycleTitle": {
+    "description": "Cambion Cycle title",
+    "type": "text",
+    "placeholders": {}
+  },
   "timersTitle": "Timers",
   "@timersTitle": {
     "description": "Times title",
