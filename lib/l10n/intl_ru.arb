@@ -426,7 +426,7 @@
         "type": "text",
         "placeholder": {}
     },
-    "earthNightOption": "Ночь на Земле",
+    "earthNightOption": "Земля - Ночь",
     "@earthNightOption": {
         "description": "Earth cycle option",
         "type": "text",
@@ -444,7 +444,7 @@
         "type": "text",
         "placeholder": {}
     },
-    "vallisWarmOption": "Тепло в Долине Сфер",
+    "vallisWarmOption": "Долина Сфер - Тепло",
     "@vallisWarmOption": {
         "description": "Orb vallis cycle option",
         "type": "text",
