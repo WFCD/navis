@@ -19,7 +19,7 @@ class SyndicateBounties extends StatelessWidget {
           SliverStickyHeader(
             header: SyndicateBountyHeader(
               job: job,
-              faction: toSyndicateFactions(syndicate.id),
+              faction: syndicateStringToEnum(syndicate.id),
             ),
             sliver: SliverList(
               delegate: SliverChildBuilderDelegate(
