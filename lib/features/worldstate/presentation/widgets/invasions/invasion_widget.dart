@@ -52,6 +52,7 @@ class InvasionWidget extends StatelessWidget {
           InvasionReward(
             attacker: invasion.attacker,
             defender: invasion.defender,
+            vsInfestation: invasion.vsInfestation,
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 4.0, vertical: 8.0),
