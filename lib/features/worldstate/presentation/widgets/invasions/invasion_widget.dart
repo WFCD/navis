@@ -9,7 +9,6 @@ class InvasionWidget extends StatelessWidget {
   const InvasionWidget({Key key, this.invasion}) : super(key: key);
 
   final Invasion invasion;
-
   static const height = 200.0;
 
   Widget _buildDetails(
@@ -35,8 +34,10 @@ class InvasionWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final widgetHeight = 20 * (MediaQuery.of(context).size.height / 100);
+
     return SkyboxCard(
-      height: height,
+      height: widgetHeight,
       node: invasion.node,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 24.0),
@@ -50,15 +51,17 @@ class InvasionWidget extends StatelessWidget {
           ),
           const Spacer(),
           InvasionReward(
-            attacker: invasion.attacker,
-            defender: invasion.defender,
+            attackerReward: invasion.attacker.reward.asString,
+            defenderReward: invasion.defender.reward.asString,
+            attackingFaction: invasion.attacker.factionKey,
+            defendingFaction: invasion.defender.factionKey,
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 4.0, vertical: 8.0),
             child: InvasionProgress(
               progress: (invasion.completion / 100).toDouble(),
-              attackingFaction: invasion.attackingFaction,
-              defendingFaction: invasion.defendingFaction,
+              attackingFaction: invasion.attacker.factionKey,
+              defendingFaction: invasion.defender.factionKey,
             ),
           ),
         ]),
