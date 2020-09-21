@@ -396,13 +396,13 @@
         "type": "text",
         "placeholder": {}
     },
-    "fissuresNotificationTitle": "Fissure Missions",
+    "fissuresNotificationTitle": "균열 미션",
     "@fissuresNotificationTitle": {
         "description": "Main title for fisssures notifications",
         "type": "text",
         "placeholder": {}
     },
-    "fissuresNotificationDescription": "Filter fissure notifications by prefered mission type",
+    "fissuresNotificationDescription": "균열 알림을 선호하는 미션 유형으로 필터하기",
     "@fissuresNotificationDescription": {
         "description": "Main description for fissures notifications",
         "type": "text",
@@ -506,13 +506,13 @@
         "type": "text",
         "placeholder": {}
     },
-    "sortieResetTime": "Sortie will reset in",
+    "sortieResetTime": "출격 초기화 시간",
     "@sortieResetTime": {
         "description": "Title for sortie reset time",
         "type": "text",
         "placeholder": {}
     },
-    "sortieReseting": "Waiting for new sortie",
+    "sortieReseting": "새 출격을 기다리는 중",
     "@sortieReseting": {
         "description": "Sortie reseting title",
         "type": "text",
@@ -548,7 +548,7 @@
         "type": "text",
         "placeholder": {}
     },
-    "issueTrackerDescription": "Report issues or feature request for this project's",
+    "issueTrackerDescription": "이 프로젝트의 이슈를 제보하거나 기능 제안하기",
     "@issueTrackerDescription": {
         "description": "Description for Navis's issue tracker",
         "type": "text",
