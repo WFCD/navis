@@ -10,13 +10,17 @@ class GetSyndicateIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FaIcon(
+    final mediaQuery = MediaQuery.of(context);
+
+    return Icon(
       () {
         switch (syndicate) {
           case SyndicateFaction.cetus:
             return SyndicateGlyphs.ostron;
           case SyndicateFaction.solaris:
             return SyndicateGlyphs.solaris;
+          case SyndicateFaction.entrati:
+            return SyndicateGlyphs.entrati;
           case SyndicateFaction.nightwave:
             return SyndicateGlyphs.nightwave;
           case SyndicateFaction.cephalon_simaris:

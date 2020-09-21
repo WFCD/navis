@@ -35,22 +35,16 @@ class SyndicateCard extends StatelessWidget {
       case SyndicateFaction.nightwave:
         Navigator.of(context).pushNamed(NightwavesPage.route);
         break;
-      case SyndicateFaction.solaris:
-        continue SYNDICATEJOBS;
-        break;
-
-      SYNDICATEJOBS:
-      case SyndicateFaction.cetus:
+      default:
         Navigator.of(context)
             .pushNamed(BountiesPage.route, arguments: syndicate);
-        break;
-      default:
     }
   }
 
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
+    final mediaQuery = MediaQuery.of(context);
     final syndicateName = syndicateStringToEnum(name ?? syndicate.id);
 
     final titleStyle = textTheme.subtitle1
@@ -69,11 +63,12 @@ class SyndicateCard extends StatelessWidget {
           color: syndicateName.backgroundColor,
           child: Padding(
             padding: EdgeInsets.symmetric(
-              vertical: getValueForScreenType(context: context, mobile: 18),
+              vertical: (mediaQuery.size.longestSide / 100) * 1.5,
             ),
             child: ListTile(
               leading: GetSyndicateIcon(syndicate: syndicateName),
-              title: Text(name ?? syndicate.name, style: titleStyle),
+              title: Text(name ?? syndicate.name.replaceFirst('Syndicate', ''),
+                  style: titleStyle),
               subtitle: Text(
                 caption ?? NavisLocalizations.of(context).tapForMoreDetails,
                 style: captionStyle,

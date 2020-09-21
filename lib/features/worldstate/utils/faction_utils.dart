@@ -4,7 +4,7 @@ import 'package:navis/core/themes/colors.dart';
 
 enum EnemyFaction { grineer, corpus, corrupted, infested }
 
-enum SyndicateFaction { cetus, solaris, nightwave, cephalon_simaris }
+enum SyndicateFaction { cetus, solaris, entrati, nightwave, cephalon_simaris }
 
 Color factionColor(String faction) {
   switch (faction) {
@@ -21,11 +21,13 @@ Color factionColor(String faction) {
 
 const _ostronsBackgroundColor = Color(0xFFB74624);
 const _solarisBackgroundColor = Color(0xFF5F3C0D);
+const _entratiBackgroundColor = Color(0xFF4e5360);
 const _nightwaveBackgroundColor = Color(0xFF6C1822);
 const _simarisBackgroundColor = Color(0xFF5F3C0D);
 
 const _ostronsIconColor = Color(0xFFE8DDAF);
 const _solarisIconColor = Color(0xFFD8C38F);
+const _entratiIconColor = Color(0xFFbb9129);
 const _nightwaveIconColor = Color(0xFFFFAEAA);
 const _simarisIconColor = Color(0xFFEBD18F);
 
@@ -44,7 +46,8 @@ SyndicateFaction syndicateStringToEnum(String faction) {
 
 // Convert enum value to readable faction title
 String _toTitle<T>(T value) {
-  return toBeginningOfSentenceCase(value.toString().replaceAll('_', ' '));
+  return toBeginningOfSentenceCase(
+      value.toString().split('.').last.replaceAll('_', ' '));
 }
 
 extension SyndicateFactionX on SyndicateFaction {
@@ -54,6 +57,8 @@ extension SyndicateFactionX on SyndicateFaction {
         return _ostronsIconColor;
       case SyndicateFaction.solaris:
         return _solarisIconColor;
+      case SyndicateFaction.entrati:
+        return _entratiIconColor;
       case SyndicateFaction.nightwave:
         return _nightwaveIconColor;
       case SyndicateFaction.cephalon_simaris:
@@ -69,6 +74,8 @@ extension SyndicateFactionX on SyndicateFaction {
         return _ostronsBackgroundColor;
       case SyndicateFaction.solaris:
         return _solarisBackgroundColor;
+      case SyndicateFaction.entrati:
+        return _entratiBackgroundColor;
       case SyndicateFaction.cephalon_simaris:
         return _simarisBackgroundColor;
       case SyndicateFaction.nightwave:
