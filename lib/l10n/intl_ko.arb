@@ -474,7 +474,7 @@
         "type": "text",
         "placeholder": {}
     },
-    "updateDropTableTitle": "Update Drop Table",
+    "updateDropTableTitle": "드롭 테이블 업데이트",
     "@updateDropTableTitle": {
         "description": "Title for updaing drop tables",
         "type": "text",
