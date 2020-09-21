@@ -27,16 +27,15 @@ class InvasionWidget extends StatelessWidget {
           ),
           const Spacer(),
           InvasionReward(
-            attackerReward: invasion.attackerReward,
-            defenderReward: invasion.defenderReward,
-            attackingFaction: invasion.attackingFaction,
-            defendingFaction: invasion.defendingFaction,
+            attacker: invasion.attacker,
+            defender: invasion.defender,
+            vsInfestation: invasion.vsInfestation,
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 4.0, vertical: 8.0),
             child: InvasionBar(
-              attackingFaction: invasion.attackingFaction,
-              defendingFaction: invasion.defendingFaction,
+              attackingFaction: invasion.attacker.factionKey,
+              defendingFaction: invasion.defender.factionKey,
               progress: invasion.completion.toDouble() / 100,
             ),
           ),
