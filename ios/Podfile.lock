@@ -13,8 +13,6 @@ PODS:
   - firebase_core (0.5.0):
     - Firebase/CoreOnly (~> 6.26.0)
     - Flutter
-  - firebase_core_web (0.1.0):
-    - Flutter
   - firebase_crashlytics (0.0.1):
     - Crashlytics
     - Fabric
@@ -109,12 +107,6 @@ PODS:
     - Flutter
   - path_provider (0.0.1):
     - Flutter
-  - path_provider_linux (0.0.1):
-    - Flutter
-  - path_provider_macos (0.0.1):
-    - Flutter
-  - path_provider_windows (0.0.1):
-    - Flutter
   - PromisesObjC (1.2.10)
   - Protobuf (3.13.0)
   - sqflite (0.0.1):
@@ -122,24 +114,13 @@ PODS:
     - FMDB (~> 2.7.2)
   - url_launcher (0.0.1):
     - Flutter
-  - url_launcher_linux (0.0.1):
-    - Flutter
-  - url_launcher_macos (0.0.1):
-    - Flutter
-  - url_launcher_web (0.0.1):
-    - Flutter
-  - url_launcher_windows (0.0.1):
-    - Flutter
   - video_player (0.0.1):
-    - Flutter
-  - video_player_web (0.0.1):
     - Flutter
   - wakelock (0.0.1):
     - Flutter
 
 DEPENDENCIES:
   - firebase_core (from `.symlinks/plugins/firebase_core/ios`)
-  - firebase_core_web (from `.symlinks/plugins/firebase_core_web/ios`)
   - firebase_crashlytics (from `.symlinks/plugins/firebase_crashlytics/ios`)
   - firebase_messaging (from `.symlinks/plugins/firebase_messaging/ios`)
   - Flutter (from `Flutter`)
@@ -147,17 +128,9 @@ DEPENDENCIES:
   - flutter_local_notifications (from `.symlinks/plugins/flutter_local_notifications/ios`)
   - package_info (from `.symlinks/plugins/package_info/ios`)
   - path_provider (from `.symlinks/plugins/path_provider/ios`)
-  - path_provider_linux (from `.symlinks/plugins/path_provider_linux/ios`)
-  - path_provider_macos (from `.symlinks/plugins/path_provider_macos/ios`)
-  - path_provider_windows (from `.symlinks/plugins/path_provider_windows/ios`)
   - sqflite (from `.symlinks/plugins/sqflite/ios`)
   - url_launcher (from `.symlinks/plugins/url_launcher/ios`)
-  - url_launcher_linux (from `.symlinks/plugins/url_launcher_linux/ios`)
-  - url_launcher_macos (from `.symlinks/plugins/url_launcher_macos/ios`)
-  - url_launcher_web (from `.symlinks/plugins/url_launcher_web/ios`)
-  - url_launcher_windows (from `.symlinks/plugins/url_launcher_windows/ios`)
   - video_player (from `.symlinks/plugins/video_player/ios`)
-  - video_player_web (from `.symlinks/plugins/video_player_web/ios`)
   - wakelock (from `.symlinks/plugins/wakelock/ios`)
 
 SPEC REPOS:
@@ -184,8 +157,6 @@ SPEC REPOS:
 EXTERNAL SOURCES:
   firebase_core:
     :path: ".symlinks/plugins/firebase_core/ios"
-  firebase_core_web:
-    :path: ".symlinks/plugins/firebase_core_web/ios"
   firebase_crashlytics:
     :path: ".symlinks/plugins/firebase_crashlytics/ios"
   firebase_messaging:
@@ -200,28 +171,12 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/package_info/ios"
   path_provider:
     :path: ".symlinks/plugins/path_provider/ios"
-  path_provider_linux:
-    :path: ".symlinks/plugins/path_provider_linux/ios"
-  path_provider_macos:
-    :path: ".symlinks/plugins/path_provider_macos/ios"
-  path_provider_windows:
-    :path: ".symlinks/plugins/path_provider_windows/ios"
   sqflite:
     :path: ".symlinks/plugins/sqflite/ios"
   url_launcher:
     :path: ".symlinks/plugins/url_launcher/ios"
-  url_launcher_linux:
-    :path: ".symlinks/plugins/url_launcher_linux/ios"
-  url_launcher_macos:
-    :path: ".symlinks/plugins/url_launcher_macos/ios"
-  url_launcher_web:
-    :path: ".symlinks/plugins/url_launcher_web/ios"
-  url_launcher_windows:
-    :path: ".symlinks/plugins/url_launcher_windows/ios"
   video_player:
     :path: ".symlinks/plugins/video_player/ios"
-  video_player_web:
-    :path: ".symlinks/plugins/video_player_web/ios"
   wakelock:
     :path: ".symlinks/plugins/wakelock/ios"
 
@@ -230,7 +185,6 @@ SPEC CHECKSUMS:
   Fabric: ea977e3cd9c20425516d3dafd3bf8c941c51223f
   Firebase: 7cf5f9c67f03cb3b606d1d6535286e1080e57eb6
   firebase_core: 3134fe79d257d430f163b558caf52a10a87efe8a
-  firebase_core_web: d501d8b946b60c8af265428ce483b0fff5ad52d1
   firebase_crashlytics: cc468e94e5a637364aeeeec5c8a96d92ea75ec7b
   firebase_messaging: 6061cbdfe4463502a0d4d7049820c25d1757a095
   FirebaseAnalytics: 96634d356482d4f3af8fe459a0ebf19a99c71b75
@@ -251,21 +205,13 @@ SPEC CHECKSUMS:
   nanopb: c43f40fadfe79e8b8db116583945847910cbabc9
   package_info: 873975fc26034f0b863a300ad47e7f1ac6c7ec62
   path_provider: abfe2b5c733d04e238b0d8691db0cfd63a27a93c
-  path_provider_linux: 4d630dc393e1f20364f3e3b4a2ff41d9674a84e4
-  path_provider_macos: f760a3c5b04357c380e2fddb6f9db6f3015897e0
-  path_provider_windows: a2b81600c677ac1959367280991971cb9a1edb3b
   PromisesObjC: b14b1c6b68e306650688599de8a45e49fae81151
   Protobuf: 3dac39b34a08151c6d949560efe3f86134a3f748
   sqflite: 4001a31ff81d210346b500c55b17f4d6c7589dd0
   url_launcher: 6fef411d543ceb26efce54b05a0a40bfd74cbbef
-  url_launcher_linux: ac237cb7a8058736e4aae38bdbcc748a4b394cc0
-  url_launcher_macos: fd7894421cd39320dce5f292fc99ea9270b2a313
-  url_launcher_web: e5527357f037c87560776e36436bf2b0288b965c
-  url_launcher_windows: 683d7c283894db8d1914d3ab2223b20cc1ad95d5
   video_player: 9cc823b1d9da7e8427ee591e8438bfbcde500e6e
-  video_player_web: da8cadb8274ed4f8dbee8d7171b420dedd437ce7
   wakelock: 0d4a70faf8950410735e3f61fb15d517c8a6efc4
 
-PODFILE CHECKSUM: 2609452b760cd11039b14039a86564367a3d8ab9
+PODFILE CHECKSUM: aafe91acc616949ddb318b77800a7f51bffa2a4c
 
 COCOAPODS: 1.9.3
