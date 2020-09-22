@@ -62,7 +62,6 @@ flutter:
       fonts:
         - asset: assets/icons/SyndicateGlyphs.ttf
   assets:
-    # - assets/wfcd_banner.svg
     - assets/Derelict.webp
     - assets/skyboxes/Void.webp
     - assets/event_info.json

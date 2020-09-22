@@ -50,7 +50,7 @@ class WarframestatCache {
   BaseItem getCachedDeal(String id) {
     final cached = readDisk<String>(id);
 
-    return BaseItemModel.fromJson(json.decode(cached) as Map<String, dynamic>);
+    return toBaseItem(json.decode(cached) as Map<String, dynamic>);
   }
 
   Worldstate getCachedState() {
