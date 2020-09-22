@@ -91,6 +91,7 @@ matrix:
       if: NOT tag IS present
       before_script:
         - pip install six
+        - gem install cocoapods -v '1.9.3'
       script:
         - travis_wait 30 flutter build ios --no-codesign
     - env: JOB=DEPLOY-ANDROID
@@ -134,6 +135,7 @@ matrix:
         - bundle install --gemfile=ios/Gemfile
       before_script:
         - pip install six
+        - gem install cocoapods -v '1.9.3'
       script:
         - flutter clean
         - travis_wait 30 flutter build ios --no-codesign
