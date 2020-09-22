@@ -12,7 +12,7 @@ class GetSyndicateIcon extends StatelessWidget {
   Widget build(BuildContext context) {
     final mediaQuery = MediaQuery.of(context);
 
-    return Icon(
+    return FaIcon(
       () {
         switch (syndicate) {
           case SyndicateFaction.cetus:
@@ -29,7 +29,7 @@ class GetSyndicateIcon extends StatelessWidget {
             return NavisSysIcons.nightmare;
         }
       }(),
-      size: 50,
+      size: (mediaQuery.size.longestSide / 100) * 7.5,
       color: syndicate.iconColor,
     );
   }
