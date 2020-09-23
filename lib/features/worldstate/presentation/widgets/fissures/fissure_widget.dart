@@ -8,35 +8,40 @@ import 'relic_icons.dart';
 class FissureWidget extends StatelessWidget {
   const FissureWidget({Key key, this.fissure}) : super(key: key);
 
+  static const height = 140.0;
+
   final VoidFissure fissure;
 
-  static const height = 140.0;
+  static const color = Colors.white;
+  static const shadow = Shadow(offset: Offset(1.0, 0.0), blurRadius: 3.0);
+
+  static const _nodeStyle = TextStyle(
+    fontWeight: FontWeight.bold,
+    fontStyle: FontStyle.normal,
+    fontSize: 18,
+    color: color,
+    shadows: <Shadow>[shadow],
+  );
+
+  static const _missionTypeStyle = TextStyle(
+    fontWeight: FontWeight.w500,
+    fontStyle: FontStyle.normal,
+    fontSize: 14,
+    color: color,
+    shadows: <Shadow>[shadow],
+  );
 
   @override
   Widget build(BuildContext context) {
-    const color = Colors.white;
-    const shadow = Shadow(offset: Offset(1.0, 0.0), blurRadius: 3.0);
-
-    const _nodeStyle = TextStyle(
-      fontWeight: FontWeight.bold,
-      fontStyle: FontStyle.normal,
-      fontSize: 18,
-      color: color,
-      shadows: <Shadow>[shadow],
-    );
-
-    const _missionTypeStyle = TextStyle(
-      fontWeight: FontWeight.w500,
-      fontStyle: FontStyle.normal,
-      fontSize: 14,
-      color: color,
-      shadows: <Shadow>[shadow],
-    );
+    final mediaQuery = MediaQuery.of(context);
+    final widgetHeight = 8 * (mediaQuery.size.height / 100);
+    final iconHeight = 6 * (mediaQuery.size.longestSide / 100);
 
     return SkyboxCard(
       node: fissure.node,
-      height: height,
+      height: widgetHeight,
       child: ListTile(
+        dense: true,
         leading: Icon(
           () {
             switch (fissure.tier) {
@@ -52,7 +57,7 @@ class FissureWidget extends StatelessWidget {
                 return RelicIcons.requiem;
             }
           }(),
-          size: 50,
+          size: iconHeight,
         ),
         title: Text(fissure.node, style: _nodeStyle),
         subtitle: Text(
