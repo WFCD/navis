@@ -23,13 +23,17 @@ class EventBounties extends StatelessWidget {
   }
 
   void _showDialog(BuildContext context, String type, List<String> rewards) {
+    final size = MediaQuery.of(context).size;
+    final horizontal = (size.width / 100) * 2;
+    final vertical = (size.height / 100) * .5;
+
     showDialog<void>(
       context: context,
       builder: (BuildContext context) {
         return NavisDialog(
           title: Text(type),
           contentPadding:
-              const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0),
+              EdgeInsets.symmetric(horizontal: horizontal, vertical: vertical),
           content: SingleChildScrollView(
             child: Column(
               mainAxisSize: MainAxisSize.min,

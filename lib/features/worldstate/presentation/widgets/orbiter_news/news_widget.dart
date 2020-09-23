@@ -29,36 +29,37 @@ class OrbiterNewsWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final currentLocale = Intl.getCurrentLocale();
+    final size = MediaQuery.of(context).size;
 
     return InkWell(
       onTap: () => launchLink(context, news.link),
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Material(
-          elevation: 4.0,
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(4.0)),
-          clipBehavior: Clip.hardEdge,
-          child: Container(
-            height: height,
-            child: Stack(
-              children: <Widget>[
-                CachedNetworkImage(
-                  imageUrl: news.proxyImage,
-                  placeholder: (context, url) =>
-                      _imageBuilder(const AssetImage(Resources.derelictSkybox)),
-                  imageBuilder: (context, imageProvider) =>
-                      _imageBuilder(imageProvider),
+      child: Material(
+        elevation: 4.0,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4.0)),
+        clipBehavior: Clip.hardEdge,
+        color: Colors.transparent,
+        child: Container(
+          height: height,
+          margin: EdgeInsets.symmetric(
+              horizontal: (size.width / 100) * 2,
+              vertical: (size.height / 100) * .9),
+          child: Stack(
+            children: <Widget>[
+              CachedNetworkImage(
+                imageUrl: news.proxyImage,
+                placeholder: (context, url) =>
+                    _imageBuilder(const AssetImage(Resources.derelictSkybox)),
+                imageBuilder: (context, imageProvider) =>
+                    _imageBuilder(imageProvider),
+              ),
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: NewsInformation(
+                  timestamp: news.timestamp,
+                  message: news.translations[currentLocale],
                 ),
-                Align(
-                  alignment: Alignment.bottomCenter,
-                  child: NewsInformation(
-                    timestamp: news.timestamp,
-                    message: news.translations[currentLocale],
-                  ),
-                )
-              ],
-            ),
+              )
+            ],
           ),
         ),
       ),

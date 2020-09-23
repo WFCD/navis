@@ -61,8 +61,12 @@ class _YoutubePlayerState extends State<EventVideoPlayer> {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    final horizontal = (size.width / 100) * 1;
+    final vertical = (size.height / 100) * 1;
+
     return Card(
-      margin: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0),
+      margin: EdgeInsets.symmetric(horizontal: horizontal, vertical: vertical),
       child: LimitedBox(
         maxHeight: (MediaQuery.of(context).size.width / 100) * 90,
         child: _chewieController == null

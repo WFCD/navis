@@ -127,8 +127,8 @@ class TabletTimers extends StatelessWidget {
     final size = MediaQuery.of(context).size.width ~/ 100;
 
     final large = size * 10;
-    final medium = (size * 3.4).toInt();
-    final small = (size * 2.9).toInt();
+    final medium = (size * 3.4).floor();
+    final small = (size * 2.9).floor();
 
     return {
       const DailyReward(): StaggeredTile.fit(large),

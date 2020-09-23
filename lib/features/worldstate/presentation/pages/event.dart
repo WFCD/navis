@@ -23,7 +23,7 @@ class EventInformation extends StatelessWidget {
       body: CustomScrollView(slivers: <Widget>[
         SliverAppBar(
           pinned: true,
-          expandedHeight: 150.0,
+          expandedHeight: (MediaQuery.of(context).size.height / 100) * 25,
           backgroundColor: Theme.of(context).primaryColor,
           flexibleSpace: FlexibleSpaceBar(
             title: Text(event.description),

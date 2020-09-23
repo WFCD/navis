@@ -412,7 +412,7 @@ packages:
       name: json_annotation
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.0.1"
+    version: "3.1.0"
   logging:
     dependency: transitive
     description:
@@ -899,10 +899,10 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: e3372101e682a0cdf92ca1da6d5dfbf2ccc844a0
+      resolved-ref: cd7e93c6e1dc409032d742ecfc8ced132f4200db
       url: "https://github.com/SlayerOrnstein/warframestat_api_models.git"
     source: git
-    version: "3.4.1"
+    version: "3.4.2"
   watcher:
     dependency: transitive
     description:
