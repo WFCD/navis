@@ -15,7 +15,9 @@ class InvasionWidget extends StatelessWidget {
       BuildContext context, String node, String description, String eta) {
     const shadow = Shadow(offset: Offset(1.0, 0.0), blurRadius: 4.0);
 
-    final _node = Typography.whiteMountainView.subtitle1
+    final _node = Theme.of(context)
+        .textTheme
+        .subtitle1
         .copyWith(fontSize: 15, shadows: <Shadow>[shadow]);
 
     return Container(
@@ -40,7 +42,7 @@ class InvasionWidget extends StatelessWidget {
       height: widgetHeight,
       node: invasion.node,
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 24.0),
+        padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 18.0),
         child: Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
           const Spacer(),
           _buildDetails(
