@@ -16,7 +16,7 @@ class BountiesPage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(syndicate.name),
+        title: Text(syndicate.name.replaceFirst('Syndicate', '')),
         titleSpacing: 0.0,
         backgroundColor: backgroundColor,
       ),
