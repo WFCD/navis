@@ -4,7 +4,7 @@ import 'package:warframestat_api_models/entities.dart';
 
 import '../widgets/trader_inventory/inventory_tables.dart';
 
-// TODO: maybe add more functionality to Baro's Inventory
+// TODO(Ornstein): maybe add more functionality to Baro's Inventory
 class BaroInventory extends StatelessWidget {
   const BaroInventory({Key key}) : super(key: key);
 

@@ -89,7 +89,7 @@ class _DealWidgetState extends State<DealWidget> {
                         spacing: 10.0,
                         runSpacing: 5.0,
                         children: <Widget>[
-                          // TODO: should probably put a plat icon here instead
+                          // TODO(Ornstein): should probably put a plat icon here instead
                           StaticBox.text(
                             text: '${widget.deal.salePrice}\p',
                             style: saleInfo,

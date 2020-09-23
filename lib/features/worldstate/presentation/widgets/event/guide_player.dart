@@ -6,9 +6,9 @@ import 'package:navis/injection_container.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:video_player/video_player.dart';
 
-// TODO: Find more how-to guides for events might be slightly annoying for older events
-// TODO: Make sure this setup works for all events
-// TODO: find a way to adapt a stream to network speed, might come later with Youtube_explode
+// TODO(Ornstein): Find more how-to guides for events might be slightly annoying for older events
+// TODO(Ornstein): Make sure this setup works for all events
+// TODO(Ornstein): find a way to adapt a stream to network speed, might come later with Youtube_explode
 class EventVideoPlayer extends StatefulWidget {
   const EventVideoPlayer({
     Key key,
