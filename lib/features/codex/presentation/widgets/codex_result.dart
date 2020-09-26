@@ -11,10 +11,15 @@ class CodexResult extends StatelessWidget {
   Widget _buildItem() {
     if (item is Mod) {
       final mod = item as Mod;
+      String description;
+
+      if (mod.levelStats?.isNotEmpty ?? false) {
+        description = mod.levelStats?.last['stats']?.first;
+      }
 
       return ListTile(
         title: Text(item.name),
-        subtitle: Text(mod.levelStats.last['stats'].first),
+        subtitle: Text(mod.description ?? description ?? ''),
       );
     } else {
       return ListTile(
@@ -31,15 +36,6 @@ class CodexResult extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          // Padding(
-          //   padding: const EdgeInsets.only(top: 8.0, left: 8.0),
-          //   child: ItemContent(
-          //     name: item.name,
-          //     description: item.description ?? '',
-          //     imageUrl: item.imageUrl,
-          //     wikiaUrl: item.wikiaUrl,
-          //   ),
-          // ),
           _buildItem(),
           if (item.wikiaUrl != null)
             ButtonBar(

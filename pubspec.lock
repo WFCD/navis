@@ -892,10 +892,10 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "76a04ee0131b6a444a26eb7097953490e4882baf"
+      resolved-ref: d53f260e382ffb44a17c098dfb60435e6befd2b8
       url: "https://github.com/SlayerOrnstein/warframestat_api_models.git"
     source: git
-    version: "3.5.2"
+    version: "3.5.3"
   watcher:
     dependency: transitive
     description:
