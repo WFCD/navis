@@ -13,6 +13,10 @@ class SyndicateBounties extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    final horizantalPadding = (size.height / 100) * 1.5;
+    final verticalPadding = (size.width / 100) * 2;
+
     return CustomScrollView(
       slivers: <Widget>[
         for (Job job in syndicate?.jobs ?? [])
@@ -24,7 +28,21 @@ class SyndicateBounties extends StatelessWidget {
             sliver: SliverList(
               delegate: SliverChildBuilderDelegate(
                 (BuildContext context, int index) {
-                  return ListTile(title: Text(job.rewardPool[index]));
+                  return Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: horizantalPadding,
+                          vertical: verticalPadding,
+                        ),
+                        child: Text(
+                          job.rewardPool[index],
+                          style: Theme.of(context).textTheme.subtitle1,
+                        ),
+                      )
+                    ],
+                  );
                 },
                 childCount: job.rewardPool.length,
               ),
