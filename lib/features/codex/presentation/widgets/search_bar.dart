@@ -45,10 +45,6 @@ class _CodexSearchBarState extends State<CodexSearchBar> {
     _searchBloc.add(const SearchCodex(''));
   }
 
-  Future<void> _filter() async {
-    // final filterBy = await showMenu<String>(context: context, position: RelativeRect, items: null);
-  }
-
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<SearchBloc, SearchState>(builder: (context, state) {

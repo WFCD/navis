@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:flutter/foundation.dart';
 import 'package:logging/logging.dart';
 import 'package:navis/core/error/exceptions.dart';
 import 'package:navis/features/codex/domian/usercases/search_items.dart';

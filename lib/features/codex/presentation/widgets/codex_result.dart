@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:navis/core/widgets/custom_card.dart';
 import 'package:responsive_builder/responsive_builder.dart';
