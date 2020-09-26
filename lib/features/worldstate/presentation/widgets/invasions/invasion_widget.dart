@@ -15,21 +15,18 @@ class InvasionWidget extends StatelessWidget {
       BuildContext context, String node, String description, String eta) {
     const shadow = Shadow(offset: Offset(1.0, 0.0), blurRadius: 4.0);
 
-    final _node = Theme.of(context)
+    final nodeStyle = Theme.of(context)
         .textTheme
         .subtitle1
-        .copyWith(fontSize: 15, shadows: <Shadow>[shadow]);
+        .copyWith(color: Colors.white, fontSize: 15, shadows: <Shadow>[shadow]);
+
+    final infoStyle =
+        Theme.of(context).textTheme.caption.copyWith(shadows: <Shadow>[shadow]);
 
     return Container(
       child: Column(children: <Widget>[
-        Text(node, style: _node),
-        Text(
-          '$description ($eta)',
-          style: Theme.of(context)
-              .textTheme
-              .caption
-              .copyWith(shadows: <Shadow>[shadow]),
-        ),
+        Text(node, style: nodeStyle),
+        Text('$description ($eta)', style: infoStyle),
       ]),
     );
   }
