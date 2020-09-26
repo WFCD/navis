@@ -11,46 +11,28 @@ class CodexResult extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final mediaQuery = MediaQuery.of(context);
+
     return ResponsiveBuilder(
       builder: (BuildContext context, SizingInformation sizeInfo) {
         return CustomCard(
           child: Container(
-            height: getValueForScreenType(context: context, mobile: 150),
+            height: (mediaQuery.size.height / 100) * 20,
             child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Row(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Padding(
-                      padding: const EdgeInsets.only(top: 8.0, left: 8.0),
-                      child: ItemContent(
-                        name: item.name,
-                        description: item.description ?? '',
-                        imageUrl: item.imageUrl,
-                        wikiaUrl: item.wikiaUrl,
-                      ),
-                    ),
-                    // const Spacer(),
-                    Center(
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                        child: CircleAvatar(
-                          radius: getValueForScreenType(
-                            context: context,
-                            mobile: 25,
-                          ),
-                          backgroundColor: Theme.of(context).cardTheme.color,
-                          backgroundImage:
-                              CachedNetworkImageProvider(item.imageUrl),
-                        ),
-                      ),
-                    )
-                  ],
+                Padding(
+                  padding: const EdgeInsets.only(top: 8.0, left: 8.0),
+                  child: ItemContent(
+                    name: item.name,
+                    description: item.description ?? '',
+                    imageUrl: item.imageUrl,
+                    wikiaUrl: item.wikiaUrl,
+                  ),
                 ),
                 if (item.wikiaUrl != null)
                   ButtonBar(
-                    alignment: MainAxisAlignment.start,
                     children: <Widget>[
                       FlatButton(
                         onPressed: () {},
