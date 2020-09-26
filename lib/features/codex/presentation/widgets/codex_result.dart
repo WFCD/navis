@@ -9,42 +9,50 @@ class CodexResult extends StatelessWidget {
 
   final BaseItem item;
 
+  Widget _buildItem() {
+    if (item is Mod) {
+      final mod = item as Mod;
+
+      return ListTile(
+        title: Text(item.name),
+        subtitle: Text(mod.levelStats.last['stats'].first),
+      );
+    } else {
+      return ListTile(
+        title: Text(item.name),
+        subtitle: Text(item.description),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    final mediaQuery = MediaQuery.of(context);
-
-    return ResponsiveBuilder(
-      builder: (BuildContext context, SizingInformation sizeInfo) {
-        return CustomCard(
-          child: Container(
-            height: (mediaQuery.size.height / 100) * 20,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
+    return CustomCard(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          // Padding(
+          //   padding: const EdgeInsets.only(top: 8.0, left: 8.0),
+          //   child: ItemContent(
+          //     name: item.name,
+          //     description: item.description ?? '',
+          //     imageUrl: item.imageUrl,
+          //     wikiaUrl: item.wikiaUrl,
+          //   ),
+          // ),
+          _buildItem(),
+          if (item.wikiaUrl != null)
+            ButtonBar(
               children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.only(top: 8.0, left: 8.0),
-                  child: ItemContent(
-                    name: item.name,
-                    description: item.description ?? '',
-                    imageUrl: item.imageUrl,
-                    wikiaUrl: item.wikiaUrl,
-                  ),
-                ),
-                if (item.wikiaUrl != null)
-                  ButtonBar(
-                    children: <Widget>[
-                      FlatButton(
-                        onPressed: () {},
-                        child: const Text('See wikia'),
-                      )
-                    ],
-                  )
+                FlatButton(
+                  onPressed: () {},
+                  child: const Text('See wikia'),
+                )
               ],
-            ),
-          ),
-        );
-      },
+            )
+        ],
+      ),
     );
   }
 }

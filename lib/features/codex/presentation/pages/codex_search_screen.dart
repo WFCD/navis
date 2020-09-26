@@ -29,7 +29,7 @@ class CodexSearchScreen extends StatelessWidget {
         ];
       },
       body: BlocBuilder<SearchBloc, SearchState>(
-        builder: (BuildContext context, SearchState state) {
+        builder: (context, state) {
           if (state is CodexSuccessfulSearch && state.results.isNotEmpty) {
             return ListView.builder(
               itemCount: state.results.length,

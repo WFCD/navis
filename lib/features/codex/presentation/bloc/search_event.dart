@@ -12,3 +12,12 @@ class SearchCodex extends SearchEvent {
   @override
   List<Object> get props => [text];
 }
+
+class SearchFilter extends SearchEvent {
+  const SearchFilter(this.category);
+
+  final String category;
+
+  @override
+  List<Object> get props => [category];
+}

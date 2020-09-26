@@ -21,7 +21,7 @@ class CodexSuccessfulSearch extends SearchState {
   final List<BaseItem> results;
 
   @override
-  List<Object> get props => [];
+  List<Object> get props => [results];
 }
 
 class CodexSearchError extends SearchState {
@@ -30,5 +30,5 @@ class CodexSearchError extends SearchState {
   final String message;
 
   @override
-  List<Object> get props => [];
+  List<Object> get props => [message];
 }
