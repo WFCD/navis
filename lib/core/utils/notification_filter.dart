@@ -31,7 +31,7 @@ class LocalizedFilter {
       },
       {
         'name': localizations.sentientOutpostNotificationTitle,
-        'description': localizations.sortieNotificationDescription,
+        'description': localizations.sentientOutpostNotificationDescription,
         'key': NotificationKeys.sentientOutpost
       }
     ];
