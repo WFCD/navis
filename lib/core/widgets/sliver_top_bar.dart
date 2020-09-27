@@ -61,12 +61,13 @@ class _SliverTopbarState extends State<SliverTopbar>
 
   @override
   Widget build(BuildContext context) {
-    final double topPadding = MediaQuery.of(context).padding.top;
+    final double topPadding = MediaQuery.of(context).padding.top ?? 0.0;
     final double collapsedHeight =
         (widget.pinned && widget.floating) ? topPadding : null;
 
     return MediaQuery.removePadding(
       context: context,
+      removeBottom: true,
       child: SliverPersistentHeader(
         pinned: widget.pinned,
         floating: widget.floating,
@@ -74,6 +75,7 @@ class _SliverTopbarState extends State<SliverTopbar>
           pinned: widget.pinned,
           floating: widget.floating,
           snapConfiguration: _snapConfiguration,
+          topPadding: topPadding,
           collapsedHeight: collapsedHeight,
           child: widget.child,
         ),
@@ -145,6 +147,7 @@ class _SliverTopbarDelegate extends SliverPersistentHeaderDelegate {
   const _SliverTopbarDelegate({
     this.floating,
     this.pinned,
+    this.topPadding,
     this.collapsedHeight,
     this.snapConfiguration,
     this.child,
@@ -152,6 +155,7 @@ class _SliverTopbarDelegate extends SliverPersistentHeaderDelegate {
 
   final bool floating;
   final bool pinned;
+  final double topPadding;
   final double collapsedHeight;
   final Widget child;
 
@@ -178,7 +182,7 @@ class _SliverTopbarDelegate extends SliverPersistentHeaderDelegate {
     //    1   |    1     |        0       ||  1.0
     //    1   |    1     |        1       ||  fade
     final double toolbarOpacity = !pinned || floating
-        ? (visibleMainHeight / kToolbarHeight).clamp(0.0, 1.0).toDouble()
+        ? (visibleMainHeight / kTextTabBarHeight).clamp(0.0, 1.0).toDouble()
         : 1.0;
 
     final widget = FlexibleSpaceBar.createSettings(
@@ -188,6 +192,7 @@ class _SliverTopbarDelegate extends SliverPersistentHeaderDelegate {
       currentExtent: math.max(minExtent, maxExtent - shrinkOffset),
       child: Material(
         color: primary,
+        elevation: 4.0,
         child: child,
       ),
     );
@@ -196,10 +201,10 @@ class _SliverTopbarDelegate extends SliverPersistentHeaderDelegate {
   }
 
   @override
-  double get maxExtent => math.max(kToolbarHeight, minExtent);
+  double get maxExtent => math.max(topPadding + kTextTabBarHeight, minExtent);
 
   @override
-  double get minExtent => collapsedHeight ?? kToolbarHeight;
+  double get minExtent => collapsedHeight ?? kTextTabBarHeight;
 
   @override
   bool shouldRebuild(_SliverTopbarDelegate oldDelegate) {

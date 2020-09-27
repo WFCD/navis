@@ -21,8 +21,7 @@ class CodexSearchScreen extends StatelessWidget {
           SliverOverlapAbsorber(
             handle: NestedScrollView.sliverOverlapAbsorberHandleFor(context),
             sliver: const SliverTopbar(
-              floating: true,
-              snap: true,
+              pinned: true,
               child: CodexSearchBar(),
             ),
           )

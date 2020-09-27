@@ -27,15 +27,6 @@ class _HomeFeedPageState extends State<HomeFeedPage>
   ];
 
   List<Tab> tabs;
-  TabController _tabController;
-
-  @override
-  void initState() {
-    super.initState();
-
-    // tabs = Tabs.values.map((t) => Tab(text: _getTabLocale(t))).toList();
-    _tabController = TabController(length: Tabs.values.length, vsync: this);
-  }
 
   @override
   void didChangeDependencies() {
@@ -60,36 +51,34 @@ class _HomeFeedPageState extends State<HomeFeedPage>
 
   @override
   Widget build(BuildContext context) {
-    return NestedScrollView(
-      headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
-        return <Widget>[
-          SliverOverlapAbsorber(
-            handle: NestedScrollView.sliverOverlapAbsorberHandleFor(context),
-            sliver: SliverTopbar(
-              floating: true,
-              snap: true,
-              child: TabBar(
-                controller: _tabController,
-                labelColor: Theme.of(context).primaryTextTheme.bodyText1.color,
-                unselectedLabelColor: Theme.of(context)
-                    .primaryTextTheme
-                    .bodyText1
-                    .color
-                    .withOpacity(.7),
-                indicatorColor: Theme.of(context).accentColor,
-                tabs: tabs,
+    return DefaultTabController(
+      length: Tabs.values.length,
+      child: NestedScrollView(
+        headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
+          return <Widget>[
+            SliverOverlapAbsorber(
+              handle: NestedScrollView.sliverOverlapAbsorberHandleFor(context),
+              sliver: SliverTopbar(
+                pinned: true,
+                child: TabBar(
+                  labelColor:
+                      Theme.of(context).primaryTextTheme.bodyText1.color,
+                  unselectedLabelColor: Theme.of(context)
+                      .primaryTextTheme
+                      .bodyText1
+                      .color
+                      .withOpacity(.7),
+                  indicatorColor: Theme.of(context).accentColor,
+                  tabs: tabs,
+                ),
               ),
-            ),
-          )
-        ];
-      },
-      body: TabBarView(controller: _tabController, children: _pages),
+            )
+          ];
+        },
+        body: const Padding(
+            padding: EdgeInsets.only(top: kTextTabBarHeight),
+            child: TabBarView(children: _pages)),
+      ),
     );
-  }
-
-  @override
-  void dispose() {
-    _tabController?.dispose();
-    super.dispose();
   }
 }
