@@ -34,7 +34,6 @@ class _SliverTopbarState extends State<SliverTopbar>
   void _updateSnapConfiguration() {
     if (widget.snap && widget.floating) {
       _snapConfiguration = FloatingHeaderSnapConfiguration(
-        vsync: this,
         curve: Curves.easeOut,
         duration: const Duration(milliseconds: 200),
       );
@@ -77,6 +76,7 @@ class _SliverTopbarState extends State<SliverTopbar>
           snapConfiguration: _snapConfiguration,
           topPadding: topPadding,
           collapsedHeight: collapsedHeight,
+          vsync: this,
           child: widget.child,
         ),
       ),
@@ -150,6 +150,7 @@ class _SliverTopbarDelegate extends SliverPersistentHeaderDelegate {
     this.topPadding,
     this.collapsedHeight,
     this.snapConfiguration,
+    this.vsync,
     this.child,
   });
 
@@ -157,7 +158,11 @@ class _SliverTopbarDelegate extends SliverPersistentHeaderDelegate {
   final bool pinned;
   final double topPadding;
   final double collapsedHeight;
+
   final Widget child;
+
+  @override
+  final TickerProvider vsync;
 
   @override
   final FloatingHeaderSnapConfiguration snapConfiguration;
