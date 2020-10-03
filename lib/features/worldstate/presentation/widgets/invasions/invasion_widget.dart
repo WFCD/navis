@@ -20,8 +20,10 @@ class InvasionWidget extends StatelessWidget {
         .subtitle1
         .copyWith(color: Colors.white, fontSize: 15, shadows: <Shadow>[shadow]);
 
-    final infoStyle =
-        Theme.of(context).textTheme.caption.copyWith(shadows: <Shadow>[shadow]);
+    final infoStyle = Theme.of(context)
+        .textTheme
+        .caption
+        .copyWith(color: Colors.white, shadows: <Shadow>[shadow]);
 
     return Container(
       child: Column(children: <Widget>[
