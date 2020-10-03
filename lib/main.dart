@@ -25,7 +25,7 @@ Future<void> main() async {
   });
 
   WidgetsFlutterBinding.ensureInitialized();
-  FlutterError.onError = Crashlytics.instance.recordFlutterError;
+  FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
 
   SystemChrome.setSystemUIOverlayStyle(
       const SystemUiOverlayStyle(statusBarColor: Colors.transparent));
@@ -52,5 +52,5 @@ Future<void> main() async {
         ),
       ),
     );
-  }, onError: Crashlytics.instance.recordError);
+  }, onError: FirebaseCrashlytics.instance.recordError);
 }
