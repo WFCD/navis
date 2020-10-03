@@ -5,7 +5,7 @@ import 'package:navis/constants/links.dart';
 import 'package:navis/core/utils/helper_methods.dart';
 import 'package:navis/core/widgets/category_title.dart';
 import 'package:navis/core/widgets/widgets.dart';
-import 'package:navis/generated/l10n.dart';
+import 'package:navis/core/utils/extensions.dart';
 import 'package:navis/injection_container.dart';
 import 'package:package_info/package_info.dart';
 
@@ -14,14 +14,12 @@ class AboutApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final localizations = NavisLocalizations.of(context);
-
     return Column(
       children: <Widget>[
-        CategoryTitle(title: localizations.aboutCategoryTitle),
+        CategoryTitle(title: context.locale.aboutCategoryTitle),
         ListTile(
-          title: Text(localizations.reportBugsTitle),
-          subtitle: Text(localizations.reportBugsDescription),
+          title: Text(context.locale.reportBugsTitle),
+          subtitle: Text(context.locale.reportBugsDescription),
           onTap: () => launchLink(context, issuePage),
         ),
         const About()
@@ -37,7 +35,6 @@ class About extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final localizations = NavisLocalizations.of(context);
     final info = sl<PackageInfo>();
 
     final theme = Theme.of(context);
@@ -62,7 +59,7 @@ class About extends StatelessWidget {
           text: TextSpan(children: <TextSpan>[
             TextSpan(
               style: aboutTextStyle,
-              text: '${localizations.homePageTitle} ',
+              text: '${context.locale.homePageTitle} ',
             ),
             _LinkTextSpan(
               style: linkStyle,
@@ -71,20 +68,20 @@ class About extends StatelessWidget {
             ),
             TextSpan(
               style: aboutTextStyle,
-              text: '\n\n${localizations.issueTrackerDescription} ',
+              text: '\n\n${context.locale.issueTrackerDescription} ',
             ),
             _LinkTextSpan(
               style: linkStyle,
               url: issuePage,
-              text: localizations.issueTrackerTitle,
+              text: context.locale.issueTrackerTitle,
             ),
             TextSpan(
               style: Theme.of(context).textTheme.caption,
-              text: '\n\n${localizations.legalese}',
+              text: '\n\n${context.locale.legalese}',
             ),
             TextSpan(
               style: Theme.of(context).textTheme.caption,
-              text: '${localizations.warframeLinkTitle} ',
+              text: '${context.locale.warframeLinkTitle} ',
             ),
             _LinkTextSpan(
               style: linkStyle,

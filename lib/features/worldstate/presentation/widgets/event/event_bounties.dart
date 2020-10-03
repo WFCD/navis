@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:navis/core/utils/extensions.dart';
 import 'package:navis/core/widgets/widgets.dart';
-import 'package:navis/generated/l10n.dart';
 import 'package:warframestat_api_models/entities.dart';
 
 class EventBounties extends StatelessWidget {
@@ -9,13 +9,11 @@ class EventBounties extends StatelessWidget {
   final List<Job> jobs;
 
   List<Widget> _buildBounties(BuildContext context) {
-    final localization = NavisLocalizations.of(context);
-
     return jobs.map<Widget>((j) {
       return ListTile(
         title: Text(j.type),
         subtitle: Text(
-          localization.levelInfo(j.enemyLevels.first, j.enemyLevels.last),
+          context.locale.levelInfo(j.enemyLevels.first, j.enemyLevels.last),
         ),
         onTap: () => _showDialog(context, j.type, j.rewardPool),
       );
@@ -61,7 +59,7 @@ class EventBounties extends StatelessWidget {
     return CustomCard(
       child: Column(children: <Widget>[
         CategoryTitle(
-          title: NavisLocalizations.of(context).bountyTitle,
+          title: context.locale.bountyTitle,
           style: category,
           addPadding: true,
         ),

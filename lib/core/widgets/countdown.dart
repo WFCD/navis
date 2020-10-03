@@ -4,7 +4,6 @@ import 'package:supercharged/supercharged.dart';
 import 'package:wfcd_client/wfcd_client.dart';
 
 import '../../features/worldstate/presentation/bloc/solsystem_bloc.dart';
-import '../../generated/l10n.dart';
 import '../themes/colors.dart';
 import '../utils/extensions.dart';
 import 'static_box.dart';
@@ -138,11 +137,10 @@ class _CountdownTimerState extends State<CountdownTimer>
 
   @override
   Widget build(BuildContext context) {
-    final localizations = NavisLocalizations.of(context);
     final endTime = localExpiry.format(context);
 
     return Tooltip(
-      message: localizations.countdownTooltip(endTime),
+      message: context.locale.countdownTooltip(endTime),
       child: StaticBox(
         color: widget.color ?? _warningLevel,
         padding: widget.padding,

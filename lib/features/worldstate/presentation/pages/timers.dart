@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/navis_localizations.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:navis/generated/l10n.dart';
+import 'package:navis/core/utils/extensions.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:warframestat_api_models/entities.dart';
 
@@ -31,7 +32,7 @@ class Timers extends StatelessWidget {
 }
 
 List<CycleEntry> _buildCycles(
-    NavisLocalizations localizations, Worldstate worldstate) {
+    NavisLocalizations locale, Worldstate worldstate) {
   const size = 28.0;
 
   const solCycle = <Icon>[
@@ -46,17 +47,17 @@ List<CycleEntry> _buildCycles(
 
   return <CycleEntry>[
     CycleEntry(
-      name: localizations.earthCycleTitle,
+      name: locale.earthCycleTitle,
       states: solCycle,
       cycle: worldstate.earthCycle,
     ),
     CycleEntry(
-      name: localizations.cetusCycleTitle,
+      name: locale.cetusCycleTitle,
       states: solCycle,
       cycle: worldstate.cetusCycle,
     ),
     CycleEntry(
-      name: localizations.vallisCycleTitle,
+      name: locale.vallisCycleTitle,
       states: tempCycle,
       cycle: worldstate.vallisCycle,
     )
@@ -64,15 +65,15 @@ List<CycleEntry> _buildCycles(
 }
 
 List<Progress> _buildProgress(
-    NavisLocalizations localizations, Worldstate worldstate) {
+    NavisLocalizations locale, Worldstate worldstate) {
   return <Progress>[
     Progress(
-      name: localizations.formorianTitle,
+      name: locale.formorianTitle,
       color: factionColor('Grineer'),
       progress: double.parse(worldstate.constructionProgress.fomorianProgress),
     ),
     Progress(
-      name: localizations.razorbackTitle,
+      name: locale.razorbackTitle,
       color: factionColor('Corpus'),
       progress: double.parse(worldstate.constructionProgress.razorbackProgress),
     )
@@ -88,14 +89,12 @@ class MobileTimers extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final localizations = NavisLocalizations.of(context);
-
     return ListView(
       cacheExtent: 1000,
       children: <Widget>[
         const DailyReward(),
         ConstructionProgressCard(
-          constructionProgress: _buildProgress(localizations, _worldstate),
+          constructionProgress: _buildProgress(context.locale, _worldstate),
         ),
         if (state.eventsActive) EventCard(events: _worldstate.events),
         if (state.activeAcolytes)
@@ -105,7 +104,7 @@ class MobileTimers extends StatelessWidget {
         if (state.activeAlerts) AlertsCard(alerts: _worldstate.alerts),
         if (state.outpostDetected)
           SentientOutpostCard(outpost: _worldstate.sentientOutposts),
-        CycleCard(cycles: _buildCycles(localizations, _worldstate)),
+        CycleCard(cycles: _buildCycles(context.locale, _worldstate)),
         if (state.activeSiphons) KuvaCard(kuva: _worldstate.kuva),
         TraderCard(trader: _worldstate.voidTrader),
         if (state.activeSales) DarvoDealCard(deals: _worldstate.dailyDeals),
@@ -156,12 +155,10 @@ class TabletTimers extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final navisLocalizations = NavisLocalizations.of(context);
-
     return StaggeredGridView.count(
       crossAxisCount: 75,
-      staggeredTiles: _tiles(context, navisLocalizations).values.toList(),
-      children: _tiles(context, navisLocalizations).keys.toList(),
+      staggeredTiles: _tiles(context, context.locale).values.toList(),
+      children: _tiles(context, context.locale).keys.toList(),
     );
   }
 }

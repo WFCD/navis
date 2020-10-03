@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:navis/core/widgets/widgets.dart';
 import 'package:navis/features/worldstate/presentation/pages/acolyte_profile.dart';
-import 'package:navis/generated/l10n.dart';
+import 'package:navis/core/utils/extensions.dart';
 import 'package:warframestat_api_models/entities.dart';
 
 class AcolyteCard extends StatelessWidget {
@@ -91,11 +91,9 @@ class _AcolyteWidgetState extends State<AcolyteWidget>
 
   @override
   Widget build(BuildContext context) {
-    final localizations = NavisLocalizations.of(context);
-
     return ListTile(
-      title: Text(localizations.activeAcolyte(enemy.agentType, enemy.rank)),
-      subtitle: Text(localizations.tapForMoreDetails),
+      title: Text(context.locale.activeAcolyte(enemy.agentType, enemy.rank)),
+      subtitle: Text(context.locale.tapForMoreDetails),
       trailing: StaticBox(
         color: _isDiscovered
             ? const Color(0xFFB00020)
@@ -103,7 +101,7 @@ class _AcolyteWidgetState extends State<AcolyteWidget>
         icon: _searchStatus(),
         child: AnimatedCrossFade(
           firstChild: Text(enemy.lastDiscoveredAt),
-          secondChild: Text(localizations.locating),
+          secondChild: Text(context.locale.locating),
           crossFadeState: _isDiscovered
               ? CrossFadeState.showFirst
               : CrossFadeState.showSecond,

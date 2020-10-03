@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:navis/core/utils/extensions.dart';
 import 'package:navis/core/widgets/countdown_banner.dart';
 import 'package:navis/core/widgets/icons.dart';
 import 'package:navis/core/widgets/widgets.dart';
-import 'package:navis/generated/l10n.dart';
 import 'package:warframestat_api_models/entities.dart';
 
 class KuvaCard extends StatelessWidget {
@@ -18,7 +18,7 @@ class KuvaCard extends StatelessWidget {
       child: Column(
         children: <Widget>[
           CountdownBanner(
-            message: NavisLocalizations.of(context).kuvaBanner,
+            message: context.locale.kuvaBanner,
             time: kuva.first.expiry,
             margin: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 6.0),
           ),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:navis/generated/l10n.dart';
+import 'package:navis/core/utils/extensions.dart';
 
 class NavisErrorWidget extends StatelessWidget {
   const NavisErrorWidget({
@@ -39,13 +39,13 @@ class NavisErrorWidget extends StatelessWidget {
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  NavisLocalizations.of(context).errorTitle,
+                  context.locale.errorTitle,
                   style: Theme.of(context).textTheme.headline6,
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 10),
                 Text(
-                  NavisLocalizations.of(context).errorDescription,
+                  context.locale.errorDescription,
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 10),

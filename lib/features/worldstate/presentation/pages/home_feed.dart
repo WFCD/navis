@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:navis/core/widgets/sliver_top_bar.dart';
-import 'package:navis/generated/l10n.dart';
+import 'package:navis/core/utils/extensions.dart';
 
 import 'fissures.dart';
 import 'invasions.dart';
@@ -35,17 +35,15 @@ class _HomeFeedPageState extends State<HomeFeedPage>
   }
 
   String _getTabLocale(Tabs name) {
-    final localizations = NavisLocalizations.of(context);
-
     switch (name) {
       case Tabs.Fissures:
-        return localizations.fissuresTitle;
+        return context.locale.fissuresTitle;
       case Tabs.Invasions:
-        return localizations.invasionsTitle;
+        return context.locale.invasionsTitle;
       case Tabs.Syndicates:
-        return localizations.syndicatesTitle;
+        return context.locale.syndicatesTitle;
       default:
-        return localizations.timersTitle;
+        return context.locale.timersTitle;
     }
   }
 

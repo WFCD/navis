@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:navis/core/widgets/icons.dart';
 import 'package:navis/core/widgets/widgets.dart';
-import 'package:navis/generated/l10n.dart';
+import 'package:navis/core/utils/extensions.dart';
 import 'package:warframestat_api_models/entities.dart';
 
 class NightwaveChallenge extends StatelessWidget {
@@ -53,7 +53,7 @@ class NightwaveChallenge extends StatelessWidget {
                     if (challenge?.isElite)
                       StaticBox.text(
                         color: Colors.red,
-                        text: NavisLocalizations.of(context).eliteBadgeTitle,
+                        text: context.locale.eliteBadgeTitle,
                         fontSize: 14,
                       ),
                     _standingBadge(),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:navis/core/utils/extensions.dart';
 import 'package:navis/core/widgets/widgets.dart';
 import 'package:navis/features/worldstate/presentation/pages/event.dart';
-import 'package:navis/generated/l10n.dart';
 import 'package:warframestat_api_models/entities.dart';
 
 class EventCard extends StatelessWidget {
@@ -22,7 +22,7 @@ class EventCard extends StatelessWidget {
                 Navigator.of(context)
                     .pushNamed(EventInformation.route, arguments: event);
               },
-              child: Text(NavisLocalizations.of(context).seeDetails),
+              child: Text(context.locale.seeDetails),
             ),
           )
       ]),

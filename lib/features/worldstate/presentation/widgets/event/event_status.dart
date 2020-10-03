@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:navis/core/utils/extensions.dart';
 import 'package:navis/core/widgets/widgets.dart';
-import 'package:navis/generated/l10n.dart';
 import 'package:warframestat_api_models/entities.dart';
 
 class EventStatus extends StatelessWidget {
@@ -50,7 +50,6 @@ class EventStatus extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final localization = NavisLocalizations.of(context);
 
     final category =
         theme.textTheme.subtitle1.copyWith(color: theme.accentColor);
@@ -64,29 +63,30 @@ class EventStatus extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             if (tooltip != null) ...{
-              _addCategory(localization.eventDescription, category),
+              _addCategory(context.locale.eventDescription, category),
               const SizedBox(height: 2.0),
               Text(tooltip, style: tooltipStyle),
               const SizedBox(height: 20.0),
             },
-            _addCategory(localization.eventStatus, category),
+            _addCategory(context.locale.eventStatus, category),
             RowItem(
-              text: Text(localization.eventStatusNode, style: tooltipStyle),
+              text: Text(context.locale.eventStatusNode, style: tooltipStyle),
               child: StaticBox.text(text: node),
             ),
             const SizedBox(height: 8.0),
             RowItem(
-              text: Text(localization.eventStatusProgress, style: tooltipStyle),
+              text:
+                  Text(context.locale.eventStatusProgress, style: tooltipStyle),
               child: StaticBox.text(text: '${health.toStringAsFixed(2)} %'),
             ),
             const SizedBox(height: 8.0),
             RowItem(
-              text: Text(localization.eventStatusEta, style: tooltipStyle),
+              text: Text(context.locale.eventStatusEta, style: tooltipStyle),
               child: CountdownTimer(expiry: expiry),
             ),
             if (rewards.isNotEmpty) ...{
               const SizedBox(height: 20.0),
-              _addCategory(localization.eventRewards, category),
+              _addCategory(context.locale.eventRewards, category),
               const SizedBox(height: 2.0),
               Wrap(
                 alignment: WrapAlignment.start,

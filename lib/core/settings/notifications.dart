@@ -5,7 +5,7 @@ import 'package:navis/core/local/user_settings.dart';
 import 'package:navis/core/services/notifications.dart';
 import 'package:navis/core/utils/notification_filter.dart';
 import 'package:navis/core/widgets/widgets.dart';
-import 'package:navis/generated/l10n.dart';
+import 'package:navis/core/utils/extensions.dart';
 import 'package:navis/injection_container.dart';
 import 'package:provider/provider.dart';
 
@@ -34,7 +34,7 @@ class Notifications extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final filters = LocalizedFilter(NavisLocalizations.of(context));
+    final filters = LocalizedFilter(context.locale);
 
     return Container(
       child: Column(children: <Widget>[

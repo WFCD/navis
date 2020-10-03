@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:navis/core/utils/extensions.dart';
 import 'package:navis/core/widgets/custom_card.dart';
 import 'package:navis/core/widgets/widgets.dart';
 import 'package:navis/features/worldstate/presentation/pages/bounties.dart';
 import 'package:navis/features/worldstate/presentation/pages/nightwaves.dart';
 import 'package:navis/features/worldstate/utils/faction_utils.dart';
-import 'package:navis/generated/l10n.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:warframestat_api_models/entities.dart';
 
@@ -70,7 +70,7 @@ class SyndicateCard extends StatelessWidget {
               title: Text(name ?? syndicate.name.replaceFirst('Syndicate', ''),
                   style: titleStyle),
               subtitle: Text(
-                caption ?? NavisLocalizations.of(context).tapForMoreDetails,
+                caption ?? context.locale.tapForMoreDetails,
                 style: captionStyle,
               ),
             ),

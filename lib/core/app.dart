@@ -2,10 +2,11 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_gen/gen_l10n/navis_localizations.dart';
 import 'package:navis/core/local/user_settings.dart';
-import 'package:wfcd_client/wfcd_client.dart';
+import 'package:navis/features/codex/presentation/pages/codex_entry.dart';
 import 'package:provider/provider.dart';
+import 'package:wfcd_client/wfcd_client.dart';
 
 import '../features/worldstate/presentation/bloc/solsystem_bloc.dart';
 import '../features/worldstate/presentation/pages/acolyte_profile.dart';
@@ -13,7 +14,6 @@ import '../features/worldstate/presentation/pages/bounties.dart';
 import '../features/worldstate/presentation/pages/event.dart';
 import '../features/worldstate/presentation/pages/nightwaves.dart';
 import '../features/worldstate/presentation/pages/trader_inventory.dart';
-import '../generated/l10n.dart';
 import '../injection_container.dart';
 import 'home.dart';
 import 'services/notifications.dart';
@@ -81,16 +81,11 @@ class _NavisAppState extends State<NavisApp> with WidgetsBindingObserver {
         NightwavesPage.route: (_) => const NightwavesPage(),
         BountiesPage.route: (_) => const BountiesPage(),
         // SynthTargetScreen.route: (_) => const SynthTargetScreen(),
-        // CodexEntry.route: (_) => const CodexEntry(),
+        CodexEntry.route: (_) => const CodexEntry(),
         BaroInventory.route: (_) => const BaroInventory()
       },
-      supportedLocales: NavisLocalizations.delegate.supportedLocales,
-      localizationsDelegates: const [
-        AppLocalizationDelegate(),
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        // GlobalCupertinoLocalizations.delegate
-      ],
+      supportedLocales: NavisLocalizations.supportedLocales,
+      localizationsDelegates: NavisLocalizations.localizationsDelegates,
       localeResolutionCallback:
           (Locale locale, Iterable<Locale> supportedLocales) {
         for (final supportedLocale in supportedLocales) {

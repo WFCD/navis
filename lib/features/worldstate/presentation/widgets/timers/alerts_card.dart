@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:navis/core/widgets/icons.dart';
 import 'package:navis/core/widgets/row_item.dart';
 import 'package:navis/core/widgets/widgets.dart';
-import 'package:navis/generated/l10n.dart';
+import 'package:navis/core/utils/extensions.dart';
 import 'package:warframestat_api_models/entities.dart';
 
 class AlertsCard extends StatelessWidget {
@@ -36,7 +36,6 @@ class AlertWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
-    final locale = NavisLocalizations.of(context);
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0),
@@ -47,8 +46,7 @@ class AlertWidget extends StatelessWidget {
             icons: <Widget>[
               // Not sure we need to add nightmare icon since alerts have be axed
               // nightmare alerts haven't been a thing
-              if (_mission.archwingRequired)
-                NavisSystemIconWidgets.archwingIcon
+              if (_mission.archwingRequired) NavisSystemIconWidgets.archwingIcon
             ],
             text: Text(_mission.node),
             child: _isRewarding
@@ -65,7 +63,7 @@ class AlertWidget extends StatelessWidget {
           RowItem(
             text: Text(
               '${_mission.type} (${_mission.faction}) '
-              '| ${locale.levelInfo(_mission.minEnemyLevel, _mission.maxEnemyLevel)}',
+              '| ${context.locale.levelInfo(_mission.minEnemyLevel, _mission.maxEnemyLevel)}',
               style: textTheme.caption,
             ),
             child: CountdownTimer(expiry: alert.expiry),

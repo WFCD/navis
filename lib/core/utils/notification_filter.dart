@@ -1,6 +1,6 @@
 import 'package:intl/intl.dart';
 import 'package:navis/constants/storage_keys.dart';
-import 'package:navis/generated/l10n.dart';
+import 'package:flutter_gen/gen_l10n/navis_localizations.dart';
 
 class LocalizedFilter {
   const LocalizedFilter(this.localizations);

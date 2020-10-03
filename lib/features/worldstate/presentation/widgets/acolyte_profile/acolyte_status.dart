@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:navis/core/utils/helper_methods.dart';
 import 'package:navis/core/widgets/widgets.dart';
-import 'package:navis/generated/l10n.dart';
+import 'package:navis/core/utils/extensions.dart';
 
 class AcolyteStatus extends StatelessWidget {
   const AcolyteStatus({
@@ -30,7 +30,6 @@ class AcolyteStatus extends StatelessWidget {
   Widget build(BuildContext context) {
     const padding = EdgeInsets.symmetric(vertical: 4.0);
 
-    final localizations = NavisLocalizations.of(context);
     final statTitle = Theme.of(context).textTheme.subtitle1;
     final statValue = Theme.of(context).textTheme.subtitle2;
 
@@ -40,12 +39,12 @@ class AcolyteStatus extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           RowItem(
-            text: Text(localizations.acolyteRank, style: statTitle),
+            text: Text(context.locale.acolyteRank, style: statTitle),
             padding: padding,
             child: StaticBox.text(text: '$rank', style: statValue),
           ),
           RowItem(
-            text: Text(localizations.acolyteHealth, style: statTitle),
+            text: Text(context.locale.acolyteHealth, style: statTitle),
             padding: padding,
             child: StaticBox.text(
               text: '${health.toStringAsFixed(2)} %',
@@ -56,8 +55,8 @@ class AcolyteStatus extends StatelessWidget {
           RowItem(
             text: Text(
               isDiscovered
-                  ? localizations.acolyteCurrentLocation
-                  : localizations.acolytePassLocation,
+                  ? context.locale.acolyteCurrentLocation
+                  : context.locale.acolytePassLocation,
               style: statTitle,
             ),
             padding: padding,
@@ -69,13 +68,13 @@ class AcolyteStatus extends StatelessWidget {
           RowItem(
             text: Text(
               isDiscovered
-                  ? localizations.acolyteFound
-                  : localizations.acolyteLastSeen,
+                  ? context.locale.acolyteFound
+                  : context.locale.acolyteLastSeen,
               style: statTitle,
             ),
             padding: padding,
             child: StaticBox.text(
-              text: localizations.acolyteElapsedTime(lastSeenTime),
+              text: context.locale.acolyteElapsedTime(lastSeenTime),
               style: statValue,
             ),
           ),
