@@ -13,8 +13,6 @@ before_install:
   - export PATH="$PATH:$FLUTTER_SDK_PATH"
   - flutter upgrade
   - flutter pub get
-  - mkdir lib/generated/intl && flutter pub run intl_translation:generate_from_arb --output-dir=lib/generated/intl
-    --no-use-deferred-loading lib/generated/l10n.dart lib/l10n/intl_*.arb
 addons:
   homebrew:
     update: true
