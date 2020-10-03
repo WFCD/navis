@@ -12,6 +12,7 @@ before_install:
   - if [  ! -d "flutter" ] ; then git clone https://github.com/flutter/flutter.git -b
     $FLUTTER_VERSION $HOME/flutter; fi;
   - export PATH="$PATH:$FLUTTER_SDK_PATH"
+  - flutter upgrade
   - flutter pub get
   - mkdir lib/generated/intl && flutter pub run intl_translation:generate_from_arb --output-dir=lib/generated/intl
     --no-use-deferred-loading lib/generated/l10n.dart lib/l10n/intl_*.arb
@@ -24,7 +25,8 @@ addons:
       - ios-deploy
 cache:
   directories:
-    - "$HOME/.pub-cache"
+    - $HOME/.pub-cache
+    - $HOME/flutter
 matrix:
   fast_finish: true
   include:
