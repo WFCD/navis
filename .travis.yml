@@ -84,7 +84,7 @@ matrix:
       script:
         - flutter build apk --target-platform android-arm
     - os: osx
-      osx_image: xcode11.5
+      osx_image: xcode12
       language: swift
       env: JOB=IPA
       if: NOT tag IS present
@@ -127,7 +127,7 @@ matrix:
     - env: JOB=DEPLOY-iOS
       if: tag IS present
       os: osx
-      osx_image: xcode11.5
+      osx_image: xcode12
       language: swift
       install:
         - echo -e "machine github.com\n  login $GIT_TOKEN" >> ~/.netrc
