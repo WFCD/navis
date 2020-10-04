@@ -11,7 +11,6 @@ before_install:
   - if [ ! -d "$HOME/flutter" ] ; then git clone https://github.com/flutter/flutter.git -b
     stable $HOME/flutter; fi;
   - export PATH="$PATH:$FLUTTER_SDK_PATH"
-  - flutter upgrade
   - flutter pub get
 addons:
   homebrew:
@@ -22,8 +21,7 @@ addons:
       - ios-deploy
 cache:
   directories:
-    - $HOME/.pub-cache
-    - $HOME/flutter
+    - "$HOME/.pub-cache"
 matrix:
   fast_finish: true
   include:
