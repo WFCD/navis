@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/cupertino.dart';
 import 'package:hive/hive.dart';
 import 'package:logging/logging.dart';
 import 'package:path_provider/path_provider.dart';
@@ -54,15 +55,19 @@ class WarframestatCache {
   }
 
   Worldstate getCachedState() {
-    final cached = readDisk<Map<String, dynamic>>(_state);
+    final cached = readDisk<Map<dynamic, dynamic>>(_state);
 
-    return WorldstateModel.fromJson(cached);
+    if (cached != null) {
+      return WorldstateModel.fromJson(cached.cast<String, dynamic>());
+    }
+
+    return null;
   }
 
   List<SynthTarget> getCachedTargets() {
     final cached = readDisk<Iterable<Map<String, dynamic>>>(_targets);
 
-    return cached.map((t) => SynthTargetModel.fromJson(t)).toList();
+    return cached?.map((t) => SynthTargetModel.fromJson(t))?.toList();
   }
 
   T readDisk<T>(String key) {

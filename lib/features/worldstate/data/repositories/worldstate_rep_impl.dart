@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:dartz/dartz.dart';
 import 'package:flutter/foundation.dart';
-import 'package:http/http.dart' as http;
 import 'package:navis/core/local/user_settings.dart';
 import 'package:navis/core/local/warframestate_local.dart';
 import 'package:warframestat_api_models/entities.dart';
@@ -19,26 +18,60 @@ class WorldstateRepositoryImpl implements WorldstateRepository {
   final WarframestatCache cache;
   final Usersettings usersettings;
 
-  static final _warframestat = WarframestatClient(http.Client());
+  static final _warframestat = WarframestatClient();
 
   @override
   Future<Either<Failure, List<SynthTarget>>> getSynthTargets() async {
-    return run<List<SynthTarget>, void>(
-      _getTargets,
-      null,
-      cache.cacheSynthTargets,
-      cache.getCachedTargets,
-    );
+    final cached = cache.getCachedTargets();
+
+    Either<Failure, List<SynthTarget>> fallback() {
+      if (cached != null) {
+        return Right(cached);
+      } else {
+        return Left(CacheFailure());
+      }
+    }
+
+    if (await networkInfo.isConnected) {
+      try {
+        final targets = await compute(_getTargets, null);
+
+        cache.cacheSynthTargets(targets);
+
+        return Right(targets);
+      } on SocketException {
+        return fallback();
+      }
+    } else {
+      return fallback();
+    }
   }
 
   @override
   Future<Either<Failure, Worldstate>> getWorldstate() async {
-    return run<Worldstate, GamePlatforms>(
-      _getWorldstate,
-      usersettings.platform,
-      cache.cacheWorldstate,
-      cache.getCachedState,
-    );
+    const newStateRefresh = Duration(minutes: 1);
+
+    final now = DateTime.now();
+    final cached = cache.getCachedState();
+
+    if ((cached?.timestamp?.difference(now) ?? newStateRefresh) >=
+        newStateRefresh) {
+      if (await networkInfo.isConnected) {
+        try {
+          final state = await compute(_getWorldstate, usersettings.platform);
+
+          cache.cacheWorldstate(state);
+
+          return Right(state);
+        } on SocketException {
+          return Right(cached);
+        }
+      } else {
+        return Right(cached);
+      }
+    } else {
+      return Right(cached);
+    }
   }
 
   @override
@@ -87,30 +120,6 @@ class WorldstateRepositoryImpl implements WorldstateRepository {
       (r) => r.name.toLowerCase().contains(name.toLowerCase()),
       orElse: () => null,
     );
-  }
-
-  Future<Either<Failure, T>> run<T, P>(
-    Future<T> Function(P) callback,
-    P param,
-    void Function(T) caching,
-    T Function() restore,
-  ) async {
-    if (await networkInfo.isConnected) {
-      try {
-        final result = await compute<P, T>(callback, param);
-        caching(result);
-
-        return Right(result);
-      } on SocketException {
-        return Left(OfflineFailure());
-      }
-    } else {
-      try {
-        return Right(restore());
-      } catch (e) {
-        return Left(CacheFailure());
-      }
-    }
   }
 }
 

@@ -1,6 +1,5 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter/foundation.dart';
-import 'package:http/http.dart' as http;
 import 'package:navis/core/error/failures.dart';
 import 'package:navis/core/network/network_info.dart';
 import 'package:navis/core/usecases/usecases.dart';
@@ -26,7 +25,7 @@ class SynthRepositoryImpl extends SynthRepository {
   }
 
   static Future<List<SynthTarget>> _getSynthTargets(NoParama noparama) {
-    final _warframestat = WarframestatClient(http.Client());
+    final _warframestat = WarframestatClient();
 
     return _warframestat.getSynthTargets();
   }

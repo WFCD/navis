@@ -1,7 +1,6 @@
 import 'package:data_connection_checker/data_connection_checker.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:get_it/get_it.dart';
-import 'package:http/http.dart' as http;
 import 'package:package_info/package_info.dart';
 import 'package:wfcd_client/wfcd_client.dart';
 
@@ -44,7 +43,7 @@ Future<void> init() async {
       NotificationService(FirebaseMessaging()));
 
   // Data sources
-  sl.registerSingleton<WarframestatClient>(WarframestatClient(http.Client()));
+  sl.registerSingleton<WarframestatClient>(WarframestatClient());
 
   sl.registerSingletonAsync(() => Usersettings.initUsersettings());
 

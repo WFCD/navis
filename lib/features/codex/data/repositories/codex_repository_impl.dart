@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:dartz/dartz.dart';
 import 'package:flutter/foundation.dart';
-import 'package:http/http.dart' as http;
 import 'package:navis/core/error/failures.dart';
 import 'package:navis/core/network/network_info.dart';
 import 'package:navis/features/codex/domian/repositories/codex_repository.dart';
@@ -14,7 +13,7 @@ class CodexRepositoryImpl extends CodexRepository {
 
   final NetworkInfo networkInfo;
 
-  static final _warframstat = WarframestatClient(http.Client());
+  static final _warframstat = WarframestatClient();
 
   @override
   Future<Either<Failure, List<BaseItem>>> searchItems(String text) async {
