@@ -33,8 +33,6 @@ matrix:
       if: NOT tag IS present
       android:
         components:
-          - build-tools-28.0.3
-          - android-28
           - build-tools-29.0.3
           - android-29
       script:
@@ -75,8 +73,6 @@ matrix:
       if: NOT tag IS present
       android:
         components:
-          - build-tools-28.0.3
-          - android-28
           - build-tools-29.0.3
           - android-29
       script:
@@ -99,8 +95,6 @@ matrix:
       dist: xenial
       android:
         components:
-          - build-tools-28.0.3
-          - android-28
           - build-tools-29.0.3
           - android-29
       install:
