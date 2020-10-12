@@ -1,6 +1,5 @@
 import 'package:async/async.dart';
 import 'package:flutter/foundation.dart';
-import 'package:http/http.dart' as http;
 import 'package:navis/services/notifications/notification_service.dart';
 import 'package:navis/services/storage/cache_storage.service.dart';
 import 'package:package_info/package_info.dart';
@@ -20,7 +19,7 @@ class Repository {
 
   final _itemFuture = AsyncMemoizer<BaseItem>();
 
-  static final warframestat = WarframestatClient(http.Client());
+  static final warframestat = WarframestatClient();
 
   // The amount of search items can be very little or too much to do on the main thread
   // so to be safe keep off the main thread
@@ -50,7 +49,7 @@ class Repository {
           name: deal.item,
           description: '',
           imageName: '',
-          tradable: false,
+          // tradable: false,
           type: 'null',
         ),
       );
@@ -64,14 +63,14 @@ class Repository {
   }
 
   static Future<List<SlimDrop>> _searchDrops(String term) async {
-    final warframestat = WarframestatClient(http.Client());
+    final warframestat = WarframestatClient();
     final results = await warframestat.searchDrops(term);
 
     return results.where((element) => element.item.contains(term)).toList();
   }
 
   static Future<List<BaseItem>> _searchItems(String searchTerm) async {
-    final warframestat = WarframestatClient(http.Client());
+    final warframestat = WarframestatClient();
     final results = await warframestat.searchItems(searchTerm);
 
     return results;
