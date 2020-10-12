@@ -28,14 +28,7 @@ class NewsWidget extends StatelessWidget {
       const Center(child: CircularProgressIndicator());
 
   Widget _errorWidget(BuildContext context, String url, Object error) {
-    return Center(
-      child: Column(
-        children: const <Widget>[
-          Icon(Icons.error),
-          Text('Unable to load image')
-        ],
-      ),
-    );
+    return _imageBuilder(context, const AssetImage('assets/Derelict.webp'));
   }
 
   @override
