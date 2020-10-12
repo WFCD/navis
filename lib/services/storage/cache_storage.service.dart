@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:warframestat_api_models/warframestat_api_models.dart';
+import 'package:wfcd_client/wfcd_client.dart';
 
 import 'storage_base.service.dart';
 
@@ -56,7 +57,7 @@ class CacheStorageService extends StorageService {
   }
 
   Future<void> saveDarvoDealItem(String id, BaseItem item) async {
-    final toSave = {'id': id, 'item': (item as BaseItemModel).toJson()};
+    final toSave = {'id': id, 'item': json.encode(fromBaseItem(item))};
 
     _box.put('deal', json.encode(toSave));
   }
