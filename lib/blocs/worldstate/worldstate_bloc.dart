@@ -67,7 +67,7 @@ class WorldstateBloc extends HydratedBloc<WorldstateEvent, WorldStates> {
         return WorldstateLoaded(
             cleanState(WorldstateModel.fromJson(worldstate)));
       default:
-        Crashlytics.instance.recordError(exception, stack);
+        FirebaseCrashlytics.instance.recordError(exception, stack);
         return WorldstateError(exception);
     }
   }

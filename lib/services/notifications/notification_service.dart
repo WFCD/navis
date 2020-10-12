@@ -48,7 +48,7 @@ class NotificationService {
         return false;
       }
     } catch (error, stackTrace) {
-      Crashlytics.instance.recordError(error, stackTrace);
+      FirebaseCrashlytics.instance.recordError(error, stackTrace);
       return false;
     }
   }

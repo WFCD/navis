@@ -52,7 +52,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
             yield SearchStateSuccess<BaseItem>(results);
           }
         } catch (exception, stack) {
-          Crashlytics.instance.recordError(exception, stack);
+          FirebaseCrashlytics.instance.recordError(exception, stack);
           yield SearchStateError(exception.toString());
         }
       }
