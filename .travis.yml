@@ -79,6 +79,7 @@ matrix:
           - android-28
           - build-tools-29.0.3
           - android-29
+          - android-30
       script:
         - flutter build apk --target-platform android-arm
     - os: osx
