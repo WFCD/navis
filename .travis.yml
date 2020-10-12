@@ -33,10 +33,8 @@ matrix:
       if: NOT tag IS present
       android:
         components:
-          - build-tools-28.0.3
-          - android-28
-          - build-tools-29.0.3
-          - android-29
+          - build-tools-30.0.0
+          - android-30
       script:
         - flutter pub get
         - flutter test
@@ -76,9 +74,9 @@ matrix:
       android:
         components:
           - build-tools-28.0.3
-          - android-28
-          - android-30
-          - build-tools-30.0.0
+          # - android-28
+      before_script:
+        - yes | sdkmanager "platforms;android-30"
       script:
         - flutter build apk --target-platform android-arm
     - os: osx
