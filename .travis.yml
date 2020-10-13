@@ -33,12 +33,6 @@ matrix:
       language: android
       env: JOB=TEST
       if: NOT tag IS present
-      android:
-        components:
-          - build-tools-28.0.3
-          - android-28
-          - build-tools-29.0.3
-          - android-29
       script:
         - flutter pub get
         - flutter test
@@ -79,8 +73,8 @@ matrix:
         components:
           - build-tools-28.0.3
           - android-28
-          - build-tools-29.0.3
-          - android-29
+      before_script:
+        - yes | sdkmanager "platforms;android-30"
       script:
         - flutter build apk --target-platform android-arm
     - os: osx
@@ -103,10 +97,9 @@ matrix:
         components:
           - build-tools-28.0.3
           - android-28
-          - build-tools-29.0.3
-          - android-29
       install:
         - bundle install --gemfile=android/Gemfile
+        - yes | sdkmanager "platforms;android-30"
       script:
         - flutter clean
         - flutter build appbundle
