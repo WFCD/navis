@@ -53,9 +53,9 @@ class WorldstateRepositoryImpl implements WorldstateRepository {
 
     final now = DateTime.now();
     final cached = cache.getCachedState();
+    final age = cached?.timestamp?.difference(now)?.abs();
 
-    if ((cached?.timestamp?.difference(now) ?? newStateRefresh) >=
-        newStateRefresh) {
+    if ((age ?? newStateRefresh) >= newStateRefresh) {
       if (await networkInfo.isConnected) {
         try {
           final state = await compute(_getWorldstate, usersettings.platform);
