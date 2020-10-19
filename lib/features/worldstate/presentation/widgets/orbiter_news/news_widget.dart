@@ -3,9 +3,10 @@ import 'dart:ui';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:navis/core/utils/helper_methods.dart';
-import 'package:navis/resources/resources.dart';
 import 'package:warframestat_api_models/entities.dart';
+
+import '../../../../../core/utils/helper_methods.dart';
+import '../../../../../resources/resources.dart';
 
 class OrbiterNewsWidget extends StatelessWidget {
   const OrbiterNewsWidget({Key key, @required this.news, this.height = 200})
@@ -28,7 +29,7 @@ class OrbiterNewsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final currentLocale = Intl.getCurrentLocale();
+    final currentLocale = Intl.getCurrentLocale().split('_').first;
     final size = MediaQuery.of(context).size;
 
     return InkWell(
