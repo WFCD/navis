@@ -3,13 +3,13 @@ import 'dart:io';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/foundation.dart';
 import 'package:navis/core/local/user_settings.dart';
-import 'package:navis/core/local/warframestate_local.dart';
 import 'package:warframestat_api_models/entities.dart';
 import 'package:wfcd_client/wfcd_client.dart';
 
 import '../../../../core/error/failures.dart';
 import '../../../../core/network/network_info.dart';
 import '../../domain/repositories/worldstate_repository.dart';
+import '../datasources/warframestate_local.dart';
 
 class WorldstateRepositoryImpl implements WorldstateRepository {
   WorldstateRepositoryImpl(this.networkInfo, this.cache, this.usersettings);

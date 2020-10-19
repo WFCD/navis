@@ -6,7 +6,6 @@ import 'package:wfcd_client/wfcd_client.dart';
 
 import 'core/bloc/navigation_bloc.dart';
 import 'core/local/user_settings.dart';
-import 'core/local/warframestate_local.dart';
 import 'core/network/network_info.dart';
 import 'core/services/notifications.dart';
 import 'core/services/videos.dart';
@@ -20,6 +19,7 @@ import 'features/synthtargets/domain/usecases/get_synth_targets.dart';
 import 'features/synthtargets/presentation/bloc/synthtargets_bloc.dart';
 import 'features/worldstate/data/datasources/event_info_parser.dart';
 import 'features/worldstate/data/datasources/skybox_parser.dart';
+import 'features/worldstate/data/datasources/warframestate_local.dart';
 import 'features/worldstate/data/repositories/worldstate_rep_impl.dart';
 import 'features/worldstate/domain/repositories/worldstate_repository.dart';
 import 'features/worldstate/domain/usecases/get_darvo_deal_info.dart';
