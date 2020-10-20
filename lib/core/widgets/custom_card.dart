@@ -5,8 +5,8 @@ class CustomCard extends StatelessWidget {
     Key key,
     this.title,
     this.color,
-    this.margin = const EdgeInsets.symmetric(horizontal: 6.0, vertical: 6.0),
-    this.padding = const EdgeInsets.symmetric(horizontal: 2.0, vertical: 2.0),
+    this.margin = const EdgeInsets.all(4.0),
+    this.padding = const EdgeInsets.all(4.0),
     this.addBanner = false,
     this.bannerMessage,
     @required this.child,
@@ -50,21 +50,21 @@ class CustomCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final cardContent = title != null
-        ? Column(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[_buildTitle(context, title), child],
-          )
-        : child;
+    final cardContent = Padding(
+      padding: padding,
+      child: title != null
+          ? Column(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[_buildTitle(context, title), child],
+            )
+          : child,
+    );
 
     return Card(
       color: color,
       margin: margin,
-      child: Padding(
-        padding: padding ?? EdgeInsets.zero,
-        child: addBanner ? _wrapWithBanner(context, cardContent) : cardContent,
-      ),
+      child: addBanner ? _wrapWithBanner(context, cardContent) : cardContent,
     );
   }
 }
