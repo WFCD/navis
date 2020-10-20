@@ -8,26 +8,24 @@ class BackgroundImage extends StatelessWidget {
     @required this.imageUrl,
     this.alignment,
     this.height,
-    this.width,
-    this.margin,
+    this.padding,
     this.child,
   })  : assert(imageUrl != null),
         super(key: key);
 
   final String imageUrl;
   final Alignment alignment;
-  final double height, width;
-  final EdgeInsets margin;
+  final double height;
+  final EdgeInsetsGeometry padding;
   final Widget child;
 
   static const _derelict = AssetImage(Resources.derelictSkybox);
 
   Widget _imageBuilder(ImageProvider imageProvider) {
-    return AnimatedContainer(
-      height: height,
-      width: width,
-      duration: const Duration(milliseconds: 200),
+    return Container(
       alignment: alignment,
+      padding: padding,
+      height: height,
       decoration: BoxDecoration(
         image: DecorationImage(
           colorFilter:

@@ -34,37 +34,48 @@ class FissureWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final mediaQuery = MediaQuery.of(context);
-    final widgetHeight = 8 * (mediaQuery.size.height / 100);
     final iconHeight = 6 * (mediaQuery.size.longestSide / 100);
 
     return SkyboxCard(
       node: fissure.node,
-      height: widgetHeight,
-      child: ListTile(
-        dense: true,
-        leading: Icon(
-          () {
-            switch (fissure.tier) {
-              case 'Lith':
-                return RelicIcons.lith;
-              case 'Meso':
-                return RelicIcons.meso;
-              case 'Neo':
-                return RelicIcons.neo;
-              case 'Axi':
-                return RelicIcons.axi;
-              default:
-                return RelicIcons.requiem;
-            }
-          }(),
-          size: iconHeight,
-        ),
-        title: Text(fissure.node, style: _nodeStyle),
-        subtitle: Text(
-          '${fissure.missionType} | ${fissure.tier}',
-          style: _missionTypeStyle,
-        ),
-        trailing: CountdownTimer(expiry: fissure.expiry),
+      padding: const EdgeInsets.symmetric(horizontal: 4.0, vertical: 16.0),
+      child: Row(
+        children: <Widget>[
+          Icon(
+            () {
+              switch (fissure.tier) {
+                case 'Lith':
+                  return RelicIcons.lith;
+                case 'Meso':
+                  return RelicIcons.meso;
+                case 'Neo':
+                  return RelicIcons.neo;
+                case 'Axi':
+                  return RelicIcons.axi;
+                default:
+                  return RelicIcons.requiem;
+              }
+            }(),
+            size: iconHeight,
+          ),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(fissure.node, style: _nodeStyle),
+                  Text(
+                    '${fissure.missionType} | ${fissure.tier}',
+                    style: _missionTypeStyle,
+                  ),
+                ],
+              ),
+            ),
+          ),
+          CountdownTimer(expiry: fissure.expiry)
+        ],
       ),
     );
   }

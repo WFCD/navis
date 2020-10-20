@@ -26,7 +26,7 @@ class InvasionWidget extends StatelessWidget {
         .copyWith(color: Colors.white, shadows: <Shadow>[shadow]);
 
     return Container(
-      child: Column(children: <Widget>[
+      child: Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
         Text(node, style: nodeStyle),
         Text('$description ($eta)', style: infoStyle),
       ]),
@@ -40,9 +40,9 @@ class InvasionWidget extends StatelessWidget {
     return SkyboxCard(
       height: widgetHeight,
       node: invasion.node,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 18.0),
-        child: Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
           const Spacer(),
           _buildDetails(
             context,
@@ -64,7 +64,7 @@ class InvasionWidget extends StatelessWidget {
               defendingFaction: invasion.defendingFaction,
             ),
           ),
-        ]),
+        ],
       ),
     );
   }
