@@ -1,7 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:navis/blocs/bloc.dart';
-import 'package:navis/generated/l10n.dart';
 import 'package:navis/global_keys.dart';
 import 'package:navis/utils/worldstate_utils.dart';
 import 'package:navis/widgets/dialogs/base_dialog.dart';
