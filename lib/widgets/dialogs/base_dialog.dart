@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 
 class BaseDialog extends StatelessWidget {
   const BaseDialog({
-    @required this.dialogTitle,
+    Key key,
+    this.dialogTitle,
     @required this.child,
     this.padding,
     this.actions,
-  });
+  })  : assert(child != null),
+        super(key: key);
 
   final Widget dialogTitle;
   final Widget child;

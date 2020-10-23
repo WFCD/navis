@@ -53,7 +53,7 @@ class _CarouselState extends State<Carousel> {
   }
 
   void onPageChanged(int index) {
-    _currentPage.sink.add(index);
+    _currentPage.sink.add(index % widget.children.length);
     _bucket.writeState(context, index);
   }
 
@@ -71,9 +71,10 @@ class _CarouselState extends State<Carousel> {
           child: PageView.builder(
             controller: _pageController,
             onPageChanged: onPageChanged,
-            itemCount: widget.children.length,
+            physics: const AlwaysScrollableScrollPhysics(),
+            // itemCount: widget.children.length,
             itemBuilder: (BuildContext context, int index) =>
-                widget.children[index],
+                widget.children[index % widget.children.length],
           ),
         ),
         if (widget.enableIndicator)

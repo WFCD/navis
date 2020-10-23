@@ -11,29 +11,27 @@ class EventWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          _EventHeader(
-            description: event.description,
-            tooltip: event.tooltip,
-          ),
-          const SizedBox(height: 8),
-          _EventMiddle(
-            victimNode: event.victimNode,
-            health: event.eventHealth.toDouble(),
-            rewards: event.rewards,
-            expiry: event.expiry,
-          ),
-          const SizedBox(height: 4),
-          _EventFooter(
-            affiliatedWith: event.affiliatedWith,
-            rewards: event.eventRewards ?? [],
-            jobs: event?.jobs,
-          ),
-        ],
-      ),
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: <Widget>[
+        _EventHeader(
+          description: event.description,
+          tooltip: event.tooltip,
+        ),
+        const SizedBox(height: 8),
+        _EventMiddle(
+          victimNode: event.victimNode,
+          health: event.eventHealth.toDouble(),
+          rewards: event.rewards,
+          expiry: event.expiry,
+        ),
+        const SizedBox(height: 4),
+        _EventFooter(
+          affiliatedWith: event.affiliatedWith,
+          rewards: event.eventRewards ?? [],
+          jobs: event?.jobs,
+        ),
+      ],
     );
   }
 }
@@ -66,8 +64,8 @@ class _EventHeader extends StatelessWidget {
             ),
           ),
           if (tooltip != null)
-            Container(
-              margin: const EdgeInsets.only(bottom: 4),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 4),
               child: Text(
                 tooltip,
                 textAlign: TextAlign.center,
