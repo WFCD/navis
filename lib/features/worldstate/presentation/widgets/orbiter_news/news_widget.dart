@@ -49,7 +49,7 @@ class OrbiterNewsWidget extends StatelessWidget {
               CachedNetworkImage(
                 imageUrl: news.proxyImage,
                 placeholder: (context, url) =>
-                    _imageBuilder(const AssetImage(Resources.derelictSkybox)),
+                    _imageBuilder(const AssetImage(NavisAssets.derelict)),
                 imageBuilder: (context, imageProvider) =>
                     _imageBuilder(imageProvider),
               ),

@@ -12,7 +12,7 @@ class SkyboxService {
   static SkyboxService _instance;
 
   static Future<SkyboxService> loadSkyboxData() async {
-    final data = await rootBundle.loadString(Resources.skyboxNodes);
+    final data = await rootBundle.loadString(NavisAssets.skyboxNodes);
 
     _skyboxData ??= (json.decode(data) as Map<String, dynamic>)
         .map<String, List<String>>((key, dynamic value) =>
@@ -33,7 +33,7 @@ class SkyboxService {
       }
     }();
 
-    return solNode ?? Resources.derelictSkybox;
+    return solNode ?? NavisAssets.derelict;
   }
 
   String _parseNodePlanet(String node) {

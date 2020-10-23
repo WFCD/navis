@@ -51,19 +51,20 @@ class _HomeState extends State<Home> {
                 decoration: BoxDecoration(
                   color: Theme.of(context).primaryColor,
                   image: const DecorationImage(
-                    image: AssetImage(Resources.voidSkybox),
+                    image: AssetImage(NavisAssets.derelict),
                     fit: BoxFit.cover,
                   ),
                 ),
                 child: SafeArea(
-                    bottom: false,
-                    left: false,
-                    right: false,
-                    top: true,
-                    child: SvgPicture.asset(
-                      Resources.wfcdLogo,
-                      color: Colors.white.withOpacity(0.5),
-                    )),
+                  bottom: false,
+                  left: false,
+                  right: false,
+                  top: true,
+                  child: SvgPicture.asset(
+                    NavisAssets.wfcdLogoColor,
+                    color: Colors.white.withOpacity(0.5),
+                  ),
+                ),
               ),
               Expanded(child: DrawerOptions()),
               const Divider(height: 4.0),

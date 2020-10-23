@@ -19,7 +19,7 @@ class BackgroundImage extends StatelessWidget {
   final EdgeInsetsGeometry padding;
   final Widget child;
 
-  static const _derelict = AssetImage(Resources.derelictSkybox);
+  static const _derelict = AssetImage(NavisAssets.derelict);
 
   Widget _imageBuilder(ImageProvider imageProvider) {
     return Container(
