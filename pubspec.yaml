@@ -6,8 +6,8 @@ environment:
   sdk: ">=2.10.0 <3.0.0"
 
 dependencies:
-  bloc: ^6.0.1
-  cached_network_image: ^2.2.0+1
+  bloc: ^6.1.0
+  cached_network_image: ^2.3.3
   chewie: ^0.9.10
   dartz: ^0.9.1
   data_connection_checker: ^0.3.4
@@ -20,16 +20,15 @@ dependencies:
   flutter_bloc: ^6.0.0
   flutter_brand_icons: ^1.1.0
   flutter_custom_tabs: ^0.6.0
-  flutter_local_notifications: ^2.0.0+1
+  flutter_local_notifications: ^3.0.0
   flutter_localizations:
     sdk: flutter
   flutter_staggered_grid_view: ^0.3.1
   flutter_sticky_header: ^0.5.0
-  flutter_svg: ^0.19.0
+  flutter_svg: ^0.19.1
   get_it: ^5.0.1
   hive: ^1.4.4+1
   hydrated_bloc: ^6.0.0
-  image: ^2.1.18
   intl: ^0.16.1
   intl_translation: ^0.17.7
   package_info: ^0.4.0+17
@@ -39,14 +38,14 @@ dependencies:
     git: https://github.com/SlayerOrnstein/warframestat_api_models.git
   wfcd_client:
     git: https://github.com/SlayerOrnstein/wfcd_client.git
-  youtube_explode_dart: ^1.5.2
+  youtube_explode_dart: ^1.6.1+1
 
 dev_dependencies:
   extra_pedantic: ^1.2.0
   flutter_test:
     sdk: flutter
-  mockito: ^4.1.2
-  test: ^1.14.3
+  mockito: ^4.1.3
+  test: ^1.15.4
 
 flutter:
   generate: true
