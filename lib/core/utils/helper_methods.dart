@@ -1,3 +1,5 @@
+import 'dart:math' as math;
+
 import 'package:flutter/material.dart';
 import 'package:flutter_custom_tabs/flutter_custom_tabs.dart' as custom_tabs;
 import 'package:html/parser.dart';
@@ -52,4 +54,10 @@ Color healthColor(double health) {
 String parseHtmlString(String html) {
   final document = parse(html);
   return document.body.text;
+}
+
+double roundDouble(double value, int places) {
+  final mod = math.pow(10.0, places);
+
+  return (value * mod).roundToDouble() / mod;
 }
