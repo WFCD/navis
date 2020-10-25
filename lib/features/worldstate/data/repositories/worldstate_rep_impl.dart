@@ -117,7 +117,7 @@ class WorldstateRepositoryImpl implements WorldstateRepository {
     final results = await _warframestat.searchItems(name);
 
     return results.firstWhere(
-      (r) => r.name.toLowerCase().contains(name.toLowerCase()),
+      (r) => r.name.toLowerCase() == name.toLowerCase(),
       orElse: () => null,
     );
   }
