@@ -19,29 +19,28 @@ class InvasionProgress extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      elevation: 4.0,
-      color: Colors.transparent,
-      child: Row(children: <Widget>[
-        Expanded(
-          child: AnimatedContainer(
-            duration: const Duration(milliseconds: 500),
-            height: 20.0,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(4.0),
-              gradient: LinearGradient(
-                colors: <Color>[
-                  factionColor(attackingFaction),
-                  factionColor(defendingFaction)
-                ],
-                stops: <double>[progress, progress / 100],
-                begin: AlignmentDirectional.centerStart,
-                end: AlignmentDirectional.centerEnd,
-              ),
+    return Tooltip(
+      message: '$attackingFaction vs $defendingFaction',
+      child: Material(
+        elevation: 4.0,
+        color: Colors.transparent,
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 500),
+          height: 20.0,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(4.0),
+            gradient: LinearGradient(
+              colors: <Color>[
+                factionColor(attackingFaction),
+                factionColor(defendingFaction)
+              ],
+              stops: <double>[progress, progress / 100],
+              begin: AlignmentDirectional.centerStart,
+              end: AlignmentDirectional.centerEnd,
             ),
           ),
-        )
-      ]),
+        ),
+      ),
     );
   }
 }
