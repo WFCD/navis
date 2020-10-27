@@ -12,15 +12,26 @@ class InvasionsPage extends StatelessWidget {
       builder: (BuildContext context, SolsystemState state) {
         if (state is SolState) {
           final invasions = state.worldstate.invasions;
-          final cacheExtent =
-              (invasions.length - 2) * (InvasionWidget.height * 2) / 2;
+          // final cacheExtent =
+          //     (invasions.length - 2) * (InvasionWidget.height * 2) / 2;
 
-          return ListView.builder(
-            itemCount: invasions.length,
-            cacheExtent: cacheExtent,
-            itemBuilder: (BuildContext context, int index) {
-              return InvasionWidget(invasion: invasions[index]);
-            },
+          return CustomScrollView(
+            key: const PageStorageKey<String>('invasions'),
+            slivers: <Widget>[
+              SliverOverlapInjector(
+                // This is the flip side of the SliverOverlapAbsorber above.
+                handle:
+                    NestedScrollView.sliverOverlapAbsorberHandleFor(context),
+              ),
+              SliverList(
+                delegate: SliverChildBuilderDelegate(
+                  (BuildContext context, int index) {
+                    return InvasionWidget(invasion: invasions[index]);
+                  },
+                  childCount: invasions.length,
+                ),
+              )
+            ],
           );
         }
 

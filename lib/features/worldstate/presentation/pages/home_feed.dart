@@ -1,8 +1,7 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:navis/core/widgets/sliver_top_bar.dart';
 import 'package:navis/core/utils/extensions.dart';
+import 'package:navis/core/widgets/sliver_top_bar.dart';
 import 'package:navis/features/worldstate/presentation/bloc/solsystem_bloc.dart';
 
 import 'fissures.dart';
@@ -12,31 +11,17 @@ import 'timers.dart';
 
 enum Tabs { Timers, Fissures, Invasions, Syndicates }
 
-class HomeFeedPage extends StatefulWidget {
+class HomeFeedPage extends StatelessWidget {
   const HomeFeedPage({Key key}) : super(key: key);
 
-  @override
-  _HomeFeedPageState createState() => _HomeFeedPageState();
-}
+  static const _tabs = <Tabs, Widget>{
+    Tabs.Timers: Timers(),
+    Tabs.Fissures: FissuresPage(),
+    Tabs.Invasions: InvasionsPage(),
+    Tabs.Syndicates: SyndicatePage()
+  };
 
-class _HomeFeedPageState extends State<HomeFeedPage>
-    with SingleTickerProviderStateMixin {
-  static const _pages = [
-    Timers(),
-    FissuresPage(),
-    InvasionsPage(),
-    SyndicatePage()
-  ];
-
-  List<Tab> tabs;
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    tabs = Tabs.values.map((t) => Tab(text: _getTabLocale(t))).toList();
-  }
-
-  String _getTabLocale(Tabs name) {
+  String _getTabLocale(BuildContext context, Tabs name) {
     switch (name) {
       case Tabs.Fissures:
         return context.locale.fissuresTitle;
@@ -93,15 +78,16 @@ class _HomeFeedPageState extends State<HomeFeedPage>
                         .color
                         .withOpacity(.7),
                     indicatorColor: Theme.of(context).accentColor,
-                    tabs: tabs,
+                    tabs: _tabs.keys
+                        .map((t) => Tab(text: _getTabLocale(context, t)))
+                        .toList(),
                   ),
                 ),
               )
             ];
           },
-          body: const Padding(
-            padding: EdgeInsets.only(top: kTextTabBarHeight),
-            child: TabBarView(children: _pages),
+          body: TabBarView(
+            children: _tabs.values.map((e) => SafeArea(child: e)).toList(),
           ),
         ),
       ),

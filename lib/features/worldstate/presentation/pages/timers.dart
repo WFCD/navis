@@ -89,26 +89,35 @@ class MobileTimers extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
+    return CustomScrollView(
+      key: const PageStorageKey<String>('mobile_timers'),
       cacheExtent: 1000,
-      children: <Widget>[
-        const DailyReward(),
-        ConstructionProgressCard(
-          constructionProgress: _buildProgress(context.locale, _worldstate),
+      slivers: <Widget>[
+        SliverOverlapInjector(
+          // This is the flip side of the SliverOverlapAbsorber above.
+          handle: NestedScrollView.sliverOverlapAbsorberHandleFor(context),
         ),
-        if (state.eventsActive) EventCard(events: _worldstate.events),
-        if (state.activeAcolytes)
-          AcolyteCard(enemies: _worldstate.persistentEnemies),
-        if (state.arbitrationActive)
-          ArbitrationCard(arbitration: _worldstate.arbitration),
-        if (state.activeAlerts) AlertsCard(alerts: _worldstate.alerts),
-        if (state.outpostDetected)
-          SentientOutpostCard(outpost: _worldstate.sentientOutposts),
-        CycleCard(cycles: _buildCycles(context.locale, _worldstate)),
-        if (state.activeSiphons) KuvaCard(kuva: _worldstate.kuva),
-        TraderCard(trader: _worldstate.voidTrader),
-        if (state.activeSales) DarvoDealCard(deals: _worldstate.dailyDeals),
-        SortieCard(sortie: _worldstate.sortie)
+        SliverList(
+          delegate: SliverChildListDelegate([
+            const DailyReward(),
+            ConstructionProgressCard(
+              constructionProgress: _buildProgress(context.locale, _worldstate),
+            ),
+            if (state.eventsActive) EventCard(events: _worldstate.events),
+            if (state.activeAcolytes)
+              AcolyteCard(enemies: _worldstate.persistentEnemies),
+            if (state.arbitrationActive)
+              ArbitrationCard(arbitration: _worldstate.arbitration),
+            if (state.activeAlerts) AlertsCard(alerts: _worldstate.alerts),
+            if (state.outpostDetected)
+              SentientOutpostCard(outpost: _worldstate.sentientOutposts),
+            CycleCard(cycles: _buildCycles(context.locale, _worldstate)),
+            if (state.activeSiphons) KuvaCard(kuva: _worldstate.kuva),
+            TraderCard(trader: _worldstate.voidTrader),
+            if (state.activeSales) DarvoDealCard(deals: _worldstate.dailyDeals),
+            SortieCard(sortie: _worldstate.sortie)
+          ]),
+        )
       ],
     );
   }

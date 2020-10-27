@@ -72,12 +72,21 @@ class SyndicatePageMobile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      padding: const EdgeInsets.symmetric(horizontal: 4.0, vertical: 6.0),
-      children: <Widget>[
-        _buildSyndicates(_worldstate.syndicateMissions),
-        const SizedBox(height: 8.0),
-        if (state.isNightwaveActive) _buildNightwave(state.worldstate.nightwave)
+    return CustomScrollView(
+      key: const PageStorageKey<String>('mobile_syndicate'),
+      slivers: <Widget>[
+        SliverOverlapInjector(
+          // This is the flip side of the SliverOverlapAbsorber above.
+          handle: NestedScrollView.sliverOverlapAbsorberHandleFor(context),
+        ),
+        SliverList(
+          delegate: SliverChildListDelegate(<Widget>[
+            _buildSyndicates(_worldstate.syndicateMissions),
+            const SizedBox(height: 8.0),
+            if (state.isNightwaveActive)
+              _buildNightwave(state.worldstate.nightwave)
+          ]),
+        )
       ],
     );
   }

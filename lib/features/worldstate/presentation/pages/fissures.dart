@@ -12,15 +12,25 @@ class FissuresPage extends StatelessWidget {
       builder: (BuildContext context, SolsystemState state) {
         if (state is SolState) {
           final fissures = state.worldstate.fissures;
-          final cacheExtent =
-              (fissures.length - 3) * (FissureWidget.height * 2) / 2;
+          // final cacheExtent =
+          //     (fissures.length - 3) * (FissureWidget.height * 2) / 2;
 
-          return ListView.builder(
-            itemCount: fissures.length,
-            cacheExtent: cacheExtent,
-            itemBuilder: (BuildContext context, int index) {
-              return FissureWidget(fissure: fissures[index]);
-            },
+          return CustomScrollView(
+            key: const PageStorageKey<String>('fissures'),
+            slivers: <Widget>[
+              SliverOverlapInjector(
+                // This is the flip side of the SliverOverlapAbsorber above.
+                handle:
+                    NestedScrollView.sliverOverlapAbsorberHandleFor(context),
+              ),
+              SliverList(
+                  delegate: SliverChildBuilderDelegate(
+                (BuildContext context, int index) {
+                  return FissureWidget(fissure: fissures[index]);
+                },
+                childCount: fissures.length,
+              ))
+            ],
           );
         }
 
