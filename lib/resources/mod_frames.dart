@@ -67,21 +67,6 @@ class ModFrames {
   static const String legendaryTopRightBacker =
       'assets/mod_frames/LegendaryTopRightBacker.webp';
   static const String mechaHeader = 'assets/mod_frames/MechaHeader.webp';
-  static const String omegaCornerLights =
-      'assets/mod_frames/OmegaCornerLights.webp';
-  static const String omegaEquippedLight =
-      'assets/mod_frames/OmegaEquippedLight.webp';
-  static const String omegaFrameBottom =
-      'assets/mod_frames/OmegaFrameBottom.webp';
-  static const String omegaFrameTop = 'assets/mod_frames/OmegaFrameTop.webp';
-  static const String omegaSideLight = 'assets/mod_frames/OmegaSideLight.webp';
-  static const String radialButtonOff =
-      'assets/mod_frames/RadialButtonOff.webp';
-  static const String radialButtonOn = 'assets/mod_frames/RadialButtonOn.webp';
-  static const String rankCompleteLine =
-      'assets/mod_frames/RankCompleteLine.webp';
-  static const String rankSlotActive = 'assets/mod_frames/RankSlotActive.webp';
-  static const String rankSlotEmpty = 'assets/mod_frames/RankSlotEmpty.webp';
   static const String raptorHeader = 'assets/mod_frames/RaptorHeader.webp';
   static const String requiemModCharge =
       'assets/mod_frames/RequiemModCharge.webp';
@@ -89,10 +74,6 @@ class ModFrames {
       'assets/mod_frames/RequiemModDamage.webp';
   static const String requiemModFrame =
       'assets/mod_frames/RequiemModFrame.webp';
-  static const String reset = 'assets/mod_frames/Reset.webp';
-  static const String rivenLowerTab = 'assets/mod_frames/RivenLowerTab.webp';
-  static const String rivenTopRightBacker =
-      'assets/mod_frames/RivenTopRightBacker.webp';
   static const String silverBackground =
       'assets/mod_frames/SilverBackground.webp';
   static const String silverCornerLights =
