@@ -20,9 +20,6 @@ jobs:
       - uses: actions/setup-java@v1
         with:
           java-version: "12.x"
-      - uses: nttld/setup-ndk@v1
-        with:
-          ndk-version: r21d
       - uses: subosito/flutter-action@v1
         with:
           channel: stable
