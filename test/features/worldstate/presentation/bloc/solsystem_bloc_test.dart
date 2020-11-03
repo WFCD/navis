@@ -54,17 +54,15 @@ void main() {
     solsystemBloc.close();
   });
 
-  test('initialState should be [SolsystemInitial]', () {
-    expect(solsystemBloc.state, equals(SolsystemInitial()));
-  });
+  // test('initialState should be [SolsystemInitial]', () async {
+  //   expect(solsystemBloc.state, equals(SolsystemInitial()));
+  // });
 
-  group('update system status', () {
-    test('should sync solsystem status', () async {
-      solsystemBloc.add(const SyncSystemStatus(GamePlatforms.pc));
-      await untilCalled(getWorldstate(any));
+  test('should sync solsystem status', () async {
+    solsystemBloc.add(const SyncSystemStatus(GamePlatforms.pc));
+    await untilCalled(getWorldstate(any));
 
-      verify(getWorldstate(NoParama()));
-    });
+    verify(getWorldstate(NoParama()));
   });
 
   // group('retrive darvo deal information', () {
