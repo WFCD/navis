@@ -23,8 +23,8 @@ jobs:
       - uses: subosito/flutter-action@v1
         with:
           channel: stable
-      - run: echo $TENNO_STORE | openssl base64 -d -out android/keystore.jks
-      - run: echo $TENNO_FIREBASE | openssl base64 -d -out android/app/google-services.json
+      - run: echo $TENNO_STORE | base64 -d -out android/keystore.jks
+      - run: echo $TENNO_FIREBASE | base64 -d -out android/app/google-services.json
       - run: flutter pub get
       - run: flutter analyze
       - run: flutter test
