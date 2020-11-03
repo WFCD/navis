@@ -6,6 +6,7 @@ on:
   pull_request:
     branches:
       - master
+      - n2.0
 env:
   TENNO_CIPHER: ${{ secrets.TENNO_CIPHER }}
   TENNO_FIREBASE: ${{ secrets.TENNO_FIREBASE }}
