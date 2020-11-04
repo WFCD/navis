@@ -1,6 +1,6 @@
 #!/bin/bash
 
-CURRENT_VERSION="$(pubver get |cut -d'+' -f1)"
+CURRENT_VERSION="$(pubver get | cut -d'+' -f1)"
 
 if [ "$CURRENT_VERSION" != "$1" ]
 then
