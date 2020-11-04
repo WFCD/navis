@@ -3,11 +3,9 @@ on:
   push:
     branches:
       - master
-      - n2.0
   pull_request:
     branches:
       - master
-      - n2.0
 jobs:
   semantic-release:
     runs-on: ubuntu-latest
