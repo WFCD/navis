@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:navis/blocs/bloc.dart';
 import 'package:navis/blocs/worldstate/worldstate_events.dart';
-import 'package:navis/generated/l10n.dart';
+import 'package:flutter_gen/gen_l10n/navis_localizations.dart';
 import 'package:navis/utils/extensions.dart';
 
 import 'static_box.dart';

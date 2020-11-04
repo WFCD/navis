@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:navis/generated/l10n.dart';
+import 'package:flutter_gen/gen_l10n/navis_localizations.dart';
 import 'package:navis/screens/nightwaves.dart';
 import 'package:navis/screens/syndicate_bounties.dart';
 import 'package:navis/screens/synth_targets.dart';

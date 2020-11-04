@@ -373,13 +373,13 @@
     "placeholder": {}
   },
   "planetCyclesNotificationTitle": "Open World Cycles",
-  "@planetCycleNotificationTitle": {
+  "@planetCyclesNotificationTitle": {
     "description": "Main title for open world notifications",
     "type": "text",
     "placeholder": {}
   },
   "planetCyclesNotificationDescription": "Open world notifications for their given cycles.",
-  "@planetCycleNotificationDescription": {
+  "@planetCyclesNotificationDescription": {
     "description": "Main description for open world notifications",
     "type": "text",
     "placeholder": {}

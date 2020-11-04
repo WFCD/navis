@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_brand_icons/flutter_brand_icons.dart';
 import 'package:navis/constants/links.dart';
-import 'package:navis/generated/l10n.dart';
+import 'package:flutter_gen/gen_l10n/navis_localizations.dart';
 import 'package:navis/services/repository.dart';
 import 'package:navis/utils/helper_utils.dart';
 import 'package:navis/widgets/common/fa_icon.dart';

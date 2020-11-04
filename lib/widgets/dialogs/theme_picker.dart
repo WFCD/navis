@@ -3,7 +3,7 @@ import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:navis/blocs/bloc.dart';
 import 'package:navis/constants/storage_keys.dart';
-import 'package:navis/generated/l10n.dart';
+import 'package:flutter_gen/gen_l10n/navis_localizations.dart';
 import 'package:navis/services/repository.dart';
 
 import 'base_dialog.dart';

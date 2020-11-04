@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:navis/blocs/bloc.dart';
-import 'package:navis/generated/l10n.dart';
+import 'package:flutter_gen/gen_l10n/navis_localizations.dart';
 import 'package:navis/widgets/sorties/sorties.dart';
 import 'package:navis/widgets/widgets.dart';
 

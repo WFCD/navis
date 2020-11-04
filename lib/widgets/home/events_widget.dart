@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:navis/generated/l10n.dart';
+import 'package:flutter_gen/gen_l10n/navis_localizations.dart';
 import 'package:navis/utils/size_config.dart';
 import 'package:navis/widgets/widgets.dart';
 import 'package:warframestat_api_models/entities.dart';
