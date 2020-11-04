@@ -89,3 +89,4 @@ ios/Runner.ipa
 !/packages/flutter_tools/test/data/dart_dependencies_test/**/.packages
 android/keystore.b4
 android/app/google-services.b4
+android/app/fastlane.b4

@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - master
+      - n2.0
   pull_request:
     branches:
       - master
@@ -11,15 +12,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
-        with:
-          node-version: "12"
       - uses: cedx/setup-dart@v2
       - name: Install Dart packages
         run: pub global activate pubspec_version
       - name: Set execute permissions for versioning script
         run: chmod +x deploy.sh
-      - name: Release
+      - name: Semantic Release
+        uses: cycjimmy/semantic-release-action@v2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: npx semantic-release
+        with:
+          dry_run: true
+          extra_plugins: |
+            @semantic-release/exec
+            @semantic-release/git
