@@ -9,13 +9,12 @@ on:
 jobs:
   semantic-release:
     runs-on: ubuntu-latest
-    container:
-      image: google/dart:latest
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
         with:
           node-version: "12"
+      - uses: cedx/setup-dart@v2
       - name: Install semantic-release dependencies
       - run: npm install -g semantic-release
       - run: npm install -g @semantic-release/exec
