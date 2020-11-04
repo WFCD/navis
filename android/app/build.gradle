@@ -50,10 +50,10 @@ android {
 
     signingConfigs {
         release {
-            keyAlias keystoreProperties['keyAlias']
-            keyPassword keystoreProperties['keyPassword']
-            storeFile file(keystoreProperties['storeFile'])
-            storePassword keystoreProperties['storePassword']
+            storeFile file("../keystore.jks")
+            storePassword "$System.env.TENNO_CIPHER"
+            keyAlias "upload"
+            keyPassword "$System.env.TENNO_CIPHER"
         }
     }
 
@@ -71,6 +71,8 @@ android {
         sourceCompatibility "1.8"
         targetCompatibility "1.8"
     }
+    ndkVersion '21.3.6528147'
+    buildToolsVersion '30.0.2'
 }
 
 flutter {
