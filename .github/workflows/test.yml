@@ -1,0 +1,41 @@
+name: Testing
+on:
+  push:
+    branches:
+      - master
+      - n2.0
+  pull_request:
+    branches:
+      - master
+      - n2.0
+env:
+  TENNO_CIPHER: ${{ secrets.TENNO_CIPHER }}
+  TENNO_FIREBASE: ${{ secrets.TENNO_FIREBASE }}
+  TENNO_STORE: ${{ secrets.TENNO_STORE }}
+jobs:
+  unit_test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-java@v1
+        with:
+          java-version: "12.x"
+      - uses: subosito/flutter-action@v1
+        with:
+          channel: stable
+      - run: flutter pub get
+      - run: flutter test
+  android_apk_test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-java@v1
+        with:
+          java-version: "12.x"
+      - uses: subosito/flutter-action@v1
+        with:
+          channel: stable
+      - run: base64 -d <<< $TENNO_STORE > android/keystore.jks
+      - run: base64 -d <<< $TENNO_FIREBASE > android/app/google-services.json
+      - run: flutter pub get
+      - run: flutter build apk --release

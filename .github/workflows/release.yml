@@ -1,0 +1,26 @@
+name: Release
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+jobs:
+  semantic-release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: cedx/setup-dart@v2
+      - name: Install Dart packages
+        run: pub global activate pubspec_version
+      - name: Set execute permissions for versioning script
+        run: chmod +x deploy.sh
+      - name: Semantic Release
+        uses: cycjimmy/semantic-release-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+        with:
+          extra_plugins: |
+            @semantic-release/exec
+            @semantic-release/git
