@@ -13,7 +13,6 @@ jobs:
       - uses: subosito/flutter-action@v1
         with:
           channel: stable
-        run: flutter pub get
       - name: Decode signing key and services json
         run: |
           flutter pub get

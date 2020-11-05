@@ -25,7 +25,7 @@ jobs:
           channel: stable
       - run: flutter pub get
       - run: flutter test
-  android_apk_test:
+  android:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -41,11 +41,10 @@ jobs:
           base64 -d <<< $TENNO_FIREBASE > android/app/google-services.json
       - name: Build apk
         run: |
-          flutter pub get
           flutter build apk --split-per-abi
           flutter clean # Cleaning before builds help remove an problems in between them
           flutter build appbundle
-  ios-release: # Github's MacOS images come with xcode preinstalled
+  ios: # Github's MacOS images come with xcode preinstalled
     runs-on: macos-latest
     strategy:
       fail-fast: true
