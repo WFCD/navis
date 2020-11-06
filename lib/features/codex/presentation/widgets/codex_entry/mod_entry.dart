@@ -8,8 +8,6 @@ import 'package:navis/features/codex/utils/mod_polarity.dart';
 
 import '../../../../../resources/resources.dart';
 
-const _descriptionColor = Color(0xFFF5DEB3);
-
 class ModFrame extends StatelessWidget {
   const ModFrame._({
     @required this.image,
@@ -277,7 +275,7 @@ class ModFrame extends StatelessWidget {
                 style: Theme.of(context)
                     .textTheme
                     ?.caption
-                    ?.copyWith(fontSize: 15, color: _descriptionColor),
+                    ?.copyWith(fontSize: 15, color: _textColor(rarity)),
               ),
             ),
             Positioned(
@@ -293,6 +291,7 @@ class ModFrame extends StatelessWidget {
               child: ModDrescription(
                 name: name,
                 stats: stats,
+                rarity: rarity,
               ),
             ),
             Positioned(
@@ -300,7 +299,8 @@ class ModFrame extends StatelessWidget {
               child: Text(
                 compatName,
                 textAlign: TextAlign.center,
-                style: textTheme?.subtitle1?.copyWith(color: _descriptionColor),
+                style:
+                    textTheme?.subtitle1?.copyWith(color: _textColor(rarity)),
               ),
             ),
           ],
@@ -310,10 +310,22 @@ class ModFrame extends StatelessWidget {
   }
 }
 
-class ModDrescription extends StatelessWidget {
-  const ModDrescription({Key key, this.name, this.stats}) : super(key: key);
+Color _textColor(String rarity) {
+  switch (rarity) {
+    case 'Common':
+      return const Color(0xFFF5DEB3);
+    case 'Rare':
+      return const Color(0xFFFEEBC1);
+    default:
+      return Colors.white;
+  }
+}
 
-  final String name, stats;
+class ModDrescription extends StatelessWidget {
+  const ModDrescription({Key key, this.name, this.stats, this.rarity})
+      : super(key: key);
+
+  final String name, stats, rarity;
 
   @override
   Widget build(BuildContext context) {
@@ -326,7 +338,7 @@ class ModDrescription extends StatelessWidget {
           Text(
             name,
             textAlign: TextAlign.center,
-            style: textTheme?.headline6?.copyWith(color: _descriptionColor),
+            style: textTheme?.headline6?.copyWith(color: _textColor(rarity)),
           ),
           const SizedBox(height: 15),
           Container(
@@ -334,7 +346,7 @@ class ModDrescription extends StatelessWidget {
             child: Text(
               stats,
               textAlign: TextAlign.center,
-              style: textTheme?.caption?.copyWith(color: _descriptionColor),
+              style: textTheme?.caption?.copyWith(color: _textColor(rarity)),
             ),
           ),
         ],
