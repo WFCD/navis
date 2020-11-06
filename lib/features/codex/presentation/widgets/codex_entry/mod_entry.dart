@@ -4,8 +4,11 @@ import 'dart:ui' as ui;
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:navis/features/codex/utils/mod_polarity.dart';
 
 import '../../../../../resources/resources.dart';
+
+const _descriptionColor = Color(0xFFF5DEB3);
 
 class ModFrame extends StatelessWidget {
   const ModFrame._({
@@ -13,6 +16,10 @@ class ModFrame extends StatelessWidget {
     @required this.name,
     @required this.stats,
     @required this.compatName,
+    @required this.maxRank,
+    @required this.baseDrain,
+    @required this.polarity,
+    @required this.rarity,
     @required this.background,
     @required this.cornerLights,
     @required this.frameTop,
@@ -27,40 +34,27 @@ class ModFrame extends StatelessWidget {
     String name,
     String stats,
     String compatName,
+    int maxRank,
+    int baseDrain,
+    String polarity,
+    String rarity,
   }) {
     return ModFrame._(
       image: image,
       name: name,
       stats: stats,
       compatName: compatName,
-      background: Image.asset(
-        ModFrames.bronzeBackground,
-        filterQuality: FilterQuality.high,
-      ),
-      cornerLights: Image.asset(
-        ModFrames.bronzeCornerLights,
-        filterQuality: FilterQuality.high,
-      ),
-      frameTop: Image.asset(
-        ModFrames.bronzeFrameTop,
-        filterQuality: FilterQuality.high,
-      ),
-      frameBottom: Image.asset(
-        ModFrames.bronzeFrameBottom,
-        filterQuality: FilterQuality.high,
-      ),
-      lowerTab: Image.asset(
-        ModFrames.bronzeLowerTab,
-        filterQuality: FilterQuality.high,
-      ),
-      sideLight: Image.asset(
-        ModFrames.bronzeSideLight,
-        filterQuality: FilterQuality.high,
-      ),
-      topRightBacker: Image.asset(
-        ModFrames.bronzeTopRightBacker,
-        filterQuality: FilterQuality.high,
-      ),
+      maxRank: maxRank,
+      baseDrain: baseDrain,
+      polarity: polarity,
+      rarity: rarity,
+      background: Image.asset(ModFrames.bronzeBackground),
+      cornerLights: Image.asset(ModFrames.bronzeCornerLights),
+      frameTop: Image.asset(ModFrames.bronzeFrameTop),
+      frameBottom: Image.asset(ModFrames.bronzeFrameBottom),
+      lowerTab: Image.asset(ModFrames.bronzeLowerTab),
+      sideLight: Image.asset(ModFrames.bronzeSideLight),
+      topRightBacker: Image.asset(ModFrames.bronzeTopRightBacker),
     );
   }
 
@@ -69,12 +63,20 @@ class ModFrame extends StatelessWidget {
     String name,
     String stats,
     String compatName,
+    int maxRank,
+    int baseDrain,
+    String polarity,
+    String rarity,
   }) {
     return ModFrame._(
       image: image,
       name: name,
       stats: stats,
       compatName: compatName,
+      maxRank: maxRank,
+      baseDrain: baseDrain,
+      polarity: polarity,
+      rarity: rarity,
       background: Image.asset(ModFrames.silverBackground),
       cornerLights: Image.asset(ModFrames.silverCornerLights),
       frameTop: Image.asset(ModFrames.silverFrameTop),
@@ -90,12 +92,20 @@ class ModFrame extends StatelessWidget {
     String name,
     String stats,
     String compatName,
+    int maxRank,
+    int baseDrain,
+    String polarity,
+    String rarity,
   }) {
     return ModFrame._(
       image: image,
       name: name,
       stats: stats,
       compatName: compatName,
+      maxRank: maxRank,
+      baseDrain: baseDrain,
+      polarity: polarity,
+      rarity: rarity,
       background: Image.asset(ModFrames.goldBackground),
       cornerLights: Image.asset(ModFrames.goldCornerLights),
       frameTop: Image.asset(ModFrames.goldFrameTop),
@@ -111,12 +121,20 @@ class ModFrame extends StatelessWidget {
     String name,
     String stats,
     String compatName,
+    int maxRank,
+    int baseDrain,
+    String polarity,
+    String rarity,
   }) {
     return ModFrame._(
       image: image,
       name: name,
       stats: stats,
       compatName: compatName,
+      maxRank: maxRank,
+      baseDrain: baseDrain,
+      polarity: polarity,
+      rarity: rarity,
       background: Image.asset(ModFrames.legendaryBackground),
       cornerLights: Image.asset(ModFrames.legendaryCornerLights),
       frameTop: Image.asset(ModFrames.legendaryFrameTop),
@@ -127,7 +145,8 @@ class ModFrame extends StatelessWidget {
     );
   }
 
-  final String image, name, stats, compatName;
+  final String image, name, stats, compatName, polarity, rarity;
+  final int maxRank, baseDrain;
 
   final Image background;
 
@@ -145,6 +164,8 @@ class ModFrame extends StatelessWidget {
 
   static final completer = Completer<ImageInfo>();
 
+  static final rankSlot = Image.asset(ModFrames.rankSlotEmpty);
+
   Future<ui.Image> getImage() async {
     ImageInfo imageInfo;
     final img = CachedNetworkImageProvider(image);
@@ -160,21 +181,28 @@ class ModFrame extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const descriptionColor = Color(0xFFF5DEB3);
-    const size = Size(260.0, 575.0);
+    const size = Size(260.0, 350.0);
 
-    final imageHeight = (size.height / 100) * 35;
+    final imageHeight = (size.height / 100) * 50;
     final textTheme = Theme.of(context)?.textTheme;
 
     return Center(
       child: Container(
-        constraints: BoxConstraints.tight(size),
+        width: size.width,
+        height: size.height,
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: background.image,
+            fit: BoxFit.cover,
+          ),
+        ),
         child: Stack(
           alignment: Alignment.center,
+          fit: StackFit.expand,
+          overflow: Overflow.visible,
           children: [
-            background,
             Positioned(
-              top: 120,
+              top: 0,
               left: 10,
               child: FutureBuilder<ui.Image>(
                 future: getImage(),
@@ -199,70 +227,117 @@ class ModFrame extends StatelessWidget {
               ),
             ),
             Positioned(
-              top: 100,
+              top: -15,
               child: frameTop,
             ),
             Positioned(
-              bottom: 75,
+              bottom: -40,
               child: frameBottom,
             ),
             Positioned(
-              bottom: 112,
+              bottom: rarity != 'Legendary' ? -14 : -27,
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [for (int i = 0; i < maxRank; i++) rankSlot],
+              ),
+            ),
+            Positioned(
+              bottom: -10,
               right: -3,
               child: cornerLights,
             ),
             Positioned(
-              bottom: 109,
+              bottom: -10,
               left: 63,
               child: Transform(
                 transform: Matrix4.rotationY(math.pi),
                 child: cornerLights,
               ),
             ),
-            Positioned(bottom: 130, child: lowerTab),
-            Positioned(right: 1, bottom: 170, child: sideLight),
+            Positioned(bottom: 20, child: lowerTab),
+            Positioned(right: 1, bottom: 51, child: sideLight),
             Positioned(
               left: 18,
-              bottom: 170,
+              bottom: 51,
               child: Transform(
                 transform: Matrix4.rotationY(math.pi),
                 child: sideLight,
               ),
             ),
             Positioned(
-              top: 130,
+              top: 15,
               right: 7,
               child: topRightBacker,
             ),
             Positioned(
-              bottom: 230,
+              top: 20,
+              right: 30,
               child: Text(
-                name,
-                textAlign: TextAlign.center,
-                style: textTheme?.headline6?.copyWith(color: descriptionColor),
+                baseDrain.toString(),
+                style: Theme.of(context)
+                    .textTheme
+                    ?.caption
+                    ?.copyWith(fontSize: 15, color: _descriptionColor),
               ),
             ),
             Positioned(
-              bottom: 190,
-              child: Container(
-                width: 225,
-                child: Text(
-                  stats,
-                  textAlign: TextAlign.center,
-                  style: textTheme?.caption?.copyWith(color: descriptionColor),
-                ),
+              top: 19,
+              right: 9,
+              child: Image.asset(
+                getPolarity(rarity, polarity),
+                width: 19,
               ),
             ),
             Positioned(
-              bottom: 133,
+              top: 200,
+              child: ModDrescription(
+                name: name,
+                stats: stats,
+              ),
+            ),
+            Positioned(
+              bottom: 25,
               child: Text(
                 compatName,
                 textAlign: TextAlign.center,
-                style: textTheme?.subtitle1?.copyWith(color: descriptionColor),
+                style: textTheme?.subtitle1?.copyWith(color: _descriptionColor),
               ),
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class ModDrescription extends StatelessWidget {
+  const ModDrescription({Key key, this.name, this.stats}) : super(key: key);
+
+  final String name, stats;
+
+  @override
+  Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
+
+    return Container(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+            name,
+            textAlign: TextAlign.center,
+            style: textTheme?.headline6?.copyWith(color: _descriptionColor),
+          ),
+          const SizedBox(height: 15),
+          Container(
+            width: 225,
+            child: Text(
+              stats,
+              textAlign: TextAlign.center,
+              style: textTheme?.caption?.copyWith(color: _descriptionColor),
+            ),
+          ),
+        ],
       ),
     );
   }

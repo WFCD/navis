@@ -13,10 +13,21 @@ class ModFrames {
       'assets/mod_frames/BronzeFrameBottom.webp';
   static const String bronzeFrameTop = 'assets/mod_frames/BronzeFrameTop.webp';
   static const String bronzeLowerTab = 'assets/mod_frames/BronzeLowerTab.webp';
+  static const String bronzePolarityCircle =
+      'assets/mod_frames/BronzePolarityCircle.webp';
+  static const String bronzePolarityMark =
+      'assets/mod_frames/BronzePolarityMark.webp';
+  static const String bronzePolarityPoint =
+      'assets/mod_frames/BronzePolarityPoint.webp';
+  static const String bronzePolarityPrecept =
+      'assets/mod_frames/BronzePolarityPrecept.webp';
+  static const String bronzePolarityTriangle =
+      'assets/mod_frames/BronzePolarityTriangle.webp';
   static const String bronzeSideLight =
       'assets/mod_frames/BronzeSideLight.webp';
   static const String bronzeTopRightBacker =
       'assets/mod_frames/BronzeTopRightBacker.webp';
+  static const String bronzeUnairu = 'assets/mod_frames/BronzeUnairu.webp';
   static const String femurHeader = 'assets/mod_frames/FemurHeader.webp';
   static const String gladiatorHeader =
       'assets/mod_frames/GladiatorHeader.webp';
@@ -67,7 +78,27 @@ class ModFrames {
   static const String legendaryTopRightBacker =
       'assets/mod_frames/LegendaryTopRightBacker.webp';
   static const String mechaHeader = 'assets/mod_frames/MechaHeader.webp';
+  static const String polarityCircle = 'assets/mod_frames/PolarityCircle.webp';
+  static const String polarityMark = 'assets/mod_frames/PolarityMark.webp';
+  static const String polarityPoint = 'assets/mod_frames/PolarityPoint.webp';
+  static const String polarityPrecept =
+      'assets/mod_frames/PolarityPrecept.webp';
+  static const String polarityTriangle =
+      'assets/mod_frames/PolarityTriangle.webp';
+  static const String polarityUmbra = 'assets/mod_frames/PolarityUmbra.webp';
+  static const String rankSlotEmpty = 'assets/mod_frames/RankSlotEmpty.webp';
   static const String raptorHeader = 'assets/mod_frames/RaptorHeader.webp';
+  static const String rarePolarityCircle =
+      'assets/mod_frames/RarePolarityCircle.webp';
+  static const String rarePolarityMark =
+      'assets/mod_frames/RarePolarityMark.webp';
+  static const String rarePolarityPoint =
+      'assets/mod_frames/RarePolarityPoint.webp';
+  static const String rarePolarityPrecept =
+      'assets/mod_frames/RarePolarityPrecept.webp';
+  static const String rarePolarityTriangle =
+      'assets/mod_frames/RarePolarityTriangle.webp';
+  static const String rareUnairu = 'assets/mod_frames/RareUnairu.webp';
   static const String requiemModCharge =
       'assets/mod_frames/RequiemModCharge.webp';
   static const String requiemModDamage =
@@ -91,6 +122,7 @@ class ModFrames {
   static const String synthHeader = 'assets/mod_frames/SynthHeader.webp';
   static const String tekHeader = 'assets/mod_frames/TekHeader.webp';
   static const String umbraHeader = 'assets/mod_frames/UmbraHeader.webp';
+  static const String unairu = 'assets/mod_frames/Unairu.webp';
   static const String vigilanteHeader =
       'assets/mod_frames/VigilanteHeader.webp';
 }

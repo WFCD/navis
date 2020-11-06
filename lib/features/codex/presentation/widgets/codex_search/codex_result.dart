@@ -37,6 +37,10 @@ class CodexResult extends StatelessWidget {
           name: mod.name,
           stats: stats,
           compatName: mod.compatName,
+          maxRank: mod.fusionLimit,
+          baseDrain: mod.baseDrain,
+          polarity: mod.polarity,
+          rarity: mod.rarity,
         );
       case 'Uncommon':
         return ModFrame.uncommon(
@@ -44,6 +48,10 @@ class CodexResult extends StatelessWidget {
           name: mod.name,
           stats: stats,
           compatName: mod.compatName,
+          maxRank: mod.fusionLimit,
+          baseDrain: mod.baseDrain,
+          polarity: mod.polarity,
+          rarity: mod.rarity,
         );
       case 'Legendary':
         return ModFrame.primed(
@@ -51,6 +59,10 @@ class CodexResult extends StatelessWidget {
           name: mod.name,
           stats: stats,
           compatName: mod.compatName,
+          maxRank: mod.fusionLimit,
+          baseDrain: mod.baseDrain,
+          polarity: mod.polarity,
+          rarity: mod.rarity,
         );
       default:
         return ModFrame.common(
@@ -58,6 +70,10 @@ class CodexResult extends StatelessWidget {
           name: mod.name,
           stats: stats,
           compatName: mod.compatName,
+          maxRank: mod.fusionLimit,
+          baseDrain: mod.baseDrain,
+          polarity: mod.polarity,
+          rarity: mod.rarity,
         );
     }
   }
