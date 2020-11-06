@@ -62,4 +62,7 @@ String getPolarity(String rarity, String polarity) {
         return ModFrames.rarePolarityPrecept;
     }
   }
+
+
+  return ModFrames.bronzePolarityTriangle;
 }
