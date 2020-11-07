@@ -44,7 +44,8 @@ class _DealWidgetState extends State<DealWidget> {
 
   Future<BaseItem> _getDeal() async {
     return _mem.runOnce(() async {
-      final items = await context.bloc<SolsystemBloc>().getDealInformation();
+      final items =
+          await BlocProvider.of<SolsystemBloc>(context).getDealInformation();
 
       return items.firstWhere(
         (element) =>

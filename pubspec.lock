@@ -211,20 +211,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "5.2.1"
-  firebase:
-    dependency: transitive
-    description:
-      name: firebase
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "7.3.2"
   firebase_core:
     dependency: "direct main"
     description:
       name: firebase_core
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.5.1"
+    version: "0.5.2"
   firebase_core_platform_interface:
     dependency: transitive
     description:
@@ -238,21 +231,21 @@ packages:
       name: firebase_core_web
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.2.0"
+    version: "0.2.1"
   firebase_crashlytics:
     dependency: "direct main"
     description:
       name: firebase_crashlytics
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.2.2"
+    version: "0.2.3"
   firebase_crashlytics_platform_interface:
     dependency: transitive
     description:
       name: firebase_crashlytics_platform_interface
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.1.2"
+    version: "1.1.3"
   firebase_messaging:
     dependency: "direct main"
     description:
@@ -278,7 +271,7 @@ packages:
       name: flutter_bloc
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "6.0.6"
+    version: "6.1.0"
   flutter_blurhash:
     dependency: transitive
     description:
@@ -657,7 +650,7 @@ packages:
       name: quiver
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.1.4+1"
+    version: "2.1.5"
   responsive_builder:
     dependency: "direct main"
     description:
@@ -928,7 +921,7 @@ packages:
       name: vm_service
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "5.4.0"
+    version: "5.5.0"
   wakelock:
     dependency: transitive
     description:
@@ -941,10 +934,10 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: e9f7ecc1d4004e8f5b41b725d13c711cfa345088
+      resolved-ref: a0f803143669bac34381e3e265bc1c21d7f44fd7
       url: "https://github.com/SlayerOrnstein/warframestat_api_models.git"
     source: git
-    version: "3.9.0"
+    version: "3.10.0"
   watcher:
     dependency: transitive
     description:
@@ -1009,7 +1002,7 @@ packages:
       name: youtube_explode_dart
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.6.2"
+    version: "1.7.0"
 sdks:
   dart: ">=2.10.2 <2.11.0"
   flutter: ">=1.22.2 <2.0.0"

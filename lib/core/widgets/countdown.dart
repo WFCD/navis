@@ -103,12 +103,10 @@ class _CountdownTimerState extends State<CountdownTimer>
 
   void _onEnd(AnimationStatus status) {
     if (status == AnimationStatus.completed) {
-      Future.delayed(
-        700.milliseconds,
-        () => context
-            .bloc<SolsystemBloc>()
-            .add(const SyncSystemStatus(GamePlatforms.pc)),
-      );
+      Future.delayed(700.milliseconds, () {
+        BlocProvider.of<SolsystemBloc>(context)
+            .add(const SyncSystemStatus(GamePlatforms.pc));
+      });
 
       if (mounted) setState(() {});
     }

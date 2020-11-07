@@ -10,7 +10,7 @@ class RefreshIndicatorBlocScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RefreshIndicator(
-      onRefresh: context.bloc<SolsystemBloc>().update,
+      onRefresh: BlocProvider.of<SolsystemBloc>(context).update,
       child: BlocBuilder<SolsystemBloc, SolsystemState>(
         builder: builder,
       ),
