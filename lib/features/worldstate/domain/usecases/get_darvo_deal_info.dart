@@ -5,13 +5,13 @@ import 'package:navis/features/worldstate/data/repositories/worldstate_rep_impl.
 import 'package:navis/features/worldstate/domain/repositories/worldstate_repository.dart';
 import 'package:warframestat_api_models/entities.dart';
 
-class GetDarvoDealInfo extends Usecase<BaseItem, DealRequest> {
+class GetDarvoDealInfo extends Usecase<Item, DealRequest> {
   const GetDarvoDealInfo(this.repository);
 
   final WorldstateRepository repository;
 
   @override
-  Future<Either<Failure, BaseItem>> call(DealRequest request) async {
+  Future<Either<Failure, Item>> call(DealRequest request) async {
     return repository.getDealInfo(request.id, request.name);
   }
 }

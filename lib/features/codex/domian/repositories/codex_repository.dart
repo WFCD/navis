@@ -5,5 +5,5 @@ import 'package:warframestat_api_models/entities.dart';
 abstract class CodexRepository {
   const CodexRepository();
 
-  Future<Either<Failure, List<BaseItem>>> searchItems(String text);
+  Future<Either<Failure, List<Item>>> searchItems(String text);
 }

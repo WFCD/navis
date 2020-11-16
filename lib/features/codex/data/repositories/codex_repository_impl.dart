@@ -16,11 +16,11 @@ class CodexRepositoryImpl extends CodexRepository {
   static final _warframstat = WarframestatClient();
 
   @override
-  Future<Either<Failure, List<BaseItem>>> searchItems(String text) async {
-    return _search<BaseItem>(text, _seearchItems);
+  Future<Either<Failure, List<Item>>> searchItems(String text) async {
+    return _search<Item>(text, _seearchItems);
   }
 
-  static Future<List<BaseItem>> _seearchItems(String text) {
+  static Future<List<Item>> _seearchItems(String text) {
     return _warframstat.searchItems(text);
   }
 

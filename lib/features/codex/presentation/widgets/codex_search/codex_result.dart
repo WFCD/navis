@@ -10,7 +10,7 @@ import '../codex_entry/mod_entry.dart';
 class CodexResult extends StatelessWidget {
   const CodexResult({Key key, @required this.item}) : super(key: key);
 
-  final BaseItem item;
+  final Item item;
 
   Widget _modBuider() {
     final mod = item as Mod;

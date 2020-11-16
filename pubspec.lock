@@ -91,7 +91,7 @@ packages:
       name: chewie
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.9.10"
+    version: "0.12.0"
   cli_util:
     dependency: transitive
     description:
@@ -133,7 +133,7 @@ packages:
       name: coverage
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.14.1"
+    version: "0.14.2"
   crypto:
     dependency: transitive
     description:
@@ -148,6 +148,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.16.2"
+  cupertino_icons:
+    dependency: transitive
+    description:
+      name: cupertino_icons
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.0"
   dart_style:
     dependency: transitive
     description:
@@ -271,7 +278,7 @@ packages:
       name: flutter_bloc
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "6.1.0"
+    version: "6.1.1"
   flutter_blurhash:
     dependency: transitive
     description:
@@ -306,14 +313,14 @@ packages:
       name: flutter_local_notifications
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.0.1+2"
+    version: "3.0.1+4"
   flutter_local_notifications_platform_interface:
     dependency: transitive
     description:
       name: flutter_local_notifications_platform_interface
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.0"
+    version: "2.0.0+1"
   flutter_localizations:
     dependency: "direct main"
     description: flutter
@@ -405,7 +412,14 @@ packages:
       name: hydrated_bloc
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "6.0.3"
+    version: "6.1.0"
+  import_js_library:
+    dependency: transitive
+    description:
+      name: import_js_library
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.2"
   intl:
     dependency: "direct main"
     description:
@@ -508,13 +522,6 @@ packages:
     dependency: transitive
     description:
       name: octo_image
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.3.0"
-  open_iconic_flutter:
-    dependency: transitive
-    description:
-      name: open_iconic_flutter
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.3.0"
@@ -900,7 +907,7 @@ packages:
       name: video_player
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.10.12+5"
+    version: "1.0.0"
   video_player_platform_interface:
     dependency: transitive
     description:
@@ -928,16 +935,30 @@ packages:
       name: wakelock
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.1.4+2"
+    version: "0.2.1+1"
+  wakelock_platform_interface:
+    dependency: transitive
+    description:
+      name: wakelock_platform_interface
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.1.0+1"
+  wakelock_web:
+    dependency: transitive
+    description:
+      name: wakelock_web
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.1.0+3"
   warframestat_api_models:
     dependency: "direct main"
     description:
       path: "."
       ref: HEAD
-      resolved-ref: a0f803143669bac34381e3e265bc1c21d7f44fd7
+      resolved-ref: eb0376978f1ee6a62845729721748a50091cd314
       url: "https://github.com/SlayerOrnstein/warframestat_api_models.git"
     source: git
-    version: "3.10.0"
+    version: "4.0.0"
   watcher:
     dependency: transitive
     description:
@@ -964,7 +985,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "258b8d7f0644f20bd21e98f21cb63a9b93c2267a"
+      resolved-ref: e93cfec6ac26f1e3b895bc837a74a64f389d1479
       url: "https://github.com/SlayerOrnstein/wfcd_client.git"
     source: git
     version: "2.3.0"
@@ -974,7 +995,7 @@ packages:
       name: win32
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.7.3"
+    version: "1.7.4"
   xdg_directories:
     dependency: transitive
     description:
@@ -1002,7 +1023,7 @@ packages:
       name: youtube_explode_dart
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.7.0"
+    version: "1.7.2"
 sdks:
-  dart: ">=2.10.2 <2.11.0"
+  dart: ">=2.10.3 <2.11.0"
   flutter: ">=1.22.2 <2.0.0"

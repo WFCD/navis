@@ -40,9 +40,9 @@ class DealWidget extends StatefulWidget {
 }
 
 class _DealWidgetState extends State<DealWidget> {
-  final _mem = AsyncMemoizer<BaseItem>();
+  final _mem = AsyncMemoizer<Item>();
 
-  Future<BaseItem> _getDeal() async {
+  Future<Item> _getDeal() async {
     return _mem.runOnce(() async {
       final items =
           await BlocProvider.of<SolsystemBloc>(context).getDealInformation();
@@ -62,9 +62,9 @@ class _DealWidgetState extends State<DealWidget> {
         .subtitle2
         .copyWith(fontWeight: FontWeight.w500);
 
-    return FutureBuilder<BaseItem>(
+    return FutureBuilder<Item>(
       future: _getDeal(),
-      builder: (BuildContext context, AsyncSnapshot<BaseItem> snapshot) {
+      builder: (BuildContext context, AsyncSnapshot<Item> snapshot) {
         final urlExist = snapshot.data?.wikiaUrl != null;
         final deal = snapshot.data;
 

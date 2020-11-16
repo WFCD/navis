@@ -16,29 +16,29 @@ dependencies:
     git: https://github.com/SlayerOrnstein/wfcd_client.git
   bloc: ^6.1.0
   cached_network_image: ^2.3.3
-  chewie: ^0.9.10
+  chewie: ^0.12.0
   dartz: ^0.9.1
   data_connection_checker: ^0.3.4
-  equatable: ^1.2.2
+  equatable: ^1.2.5
   firebase_core: ^0.5.0
   firebase_crashlytics: ^0.2.1
   firebase_messaging: ^7.0.2
-  flutter_bloc: ^6.0.0
+  flutter_bloc: ^6.1.1
   flutter_brand_icons: ^1.1.0
   flutter_custom_tabs: ^0.6.0
-  flutter_local_notifications: ^3.0.0
+  flutter_local_notifications: ^3.0.1+4
   flutter_staggered_grid_view: ^0.3.1
   flutter_sticky_header: ^0.5.0
   flutter_svg: ^0.19.1
   get_it: ^5.0.1
   hive: ^1.4.4+1
-  hydrated_bloc: ^6.0.0
+  hydrated_bloc: ^6.1.0
   intl: ^0.16.1
   intl_translation: ^0.17.7
   package_info: ^0.4.0+17
   responsive_builder: ^0.3.0
   supercharged: ^1.7.0
-  youtube_explode_dart: ^1.6.1+1
+  youtube_explode_dart: ^1.7.2
 
 dev_dependencies:
   flutter_test:

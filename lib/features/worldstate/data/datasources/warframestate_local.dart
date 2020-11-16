@@ -32,7 +32,7 @@ class WarframestatCache {
   static const String _state = 'worldstate';
   static const String _targets = 'synthTargets';
 
-  void cacheDealInfo(String id, BaseItem item) {
+  void cacheDealInfo(String id, Item item) {
     _box.put(_dealId, id);
     _box.put(id, json.encode(fromBaseItem(item)));
   }
@@ -47,7 +47,7 @@ class WarframestatCache {
 
   String getCachedDealId() => readDisk<String>(_dealId);
 
-  BaseItem getCachedDeal(String id) {
+  Item getCachedDeal(String id) {
     final cached = readDisk<String>(id);
 
     return toBaseItem(json.decode(cached) as Map<String, dynamic>);

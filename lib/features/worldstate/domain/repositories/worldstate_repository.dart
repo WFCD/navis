@@ -7,5 +7,5 @@ abstract class WorldstateRepository {
 
   Future<Either<Failure, List<SynthTarget>>> getSynthTargets();
 
-  Future<Either<Failure, BaseItem>> getDealInfo(String id, String name);
+  Future<Either<Failure, Item>> getDealInfo(String id, String name);
 }

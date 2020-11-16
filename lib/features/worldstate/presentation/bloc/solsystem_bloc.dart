@@ -56,9 +56,9 @@ class SolsystemBloc extends HydratedBloc<SyncEvent, SolsystemState> {
     await Future<void>.delayed(1.seconds);
   }
 
-  Future<List<BaseItem>> getDealInformation() async {
+  Future<List<Item>> getDealInformation() async {
     final deals = (state as SolState).worldstate?.dailyDeals ?? [];
-    final info = <BaseItem>[];
+    final info = <Item>[];
 
     for (final deal in deals) {
       final request = DealRequest(deal.id, deal.item);

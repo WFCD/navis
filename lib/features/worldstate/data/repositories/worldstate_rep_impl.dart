@@ -75,10 +75,10 @@ class WorldstateRepositoryImpl implements WorldstateRepository {
   }
 
   @override
-  Future<Either<Failure, BaseItem>> getDealInfo(String id, String name) async {
+  Future<Either<Failure, Item>> getDealInfo(String id, String name) async {
     final cachedId = cache.getCachedDealId();
 
-    Either<Failure, BaseItem> getCached() {
+    Either<Failure, Item> getCached() {
       try {
         return Right(cache.getCachedDeal(id));
       } catch (e) {
@@ -113,7 +113,7 @@ class WorldstateRepositoryImpl implements WorldstateRepository {
     return _warframestat.getSynthTargets();
   }
 
-  static Future<BaseItem> _getDealInfo(String name) async {
+  static Future<Item> _getDealInfo(String name) async {
     final results = await _warframestat.searchItems(name);
 
     return results.firstWhere(
