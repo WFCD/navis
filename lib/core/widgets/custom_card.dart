@@ -26,7 +26,7 @@ class CustomCard extends StatelessWidget {
         .copyWith(fontWeight: FontWeight.w500);
 
     return Padding(
-      padding: const EdgeInsets.only(top: 8.0),
+      padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: Text(
         title,
         textAlign: TextAlign.center,
