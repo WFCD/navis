@@ -24,7 +24,6 @@ class EventStatus extends StatelessWidget {
     return CategoryTitle(
       title: category,
       style: style,
-      addPadding: false,
     );
   }
 

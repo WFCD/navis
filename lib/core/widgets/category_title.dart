@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 
 class CategoryTitle extends StatelessWidget {
   const CategoryTitle({
+    Key key,
     @required this.title,
+    this.subtitle,
     this.style,
-    this.alignment = Alignment.centerLeft,
-    this.addPadding = true,
-  });
+    this.contentPadding,
+  }) : super(key: key);
 
-  final String title;
-  final bool addPadding;
-  final AlignmentGeometry alignment;
+  final String title, subtitle;
   final TextStyle style;
+  final EdgeInsetsGeometry contentPadding;
 
   @override
   Widget build(BuildContext context) {
@@ -20,12 +20,11 @@ class CategoryTitle extends StatelessWidget {
         .subtitle2
         .copyWith(fontSize: 15, color: Theme.of(context).accentColor);
 
-    return Container(
-      margin: addPadding
-          ? const EdgeInsets.only(top: 4.0, left: 16.0, right: 16.0)
-          : null,
-      alignment: alignment,
-      child: Text(title, style: style ?? _style),
+    return ListTile(
+      title: Text(title, style: style ?? _style),
+      subtitle: subtitle != null ? Text(subtitle) : null,
+      contentPadding: contentPadding,
+      dense: true,
     );
   }
 }

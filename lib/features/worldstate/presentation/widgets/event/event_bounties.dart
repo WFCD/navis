@@ -61,7 +61,6 @@ class EventBounties extends StatelessWidget {
         CategoryTitle(
           title: context.locale.bountyTitle,
           style: category,
-          addPadding: true,
         ),
         const SizedBox(height: 2.0),
         if (jobs != null) ..._buildBounties(context)
