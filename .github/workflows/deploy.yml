@@ -22,7 +22,7 @@ jobs:
       - name: Build App bundle
         run: flutter build appbundle
       - name: Google Play Store Deploy
-        uses: maierj/fastlane-action@v1
+        uses: maierj/fastlane-action@v1.4.0
         with:
           lane: beta
           subdirectory: android
@@ -50,12 +50,15 @@ jobs:
         run: base64 -d <<< $TENNO_FIREBASE > android/app/google-services.json
       - name: Build ios using flutter
         run: flutter build ios
-      - name: Deploy to App Store
-        run: cd ios && fastlane lane beta
+      - name: App Store Deploy
+        uses: maierj/fastlane-action@v1.4.0
+        with:
+          lane: beta
+          subdirectory: ios
       - name: Github Releases Deploy
         uses: xresloader/upload-to-github-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         with:
-          file: "build/app/outputs/apk/release/*.apk"
+          file: "ios/app-ios-release.ipa"
           tags: true
