@@ -26,8 +26,9 @@ dependencies:
   flutter_bloc: ^6.1.1
   flutter_brand_icons: ^1.1.0
   flutter_custom_tabs: ^0.6.0
-  flutter_local_notifications: ^3.0.1+4
-  flutter_staggered_grid_view: ^0.3.1
+  # flutter_hooks: ^0.15.0
+  flutter_local_notifications: ^3.0.1+5
+  flutter_staggered_grid_view: ^0.3.2
   flutter_sticky_header: ^0.5.0
   flutter_svg: ^0.19.1
   get_it: ^5.0.1
@@ -37,7 +38,7 @@ dependencies:
   intl_translation: ^0.17.7
   package_info: ^0.4.0+17
   responsive_builder: ^0.3.0
-  supercharged: ^1.7.0
+  supercharged: ^1.11.1
   youtube_explode_dart: ^1.7.2
 
 dev_dependencies:
@@ -45,7 +46,7 @@ dev_dependencies:
     sdk: flutter
   extra_pedantic: ^1.2.0
   mockito: ^4.1.3
-  test: ^1.15.4
+  test: ^1.15.6
 
 flutter:
   generate: true
