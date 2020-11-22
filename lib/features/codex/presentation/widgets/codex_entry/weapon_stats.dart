@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:warframestat_api_models/entities.dart';
 
 import '../../../../../core/utils/helper_methods.dart';
 import '../../../../../core/widgets/widgets.dart';
@@ -49,7 +50,10 @@ class GunStats extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 8.0),
       child: Column(
         children: [
-          CategoryTitle(title: category, addPadding: false),
+          CategoryTitle(
+            title: category,
+            contentPadding: EdgeInsets.zero,
+          ),
           const SizedBox(height: 8.0),
           Stats(
             stats: <RowItem>[
@@ -109,7 +113,10 @@ class GunStats extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 16.0),
-          const CategoryTitle(title: 'Damage', addPadding: false),
+          const CategoryTitle(
+            title: 'Damage',
+            contentPadding: EdgeInsets.zero,
+          ),
           Padding(
             padding: const EdgeInsets.only(top: 8.0, bottom: 34.0),
             child: Stats(stats: <RowItem>[
@@ -137,29 +144,12 @@ class GunStats extends StatelessWidget {
 }
 
 class MeleeStats extends StatelessWidget {
-  const MeleeStats({
-    Key key,
-    @required this.masteryReq,
-    @required this.category,
-    @required this.type,
-    @required this.criticalChance,
-    @required this.criticalMultiplier,
-    @required this.attackSpeed,
-    @required this.disposition,
-    @required this.procChance,
-    @required this.damageTypes,
-  }) : super(key: key);
+  const MeleeStats({Key key, @required this.meleeWeapon}) : super(key: key);
 
-  final int masteryReq;
-  final String category, type;
-  final double criticalChance, criticalMultiplier;
-  final double attackSpeed;
-  final int disposition;
-  final double procChance;
-  final Map<String, double> damageTypes;
+  final MeleeWeapon meleeWeapon;
 
   double get totalDamage {
-    return damageTypes.values
+    return meleeWeapon.damageTypes.values
         .fold(0.0, (previousValue, element) => previousValue + element);
   }
 
@@ -169,52 +159,85 @@ class MeleeStats extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 8.0),
       child: Column(
         children: [
-          CategoryTitle(title: category, addPadding: false),
-          const SizedBox(height: 8.0),
           Stats(
             stats: <RowItem>[
               RowItem(
                 text: const Text('Mastery Requirement'),
-                child: Text('$masteryReq'),
+                child: Text('${meleeWeapon.masteryReq}'),
               ),
               RowItem(
                 text: const Text('Type'),
-                child: Text(type),
+                child: Text(meleeWeapon.type),
               ),
               RowItem(
                 text: const Text('Critical Chance'),
-                child: Text('${(criticalChance * 100).roundToDouble()}%'),
+                child: Text(
+                    '${(meleeWeapon.criticalChance * 100).roundToDouble()}%'),
               ),
               RowItem(
                 text: const Text('Critical Multiplier'),
-                child: Text('${criticalMultiplier}x'),
+                child: Text('${meleeWeapon.criticalMultiplier}x'),
               ),
               RowItem(
                 text: const Text('Attack Speed'),
-                child: Text('${attackSpeed.toStringAsFixed(2)}'),
+                child: Text('${meleeWeapon.attackSpeed.toStringAsFixed(2)}'),
+              ),
+              RowItem(
+                text: const Text('Slam Attack'),
+                child: Text('${meleeWeapon.slamAttack}'),
+              ),
+              RowItem(
+                text: const Text('Slam Radial Damage'),
+                child: Text('${meleeWeapon.slamRadialDamage}'),
+              ),
+              RowItem(
+                text: const Text('Slam Radius'),
+                child: Text('${meleeWeapon.slamRadius}'),
+              ),
+              RowItem(
+                text: const Text('Slide Attack'),
+                child: Text('${meleeWeapon.slideAttack}'),
+              ),
+              RowItem(
+                text: const Text('Heavy Attack Damage'),
+                child: Text('${meleeWeapon.heavyAttackDamage}'),
+              ),
+              RowItem(
+                text: const Text('Heavy Slam Attack'),
+                child: Text('${meleeWeapon.heavySlamAttack}'),
+              ),
+              RowItem(
+                text: const Text('Heavy Slam Radial Damage'),
+                child: Text('${meleeWeapon.heavySlamRadialDamage}'),
+              ),
+              RowItem(
+                text: const Text('Heavy Slam Radius'),
+                child: Text('${meleeWeapon.heavySlamRadius}'),
               ),
               RowItem(
                 text: const Text('Riven Disposition'),
-                child: RivenDisposition(disposition: disposition),
+                child: RivenDisposition(disposition: meleeWeapon.disposition),
               ),
               RowItem(
                 text: const Text('Status Chance'),
-                child: Text('${(procChance * 100).roundToDouble()}%'),
+                child: Text(
+                    '${(meleeWeapon.statusChance * 100).roundToDouble()}%'),
               ),
             ],
           ),
           const SizedBox(height: 16.0),
-          const CategoryTitle(title: 'Damage', addPadding: false),
-          Padding(
-            padding: const EdgeInsets.only(top: 8.0, bottom: 34.0),
-            child: Stats(stats: <RowItem>[
-              for (final damageType in damageTypes.keys)
-                RowItem(
-                  text: Text(toBeginningOfSentenceCase(damageType)),
-                  child: Text('${damageTypes[damageType]}'),
-                ),
-            ]),
+          const CategoryTitle(
+            title: 'Damage',
+            contentPadding: EdgeInsets.zero,
           ),
+          Stats(stats: <RowItem>[
+            for (final damageType in meleeWeapon.damageTypes.keys)
+              RowItem(
+                text: Text(toBeginningOfSentenceCase(damageType)),
+                child: Text('${meleeWeapon.damageTypes[damageType]}'),
+              ),
+          ]),
+          const SizedBox(height: 16.0),
           RowItem(
             text: Text(
               'Total',

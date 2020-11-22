@@ -1,5 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:navis/core/themes/colors.dart';
+// import 'package:flutter_gen/gen_l10n/navis_localizations.dart';
+import 'package:navis/core/utils/helper_methods.dart';
 
 class BasicItemInfo extends SliverPersistentHeaderDelegate {
   const BasicItemInfo({
@@ -15,6 +18,20 @@ class BasicItemInfo extends SliverPersistentHeaderDelegate {
   final String imageUrl;
   final String wikiaUrl;
   final double expandedHeight;
+
+  Color _getColor(Set<MaterialState> states) {
+    const Set<MaterialState> interactiveStates = <MaterialState>{
+      MaterialState.pressed,
+      MaterialState.hovered,
+      MaterialState.focused,
+    };
+
+    if (states.any(interactiveStates.contains)) {
+      return secondaryVariant;
+    }
+
+    return Colors.white;
+  }
 
   @override
   Widget build(
@@ -35,7 +52,16 @@ class BasicItemInfo extends SliverPersistentHeaderDelegate {
                 elevation: 1.0,
                 child: Container(
                   height: kToolbarHeight,
-                  child: const NavigationToolbar(leading: BackButton()),
+                  child: NavigationToolbar(
+                    leading: const BackButton(),
+                    trailing: TextButton(
+                      style: ButtonStyle(
+                          foregroundColor:
+                              MaterialStateProperty.resolveWith(_getColor)),
+                      onPressed: () => launchLink(context, wikiaUrl),
+                      child: const Text('Seee wikia'),
+                    ),
+                  ),
                 ),
               ),
             ),

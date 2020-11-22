@@ -1,23 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:warframestat_api_models/entities.dart';
 
 import '../../../../../core/widgets/widgets.dart';
 import 'stats.dart';
 
 class FrameStats extends StatelessWidget {
-  const FrameStats({
-    Key key,
-    @required this.passive,
-    @required this.category,
-    @required this.health,
-    @required this.shield,
-    @required this.armor,
-    @required this.power,
-    this.sprintSpeed,
-  }) : super(key: key);
+  const FrameStats({Key key, @required this.powerSuit}) : super(key: key);
 
-  final String passive, category;
-  final int health, shield, armor, power;
-  final double sprintSpeed;
+  final PowerSuit powerSuit;
 
   Widget _passive(BuildContext context) {
     final textTheme = Theme.of(context)?.textTheme;
@@ -29,7 +19,7 @@ class FrameStats extends StatelessWidget {
           Text('Passive', style: textTheme?.subtitle1),
           const SizedBox(height: 8.0),
           Text(
-            passive,
+            (powerSuit as Warframe).passiveDescription,
             style: textTheme?.caption?.copyWith(fontStyle: FontStyle.italic),
           ),
           const Divider()
@@ -45,30 +35,30 @@ class FrameStats extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          if (passive != null) _passive(context),
-          CategoryTitle(title: category, addPadding: false),
+          if (powerSuit is Warframe) _passive(context),
           const SizedBox(height: 16.0),
           Stats(stats: <RowItem>[
             RowItem(
               text: const Text('Shield'),
-              child: Text('$shield'),
+              child: Text('${powerSuit.shield}'),
             ),
             RowItem(
               text: const Text('Armor'),
-              child: Text('$armor'),
+              child: Text('${powerSuit.armor}'),
             ),
             RowItem(
               text: const Text('Health'),
-              child: Text('$health'),
+              child: Text('${powerSuit.health}'),
             ),
             RowItem(
               text: const Text('Power'),
-              child: Text('$power'),
+              child: Text('${powerSuit.power}'),
             ),
-            if (sprintSpeed != null)
+            if (powerSuit is PlayerUsuablePowerSuit)
               RowItem(
                 text: const Text('Sprint Speed'),
-                child: Text('$sprintSpeed'),
+                child: Text(
+                    '${(powerSuit as PlayerUsuablePowerSuit).sprintSpeed}'),
               ),
           ]),
         ],
