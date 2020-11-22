@@ -10,6 +10,7 @@
 #     https://docs.fastlane.tools/plugins/available-plugins
 #
 setup_travis
+update_fastlane
 
 default_platform(:ios)
 
