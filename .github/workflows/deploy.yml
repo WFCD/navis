@@ -1,7 +1,7 @@
 name: Deploy
 on:
   release:
-    types: [published, created]
+    types: [created]
 jobs:
   android-release:
     runs-on: ubuntu-latest
