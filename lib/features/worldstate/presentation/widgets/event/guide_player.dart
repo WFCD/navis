@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:chewie/chewie.dart';
 import 'package:flutter/material.dart';
 import 'package:navis/core/services/videos.dart';
+import 'package:navis/core/widgets/custom_card.dart';
 import 'package:navis/injection_container.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:video_player/video_player.dart';
@@ -61,31 +62,29 @@ class _YoutubePlayerState extends State<EventVideoPlayer> {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-    final horizontal = (size.width / 100) * 1;
-    final vertical = (size.height / 100) * 1;
-
-    return Card(
-      margin: EdgeInsets.symmetric(horizontal: horizontal, vertical: vertical),
-      child: LimitedBox(
-        maxHeight: (MediaQuery.of(context).size.width / 100) * 90,
-        child: _chewieController == null
-            ? const Center(child: CircularProgressIndicator())
-            : Column(
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  Chewie(controller: _chewieController),
-                  PlayerInformation(
-                    title: videoInformation.title,
-                    description: videoInformation.description,
-                    author: videoInformation.author,
-                    profileThumbnail: widget.profileThumbnail,
-                    link: videoInformation.url,
-                  )
-                ],
-              ),
-      ),
-    );
+    return CustomCard(
+        padding: EdgeInsets.zero,
+        child: SizedBox(
+          height: (MediaQuery.of(context).size.height / 100) * 48,
+          child: _chewieController == null
+              ? const Center(child: CircularProgressIndicator())
+              : Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    AspectRatio(
+                      aspectRatio: videoInformation.aspectRatio,
+                      child: Chewie(controller: _chewieController),
+                    ),
+                    PlayerInformation(
+                      title: videoInformation.title,
+                      description: videoInformation.description,
+                      author: videoInformation.author,
+                      profileThumbnail: widget.profileThumbnail,
+                      link: videoInformation.url,
+                    )
+                  ],
+                ),
+        ));
   }
 
   @override
