@@ -76,6 +76,20 @@ class FrameStats extends StatelessWidget {
                     '${(powerSuit as PlayerUsuablePowerSuit).sprintSpeed}'),
               ),
           ]),
+          const SizedBox(height: 16.0),
+          if (powerSuit is PlayerUsuablePowerSuit) ...{
+            const CategoryTitle(
+                title: 'Abilities', contentPadding: EdgeInsets.zero),
+            for (final ability
+                in (powerSuit as PlayerUsuablePowerSuit).abilities)
+              ListTile(
+                title: Text(ability.name),
+                subtitle: Text(ability.description),
+                dense: true,
+                isThreeLine: true,
+                contentPadding: EdgeInsets.zero,
+              )
+          }
         ],
       ),
     );
