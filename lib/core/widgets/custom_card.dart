@@ -55,20 +55,22 @@ class CustomCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
     final CardTheme cardTheme = CardTheme.of(context);
-    final cardContent = title != null
-        ? Column(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[_buildTitle(context, title), child],
-          )
-        : child;
+    final cardContent = Padding(
+      padding: padding,
+      child: title != null
+          ? Column(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[_buildTitle(context, title), child],
+            )
+          : child,
+    );
 
     return Semantics(
       container: _semanticContainer,
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 250),
         margin: margin ?? cardTheme.margin ?? const EdgeInsets.all(4.0),
-        padding: padding,
         child: Material(
           type: MaterialType.card,
           shadowColor: cardTheme.shadowColor ?? theme.shadowColor,
