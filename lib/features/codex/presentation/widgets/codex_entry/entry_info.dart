@@ -47,23 +47,19 @@ class BasicItemInfo extends SliverPersistentHeaderDelegate {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            SafeArea(
-              child: Material(
-                elevation: 1.0,
-                child: Container(
-                  height: kToolbarHeight,
-                  child: NavigationToolbar(
-                    leading: const BackButton(),
-                    trailing: TextButton(
-                      style: ButtonStyle(
-                          foregroundColor:
-                              MaterialStateProperty.resolveWith(_getColor)),
-                      onPressed: () => launchLink(context, wikiaUrl),
-                      child: const Text('Seee wikia'),
-                    ),
-                  ),
+            const SizedBox(height: 8.0),
+            AppBar(
+              elevation: 16.0,
+              backgroundColor: Theme.of(context).canvasColor,
+              actions: [
+                TextButton(
+                  style: ButtonStyle(
+                      foregroundColor:
+                          MaterialStateProperty.resolveWith(_getColor)),
+                  onPressed: () => launchLink(context, wikiaUrl),
+                  child: const Text('Seee wikia'),
                 ),
-              ),
+              ],
             ),
             AnimatedOpacity(
               duration: kThemeAnimationDuration,
@@ -96,7 +92,7 @@ class BasicItemInfo extends SliverPersistentHeaderDelegate {
   double get maxExtent => expandedHeight;
 
   @override
-  double get minExtent => kToolbarHeight;
+  double get minExtent => kToolbarHeight + 30;
 
   @override
   bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) {

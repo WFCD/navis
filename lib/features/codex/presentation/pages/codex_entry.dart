@@ -22,6 +22,7 @@ class CodexEntry extends StatelessWidget {
       body: CustomScrollView(
         slivers: [
           SliverPersistentHeader(
+            pinned: true,
             delegate: BasicItemInfo(
               name: item.name,
               description: parseHtmlString(item.description ?? ''),
