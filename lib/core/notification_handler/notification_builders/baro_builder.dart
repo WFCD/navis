@@ -2,7 +2,6 @@ import 'package:navis/constants/notification_channels.dart';
 import 'package:navis/core/notification_handler/handler.dart';
 import 'package:warframestat_api_models/entities.dart';
 import 'package:warframestat_api_models/models.dart';
-import 'package:warframestat_api_models/src/objects/worldstate_object.dart';
 
 import 'base_builder.dart';
 
