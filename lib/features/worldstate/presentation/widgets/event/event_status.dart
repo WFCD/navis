@@ -20,13 +20,6 @@ class EventStatus extends StatelessWidget {
   final DateTime expiry;
   final List<Reward> rewards;
 
-  Widget _addCategory(String category, TextStyle style) {
-    return CategoryTitle(
-      title: category,
-      style: style,
-    );
-  }
-
   List<Widget> _buildRewards() {
     final rewards = <Widget>[];
 
@@ -62,12 +55,20 @@ class EventStatus extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             if (tooltip != null) ...{
-              _addCategory(context.locale.eventDescription, category),
+              CategoryTitle(
+                title: context.locale.eventDescription,
+                style: category,
+                contentPadding: EdgeInsets.zero,
+              ),
               const SizedBox(height: 2.0),
               Text(tooltip, style: tooltipStyle),
               const SizedBox(height: 20.0),
             },
-            _addCategory(context.locale.eventStatus, category),
+            CategoryTitle(
+              title: context.locale.eventStatus,
+              style: category,
+              contentPadding: EdgeInsets.zero,
+            ),
             RowItem(
               text: Text(context.locale.eventStatusNode, style: tooltipStyle),
               child: StaticBox.text(text: node),
@@ -85,7 +86,11 @@ class EventStatus extends StatelessWidget {
             ),
             if (rewards.isNotEmpty) ...{
               const SizedBox(height: 20.0),
-              _addCategory(context.locale.eventRewards, category),
+              CategoryTitle(
+                title: context.locale.eventRewards,
+                style: category,
+                contentPadding: EdgeInsets.zero,
+              ),
               const SizedBox(height: 2.0),
               Wrap(
                 alignment: WrapAlignment.start,
