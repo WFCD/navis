@@ -137,8 +137,9 @@ class LocalizedFilter {
     };
   }
 
+  static const tiers = <String>['Lith', 'Meso', 'Neo', 'Axi', 'Requiem'];
+
   Map<String, String> get fissures {
-    const tiers = <String>['Lith', 'Meso', 'Neo', 'Axi', 'Requiem'];
     const commonTypes = <String>[
       'disruption',
       'exterminate',

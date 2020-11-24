@@ -35,6 +35,8 @@ Future<void> main() async {
   await runZoned(() async {
     HydratedBloc.storage = await HydratedStorage.build();
 
+    await Firebase.initializeApp();
+
     await di.init();
     if (sl<Usersettings>().platform == null) {
       sl<Usersettings>().platform = GamePlatforms.pc;

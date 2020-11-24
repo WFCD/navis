@@ -1,5 +1,6 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:logging/logging.dart';
+import 'package:navis/core/notification_handler/handler.dart';
 import 'package:wfcd_client/wfcd_client.dart';
 
 class NotificationService {
@@ -18,7 +19,10 @@ class NotificationService {
     );
 
     _messaging.requestNotificationPermissions(iosSettings);
-    _messaging.configure();
+    _messaging.configure(
+      onMessage: handler,
+      onBackgroundMessage: handler,
+    );
   }
 
   Future<void> subscribeToPlatform(GamePlatforms platform) async {

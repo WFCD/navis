@@ -19,5 +19,9 @@ class Application : FlutterApplication(), PluginRegistrantCallback {
         if (!registry!!.hasPlugin("io.flutter.plugins.firebasemessaging")) {
             FirebaseMessagingPlugin.registerWith(registry.registrarFor("io.flutter.plugins.firebasemessaging.FirebaseMessagingPlugin"))
         }
+
+
+        FlutterLocalNotificationPluginRegistrant.registerWith(registry)
+
     }
 }
