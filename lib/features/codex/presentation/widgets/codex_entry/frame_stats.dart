@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:navis/features/codex/presentation/widgets/codex_entry/polarity.dart';
 import 'package:warframestat_api_models/entities.dart';
 
 import '../../../../../core/widgets/widgets.dart';
@@ -38,6 +39,20 @@ class FrameStats extends StatelessWidget {
           if (powerSuit is Warframe) _passive(context),
           const SizedBox(height: 16.0),
           Stats(stats: <RowItem>[
+            if (powerSuit is Warframe)
+              RowItem(
+                text: const Text('Aura'),
+                child: Polarity(
+                  polarity: (powerSuit as Warframe).aura,
+                ),
+              ),
+            if (powerSuit.polarities.isNotEmpty)
+              RowItem(
+                text: const Text('Polarties'),
+                child: PreinstalledPolarties(
+                  polarities: powerSuit.polarities,
+                ),
+              ),
             RowItem(
               text: const Text('Shield'),
               child: Text('${powerSuit.shield}'),

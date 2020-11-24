@@ -11,3 +11,7 @@ extension DateTimeX on DateTime {
 extension ContextX on BuildContext {
   NavisLocalizations get locale => NavisLocalizations.of(this);
 }
+
+extension ThemeX on ThemeData {
+  bool get isDark => brightness == Brightness.dark;
+}

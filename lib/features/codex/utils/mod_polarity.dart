@@ -13,7 +13,26 @@ const _unairu = 'Unairu';
 const _penjaga = 'Penjaga';
 const _umbra = 'Umbra';
 
-String getPolarity(String rarity, String polarity) {
+String getPolarity(String polarity) {
+  switch (polarity) {
+    case _vazarin:
+      return ModFrames.polarityPoint;
+    case _naramon:
+      return ModFrames.polarityCircle;
+    case _zenurik:
+      return ModFrames.polarityMark;
+    case _unairu:
+      return ModFrames.unairu;
+    case _penjaga:
+      return ModFrames.polarityPrecept;
+    case _umbra:
+      return ModFrames.polarityUmbra;
+    default:
+      return ModFrames.polarityTriangle;
+  }
+}
+
+String getPolarityWithRarity(String rarity, String polarity) {
   if (rarity == _common) {
     switch (polarity) {
       case _madurai:
@@ -62,7 +81,6 @@ String getPolarity(String rarity, String polarity) {
         return ModFrames.rarePolarityPrecept;
     }
   }
-
 
   return ModFrames.bronzePolarityTriangle;
 }

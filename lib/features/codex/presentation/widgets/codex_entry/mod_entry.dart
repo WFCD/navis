@@ -282,7 +282,7 @@ class ModFrame extends StatelessWidget {
               top: 19,
               right: 9,
               child: Image.asset(
-                getPolarity(rarity, polarity),
+                getPolarityWithRarity(rarity, polarity),
                 width: 19,
               ),
             ),

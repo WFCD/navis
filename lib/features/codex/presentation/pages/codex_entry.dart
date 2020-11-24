@@ -37,23 +37,7 @@ class CodexEntry extends StatelessWidget {
                 if (item is PowerSuit)
                   FrameStats(powerSuit: item)
                 else if (item is ProjectileWeapon && item.category != 'Pets')
-                  GunStats(
-                    masteryReq: item.masteryReq,
-                    type: item.type,
-                    category: item.category,
-                    accuracy: item.accuracy,
-                    criticalChance: item.criticalChance,
-                    criticalMultiplier: item.criticalMultiplier,
-                    fireRate: item.fireRate,
-                    magazineSize: item.magazineSize,
-                    multishot: item.multishot,
-                    noise: item.noise,
-                    reload: item.reloadTime,
-                    disposition: item.disposition,
-                    procChance: item.statusChance,
-                    trigger: item.trigger,
-                    damageTypes: item.damageTypes,
-                  )
+                  GunStats(projectileWeapon: item)
                 else if (item is MeleeWeapon)
                   MeleeStats(meleeWeapon: item),
                 if (item is FoundryItem && item.components != null)
