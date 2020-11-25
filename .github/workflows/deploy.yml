@@ -6,6 +6,7 @@ env:
   TENNO_CIPHER: ${{ secrets.TENNO_CIPHER }}
   TENNO_FIREBASE: ${{ secrets.TENNO_FIREBASE }}
   TENNO_STORE: ${{ secrets.TENNO_STORE }}
+  NAVIS_SERVICE_ACCOUNT: ${{ secrets.NAVIS_SERVICE_ACCOUNT }}
   FIREBASE_IOS: ${{ secrets.FIREBASE_IOS }}
   FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD: ${{ secrets.FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD }}
   FASTLANE_SESSION: ${{ secrets.FASTLANE_SESSION }}
@@ -55,7 +56,7 @@ jobs:
       - name: Decode service plist
         run: base64 -d <<< $FIREBASE_IOS > ios/Runner/GoogleService-Info.plist
       - name: Build ios using flutter
-        run: flutter build ios
+        run: flutter build ios --no-codesign
       - name: App Store Deploy
         uses: maierj/fastlane-action@v1.4.0
         with:
