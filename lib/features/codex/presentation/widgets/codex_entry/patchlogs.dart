@@ -82,6 +82,9 @@ class PatchlogCard extends StatelessWidget {
           ButtonBar(
             children: [
               TextButton(
+                style: ButtonStyle(
+                  foregroundColor: MaterialStateProperty.all(Colors.white),
+                ),
                 onPressed: () => launchLink(context, patchlog.url),
                 child: const Text('FULL PATCH NOTES'),
               )

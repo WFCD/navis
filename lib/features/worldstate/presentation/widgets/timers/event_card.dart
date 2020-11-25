@@ -17,7 +17,10 @@ class EventCard extends StatelessWidget {
           ListTile(
             title: Text(event.description),
             subtitle: event.tooltip != null ? Text(event.tooltip) : null,
-            trailing: FlatButton(
+            trailing: TextButton(
+              style: ButtonStyle(
+                foregroundColor: MaterialStateProperty.all(Colors.white),
+              ),
               onPressed: () {
                 Navigator.of(context)
                     .pushNamed(EventInformation.route, arguments: event);

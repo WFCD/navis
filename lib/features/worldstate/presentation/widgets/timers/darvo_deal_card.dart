@@ -5,8 +5,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:warframestat_api_models/entities.dart';
 
+import '../../../../../core/utils/extensions.dart';
 import '../../../../../core/utils/helper_methods.dart';
-import '../../../../../core/widgets/custom_card.dart';
 import '../../../../../core/widgets/widgets.dart';
 import '../../../../../features/worldstate/presentation/bloc/solsystem_bloc.dart';
 
@@ -107,12 +107,13 @@ class _DealWidgetState extends State<DealWidget> {
                         ]),
                     ButtonBar(children: <Widget>[
                       if (urlExist)
-                        FlatButton(
-                          onPressed: () => launchLink(context, deal.wikiaUrl),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(2.0),
+                        TextButton(
+                          style: ButtonStyle(
+                            foregroundColor:
+                                MaterialStateProperty.all(Colors.white),
                           ),
-                          child: const Text('See Wikia'),
+                          onPressed: () => launchLink(context, deal.wikiaUrl),
+                          child: Text(context.locale.seeWikia),
                         ),
                     ])
                   ],

@@ -11,24 +11,15 @@ class TraderCard extends StatelessWidget {
   final VoidTrader trader;
 
   Widget _buildButton(BuildContext context, List<InventoryItem> inventory) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 4.0, vertical: 8.0),
-      child: Material(
-        elevation: 2.0,
-        color: primary,
-        borderRadius: BorderRadius.circular(4.0),
-        child: InkWell(
-          onTap: () => Navigator.of(context)
-              .pushNamed(BaroInventory.route, arguments: inventory),
-          child: Container(
-              width: 500.0,
-              height: 30.0,
-              alignment: Alignment.center,
-              child: Text(
-                context.locale.baroInventory,
-                style: const TextStyle(fontSize: 17.0, color: Colors.white),
-              )),
-        ),
+    final width = MediaQuery.of(context).size.width;
+
+    return ElevatedButton(
+      style: ElevatedButton.styleFrom(minimumSize: Size(width, 36)),
+      onPressed: () => Navigator.of(context)
+          .pushNamed(BaroInventory.route, arguments: inventory),
+      child: Text(
+        context.locale.baroInventory,
+        style: const TextStyle(fontSize: 17.0, color: Colors.white),
       ),
     );
   }
@@ -75,7 +66,7 @@ class TraderCard extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 2.0),
-        if (trader.active) _buildButton(context, trader.inventory)
+        _buildButton(context, trader.inventory)
       ]),
     );
   }
