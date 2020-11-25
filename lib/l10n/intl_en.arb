@@ -80,7 +80,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "seeWikia": "See details",
+  "seeWikia": "See Wikia",
   "@seeWikia": {
     "description": "General button to wikia of given item",
     "type": "text",
