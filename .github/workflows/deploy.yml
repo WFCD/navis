@@ -21,9 +21,10 @@ jobs:
         with:
           channel: stable
       - name: Decode signing key and services json
-        run: base64 -d <<< $TENNO_STORE > android/keystore.jks
-        run: base64 -d <<< $TENNO_FIREBASE > android/app/google-services.json
-        run: base64 -d <<< $NAVIS_SERVICE_ACCOUNT > android/app/fastlane.json
+        run: | 
+          base64 -d <<< $TENNO_STORE > android/keystore.jks
+          base64 -d <<< $TENNO_FIREBASE > android/app/google-services.json
+          base64 -d <<< $NAVIS_SERVICE_ACCOUNT > android/app/fastlane.json
       - name: Build App bundle  
         run: flutter pub get
         run: flutter build appbundle
