@@ -660,31 +660,31 @@
     "type": "text",
     "placeholder": {}
   },
-  "shieldTitle": "shield",
+  "shieldTitle": "Shield",
   "@shieldTitle": {
     "description": "Title for shield value",
     "typ": "text",
     "placeholder": {}
   },
-  "armorTitle": "shield",
+  "armorTitle": "Armor",
   "@armorTitle": {
     "description": "Title for armor value",
     "typ": "text",
     "placeholder": {}
   },
-  "healthTitle": "shield",
+  "healthTitle": "Health",
   "@healthTitle": {
     "description": "Title for health value",
     "typ": "text",
     "placeholder": {}
   },
-  "powerTitle": "shield",
+  "powerTitle": "Power",
   "@powerTitle": {
     "description": "Title for power value",
     "typ": "text",
     "placeholder": {}
   },
-  "sprintSpeedTitle": "shield",
+  "sprintSpeedTitle": "Sprint Speed",
   "@sprintSpeedTitle": {
     "description": "Title for sprint speed value",
     "typ": "text",
