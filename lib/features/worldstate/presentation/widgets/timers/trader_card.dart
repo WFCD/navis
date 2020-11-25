@@ -66,7 +66,7 @@ class TraderCard extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 2.0),
-        _buildButton(context, trader.inventory)
+        if (trader.active) _buildButton(context, trader.inventory)
       ]),
     );
   }
