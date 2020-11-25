@@ -373,13 +373,13 @@
         "placeholder": {}
     },
     "planetCyclesNotificationTitle": "오픈 월드 주기",
-    "@planetCycleNotificationTitle": {
+    "@planetCyclesNotificationTitle": {
         "description": "Main title for open world notifications",
         "type": "text",
         "placeholder": {}
     },
     "planetCyclesNotificationDescription": "오픈 월드의 주기에 대한 알림을 받습니다.",
-    "@planetCycleNotificationDescription": {
+    "@planetCyclesNotificationDescription": {
         "description": "Main description for open world notifications",
         "type": "text",
         "placeholder": {}

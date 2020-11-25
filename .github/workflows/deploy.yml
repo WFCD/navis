@@ -14,15 +14,14 @@ jobs:
         with:
           channel: stable
       - name: Decode signing key and services json
-        run: |
-          flutter pub get
-          flutter build apk --split-per-abi
-          flutter clean # Cleaning before builds help remove an problems in between them
-          flutter build appbundle
-      - name: Build App bundle
+        run: base64 -d <<< $TENNO_STORE > android/keystore.jks
+        run: base64 -d <<< $TENNO_FIREBASE > android/app/google-services.json
+        run: base64 -d <<< $NAVIS_SERVICE_ACCOUNT > android/app/fastlane.json
+      - name: Build App bundle  
+        run: flutter pub get
         run: flutter build appbundle
       - name: Google Play Store Deploy
-        uses: maierj/fastlane-action@v1.4.0
+        uses: maierj/fastlane-action@v1
         with:
           lane: beta
           subdirectory: android
@@ -33,32 +32,7 @@ jobs:
       - name: Github Releases Deploy
         uses: xresloader/upload-to-github-release@v1
         env:
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+            GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         with:
-          file: "build/app/outputs/apk/release/*.apk"
-          tags: true
-  ios-release: # Github's MacOS images come with fastlane preinstalled
-    runs-on: macos-latest
-    strategy:
-      fail-fast: true
-    steps:
-      - uses: actions/checkout@v2
-      - uses: subosito/flutter-action@v1
-        with:
-          channel: stable
-      - name: Decode signing key and services json
-        run: base64 -d <<< $TENNO_FIREBASE > android/app/google-services.json
-      - name: Build ios using flutter
-        run: flutter build ios
-      - name: App Store Deploy
-        uses: maierj/fastlane-action@v1.4.0
-        with:
-          lane: beta
-          subdirectory: ios
-      - name: Github Releases Deploy
-        uses: xresloader/upload-to-github-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-        with:
-          file: "ios/app-ios-release.ipa"
-          tags: true
+            file: "build/app/outputs/apk/release/*.apk"
+            tags: true      

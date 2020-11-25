@@ -373,13 +373,13 @@
         "placeholder": {}
     },
     "planetCyclesNotificationTitle": "Циклы планет",
-    "@planetCycleNotificationTitle": {
+    "@planetCyclesNotificationTitle": {
         "description": "Main title for open world notifications",
         "type": "text",
         "placeholder": {}
     },
     "planetCyclesNotificationDescription": "О циклах на открытых локациях.",
-    "@planetCycleNotificationDescription": {
+    "@planetCyclesNotificationDescription": {
         "description": "Main description for open world notifications",
         "type": "text",
         "placeholder": {}
