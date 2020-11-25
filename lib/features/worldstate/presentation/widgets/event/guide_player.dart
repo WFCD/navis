@@ -89,8 +89,8 @@ class _YoutubePlayerState extends State<EventVideoPlayer> {
 
   @override
   void dispose() {
-    _videoPlayerController.dispose();
-    _chewieController.dispose();
+    _videoPlayerController?.dispose();
+    _chewieController?.dispose();
     super.dispose();
   }
 }
