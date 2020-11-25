@@ -3,6 +3,7 @@ class SettingsKeys {
   static const String dateformatKey = 'dateformat';
   static const String theme = 'theme';
   static const String codexDatabase = 'database';
+  static const String backKey = 'back_key';
 }
 
 class NotificationKeys {
@@ -12,6 +13,8 @@ class NotificationKeys {
   static const String nightKey = 'cetus_night';
   static const String warmKey = 'vallis_warm';
   static const String coldKey = 'vallis_cold';
+  static const String vomeKey = 'cambion_vome';
+  static const String fassKey = 'cambion_fass';
 
   static const String alertsKey = 'rare_alerts';
   static const String baroKey = 'baro';
@@ -78,12 +81,4 @@ class NotificationKeys {
   static const String strunBarrel = 'strun_barrel';
   static const String strunReciever = 'strun_reciever';
   static const String strunStock = 'strun_stock';
-
-  static const String lith = 'lith';
-  static const String meso = 'meso';
-  static const String axi = 'axi';
-  static const String requiem = 'requiem';
-
-  static const excavation = 'excavation';
-  static const mobileDefense = 'mobile_defense';
 }

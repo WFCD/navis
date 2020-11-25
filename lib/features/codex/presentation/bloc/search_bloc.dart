@@ -1,0 +1,139 @@
+import 'dart:async';
+
+import 'package:bloc/bloc.dart';
+import 'package:logging/logging.dart';
+import 'package:navis/core/error/exceptions.dart';
+import 'package:navis/features/codex/domian/usercases/search_items.dart';
+import 'package:rxdart/rxdart.dart';
+import 'package:supercharged/supercharged.dart';
+import 'package:warframestat_api_models/entities.dart';
+
+import 'search_event.dart';
+import 'search_state.dart';
+
+final _logger = Logger('Usersettings');
+
+class SearchBloc extends Bloc<SearchEvent, SearchState> {
+  SearchBloc(this.searchItems) : super(CodexSearchEmpty());
+
+  final SearchItems searchItems;
+
+  List<Item> _originalResults;
+
+  @override
+  Stream<Transition<SearchEvent, SearchState>> transformEvents(
+    Stream<SearchEvent> events,
+    TransitionFunction<SearchEvent, SearchState> transitionFn,
+  ) {
+    return super.transformEvents(
+      events.debounceTime(500.milliseconds).distinct(),
+      transitionFn,
+    );
+  }
+
+  @override
+  Stream<SearchState> mapEventToState(
+    SearchEvent event,
+  ) async* {
+    if (event is SearchCodex) {
+      final text = event.text;
+
+      if (text.isEmpty) {
+        yield CodexSearchEmpty();
+      } else {
+        yield CodexSearching();
+
+        try {
+          final results = await searchItems(text);
+
+          yield results.fold((l) => matchFailure<SearchState>(l), (r) {
+            _originalResults = r;
+            return CodexSuccessfulSearch(r.cast<Item>());
+          });
+        } catch (e) {
+          yield const CodexSearchError('Unknown Error occuroed');
+        }
+      }
+    }
+
+    if (event is SearchFilter) {
+      yield CodexSearching();
+      final filteredResults = _filterResults(event.category);
+
+      if (filteredResults == null) {
+        yield CodexSuccessfulSearch(_originalResults);
+      }
+
+      yield CodexSuccessfulSearch(filteredResults);
+    }
+  }
+
+  List<Item> _filterResults(String category) {
+    if (FilterCategories.categories.contains(category)) {
+      if (category == FilterCategories.all) {
+        return _originalResults;
+      } else {
+        final results = List<Item>.from(_originalResults);
+
+        results.retainWhere((e) => e.category == category);
+
+        return results;
+      }
+    }
+
+    _logger.shout('No built in category used returning original results');
+    return null;
+  }
+}
+
+class FilterCategories {
+  static const categories = <String>[
+    all,
+    arcanes,
+    archwing,
+    archgun,
+    archmelee,
+    enemy,
+    fish,
+    gear,
+    glyphs,
+    melee,
+    misc,
+    mods,
+    node,
+    pets,
+    primary,
+    quests,
+    relics,
+    resources,
+    secondary,
+    sentinels,
+    sigils,
+    skins,
+    warframes
+  ];
+
+  static const all = 'All';
+  static const arcanes = 'Arcanes';
+  static const archwing = 'Archwing';
+  static const archgun = 'Arch-Gun';
+  static const archmelee = 'Arch-Melee';
+  static const enemy = 'Enemy';
+  static const fish = 'Fish';
+  static const gear = 'Gear';
+  static const glyphs = 'Glyphs';
+  static const melee = 'Melee';
+  static const misc = 'Misc';
+  static const mods = 'Mods';
+  static const node = 'Node';
+  static const pets = 'Pets';
+  static const primary = 'Primary';
+  static const quests = 'Quests';
+  static const relics = 'Relics';
+  static const resources = 'Resources';
+  static const secondary = 'Secondary';
+  static const sentinels = 'Sentinels';
+  static const sigils = 'Sigils';
+  static const skins = 'Skins';
+  static const warframes = 'Warframes';
+}

@@ -1,7 +1,14 @@
 name: Deploy
 on:
   release:
-    types: [published, created]
+    types: [created]
+env:
+  TENNO_CIPHER: ${{ secrets.TENNO_CIPHER }}
+  TENNO_FIREBASE: ${{ secrets.TENNO_FIREBASE }}
+  TENNO_STORE: ${{ secrets.TENNO_STORE }}
+  FIREBASE_IOS: ${{ FIREBASE_IOS }}
+  FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD: ${{ FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD }}
+  FASTLANE_SESSION: ${{ FASTLANE_SESSION }}
 jobs:
   android-release:
     runs-on: ubuntu-latest
@@ -21,7 +28,7 @@ jobs:
         run: flutter pub get
         run: flutter build appbundle
       - name: Google Play Store Deploy
-        uses: maierj/fastlane-action@v1
+        uses: maierj/fastlane-action@v1.4.0
         with:
           lane: beta
           subdirectory: android
@@ -36,3 +43,28 @@ jobs:
         with:
             file: "build/app/outputs/apk/release/*.apk"
             tags: true      
+  ios: # Github's MacOS images come with xcode preinstalled
+    runs-on: macos-latest
+    strategy:
+      fail-fast: true
+    steps:
+      - uses: actions/checkout@v2
+      - uses: subosito/flutter-action@v1
+        with:
+          channel: stable
+      - name: Decode service plist
+        run: base64 -d <<< $FIREBASE_IOS > ios/Runner/GoogleService-Info.plist
+      - name: Build ios using flutter
+        run: flutter build ios
+      - name: App Store Deploy
+        uses: maierj/fastlane-action@v1.4.0
+        with:
+          lane: beta
+          subdirectory: ios
+      - name: Github Releases Deploy
+        uses: xresloader/upload-to-github-release@v1
+        env:
+            GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+        with:
+            file: "ios/app-ios-release.ipa"
+            tags: true    

@@ -1,0 +1,82 @@
+import 'package:flutter/material.dart';
+import 'package:navis/core/utils/extensions.dart';
+import 'package:navis/core/widgets/custom_card.dart';
+import 'package:navis/core/widgets/widgets.dart';
+import 'package:navis/features/worldstate/presentation/pages/bounties.dart';
+import 'package:navis/features/worldstate/presentation/pages/nightwaves.dart';
+import 'package:navis/features/worldstate/utils/faction_utils.dart';
+import 'package:responsive_builder/responsive_builder.dart';
+import 'package:warframestat_api_models/entities.dart';
+
+import 'syndicate_icon.dart';
+
+class SyndicateCard extends StatelessWidget {
+  const SyndicateCard({
+    this.name,
+    this.caption,
+    this.syndicate,
+    this.onTap,
+  }) : assert(
+            name == null || syndicate == null,
+            'If name is null then it will default\n'
+            'to Syndicate.name instead');
+
+  final String name, caption;
+
+  /// [name] doesn't need to be applied if this is not null.
+  final Syndicate syndicate;
+
+  final void Function() onTap;
+
+  void _onTap(BuildContext context) {
+    final _syndicate = syndicateStringToEnum(name ?? syndicate.id);
+
+    switch (_syndicate) {
+      case SyndicateFaction.nightwave:
+        Navigator.of(context).pushNamed(NightwavesPage.route);
+        break;
+      default:
+        Navigator.of(context)
+            .pushNamed(BountiesPage.route, arguments: syndicate);
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
+    final mediaQuery = MediaQuery.of(context);
+    final syndicateName = syndicateStringToEnum(name ?? syndicate.id);
+
+    final titleStyle = textTheme.subtitle1
+        .copyWith(color: Typography.whiteMountainView.subtitle1.color);
+
+    final captionStyle = textTheme.caption
+        .copyWith(color: Typography.whiteMountainView.caption.color);
+
+    return ResponsiveBuilder(
+        builder: (BuildContext context, SizingInformation sizing) {
+      return InkWell(
+        onTap: onTap ?? () => _onTap(context),
+        customBorder:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(4.0)),
+        child: CustomCard(
+          color: syndicateName.backgroundColor,
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+              vertical: (mediaQuery.size.longestSide / 100) * 1.5,
+            ),
+            child: ListTile(
+              leading: GetSyndicateIcon(syndicate: syndicateName),
+              title: Text(name ?? syndicate.name.replaceFirst('Syndicate', ''),
+                  style: titleStyle),
+              subtitle: Text(
+                caption ?? context.locale.tapForMoreDetails,
+                style: captionStyle,
+              ),
+            ),
+          ),
+        ),
+      );
+    });
+  }
+}

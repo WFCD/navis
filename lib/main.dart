@@ -2,56 +2,59 @@ import 'dart:async';
 
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
-import 'package:navis/app.dart';
-import 'package:navis/blocs/bloc.dart';
-import 'package:navis/services/repository.dart';
-import 'package:navis/services/storage/cache_storage.service.dart';
-import 'package:navis/services/storage/persistent_storage.service.dart';
-import 'package:package_info/package_info.dart';
+import 'package:logging/logging.dart';
+import 'package:navis/injection_container.dart';
+import 'package:wfcd_client/wfcd_client.dart';
+import 'package:provider/provider.dart';
+
+import 'core/app.dart';
+import 'core/bloc/navigation_bloc.dart';
+import 'core/local/user_settings.dart';
+import 'core/services/notifications.dart';
+import 'features/codex/presentation/bloc/search_bloc.dart';
+import 'features/worldstate/presentation/bloc/solsystem_bloc.dart';
+import 'injection_container.dart' as di;
 
 Future<void> main() async {
+  Logger.root.onRecord.listen((record) {
+    print('${record.level.name}: ${record.time}: ${record.message}');
+  });
+
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
 
-  HydratedBloc.storage = await HydratedStorage.build();
-
-  runZonedGuarded(startApp, FirebaseCrashlytics.instance.recordError);
-
   SystemChrome.setSystemUIOverlayStyle(
       const SystemUiOverlayStyle(statusBarColor: Colors.transparent));
-}
 
-Future<void> startApp() async {
-  final cache = CacheStorageService();
-  final persistent = PersistentStorageService();
+  await runZoned(() async {
+    HydratedBloc.storage = await HydratedStorage.build();
 
-  await cache.startInstance();
-  await persistent.startInstance();
+    await Firebase.initializeApp();
 
-  final repository =
-      Repository(persistent, cache, await PackageInfo.fromPlatform());
+    await di.init();
+    if (sl<Usersettings>().platform == null) {
+      sl<Usersettings>().platform = GamePlatforms.pc;
+      await sl<NotificationService>().subscribeToPlatform(GamePlatforms.pc);
+    }
 
-  runApp(
-    MultiBlocProvider(
-      providers: [
-        BlocProvider<NavigationBloc>(create: (_) => NavigationBloc()),
-        BlocProvider<SearchBloc>(create: (_) => SearchBloc(repository)),
-        BlocProvider<WorldstateBloc>(
-          create: (context) {
-            return WorldstateBloc(
-              api: Repository.warframestat,
-              persistent: persistent,
-              cache: cache,
-            );
-          },
+    runApp(
+      MultiBlocProvider(
+        providers: [
+          BlocProvider(create: (_) => sl<NavigationBloc>()),
+          BlocProvider(create: (_) => sl<SolsystemBloc>()),
+          BlocProvider(create: (_) => sl<SearchBloc>()),
+        ],
+        child: ChangeNotifierProvider.value(
+          value: sl<Usersettings>(),
+          child: const NavisApp(),
         ),
-      ],
-      child: Navis(repository),
-    ),
-  );
+      ),
+    );
+  }, onError: FirebaseCrashlytics.instance.recordError);
 }

@@ -42,6 +42,7 @@ android {
         targetSdkVersion 30
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
+        multiDexEnabled true
     }
 
     signingConfigs {
@@ -54,6 +55,11 @@ android {
     }
 
     buildTypes {
+        debug {
+            versionNameSuffix "-debug"
+            signingConfig signingConfigs.debug
+        }
+        
         release {
             signingConfig signingConfigs.release
 
@@ -77,7 +83,8 @@ flutter {
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'com.google.firebase:firebase-messaging:20.2.4'
+    implementation 'com.google.firebase:firebase-messaging:21.0.0'
+    implementation 'com.android.support:multidex:1.0.3'
 }
 
 apply plugin: 'io.fabric'

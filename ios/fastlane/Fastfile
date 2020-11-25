@@ -10,6 +10,7 @@
 #     https://docs.fastlane.tools/plugins/available-plugins
 #
 setup_travis
+update_fastlane
 
 default_platform(:ios)
 
@@ -22,7 +23,7 @@ platform :ios do
 
       # This will build again, becasue currently flutter builds an .app
       # instead of a .ipa which isn't good for deployment to App Store
-      build_ios_app(scheme: "Runner", export_method: "app-store")
+      build_ios_app(scheme: "Runner", export_method: "app-store", output_name: "app-ios-release.ipa")
       upload_to_testflight(changelog: "Stability testing", distribute_external: true, groups: ["Zariman Ten Zero"])
     rescue => exception
       raise exception unless exception.message.include?('Error uploading ipa file')

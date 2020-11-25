@@ -1,0 +1,52 @@
+{
+  "Thermia Fractures": {
+    "keyArt": "http://n9e5v4d8.ssl.hwcdn.net/uploads/f07ee60119e2c8efc746da7ecf4cb49e.png",
+    "howTo": [
+      {
+        "id": "JUCQO6Mywgg",
+        "pThumbnail": "https://yt3.ggpht.com/a/AGF-l7_pYlula3Y5_d0QclRjEjSMoYV1w75yS2tCBg=s48-c-k-c0xffffffff-no-rj-mo"
+      }
+    ],
+    "translations": []
+  },
+  "Plague Star": {
+    "keyArt": "",
+    "howTo": [],
+    "translations": []
+  },
+  "Ghoul Purge": {
+    "keyArt": "https://i.imgur.com/lSyLCJY.jpg",
+    "howTo": [
+      {
+        "id": "QjMUwxZ6isk",
+        "pThumbnail": "https://yt3.ggpht.com/a/AATXAJwOj7kpz1bYqzNv385pLSXwGHr6bDEiYYE6fA=s288-c-k-c0xffffffff-no-rj-mo"
+      }
+    ],
+    "translations": []
+  },
+  "Balor Fomorian": {
+    "keyArt": "",
+    "howTo": [],
+    "translations": []
+  },
+  "Razorback Armada": {
+    "keyArt": "https://www.framemastery.com/wp-content/uploads/razorback_thumbnail_01.jpg",
+    "howTo": [],
+    "translations": []
+  },
+  "Scarlet Spear": {
+    "keyArt": "http://n9e5v4d8.ssl.hwcdn.net/uploads/4be3cad344a1bbedf0be2955e471b7c1.jpg",
+    "howTo": [],
+    "translations": []
+  },
+  "Dog Days": {
+    "keyArt": "https://content.invisioncic.com/Mwarframe/monthly_2020_07/WF_DogDays_Keyart_4K.thumb.png.d0ff1b703574a94da2a075fd21c00e4a.png",
+    "howTo": [
+      {
+        "id": "-V5IroPjJPU",
+        "pThumbnail": "https://yt3.ggpht.com/a/AATXAJyIoRVPA4fR5eKP9vbNmLgGIMCf_OOv3OA7obJY=s48-c-k-c0xffffffff-no-rj-mo"
+      }
+    ],
+    "translations": []
+  }
+}
