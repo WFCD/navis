@@ -35,7 +35,7 @@ class CycleEntry {
         assert(name != null),
         assert(cycle != null);
 
-  final List<Icon> states;
+  final List<Widget> states;
   final String name;
   final CycleObject cycle;
 }

@@ -74,7 +74,9 @@ class LocalizedFilter {
       NotificationKeys.earthDayKey: localizations.earthDayOption,
       NotificationKeys.earthNightKey: localizations.earthNightOption,
       NotificationKeys.warmKey: localizations.vallisWarmOption,
-      NotificationKeys.coldKey: localizations.vallisColdOption
+      NotificationKeys.coldKey: localizations.vallisColdOption,
+      NotificationKeys.fassKey: localizations.cambionFassOption,
+      NotificationKeys.vomeKey: localizations.cambionVomeOption,
     };
   }
 

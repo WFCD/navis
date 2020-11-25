@@ -45,6 +45,11 @@ List<CycleEntry> _buildCycles(
     Icon(Icons.ac_unit, color: Colors.blue, size: size)
   ];
 
+  final cambionCycle = <Widget>[
+    StaticBox.text(text: 'Fass'),
+    StaticBox.text(text: 'Vome')
+  ];
+
   return <CycleEntry>[
     CycleEntry(
       name: locale.earthCycleTitle,
@@ -60,6 +65,11 @@ List<CycleEntry> _buildCycles(
       name: locale.vallisCycleTitle,
       states: tempCycle,
       cycle: worldstate.vallisCycle,
+    ),
+    CycleEntry(
+      name: locale.cambionCycleTitle,
+      states: cambionCycle,
+      cycle: worldstate.cetusCycle,
     )
   ];
 }

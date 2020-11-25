@@ -13,6 +13,8 @@ class NotificationKeys {
   static const String nightKey = 'cetus_night';
   static const String warmKey = 'vallis_warm';
   static const String coldKey = 'vallis_cold';
+  static const String vomeKey = 'cambion_vome';
+  static const String fassKey = 'cambion_fass';
 
   static const String alertsKey = 'rare_alerts';
   static const String baroKey = 'baro';

@@ -466,6 +466,18 @@
     "type": "text",
     "placeholder": {}
   },
+  "cambionFassOption": "Cambion Fass",
+  "@cambionFassOption": {
+    "description": "Cambion Fass cycle option",
+    "type": "text",
+    "placeholder": {}
+  },
+  "cambionVomeOption": "Cambion Vome",
+  "@cambionVomeOption": {
+    "description": "Cambion Fass cycle option",
+    "type": "text",
+    "placeholder": {}
+  },
   "primeAccessNewsOption": "Prime Access",
   "@primeAccessNewsOption": {
     "description": "Warframe news option",
