@@ -575,5 +575,23 @@
     "description": "Nightwave weekly title",
     "type": "text",
     "placeholder": {}
+  },
+  "seeWikiaTitle": "See Wikia",
+  "@seeWikiaTitle": {
+    "description": "See wikia button title",
+    "type": "text",
+    "placeholder": {}
+  },
+  "seeDetailsTitle": "See details",
+  "@seeDetailsTitle": {
+    "description": "See details button title",
+    "type": "text",
+    "placeholder": {}
+  },
+  "voidTraderTitle": "See Wikia",
+  "@voidTraderTitle": {
+    "description": "See wikia button title",
+    "type": "text",
+    "placeholder": {}
   }
 }
