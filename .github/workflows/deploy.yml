@@ -44,27 +44,27 @@ jobs:
             file: "build/app/outputs/apk/release/*.apk"
             tags: true      
   ios: # Github's MacOS images come with xcode preinstalled
-  runs-on: macos-latest
-  strategy:
-    fail-fast: true
-  steps:
-    - uses: actions/checkout@v2
-    - uses: subosito/flutter-action@v1
-      with:
-        channel: stable
-    - name: Decode service plist
-      run: base64 -d <<< $FIREBASE_IOS > ios/Runner/GoogleService-Info.plist
-    - name: Build ios using flutter
-      run: flutter build ios
-    - name: App Store Deploy
-      uses: maierj/fastlane-action@v1.4.0
-      with:
-        lane: beta
-        subdirectory: ios
-    - name: Github Releases Deploy
-      uses: xresloader/upload-to-github-release@v1
-      env:
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-      with:
-          file: "ios/app-ios-release.ipa"
-          tags: true    
+    runs-on: macos-latest
+    strategy:
+      fail-fast: true
+    steps:
+      - uses: actions/checkout@v2
+      - uses: subosito/flutter-action@v1
+        with:
+          channel: stable
+      - name: Decode service plist
+        run: base64 -d <<< $FIREBASE_IOS > ios/Runner/GoogleService-Info.plist
+      - name: Build ios using flutter
+        run: flutter build ios
+      - name: App Store Deploy
+        uses: maierj/fastlane-action@v1.4.0
+        with:
+          lane: beta
+          subdirectory: ios
+      - name: Github Releases Deploy
+        uses: xresloader/upload-to-github-release@v1
+        env:
+            GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+        with:
+            file: "ios/app-ios-release.ipa"
+            tags: true    
