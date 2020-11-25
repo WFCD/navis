@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:logging/logging.dart';
 import 'package:navis/core/notification_handler/handler.dart';
@@ -21,7 +23,7 @@ class NotificationService {
     _messaging.requestNotificationPermissions(iosSettings);
     _messaging.configure(
       onMessage: handler,
-      onBackgroundMessage: handler,
+      onBackgroundMessage: Platform.isIOS ? null : handler,
     );
   }
 
