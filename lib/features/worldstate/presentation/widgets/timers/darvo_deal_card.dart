@@ -109,8 +109,8 @@ class _DealWidgetState extends State<DealWidget> {
                       if (urlExist)
                         TextButton(
                           style: ButtonStyle(
-                            foregroundColor:
-                                MaterialStateProperty.all(Colors.white),
+                            foregroundColor: MaterialStateProperty.all(
+                                Theme.of(context).textTheme.button.color),
                           ),
                           onPressed: () => launchLink(context, deal.wikiaUrl),
                           child: Text(context.locale.seeWikia),

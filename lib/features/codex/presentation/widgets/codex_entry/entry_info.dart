@@ -38,7 +38,8 @@ class BasicItemInfo extends SliverPersistentHeaderDelegate {
               actions: [
                 TextButton(
                   style: ButtonStyle(
-                    foregroundColor: MaterialStateProperty.all(Colors.white),
+                    foregroundColor: MaterialStateProperty.all(
+                        Theme.of(context).textTheme.button.color),
                   ),
                   onPressed: () => launchLink(context, wikiaUrl),
                   child: const Text('Seee wikia'),

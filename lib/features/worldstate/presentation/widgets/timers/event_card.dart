@@ -19,7 +19,8 @@ class EventCard extends StatelessWidget {
             subtitle: event.tooltip != null ? Text(event.tooltip) : null,
             trailing: TextButton(
               style: ButtonStyle(
-                foregroundColor: MaterialStateProperty.all(Colors.white),
+                foregroundColor: MaterialStateProperty.all(
+                    Theme.of(context).textTheme.button.color),
               ),
               onPressed: () {
                 Navigator.of(context)
