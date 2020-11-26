@@ -80,7 +80,7 @@
         "type": "text",
         "placeholders": {}
     },
-    "seeWikia": "See Wikia",
+    "seeWikia": "Siehe Wikia",
     "@seeWikia": {
         "description": "General button to wikia of given item",
         "type": "text",
@@ -364,7 +364,7 @@
         "type": "text",
         "placeholder": {}
     },
-    "warframeNewsTitle": "Warframe News",
+    "warframeNewsTitle": "Warframe Nachrichten",
     "@warframeNewsTitle": {
         "description": "Main Title for Warframe news page",
         "type": "text",
@@ -588,13 +588,13 @@
         "type": "text",
         "placeholder": {}
     },
-    "dailyNightwaveTitle": "Daily",
+    "dailyNightwaveTitle": "Täglich",
     "@dailyNightwaveTitle": {
         "description": "Nightwave daily title",
         "type": "text",
         "placeholder": {}
     },
-    "weeklyNightwaveTitle": "Weekly",
+    "weeklyNightwaveTitle": "Wöchentlich",
     "@weeklyNightwaveTitle": {
         "description": "Nightwave weekly title",
         "type": "text",
@@ -624,25 +624,25 @@
         "type": "text",
         "placholder": {}
     },
-    "howToFishTitle": "How to fish",
+    "howToFishTitle": "Wie man angelt",
     "@howToFishTitle": {
         "description": "How to fish link title",
         "type": "text",
         "placholder": {}
     },
-    "recentNewsCategoryTitle": "Most Recent News",
+    "recentNewsCategoryTitle": "Neueste Nachrichten",
     "@recentNewsCategoryTitle": {
         "description": "Title for recent news title",
         "type": "text",
         "placeholder": {}
     },
-    "pastNewsCategoryTitle": "Past News",
+    "pastNewsCategoryTitle": "Vorherige Nachrichten",
     "@pastNewsCategoryTitle": {
         "description": "Title for past Warframe news",
         "type": "text",
         "placeholder": {}
     },
-    "warframePassiveTitle": "Passive",
+    "warframePassiveTitle": "Passiv",
     "@warframePassiveTitle": {
         "description": "Warframes passive title",
         "type": "text",
@@ -654,25 +654,25 @@
         "type": "text",
         "placeholder": {}
     },
-    "preinstalledPolarities": "Preinstalled Polarities",
+    "preinstalledPolarities": "Vorinstallierte Polaritäten",
     "@preinstalledPolarities": {
         "description": "Preinstalled polarites title for items",
         "type": "text",
         "placeholder": {}
     },
-    "shieldTitle": "Shield",
+    "shieldTitle": "Schild",
     "@shieldTitle": {
         "description": "Title for shield value",
         "typ": "text",
         "placeholder": {}
     },
-    "armorTitle": "Armor",
+    "armorTitle": "Rüstung",
     "@armorTitle": {
         "description": "Title for armor value",
         "typ": "text",
         "placeholder": {}
     },
-    "healthTitle": "Health",
+    "healthTitle": "Gesundheit",
     "@healthTitle": {
         "description": "Title for health value",
         "typ": "text",
@@ -684,25 +684,25 @@
         "typ": "text",
         "placeholder": {}
     },
-    "sprintSpeedTitle": "Sprint Speed",
+    "sprintSpeedTitle": "Sprintgeschwindigkeit",
     "@sprintSpeedTitle": {
         "description": "Title for sprint speed value",
         "typ": "text",
         "placeholder": {}
     },
-    "abilitiesTitle": "Abilites",
+    "abilitiesTitle": "Fähigkeiten",
     "@abilitiesTitle": {
         "description": "Title for warframe, archwings, and Necromech abilites",
         "typ": "text",
         "placeholder": {}
     },
-    "componentsTitle": "Components",
+    "componentsTitle": "Komponenten",
     "@componentsTitle": {
         "description": "Title for item components",
         "typ": "text",
         "placeholder": {}
     },
-    "fullPatchNotesTitle": "FULL PATCH NOTES",
+    "fullPatchNotesTitle": "VOLLSTÄNDIGE PATCH NOTIZEN",
     "@fullPatchNotesTitle": {
         "description": "Full Patch Notes Title",
         "typ": "text",
@@ -714,13 +714,13 @@
         "type": "text",
         "placeholder": {}
     },
-    "weaponTypeTitle": "Weapon Type",
+    "weaponTypeTitle": "Waffentyp",
     "@weaponTypeTitle": {
         "description": "Weapon item type",
         "type": "text",
         "placeholder": {}
     },
-    "accuracyTitle": "Accuracy",
+    "accuracyTitle": "Genauigkeit",
     "@accuracyTitle": {
         "description": "Weapon accuracy title",
         "type": "text",
@@ -738,13 +738,13 @@
         "type": "text",
         "placeholder": {}
     },
-    "fireRateTitle": "Fire Rate",
+    "fireRateTitle": "Feuerrate",
     "@fireRateTitle": {
         "description": "Weapon fire rate",
         "type": "text",
         "placeholder": {}
     },
-    "magazineTitle": "Magazine",
+    "magazineTitle": "Magazin",
     "@magazineTitle": {
         "description": "Weapon magazine size title",
         "type": "text",
@@ -762,7 +762,7 @@
         "type": "text",
         "placeholder": {}
     },
-    "reloadTitle": "Reload",
+    "reloadTitle": "Nachladen",
     "@reloadTitle": {
         "description": "Weapon item type",
         "type": "text",
@@ -780,19 +780,19 @@
         "type": "text",
         "placeholder": {}
     },
-    "triggerTitle": "Trigger",
+    "triggerTitle": "Auslöser",
     "@triggerTitle": {
         "description": "Weapon item type",
         "type": "text",
         "placeholder": {}
     },
-    "damageTitle": "Damage",
+    "damageTitle": "Schaden",
     "@damageTitle": {
         "description": "Weapon's damage category",
         "type": "text",
         "placeholder": {}
     },
-    "totalDamageTitle": "Total Damage",
+    "totalDamageTitle": "Gesamtschaden",
     "@totalDamageTitle": {
         "description": "Weapon's total damage'",
         "type": "text",
@@ -804,7 +804,7 @@
         "type": "text",
         "placeholder": {}
     },
-    "attackSpeedTitle": "Attack Speed",
+    "attackSpeedTitle": "Angriffsgeschwindigkeit",
     "@attackSpeedTitle": {
         "description": "melee attack speed",
         "type": "text",
@@ -816,7 +816,7 @@
         "type": "text",
         "placeholder": {}
     },
-    "rangeTitle": "Range",
+    "rangeTitle": "Reichweite",
     "@rangeTitle": {
         "description": "Melee's range title",
         "type": "text",
@@ -846,7 +846,7 @@
         "type": "text",
         "placeholder": {}
     },
-    "heavyAttackTitle": "Heavy Attack",
+    "heavyAttackTitle": "Schwerer Angriff",
     "@heavyAttackTitle": {
         "description": "Heavy attack title",
         "type": "text",
