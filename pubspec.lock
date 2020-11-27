@@ -162,13 +162,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.3.6"
-  dartx:
-    dependency: transitive
-    description:
-      name: dartx
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.5.0"
   dartz:
     dependency: "direct main"
     description:
@@ -817,13 +810,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.3.12-nullsafety.5"
-  time:
-    dependency: transitive
-    description:
-      name: time
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.4.0"
   timezone:
     dependency: transitive
     description:
@@ -985,7 +971,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "8358f90016ee9971190e72e7e86fe803f6fbc6ce"
+      resolved-ref: "0c10dd8555940c7bde399bd1828859db1010a810"
       url: "https://github.com/SlayerOrnstein/wfcd_client.git"
     source: git
     version: "2.3.0"

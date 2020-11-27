@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:dartz/dartz.dart';
 import 'package:flutter/foundation.dart';
+import 'package:supercharged/supercharged.dart';
 import 'package:warframestat_api_models/entities.dart';
 import 'package:wfcd_client/wfcd_client.dart';
 
@@ -55,10 +56,11 @@ class WorldstateRepositoryImpl implements WorldstateRepository {
     final cached = cache.getCachedState();
     final age = cached?.timestamp?.difference(now)?.abs();
 
-    if ((age ?? newStateRefresh) >= newStateRefresh) {
+    if ((age ?? 0.seconds) >= newStateRefresh) {
       if (await networkInfo.isConnected) {
         try {
-          final state = await compute(_getWorldstate, usersettings.platform);
+          final state = await compute(_getWorldstate,
+              WorldstateRequest(usersettings.platform, Platform.localeName));
 
           cache.cacheWorldstate(state);
 
@@ -104,8 +106,12 @@ class WorldstateRepositoryImpl implements WorldstateRepository {
     }
   }
 
-  static Future<Worldstate> _getWorldstate(GamePlatforms platform) {
-    return _warframestat.getWorldstate(platform);
+  static Future<Worldstate> _getWorldstate(WorldstateRequest request) {
+    final locale = request.locale.split('_').first;
+    final supportedLocale = SupportedLocaleX.fromLocaleCode(locale);
+
+    return _warframestat.getWorldstate(request.platform,
+        language: supportedLocale);
   }
 
   // Becasue compute needs an entry argument noParam can be anything
@@ -128,4 +134,11 @@ class DealRequest {
 
   final String id;
   final String name;
+}
+
+class WorldstateRequest {
+  const WorldstateRequest(this.platform, this.locale);
+
+  final GamePlatforms platform;
+  final String locale;
 }
