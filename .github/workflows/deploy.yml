@@ -44,12 +44,16 @@ jobs:
         with:
           file: "build/app/outputs/apk/release/*.apk"
           tags: true
+          draft: false
   ios: # Github's MacOS images come with xcode preinstalled
     runs-on: macos-latest
     strategy:
       fail-fast: true
     steps:
       - uses: actions/checkout@v2
+      - uses: webfactory/ssh-agent@v0.4.1
+        with:
+          ssh-private-key: ${{ secrets.FASTLANE_DEPLOY_KEY }}
       - uses: subosito/flutter-action@v1
         with:
           channel: stable
@@ -69,3 +73,4 @@ jobs:
         with:
           file: "ios/app-ios-release.ipa"
           tags: true
+          draft: false
