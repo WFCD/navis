@@ -58,4 +58,4 @@ jobs:
       - name: Build ios using flutter
         run: |
           flutter clean
-          flutter build ios --no-codesign # Don't need to sign this version since it's just a compile test
+          flutter build ios --no-codesign
