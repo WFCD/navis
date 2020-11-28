@@ -3,15 +3,14 @@ on:
   push:
     branches:
       - master
-      - n2.0
   pull_request:
     branches:
       - master
-      - n2.0
 env:
   TENNO_CIPHER: ${{ secrets.TENNO_CIPHER }}
   TENNO_FIREBASE: ${{ secrets.TENNO_FIREBASE }}
   TENNO_STORE: ${{ secrets.TENNO_STORE }}
+  FIREBASE_IOS: ${{ secrets.FIREBASE_IOS }}
 jobs:
   unit_test:
     runs-on: ubuntu-latest
@@ -56,6 +55,4 @@ jobs:
       - name: Decode service plist
         run: base64 -d <<< $FIREBASE_IOS > ios/Runner/GoogleService-Info.plist
       - name: Build ios using flutter
-        run: |
-          flutter clean
-          flutter build ios --no-codesign
+        run: flutter build ios --no-codesign
