@@ -56,4 +56,6 @@ jobs:
       - name: Decode service plist
         run: base64 -d <<< $FIREBASE_IOS > ios/Runner/GoogleService-Info.plist
       - name: Build ios using flutter
-        run: flutter build ios --no-codesign # Don't need to sign this version since it's just a compile test
+        run: |
+          flutter clean
+          flutter build ios --no-codesign # Don't need to sign this version since it's just a compile test
