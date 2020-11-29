@@ -10,6 +10,7 @@ env:
   FIREBASE_IOS: ${{ secrets.FIREBASE_IOS }}
   FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD: ${{ secrets.FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD }}
   FASTLANE_SESSION: ${{ secrets.FASTLANE_SESSION }}
+  MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
 jobs:
   android-release:
     runs-on: ubuntu-latest
