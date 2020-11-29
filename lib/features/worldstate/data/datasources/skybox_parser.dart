@@ -33,7 +33,7 @@ class SkyboxService {
       }
     }();
 
-    return solNode ?? NavisAssets.derelict;
+    return solNode;
   }
 
   String _parseNodePlanet(String node) {

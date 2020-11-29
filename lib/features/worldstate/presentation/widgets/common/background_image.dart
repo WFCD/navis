@@ -10,8 +10,7 @@ class BackgroundImage extends StatelessWidget {
     this.height,
     this.padding,
     this.child,
-  })  : assert(imageUrl != null),
-        super(key: key);
+  }) : super(key: key);
 
   final String imageUrl;
   final Alignment alignment;
@@ -40,11 +39,15 @@ class BackgroundImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CachedNetworkImage(
-      imageUrl: imageUrl,
-      imageBuilder: (context, imageProvider) => _imageBuilder(imageProvider),
-      placeholder: (context, url) => _imageBuilder(_derelict),
-      errorWidget: (context, url, dynamic error) => _imageBuilder(_derelict),
-    );
+    return imageUrl != null
+        ? CachedNetworkImage(
+            imageUrl: imageUrl,
+            imageBuilder: (context, imageProvider) =>
+                _imageBuilder(imageProvider),
+            placeholder: (context, url) => _imageBuilder(_derelict),
+            errorWidget: (context, url, dynamic error) =>
+                _imageBuilder(_derelict),
+          )
+        : _imageBuilder(_derelict);
   }
 }
