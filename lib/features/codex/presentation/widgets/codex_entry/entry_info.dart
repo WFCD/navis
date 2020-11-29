@@ -33,8 +33,10 @@ class BasicItemInfo extends SliverPersistentHeaderDelegate {
           children: [
             const SizedBox(height: 8.0),
             AppBar(
-              elevation: 16.0,
+              elevation: 0.0,
               backgroundColor: Theme.of(context).canvasColor,
+              iconTheme: Theme.of(context).iconTheme,
+              brightness: Theme.of(context).brightness,
               actions: [
                 TextButton(
                   style: ButtonStyle(
