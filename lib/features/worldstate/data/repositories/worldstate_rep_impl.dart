@@ -50,13 +50,13 @@ class WorldstateRepositoryImpl implements WorldstateRepository {
 
   @override
   Future<Either<Failure, Worldstate>> getWorldstate() async {
-    const newStateRefresh = Duration(minutes: 1);
+    const refresh = Duration(minutes: 1);
 
     final now = DateTime.now();
     final cached = cache.getCachedState();
     final age = cached?.timestamp?.difference(now)?.abs();
 
-    if ((age ?? 0.seconds) >= newStateRefresh) {
+    if (cached == null || age >= refresh) {
       if (await networkInfo.isConnected) {
         try {
           final state = await compute(_getWorldstate,
