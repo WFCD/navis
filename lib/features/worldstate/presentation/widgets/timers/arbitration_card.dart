@@ -16,6 +16,7 @@ class ArbitrationCard extends StatelessWidget {
       child: ListTile(
         leading: const Icon(SyndicateGlyphs.hexis, size: 50),
         title: Row(
+          mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             if (arbitration.archwingRequired)
               const Padding(
