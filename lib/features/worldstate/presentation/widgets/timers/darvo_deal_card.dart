@@ -77,19 +77,23 @@ class _DealWidgetState extends State<DealWidget> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    if (snapshot.hasData) ItemImage(imageUrl: deal.imageUrl),
-                    DealDetails(
-                      itemName: deal?.name ?? widget.deal.item,
-                      itemDescription: deal?.description?.isNotEmpty ?? false
-                          ? parseHtmlString(deal?.description)
-                          : null,
-                    ),
+                    if (deal != null && snapshot.hasData) ...{
+                      ItemImage(imageUrl: deal.imageUrl),
+                      DealDetails(
+                        itemName: deal?.name ?? widget.deal.item,
+                        itemDescription: deal?.description?.isNotEmpty ?? false
+                            ? parseHtmlString(deal?.description)
+                            : null,
+                      )
+                    },
                     const SizedBox(height: 16.0),
                     Wrap(
                         crossAxisAlignment: WrapCrossAlignment.center,
                         spacing: 10.0,
                         runSpacing: 5.0,
                         children: <Widget>[
+                          if (deal == null && snapshot.hasData)
+                            StaticBox.text(text: widget.deal.item),
                           // TODO(Ornstein): should probably put a plat icon here instead
                           StaticBox.text(
                             text: '${widget.deal.salePrice}\p',
@@ -105,17 +109,18 @@ class _DealWidgetState extends State<DealWidget> {
                             style: saleInfo,
                           ),
                         ]),
-                    ButtonBar(children: <Widget>[
-                      if (urlExist)
-                        TextButton(
-                          style: ButtonStyle(
-                            foregroundColor: MaterialStateProperty.all(
-                                Theme.of(context).textTheme.button.color),
+                    if (deal != null && snapshot.hasData)
+                      ButtonBar(children: <Widget>[
+                        if (urlExist)
+                          TextButton(
+                            style: ButtonStyle(
+                              foregroundColor: MaterialStateProperty.all(
+                                  Theme.of(context).textTheme.button.color),
+                            ),
+                            onPressed: () => launchLink(context, deal.wikiaUrl),
+                            child: Text(context.locale.seeWikia),
                           ),
-                          onPressed: () => launchLink(context, deal.wikiaUrl),
-                          child: Text(context.locale.seeWikia),
-                        ),
-                    ])
+                      ])
                   ],
                 ),
               )
