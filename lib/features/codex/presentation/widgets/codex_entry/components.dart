@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:navis/features/codex/presentation/pages/component_drops.dart';
 import 'package:warframestat_api_models/entities.dart';
 
 import '../../../../../core/utils/extensions.dart';
@@ -20,7 +21,18 @@ class ItemComponents extends StatelessWidget {
     return Tooltip(
       message: component.name,
       child: InkWell(
-        onTap: () {},
+        onTap: () {
+          if (component.drops != null || component.drops.isNotEmpty) {
+            Navigator.push(
+              context,
+              MaterialPageRoute<void>(
+                builder: (context) => ComponentDrops(
+                  drops: component.drops,
+                ),
+              ),
+            );
+          }
+        },
         child: Container(
           constraints: const BoxConstraints.expand(width: 70, height: 70),
           child: Stack(
