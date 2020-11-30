@@ -43,19 +43,21 @@ class _YoutubePlayerState extends State<EventVideoPlayer> {
       _videoPlayerController = VideoPlayerController.network(
           videoInformation.muxedStreamInfo.first.url.toString());
 
-      setState(() {
-        _chewieController = ChewieController(
-          videoPlayerController: _videoPlayerController,
-          aspectRatio: videoInformation.aspectRatio,
-          autoInitialize: true,
-          showControlsOnInitialize: false,
-          allowedScreenSleep: false,
-          materialProgressColors: ChewieProgressColors(
-            playedColor: Theme.of(context).accentColor,
-            bufferedColor: Colors.white,
-          ),
-        );
-      });
+      if (mounted) {
+        setState(() {
+          _chewieController = ChewieController(
+            videoPlayerController: _videoPlayerController,
+            aspectRatio: videoInformation.aspectRatio,
+            autoInitialize: true,
+            showControlsOnInitialize: false,
+            allowedScreenSleep: false,
+            materialProgressColors: ChewieProgressColors(
+              playedColor: Theme.of(context).accentColor,
+              bufferedColor: Colors.white,
+            ),
+          );
+        });
+      }
     }
   }
 
