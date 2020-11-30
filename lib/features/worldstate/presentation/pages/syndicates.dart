@@ -123,40 +123,50 @@ class _SyndicatePageTabletState extends State<SyndicatePageTablet> {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        Expanded(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              _buildSyndicates(
-                _worldstate.syndicateMissions,
-                onTap: (syn) => _onTap(syn),
-              ),
-              const SizedBox(height: 8.0),
-              if (widget.state.isNightwaveActive)
-                _buildNightwave(
-                  widget.state.worldstate.nightwave,
-                  onTap: (night) => _onTap(night),
-                )
-            ],
-          ),
+    return CustomScrollView(
+      slivers: [
+        SliverOverlapInjector(
+          // This is the flip side of the SliverOverlapAbsorber above.
+          handle: NestedScrollView.sliverOverlapAbsorberHandleFor(context),
         ),
-        const VerticalDivider(),
-        Expanded(
-          child: Center(
-            child: StreamBuilder<Widget>(
-                initialData: const Text('Select Syndicate'),
-                stream: _controller.stream,
-                builder:
-                    (BuildContext context, AsyncSnapshot<Widget> snapshot) {
-                  return AnimatedSwitcher(
-                    duration: const Duration(milliseconds: 500),
-                    child: snapshot.data,
-                  );
-                }),
+        SliverFillRemaining(
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Expanded(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    _buildSyndicates(
+                      _worldstate.syndicateMissions,
+                      onTap: (syn) => _onTap(syn),
+                    ),
+                    const SizedBox(height: 8.0),
+                    if (widget.state.isNightwaveActive)
+                      _buildNightwave(
+                        widget.state.worldstate.nightwave,
+                        onTap: (night) => _onTap(night),
+                      )
+                  ],
+                ),
+              ),
+              const VerticalDivider(width: 2.0),
+              Expanded(
+                child: Center(
+                  child: StreamBuilder<Widget>(
+                      initialData: const Text('Select Syndicate'),
+                      stream: _controller.stream,
+                      builder: (BuildContext context,
+                          AsyncSnapshot<Widget> snapshot) {
+                        return AnimatedSwitcher(
+                          duration: const Duration(milliseconds: 500),
+                          child: snapshot.data,
+                        );
+                      }),
+                ),
+              )
+            ],
           ),
         )
       ],

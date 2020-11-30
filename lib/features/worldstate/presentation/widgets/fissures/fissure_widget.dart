@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:navis/features/worldstate/presentation/widgets/common/skybox_card.dart';
 import 'package:navis/core/widgets/widgets.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 import 'package:warframestat_api_models/entities.dart';
 
 import 'relic_icons.dart';
@@ -34,7 +35,6 @@ class FissureWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final mediaQuery = MediaQuery.of(context);
-    final iconHeight = 6 * (mediaQuery.size.longestSide / 100);
 
     return SkyboxCard(
       node: fissure.node,
@@ -56,7 +56,10 @@ class FissureWidget extends StatelessWidget {
                   return RelicIcons.requiem;
               }
             }(),
-            size: iconHeight,
+            size: getValueForScreenType(
+                context: context,
+                mobile: (mediaQuery.size.longestSide / 100) * 5,
+                tablet: (mediaQuery.size.shortestSide / 100) * 8),
           ),
           Expanded(
             child: Padding(

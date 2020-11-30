@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:navis/core/widgets/widgets.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 
 import '../../../utils/faction_utils.dart';
 
@@ -29,7 +30,10 @@ class GetSyndicateIcon extends StatelessWidget {
             return NavisSysIcons.nightmare;
         }
       }(),
-      size: (mediaQuery.size.longestSide / 100) * 7.5,
+      size: getValueForScreenType(
+          context: context,
+          mobile: (mediaQuery.size.longestSide / 100) * 7,
+          tablet: (mediaQuery.size.shortestSide / 100) * 8),
       color: syndicate.iconColor,
     );
   }

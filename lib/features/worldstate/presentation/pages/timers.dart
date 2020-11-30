@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/navis_localizations.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:navis/core/utils/extensions.dart';
-import 'package:responsive_builder/responsive_builder.dart';
 import 'package:warframestat_api_models/entities.dart';
 
 import '../../../../core/widgets/widgets.dart';
@@ -19,10 +17,7 @@ class Timers extends StatelessWidget {
     return RefreshIndicatorBlocScreen(
       builder: (BuildContext context, SolsystemState state) {
         if (state is SolState) {
-          return ScreenTypeLayout.builder(
-            mobile: (_) => MobileTimers(state),
-            tablet: (_) => TabletTimers(state),
-          );
+          return MobileTimers(state);
         }
 
         return const Center(child: CircularProgressIndicator());
@@ -129,55 +124,6 @@ class MobileTimers extends StatelessWidget {
           ]),
         )
       ],
-    );
-  }
-}
-
-class TabletTimers extends StatelessWidget {
-  const TabletTimers(this.state);
-
-  final SolState state;
-
-  Worldstate get _worldstate => state.worldstate;
-
-  Map<Widget, StaggeredTile> _tiles(
-      BuildContext context, NavisLocalizations navisLocalizations) {
-    final size = MediaQuery.of(context).size.width ~/ 100;
-
-    final large = size * 10;
-    final medium = (size * 3.4).floor();
-    final small = (size * 2.9).floor();
-
-    return {
-      const DailyReward(): StaggeredTile.fit(large),
-      ConstructionProgressCard(
-        constructionProgress: _buildProgress(navisLocalizations, _worldstate),
-      ): StaggeredTile.fit(medium),
-      if (state.eventsActive)
-        EventCard(events: _worldstate.events): StaggeredTile.fit(medium),
-      if (state.arbitrationActive)
-        ArbitrationCard(arbitration: _worldstate.arbitration):
-            StaggeredTile.fit(medium),
-      if (state.activeAlerts)
-        AlertsCard(alerts: _worldstate.alerts): StaggeredTile.fit(medium),
-      if (state.outpostDetected)
-        SentientOutpostCard(outpost: _worldstate.sentientOutposts):
-            StaggeredTile.fit(medium),
-      CycleCard(cycles: _buildCycles(navisLocalizations, _worldstate)):
-          StaggeredTile.fit(small),
-      TraderCard(trader: _worldstate.voidTrader): StaggeredTile.fit(medium),
-      if (state.activeSales)
-        DarvoDealCard(deals: _worldstate.dailyDeals): StaggeredTile.fit(medium),
-      SortieCard(sortie: _worldstate.sortie): StaggeredTile.fit(small),
-    };
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return StaggeredGridView.count(
-      crossAxisCount: 75,
-      staggeredTiles: _tiles(context, context.locale).values.toList(),
-      children: _tiles(context, context.locale).keys.toList(),
     );
   }
 }

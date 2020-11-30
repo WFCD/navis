@@ -28,20 +28,11 @@ class SyndicateBounties extends StatelessWidget {
             sliver: SliverList(
               delegate: SliverChildBuilderDelegate(
                 (BuildContext context, int index) {
-                  return Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.symmetric(
-                          horizontal: horizantalPadding,
-                          vertical: verticalPadding,
-                        ),
-                        child: Text(
-                          job.rewardPool[index],
-                          style: Theme.of(context).textTheme.subtitle1,
-                        ),
-                      )
-                    ],
+                  return ListTile(
+                    title: Text(
+                      job.rewardPool[index],
+                      style: Theme.of(context).textTheme.subtitle1,
+                    ),
                   );
                 },
                 childCount: job.rewardPool.length,
