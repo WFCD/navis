@@ -13,10 +13,6 @@ class SyndicateBounties extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-    final horizantalPadding = (size.height / 100) * 1.5;
-    final verticalPadding = (size.width / 100) * 2;
-
     return CustomScrollView(
       slivers: <Widget>[
         for (Job job in syndicate?.jobs ?? [])
