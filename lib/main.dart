@@ -6,6 +6,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_web_browser/flutter_web_browser.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:logging/logging.dart';
 import 'package:navis/injection_container.dart';
@@ -27,6 +28,8 @@ Future<void> main() async {
 
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  await FlutterWebBrowser.warmup();
+
   FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
 
   SystemChrome.setSystemUIOverlayStyle(
