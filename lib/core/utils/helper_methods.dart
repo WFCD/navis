@@ -35,6 +35,16 @@ Future<void> launchLink(BuildContext context, String link,
   }
 }
 
+void scrollToSelectedContent(BuildContext context) {
+  const duration = Duration(milliseconds: 200);
+
+  if (context != null) {
+    Future<void>.delayed(duration).then((value) {
+      Scrollable.ensureVisible(context, duration: duration);
+    });
+  }
+}
+
 Color healthColor(double health) {
   if (health > 50.0) {
     return Colors.green;

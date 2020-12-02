@@ -11,6 +11,15 @@ class TargetInfo extends StatelessWidget {
     return Card(
       child: ExpansionTile(
         title: Text(target.name),
+        onExpansionChanged: (b) {
+          if (b) {
+            Future<void>.delayed(const Duration(milliseconds: 200))
+                .then((value) {
+              Scrollable.ensureVisible(context,
+                  duration: const Duration(milliseconds: 200));
+            });
+          }
+        },
         children: target.locations.map<Widget>((l) {
           return ListTile(
             title: Text('${l.planet} (${l.mission})'),

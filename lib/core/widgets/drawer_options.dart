@@ -27,6 +27,7 @@ class DrawerOptions extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const bool isDense = true;
+    final GlobalKey expansionTileKey = GlobalKey(debugLabel: 'links');
 
     return BlocBuilder<NavigationBloc, Widget>(
       builder: (BuildContext context, Widget state) {
@@ -63,17 +64,12 @@ class DrawerOptions extends StatelessWidget {
                     NavigationBloc.navigationMap[NavigationEvent.synthTargets],
               ),
               ExpansionTile(
+                key: expansionTileKey,
                 leading: const Icon(Icons.help),
                 title: Text(context.locale.helpfulLinksTitle),
-                onExpansionChanged: (b) async {
+                onExpansionChanged: (b) {
                   if (b) {
-                    // wait for tile to finish expanding before animating to the bottom
-                    await Future<void>.delayed(
-                        const Duration(milliseconds: 200));
-
-                    await _controller.animateTo(250.0,
-                        duration: const Duration(milliseconds: 250),
-                        curve: Curves.easeInOut);
+                    scrollToSelectedContent(context);
                   }
                 },
                 children: <Widget>[
