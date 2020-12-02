@@ -8,7 +8,7 @@
 # For a list of all available plugins, check out
 #
 #     https://docs.fastlane.tools/plugins/available-plugins
-update_fastlane
+# update_fastlane
 
 default_platform(:android)
 
@@ -16,6 +16,14 @@ platform :android do
   desc 'Push the built release to Google Play beta track'
   lane :beta do
     begin
+      sh('flutter', 'pub', 'global', 'activate', 'cider')
+
+      analyze_commits(match: 'v*')
+      versionCode = `flutter pub run cider version | cut -d'+' -f2`
+      changelog = conventional_changelog(format: 'plain', display_title: false, display_links: false, order: ['feat', 'fix', 'perf'])
+
+      File.open("metadata/android/en-US/changelogs/#{versionCode}.txt", 'w') {|f| f.write(changelog)}
+
       upload_to_play_store(
         track: 'beta',
         aab: '../build/app/outputs/bundle/release/app-release.aab',
