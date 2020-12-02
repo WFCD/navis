@@ -875,5 +875,11 @@
     "description": "melee's heavy wind up time title",
     "type": "text",
     "placeholder": {}
+  },
+  "discordSupportTitle": "Support",
+  "@discordSupportTitle": {
+    "description": "Discord support title",
+    "type": "text",
+    "placeholder": {}
   }
 }
