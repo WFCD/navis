@@ -19,7 +19,7 @@ platform :android do
       sh('flutter', 'pub', 'global', 'activate', 'cider')
 
       analyze_commits(match: 'v*')
-      versionCode = `flutter pub run cider version | cut -d'+' -f2`
+      versionCode = `cd .. && flutter pub run cider version | cut -d'+' -f2`
       changelog = conventional_changelog(format: 'plain', display_title: false, display_links: false, order: ['feat', 'fix', 'perf'])
 
       File.open("metadata/android/en-US/changelogs/#{versionCode}.txt", 'w') {|f| f.write(changelog)}
