@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_brand_icons/flutter_brand_icons.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:navis/constants/links.dart';
 import 'package:navis/core/local/user_settings.dart';
+import 'package:navis/core/widgets/fa_icon.dart';
 import 'package:provider/provider.dart';
 
 import '../resources/resources.dart';
 import 'bloc/navigation_bloc.dart';
 import 'utils/extensions.dart';
+import 'utils/helper_methods.dart';
 import 'widgets/drawer_options.dart';
 
 class Home extends StatefulWidget {
@@ -68,6 +72,14 @@ class _HomeState extends State<Home> {
               ),
               Expanded(child: DrawerOptions()),
               const Divider(height: 4.0),
+              ListTile(
+                leading: const FaIcon(
+                  BrandIcons.discord,
+                  color: Color(0xFF7289DA),
+                ),
+                title: const Text('Support'),
+                onTap: () => launchLink(context, discordInvite),
+              ),
               ListTile(
                 leading: const Icon(Icons.settings),
                 title: Text(context.locale.settingsTitle),
