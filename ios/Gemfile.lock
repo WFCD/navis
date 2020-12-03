@@ -81,6 +81,7 @@ GEM
       xcodeproj (>= 1.13.0, < 2.0.0)
       xcpretty (~> 0.3.0)
       xcpretty-travis-formatter (>= 0.0.3)
+    fastlane-plugin-git_tags (0.1.1)
     fastlane-plugin-semantic_release (1.12.0)
     gh_inspector (1.1.3)
     google-api-client (0.38.0)
@@ -176,6 +177,7 @@ PLATFORMS
 
 DEPENDENCIES
   fastlane
+  fastlane-plugin-git_tags
   fastlane-plugin-semantic_release
 
 BUNDLED WITH
