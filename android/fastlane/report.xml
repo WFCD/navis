@@ -5,17 +5,22 @@
     
     
       
-      <testcase classname="fastlane.lanes" name="0: default_platform" time="0.000376">
+      <testcase classname="fastlane.lanes" name="0: default_platform" time="0.0003462">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="1: git_tags" time="8.958108">
+      <testcase classname="fastlane.lanes" name="1: git_tags" time="9.1064243">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="2: analyze_commits" time="3.2189925">
+      <testcase classname="fastlane.lanes" name="2: analyze_commits" time="3.2313815">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="3: conventional_changelog" time="0.1834576">
         
       </testcase>
     
