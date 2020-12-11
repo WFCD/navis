@@ -1,10 +1,7 @@
 name: Deploy
 on:
-  push:
-    branches:
-      - master
-  # release:
-  #   types: [created]
+  release:
+    types: [created]
 env:
   TENNO_CIPHER: ${{ secrets.TENNO_CIPHER }}
   TENNO_FIREBASE: ${{ secrets.TENNO_FIREBASE }}
