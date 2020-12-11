@@ -24,6 +24,8 @@ platform :android do
       changelog = conventional_changelog(format: 'plain', display_title: false, display_links: false, order: ['feat', 'fix', 'perf'])
       versionCode = `flutter pub run cider version | cut -d'+' -f2`
 
+      print versionCode
+
       File.open("metadata/android/en-US/changelogs/#{versionCode}.txt", 'w') {|f| f.write(changelog)}
 
       upload_to_play_store(
