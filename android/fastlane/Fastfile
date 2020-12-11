@@ -16,13 +16,13 @@ platform :android do
   desc 'Push the built release to Google Play beta track'
   lane :beta do
     begin
-      sh('flutter', 'pub', 'global', 'activate', 'cider')
+      sh('flutter', 'pub', 'pub', 'global', 'activate', 'cider')
 
       tags = git_tags(limit: 2)
       analyze_commits(match: tags[1])
       
       changelog = conventional_changelog(format: 'plain', display_title: false, display_links: false, order: ['feat', 'fix', 'perf'])
-      versionCode = `flutter pub run cider version | cut -d'+' -f2`
+      versionCode = `flutter pub pub run cider version | cut -d'+' -f2`
 
       print versionCode
 
