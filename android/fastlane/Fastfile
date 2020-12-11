@@ -16,23 +16,25 @@ platform :android do
   desc 'Push the built release to Google Play beta track'
   lane :beta do
     begin
-      sh('flutter', 'pub', 'pub', 'global', 'activate', 'cider')
+     `flutter pub pub global activate cider`
 
       tags = git_tags(limit: 2)
       analyze_commits(match: tags[1])
       
       changelog = conventional_changelog(format: 'plain', display_title: false, display_links: false, order: ['feat', 'fix', 'perf'])
-      versionCode = `flutter pub pub run cider version | cut -d'+' -f2`
+      versionCode = ''
 
-      print versionCode
+      Dir.chdir "../.." do
+       versionCode = `flutter pub pub run cider version | cut -d'+' -f2`
+      end
 
       File.open("metadata/android/en-US/changelogs/#{versionCode}.txt", 'w') {|f| f.write(changelog)}
 
-      upload_to_play_store(
-        track: 'beta',
-        aab: '../build/app/outputs/bundle/release/app-release.aab',
-        json_key: 'app/fastlane.json',
-      )
+      # upload_to_play_store(
+      #   track: 'beta',
+      #   aab: '../build/app/outputs/bundle/release/app-release.aab',
+      #   json_key: 'app/fastlane.json',
+      # )
     rescue => exception
       raise exception unless exception.message.include?('apkNotificationMessageKeyUpgradeVersionConflict')
       puts 'Current version already present on the Play Store. Omitting this upload.'
