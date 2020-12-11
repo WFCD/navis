@@ -22,7 +22,7 @@ class ItemComponents extends StatelessWidget {
       message: component.name,
       child: InkWell(
         onTap: () {
-          if (component.drops != null || component.drops.isNotEmpty) {
+          if (component.drops != null && component.drops.isNotEmpty) {
             Navigator.push(
               context,
               MaterialPageRoute<void>(

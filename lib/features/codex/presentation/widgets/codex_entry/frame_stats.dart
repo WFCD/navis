@@ -48,7 +48,7 @@ class FrameStats extends StatelessWidget {
                   polarity: (powerSuit as Warframe).aura,
                 ),
               ),
-            if (powerSuit.polarities.isNotEmpty)
+            if (powerSuit.polarities?.isNotEmpty ?? false)
               RowItem(
                 text: Text(context.locale.preinstalledPolarities),
                 child: PreinstalledPolarties(
