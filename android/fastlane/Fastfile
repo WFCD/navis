@@ -18,7 +18,9 @@ platform :android do
     begin
       sh('flutter', 'pub', 'global', 'activate', 'cider')
 
-      analyze_commits(match: git_tags(limit: 2).at(1))
+      tags = git_tags(limit: 2)
+      analyze_commits(match: tags[1])
+      
       changelog = conventional_changelog(format: 'plain', display_title: false, display_links: false, order: ['feat', 'fix', 'perf'])
       versionCode = `cd .. && flutter pub run cider version | cut -d'+' -f2`
 
