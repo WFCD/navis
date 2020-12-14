@@ -18,7 +18,8 @@ class ComponentDrops extends StatelessWidget {
         itemBuilder: (context, index) {
           return ListTile(
             title: Text(drops[index].location),
-            subtitle: Text('${drops[index].chance}% drop chance'),
+            subtitle: Text(
+                '${(drops[index].chance * 100).toStringAsFixed(2)}% drop chance'),
             dense: drops.length > 10,
           );
         },
