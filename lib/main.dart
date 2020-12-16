@@ -35,7 +35,7 @@ Future<void> main() async {
   SystemChrome.setSystemUIOverlayStyle(
       const SystemUiOverlayStyle(statusBarColor: Colors.transparent));
 
-  await runZoned(() async {
+  await runZonedGuarded(() async {
     HydratedBloc.storage = await HydratedStorage.build();
 
     await Firebase.initializeApp();
@@ -59,5 +59,5 @@ Future<void> main() async {
         ),
       ),
     );
-  }, onError: FirebaseCrashlytics.instance.recordError);
+  }, FirebaseCrashlytics.instance.recordError);
 }

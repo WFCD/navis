@@ -116,7 +116,7 @@ class CodexResult extends StatelessWidget {
           if (item is Mod) {
             showDialog<void>(
               context: context,
-              child: _modBuider(),
+              builder: (context) => _modBuider(),
             );
           } else {
             Navigator.of(context)?.pushNamed(CodexEntry.route, arguments: item);
