@@ -90,3 +90,4 @@ ios/Runner.ipa
 android/keystore.b4
 android/app/google-services.b4
 android/app/fastlane.b4
+ios/Runner/GeneratedPluginRegistrant.h
