@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:navis/injection_container.dart';
 
 import '../../../../../core/themes/themes.dart';
-import '../../../data/datasources/skybox_parser.dart';
+import '../../../utils/skybox_loader.dart';
 import 'background_image.dart';
 
 class SkyboxCard extends StatelessWidget {
@@ -32,7 +31,7 @@ class SkyboxCard extends StatelessWidget {
       child: Card(
         margin: margin,
         child: BackgroundImage(
-          imageUrl: sl<SkyboxService>().getSkybox(node),
+          imageUrl: getSkybox(node),
           alignment: alignment,
           height: height,
           padding: padding,

@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:navis/features/worldstate/presentation/widgets/common/background_image.dart';
-import 'package:navis/injection_container.dart';
 
-import '../../../data/datasources/skybox_parser.dart';
+import '../../../presentation/widgets/common/background_image.dart';
+import '../../../utils/skybox_loader.dart';
 
 class AcolyteAppBar extends StatelessWidget {
   const AcolyteAppBar(
@@ -30,7 +29,7 @@ class AcolyteAppBar extends StatelessWidget {
         ),
         centerTitle: true,
         background: BackgroundImage(
-          imageUrl: sl<SkyboxService>().getSkybox(region),
+          imageUrl: getSkybox(region),
         ),
       ),
     );

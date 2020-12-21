@@ -19,7 +19,6 @@ import 'features/synthtargets/domain/repositories/synth_target_repository.dart';
 import 'features/synthtargets/domain/usecases/get_synth_targets.dart';
 import 'features/synthtargets/presentation/bloc/synthtargets_bloc.dart';
 import 'features/worldstate/data/datasources/event_info_parser.dart';
-import 'features/worldstate/data/datasources/skybox_parser.dart';
 import 'features/worldstate/data/datasources/warframestate_local.dart';
 import 'features/worldstate/data/repositories/worldstate_rep_impl.dart';
 import 'features/worldstate/domain/repositories/worldstate_repository.dart';
@@ -64,9 +63,6 @@ Future<void> init() async {
   sl.registerSingletonAsync<WarframestatCache>(
     () => WarframestatCache.initCache(),
   );
-
-  sl.registerSingletonAsync<SkyboxService>(
-      () async => SkyboxService.loadSkyboxData());
 
   await sl.isReady<WarframestatCache>();
   await sl.isReady<Usersettings>();
