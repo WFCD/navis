@@ -4,6 +4,7 @@ import 'package:navis/core/utils/helper_methods.dart';
 
 class BasicItemInfo extends SliverPersistentHeaderDelegate {
   const BasicItemInfo({
+    @required this.uniqueName,
     @required this.name,
     @required this.description,
     @required this.imageUrl,
@@ -11,6 +12,7 @@ class BasicItemInfo extends SliverPersistentHeaderDelegate {
     @required this.expandedHeight,
   });
 
+  final String uniqueName;
   final String name;
   final String description;
   final String imageUrl;
@@ -55,12 +57,16 @@ class BasicItemInfo extends SliverPersistentHeaderDelegate {
                 children: [
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 8.0),
-                    child: CircleAvatar(
-                      backgroundImage: CachedNetworkImageProvider(imageUrl),
-                      backgroundColor: Colors.grey,
-                      radius: ((MediaQuery.of(context).size.longestSide ?? 0) /
-                              100) *
-                          7,
+                    child: Hero(
+                      tag: uniqueName,
+                      child: CircleAvatar(
+                        backgroundImage: CachedNetworkImageProvider(imageUrl),
+                        backgroundColor: Colors.grey,
+                        radius:
+                            ((MediaQuery.of(context).size.longestSide ?? 0) /
+                                    100) *
+                                7,
+                      ),
                     ),
                   ),
                   Text(name, style: textTheme?.subtitle1, textAlign: textAlign),

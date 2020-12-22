@@ -103,9 +103,12 @@ class CodexResult extends StatelessWidget {
 
     return CustomCard(
       child: ListTile(
-        leading: CircleAvatar(
-          backgroundImage: image,
-          backgroundColor: Theme.of(context)?.canvasColor,
+        leading: Hero(
+          tag: item.uniqueName,
+          child: CircleAvatar(
+            backgroundImage: image,
+            backgroundColor: Theme.of(context)?.canvasColor,
+          ),
         ),
         title: Text(item.name),
         subtitle: Text(

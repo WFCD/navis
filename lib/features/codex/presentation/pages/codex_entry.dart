@@ -24,6 +24,7 @@ class CodexEntry extends StatelessWidget {
           SliverPersistentHeader(
             pinned: true,
             delegate: BasicItemInfo(
+              uniqueName: item.uniqueName,
               name: item.name,
               description: parseHtmlString(item.description ?? ''),
               wikiaUrl: item.wikiaUrl,
