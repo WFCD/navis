@@ -95,17 +95,23 @@ class _AcolyteWidgetState extends State<AcolyteWidget>
       title: Text(context.locale.activeAcolyte(enemy.agentType, enemy.rank)),
       subtitle: Text(context.locale.tapForMoreDetails),
       trailing: StaticBox(
+        tooltip:
+            _isDiscovered ? enemy.lastDiscoveredAt : context.locale.locating,
         color: _isDiscovered
             ? const Color(0xFFB00020)
             : Theme.of(context).primaryColor,
-        icon: _searchStatus(),
-        child: AnimatedCrossFade(
-          firstChild: Text(enemy.lastDiscoveredAt),
-          secondChild: Text(context.locale.locating),
-          crossFadeState: _isDiscovered
-              ? CrossFadeState.showFirst
-              : CrossFadeState.showSecond,
-          duration: const Duration(milliseconds: 250),
+        child: Row(
+          children: [
+            _searchStatus(),
+            AnimatedCrossFade(
+              firstChild: Text(enemy.lastDiscoveredAt),
+              secondChild: Text(context.locale.locating),
+              crossFadeState: _isDiscovered
+                  ? CrossFadeState.showFirst
+                  : CrossFadeState.showSecond,
+              duration: const Duration(milliseconds: 250),
+            ),
+          ],
         ),
       ),
       onTap: () {

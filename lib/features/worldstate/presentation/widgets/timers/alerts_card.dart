@@ -51,14 +51,7 @@ class AlertWidget extends StatelessWidget {
             text: Text(_mission.node),
             child: _isRewarding
                 ? Container()
-                : StaticBox.text(
-                    text: _mission.reward.itemString,
-                    style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 13,
-                      color: Colors.white,
-                    ),
-                  ),
+                : StaticBox.text(text: _mission.reward.itemString),
           ),
           RowItem(
             text: Text(

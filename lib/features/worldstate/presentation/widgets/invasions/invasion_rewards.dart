@@ -25,26 +25,18 @@ class InvasionReward extends StatelessWidget {
           Material(
             elevation: 4,
             color: Colors.transparent,
-            child: StaticBox(
+            child: StaticBox.text(
               color: factionColor(attacker.factionKey),
-              child: Text(
-                attacker.reward.itemString,
-                overflow: TextOverflow.ellipsis,
-              ),
+              text: attacker.reward.itemString,
             ),
           ),
         const Spacer(),
         Material(
           elevation: 4,
           color: Colors.transparent,
-          child: StaticBox(
-            iconTrailing: true,
+          child: StaticBox.text(
             color: factionColor(defender.factionKey),
-            child: Text(
-              defender.reward.itemString,
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-            ),
+            text: defender.reward.itemString,
           ),
         ),
       ],

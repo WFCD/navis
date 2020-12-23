@@ -6,14 +6,13 @@ import '../themes/colors.dart';
 class StaticBox extends StatelessWidget {
   const StaticBox({
     Key key,
-    @required this.child,
-    this.icon,
-    this.iconTrailing = false,
-    this.color,
-    this.height,
-    this.width,
+    @required this.tooltip,
     this.padding = const EdgeInsets.all(4.0),
     this.margin = const EdgeInsets.all(3.0),
+    this.height,
+    this.width,
+    this.color,
+    @required this.child,
   })  : assert(child != null),
         super(key: key);
 
@@ -29,67 +28,42 @@ class StaticBox extends StatelessWidget {
     const _textColor = Colors.white;
 
     return StaticBox(
+      tooltip: text,
       padding: padding,
       margin: margin,
       color: color,
       child: Text(
         text,
-        textAlign: TextAlign.center,
+        overflow: TextOverflow.ellipsis,
         style: style?.copyWith(color: _textColor) ??
             TextStyle(color: _textColor, fontSize: fontSize),
       ),
     );
   }
+  final String tooltip;
+
+  final EdgeInsetsGeometry padding, margin;
   final double height;
   final double width;
   final Color color;
-  final Widget icon;
   final Widget child;
-  final bool iconTrailing;
-  final EdgeInsetsGeometry padding, margin;
-
-  void _addIcon(List<Widget> children) {
-    const padding = 5.0;
-
-    if (iconTrailing) {
-      children.add(
-        Padding(
-          padding: const EdgeInsets.only(left: padding),
-          child: icon,
-        ),
-      );
-      return;
-    }
-
-    children.insert(
-      0,
-      Padding(
-        padding: const EdgeInsets.only(right: padding),
-        child: icon,
-      ),
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
-    final children = <Widget>[child];
-
-    if (icon != null) _addIcon(children);
-
-    return AnimatedContainer(
-      duration: 250.milliseconds,
-      padding: padding,
-      height: height,
-      width: width,
-      margin: margin,
-      curve: Curves.easeInOut,
-      decoration: BoxDecoration(
-        color: color ?? primary,
-        borderRadius: const BorderRadius.all(Radius.circular(3.0)),
-      ),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: children,
+    return Tooltip(
+      message: tooltip ?? '',
+      child: AnimatedContainer(
+        duration: 250.milliseconds,
+        padding: padding,
+        height: height,
+        width: width,
+        margin: margin,
+        curve: Curves.easeInOut,
+        decoration: BoxDecoration(
+          color: color ?? primary,
+          borderRadius: const BorderRadius.all(Radius.circular(3.0)),
+        ),
+        child: child,
       ),
     );
   }

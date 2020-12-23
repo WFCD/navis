@@ -137,22 +137,20 @@ class _CountdownTimerState extends State<CountdownTimer>
   Widget build(BuildContext context) {
     final endTime = localExpiry.format(context);
 
-    return Tooltip(
-      message: context.locale.countdownTooltip(endTime),
-      child: StaticBox(
-        color: widget.color ?? _warningLevel,
-        padding: widget.padding,
-        margin: widget.margin,
-        child: AnimatedBuilder(
-          animation: _tween,
-          builder: (BuildContext context, Widget child) {
-            return Text(
-              _timerVersions(),
-              style: widget.style?.copyWith(color: Colors.white) ??
-                  TextStyle(fontSize: widget.size, color: Colors.white),
-            );
-          },
-        ),
+    return StaticBox(
+      tooltip: context.locale.countdownTooltip(endTime),
+      color: widget.color ?? _warningLevel,
+      padding: widget.padding,
+      margin: widget.margin,
+      child: AnimatedBuilder(
+        animation: _tween,
+        builder: (BuildContext context, Widget child) {
+          return Text(
+            _timerVersions(),
+            style: widget.style?.copyWith(color: Colors.white) ??
+                TextStyle(fontSize: widget.size, color: Colors.white),
+          );
+        },
       ),
     );
   }

@@ -10,16 +10,16 @@ class NightwaveChallenge extends StatelessWidget {
   final Challenge challenge;
 
   Widget _standingBadge() {
+    final rep = '${challenge.reputation}';
+
     return StaticBox(
+      tooltip: rep,
       color: Colors.red,
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           NavisSystemIconWidgets.standingIcon,
-          Text(
-            '${challenge.reputation}',
-            style: const TextStyle(color: Colors.white),
-          )
+          Text(rep, style: const TextStyle(color: Colors.white))
         ],
       ),
     );
