@@ -6,8 +6,8 @@ class RowItem extends StatelessWidget {
     @required this.text,
     @required this.child,
     this.padding,
-    this.size,
-  });
+  })  : assert(text != null),
+        assert(child != null);
 
   factory RowItem.richText(
       {String title, String richText, Color color, double size}) {
@@ -28,7 +28,6 @@ class RowItem extends StatelessWidget {
   final Widget text;
   final Widget child;
   final EdgeInsetsGeometry padding;
-  final double size;
 
   @override
   Widget build(BuildContext context) {
