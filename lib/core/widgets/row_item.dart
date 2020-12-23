@@ -44,7 +44,12 @@ class RowItem extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.baseline,
         textBaseline: TextBaseline.alphabetic,
-        children: <Widget>[..._icons, text, const Spacer(), child],
+        children: <Widget>[
+          ..._icons,
+          text,
+          const Spacer(),
+          Expanded(child: child)
+        ],
       ),
     );
   }
