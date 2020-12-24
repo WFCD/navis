@@ -44,14 +44,13 @@ class _DealWidgetState extends State<DealWidget> {
 
   Future<Item> _getDeal() async {
     return _mem.runOnce(() async {
-      final items =
-          await BlocProvider.of<SolsystemBloc>(context).getDealInformation();
-
-      return items.firstWhere(
-        (element) =>
-            element.name.toLowerCase().contains(widget.deal.item.toLowerCase()),
-        orElse: () => null,
-      );
+      try {
+        return (await BlocProvider.of<SolsystemBloc>(context)
+                .getDealInformation())
+            .first;
+      } catch (e) {
+        return null;
+      }
     });
   }
 
