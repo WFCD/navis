@@ -1,65 +1,69 @@
 import 'dart:ui';
 
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:navis/core/utils/extensions.dart';
+import 'package:navis/core/widgets/custom_card.dart';
+import 'package:navis/core/widgets/static_box.dart';
+import 'package:navis/features/worldstate/presentation/widgets/common/background_image.dart';
 import 'package:warframestat_api_models/entities.dart';
+import 'package:supercharged/supercharged.dart';
 
 import '../../../../../core/utils/helper_methods.dart';
-import '../../../../../resources/resources.dart';
 
 class OrbiterNewsWidget extends StatelessWidget {
-  const OrbiterNewsWidget({Key key, @required this.news, this.height = 200})
+  const OrbiterNewsWidget({Key key, @required this.news})
       : assert(news != null),
         super(key: key);
 
   final OrbiterNews news;
-  final double height;
-
-  Widget _imageBuilder(ImageProvider imageProvider) {
-    return Container(
-      decoration: BoxDecoration(
-        image: DecorationImage(
-          image: imageProvider,
-          fit: BoxFit.cover,
-        ),
-      ),
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
     final currentLocale = Localizations.localeOf(context).languageCode;
-    final size = MediaQuery.of(context).size;
+    final isOneDayOld =
+        news.date.toLocal().difference(DateTime.now()).abs() < 2.days;
 
     return InkWell(
       onTap: () => launchLink(context, news.link),
-      child: Material(
-        elevation: 4.0,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4.0)),
-        clipBehavior: Clip.hardEdge,
-        color: Colors.transparent,
-        child: Container(
-          height: height,
-          margin: EdgeInsets.symmetric(
-              horizontal: (size.width / 100) * 2,
-              vertical: (size.height / 100) * .9),
-          child: Stack(
-            children: <Widget>[
-              CachedNetworkImage(
-                imageUrl: news.proxyImage,
-                placeholder: (context, url) =>
-                    _imageBuilder(const AssetImage(NavisAssets.derelict)),
-                imageBuilder: (context, imageProvider) =>
-                    _imageBuilder(imageProvider),
+      child: CustomCard(
+        padding: EdgeInsets.zero,
+        margin: const EdgeInsets.symmetric(vertical: 6.0, horizontal: 4.0),
+        child: BackgroundImage(
+          imageUrl: news.proxyImage,
+          child: Container(
+            child: Padding(
+              padding: const EdgeInsets.all(22.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      if (isOneDayOld)
+                        StaticBox.text(
+                          text: 'New',
+                          style: Theme.of(context).textTheme.caption,
+                        ),
+                      const SizedBox(height: 8.0),
+                      Expanded(
+                        child: Text(
+                          news?.translations[currentLocale] ?? news.message,
+                          overflow: TextOverflow.ellipsis,
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyText1
+                              .copyWith(fontSize: 16.0),
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 12),
+                  Text(
+                    news.date.toLocal().format(context),
+                    style: Theme.of(context).textTheme.caption,
+                  )
+                ],
               ),
-              Align(
-                alignment: Alignment.bottomCenter,
-                child: NewsInformation(
-                  timestamp: news.timestamp,
-                  message: news?.translations[currentLocale] ?? news.message,
-                ),
-              )
-            ],
+            ),
           ),
         ),
       ),
