@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
-import 'package:navis/core/error/failures.dart';
-import 'package:warframestat_api_models/entities.dart';
+import 'package:wfcd_client/entities.dart';
+
+import '../../../../core/error/failures.dart';
 
 abstract class WorldstateRepository {
   Future<Either<Failure, Worldstate>> getWorldstate();

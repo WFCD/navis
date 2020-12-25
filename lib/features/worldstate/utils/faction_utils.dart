@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:navis/core/themes/colors.dart';
+
+import '../../../core/themes/colors.dart';
 
 enum EnemyFaction { grineer, corpus, corrupted, infested }
 

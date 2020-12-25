@@ -1,13 +1,13 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_brand_icons/flutter_brand_icons.dart';
-import 'package:navis/constants/links.dart';
-import 'package:navis/core/utils/helper_methods.dart';
-import 'package:navis/core/widgets/category_title.dart';
-import 'package:navis/core/widgets/widgets.dart';
-import 'package:navis/core/utils/extensions.dart';
-import 'package:navis/injection_container.dart';
 import 'package:package_info/package_info.dart';
+
+import '../../constants/links.dart';
+import '../../injection_container.dart';
+import '../utils/extensions.dart';
+import '../utils/helper_methods.dart';
+import '../widgets/widgets.dart';
 
 class AboutApp extends StatelessWidget {
   const AboutApp({Key key}) : super(key: key);

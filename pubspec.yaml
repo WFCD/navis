@@ -10,8 +10,6 @@ dependencies:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
-  warframestat_api_models:
-    git: https://github.com/SlayerOrnstein/warframestat_api_models.git
   wfcd_client:
     git: https://github.com/SlayerOrnstein/wfcd_client.git
   bloc: ^6.1.1
@@ -26,9 +24,7 @@ dependencies:
   flutter_bloc: ^6.1.1
   flutter_brand_icons: ^1.1.0
   flutter_web_browser: ^0.13.0
-  # flutter_hooks: ^0.15.0
   flutter_local_notifications: ^3.0.2
-  flutter_staggered_grid_view: ^0.3.2
   flutter_sticky_header: ^0.5.0
   flutter_svg: ^0.19.1
   get_it: ^5.0.3

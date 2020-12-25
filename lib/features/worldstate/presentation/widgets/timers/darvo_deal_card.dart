@@ -3,7 +3,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:responsive_builder/responsive_builder.dart';
-import 'package:warframestat_api_models/entities.dart';
+import 'package:wfcd_client/entities.dart';
 
 import '../../../../../core/utils/extensions.dart';
 import '../../../../../core/utils/helper_methods.dart';

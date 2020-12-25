@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:navis/features/worldstate/presentation/widgets/common/skybox_card.dart';
-import 'package:warframestat_api_models/entities.dart';
+import 'package:wfcd_client/entities.dart';
 
+import '../common/skybox_card.dart';
 import 'invasion_progress.dart';
 import 'invasion_rewards.dart';
 

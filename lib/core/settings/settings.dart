@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:navis/core/settings/platform_select.dart';
 
 import 'about_app.dart';
 import 'behavior.dart';
 import 'notifications.dart';
+import 'platform_select.dart';
 
 class Settings extends StatelessWidget {
   const Settings({Key key}) : super(key: key);

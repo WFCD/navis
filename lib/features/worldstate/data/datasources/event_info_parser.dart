@@ -1,8 +1,9 @@
 import 'dart:convert';
 
 import 'package:flutter/services.dart';
-import 'package:navis/features/worldstate/data/models/event_info.dart';
-import 'package:navis/features/worldstate/domain/entities/event_info.dart';
+
+import '../../domain/entities/event_info.dart';
+import '../models/event_info.dart';
 
 class EventInfoParser {
   const EventInfoParser._(this._eventInfo);

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/navis_localizations.dart';
-import 'package:navis/core/utils/extensions.dart';
-import 'package:warframestat_api_models/entities.dart';
+import 'package:wfcd_client/entities.dart';
 
+import '../../../../core/utils/extensions.dart';
 import '../../../../core/widgets/widgets.dart';
 import '../../utils/faction_utils.dart';
 import '../bloc/solsystem_bloc.dart';

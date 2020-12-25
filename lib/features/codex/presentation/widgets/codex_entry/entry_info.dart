@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:navis/core/utils/helper_methods.dart';
+
+import '../../../../../core/utils/helper_methods.dart';
 
 class BasicItemInfo extends SliverPersistentHeaderDelegate {
   const BasicItemInfo({

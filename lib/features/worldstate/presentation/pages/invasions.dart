@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:navis/features/worldstate/presentation/bloc/solsystem_bloc.dart';
-import 'package:navis/features/worldstate/presentation/widgets/common/refresh_indicator_bloc_screen.dart';
-import 'package:navis/features/worldstate/presentation/widgets/invasions/invasion_widget.dart';
 import 'package:responsive_builder/responsive_builder.dart';
-import 'package:warframestat_api_models/entities.dart';
+import 'package:wfcd_client/entities.dart';
+
+import '../bloc/solsystem_bloc.dart';
+import '../widgets/common/refresh_indicator_bloc_screen.dart';
+import '../widgets/invasions/invasion_widget.dart';
 
 class InvasionsPage extends StatelessWidget {
   const InvasionsPage({Key key}) : super(key: key);

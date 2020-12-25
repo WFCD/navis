@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:navis/core/utils/extensions.dart';
-import 'package:navis/core/widgets/countdown.dart';
-import 'package:navis/core/widgets/custom_card.dart';
+import '../../../../../core/utils/extensions.dart';
+import '../../../../../core/widgets/widgets.dart';
 
 class DailyReward extends StatelessWidget {
   const DailyReward({Key key}) : super(key: key);

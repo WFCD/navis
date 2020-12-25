@@ -4,9 +4,9 @@ import 'dart:ui' as ui;
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:navis/features/codex/utils/mod_polarity.dart';
 
 import '../../../../../resources/resources.dart';
+import '../../../utils/mod_polarity.dart';
 
 class ModFrame extends StatelessWidget {
   const ModFrame._({

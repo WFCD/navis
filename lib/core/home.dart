@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_brand_icons/flutter_brand_icons.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:navis/constants/links.dart';
-import 'package:navis/core/local/user_settings.dart';
-import 'package:navis/core/widgets/fa_icon.dart';
 import 'package:provider/provider.dart';
 
+import '../constants/links.dart';
 import '../resources/resources.dart';
 import 'bloc/navigation_bloc.dart';
+import 'local/user_settings.dart';
 import 'utils/extensions.dart';
 import 'utils/helper_methods.dart';
 import 'widgets/drawer_options.dart';
+import 'widgets/fa_icon.dart';
 
 class Home extends StatefulWidget {
   const Home({Key key}) : super(key: key);

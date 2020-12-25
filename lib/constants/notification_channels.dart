@@ -1,5 +1,6 @@
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:navis/core/themes/colors.dart';
+
+import '../core/themes/colors.dart';
 
 class NotificationChannelDetails {
   static const String single = 'single';

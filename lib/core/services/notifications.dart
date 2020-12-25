@@ -2,8 +2,9 @@ import 'dart:io';
 
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:logging/logging.dart';
-import 'package:navis/core/notification_handler/handler.dart';
 import 'package:wfcd_client/wfcd_client.dart';
+
+import '../notification_handler/handler.dart';
 
 class NotificationService {
   NotificationService(FirebaseMessaging messaging) : _messaging = messaging;

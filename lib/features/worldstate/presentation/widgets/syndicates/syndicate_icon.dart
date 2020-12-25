@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:navis/core/widgets/widgets.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
+import '../../../../../core/widgets/widgets.dart';
 import '../../../utils/faction_utils.dart';
 
 class GetSyndicateIcon extends StatelessWidget {

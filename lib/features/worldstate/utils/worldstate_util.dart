@@ -1,4 +1,4 @@
-import 'package:warframestat_api_models/entities.dart';
+import 'package:wfcd_client/entities.dart';
 
 Worldstate cleanState(Worldstate state) {
   state.alerts.removeWhere((a) {

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:navis/features/codex/presentation/widgets/codex_entry/patchlogs.dart';
-import 'package:warframestat_api_models/entities.dart';
+import 'package:wfcd_client/entities.dart';
 
 import '../../../../core/utils/helper_methods.dart';
 import '../widgets/codex_entry/components.dart';
 import '../widgets/codex_entry/entry_info.dart';
 import '../widgets/codex_entry/frame_stats.dart';
+import '../widgets/codex_entry/patchlogs.dart';
 import '../widgets/codex_entry/weapon_stats.dart';
 
 class CodexEntry extends StatelessWidget {

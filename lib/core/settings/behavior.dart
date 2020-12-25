@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:navis/core/local/user_settings.dart';
-import 'package:navis/core/utils/extensions.dart';
-import 'package:navis/core/widgets/category_title.dart';
-import 'package:navis/core/widgets/widgets.dart';
 import 'package:provider/provider.dart';
+
+import '../local/user_settings.dart';
+import '../utils/extensions.dart';
+import '../widgets/widgets.dart';
 
 class Behavior extends StatelessWidget {
   const Behavior({Key key}) : super(key: key);

@@ -1,11 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:chewie/chewie.dart';
 import 'package:flutter/material.dart';
-import 'package:navis/core/services/videos.dart';
-import 'package:navis/core/utils/helper_methods.dart';
-import 'package:navis/core/widgets/custom_card.dart';
-import 'package:navis/injection_container.dart';
 import 'package:video_player/video_player.dart';
+
+import '../../../../../core/services/videos.dart';
+import '../../../../../core/utils/helper_methods.dart';
+import '../../../../../core/widgets/custom_card.dart';
+import '../../../../../injection_container.dart';
 
 // TODO(Ornstein): Find more how-to guides for events might be slightly annoying for older events
 // TODO(Ornstein): find a way to adapt a stream to network speed, might come later with Youtube_explode

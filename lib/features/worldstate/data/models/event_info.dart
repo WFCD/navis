@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
-import 'package:navis/features/worldstate/domain/entities/event_info.dart';
+
+import '../../domain/entities/event_info.dart';
 
 class EventInfoModel extends EventInfo {
   const EventInfoModel({

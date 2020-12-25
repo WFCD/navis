@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:warframestat_api_models/entities.dart';
+import 'package:wfcd_client/entities.dart';
 
 import '../widgets/acolyte_profile/profile_widgets.dart';
 

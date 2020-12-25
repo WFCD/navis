@@ -1,5 +1,5 @@
-import 'package:warframestat_api_models/entities.dart';
-import 'package:warframestat_api_models/models.dart';
+import 'package:wfcd_client/entities.dart';
+import 'package:wfcd_client/models.dart';
 
 import '../../../constants/notification_channels.dart';
 import '../../../constants/storage_keys.dart';

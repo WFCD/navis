@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:navis/resources/resources.dart';
+
+import '../../../../../resources/resources.dart';
 
 class BackgroundImage extends StatelessWidget {
   const BackgroundImage({

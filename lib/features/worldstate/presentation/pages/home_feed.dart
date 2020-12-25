@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:navis/core/utils/extensions.dart';
-import 'package:navis/core/widgets/sliver_top_bar.dart';
-import 'package:navis/features/worldstate/presentation/bloc/solsystem_bloc.dart';
 
+import '../../../../core/utils/extensions.dart';
+import '../../../../core/widgets/sliver_top_bar.dart';
+import '../bloc/solsystem_bloc.dart';
 import 'fissures.dart';
 import 'invasions.dart';
 import 'syndicates.dart';

@@ -1,8 +1,9 @@
-import 'package:navis/core/error/failures.dart';
 import 'package:dartz/dartz.dart';
-import 'package:navis/core/usecases/usecases.dart';
-import 'package:navis/features/codex/domian/repositories/codex_repository.dart';
-import 'package:warframestat_api_models/entities.dart';
+import 'package:wfcd_client/entities.dart';
+
+import '../../../../core/error/failures.dart';
+import '../../../../core/usecases/usecases.dart';
+import '../repositories/codex_repository.dart';
 
 class SearchItems extends Usecase<List<Item>, String> {
   const SearchItems(this.codexRepository);

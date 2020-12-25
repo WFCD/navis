@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:navis/features/synthtargets/presentation/widgets/target.dart';
-import 'package:navis/injection_container.dart';
 
+import '../../../../injection_container.dart';
 import '../bloc/synthtargets_bloc.dart';
+import '../widgets/target.dart';
 
 class SynthTargetsPage extends StatelessWidget {
   const SynthTargetsPage({Key key}) : super(key: key);

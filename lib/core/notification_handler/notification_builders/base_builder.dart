@@ -1,4 +1,4 @@
-import 'package:warframestat_api_models/objects.dart';
+import 'package:wfcd_client/objects.dart';
 
 import '../handler.dart';
 

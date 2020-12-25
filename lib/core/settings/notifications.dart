@@ -1,13 +1,14 @@
 import 'dart:collection';
 
 import 'package:flutter/material.dart';
-import 'package:navis/core/local/user_settings.dart';
-import 'package:navis/core/services/notifications.dart';
-import 'package:navis/core/utils/notification_filter.dart';
-import 'package:navis/core/widgets/widgets.dart';
-import 'package:navis/core/utils/extensions.dart';
-import 'package:navis/injection_container.dart';
 import 'package:provider/provider.dart';
+
+import '../../injection_container.dart';
+import '../local/user_settings.dart';
+import '../services/notifications.dart';
+import '../utils/extensions.dart';
+import '../utils/notification_filter.dart';
+import '../widgets/widgets.dart';
 
 class Notifications extends StatelessWidget {
   const Notifications({Key key}) : super(key: key);

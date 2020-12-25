@@ -1,7 +1,8 @@
-import 'package:navis/constants/notification_channels.dart';
-import 'package:navis/core/notification_handler/handler.dart';
-import 'package:warframestat_api_models/warframestat_api_models.dart';
+import 'package:wfcd_client/models.dart';
+import 'package:wfcd_client/objects.dart';
 
+import '../../../constants/notification_channels.dart';
+import '../handler.dart';
 import 'base_builder.dart';
 
 abstract class CycleNotificationBuilder

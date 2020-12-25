@@ -1,14 +1,15 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:navis/core/widgets/countdown_banner.dart';
-import 'package:navis/features/worldstate/presentation/bloc/solsystem_bloc.dart';
-import 'package:navis/features/worldstate/presentation/widgets/common/refresh_indicator_bloc_screen.dart';
-import 'package:navis/features/worldstate/presentation/widgets/syndicates/nightwave_challenges.dart';
-import 'package:navis/features/worldstate/presentation/widgets/syndicates/syndicate_bounties.dart';
 import 'package:responsive_builder/responsive_builder.dart';
-import 'package:warframestat_api_models/warframestat_api_models.dart';
+import 'package:wfcd_client/entities.dart';
+import 'package:wfcd_client/objects.dart';
 
+import '../../../../core/widgets/widgets.dart';
+import '../bloc/solsystem_bloc.dart';
+import '../widgets/common/refresh_indicator_bloc_screen.dart';
+import '../widgets/syndicates/nightwave_challenges.dart';
+import '../widgets/syndicates/syndicate_bounties.dart';
 import '../widgets/syndicates/syndicate_card.dart';
 
 class SyndicatePage extends StatelessWidget {

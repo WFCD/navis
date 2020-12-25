@@ -1,11 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:navis/features/worldstate/data/datasources/event_info_parser.dart';
-import 'package:navis/features/worldstate/presentation/widgets/event/event_bounties.dart';
-import 'package:navis/features/worldstate/presentation/widgets/event/event_status.dart';
-import 'package:navis/features/worldstate/presentation/widgets/event/guide_player.dart';
-import 'package:navis/injection_container.dart';
-import 'package:warframestat_api_models/entities.dart';
+import 'package:wfcd_client/entities.dart';
+
+import '../../../../injection_container.dart';
+import '../../data/datasources/event_info_parser.dart';
+import '../widgets/event/event_bounties.dart';
+import '../widgets/event/event_status.dart';
+import '../widgets/event/guide_player.dart';
 
 class EventInformation extends StatelessWidget {
   const EventInformation({Key key}) : super(key: key);

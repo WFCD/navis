@@ -2,11 +2,12 @@ import 'dart:io';
 
 import 'package:dartz/dartz.dart';
 import 'package:flutter/foundation.dart';
-import 'package:navis/core/error/failures.dart';
-import 'package:navis/core/network/network_info.dart';
-import 'package:navis/features/codex/domian/repositories/codex_repository.dart';
-import 'package:warframestat_api_models/entities.dart';
+import 'package:wfcd_client/entities.dart';
 import 'package:wfcd_client/wfcd_client.dart';
+
+import '../../../../core/error/failures.dart';
+import '../../../../core/network/network_info.dart';
+import '../../domian/repositories/codex_repository.dart';
 
 class CodexRepositoryImpl extends CodexRepository {
   const CodexRepositoryImpl(this.networkInfo);

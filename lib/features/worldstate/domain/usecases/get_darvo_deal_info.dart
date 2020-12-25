@@ -1,9 +1,10 @@
 import 'package:dartz/dartz.dart';
-import 'package:navis/core/error/failures.dart';
-import 'package:navis/core/usecases/usecases.dart';
-import 'package:navis/features/worldstate/data/repositories/worldstate_rep_impl.dart';
-import 'package:navis/features/worldstate/domain/repositories/worldstate_repository.dart';
-import 'package:warframestat_api_models/entities.dart';
+import 'package:wfcd_client/entities.dart';
+
+import '../../../../core/error/failures.dart';
+import '../../../../core/usecases/usecases.dart';
+import '../../data/repositories/worldstate_rep_impl.dart';
+import '../repositories/worldstate_repository.dart';
 
 class GetDarvoDealInfo extends Usecase<Item, DealRequest> {
   const GetDarvoDealInfo(this.repository);

@@ -1,4 +1,4 @@
-import 'package:navis/resources/resources.dart';
+import '../../../resources/resources.dart';
 
 const _common = 'Common';
 const _uncommon = 'Uncommon';

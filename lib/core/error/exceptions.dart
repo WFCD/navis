@@ -1,4 +1,4 @@
-import 'package:navis/core/error/failures.dart';
+import 'failures.dart';
 
 class ServerException implements Exception {}
 

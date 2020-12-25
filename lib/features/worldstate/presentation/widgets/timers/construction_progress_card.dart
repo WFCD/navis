@@ -1,7 +1,8 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:navis/core/widgets/custom_card.dart';
+
+import '../../../../../core/widgets/widgets.dart';
 
 // For now I've opted to not add unknown construction progress
 // because well it's unknown and I've never actually seen it change

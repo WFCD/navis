@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:navis/core/utils/extensions.dart';
-import 'package:navis/core/widgets/custom_card.dart';
-import 'package:navis/core/widgets/widgets.dart';
-import 'package:navis/features/worldstate/presentation/pages/bounties.dart';
-import 'package:navis/features/worldstate/presentation/pages/nightwaves.dart';
-import 'package:navis/features/worldstate/utils/faction_utils.dart';
 import 'package:responsive_builder/responsive_builder.dart';
-import 'package:warframestat_api_models/entities.dart';
+import 'package:wfcd_client/entities.dart';
 
+import '../../../../../core/utils/extensions.dart';
+import '../../../../../core/widgets/custom_card.dart';
+import '../../../../../core/widgets/widgets.dart';
+import '../../../utils/faction_utils.dart';
+import '../../pages/bounties.dart';
+import '../../pages/nightwaves.dart';
 import 'syndicate_icon.dart';
 
 class SyndicateCard extends StatelessWidget {
@@ -22,8 +22,6 @@ class SyndicateCard extends StatelessWidget {
             'to Syndicate.name instead');
 
   final String name, caption;
-
-  /// [name] doesn't need to be applied if this is not null.
   final Syndicate syndicate;
 
   final void Function() onTap;

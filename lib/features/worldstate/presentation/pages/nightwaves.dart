@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:navis/features/worldstate/presentation/widgets/syndicates/nightwave_challenges.dart';
+
+import '../widgets/syndicates/nightwave_challenges.dart';
 
 class NightwavesPage extends StatelessWidget {
   const NightwavesPage({Key key}) : super(key: key);

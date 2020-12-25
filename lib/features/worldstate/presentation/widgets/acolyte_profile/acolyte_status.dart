@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:navis/core/utils/helper_methods.dart';
-import 'package:navis/core/widgets/widgets.dart';
-import 'package:navis/core/utils/extensions.dart';
+
+import '../../../../../core/utils/extensions.dart';
+import '../../../../../core/utils/helper_methods.dart';
+import '../../../../../core/widgets/widgets.dart';
 
 class AcolyteStatus extends StatelessWidget {
   const AcolyteStatus({

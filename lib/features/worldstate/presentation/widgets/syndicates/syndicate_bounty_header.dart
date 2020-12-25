@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:navis/core/widgets/icons.dart';
-import 'package:navis/core/utils/extensions.dart';
 import 'package:supercharged/supercharged.dart';
-import 'package:warframestat_api_models/entities.dart';
+import 'package:wfcd_client/entities.dart';
 
+import '../../../../../core/utils/extensions.dart';
+import '../../../../../core/widgets/icons.dart';
 import '../../../utils/faction_utils.dart';
 
 class SyndicateBountyHeader extends StatelessWidget {

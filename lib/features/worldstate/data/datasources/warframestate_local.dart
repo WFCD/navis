@@ -3,7 +3,8 @@ import 'dart:convert';
 import 'package:hive/hive.dart';
 import 'package:logging/logging.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:warframestat_api_models/warframestat_api_models.dart';
+import 'package:wfcd_client/entities.dart';
+import 'package:wfcd_client/models.dart';
 import 'package:wfcd_client/wfcd_client.dart';
 
 class WarframestatCache {

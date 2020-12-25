@@ -1,14 +1,12 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
-import 'package:navis/core/utils/extensions.dart';
-import 'package:navis/core/widgets/custom_card.dart';
-import 'package:navis/core/widgets/static_box.dart';
-import 'package:navis/features/worldstate/presentation/widgets/common/background_image.dart';
-import 'package:warframestat_api_models/entities.dart';
 import 'package:supercharged/supercharged.dart';
+import 'package:wfcd_client/entities.dart';
 
+import '../../../../../core/utils/extensions.dart';
 import '../../../../../core/utils/helper_methods.dart';
+import '../../../../../core/widgets/custom_card.dart';
+import '../../../../../core/widgets/static_box.dart';
+import '../common/background_image.dart';
 
 class OrbiterNewsWidget extends StatelessWidget {
   const OrbiterNewsWidget({Key key, @required this.news})

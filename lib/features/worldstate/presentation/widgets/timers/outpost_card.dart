@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:navis/features/worldstate/presentation/widgets/common/faction_icons.dart';
-import 'package:navis/core/widgets/widgets.dart';
-import 'package:warframestat_api_models/entities.dart';
+import 'package:wfcd_client/entities.dart';
+
+import '../../../../../core/widgets/widgets.dart';
+import '../common/faction_icons.dart';
 
 class SentientOutpostCard extends StatelessWidget {
   const SentientOutpostCard({Key key, @required this.outpost})

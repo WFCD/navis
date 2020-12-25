@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:warframestat_api_models/entities.dart';
+import 'package:wfcd_client/entities.dart';
 
 abstract class SearchState extends Equatable {
   const SearchState();

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:navis/core/widgets/widgets.dart';
-import 'package:warframestat_api_models/objects.dart';
+import 'package:wfcd_client/objects.dart';
+
+import '../../../../../core/widgets/widgets.dart';
 
 class CycleCard extends StatelessWidget {
   const CycleCard({Key key, @required this.cycles})

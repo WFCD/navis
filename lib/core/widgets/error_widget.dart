@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:navis/core/utils/extensions.dart';
+
+import '../utils/extensions.dart';
 
 class NavisErrorWidget extends StatelessWidget {
   const NavisErrorWidget({

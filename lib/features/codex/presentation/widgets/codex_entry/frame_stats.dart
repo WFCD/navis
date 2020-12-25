@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:navis/features/codex/presentation/widgets/codex_entry/polarity.dart';
-import 'package:warframestat_api_models/entities.dart';
+import 'package:wfcd_client/entities.dart';
 
 import '../../../../../core/utils/extensions.dart';
 import '../../../../../core/widgets/widgets.dart';
+import 'polarity.dart';
 import 'stats.dart';
 
 class FrameStats extends StatelessWidget {

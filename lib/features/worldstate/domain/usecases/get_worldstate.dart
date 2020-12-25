@@ -1,8 +1,9 @@
 import 'package:dartz/dartz.dart';
-import 'package:navis/core/error/failures.dart';
-import 'package:navis/core/usecases/usecases.dart';
-import 'package:navis/features/worldstate/domain/repositories/worldstate_repository.dart';
-import 'package:warframestat_api_models/entities.dart';
+import 'package:wfcd_client/entities.dart';
+
+import '../../../../core/error/failures.dart';
+import '../../../../core/usecases/usecases.dart';
+import '../repositories/worldstate_repository.dart';
 
 class GetWorldstate extends Usecase<Worldstate, NoParama> {
   const GetWorldstate(this.repository);

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:navis/core/widgets/widgets.dart';
-import 'package:navis/features/worldstate/presentation/pages/acolyte_profile.dart';
-import 'package:navis/core/utils/extensions.dart';
-import 'package:warframestat_api_models/entities.dart';
+import 'package:wfcd_client/entities.dart';
+
+import '../../../../../core/utils/extensions.dart';
+import '../../../../../core/widgets/widgets.dart';
+import '../../pages/acolyte_profile.dart';
 
 class AcolyteCard extends StatelessWidget {
   const AcolyteCard({Key key, this.enemies}) : super(key: key);

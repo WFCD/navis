@@ -6,7 +6,7 @@ import 'package:navis/core/usecases/usecases.dart';
 import 'package:navis/features/worldstate/domain/repositories/worldstate_repository.dart';
 import 'package:navis/features/worldstate/domain/usecases/get_worldstate.dart';
 import 'package:test/test.dart';
-import 'package:warframestat_api_models/entities.dart';
+import 'package:wfcd_client/entities.dart';
 import 'package:wfcd_client/wfcd_client.dart';
 
 import '../../../fixtures/fixture_reader.dart';

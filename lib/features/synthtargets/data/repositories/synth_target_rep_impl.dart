@@ -1,11 +1,11 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter/foundation.dart';
-import 'package:navis/core/error/failures.dart';
-import 'package:navis/core/network/network_info.dart';
-import 'package:navis/core/usecases/usecases.dart';
-import 'package:warframestat_api_models/entities.dart';
+import 'package:wfcd_client/entities.dart';
 import 'package:wfcd_client/wfcd_client.dart';
 
+import '../../../../core/error/failures.dart';
+import '../../../../core/network/network_info.dart';
+import '../../../../core/usecases/usecases.dart';
 import '../../domain/repositories/synth_target_repository.dart';
 
 class SynthRepositoryImpl extends SynthRepository {

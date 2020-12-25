@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:navis/core/widgets/icons.dart';
-import 'package:navis/core/widgets/widgets.dart';
-import 'package:navis/core/utils/extensions.dart';
-import 'package:warframestat_api_models/entities.dart';
+import 'package:wfcd_client/entities.dart';
+
+import '../../../../../core/utils/extensions.dart';
+import '../../../../../core/widgets/icons.dart';
+import '../../../../../core/widgets/widgets.dart';
 
 class NightwaveChallenge extends StatelessWidget {
   const NightwaveChallenge({Key key, this.challenge}) : super(key: key);

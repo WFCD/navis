@@ -2,12 +2,12 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:logging/logging.dart';
-import 'package:navis/core/error/exceptions.dart';
-import 'package:navis/features/codex/domian/usercases/search_items.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:supercharged/supercharged.dart';
-import 'package:warframestat_api_models/entities.dart';
+import 'package:wfcd_client/entities.dart';
 
+import '../../../../core/error/exceptions.dart';
+import '../../domian/usercases/search_items.dart';
 import 'search_event.dart';
 import 'search_state.dart';
 

@@ -1,7 +1,8 @@
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:navis/core/error/failures.dart';
+
+import '../error/failures.dart';
 
 @immutable
 abstract class Usecase<Type, Params> {

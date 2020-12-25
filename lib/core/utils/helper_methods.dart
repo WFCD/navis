@@ -3,7 +3,8 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
 import 'package:html/parser.dart';
-import 'package:navis/core/themes/colors.dart';
+
+import '../themes/colors.dart';
 
 Future<void> launchLink(BuildContext context, String link,
     {bool pop = false}) async {

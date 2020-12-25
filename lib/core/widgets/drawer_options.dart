@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:navis/core/bloc/navigation_bloc.dart';
-import 'package:navis/core/utils/helper_methods.dart';
-import 'package:navis/core/widgets/widgets.dart';
 
+import '../bloc/navigation_bloc.dart';
 import '../utils/extensions.dart';
+import '../utils/helper_methods.dart';
+import 'widgets.dart';
 
 // import 'navis_sys_icons.dart';
 

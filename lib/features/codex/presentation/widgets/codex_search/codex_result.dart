@@ -1,8 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:navis/core/utils/helper_methods.dart';
-import 'package:warframestat_api_models/entities.dart';
+import 'package:wfcd_client/entities.dart';
 
+import '../../../../../core/utils/helper_methods.dart';
 import '../../../../../core/widgets/widgets.dart';
 import '../../pages/codex_entry.dart';
 import '../codex_entry/mod_entry.dart';
