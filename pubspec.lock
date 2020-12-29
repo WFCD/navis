@@ -927,10 +927,10 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "1183bcaee6a03d52ede356c929417c2d69fcbf49"
+      resolved-ref: "5504b2f4a1b9b5bb609795f7b431223d8c74a031"
       url: "https://github.com/SlayerOrnstein/wfcd_client.git"
     source: git
-    version: "3.0.0"
+    version: "3.0.1"
   win32:
     dependency: transitive
     description:
@@ -965,7 +965,7 @@ packages:
       name: youtube_explode_dart
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.7.3"
+    version: "1.7.4"
 sdks:
   dart: ">=2.10.2 <2.11.0"
   flutter: ">=1.22.2 <2.0.0"

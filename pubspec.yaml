@@ -35,7 +35,7 @@ dependencies:
   package_info: ^0.4.0+17
   responsive_builder: ^0.3.0
   supercharged: ^1.12.0
-  youtube_explode_dart: ^1.7.3
+  youtube_explode_dart: ^1.7.4
 
 dev_dependencies:
   flutter_test:
