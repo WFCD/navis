@@ -80,8 +80,6 @@ class CodexResult extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final image = CachedNetworkImageProvider(item.imageUrl);
-
     String description;
 
     if (item is Mod) {
@@ -106,7 +104,9 @@ class CodexResult extends StatelessWidget {
         leading: Hero(
           tag: item.uniqueName,
           child: CircleAvatar(
-            backgroundImage: image,
+            backgroundImage: item.imageName != null
+                ? CachedNetworkImageProvider(item.imageUrl)
+                : null,
             backgroundColor: Theme.of(context)?.canvasColor,
           ),
         ),
