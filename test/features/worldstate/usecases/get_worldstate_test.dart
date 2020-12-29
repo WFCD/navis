@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:dartz/dartz.dart';
 import 'package:mockito/mockito.dart';
-import 'package:navis/core/usecases/usecases.dart';
 import 'package:navis/features/worldstate/domain/repositories/worldstate_repository.dart';
 import 'package:navis/features/worldstate/domain/usecases/get_worldstate.dart';
 import 'package:test/test.dart';
@@ -30,7 +29,7 @@ void main() {
     when(mockRepository.getWorldstate())
         .thenAnswer((_) async => Right(tWorldstate));
 
-    final result = await getWorldstate(NoParama());
+    final result = await getWorldstate(false);
 
     expect(result, equals(Right<Exception, Worldstate>(tWorldstate)));
     verify(mockRepository.getWorldstate());

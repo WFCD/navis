@@ -4,7 +4,6 @@ import 'dart:io';
 import 'package:dartz/dartz.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:mockito/mockito.dart';
-import 'package:navis/core/usecases/usecases.dart';
 import 'package:navis/features/worldstate/domain/usecases/get_darvo_deal_info.dart';
 import 'package:navis/features/worldstate/domain/usecases/get_worldstate.dart';
 import 'package:navis/features/worldstate/presentation/bloc/solsystem_bloc.dart';
@@ -59,10 +58,10 @@ void main() {
   // });
 
   test('should sync solsystem status', () async {
-    solsystemBloc.add(const SyncSystemStatus(GamePlatforms.pc));
+    solsystemBloc.add(const SyncSystemStatus());
     await untilCalled(getWorldstate(any));
 
-    verify(getWorldstate(NoParama()));
+    verify(getWorldstate(false));
   });
 
   // group('retrive darvo deal information', () {

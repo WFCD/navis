@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/navis_localizations.dart';
 import 'package:provider/provider.dart';
-import 'package:wfcd_client/wfcd_client.dart';
 
 import '../features/codex/presentation/pages/codex_entry.dart';
 import '../features/worldstate/presentation/bloc/solsystem_bloc.dart';
@@ -36,12 +35,10 @@ class _NavisAppState extends State<NavisApp> with WidgetsBindingObserver {
     super.initState();
     WidgetsBinding.instance.addObserver(this);
 
-    BlocProvider.of<SolsystemBloc>(context)
-        .add(const SyncSystemStatus(GamePlatforms.pc));
+    BlocProvider.of<SolsystemBloc>(context).add(const SyncSystemStatus());
 
     _timer = Timer.periodic(const Duration(minutes: 5), (_) {
-      BlocProvider.of<SolsystemBloc>(context)
-          .add(const SyncSystemStatus(GamePlatforms.pc));
+      BlocProvider.of<SolsystemBloc>(context).add(const SyncSystemStatus());
     });
 
     sl<NotificationService>().configure();
@@ -59,8 +56,7 @@ class _NavisAppState extends State<NavisApp> with WidgetsBindingObserver {
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     if (state == AppLifecycleState.resumed) {
-      BlocProvider.of<SolsystemBloc>(context)
-          .add(const SyncSystemStatus(GamePlatforms.pc));
+      BlocProvider.of<SolsystemBloc>(context).add(const SyncSystemStatus());
     }
   }
 

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:supercharged/supercharged.dart';
-import 'package:wfcd_client/wfcd_client.dart';
 
 import '../../features/worldstate/presentation/bloc/solsystem_bloc.dart';
 import '../themes/colors.dart';
@@ -105,7 +104,7 @@ class _CountdownTimerState extends State<CountdownTimer>
     if (status == AnimationStatus.completed) {
       Future.delayed(700.milliseconds, () {
         BlocProvider.of<SolsystemBloc>(context)
-            .add(const SyncSystemStatus(GamePlatforms.pc));
+            .add(const SyncSystemStatus(forceUpdate: true));
       });
 
       if (mounted) setState(() {});

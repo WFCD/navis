@@ -81,7 +81,8 @@ class PlatformIconButton extends StatelessWidget {
     sl<NotificationService>().subscribeToPlatform(platform);
     sl<Usersettings>().platform = platform;
 
-    BlocProvider.of<SolsystemBloc>(context).update();
+    BlocProvider.of<SolsystemBloc>(context)
+        .add(const SyncSystemStatus(forceUpdate: true));
   }
 
   @override

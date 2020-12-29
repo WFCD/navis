@@ -4,7 +4,7 @@ import 'package:wfcd_client/entities.dart';
 import '../../../../core/error/failures.dart';
 
 abstract class WorldstateRepository {
-  Future<Either<Failure, Worldstate>> getWorldstate();
+  Future<Either<Failure, Worldstate>> getWorldstate({bool forceUpdate});
 
   Future<Either<Failure, List<SynthTarget>>> getSynthTargets();
 

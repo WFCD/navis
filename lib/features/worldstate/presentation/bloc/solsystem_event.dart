@@ -5,15 +5,10 @@ abstract class SyncEvent extends Equatable {
 }
 
 class SyncSystemStatus extends SyncEvent {
-  const SyncSystemStatus(this.platform);
+  const SyncSystemStatus({this.forceUpdate = false});
 
-  final GamePlatforms platform;
+  final bool forceUpdate;
 
   @override
-  List<Object> get props => [platform];
-}
-
-class SyncTargets extends SyncEvent {
-  @override
-  List<Object> get props => [];
+  List<Object> get props => [forceUpdate];
 }

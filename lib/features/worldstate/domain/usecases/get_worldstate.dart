@@ -5,13 +5,13 @@ import '../../../../core/error/failures.dart';
 import '../../../../core/usecases/usecases.dart';
 import '../repositories/worldstate_repository.dart';
 
-class GetWorldstate extends Usecase<Worldstate, NoParama> {
+class GetWorldstate extends Usecase<Worldstate, bool> {
   const GetWorldstate(this.repository);
 
   final WorldstateRepository repository;
 
   @override
-  Future<Either<Failure, Worldstate>> call(NoParama instance) {
-    return repository.getWorldstate();
+  Future<Either<Failure, Worldstate>> call(bool forceUpdate) {
+    return repository.getWorldstate(forceUpdate: forceUpdate);
   }
 }

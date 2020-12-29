@@ -43,7 +43,7 @@ class WarframestatCache {
   }
 
   void cacheWorldstate(Worldstate state) {
-    _box.put(_state, (state as WorldstateModel).toJson());
+    _box.put(_state, json.encode((state as WorldstateModel).toJson()));
   }
 
   String getCachedDealId() => readDisk<String>(_dealId);
@@ -55,10 +55,11 @@ class WarframestatCache {
   }
 
   Worldstate getCachedState() {
-    final cached = readDisk<Map<dynamic, dynamic>>(_state);
+    final cached = readDisk<String>(_state);
 
     if (cached != null) {
-      return WorldstateModel.fromJson(cached.cast<String, dynamic>());
+      return WorldstateModel.fromJson(
+          json.decode(cached) as Map<String, dynamic>);
     }
 
     return null;

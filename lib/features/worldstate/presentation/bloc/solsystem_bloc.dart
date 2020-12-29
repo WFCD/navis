@@ -6,10 +6,8 @@ import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:supercharged/supercharged.dart';
 import 'package:wfcd_client/entities.dart';
 import 'package:wfcd_client/models.dart';
-import 'package:wfcd_client/wfcd_client.dart';
 
 import '../../../../core/error/exceptions.dart';
-import '../../../../core/usecases/usecases.dart';
 import '../../data/repositories/worldstate_rep_impl.dart';
 import '../../domain/usecases/get_darvo_deal_info.dart';
 import '../../domain/usecases/get_worldstate.dart';
@@ -38,7 +36,7 @@ class SolsystemBloc extends HydratedBloc<SyncEvent, SolsystemState> {
   ) async* {
     if (event is SyncSystemStatus) {
       try {
-        final either = await getWorldstate(NoParama());
+        final either = await getWorldstate(event.forceUpdate);
 
         yield either.fold(
           (l) => matchFailure(l),
@@ -52,8 +50,8 @@ class SolsystemBloc extends HydratedBloc<SyncEvent, SolsystemState> {
     }
   }
 
-  Future<void> update() async {
-    add(const SyncSystemStatus(GamePlatforms.pc));
+  Future<void> update({bool forceUpdate}) async {
+    add(SyncSystemStatus(forceUpdate: forceUpdate));
     await Future<void>.delayed(1.seconds);
   }
 
