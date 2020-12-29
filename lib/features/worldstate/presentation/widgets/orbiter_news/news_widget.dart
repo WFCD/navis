@@ -25,7 +25,7 @@ class OrbiterNewsWidget extends StatelessWidget {
       onTap: () => launchLink(context, news.link),
       child: CustomCard(
         padding: EdgeInsets.zero,
-        margin: const EdgeInsets.symmetric(vertical: 6.0, horizontal: 4.0),
+        margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 8.0),
         child: BackgroundImage(
           imageUrl: news.proxyImage,
           child: Container(
