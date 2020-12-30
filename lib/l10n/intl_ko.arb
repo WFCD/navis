@@ -1,6 +1,6 @@
 {
     "@@last_modified": "2020-03-03T16:56:42.387837",
-    "levelInfo": "Level: {min} - {max}",
+    "levelInfo": "레벨: {min} - {max}",
     "@levelInfo": {
         "description": "The information of the current enemy levels",
         "type": "text",
@@ -80,7 +80,7 @@
         "type": "text",
         "placeholders": {}
     },
-    "seeWikia": "See Wikia",
+    "seeWikia": "Wikia 보기",
     "@seeWikia": {
         "description": "General button to wikia of given item",
         "type": "text",
@@ -364,7 +364,7 @@
         "type": "text",
         "placeholder": {}
     },
-    "warframeNewsTitle": "Warframe News",
+    "warframeNewsTitle": "Warframe 소식",
     "@warframeNewsTitle": {
         "description": "Main Title for Warframe news page",
         "type": "text",
@@ -466,13 +466,13 @@
         "type": "text",
         "placeholder": {}
     },
-    "cambionFassOption": "Cambion Fass",
+    "cambionFassOption": "캠비온 Fass",
     "@cambionFassOption": {
         "description": "Cambion Fass cycle option",
         "type": "text",
         "placeholder": {}
     },
-    "cambionVomeOption": "Cambion Vome",
+    "cambionVomeOption": "캠비온 Vome",
     "@cambionVomeOption": {
         "description": "Cambion Fass cycle option",
         "type": "text",
@@ -576,307 +576,307 @@
         "type": "text",
         "placeholder": {}
     },
-    "dailyRewardTitle": "Daily Reward Reset Timer",
+    "dailyRewardTitle": "일일 보상 초기화 타이머",
     "@dailyRewardTitle": {
         "description": "Title for daily reward timer",
         "type": "text",
         "placeholder": {}
     },
-    "eliteBadgeTitle": "Elite",
+    "eliteBadgeTitle": "엘리트",
     "@eliteBadgeTitle": {
         "description": "Nightwave Elite badge title",
         "type": "text",
         "placeholder": {}
     },
-    "dailyNightwaveTitle": "Daily",
+    "dailyNightwaveTitle": "일일",
     "@dailyNightwaveTitle": {
         "description": "Nightwave daily title",
         "type": "text",
         "placeholder": {}
     },
-    "weeklyNightwaveTitle": "Weekly",
+    "weeklyNightwaveTitle": "주간",
     "@weeklyNightwaveTitle": {
         "description": "Nightwave weekly title",
         "type": "text",
         "placeholder": {}
     },
-    "plainsofEidolonMapTitle": "Plains of Eidolon map",
+    "plainsofEidolonMapTitle": "아이돌론의 평원 지도",
     "@plainsofEidolonMapTitle": {
         "description": "Plains of Eidolon Map link title",
         "type": "text",
         "placholder": {}
     },
-    "orbVallisMapTitle": "Orb Vallis map",
+    "orbVallisMapTitle": "오브 협곡 지도",
     "@orbVallisMapTitle": {
         "description": "Orb Vallis Map link title",
         "type": "text",
         "placholder": {}
     },
-    "plainsofEidolonFishingDataTitle": "PoE: Fishing Data",
+    "plainsofEidolonFishingDataTitle": "평원: 낚시 데이터",
     "@plainsofEidolonFishingDataTitle": {
         "description": "Plains of Eidolon fishing data link title",
         "type": "text",
         "placholder": {}
     },
-    "orbVallisFishingDataTitle": "PoE: Fishing Data",
+    "orbVallisFishingDataTitle": "평원: 낚시 데이터",
     "@orbVallisFishingDataTitle": {
         "description": "Orb Vallis fishing data link title",
         "type": "text",
         "placholder": {}
     },
-    "howToFishTitle": "How to fish",
+    "howToFishTitle": "낚시하는 방법",
     "@howToFishTitle": {
         "description": "How to fish link title",
         "type": "text",
         "placholder": {}
     },
-    "recentNewsCategoryTitle": "Most Recent News",
+    "recentNewsCategoryTitle": "최근 소식",
     "@recentNewsCategoryTitle": {
         "description": "Title for recent news title",
         "type": "text",
         "placeholder": {}
     },
-    "pastNewsCategoryTitle": "Past News",
+    "pastNewsCategoryTitle": "이전 소식",
     "@pastNewsCategoryTitle": {
         "description": "Title for past Warframe news",
         "type": "text",
         "placeholder": {}
     },
-    "warframePassiveTitle": "Passive",
+    "warframePassiveTitle": "패시브",
     "@warframePassiveTitle": {
         "description": "Warframes passive title",
         "type": "text",
         "placeholder": {}
     },
-    "auraTitle": "Aura Polarity",
+    "auraTitle": "오라 극성",
     "@auraTitle": {
         "description": "Aura polarity title for items",
         "type": "text",
         "placeholder": {}
     },
-    "preinstalledPolarities": "Preinstalled Polarities",
+    "preinstalledPolarities": "미리 설치된 극성",
     "@preinstalledPolarities": {
         "description": "Preinstalled polarites title for items",
         "type": "text",
         "placeholder": {}
     },
-    "shieldTitle": "Shield",
+    "shieldTitle": "방어력",
     "@shieldTitle": {
         "description": "Title for shield value",
         "typ": "text",
         "placeholder": {}
     },
-    "armorTitle": "Armor",
+    "armorTitle": "아머",
     "@armorTitle": {
         "description": "Title for armor value",
         "typ": "text",
         "placeholder": {}
     },
-    "healthTitle": "Health",
+    "healthTitle": "체력",
     "@healthTitle": {
         "description": "Title for health value",
         "typ": "text",
         "placeholder": {}
     },
-    "powerTitle": "Power",
+    "powerTitle": "파워",
     "@powerTitle": {
         "description": "Title for power value",
         "typ": "text",
         "placeholder": {}
     },
-    "sprintSpeedTitle": "Sprint Speed",
+    "sprintSpeedTitle": "달리기 속도",
     "@sprintSpeedTitle": {
         "description": "Title for sprint speed value",
         "typ": "text",
         "placeholder": {}
     },
-    "abilitiesTitle": "Abilites",
+    "abilitiesTitle": "어빌리티",
     "@abilitiesTitle": {
         "description": "Title for warframe, archwings, and Necromech abilites",
         "typ": "text",
         "placeholder": {}
     },
-    "componentsTitle": "Components",
+    "componentsTitle": "자원",
     "@componentsTitle": {
         "description": "Title for item components",
         "typ": "text",
         "placeholder": {}
     },
-    "fullPatchNotesTitle": "FULL PATCH NOTES",
+    "fullPatchNotesTitle": "전체 패치 노트",
     "@fullPatchNotesTitle": {
         "description": "Full Patch Notes Title",
         "typ": "text",
         "placeholder": {}
     },
-    "masteryRequirementTitle": "Mastery Requirement",
+    "masteryRequirementTitle": "마스터리 요구 사항",
     "@masteryRequirementTitle": {
         "description": "Mastery requirement for item",
         "type": "text",
         "placeholder": {}
     },
-    "weaponTypeTitle": "Weapon Type",
+    "weaponTypeTitle": "무기 유형",
     "@weaponTypeTitle": {
         "description": "Weapon item type",
         "type": "text",
         "placeholder": {}
     },
-    "accuracyTitle": "Accuracy",
+    "accuracyTitle": "정확도",
     "@accuracyTitle": {
         "description": "Weapon accuracy title",
         "type": "text",
         "placeholder": {}
     },
-    "cricticalChanceTitle": "Critical Chance",
+    "cricticalChanceTitle": "치명타 확률",
     "@cricticalChanceTitle": {
         "description": "Weapon crictical chance",
         "type": "text",
         "placeholder": {}
     },
-    "cricticalMultiplierTitle": "Critcial Multiplier",
+    "cricticalMultiplierTitle": "치명타 배수",
     "@cricticalMultiplierTitle": {
         "description": "Weapon critical multiplier",
         "type": "text",
         "placeholder": {}
     },
-    "fireRateTitle": "Fire Rate",
+    "fireRateTitle": "연사율",
     "@fireRateTitle": {
         "description": "Weapon fire rate",
         "type": "text",
         "placeholder": {}
     },
-    "magazineTitle": "Magazine",
+    "magazineTitle": "탄창",
     "@magazineTitle": {
         "description": "Weapon magazine size title",
         "type": "text",
         "placeholder": {}
     },
-    "multishotTitle": "Multishot",
+    "multishotTitle": "멀티샷",
     "@multishotTitle": {
         "description": "Weapon multishot",
         "type": "text",
         "placeholder": {}
     },
-    "noiseTitle": "Noise",
+    "noiseTitle": "소음",
     "@noiseTitle": {
         "description": "Weapon noise type",
         "type": "text",
         "placeholder": {}
     },
-    "reloadTitle": "Reload",
+    "reloadTitle": "재장전",
     "@reloadTitle": {
         "description": "Weapon item type",
         "type": "text",
         "placeholder": {}
     },
-    "rivenDispositionTitle": "Riven Disposition",
+    "rivenDispositionTitle": "리벤 성질",
     "@rivenDispositionTitle": {
         "description": "Weapon's riven disposition",
         "type": "text",
         "placeholder": {}
     },
-    "statusChanceTitle": "Status Chance",
+    "statusChanceTitle": "상태이상 확률",
     "@statusChanceTitle": {
         "description": "Weapon's status chance",
         "type": "text",
         "placeholder": {}
     },
-    "triggerTitle": "Trigger",
+    "triggerTitle": "발사",
     "@triggerTitle": {
         "description": "Weapon item type",
         "type": "text",
         "placeholder": {}
     },
-    "damageTitle": "Damage",
+    "damageTitle": "피해량",
     "@damageTitle": {
         "description": "Weapon's damage category",
         "type": "text",
         "placeholder": {}
     },
-    "totalDamageTitle": "Total Damage",
+    "totalDamageTitle": "총 피해량",
     "@totalDamageTitle": {
         "description": "Weapon's total damage'",
         "type": "text",
         "placeholder": {}
     },
-    "stancePolarityTitle": "Stance Polarity",
+    "stancePolarityTitle": "스텐스 극성",
     "@stancePolarityTitle": {
         "description": "Melee stance polarity title",
         "type": "text",
         "placeholder": {}
     },
-    "attackSpeedTitle": "Attack Speed",
+    "attackSpeedTitle": "공격 속도",
     "@attackSpeedTitle": {
         "description": "melee attack speed",
         "type": "text",
         "placeholder": {}
     },
-    "followThroughTitle": "Follow Through",
+    "followThroughTitle": "팔로우 쓰루",
     "@followThroughTitle": {
         "description": "Melee follow through title",
         "type": "text",
         "placeholder": {}
     },
-    "rangeTitle": "Range",
+    "rangeTitle": "범위",
     "@rangeTitle": {
         "description": "Melee's range title",
         "type": "text",
         "placeholder": {}
     },
-    "slamAttackTitle": "Slam Attack",
+    "slamAttackTitle": "폭발 공격",
     "@slamAttackTitle": {
         "description": "Melee's slam attack",
         "type": "text",
         "placeholder": {}
     },
-    "slamRadialDamageTitle": "Slam Radial Damage",
+    "slamRadialDamageTitle": "폭발 방사능 피해량",
     "@slamRadialDamageTitle": {
         "description": "Melee's Slam Radial Damage",
         "type": "text",
         "placeholder": {}
     },
-    "slamRadiusTitle": "Slam Radius",
+    "slamRadiusTitle": "폭발 범위",
     "@slamRadiusTitle": {
         "description": "Slam Radius title",
         "type": "text",
         "placeholder": {}
     },
-    "slideAttackTitle": "Slide Attack",
+    "slideAttackTitle": "슬라이드 공격",
     "@slideAttackTitle": {
         "description": "Melee's slide attack",
         "type": "text",
         "placeholder": {}
     },
-    "heavyAttackTitle": "Heavy Attack",
+    "heavyAttackTitle": "강공격",
     "@heavyAttackTitle": {
         "description": "Heavy attack title",
         "type": "text",
         "placeholder": {}
     },
-    "heavySlamAttackTitle": "Heavy Slam Attack",
+    "heavySlamAttackTitle": "강공격 폭발",
     "@heavySlamAttackTitle": {
         "description": "Heavy Slam attack title",
         "type": "text",
         "placeholder": {}
     },
-    "heavySlamRadialDamageTitle": "Heavy Slam Radial Damage",
+    "heavySlamRadialDamageTitle": "강공격 방사능 피해량",
     "@heavySlamRadialDamageTitle": {
         "description": "Heavy Slam attack title",
         "type": "text",
         "placeholder": {}
     },
-    "heavySlamRadiusTitle": "Heavy Slam Radius",
+    "heavySlamRadiusTitle": "강공격 피해 범위",
     "@heavySlamRadiusTitle": {
         "description": "Heavy Slam attack title",
         "type": "text",
         "placeholder": {}
     },
-    "windUpTitle": "Wind Up",
+    "windUpTitle": "윈드 업",
     "@windUpTitle": {
         "description": "melee's heavy wind up time title",
         "type": "text",
         "placeholder": {}
     },
-    "discordSupportTitle": "Support",
+    "discordSupportTitle": "지원",
     "@discordSupportTitle": {
         "description": "Discord support title",
         "type": "text",
