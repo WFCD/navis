@@ -20,9 +20,6 @@ class DarvoDealCard extends StatelessWidget {
     final deal = deals.first;
 
     return CustomCard(
-      // title: NavisLocalizations.of(context).baroTitle,
-      addBanner: true,
-      bannerMessage: '${deal.discount}% OFF',
       child: DealWidget(deal: deal),
     );
   }
@@ -101,6 +98,10 @@ class _DealWidgetState extends State<DealWidget> {
                           StaticBox.text(
                             text:
                                 '${widget.deal.total - widget.deal.sold} / ${widget.deal.total}',
+                            style: saleInfo,
+                          ),
+                          StaticBox.text(
+                            text: '${widget.deal.discount}% OFF',
                             style: saleInfo,
                           ),
                           CountdownTimer(
