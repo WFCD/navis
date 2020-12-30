@@ -780,103 +780,103 @@
         "type": "text",
         "placeholder": {}
     },
-    "triggerTitle": "Trigger",
+    "triggerTitle": "발사",
     "@triggerTitle": {
         "description": "Weapon item type",
         "type": "text",
         "placeholder": {}
     },
-    "damageTitle": "Damage",
+    "damageTitle": "피해량",
     "@damageTitle": {
         "description": "Weapon's damage category",
         "type": "text",
         "placeholder": {}
     },
-    "totalDamageTitle": "Total Damage",
+    "totalDamageTitle": "총 피해량",
     "@totalDamageTitle": {
         "description": "Weapon's total damage'",
         "type": "text",
         "placeholder": {}
     },
-    "stancePolarityTitle": "Stance Polarity",
+    "stancePolarityTitle": "스텐스 극성",
     "@stancePolarityTitle": {
         "description": "Melee stance polarity title",
         "type": "text",
         "placeholder": {}
     },
-    "attackSpeedTitle": "Attack Speed",
+    "attackSpeedTitle": "공격 속도",
     "@attackSpeedTitle": {
         "description": "melee attack speed",
         "type": "text",
         "placeholder": {}
     },
-    "followThroughTitle": "Follow Through",
+    "followThroughTitle": "팔로우 쓰루",
     "@followThroughTitle": {
         "description": "Melee follow through title",
         "type": "text",
         "placeholder": {}
     },
-    "rangeTitle": "Range",
+    "rangeTitle": "범위",
     "@rangeTitle": {
         "description": "Melee's range title",
         "type": "text",
         "placeholder": {}
     },
-    "slamAttackTitle": "Slam Attack",
+    "slamAttackTitle": "폭발 공격",
     "@slamAttackTitle": {
         "description": "Melee's slam attack",
         "type": "text",
         "placeholder": {}
     },
-    "slamRadialDamageTitle": "Slam Radial Damage",
+    "slamRadialDamageTitle": "폭발 방사능 피해량",
     "@slamRadialDamageTitle": {
         "description": "Melee's Slam Radial Damage",
         "type": "text",
         "placeholder": {}
     },
-    "slamRadiusTitle": "Slam Radius",
+    "slamRadiusTitle": "폭발 범위",
     "@slamRadiusTitle": {
         "description": "Slam Radius title",
         "type": "text",
         "placeholder": {}
     },
-    "slideAttackTitle": "Slide Attack",
+    "slideAttackTitle": "슬라이드 공격",
     "@slideAttackTitle": {
         "description": "Melee's slide attack",
         "type": "text",
         "placeholder": {}
     },
-    "heavyAttackTitle": "Heavy Attack",
+    "heavyAttackTitle": "강공격",
     "@heavyAttackTitle": {
         "description": "Heavy attack title",
         "type": "text",
         "placeholder": {}
     },
-    "heavySlamAttackTitle": "Heavy Slam Attack",
+    "heavySlamAttackTitle": "강공격 폭발",
     "@heavySlamAttackTitle": {
         "description": "Heavy Slam attack title",
         "type": "text",
         "placeholder": {}
     },
-    "heavySlamRadialDamageTitle": "Heavy Slam Radial Damage",
+    "heavySlamRadialDamageTitle": "강공격 방사능 피해량",
     "@heavySlamRadialDamageTitle": {
         "description": "Heavy Slam attack title",
         "type": "text",
         "placeholder": {}
     },
-    "heavySlamRadiusTitle": "Heavy Slam Radius",
+    "heavySlamRadiusTitle": "강공격 피해 범위",
     "@heavySlamRadiusTitle": {
         "description": "Heavy Slam attack title",
         "type": "text",
         "placeholder": {}
     },
-    "windUpTitle": "Wind Up",
+    "windUpTitle": "윈드 업",
     "@windUpTitle": {
         "description": "melee's heavy wind up time title",
         "type": "text",
         "placeholder": {}
     },
-    "discordSupportTitle": "Support",
+    "discordSupportTitle": "지원",
     "@discordSupportTitle": {
         "description": "Discord support title",
         "type": "text",
