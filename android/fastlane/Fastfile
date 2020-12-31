@@ -16,7 +16,7 @@ platform :android do
   desc 'Push the built release to Google Play beta track'
   lane :beta do
     begin
-     `pub global activate cider`
+     `flutter pub global activate cider`
 
       tags = git_tags(limit: 2)
       analyze_commits(match: tags[1])
@@ -25,7 +25,7 @@ platform :android do
       versionCode = ''
 
       Dir.chdir "../.." do
-        version = `pub global run cider version`
+        version = `flutter pub global run cider version`
         versionCode = version.split('+').last.to_i
       end
 
