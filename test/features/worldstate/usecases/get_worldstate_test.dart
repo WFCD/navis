@@ -26,13 +26,13 @@ void main() {
       toWorldstate(json.decode(stateFixture) as Map<String, dynamic>);
 
   test('should get worldstate from repository', () async {
-    when(mockRepository.getWorldstate())
+    when(mockRepository.getWorldstate(forceUpdate: anyNamed('forceUpdate')))
         .thenAnswer((_) async => Right(tWorldstate));
 
     final result = await getWorldstate(false);
 
     expect(result, equals(Right<Exception, Worldstate>(tWorldstate)));
-    verify(mockRepository.getWorldstate());
+    verify(mockRepository.getWorldstate(forceUpdate: anyNamed('forceUpdate')));
     verifyNoMoreInteractions(mockRepository);
   });
 }
