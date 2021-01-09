@@ -41,7 +41,7 @@ class GunStats extends StatelessWidget {
                 text: Text(context.locale.weaponTypeTitle),
                 child: Text(projectileWeapon.type),
               ),
-              if (projectileWeapon.polarities.isNotEmpty)
+              if (projectileWeapon.polarities?.isNotEmpty ?? false)
                 RowItem(
                   text: Text(context.locale.preinstalledPolarities),
                   child: PreinstalledPolarties(
@@ -292,6 +292,7 @@ class RivenDisposition extends StatelessWidget {
 
     return Container(
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.end,
         children: [
           for (int i = 0; i < maxDisposition; i++)
             _buildDot(Theme.of(context).accentColor, i < disposition)
