@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:supercharged/supercharged.dart';
 import 'package:wfcd_client/entities.dart';
 
+import '../../../../../core/themes/themes.dart';
 import '../../../../../core/utils/extensions.dart';
 import '../../../../../core/utils/helper_methods.dart';
 import '../../../../../core/widgets/custom_card.dart';
@@ -17,49 +18,50 @@ class OrbiterNewsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final textTheme = Typography.whiteMountainView;
     final currentLocale = Localizations.localeOf(context).languageCode;
     final isOneDayOld =
         news.date.toLocal().difference(DateTime.now()).abs() < 2.days;
 
-    return InkWell(
-      onTap: () => launchLink(context, news.link),
-      child: CustomCard(
-        padding: EdgeInsets.zero,
-        margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 8.0),
-        child: BackgroundImage(
-          imageUrl: news.proxyImage,
-          child: Container(
-            child: Padding(
-              padding: const EdgeInsets.all(22.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    children: [
-                      if (isOneDayOld)
-                        StaticBox.text(
-                          text: 'New',
-                          style: Theme.of(context).textTheme.caption,
+    return Theme(
+      data: NavisTheming.dark,
+      child: InkWell(
+        onTap: () => launchLink(context, news.link),
+        child: CustomCard(
+          padding: EdgeInsets.zero,
+          margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 8.0),
+          child: BackgroundImage(
+            imageUrl: news.proxyImage,
+            child: Container(
+              child: Padding(
+                padding: const EdgeInsets.all(22.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        if (isOneDayOld)
+                          StaticBox.text(
+                            text: 'New',
+                            style: textTheme.caption,
+                          ),
+                        const SizedBox(height: 8.0),
+                        Expanded(
+                          child: Text(
+                            news?.translations[currentLocale] ?? news.message,
+                            overflow: TextOverflow.ellipsis,
+                            style: textTheme.bodyText1.copyWith(fontSize: 16.0),
+                          ),
                         ),
-                      const SizedBox(height: 8.0),
-                      Expanded(
-                        child: Text(
-                          news?.translations[currentLocale] ?? news.message,
-                          overflow: TextOverflow.ellipsis,
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyText1
-                              .copyWith(fontSize: 16.0),
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 12),
-                  Text(
-                    news.date.toLocal().format(context),
-                    style: Theme.of(context).textTheme.caption,
-                  )
-                ],
+                      ],
+                    ),
+                    const SizedBox(height: 12),
+                    Text(
+                      news.date.toLocal().format(context),
+                      style: textTheme.caption,
+                    )
+                  ],
+                ),
               ),
             ),
           ),
