@@ -1,7 +1,7 @@
 name: Deploy
-on:
-  release:
-    types: [created]
+# on:
+#   release:
+#     types: [created]
 env:
   TENNO_CIPHER: ${{ secrets.TENNO_CIPHER }}
   TENNO_FIREBASE: ${{ secrets.TENNO_FIREBASE }}
@@ -33,8 +33,11 @@ jobs:
           base64 -di <<< $NAVIS_SERVICE_ACCOUNT > android/app/fastlane.json
       - name: Build App bundle
         run: flutter build appbundle
+      - uses: actions/setup-ruby@v1
+        with:
+          ruby-version: "2.7"
       - name: Google Play Store Deploy
-        uses: maierj/fastlane-action@v1.4.0
+        uses: maierj/fastlane-action@v2.0.0
         with:
           lane: beta
           subdirectory: android
@@ -68,8 +71,11 @@ jobs:
         run: base64 -d <<< $FIREBASE_IOS > ios/Runner/GoogleService-Info.plist
       - name: Build ios using flutter
         run: flutter build ios --no-codesign
+      - uses: actions/setup-ruby@v1
+        with:
+          ruby-version: "2.7"
       - name: App Store Deploy
-        uses: maierj/fastlane-action@v1.4.0
+        uses: maierj/fastlane-action@v2.0.0
         with:
           lane: beta
           subdirectory: ios
