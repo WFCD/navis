@@ -31,7 +31,6 @@ dependencies:
   hive: ^1.4.4+1
   hydrated_bloc: ^6.1.0
   intl: ^0.16.1
-  intl_translation: ^0.17.7
   package_info: ^0.4.0+17
   responsive_builder: ^0.3.0
   supercharged: ^1.12.0
