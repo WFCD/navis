@@ -12,6 +12,7 @@ secrets.tar
 flutter_*.png
 flutter_*.mp4
 .flutter-plugins-dependencies
+.fvm/
 
 # IntelliJ related
 *.iml
@@ -91,3 +92,4 @@ android/keystore.b4
 android/app/google-services.b4
 android/app/fastlane.b4
 ios/Runner/GeneratedPluginRegistrant.h
+.fvm/flutter_sdk
