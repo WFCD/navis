@@ -56,7 +56,7 @@ class _NavisAppState extends State<NavisApp> with WidgetsBindingObserver {
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     if (state == AppLifecycleState.resumed) {
-      BlocProvider.of<SolsystemBloc>(context).add(const SyncSystemStatus());
+      BlocProvider.of<SolsystemBloc>(context).update(forceUpdate: true);
     }
   }
 
