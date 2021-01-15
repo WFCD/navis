@@ -27,6 +27,8 @@ apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
 android {
     compileSdkVersion 30
+    buildToolsVersion '30.0.2'
+    ndkVersion '22.0.7026061'
 
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
@@ -59,7 +61,7 @@ android {
             versionNameSuffix "-debug"
             signingConfig signingConfigs.debug
         }
-        
+
         release {
             signingConfig signingConfigs.release
 
@@ -73,8 +75,8 @@ android {
         sourceCompatibility "1.8"
         targetCompatibility "1.8"
     }
-    ndkVersion '21.3.6528147'
-    buildToolsVersion '30.0.2'
+
+
 }
 
 flutter {
@@ -83,7 +85,7 @@ flutter {
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'com.google.firebase:firebase-messaging:21.0.0'
+    implementation 'com.google.firebase:firebase-messaging:21.0.1'
     implementation 'com.android.support:multidex:1.0.3'
 }
 
