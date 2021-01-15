@@ -12,7 +12,7 @@ env:
   FASTLANE_SESSION: ${{ secrets.FASTLANE_SESSION }}
   FASTLANE_PASSWORD: ${{ secrets.FASTLANE_PASSWORD }}
   MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
-  FLUTTER_VERSION: "1.22.4"
+  FLUTTER_VERSION: stable
 jobs:
   android-release:
     runs-on: ubuntu-latest
@@ -25,7 +25,7 @@ jobs:
           java-version: "12.x"
       - uses: subosito/flutter-action@v1
         with:
-          flutter-version: ${{ env.FLUTTER_VERSION }}
+          channel: ${{ env.FLUTTER_VERSION }}
       - name: Decode signing key and services json
         run: |
           base64 -d <<< $TENNO_STORE > android/keystore.jks
@@ -66,7 +66,7 @@ jobs:
           ssh-private-key: ${{ secrets.FASTLANE_DEPLOY_KEY }}
       - uses: subosito/flutter-action@v1
         with:
-          flutter-version: ${{ env.FLUTTER_VERSION }}
+          channel: ${{ env.FLUTTER_VERSION }}
       - name: Decode service plist
         run: base64 -d <<< $FIREBASE_IOS > ios/Runner/GoogleService-Info.plist
       - name: Build ios using flutter
