@@ -7,27 +7,22 @@ import 'package:wfcd_client/objects.dart';
 
 import '../../../../core/widgets/widgets.dart';
 import '../bloc/solsystem_bloc.dart';
-import '../widgets/common/refresh_indicator_bloc_screen.dart';
 import '../widgets/syndicates/nightwave_challenges.dart';
 import '../widgets/syndicates/syndicate_bounties.dart';
 import '../widgets/syndicates/syndicate_card.dart';
 
 class SyndicatePage extends StatelessWidget {
-  const SyndicatePage({Key key}) : super(key: key);
+  const SyndicatePage({Key key, @required this.state})
+      : assert(state != null),
+        super(key: key);
+
+  final SolState state;
 
   @override
   Widget build(BuildContext context) {
-    return RefreshIndicatorBlocScreen(
-      builder: (BuildContext context, SolsystemState state) {
-        if (state is SolState) {
-          return ScreenTypeLayout.builder(
-            mobile: (_) => SyndicatePageMobile(state: state),
-            tablet: (_) => SyndicatePageTablet(state: state),
-          );
-        }
-
-        return const Center(child: CircularProgressIndicator());
-      },
+    return ScreenTypeLayout.builder(
+      mobile: (_) => SyndicatePageMobile(state: state),
+      tablet: (_) => SyndicatePageTablet(state: state),
     );
   }
 }
@@ -73,21 +68,11 @@ class SyndicatePageMobile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CustomScrollView(
-      key: const PageStorageKey<String>('mobile_syndicate'),
-      slivers: <Widget>[
-        SliverOverlapInjector(
-          // This is the flip side of the SliverOverlapAbsorber above.
-          handle: NestedScrollView.sliverOverlapAbsorberHandleFor(context),
-        ),
-        SliverList(
-          delegate: SliverChildListDelegate(<Widget>[
-            _buildSyndicates(_worldstate.syndicateMissions),
-            const SizedBox(height: 8.0),
-            if (state.isNightwaveActive)
-              _buildNightwave(state.worldstate.nightwave)
-          ]),
-        )
+    return ListView(
+      children: <Widget>[
+        _buildSyndicates(_worldstate.syndicateMissions),
+        const SizedBox(height: 8.0),
+        if (state.isNightwaveActive) _buildNightwave(state.worldstate.nightwave)
       ],
     );
   }
@@ -124,50 +109,40 @@ class _SyndicatePageTabletState extends State<SyndicatePageTablet> {
 
   @override
   Widget build(BuildContext context) {
-    return CustomScrollView(
-      slivers: [
-        SliverOverlapInjector(
-          // This is the flip side of the SliverOverlapAbsorber above.
-          handle: NestedScrollView.sliverOverlapAbsorberHandleFor(context),
-        ),
-        SliverFillRemaining(
-          child: Row(
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Expanded(
+          child: Column(
             mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Expanded(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: <Widget>[
-                    _buildSyndicates(
-                      _worldstate.syndicateMissions,
-                      onTap: (syn) => _onTap(syn),
-                    ),
-                    const SizedBox(height: 8.0),
-                    if (widget.state.isNightwaveActive)
-                      _buildNightwave(
-                        widget.state.worldstate.nightwave,
-                        onTap: (night) => _onTap(night),
-                      )
-                  ],
-                ),
+              _buildSyndicates(
+                _worldstate.syndicateMissions,
+                onTap: (syn) => _onTap(syn),
               ),
-              const VerticalDivider(width: 2.0),
-              Expanded(
-                child: Center(
-                  child: StreamBuilder<Widget>(
-                      initialData: const Text('Select Syndicate'),
-                      stream: _controller.stream,
-                      builder: (BuildContext context,
-                          AsyncSnapshot<Widget> snapshot) {
-                        return AnimatedSwitcher(
-                          duration: const Duration(milliseconds: 500),
-                          child: snapshot.data,
-                        );
-                      }),
-                ),
-              )
+              const SizedBox(height: 8.0),
+              if (widget.state.isNightwaveActive)
+                _buildNightwave(
+                  widget.state.worldstate.nightwave,
+                  onTap: (night) => _onTap(night),
+                )
             ],
+          ),
+        ),
+        const VerticalDivider(width: 2.0),
+        Expanded(
+          child: Center(
+            child: StreamBuilder<Widget>(
+                initialData: const Text('Select Syndicate'),
+                stream: _controller.stream,
+                builder:
+                    (BuildContext context, AsyncSnapshot<Widget> snapshot) {
+                  return AnimatedSwitcher(
+                    duration: const Duration(milliseconds: 500),
+                    child: snapshot.data,
+                  );
+                }),
           ),
         )
       ],

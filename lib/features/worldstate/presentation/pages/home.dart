@@ -14,13 +14,6 @@ enum Tabs { Timers, Fissures, Invasions, Syndicates }
 class HomeFeedPage extends StatelessWidget {
   const HomeFeedPage({Key key}) : super(key: key);
 
-  static const _tabs = <Tabs, Widget>{
-    Tabs.Timers: Timers(),
-    Tabs.Fissures: FissuresPage(),
-    Tabs.Invasions: InvasionsPage(),
-    Tabs.Syndicates: SyndicatePage()
-  };
-
   String _getTabLocale(BuildContext context, Tabs name) {
     switch (name) {
       case Tabs.Fissures:
@@ -32,6 +25,52 @@ class HomeFeedPage extends StatelessWidget {
       default:
         return context.locale.timersTitle;
     }
+  }
+
+  Widget _buildView(Tabs tab, SolState state) {
+    switch (tab) {
+      case Tabs.Timers:
+        return Timers(state: state);
+      case Tabs.Fissures:
+        return FissuresPage(state: state);
+      case Tabs.Invasions:
+        return InvasionsPage(state: state);
+      default:
+        return SyndicatePage(state: state);
+    }
+  }
+
+  Widget _tabBuilder(Tabs tab) {
+    return SafeArea(
+      top: false,
+      bottom: false,
+      child: BlocBuilder<SolsystemBloc, SolsystemState>(
+        builder: (BuildContext context, SolsystemState state) {
+          if (state is SolState) {
+            return CustomScrollView(
+              key: PageStorageKey<String>(tab.toString()),
+              slivers: [
+                SliverOverlapInjector(
+                  // This is the flip side of the SliverOverlapAbsorber above.
+                  handle:
+                      NestedScrollView.sliverOverlapAbsorberHandleFor(context),
+                ),
+                SliverFillRemaining(
+                  child: RefreshIndicator(
+                    onRefresh: BlocProvider.of<SolsystemBloc>(context).update,
+                    child: _buildView(tab, state),
+                  ),
+                )
+              ],
+            );
+          }
+
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        },
+      ),
+    );
   }
 
   void listener(BuildContext context, SolsystemState state) {
@@ -78,7 +117,7 @@ class HomeFeedPage extends StatelessWidget {
                         .color
                         .withOpacity(.7),
                     indicatorColor: Theme.of(context).accentColor,
-                    tabs: _tabs.keys
+                    tabs: Tabs.values
                         .map((t) => Tab(text: _getTabLocale(context, t)))
                         .toList(),
                   ),
@@ -86,9 +125,7 @@ class HomeFeedPage extends StatelessWidget {
               )
             ];
           },
-          body: TabBarView(
-            children: _tabs.values.map((e) => SafeArea(child: e)).toList(),
-          ),
+          body: TabBarView(children: Tabs.values.map(_tabBuilder).toList()),
         ),
       ),
     );

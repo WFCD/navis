@@ -3,27 +3,22 @@ import 'package:responsive_builder/responsive_builder.dart';
 import 'package:wfcd_client/entities.dart';
 
 import '../bloc/solsystem_bloc.dart';
-import '../widgets/common/refresh_indicator_bloc_screen.dart';
 import '../widgets/invasions/invasion_widget.dart';
 
 class InvasionsPage extends StatelessWidget {
-  const InvasionsPage({Key key}) : super(key: key);
+  const InvasionsPage({Key key, @required this.state})
+      : assert(state != null),
+        super(key: key);
+
+  final SolState state;
 
   @override
   Widget build(BuildContext context) {
-    return RefreshIndicatorBlocScreen(
-      builder: (BuildContext context, SolsystemState state) {
-        if (state is SolState) {
-          final invasions = state.worldstate?.invasions ?? <Invasion>[];
+    final invasions = state.worldstate?.invasions ?? <Invasion>[];
 
-          return ScreenTypeLayout.builder(
-            mobile: (context) => MobileInvasions(invasions: invasions),
-            tablet: (context) => TabletInvasions(invasions: invasions),
-          );
-        }
-
-        return const Center(child: CircularProgressIndicator());
-      },
+    return ScreenTypeLayout.builder(
+      mobile: (context) => MobileInvasions(invasions: invasions),
+      tablet: (context) => TabletInvasions(invasions: invasions),
     );
   }
 }
@@ -37,22 +32,12 @@ class MobileInvasions extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CustomScrollView(
-      key: const PageStorageKey<String>('invasions'),
-      slivers: <Widget>[
-        SliverOverlapInjector(
-          // This is the flip side of the SliverOverlapAbsorber above.
-          handle: NestedScrollView.sliverOverlapAbsorberHandleFor(context),
-        ),
-        SliverList(
-          delegate: SliverChildBuilderDelegate(
-            (BuildContext context, int index) {
-              return InvasionWidget(invasion: invasions[index]);
-            },
-            childCount: invasions.length,
-          ),
-        )
-      ],
+    return ListView.builder(
+      cacheExtent: 250,
+      itemCount: invasions.length,
+      itemBuilder: (BuildContext context, int index) {
+        return InvasionWidget(invasion: invasions[index]);
+      },
     );
   }
 }
@@ -66,28 +51,16 @@ class TabletInvasions extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CustomScrollView(
-      key: const PageStorageKey<String>('fissures_tablet'),
-      slivers: <Widget>[
-        SliverOverlapInjector(
-          // This is the flip side of the SliverOverlapAbsorber above.
-          handle: NestedScrollView.sliverOverlapAbsorberHandleFor(context),
-        ),
-        SliverGrid(
-          delegate: SliverChildBuilderDelegate(
-            (BuildContext context, int index) {
-              return InvasionWidget(invasion: invasions[index]);
-            },
-            childCount: invasions.length,
-          ),
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            childAspectRatio: 4.0,
-            mainAxisSpacing: 8.0,
-            crossAxisSpacing: 8.0,
-          ),
-        )
-      ],
+    return GridView.builder(
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2,
+        childAspectRatio: 4.0,
+        mainAxisSpacing: 8.0,
+        crossAxisSpacing: 8.0,
+      ),
+      itemBuilder: (BuildContext context, int index) {
+        return InvasionWidget(invasion: invasions[index]);
+      },
     );
   }
 }

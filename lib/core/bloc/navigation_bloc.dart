@@ -4,7 +4,7 @@ import 'package:rxdart/rxdart.dart';
 
 import '../../features/codex/presentation/pages/codex_search_screen.dart';
 import '../../features/synthtargets/presentation/pages/targets.dart';
-import '../../features/worldstate/presentation/pages/home_feed.dart';
+import '../../features/worldstate/presentation/pages/home.dart';
 import '../../features/worldstate/presentation/pages/orbiter_news.dart';
 
 enum NavigationEvent { timers, warframe_news, codex, synthTargets }
