@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_brand_icons/flutter_brand_icons.dart';
@@ -49,25 +51,30 @@ class _HomeState extends State<Home> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
-              Container(
-                height: 20 * (mediaQuery.size.height / 100),
+              SizedBox(
                 width: double.infinity,
-                decoration: BoxDecoration(
-                  color: Theme.of(context).primaryColor,
-                  image: const DecorationImage(
-                    image: AssetImage(NavisAssets.derelict),
-                    fit: BoxFit.cover,
-                  ),
-                ),
-                child: SafeArea(
-                  bottom: false,
-                  left: false,
-                  right: false,
-                  top: true,
-                  child: SvgPicture.asset(
-                    NavisAssets.wfcdLogoColor,
-                    color: Colors.white.withOpacity(0.5),
-                  ),
+                height: 20 * (mediaQuery.size.height / 100),
+                child: Stack(
+                  fit: StackFit.passthrough,
+                  children: [
+                    ImageFiltered(
+                      imageFilter: ImageFilter.blur(sigmaX: 1.0, sigmaY: 1.0),
+                      child: const Image(
+                        image: AssetImage(NavisAssets.derelict),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                    SafeArea(
+                      bottom: false,
+                      left: false,
+                      right: false,
+                      top: true,
+                      child: SvgPicture.asset(
+                        NavisAssets.wfcdLogoColor,
+                        color: Colors.white.withOpacity(0.5),
+                      ),
+                    ),
+                  ],
                 ),
               ),
               Expanded(child: DrawerOptions()),
