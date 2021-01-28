@@ -13,9 +13,11 @@ class SyndicateBounties extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final jobs = syndicate.jobs..retainWhere((e) => e.type != null);
+
     return CustomScrollView(
       slivers: <Widget>[
-        for (Job job in syndicate?.jobs ?? [])
+        for (Job job in jobs ?? [])
           SliverStickyHeader(
             header: SyndicateBountyHeader(
               job: job,
