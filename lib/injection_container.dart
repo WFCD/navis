@@ -24,6 +24,7 @@ import 'features/worldstate/data/repositories/worldstate_rep_impl.dart';
 import 'features/worldstate/domain/repositories/worldstate_repository.dart';
 import 'features/worldstate/domain/usecases/get_darvo_deal_info.dart';
 import 'features/worldstate/domain/usecases/get_worldstate.dart';
+import 'features/worldstate/presentation/bloc/darvodeal_bloc.dart';
 import 'features/worldstate/presentation/bloc/solsystem_bloc.dart';
 
 final GetIt sl = GetIt.instance;
@@ -95,10 +96,11 @@ Future<void> init() async {
   // Blocs
   sl.registerFactory<NavigationBloc>(() => NavigationBloc());
   sl.registerFactory<SolsystemBloc>(() {
-    return SolsystemBloc(
-      getWorldstate: sl<GetWorldstate>(),
-      getDarvoDealInfo: sl<GetDarvoDealInfo>(),
-    );
+    return SolsystemBloc(getWorldstate: sl<GetWorldstate>());
+  });
+
+  sl.registerFactory<DarvodealBloc>(() {
+    return DarvodealBloc(getDarvoDealInfo: sl<GetDarvoDealInfo>());
   });
 
   sl.registerFactory(() => SynthtargetsBloc(sl<GetSynthTargets>()));

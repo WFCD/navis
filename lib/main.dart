@@ -22,6 +22,8 @@ import 'injection_container.dart';
 import 'injection_container.dart' as di;
 
 Future<void> main() async {
+  bool isDebug = false;
+
   Logger.root.onRecord.listen((record) {
     print('${record.level.name}: ${record.time}: ${record.message}');
   });
@@ -30,7 +32,10 @@ Future<void> main() async {
   await Firebase.initializeApp();
   await FlutterWebBrowser.warmup();
 
-  FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
+  assert(isDebug = true);
+  if (!isDebug) {
+    FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
+  }
 
   SystemChrome.setSystemUIOverlayStyle(
       const SystemUiOverlayStyle(statusBarColor: Colors.transparent));
