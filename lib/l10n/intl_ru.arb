@@ -1,6 +1,6 @@
 {
     "@@last_modified": "2020-03-03T16:56:42.387837",
-    "levelInfo": "Level: {min} - {max}",
+    "levelInfo": "уровни: {min} - {max}",
     "@levelInfo": {
         "description": "The information of the current enemy levels",
         "type": "text",
@@ -80,7 +80,7 @@
         "type": "text",
         "placeholders": {}
     },
-    "seeWikia": "See Wikia",
+    "seeWikia": "Смотри Wikia",
     "@seeWikia": {
         "description": "General button to wikia of given item",
         "type": "text",
@@ -364,7 +364,7 @@
         "type": "text",
         "placeholder": {}
     },
-    "warframeNewsTitle": "Warframe News",
+    "warframeNewsTitle": "Новости Warframe",
     "@warframeNewsTitle": {
         "description": "Main Title for Warframe news page",
         "type": "text",
@@ -466,13 +466,13 @@
         "type": "text",
         "placeholder": {}
     },
-    "cambionFassOption": "Cambion Fass",
+    "cambionFassOption": "Цикл Фэз",
     "@cambionFassOption": {
         "description": "Cambion Fass cycle option",
         "type": "text",
         "placeholder": {}
     },
-    "cambionVomeOption": "Cambion Vome",
+    "cambionVomeOption": "Цикл Воум",
     "@cambionVomeOption": {
         "description": "Cambion Fass cycle option",
         "type": "text",
@@ -576,199 +576,199 @@
         "type": "text",
         "placeholder": {}
     },
-    "dailyRewardTitle": "Daily Reward Reset Timer",
+    "dailyRewardTitle": "Сброс ежедневных деяний",
     "@dailyRewardTitle": {
         "description": "Title for daily reward timer",
         "type": "text",
         "placeholder": {}
     },
-    "eliteBadgeTitle": "Elite",
+    "eliteBadgeTitle": "Элитные",
     "@eliteBadgeTitle": {
         "description": "Nightwave Elite badge title",
         "type": "text",
         "placeholder": {}
     },
-    "dailyNightwaveTitle": "Daily",
+    "dailyNightwaveTitle": "Ежедневные",
     "@dailyNightwaveTitle": {
         "description": "Nightwave daily title",
         "type": "text",
         "placeholder": {}
     },
-    "weeklyNightwaveTitle": "Weekly",
+    "weeklyNightwaveTitle": "Еженедельные",
     "@weeklyNightwaveTitle": {
         "description": "Nightwave weekly title",
         "type": "text",
         "placeholder": {}
     },
-    "plainsofEidolonMapTitle": "Plains of Eidolon map",
+    "plainsofEidolonMapTitle": "Карта Равнины Эйдолона",
     "@plainsofEidolonMapTitle": {
         "description": "Plains of Eidolon Map link title",
         "type": "text",
         "placholder": {}
     },
-    "orbVallisMapTitle": "Orb Vallis map",
+    "orbVallisMapTitle": "Карта Долина Сфер",
     "@orbVallisMapTitle": {
         "description": "Orb Vallis Map link title",
         "type": "text",
         "placholder": {}
     },
-    "plainsofEidolonFishingDataTitle": "PoE: Fishing Data",
+    "plainsofEidolonFishingDataTitle": "Эйдолон: Рыбалка",
     "@plainsofEidolonFishingDataTitle": {
         "description": "Plains of Eidolon fishing data link title",
         "type": "text",
         "placholder": {}
     },
-    "orbVallisFishingDataTitle": "PoE: Fishing Data",
+    "orbVallisFishingDataTitle": "Долина Сфер: Рыбалка",
     "@orbVallisFishingDataTitle": {
         "description": "Orb Vallis fishing data link title",
         "type": "text",
         "placholder": {}
     },
-    "howToFishTitle": "How to fish",
+    "howToFishTitle": "Как ловить",
     "@howToFishTitle": {
         "description": "How to fish link title",
         "type": "text",
         "placholder": {}
     },
-    "recentNewsCategoryTitle": "Most Recent News",
+    "recentNewsCategoryTitle": "Последние новости",
     "@recentNewsCategoryTitle": {
         "description": "Title for recent news title",
         "type": "text",
         "placeholder": {}
     },
-    "pastNewsCategoryTitle": "Past News",
+    "pastNewsCategoryTitle": "Прошлые новости",
     "@pastNewsCategoryTitle": {
         "description": "Title for past Warframe news",
         "type": "text",
         "placeholder": {}
     },
-    "warframePassiveTitle": "Passive",
+    "warframePassiveTitle": "Пассивное",
     "@warframePassiveTitle": {
         "description": "Warframes passive title",
         "type": "text",
         "placeholder": {}
     },
-    "auraTitle": "Aura Polarity",
+    "auraTitle": "Полярность Ауры",
     "@auraTitle": {
         "description": "Aura polarity title for items",
         "type": "text",
         "placeholder": {}
     },
-    "preinstalledPolarities": "Preinstalled Polarities",
+    "preinstalledPolarities": "Предустановленные Полярности",
     "@preinstalledPolarities": {
         "description": "Preinstalled polarites title for items",
         "type": "text",
         "placeholder": {}
     },
-    "shieldTitle": "Shield",
+    "shieldTitle": "Щиты",
     "@shieldTitle": {
         "description": "Title for shield value",
         "typ": "text",
         "placeholder": {}
     },
-    "armorTitle": "Armor",
+    "armorTitle": "Броня",
     "@armorTitle": {
         "description": "Title for armor value",
         "typ": "text",
         "placeholder": {}
     },
-    "healthTitle": "Health",
+    "healthTitle": "Здоровье",
     "@healthTitle": {
         "description": "Title for health value",
         "typ": "text",
         "placeholder": {}
     },
-    "powerTitle": "Power",
+    "powerTitle": "Сила",
     "@powerTitle": {
         "description": "Title for power value",
         "typ": "text",
         "placeholder": {}
     },
-    "sprintSpeedTitle": "Sprint Speed",
+    "sprintSpeedTitle": "Скорость Бега",
     "@sprintSpeedTitle": {
         "description": "Title for sprint speed value",
         "typ": "text",
         "placeholder": {}
     },
-    "abilitiesTitle": "Abilites",
+    "abilitiesTitle": "Способности",
     "@abilitiesTitle": {
         "description": "Title for warframe, archwings, and Necromech abilites",
         "typ": "text",
         "placeholder": {}
     },
-    "componentsTitle": "Components",
+    "componentsTitle": "Компоненты",
     "@componentsTitle": {
         "description": "Title for item components",
         "typ": "text",
         "placeholder": {}
     },
-    "fullPatchNotesTitle": "FULL PATCH NOTES",
+    "fullPatchNotesTitle": "Список Изменений",
     "@fullPatchNotesTitle": {
         "description": "Full Patch Notes Title",
         "typ": "text",
         "placeholder": {}
     },
-    "masteryRequirementTitle": "Mastery Requirement",
+    "masteryRequirementTitle": "Требуемый Ранг Мастерства",
     "@masteryRequirementTitle": {
         "description": "Mastery requirement for item",
         "type": "text",
         "placeholder": {}
     },
-    "weaponTypeTitle": "Weapon Type",
+    "weaponTypeTitle": "Тип оружия",
     "@weaponTypeTitle": {
         "description": "Weapon item type",
         "type": "text",
         "placeholder": {}
     },
-    "accuracyTitle": "Accuracy",
+    "accuracyTitle": "Точность",
     "@accuracyTitle": {
         "description": "Weapon accuracy title",
         "type": "text",
         "placeholder": {}
     },
-    "cricticalChanceTitle": "Critical Chance",
+    "cricticalChanceTitle": "Крит. шанс",
     "@cricticalChanceTitle": {
         "description": "Weapon crictical chance",
         "type": "text",
         "placeholder": {}
     },
-    "cricticalMultiplierTitle": "Critcial Multiplier",
+    "cricticalMultiplierTitle": "Крит. Множитель",
     "@cricticalMultiplierTitle": {
         "description": "Weapon critical multiplier",
         "type": "text",
         "placeholder": {}
     },
-    "fireRateTitle": "Fire Rate",
+    "fireRateTitle": "Скорострельность",
     "@fireRateTitle": {
         "description": "Weapon fire rate",
         "type": "text",
         "placeholder": {}
     },
-    "magazineTitle": "Magazine",
+    "magazineTitle": "Магазин",
     "@magazineTitle": {
         "description": "Weapon magazine size title",
         "type": "text",
         "placeholder": {}
     },
-    "multishotTitle": "Multishot",
+    "multishotTitle": "Мультивыстрел",
     "@multishotTitle": {
         "description": "Weapon multishot",
         "type": "text",
         "placeholder": {}
     },
-    "noiseTitle": "Noise",
+    "noiseTitle": "Шумность",
     "@noiseTitle": {
         "description": "Weapon noise type",
         "type": "text",
         "placeholder": {}
     },
-    "reloadTitle": "Reload",
+    "reloadTitle": "Перезарядка",
     "@reloadTitle": {
         "description": "Weapon item type",
         "type": "text",
         "placeholder": {}
     },
-    "rivenDispositionTitle": "Riven Disposition",
+    "rivenDispositionTitle": "Синергия с Разломом",
     "@rivenDispositionTitle": {
         "description": "Weapon's riven disposition",
         "type": "text",
