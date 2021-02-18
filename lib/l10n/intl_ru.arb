@@ -1,6 +1,6 @@
 {
     "@@last_modified": "2020-03-03T16:56:42.387837",
-    "levelInfo": "уровни: {min} - {max}",
+    "levelInfo": "Уровни: {min} - {max}",
     "@levelInfo": {
         "description": "The information of the current enemy levels",
         "type": "text",
@@ -774,109 +774,109 @@
         "type": "text",
         "placeholder": {}
     },
-    "statusChanceTitle": "Status Chance",
+    "statusChanceTitle": "Шанс статуса",
     "@statusChanceTitle": {
         "description": "Weapon's status chance",
         "type": "text",
         "placeholder": {}
     },
-    "triggerTitle": "Trigger",
+    "triggerTitle": "Режим",
     "@triggerTitle": {
         "description": "Weapon item type",
         "type": "text",
         "placeholder": {}
     },
-    "damageTitle": "Damage",
+    "damageTitle": "Урон",
     "@damageTitle": {
         "description": "Weapon's damage category",
         "type": "text",
         "placeholder": {}
     },
-    "totalDamageTitle": "Total Damage",
+    "totalDamageTitle": "Всего урона",
     "@totalDamageTitle": {
         "description": "Weapon's total damage'",
         "type": "text",
         "placeholder": {}
     },
-    "stancePolarityTitle": "Stance Polarity",
+    "stancePolarityTitle": "Полярность Стойки",
     "@stancePolarityTitle": {
         "description": "Melee stance polarity title",
         "type": "text",
         "placeholder": {}
     },
-    "attackSpeedTitle": "Attack Speed",
+    "attackSpeedTitle": "Скорость Атаки",
     "@attackSpeedTitle": {
         "description": "melee attack speed",
         "type": "text",
         "placeholder": {}
     },
-    "followThroughTitle": "Follow Through",
+    "followThroughTitle": "Пронзание Навылет",
     "@followThroughTitle": {
         "description": "Melee follow through title",
         "type": "text",
         "placeholder": {}
     },
-    "rangeTitle": "Range",
+    "rangeTitle": "Зона Поражения",
     "@rangeTitle": {
         "description": "Melee's range title",
         "type": "text",
         "placeholder": {}
     },
-    "slamAttackTitle": "Slam Attack",
+    "slamAttackTitle": "Удар по земле",
     "@slamAttackTitle": {
         "description": "Melee's slam attack",
         "type": "text",
         "placeholder": {}
     },
-    "slamRadialDamageTitle": "Slam Radial Damage",
+    "slamRadialDamageTitle": "Радиальный урон по земле",
     "@slamRadialDamageTitle": {
         "description": "Melee's Slam Radial Damage",
         "type": "text",
         "placeholder": {}
     },
-    "slamRadiusTitle": "Slam Radius",
+    "slamRadiusTitle": "Радиус Удара по земле",
     "@slamRadiusTitle": {
         "description": "Slam Radius title",
         "type": "text",
         "placeholder": {}
     },
-    "slideAttackTitle": "Slide Attack",
+    "slideAttackTitle": "Удар в скольжении",
     "@slideAttackTitle": {
         "description": "Melee's slide attack",
         "type": "text",
         "placeholder": {}
     },
-    "heavyAttackTitle": "Heavy Attack",
+    "heavyAttackTitle": "Тяжелая атака",
     "@heavyAttackTitle": {
         "description": "Heavy attack title",
         "type": "text",
         "placeholder": {}
     },
-    "heavySlamAttackTitle": "Heavy Slam Attack",
+    "heavySlamAttackTitle": "Тяжелый удар по земле",
     "@heavySlamAttackTitle": {
         "description": "Heavy Slam attack title",
         "type": "text",
         "placeholder": {}
     },
-    "heavySlamRadialDamageTitle": "Heavy Slam Radial Damage",
+    "heavySlamRadialDamageTitle": "Тяжелый радиальный урон по земле",
     "@heavySlamRadialDamageTitle": {
         "description": "Heavy Slam attack title",
         "type": "text",
         "placeholder": {}
     },
-    "heavySlamRadiusTitle": "Heavy Slam Radius",
+    "heavySlamRadiusTitle": "Радиус тяжелого удара по земле",
     "@heavySlamRadiusTitle": {
         "description": "Heavy Slam attack title",
         "type": "text",
         "placeholder": {}
     },
-    "windUpTitle": "Wind Up",
+    "windUpTitle": "Подготовка",
     "@windUpTitle": {
         "description": "melee's heavy wind up time title",
         "type": "text",
         "placeholder": {}
     },
-    "discordSupportTitle": "Support",
+    "discordSupportTitle": "Discord",
     "@discordSupportTitle": {
         "description": "Discord support title",
         "type": "text",
