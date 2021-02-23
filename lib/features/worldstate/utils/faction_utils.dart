@@ -5,7 +5,7 @@ import '../../../core/themes/colors.dart';
 
 enum EnemyFaction { grineer, corpus, corrupted, infested }
 
-enum SyndicateFaction { cetus, solaris, entrati, nightwave, cephalon_simaris }
+enum SyndicateFaction { cetus, solaris, entrati, nightwave, cephalonSimaris }
 
 Color factionColor(String faction) {
   switch (faction) {
@@ -62,7 +62,7 @@ extension SyndicateFactionX on SyndicateFaction {
         return _entratiIconColor;
       case SyndicateFaction.nightwave:
         return _nightwaveIconColor;
-      case SyndicateFaction.cephalon_simaris:
+      case SyndicateFaction.cephalonSimaris:
         return _simarisIconColor;
       default:
         return Colors.white;
@@ -77,7 +77,7 @@ extension SyndicateFactionX on SyndicateFaction {
         return _solarisBackgroundColor;
       case SyndicateFaction.entrati:
         return _entratiBackgroundColor;
-      case SyndicateFaction.cephalon_simaris:
+      case SyndicateFaction.cephalonSimaris:
         return _simarisBackgroundColor;
       case SyndicateFaction.nightwave:
         return _nightwaveBackgroundColor;

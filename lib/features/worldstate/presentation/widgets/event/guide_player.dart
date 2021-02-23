@@ -8,7 +8,9 @@ import '../../../../../core/utils/helper_methods.dart';
 import '../../../../../core/widgets/custom_card.dart';
 import '../../../../../injection_container.dart';
 
+// ignore: lines_longer_than_80_chars
 // TODO(Ornstein): Find more how-to guides for events might be slightly annoying for older events
+// ignore: lines_longer_than_80_chars
 // TODO(Ornstein): find a way to adapt a stream to network speed, might come later with Youtube_explode
 class EventVideoPlayer extends StatefulWidget {
   const EventVideoPlayer({

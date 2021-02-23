@@ -60,8 +60,8 @@ class _SliverTopbarState extends State<SliverTopbar>
 
   @override
   Widget build(BuildContext context) {
-    final double topPadding = MediaQuery.of(context).padding.top ?? 0.0;
-    final double collapsedHeight =
+    final topPadding = MediaQuery.of(context).padding.top ?? 0.0;
+    final collapsedHeight =
         (widget.pinned && widget.floating) ? topPadding : null;
 
     return MediaQuery.removePadding(
@@ -131,7 +131,7 @@ class _FloatingAppBarState extends State<_FloatingAppBar> {
 
     // When a scroll stops, then maybe snap the appbar into view.
     // Similarly, when a scroll starts, then maybe stop the snap animation.
-    final RenderSliverFloatingPersistentHeader header = _headerRenderer();
+    final header = _headerRenderer();
     if (_position.isScrollingNotifier.value) {
       header?.maybeStopSnapAnimation(_position.userScrollDirection);
     } else {
@@ -173,7 +173,7 @@ class _SliverTopbarDelegate extends SliverPersistentHeaderDelegate {
     double shrinkOffset,
     bool overlapsContent,
   ) {
-    final double visibleMainHeight = maxExtent - shrinkOffset;
+    final visibleMainHeight = maxExtent - shrinkOffset;
 
     // Truth table for `toolbarOpacity`:
     // pinned | floating | bottom != null || opacity
@@ -186,7 +186,7 @@ class _SliverTopbarDelegate extends SliverPersistentHeaderDelegate {
     //    1   |    0     |        1       ||  1.0
     //    1   |    1     |        0       ||  1.0
     //    1   |    1     |        1       ||  fade
-    final double toolbarOpacity = !pinned || floating
+    final toolbarOpacity = !pinned || floating
         ? (visibleMainHeight / kTextTabBarHeight).clamp(0.0, 1.0).toDouble()
         : 1.0;
 

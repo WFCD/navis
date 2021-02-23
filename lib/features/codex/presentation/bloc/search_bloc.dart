@@ -73,11 +73,8 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
       if (category == FilterCategories.all) {
         return _originalResults;
       } else {
-        final results = List<Item>.from(_originalResults);
-
-        results.retainWhere((e) => e.category == category);
-
-        return results;
+        return List<Item>.from(_originalResults)
+          ..retainWhere((e) => e.category == category);
       }
     }
 

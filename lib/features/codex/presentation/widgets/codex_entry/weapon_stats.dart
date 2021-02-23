@@ -54,8 +54,8 @@ class GunStats extends StatelessWidget {
               ),
               RowItem(
                 text: Text(context.locale.cricticalChanceTitle),
-                child: Text(
-                    '${(projectileWeapon.criticalChance * 100).roundToDouble()}%'),
+                child: Text('''
+${(projectileWeapon.criticalChance * 100).roundToDouble()}%'''),
               ),
               RowItem(
                 text: Text(context.locale.cricticalMultiplierTitle),
@@ -88,8 +88,8 @@ class GunStats extends StatelessWidget {
               ),
               RowItem(
                 text: Text(context.locale.statusChanceTitle),
-                child: Text(
-                    '${(projectileWeapon.statusChance * 100).roundToDouble()}%'),
+                child: Text('''
+${(projectileWeapon.statusChance * 100).roundToDouble()}%'''),
               ),
               if (projectileWeapon.trigger != null)
                 RowItem(
@@ -290,14 +290,12 @@ class RivenDisposition extends StatelessWidget {
   Widget build(BuildContext context) {
     const maxDisposition = 5;
 
-    return Container(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          for (int i = 0; i < maxDisposition; i++)
-            _buildDot(Theme.of(context).accentColor, i < disposition)
-        ],
-      ),
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.end,
+      children: [
+        for (int i = 0; i < maxDisposition; i++)
+          _buildDot(Theme.of(context).accentColor, i < disposition)
+      ],
     );
   }
 }

@@ -25,12 +25,10 @@ class InvasionWidget extends StatelessWidget {
         .caption
         .copyWith(color: Colors.white, shadows: <Shadow>[shadow]);
 
-    return Container(
-      child: Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
-        Text(node, style: nodeStyle),
-        Text('$description ($eta)', style: infoStyle),
-      ]),
-    );
+    return Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
+      Text(node, style: nodeStyle),
+      Text('$description ($eta)', style: infoStyle),
+    ]);
   }
 
   @override

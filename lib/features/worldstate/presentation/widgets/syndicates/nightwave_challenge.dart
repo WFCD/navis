@@ -43,9 +43,9 @@ class NightwaveChallenge extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
-              Container(child: Text(challenge.title, style: title)),
+              Text(challenge.title, style: title),
               const SizedBox(height: 4.0),
-              Container(child: Text(challenge.desc, style: desscription)),
+              Text(challenge.desc, style: desscription),
               const SizedBox(height: 8.0),
               Row(
                   crossAxisAlignment: CrossAxisAlignment.end,

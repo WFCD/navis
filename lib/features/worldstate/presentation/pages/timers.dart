@@ -34,7 +34,7 @@ List<CycleEntry> _buildCycles(
   ];
 
   const tempCycle = <Icon>[
-    Icon(NavisSysIcons.heat_wave, color: Colors.red, size: size),
+    Icon(NavisSysIcons.heatWave, color: Colors.red, size: size),
     Icon(Icons.ac_unit, color: Colors.blue, size: size)
   ];
 

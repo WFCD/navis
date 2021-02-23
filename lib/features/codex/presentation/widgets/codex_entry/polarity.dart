@@ -30,14 +30,12 @@ class PreinstalledPolarties extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          for (final p in polarities)
-            Polarity(polarity: toBeginningOfSentenceCase(p)),
-        ],
-      ),
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.end,
+      children: [
+        for (final p in polarities)
+          Polarity(polarity: toBeginningOfSentenceCase(p)),
+      ],
     );
   }
 }

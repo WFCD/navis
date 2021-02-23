@@ -67,15 +67,14 @@ class CycleWidget extends StatelessWidget {
         cycleName,
         style: textTheme.subtitle1.copyWith(fontWeight: FontWeight.w600),
       ),
-      trailing: Container(
-          child: Row(
+      trailing: Row(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           if (cycle.getStateBool) stateOne else stateTwo,
           const SizedBox(width: 6.0),
           CountdownTimer(expiry: cycle.expiry),
         ],
-      )),
+      ),
     );
   }
 }

@@ -9,18 +9,18 @@ import 'invasions.dart';
 import 'syndicates.dart';
 import 'timers.dart';
 
-enum Tabs { Timers, Fissures, Invasions, Syndicates }
+enum Tabs { timers, fissures, invasions, syndicates }
 
 class HomeFeedPage extends StatelessWidget {
   const HomeFeedPage({Key key}) : super(key: key);
 
   String _getTabLocale(BuildContext context, Tabs name) {
     switch (name) {
-      case Tabs.Fissures:
+      case Tabs.fissures:
         return context.locale.fissuresTitle;
-      case Tabs.Invasions:
+      case Tabs.invasions:
         return context.locale.invasionsTitle;
-      case Tabs.Syndicates:
+      case Tabs.syndicates:
         return context.locale.syndicatesTitle;
       default:
         return context.locale.timersTitle;
@@ -29,11 +29,11 @@ class HomeFeedPage extends StatelessWidget {
 
   Widget _buildView(Tabs tab, SolState state) {
     switch (tab) {
-      case Tabs.Timers:
+      case Tabs.timers:
         return Timers(state: state);
-      case Tabs.Fissures:
+      case Tabs.fissures:
         return FissuresPage(state: state);
-      case Tabs.Invasions:
+      case Tabs.invasions:
         return InvasionsPage(state: state);
       default:
         return SyndicatePage(state: state);

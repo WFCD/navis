@@ -49,9 +49,9 @@ class _CountdownTimerState extends State<CountdownTimer>
       _controller.addListener(_detectWarningLevel);
     }
 
-    _controller.addStatusListener(_onEnd);
-
-    _controller.reverse(from: 1.0);
+    _controller
+      ..addStatusListener(_onEnd)
+      ..reverse(from: 1.0);
   }
 
   void _detectWarningLevel() {
@@ -99,8 +99,8 @@ class _CountdownTimerState extends State<CountdownTimer>
         if (_controller != null) {
           _controller
             ..removeListener(_detectWarningLevel)
-            ..removeStatusListener(_onEnd);
-          _controller.dispose();
+            ..removeStatusListener(_onEnd)
+            ..dispose();
         }
       }
 
@@ -109,14 +109,15 @@ class _CountdownTimerState extends State<CountdownTimer>
   }
 
   String _timerVersions() {
-    final String days = '${_timeLeft.inDays}';
-    final String hours = '${_timeLeft.inHours % 24}';
-    final String minutes = '${_timeLeft.inMinutes % 60}'.padLeft(2, '0');
-    final String seconds = '${_timeLeft.inSeconds % 60}'.padLeft(2, '0');
+    final days = '${_timeLeft.inDays}';
+    final hours = '${_timeLeft.inHours % 24}';
+    final minutes = '${_timeLeft.inMinutes % 60}'.padLeft(2, '0');
+    final seconds = '${_timeLeft.inSeconds % 60}'.padLeft(2, '0');
 
-    final bool is24hrs = _timeLeft < 1.days;
+    final is24hrs = _timeLeft < 1.days;
 
-    return '${_expired ? 'Expired: -' : ''}${!is24hrs ? '$days\d' : ''} $hours:$minutes:$seconds';
+    return '${_expired ? 'Expired: -' : ''}'
+        '${!is24hrs ? '$days\d' : ''} $hours:$minutes:$seconds';
   }
 
   @override
@@ -147,8 +148,8 @@ class _CountdownTimerState extends State<CountdownTimer>
       if (_controller != null) {
         _controller
           ..removeListener(_detectWarningLevel)
-          ..removeStatusListener(_onEnd);
-        _controller.dispose();
+          ..removeStatusListener(_onEnd)
+          ..dispose();
       }
     }
 

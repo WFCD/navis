@@ -17,8 +17,8 @@ class BaroNotificationBuilder extends NotificationBuilder<VoidTrader> {
     return WorldstateNotification(
       id: 333,
       title: 'Baro has arrived',
-      body:
-          'Baro Ki\'Teer is ${trader.active ? 'arrived' : 'leaving soon'} tenno',
+      body: 'Baro Ki\'Teer is '
+          '${trader.active ? 'arrived' : 'leaving soon'} tenno',
       androidNotificationDetails:
           NotificationChannelDetails.singleAndroidDetails,
     );

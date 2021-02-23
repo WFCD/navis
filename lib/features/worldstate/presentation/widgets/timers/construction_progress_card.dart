@@ -97,9 +97,9 @@ class ProgressPainter extends CustomPainter {
     final arcAngle = 2 * pi * (completePercent / 100);
     final rect = Rect.fromCircle(center: center, radius: radius);
 
-    canvas.drawCircle(center, radius, line);
-
-    canvas.drawArc(rect, -pi / 2, arcAngle, false, complete);
+    canvas
+      ..drawCircle(center, radius, line)
+      ..drawArc(rect, -pi / 2, arcAngle, false, complete);
   }
 
   @override

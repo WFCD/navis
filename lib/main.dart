@@ -8,7 +8,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
-import 'package:logging/logging.dart';
 import 'package:provider/provider.dart';
 import 'package:wfcd_client/wfcd_client.dart';
 
@@ -22,11 +21,7 @@ import 'injection_container.dart';
 import 'injection_container.dart' as di;
 
 Future<void> main() async {
-  bool isDebug = false;
-
-  Logger.root.onRecord.listen((record) {
-    print('${record.level.name}: ${record.time}: ${record.message}');
-  });
+  var isDebug = false;
 
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();

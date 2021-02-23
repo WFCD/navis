@@ -45,7 +45,8 @@ class AlertWidget extends StatelessWidget {
         children: <Widget>[
           RowItem(
             icons: <Widget>[
-              // Not sure we need to add nightmare icon since alerts have be axed
+              // Not sure we need to add nightmare
+              // icon since alerts have be axed and
               // nightmare alerts haven't been a thing
               if (_mission.archwingRequired) NavisSystemIconWidgets.archwingIcon
             ],
@@ -56,8 +57,9 @@ class AlertWidget extends StatelessWidget {
           ),
           RowItem(
             text: Text(
-              '${_mission.type} (${_mission.faction}) '
-              '| ${context.locale.levelInfo(_mission.minEnemyLevel, _mission.maxEnemyLevel)}',
+              '''
+${_mission.type} (${_mission.faction}) 
+| ${context.locale.levelInfo(_mission.minEnemyLevel, _mission.maxEnemyLevel)}''',
               style: textTheme.caption,
             ),
             child: CountdownTimer(expiry: alert.expiry),

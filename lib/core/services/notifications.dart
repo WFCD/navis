@@ -21,11 +21,12 @@ class NotificationService {
       provisional: true,
     );
 
-    _messaging.requestNotificationPermissions(iosSettings);
-    _messaging.configure(
-      onMessage: handler,
-      onBackgroundMessage: Platform.isIOS ? null : handler,
-    );
+    _messaging
+      ..requestNotificationPermissions(iosSettings)
+      ..configure(
+        onMessage: handler,
+        onBackgroundMessage: Platform.isIOS ? null : handler,
+      );
   }
 
   Future<void> subscribeToPlatform(GamePlatforms platform) async {

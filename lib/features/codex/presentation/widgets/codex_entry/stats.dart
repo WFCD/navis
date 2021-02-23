@@ -11,18 +11,18 @@ class Stats extends StatelessWidget {
   Widget build(BuildContext context) {
     final children = <Widget>[];
 
-    stats.forEach((element) {
-      final index = stats.indexOf(element);
+    for (final stat in stats) {
+      final index = stats.indexOf(stat);
 
       if (index == stats.length - 1) {
-        children.add(element);
+        children.add(stat);
       } else {
         children.add(Padding(
           padding: const EdgeInsets.only(bottom: 16.0),
-          child: element,
+          child: stat,
         ));
       }
-    });
+    }
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,

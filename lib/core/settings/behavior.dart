@@ -10,23 +10,21 @@ class Behavior extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(children: <Widget>[
-        const CategoryTitle(title: 'Behavior'),
-        ListTile(
-          title: Text(context.locale.themeTitle),
-          subtitle: Text(context.locale.themeDescription),
-          onTap: () => ThemePicker.showModes(context),
-        ),
-        SwitchListTile(
-          title: Text(context.locale.backOpensDrawerTitle),
-          subtitle: Text(context.locale.backOpensDrawerDescription),
-          value: context.watch<Usersettings>().backkey,
-          activeColor: Theme.of(context).accentColor,
-          onChanged: (b) => context.read<Usersettings>().backkey = b,
-        )
-      ]),
-    );
+    return Column(children: <Widget>[
+      const CategoryTitle(title: 'Behavior'),
+      ListTile(
+        title: Text(context.locale.themeTitle),
+        subtitle: Text(context.locale.themeDescription),
+        onTap: () => ThemePicker.showModes(context),
+      ),
+      SwitchListTile(
+        title: Text(context.locale.backOpensDrawerTitle),
+        subtitle: Text(context.locale.backOpensDrawerDescription),
+        value: context.watch<Usersettings>().backkey,
+        activeColor: Theme.of(context).accentColor,
+        onChanged: (b) => context.read<Usersettings>().backkey = b,
+      )
+    ]);
   }
 }
 

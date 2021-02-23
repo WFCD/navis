@@ -26,7 +26,7 @@ class NavisSysIcons {
   static const IconData standing = IconData(0xe803, fontFamily: _kFontFam);
   static const IconData voidfissure = IconData(0xe804, fontFamily: _kFontFam);
   static const IconData wfcdLogoColor = IconData(0xe805, fontFamily: _kFontFam);
-  static const IconData heat_wave = IconData(0xe806, fontFamily: _kFontFam);
-  static const IconData moon_solid = IconData(0xe809, fontFamily: _kFontFam);
+  static const IconData heatWave = IconData(0xe806, fontFamily: _kFontFam);
+  static const IconData moonSolid = IconData(0xe809, fontFamily: _kFontFam);
   static const IconData kuva = IconData(0xe80a, fontFamily: _kFontFam);
 }

@@ -14,8 +14,8 @@ import '../../../utils/worldstate_util.dart';
 part 'solsystem_event.dart';
 part 'solsystem_state.dart';
 
-const String SERVER_FAILURE_MESSAGE = 'Failed to contact server';
-const String CACHE_FAILURE_MESSAGE = 'Cache Failure';
+const String serverFailureMessage = 'Failed to contact server';
+const String cacheFailureMessage = 'Cache Failure';
 
 class SolsystemBloc extends HydratedBloc<SyncEvent, SolsystemState> {
   SolsystemBloc({
@@ -33,14 +33,11 @@ class SolsystemBloc extends HydratedBloc<SyncEvent, SolsystemState> {
       try {
         final either = await getWorldstate(event.forceUpdate);
 
-        yield either.fold(
-          (l) => matchFailure(l),
-          (r) => SolState(cleanState(r)),
-        );
+        yield either.fold(matchFailure, (r) => SolState(cleanState(r)));
       } on ServerException {
-        yield const SystemError(SERVER_FAILURE_MESSAGE);
+        yield const SystemError(serverFailureMessage);
       } on CacheException {
-        yield const SystemError(CACHE_FAILURE_MESSAGE);
+        yield const SystemError(cacheFailureMessage);
       }
     }
   }

@@ -13,7 +13,7 @@ class PatchlogCards extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 500.0,
       child: PageView.builder(
         itemCount: patchlogs.length,

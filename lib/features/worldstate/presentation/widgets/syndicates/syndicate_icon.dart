@@ -24,7 +24,7 @@ class GetSyndicateIcon extends StatelessWidget {
             return SyndicateGlyphs.entrati;
           case SyndicateFaction.nightwave:
             return SyndicateGlyphs.nightwave;
-          case SyndicateFaction.cephalon_simaris:
+          case SyndicateFaction.cephalonSimaris:
             return SyndicateGlyphs.simaris;
           default:
             return NavisSysIcons.nightmare;

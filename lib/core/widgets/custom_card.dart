@@ -53,8 +53,8 @@ class CustomCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ThemeData theme = Theme.of(context);
-    final CardTheme cardTheme = CardTheme.of(context);
+    final theme = Theme.of(context);
+    final cardTheme = CardTheme.of(context);
     final cardContent = Padding(
       padding: padding,
       child: title != null

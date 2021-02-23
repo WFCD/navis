@@ -37,23 +37,21 @@ class Notifications extends StatelessWidget {
   Widget build(BuildContext context) {
     final filters = LocalizedFilter(context.locale);
 
-    return Container(
-      child: Column(children: <Widget>[
-        const CategoryTitle(title: 'Notifications'),
-        for (Map<String, String> m in filters.simpleFilters)
-          _SimpleNotification(
-            name: m['name'],
-            description: m['description'],
-            optionKey: m['key'],
-          ),
-        for (Map<String, String> k in filters.filtered)
-          ListTile(
-            title: Text(k['title']),
-            subtitle: Text(k['description']),
-            onTap: () => openDialog(context, filters, k['type']),
-          ),
-      ]),
-    );
+    return Column(children: <Widget>[
+      const CategoryTitle(title: 'Notifications'),
+      for (Map<String, String> m in filters.simpleFilters)
+        _SimpleNotification(
+          name: m['name'],
+          description: m['description'],
+          optionKey: m['key'],
+        ),
+      for (Map<String, String> k in filters.filtered)
+        ListTile(
+          title: Text(k['title']),
+          subtitle: Text(k['description']),
+          onTap: () => openDialog(context, filters, k['type']),
+        ),
+    ]);
   }
 }
 
