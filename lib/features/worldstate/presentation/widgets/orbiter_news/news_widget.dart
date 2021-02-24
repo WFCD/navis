@@ -27,7 +27,7 @@ class OrbiterNewsWidget extends StatelessWidget {
     return Theme(
       data: NavisTheming.dark,
       child: InkWell(
-        onTap: () => launchLink(context, news.link),
+        onTap: () => news.link.launchLink(context),
         child: CustomCard(
           padding: EdgeInsets.zero,
           margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 8.0),

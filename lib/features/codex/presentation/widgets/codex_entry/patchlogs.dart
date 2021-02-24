@@ -2,7 +2,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:wfcd_client/entities.dart';
 
-import '../../../../../core/utils/extensions.dart';
 import '../../../../../core/utils/helper_methods.dart';
 import '../../../../../core/widgets/widgets.dart';
 
@@ -85,7 +84,7 @@ class PatchlogCard extends StatelessWidget {
                 style: ButtonStyle(
                   foregroundColor: MaterialStateProperty.all(Colors.white),
                 ),
-                onPressed: () => launchLink(context, patchlog.url),
+                onPressed: () => patchlog.url.launchLink(context),
                 child: const Text('FULL PATCH NOTES'),
               )
             ],

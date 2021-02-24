@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:wfcd_client/entities.dart';
 
-import '../../../../../core/utils/extensions.dart';
 import '../../../../../core/widgets/widgets.dart';
+import '../../../../../l10n/l10n.dart';
 import '../../pages/acolyte_profile.dart';
 
 class AcolyteCard extends StatelessWidget {
@@ -92,12 +92,13 @@ class _AcolyteWidgetState extends State<AcolyteWidget>
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
+
     return ListTile(
-      title: Text(context.locale.activeAcolyte(enemy.agentType, enemy.rank)),
-      subtitle: Text(context.locale.tapForMoreDetails),
+      title: Text(l10n.activeAcolyte(enemy.agentType, enemy.rank)),
+      subtitle: Text(l10n.tapForMoreDetails),
       trailing: StaticBox(
-        tooltip:
-            _isDiscovered ? enemy.lastDiscoveredAt : context.locale.locating,
+        tooltip: _isDiscovered ? enemy.lastDiscoveredAt : l10n.locating,
         color: _isDiscovered
             ? const Color(0xFFB00020)
             : Theme.of(context).primaryColor,
@@ -106,7 +107,7 @@ class _AcolyteWidgetState extends State<AcolyteWidget>
             _searchStatus(),
             AnimatedCrossFade(
               firstChild: Text(enemy.lastDiscoveredAt),
-              secondChild: Text(context.locale.locating),
+              secondChild: Text(l10n.locating),
               crossFadeState: _isDiscovered
                   ? CrossFadeState.showFirst
                   : CrossFadeState.showSecond,

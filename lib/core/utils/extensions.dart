@@ -1,6 +1,18 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/navis_localizations.dart';
+import 'package:flutter_web_browser/flutter_web_browser.dart';
+import 'package:html/parser.dart';
+
+import '../themes/colors.dart';
+
+extension BuildContextNx on BuildContext {
+  void scrollToSelectedContent() {
+    const duration = Duration(milliseconds: 200);
+
+    Future<void>.delayed(duration).then((value) {
+      Scrollable.ensureVisible(this, duration: duration);
+    });
+  }
+}
 
 extension DateTimeX on DateTime {
   String format(BuildContext context) {
@@ -8,10 +20,42 @@ extension DateTimeX on DateTime {
   }
 }
 
-extension ContextX on BuildContext {
-  NavisLocalizations get locale => NavisLocalizations.of(this);
-}
-
 extension ThemeX on ThemeData {
   bool get isDark => brightness == Brightness.dark;
+}
+
+extension StringNx on String {
+  String parseHtmlString() {
+    final document = parse(this);
+    return document.body.text;
+  }
+
+  Future<void> launchLink(BuildContext context, {bool pop = false}) async {
+    if (pop) Navigator.of(context).pop();
+
+    try {
+      await FlutterWebBrowser.openWebPage(
+        url: this,
+        customTabsOptions: const CustomTabsOptions(
+          toolbarColor: primary,
+          addDefaultShareMenuItem: true,
+          urlBarHidingEnabled: true,
+          showTitle: true,
+        ),
+        safariVCOptions: const SafariViewControllerOptions(
+          barCollapsingEnabled: true,
+          dismissButtonStyle: SafariViewControllerDismissButtonStyle.close,
+          modalPresentationCapturesStatusBarAppearance: true,
+        ),
+      );
+    } catch (e) {
+      Scaffold.of(context).showSnackBar(const SnackBar(
+        duration: Duration(seconds: 5),
+        content: Text(
+          'Unable to open, either no browser detected or an'
+          ' invalid link provided by API.',
+        ),
+      ));
+    }
+  }
 }

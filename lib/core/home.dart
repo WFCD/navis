@@ -7,6 +7,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 
 import '../constants/links.dart';
+import '../l10n/l10n.dart';
 import '../resources/resources.dart';
 import 'bloc/navigation_bloc.dart';
 import 'local/user_settings.dart';
@@ -40,6 +41,7 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     final mediaQuery = MediaQuery.of(context);
 
     return WillPopScope(
@@ -84,12 +86,12 @@ class _HomeState extends State<Home> {
                   BrandIcons.discord,
                   color: Color(0xFF7289DA),
                 ),
-                title: const Text('Support'),
-                onTap: () => launchLink(context, discordInvite),
+                title: Text(l10n.discordSupportTitle),
+                onTap: () => discordInvite.launchLink(context),
               ),
               ListTile(
                 leading: const Icon(Icons.settings),
-                title: Text(context.locale.settingsTitle),
+                title: Text(l10n.settingsTitle),
                 onTap: () {
                   Navigator.of(context).pop();
                   Navigator.of(context).pushNamed('/settings');

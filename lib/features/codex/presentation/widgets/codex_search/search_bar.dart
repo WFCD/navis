@@ -4,8 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../core/themes/colors.dart';
 import '../../../../../core/themes/themes.dart';
 import '../../bloc/search_bloc.dart';
-import '../../bloc/search_event.dart';
-import '../../bloc/search_state.dart';
 
 class CodexSearchBar extends SliverPersistentHeaderDelegate {
   const CodexSearchBar();

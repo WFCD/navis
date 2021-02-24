@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:logging/logging.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:supercharged/supercharged.dart';
 import 'package:wfcd_client/entities.dart';
@@ -11,7 +10,8 @@ import '../../domian/usercases/search_items.dart';
 import 'search_event.dart';
 import 'search_state.dart';
 
-final _logger = Logger('Usersettings');
+export 'search_event.dart';
+export 'search_state.dart';
 
 class SearchBloc extends Bloc<SearchEvent, SearchState> {
   SearchBloc(this.searchItems) : super(CodexSearchEmpty());
@@ -78,7 +78,6 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
       }
     }
 
-    _logger.shout('No built in category used returning original results');
     return null;
   }
 }

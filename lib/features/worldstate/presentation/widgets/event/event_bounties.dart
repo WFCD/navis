@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:wfcd_client/entities.dart';
 
-import '../../../../../core/utils/extensions.dart';
 import '../../../../../core/widgets/widgets.dart';
+import '../../../../../l10n/l10n.dart';
 
 class EventBounties extends StatelessWidget {
   const EventBounties({Key key, this.jobs}) : super(key: key);
@@ -14,7 +14,7 @@ class EventBounties extends StatelessWidget {
       return ListTile(
         title: Text(j.type),
         subtitle: Text(
-          context.locale.levelInfo(j.enemyLevels.first, j.enemyLevels.last),
+          context.l10n.levelInfo(j.enemyLevels.first, j.enemyLevels.last),
         ),
         onTap: () => _showDialog(context, j.type, j.rewardPool),
       );
@@ -60,7 +60,7 @@ class EventBounties extends StatelessWidget {
     return CustomCard(
       child: Column(children: <Widget>[
         CategoryTitle(
-          title: context.locale.bountyTitle,
+          title: context.l10n.bountyTitle,
           style: category,
         ),
         const SizedBox(height: 2.0),

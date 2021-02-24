@@ -3,8 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:supercharged/supercharged.dart';
 
 import '../../features/worldstate/presentation/bloc/solsystem_bloc.dart';
+import '../../l10n/l10n.dart';
 import '../themes/colors.dart';
-import '../utils/extensions.dart';
+import '../utils/helper_methods.dart';
 import 'static_box.dart';
 
 class CountdownTimer extends StatefulWidget {
@@ -37,15 +38,19 @@ class _CountdownTimerState extends State<CountdownTimer>
   Color _warningLevel = Colors.green;
 
   DateTime get _now => DateTime.now();
-  DateTime get localExpiry => widget.expiry.toLocal();
+  DateTime get _localExpiry => widget.expiry.toLocal();
   Duration get _timeLeft => _controller.duration * _controller?.value;
 
+  Duration get _totalTime {
+    final difference = _localExpiry.difference(_now);
+    return difference < Duration.zero ? 1.minutes : difference;
+  }
+
   void _setupCountdown() {
-    _controller = AnimationController(
-        duration: localExpiry.difference(_now).abs(), vsync: this);
+    _controller = AnimationController(duration: _totalTime, vsync: this);
 
     if (widget.color == null) {
-      _expired = localExpiry.isBefore(_now);
+      _expired = _localExpiry.isBefore(_now);
       _controller.addListener(_detectWarningLevel);
     }
 
@@ -79,7 +84,7 @@ class _CountdownTimerState extends State<CountdownTimer>
 
     if (mounted) {
       setState(() {
-        _expired = localExpiry.isBefore(_now);
+        _expired = !_expired;
       });
     }
   }
@@ -95,13 +100,11 @@ class _CountdownTimerState extends State<CountdownTimer>
     super.didUpdateWidget(oldWidget);
 
     if (oldWidget.expiry != widget.expiry || _expired) {
-      if (widget.color != Colors.transparent) {
-        if (_controller != null) {
-          _controller
-            ..removeListener(_detectWarningLevel)
-            ..removeStatusListener(_onEnd)
-            ..dispose();
-        }
+      if (_controller != null) {
+        _controller
+          ..removeListener(_detectWarningLevel)
+          ..removeStatusListener(_onEnd)
+          ..dispose();
       }
 
       _setupCountdown();
@@ -122,10 +125,10 @@ class _CountdownTimerState extends State<CountdownTimer>
 
   @override
   Widget build(BuildContext context) {
-    final endTime = localExpiry.format(context);
+    final endTime = _localExpiry.format(context);
 
     return StaticBox(
-      tooltip: context.locale.countdownTooltip(endTime),
+      tooltip: context.l10n.countdownTooltip(endTime),
       color: widget.color ?? _warningLevel,
       padding: widget.padding,
       margin: widget.margin,
@@ -144,13 +147,11 @@ class _CountdownTimerState extends State<CountdownTimer>
 
   @override
   void dispose() {
-    if (widget.color != Colors.transparent) {
-      if (_controller != null) {
-        _controller
-          ..removeListener(_detectWarningLevel)
-          ..removeStatusListener(_onEnd)
-          ..dispose();
-      }
+    if (_controller != null) {
+      _controller
+        ..removeListener(_detectWarningLevel)
+        ..removeStatusListener(_onEnd)
+        ..dispose();
     }
 
     super.dispose();

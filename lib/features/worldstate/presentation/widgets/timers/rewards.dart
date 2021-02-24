@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import '../../../../../core/utils/extensions.dart';
+
 import '../../../../../core/widgets/widgets.dart';
+import '../../../../../l10n/l10n.dart';
 
 class DailyReward extends StatelessWidget {
   const DailyReward({Key key}) : super(key: key);
@@ -16,7 +17,7 @@ class DailyReward extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomCard(
       child: ListTile(
-        title: Text(context.locale.dailyRewardTitle),
+        title: Text(context.l10n.dailyRewardTitle),
         trailing: CountdownTimer(expiry: endOfDay),
       ),
     );

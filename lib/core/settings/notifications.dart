@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../injection_container.dart';
+import '../../l10n/l10n.dart';
 import '../local/user_settings.dart';
 import '../services/notifications.dart';
-import '../utils/extensions.dart';
 import '../utils/notification_filter.dart';
 import '../widgets/widgets.dart';
 
@@ -35,7 +35,7 @@ class Notifications extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final filters = LocalizedFilter(context.locale);
+    final filters = LocalizedFilter(context.l10n);
 
     return Column(children: <Widget>[
       const CategoryTitle(title: 'Notifications'),

@@ -7,6 +7,7 @@ import 'package:wfcd_client/entities.dart';
 import '../../../../../core/utils/extensions.dart';
 import '../../../../../core/utils/helper_methods.dart';
 import '../../../../../core/widgets/widgets.dart';
+import '../../../../../l10n/l10n.dart';
 import '../../bloc/darvodeal_bloc.dart';
 
 class DarvoDealCard extends StatelessWidget {
@@ -66,7 +67,7 @@ class _DealWidgetState extends State<DealWidget> {
                         itemName: state.item?.name ?? widget.deal.item,
                         itemDescription:
                             state.item?.description?.isNotEmpty ?? false
-                                ? parseHtmlString(state.item?.description)
+                                ? state.item?.description?.parseHtmlString()
                                 : null,
                       ),
                     const SizedBox(height: 16.0),
@@ -106,8 +107,8 @@ class _DealWidgetState extends State<DealWidget> {
                                   Theme.of(context).textTheme.button.color),
                             ),
                             onPressed: () =>
-                                launchLink(context, state.item.wikiaUrl),
-                            child: Text(context.locale.seeWikia),
+                                state.item.wikiaUrl.launchLink(context),
+                            child: Text(context.l10n.seeWikia),
                           ),
                       ])
                   ],
@@ -124,10 +125,9 @@ class DealDetails extends StatelessWidget {
     Key key,
     @required this.imageUrl,
     @required this.itemName,
-    @required this.itemDescription,
+    this.itemDescription,
   })  : assert(imageUrl != null),
         assert(itemName != null),
-        assert(itemDescription != null),
         super(key: key);
 
   final String imageUrl, itemName, itemDescription;

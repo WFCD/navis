@@ -5,7 +5,7 @@ import 'package:video_player/video_player.dart';
 
 import '../../../../../core/services/videos.dart';
 import '../../../../../core/utils/helper_methods.dart';
-import '../../../../../core/widgets/custom_card.dart';
+import '../../../../../core/widgets/widgets.dart';
 import '../../../../../injection_container.dart';
 
 // ignore: lines_longer_than_80_chars
@@ -141,7 +141,7 @@ class PlayerInformation extends StatelessWidget {
               const Spacer(),
               IconButton(
                 icon: const Icon(Icons.open_in_new),
-                onPressed: () => launchLink(context, link),
+                onPressed: () => link.launchLink(context),
               )
             ],
           ),

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:wfcd_client/entities.dart';
 
-import '../../../../../core/utils/extensions.dart';
 import '../../../../../core/widgets/widgets.dart';
+import '../../../../../l10n/l10n.dart';
 import 'polarity.dart';
 import 'stats.dart';
 
@@ -18,8 +18,7 @@ class FrameStats extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: Column(
         children: <Widget>[
-          Text(context.locale.warframePassiveTitle,
-              style: textTheme?.subtitle1),
+          Text(context.l10n.warframePassiveTitle, style: textTheme?.subtitle1),
           const SizedBox(height: 8.0),
           Text(
             (powerSuit as Warframe).passiveDescription,
@@ -33,6 +32,7 @@ class FrameStats extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     return CustomCard(
       padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 8.0),
       child: Column(
@@ -43,37 +43,33 @@ class FrameStats extends StatelessWidget {
           Stats(stats: <RowItem>[
             if (powerSuit is Warframe)
               RowItem(
-                text: Text(context.locale.auraTitle),
-                child: Polarity(
-                  polarity: (powerSuit as Warframe).aura,
-                ),
+                text: Text(l10n.auraTitle),
+                child: Polarity(polarity: (powerSuit as Warframe).aura),
               ),
             if (powerSuit.polarities?.isNotEmpty ?? false)
               RowItem(
-                text: Text(context.locale.preinstalledPolarities),
-                child: PreinstalledPolarties(
-                  polarities: powerSuit.polarities,
-                ),
+                text: Text(l10n.preinstalledPolarities),
+                child: PreinstalledPolarties(polarities: powerSuit.polarities),
               ),
             RowItem(
-              text: Text(context.locale.shieldTitle),
+              text: Text(l10n.shieldTitle),
               child: Text('${powerSuit.shield}'),
             ),
             RowItem(
-              text: Text(context.locale.armorTitle),
+              text: Text(l10n.armorTitle),
               child: Text('${powerSuit.armor}'),
             ),
             RowItem(
-              text: Text(context.locale.healthTitle),
+              text: Text(l10n.healthTitle),
               child: Text('${powerSuit.health}'),
             ),
             RowItem(
-              text: Text(context.locale.powerTitle),
+              text: Text(l10n.powerTitle),
               child: Text('${powerSuit.power}'),
             ),
             if (powerSuit is PlayerUsuablePowerSuit)
               RowItem(
-                text: Text(context.locale.sprintSpeedTitle),
+                text: Text(l10n.sprintSpeedTitle),
                 child: Text(
                     '${(powerSuit as PlayerUsuablePowerSuit).sprintSpeed}'),
               ),
@@ -81,8 +77,9 @@ class FrameStats extends StatelessWidget {
           const SizedBox(height: 16.0),
           if (powerSuit is PlayerUsuablePowerSuit) ...{
             CategoryTitle(
-                title: context.locale.abilitiesTitle,
-                contentPadding: EdgeInsets.zero),
+              title: l10n.abilitiesTitle,
+              contentPadding: EdgeInsets.zero,
+            ),
             for (final ability
                 in (powerSuit as PlayerUsuablePowerSuit).abilities)
               ListTile(

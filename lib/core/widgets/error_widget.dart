@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../utils/extensions.dart';
+import '../../l10n/l10n.dart';
 
 class NavisErrorWidget extends StatelessWidget {
   const NavisErrorWidget({
@@ -25,6 +25,8 @@ class NavisErrorWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
+
     return Material(
       child: Container(
         margin: const EdgeInsets.all(20),
@@ -40,13 +42,13 @@ class NavisErrorWidget extends StatelessWidget {
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  context.locale.errorTitle,
+                  l10n.errorTitle,
                   style: Theme.of(context).textTheme.headline6,
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 10),
                 Text(
-                  context.locale.errorDescription,
+                  l10n.errorDescription,
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 10),

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../core/utils/extensions.dart';
 import '../../../../core/widgets/sliver_top_bar.dart';
+import '../../../../l10n/l10n.dart';
 import '../bloc/solsystem_bloc.dart';
 import 'fissures.dart';
 import 'invasions.dart';
@@ -15,15 +15,17 @@ class HomeFeedPage extends StatelessWidget {
   const HomeFeedPage({Key key}) : super(key: key);
 
   String _getTabLocale(BuildContext context, Tabs name) {
+    final l10n = context.l10n;
+
     switch (name) {
       case Tabs.fissures:
-        return context.locale.fissuresTitle;
+        return l10n.fissuresTitle;
       case Tabs.invasions:
-        return context.locale.invasionsTitle;
+        return l10n.invasionsTitle;
       case Tabs.syndicates:
-        return context.locale.syndicatesTitle;
+        return l10n.syndicatesTitle;
       default:
-        return context.locale.timersTitle;
+        return l10n.timersTitle;
     }
   }
 

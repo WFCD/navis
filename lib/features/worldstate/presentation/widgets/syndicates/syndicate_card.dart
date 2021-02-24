@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:wfcd_client/entities.dart';
 
-import '../../../../../core/utils/extensions.dart';
 import '../../../../../core/widgets/custom_card.dart';
 import '../../../../../core/widgets/widgets.dart';
+import '../../../../../l10n/l10n.dart';
 import '../../../utils/faction_utils.dart';
 import '../../pages/bounties.dart';
 import '../../pages/nightwaves.dart';
@@ -68,7 +68,7 @@ class SyndicateCard extends StatelessWidget {
               title: Text(name ?? syndicate.name.replaceFirst('Syndicate', ''),
                   style: titleStyle),
               subtitle: Text(
-                caption ?? context.locale.tapForMoreDetails,
+                caption ?? context.l10n.tapForMoreDetails,
                 style: captionStyle,
               ),
             ),

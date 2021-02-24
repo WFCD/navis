@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../l10n/l10n.dart';
 import '../local/user_settings.dart';
-import '../utils/extensions.dart';
 import '../widgets/widgets.dart';
 
 class Behavior extends StatelessWidget {
@@ -10,16 +10,18 @@ class Behavior extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
+
     return Column(children: <Widget>[
       const CategoryTitle(title: 'Behavior'),
       ListTile(
-        title: Text(context.locale.themeTitle),
-        subtitle: Text(context.locale.themeDescription),
+        title: Text(l10n.themeTitle),
+        subtitle: Text(l10n.themeDescription),
         onTap: () => ThemePicker.showModes(context),
       ),
       SwitchListTile(
-        title: Text(context.locale.backOpensDrawerTitle),
-        subtitle: Text(context.locale.backOpensDrawerDescription),
+        title: Text(l10n.backOpensDrawerTitle),
+        subtitle: Text(l10n.backOpensDrawerDescription),
         value: context.watch<Usersettings>().backkey,
         activeColor: Theme.of(context).accentColor,
         onChanged: (b) => context.read<Usersettings>().backkey = b,
@@ -50,29 +52,30 @@ class ThemePicker extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     final accentColor = Theme.of(context).accentColor;
 
     return NavisDialog(
-      title: Text(context.locale.themeTitle),
+      title: Text(l10n.themeTitle),
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           RadioListTile<ThemeMode>(
-            title: Text(context.locale.lightThemeTitle),
+            title: Text(l10n.lightThemeTitle),
             value: ThemeMode.light,
             groupValue: context.watch<Usersettings>().theme,
             activeColor: accentColor,
             onChanged: (b) => _onChanged(context, b),
           ),
           RadioListTile<ThemeMode>(
-            title: Text(context.locale.darkThemeTitle),
+            title: Text(l10n.darkThemeTitle),
             value: ThemeMode.dark,
             groupValue: context.watch<Usersettings>().theme,
             activeColor: accentColor,
             onChanged: (b) => _onChanged(context, b),
           ),
           RadioListTile<ThemeMode>(
-            title: Text(context.locale.systemThemeTitle),
+            title: Text(l10n.systemThemeTitle),
             value: ThemeMode.system,
             groupValue: context.watch<Usersettings>().theme,
             activeColor: accentColor,
