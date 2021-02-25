@@ -42,7 +42,7 @@ class SolsystemBloc extends HydratedBloc<SyncEvent, SolsystemState> {
     }
   }
 
-  Future<void> update({bool forceUpdate}) async {
+  Future<void> update({bool forceUpdate = false}) async {
     add(SyncSystemStatus(forceUpdate: forceUpdate));
     await Future<void>.delayed(1.seconds);
   }
