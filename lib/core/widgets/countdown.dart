@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:supercharged/supercharged.dart';
@@ -34,23 +36,22 @@ class _CountdownTimerState extends State<CountdownTimer>
   static const _minimum = Duration(minutes: 10);
 
   AnimationController _controller;
-  bool _expired = false;
+
+  bool _expired;
   Color _warningLevel = Colors.green;
 
   DateTime get _now => DateTime.now();
   DateTime get _localExpiry => widget.expiry.toLocal();
   Duration get _timeLeft => _controller.duration * _controller?.value;
 
-  Duration get _totalTime {
-    final difference = _localExpiry.difference(_now);
-    return difference < Duration.zero ? 1.minutes : difference;
-  }
-
   void _setupCountdown() {
-    _controller = AnimationController(duration: _totalTime, vsync: this);
+    final difference = _localExpiry.difference(_now);
+
+    _expired = difference <= Duration.zero;
+    _controller = AnimationController(
+        duration: _expired ? 59.seconds : difference, vsync: this);
 
     if (widget.color == null) {
-      _expired = _localExpiry.isBefore(_now);
       _controller.addListener(_detectWarningLevel);
     }
 
@@ -78,14 +79,17 @@ class _CountdownTimerState extends State<CountdownTimer>
   }
 
   void _onEnd(AnimationStatus status) {
-    if (status == AnimationStatus.completed) {
-      BlocProvider.of<SolsystemBloc>(context).update(forceUpdate: true);
-    }
+    if (status == AnimationStatus.dismissed) {
+      if (mounted) {
+        _controller
+          ..removeListener(_detectWarningLevel)
+          ..removeStatusListener(_onEnd)
+          ..dispose();
 
-    if (mounted) {
-      setState(() {
-        _expired = !_expired;
-      });
+        setState(_setupCountdown);
+      }
+
+      BlocProvider.of<SolsystemBloc>(context).update(forceUpdate: true);
     }
   }
 
@@ -99,13 +103,11 @@ class _CountdownTimerState extends State<CountdownTimer>
   void didUpdateWidget(CountdownTimer oldWidget) {
     super.didUpdateWidget(oldWidget);
 
-    if (oldWidget.expiry != widget.expiry || _expired) {
-      if (_controller != null) {
-        _controller
-          ..removeListener(_detectWarningLevel)
-          ..removeStatusListener(_onEnd)
-          ..dispose();
-      }
+    if (oldWidget.expiry != widget.expiry) {
+      _controller
+        ..removeListener(_detectWarningLevel)
+        ..removeStatusListener(_onEnd)
+        ..dispose();
 
       _setupCountdown();
     }
