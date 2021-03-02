@@ -45,6 +45,8 @@ Future<void> startApp() async {
 }
 
 Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
   var isDebug = false;
   const systemOverlay =
       SystemUiOverlayStyle(statusBarColor: Colors.transparent);
@@ -52,7 +54,6 @@ Future<void> main() async {
   SystemChrome.setSystemUIOverlayStyle(systemOverlay);
   await Firebase.initializeApp();
 
-  WidgetsFlutterBinding.ensureInitialized();
   await FlutterWebBrowser.warmup();
 
   assert(isDebug = true);
