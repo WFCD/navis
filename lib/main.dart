@@ -20,11 +20,39 @@ import 'features/worldstate/presentation/bloc/solsystem_bloc.dart';
 import 'injection_container.dart';
 import 'injection_container.dart' as di;
 
+Future<void> startApp() async {
+  HydratedBloc.storage = await HydratedStorage.build();
+
+  await di.init();
+  if (sl<Usersettings>().platform == null) {
+    sl<Usersettings>().platform = GamePlatforms.pc;
+    await sl<NotificationService>().subscribeToPlatform(GamePlatforms.pc);
+  }
+
+  runApp(
+    MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (_) => sl<NavigationBloc>()),
+        BlocProvider(create: (_) => sl<SolsystemBloc>()),
+        BlocProvider(create: (_) => sl<SearchBloc>()),
+      ],
+      child: ChangeNotifierProvider.value(
+        value: sl<Usersettings>(),
+        child: const NavisApp(),
+      ),
+    ),
+  );
+}
+
 Future<void> main() async {
   var isDebug = false;
+  const systemOverlay =
+      SystemUiOverlayStyle(statusBarColor: Colors.transparent);
+
+  SystemChrome.setSystemUIOverlayStyle(systemOverlay);
+  await Firebase.initializeApp();
 
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
   await FlutterWebBrowser.warmup();
 
   assert(isDebug = true);
@@ -32,32 +60,5 @@ Future<void> main() async {
     FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
   }
 
-  SystemChrome.setSystemUIOverlayStyle(
-      const SystemUiOverlayStyle(statusBarColor: Colors.transparent));
-
-  await runZonedGuarded(() async {
-    HydratedBloc.storage = await HydratedStorage.build();
-
-    await Firebase.initializeApp();
-
-    await di.init();
-    if (sl<Usersettings>().platform == null) {
-      sl<Usersettings>().platform = GamePlatforms.pc;
-      await sl<NotificationService>().subscribeToPlatform(GamePlatforms.pc);
-    }
-
-    runApp(
-      MultiBlocProvider(
-        providers: [
-          BlocProvider(create: (_) => sl<NavigationBloc>()),
-          BlocProvider(create: (_) => sl<SolsystemBloc>()),
-          BlocProvider(create: (_) => sl<SearchBloc>()),
-        ],
-        child: ChangeNotifierProvider.value(
-          value: sl<Usersettings>(),
-          child: const NavisApp(),
-        ),
-      ),
-    );
-  }, FirebaseCrashlytics.instance.recordError);
+  await runZonedGuarded(startApp, FirebaseCrashlytics.instance.recordError);
 }
