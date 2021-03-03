@@ -11,7 +11,7 @@ class GetWorldstate extends Usecase<Worldstate, bool> {
   final WorldstateRepository repository;
 
   @override
-  Future<Either<Failure, Worldstate>> call(bool forceUpdate) {
-    return repository.getWorldstate(forceUpdate: forceUpdate);
+  Future<Either<Failure, Worldstate>> call(bool params) {
+    return repository.getWorldstate(forceUpdate: params);
   }
 }

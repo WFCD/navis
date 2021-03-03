@@ -12,7 +12,7 @@ class GetDarvoDealInfo extends Usecase<Item, DealRequest> {
   final WorldstateRepository repository;
 
   @override
-  Future<Either<Failure, Item>> call(DealRequest request) async {
-    return repository.getDealInfo(request.id, request.name);
+  Future<Either<Failure, Item>> call(DealRequest params) async {
+    return repository.getDealInfo(params.id, params.name);
   }
 }

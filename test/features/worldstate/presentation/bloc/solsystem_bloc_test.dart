@@ -40,10 +40,7 @@ void main() {
     getWorldstate = MockGetWorldstate();
     getDarvoDealInfo = MockGetDarvoDealInfo();
 
-    solsystemBloc = SolsystemBloc(
-      getWorldstate: getWorldstate,
-      getDarvoDealInfo: getDarvoDealInfo,
-    );
+    solsystemBloc = SolsystemBloc(getWorldstate: getWorldstate);
 
     when(getWorldstate(any)).thenAnswer((_) async => Right(tWorldstate));
     when(getDarvoDealInfo(any)).thenAnswer((_) async => Right(tResults.first));

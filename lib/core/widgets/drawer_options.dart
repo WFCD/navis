@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../l10n/l10n.dart';
 import '../bloc/navigation_bloc.dart';
-import '../utils/extensions.dart';
 import '../utils/helper_methods.dart';
 import 'widgets.dart';
 
@@ -10,8 +10,6 @@ import 'widgets.dart';
 
 class DrawerOptions extends StatelessWidget {
   DrawerOptions({Key key}) : super(key: key);
-
-  final ScrollController _controller = ScrollController();
 
   void _onTap(BuildContext context, NavigationEvent newRoute) {
     BlocProvider.of<NavigationBloc>(context).add(newRoute);
@@ -26,79 +24,80 @@ class DrawerOptions extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const bool isDense = true;
-    final GlobalKey expansionTileKey = GlobalKey(debugLabel: 'links');
+    const isDense = true;
+    final l10n = context.l10n;
 
     return BlocBuilder<NavigationBloc, Widget>(
       builder: (BuildContext context, Widget state) {
-        return Container(
-          child: ListView(
-            controller: _controller,
-            children: <Widget>[
-              ListTile(
-                leading: const Icon(Icons.home),
-                title: Text(context.locale.homePageTitle),
-                onTap: () => _onTap(context, NavigationEvent.timers),
-                selected: state ==
-                    NavigationBloc.navigationMap[NavigationEvent.timers],
-              ),
-              ListTile(
-                leading: const Icon(Icons.web),
-                title: Text(context.locale.warframeNewsTitle),
-                onTap: () => _onTap(context, NavigationEvent.warframe_news),
-                selected: state ==
-                    NavigationBloc.navigationMap[NavigationEvent.warframe_news],
-              ),
-              ListTile(
-                leading: const Icon(Icons.search),
-                title: Text(context.locale.codexTitle),
-                onTap: () => _onTap(context, NavigationEvent.codex),
-                selected: state ==
-                    NavigationBloc.navigationMap[NavigationEvent.codex],
-              ),
-              ListTile(
-                leading: const FaIcon(SyndicateGlyphs.simaris),
-                title: const Text('SynthTargets'),
-                onTap: () => _onTap(context, NavigationEvent.synthTargets),
-                selected: state ==
-                    NavigationBloc.navigationMap[NavigationEvent.synthTargets],
-              ),
-              ExpansionTile(
-                key: expansionTileKey,
-                leading: const Icon(Icons.help),
-                title: Text(context.locale.helpfulLinksTitle),
-                onExpansionChanged: (b) {
-                  if (b) {
-                    scrollToSelectedContent(context);
-                  }
-                },
-                children: <Widget>[
-                  ListTile(
-                      title: const Text('Plains of Eidolon map'),
-                      dense: isDense,
-                      onTap: () => launchLink(context, _poe, pop: true)),
-                  ListTile(
-                      title: const Text('Orb Vallis map'),
-                      dense: isDense,
-                      onTap: () => launchLink(context, _vallis, pop: true)),
-                  ListTile(
-                      title: const Text('PoE: Fishing Data'),
-                      dense: isDense,
-                      onTap: () =>
-                          launchLink(context, _poeFishingData, pop: true)),
-                  ListTile(
-                      title: const Text('Vallis: Fishing Data'),
-                      dense: isDense,
-                      onTap: () =>
-                          launchLink(context, _vallisFishingData, pop: true)),
-                  ListTile(
-                      title: const Text('How to Fish'),
-                      dense: isDense,
-                      onTap: () => launchLink(context, _howToFish, pop: true))
-                ],
-              )
-            ],
-          ),
+        return ListView(
+          children: <Widget>[
+            ListTile(
+              leading: const Icon(Icons.home),
+              title: Text(l10n.homePageTitle),
+              onTap: () => _onTap(context, NavigationEvent.timers),
+              selected:
+                  state == NavigationBloc.navigationMap[NavigationEvent.timers],
+            ),
+            ListTile(
+              leading: const Icon(Icons.web),
+              title: Text(l10n.warframeNewsTitle),
+              onTap: () => _onTap(context, NavigationEvent.warframeNews),
+              selected: state ==
+                  NavigationBloc.navigationMap[NavigationEvent.warframeNews],
+            ),
+            ListTile(
+              leading: const Icon(Icons.search),
+              title: Text(l10n.codexTitle),
+              onTap: () => _onTap(context, NavigationEvent.codex),
+              selected:
+                  state == NavigationBloc.navigationMap[NavigationEvent.codex],
+            ),
+            ListTile(
+              leading: const FaIcon(SyndicateGlyphs.simaris),
+              title: const Text('SynthTargets'),
+              onTap: () => _onTap(context, NavigationEvent.synthTargets),
+              selected: state ==
+                  NavigationBloc.navigationMap[NavigationEvent.synthTargets],
+            ),
+            ExpansionTile(
+              key: const Key('links'),
+              leading: const Icon(Icons.help),
+              title: Text(l10n.helpfulLinksTitle),
+              onExpansionChanged: (b) {
+                if (b) {
+                  context.scrollToSelectedContent();
+                }
+              },
+              children: <Widget>[
+                ListTile(
+                  title: Text(l10n.plainsofEidolonMapTitle),
+                  dense: isDense,
+                  onTap: () => _poe.launchLink(context, pop: true),
+                ),
+                ListTile(
+                  title: Text(l10n.orbVallisMapTitle),
+                  dense: isDense,
+                  onTap: () => _vallis.launchLink(context, pop: true),
+                ),
+                ListTile(
+                  title: Text(l10n.plainsofEidolonFishingDataTitle),
+                  dense: isDense,
+                  onTap: () => _poeFishingData.launchLink(context, pop: true),
+                ),
+                ListTile(
+                  title: Text(l10n.orbVallisFishingDataTitle),
+                  dense: isDense,
+                  onTap: () =>
+                      _vallisFishingData.launchLink(context, pop: true),
+                ),
+                ListTile(
+                  title: Text(l10n.howToFishTitle),
+                  dense: isDense,
+                  onTap: () => _howToFish.launchLink(context, pop: true),
+                )
+              ],
+            )
+          ],
         );
       },
     );

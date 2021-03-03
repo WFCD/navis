@@ -18,7 +18,8 @@ import 'package:flutter/widgets.dart';
 class FaIcon extends StatelessWidget {
   /// Creates an icon.
   ///
-  /// The [size] and [color] default to the value given by the current [IconTheme].
+  /// The [size] and [color] default to the value given
+  /// by the current [IconTheme].
   const FaIcon(
     this.icon, {
     Key key,
@@ -30,7 +31,6 @@ class FaIcon extends StatelessWidget {
         super(key: key);
 
   /// The icon to display. The available icons are described in
-  /// [FontAwesomeIcons].
   final IconData icon;
 
   /// The font size of the icon.
@@ -38,11 +38,6 @@ class FaIcon extends StatelessWidget {
   /// Defaults to the current [IconTheme] size, if any. If there is no
   /// [IconTheme], or it does not specify an explicit size, then it defaults to
   /// 24.0.
-  ///
-  /// If this [FaIcon] is being placed inside an [IconButton], then use
-  /// [IconButton.iconSize] instead, so that the [IconButton] can make the
-  /// splash area the appropriate size as well. The [IconButton] uses an
-  /// [IconTheme] to pass down the size to the [FaIcon].
   final double size;
 
   /// The color to use when drawing the icon.
@@ -57,11 +52,6 @@ class FaIcon extends StatelessWidget {
   ///
   /// Announced in accessibility modes (e.g TalkBack/VoiceOver).
   /// This label does not show in the UI.
-  ///
-  /// See also:
-  ///
-  ///  * [Semantics.label], which is set to [semanticLabel] in the underlying
-  ///    [Semantics] widget.
   final String semanticLabel;
 
   /// The text direction to use for rendering the icon.
@@ -82,12 +72,11 @@ class FaIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     assert(this.textDirection != null || debugCheckHasDirectionality(context));
-    final TextDirection textDirection =
-        this.textDirection ?? Directionality.of(context);
+    final textDirection = this.textDirection ?? Directionality.of(context);
 
-    final IconThemeData iconTheme = IconTheme.of(context);
+    final iconTheme = IconTheme.of(context);
 
-    final double iconSize = size ?? iconTheme.size;
+    final iconSize = size ?? iconTheme.size;
 
     if (icon == null) {
       return Semantics(
@@ -96,8 +85,9 @@ class FaIcon extends StatelessWidget {
       );
     }
 
-    final double iconOpacity = iconTheme.opacity;
-    Color iconColor = color ?? iconTheme.color;
+    final iconOpacity = iconTheme.opacity;
+
+    var iconColor = color ?? iconTheme.color;
     if (iconOpacity != 1.0) {
       iconColor = iconColor.withOpacity(iconColor.opacity * iconOpacity);
     }
@@ -144,9 +134,9 @@ class FaIcon extends StatelessWidget {
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties.add(
-        IconDataProperty('icon', icon, ifNull: '<empty>', showName: false));
-    properties.add(DoubleProperty('size', size, defaultValue: null));
-    properties.add(ColorProperty('color', color, defaultValue: null));
+    properties
+      ..add(IconDataProperty('icon', icon, ifNull: '<empty>', showName: false))
+      ..add(DoubleProperty('size', size, defaultValue: null))
+      ..add(ColorProperty('color', color, defaultValue: null));
   }
 }

@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:wfcd_client/entities.dart';
 
-import '../../../../../core/utils/extensions.dart';
 import '../../../../../core/utils/helper_methods.dart';
 import '../../../../../core/widgets/widgets.dart';
+import '../../../../../l10n/l10n.dart';
 import 'polarity.dart';
 import 'stats.dart';
 
@@ -22,6 +22,8 @@ class GunStats extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
+
     return CustomCard(
       padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 8.0),
       child: Column(
@@ -34,73 +36,73 @@ class GunStats extends StatelessWidget {
           Stats(
             stats: <RowItem>[
               RowItem(
-                text: Text(context.locale.masteryRequirementTitle),
+                text: Text(l10n.masteryRequirementTitle),
                 child: Text('${projectileWeapon.masteryReq}'),
               ),
               RowItem(
-                text: Text(context.locale.weaponTypeTitle),
+                text: Text(l10n.weaponTypeTitle),
                 child: Text(projectileWeapon.type),
               ),
               if (projectileWeapon.polarities?.isNotEmpty ?? false)
                 RowItem(
-                  text: Text(context.locale.preinstalledPolarities),
+                  text: Text(l10n.preinstalledPolarities),
                   child: PreinstalledPolarties(
                     polarities: projectileWeapon.polarities,
                   ),
                 ),
               RowItem(
-                text: Text(context.locale.accuracyTitle),
+                text: Text(l10n.accuracyTitle),
                 child: Text('${roundDouble(projectileWeapon.accuracy, 1)}'),
               ),
               RowItem(
-                text: Text(context.locale.cricticalChanceTitle),
-                child: Text(
-                    '${(projectileWeapon.criticalChance * 100).roundToDouble()}%'),
+                text: Text(l10n.cricticalChanceTitle),
+                child: Text('''
+${(projectileWeapon.criticalChance * 100).roundToDouble()}%'''),
               ),
               RowItem(
-                text: Text(context.locale.cricticalMultiplierTitle),
+                text: Text(l10n.cricticalMultiplierTitle),
                 child: Text('${projectileWeapon.criticalMultiplier}x'),
               ),
               RowItem(
-                text: Text(context.locale.fireRateTitle),
+                text: Text(l10n.fireRateTitle),
                 child: Text('${projectileWeapon.fireRate.toStringAsFixed(2)}'),
               ),
               RowItem(
-                text: Text(context.locale.magazineTitle),
+                text: Text(l10n.magazineTitle),
                 child: Text('${projectileWeapon.magazineSize}'),
               ),
               RowItem(
-                text: Text(context.locale.multishotTitle),
+                text: Text(l10n.multishotTitle),
                 child: Text('${projectileWeapon.multishot}'),
               ),
               RowItem(
-                text: Text(context.locale.noiseTitle),
+                text: Text(l10n.noiseTitle),
                 child: Text('${projectileWeapon.noise.toUpperCase()}'),
               ),
               RowItem(
-                text: Text(context.locale.reloadTitle),
+                text: Text(l10n.reloadTitle),
                 child: Text('${roundDouble(projectileWeapon.reloadTime, 1)}'),
               ),
               RowItem(
-                text: Text(context.locale.rivenDispositionTitle),
+                text: Text(l10n.rivenDispositionTitle),
                 child:
                     RivenDisposition(disposition: projectileWeapon.disposition),
               ),
               RowItem(
-                text: Text(context.locale.statusChanceTitle),
-                child: Text(
-                    '${(projectileWeapon.statusChance * 100).roundToDouble()}%'),
+                text: Text(l10n.statusChanceTitle),
+                child: Text('''
+${(projectileWeapon.statusChance * 100).roundToDouble()}%'''),
               ),
               if (projectileWeapon.trigger != null)
                 RowItem(
-                  text: Text(context.locale.triggerTitle),
+                  text: Text(l10n.triggerTitle),
                   child: Text(projectileWeapon.trigger),
                 )
             ],
           ),
           const SizedBox(height: 16.0),
           CategoryTitle(
-            title: context.locale.damageTitle,
+            title: l10n.damageTitle,
             contentPadding: EdgeInsets.zero,
           ),
           Stats(stats: <RowItem>[
@@ -113,7 +115,7 @@ class GunStats extends StatelessWidget {
           const SizedBox(height: 16.0),
           RowItem(
             text: Text(
-              context.locale.totalDamageTitle,
+              l10n.totalDamageTitle,
               style: Theme.of(context).textTheme.subtitle1,
             ),
             child: Text(
@@ -139,6 +141,8 @@ class MeleeStats extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
+
     return CustomCard(
       padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 8.0),
       child: Column(
@@ -146,67 +150,67 @@ class MeleeStats extends StatelessWidget {
           Stats(
             stats: <RowItem>[
               RowItem(
-                text: Text(context.locale.masteryRequirementTitle),
+                text: Text(l10n.masteryRequirementTitle),
                 child: Text('${meleeWeapon.masteryReq}'),
               ),
               RowItem(
-                text: Text(context.locale.weaponTypeTitle),
+                text: Text(l10n.weaponTypeTitle),
                 child: Text(meleeWeapon.type),
               ),
               RowItem(
-                text: Text(context.locale.stancePolarityTitle),
+                text: Text(l10n.stancePolarityTitle),
                 child: Polarity(polarity: meleeWeapon.stancePolarity),
               ),
               if (meleeWeapon.polarities.isNotEmpty)
                 RowItem(
-                  text: Text(context.locale.preinstalledPolarities),
+                  text: Text(l10n.preinstalledPolarities),
                   child: PreinstalledPolarties(
                     polarities: meleeWeapon.polarities,
                   ),
                 ),
               RowItem(
-                text: Text(context.locale.attackSpeedTitle),
+                text: Text(l10n.attackSpeedTitle),
                 child: Text('${meleeWeapon.attackSpeed.toStringAsFixed(2)}'),
               ),
               RowItem(
-                text: Text(context.locale.cricticalChanceTitle),
+                text: Text(l10n.cricticalChanceTitle),
                 child: Text(
                     '${(meleeWeapon.criticalChance * 100).roundToDouble()}%'),
               ),
               RowItem(
-                text: Text(context.locale.cricticalMultiplierTitle),
+                text: Text(l10n.cricticalMultiplierTitle),
                 child: Text('${meleeWeapon.criticalMultiplier}x'),
               ),
               RowItem(
-                text: Text(context.locale.followThroughTitle),
+                text: Text(l10n.followThroughTitle),
                 child: Text('${meleeWeapon.followThrough.toStringAsFixed(2)}'),
               ),
               RowItem(
-                text: Text(context.locale.rangeTitle),
+                text: Text(l10n.rangeTitle),
                 child: Text('${meleeWeapon.range.toStringAsFixed(2)}'),
               ),
               RowItem(
-                text: Text(context.locale.slamAttackTitle),
+                text: Text(l10n.slamAttackTitle),
                 child: Text('${meleeWeapon.slamAttack}'),
               ),
               RowItem(
-                text: Text(context.locale.slamRadialDamageTitle),
+                text: Text(l10n.slamRadialDamageTitle),
                 child: Text('${meleeWeapon.slamRadialDamage}'),
               ),
               RowItem(
-                text: Text(context.locale.slamRadiusTitle),
+                text: Text(l10n.slamRadiusTitle),
                 child: Text('${meleeWeapon.slamRadius.toStringAsFixed(2)}'),
               ),
               RowItem(
-                text: Text(context.locale.slideAttackTitle),
+                text: Text(l10n.slideAttackTitle),
                 child: Text('${meleeWeapon.slideAttack}'),
               ),
               RowItem(
-                text: Text(context.locale.rivenDispositionTitle),
+                text: Text(l10n.rivenDispositionTitle),
                 child: RivenDisposition(disposition: meleeWeapon.disposition),
               ),
               RowItem(
-                text: Text(context.locale.statusChanceTitle),
+                text: Text(l10n.statusChanceTitle),
                 child: Text(
                     '${(meleeWeapon.statusChance * 100).roundToDouble()}%'),
               ),
@@ -214,7 +218,7 @@ class MeleeStats extends StatelessWidget {
           ),
           const SizedBox(height: 16.0),
           CategoryTitle(
-            title: context.locale.damageTitle,
+            title: l10n.damageTitle,
             contentPadding: EdgeInsets.zero,
           ),
           Stats(stats: <RowItem>[
@@ -227,7 +231,7 @@ class MeleeStats extends StatelessWidget {
           const SizedBox(height: 16.0),
           RowItem(
             text: Text(
-              context.locale.totalDamageTitle,
+              l10n.totalDamageTitle,
               style: Theme.of(context).textTheme.subtitle1,
             ),
             child: Text(
@@ -236,28 +240,28 @@ class MeleeStats extends StatelessWidget {
             ),
           ),
           CategoryTitle(
-            title: context.locale.heavyAttackTitle,
+            title: l10n.heavyAttackTitle,
             contentPadding: EdgeInsets.zero,
           ),
           Stats(stats: [
             RowItem(
-              text: Text(context.locale.damageTitle),
+              text: Text(l10n.damageTitle),
               child: Text('${meleeWeapon.heavyAttackDamage}'),
             ),
             RowItem(
-              text: Text(context.locale.heavySlamAttackTitle),
+              text: Text(l10n.heavySlamAttackTitle),
               child: Text('${meleeWeapon.heavySlamAttack}'),
             ),
             RowItem(
-              text: Text(context.locale.heavySlamRadialDamageTitle),
+              text: Text(l10n.heavySlamRadialDamageTitle),
               child: Text('${meleeWeapon.heavySlamRadialDamage}'),
             ),
             RowItem(
-              text: Text(context.locale.heavySlamRadiusTitle),
+              text: Text(l10n.heavySlamRadiusTitle),
               child: Text('${meleeWeapon.heavySlamRadius.toDouble()}'),
             ),
             RowItem(
-              text: Text(context.locale.windUpTitle),
+              text: Text(l10n.windUpTitle),
               child: Text('${meleeWeapon.windUp.toStringAsFixed(2)}'),
             ),
           ])
@@ -290,14 +294,12 @@ class RivenDisposition extends StatelessWidget {
   Widget build(BuildContext context) {
     const maxDisposition = 5;
 
-    return Container(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          for (int i = 0; i < maxDisposition; i++)
-            _buildDot(Theme.of(context).accentColor, i < disposition)
-        ],
-      ),
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.end,
+      children: [
+        for (int i = 0; i < maxDisposition; i++)
+          _buildDot(Theme.of(context).accentColor, i < disposition)
+      ],
     );
   }
 }

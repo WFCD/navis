@@ -28,7 +28,8 @@ class CodexResult extends StatelessWidget {
       });
     }
 
-    stats = parseHtmlString(stats ?? item.description ?? '');
+    stats =
+        stats?.parseHtmlString() ?? item.description?.parseHtmlString() ?? '';
 
     switch (mod.rarity) {
       case 'Rare':
@@ -95,7 +96,7 @@ class CodexResult extends StatelessWidget {
       }
 
       if (description != null) {
-        description = parseHtmlString(description);
+        description = description.parseHtmlString();
       }
     }
 
@@ -112,7 +113,7 @@ class CodexResult extends StatelessWidget {
         ),
         title: Text(item.name),
         subtitle: Text(
-            description?.trim() ?? parseHtmlString(item.description ?? '')),
+            description?.trim() ?? item.description?.parseHtmlString() ?? ''),
         isThreeLine: true,
         dense: true,
         onTap: () {

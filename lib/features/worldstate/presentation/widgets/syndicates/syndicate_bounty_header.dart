@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:supercharged/supercharged.dart';
 import 'package:wfcd_client/entities.dart';
 
-import '../../../../../core/utils/extensions.dart';
 import '../../../../../core/widgets/icons.dart';
+import '../../../../../l10n/l10n.dart';
 import '../../../utils/faction_utils.dart';
 
 class SyndicateBountyHeader extends StatelessWidget {
@@ -17,15 +17,13 @@ class SyndicateBountyHeader extends StatelessWidget {
   final SyndicateFaction faction;
 
   Widget _buildStanding() {
-    return Container(
-      child: Row(mainAxisSize: MainAxisSize.min, children: <Widget>[
-        NavisSystemIconWidgets.standingIcon,
-        Text(
-          job.standingStages.sum().toString(),
-          style: const TextStyle(color: Colors.white),
-        )
-      ]),
-    );
+    return Row(mainAxisSize: MainAxisSize.min, children: <Widget>[
+      NavisSystemIconWidgets.standingIcon,
+      Text(
+        job.standingStages.sum().toString(),
+        style: const TextStyle(color: Colors.white),
+      )
+    ]);
   }
 
   @override
@@ -37,7 +35,7 @@ class SyndicateBountyHeader extends StatelessWidget {
       child: ListTile(
         title: Text(job.type, style: const TextStyle(color: Colors.white)),
         subtitle: Text(
-          context.locale.levelInfo(job.enemyLevels.first, job.enemyLevels.last),
+          context.l10n.levelInfo(job.enemyLevels.first, job.enemyLevels.last),
           style: const TextStyle(color: Colors.white),
         ),
         trailing: _buildStanding(),

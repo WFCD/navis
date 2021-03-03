@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../core/utils/extensions.dart';
 import '../../../../../core/utils/helper_methods.dart';
 import '../../../../../core/widgets/widgets.dart';
+import '../../../../../l10n/l10n.dart';
 
 class AcolyteStatus extends StatelessWidget {
   const AcolyteStatus({
@@ -31,6 +31,7 @@ class AcolyteStatus extends StatelessWidget {
   Widget build(BuildContext context) {
     const padding = EdgeInsets.symmetric(vertical: 4.0);
 
+    final l10n = context.l10n;
     final statTitle = Theme.of(context).textTheme.subtitle1;
     final statValue = Theme.of(context).textTheme.subtitle2;
 
@@ -40,12 +41,12 @@ class AcolyteStatus extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           RowItem(
-            text: Text(context.locale.acolyteRank, style: statTitle),
+            text: Text(l10n.acolyteRank, style: statTitle),
             padding: padding,
             child: StaticBox.text(text: '$rank', style: statValue),
           ),
           RowItem(
-            text: Text(context.locale.acolyteHealth, style: statTitle),
+            text: Text(l10n.acolyteHealth, style: statTitle),
             padding: padding,
             child: StaticBox.text(
               text: '${health.toStringAsFixed(2)} %',
@@ -56,8 +57,8 @@ class AcolyteStatus extends StatelessWidget {
           RowItem(
             text: Text(
               isDiscovered
-                  ? context.locale.acolyteCurrentLocation
-                  : context.locale.acolytePassLocation,
+                  ? l10n.acolyteCurrentLocation
+                  : l10n.acolytePassLocation,
               style: statTitle,
             ),
             padding: padding,
@@ -68,14 +69,12 @@ class AcolyteStatus extends StatelessWidget {
           ),
           RowItem(
             text: Text(
-              isDiscovered
-                  ? context.locale.acolyteFound
-                  : context.locale.acolyteLastSeen,
+              isDiscovered ? l10n.acolyteFound : l10n.acolyteLastSeen,
               style: statTitle,
             ),
             padding: padding,
             child: StaticBox.text(
-              text: context.locale.acolyteElapsedTime(lastSeenTime),
+              text: l10n.acolyteElapsedTime(lastSeenTime),
               style: statValue,
             ),
           ),

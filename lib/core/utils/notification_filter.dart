@@ -165,7 +165,7 @@ class LocalizedFilter {
     final filters = <String, String>{};
 
     for (final tier in tiers) {
-      List<String> objectives = missionTypes;
+      var objectives = missionTypes;
 
       if (tier == 'Requiem') {
         objectives = commonTypes;

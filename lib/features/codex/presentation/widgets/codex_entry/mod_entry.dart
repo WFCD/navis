@@ -331,26 +331,24 @@ class ModDrescription extends StatelessWidget {
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
 
-    return Container(
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Text(
-            name,
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Text(
+          name,
+          textAlign: TextAlign.center,
+          style: textTheme?.headline6?.copyWith(color: _textColor(rarity)),
+        ),
+        const SizedBox(height: 15),
+        SizedBox(
+          width: 225,
+          child: Text(
+            stats,
             textAlign: TextAlign.center,
-            style: textTheme?.headline6?.copyWith(color: _textColor(rarity)),
+            style: textTheme?.caption?.copyWith(color: _textColor(rarity)),
           ),
-          const SizedBox(height: 15),
-          Container(
-            width: 225,
-            child: Text(
-              stats,
-              textAlign: TextAlign.center,
-              style: textTheme?.caption?.copyWith(color: _textColor(rarity)),
-            ),
-          ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

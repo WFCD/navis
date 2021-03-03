@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../core/utils/helper_methods.dart';
+import '../../../../../l10n/l10n.dart';
 
 class BasicItemInfo extends SliverPersistentHeaderDelegate {
   const BasicItemInfo({
@@ -34,7 +35,6 @@ class BasicItemInfo extends SliverPersistentHeaderDelegate {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const SizedBox(height: 8.0),
             AppBar(
               elevation: 0.0,
               backgroundColor: Theme.of(context).canvasColor,
@@ -46,8 +46,8 @@ class BasicItemInfo extends SliverPersistentHeaderDelegate {
                     foregroundColor: MaterialStateProperty.all(
                         Theme.of(context).textTheme.button.color),
                   ),
-                  onPressed: () => launchLink(context, wikiaUrl),
-                  child: const Text('Seee wikia'),
+                  onPressed: () => wikiaUrl.launchLink(context),
+                  child: Text(context.l10n.seeWikia),
                 ),
               ],
             ),

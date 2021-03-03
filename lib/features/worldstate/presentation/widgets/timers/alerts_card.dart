@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:wfcd_client/entities.dart';
 
-import '../../../../../core/utils/extensions.dart';
 import '../../../../../core/widgets/icons.dart';
 import '../../../../../core/widgets/row_item.dart';
 import '../../../../../core/widgets/widgets.dart';
+import '../../../../../l10n/l10n.dart';
 
 class AlertsCard extends StatelessWidget {
   const AlertsCard({Key key, @required this.alerts})
@@ -30,13 +30,16 @@ class AlertWidget extends StatelessWidget {
 
   final Alert alert;
 
-  Mission get _mission => alert.mission;
-
-  bool get _isRewarding => _mission.reward.itemString.isEmpty;
-
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
+    final mission = alert.mission;
+
+    final node = mission.node;
+    final type = mission.type;
+    final faction = mission.faction;
+    final enemyLvlRange =
+        context.l10n.levelInfo(mission.minEnemyLevel, mission.maxEnemyLevel);
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0),
@@ -45,19 +48,17 @@ class AlertWidget extends StatelessWidget {
         children: <Widget>[
           RowItem(
             icons: <Widget>[
-              // Not sure we need to add nightmare icon since alerts have be axed
+              // Not sure we need to add nightmare
+              // icon since alerts have be axed and
               // nightmare alerts haven't been a thing
-              if (_mission.archwingRequired) NavisSystemIconWidgets.archwingIcon
+              if (alert.archwingRequired) NavisSystemIconWidgets.archwingIcon
             ],
-            text: Text(_mission.node),
-            child: _isRewarding
-                ? Container()
-                : StaticBox.text(text: _mission.reward.itemString),
+            text: Text(node),
+            child: StaticBox.text(text: mission.reward.itemString),
           ),
           RowItem(
             text: Text(
-              '${_mission.type} (${_mission.faction}) '
-              '| ${context.locale.levelInfo(_mission.minEnemyLevel, _mission.maxEnemyLevel)}',
+              '$type ($faction) | $enemyLvlRange',
               style: textTheme.caption,
             ),
             child: CountdownTimer(expiry: alert.expiry),

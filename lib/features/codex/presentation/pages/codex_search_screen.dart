@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../bloc/search_bloc.dart';
-import '../bloc/search_state.dart';
-import '../widgets/codex_search/codex_result.dart';
-import '../widgets/codex_search/search_bar.dart';
+import '../widgets/codex_widgets.dart';
 
 class CodexSearchScreen extends StatelessWidget {
   const CodexSearchScreen({Key key}) : super(key: key);

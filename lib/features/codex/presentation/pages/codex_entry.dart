@@ -2,11 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:wfcd_client/entities.dart';
 
 import '../../../../core/utils/helper_methods.dart';
-import '../widgets/codex_entry/components.dart';
-import '../widgets/codex_entry/entry_info.dart';
-import '../widgets/codex_entry/frame_stats.dart';
-import '../widgets/codex_entry/patchlogs.dart';
-import '../widgets/codex_entry/weapon_stats.dart';
+import '../widgets/codex_widgets.dart';
 
 class CodexEntry extends StatelessWidget {
   const CodexEntry({Key key}) : super(key: key);
@@ -16,7 +12,7 @@ class CodexEntry extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final item = ModalRoute.of(context).settings.arguments as Item;
-    final heightRatio = (MediaQuery.of(context).size.longestSide ?? 0) / 100;
+    final heightRatio = MediaQuery.of(context).size.longestSide / 100;
 
     return Scaffold(
       body: CustomScrollView(
@@ -26,10 +22,10 @@ class CodexEntry extends StatelessWidget {
             delegate: BasicItemInfo(
               uniqueName: item.uniqueName,
               name: item.name,
-              description: parseHtmlString(item.description ?? ''),
+              description: item.description?.parseHtmlString() ?? '',
               wikiaUrl: item.wikiaUrl,
               imageUrl: item.imageUrl,
-              expandedHeight: heightRatio * 36,
+              expandedHeight: heightRatio * 38,
             ),
           ),
           SliverPadding(

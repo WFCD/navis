@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../../core/utils/extensions.dart';
 import '../../../../../core/widgets/widgets.dart';
+import '../../../../../l10n/l10n.dart';
 import '../../bloc/solsystem_bloc.dart';
 import 'nightwave_challenge.dart';
 
@@ -27,13 +27,13 @@ class NightwaveChalleneges extends StatelessWidget {
           return ListView(children: <Widget>[
             padding,
             CategoryTitle(
-              title: context.locale.dailyNightwaveTitle,
+              title: context.l10n.dailyNightwaveTitle,
               style: style,
             ),
             ...daily,
             padding,
             CategoryTitle(
-              title: context.locale.weeklyNightwaveTitle,
+              title: context.l10n.weeklyNightwaveTitle,
               style: style,
             ),
             ...weekly

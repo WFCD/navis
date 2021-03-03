@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:wfcd_client/entities.dart';
 
-import '../../../../../core/utils/extensions.dart';
 import '../../../../../core/widgets/widgets.dart';
+import '../../../../../l10n/l10n.dart';
 
 class EventStatus extends StatelessWidget {
   const EventStatus({
@@ -43,6 +43,7 @@ class EventStatus extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final l10n = context.l10n;
 
     final category =
         theme.textTheme.subtitle1.copyWith(color: theme.accentColor);
@@ -57,7 +58,7 @@ class EventStatus extends StatelessWidget {
           children: <Widget>[
             if (tooltip != null) ...{
               CategoryTitle(
-                title: context.locale.eventDescription,
+                title: l10n.eventDescription,
                 style: category,
                 contentPadding: EdgeInsets.zero,
               ),
@@ -66,29 +67,28 @@ class EventStatus extends StatelessWidget {
               const SizedBox(height: 20.0),
             },
             CategoryTitle(
-              title: context.locale.eventStatus,
+              title: l10n.eventStatus,
               style: category,
               contentPadding: EdgeInsets.zero,
             ),
             RowItem(
-              text: Text(context.locale.eventStatusNode, style: tooltipStyle),
+              text: Text(l10n.eventStatusNode, style: tooltipStyle),
               child: StaticBox.text(text: node),
             ),
             const SizedBox(height: 8.0),
             RowItem(
-              text:
-                  Text(context.locale.eventStatusProgress, style: tooltipStyle),
+              text: Text(l10n.eventStatusProgress, style: tooltipStyle),
               child: StaticBox.text(text: '${health.toStringAsFixed(2)} %'),
             ),
             const SizedBox(height: 8.0),
             RowItem(
-              text: Text(context.locale.eventStatusEta, style: tooltipStyle),
+              text: Text(l10n.eventStatusEta, style: tooltipStyle),
               child: CountdownTimer(expiry: expiry),
             ),
             if (rewards.isNotEmpty) ...{
               const SizedBox(height: 20.0),
               CategoryTitle(
-                title: context.locale.eventRewards,
+                title: l10n.eventRewards,
                 style: category,
                 contentPadding: EdgeInsets.zero,
               ),

@@ -8,7 +8,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
-import 'package:logging/logging.dart';
 import 'package:provider/provider.dart';
 import 'package:wfcd_client/wfcd_client.dart';
 
@@ -21,43 +20,46 @@ import 'features/worldstate/presentation/bloc/solsystem_bloc.dart';
 import 'injection_container.dart';
 import 'injection_container.dart' as di;
 
-Future<void> main() async {
-  Logger.root.onRecord.listen((record) {
-    print('${record.level.name}: ${record.time}: ${record.message}');
-  });
+Future<void> startApp() async {
+  HydratedBloc.storage = await HydratedStorage.build();
 
+  await di.init();
+  if (sl<Usersettings>().platform == null) {
+    sl<Usersettings>().platform = GamePlatforms.pc;
+    await sl<NotificationService>().subscribeToPlatform(GamePlatforms.pc);
+  }
+
+  runApp(
+    MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (_) => sl<NavigationBloc>()),
+        BlocProvider(create: (_) => sl<SolsystemBloc>()),
+        BlocProvider(create: (_) => sl<SearchBloc>()),
+      ],
+      child: ChangeNotifierProvider.value(
+        value: sl<Usersettings>(),
+        child: const NavisApp(),
+      ),
+    ),
+  );
+}
+
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  var isDebug = false;
+  const systemOverlay =
+      SystemUiOverlayStyle(statusBarColor: Colors.transparent);
+
+  SystemChrome.setSystemUIOverlayStyle(systemOverlay);
   await Firebase.initializeApp();
+
   await FlutterWebBrowser.warmup();
 
-  FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
+  assert(isDebug = true);
+  if (!isDebug) {
+    FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
+  }
 
-  SystemChrome.setSystemUIOverlayStyle(
-      const SystemUiOverlayStyle(statusBarColor: Colors.transparent));
-
-  await runZonedGuarded(() async {
-    HydratedBloc.storage = await HydratedStorage.build();
-
-    await Firebase.initializeApp();
-
-    await di.init();
-    if (sl<Usersettings>().platform == null) {
-      sl<Usersettings>().platform = GamePlatforms.pc;
-      await sl<NotificationService>().subscribeToPlatform(GamePlatforms.pc);
-    }
-
-    runApp(
-      MultiBlocProvider(
-        providers: [
-          BlocProvider(create: (_) => sl<NavigationBloc>()),
-          BlocProvider(create: (_) => sl<SolsystemBloc>()),
-          BlocProvider(create: (_) => sl<SearchBloc>()),
-        ],
-        child: ChangeNotifierProvider.value(
-          value: sl<Usersettings>(),
-          child: const NavisApp(),
-        ),
-      ),
-    );
-  }, FirebaseCrashlytics.instance.recordError);
+  await runZonedGuarded(startApp, FirebaseCrashlytics.instance.recordError);
 }

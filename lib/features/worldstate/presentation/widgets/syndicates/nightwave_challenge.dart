@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:wfcd_client/entities.dart';
 
-import '../../../../../core/utils/extensions.dart';
 import '../../../../../core/widgets/icons.dart';
 import '../../../../../core/widgets/widgets.dart';
+import '../../../../../l10n/l10n.dart';
 
 class NightwaveChallenge extends StatelessWidget {
   const NightwaveChallenge({Key key, this.challenge}) : super(key: key);
@@ -28,12 +28,13 @@ class NightwaveChallenge extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final color = Theme.of(context).textTheme.caption.color;
-    final title = Theme.of(context).textTheme.subtitle1;
-    final desscription = Theme.of(context)
-        .textTheme
-        .bodyText2
-        .copyWith(fontSize: 14, color: color);
+    final textTheme = Theme.of(context).textTheme;
+    final l10n = context.l10n;
+
+    final color = textTheme.caption.color;
+    final title = textTheme.subtitle1;
+    final desscription =
+        textTheme.bodyText2.copyWith(fontSize: 14, color: color);
 
     return Card(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
@@ -43,9 +44,9 @@ class NightwaveChallenge extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
-              Container(child: Text(challenge.title, style: title)),
+              Text(challenge.title, style: title),
               const SizedBox(height: 4.0),
-              Container(child: Text(challenge.desc, style: desscription)),
+              Text(challenge.desc, style: desscription),
               const SizedBox(height: 8.0),
               Row(
                   crossAxisAlignment: CrossAxisAlignment.end,
@@ -54,7 +55,7 @@ class NightwaveChallenge extends StatelessWidget {
                     if (challenge?.isElite)
                       StaticBox.text(
                         color: Colors.red,
-                        text: context.locale.eliteBadgeTitle,
+                        text: l10n.eliteBadgeTitle,
                         fontSize: 14,
                       ),
                     _standingBadge(),

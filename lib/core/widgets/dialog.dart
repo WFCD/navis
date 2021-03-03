@@ -18,8 +18,8 @@ class NavisDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final DialogTheme dialogTheme = DialogTheme.of(context);
-    final ThemeData theme = Theme.of(context);
+    final dialogTheme = DialogTheme.of(context);
+    final theme = Theme.of(context);
 
     final _title = Padding(
       padding: const EdgeInsets.fromLTRB(24.0, 24.0, 24.0, 20.0),
@@ -47,16 +47,14 @@ class NavisDialog extends StatelessWidget {
 
     return Dialog(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
-      child: Container(
-        child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: <Widget>[
-              if (title != null) _title,
-              _content,
-              if (actions != null) ButtonBar(children: <Widget>[...actions])
-            ]),
-      ),
+      child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            if (title != null) _title,
+            _content,
+            if (actions != null) ButtonBar(children: <Widget>[...actions])
+          ]),
     );
   }
 }

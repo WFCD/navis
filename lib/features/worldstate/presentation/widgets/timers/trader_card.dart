@@ -4,6 +4,7 @@ import 'package:wfcd_client/entities.dart';
 import '../../../../../core/themes/colors.dart';
 import '../../../../../core/utils/extensions.dart';
 import '../../../../../core/widgets/widgets.dart';
+import '../../../../../l10n/l10n.dart';
 import '../../pages/trader_inventory.dart';
 
 class TraderCard extends StatelessWidget {
@@ -19,7 +20,7 @@ class TraderCard extends StatelessWidget {
       onPressed: () => Navigator.of(context)
           .pushNamed(BaroInventory.route, arguments: inventory),
       child: Text(
-        context.locale.baroInventory,
+        context.l10n.baroInventory,
         style: const TextStyle(fontSize: 17.0, color: Colors.white),
       ),
     );
@@ -28,18 +29,17 @@ class TraderCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const padding = EdgeInsets.symmetric(horizontal: 4.0, vertical: 4.0);
-    final materialLocale = MaterialLocalizations.of(context);
+    final l10n = context.l10n;
 
-    final formattedDate = materialLocale
-        .formatFullDate(trader.active ? trader.expiry : trader.activation);
+    final formattedDate = trader.active
+        ? trader.expiry.format(context)
+        : trader.activation.format(context);
 
     return CustomCard(
-      title: context.locale.baroTitle,
+      title: l10n.baroTitle,
       child: Column(children: <Widget>[
         RowItem(
-          text: Text(trader.active
-              ? context.locale.baroArriving
-              : context.locale.baroLeaving),
+          text: Text(trader.active ? l10n.baroArriving : l10n.baroLeaving),
           padding: padding,
           child: CountdownTimer(
             expiry: trader.active ? trader.expiry : trader.activation,
@@ -47,7 +47,7 @@ class TraderCard extends StatelessWidget {
         ),
         if (trader.active)
           RowItem(
-            text: Text(context.locale.baroLocation),
+            text: Text(l10n.baroLocation),
             padding: padding,
             child: StaticBox.text(
               text: '${trader.location}',
@@ -56,9 +56,7 @@ class TraderCard extends StatelessWidget {
           ),
         RowItem(
           text: Text(
-            trader.active
-                ? context.locale.baroLeavesOn
-                : context.locale.baroArrivesOn,
+            trader.active ? l10n.baroLeavesOn : l10n.baroArrivesOn,
           ),
           padding: padding,
           child: StaticBox.text(

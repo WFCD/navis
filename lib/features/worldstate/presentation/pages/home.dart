@@ -1,39 +1,41 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../core/utils/extensions.dart';
 import '../../../../core/widgets/sliver_top_bar.dart';
+import '../../../../l10n/l10n.dart';
 import '../bloc/solsystem_bloc.dart';
 import 'fissures.dart';
 import 'invasions.dart';
 import 'syndicates.dart';
 import 'timers.dart';
 
-enum Tabs { Timers, Fissures, Invasions, Syndicates }
+enum Tabs { timers, fissures, invasions, syndicates }
 
 class HomeFeedPage extends StatelessWidget {
   const HomeFeedPage({Key key}) : super(key: key);
 
   String _getTabLocale(BuildContext context, Tabs name) {
+    final l10n = context.l10n;
+
     switch (name) {
-      case Tabs.Fissures:
-        return context.locale.fissuresTitle;
-      case Tabs.Invasions:
-        return context.locale.invasionsTitle;
-      case Tabs.Syndicates:
-        return context.locale.syndicatesTitle;
+      case Tabs.fissures:
+        return l10n.fissuresTitle;
+      case Tabs.invasions:
+        return l10n.invasionsTitle;
+      case Tabs.syndicates:
+        return l10n.syndicatesTitle;
       default:
-        return context.locale.timersTitle;
+        return l10n.timersTitle;
     }
   }
 
   Widget _buildView(Tabs tab, SolState state) {
     switch (tab) {
-      case Tabs.Timers:
+      case Tabs.timers:
         return Timers(state: state);
-      case Tabs.Fissures:
+      case Tabs.fissures:
         return FissuresPage(state: state);
-      case Tabs.Invasions:
+      case Tabs.invasions:
         return InvasionsPage(state: state);
       default:
         return SyndicatePage(state: state);

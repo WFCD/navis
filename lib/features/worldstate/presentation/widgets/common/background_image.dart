@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
@@ -7,14 +9,12 @@ class BackgroundImage extends StatelessWidget {
   const BackgroundImage({
     Key key,
     @required this.imageUrl,
-    this.alignment,
     this.height,
     this.padding,
     this.child,
   }) : super(key: key);
 
   final String imageUrl;
-  final Alignment alignment;
   final double height;
   final EdgeInsetsGeometry padding;
   final Widget child;
@@ -22,19 +22,26 @@ class BackgroundImage extends StatelessWidget {
   static const _derelict = AssetImage(NavisAssets.derelict);
 
   Widget _imageBuilder(ImageProvider imageProvider) {
-    return Container(
-      alignment: alignment,
-      padding: padding,
+    const blur = 1.0;
+
+    return SizedBox(
       height: height,
-      decoration: BoxDecoration(
-        image: DecorationImage(
-          colorFilter:
-              ColorFilter.mode(Colors.black.withOpacity(0.3), BlendMode.dstIn),
-          image: imageProvider,
-          fit: BoxFit.cover,
-        ),
+      child: Stack(
+        alignment: Alignment.center,
+        fit: StackFit.passthrough,
+        children: [
+          ImageFiltered(
+            imageFilter: ImageFilter.blur(sigmaX: blur, sigmaY: blur),
+            child: Image(
+              fit: BoxFit.cover,
+              color: Colors.black.withOpacity(0.3),
+              colorBlendMode: BlendMode.dstIn,
+              image: imageProvider,
+            ),
+          ),
+          Padding(padding: padding, child: child)
+        ],
       ),
-      child: child,
     );
   }
 

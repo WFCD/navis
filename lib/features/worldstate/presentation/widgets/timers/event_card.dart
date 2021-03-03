@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:wfcd_client/entities.dart';
 
-import '../../../../../core/utils/extensions.dart';
 import '../../../../../core/widgets/widgets.dart';
+import '../../../../../l10n/l10n.dart';
 import '../../pages/event.dart';
 
 class EventCard extends StatelessWidget {
@@ -27,7 +27,7 @@ class EventCard extends StatelessWidget {
                 Navigator.of(context)
                     .pushNamed(EventInformation.route, arguments: event);
               },
-              child: Text(context.locale.seeDetails),
+              child: Text(context.l10n.seeDetails),
             ),
           )
       ]),

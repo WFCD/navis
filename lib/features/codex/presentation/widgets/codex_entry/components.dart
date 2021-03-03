@@ -2,8 +2,8 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:wfcd_client/entities.dart';
 
-import '../../../../../core/utils/extensions.dart';
 import '../../../../../core/widgets/widgets.dart';
+import '../../../../../l10n/l10n.dart';
 import '../../pages/component_drops.dart';
 
 class ItemComponents extends StatelessWidget {
@@ -64,7 +64,7 @@ class ItemComponents extends StatelessWidget {
     return CustomCard(
       child: Column(
         children: [
-          CategoryTitle(title: context.locale.componentsTitle),
+          CategoryTitle(title: context.l10n.componentsTitle),
           const SizedBox(height: 8.0),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,

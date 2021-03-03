@@ -1,10 +1,13 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:supercharged/supercharged.dart';
 
 import '../../features/worldstate/presentation/bloc/solsystem_bloc.dart';
+import '../../l10n/l10n.dart';
 import '../themes/colors.dart';
-import '../utils/extensions.dart';
+import '../utils/helper_methods.dart';
 import 'static_box.dart';
 
 class CountdownTimer extends StatefulWidget {
@@ -29,85 +32,64 @@ class CountdownTimer extends StatefulWidget {
 
 class _CountdownTimerState extends State<CountdownTimer>
     with TickerProviderStateMixin {
-  AnimationController _controller;
-  Animation<int> _tween;
+  static const _max = Duration(hours: 1);
+  static const _minimum = Duration(minutes: 10);
 
+  AnimationController _controller;
+
+  bool _expired;
   Color _warningLevel = Colors.green;
 
   DateTime get _now => DateTime.now();
-  DateTime get localExpiry => widget.expiry.toLocal();
-
-  bool get _expired => localExpiry.isBefore(_now);
-  Duration get _timeLeft => localExpiry.difference(_now);
+  DateTime get _localExpiry => widget.expiry.toLocal();
+  Duration get _timeLeft => _controller.duration * _controller?.value;
 
   void _setupCountdown() {
-    final begin = _expired
-        ? _now.millisecondsSinceEpoch
-        : localExpiry.millisecondsSinceEpoch;
+    final difference = _localExpiry.difference(_now);
 
-    final end = _expired
-        ? localExpiry.millisecondsSinceEpoch
-        : _now.millisecondsSinceEpoch;
-
+    _expired = difference <= Duration.zero;
     _controller = AnimationController(
-        duration: localExpiry.difference(_now).abs(), vsync: this);
+        duration: _expired ? 59.seconds : difference, vsync: this);
 
-    _tween = begin.tweenTo(end).animate(_controller);
-
-    if (widget.color != Colors.transparent) {
-      _tween.addListener(_detectWarningLevel);
+    if (widget.color == null) {
+      _controller.addListener(_detectWarningLevel);
     }
-    _tween.addStatusListener(_onEnd);
 
-    _controller.forward();
+    _controller
+      ..addStatusListener(_onEnd)
+      ..reverse(from: 1.0);
   }
 
   void _detectWarningLevel() {
-    const max = Duration(hours: 1);
-    const minimum = Duration(minutes: 10);
-
     Color newLevel;
 
-    if (!_expired) {
-      if (_timeLeft > max) {
-        newLevel = Colors.green;
-      } else if (_timeLeft < max && _timeLeft > minimum) {
-        newLevel = Colors.orange[700];
-      } else {
-        newLevel = Colors.red;
-      }
-    } else {
-      newLevel = primary;
+    if (_timeLeft > _max) {
+      newLevel = Colors.green;
+    } else if (_timeLeft < _max && _timeLeft > _minimum) {
+      newLevel = Colors.orange[700];
+    } else if (_timeLeft < _minimum) {
+      newLevel = _expired ? primary : Colors.red;
     }
 
-    if (_warningLevel == newLevel) return;
-
-    if (mounted) {
+    if (mounted && _warningLevel != newLevel) {
       setState(() {
         _warningLevel = newLevel;
       });
     }
   }
 
-  String _timerVersions() {
-    final String days = '${_timeLeft.inDays}';
-    final String hours = '${_timeLeft.inHours % 24}';
-    final String minutes = '${_timeLeft.inMinutes % 60}'.padLeft(2, '0');
-    final String seconds = '${_timeLeft.inSeconds % 60}'.padLeft(2, '0');
-
-    final bool is24hrs = _timeLeft < 1.days;
-
-    return "${_expired ? 'Expired: -' : ''}${!is24hrs ? '$days\d' : ''} $hours:$minutes:$seconds";
-  }
-
   void _onEnd(AnimationStatus status) {
-    if (status == AnimationStatus.completed) {
-      Future.delayed(700.milliseconds, () {
-        BlocProvider.of<SolsystemBloc>(context)
-            .add(const SyncSystemStatus(forceUpdate: true));
-      });
+    if (status == AnimationStatus.dismissed) {
+      if (mounted) {
+        _controller
+          ..removeListener(_detectWarningLevel)
+          ..removeStatusListener(_onEnd)
+          ..dispose();
 
-      if (mounted) setState(() {});
+        setState(_setupCountdown);
+      }
+
+      BlocProvider.of<SolsystemBloc>(context).update(forceUpdate: true);
     }
   }
 
@@ -121,28 +103,39 @@ class _CountdownTimerState extends State<CountdownTimer>
   void didUpdateWidget(CountdownTimer oldWidget) {
     super.didUpdateWidget(oldWidget);
 
-    if (oldWidget.expiry != widget.expiry || _expired) {
-      if (widget.color != Colors.transparent) {
-        _tween?.removeListener(_detectWarningLevel);
-      }
-      _tween?.removeStatusListener(_onEnd);
-      _controller?.dispose();
-      _tween = null;
+    if (oldWidget.expiry != widget.expiry) {
+      _controller
+        ..removeListener(_detectWarningLevel)
+        ..removeStatusListener(_onEnd)
+        ..dispose();
+
       _setupCountdown();
     }
   }
 
+  String _timerVersions() {
+    final days = '${_timeLeft.inDays}';
+    final hours = '${_timeLeft.inHours % 24}';
+    final minutes = '${_timeLeft.inMinutes % 60}'.padLeft(2, '0');
+    final seconds = '${_timeLeft.inSeconds % 60}'.padLeft(2, '0');
+
+    final is24hrs = _timeLeft < 1.days;
+
+    return '${_expired ? 'Expired: -' : ''}'
+        '${!is24hrs ? '$days\d' : ''} $hours:$minutes:$seconds';
+  }
+
   @override
   Widget build(BuildContext context) {
-    final endTime = localExpiry.format(context);
+    final endTime = _localExpiry.format(context);
 
     return StaticBox(
-      tooltip: context.locale.countdownTooltip(endTime),
+      tooltip: context.l10n.countdownTooltip(endTime),
       color: widget.color ?? _warningLevel,
       padding: widget.padding,
       margin: widget.margin,
       child: AnimatedBuilder(
-        animation: _tween,
+        animation: _controller,
         builder: (BuildContext context, Widget child) {
           return Text(
             _timerVersions(),
@@ -156,11 +149,13 @@ class _CountdownTimerState extends State<CountdownTimer>
 
   @override
   void dispose() {
-    if (widget.color != Colors.transparent) {
-      _tween?.removeListener(_detectWarningLevel);
+    if (_controller != null) {
+      _controller
+        ..removeListener(_detectWarningLevel)
+        ..removeStatusListener(_onEnd)
+        ..dispose();
     }
-    _tween?.removeStatusListener(_onEnd);
-    _controller?.dispose();
+
     super.dispose();
   }
 }

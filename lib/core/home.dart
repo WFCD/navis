@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_brand_icons/flutter_brand_icons.dart';
@@ -5,6 +7,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 
 import '../constants/links.dart';
+import '../l10n/l10n.dart';
 import '../resources/resources.dart';
 import 'bloc/navigation_bloc.dart';
 import 'local/user_settings.dart';
@@ -38,6 +41,7 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     final mediaQuery = MediaQuery.of(context);
 
     return WillPopScope(
@@ -49,25 +53,30 @@ class _HomeState extends State<Home> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
-              Container(
-                height: 20 * (mediaQuery.size.height / 100),
+              SizedBox(
                 width: double.infinity,
-                decoration: BoxDecoration(
-                  color: Theme.of(context).primaryColor,
-                  image: const DecorationImage(
-                    image: AssetImage(NavisAssets.derelict),
-                    fit: BoxFit.cover,
-                  ),
-                ),
-                child: SafeArea(
-                  bottom: false,
-                  left: false,
-                  right: false,
-                  top: true,
-                  child: SvgPicture.asset(
-                    NavisAssets.wfcdLogoColor,
-                    color: Colors.white.withOpacity(0.5),
-                  ),
+                height: 20 * (mediaQuery.size.height / 100),
+                child: Stack(
+                  fit: StackFit.passthrough,
+                  children: [
+                    ImageFiltered(
+                      imageFilter: ImageFilter.blur(sigmaX: 1.0, sigmaY: 1.0),
+                      child: const Image(
+                        image: AssetImage(NavisAssets.derelict),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                    SafeArea(
+                      bottom: false,
+                      left: false,
+                      right: false,
+                      top: true,
+                      child: SvgPicture.asset(
+                        NavisAssets.wfcdLogoColor,
+                        color: Colors.white.withOpacity(0.5),
+                      ),
+                    ),
+                  ],
                 ),
               ),
               Expanded(child: DrawerOptions()),
@@ -77,12 +86,12 @@ class _HomeState extends State<Home> {
                   BrandIcons.discord,
                   color: Color(0xFF7289DA),
                 ),
-                title: const Text('Support'),
-                onTap: () => launchLink(context, discordInvite),
+                title: Text(l10n.discordSupportTitle),
+                onTap: () => discordInvite.launchLink(context),
               ),
               ListTile(
                 leading: const Icon(Icons.settings),
-                title: Text(context.locale.settingsTitle),
+                title: Text(l10n.settingsTitle),
                 onTap: () {
                   Navigator.of(context).pop();
                   Navigator.of(context).pushNamed('/settings');

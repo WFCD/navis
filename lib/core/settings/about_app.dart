@@ -5,7 +5,7 @@ import 'package:package_info/package_info.dart';
 
 import '../../constants/links.dart';
 import '../../injection_container.dart';
-import '../utils/extensions.dart';
+import '../../l10n/l10n.dart';
 import '../utils/helper_methods.dart';
 import '../widgets/widgets.dart';
 
@@ -14,13 +14,15 @@ class AboutApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
+
     return Column(
       children: <Widget>[
-        CategoryTitle(title: context.locale.aboutCategoryTitle),
+        CategoryTitle(title: l10n.aboutCategoryTitle),
         ListTile(
-          title: Text(context.locale.reportBugsTitle),
-          subtitle: Text(context.locale.reportBugsDescription),
-          onTap: () => launchLink(context, issuePage),
+          title: Text(l10n.reportBugsTitle),
+          subtitle: Text(l10n.reportBugsDescription),
+          onTap: () => issuePage.launchLink(context),
         ),
         const About()
       ],
@@ -38,6 +40,7 @@ class About extends StatelessWidget {
     final info = sl<PackageInfo>();
 
     final theme = Theme.of(context);
+    final l10n = context.l10n;
     final isDark = theme.brightness != Brightness.light;
 
     final aboutTextStyle = theme.textTheme.bodyText1;
@@ -59,7 +62,7 @@ class About extends StatelessWidget {
           text: TextSpan(children: <TextSpan>[
             TextSpan(
               style: aboutTextStyle,
-              text: '${context.locale.homePageTitle} ',
+              text: '${l10n.homePageTitle} ',
             ),
             _LinkTextSpan(
               style: linkStyle,
@@ -68,20 +71,20 @@ class About extends StatelessWidget {
             ),
             TextSpan(
               style: aboutTextStyle,
-              text: '\n\n${context.locale.issueTrackerDescription} ',
+              text: '\n\n${l10n.issueTrackerDescription} ',
             ),
             _LinkTextSpan(
               style: linkStyle,
               url: issuePage,
-              text: context.locale.issueTrackerTitle,
+              text: l10n.issueTrackerTitle,
             ),
             TextSpan(
               style: Theme.of(context).textTheme.caption,
-              text: '\n\n${context.locale.legalese}',
+              text: '\n\n${l10n.legalese}',
             ),
             TextSpan(
               style: Theme.of(context).textTheme.caption,
-              text: '${context.locale.warframeLinkTitle} ',
+              text: '${l10n.warframeLinkTitle} ',
             ),
             _LinkTextSpan(
               style: linkStyle,
@@ -98,7 +101,7 @@ class About extends StatelessWidget {
               icon: const Icon(BrandIcons.discord, color: Color(0xFF7289DA)),
               iconSize: _iconSize,
               splashColor: Colors.transparent,
-              onPressed: () => launchLink(context, discordInvite),
+              onPressed: () => discordInvite.launchLink(context),
             ),
             const SizedBox(width: 25),
             IconButton(
@@ -108,7 +111,7 @@ class About extends StatelessWidget {
               ),
               iconSize: _iconSize,
               splashColor: Colors.transparent,
-              onPressed: () => launchLink(context, projectPage),
+              onPressed: () => projectPage.launchLink(context),
             ),
             const SizedBox(width: 25),
             IconButton(
@@ -118,7 +121,7 @@ class About extends StatelessWidget {
               ),
               iconSize: _iconSize,
               splashColor: Colors.transparent,
-              onPressed: () => launchLink(context, communityPage),
+              onPressed: () => communityPage.launchLink(context),
             )
           ],
         ),
@@ -149,6 +152,6 @@ class _LinkTextSpan extends TextSpan {
           style: style,
           text: text ?? url,
           recognizer: TapGestureRecognizer()
-            ..onTap = () => launchLink(context, url),
+            ..onTap = () => url.launchLink(context),
         );
 }

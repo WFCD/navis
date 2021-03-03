@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:wfcd_client/entities.dart';
 
-import '../../../../../core/utils/extensions.dart';
 import '../../../../../core/widgets/countdown_banner.dart';
 import '../../../../../core/widgets/icons.dart';
 import '../../../../../core/widgets/widgets.dart';
+import '../../../../../l10n/l10n.dart';
 
 class KuvaCard extends StatelessWidget {
   const KuvaCard({Key key, this.kuva}) : super(key: key);
@@ -19,7 +19,7 @@ class KuvaCard extends StatelessWidget {
       child: Column(
         children: <Widget>[
           CountdownBanner(
-            message: context.locale.kuvaBanner,
+            message: context.l10n.kuvaBanner,
             time: kuva.first.expiry,
             margin: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 6.0),
           ),

@@ -34,8 +34,7 @@ class WarframestatCache {
   static const String _targets = 'synthTargets';
 
   void cacheDealInfo(String id, Item item) {
-    _box.put(_dealId, id);
-    _box.put(id, json.encode(fromBaseItem(item)));
+    _box..put(_dealId, id)..put(id, json.encode(fromBaseItem(item)));
   }
 
   void cacheSynthTargets(List<SynthTarget> targets) {

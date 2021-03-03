@@ -18,6 +18,7 @@ class OrbiterNewsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenSize = MediaQuery.of(context).size;
     final textTheme = Typography.whiteMountainView;
     final currentLocale = Localizations.localeOf(context).languageCode;
     final isOneDayOld =
@@ -26,43 +27,40 @@ class OrbiterNewsWidget extends StatelessWidget {
     return Theme(
       data: NavisTheming.dark,
       child: InkWell(
-        onTap: () => launchLink(context, news.link),
+        onTap: () => news.link.launchLink(context),
         child: CustomCard(
           padding: EdgeInsets.zero,
           margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 8.0),
           child: BackgroundImage(
             imageUrl: news.proxyImage,
-            child: Container(
-              child: Padding(
-                padding: const EdgeInsets.all(22.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+            height: (screenSize.height / 100) * 15,
+            padding: const EdgeInsets.all(22.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
                   children: [
-                    Row(
-                      children: [
-                        if (isOneDayOld)
-                          StaticBox.text(
-                            text: 'New',
-                            style: textTheme.caption,
-                          ),
-                        const SizedBox(height: 8.0),
-                        Expanded(
-                          child: Text(
-                            news?.translations[currentLocale] ?? news.message,
-                            overflow: TextOverflow.ellipsis,
-                            style: textTheme.bodyText1.copyWith(fontSize: 16.0),
-                          ),
-                        ),
-                      ],
+                    if (isOneDayOld)
+                      StaticBox.text(
+                        text: 'New',
+                        style: textTheme.caption,
+                      ),
+                    const SizedBox(height: 8.0),
+                    Expanded(
+                      child: Text(
+                        news?.translations[currentLocale] ?? news.message,
+                        overflow: TextOverflow.ellipsis,
+                        style: textTheme.bodyText1.copyWith(fontSize: 16.0),
+                      ),
                     ),
-                    const SizedBox(height: 12),
-                    Text(
-                      news.date.toLocal().format(context),
-                      style: textTheme.caption,
-                    )
                   ],
                 ),
-              ),
+                const SizedBox(height: 12),
+                Text(
+                  news.date.toLocal().format(context),
+                  style: textTheme.caption,
+                )
+              ],
             ),
           ),
         ),

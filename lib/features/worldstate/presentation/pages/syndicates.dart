@@ -119,13 +119,13 @@ class _SyndicatePageTabletState extends State<SyndicatePageTablet> {
             children: <Widget>[
               _buildSyndicates(
                 _worldstate.syndicateMissions,
-                onTap: (syn) => _onTap(syn),
+                onTap: _onTap,
               ),
               const SizedBox(height: 8.0),
               if (widget.state.isNightwaveActive)
                 _buildNightwave(
                   widget.state.worldstate.nightwave,
-                  onTap: (night) => _onTap(night),
+                  onTap: _onTap,
                 )
             ],
           ),
