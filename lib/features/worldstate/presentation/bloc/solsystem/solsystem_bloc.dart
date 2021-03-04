@@ -38,6 +38,8 @@ class SolsystemBloc extends HydratedBloc<SyncEvent, SolsystemState> {
         yield const SystemError(serverFailureMessage);
       } on CacheException {
         yield const SystemError(cacheFailureMessage);
+      } on UnknownException {
+        yield const SystemError('Unknown error occured');
       }
     }
   }

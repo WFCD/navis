@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:dartz/dartz.dart';
 import 'package:flutter/foundation.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:wfcd_client/entities.dart';
 import 'package:wfcd_client/wfcd_client.dart';
 
@@ -54,12 +55,17 @@ class WorldstateRepositoryImpl implements WorldstateRepository {
     final now = DateTime.now();
     final cached = cache.getCachedState();
     final age = cached?.timestamp?.difference(now)?.abs();
+    final request =
+        WorldstateRequest(usersettings.platform, Platform.localeName);
 
     if (cached == null || age >= refresh || forceUpdate) {
       if (await networkInfo.isConnected) {
         try {
-          final state = await compute(_getWorldstate,
-              WorldstateRequest(usersettings.platform, Platform.localeName));
+          final state =
+              await compute(_getWorldstate, request).catchError((e, s) {
+            Sentry.captureException(e, stackTrace: s);
+            return cached;
+          });
 
           cache.cacheWorldstate(state);
 
