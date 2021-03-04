@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:matomo/matomo.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:wfcd_client/entities.dart';
 
 import '../bloc/solsystem_bloc.dart';
 import '../widgets/fissures/fissure_widget.dart';
 
-class FissuresPage extends StatelessWidget {
+class FissuresPage extends TraceableStatelessWidget {
   const FissuresPage({Key key, @required this.state})
       : assert(state != null),
         super(key: key);

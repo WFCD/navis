@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:matomo/matomo.dart';
 
 import '../widgets/syndicates/nightwave_challenges.dart';
 
-class NightwavesPage extends StatelessWidget {
+class NightwavesPage extends TraceableStatelessWidget {
   const NightwavesPage({Key key}) : super(key: key);
 
   static const route = '/nightwave';

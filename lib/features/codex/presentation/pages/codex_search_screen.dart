@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:matomo/matomo.dart';
 
 import '../bloc/search_bloc.dart';
 import '../widgets/codex_widgets.dart';
 
-class CodexSearchScreen extends StatelessWidget {
+class CodexSearchScreen extends TraceableStatelessWidget {
   const CodexSearchScreen({Key key}) : super(key: key);
 
   @override

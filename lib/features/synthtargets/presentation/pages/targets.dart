@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:matomo/matomo.dart';
 
 import '../../../../injection_container.dart';
 import '../bloc/synthtargets_bloc.dart';
 import '../widgets/target.dart';
 
-class SynthTargetsPage extends StatelessWidget {
+class SynthTargetsPage extends TraceableStatelessWidget {
   const SynthTargetsPage({Key key}) : super(key: key);
 
   @override

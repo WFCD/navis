@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:matomo/matomo.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:wfcd_client/entities.dart';
 
 import '../bloc/solsystem_bloc.dart';
 import '../widgets/invasions/invasion_widget.dart';
 
-class InvasionsPage extends StatelessWidget {
+class InvasionsPage extends TraceableStatelessWidget {
   const InvasionsPage({Key key, @required this.state})
       : assert(state != null),
         super(key: key);

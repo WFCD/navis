@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:matomo/matomo.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:wfcd_client/entities.dart';
 import 'package:wfcd_client/objects.dart';
@@ -11,7 +12,7 @@ import '../widgets/syndicates/nightwave_challenges.dart';
 import '../widgets/syndicates/syndicate_bounties.dart';
 import '../widgets/syndicates/syndicate_card.dart';
 
-class SyndicatePage extends StatelessWidget {
+class SyndicatePage extends TraceableStatelessWidget {
   const SyndicatePage({Key key, @required this.state})
       : assert(state != null),
         super(key: key);

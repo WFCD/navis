@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:matomo/matomo.dart';
 import 'package:wfcd_client/entities.dart';
 
 import '../../../../core/widgets/widgets.dart';
@@ -10,7 +11,7 @@ import '../bloc/darvodeal_bloc.dart';
 import '../bloc/solsystem_bloc.dart';
 import '../widgets/timers/timers.dart';
 
-class Timers extends StatelessWidget {
+class Timers extends TraceableStatelessWidget {
   const Timers({Key key, @required this.state})
       : assert(state != null),
         super(key: key);
