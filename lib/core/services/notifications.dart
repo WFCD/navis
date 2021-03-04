@@ -4,19 +4,17 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:wfcd_client/wfcd_client.dart';
 
 class NotificationService {
-  NotificationService(FirebaseMessaging messaging) : _messaging = messaging;
+  NotificationService();
 
-  final FirebaseMessaging _messaging;
+  final FirebaseMessaging _messaging = FirebaseMessaging.instance;
 
   void configure() {
-    const iosSettings = IosNotificationSettings(
+    _messaging.requestPermission(
       sound: true,
       badge: true,
       alert: true,
       provisional: true,
     );
-
-    _messaging.requestNotificationPermissions(iosSettings);
   }
 
   Future<void> subscribeToPlatform(GamePlatforms platform) async {

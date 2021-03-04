@@ -49,7 +49,7 @@ extension StringNx on String {
         ),
       );
     } catch (e) {
-      Scaffold.of(context).showSnackBar(const SnackBar(
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
         duration: Duration(seconds: 5),
         content: Text(
           'Unable to open, either no browser detected or an'

@@ -2,8 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_gen/gen_l10n/navis_localizations.dart';
-import 'package:provider/provider.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 
 import '../features/codex/presentation/pages/codex_entry.dart';
 import '../features/worldstate/presentation/bloc/solsystem_bloc.dart';
@@ -13,6 +12,7 @@ import '../features/worldstate/presentation/pages/event.dart';
 import '../features/worldstate/presentation/pages/nightwaves.dart';
 import '../features/worldstate/presentation/pages/trader_inventory.dart';
 import '../injection_container.dart';
+import '../l10n/l10n.dart';
 import 'home.dart';
 import 'local/user_settings.dart';
 import 'services/notifications.dart';
@@ -70,6 +70,7 @@ class _NavisAppState extends State<NavisApp> with WidgetsBindingObserver {
       darkTheme: NavisTheming.dark,
       home: const Home(),
       builder: _builder,
+      navigatorObservers: [SentryNavigatorObserver()],
       routes: <String, WidgetBuilder>{
         EventInformation.route: (_) => const EventInformation(),
         AcolyteProfile.route: (_) => const AcolyteProfile(),

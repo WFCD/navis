@@ -20,10 +20,10 @@ class Usersettings with ChangeNotifier {
     final directory = await getApplicationDocumentsDirectory();
     Hive.init(directory.path);
 
-    final box = await Hive.openBox<dynamic>('user_settings').catchError(
-      (Object error, StackTrace stack) =>
-          _logger.severe('Unable to open Usersettings Hive box', error, stack),
-    );
+    final box = await Hive.openBox<dynamic>('user_settings')
+        .catchError((Object error, StackTrace stack) {
+      _logger.severe('Unable to open Usersettings Hive box', error, stack);
+    });
 
     return _instance ??= Usersettings(box);
   }

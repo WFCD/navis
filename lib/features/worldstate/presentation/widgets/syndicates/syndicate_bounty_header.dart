@@ -20,7 +20,7 @@ class SyndicateBountyHeader extends StatelessWidget {
     return Row(mainAxisSize: MainAxisSize.min, children: <Widget>[
       NavisSystemIconWidgets.standingIcon,
       Text(
-        job.standingStages.sum().toString(),
+        job.standingStages.sumBy((n) => n).toString(),
         style: const TextStyle(color: Colors.white),
       )
     ]);

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_gen/gen_l10n/navis_localizations.dart';
 import 'package:wfcd_client/entities.dart';
 
 import '../../../../core/widgets/widgets.dart';
