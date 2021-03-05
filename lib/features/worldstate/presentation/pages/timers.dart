@@ -107,7 +107,6 @@ class MobileTimers extends StatelessWidget {
         if (state.outpostDetected)
           SentientOutpostCard(outpost: _worldstate.sentientOutposts),
         CycleCard(cycles: _buildCycles(context.l10n, _worldstate)),
-        if (state.activeSiphons) KuvaCard(kuva: _worldstate.kuva),
         TraderCard(trader: _worldstate.voidTrader),
         if (state.activeSales)
           BlocProvider(
