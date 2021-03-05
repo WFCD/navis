@@ -34,7 +34,7 @@ Future<void> startApp() async {
   }
 
   await MatomoTracker()
-      .initialize(siteId: 1, url: const String.fromEnvironment('MATOMO_URL'));
+      .initialize(siteId: 4, url: const String.fromEnvironment('MATOMO_URL'));
 
   if (sl<Usersettings>().getToggle('firstVist') != true) {
     MatomoTracker.trackEvent('firstVisit', MatomoTracker.kFirstVisit);
