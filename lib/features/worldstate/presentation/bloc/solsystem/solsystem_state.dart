@@ -25,8 +25,6 @@ class SolState extends SolsystemState {
 
   bool get activeSales => worldstate.isSaleActive;
 
-  bool get activeSiphons => worldstate.activeKuva;
-
   bool get arbitrationActive => worldstate.activeArbitration;
 
   bool get eventsActive => worldstate.activeEvents;
