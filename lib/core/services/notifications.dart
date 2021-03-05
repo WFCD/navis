@@ -13,7 +13,6 @@ class NotificationService {
       sound: true,
       badge: true,
       alert: true,
-      provisional: true,
     );
   }
 
