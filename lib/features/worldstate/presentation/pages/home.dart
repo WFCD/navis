@@ -79,7 +79,7 @@ class HomeFeedPage extends StatelessWidget {
     const displayDuration = Duration(seconds: 50);
 
     if (state is SystemError) {
-      Scaffold.of(context).showSnackBar(SnackBar(
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text(state.message),
         duration: displayDuration,
       ));
@@ -88,7 +88,7 @@ class HomeFeedPage extends StatelessWidget {
       final timestamp = state.worldstate.timestamp;
 
       if (timestamp.difference(now) >= const Duration(minutes: 30)) {
-        Scaffold.of(context).showSnackBar(const SnackBar(
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
           content: Text('Worldstate is out of date by more then 30 mins'),
           duration: displayDuration,
         ));

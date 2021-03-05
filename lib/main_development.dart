@@ -1,13 +1,13 @@
 import 'dart:async';
 
 import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
+import 'package:matomo/matomo.dart';
 import 'package:provider/provider.dart';
 import 'package:wfcd_client/wfcd_client.dart';
 
@@ -21,12 +21,23 @@ import 'injection_container.dart';
 import 'injection_container.dart' as di;
 
 Future<void> startApp() async {
+  await Firebase.initializeApp();
+  await FlutterWebBrowser.warmup();
+
   HydratedBloc.storage = await HydratedStorage.build();
 
   await di.init();
   if (sl<Usersettings>().platform == null) {
     sl<Usersettings>().platform = GamePlatforms.pc;
     await sl<NotificationService>().subscribeToPlatform(GamePlatforms.pc);
+  }
+
+  await MatomoTracker()
+      .initialize(siteId: 1, url: const String.fromEnvironment('MATOMO_URL'));
+
+  if (sl<Usersettings>().getToggle('firstVist') != true) {
+    MatomoTracker.trackEvent('firstVisit', MatomoTracker.kFirstVisit);
+    sl<Usersettings>().setToggle('firstVist', true);
   }
 
   runApp(
@@ -46,20 +57,9 @@ Future<void> startApp() async {
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setSystemUIOverlayStyle(
+    const SystemUiOverlayStyle(statusBarColor: Colors.transparent),
+  );
 
-  var isDebug = false;
-  const systemOverlay =
-      SystemUiOverlayStyle(statusBarColor: Colors.transparent);
-
-  SystemChrome.setSystemUIOverlayStyle(systemOverlay);
-  await Firebase.initializeApp();
-
-  await FlutterWebBrowser.warmup();
-
-  assert(isDebug = true);
-  if (!isDebug) {
-    FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
-  }
-
-  await runZonedGuarded(startApp, FirebaseCrashlytics.instance.recordError);
+  await startApp();
 }

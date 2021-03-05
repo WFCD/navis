@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:matomo/matomo.dart';
 import 'package:wfcd_client/entities.dart';
 
 import '../widgets/acolyte_profile/profile_widgets.dart';
 
-class AcolyteProfile extends StatelessWidget {
+class AcolyteProfile extends TraceableStatelessWidget {
   const AcolyteProfile({Key key, this.enemy}) : super(key: key);
 
   final PersistentEnemy enemy;

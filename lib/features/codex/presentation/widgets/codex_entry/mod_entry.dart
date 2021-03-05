@@ -195,9 +195,9 @@ class ModFrame extends StatelessWidget {
           ),
         ),
         child: Stack(
+          clipBehavior: Clip.none,
           alignment: Alignment.center,
           fit: StackFit.expand,
-          overflow: Overflow.visible,
           children: [
             Positioned(
               top: 0,

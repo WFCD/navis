@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - master
+      - null-safe
   pull_request:
     branches:
       - master
@@ -11,6 +12,8 @@ env:
   TENNO_FIREBASE: ${{ secrets.TENNO_FIREBASE }}
   TENNO_STORE: ${{ secrets.TENNO_STORE }}
   FIREBASE_IOS: ${{ secrets.FIREBASE_IOS }}
+  SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
+  MATOMO_URL: ${{ secrets.MATOMO_URL }}
 jobs:
   unit_test:
     runs-on: ubuntu-latest
@@ -40,9 +43,13 @@ jobs:
           base64 -d <<< $TENNO_FIREBASE > android/app/google-services.json
       - name: Build apk
         run: |
-          flutter build apk --split-per-abi
+          flutter build appbundle --dart-define=SENTRY_DSN=$SENTRY_DSN --dart-define=MATOMO_URL=$MATOMO_URL -t lib/main_production.dart
           flutter clean # Cleaning before builds help remove an problems in between them
-          flutter build appbundle
+          flutter build apk --dart-define=SENTRY_DSN=$SENTRY_DSN --dart-define=MATOMO_URL=$MATOMO_URL -t lib/main_production.dart --split-per-abi
+      - uses: actions/upload-artifact@v2
+        with:
+          name: android-test-artifacts
+          path: "build/app/outputs/apk/release/*.apk"
   ios: # Github's MacOS images come with xcode preinstalled
     runs-on: macos-latest
     strategy:
@@ -55,4 +62,4 @@ jobs:
       - name: Decode service plist
         run: base64 -d <<< $FIREBASE_IOS > ios/Runner/GoogleService-Info.plist
       - name: Build ios using flutter
-        run: flutter build ios --no-codesign
+        run: flutter build ios --dart-define=SENTRY_DSN=$SENTRY_DSN --dart-define=MATOMO_URL=$MATOMO_URL -t lib/main_production.dart --no-codesign

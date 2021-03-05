@@ -1,5 +1,4 @@
 import 'package:data_connection_checker/data_connection_checker.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:get_it/get_it.dart';
 import 'package:package_info/package_info.dart';
 import 'package:wfcd_client/wfcd_client.dart';
@@ -35,8 +34,7 @@ Future<void> init() async {
     ..registerSingletonAsync<EventInfoParser>(EventInfoParser.loadEventData)
     ..registerSingleton<VideoService>(VideoService())
     ..registerSingletonAsync<PackageInfo>(PackageInfo.fromPlatform)
-    ..registerSingleton<NotificationService>(
-        NotificationService(FirebaseMessaging()))
+    ..registerSingleton<NotificationService>(NotificationService())
 
     // Data sources
     ..registerSingleton<WarframestatClient>(WarframestatClient())

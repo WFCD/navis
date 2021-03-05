@@ -22,8 +22,9 @@ class WarframestatCache {
     Hive.init(temp.path);
 
     final box = await Hive.openBox<dynamic>('worldstate_cache').catchError(
-      (Object error, StackTrace stack) =>
-          _logger.severe('Unable to open Hive box', error, stack),
+      (Object error, StackTrace stack) {
+        _logger.severe('Unable to open Hive box', error, stack);
+      },
     );
 
     return _instance ??= WarframestatCache(box);

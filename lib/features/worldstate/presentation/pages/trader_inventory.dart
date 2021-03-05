@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:matomo/matomo.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:wfcd_client/entities.dart';
 
 import '../widgets/trader_inventory/inventory_tables.dart';
 
 // TODO(Ornstein): maybe add more functionality to Baro's Inventory
-class BaroInventory extends StatelessWidget {
+class BaroInventory extends TraceableStatelessWidget {
   const BaroInventory({Key key}) : super(key: key);
 
   static const route = '/baro_inventory';

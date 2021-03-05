@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:matomo/matomo.dart';
 import 'package:wfcd_client/entities.dart';
 
 import '../../utils/faction_utils.dart';
 import '../widgets/syndicates/syndicate_bounties.dart';
 
-class BountiesPage extends StatelessWidget {
+class BountiesPage extends TraceableStatelessWidget {
   const BountiesPage({Key key}) : super(key: key);
 
   static const String route = '/bounties';

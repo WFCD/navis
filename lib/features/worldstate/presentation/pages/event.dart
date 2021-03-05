@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:matomo/matomo.dart';
 import 'package:wfcd_client/entities.dart';
 
 import '../../../../injection_container.dart';
@@ -8,7 +9,7 @@ import '../widgets/event/event_bounties.dart';
 import '../widgets/event/event_status.dart';
 import '../widgets/event/guide_player.dart';
 
-class EventInformation extends StatelessWidget {
+class EventInformation extends TraceableStatelessWidget {
   const EventInformation({Key key}) : super(key: key);
 
   static const route = 'event_information';

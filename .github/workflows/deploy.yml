@@ -13,6 +13,8 @@ env:
   FASTLANE_PASSWORD: ${{ secrets.FASTLANE_PASSWORD }}
   MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
   FLUTTER_VERSION: stable
+  SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
+  MATOMO_URL: ${{ secrets.MATOMO_URL }}
 jobs:
   android-release:
     runs-on: ubuntu-latest
@@ -32,7 +34,7 @@ jobs:
           base64 -d <<< $TENNO_FIREBASE > android/app/google-services.json
           base64 -di <<< $NAVIS_SERVICE_ACCOUNT > android/app/fastlane.json
       - name: Build App bundle
-        run: flutter build appbundle
+        run: flutter build appbundle --dart-define=SENTRY_DSN=$SENTRY_DSN --dart-define=MATOMO_URL=$MATOMO_URL -t lib/main_production.dart
       - uses: actions/setup-ruby@v1
         with:
           ruby-version: "2.7"
@@ -44,7 +46,7 @@ jobs:
       - name: Clean build directory
         run: flutter clean
       - name: Build split apks per abi
-        run: flutter build apk --split-per-abi
+        run: flutter build apk --dart-define=SENTRY_DSN=$SENTRY_DSN --dart-define=MATOMO_URL=$MATOMO_URL -t lib/main_production.dart --split-per-abi
       - name: Github Releases Deploy
         uses: xresloader/upload-to-github-release@v1
         env:
@@ -70,7 +72,7 @@ jobs:
       - name: Decode service plist
         run: base64 -d <<< $FIREBASE_IOS > ios/Runner/GoogleService-Info.plist
       - name: Build ios using flutter
-        run: flutter build ios --no-codesign
+        run: flutter build ios --dart-define=SENTRY_DSN=$SENTRY_DSN --dart-define=MATOMO_URL=$MATOMO_URL -t lib/main_production.dart --no-codesign
       - uses: actions/setup-ruby@v1
         with:
           ruby-version: "2.7"

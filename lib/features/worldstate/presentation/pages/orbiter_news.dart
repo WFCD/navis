@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:matomo/matomo.dart';
 
 import '../bloc/solsystem_bloc.dart';
 import '../widgets/common/refresh_indicator_bloc_screen.dart';
 import '../widgets/orbiter_news/news_widget.dart';
 
-class OrbiterNewsPage extends StatelessWidget {
+class OrbiterNewsPage extends TraceableStatelessWidget {
   const OrbiterNewsPage({Key key}) : super(key: key);
 
   @override
