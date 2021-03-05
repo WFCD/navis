@@ -8,4 +8,5 @@ export 'event_card.dart';
 export 'outpost_card.dart';
 export 'rewards.dart';
 export 'sortie_card.dart';
+export 'steel_path.dart';
 export 'trader_card.dart';

@@ -103,9 +103,11 @@ class MobileTimers extends StatelessWidget {
           AcolyteCard(enemies: _worldstate.persistentEnemies),
         if (state.arbitrationActive)
           ArbitrationCard(arbitration: _worldstate.arbitration),
-        if (state.activeAlerts) AlertsCard(alerts: _worldstate.alerts),
         if (state.outpostDetected)
           SentientOutpostCard(outpost: _worldstate.sentientOutposts),
+        if (_worldstate.steelPath != null)
+          SteelPathCard(steelPath: _worldstate.steelPath),
+        if (state.activeAlerts) AlertsCard(alerts: _worldstate.alerts),
         CycleCard(cycles: _buildCycles(context.l10n, _worldstate)),
         TraderCard(trader: _worldstate.voidTrader),
         if (state.activeSales)

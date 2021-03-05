@@ -48,6 +48,7 @@ dependency_overrides:
   equatable: ^2.0.0
   intl: ^0.17.0
   path_provider: ^2.0.1
+  json_annotation: ^4.0.0
 
 flutter:
   generate: true

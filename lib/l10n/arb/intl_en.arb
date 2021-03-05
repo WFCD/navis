@@ -881,5 +881,11 @@
     "description": "Discord support title",
     "type": "text",
     "placeholder": {}
+  },
+  "steelPathTitle": "Steel Path",
+  "@steelPathTitle": {
+    "description": "Steel path card title",
+    "type": "text",
+    "placeholer": {}
   }
 }
