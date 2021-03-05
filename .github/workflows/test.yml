@@ -43,9 +43,9 @@ jobs:
           base64 -d <<< $TENNO_FIREBASE > android/app/google-services.json
       - name: Build apk
         run: |
-          flutter build appbundle --dart-define=SENTRY_DSN=$SENTRY_DSN --dart-define=MATOMO_URL=$MATOMO_URL
+          flutter build appbundle --dart-define=SENTRY_DSN=$SENTRY_DSN --dart-define=MATOMO_URL=$MATOMO_URL -t lib/main_production.dart
           flutter clean # Cleaning before builds help remove an problems in between them
-          flutter build apk --dart-define=SENTRY_DSN=$SENTRY_DSN --dart-define=MATOMO_URL=$MATOMO_URL --split-per-abi
+          flutter build apk --dart-define=SENTRY_DSN=$SENTRY_DSN --dart-define=MATOMO_URL=$MATOMO_URL -t lib/main_production.dart --split-per-abi
       - uses: actions/upload-artifact@v2
         with:
           name: android-test-artifacts
@@ -62,4 +62,4 @@ jobs:
       - name: Decode service plist
         run: base64 -d <<< $FIREBASE_IOS > ios/Runner/GoogleService-Info.plist
       - name: Build ios using flutter
-        run: flutter build ios --dart-define=SENTRY_DSN=$SENTRY_DSN --dart-define=MATOMO_URL=$MATOMO_URL --no-codesign
+        run: flutter build ios --dart-define=SENTRY_DSN=$SENTRY_DSN --dart-define=MATOMO_URL=$MATOMO_URL -t lib/main_production.dart --no-codesign
