@@ -887,5 +887,11 @@
     "description": "Steel path card title",
     "type": "text",
     "placeholer": {}
+  },
+  "syndicateDualScreenTitle": "Select Syndicate",
+  "@syndicateDualScreenTitle": {
+    "description": "User hint when under syndicate tabs using a tablet",
+    "type": "text",
+    "placeholder": {}
   }
 }
