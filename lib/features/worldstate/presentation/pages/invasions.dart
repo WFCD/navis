@@ -55,10 +55,11 @@ class TabletInvasions extends StatelessWidget {
     return GridView.builder(
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
-        childAspectRatio: 4.0,
-        mainAxisSpacing: 8.0,
-        crossAxisSpacing: 8.0,
+        childAspectRatio: 2.5,
+        mainAxisSpacing: 4.0,
+        crossAxisSpacing: 2.0,
       ),
+      itemCount: invasions.length,
       itemBuilder: (BuildContext context, int index) {
         return InvasionWidget(invasion: invasions[index]);
       },
