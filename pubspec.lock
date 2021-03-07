@@ -948,10 +948,10 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "6528588325dc7bac5fb05dc81705065631445b17"
+      resolved-ref: f5f1cdbf344d1e003c340f64fa12daf3506b5074
       url: "https://github.com/SlayerOrnstein/wfcd_client.git"
     source: git
-    version: "3.2.1"
+    version: "3.2.2"
   win32:
     dependency: transitive
     description:
