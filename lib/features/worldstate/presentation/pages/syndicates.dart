@@ -7,6 +7,7 @@ import 'package:wfcd_client/entities.dart';
 import 'package:wfcd_client/objects.dart';
 
 import '../../../../core/widgets/widgets.dart';
+import '../../../../l10n/l10n.dart';
 import '../bloc/solsystem_bloc.dart';
 import '../widgets/syndicates/nightwave_challenges.dart';
 import '../widgets/syndicates/syndicate_bounties.dart';
@@ -96,8 +97,7 @@ class _SyndicatePageTabletState extends State<SyndicatePageTablet> {
   @override
   void initState() {
     super.initState();
-
-    _controller = StreamController<Widget>.broadcast();
+    _controller = StreamController<Widget>();
   }
 
   void _onTap(WorldstateObject object) {
@@ -115,32 +115,35 @@ class _SyndicatePageTabletState extends State<SyndicatePageTablet> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Expanded(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              _buildSyndicates(
-                _worldstate.syndicateMissions,
-                onTap: _onTap,
-              ),
-              const SizedBox(height: 8.0),
-              if (widget.state.isNightwaveActive)
-                _buildNightwave(
-                  widget.state.worldstate.nightwave,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 4.0),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                _buildSyndicates(
+                  _worldstate.syndicateMissions,
                   onTap: _onTap,
-                )
-            ],
+                ),
+                const SizedBox(height: 8.0),
+                if (widget.state.isNightwaveActive)
+                  _buildNightwave(
+                    widget.state.worldstate.nightwave,
+                    onTap: _onTap,
+                  )
+              ],
+            ),
           ),
         ),
-        const VerticalDivider(width: 2.0),
         Expanded(
           child: Center(
             child: StreamBuilder<Widget>(
-                initialData: const Text('Select Syndicate'),
+                initialData: Text(context.l10n.syndicateDualScreenTitle),
                 stream: _controller.stream,
-                builder:
-                    (BuildContext context, AsyncSnapshot<Widget> snapshot) {
+                builder: (_, snapshot) {
                   return AnimatedSwitcher(
                     duration: const Duration(milliseconds: 500),
+                    switchInCurve: Curves.easeInCubic,
+                    switchOutCurve: Curves.easeOutCubic,
                     child: snapshot.data,
                   );
                 }),
