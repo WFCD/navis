@@ -141,7 +141,7 @@ class _SyndicatePageTabletState extends State<SyndicatePageTablet> {
                 stream: _controller.stream,
                 builder: (_, snapshot) {
                   return AnimatedSwitcher(
-                    duration: const Duration(milliseconds: 500),
+                    duration: const Duration(milliseconds: 250),
                     switchInCurve: Curves.easeInCubic,
                     switchOutCurve: Curves.easeOutCubic,
                     child: snapshot.data,
