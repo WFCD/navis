@@ -70,14 +70,14 @@ packages:
       name: built_value
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "8.0.0"
+    version: "8.0.2"
   cached_network_image:
     dependency: "direct main"
     description:
       name: cached_network_image
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.5.0"
+    version: "2.5.1"
   characters:
     dependency: transitive
     description:
@@ -217,7 +217,7 @@ packages:
       name: firebase_core
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.0"
+    version: "1.0.1"
   firebase_core_platform_interface:
     dependency: transitive
     description:
@@ -231,7 +231,7 @@ packages:
       name: firebase_core_web
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.0"
+    version: "1.0.1"
   firebase_messaging:
     dependency: "direct main"
     description:
@@ -252,7 +252,7 @@ packages:
       name: firebase_messaging_web
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.0"
+    version: "1.0.1"
   fixnum:
     dependency: transitive
     description:
@@ -292,7 +292,7 @@ packages:
       name: flutter_cache_manager
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.1.1"
+    version: "2.1.2"
   flutter_localizations:
     dependency: "direct main"
     description: flutter
@@ -872,7 +872,7 @@ packages:
       name: video_player
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.0"
+    version: "2.0.1"
   video_player_platform_interface:
     dependency: transitive
     description:
@@ -948,10 +948,10 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: f5f1cdbf344d1e003c340f64fa12daf3506b5074
+      resolved-ref: "51a7d9e74df3ab28ef282ef0bd0a039aa241bcee"
       url: "https://github.com/SlayerOrnstein/wfcd_client.git"
     source: git
-    version: "3.2.2"
+    version: "3.2.3"
   win32:
     dependency: transitive
     description:

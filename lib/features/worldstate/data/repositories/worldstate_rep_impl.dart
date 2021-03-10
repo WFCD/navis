@@ -67,6 +67,8 @@ class WorldstateRepositoryImpl implements WorldstateRepository {
             return cached;
           });
 
+          if (state == null) return Right(cached);
+
           cache.cacheWorldstate(state);
 
           return Right(state);
