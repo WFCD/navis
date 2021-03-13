@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:ui';
 
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
@@ -33,8 +34,16 @@ Future<void> startApp() async {
     await sl<NotificationService>().subscribeToPlatform(GamePlatforms.pc);
   }
 
+  if (sl<Usersettings>().language == null) {
+    sl<Usersettings>().language =
+        PlatformDispatcher.instance.locale.languageCode;
+
+    await sl<NotificationService>()
+        .subscribeToNotification(sl<Usersettings>().language);
+  }
+
   await MatomoTracker()
-      .initialize(siteId: 4, url: const String.fromEnvironment('MATOMO_URL'));
+      .initialize(siteId: 2, url: const String.fromEnvironment('MATOMO_URL'));
 
   runApp(
     MultiBlocProvider(

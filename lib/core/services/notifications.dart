@@ -17,12 +17,12 @@ class NotificationService {
   }
 
   Future<void> subscribeToPlatform(GamePlatforms platform) async {
-    _log('subscribing to ${platform.asString} topic');
+    _log('subscribing to ${platform.asString}');
     await _messaging.subscribeToTopic(platform.asString);
   }
 
   Future<void> unsubscribeFromPlatform(GamePlatforms platform) async {
-    _log('unsubscribing from ${platform.asString} topic');
+    _log('unsubscribing from ${platform.asString}');
     await _messaging.unsubscribeFromTopic(platform.asString);
   }
 

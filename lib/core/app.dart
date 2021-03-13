@@ -60,6 +60,17 @@ class _NavisAppState extends State<NavisApp> with WidgetsBindingObserver {
     }
   }
 
+  void setupUserLanguage(Locale locale) {
+    final subscribe = sl<NotificationService>().subscribeToNotification;
+    final unsubscribe = sl<NotificationService>().unsubscribeFromNotification;
+
+    if (sl<Usersettings>().language != locale.languageCode) {
+      unsubscribe(sl<Usersettings>().language);
+      subscribe(locale.languageCode);
+      sl<Usersettings>().language = locale.languageCode;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -85,13 +96,19 @@ class _NavisAppState extends State<NavisApp> with WidgetsBindingObserver {
       localizationsDelegates: NavisLocalizations.localizationsDelegates,
       localeResolutionCallback:
           (Locale locale, Iterable<Locale> supportedLocales) {
+        Locale _locale;
+
         for (final supportedLocale in supportedLocales) {
           if (locale.languageCode == supportedLocale.languageCode) {
-            return supportedLocale;
+            _locale = supportedLocale;
           }
         }
 
-        return supportedLocales.first;
+        _locale ??= supportedLocales.first;
+
+        setupUserLanguage(_locale);
+
+        return _locale;
       },
     );
   }
