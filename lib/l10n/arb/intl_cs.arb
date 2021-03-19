@@ -612,97 +612,97 @@
         "type": "text",
         "placholder": {}
     },
-    "plainsofEidolonFishingDataTitle": "PoE: Fishing Data",
+    "plainsofEidolonFishingDataTitle": "PoE: Údaje o rybolovu",
     "@plainsofEidolonFishingDataTitle": {
         "description": "Plains of Eidolon fishing data link title",
         "type": "text",
         "placholder": {}
     },
-    "orbVallisFishingDataTitle": "PoE: Fishing Data",
+    "orbVallisFishingDataTitle": "PoE: Údaje o rybolovu",
     "@orbVallisFishingDataTitle": {
         "description": "Orb Vallis fishing data link title",
         "type": "text",
         "placholder": {}
     },
-    "howToFishTitle": "How to fish",
+    "howToFishTitle": "Jak rybařit",
     "@howToFishTitle": {
         "description": "How to fish link title",
         "type": "text",
         "placholder": {}
     },
-    "recentNewsCategoryTitle": "Most Recent News",
+    "recentNewsCategoryTitle": "Nejaktuálnější novinky",
     "@recentNewsCategoryTitle": {
         "description": "Title for recent news title",
         "type": "text",
         "placeholder": {}
     },
-    "pastNewsCategoryTitle": "Past News",
+    "pastNewsCategoryTitle": "Staré novinky",
     "@pastNewsCategoryTitle": {
         "description": "Title for past Warframe news",
         "type": "text",
         "placeholder": {}
     },
-    "warframePassiveTitle": "Passive",
+    "warframePassiveTitle": "Pasivní",
     "@warframePassiveTitle": {
         "description": "Warframes passive title",
         "type": "text",
         "placeholder": {}
     },
-    "auraTitle": "Aura Polarity",
+    "auraTitle": "Polarita Aury",
     "@auraTitle": {
         "description": "Aura polarity title for items",
         "type": "text",
         "placeholder": {}
     },
-    "preinstalledPolarities": "Preinstalled Polarities",
+    "preinstalledPolarities": "Předinstalované polarity",
     "@preinstalledPolarities": {
         "description": "Preinstalled polarites title for items",
         "type": "text",
         "placeholder": {}
     },
-    "shieldTitle": "Shield",
+    "shieldTitle": "Štít",
     "@shieldTitle": {
         "description": "Title for shield value",
         "typ": "text",
         "placeholder": {}
     },
-    "armorTitle": "Armor",
+    "armorTitle": "Brnění",
     "@armorTitle": {
         "description": "Title for armor value",
         "typ": "text",
         "placeholder": {}
     },
-    "healthTitle": "Health",
+    "healthTitle": "Zdraví",
     "@healthTitle": {
         "description": "Title for health value",
         "typ": "text",
         "placeholder": {}
     },
-    "powerTitle": "Power",
+    "powerTitle": "Síla",
     "@powerTitle": {
         "description": "Title for power value",
         "typ": "text",
         "placeholder": {}
     },
-    "sprintSpeedTitle": "Sprint Speed",
+    "sprintSpeedTitle": "Rychlost sprintu",
     "@sprintSpeedTitle": {
         "description": "Title for sprint speed value",
         "typ": "text",
         "placeholder": {}
     },
-    "abilitiesTitle": "Abilites",
+    "abilitiesTitle": "Schopnosti",
     "@abilitiesTitle": {
         "description": "Title for warframe, archwings, and Necromech abilites",
         "typ": "text",
         "placeholder": {}
     },
-    "componentsTitle": "Components",
+    "componentsTitle": "Součástky",
     "@componentsTitle": {
         "description": "Title for item components",
         "typ": "text",
         "placeholder": {}
     },
-    "fullPatchNotesTitle": "FULL PATCH NOTES",
+    "fullPatchNotesTitle": "POZNÁMKY K ATUALIZACÍM",
     "@fullPatchNotesTitle": {
         "description": "Full Patch Notes Title",
         "typ": "text",
