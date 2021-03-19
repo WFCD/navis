@@ -888,7 +888,7 @@
         "type": "text",
         "placeholer": {}
     },
-    "syndicateDualScreenTitle": "Select Syndicate",
+    "syndicateDualScreenTitle": "Vybrat Syndikát",
     "@syndicateDualScreenTitle": {
         "description": "User hint when under syndicate tabs using a tablet",
         "type": "text",
