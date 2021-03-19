@@ -1,6 +1,6 @@
 {
     "@@last_modified": "2020-03-03T16:56:42.387837",
-    "levelInfo": "Level: {min} - {max}",
+    "levelInfo": "Úroveň: {min} - {max}",
     "@levelInfo": {
         "description": "The information of the current enemy levels",
         "type": "text",
@@ -9,7 +9,7 @@
             "max": {}
         }
     },
-    "activeAcolyte": "{agentType} | level: {rank}",
+    "activeAcolyte": "{agentType} | úroveň: {rank}",
     "@activeAcolyte": {
         "description": "acolyte title with level",
         "type": "text",
@@ -18,25 +18,25 @@
             "rank": {}
         }
     },
-    "locating": "Locating...",
+    "locating": "Lokalizuji...",
     "@locating": {
         "description": "Shows up when an acolyte's current location is unknown, may be used in other parts of the app",
         "type": "text",
         "placeholders": {}
     },
-    "acolyteCurrentLocation": "Current location",
+    "acolyteCurrentLocation": "Aktuální poloha",
     "@acolyteCurrentLocation": {
         "description": "Acolyte's current location",
         "type": "text",
         "placeholders": {}
     },
-    "acolytePassLocation": "Last seen location",
+    "acolytePassLocation": "Naposledy spatřen",
     "@acolytePassLocation": {
         "description": "Acolyte's pass location",
         "type": "text",
         "placeholders": {}
     },
-    "acolyteFound": "Found",
+    "acolyteFound": "Nalezen",
     "@acolyteFound": {
         "description": "The elapsed time after an acolyte was found",
         "type": "text",
