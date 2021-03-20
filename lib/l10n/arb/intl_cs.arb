@@ -310,7 +310,7 @@
         "type": "text",
         "placeholder": {}
     },
-    "rareAlertsNotificationDescription": "Rare alert notifications, mainly gifts of the lotus.",
+    "rareAlertsNotificationDescription": "Vzácná upozornění, zejména dary lotusu.",
     "@rareAlertsNotificationDescription": {
         "description": "Description for rare alerts option",
         "type": "text",
@@ -322,13 +322,13 @@
         "type": "text",
         "placeholder": {}
     },
-    "baroNotificationDescription": "Notifications for both Baro's arrivial and departure.",
+    "baroNotificationDescription": "Oznámení jak o příjezdu Baro'a, tak o odletu.",
     "@baroNotificationDescription": {
         "description": "Notification description for both Baro's arrivial and departure.",
         "type": "text",
         "placeholder": {}
     },
-    "darvoNotificationTitle": "Darvo's Daily Deals",
+    "darvoNotificationTitle": "Darvovy Denní Nabídky",
     "@darvoNotificationTitle": {
         "description": "Notification title for darvo's daily deals",
         "type": "text",
