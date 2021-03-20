@@ -334,7 +334,7 @@
         "type": "text",
         "placeholder": {}
     },
-    "darvoNotificationDescription": "Darvo's new find of the day.",
+    "darvoNotificationDescription": "Darvo nový nález dne.",
     "@darvoNotificationDescription": {
         "description": "Notification description for Darvo's Daily Deal",
         "type": "text",
@@ -346,121 +346,121 @@
         "type": "text",
         "placeholder": {}
     },
-    "sortieNotificationDescription": "Notifications for new sorties.",
+    "sortieNotificationDescription": "Oznámení pro nové Sortie.",
     "@sortieNotificationDescription": {
         "description": "description for sortie notification option",
         "type": "text",
         "placeholder": {}
     },
-    "sentientOutpostNotificationTitle": "Sentient Outpost",
+    "sentientOutpostNotificationTitle": "Základna Sentientů",
     "@sentientOutpostNotificationTitle": {
         "description": "Notification title for sentient outpost",
         "type": "text",
         "placeholder": {}
     },
-    "sentientOutpostNotificationDescription": "Notifications for new sentient threats",
+    "sentientOutpostNotificationDescription": "Oznámení o nových hrozbách sentientů",
     "@sentientOutpostNotificationDescription": {
         "description": "Notification description for sentient outpost option",
         "type": "text",
         "placeholder": {}
     },
-    "warframeNewsTitle": "Warframe News",
+    "warframeNewsTitle": "Novinky Warframu",
     "@warframeNewsTitle": {
         "description": "Main Title for Warframe news page",
         "type": "text",
         "placeholder": {}
     },
-    "warframeNewsNotificationTitle": "News",
+    "warframeNewsNotificationTitle": "Novinky",
     "@warframeNewsNotificationTitle": {
         "description": "Main Title for Warframe news notifications",
         "type": "text",
         "placeholder": {}
     },
-    "warframeNewsNotificationDescription": "News notifications for Prime Access, Streams and Updates.",
+    "warframeNewsNotificationDescription": "Oznámení novinek o Prime Přístupu, Steamech a Aktualizacích.",
     "@warframeNewsNotificationDescription": {
         "description": "Main description for Warframe news notifications",
         "type": "text",
         "placeholder": {}
     },
-    "planetCyclesNotificationTitle": "Open World Cycles",
+    "planetCyclesNotificationTitle": "Otevřít cykly světů",
     "@planetCyclesNotificationTitle": {
         "description": "Main title for open world notifications",
         "type": "text",
         "placeholder": {}
     },
-    "planetCyclesNotificationDescription": "Open world notifications for their given cycles.",
+    "planetCyclesNotificationDescription": "Oznámení otevřeného světa pro dané cykly.",
     "@planetCyclesNotificationDescription": {
         "description": "Main description for open world notifications",
         "type": "text",
         "placeholder": {}
     },
-    "resourcesNotificationTitle": "Resources",
+    "resourcesNotificationTitle": "Suroviny",
     "@resourcesNotificationTitle": {
         "description": "Main title for resource notifications",
         "type": "text",
         "placeholder": {}
     },
-    "resourcesNotificationDescription": "Resources mostly found in invasions.",
+    "resourcesNotificationDescription": "Suroviny nalezené většinou v invazích.",
     "@resourcesNotificationDescription": {
         "description": "Main description for resource notifications",
         "type": "text",
         "placeholder": {}
     },
-    "fissuresNotificationTitle": "Fissure Missions",
+    "fissuresNotificationTitle": "Fissure Mise",
     "@fissuresNotificationTitle": {
         "description": "Main title for fisssures notifications",
         "type": "text",
         "placeholder": {}
     },
-    "fissuresNotificationDescription": "Filter fissure notifications by prefered mission type",
+    "fissuresNotificationDescription": "Filtrovat fissure upozornění podle preferovaného typu mise",
     "@fissuresNotificationDescription": {
         "description": "Main description for fissures notifications",
         "type": "text",
         "placeholder": {}
     },
-    "acolytesNotificationTitle": "Acolytes",
+    "acolytesNotificationTitle": "Acolyti",
     "@acolytesNotificationTitle": {
         "description": "Main title for acolyte notifications",
         "type": "text",
         "placeholder": {}
     },
-    "acolytesNotificationDescription": "Notifies when an acolyte is found",
+    "acolytesNotificationDescription": "Upozorní když bude acolyte nalezen",
     "@acolytesNotificationDescription": {
         "description": "Main description for acolyte notifications",
         "type": "text",
         "placeholder": {}
     },
-    "earthDayOption": "Earth Day",
+    "earthDayOption": "Země Den",
     "@earthDayOption": {
         "description": "Earth cycle option",
         "type": "text",
         "placeholder": {}
     },
-    "earthNightOption": "Earth Night",
+    "earthNightOption": "Země Noc",
     "@earthNightOption": {
         "description": "Earth cycle option",
         "type": "text",
         "placeholder": {}
     },
-    "cetusDayOption": "Cetus Day",
+    "cetusDayOption": "Cetus Den",
     "@cetusDayOption": {
         "description": "Cetus cycle option",
         "type": "text",
         "placeholder": {}
     },
-    "cetusNightOption": "Cetus Night",
+    "cetusNightOption": "Cetus Noc",
     "@cetusNightOption": {
         "description": "Cetus cycle option",
         "type": "text",
         "placeholder": {}
     },
-    "vallisWarmOption": "Orb Vallis Warm",
+    "vallisWarmOption": "Orb Vallis Teplo",
     "@vallisWarmOption": {
         "description": "Orb vallis cycle option",
         "type": "text",
         "placeholder": {}
     },
-    "vallisColdOption": "Orb Vallis Cold",
+    "vallisColdOption": "Orb Vallis Zima",
     "@vallisColdOption": {
         "description": "Orb vallis cycle option",
         "type": "text",
@@ -478,13 +478,13 @@
         "type": "text",
         "placeholder": {}
     },
-    "primeAccessNewsOption": "Prime Access",
+    "primeAccessNewsOption": "Prime Přístup",
     "@primeAccessNewsOption": {
         "description": "Warframe news option",
         "type": "text",
         "placeholder": {}
     },
-    "streamNewsOption": "Stream Announcements",
+    "streamNewsOption": "Oznámení o Streamech",
     "@streamNewsOption": {
         "description": "Warframe news option",
         "type": "text",
