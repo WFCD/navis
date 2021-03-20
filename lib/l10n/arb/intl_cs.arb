@@ -490,13 +490,13 @@
         "type": "text",
         "placeholder": {}
     },
-    "updateNewsOption": "Warframe Update News",
+    "updateNewsOption": "Warframe Novinky o Aktualizacích",
     "@updateNewsOption": {
         "description": "Warframe news option",
         "type": "text",
         "placeholder": {}
     },
-    "updateDropTableDescription": "Last updated {date}",
+    "updateDropTableDescription": "Naposledy aktualizováno {date}",
     "@updateDropTableDescription": {
         "description": "Description for updating drop table with date of the last update",
         "type": "text",
@@ -504,109 +504,109 @@
             "date": {}
         }
     },
-    "reportBugsTitle": "Report Bugs",
+    "reportBugsTitle": "Nahlásit chyby",
     "@reportBugsTitle": {
         "desciption": "Title for bug report link",
         "type": "text",
         "placeholder": {}
     },
-    "reportBugsDescription": "Report bugs or Request a feature",
+    "reportBugsDescription": "Nahlásit chyby nebo Požádat o nové funkce",
     "@reportBugsDescription": {
         "description": "Description for bug report link",
         "type": "text",
         "placeholder": {}
     },
-    "aboutCategoryTitle": "About",
+    "aboutCategoryTitle": "Informace",
     "@aboutCategoryTitle": {
         "description": "Title for the about category of the settings page",
         "type": "text",
         "placeholder": {}
     },
-    "lightThemeTitle": "Light",
+    "lightThemeTitle": "Světlé téma",
     "@lightThemeTitle": {
         "description": "Title for light theme",
         "type": "text",
         "placeholder": {}
     },
-    "darkThemeTitle": "Dark",
+    "darkThemeTitle": "Tmavé téma",
     "@darkThemeTitle": {
         "description": "Title for dark theme",
         "type": "text",
         "placeholder": {}
     },
-    "systemThemeTitle": "System",
+    "systemThemeTitle": "Systémové téma",
     "@systemThemeTitle": {
         "description": "Title for system theme",
         "type": "text",
         "placeholder": {}
     },
-    "legalese": "Warframe and the Warframe logo are registered trademarks of Digital Extremes Ltd. Cephalon Navis nor WFCD are affiliated with Digital Extremes Ltd. in any way.",
+    "legalese": "Warframe a logo Warframe jsou registrované ochranné známky Digital Extremes Ltd. Cephalon Navis nor WFCD jsou přidruženy k Digital Extremes Ltd. v jakémkoli smyslu.",
     "@legalese": {
         "description": "Cephalon Navis legalese",
         "type": "text",
         "placeholder": {}
     },
-    "homePageTitle": "Homepage",
+    "homePageTitle": "Domů",
     "@homePageTitle": {
         "description": "Displayes a link to Navis's homepage",
         "type": "text",
         "placeholder": {}
     },
-    "issueTrackerDescription": "Report issues or feature request for this project's",
+    "issueTrackerDescription": "Nahlásit problémy nebo podat žádost o novou funkci pro tento projekt",
     "@issueTrackerDescription": {
         "description": "Description for Navis's issue tracker",
         "type": "text",
         "placeholder": {}
     },
-    "issueTrackerTitle": "issues tracker",
+    "issueTrackerTitle": "sledování problémů",
     "@issueTrackerTitle": {
         "description": "Display link to Navis's issue tracker",
         "type": "text",
         "placeholder": {}
     },
-    "warframeLinkTitle": "More information on Warframe can be found on their official site",
+    "warframeLinkTitle": "Více informací o hře Warframe lze nalézt na oficiálních stránkách",
     "@warframeLinkTitle": {
         "description": "Description for Warframe's main site link",
         "type": "text",
         "placeholder": {}
     },
-    "settingsTitle": "Settings",
+    "settingsTitle": "Nastavení",
     "@settingsTitle": {
         "description": "Settings title",
         "type": "text",
         "placeholder": {}
     },
-    "dailyRewardTitle": "Daily Reward Reset Timer",
+    "dailyRewardTitle": "Denní Odměny Obnovení Časovače",
     "@dailyRewardTitle": {
         "description": "Title for daily reward timer",
         "type": "text",
         "placeholder": {}
     },
-    "eliteBadgeTitle": "Elite",
+    "eliteBadgeTitle": "Elita",
     "@eliteBadgeTitle": {
         "description": "Nightwave Elite badge title",
         "type": "text",
         "placeholder": {}
     },
-    "dailyNightwaveTitle": "Daily",
+    "dailyNightwaveTitle": "Denní",
     "@dailyNightwaveTitle": {
         "description": "Nightwave daily title",
         "type": "text",
         "placeholder": {}
     },
-    "weeklyNightwaveTitle": "Weekly",
+    "weeklyNightwaveTitle": "Týdenní",
     "@weeklyNightwaveTitle": {
         "description": "Nightwave weekly title",
         "type": "text",
         "placeholder": {}
     },
-    "plainsofEidolonMapTitle": "Plains of Eidolon map",
+    "plainsofEidolonMapTitle": "Pláně na mapě Eilodon",
     "@plainsofEidolonMapTitle": {
         "description": "Plains of Eidolon Map link title",
         "type": "text",
         "placholder": {}
     },
-    "orbVallisMapTitle": "Orb Vallis map",
+    "orbVallisMapTitle": "Mapa Orb Vallis",
     "@orbVallisMapTitle": {
         "description": "Orb Vallis Map link title",
         "type": "text",
