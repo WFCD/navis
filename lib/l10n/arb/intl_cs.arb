@@ -1,0 +1,897 @@
+{
+    "@@last_modified": "2020-03-03T16:56:42.387837",
+    "levelInfo": "Úroveň: {min} - {max}",
+    "@levelInfo": {
+        "description": "The information of the current enemy levels",
+        "type": "text",
+        "placeholders": {
+            "min": {},
+            "max": {}
+        }
+    },
+    "activeAcolyte": "{agentType} | úroveň: {rank}",
+    "@activeAcolyte": {
+        "description": "acolyte title with level",
+        "type": "text",
+        "placeholders": {
+            "agentType": {},
+            "rank": {}
+        }
+    },
+    "locating": "Lokalizuji...",
+    "@locating": {
+        "description": "Shows up when an acolyte's current location is unknown, may be used in other parts of the app",
+        "type": "text",
+        "placeholders": {}
+    },
+    "acolyteCurrentLocation": "Aktuální poloha",
+    "@acolyteCurrentLocation": {
+        "description": "Acolyte's current location",
+        "type": "text",
+        "placeholders": {}
+    },
+    "acolytePassLocation": "Naposledy spatřen na",
+    "@acolytePassLocation": {
+        "description": "Acolyte's pass location",
+        "type": "text",
+        "placeholders": {}
+    },
+    "acolyteFound": "Nalezen",
+    "@acolyteFound": {
+        "description": "The elapsed time after an acolyte was found",
+        "type": "text",
+        "placeholders": {}
+    },
+    "acolyteLastSeen": "Naposledy spatřen v",
+    "@acolyteLastSeen": {
+        "description": "The elapsed time since the acolyte was last seen",
+        "type": "text",
+        "placeholders": {}
+    },
+    "acolyteHealth": "Zdraví",
+    "@acolyteHealth": {
+        "description": "Acolytes remaining health",
+        "type": "text",
+        "placeholders": {}
+    },
+    "acolyteRank": "Úroveň Acolyte",
+    "@acolyteRank": {
+        "description": "An acolyte's current level",
+        "type": "text",
+        "placeholders": {}
+    },
+    "acolyteElapsedTime": "před {lastSeenTime} minutami",
+    "@acolyteElapsedTime": {
+        "description": "Time since acolyte has either been found or last seen",
+        "type": "text",
+        "placeholders": {
+            "lastSeenTime": {}
+        }
+    },
+    "tapForMoreDetails": "Klepnutím zde zobrazíte další podrobnosti",
+    "@tapForMoreDetails": {
+        "description": "General description to tell the user that this object takes you to a different page",
+        "type": "text",
+        "placeholders": {}
+    },
+    "seeDetails": "Zobrazit podrobnosti",
+    "@seeDetails": {
+        "description": "General button to see more details of given object",
+        "type": "text",
+        "placeholders": {}
+    },
+    "seeWikia": "Viz Wiki",
+    "@seeWikia": {
+        "description": "General button to wikia of given item",
+        "type": "text",
+        "placeholders": {}
+    },
+    "eventDescription": "Popis",
+    "@eventDescription": {
+        "description": "Event description category title",
+        "type": "text",
+        "placeholders": {}
+    },
+    "eventStatus": "Stav události",
+    "@eventStatus": {
+        "description": "Event status category title",
+        "type": "text",
+        "placeholders": {}
+    },
+    "eventStatusNode": "Uzel",
+    "@eventStatusNode": {
+        "description": "The node that the event is taking place in",
+        "type": "text",
+        "placeholders": {}
+    },
+    "eventStatusProgress": "Postup",
+    "@eventStatusProgress": {
+        "description": "The progress of the current event from 0 to 100 %",
+        "type": "text",
+        "placeholders": {}
+    },
+    "eventStatusEta": "Zbývající čas (ETA)",
+    "@eventStatusEta": {
+        "description": "Current events remaining estimated time",
+        "type": "text",
+        "placeholders": {}
+    },
+    "eventRewards": "Odměny",
+    "@eventRewards": {
+        "description": "Event reward title",
+        "type": "text",
+        "placeholders": {}
+    },
+    "bountyTitle": "Bounty",
+    "@bountyTitle": {
+        "description": "Bounty card title.",
+        "type": "text",
+        "placeholders": {}
+    },
+    "errorTitle": "Došlo k chybě aplikace",
+    "@errorTitle": {
+        "description": "error title",
+        "type": "text",
+        "placeholders": {}
+    },
+    "errorDescription": "V systému došlo k neočekávané chybě.\nNahlašuji chybu správci systému...",
+    "@errorDescription": {
+        "description": "error description",
+        "type": "text",
+        "placeholders": {}
+    },
+    "baroTitle": "Obchodník Voidu",
+    "@baroTitle": {
+        "description": "Title for Baro Ki'Teer card",
+        "type": "text",
+        "placeholders": {}
+    },
+    "baroLeaving": "Baro Ki'Teer odchází za",
+    "@baroLeaving": {
+        "description": "displays remaining time before Baro Ki'Teer leaves",
+        "type": "text",
+        "placeholders": {}
+    },
+    "baroArriving": "Baro Ki'Teer se objeví za",
+    "@baroArriving": {
+        "description": "displays remaining time before Baro Ki'Teer arrives",
+        "type": "text",
+        "placeholders": {}
+    },
+    "baroLocation": "Lokace",
+    "@baroLocation": {
+        "description": "shows Baro ki'Teer's current location",
+        "type": "text",
+        "placeholders": {}
+    },
+    "baroLeavesOn": "Ochází za",
+    "@baroLeavesOn": {
+        "description": "shows when Baro Ki'Teer is leaving",
+        "type": "text",
+        "placeholders": {}
+    },
+    "baroArrivesOn": "Objeví za",
+    "@baroArrivesOn": {
+        "description": "shows at when Baro Ki'Teer will arrive",
+        "type": "text",
+        "placeholders": {}
+    },
+    "baroInventory": "Inventář Baro Ki'Teeera",
+    "@baroInventory": {
+        "description": "Baro Ki'Teeer Inventory button label",
+        "type": "text",
+        "placeholders": {}
+    },
+    "countdownTooltip": "Končí {date}",
+    "@countdownTooltip": {
+        "description": "Countdown tooltip with end date of the current running timer",
+        "type": "text",
+        "placeholders": {
+            "date": {}
+        }
+    },
+    "kuvaBanner": "Kuva se obnoví za",
+    "@kuvaBanner": {
+        "description": "Kuva refresh countdown title",
+        "type": "text",
+        "placeholders": {}
+    },
+    "formorianTitle": "Fomorian",
+    "@formorianTitle": {
+        "description": "Fomorian progress title",
+        "type": "text",
+        "placeholders": {}
+    },
+    "razorbackTitle": "Razorback",
+    "@razorbackTitle": {
+        "description": "Razorback progress title",
+        "type": "text",
+        "placeholders": {}
+    },
+    "earthCycleTitle": "Cyklus Země",
+    "@earthCycleTitle": {
+        "description": "Earth cycle title",
+        "type": "text",
+        "placeholders": {}
+    },
+    "cetusCycleTitle": "Cyklus Cetusu",
+    "@cetusCycleTitle": {
+        "description": "Cetus cycle title",
+        "type": "text",
+        "placeholders": {}
+    },
+    "vallisCycleTitle": "Cyklus Vallis",
+    "@vallisCycleTitle": {
+        "description": "Vallis cycle title",
+        "type": "text",
+        "placeholders": {}
+    },
+    "cambionCycleTitle": "Cyklus Cambionu",
+    "@cambionCycleTitle": {
+        "description": "Cambion Cycle title",
+        "type": "text",
+        "placeholders": {}
+    },
+    "timersTitle": "Časovače",
+    "@timersTitle": {
+        "description": "Times title",
+        "type": "text",
+        "placeholders": {}
+    },
+    "fissuresTitle": "Fissures",
+    "@fissuresTitle": {
+        "description": "Fissures title",
+        "type": "text",
+        "placeholders": {}
+    },
+    "invasionsTitle": "Invaze",
+    "@invasionsTitle": {
+        "description": "Invasions title",
+        "type": "text",
+        "placeholders": {}
+    },
+    "syndicatesTitle": "Syndikáty",
+    "@syndicatesTitle": {
+        "description": "Syndicates title",
+        "type": "text",
+        "placeholders": {}
+    },
+    "codexTitle": "Codex",
+    "@codexTitle": {
+        "description": "Codex title",
+        "type": "text",
+        "placeholders": {}
+    },
+    "helpfulLinksTitle": "Užitečné odkazy",
+    "@helpfulLinksTitle": {
+        "description": "Helpful Links title",
+        "type": "text",
+        "placeholder": {}
+    },
+    "behaviorTitle": "Chování",
+    "@behaviorTitle": {
+        "description": "Behavior category title",
+        "type": "text",
+        "placeholder": {}
+    },
+    "themeTitle": "Téma",
+    "@themeTitle": {
+        "description": "Theme title",
+        "type": "text",
+        "placeholder": {}
+    },
+    "themeDescription": "Vybrat vzhled applikace.",
+    "@themeDescription": {
+        "description": "Theme option description",
+        "typ": "text",
+        "placeholder": {}
+    },
+    "backOpensDrawerTitle": "Tlačítko zpět otevře seznam",
+    "@backOpensDrawerTitle": {
+        "description": "Title for the option that allows back button to open the drawer",
+        "type": "text",
+        "placeholder": {}
+    },
+    "backOpensDrawerDescription": "Stisknutím tlačítka zpět se otevře seznam.",
+    "@backOpensDrawerDescription": {
+        "description": "Description for back button opens drawer option",
+        "type": "text",
+        "placeholder": {}
+    },
+    "notificationsTitle": "Oznámení",
+    "@notificationsTitle": {
+        "description": "Notifications category title",
+        "type": "text",
+        "placeholder": {}
+    },
+    "rareAlertsNotificationTitle": "Vzácná upozornění",
+    "@rareAlertsNotificationTitle": {
+        "description": "Rare Alerts title",
+        "type": "text",
+        "placeholder": {}
+    },
+    "rareAlertsNotificationDescription": "Vzácná upozornění, zejména dary lotusu.",
+    "@rareAlertsNotificationDescription": {
+        "description": "Description for rare alerts option",
+        "type": "text",
+        "placeholder": {}
+    },
+    "baroNotificationTitle": "Baro Ki'Teer",
+    "@baroNotificationTitle": {
+        "description": "Baro's notification title",
+        "type": "text",
+        "placeholder": {}
+    },
+    "baroNotificationDescription": "Oznámení jak o příjezdu Baro'a, tak o odletu.",
+    "@baroNotificationDescription": {
+        "description": "Notification description for both Baro's arrivial and departure.",
+        "type": "text",
+        "placeholder": {}
+    },
+    "darvoNotificationTitle": "Darvovy Denní Nabídky",
+    "@darvoNotificationTitle": {
+        "description": "Notification title for darvo's daily deals",
+        "type": "text",
+        "placeholder": {}
+    },
+    "darvoNotificationDescription": "Darvo nový nález dne.",
+    "@darvoNotificationDescription": {
+        "description": "Notification description for Darvo's Daily Deal",
+        "type": "text",
+        "placeholder": {}
+    },
+    "sortieNotificationTitle": "Sortie",
+    "@sortieNotificationTitle": {
+        "description": "Notification title for sorties",
+        "type": "text",
+        "placeholder": {}
+    },
+    "sortieNotificationDescription": "Oznámení pro nové Sortie.",
+    "@sortieNotificationDescription": {
+        "description": "description for sortie notification option",
+        "type": "text",
+        "placeholder": {}
+    },
+    "sentientOutpostNotificationTitle": "Základna Sentientů",
+    "@sentientOutpostNotificationTitle": {
+        "description": "Notification title for sentient outpost",
+        "type": "text",
+        "placeholder": {}
+    },
+    "sentientOutpostNotificationDescription": "Oznámení o nových hrozbách sentientů",
+    "@sentientOutpostNotificationDescription": {
+        "description": "Notification description for sentient outpost option",
+        "type": "text",
+        "placeholder": {}
+    },
+    "warframeNewsTitle": "Novinky Warframu",
+    "@warframeNewsTitle": {
+        "description": "Main Title for Warframe news page",
+        "type": "text",
+        "placeholder": {}
+    },
+    "warframeNewsNotificationTitle": "Novinky",
+    "@warframeNewsNotificationTitle": {
+        "description": "Main Title for Warframe news notifications",
+        "type": "text",
+        "placeholder": {}
+    },
+    "warframeNewsNotificationDescription": "Oznámení novinek o Prime Přístupu, Steamech a Aktualizacích.",
+    "@warframeNewsNotificationDescription": {
+        "description": "Main description for Warframe news notifications",
+        "type": "text",
+        "placeholder": {}
+    },
+    "planetCyclesNotificationTitle": "Otevřít cykly světů",
+    "@planetCyclesNotificationTitle": {
+        "description": "Main title for open world notifications",
+        "type": "text",
+        "placeholder": {}
+    },
+    "planetCyclesNotificationDescription": "Oznámení otevřeného světa pro dané cykly.",
+    "@planetCyclesNotificationDescription": {
+        "description": "Main description for open world notifications",
+        "type": "text",
+        "placeholder": {}
+    },
+    "resourcesNotificationTitle": "Suroviny",
+    "@resourcesNotificationTitle": {
+        "description": "Main title for resource notifications",
+        "type": "text",
+        "placeholder": {}
+    },
+    "resourcesNotificationDescription": "Suroviny nalezené většinou v invazích.",
+    "@resourcesNotificationDescription": {
+        "description": "Main description for resource notifications",
+        "type": "text",
+        "placeholder": {}
+    },
+    "fissuresNotificationTitle": "Fissure Mise",
+    "@fissuresNotificationTitle": {
+        "description": "Main title for fisssures notifications",
+        "type": "text",
+        "placeholder": {}
+    },
+    "fissuresNotificationDescription": "Filtrovat fissure upozornění podle preferovaného typu mise",
+    "@fissuresNotificationDescription": {
+        "description": "Main description for fissures notifications",
+        "type": "text",
+        "placeholder": {}
+    },
+    "acolytesNotificationTitle": "Acolyti",
+    "@acolytesNotificationTitle": {
+        "description": "Main title for acolyte notifications",
+        "type": "text",
+        "placeholder": {}
+    },
+    "acolytesNotificationDescription": "Upozorní když bude acolyte nalezen",
+    "@acolytesNotificationDescription": {
+        "description": "Main description for acolyte notifications",
+        "type": "text",
+        "placeholder": {}
+    },
+    "earthDayOption": "Země Den",
+    "@earthDayOption": {
+        "description": "Earth cycle option",
+        "type": "text",
+        "placeholder": {}
+    },
+    "earthNightOption": "Země Noc",
+    "@earthNightOption": {
+        "description": "Earth cycle option",
+        "type": "text",
+        "placeholder": {}
+    },
+    "cetusDayOption": "Cetus Den",
+    "@cetusDayOption": {
+        "description": "Cetus cycle option",
+        "type": "text",
+        "placeholder": {}
+    },
+    "cetusNightOption": "Cetus Noc",
+    "@cetusNightOption": {
+        "description": "Cetus cycle option",
+        "type": "text",
+        "placeholder": {}
+    },
+    "vallisWarmOption": "Orb Vallis Teplo",
+    "@vallisWarmOption": {
+        "description": "Orb vallis cycle option",
+        "type": "text",
+        "placeholder": {}
+    },
+    "vallisColdOption": "Orb Vallis Zima",
+    "@vallisColdOption": {
+        "description": "Orb vallis cycle option",
+        "type": "text",
+        "placeholder": {}
+    },
+    "cambionFassOption": "Cambion Fass",
+    "@cambionFassOption": {
+        "description": "Cambion Fass cycle option",
+        "type": "text",
+        "placeholder": {}
+    },
+    "cambionVomeOption": "Cambion Vome",
+    "@cambionVomeOption": {
+        "description": "Cambion Fass cycle option",
+        "type": "text",
+        "placeholder": {}
+    },
+    "primeAccessNewsOption": "Prime Přístup",
+    "@primeAccessNewsOption": {
+        "description": "Warframe news option",
+        "type": "text",
+        "placeholder": {}
+    },
+    "streamNewsOption": "Oznámení o Streamech",
+    "@streamNewsOption": {
+        "description": "Warframe news option",
+        "type": "text",
+        "placeholder": {}
+    },
+    "updateNewsOption": "Warframe Novinky o Aktualizacích",
+    "@updateNewsOption": {
+        "description": "Warframe news option",
+        "type": "text",
+        "placeholder": {}
+    },
+    "updateDropTableDescription": "Naposledy aktualizováno {date}",
+    "@updateDropTableDescription": {
+        "description": "Description for updating drop table with date of the last update",
+        "type": "text",
+        "placeholder": {
+            "date": {}
+        }
+    },
+    "reportBugsTitle": "Nahlásit chyby",
+    "@reportBugsTitle": {
+        "desciption": "Title for bug report link",
+        "type": "text",
+        "placeholder": {}
+    },
+    "reportBugsDescription": "Nahlásit chyby nebo Požádat o nové funkce",
+    "@reportBugsDescription": {
+        "description": "Description for bug report link",
+        "type": "text",
+        "placeholder": {}
+    },
+    "aboutCategoryTitle": "Informace",
+    "@aboutCategoryTitle": {
+        "description": "Title for the about category of the settings page",
+        "type": "text",
+        "placeholder": {}
+    },
+    "lightThemeTitle": "Světlé téma",
+    "@lightThemeTitle": {
+        "description": "Title for light theme",
+        "type": "text",
+        "placeholder": {}
+    },
+    "darkThemeTitle": "Tmavé téma",
+    "@darkThemeTitle": {
+        "description": "Title for dark theme",
+        "type": "text",
+        "placeholder": {}
+    },
+    "systemThemeTitle": "Systémové téma",
+    "@systemThemeTitle": {
+        "description": "Title for system theme",
+        "type": "text",
+        "placeholder": {}
+    },
+    "legalese": "Warframe a logo Warframe jsou registrované ochranné známky Digital Extremes Ltd. Cephalon Navis nor WFCD jsou přidruženy k Digital Extremes Ltd. v jakémkoli smyslu.",
+    "@legalese": {
+        "description": "Cephalon Navis legalese",
+        "type": "text",
+        "placeholder": {}
+    },
+    "homePageTitle": "Domů",
+    "@homePageTitle": {
+        "description": "Displayes a link to Navis's homepage",
+        "type": "text",
+        "placeholder": {}
+    },
+    "issueTrackerDescription": "Nahlásit problémy nebo podat žádost o novou funkci pro tento projekt",
+    "@issueTrackerDescription": {
+        "description": "Description for Navis's issue tracker",
+        "type": "text",
+        "placeholder": {}
+    },
+    "issueTrackerTitle": "sledování problémů",
+    "@issueTrackerTitle": {
+        "description": "Display link to Navis's issue tracker",
+        "type": "text",
+        "placeholder": {}
+    },
+    "warframeLinkTitle": "Více informací o hře Warframe lze nalézt na oficiálních stránkách",
+    "@warframeLinkTitle": {
+        "description": "Description for Warframe's main site link",
+        "type": "text",
+        "placeholder": {}
+    },
+    "settingsTitle": "Nastavení",
+    "@settingsTitle": {
+        "description": "Settings title",
+        "type": "text",
+        "placeholder": {}
+    },
+    "dailyRewardTitle": "Denní Odměny Obnovení Časovače",
+    "@dailyRewardTitle": {
+        "description": "Title for daily reward timer",
+        "type": "text",
+        "placeholder": {}
+    },
+    "eliteBadgeTitle": "Elita",
+    "@eliteBadgeTitle": {
+        "description": "Nightwave Elite badge title",
+        "type": "text",
+        "placeholder": {}
+    },
+    "dailyNightwaveTitle": "Denní",
+    "@dailyNightwaveTitle": {
+        "description": "Nightwave daily title",
+        "type": "text",
+        "placeholder": {}
+    },
+    "weeklyNightwaveTitle": "Týdenní",
+    "@weeklyNightwaveTitle": {
+        "description": "Nightwave weekly title",
+        "type": "text",
+        "placeholder": {}
+    },
+    "plainsofEidolonMapTitle": "Pláně na mapě Eilodon",
+    "@plainsofEidolonMapTitle": {
+        "description": "Plains of Eidolon Map link title",
+        "type": "text",
+        "placholder": {}
+    },
+    "orbVallisMapTitle": "Mapa Orb Vallis",
+    "@orbVallisMapTitle": {
+        "description": "Orb Vallis Map link title",
+        "type": "text",
+        "placholder": {}
+    },
+    "plainsofEidolonFishingDataTitle": "PoE: Údaje o rybolovu",
+    "@plainsofEidolonFishingDataTitle": {
+        "description": "Plains of Eidolon fishing data link title",
+        "type": "text",
+        "placholder": {}
+    },
+    "orbVallisFishingDataTitle": "PoE: Údaje o rybolovu",
+    "@orbVallisFishingDataTitle": {
+        "description": "Orb Vallis fishing data link title",
+        "type": "text",
+        "placholder": {}
+    },
+    "howToFishTitle": "Jak rybařit",
+    "@howToFishTitle": {
+        "description": "How to fish link title",
+        "type": "text",
+        "placholder": {}
+    },
+    "recentNewsCategoryTitle": "Nejaktuálnější novinky",
+    "@recentNewsCategoryTitle": {
+        "description": "Title for recent news title",
+        "type": "text",
+        "placeholder": {}
+    },
+    "pastNewsCategoryTitle": "Staré novinky",
+    "@pastNewsCategoryTitle": {
+        "description": "Title for past Warframe news",
+        "type": "text",
+        "placeholder": {}
+    },
+    "warframePassiveTitle": "Pasivní",
+    "@warframePassiveTitle": {
+        "description": "Warframes passive title",
+        "type": "text",
+        "placeholder": {}
+    },
+    "auraTitle": "Polarita Aury",
+    "@auraTitle": {
+        "description": "Aura polarity title for items",
+        "type": "text",
+        "placeholder": {}
+    },
+    "preinstalledPolarities": "Předinstalované polarity",
+    "@preinstalledPolarities": {
+        "description": "Preinstalled polarites title for items",
+        "type": "text",
+        "placeholder": {}
+    },
+    "shieldTitle": "Štít",
+    "@shieldTitle": {
+        "description": "Title for shield value",
+        "typ": "text",
+        "placeholder": {}
+    },
+    "armorTitle": "Brnění",
+    "@armorTitle": {
+        "description": "Title for armor value",
+        "typ": "text",
+        "placeholder": {}
+    },
+    "healthTitle": "Zdraví",
+    "@healthTitle": {
+        "description": "Title for health value",
+        "typ": "text",
+        "placeholder": {}
+    },
+    "powerTitle": "Síla",
+    "@powerTitle": {
+        "description": "Title for power value",
+        "typ": "text",
+        "placeholder": {}
+    },
+    "sprintSpeedTitle": "Rychlost sprintu",
+    "@sprintSpeedTitle": {
+        "description": "Title for sprint speed value",
+        "typ": "text",
+        "placeholder": {}
+    },
+    "abilitiesTitle": "Schopnosti",
+    "@abilitiesTitle": {
+        "description": "Title for warframe, archwings, and Necromech abilites",
+        "typ": "text",
+        "placeholder": {}
+    },
+    "componentsTitle": "Součástky",
+    "@componentsTitle": {
+        "description": "Title for item components",
+        "typ": "text",
+        "placeholder": {}
+    },
+    "fullPatchNotesTitle": "POZNÁMKY K ATUALIZACÍM",
+    "@fullPatchNotesTitle": {
+        "description": "Full Patch Notes Title",
+        "typ": "text",
+        "placeholder": {}
+    },
+    "masteryRequirementTitle": "Požadavek Mastery",
+    "@masteryRequirementTitle": {
+        "description": "Mastery requirement for item",
+        "type": "text",
+        "placeholder": {}
+    },
+    "weaponTypeTitle": "Typ zbraně",
+    "@weaponTypeTitle": {
+        "description": "Weapon item type",
+        "type": "text",
+        "placeholder": {}
+    },
+    "accuracyTitle": "Přesnost",
+    "@accuracyTitle": {
+        "description": "Weapon accuracy title",
+        "type": "text",
+        "placeholder": {}
+    },
+    "cricticalChanceTitle": "Kritikální Šance",
+    "@cricticalChanceTitle": {
+        "description": "Weapon crictical chance",
+        "type": "text",
+        "placeholder": {}
+    },
+    "cricticalMultiplierTitle": "Multiplikátor Kritéria",
+    "@cricticalMultiplierTitle": {
+        "description": "Weapon critical multiplier",
+        "type": "text",
+        "placeholder": {}
+    },
+    "fireRateTitle": "Rychlost Střelby",
+    "@fireRateTitle": {
+        "description": "Weapon fire rate",
+        "type": "text",
+        "placeholder": {}
+    },
+    "magazineTitle": "Zásobník",
+    "@magazineTitle": {
+        "description": "Weapon magazine size title",
+        "type": "text",
+        "placeholder": {}
+    },
+    "multishotTitle": "Multishot",
+    "@multishotTitle": {
+        "description": "Weapon multishot",
+        "type": "text",
+        "placeholder": {}
+    },
+    "noiseTitle": "Hluk",
+    "@noiseTitle": {
+        "description": "Weapon noise type",
+        "type": "text",
+        "placeholder": {}
+    },
+    "reloadTitle": "Přebít",
+    "@reloadTitle": {
+        "description": "Weapon item type",
+        "type": "text",
+        "placeholder": {}
+    },
+    "rivenDispositionTitle": "Dispozice Rivenu",
+    "@rivenDispositionTitle": {
+        "description": "Weapon's riven disposition",
+        "type": "text",
+        "placeholder": {}
+    },
+    "statusChanceTitle": "Šance Stavu",
+    "@statusChanceTitle": {
+        "description": "Weapon's status chance",
+        "type": "text",
+        "placeholder": {}
+    },
+    "triggerTitle": "Spoušť",
+    "@triggerTitle": {
+        "description": "Weapon item type",
+        "type": "text",
+        "placeholder": {}
+    },
+    "damageTitle": "Poškození",
+    "@damageTitle": {
+        "description": "Weapon's damage category",
+        "type": "text",
+        "placeholder": {}
+    },
+    "totalDamageTitle": "Celkové Poškození",
+    "@totalDamageTitle": {
+        "description": "Weapon's total damage'",
+        "type": "text",
+        "placeholder": {}
+    },
+    "stancePolarityTitle": "Postavení Polarity",
+    "@stancePolarityTitle": {
+        "description": "Melee stance polarity title",
+        "type": "text",
+        "placeholder": {}
+    },
+    "attackSpeedTitle": "Rychlost Útoku",
+    "@attackSpeedTitle": {
+        "description": "melee attack speed",
+        "type": "text",
+        "placeholder": {}
+    },
+    "followThroughTitle": "Follow Through",
+    "@followThroughTitle": {
+        "description": "Melee follow through title",
+        "type": "text",
+        "placeholder": {}
+    },
+    "rangeTitle": "Dosah",
+    "@rangeTitle": {
+        "description": "Melee's range title",
+        "type": "text",
+        "placeholder": {}
+    },
+    "slamAttackTitle": "Útok Bouchnutí",
+    "@slamAttackTitle": {
+        "description": "Melee's slam attack",
+        "type": "text",
+        "placeholder": {}
+    },
+    "slamRadialDamageTitle": "Radiální Poškození Bouchnutí",
+    "@slamRadialDamageTitle": {
+        "description": "Melee's Slam Radial Damage",
+        "type": "text",
+        "placeholder": {}
+    },
+    "slamRadiusTitle": "Radius Bouchnutí",
+    "@slamRadiusTitle": {
+        "description": "Slam Radius title",
+        "type": "text",
+        "placeholder": {}
+    },
+    "slideAttackTitle": "Útok Sklouznutí",
+    "@slideAttackTitle": {
+        "description": "Melee's slide attack",
+        "type": "text",
+        "placeholder": {}
+    },
+    "heavyAttackTitle": "Těžký Útok",
+    "@heavyAttackTitle": {
+        "description": "Heavy attack title",
+        "type": "text",
+        "placeholder": {}
+    },
+    "heavySlamAttackTitle": "Těžký Útok Bouchnutí",
+    "@heavySlamAttackTitle": {
+        "description": "Heavy Slam attack title",
+        "type": "text",
+        "placeholder": {}
+    },
+    "heavySlamRadialDamageTitle": "Radiální Poškození Bouchnutí",
+    "@heavySlamRadialDamageTitle": {
+        "description": "Heavy Slam attack title",
+        "type": "text",
+        "placeholder": {}
+    },
+    "heavySlamRadiusTitle": "Těžký Radius Bouchnutí",
+    "@heavySlamRadiusTitle": {
+        "description": "Heavy Slam attack title",
+        "type": "text",
+        "placeholder": {}
+    },
+    "windUpTitle": "Vítr Nahoru",
+    "@windUpTitle": {
+        "description": "melee's heavy wind up time title",
+        "type": "text",
+        "placeholder": {}
+    },
+    "discordSupportTitle": "Podpora",
+    "@discordSupportTitle": {
+        "description": "Discord support title",
+        "type": "text",
+        "placeholder": {}
+    },
+    "steelPathTitle": "Steel Path",
+    "@steelPathTitle": {
+        "description": "Steel path card title",
+        "type": "text",
+        "placeholer": {}
+    },
+    "syndicateDualScreenTitle": "Vybrat Syndikát",
+    "@syndicateDualScreenTitle": {
+        "description": "User hint when under syndicate tabs using a tablet",
+        "type": "text",
+        "placeholder": {}
+    }
+}
