@@ -14,7 +14,7 @@ class SteelPathCard extends StatelessWidget {
     return CustomCard(
       child: ListTile(
         title: Text(context.l10n.steelPathTitle),
-        subtitle: Text(steelPath.currentReward),
+        subtitle: Text(steelPath.currentReward.name),
         trailing: CountdownTimer(expiry: steelPath.expiry),
       ),
     );
