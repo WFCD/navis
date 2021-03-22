@@ -70,7 +70,7 @@ packages:
       name: built_value
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "8.0.3"
+    version: "8.0.4"
   cached_network_image:
     dependency: "direct main"
     description:
@@ -948,10 +948,10 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "37a6931227e5ad119b6e2bbc8a444b548db74a75"
+      resolved-ref: ccece8c52f846ade0c72a2875f2abddc5a01a06d
       url: "https://github.com/SlayerOrnstein/wfcd_client.git"
     source: git
-    version: "3.2.4"
+    version: "3.2.5"
   win32:
     dependency: transitive
     description:

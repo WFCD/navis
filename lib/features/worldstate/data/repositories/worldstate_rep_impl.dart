@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:dartz/dartz.dart';
 import 'package:flutter/foundation.dart';
-import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:wfcd_client/entities.dart';
 import 'package:wfcd_client/wfcd_client.dart';
 
@@ -61,11 +60,7 @@ class WorldstateRepositoryImpl implements WorldstateRepository {
     if (cached == null || age >= refresh || forceUpdate) {
       if (await networkInfo.isConnected) {
         try {
-          final state =
-              await compute(_getWorldstate, request).catchError((e, s) {
-            Sentry.captureException(e, stackTrace: s);
-            return cached;
-          });
+          final state = await compute(_getWorldstate, request);
 
           if (state == null) return Right(cached);
 
