@@ -882,13 +882,13 @@
         "type": "text",
         "placeholder": {}
     },
-    "steelPathTitle": "Steel Path",
+    "steelPathTitle": "Стальной Путь",
     "@steelPathTitle": {
         "description": "Steel path card title",
         "type": "text",
         "placeholer": {}
     },
-    "syndicateDualScreenTitle": "Select Syndicate",
+    "syndicateDualScreenTitle": "Выбрать синдикат",
     "@syndicateDualScreenTitle": {
         "description": "User hint when under syndicate tabs using a tablet",
         "type": "text",
