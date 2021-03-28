@@ -57,9 +57,11 @@ class ItemComponents extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final blueprint = components.firstWhere((c) => c.name == 'Blueprint');
+    final blueprint = components.firstWhere((c) => c.name.contains('Blueprint'),
+        orElse: () => null);
+
     final parts = List<Component>.from(components)
-      ..removeWhere((c) => c.name == 'Blueprint');
+      ..removeWhere((c) => c.name.contains('Blueprint'));
 
     return CustomCard(
       child: Column(
@@ -69,8 +71,9 @@ class ItemComponents extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              _buildComponent(context, blueprint,
-                  child: CachedNetworkImage(imageUrl: itemImageUrl)),
+              if (blueprint != null)
+                _buildComponent(context, blueprint,
+                    child: CachedNetworkImage(imageUrl: itemImageUrl)),
               for (final component in parts) _buildComponent(context, component)
             ],
           ),
