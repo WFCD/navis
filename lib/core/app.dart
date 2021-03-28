@@ -91,7 +91,7 @@ class _NavisAppState extends State<NavisApp> with WidgetsBindingObserver {
           }
         }
 
-        return supportedLocales.first;
+        return supportedLocales.firstWhere((e) => e.languageCode == 'en');
       },
     );
   }
