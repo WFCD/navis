@@ -64,10 +64,6 @@ class Usersettings with ChangeNotifier {
 
   set backkey(bool value) => setToggle(SettingsKeys.backKey, value);
 
-  String get language => _box.get('language');
-
-  set language(String language) => _box.put('language', language);
-
   bool getToggle(String key) {
     return _box.get(key, defaultValue: false) as bool;
   }

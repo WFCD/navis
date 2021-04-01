@@ -38,7 +38,9 @@ class CodexEntry extends StatelessWidget {
                   GunStats(projectileWeapon: item)
                 else if (item is MeleeWeapon)
                   MeleeStats(meleeWeapon: item),
-                if (item is FoundryItem && item.components != null)
+                if (item is FoundryItem &&
+                    item.components != null &&
+                    item.components.isNotEmpty)
                   ItemComponents(
                       itemImageUrl: item.imageUrl, components: item.components),
                 if (item.patchlogs != null)
