@@ -6,17 +6,13 @@ import '../../../../../l10n/l10n.dart';
 
 class AcolyteStatus extends StatelessWidget {
   const AcolyteStatus({
-    Key key,
-    @required this.health,
-    @required this.rank,
-    @required this.lastDiscoveredTime,
-    @required this.location,
+    Key? key,
+    required this.health,
+    required this.rank,
+    required this.lastDiscoveredTime,
+    required this.location,
     this.isDiscovered = false,
-  })  : assert(health != null),
-        assert(rank != null),
-        assert(lastDiscoveredTime != null),
-        assert(location != null),
-        super(key: key);
+  }) : super(key: key);
 
   final double health;
   final int rank;

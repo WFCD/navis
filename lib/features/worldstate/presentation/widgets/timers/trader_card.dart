@@ -8,7 +8,7 @@ import '../../../../../l10n/l10n.dart';
 import '../../pages/trader_inventory.dart';
 
 class TraderCard extends StatelessWidget {
-  const TraderCard({Key key, @required this.trader}) : super(key: key);
+  const TraderCard({Key? key, required this.trader}) : super(key: key);
 
   final VoidTrader trader;
 
@@ -32,8 +32,8 @@ class TraderCard extends StatelessWidget {
     final l10n = context.l10n;
 
     final formattedDate = trader.active
-        ? trader.expiry.format(context)
-        : trader.activation.format(context);
+        ? trader.expiry!.format(context)
+        : trader.activation!.format(context);
 
     return CustomCard(
       title: l10n.baroTitle,
@@ -42,7 +42,7 @@ class TraderCard extends StatelessWidget {
           text: Text(trader.active ? l10n.baroArriving : l10n.baroLeaving),
           padding: padding,
           child: CountdownTimer(
-            expiry: trader.active ? trader.expiry : trader.activation,
+            expiry: trader.active ? trader.expiry! : trader.activation!,
           ),
         ),
         if (trader.active)

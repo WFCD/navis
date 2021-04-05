@@ -12,7 +12,11 @@ import '../../domain/repositories/worldstate_repository.dart';
 import '../datasources/warframestate_local.dart';
 
 class WorldstateRepositoryImpl implements WorldstateRepository {
-  WorldstateRepositoryImpl(this.networkInfo, this.cache, this.usersettings);
+  const WorldstateRepositoryImpl(
+    this.networkInfo,
+    this.cache,
+    this.usersettings,
+  );
 
   final NetworkInfo networkInfo;
   final WarframestatCache cache;
@@ -48,30 +52,34 @@ class WorldstateRepositoryImpl implements WorldstateRepository {
   }
 
   @override
-  Future<Either<Failure, Worldstate>> getWorldstate({bool forceUpdate}) async {
+  Future<Either<Failure, Worldstate>> getWorldstate(
+      {bool forceUpdate = false}) async {
     const refresh = Duration(minutes: 1);
 
     final now = DateTime.now();
     final cached = cache.getCachedState();
-    final age = cached?.timestamp?.difference(now)?.abs();
-    final request =
-        WorldstateRequest(usersettings.platform, Platform.localeName);
+    final age = cached?.timestamp.difference(now).abs() ?? Duration.zero;
+    final request = WorldstateRequest(
+        usersettings.platform ?? GamePlatforms.pc, Platform.localeName);
 
     if (cached == null || age >= refresh || forceUpdate) {
       if (await networkInfo.isConnected) {
         try {
           final state = await compute(_getWorldstate, request);
 
-          if (state == null) return Right(cached);
-
-          cache.cacheWorldstate(state);
-
-          return Right(state);
-        } on SocketException {
-          return Right(cached);
+          if (state == null && cached == null) {
+            return Left(CacheFailure());
+          } else if (state == null && cached != null) {
+            return Right(cached);
+          } else {
+            cache.cacheWorldstate(state!);
+            return Right(state);
+          }
+        } catch (e) {
+          return Right(cached!);
         }
       } else {
-        return Right(cached);
+        return Right(cached!);
       }
     } else {
       return Right(cached);
@@ -84,7 +92,11 @@ class WorldstateRepositoryImpl implements WorldstateRepository {
 
     Either<Failure, Item> getCached() {
       try {
-        return Right(cache.getCachedDeal(id));
+        final _id = cache.getCachedDeal(id);
+
+        if (_id == null) return Left(CacheFailure());
+
+        return Right(_id);
       } catch (e) {
         return Left(CacheFailure());
       }
@@ -94,6 +106,9 @@ class WorldstateRepositoryImpl implements WorldstateRepository {
       if (await networkInfo.isConnected) {
         try {
           final deal = await compute(_getDealInfo, name);
+
+          if (deal == null) return getCached();
+
           cache.cacheDealInfo(id, deal);
 
           return Right(deal);
@@ -108,7 +123,7 @@ class WorldstateRepositoryImpl implements WorldstateRepository {
     }
   }
 
-  static Future<Worldstate> _getWorldstate(WorldstateRequest request) {
+  static Future<Worldstate?> _getWorldstate(WorldstateRequest request) {
     final locale = request.locale.split('_').first;
     final supportedLocale = SupportedLocaleX.fromLocaleCode(locale);
 
@@ -121,11 +136,11 @@ class WorldstateRepositoryImpl implements WorldstateRepository {
     return _warframestat.getSynthTargets();
   }
 
-  static Future<Item> _getDealInfo(String name) async {
-    final results = await _warframestat.searchItems(name);
+  static Future<Item?> _getDealInfo(String name) async {
+    final results = List<Item?>.from(await _warframestat.searchItems(name));
 
     return results.firstWhere(
-      (r) => r.name.toLowerCase() == name.toLowerCase(),
+      (r) => r?.name.toLowerCase() == name.toLowerCase(),
       orElse: () => null,
     );
   }

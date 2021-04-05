@@ -5,14 +5,11 @@ import '../../../utils/faction_utils.dart';
 
 class InvasionProgress extends StatelessWidget {
   const InvasionProgress({
-    Key key,
-    @required this.progress,
-    @required this.attackingFaction,
-    @required this.defendingFaction,
-  })  : assert(attackingFaction != null),
-        assert(defendingFaction != null),
-        assert(progress != null),
-        super(key: key);
+    Key? key,
+    required this.progress,
+    required this.attackingFaction,
+    required this.defendingFaction,
+  }) : super(key: key);
 
   final String attackingFaction, defendingFaction;
   final double progress;

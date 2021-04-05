@@ -5,9 +5,7 @@ import '../../../../../core/widgets/widgets.dart';
 import '../common/faction_logo.dart';
 
 class SortieCard extends StatelessWidget {
-  const SortieCard({Key key, @required this.sortie})
-      : assert(sortie != null),
-        super(key: key);
+  const SortieCard({Key? key, required this.sortie}) : super(key: key);
 
   final Sortie sortie;
 
@@ -16,8 +14,8 @@ class SortieCard extends StatelessWidget {
     final textTheme = Theme.of(context).textTheme;
 
     final boss = textTheme.headline6;
-    final nodeMission = textTheme.subtitle1.copyWith(fontSize: 15);
-    final modifier = textTheme.caption.copyWith(fontSize: 13);
+    final nodeMission = textTheme.subtitle1?.copyWith(fontSize: 15);
+    final modifier = textTheme.caption?.copyWith(fontSize: 13);
 
     return CustomCard(
       child: Column(
@@ -31,7 +29,7 @@ class SortieCard extends StatelessWidget {
               ),
               title: Text(sortie.boss, style: boss),
               trailing: CountdownTimer(
-                expiry: sortie?.expiry ??
+                expiry: sortie.expiry ??
                     DateTime.now().subtract(const Duration(seconds: 60)),
               ),
             ),

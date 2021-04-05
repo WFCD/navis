@@ -7,9 +7,7 @@ import '../../../../../core/widgets/widgets.dart';
 import '../../../../../l10n/l10n.dart';
 
 class AlertsCard extends StatelessWidget {
-  const AlertsCard({Key key, @required this.alerts})
-      : assert(alerts != null),
-        super(key: key);
+  const AlertsCard({Key? key, required this.alerts}) : super(key: key);
 
   final List<Alert> alerts;
 
@@ -24,9 +22,7 @@ class AlertsCard extends StatelessWidget {
 }
 
 class AlertWidget extends StatelessWidget {
-  const AlertWidget({Key key, @required this.alert})
-      : assert(alert != null),
-        super(key: key);
+  const AlertWidget({Key? key, required this.alert}) : super(key: key);
 
   final Alert alert;
 
@@ -38,8 +34,8 @@ class AlertWidget extends StatelessWidget {
     final node = mission.node;
     final type = mission.type;
     final faction = mission.faction;
-    final enemyLvlRange =
-        context.l10n.levelInfo(mission.minEnemyLevel, mission.maxEnemyLevel);
+    final enemyLvlRange = context.l10n
+        .levelInfo(mission.minEnemyLevel ?? 0, mission.maxEnemyLevel ?? 0);
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0),
@@ -51,17 +47,18 @@ class AlertWidget extends StatelessWidget {
               // Not sure we need to add nightmare
               // icon since alerts have be axed and
               // nightmare alerts haven't been a thing
-              if (alert.archwingRequired) NavisSystemIconWidgets.archwingIcon
+              if (alert.archwingRequired ?? false)
+                NavisSystemIconWidgets.archwingIcon
             ],
             text: Text(node),
-            child: StaticBox.text(text: mission.reward.itemString),
+            child: StaticBox.text(text: mission.reward?.itemString ?? ''),
           ),
           RowItem(
             text: Text(
               '$type ($faction) | $enemyLvlRange',
               style: textTheme.caption,
             ),
-            child: CountdownTimer(expiry: alert.expiry),
+            child: CountdownTimer(expiry: alert.expiry!),
           )
         ],
       ),

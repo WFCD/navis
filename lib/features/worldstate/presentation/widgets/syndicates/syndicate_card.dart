@@ -12,22 +12,24 @@ import 'syndicate_icon.dart';
 
 class SyndicateCard extends StatelessWidget {
   const SyndicateCard({
+    Key? key,
     this.name,
     this.caption,
     this.syndicate,
     this.onTap,
-  }) : assert(
-            name == null || syndicate == null,
+  })  : assert(
+            syndicate != null || name != null,
             'If name is null then it will default\n'
-            'to Syndicate.name instead');
+            'to Syndicate.id instead, only one can be null but not both'),
+        super(key: key);
 
-  final String name, caption;
-  final Syndicate syndicate;
+  final String? name, caption;
+  final Syndicate? syndicate;
 
-  final void Function() onTap;
+  final void Function()? onTap;
 
   void _onTap(BuildContext context) {
-    final _syndicate = syndicateStringToEnum(name ?? syndicate.id);
+    final _syndicate = syndicateStringToEnum(syndicate?.id ?? name!);
 
     switch (_syndicate) {
       case SyndicateFaction.nightwave:
@@ -43,13 +45,13 @@ class SyndicateCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
     final mediaQuery = MediaQuery.of(context);
-    final syndicateName = syndicateStringToEnum(name ?? syndicate.id);
+    final syndicateName = syndicateStringToEnum(syndicate?.id ?? name!);
 
     final titleStyle = textTheme.subtitle1
-        .copyWith(color: Typography.whiteMountainView.subtitle1.color);
+        ?.copyWith(color: Typography.whiteMountainView.subtitle1?.color);
 
     final captionStyle = textTheme.caption
-        .copyWith(color: Typography.whiteMountainView.caption.color);
+        ?.copyWith(color: Typography.whiteMountainView.caption?.color);
 
     return ResponsiveBuilder(
         builder: (BuildContext context, SizingInformation sizing) {
@@ -65,7 +67,8 @@ class SyndicateCard extends StatelessWidget {
             ),
             child: ListTile(
               leading: GetSyndicateIcon(syndicate: syndicateName),
-              title: Text(name ?? syndicate.name.replaceFirst('Syndicate', ''),
+              title: Text(
+                  syndicate?.name.replaceFirst('Syndicate', '') ?? name!,
                   style: titleStyle),
               subtitle: Text(
                 caption ?? context.l10n.tapForMoreDetails,

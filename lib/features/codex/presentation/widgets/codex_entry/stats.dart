@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../../../core/widgets/widgets.dart';
 
 class Stats extends StatelessWidget {
-  const Stats({Key key, @required this.stats}) : super(key: key);
+  const Stats({Key? key, required this.stats}) : super(key: key);
 
   final List<RowItem> stats;
 

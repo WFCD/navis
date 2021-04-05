@@ -7,22 +7,22 @@ import 'polarity.dart';
 import 'stats.dart';
 
 class FrameStats extends StatelessWidget {
-  const FrameStats({Key key, @required this.powerSuit}) : super(key: key);
+  const FrameStats({Key? key, required this.powerSuit}) : super(key: key);
 
   final PowerSuit powerSuit;
 
   Widget _passive(BuildContext context) {
-    final textTheme = Theme.of(context)?.textTheme;
+    final textTheme = Theme.of(context).textTheme;
 
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: Column(
         children: <Widget>[
-          Text(context.l10n.warframePassiveTitle, style: textTheme?.subtitle1),
+          Text(context.l10n.warframePassiveTitle, style: textTheme.subtitle1),
           const SizedBox(height: 8.0),
           Text(
             (powerSuit as Warframe).passiveDescription,
-            style: textTheme?.caption?.copyWith(fontStyle: FontStyle.italic),
+            style: textTheme.caption?.copyWith(fontStyle: FontStyle.italic),
           ),
           const Divider()
         ],
@@ -41,15 +41,15 @@ class FrameStats extends StatelessWidget {
           if (powerSuit is Warframe) _passive(context),
           const SizedBox(height: 16.0),
           Stats(stats: <RowItem>[
-            if (powerSuit is Warframe)
+            if (powerSuit is Warframe && (powerSuit as Warframe).aura != null)
               RowItem(
                 text: Text(l10n.auraTitle),
-                child: Polarity(polarity: (powerSuit as Warframe).aura),
+                child: Polarity(polarity: (powerSuit as Warframe).aura!),
               ),
             if (powerSuit.polarities?.isNotEmpty ?? false)
               RowItem(
                 text: Text(l10n.preinstalledPolarities),
-                child: PreinstalledPolarties(polarities: powerSuit.polarities),
+                child: PreinstalledPolarties(polarities: powerSuit.polarities!),
               ),
             RowItem(
               text: Text(l10n.shieldTitle),

@@ -46,7 +46,7 @@ class SynthtargetsBloc
   }
 
   @override
-  Map<String, dynamic> toJson(SynthtargetsState state) {
+  Map<String, dynamic>? toJson(SynthtargetsState state) {
     if (state is TargetsLocated) {
       final targets = state.targets
           .map((dynamic e) => (e as SynthTargetModel).toJson())

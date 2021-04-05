@@ -5,7 +5,7 @@ import '../../../../../core/utils/extensions.dart';
 import '../../../utils/mod_polarity.dart';
 
 class Polarity extends StatelessWidget {
-  const Polarity({Key key, @required this.polarity}) : super(key: key);
+  const Polarity({Key? key, required this.polarity}) : super(key: key);
 
   final String polarity;
 
@@ -22,9 +22,8 @@ class Polarity extends StatelessWidget {
 }
 
 class PreinstalledPolarties extends StatelessWidget {
-  const PreinstalledPolarties({Key key, @required this.polarities})
-      : assert(polarities != null),
-        super(key: key);
+  const PreinstalledPolarties({Key? key, required this.polarities})
+      : super(key: key);
 
   final List<String> polarities;
 
@@ -34,7 +33,7 @@ class PreinstalledPolarties extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
         for (final p in polarities)
-          Polarity(polarity: toBeginningOfSentenceCase(p)),
+          Polarity(polarity: toBeginningOfSentenceCase(p) ?? ''),
       ],
     );
   }

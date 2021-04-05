@@ -21,19 +21,19 @@ import 'themes/themes.dart';
 import 'widgets/widgets.dart';
 
 class NavisApp extends StatefulWidget {
-  const NavisApp({Key key}) : super(key: key);
+  const NavisApp({Key? key}) : super(key: key);
 
   @override
   _NavisAppState createState() => _NavisAppState();
 }
 
 class _NavisAppState extends State<NavisApp> with WidgetsBindingObserver {
-  Timer _timer;
+  Timer? _timer;
 
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addObserver(this);
+    WidgetsBinding.instance?.addObserver(this);
 
     BlocProvider.of<SolsystemBloc>(context).add(const SyncSystemStatus());
 
@@ -44,13 +44,20 @@ class _NavisAppState extends State<NavisApp> with WidgetsBindingObserver {
     sl<NotificationService>().configure();
   }
 
-  Widget _builder(BuildContext context, Widget widget) {
-    ErrorWidget.builder = (FlutterErrorDetails error) => NavisErrorWidget(
-          details: error,
-          showStacktrace: true,
-        );
+  Widget _builder(BuildContext context, Widget? widget) {
+    ErrorWidget.builder = (FlutterErrorDetails error) {
+      Widget _error = NavisErrorWidget(
+        details: error,
+        showStacktrace: true,
+      );
 
-    return widget;
+      if (widget is Scaffold || widget is Navigator)
+        _error = Scaffold(body: Center(child: _error));
+
+      return _error;
+    };
+
+    return widget!;
   }
 
   @override
@@ -84,9 +91,9 @@ class _NavisAppState extends State<NavisApp> with WidgetsBindingObserver {
       supportedLocales: NavisLocalizations.supportedLocales,
       localizationsDelegates: NavisLocalizations.localizationsDelegates,
       localeResolutionCallback:
-          (Locale locale, Iterable<Locale> supportedLocales) {
+          (Locale? locale, Iterable<Locale> supportedLocales) {
         for (final supportedLocale in supportedLocales) {
-          if (locale.languageCode == supportedLocale.languageCode) {
+          if (locale?.languageCode == supportedLocale.languageCode) {
             return supportedLocale;
           }
         }
@@ -99,7 +106,7 @@ class _NavisAppState extends State<NavisApp> with WidgetsBindingObserver {
   @override
   void dispose() {
     _timer?.cancel();
-    WidgetsBinding.instance.removeObserver(this);
+    WidgetsBinding.instance?.removeObserver(this);
     super.dispose();
   }
 }

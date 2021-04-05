@@ -4,19 +4,19 @@ import '../../l10n/l10n.dart';
 
 class NavisErrorWidget extends StatelessWidget {
   const NavisErrorWidget({
-    Key key,
+    Key? key,
     this.details,
     this.showStacktrace = true,
   }) : super(key: key);
 
   final bool showStacktrace;
-  final FlutterErrorDetails details;
+  final FlutterErrorDetails? details;
 
   Widget _getStackTraceWidget() {
     if (showStacktrace) {
       return LimitedBox(
         maxHeight: 100,
-        child: Text(details.exceptionAsString()),
+        child: Text(details?.exceptionAsString() ?? ''),
       );
     } else {
       return Container();

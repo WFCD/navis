@@ -3,7 +3,8 @@ import 'dart:io';
 
 import 'package:dartz/dartz.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
-import 'package:mockito/mockito.dart';
+import 'package:mocktail/mocktail.dart';
+import 'package:navis/features/worldstate/data/repositories/worldstate_rep_impl.dart';
 import 'package:navis/features/worldstate/domain/usecases/get_darvo_deal_info.dart';
 import 'package:navis/features/worldstate/domain/usecases/get_worldstate.dart';
 import 'package:navis/features/worldstate/presentation/bloc/solsystem_bloc.dart';
@@ -18,6 +19,8 @@ class MockGetWorldstate extends Mock implements GetWorldstate {}
 // ignore: must_be_immutable
 class MockGetDarvoDealInfo extends Mock implements GetDarvoDealInfo {}
 
+class DealRequestFake extends Mock implements DealRequest {}
+
 void main() {
   final worldstateFixture = fixture('worldstate.json');
   final resultsFixture = fixture('darvo_deal_test.json');
@@ -27,12 +30,12 @@ void main() {
 
   final tResults = toBaseItems(json.decode(resultsFixture) as List<dynamic>);
 
-  GetWorldstate getWorldstate;
-  GetDarvoDealInfo getDarvoDealInfo;
+  late GetWorldstate getWorldstate;
+  late GetDarvoDealInfo getDarvoDealInfo;
 
-  SolsystemBloc solsystemBloc;
+  late SolsystemBloc solsystemBloc;
 
-  setUp(() async {
+  setUpAll(() async {
     HydratedBloc.storage = await HydratedStorage.build(
       storageDirectory: Directory.systemTemp,
     );
@@ -42,8 +45,12 @@ void main() {
 
     solsystemBloc = SolsystemBloc(getWorldstate: getWorldstate);
 
-    when(getWorldstate(any)).thenAnswer((_) async => Right(tWorldstate));
-    when(getDarvoDealInfo(any)).thenAnswer((_) async => Right(tResults.first));
+    registerFallbackValue<DealRequest>(DealRequestFake());
+
+    when(() => getWorldstate(any()))
+        .thenAnswer((_) async => Right(tWorldstate));
+    when(() => getDarvoDealInfo(any()))
+        .thenAnswer((_) async => Right(tResults.first));
   });
 
   tearDown(() {
@@ -56,9 +63,9 @@ void main() {
 
   test('should sync solsystem status', () async {
     solsystemBloc.add(const SyncSystemStatus());
-    await untilCalled(getWorldstate(any));
+    await untilCalled(() => getWorldstate(any()));
 
-    verify(getWorldstate(false));
+    verify(() => getWorldstate(false));
   });
 
   // group('retrive darvo deal information', () {

@@ -7,7 +7,7 @@ import '../common/skybox_card.dart';
 import 'relic_icons.dart';
 
 class FissureWidget extends StatelessWidget {
-  const FissureWidget({Key key, this.fissure}) : super(key: key);
+  const FissureWidget({Key? key, required this.fissure}) : super(key: key);
 
   static const height = 140.0;
 
@@ -78,7 +78,7 @@ class FissureWidget extends StatelessWidget {
               ),
             ),
           ),
-          CountdownTimer(expiry: fissure.expiry)
+          CountdownTimer(expiry: fissure.expiry!)
         ],
       ),
     );

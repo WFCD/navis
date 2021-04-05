@@ -1,19 +1,19 @@
-import 'package:flutter/foundation.dart';
-
 import '../../domain/entities/event_info.dart';
 
 class EventInfoModel extends EventInfo {
   const EventInfoModel({
-    @required String keyArt,
-    @required List<HowTo> howTos,
+    required String keyArt,
+    required List<HowTo> howTos,
   }) : super(keyArt: keyArt, howTos: howTos);
 
   factory EventInfoModel.fromJson(Map<String, dynamic> json) {
     return EventInfoModel(
       keyArt: json['keyArt'] as String,
-      howTos: (json['howTo'] as List<dynamic>)
-          ?.map((dynamic h) => HowToModel.fromJson(h as Map<String, dynamic>))
-          ?.toList(),
+      howTos: (json['howTo'] as List<dynamic>?)
+              ?.map(
+                  (dynamic h) => HowToModel.fromJson(h as Map<String, dynamic>))
+              .toList() ??
+          <HowTo>[],
     );
   }
 
@@ -27,8 +27,8 @@ class EventInfoModel extends EventInfo {
 
 class HowToModel extends HowTo {
   const HowToModel({
-    @required String id,
-    @required String pThumbnail,
+    required String id,
+    required String pThumbnail,
   }) : super(
           id: id,
           pThumbnail: pThumbnail,

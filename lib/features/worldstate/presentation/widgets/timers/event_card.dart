@@ -6,7 +6,7 @@ import '../../../../../l10n/l10n.dart';
 import '../../pages/event.dart';
 
 class EventCard extends StatelessWidget {
-  const EventCard({Key key, this.events = const []}) : super(key: key);
+  const EventCard({Key? key, this.events = const []}) : super(key: key);
 
   final List<Event> events;
 
@@ -17,11 +17,11 @@ class EventCard extends StatelessWidget {
         for (final event in events)
           ListTile(
             title: Text(event.description),
-            subtitle: event.tooltip != null ? Text(event.tooltip) : null,
+            subtitle: event.tooltip != null ? Text(event.tooltip!) : null,
             trailing: TextButton(
               style: ButtonStyle(
                 foregroundColor: MaterialStateProperty.all(
-                    Theme.of(context).textTheme.button.color),
+                    Theme.of(context).textTheme.button?.color),
               ),
               onPressed: () {
                 Navigator.of(context)

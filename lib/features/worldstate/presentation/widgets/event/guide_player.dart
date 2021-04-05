@@ -14,11 +14,10 @@ import '../../../../../injection_container.dart';
 // TODO(Ornstein): find a way to adapt a stream to network speed, might come later with Youtube_explode
 class EventVideoPlayer extends StatefulWidget {
   const EventVideoPlayer({
-    Key key,
-    @required this.id,
-    @required this.profileThumbnail,
-  })  : assert(id != null),
-        super(key: key);
+    Key? key,
+    required this.id,
+    required this.profileThumbnail,
+  }) : super(key: key);
 
   final String id;
   final String profileThumbnail;
@@ -28,9 +27,10 @@ class EventVideoPlayer extends StatefulWidget {
 }
 
 class _YoutubePlayerState extends State<EventVideoPlayer> {
-  ChewieController _chewieController;
-  VideoPlayerController _videoPlayerController;
-  VideoInformation videoInformation;
+  ChewieController? _chewieController;
+  VideoPlayerController? _videoPlayerController;
+
+  late VideoInformation videoInformation;
 
   @override
   void initState() {
@@ -49,7 +49,7 @@ class _YoutubePlayerState extends State<EventVideoPlayer> {
       if (mounted) {
         setState(() {
           _chewieController = ChewieController(
-            videoPlayerController: _videoPlayerController,
+            videoPlayerController: _videoPlayerController!,
             aspectRatio: videoInformation.aspectRatio,
             autoInitialize: true,
             showControlsOnInitialize: false,
@@ -77,7 +77,7 @@ class _YoutubePlayerState extends State<EventVideoPlayer> {
                   children: <Widget>[
                     AspectRatio(
                       aspectRatio: videoInformation.aspectRatio,
-                      child: Chewie(controller: _chewieController),
+                      child: Chewie(controller: _chewieController!),
                     ),
                     PlayerInformation(
                       title: videoInformation.title,
@@ -101,15 +101,16 @@ class _YoutubePlayerState extends State<EventVideoPlayer> {
 
 class PlayerInformation extends StatelessWidget {
   const PlayerInformation({
-    Key key,
-    @required this.title,
-    @required this.description,
-    @required this.author,
+    Key? key,
+    required this.title,
+    required this.description,
+    required this.author,
     this.profileThumbnail,
-    @required this.link,
+    required this.link,
   }) : super(key: key);
 
-  final String title, description, author, profileThumbnail, link;
+  final String title, description, author, link;
+  final String? profileThumbnail;
 
   @override
   Widget build(BuildContext context) {
@@ -129,10 +130,12 @@ class PlayerInformation extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
-              CircleAvatar(
-                radius: 10.0,
-                backgroundImage: CachedNetworkImageProvider(profileThumbnail),
-              ),
+              if (profileThumbnail != null)
+                CircleAvatar(
+                  radius: 10.0,
+                  backgroundImage:
+                      CachedNetworkImageProvider(profileThumbnail!),
+                ),
               const SizedBox(width: 8.0),
               Text(
                 author,

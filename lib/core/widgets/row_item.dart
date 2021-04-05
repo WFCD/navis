@@ -2,15 +2,19 @@ import 'package:flutter/material.dart';
 
 class RowItem extends StatelessWidget {
   const RowItem({
+    Key? key,
     this.icons = const <Widget>[],
-    @required this.text,
-    @required this.child,
+    required this.text,
+    required this.child,
     this.padding,
-  })  : assert(text != null),
-        assert(child != null);
+  }) : super(key: key);
 
-  factory RowItem.richText(
-      {String title, String richText, Color color, double size}) {
+  factory RowItem.richText({
+    required String title,
+    required String richText,
+    required Color color,
+    required double size,
+  }) {
     return RowItem(
       text: Text(title),
       child: Text(
@@ -27,7 +31,7 @@ class RowItem extends StatelessWidget {
   final List<Widget> icons;
   final Widget text;
   final Widget child;
-  final EdgeInsetsGeometry padding;
+  final EdgeInsetsGeometry? padding;
 
   @override
   Widget build(BuildContext context) {

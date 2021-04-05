@@ -6,7 +6,7 @@ import 'notifications.dart';
 import 'platform_select.dart';
 
 class Settings extends StatelessWidget {
-  const Settings({Key key}) : super(key: key);
+  const Settings({Key? key}) : super(key: key);
 
   static const route = '/settings';
 

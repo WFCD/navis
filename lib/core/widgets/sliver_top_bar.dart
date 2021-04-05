@@ -6,15 +6,12 @@ import '../themes/colors.dart';
 
 class SliverTopbar extends StatefulWidget {
   const SliverTopbar({
-    Key key,
+    Key? key,
     this.pinned = false,
     this.snap = false,
     this.floating = false,
-    this.child,
-  })  : assert(floating != null),
-        assert(pinned != null),
-        assert(snap != null),
-        assert(floating || !snap,
+    required this.child,
+  })   : assert(floating || !snap,
             'The "snap" argument only makes sense for floating app bars.'),
         super(key: key);
 
@@ -29,7 +26,7 @@ class SliverTopbar extends StatefulWidget {
 
 class _SliverTopbarState extends State<SliverTopbar>
     with TickerProviderStateMixin {
-  FloatingHeaderSnapConfiguration _snapConfiguration;
+  FloatingHeaderSnapConfiguration? _snapConfiguration;
 
   void _updateSnapConfiguration() {
     if (widget.snap && widget.floating) {
@@ -60,7 +57,7 @@ class _SliverTopbarState extends State<SliverTopbar>
 
   @override
   Widget build(BuildContext context) {
-    final topPadding = MediaQuery.of(context).padding.top ?? 0.0;
+    final topPadding = MediaQuery.of(context).padding.top;
     final collapsedHeight =
         (widget.pinned && widget.floating) ? topPadding : null;
 
@@ -85,7 +82,7 @@ class _SliverTopbarState extends State<SliverTopbar>
 }
 
 class _FloatingAppBar extends StatefulWidget {
-  const _FloatingAppBar({Key key, this.child}) : super(key: key);
+  const _FloatingAppBar({Key? key, required this.child}) : super(key: key);
 
   final Widget child;
 
@@ -96,32 +93,32 @@ class _FloatingAppBar extends StatefulWidget {
 // A wrapper for the widget created by _SliverAppBarDelegate that starts and
 /// stops the floating appbar's snap-into-view or snap-out-of-view animation.
 class _FloatingAppBarState extends State<_FloatingAppBar> {
-  ScrollPosition _position;
+  ScrollPosition? _position;
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
     if (_position != null) {
-      _position.isScrollingNotifier.removeListener(_isScrollingListener);
+      _position!.isScrollingNotifier.removeListener(_isScrollingListener);
     }
 
     _position = Scrollable.of(context)?.position;
 
     if (_position != null) {
-      _position.isScrollingNotifier.addListener(_isScrollingListener);
+      _position!.isScrollingNotifier.addListener(_isScrollingListener);
     }
   }
 
   @override
   void dispose() {
     if (_position != null) {
-      _position.isScrollingNotifier.removeListener(_isScrollingListener);
+      _position!.isScrollingNotifier.removeListener(_isScrollingListener);
     }
 
     super.dispose();
   }
 
-  RenderSliverFloatingPersistentHeader _headerRenderer() {
+  RenderSliverFloatingPersistentHeader? _headerRenderer() {
     return context
         .findAncestorRenderObjectOfType<RenderSliverFloatingPersistentHeader>();
   }
@@ -132,10 +129,10 @@ class _FloatingAppBarState extends State<_FloatingAppBar> {
     // When a scroll stops, then maybe snap the appbar into view.
     // Similarly, when a scroll starts, then maybe stop the snap animation.
     final header = _headerRenderer();
-    if (_position.isScrollingNotifier.value) {
-      header?.maybeStopSnapAnimation(_position.userScrollDirection);
+    if (_position!.isScrollingNotifier.value) {
+      header?.maybeStopSnapAnimation(_position!.userScrollDirection);
     } else {
-      header?.maybeStartSnapAnimation(_position.userScrollDirection);
+      header?.maybeStartSnapAnimation(_position!.userScrollDirection);
     }
   }
 
@@ -145,19 +142,19 @@ class _FloatingAppBarState extends State<_FloatingAppBar> {
 
 class _SliverTopbarDelegate extends SliverPersistentHeaderDelegate {
   const _SliverTopbarDelegate({
-    this.floating,
-    this.pinned,
-    this.topPadding,
+    required this.floating,
+    required this.pinned,
+    required this.topPadding,
     this.collapsedHeight,
     this.snapConfiguration,
-    this.vsync,
-    this.child,
+    required this.vsync,
+    required this.child,
   });
 
   final bool floating;
   final bool pinned;
   final double topPadding;
-  final double collapsedHeight;
+  final double? collapsedHeight;
 
   final Widget child;
 
@@ -165,7 +162,7 @@ class _SliverTopbarDelegate extends SliverPersistentHeaderDelegate {
   final TickerProvider vsync;
 
   @override
-  final FloatingHeaderSnapConfiguration snapConfiguration;
+  final FloatingHeaderSnapConfiguration? snapConfiguration;
 
   @override
   Widget build(

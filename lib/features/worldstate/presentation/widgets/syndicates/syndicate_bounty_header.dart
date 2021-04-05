@@ -8,9 +8,9 @@ import '../../../utils/faction_utils.dart';
 
 class SyndicateBountyHeader extends StatelessWidget {
   const SyndicateBountyHeader({
-    Key key,
-    @required this.job,
-    @required this.faction,
+    Key? key,
+    required this.job,
+    required this.faction,
   }) : super(key: key);
 
   final Job job;
@@ -34,7 +34,8 @@ class SyndicateBountyHeader extends StatelessWidget {
       color: faction.backgroundColor,
       alignment: Alignment.centerLeft,
       child: ListTile(
-        title: Text(job.type, style: const TextStyle(color: Colors.white)),
+        title:
+            Text(job.type ?? '', style: const TextStyle(color: Colors.white)),
         subtitle: Text(
           context.l10n.levelInfo(job.enemyLevels.first, job.enemyLevels.last),
           style: const TextStyle(color: Colors.white),

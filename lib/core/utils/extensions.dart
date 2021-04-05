@@ -27,7 +27,7 @@ extension ThemeX on ThemeData {
 extension StringNx on String {
   String parseHtmlString() {
     final document = parse(this);
-    return document.body.text;
+    return document.body?.text ?? '';
   }
 
   Future<void> launchLink(BuildContext context, {bool pop = false}) async {

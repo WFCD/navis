@@ -5,7 +5,7 @@ import '../../../../../core/widgets/widgets.dart';
 import '../../../utils/faction_utils.dart';
 
 class GetSyndicateIcon extends StatelessWidget {
-  const GetSyndicateIcon({Key key, this.syndicate}) : super(key: key);
+  const GetSyndicateIcon({Key? key, required this.syndicate}) : super(key: key);
 
   final SyndicateFaction syndicate;
 

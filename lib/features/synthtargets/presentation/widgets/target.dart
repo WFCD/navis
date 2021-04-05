@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:wfcd_client/entities.dart';
 
 class TargetInfo extends StatelessWidget {
-  const TargetInfo({Key key, this.target}) : super(key: key);
+  const TargetInfo({Key? key, required this.target}) : super(key: key);
 
   final SynthTarget target;
 

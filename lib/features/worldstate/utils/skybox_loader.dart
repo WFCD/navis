@@ -4,5 +4,5 @@ String getSkybox(String node) {
   final nodeRegExp = RegExp(r'\(([^)]*)\)');
   final nodeBackground = nodeRegExp.firstMatch(node)?.group(1);
 
-  return '$_baseUrl/${nodeBackground.replaceAll(' ', '_')}.webp';
+  return '$_baseUrl/${nodeBackground?.replaceAll(' ', '_')}.webp';
 }

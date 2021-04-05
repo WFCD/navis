@@ -1,5 +1,5 @@
-import 'package:data_connection_checker/data_connection_checker.dart';
 import 'package:get_it/get_it.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:package_info/package_info.dart';
 import 'package:wfcd_client/wfcd_client.dart';
 
@@ -30,7 +30,8 @@ final GetIt sl = GetIt.instance;
 Future<void> init() async {
   // Core
   sl
-    ..registerSingleton<NetworkInfo>(NetworkInfoImpl(DataConnectionChecker()))
+    ..registerSingleton<NetworkInfo>(
+        NetworkInfoImpl(InternetConnectionChecker()))
     ..registerSingletonAsync<EventInfoParser>(EventInfoParser.loadEventData)
     ..registerSingleton<VideoService>(VideoService())
     ..registerSingletonAsync<PackageInfo>(PackageInfo.fromPlatform)

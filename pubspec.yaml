@@ -13,36 +13,40 @@ dependencies:
     sdk: flutter
   wfcd_client:
     git: https://github.com/SlayerOrnstein/wfcd_client.git
-  bloc: ^7.0.0-nullsafety.3
+  bloc: ^7.0.0
   cached_network_image: ^3.0.0-nullsafety
   chewie: ^1.0.0
   dartz: ^0.10.0-nullsafety.1
   internet_connection_checker: ^0.0.1
   equatable: ^2.0.0
-  firebase_core: ^1.0.1
-  firebase_messaging: ^9.0.0
-  flutter_bloc: ^7.0.0-nullsafety.5
-  simple_icons: ^4.15.0
-  flutter_sticky_header: ^0.5.0
+  firebase_core: ^1.0.2
+  firebase_messaging: ^9.1.0
+  flutter_bloc: ^7.0.0
+  flutter_sticky_header:
+    git:
+      url: https://github.com/Femtopedia/flutter_sticky_header.git
+      ref: master
   flutter_svg: ^0.21.0-nullsafety.0
   flutter_web_browser: ^0.14.0
   get_it: ^6.0.0
-  hive: ^2.0.0
-  hydrated_bloc: ^7.0.0-nullsafety.3
+  hive: ^2.0.2
+  hydrated_bloc: ^7.0.0
   intl: ^0.17.0
-  matomo: ^0.0.9
+  matomo:
+    git: https://github.com/SlayerOrnstein/dart-matomo.git
   package_info: ^2.0.0
-  responsive_builder: ^0.4.0-nullsafety.1
-  sentry_flutter: ^4.1.0-nullsafety.1
+  responsive_builder: ^0.4.1
+  sentry_flutter: ^5.0.0
+  simple_icons: ^4.17.0
   supercharged: ^2.0.0
-  youtube_explode_dart: ^1.9.0-nullsafety.3
+  youtube_explode_dart: ^1.9.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   very_good_analysis: ^2.0.0
-  mockito: ^4.1.4
-  test: ^1.16.0-nullsafety.5
+  mocktail: ^0.1.1
+  test: ^1.16.5
 
 # dependency_overrides:
 #   equatable: ^2.0.0

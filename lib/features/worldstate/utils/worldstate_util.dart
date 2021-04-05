@@ -7,10 +7,10 @@ Worldstate cleanState(Worldstate state) {
 
   state.news.sort((a, b) => b.date.compareTo(a.date));
 
-  state.persistentEnemies.sort((a, b) => a.agentType.compareTo(b.agentType));
+  state.persistentEnemies?.sort((a, b) => a.agentType.compareTo(b.agentType));
 
   state.syndicateMissions
-    ..retainWhere((s) => s.jobs?.isNotEmpty ?? false)
+    ..retainWhere((s) => s.jobs.isNotEmpty)
     ..sort((a, b) => a.name.compareTo(b.name));
 
   state.fissures

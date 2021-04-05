@@ -18,10 +18,7 @@ const String serverFailureMessage = 'Failed to contact server';
 const String cacheFailureMessage = 'Cache Failure';
 
 class SolsystemBloc extends HydratedBloc<SyncEvent, SolsystemState> {
-  SolsystemBloc({
-    @required this.getWorldstate,
-  })  : assert(getWorldstate != null),
-        super(SolsystemInitial());
+  SolsystemBloc({required this.getWorldstate}) : super(SolsystemInitial());
 
   final GetWorldstate getWorldstate;
 
@@ -57,7 +54,7 @@ class SolsystemBloc extends HydratedBloc<SyncEvent, SolsystemState> {
   }
 
   @override
-  Map<String, dynamic> toJson(SolsystemState state) {
+  Map<String, dynamic>? toJson(SolsystemState state) {
     if (state is SolState) {
       return (state.worldstate as WorldstateModel).toJson();
     }

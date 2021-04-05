@@ -8,22 +8,22 @@ import '../../../../../core/widgets/widgets.dart';
 // because well it's unknown and I've never actually seen it change
 // will add it when it actually changes
 class ConstructionProgressCard extends StatelessWidget {
-  const ConstructionProgressCard({Key key, this.constructionProgress})
+  const ConstructionProgressCard({Key? key, required this.constructionProgress})
       : super(key: key);
 
   final List<Progress> constructionProgress;
 
-  Widget _paintProgress(Progress progress, TextStyle style) {
+  Widget _paintProgress(Progress progress, TextStyle? style) {
     return SizedBox.fromSize(
       size: const Size(70.0, 70.0),
       child: CustomPaint(
         foregroundPainter: ProgressPainter(
           completeColor: progress.color,
-          completePercent: progress.progress,
+          completePercent: progress.percentage,
         ),
         child: Container(
           alignment: Alignment.center,
-          child: Text('${progress.progress.toInt()}%', style: style),
+          child: Text('${progress.percentage.toInt()}%', style: style),
         ),
       ),
     );
@@ -56,22 +56,21 @@ class ConstructionProgressCard extends StatelessWidget {
 
 class Progress {
   const Progress({
-    @required this.progress,
+    required this.percentage,
     this.name = 'Unknown',
     this.color = Colors.white,
-  }) : assert(progress != null || progress < 0);
+  }) : assert(percentage > 0.0);
 
-  final double progress;
+  final double percentage;
   final Color color;
   final String name;
 }
 
 class ProgressPainter extends CustomPainter {
   const ProgressPainter({
-    @required this.completeColor,
-    @required this.completePercent,
-  })  : assert(completeColor != null),
-        assert(completePercent != null || completePercent < 0.0);
+    required this.completeColor,
+    required this.completePercent,
+  }) : assert(completePercent > 0.0);
 
   final Color completeColor;
   final double completePercent;

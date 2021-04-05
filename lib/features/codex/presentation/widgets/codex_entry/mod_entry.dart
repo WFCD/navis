@@ -10,32 +10,32 @@ import '../../../utils/mod_polarity.dart';
 
 class ModFrame extends StatelessWidget {
   const ModFrame._({
-    @required this.image,
-    @required this.name,
-    @required this.stats,
-    @required this.compatName,
-    @required this.maxRank,
-    @required this.baseDrain,
-    @required this.polarity,
-    @required this.rarity,
-    @required this.background,
-    @required this.cornerLights,
-    @required this.frameTop,
-    @required this.frameBottom,
-    @required this.lowerTab,
-    @required this.sideLight,
-    @required this.topRightBacker,
+    required this.image,
+    required this.name,
+    required this.stats,
+    required this.compatName,
+    required this.maxRank,
+    required this.baseDrain,
+    required this.polarity,
+    required this.rarity,
+    required this.background,
+    required this.cornerLights,
+    required this.frameTop,
+    required this.frameBottom,
+    required this.lowerTab,
+    required this.sideLight,
+    required this.topRightBacker,
   });
 
   factory ModFrame.common({
-    String image,
-    String name,
-    String stats,
-    String compatName,
-    int maxRank,
-    int baseDrain,
-    String polarity,
-    String rarity,
+    required String image,
+    required String name,
+    required String stats,
+    required String compatName,
+    required int maxRank,
+    required int baseDrain,
+    required String polarity,
+    required String rarity,
   }) {
     return ModFrame._(
       image: image,
@@ -57,14 +57,14 @@ class ModFrame extends StatelessWidget {
   }
 
   factory ModFrame.uncommon({
-    String image,
-    String name,
-    String stats,
-    String compatName,
-    int maxRank,
-    int baseDrain,
-    String polarity,
-    String rarity,
+    required String image,
+    required String name,
+    required String stats,
+    required String compatName,
+    required int maxRank,
+    required int baseDrain,
+    required String polarity,
+    required String rarity,
   }) {
     return ModFrame._(
       image: image,
@@ -86,14 +86,14 @@ class ModFrame extends StatelessWidget {
   }
 
   factory ModFrame.rare({
-    String image,
-    String name,
-    String stats,
-    String compatName,
-    int maxRank,
-    int baseDrain,
-    String polarity,
-    String rarity,
+    required String image,
+    required String name,
+    required String stats,
+    required String compatName,
+    required int maxRank,
+    required int baseDrain,
+    required String polarity,
+    required String rarity,
   }) {
     return ModFrame._(
       image: image,
@@ -115,14 +115,14 @@ class ModFrame extends StatelessWidget {
   }
 
   factory ModFrame.primed({
-    String image,
-    String name,
-    String stats,
-    String compatName,
-    int maxRank,
-    int baseDrain,
-    String polarity,
-    String rarity,
+    required String image,
+    required String name,
+    required String stats,
+    required String compatName,
+    required int maxRank,
+    required int baseDrain,
+    required String polarity,
+    required String rarity,
   }) {
     return ModFrame._(
       image: image,
@@ -165,7 +165,7 @@ class ModFrame extends StatelessWidget {
   static final rankSlot = Image.asset(ModFrames.rankSlotEmpty);
 
   Future<ui.Image> getImage() async {
-    ImageInfo imageInfo;
+    late ImageInfo imageInfo;
     final img = CachedNetworkImageProvider(image);
 
     img.resolve(const ImageConfiguration()).addListener(
@@ -182,7 +182,7 @@ class ModFrame extends StatelessWidget {
     const size = Size(260.0, 350.0);
 
     final imageHeight = (size.height / 100) * 50;
-    final textTheme = Theme.of(context)?.textTheme;
+    final textTheme = Theme.of(context).textTheme;
 
     return Center(
       child: Container(
@@ -209,7 +209,7 @@ class ModFrame extends StatelessWidget {
                     return CustomPaint(
                       size: Size(size.width, imageHeight),
                       painter: ModImageCropped(
-                        image: snapshot.data,
+                        image: snapshot.data!,
                         width: size.width - 19,
                         height: imageHeight,
                       ),
@@ -274,7 +274,7 @@ class ModFrame extends StatelessWidget {
                 baseDrain.toString(),
                 style: Theme.of(context)
                     .textTheme
-                    ?.caption
+                    .caption
                     ?.copyWith(fontSize: 15, color: _textColor(rarity)),
               ),
             ),
@@ -299,8 +299,7 @@ class ModFrame extends StatelessWidget {
               child: Text(
                 compatName,
                 textAlign: TextAlign.center,
-                style:
-                    textTheme?.subtitle1?.copyWith(color: _textColor(rarity)),
+                style: textTheme.subtitle1?.copyWith(color: _textColor(rarity)),
               ),
             ),
           ],
@@ -322,8 +321,12 @@ Color _textColor(String rarity) {
 }
 
 class ModDrescription extends StatelessWidget {
-  const ModDrescription({Key key, this.name, this.stats, this.rarity})
-      : super(key: key);
+  const ModDrescription({
+    Key? key,
+    required this.name,
+    required this.stats,
+    required this.rarity,
+  }) : super(key: key);
 
   final String name, stats, rarity;
 
@@ -337,7 +340,7 @@ class ModDrescription extends StatelessWidget {
         Text(
           name,
           textAlign: TextAlign.center,
-          style: textTheme?.headline6?.copyWith(color: _textColor(rarity)),
+          style: textTheme.headline6?.copyWith(color: _textColor(rarity)),
         ),
         const SizedBox(height: 15),
         SizedBox(
@@ -345,7 +348,7 @@ class ModDrescription extends StatelessWidget {
           child: Text(
             stats,
             textAlign: TextAlign.center,
-            style: textTheme?.caption?.copyWith(color: _textColor(rarity)),
+            style: textTheme.caption?.copyWith(color: _textColor(rarity)),
           ),
         ),
       ],
@@ -355,9 +358,9 @@ class ModDrescription extends StatelessWidget {
 
 class ModImageCropped extends CustomPainter {
   const ModImageCropped({
-    @required this.image,
-    @required this.width,
-    @required this.height,
+    required this.image,
+    required this.width,
+    required this.height,
   });
 
   final ui.Image image;

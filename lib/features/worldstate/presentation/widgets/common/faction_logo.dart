@@ -5,12 +5,11 @@ import 'faction_icons.dart';
 
 class FactionIcon extends StatelessWidget {
   const FactionIcon({
-    Key key,
-    @required this.faction,
+    Key? key,
+    required this.faction,
     this.iconSize = 15,
     this.hasColor = true,
-  })  : assert(faction != null),
-        super(key: key);
+  }) : super(key: key);
 
   final String faction;
   final double iconSize;

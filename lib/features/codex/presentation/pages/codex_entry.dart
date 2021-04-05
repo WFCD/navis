@@ -5,13 +5,13 @@ import '../../../../core/utils/helper_methods.dart';
 import '../widgets/codex_widgets.dart';
 
 class CodexEntry extends StatelessWidget {
-  const CodexEntry({Key key}) : super(key: key);
+  const CodexEntry({Key? key}) : super(key: key);
 
   static const route = '/codexEntry';
 
   @override
   Widget build(BuildContext context) {
-    final item = ModalRoute.of(context).settings.arguments as Item;
+    final item = ModalRoute.of(context)?.settings.arguments as Item;
     final heightRatio = MediaQuery.of(context).size.longestSide / 100;
 
     return Scaffold(
@@ -40,11 +40,13 @@ class CodexEntry extends StatelessWidget {
                   MeleeStats(meleeWeapon: item),
                 if (item is FoundryItem &&
                     item.components != null &&
-                    item.components.isNotEmpty)
+                    (item.components?.isNotEmpty ?? false))
                   ItemComponents(
-                      itemImageUrl: item.imageUrl, components: item.components),
+                    itemImageUrl: item.imageUrl,
+                    components: item.components!,
+                  ),
                 if (item.patchlogs != null)
-                  PatchlogCards(patchlogs: item.patchlogs)
+                  PatchlogCards(patchlogs: item.patchlogs!)
               ]),
             ),
           )

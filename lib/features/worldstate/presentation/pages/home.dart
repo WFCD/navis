@@ -12,7 +12,7 @@ import 'timers.dart';
 enum Tabs { timers, fissures, invasions, syndicates }
 
 class HomeFeedPage extends StatelessWidget {
-  const HomeFeedPage({Key key}) : super(key: key);
+  const HomeFeedPage({Key? key}) : super(key: key);
 
   String _getTabLocale(BuildContext context, Tabs name) {
     final l10n = context.l10n;
@@ -112,12 +112,12 @@ class HomeFeedPage extends StatelessWidget {
                   pinned: true,
                   child: TabBar(
                     labelColor:
-                        Theme.of(context).primaryTextTheme.bodyText1.color,
+                        Theme.of(context).primaryTextTheme.bodyText1?.color,
                     unselectedLabelColor: Theme.of(context)
                         .primaryTextTheme
                         .bodyText1
-                        .color
-                        .withOpacity(.7),
+                        ?.color
+                        ?.withOpacity(.7),
                     indicatorColor: Theme.of(context).accentColor,
                     tabs: Tabs.values
                         .map((t) => Tab(text: _getTabLocale(context, t)))

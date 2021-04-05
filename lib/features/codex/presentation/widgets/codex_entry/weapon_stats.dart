@@ -9,14 +9,12 @@ import 'polarity.dart';
 import 'stats.dart';
 
 class GunStats extends StatelessWidget {
-  const GunStats({Key key, @required this.projectileWeapon})
-      : assert(projectileWeapon != null),
-        super(key: key);
+  const GunStats({Key? key, required this.projectileWeapon}) : super(key: key);
 
   final ProjectileWeapon projectileWeapon;
 
   double get totalDamage {
-    return projectileWeapon.damageTypes.values
+    return projectileWeapon.damageTypes!.values
         .fold(0.0, (previousValue, element) => previousValue + element);
   }
 
@@ -47,7 +45,7 @@ class GunStats extends StatelessWidget {
                 RowItem(
                   text: Text(l10n.preinstalledPolarities),
                   child: PreinstalledPolarties(
-                    polarities: projectileWeapon.polarities,
+                    polarities: projectileWeapon.polarities ?? <String>[],
                   ),
                 ),
               RowItem(
@@ -85,19 +83,19 @@ ${(projectileWeapon.criticalChance * 100).roundToDouble()}%'''),
               ),
               RowItem(
                 text: Text(l10n.rivenDispositionTitle),
-                child:
-                    RivenDisposition(disposition: projectileWeapon.disposition),
+                child: RivenDisposition(
+                  disposition: projectileWeapon.disposition ?? 0,
+                ),
               ),
               RowItem(
                 text: Text(l10n.statusChanceTitle),
                 child: Text('''
 ${(projectileWeapon.statusChance * 100).roundToDouble()}%'''),
               ),
-              if (projectileWeapon.trigger != null)
-                RowItem(
-                  text: Text(l10n.triggerTitle),
-                  child: Text(projectileWeapon.trigger),
-                )
+              RowItem(
+                text: Text(l10n.triggerTitle),
+                child: Text(projectileWeapon.trigger),
+              )
             ],
           ),
           const SizedBox(height: 16.0),
@@ -106,10 +104,10 @@ ${(projectileWeapon.statusChance * 100).roundToDouble()}%'''),
             contentPadding: EdgeInsets.zero,
           ),
           Stats(stats: <RowItem>[
-            for (final damageType in projectileWeapon.damageTypes.keys)
+            for (final damageType in projectileWeapon.damageTypes!.keys)
               RowItem(
-                text: Text(toBeginningOfSentenceCase(damageType)),
-                child: Text('${projectileWeapon.damageTypes[damageType]}'),
+                text: Text(toBeginningOfSentenceCase(damageType)!),
+                child: Text('${projectileWeapon.damageTypes![damageType]}'),
               ),
           ]),
           const SizedBox(height: 16.0),
@@ -129,19 +127,20 @@ ${(projectileWeapon.statusChance * 100).roundToDouble()}%'''),
   }
 }
 
+double? totalDamageCalc(Map<String, num>? damageTypes) {
+  return damageTypes?.values.fold(0.0, (previous, next) => previous! + next);
+}
+
 class MeleeStats extends StatelessWidget {
-  const MeleeStats({Key key, @required this.meleeWeapon}) : super(key: key);
+  const MeleeStats({Key? key, required this.meleeWeapon}) : super(key: key);
 
   final MeleeWeapon meleeWeapon;
-
-  double get totalDamage {
-    return meleeWeapon.damageTypes.values
-        .fold(0.0, (previousValue, element) => previousValue + element);
-  }
 
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
+    final totalDamage =
+        roundDouble(totalDamageCalc(meleeWeapon.damageTypes) ?? 0, 1);
 
     return CustomCard(
       padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 8.0),
@@ -157,15 +156,16 @@ class MeleeStats extends StatelessWidget {
                 text: Text(l10n.weaponTypeTitle),
                 child: Text(meleeWeapon.type),
               ),
-              RowItem(
-                text: Text(l10n.stancePolarityTitle),
-                child: Polarity(polarity: meleeWeapon.stancePolarity),
-              ),
-              if (meleeWeapon.polarities.isNotEmpty)
+              if (meleeWeapon.stancePolarity != null)
+                RowItem(
+                  text: Text(l10n.stancePolarityTitle),
+                  child: Polarity(polarity: meleeWeapon.stancePolarity!),
+                ),
+              if (meleeWeapon.polarities?.isNotEmpty ?? false)
                 RowItem(
                   text: Text(l10n.preinstalledPolarities),
                   child: PreinstalledPolarties(
-                    polarities: meleeWeapon.polarities,
+                    polarities: meleeWeapon.polarities!,
                   ),
                 ),
               RowItem(
@@ -183,11 +183,12 @@ class MeleeStats extends StatelessWidget {
               ),
               RowItem(
                 text: Text(l10n.followThroughTitle),
-                child: Text('${meleeWeapon.followThrough.toStringAsFixed(2)}'),
+                child: Text(
+                    '${meleeWeapon.followThrough?.toStringAsFixed(2) ?? 0}'),
               ),
               RowItem(
                 text: Text(l10n.rangeTitle),
-                child: Text('${meleeWeapon.range.toStringAsFixed(2)}'),
+                child: Text('${meleeWeapon.range?.toStringAsFixed(2) ?? 0}'),
               ),
               RowItem(
                 text: Text(l10n.slamAttackTitle),
@@ -199,7 +200,8 @@ class MeleeStats extends StatelessWidget {
               ),
               RowItem(
                 text: Text(l10n.slamRadiusTitle),
-                child: Text('${meleeWeapon.slamRadius.toStringAsFixed(2)}'),
+                child:
+                    Text('${meleeWeapon.slamRadius?.toStringAsFixed(2) ?? 0}'),
               ),
               RowItem(
                 text: Text(l10n.slideAttackTitle),
@@ -207,7 +209,8 @@ class MeleeStats extends StatelessWidget {
               ),
               RowItem(
                 text: Text(l10n.rivenDispositionTitle),
-                child: RivenDisposition(disposition: meleeWeapon.disposition),
+                child:
+                    RivenDisposition(disposition: meleeWeapon.disposition ?? 0),
               ),
               RowItem(
                 text: Text(l10n.statusChanceTitle),
@@ -222,10 +225,11 @@ class MeleeStats extends StatelessWidget {
             contentPadding: EdgeInsets.zero,
           ),
           Stats(stats: <RowItem>[
-            for (final damageType in meleeWeapon.damageTypes.keys)
+            for (final damageType
+                in meleeWeapon.damageTypes?.keys ?? <String>[])
               RowItem(
-                text: Text(toBeginningOfSentenceCase(damageType)),
-                child: Text('${meleeWeapon.damageTypes[damageType]}'),
+                text: Text(toBeginningOfSentenceCase(damageType)!),
+                child: Text('${meleeWeapon.damageTypes?[damageType]}'),
               ),
           ]),
           const SizedBox(height: 16.0),
@@ -235,7 +239,7 @@ class MeleeStats extends StatelessWidget {
               style: Theme.of(context).textTheme.subtitle1,
             ),
             child: Text(
-              '${roundDouble(totalDamage, 1)}',
+              '$totalDamage',
               style: Theme.of(context).textTheme.subtitle1,
             ),
           ),
@@ -258,11 +262,11 @@ class MeleeStats extends StatelessWidget {
             ),
             RowItem(
               text: Text(l10n.heavySlamRadiusTitle),
-              child: Text('${meleeWeapon.heavySlamRadius.toDouble()}'),
+              child: Text('${meleeWeapon.heavySlamRadius?.toDouble() ?? 0}'),
             ),
             RowItem(
               text: Text(l10n.windUpTitle),
-              child: Text('${meleeWeapon.windUp.toStringAsFixed(2)}'),
+              child: Text('${meleeWeapon.windUp?.toStringAsFixed(2) ?? 0}'),
             ),
           ])
         ],
@@ -272,7 +276,7 @@ class MeleeStats extends StatelessWidget {
 }
 
 class RivenDisposition extends StatelessWidget {
-  const RivenDisposition({Key key, @required this.disposition})
+  const RivenDisposition({Key? key, required this.disposition})
       : super(key: key);
 
   final int disposition;

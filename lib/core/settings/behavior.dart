@@ -6,7 +6,7 @@ import '../local/user_settings.dart';
 import '../widgets/widgets.dart';
 
 class Behavior extends StatelessWidget {
-  const Behavior({Key key}) : super(key: key);
+  const Behavior({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +31,7 @@ class Behavior extends StatelessWidget {
 }
 
 class ThemePicker extends StatelessWidget {
-  const ThemePicker({Key key}) : super(key: key);
+  const ThemePicker({Key? key}) : super(key: key);
 
   static Future<void> showModes(BuildContext context) {
     return showDialog<void>(
@@ -45,7 +45,9 @@ class ThemePicker extends StatelessWidget {
     );
   }
 
-  void _onChanged(BuildContext context, ThemeMode mode) {
+  void _onChanged(BuildContext context, ThemeMode? mode) {
+    if (mode == null) return;
+
     context.read<Usersettings>().theme = mode;
     Navigator.of(context).pop();
   }
