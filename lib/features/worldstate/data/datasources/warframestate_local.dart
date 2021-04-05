@@ -12,7 +12,7 @@ class WarframestatCache {
 
   final Box<dynamic> _box;
 
-  static late WarframestatCache _instance;
+  static WarframestatCache? _instance;
 
   static final _logger = Logger('WarframestatCache');
 
@@ -27,7 +27,7 @@ class WarframestatCache {
       },
     );
 
-    return _instance = WarframestatCache(box);
+    return _instance ??= WarframestatCache(box);
   }
 
   static const String _dealId = 'dealId';

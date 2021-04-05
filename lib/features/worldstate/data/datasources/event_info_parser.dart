@@ -15,7 +15,7 @@ class EventInfoParser {
     howTos: [],
   );
 
-  static late EventInfoParser _instance;
+  static EventInfoParser? _instance;
 
   static Future<EventInfoParser> loadEventData() async {
     final asset = await rootBundle.loadString('assets/event_info.json');
@@ -23,7 +23,7 @@ class EventInfoParser {
         .map<String, EventInfo>((name, dynamic info) => MapEntry(
             name, EventInfoModel.fromJson(info as Map<String, dynamic>)));
 
-    return _instance = EventInfoParser._(info);
+    return _instance ??= EventInfoParser._(info);
   }
 
   EventInfo getEventInfo(String eventName) {
