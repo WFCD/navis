@@ -49,7 +49,7 @@ class BackgroundImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return imageUrl != null
         ? CachedNetworkImage(
-            imageUrl: imageUrl ?? _derelict,
+            imageUrl: imageUrl,
             height: height,
             width: 250,
             imageBuilder: (context, imageProvider) =>
