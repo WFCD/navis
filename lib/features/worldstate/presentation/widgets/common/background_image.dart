@@ -8,7 +8,7 @@ import '../../../../../resources/resources.dart';
 class BackgroundImage extends StatelessWidget {
   const BackgroundImage({
     Key key,
-    @required this.imageUrl,
+    this.imageUrl,
     this.height,
     this.padding,
     this.child,
@@ -49,7 +49,7 @@ class BackgroundImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return imageUrl != null
         ? CachedNetworkImage(
-            imageUrl: imageUrl,
+            imageUrl: imageUrl ?? _derelict,
             height: height,
             width: 250,
             imageBuilder: (context, imageProvider) =>
