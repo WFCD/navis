@@ -46,10 +46,14 @@ class SolsystemBloc extends HydratedBloc<SyncEvent, SolsystemState> {
   }
 
   @override
-  SolsystemState fromJson(Map<String, dynamic> json) {
-    // Because worldstate is cleaned when it's cached there
-    // is no need to clean it when returning from cache.
-    return SolState(WorldstateModel.fromJson(json));
+  SolsystemState? fromJson(Map<String, dynamic> json) {
+    try {
+      // Because worldstate is cleaned when it's cached there
+      // is no need to clean it when returning from cache.
+      return SolState(WorldstateModel.fromJson(json));
+    } catch (e) {
+      return null;
+    }
   }
 
   @override
