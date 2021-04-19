@@ -175,7 +175,7 @@ packages:
       name: firebase_core
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.2"
+    version: "1.0.3"
   firebase_core_platform_interface:
     dependency: transitive
     description:
@@ -196,21 +196,21 @@ packages:
       name: firebase_messaging
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "9.1.0"
+    version: "9.1.1"
   firebase_messaging_platform_interface:
     dependency: transitive
     description:
       name: firebase_messaging_platform_interface
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.1.0"
+    version: "2.1.1"
   firebase_messaging_web:
     dependency: transitive
     description:
       name: firebase_messaging_web
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.3"
+    version: "1.0.4"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -245,19 +245,17 @@ packages:
   flutter_sticky_header:
     dependency: "direct main"
     description:
-      path: "."
-      ref: master
-      resolved-ref: "602d501eda46156b652dd6a4ade7b21e1eb58190"
-      url: "https://github.com/Femtopedia/flutter_sticky_header.git"
-    source: git
-    version: "0.5.0"
+      name: flutter_sticky_header
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.6.0"
   flutter_svg:
     dependency: "direct main"
     description:
       name: flutter_svg
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.21.0-nullsafety.0"
+    version: "0.21.0+1"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -288,7 +286,7 @@ packages:
       name: get_it
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "6.0.0"
+    version: "6.1.1"
   glob:
     dependency: transitive
     description:
@@ -302,7 +300,7 @@ packages:
       name: hive
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.2"
+    version: "2.0.3"
   html:
     dependency: transitive
     description:
@@ -397,12 +395,10 @@ packages:
   matomo:
     dependency: "direct main"
     description:
-      path: "."
-      ref: HEAD
-      resolved-ref: d287f45c63f988c27c2b1be631a9ccdf1017236c
-      url: "https://github.com/SlayerOrnstein/dart-matomo.git"
-    source: git
-    version: "0.0.10"
+      name: matomo
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.1.0"
   meta:
     dependency: transitive
     description:
@@ -514,14 +510,14 @@ packages:
       name: path_drawing
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.5.0-nullsafety.0"
+    version: "0.5.0"
   path_parsing:
     dependency: transitive
     description:
       name: path_parsing
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.2.0-nullsafety.0"
+    version: "0.2.0"
   path_provider:
     dependency: transitive
     description:
@@ -717,7 +713,7 @@ packages:
       name: simple_icons
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.17.0"
+    version: "4.20.0"
   sky_engine:
     dependency: transitive
     description: flutter
@@ -859,12 +855,10 @@ packages:
   value_layout_builder:
     dependency: transitive
     description:
-      path: "."
-      ref: null-safety
-      resolved-ref: "6f08f97109151f0eed83dcee1f54db300d7ccddb"
-      url: "https://github.com/John-Dormevil/value_layout_builder.git"
-    source: git
-    version: "0.3.0"
+      name: value_layout_builder
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.3.1"
   vector_math:
     dependency: transitive
     description:
