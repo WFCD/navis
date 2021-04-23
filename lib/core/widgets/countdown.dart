@@ -10,13 +10,14 @@ import 'static_box.dart';
 
 class CountdownTimer extends StatefulWidget {
   const CountdownTimer({
+    Key? key,
     required this.expiry,
     this.color,
     this.size,
     this.style,
     this.padding = const EdgeInsets.all(4.0),
     this.margin = const EdgeInsets.all(3.0),
-  });
+  }) : super(key: key);
 
   final DateTime expiry;
   final Color? color;

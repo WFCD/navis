@@ -19,7 +19,7 @@ class Timers extends TraceableStatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MobileTimers(state);
+    return MobileTimers(state: state);
   }
 }
 
@@ -85,7 +85,7 @@ List<Progress> _buildProgress(
 }
 
 class MobileTimers extends StatelessWidget {
-  const MobileTimers(this.state);
+  const MobileTimers({Key? key, required this.state}) : super(key: key);
 
   final SolState state;
 
