@@ -10,34 +10,30 @@ Cephalon Navis is an Android app inspired by [Warframe Hub](https://hub.warframe
 
 ### Features:
 
-- Display game news including updates
-- Supports displaying multiple events
-- information on acolytes
+- Display Warframe news
+- in-game events
+- Darvo daily deal of the day
+- Baro Ki'Teer in-game information
+- Sorties
+- Void Fissures and Void storms
+- invasions, including Fomorian and Razorback construction progress
 - Cetus and Earth Day/Night cycle
 - Orb vallis Warm/Cold cycle
-- Ostron and Solaris United bounties with Timer
-- Void Fissures
+- Open world syndicate bounties
 - Nightwaves
-- Baro Timer and Inventory
-- Display Soties and Invasions
-- Links to useful guides for new players to learn how to fish and maps
-- Darvo Deals
-- supports PC, PS4, Xbox and switch worldstates
+- Links to useful guides for new players to learn how to fish and find open world maps
 - Notifications (mostly done)
+- supports PC, PS4, Xbox and Nintendo Switch
 
-### Upcoming Features:
+# Android setup
 
-- Flash sales (This depends on who actually uses it, so if you use it let me know)
+## Create Keystore
 
-# Create Keystore
-
-On Mac/Linux
+On Mac/Linux/WSL
 
 ```
 keytool -genkey -v -keystore ~/key.jks -keyalg RSA -keysize 2048 -validity 10000 -alias key
 ```
-
-this also works for Windows Subsystem for Linux.
 
 On Windows
 
@@ -45,10 +41,15 @@ On Windows
 keytool -genkey -v -keystore c:/Users/USER_NAME/key.jks -keyalg RSA -keysize 2048 -validity 10000 -alias key
 ```
 
-## Refrence the Keystore
+If you change your keystore alies make sure to to replace KeyAlia, under android/app/build.gradle, with your own custom alias.
 
-Rename `key.properties.example` to `key.properties` and fill in the information.  
-The `key.properties` is already refrenced in `app/build.gradle`.
+## Use Keystore
+
+Once your Keystore has been generated store your keystore.jks under the android folder. Then set an environment variable `TENNO_CIPHER` as the password for your generated keystore.jks
+
+# iOS setup
+
+iOS apps require a certifcate from Apple in order to be signed and installed on a physical device.
 
 # Generate Firebase service JSON
 
@@ -56,24 +57,19 @@ Best to let Google teach you this one https://firebase.google.com/docs/flutter/s
 
 # Build Instructions
 
-To build Navis need to install [Flutter](https://flutter.dev/docs/get-started/install) from the link below and follow all the instructions needed to get it running for your desired device\* then simple run:
+To build Navis need to install [Flutter](https://flutter.dev/docs/get-started/install) from the link below and follow all the instructions needed to get it running for your desired device then simple run:
 
 ```
 flutter pub get
-flutter build apk // this will build a fat apk with arm and arm64 libs
+flutter build apk/ios/ipa
 flutter install
 ```
 
-Optionally `flutter build apk --target-platform=android-arm64` will build for arm64 devices and `flutter build apk --target-platform=android-arm` will build for arm devices
+Pick the one for your specfic device, apk builds a fat apk, ios builds an `.app` for iOS, and ipa builds an archived version used for the app store
 
-make sure that you follow all the instructions and everything should run smoothly, unless there's a bug in which case report issues [here](https://github.com/WFCD/navis/issues) so that they may be fixed.
+Optionally `flutter build apk --target-platform=android-arm64` or `flutter build apk --target-platform=android-arm` will build an apk with just arm64 or arm libs, this is good as fat apks are much larger and include libs for x86, arm64, and arm.
 
-\*Note although the app was built using the flutter engine I have not tested it on IOS due to not owing a IDevice or OSX to test on. Might not even compile properly. And a few of the plugins used in this app are not compatible with IOS
-
-## Getting Started
-
-For help getting started with Flutter, view our online
-[documentation](https://flutter.dev/docs).
+Make sure that you follow all the instructions and everything should run smoothly, unless there's a bug in which case report issues [here](https://github.com/WFCD/navis/issues) so that they may be fixed.
 
 ### Credits:
 
