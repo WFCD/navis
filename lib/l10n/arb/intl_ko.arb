@@ -882,13 +882,13 @@
         "type": "text",
         "placeholder": {}
     },
-    "steelPathTitle": "Steel Path",
+    "steelPathTitle": "강철의 길",
     "@steelPathTitle": {
         "description": "Steel path card title",
         "type": "text",
         "placeholer": {}
     },
-    "syndicateDualScreenTitle": "Select Syndicate",
+    "syndicateDualScreenTitle": "신디케이트 선택",
     "@syndicateDualScreenTitle": {
         "description": "User hint when under syndicate tabs using a tablet",
         "type": "text",
