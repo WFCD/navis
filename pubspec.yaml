@@ -67,4 +67,4 @@ flutter:
     - assets/Derelict.webp
     - assets/event_info.json
     - assets/wfcd_logo_color.svg
-    - assets/mod_frames/
+    # - assets/mod_frames/
