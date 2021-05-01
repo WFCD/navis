@@ -35,7 +35,7 @@ dependencies:
   sentry_flutter: ^5.0.0
   simple_icons: ^4.21.0
   supercharged: ^2.0.0
-  youtube_explode_dart: ^1.9.2+2
+  youtube_explode_dart: ^1.9.3+2
 
 dev_dependencies:
   flutter_test:
