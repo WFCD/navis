@@ -1,4 +1,4 @@
-import 'package:dartz/dartz.dart';
+import 'package:oxidized/oxidized.dart';
 import 'package:wfcd_client/entities.dart';
 
 import '../../../../core/error/failures.dart';
@@ -6,5 +6,5 @@ import '../../../../core/error/failures.dart';
 abstract class SynthRepository {
   const SynthRepository();
 
-  Future<Either<Failure, List<SynthTarget>>> getSynthTargets();
+  Future<Result<List<SynthTarget>, Failure>> getSynthTargets();
 }

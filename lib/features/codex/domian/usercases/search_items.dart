@@ -1,4 +1,4 @@
-import 'package:dartz/dartz.dart';
+import 'package:oxidized/oxidized.dart';
 import 'package:wfcd_client/entities.dart';
 
 import '../../../../core/error/failures.dart';
@@ -11,7 +11,7 @@ class SearchItems extends Usecase<List<Item>, String> {
   final CodexRepository codexRepository;
 
   @override
-  Future<Either<Failure, List<Item>>> call(String params) {
+  Future<Result<List<Item>, Failure>> call(String params) {
     return codexRepository.searchItems(params);
   }
 }

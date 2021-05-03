@@ -27,9 +27,9 @@ class DarvodealBloc extends HydratedBloc<DarvodealEvent, DarvodealState> {
       final request = DealRequest(event.deal.id!, event.deal.item);
       final either = await getDarvoDealInfo(request);
 
-      yield either.fold(
-        (l) => throw CacheException(),
+      yield either.match(
         (r) => DarvoDealLoaded(r),
+        (l) => throw CacheException(),
       );
     }
   }

@@ -1,4 +1,4 @@
-import 'package:dartz/dartz.dart';
+import 'package:oxidized/oxidized.dart';
 import 'package:wfcd_client/entities.dart';
 
 import '../../../../core/error/failures.dart';
@@ -11,7 +11,7 @@ class GetWorldstate extends Usecase<Worldstate, bool> {
   final WorldstateRepository repository;
 
   @override
-  Future<Either<Failure, Worldstate>> call(bool params) {
+  Future<Result<Worldstate, Failure>> call(bool params) {
     return repository.getWorldstate(forceUpdate: params);
   }
 }

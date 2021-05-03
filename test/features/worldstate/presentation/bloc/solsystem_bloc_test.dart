@@ -1,13 +1,13 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:dartz/dartz.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:navis/features/worldstate/data/repositories/worldstate_rep_impl.dart';
 import 'package:navis/features/worldstate/domain/usecases/get_darvo_deal_info.dart';
 import 'package:navis/features/worldstate/domain/usecases/get_worldstate.dart';
 import 'package:navis/features/worldstate/presentation/bloc/solsystem_bloc.dart';
+import 'package:oxidized/oxidized.dart';
 import 'package:test/test.dart';
 import 'package:wfcd_client/wfcd_client.dart';
 
@@ -47,10 +47,9 @@ void main() {
 
     registerFallbackValue<DealRequest>(DealRequestFake());
 
-    when(() => getWorldstate(any()))
-        .thenAnswer((_) async => Right(tWorldstate));
+    when(() => getWorldstate(any())).thenAnswer((_) async => Ok(tWorldstate));
     when(() => getDarvoDealInfo(any()))
-        .thenAnswer((_) async => Right(tResults.first));
+        .thenAnswer((_) async => Ok(tResults.first));
   });
 
   tearDown(() {

@@ -1,4 +1,4 @@
-import 'package:dartz/dartz.dart';
+import 'package:oxidized/oxidized.dart';
 import 'package:wfcd_client/entities.dart';
 
 import '../../../../core/error/failures.dart';
@@ -12,7 +12,7 @@ class GetDarvoDealInfo extends Usecase<Item, DealRequest> {
   final WorldstateRepository repository;
 
   @override
-  Future<Either<Failure, Item>> call(DealRequest params) async {
+  Future<Result<Item, Failure>> call(DealRequest params) async {
     return repository.getDealInfo(params.id, params.name);
   }
 }

@@ -29,7 +29,7 @@ class SolsystemBloc extends HydratedBloc<SyncEvent, SolsystemState> {
       try {
         final either = await getWorldstate(event.forceUpdate);
 
-        yield either.fold(matchFailure, (r) => SolState(cleanState(r)));
+        yield either.match((r) => SolState(cleanState(r)), matchFailure);
       } on ServerException {
         yield const SystemError(serverFailureMessage);
       } on CacheException {

@@ -1,7 +1,6 @@
 import 'dart:io';
-
-import 'package:dartz/dartz.dart';
 import 'package:flutter/foundation.dart';
+import 'package:oxidized/oxidized.dart';
 import 'package:wfcd_client/entities.dart';
 import 'package:wfcd_client/wfcd_client.dart';
 
@@ -25,14 +24,14 @@ class WorldstateRepositoryImpl implements WorldstateRepository {
   static final _warframestat = WarframestatClient();
 
   @override
-  Future<Either<Failure, List<SynthTarget>>> getSynthTargets() async {
+  Future<Result<List<SynthTarget>, Failure>> getSynthTargets() async {
     final cached = cache.getCachedTargets();
 
-    Either<Failure, List<SynthTarget>> fallback() {
+    Result<List<SynthTarget>, Failure> fallback() {
       if (cached != null) {
-        return Right(cached);
+        return Ok(cached);
       } else {
-        return Left(CacheFailure());
+        return Err(CacheFailure());
       }
     }
 
@@ -42,7 +41,7 @@ class WorldstateRepositoryImpl implements WorldstateRepository {
 
         cache.cacheSynthTargets(targets);
 
-        return Right(targets);
+        return Ok(targets);
       } on SocketException {
         return fallback();
       }
@@ -52,7 +51,7 @@ class WorldstateRepositoryImpl implements WorldstateRepository {
   }
 
   @override
-  Future<Either<Failure, Worldstate>> getWorldstate(
+  Future<Result<Worldstate, Failure>> getWorldstate(
       {bool forceUpdate = false}) async {
     const refresh = Duration(minutes: 1);
 
@@ -68,37 +67,37 @@ class WorldstateRepositoryImpl implements WorldstateRepository {
           final state = await compute(_getWorldstate, request);
 
           if (state == null && cached == null) {
-            return Left(CacheFailure());
+            return Err(CacheFailure());
           } else if (state == null && cached != null) {
-            return Right(cached);
+            return Ok(cached);
           } else {
             cache.cacheWorldstate(state!);
-            return Right(state);
+            return Ok(state);
           }
         } catch (e) {
-          return Right(cached!);
+          return Ok(cached!);
         }
       } else {
-        return Right(cached!);
+        return Ok(cached!);
       }
     } else {
-      return Right(cached);
+      return Ok(cached);
     }
   }
 
   @override
-  Future<Either<Failure, Item>> getDealInfo(String id, String name) async {
+  Future<Result<Item, Failure>> getDealInfo(String id, String name) async {
     final cachedId = cache.getCachedDealId();
 
-    Either<Failure, Item> getCached() {
+    Result<Item, Failure> getCached() {
       try {
         final _id = cache.getCachedDeal(id);
 
-        if (_id == null) return Left(CacheFailure());
+        if (_id == null) return Err(CacheFailure());
 
-        return Right(_id);
+        return Ok(_id);
       } catch (e) {
-        return Left(CacheFailure());
+        return Err(CacheFailure());
       }
     }
 
@@ -111,9 +110,9 @@ class WorldstateRepositoryImpl implements WorldstateRepository {
 
           cache.cacheDealInfo(id, deal);
 
-          return Right(deal);
+          return Ok(deal);
         } on SocketException {
-          return Left(OfflineFailure());
+          return Err(OfflineFailure());
         }
       } else {
         return getCached();

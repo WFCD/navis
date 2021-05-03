@@ -30,7 +30,7 @@ class SynthtargetsBloc
     if (event == SynthtargetsEvent.update) {
       final locating = await getSynthTargets(NoParama());
 
-      yield locating.fold(matchFailure, (r) => TargetsLocated(r));
+      yield locating.match((r) => TargetsLocated(r), matchFailure);
     }
   }
 

@@ -1,5 +1,5 @@
-import 'package:dartz/dartz.dart';
 import 'package:flutter/foundation.dart';
+import 'package:oxidized/oxidized.dart';
 import 'package:wfcd_client/entities.dart';
 import 'package:wfcd_client/wfcd_client.dart';
 
@@ -14,13 +14,13 @@ class SynthRepositoryImpl extends SynthRepository {
   final NetworkInfo networkInfo;
 
   @override
-  Future<Either<Failure, List<SynthTarget>>> getSynthTargets() async {
+  Future<Result<List<SynthTarget>, Failure>> getSynthTargets() async {
     if (await networkInfo.isConnected) {
       final targets = await compute(_getSynthTargets, NoParama());
 
-      return Right(targets);
+      return Ok(targets);
     } else {
-      return Left(OfflineFailure());
+      return Err(OfflineFailure());
     }
   }
 

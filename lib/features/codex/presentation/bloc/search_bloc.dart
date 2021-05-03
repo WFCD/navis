@@ -46,10 +46,13 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
         try {
           final results = await searchItems(text);
 
-          yield results.fold((l) => matchFailure<SearchState>(l), (r) {
-            _originalResults = r;
-            return CodexSuccessfulSearch(r.cast<Item>());
-          });
+          yield results.match(
+            (r) {
+              _originalResults = r;
+              return CodexSuccessfulSearch(r.cast<Item>());
+            },
+            matchFailure,
+          );
         } catch (e) {
           yield const CodexSearchError('Unknown Error occuroed');
         }

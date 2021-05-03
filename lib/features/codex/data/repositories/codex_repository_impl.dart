@@ -1,7 +1,7 @@
 import 'dart:io';
 
-import 'package:dartz/dartz.dart';
 import 'package:flutter/foundation.dart';
+import 'package:oxidized/oxidized.dart';
 import 'package:wfcd_client/entities.dart';
 import 'package:wfcd_client/wfcd_client.dart';
 
@@ -17,7 +17,7 @@ class CodexRepositoryImpl extends CodexRepository {
   static final _warframstat = WarframestatClient();
 
   @override
-  Future<Either<Failure, List<Item>>> searchItems(String text) async {
+  Future<Result<List<Item>, Failure>> searchItems(String text) async {
     return _search<Item>(text, _seearchItems);
   }
 
@@ -25,7 +25,7 @@ class CodexRepositoryImpl extends CodexRepository {
     return _warframstat.searchItems(text);
   }
 
-  Future<Either<Failure, List<T>>> _search<T>(
+  Future<Result<List<T>, Failure>> _search<T>(
     String text,
     Future<List<T>> Function(String) searchCallBack,
   ) async {
@@ -33,12 +33,12 @@ class CodexRepositoryImpl extends CodexRepository {
       try {
         final results = await compute(searchCallBack, text);
 
-        return Right(results);
+        return Ok(results);
       } on SocketException {
-        return Left(OfflineFailure());
+        return Err(OfflineFailure());
       }
     } else {
-      return Left(OfflineFailure());
+      return Err(OfflineFailure());
     }
   }
 }
