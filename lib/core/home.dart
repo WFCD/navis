@@ -2,9 +2,9 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_brand_icons/flutter_brand_icons.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
+import 'package:simple_icons/simple_icons.dart';
 
 import '../constants/links.dart';
 import '../l10n/l10n.dart';
@@ -17,7 +17,7 @@ import 'widgets/drawer_options.dart';
 import 'widgets/fa_icon.dart';
 
 class Home extends StatefulWidget {
-  const Home({Key key}) : super(key: key);
+  const Home({Key? key}) : super(key: key);
 
   @override
   _HomeState createState() => _HomeState();
@@ -28,8 +28,8 @@ class _HomeState extends State<Home> {
 
   Future<bool> _willPop() {
     if (context.read<Usersettings>().backkey) {
-      if (!scaffold.currentState.isDrawerOpen) {
-        scaffold.currentState.openDrawer();
+      if (!scaffold.currentState!.isDrawerOpen) {
+        scaffold.currentState!.openDrawer();
         return Future.value(false);
       } else {
         return Future.value(true);
@@ -83,7 +83,7 @@ class _HomeState extends State<Home> {
               const Divider(height: 4.0),
               ListTile(
                 leading: const FaIcon(
-                  BrandIcons.discord,
+                  SimpleIcons.discord,
                   color: Color(0xFF7289DA),
                 ),
                 title: Text(l10n.discordSupportTitle),

@@ -7,15 +7,15 @@ import '../../../../../resources/resources.dart';
 
 class BackgroundImage extends StatelessWidget {
   const BackgroundImage({
-    Key key,
+    Key? key,
     this.imageUrl,
     this.height,
-    this.padding,
-    this.child,
+    this.padding = EdgeInsets.zero,
+    required this.child,
   }) : super(key: key);
 
-  final String imageUrl;
-  final double height;
+  final String? imageUrl;
+  final double? height;
   final EdgeInsetsGeometry padding;
   final Widget child;
 
@@ -47,17 +47,17 @@ class BackgroundImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return imageUrl != null
-        ? CachedNetworkImage(
-            imageUrl: imageUrl,
-            height: height,
-            width: 250,
-            imageBuilder: (context, imageProvider) =>
-                _imageBuilder(imageProvider),
-            placeholder: (context, url) => _imageBuilder(_derelict),
-            errorWidget: (context, url, dynamic error) =>
-                _imageBuilder(_derelict),
-          )
-        : _imageBuilder(_derelict);
+    if (imageUrl != null) {
+      return CachedNetworkImage(
+        imageUrl: imageUrl!,
+        height: height,
+        width: 250,
+        imageBuilder: (context, imageProvider) => _imageBuilder(imageProvider),
+        placeholder: (context, url) => _imageBuilder(_derelict),
+        errorWidget: (context, url, dynamic error) => _imageBuilder(_derelict),
+      );
+    } else {
+      return _imageBuilder(_derelict);
+    }
   }
 }

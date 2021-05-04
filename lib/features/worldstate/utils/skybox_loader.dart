@@ -1,4 +1,4 @@
-String getSkybox(String node) {
+String? getSkybox(String node) {
   const _baseUrl =
       'https://raw.githubusercontent.com/WFCD/navis/master/assets/skyboxes';
   final nodeRegExp = RegExp(r'\(([^)]*)\)');

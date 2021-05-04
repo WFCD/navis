@@ -5,9 +5,8 @@ import '../../../../../core/widgets/icons.dart';
 import '../../../../../core/widgets/widgets.dart';
 
 class ArbitrationCard extends StatelessWidget {
-  const ArbitrationCard({Key key, @required this.arbitration})
-      : assert(arbitration != null),
-        super(key: key);
+  const ArbitrationCard({Key? key, required this.arbitration})
+      : super(key: key);
 
   final Arbitration arbitration;
 
@@ -24,11 +23,11 @@ class ArbitrationCard extends StatelessWidget {
                 padding: EdgeInsets.only(left: 6.0),
                 child: NavisSystemIconWidgets.archwingIcon,
               ),
-            Text(arbitration.node),
+            Text(arbitration.node!),
           ],
         ),
         subtitle: Text('${arbitration.enemy} | ${arbitration.type}'),
-        trailing: CountdownTimer(expiry: arbitration.expiry),
+        trailing: CountdownTimer(expiry: arbitration.expiry!),
       ),
     );
   }

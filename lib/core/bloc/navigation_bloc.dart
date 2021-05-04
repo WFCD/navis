@@ -10,7 +10,7 @@ import '../../features/worldstate/presentation/pages/orbiter_news.dart';
 enum NavigationEvent { timers, warframeNews, codex, synthTargets }
 
 class NavigationBloc extends Bloc<NavigationEvent, Widget> {
-  NavigationBloc() : super(navigationMap[NavigationEvent.timers]);
+  NavigationBloc() : super(navigationMap[NavigationEvent.timers]!);
 
   static final Map<NavigationEvent, Widget> navigationMap = {
     NavigationEvent.timers: const HomeFeedPage(),
@@ -31,6 +31,6 @@ class NavigationBloc extends Bloc<NavigationEvent, Widget> {
   Stream<Widget> mapEventToState(
     NavigationEvent event,
   ) async* {
-    yield navigationMap[event];
+    yield navigationMap[event]!;
   }
 }

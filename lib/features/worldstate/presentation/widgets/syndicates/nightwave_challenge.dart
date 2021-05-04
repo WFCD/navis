@@ -6,7 +6,8 @@ import '../../../../../core/widgets/widgets.dart';
 import '../../../../../l10n/l10n.dart';
 
 class NightwaveChallenge extends StatelessWidget {
-  const NightwaveChallenge({Key key, this.challenge}) : super(key: key);
+  const NightwaveChallenge({Key? key, required this.challenge})
+      : super(key: key);
 
   final Challenge challenge;
 
@@ -31,10 +32,9 @@ class NightwaveChallenge extends StatelessWidget {
     final textTheme = Theme.of(context).textTheme;
     final l10n = context.l10n;
 
-    final color = textTheme.caption.color;
     final title = textTheme.subtitle1;
-    final desscription =
-        textTheme.bodyText2.copyWith(fontSize: 14, color: color);
+    final desscription = textTheme.bodyText2
+        ?.copyWith(fontSize: 14, color: textTheme.caption?.color);
 
     return Card(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
@@ -52,14 +52,14 @@ class NightwaveChallenge extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: <Widget>[
-                    if (challenge?.isElite)
+                    if (challenge.isElite)
                       StaticBox.text(
                         color: Colors.red,
                         text: l10n.eliteBadgeTitle,
                         fontSize: 14,
                       ),
                     _standingBadge(),
-                    CountdownTimer(expiry: challenge.expiry)
+                    CountdownTimer(expiry: challenge.expiry!)
                   ]),
             ]),
       ),

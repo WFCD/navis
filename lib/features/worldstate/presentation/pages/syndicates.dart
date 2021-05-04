@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+// ignore: import_of_legacy_library_into_null_safe
 import 'package:matomo/matomo.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:wfcd_client/entities.dart';
@@ -14,9 +15,7 @@ import '../widgets/syndicates/syndicate_bounties.dart';
 import '../widgets/syndicates/syndicate_card.dart';
 
 class SyndicatePage extends TraceableStatelessWidget {
-  const SyndicatePage({Key key, @required this.state})
-      : assert(state != null),
-        super(key: key);
+  const SyndicatePage({Key? key, required this.state}) : super(key: key);
 
   final SolState state;
 
@@ -30,12 +29,12 @@ class SyndicatePage extends TraceableStatelessWidget {
 }
 
 Widget _buildSyndicates(List<Syndicate> syndicates,
-    {void Function(Syndicate) onTap}) {
+    {void Function(Syndicate)? onTap}) {
   return Column(
     children: <Widget>[
       CountdownBanner(
         message: 'Bounties expire in:',
-        time: syndicates.first.expiry,
+        time: syndicates.first.expiry!,
       ),
       ...syndicates.map<SyndicateCard>((syn) => SyndicateCard(
             syndicate: syn,
@@ -45,12 +44,12 @@ Widget _buildSyndicates(List<Syndicate> syndicates,
   );
 }
 
-Widget _buildNightwave(Nightwave nightwave, {void Function(Nightwave) onTap}) {
+Widget _buildNightwave(Nightwave nightwave, {void Function(Nightwave)? onTap}) {
   return Column(
     children: <Widget>[
       CountdownBanner(
         message: 'Season ends in:',
-        time: nightwave.expiry,
+        time: nightwave.expiry!,
       ),
       SyndicateCard(
         name: 'Nightwave',
@@ -62,7 +61,7 @@ Widget _buildNightwave(Nightwave nightwave, {void Function(Nightwave) onTap}) {
 }
 
 class SyndicatePageMobile extends StatelessWidget {
-  const SyndicatePageMobile({Key key, this.state}) : super(key: key);
+  const SyndicatePageMobile({Key? key, required this.state}) : super(key: key);
 
   final SolState state;
 
@@ -81,7 +80,7 @@ class SyndicatePageMobile extends StatelessWidget {
 }
 
 class SyndicatePageTablet extends StatefulWidget {
-  const SyndicatePageTablet({Key key, this.state}) : super(key: key);
+  const SyndicatePageTablet({Key? key, required this.state}) : super(key: key);
 
   final SolState state;
 
@@ -90,7 +89,7 @@ class SyndicatePageTablet extends StatefulWidget {
 }
 
 class _SyndicatePageTabletState extends State<SyndicatePageTablet> {
-  StreamController<Widget> _controller;
+  StreamController<Widget>? _controller;
 
   Worldstate get _worldstate => widget.state.worldstate;
 
@@ -102,9 +101,9 @@ class _SyndicatePageTabletState extends State<SyndicatePageTablet> {
 
   void _onTap(WorldstateObject object) {
     if (object is Syndicate) {
-      _controller.sink.add(SyndicateBounties(syndicate: object));
+      _controller?.sink.add(SyndicateBounties(syndicate: object));
     } else {
-      _controller.sink.add(const NightwaveChalleneges());
+      _controller?.sink.add(const NightwaveChalleneges());
     }
   }
 
@@ -138,7 +137,7 @@ class _SyndicatePageTabletState extends State<SyndicatePageTablet> {
           child: Center(
             child: StreamBuilder<Widget>(
                 initialData: Text(context.l10n.syndicateDualScreenTitle),
-                stream: _controller.stream,
+                stream: _controller?.stream,
                 builder: (_, snapshot) {
                   return AnimatedSwitcher(
                     duration: const Duration(milliseconds: 250),

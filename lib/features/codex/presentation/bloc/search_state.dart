@@ -21,7 +21,7 @@ class CodexSuccessfulSearch extends SearchState {
   final List<Item> results;
 
   @override
-  List<Object> get props => [results];
+  List<Object?> get props => [results];
 }
 
 class CodexSearchError extends SearchState {

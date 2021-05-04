@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+// ignore: import_of_legacy_library_into_null_safe
 import 'package:matomo/matomo.dart';
 import 'package:wfcd_client/entities.dart';
 
@@ -12,15 +13,13 @@ import '../bloc/solsystem_bloc.dart';
 import '../widgets/timers/timers.dart';
 
 class Timers extends TraceableStatelessWidget {
-  const Timers({Key key, @required this.state})
-      : assert(state != null),
-        super(key: key);
+  const Timers({Key? key, required this.state}) : super(key: key);
 
   final SolState state;
 
   @override
   Widget build(BuildContext context) {
-    return MobileTimers(state);
+    return MobileTimers(state: state);
   }
 }
 
@@ -73,18 +72,20 @@ List<Progress> _buildProgress(
     Progress(
       name: locale.formorianTitle,
       color: factionColor('Grineer'),
-      progress: double.parse(worldstate.constructionProgress.fomorianProgress),
+      percentage:
+          double.parse(worldstate.constructionProgress.fomorianProgress),
     ),
     Progress(
       name: locale.razorbackTitle,
       color: factionColor('Corpus'),
-      progress: double.parse(worldstate.constructionProgress.razorbackProgress),
+      percentage:
+          double.parse(worldstate.constructionProgress.razorbackProgress),
     )
   ];
 }
 
 class MobileTimers extends StatelessWidget {
-  const MobileTimers(this.state);
+  const MobileTimers({Key? key, required this.state}) : super(key: key);
 
   final SolState state;
 
@@ -100,13 +101,12 @@ class MobileTimers extends StatelessWidget {
         ),
         if (state.eventsActive) EventCard(events: _worldstate.events),
         if (state.activeAcolytes)
-          AcolyteCard(enemies: _worldstate.persistentEnemies),
+          AcolyteCard(enemies: _worldstate.persistentEnemies!),
         if (state.arbitrationActive)
-          ArbitrationCard(arbitration: _worldstate.arbitration),
+          ArbitrationCard(arbitration: _worldstate.arbitration!),
         if (state.outpostDetected)
           SentientOutpostCard(outpost: _worldstate.sentientOutposts),
-        if (_worldstate.steelPath != null)
-          SteelPathCard(steelPath: _worldstate.steelPath),
+        SteelPathCard(steelPath: _worldstate.steelPath),
         if (state.activeAlerts) AlertsCard(alerts: _worldstate.alerts),
         CycleCard(cycles: _buildCycles(context.l10n, _worldstate)),
         TraderCard(trader: _worldstate.voidTrader),

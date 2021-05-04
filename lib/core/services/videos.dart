@@ -23,11 +23,11 @@ class VideoService {
 
 class VideoInformation {
   const VideoInformation({
-    this.title,
-    this.description,
-    this.author,
-    this.url,
-    this.muxedStreamInfo,
+    required this.title,
+    required this.description,
+    required this.author,
+    required this.url,
+    required this.muxedStreamInfo,
   });
 
   final String title, description, author, url;

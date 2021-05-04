@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
-import 'package:matomo/matomo.dart';
 import 'package:provider/provider.dart';
 import 'package:wfcd_client/wfcd_client.dart';
 import 'package:path_provider/path_provider.dart';
@@ -32,9 +31,6 @@ Future<void> startApp() async {
     sl<Usersettings>().platform = GamePlatforms.pc;
     await sl<NotificationService>().subscribeToPlatform(GamePlatforms.pc);
   }
-
-  await MatomoTracker()
-      .initialize(siteId: 4, url: const String.fromEnvironment('MATOMO_URL'));
 
   runApp(
     MultiBlocProvider(

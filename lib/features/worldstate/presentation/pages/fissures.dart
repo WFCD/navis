@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+// ignore: import_of_legacy_library_into_null_safe
 import 'package:matomo/matomo.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:wfcd_client/entities.dart';
@@ -7,15 +8,13 @@ import '../bloc/solsystem_bloc.dart';
 import '../widgets/fissures/fissure_widget.dart';
 
 class FissuresPage extends TraceableStatelessWidget {
-  const FissuresPage({Key key, @required this.state})
-      : assert(state != null),
-        super(key: key);
+  const FissuresPage({Key? key, required this.state}) : super(key: key);
 
   final SolState state;
 
   @override
   Widget build(BuildContext context) {
-    final fissures = state.worldstate.fissures ?? <VoidFissure>[];
+    final fissures = state.worldstate.fissures;
 
     return ScreenTypeLayout.builder(
       mobile: (context) => MobileFissures(fissures: fissures),
@@ -25,9 +24,7 @@ class FissuresPage extends TraceableStatelessWidget {
 }
 
 class MobileFissures extends StatelessWidget {
-  const MobileFissures({Key key, @required this.fissures})
-      : assert(fissures != null),
-        super(key: key);
+  const MobileFissures({Key? key, required this.fissures}) : super(key: key);
 
   final List<VoidFissure> fissures;
 
@@ -44,9 +41,7 @@ class MobileFissures extends StatelessWidget {
 }
 
 class TabletFissures extends StatelessWidget {
-  const TabletFissures({Key key, @required this.fissures})
-      : assert(fissures != null),
-        super(key: key);
+  const TabletFissures({Key? key, required this.fissures}) : super(key: key);
 
   final List<VoidFissure> fissures;
 

@@ -29,7 +29,8 @@ List<DataColumn> _buildDataColumn(BuildContext context) {
 }
 
 class MobileInventoryDataTable extends StatelessWidget {
-  const MobileInventoryDataTable({Key key, this.inventory}) : super(key: key);
+  const MobileInventoryDataTable({Key? key, required this.inventory})
+      : super(key: key);
 
   final List<InventoryItem> inventory;
 
@@ -62,7 +63,8 @@ class MobileInventoryDataTable extends StatelessWidget {
 }
 
 class TabletInventoryDataTable extends StatelessWidget {
-  const TabletInventoryDataTable({Key key, this.inventory}) : super(key: key);
+  const TabletInventoryDataTable({Key? key, required this.inventory})
+      : super(key: key);
 
   final List<InventoryItem> inventory;
 

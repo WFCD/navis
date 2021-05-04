@@ -22,13 +22,12 @@ class FaIcon extends StatelessWidget {
   /// by the current [IconTheme].
   const FaIcon(
     this.icon, {
-    Key key,
+    Key? key,
     this.size,
     this.color,
     this.semanticLabel,
     this.textDirection,
-  })  : assert(icon != null),
-        super(key: key);
+  }) : super(key: key);
 
   /// The icon to display. The available icons are described in
   final IconData icon;
@@ -38,7 +37,7 @@ class FaIcon extends StatelessWidget {
   /// Defaults to the current [IconTheme] size, if any. If there is no
   /// [IconTheme], or it does not specify an explicit size, then it defaults to
   /// 24.0.
-  final double size;
+  final double? size;
 
   /// The color to use when drawing the icon.
   ///
@@ -46,13 +45,13 @@ class FaIcon extends StatelessWidget {
   ///
   /// The given color will be adjusted by the opacity of the current
   /// [IconTheme], if any.
-  final Color color;
+  final Color? color;
 
   /// Semantic label for the icon.
   ///
   /// Announced in accessibility modes (e.g TalkBack/VoiceOver).
   /// This label does not show in the UI.
-  final String semanticLabel;
+  final String? semanticLabel;
 
   /// The text direction to use for rendering the icon.
   ///
@@ -67,7 +66,7 @@ class FaIcon extends StatelessWidget {
   /// This property has no effect if the [icon]'s [IconData.matchTextDirection]
   /// field is false, but for consistency a text direction value must always be
   /// specified, either directly using this property or using [Directionality].
-  final TextDirection textDirection;
+  final TextDirection? textDirection;
 
   @override
   Widget build(BuildContext context) {
@@ -78,18 +77,12 @@ class FaIcon extends StatelessWidget {
 
     final iconSize = size ?? iconTheme.size;
 
-    if (icon == null) {
-      return Semantics(
-        label: semanticLabel,
-        child: SizedBox(width: iconSize, height: iconSize),
-      );
-    }
-
     final iconOpacity = iconTheme.opacity;
 
     var iconColor = color ?? iconTheme.color;
     if (iconOpacity != 1.0) {
-      iconColor = iconColor.withOpacity(iconColor.opacity * iconOpacity);
+      iconColor =
+          iconColor?.withOpacity(iconColor.opacity * (iconOpacity ?? 0.0));
     }
 
     Widget iconWidget = RichText(

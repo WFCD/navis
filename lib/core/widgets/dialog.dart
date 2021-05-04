@@ -2,30 +2,27 @@ import 'package:flutter/material.dart';
 
 class NavisDialog extends StatelessWidget {
   const NavisDialog({
-    Key key,
-    @required this.title,
+    Key? key,
+    this.title,
     this.contentPadding,
     this.actions,
-    @required this.content,
-  })  : assert(title != null),
-        assert(content != null),
-        super(key: key);
+    required this.content,
+  }) : super(key: key);
 
-  final Widget title;
-  final EdgeInsetsGeometry contentPadding;
+  final Widget? title;
   final Widget content;
-  final List<Widget> actions;
+  final EdgeInsetsGeometry? contentPadding;
+  final List<Widget>? actions;
 
   @override
   Widget build(BuildContext context) {
     final dialogTheme = DialogTheme.of(context);
-    final theme = Theme.of(context);
 
     final _title = Padding(
       padding: const EdgeInsets.fromLTRB(24.0, 24.0, 24.0, 20.0),
       child: DefaultTextStyle(
-        style:
-            dialogTheme.titleTextStyle ?? Theme.of(context).textTheme.headline6,
+        style: dialogTheme.titleTextStyle ??
+            Theme.of(context).textTheme.headline6!,
         child: Semantics(
           namesRoute: true,
           container: true,
@@ -35,7 +32,8 @@ class NavisDialog extends StatelessWidget {
     );
 
     final _content = DefaultTextStyle(
-      style: dialogTheme.contentTextStyle ?? theme.textTheme.subtitle1,
+      style: dialogTheme.contentTextStyle ??
+          Theme.of(context).textTheme.headline6!,
       child: Flexible(
         child: Padding(
           padding:
@@ -53,7 +51,8 @@ class NavisDialog extends StatelessWidget {
           children: <Widget>[
             if (title != null) _title,
             _content,
-            if (actions != null) ButtonBar(children: <Widget>[...actions])
+            if (actions != null)
+              ButtonBar(children: <Widget>[if (actions != null) ...actions!])
           ]),
     );
   }

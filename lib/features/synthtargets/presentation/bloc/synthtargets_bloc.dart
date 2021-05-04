@@ -30,7 +30,7 @@ class SynthtargetsBloc
     if (event == SynthtargetsEvent.update) {
       final locating = await getSynthTargets(NoParama());
 
-      yield locating.fold(matchFailure, (r) => TargetsLocated(r));
+      yield locating.match((r) => TargetsLocated(r), matchFailure);
     }
   }
 
@@ -46,7 +46,7 @@ class SynthtargetsBloc
   }
 
   @override
-  Map<String, dynamic> toJson(SynthtargetsState state) {
+  Map<String, dynamic>? toJson(SynthtargetsState state) {
     if (state is TargetsLocated) {
       final targets = state.targets
           .map((dynamic e) => (e as SynthTargetModel).toJson())

@@ -9,7 +9,7 @@ import 'widgets.dart';
 // import 'navis_sys_icons.dart';
 
 class DrawerOptions extends StatelessWidget {
-  DrawerOptions({Key key}) : super(key: key);
+  DrawerOptions({Key? key}) : super(key: key);
 
   void _onTap(BuildContext context, NavigationEvent newRoute) {
     BlocProvider.of<NavigationBloc>(context).add(newRoute);

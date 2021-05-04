@@ -5,16 +5,23 @@ import '../../../core/themes/colors.dart';
 
 enum EnemyFaction { grineer, corpus, corrupted, infested }
 
-enum SyndicateFaction { cetus, solaris, entrati, nightwave, cephalonSimaris }
+enum SyndicateFaction {
+  cetus,
+  solaris,
+  entrati,
+  nightwave,
+  cephalonSimaris,
+  unknown
+}
 
 Color factionColor(String faction) {
   switch (faction) {
     case 'Corpus':
       return Colors.blue;
     case 'Grineer':
-      return Colors.red[700];
+      return Colors.red[700]!;
     case 'Corrupted':
-      return Colors.yellow[300];
+      return Colors.yellow[300]!;
     default:
       return Colors.green;
   }
@@ -42,11 +49,11 @@ SyndicateFaction syndicateStringToEnum(String faction) {
     final syn = faction.toLowerCase();
 
     return syn.contains(element.toString().split('.').last);
-  }, orElse: () => null);
+  }, orElse: () => SyndicateFaction.unknown);
 }
 
 // Convert enum value to readable faction title
-String _toTitle<T>(T value) {
+String? _toTitle<T>(T value) {
   return toBeginningOfSentenceCase(
       value.toString().split('.').last.replaceAll('_', ' '));
 }
@@ -86,7 +93,7 @@ extension SyndicateFactionX on SyndicateFaction {
     }
   }
 
-  String get toSyndicateTitle => _toTitle(this);
+  String? get toSyndicateTitle => _toTitle(this);
 }
 
 extension EnemyFactionX on EnemyFaction {
@@ -103,5 +110,5 @@ extension EnemyFactionX on EnemyFaction {
     }
   }
 
-  String get toEnemyTitle => _toTitle(this);
+  String? get toEnemyTitle => _toTitle(this);
 }

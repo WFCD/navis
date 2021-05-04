@@ -33,7 +33,7 @@ class CodexSearchBar extends SliverPersistentHeaderDelegate {
 }
 
 class CodexTextEditior extends StatefulWidget {
-  const CodexTextEditior({Key key}) : super(key: key);
+  const CodexTextEditior({Key? key}) : super(key: key);
 
   @override
   _CodexTextEditiorState createState() => _CodexTextEditiorState();
@@ -42,8 +42,8 @@ class CodexTextEditior extends StatefulWidget {
 class _CodexTextEditiorState extends State<CodexTextEditior> {
   bool _active = false;
 
-  SearchBloc _searchBloc;
-  TextEditingController _textEditingController;
+  late SearchBloc _searchBloc;
+  late TextEditingController _textEditingController;
 
   @override
   void initState() {

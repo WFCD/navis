@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:equatable/equatable.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:supercharged/supercharged.dart';
 import 'package:wfcd_client/entities.dart';
@@ -18,10 +17,7 @@ const String serverFailureMessage = 'Failed to contact server';
 const String cacheFailureMessage = 'Cache Failure';
 
 class SolsystemBloc extends HydratedBloc<SyncEvent, SolsystemState> {
-  SolsystemBloc({
-    @required this.getWorldstate,
-  })  : assert(getWorldstate != null),
-        super(SolsystemInitial());
+  SolsystemBloc({required this.getWorldstate}) : super(SolsystemInitial());
 
   final GetWorldstate getWorldstate;
 
@@ -33,7 +29,7 @@ class SolsystemBloc extends HydratedBloc<SyncEvent, SolsystemState> {
       try {
         final either = await getWorldstate(event.forceUpdate);
 
-        yield either.fold(matchFailure, (r) => SolState(cleanState(r)));
+        yield either.match((r) => SolState(cleanState(r)), matchFailure);
       } on ServerException {
         yield const SystemError(serverFailureMessage);
       } on CacheException {
@@ -50,14 +46,18 @@ class SolsystemBloc extends HydratedBloc<SyncEvent, SolsystemState> {
   }
 
   @override
-  SolsystemState fromJson(Map<String, dynamic> json) {
-    // Because worldstate is cleaned when it's cached there
-    // is no need to clean it when returning from cache.
-    return SolState(WorldstateModel.fromJson(json));
+  SolsystemState? fromJson(Map<String, dynamic> json) {
+    try {
+      // Because worldstate is cleaned when it's cached there
+      // is no need to clean it when returning from cache.
+      return SolState(WorldstateModel.fromJson(json));
+    } catch (e) {
+      return null;
+    }
   }
 
   @override
-  Map<String, dynamic> toJson(SolsystemState state) {
+  Map<String, dynamic>? toJson(SolsystemState state) {
     if (state is SolState) {
       return (state.worldstate as WorldstateModel).toJson();
     }

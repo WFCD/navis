@@ -8,11 +8,11 @@ import 'package:wfcd_client/models.dart';
 import 'package:wfcd_client/wfcd_client.dart';
 
 class WarframestatCache {
-  WarframestatCache(this._box);
+  const WarframestatCache(this._box);
 
   final Box<dynamic> _box;
 
-  static WarframestatCache _instance;
+  static WarframestatCache? _instance;
 
   static final _logger = Logger('WarframestatCache');
 
@@ -46,15 +46,17 @@ class WarframestatCache {
     _box.put(_state, json.encode((state as WorldstateModel).toJson()));
   }
 
-  String getCachedDealId() => readDisk<String>(_dealId);
+  String? getCachedDealId() => readDisk<String>(_dealId);
 
-  Item getCachedDeal(String id) {
+  Item? getCachedDeal(String id) {
     final cached = readDisk<String>(id);
+
+    if (cached == null) return null;
 
     return toBaseItem(json.decode(cached) as Map<String, dynamic>);
   }
 
-  Worldstate getCachedState() {
+  Worldstate? getCachedState() {
     final cached = readDisk<String>(_state);
 
     if (cached != null) {
@@ -65,14 +67,14 @@ class WarframestatCache {
     return null;
   }
 
-  List<SynthTarget> getCachedTargets() {
+  List<SynthTarget>? getCachedTargets() {
     final cached = readDisk<Iterable<Map<String, dynamic>>>(_targets);
 
-    return cached?.map((t) => SynthTargetModel.fromJson(t))?.toList();
+    return cached?.map((t) => SynthTargetModel.fromJson(t)).toList();
   }
 
-  T readDisk<T>(String key) {
-    final cache = _box.get(key) as T;
+  T? readDisk<T>(String key) {
+    final cache = _box.get(key) as T?;
 
     if (cache == null) return null;
 

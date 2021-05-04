@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+// ignore: import_of_legacy_library_into_null_safe
 import 'package:matomo/matomo.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:wfcd_client/entities.dart';
@@ -7,15 +8,13 @@ import '../bloc/solsystem_bloc.dart';
 import '../widgets/invasions/invasion_widget.dart';
 
 class InvasionsPage extends TraceableStatelessWidget {
-  const InvasionsPage({Key key, @required this.state})
-      : assert(state != null),
-        super(key: key);
+  const InvasionsPage({Key? key, required this.state}) : super(key: key);
 
   final SolState state;
 
   @override
   Widget build(BuildContext context) {
-    final invasions = state.worldstate?.invasions ?? <Invasion>[];
+    final invasions = state.worldstate.invasions;
 
     return ScreenTypeLayout.builder(
       mobile: (context) => MobileInvasions(invasions: invasions),
@@ -25,9 +24,7 @@ class InvasionsPage extends TraceableStatelessWidget {
 }
 
 class MobileInvasions extends StatelessWidget {
-  const MobileInvasions({Key key, @required this.invasions})
-      : assert(invasions != null),
-        super(key: key);
+  const MobileInvasions({Key? key, required this.invasions}) : super(key: key);
 
   final List<Invasion> invasions;
 
@@ -44,9 +41,7 @@ class MobileInvasions extends StatelessWidget {
 }
 
 class TabletInvasions extends StatelessWidget {
-  const TabletInvasions({Key key, @required this.invasions})
-      : assert(invasions != null),
-        super(key: key);
+  const TabletInvasions({Key? key, required this.invasions}) : super(key: key);
 
   final List<Invasion> invasions;
 

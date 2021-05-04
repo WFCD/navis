@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:wfcd_client/entities.dart';
 
 class InventoryDataSource extends DataTableSource {
-  InventoryDataSource({this.inventory});
+  InventoryDataSource({required this.inventory});
 
   final List<InventoryItem> inventory;
 
   @override
-  DataRow getRow(int index) {
+  DataRow? getRow(int index) {
     assert(index >= 0);
     if (index >= inventory.length) return null;
 

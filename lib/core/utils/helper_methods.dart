@@ -8,7 +8,7 @@ Color healthColor(double health) {
   if (health > 50.0) {
     return Colors.green;
   } else if (health <= 50.0 && health >= 10.0) {
-    return Colors.orange[900];
+    return Colors.orange[900]!;
   } else {
     return Colors.red;
   }

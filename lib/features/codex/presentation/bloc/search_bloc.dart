@@ -18,7 +18,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
 
   final SearchItems searchItems;
 
-  List<Item> _originalResults;
+  late List<Item> _originalResults;
 
   @override
   Stream<Transition<SearchEvent, SearchState>> transformEvents(
@@ -46,10 +46,13 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
         try {
           final results = await searchItems(text);
 
-          yield results.fold((l) => matchFailure<SearchState>(l), (r) {
-            _originalResults = r;
-            return CodexSuccessfulSearch(r.cast<Item>());
-          });
+          yield results.match(
+            (r) {
+              _originalResults = r;
+              return CodexSuccessfulSearch(r.cast<Item>());
+            },
+            matchFailure,
+          );
         } catch (e) {
           yield const CodexSearchError('Unknown Error occuroed');
         }
@@ -60,15 +63,11 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
       yield CodexSearching();
       final filteredResults = _filterResults(event.category);
 
-      if (filteredResults == null) {
-        yield CodexSuccessfulSearch(_originalResults);
-      }
-
-      yield CodexSuccessfulSearch(filteredResults);
+      yield CodexSuccessfulSearch(filteredResults ?? _originalResults);
     }
   }
 
-  List<Item> _filterResults(String category) {
+  List<Item>? _filterResults(String category) {
     if (FilterCategories.categories.contains(category)) {
       if (category == FilterCategories.all) {
         return _originalResults;

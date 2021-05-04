@@ -10,9 +10,7 @@ import '../../../../../core/widgets/static_box.dart';
 import '../common/background_image.dart';
 
 class OrbiterNewsWidget extends StatelessWidget {
-  const OrbiterNewsWidget({Key key, @required this.news})
-      : assert(news != null),
-        super(key: key);
+  const OrbiterNewsWidget({Key? key, required this.news}) : super(key: key);
 
   final OrbiterNews news;
 
@@ -33,7 +31,7 @@ class OrbiterNewsWidget extends StatelessWidget {
           margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 8.0),
           child: BackgroundImage(
             imageUrl: news.proxyImage,
-            height: (screenSize.height / 100) * 15,
+            height: (screenSize.height / 100) * 16,
             padding: const EdgeInsets.all(22.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -48,9 +46,9 @@ class OrbiterNewsWidget extends StatelessWidget {
                     const SizedBox(height: 8.0),
                     Expanded(
                       child: Text(
-                        news?.translations[currentLocale] ?? news.message,
+                        news.translations[currentLocale] ?? news.message,
                         overflow: TextOverflow.ellipsis,
-                        style: textTheme.bodyText1.copyWith(fontSize: 16.0),
+                        style: textTheme.bodyText1?.copyWith(fontSize: 16.0),
                       ),
                     ),
                   ],
@@ -71,19 +69,17 @@ class OrbiterNewsWidget extends StatelessWidget {
 
 class NewsInformation extends StatelessWidget {
   const NewsInformation({
-    Key key,
-    @required this.timestamp,
-    @required this.message,
-  })  : assert(timestamp != null),
-        assert(message != null),
-        super(key: key);
+    Key? key,
+    required this.timestamp,
+    required this.message,
+  }) : super(key: key);
 
   final String timestamp, message;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 50,
+      height: 100,
       width: MediaQuery.of(context).size.shortestSide,
       alignment: Alignment.center,
       color: Colors.black.withOpacity(.4),
@@ -93,7 +89,7 @@ class NewsInformation extends StatelessWidget {
         style: Theme.of(context)
             .textTheme
             .headline6
-            .copyWith(color: Colors.white, fontSize: 14),
+            ?.copyWith(color: Colors.white, fontSize: 14),
       ),
     );
   }

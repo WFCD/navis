@@ -6,26 +6,26 @@ import '../../../../../l10n/l10n.dart';
 
 class BasicItemInfo extends SliverPersistentHeaderDelegate {
   const BasicItemInfo({
-    @required this.uniqueName,
-    @required this.name,
-    @required this.description,
-    @required this.imageUrl,
+    required this.uniqueName,
+    required this.name,
+    required this.description,
+    required this.imageUrl,
     this.wikiaUrl,
-    @required this.expandedHeight,
+    required this.expandedHeight,
   });
 
   final String uniqueName;
   final String name;
   final String description;
   final String imageUrl;
-  final String wikiaUrl;
+  final String? wikiaUrl;
   final double expandedHeight;
 
   @override
   Widget build(
       BuildContext context, double shrinkOffset, bool overlapsContent) {
     const textAlign = TextAlign.center;
-    final textTheme = Theme.of(context)?.textTheme;
+    final textTheme = Theme.of(context).textTheme;
 
     return Container(
       height: expandedHeight,
@@ -44,9 +44,9 @@ class BasicItemInfo extends SliverPersistentHeaderDelegate {
                 TextButton(
                   style: ButtonStyle(
                     foregroundColor: MaterialStateProperty.all(
-                        Theme.of(context).textTheme.button.color),
+                        Theme.of(context).textTheme.button?.color),
                   ),
-                  onPressed: () => wikiaUrl.launchLink(context),
+                  onPressed: () => wikiaUrl?.launchLink(context),
                   child: Text(context.l10n.seeWikia),
                 ),
               ],
@@ -64,15 +64,13 @@ class BasicItemInfo extends SliverPersistentHeaderDelegate {
                         backgroundImage: CachedNetworkImageProvider(imageUrl),
                         backgroundColor: Colors.grey,
                         radius:
-                            ((MediaQuery.of(context).size.longestSide ?? 0) /
-                                    100) *
-                                7,
+                            (MediaQuery.of(context).size.longestSide / 100) * 7,
                       ),
                     ),
                   ),
-                  Text(name, style: textTheme?.subtitle1, textAlign: textAlign),
+                  Text(name, style: textTheme.subtitle1, textAlign: textAlign),
                   Text(description,
-                      style: textTheme?.caption, textAlign: textAlign)
+                      style: textTheme.caption, textAlign: textAlign)
                 ],
               ),
             )

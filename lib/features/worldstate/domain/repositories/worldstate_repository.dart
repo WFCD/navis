@@ -1,12 +1,12 @@
-import 'package:dartz/dartz.dart';
+import 'package:oxidized/oxidized.dart';
 import 'package:wfcd_client/entities.dart';
 
 import '../../../../core/error/failures.dart';
 
 abstract class WorldstateRepository {
-  Future<Either<Failure, Worldstate>> getWorldstate({bool forceUpdate});
+  Future<Result<Worldstate, Failure>> getWorldstate({bool forceUpdate});
 
-  Future<Either<Failure, List<SynthTarget>>> getSynthTargets();
+  Future<Result<List<SynthTarget>, Failure>> getSynthTargets();
 
-  Future<Either<Failure, Item>> getDealInfo(String id, String name);
+  Future<Result<Item, Failure>> getDealInfo(String id, String name);
 }

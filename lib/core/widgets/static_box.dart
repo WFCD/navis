@@ -5,23 +5,22 @@ import '../themes/colors.dart';
 
 class StaticBox extends StatelessWidget {
   const StaticBox({
-    Key key,
-    @required this.tooltip,
+    Key? key,
+    required this.tooltip,
     this.padding = const EdgeInsets.all(4.0),
     this.margin = const EdgeInsets.all(3.0),
     this.height,
     this.width,
     this.color,
-    @required this.child,
-  })  : assert(child != null),
-        super(key: key);
+    required this.child,
+  }) : super(key: key);
 
 //create simple text box with hard coded color of white
   factory StaticBox.text({
-    String text,
-    Color color,
-    double fontSize,
-    TextStyle style,
+    required String text,
+    Color? color,
+    double? fontSize,
+    TextStyle? style,
     EdgeInsetsGeometry padding = const EdgeInsets.all(6.0),
     EdgeInsetsGeometry margin = const EdgeInsets.all(3.0),
   }) {
@@ -43,15 +42,14 @@ class StaticBox extends StatelessWidget {
   final String tooltip;
 
   final EdgeInsetsGeometry padding, margin;
-  final double height;
-  final double width;
-  final Color color;
+  final double? height, width;
+  final Color? color;
   final Widget child;
 
   @override
   Widget build(BuildContext context) {
     return Tooltip(
-      message: tooltip ?? '',
+      message: tooltip,
       child: AnimatedContainer(
         duration: 250.milliseconds,
         padding: padding,

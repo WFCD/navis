@@ -4,7 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../bloc/solsystem_bloc.dart';
 
 class RefreshIndicatorBlocScreen extends StatelessWidget {
-  const RefreshIndicatorBlocScreen({Key key, this.builder}) : super(key: key);
+  const RefreshIndicatorBlocScreen({Key? key, required this.builder})
+      : super(key: key);
 
   final BlocWidgetBuilder<SolsystemState> builder;
 

@@ -6,7 +6,7 @@ import '../../../../../l10n/l10n.dart';
 import '../../pages/acolyte_profile.dart';
 
 class AcolyteCard extends StatelessWidget {
-  const AcolyteCard({Key key, this.enemies}) : super(key: key);
+  const AcolyteCard({Key? key, required this.enemies}) : super(key: key);
 
   final List<PersistentEnemy> enemies;
 
@@ -23,9 +23,7 @@ class AcolyteCard extends StatelessWidget {
 }
 
 class AcolyteWidget extends StatefulWidget {
-  const AcolyteWidget({Key key, @required this.enemy})
-      : assert(enemy != null),
-        super(key: key);
+  const AcolyteWidget({Key? key, required this.enemy}) : super(key: key);
 
   final PersistentEnemy enemy;
 
@@ -35,8 +33,8 @@ class AcolyteWidget extends StatefulWidget {
 
 class _AcolyteWidgetState extends State<AcolyteWidget>
     with TickerProviderStateMixin {
-  AnimationController _controller;
-  Animation<double> _opacity;
+  late AnimationController? _controller;
+  late Animation<double> _opacity;
 
   PersistentEnemy get enemy => widget.enemy;
 
@@ -48,11 +46,11 @@ class _AcolyteWidgetState extends State<AcolyteWidget>
       ..addStatusListener(_statusListener);
 
     _opacity = Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(
-        parent: _controller,
+        parent: _controller!,
         curve: Curves.easeInOut,
         reverseCurve: Curves.easeInOut));
 
-    _controller.forward().orCancel;
+    _controller!.forward().orCancel;
   }
 
   @override
@@ -63,7 +61,7 @@ class _AcolyteWidgetState extends State<AcolyteWidget>
 
   void _statusListener(AnimationStatus status) {
     if (status == AnimationStatus.completed && !_isDiscovered) {
-      _controller.repeat(reverse: true);
+      _controller?.repeat(reverse: true);
     }
   }
 
@@ -86,7 +84,7 @@ class _AcolyteWidgetState extends State<AcolyteWidget>
     if (oldWidget.enemy.isDiscovered != _isDiscovered) {
       _controller?.dispose();
       _setupController();
-      _controller.resync(this);
+      _controller?.resync(this);
     }
   }
 
@@ -127,7 +125,6 @@ class _AcolyteWidgetState extends State<AcolyteWidget>
   void dispose() {
     _controller?.removeStatusListener(_statusListener);
     _controller?.dispose();
-    _opacity = null;
     super.dispose();
   }
 }

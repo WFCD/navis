@@ -10,18 +10,19 @@ import 'static_box.dart';
 
 class CountdownTimer extends StatefulWidget {
   const CountdownTimer({
-    @required this.expiry,
+    Key? key,
+    required this.expiry,
     this.color,
     this.size,
     this.style,
     this.padding = const EdgeInsets.all(4.0),
     this.margin = const EdgeInsets.all(3.0),
-  });
+  }) : super(key: key);
 
   final DateTime expiry;
-  final Color color;
-  final double size;
-  final TextStyle style;
+  final Color? color;
+  final double? size;
+  final TextStyle? style;
   final EdgeInsetsGeometry padding, margin;
 
   @override
@@ -33,14 +34,14 @@ class _CountdownTimerState extends State<CountdownTimer>
   static const _max = Duration(hours: 1);
   static const _minimum = Duration(minutes: 10);
 
-  AnimationController _controller;
+  AnimationController? _controller;
 
-  bool _expired;
+  bool _expired = false;
   Color _warningLevel = Colors.green;
 
   DateTime get _now => DateTime.now();
   DateTime get _localExpiry => widget.expiry.toLocal();
-  Duration get _timeLeft => _controller.duration * _controller?.value;
+  Duration get _timeLeft => _controller!.duration! * _controller!.value;
 
   void _setupCountdown() {
     final difference = _localExpiry.difference(_now);
@@ -50,28 +51,28 @@ class _CountdownTimerState extends State<CountdownTimer>
         duration: _expired ? 59.seconds : difference, vsync: this);
 
     if (widget.color == null) {
-      _controller.addListener(_detectWarningLevel);
+      _controller!.addListener(_detectWarningLevel);
     }
 
-    _controller
+    _controller!
       ..addStatusListener(_onEnd)
       ..reverse(from: 1.0);
   }
 
   void _detectWarningLevel() {
-    Color newLevel;
+    Color? newLevel;
 
     if (_timeLeft > _max) {
       newLevel = Colors.green;
     } else if (_timeLeft < _max && _timeLeft > _minimum) {
-      newLevel = Colors.orange[700];
+      newLevel = Colors.orange[700]!;
     } else if (_timeLeft < _minimum) {
       newLevel = _expired ? primary : Colors.red;
     }
 
-    if (mounted && _warningLevel != newLevel) {
+    if (mounted && _warningLevel != newLevel!) {
       setState(() {
-        _warningLevel = newLevel;
+        _warningLevel = newLevel!;
       });
     }
   }
@@ -79,12 +80,13 @@ class _CountdownTimerState extends State<CountdownTimer>
   void _onEnd(AnimationStatus status) {
     if (status == AnimationStatus.dismissed) {
       if (mounted) {
-        _controller
-          ..removeListener(_detectWarningLevel)
-          ..removeStatusListener(_onEnd)
-          ..dispose();
-
-        setState(_setupCountdown);
+        if (_controller != null) {
+          _controller!
+            ..removeListener(_detectWarningLevel)
+            ..removeStatusListener(_onEnd)
+            ..dispose();
+          setState(_setupCountdown);
+        }
       }
 
       BlocProvider.of<SolsystemBloc>(context).update(forceUpdate: true);
@@ -102,12 +104,13 @@ class _CountdownTimerState extends State<CountdownTimer>
     super.didUpdateWidget(oldWidget);
 
     if (oldWidget.expiry != widget.expiry) {
-      _controller
-        ..removeListener(_detectWarningLevel)
-        ..removeStatusListener(_onEnd)
-        ..dispose();
-
-      _setupCountdown();
+      if (_controller != null) {
+        _controller!
+          ..removeListener(_detectWarningLevel)
+          ..removeStatusListener(_onEnd)
+          ..dispose();
+        setState(_setupCountdown);
+      }
     }
   }
 
@@ -133,8 +136,8 @@ class _CountdownTimerState extends State<CountdownTimer>
       padding: widget.padding,
       margin: widget.margin,
       child: AnimatedBuilder(
-        animation: _controller,
-        builder: (BuildContext context, Widget child) {
+        animation: _controller!,
+        builder: (BuildContext context, Widget? child) {
           return Text(
             _timerVersions(),
             style: widget.style?.copyWith(color: Colors.white) ??
@@ -148,7 +151,7 @@ class _CountdownTimerState extends State<CountdownTimer>
   @override
   void dispose() {
     if (_controller != null) {
-      _controller
+      _controller!
         ..removeListener(_detectWarningLevel)
         ..removeStatusListener(_onEnd)
         ..dispose();

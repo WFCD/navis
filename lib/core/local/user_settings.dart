@@ -11,7 +11,7 @@ class Usersettings with ChangeNotifier {
 
   final Box<dynamic> _box;
 
-  static Usersettings _instance;
+  static Usersettings? _instance;
 
   static final _logger = Logger('Usersettings');
 
@@ -28,8 +28,8 @@ class Usersettings with ChangeNotifier {
     return _instance ??= Usersettings(box);
   }
 
-  GamePlatforms get platform {
-    final value = _box.get(SettingsKeys.platformKey) as String;
+  GamePlatforms? get platform {
+    final value = _box.get(SettingsKeys.platformKey) as String?;
 
     if (value != null) {
       return GamePlatformsX.fromString(value);
@@ -38,19 +38,19 @@ class Usersettings with ChangeNotifier {
     return null;
   }
 
-  set platform(GamePlatforms value) {
-    _logger.info('setting new platform ${value.asString}');
-    _box.put(SettingsKeys.platformKey, value.asString);
-    notifyListeners();
+  set platform(GamePlatforms? value) {
+    if (value != null) {
+      _logger.info('setting new platform ${value.asString}');
+      _box.put(SettingsKeys.platformKey, value.asString);
+      notifyListeners();
+    }
   }
 
   ThemeMode get theme {
-    final value = _box.get(SettingsKeys.theme) as String;
-
-    if (value == null) return ThemeMode.system;
+    final value = _box.get(SettingsKeys.theme) as String?;
 
     return ThemeMode.values.firstWhere(
-      (element) => element.toString().contains(value),
+      (e) => e.toString().contains(value ?? ''),
       orElse: () => ThemeMode.system,
     );
   }

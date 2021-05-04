@@ -15,24 +15,22 @@ class EventInfoParser {
     howTos: [],
   );
 
-  static EventInfoParser _instance;
+  static EventInfoParser? _instance;
 
   static Future<EventInfoParser> loadEventData() async {
-    if (_instance != null) return _instance;
-
     final asset = await rootBundle.loadString('assets/event_info.json');
     final info = (json.decode(asset) as Map<String, dynamic>)
         .map<String, EventInfo>((name, dynamic info) => MapEntry(
             name, EventInfoModel.fromJson(info as Map<String, dynamic>)));
 
-    return EventInfoParser._(info);
+    return _instance ??= EventInfoParser._(info);
   }
 
   EventInfo getEventInfo(String eventName) {
     final info = _eventInfo[eventName.split(':').last.trim()];
 
-    if (info != null) return info;
+    if (info == null) return _emptyEvent;
 
-    return _emptyEvent;
+    return info;
   }
 }

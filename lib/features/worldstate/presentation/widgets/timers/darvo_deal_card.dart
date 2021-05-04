@@ -11,7 +11,7 @@ import '../../../../../l10n/l10n.dart';
 import '../../bloc/darvodeal_bloc.dart';
 
 class DarvoDealCard extends StatelessWidget {
-  const DarvoDealCard({Key key, this.deals}) : super(key: key);
+  const DarvoDealCard({Key? key, required this.deals}) : super(key: key);
 
   final List<DarvoDeal> deals;
 
@@ -26,9 +26,7 @@ class DarvoDealCard extends StatelessWidget {
 }
 
 class DealWidget extends StatefulWidget {
-  const DealWidget({Key key, @required this.deal})
-      : assert(deal != null),
-        super(key: key);
+  const DealWidget({Key? key, required this.deal}) : super(key: key);
 
   final DarvoDeal deal;
 
@@ -48,7 +46,7 @@ class _DealWidgetState extends State<DealWidget> {
     final saleInfo = Theme.of(context)
         .textTheme
         .subtitle2
-        .copyWith(fontWeight: FontWeight.w500);
+        ?.copyWith(fontWeight: FontWeight.w500);
 
     return BlocBuilder<DarvodealBloc, DarvodealState>(
       builder: (context, state) {
@@ -64,10 +62,10 @@ class _DealWidgetState extends State<DealWidget> {
                     if (state is DarvoDealLoaded)
                       DealDetails(
                         imageUrl: state.item.imageUrl,
-                        itemName: state.item?.name ?? widget.deal.item,
+                        itemName: widget.deal.item,
                         itemDescription:
-                            state.item?.description?.isNotEmpty ?? false
-                                ? state.item?.description?.parseHtmlString()
+                            state.item.description?.isNotEmpty ?? false
+                                ? state.item.description?.parseHtmlString()
                                 : null,
                       ),
                     const SizedBox(height: 16.0),
@@ -94,7 +92,7 @@ class _DealWidgetState extends State<DealWidget> {
                             style: saleInfo,
                           ),
                           CountdownTimer(
-                            expiry: widget.deal.expiry,
+                            expiry: widget.deal.expiry!,
                             style: saleInfo,
                           ),
                         ]),
@@ -104,10 +102,10 @@ class _DealWidgetState extends State<DealWidget> {
                           TextButton(
                             style: ButtonStyle(
                               foregroundColor: MaterialStateProperty.all(
-                                  Theme.of(context).textTheme.button.color),
+                                  Theme.of(context).textTheme.button?.color),
                             ),
                             onPressed: () =>
-                                state.item.wikiaUrl.launchLink(context),
+                                state.item.wikiaUrl?.launchLink(context),
                             child: Text(context.l10n.seeWikia),
                           ),
                       ])
@@ -122,15 +120,14 @@ class _DealWidgetState extends State<DealWidget> {
 
 class DealDetails extends StatelessWidget {
   const DealDetails({
-    Key key,
-    @required this.imageUrl,
-    @required this.itemName,
+    Key? key,
+    required this.imageUrl,
+    required this.itemName,
     this.itemDescription,
-  })  : assert(imageUrl != null),
-        assert(itemName != null),
-        super(key: key);
+  }) : super(key: key);
 
-  final String imageUrl, itemName, itemDescription;
+  final String imageUrl, itemName;
+  final String? itemDescription;
 
   @override
   Widget build(BuildContext context) {
@@ -142,15 +139,16 @@ class DealDetails extends StatelessWidget {
         ItemImage(imageUrl: imageUrl),
         Text(
           itemName,
-          style: textTheme.subtitle1.copyWith(fontWeight: FontWeight.w500),
+          style: textTheme.subtitle1?.copyWith(fontWeight: FontWeight.w500),
         ),
         if (itemDescription != null) ...{
           const SizedBox(height: 8.0),
           Text(
-            itemDescription,
+            itemDescription ?? '',
             maxLines: 7,
             overflow: TextOverflow.ellipsis,
-            style: textTheme.subtitle2.copyWith(color: textTheme.caption.color),
+            style:
+                textTheme.subtitle2?.copyWith(color: textTheme.caption?.color),
           ),
         }
       ],
@@ -159,9 +157,7 @@ class DealDetails extends StatelessWidget {
 }
 
 class ItemImage extends StatelessWidget {
-  const ItemImage({Key key, @required this.imageUrl})
-      : assert(imageUrl != null),
-        super(key: key);
+  const ItemImage({Key? key, required this.imageUrl}) : super(key: key);
 
   final String imageUrl;
 

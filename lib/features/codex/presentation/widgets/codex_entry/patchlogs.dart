@@ -6,7 +6,7 @@ import '../../../../../core/utils/helper_methods.dart';
 import '../../../../../core/widgets/widgets.dart';
 
 class PatchlogCards extends StatelessWidget {
-  const PatchlogCards({Key key, this.patchlogs}) : super(key: key);
+  const PatchlogCards({Key? key, required this.patchlogs}) : super(key: key);
 
   final List<Patchlog> patchlogs;
 
@@ -25,9 +25,7 @@ class PatchlogCards extends StatelessWidget {
 }
 
 class PatchlogCard extends StatelessWidget {
-  const PatchlogCard({Key key, @required this.patchlog})
-      : assert(patchlog != null),
-        super(key: key);
+  const PatchlogCard({Key? key, required this.patchlog}) : super(key: key);
 
   final Patchlog patchlog;
 

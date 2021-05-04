@@ -7,16 +7,17 @@ import '../../../../../l10n/l10n.dart';
 
 class EventStatus extends StatelessWidget {
   const EventStatus({
-    Key key,
-    this.description,
+    Key? key,
+    required this.description,
     this.tooltip,
-    this.node,
-    this.health,
-    this.expiry,
-    this.rewards,
+    required this.node,
+    required this.health,
+    required this.expiry,
+    required this.rewards,
   }) : super(key: key);
 
-  final String description, tooltip, node;
+  final String description, node;
+  final String? tooltip;
   final double health;
   final DateTime expiry;
   final List<Reward> rewards;
@@ -46,9 +47,9 @@ class EventStatus extends StatelessWidget {
     final l10n = context.l10n;
 
     final category =
-        theme.textTheme.subtitle1.copyWith(color: theme.accentColor);
+        theme.textTheme.subtitle1?.copyWith(color: theme.accentColor);
     final tooltipStyle =
-        Theme.of(context).textTheme.subtitle2.copyWith(fontSize: 15);
+        Theme.of(context).textTheme.subtitle2?.copyWith(fontSize: 15);
 
     return CustomCard(
       child: Padding(
@@ -63,7 +64,7 @@ class EventStatus extends StatelessWidget {
                 contentPadding: EdgeInsets.zero,
               ),
               const SizedBox(height: 2.0),
-              Text(tooltip, style: tooltipStyle),
+              Text(tooltip!, style: tooltipStyle),
               const SizedBox(height: 20.0),
             },
             CategoryTitle(

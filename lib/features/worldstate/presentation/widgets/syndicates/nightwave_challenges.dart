@@ -7,11 +7,11 @@ import '../../bloc/solsystem_bloc.dart';
 import 'nightwave_challenge.dart';
 
 class NightwaveChalleneges extends StatelessWidget {
-  const NightwaveChalleneges();
+  const NightwaveChalleneges({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final style = Theme.of(context).textTheme.subtitle1.copyWith(fontSize: 15);
+    final style = Theme.of(context).textTheme.subtitle1?.copyWith(fontSize: 15);
 
     return BlocBuilder<SolsystemBloc, SolsystemState>(
       builder: (_, state) {

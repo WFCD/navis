@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_brand_icons/flutter_brand_icons.dart';
 import 'package:provider/provider.dart';
+import 'package:simple_icons/simple_icons.dart';
 import 'package:wfcd_client/wfcd_client.dart';
 
 import '../../features/worldstate/presentation/bloc/solsystem_bloc.dart';
@@ -20,7 +20,7 @@ const xb1Color = Color(0xFF107C10);
 const swiColor = Color(0xFFE60012);
 
 class PlatformSelect extends StatelessWidget {
-  const PlatformSelect({Key key}) : super(key: key);
+  const PlatformSelect({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -32,25 +32,25 @@ class PlatformSelect extends StatelessWidget {
         children: const <Widget>[
           PlatformIconButton(
             platform: GamePlatforms.pc,
-            platformIcon: BrandIcons.steam,
+            platformIcon: SimpleIcons.steam,
             platformName: pc,
             platformColor: pcColor,
           ),
           PlatformIconButton(
             platform: GamePlatforms.ps4,
-            platformIcon: BrandIcons.playstation,
+            platformIcon: SimpleIcons.playstation,
             platformName: ps4,
             platformColor: ps4Color,
           ),
           PlatformIconButton(
             platform: GamePlatforms.xb1,
-            platformIcon: BrandIcons.xbox,
+            platformIcon: SimpleIcons.xbox,
             platformName: xb1,
             platformColor: xb1Color,
           ),
           PlatformIconButton(
             platform: GamePlatforms.swi,
-            platformIcon: BrandIcons.nintendoswitch,
+            platformIcon: SimpleIcons.nintendoswitch,
             platformName: swi,
             platformColor: swiColor,
           )
@@ -62,11 +62,11 @@ class PlatformSelect extends StatelessWidget {
 
 class PlatformIconButton extends StatelessWidget {
   const PlatformIconButton({
-    Key key,
-    @required this.platform,
-    @required this.platformIcon,
-    @required this.platformColor,
-    @required this.platformName,
+    Key? key,
+    required this.platform,
+    required this.platformIcon,
+    required this.platformColor,
+    required this.platformName,
   }) : super(key: key);
 
   final GamePlatforms platform;
@@ -76,7 +76,7 @@ class PlatformIconButton extends StatelessWidget {
 
   void _onPressed(BuildContext context) {
     sl<NotificationService>()
-        .unsubscribeFromPlatform(sl<Usersettings>().platform);
+        .unsubscribeFromPlatform(sl<Usersettings>().platform!);
 
     sl<NotificationService>().subscribeToPlatform(platform);
     sl<Usersettings>().platform = platform;

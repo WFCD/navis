@@ -8,23 +8,21 @@ import '../../pages/codex_entry.dart';
 import '../codex_entry/mod_entry.dart';
 
 class CodexResult extends StatelessWidget {
-  const CodexResult({Key key, @required this.item}) : super(key: key);
+  const CodexResult({Key? key, required this.item}) : super(key: key);
 
   final Item item;
 
   Widget _modBuider() {
     final mod = item as Mod;
 
-    String stats;
+    String? stats;
 
     if (mod.levelStats != null) {
-      stats = mod.levelStats.last['stats'].fold('',
-          (String previousValue, element) {
-        if (previousValue.isEmpty) {
-          return '$element\n';
-        } else {
-          return '$previousValue$element\n';
-        }
+      stats = mod.levelStats?.last['stats']!.fold('', (p, e) {
+        if (p?.isEmpty ?? true)
+          return '$e\n';
+        else
+          return '$p$e\n';
       });
     }
 
@@ -37,7 +35,7 @@ class CodexResult extends StatelessWidget {
           image: mod.imageUrl,
           name: mod.name,
           stats: stats,
-          compatName: mod.compatName,
+          compatName: mod.compatName ?? '',
           maxRank: mod.fusionLimit,
           baseDrain: mod.baseDrain,
           polarity: mod.polarity,
@@ -48,7 +46,7 @@ class CodexResult extends StatelessWidget {
           image: mod.imageUrl,
           name: mod.name,
           stats: stats,
-          compatName: mod.compatName,
+          compatName: mod.compatName ?? '',
           maxRank: mod.fusionLimit,
           baseDrain: mod.baseDrain,
           polarity: mod.polarity,
@@ -59,7 +57,7 @@ class CodexResult extends StatelessWidget {
           image: mod.imageUrl,
           name: mod.name,
           stats: stats,
-          compatName: mod.compatName,
+          compatName: mod.compatName ?? '',
           maxRank: mod.fusionLimit,
           baseDrain: mod.baseDrain,
           polarity: mod.polarity,
@@ -70,7 +68,7 @@ class CodexResult extends StatelessWidget {
           image: mod.imageUrl,
           name: mod.name,
           stats: stats,
-          compatName: mod.compatName,
+          compatName: mod.compatName ?? '',
           maxRank: mod.fusionLimit,
           baseDrain: mod.baseDrain,
           polarity: mod.polarity,
@@ -81,16 +79,15 @@ class CodexResult extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String description;
+    String? description;
 
     if (item is Mod) {
       if ((item as Mod).levelStats != null) {
-        description = (item as Mod).levelStats.last['stats'].fold('',
-            (String previousValue, element) {
-          if (previousValue == null) {
-            return '$element ';
+        description = (item as Mod).levelStats?.last['stats']!.fold('', (p, e) {
+          if (p == null) {
+            return '$e ';
           } else {
-            return '$previousValue $element ';
+            return '$p $e ';
           }
         });
       }
@@ -108,7 +105,7 @@ class CodexResult extends StatelessWidget {
             backgroundImage: item.imageName != null
                 ? CachedNetworkImageProvider(item.imageUrl)
                 : null,
-            backgroundColor: Theme.of(context)?.canvasColor,
+            backgroundColor: Theme.of(context).canvasColor,
           ),
         ),
         title: Text(item.name),
@@ -123,7 +120,7 @@ class CodexResult extends StatelessWidget {
               builder: (context) => _modBuider(),
             );
           } else {
-            Navigator.of(context)?.pushNamed(CodexEntry.route, arguments: item);
+            Navigator.of(context).pushNamed(CodexEntry.route, arguments: item);
           }
         },
       ),

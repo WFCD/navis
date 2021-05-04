@@ -6,7 +6,7 @@ import 'invasion_progress.dart';
 import 'invasion_rewards.dart';
 
 class InvasionWidget extends StatelessWidget {
-  const InvasionWidget({Key key, this.invasion}) : super(key: key);
+  const InvasionWidget({Key? key, required this.invasion}) : super(key: key);
 
   final Invasion invasion;
   static const height = 200.0;
@@ -14,16 +14,13 @@ class InvasionWidget extends StatelessWidget {
   Widget _buildDetails(
       BuildContext context, String node, String description, String eta) {
     const shadow = Shadow(offset: Offset(1.0, 0.0), blurRadius: 4.0);
+    final textTheme = Theme.of(context).textTheme;
 
-    final nodeStyle = Theme.of(context)
-        .textTheme
-        .subtitle1
-        .copyWith(color: Colors.white, fontSize: 15, shadows: <Shadow>[shadow]);
+    final nodeStyle = textTheme.subtitle1?.copyWith(
+        color: Colors.white, fontSize: 15, shadows: <Shadow>[shadow]);
 
-    final infoStyle = Theme.of(context)
-        .textTheme
-        .caption
-        .copyWith(color: Colors.white, shadows: <Shadow>[shadow]);
+    final infoStyle = textTheme.caption
+        ?.copyWith(color: Colors.white, shadows: <Shadow>[shadow]);
 
     return Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
       Text(node, style: nodeStyle),

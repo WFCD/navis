@@ -4,7 +4,7 @@ import '../../../../../core/widgets/widgets.dart';
 import '../../../../../l10n/l10n.dart';
 
 class DailyReward extends StatelessWidget {
-  const DailyReward({Key key}) : super(key: key);
+  const DailyReward({Key? key}) : super(key: key);
 
   DateTime get endOfDay {
     final now = DateTime.now().toUtc();

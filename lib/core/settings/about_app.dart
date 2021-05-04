@@ -1,7 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_brand_icons/flutter_brand_icons.dart';
 import 'package:package_info/package_info.dart';
+import 'package:simple_icons/simple_icons.dart';
 
 import '../../constants/links.dart';
 import '../../injection_container.dart';
@@ -10,7 +10,7 @@ import '../utils/helper_methods.dart';
 import '../widgets/widgets.dart';
 
 class AboutApp extends StatelessWidget {
-  const AboutApp({Key key}) : super(key: key);
+  const AboutApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +31,7 @@ class AboutApp extends StatelessWidget {
 }
 
 class About extends StatelessWidget {
-  const About({Key key}) : super(key: key);
+  const About({Key? key}) : super(key: key);
 
   static const double _iconSize = 30.0;
 
@@ -45,7 +45,7 @@ class About extends StatelessWidget {
 
     final aboutTextStyle = theme.textTheme.bodyText1;
     final linkStyle =
-        theme.textTheme.bodyText1.copyWith(color: theme.accentColor);
+        theme.textTheme.bodyText1?.copyWith(color: theme.accentColor);
 
     return AboutListTile(
       icon: null,
@@ -98,7 +98,7 @@ class About extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             IconButton(
-              icon: const Icon(BrandIcons.discord, color: Color(0xFF7289DA)),
+              icon: const Icon(SimpleIcons.discord, color: Color(0xFF7289DA)),
               iconSize: _iconSize,
               splashColor: Colors.transparent,
               onPressed: () => discordInvite.launchLink(context),
@@ -106,7 +106,7 @@ class About extends StatelessWidget {
             const SizedBox(width: 25),
             IconButton(
               icon: Icon(
-                BrandIcons.github,
+                SimpleIcons.github,
                 color: isDark ? Colors.white : const Color(0xFF181717),
               ),
               iconSize: _iconSize,
@@ -144,14 +144,14 @@ class _LinkTextSpan extends TextSpan {
   // manage the recognizer from outside the TextSpan, e.g. in the State of a
   // stateful widget that then hands the recognizer to the TextSpan.
   _LinkTextSpan({
-    BuildContext context,
-    TextStyle style,
-    String url,
-    String text,
+    BuildContext? context,
+    TextStyle? style,
+    required String url,
+    String? text,
   }) : super(
           style: style,
           text: text ?? url,
           recognizer: TapGestureRecognizer()
-            ..onTap = () => url.launchLink(context),
+            ..onTap = () => url.launchLink(context!),
         );
 }

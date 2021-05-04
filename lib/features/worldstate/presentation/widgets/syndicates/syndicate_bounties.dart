@@ -6,7 +6,7 @@ import '../../../utils/faction_utils.dart';
 import 'syndicate_bounty_header.dart';
 
 class SyndicateBounties extends StatelessWidget {
-  const SyndicateBounties({Key key, @required this.syndicate})
+  const SyndicateBounties({Key? key, required this.syndicate})
       : super(key: key);
 
   final Syndicate syndicate;
@@ -17,11 +17,11 @@ class SyndicateBounties extends StatelessWidget {
 
     return CustomScrollView(
       slivers: <Widget>[
-        for (Job job in jobs ?? [])
+        for (Job job in jobs)
           SliverStickyHeader(
             header: SyndicateBountyHeader(
               job: job,
-              faction: syndicateStringToEnum(syndicate.id),
+              faction: syndicateStringToEnum(syndicate.id!),
             ),
             sliver: SliverList(
               delegate: SliverChildBuilderDelegate(

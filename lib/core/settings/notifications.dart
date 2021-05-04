@@ -11,7 +11,7 @@ import '../utils/notification_filter.dart';
 import '../widgets/widgets.dart';
 
 class Notifications extends StatelessWidget {
-  const Notifications({Key key}) : super(key: key);
+  const Notifications({Key? key}) : super(key: key);
 
   void openDialog(BuildContext context, LocalizedFilter filters, String type) {
     switch (type) {
@@ -41,15 +41,15 @@ class Notifications extends StatelessWidget {
       const CategoryTitle(title: 'Notifications'),
       for (Map<String, String> m in filters.simpleFilters)
         _SimpleNotification(
-          name: m['name'],
-          description: m['description'],
-          optionKey: m['key'],
+          name: m['name']!,
+          description: m['description']!,
+          optionKey: m['key']!,
         ),
       for (Map<String, String> k in filters.filtered)
         ListTile(
-          title: Text(k['title']),
-          subtitle: Text(k['description']),
-          onTap: () => openDialog(context, filters, k['type']),
+          title: Text(k['title']!),
+          subtitle: Text(k['description']!),
+          onTap: () => openDialog(context, filters, k['type']!),
         ),
     ]);
   }
@@ -67,10 +67,10 @@ void _onChanged(BuildContext context, String key, bool value) {
 
 class _SimpleNotification extends StatelessWidget {
   const _SimpleNotification({
-    Key key,
-    @required this.name,
-    @required this.description,
-    @required this.optionKey,
+    Key? key,
+    required this.name,
+    required this.description,
+    required this.optionKey,
   }) : super(key: key);
 
   final String name;
@@ -90,7 +90,7 @@ class _SimpleNotification extends StatelessWidget {
 }
 
 class FilterDialog extends StatelessWidget {
-  const FilterDialog({this.options});
+  const FilterDialog({Key? key, required this.options}) : super(key: key);
 
   final Map<String, String> options;
 
@@ -118,7 +118,7 @@ class FilterDialog extends StatelessWidget {
         child: Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
           for (String key in _options.keys)
             NotificationCheckBox(
-              option: _options[key],
+              option: _options[key]!,
               optionKey: key,
               value: context.watch<Usersettings>().getToggle(key),
             )
@@ -136,14 +136,11 @@ class FilterDialog extends StatelessWidget {
 
 class NotificationCheckBox extends StatelessWidget {
   const NotificationCheckBox({
-    Key key,
-    @required this.option,
-    @required this.optionKey,
-    @required this.value,
-  })  : assert(option != null),
-        assert(optionKey != null),
-        assert(value != null),
-        super(key: key);
+    Key? key,
+    required this.option,
+    required this.optionKey,
+    required this.value,
+  }) : super(key: key);
 
   final String option;
   final String optionKey;
@@ -155,7 +152,7 @@ class NotificationCheckBox extends StatelessWidget {
       title: Text(option),
       value: value,
       activeColor: Theme.of(context).accentColor,
-      onChanged: (b) => _onChanged(context, optionKey, b),
+      onChanged: (b) => _onChanged(context, optionKey, b!),
     );
   }
 }
