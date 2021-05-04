@@ -28,7 +28,7 @@ dependencies:
   hydrated_bloc: ^7.0.0
   internet_connection_checker: ^0.0.1
   intl: ^0.17.0
-  matomo: ^0.1.1
+  matomo: ^0.1.2
   oxidized: ^4.2.0
   package_info: ^2.0.0
   responsive_builder: ^0.4.1
