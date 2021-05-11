@@ -23,7 +23,7 @@ dependencies:
   flutter_sticky_header: ^0.6.0
   flutter_svg: ^0.22.0
   flutter_web_browser: ^0.14.0
-  get_it: ^7.0.0
+  get_it: ^7.1.2
   hive: ^2.0.4
   hydrated_bloc: ^7.0.0
   internet_connection_checker: ^0.0.1
@@ -33,7 +33,7 @@ dependencies:
   package_info: ^2.0.0
   responsive_builder: ^0.4.1
   sentry_flutter: ^5.0.0
-  simple_icons: ^4.21.0
+  simple_icons: ^4.22.0
   supercharged: ^2.0.0
   youtube_explode_dart: ^1.9.3+2
 
