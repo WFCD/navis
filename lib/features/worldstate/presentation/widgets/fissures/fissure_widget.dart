@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:responsive_builder/responsive_builder.dart';
 import 'package:wfcd_client/entities.dart';
 
 import '../../../../../core/widgets/widgets.dart';
@@ -57,10 +56,7 @@ class FissureWidget extends StatelessWidget {
                   return RelicIcons.requiem;
               }
             }(),
-            size: getValueForScreenType(
-                context: context,
-                mobile: (mediaQuery.size.longestSide / 100) * 5,
-                tablet: (mediaQuery.size.shortestSide / 100) * 8),
+            size: 50,
           ),
           Expanded(
             child: Padding(
@@ -70,9 +66,25 @@ class FissureWidget extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(fissure.node, style: _nodeStyle),
-                  Text(
-                    '${fissure.missionType} | ${fissure.tier}',
-                    style: _missionTypeStyle,
+                  Padding(
+                    padding: const EdgeInsets.only(top: 4.0),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        if (fissure.isStorm)
+                          const Padding(
+                            padding: EdgeInsets.only(right: 8.0),
+                            child: Icon(
+                              NavisSysIcons.archwing,
+                              size: 20,
+                            ),
+                          ),
+                        Text(
+                          '${fissure.missionType} | ${fissure.tier}',
+                          style: _missionTypeStyle,
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ),
