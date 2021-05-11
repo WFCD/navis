@@ -6,7 +6,6 @@ import 'package:wfcd_client/entities.dart';
 
 import '../widgets/trader_inventory/inventory_tables.dart';
 
-// TODO(Ornstein): maybe add more functionality to Baro's Inventory
 class BaroInventory extends TraceableStatelessWidget {
   const BaroInventory({Key? key}) : super(key: key);
 

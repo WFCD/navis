@@ -76,8 +76,6 @@ class _DealWidgetState extends State<DealWidget> {
                         children: <Widget>[
                           if (state is DarvodealLoading)
                             StaticBox.text(text: widget.deal.item),
-                          // ignore: lines_longer_than_80_chars
-                          // TODO(Ornstein): should probably put a plat icon here instead
                           StaticBox.text(
                             text: '${widget.deal.salePrice}\p',
                             style: saleInfo,
