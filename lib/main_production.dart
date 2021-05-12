@@ -15,7 +15,7 @@ Future<void> main() async {
     (option) => option.dsn = const String.fromEnvironment('SENTRY_DSN'),
     appRunner: () async {
       await MatomoTracker().initialize(
-          siteId: 4, url: const String.fromEnvironment('MATOMO_URL'));
+          siteId: 2, url: const String.fromEnvironment('MATOMO_URL'));
 
       await startApp();
     },
