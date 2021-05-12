@@ -20,6 +20,7 @@ class DarvoDealCard extends StatelessWidget {
     final deal = deals.first;
 
     return CustomCard(
+      title: context.l10n.darvoNotificationTitle,
       child: DealWidget(deal: deal),
     );
   }
