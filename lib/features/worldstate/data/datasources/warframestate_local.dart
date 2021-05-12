@@ -32,6 +32,7 @@ class WarframestatCache {
 
   static const String _dealId = 'dealId';
   static const String _state = 'worldstate';
+  static const String _stateTimestamp = 'worldstateTimestamp';
   static const String _targets = 'synthTargets';
 
   void cacheDealInfo(String id, Item item) {
@@ -43,7 +44,9 @@ class WarframestatCache {
   }
 
   void cacheWorldstate(Worldstate state) {
-    _box.put(_state, json.encode((state as WorldstateModel).toJson()));
+    _box
+      ..put(_stateTimestamp, state.timestamp)
+      ..put(_state, json.encode((state as WorldstateModel).toJson()));
   }
 
   String? getCachedDealId() => readDisk<String>(_dealId);
@@ -54,6 +57,10 @@ class WarframestatCache {
     if (cached == null) return null;
 
     return toBaseItem(json.decode(cached) as Map<String, dynamic>);
+  }
+
+  DateTime? getCachedStateTimestamp() {
+    return readDisk<DateTime>(_stateTimestamp);
   }
 
   Worldstate? getCachedState() {

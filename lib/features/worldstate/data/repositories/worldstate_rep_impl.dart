@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:oxidized/oxidized.dart';
@@ -56,32 +57,41 @@ class WorldstateRepositoryImpl implements WorldstateRepository {
     const refresh = Duration(minutes: 1);
 
     final now = DateTime.now();
-    final cached = cache.getCachedState();
-    final age = cached?.timestamp.difference(now).abs() ?? Duration.zero;
+    final timestamp = cache.getCachedStateTimestamp();
+    final age = timestamp?.difference(now).abs() ?? const Duration(minutes: 2);
     final request = WorldstateRequest(
         usersettings.platform ?? GamePlatforms.pc, Platform.localeName);
 
-    if (cached == null || age >= refresh || forceUpdate) {
-      if (await networkInfo.isConnected) {
-        try {
-          final state = await compute(_getWorldstate, request);
+    Result<Worldstate, Failure> getcached() {
+      final cached = cache.getCachedState();
 
-          if (state == null && cached == null) {
-            return Err(CacheFailure());
-          } else if (state == null && cached != null) {
-            return Ok(cached);
-          } else {
-            cache.cacheWorldstate(state!);
-            return Ok(state);
-          }
-        } catch (e) {
-          return Ok(cached!);
+      if (cached != null) {
+        return Ok(cached);
+      } else {
+        return Err(CacheFailure());
+      }
+    }
+
+    if (age >= refresh || forceUpdate) {
+      if (await networkInfo.isConnected) {
+        final state = await compute(_getWorldstate, request).catchError((e) {
+          if (cache.getCachedState() != null)
+            return cache.getCachedState();
+          else
+            return null;
+        });
+
+        if (state != null) {
+          cache.cacheWorldstate(state);
+          return Ok(state);
+        } else {
+          return Err(ServerFailure());
         }
       } else {
-        return Ok(cached!);
+        return getcached();
       }
     } else {
-      return Ok(cached);
+      return getcached();
     }
   }
 
