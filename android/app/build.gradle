@@ -39,7 +39,7 @@ android {
 
     defaultConfig {
         applicationId "com.cephalon.navis"
-        minSdkVersion 16
+        minSdkVersion 21
         targetSdkVersion 30
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
@@ -83,8 +83,8 @@ flutter {
 }
 
 dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'com.google.firebase:firebase-messaging:21.0.1'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+    implementation 'com.google.firebase:firebase-messaging:22.0.0'
     implementation 'com.android.support:multidex:1.0.3'
 }
 
