@@ -1,5 +1,8 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:matomo/matomo.dart';
+import 'package:navis/core/local/user_settings.dart';
 import 'package:package_info/package_info.dart';
 import 'package:simple_icons/simple_icons.dart';
 
@@ -19,6 +22,12 @@ class AboutApp extends StatelessWidget {
     return Column(
       children: <Widget>[
         CategoryTitle(title: l10n.aboutCategoryTitle),
+        CheckboxListTile(
+          title: Text(l10n.optOutOfAnalyticsTitle),
+          subtitle: Text(l10n.optOutOfAnalyticsDescription),
+          value: context.watch<Usersettings>().isOptOut,
+          onChanged: (b) => context.read<Usersettings>().isOptOut = b ?? false,
+        ),
         ListTile(
           title: Text(l10n.reportBugsTitle),
           subtitle: Text(l10n.reportBugsDescription),

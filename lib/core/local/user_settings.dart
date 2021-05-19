@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:logging/logging.dart';
+import 'package:matomo/matomo.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:wfcd_client/wfcd_client.dart';
 
@@ -63,6 +64,10 @@ class Usersettings with ChangeNotifier {
   bool get backkey => getToggle(SettingsKeys.backKey);
 
   set backkey(bool value) => setToggle(SettingsKeys.backKey, value);
+
+  bool get isOptOut => getToggle(MatomoTracker.kOptOut);
+
+  set isOptOut(bool value) => setToggle(MatomoTracker.kOptOut, value);
 
   bool getToggle(String key) {
     return _box.get(key, defaultValue: false) as bool;
