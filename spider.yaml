@@ -19,6 +19,3 @@ groups:
   - path: assets/
     class_name: NavisAssets
     types: [.webp, .svg, .json]
-  - path: assets/mod_frames
-    class_name: ModFrames
-    types: [.webp]
