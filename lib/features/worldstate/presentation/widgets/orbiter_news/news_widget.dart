@@ -1,13 +1,10 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:supercharged/supercharged.dart';
 import 'package:wfcd_client/entities.dart';
 
 import '../../../../../core/themes/themes.dart';
 import '../../../../../core/utils/extensions.dart';
 import '../../../../../core/utils/helper_methods.dart';
-import '../../../../../core/widgets/custom_card.dart';
-import '../../../../../core/widgets/static_box.dart';
-import '../common/background_image.dart';
 
 class OrbiterNewsWidget extends StatelessWidget {
   const OrbiterNewsWidget({Key? key, required this.news}) : super(key: key);
@@ -16,52 +13,50 @@ class OrbiterNewsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final screenSize = MediaQuery.of(context).size;
-    final textTheme = Typography.whiteMountainView;
     final currentLocale = Localizations.localeOf(context).languageCode;
-    final isOneDayOld =
-        news.date.toLocal().difference(DateTime.now()).abs() < 2.days;
 
     return Theme(
       data: NavisTheming.dark,
       child: InkWell(
         onTap: () => news.link.launchLink(context),
-        child: CustomCard(
-          padding: EdgeInsets.zero,
-          margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 8.0),
-          child: BackgroundImage(
-            imageUrl: news.proxyImage,
-            height: (screenSize.height / 100) * 16,
-            padding: const EdgeInsets.all(22.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  children: [
-                    if (isOneDayOld)
-                      StaticBox.text(
-                        text: 'New',
-                        style: textTheme.caption,
-                      ),
-                    const SizedBox(height: 8.0),
-                    Expanded(
-                      child: Text(
-                        news.translations[currentLocale] ?? news.message,
-                        overflow: TextOverflow.ellipsis,
-                        style: textTheme.bodyText1?.copyWith(fontSize: 16.0),
-                      ),
-                    ),
-                  ],
+        child: Card(
+            margin: const EdgeInsets.symmetric(horizontal: 2.0, vertical: 4.0),
+            child: Container(
+              height: 200,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: CachedNetworkImageProvider(news.proxyImage),
+                  fit: BoxFit.cover,
                 ),
-                const SizedBox(height: 12),
-                Text(
-                  news.date.toLocal().format(context),
-                  style: textTheme.caption,
-                )
-              ],
-            ),
-          ),
-        ),
+              ),
+              child: Container(
+                alignment: Alignment.bottomCenter,
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                      begin: Alignment.bottomCenter,
+                      end: Alignment.topCenter,
+                      stops: <double>[
+                        0.3,
+                        1.0
+                      ],
+                      colors: <Color>[
+                        Colors.black.withOpacity(0.8),
+                        Colors.transparent
+                      ]),
+                ),
+                child: ListTile(
+                  title: Text(
+                    news.translations[currentLocale] ?? news.message,
+                    overflow: TextOverflow.ellipsis,
+                    // style: textTheme.bodyText1?.copyWith(fontSize: 16.0),
+                  ),
+                  subtitle: Text(
+                    news.date.toLocal().format(context),
+                    // style: textTheme.caption,
+                  ),
+                ),
+              ),
+            )),
       ),
     );
   }
