@@ -1,14 +1,13 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:matomo/matomo.dart';
-import 'package:navis/core/local/user_settings.dart';
 import 'package:package_info/package_info.dart';
 import 'package:simple_icons/simple_icons.dart';
 
 import '../../constants/links.dart';
 import '../../injection_container.dart';
 import '../../l10n/l10n.dart';
+import '../local/user_settings.dart';
 import '../utils/helper_methods.dart';
 import '../widgets/widgets.dart';
 

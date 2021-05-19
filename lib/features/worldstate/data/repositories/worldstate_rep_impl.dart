@@ -1,5 +1,5 @@
-import 'dart:developer';
 import 'dart:io';
+
 import 'package:flutter/foundation.dart';
 import 'package:oxidized/oxidized.dart';
 import 'package:wfcd_client/entities.dart';
