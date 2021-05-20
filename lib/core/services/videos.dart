@@ -1,15 +1,34 @@
+import 'dart:async';
+import 'dart:io';
+
 import 'package:flutter/foundation.dart';
 import 'package:youtube_explode_dart/youtube_explode_dart.dart';
+import 'package:retry/retry.dart';
 
 class VideoService {
   Future<VideoInformation> getVideoInformation(String id) async {
     return compute(_getVideoInformation, id);
   }
 
+  static const _timeout = Duration(seconds: 5);
+
   static Future<VideoInformation> _getVideoInformation(String id) async {
     final exploded = YoutubeExplode();
-    final video = await exploded.videos.get(id);
-    final manifest = await exploded.videos.streamsClient.getManifest(id);
+
+    final video = await retry(
+      () => exploded.videos.get(id).timeout(_timeout),
+      retryIf: (e) =>
+          e is SocketException ||
+          e is TimeoutException ||
+          e is FatalFailureException,
+    );
+    final manifest = await retry(
+      () => exploded.videos.streamsClient.getManifest(id).timeout(_timeout),
+      retryIf: (e) =>
+          e is SocketException ||
+          e is TimeoutException ||
+          e is FatalFailureException,
+    );
 
     return VideoInformation(
       title: video.title,
