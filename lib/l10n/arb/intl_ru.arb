@@ -358,7 +358,7 @@
         "type": "text",
         "placeholder": {}
     },
-    "sentientOutpostNotificationDescription": "О появлении новой Аномалии Владеющих Разумом",
+    "sentientOutpostNotificationDescription": "Notifications for new sentient threats.",
     "@sentientOutpostNotificationDescription": {
         "description": "Notification description for sentient outpost option",
         "type": "text",
@@ -412,7 +412,7 @@
         "type": "text",
         "placeholder": {}
     },
-    "fissuresNotificationDescription": "О Разрывах Бездны для выбранного типа миссии",
+    "fissuresNotificationDescription": "Filter fissure notifications by prefered mission type.",
     "@fissuresNotificationDescription": {
         "description": "Main description for fissures notifications",
         "type": "text",
@@ -424,7 +424,7 @@
         "type": "text",
         "placeholder": {}
     },
-    "acolytesNotificationDescription": "Об обнаружении выбранного Послушника",
+    "acolytesNotificationDescription": "Notifies when an acolyte is found.",
     "@acolytesNotificationDescription": {
         "description": "Main description for acolyte notifications",
         "type": "text",
@@ -510,7 +510,7 @@
         "type": "text",
         "placeholder": {}
     },
-    "reportBugsDescription": "Сообщить об ошибке или запросить новые функции",
+    "reportBugsDescription": "Report bugs or request a feature.",
     "@reportBugsDescription": {
         "description": "Description for bug report link",
         "type": "text",
@@ -891,6 +891,18 @@
     "syndicateDualScreenTitle": "Выбрать синдикат",
     "@syndicateDualScreenTitle": {
         "description": "User hint when under syndicate tabs using a tablet",
+        "type": "text",
+        "placeholder": {}
+    },
+    "optOutOfAnalyticsTitle": "Opt out of analytics",
+    "@optOutOfAnalyticsTitle": {
+        "description": "Title opting out of analytics",
+        "type": "text",
+        "placeholder": {}
+    },
+    "optOutOfAnalyticsDescription": "Disable analytics.",
+    "@optOutOfAnalyticsDescription": {
+        "description": "Description of the analytics opting buttong",
         "type": "text",
         "placeholder": {}
     }
