@@ -3,8 +3,6 @@ import 'package:wfcd_client/entities.dart';
 Worldstate cleanState(Worldstate state) {
   state.alerts.retainWhere((e) => e.active);
 
-  state.dailyDeals.retainWhere((e) => (e.total - e.sold) > 0);
-
   state.news.sort((a, b) => b.date.compareTo(a.date));
 
   state.persistentEnemies?.sort((a, b) => a.agentType.compareTo(b.agentType));
