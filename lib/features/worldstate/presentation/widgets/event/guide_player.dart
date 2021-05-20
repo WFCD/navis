@@ -69,7 +69,7 @@ class _YoutubePlayerState extends State<EventVideoPlayer> {
     return CustomCard(
         padding: EdgeInsets.zero,
         child: SizedBox(
-          height: (MediaQuery.of(context).size.height / 100) * 48,
+          height: (MediaQuery.of(context).size.height / 100) * 50,
           child: _chewieController == null
               ? const Center(child: CircularProgressIndicator())
               : Column(
@@ -79,12 +79,15 @@ class _YoutubePlayerState extends State<EventVideoPlayer> {
                       aspectRatio: videoInformation.aspectRatio,
                       child: Chewie(controller: _chewieController!),
                     ),
-                    PlayerInformation(
-                      title: videoInformation.title,
-                      description: videoInformation.description,
-                      author: videoInformation.author,
-                      profileThumbnail: widget.profileThumbnail,
-                      link: videoInformation.url,
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(16.0, 20.0, 16.0, 2.0),
+                      child: PlayerInformation(
+                        title: videoInformation.title,
+                        description: videoInformation.description,
+                        author: videoInformation.author,
+                        profileThumbnail: widget.profileThumbnail,
+                        link: videoInformation.url,
+                      ),
                     )
                   ],
                 ),
@@ -114,42 +117,38 @@ class PlayerInformation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Text(
-            title,
-            style: Theme.of(context).textTheme.subtitle1,
-            maxLines: 2,
-            overflow: TextOverflow.ellipsis,
-          ),
-          const SizedBox(height: 16.0),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: <Widget>[
-              if (profileThumbnail != null)
-                CircleAvatar(
-                  radius: 10.0,
-                  backgroundImage:
-                      CachedNetworkImageProvider(profileThumbnail!),
-                ),
-              const SizedBox(width: 8.0),
-              Text(
-                author,
-                style: Theme.of(context).textTheme.caption,
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Text(
+          title,
+          style: Theme.of(context).textTheme.subtitle1,
+          maxLines: 2,
+          overflow: TextOverflow.ellipsis,
+        ),
+        const SizedBox(height: 16.0),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: <Widget>[
+            if (profileThumbnail != null)
+              CircleAvatar(
+                radius: 10.0,
+                backgroundImage: CachedNetworkImageProvider(profileThumbnail!),
               ),
-              const Spacer(),
-              IconButton(
-                icon: const Icon(Icons.open_in_new),
-                onPressed: () => link.launchLink(context),
-              )
-            ],
-          ),
-        ],
-      ),
+            const SizedBox(width: 8.0),
+            Text(
+              author,
+              style: Theme.of(context).textTheme.caption,
+            ),
+            const Spacer(),
+            IconButton(
+              icon: const Icon(Icons.open_in_new),
+              onPressed: () => link.launchLink(context),
+            )
+          ],
+        ),
+      ],
     );
   }
 }
