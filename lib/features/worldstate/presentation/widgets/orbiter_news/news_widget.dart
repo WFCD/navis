@@ -40,7 +40,7 @@ class OrbiterNewsWidget extends StatelessWidget {
                         1.0
                       ],
                       colors: <Color>[
-                        Colors.black.withOpacity(0.8),
+                        Colors.black.withOpacity(0.7),
                         Colors.transparent
                       ]),
                 ),
