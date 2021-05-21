@@ -510,7 +510,7 @@
         "type": "text",
         "placeholder": {}
     },
-    "reportBugsDescription": "Report bugs or request a feature.",
+    "reportBugsDescription": "Fehler melden oder neue Funktionen vorschlagen.",
     "@reportBugsDescription": {
         "description": "Description for bug report link",
         "type": "text",
