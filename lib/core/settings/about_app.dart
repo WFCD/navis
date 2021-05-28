@@ -72,19 +72,21 @@ class About extends StatelessWidget {
               style: aboutTextStyle,
               text: '${l10n.homePageTitle} ',
             ),
-            _LinkTextSpan(
-              style: linkStyle,
-              url: projectPage,
+            TextSpan(
               text: projectPage,
+              style: linkStyle,
+              recognizer: TapGestureRecognizer()
+                ..onTap = () => projectPage.launchLink(context),
             ),
             TextSpan(
               style: aboutTextStyle,
               text: '\n\n${l10n.issueTrackerDescription} ',
             ),
-            _LinkTextSpan(
-              style: linkStyle,
-              url: issuePage,
+            TextSpan(
               text: l10n.issueTrackerTitle,
+              style: linkStyle,
+              recognizer: TapGestureRecognizer()
+                ..onTap = () => issuePage.launchLink(context),
             ),
             TextSpan(
               style: Theme.of(context).textTheme.caption,
@@ -94,11 +96,12 @@ class About extends StatelessWidget {
               style: Theme.of(context).textTheme.caption,
               text: '${l10n.warframeLinkTitle} ',
             ),
-            _LinkTextSpan(
-              style: linkStyle,
-              url: warframePage,
+            TextSpan(
               text: warframePage,
-            )
+              style: linkStyle,
+              recognizer: TapGestureRecognizer()
+                ..onTap = () => warframePage.launchLink(context),
+            ),
           ]),
         ),
         const SizedBox(height: 12.0),
@@ -136,30 +139,4 @@ class About extends StatelessWidget {
       ],
     );
   }
-}
-
-class _LinkTextSpan extends TextSpan {
-  // Beware!
-  //
-  // This class is only safe because the TapGestureRecognizer is not
-  // given a deadline and therefore never allocates any resources.
-  //
-  // In any other situation -- setting a deadline, using any of the less trivial
-  // recognizers, etc -- you would have to manage the gesture recognizer's
-  // lifetime and call dispose() when the TextSpan was no longer being rendered.
-  //
-  // Since TextSpan itself is @immutable, this means that you would have to
-  // manage the recognizer from outside the TextSpan, e.g. in the State of a
-  // stateful widget that then hands the recognizer to the TextSpan.
-  _LinkTextSpan({
-    BuildContext? context,
-    TextStyle? style,
-    required String url,
-    String? text,
-  }) : super(
-          style: style,
-          text: text ?? url,
-          recognizer: TapGestureRecognizer()
-            ..onTap = () => url.launchLink(context!),
-        );
 }
