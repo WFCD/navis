@@ -15,7 +15,7 @@ dependencies:
     git: https://github.com/SlayerOrnstein/wfcd_client.git
   bloc: ^7.0.0
   cached_network_image: ^3.0.0-nullsafety
-  chewie: ^1.0.0
+  chewie: ^1.2.0
   equatable: ^2.0.2
   firebase_core: ^1.2.0
   firebase_messaging: ^10.0.0
@@ -26,24 +26,24 @@ dependencies:
   get_it: ^7.1.3
   hive: ^2.0.4
   hydrated_bloc: ^7.0.0
-  internet_connection_checker: ^0.0.1
+  internet_connection_checker: ^0.0.1+1
   intl: ^0.17.0
-  matomo: ^0.1.2
+  matomo: ^1.0.0
   oxidized: ^4.2.0
-  package_info: ^2.0.0
+  package_info: ^2.0.2
   responsive_builder: ^0.4.1
   retry: ^3.1.0
   sentry_flutter: ^5.0.0
-  simple_icons: ^4.24.0
+  simple_icons: ^4.25.0
   supercharged: ^2.0.0
   youtube_explode_dart: ^1.9.4
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  mocktail: ^0.1.2
-  test: ^1.16.5
-  very_good_analysis: ^2.0.3
+  mocktail: ^0.1.4
+  test: ^1.16.8
+  very_good_analysis: ^2.1.1
 
 flutter:
   generate: true
