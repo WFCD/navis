@@ -17,17 +17,11 @@ class VideoService {
 
     final video = await retry(
       () => exploded.videos.get(id).timeout(_timeout),
-      retryIf: (e) =>
-          e is SocketException ||
-          e is TimeoutException ||
-          e is FatalFailureException,
+      retryIf: _shouldRetry,
     );
     final manifest = await retry(
       () => exploded.videos.streamsClient.getManifest(id).timeout(_timeout),
-      retryIf: (e) =>
-          e is SocketException ||
-          e is TimeoutException ||
-          e is FatalFailureException,
+      retryIf: _shouldRetry,
     );
 
     return VideoInformation(
@@ -38,6 +32,12 @@ class VideoService {
       muxedStreamInfo: manifest.muxed.toList(),
     );
   }
+
+  static bool _shouldRetry(e) =>
+      e is SocketException ||
+      e is TimeoutException ||
+      e is FatalFailureException ||
+      e is RequestLimitExceededException;
 }
 
 class VideoInformation {
