@@ -19,10 +19,11 @@ class CodexResult extends StatelessWidget {
 
     if (mod.levelStats != null) {
       stats = mod.levelStats?.last['stats']!.fold('', (p, e) {
-        if (p?.isEmpty ?? true)
+        if (p?.isEmpty ?? true) {
           return '$e\n';
-        else
+        } else {
           return '$p$e\n';
+        }
       });
     }
 

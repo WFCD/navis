@@ -34,7 +34,7 @@ class Polarity extends StatelessWidget {
       }();
     }
 
-    return Container(
+    return SizedBox(
       width: 20,
       child: getPolarity(polarity, color: _color),
     );

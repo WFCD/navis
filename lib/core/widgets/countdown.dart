@@ -123,7 +123,7 @@ class _CountdownTimerState extends State<CountdownTimer>
     final is24hrs = _timeLeft < 1.days;
 
     return '${_expired ? 'Expired: -' : ''}'
-        '${!is24hrs ? '$days\d' : ''} $hours:$minutes:$seconds';
+        '${!is24hrs ? '${days}d' : ''} $hours:$minutes:$seconds';
   }
 
   @override

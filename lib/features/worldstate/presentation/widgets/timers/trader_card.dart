@@ -50,7 +50,7 @@ class TraderCard extends StatelessWidget {
             text: Text(l10n.baroLocation),
             padding: padding,
             child: StaticBox.text(
-              text: '${trader.location}',
+              text: trader.location,
               color: primary,
             ),
           ),

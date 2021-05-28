@@ -51,8 +51,9 @@ class _NavisAppState extends State<NavisApp> with WidgetsBindingObserver {
         showStacktrace: true,
       );
 
-      if (widget is Scaffold || widget is Navigator)
+      if (widget is Scaffold || widget is Navigator) {
         _error = Scaffold(body: Center(child: _error));
+      }
 
       return _error;
     };

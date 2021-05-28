@@ -78,7 +78,7 @@ class _DealWidgetState extends State<DealWidget> {
                           if (state is DarvodealLoading)
                             StaticBox.text(text: widget.deal.item),
                           StaticBox.text(
-                            text: '${widget.deal.salePrice}\p',
+                            text: '${widget.deal.salePrice}p',
                             style: saleInfo,
                           ),
                           StaticBox.text(

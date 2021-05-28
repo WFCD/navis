@@ -35,7 +35,7 @@ class OrbiterNewsWidget extends StatelessWidget {
                   gradient: LinearGradient(
                       begin: Alignment.bottomCenter,
                       end: Alignment.topCenter,
-                      stops: <double>[
+                      stops: const <double>[
                         0.3,
                         1.0
                       ],

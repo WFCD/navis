@@ -63,7 +63,7 @@ ${(projectileWeapon.criticalChance * 100).roundToDouble()}%'''),
               ),
               RowItem(
                 text: Text(l10n.fireRateTitle),
-                child: Text('${projectileWeapon.fireRate.toStringAsFixed(2)}'),
+                child: Text(projectileWeapon.fireRate.toStringAsFixed(2)),
               ),
               RowItem(
                 text: Text(l10n.magazineTitle),
@@ -75,7 +75,7 @@ ${(projectileWeapon.criticalChance * 100).roundToDouble()}%'''),
               ),
               RowItem(
                 text: Text(l10n.noiseTitle),
-                child: Text('${projectileWeapon.noise.toUpperCase()}'),
+                child: Text(projectileWeapon.noise.toUpperCase()),
               ),
               RowItem(
                 text: Text(l10n.reloadTitle),
@@ -170,7 +170,7 @@ class MeleeStats extends StatelessWidget {
                 ),
               RowItem(
                 text: Text(l10n.attackSpeedTitle),
-                child: Text('${meleeWeapon.attackSpeed.toStringAsFixed(2)}'),
+                child: Text(meleeWeapon.attackSpeed.toStringAsFixed(2)),
               ),
               RowItem(
                 text: Text(l10n.cricticalChanceTitle),

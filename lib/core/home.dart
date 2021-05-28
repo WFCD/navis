@@ -79,7 +79,7 @@ class _HomeState extends State<Home> {
                   ],
                 ),
               ),
-              Expanded(child: DrawerOptions()),
+              const Expanded(child: DrawerOptions()),
               const Divider(height: 4.0),
               ListTile(
                 leading: const FaIcon(

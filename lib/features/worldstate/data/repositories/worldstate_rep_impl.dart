@@ -75,10 +75,11 @@ class WorldstateRepositoryImpl implements WorldstateRepository {
     if (age >= refresh || forceUpdate) {
       if (await networkInfo.isConnected) {
         final state = await compute(_getWorldstate, request).catchError((e) {
-          if (cache.getCachedState() != null)
+          if (cache.getCachedState() != null) {
             return cache.getCachedState();
-          else
+          } else {
             return null;
+          }
         });
 
         if (state != null) {
