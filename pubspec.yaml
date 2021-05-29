@@ -14,7 +14,7 @@ dependencies:
   wfcd_client:
     git: https://github.com/SlayerOrnstein/wfcd_client.git
   bloc: ^7.0.0
-  cached_network_image: ^3.0.0-nullsafety
+  cached_network_image: ^3.0.0
   chewie: ^1.2.0
   equatable: ^2.0.2
   firebase_core: ^1.2.0
