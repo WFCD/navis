@@ -358,7 +358,7 @@
         "type": "text",
         "placeholder": {}
     },
-    "sentientOutpostNotificationDescription": "Notifications for new sentient threats.",
+    "sentientOutpostNotificationDescription": "새 센티언트 위협에 대한 알림을 받습니다.",
     "@sentientOutpostNotificationDescription": {
         "description": "Notification description for sentient outpost option",
         "type": "text",
@@ -412,7 +412,7 @@
         "type": "text",
         "placeholder": {}
     },
-    "fissuresNotificationDescription": "Filter fissure notifications by prefered mission type.",
+    "fissuresNotificationDescription": "균열 알림을 선호하는 미션 유형으로 필터하기.",
     "@fissuresNotificationDescription": {
         "description": "Main description for fissures notifications",
         "type": "text",
@@ -424,7 +424,7 @@
         "type": "text",
         "placeholder": {}
     },
-    "acolytesNotificationDescription": "Notifies when an acolyte is found.",
+    "acolytesNotificationDescription": "어콜라이트를 발견하면 알림 받기.",
     "@acolytesNotificationDescription": {
         "description": "Main description for acolyte notifications",
         "type": "text",
@@ -510,7 +510,7 @@
         "type": "text",
         "placeholder": {}
     },
-    "reportBugsDescription": "Report bugs or request a feature.",
+    "reportBugsDescription": "버그 제보 또는 기능 제안.",
     "@reportBugsDescription": {
         "description": "Description for bug report link",
         "type": "text",
@@ -894,13 +894,13 @@
         "type": "text",
         "placeholder": {}
     },
-    "optOutOfAnalyticsTitle": "Opt out of analytics",
+    "optOutOfAnalyticsTitle": "분석에서 제외",
     "@optOutOfAnalyticsTitle": {
         "description": "Title opting out of analytics",
         "type": "text",
         "placeholder": {}
     },
-    "optOutOfAnalyticsDescription": "Disable analytics.",
+    "optOutOfAnalyticsDescription": "분석을 비활성화합니다.",
     "@optOutOfAnalyticsDescription": {
         "description": "Description of the analytics opting buttong",
         "type": "text",
