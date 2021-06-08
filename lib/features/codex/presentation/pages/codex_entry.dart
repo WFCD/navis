@@ -15,43 +15,98 @@ class CodexEntry extends StatelessWidget {
     final heightRatio = MediaQuery.of(context).size.longestSide / 100;
 
     return Scaffold(
-      body: CustomScrollView(
-        slivers: [
-          SliverPersistentHeader(
-            pinned: true,
-            delegate: BasicItemInfo(
-              uniqueName: item.uniqueName,
-              name: item.name,
-              description: item.description?.parseHtmlString() ?? '',
-              wikiaUrl: item.wikiaUrl,
-              imageUrl: item.imageUrl,
-              expandedHeight: heightRatio * 38,
-            ),
-          ),
-          SliverPadding(
-            padding: const EdgeInsets.only(top: 4.0),
-            sliver: SliverList(
-              delegate: SliverChildListDelegate(<Widget>[
-                if (item is PowerSuit)
-                  FrameStats(powerSuit: item)
-                else if (item is ProjectileWeapon && item.category != 'Pets')
-                  GunStats(projectileWeapon: item)
-                else if (item is MeleeWeapon)
-                  MeleeStats(meleeWeapon: item),
-                if (item is FoundryItem &&
-                    item.components != null &&
-                    (item.components?.isNotEmpty ?? false))
-                  ItemComponents(
-                    itemImageUrl: item.imageUrl,
-                    components: item.components!,
+      body: item.patchlogs != null
+          ? DefaultTabController(
+              length: 2,
+              child: NestedScrollView(
+                headerSliverBuilder: (context, index) {
+                  return [
+                    SliverPersistentHeader(
+                      pinned: true,
+                      delegate: BasicItemInfo(
+                        uniqueName: item.uniqueName,
+                        name: item.name,
+                        description: item.description?.parseHtmlString() ?? '',
+                        wikiaUrl: item.wikiaUrl,
+                        imageUrl: item.imageUrl,
+                        bottom: const TabBar(
+                          tabs: [Tab(text: 'Overview'), Tab(text: 'Patchlogs')],
+                        ),
+                        expandedHeight: heightRatio * 38,
+                      ),
+                    ),
+                  ];
+                },
+                body: TabBarView(
+                  children: [
+                    Overview(item: item),
+                    PatchlogsTimeline(patchlogs: item.patchlogs ?? [])
+                  ],
+                ),
+              ),
+            )
+          : CustomScrollView(
+              slivers: [
+                SliverPersistentHeader(
+                  pinned: true,
+                  delegate: BasicItemInfo(
+                    uniqueName: item.uniqueName,
+                    name: item.name,
+                    description: item.description?.parseHtmlString() ?? '',
+                    wikiaUrl: item.wikiaUrl,
+                    imageUrl: item.imageUrl,
+                    expandedHeight: heightRatio * 38,
                   ),
-                if (item.patchlogs != null)
-                  PatchlogCards(patchlogs: item.patchlogs!)
-              ]),
+                ),
+                SliverToBoxAdapter(
+                  child: Overview(item: item),
+                )
+              ],
             ),
-          )
-        ],
-      ),
+    );
+  }
+}
+
+class Overview extends StatelessWidget {
+  const Overview({Key? key, required this.item}) : super(key: key);
+
+  final Item item;
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView(
+      key: const PageStorageKey('overview'),
+      children: [
+        if (item is PowerSuit)
+          FrameStats(powerSuit: item as PowerSuit)
+        else if (item is ProjectileWeapon && item.category != 'Pets')
+          GunStats(projectileWeapon: item as ProjectileWeapon)
+        else if (item is MeleeWeapon)
+          MeleeStats(meleeWeapon: item as MeleeWeapon),
+        if (item is FoundryItem &&
+            (item as FoundryItem).components != null &&
+            ((item as FoundryItem).components?.isNotEmpty ?? false))
+          ItemComponents(
+            itemImageUrl: item.imageUrl,
+            components: (item as FoundryItem).components!,
+          ),
+      ],
+    );
+  }
+}
+
+class PatchlogsTimeline extends StatelessWidget {
+  const PatchlogsTimeline({Key? key, required this.patchlogs})
+      : super(key: key);
+
+  final List<Patchlog> patchlogs;
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+      key: const PageStorageKey('patchlogs'),
+      itemCount: patchlogs.length,
+      itemBuilder: (_, index) => PatchlogCard(patchlog: patchlogs[index]),
     );
   }
 }

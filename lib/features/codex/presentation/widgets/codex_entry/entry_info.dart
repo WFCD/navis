@@ -11,6 +11,7 @@ class BasicItemInfo extends SliverPersistentHeaderDelegate {
     required this.description,
     required this.imageUrl,
     this.wikiaUrl,
+    this.bottom,
     required this.expandedHeight,
   });
 
@@ -19,11 +20,15 @@ class BasicItemInfo extends SliverPersistentHeaderDelegate {
   final String description;
   final String imageUrl;
   final String? wikiaUrl;
+  final Widget? bottom;
   final double expandedHeight;
 
   @override
   Widget build(
-      BuildContext context, double shrinkOffset, bool overlapsContent) {
+    BuildContext context,
+    double shrinkOffset,
+    bool overlapsContent,
+  ) {
     const textAlign = TextAlign.center;
     final textTheme = Theme.of(context).textTheme;
 
@@ -54,26 +59,49 @@ class BasicItemInfo extends SliverPersistentHeaderDelegate {
             AnimatedOpacity(
               duration: kThemeAnimationDuration,
               opacity: 1 - (shrinkOffset / expandedHeight),
-              child: Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 8.0),
-                    child: Hero(
-                      tag: uniqueName,
-                      child: CircleAvatar(
-                        backgroundImage: CachedNetworkImageProvider(imageUrl),
-                        backgroundColor: Colors.grey,
-                        radius:
-                            (MediaQuery.of(context).size.longestSide / 100) * 7,
+              child: AnimatedContainer(
+                duration: kThemeAnimationDuration,
+                width: MediaQuery.of(context).size.width,
+                height: shrinkOffset > 0.0 ? 0 : (expandedHeight / 100) * 50,
+                child: FittedBox(
+                  fit: BoxFit.fitHeight,
+                  clipBehavior: Clip.hardEdge,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 8.0),
+                        child: Hero(
+                          tag: uniqueName,
+                          child: CircleAvatar(
+                            backgroundImage:
+                                CachedNetworkImageProvider(imageUrl),
+                            backgroundColor: Colors.grey,
+                            radius: (MediaQuery.of(context).size.longestSide /
+                                    100) *
+                                6,
+                          ),
+                        ),
                       ),
-                    ),
+                      Text(
+                        name,
+                        style: textTheme.subtitle1,
+                        textAlign: textAlign,
+                      ),
+                      SizedBox(
+                        width: (MediaQuery.of(context).size.width / 100) * 95,
+                        child: Text(
+                          description,
+                          style: textTheme.caption,
+                          textAlign: textAlign,
+                        ),
+                      )
+                    ],
                   ),
-                  Text(name, style: textTheme.subtitle1, textAlign: textAlign),
-                  Text(description,
-                      style: textTheme.caption, textAlign: textAlign)
-                ],
+                ),
               ),
-            )
+            ),
+            if (bottom != null) bottom!
           ],
         ),
       ),
@@ -84,7 +112,7 @@ class BasicItemInfo extends SliverPersistentHeaderDelegate {
   double get maxExtent => expandedHeight;
 
   @override
-  double get minExtent => kToolbarHeight + 30;
+  double get minExtent => (kToolbarHeight * 2) + 30;
 
   @override
   bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) {
