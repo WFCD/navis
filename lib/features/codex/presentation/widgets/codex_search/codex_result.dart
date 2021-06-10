@@ -41,6 +41,7 @@ class CodexResult extends StatelessWidget {
           baseDrain: mod.baseDrain,
           polarity: mod.polarity,
           rarity: mod.rarity,
+          wikiaUrl: mod.wikiaUrl,
         );
       case 'Uncommon':
         return ModFrame.uncommon(
@@ -52,6 +53,7 @@ class CodexResult extends StatelessWidget {
           baseDrain: mod.baseDrain,
           polarity: mod.polarity,
           rarity: mod.rarity,
+          wikiaUrl: mod.wikiaUrl,
         );
       case 'Legendary':
         return ModFrame.primed(
@@ -63,6 +65,7 @@ class CodexResult extends StatelessWidget {
           baseDrain: mod.baseDrain,
           polarity: mod.polarity,
           rarity: mod.rarity,
+          wikiaUrl: mod.wikiaUrl,
         );
       default:
         return ModFrame.common(
@@ -74,6 +77,7 @@ class CodexResult extends StatelessWidget {
           baseDrain: mod.baseDrain,
           polarity: mod.polarity,
           rarity: mod.rarity,
+          wikiaUrl: mod.wikiaUrl,
         );
     }
   }

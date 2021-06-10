@@ -5,6 +5,8 @@ import 'dart:ui' as ui;
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../../core/utils/helper_methods.dart';
+import '../../../../../l10n/l10n.dart';
 import '../../../../../resources/resources.dart';
 import '../../../utils/mod_polarity.dart';
 import 'polarity.dart';
@@ -26,6 +28,7 @@ class ModFrame extends StatelessWidget {
     required this.lowerTab,
     required this.sideLight,
     required this.topRightBacker,
+    this.wikiaUrl,
   });
 
   factory ModFrame.common({
@@ -37,6 +40,7 @@ class ModFrame extends StatelessWidget {
     required int baseDrain,
     required String polarity,
     required String rarity,
+    String? wikiaUrl,
   }) {
     return ModFrame._(
       image: image,
@@ -54,6 +58,7 @@ class ModFrame extends StatelessWidget {
       lowerTab: loadModPart(ModFrames.bronzeLowerTab),
       sideLight: loadModPart(ModFrames.bronzeSideLight),
       topRightBacker: loadModPart(ModFrames.bronzeTopRightBacker),
+      wikiaUrl: wikiaUrl,
     );
   }
 
@@ -66,6 +71,7 @@ class ModFrame extends StatelessWidget {
     required int baseDrain,
     required String polarity,
     required String rarity,
+    String? wikiaUrl,
   }) {
     return ModFrame._(
       image: image,
@@ -83,6 +89,7 @@ class ModFrame extends StatelessWidget {
       lowerTab: loadModPart(ModFrames.silverLowerTab),
       sideLight: loadModPart(ModFrames.silverSideLight),
       topRightBacker: loadModPart(ModFrames.silverTopRightBacker),
+      wikiaUrl: wikiaUrl,
     );
   }
 
@@ -95,6 +102,7 @@ class ModFrame extends StatelessWidget {
     required int baseDrain,
     required String polarity,
     required String rarity,
+    String? wikiaUrl,
   }) {
     return ModFrame._(
       image: image,
@@ -112,6 +120,7 @@ class ModFrame extends StatelessWidget {
       lowerTab: loadModPart(ModFrames.goldLowerTab),
       sideLight: loadModPart(ModFrames.goldSideLight),
       topRightBacker: loadModPart(ModFrames.goldTopRightBacker),
+      wikiaUrl: wikiaUrl,
     );
   }
 
@@ -124,6 +133,7 @@ class ModFrame extends StatelessWidget {
     required int baseDrain,
     required String polarity,
     required String rarity,
+    String? wikiaUrl,
   }) {
     return ModFrame._(
       image: image,
@@ -141,10 +151,14 @@ class ModFrame extends StatelessWidget {
       lowerTab: loadModPart(ModFrames.legendaryLowerTab),
       sideLight: loadModPart(ModFrames.legendarySideLight),
       topRightBacker: loadModPart(ModFrames.legendaryTopRightBacker),
+      wikiaUrl: wikiaUrl,
     );
   }
 
   final String image, name, stats, compatName, polarity, rarity;
+
+  final String? wikiaUrl;
+
   final int maxRank, baseDrain;
 
   final Image background;
@@ -288,13 +302,28 @@ class ModFrame extends StatelessWidget {
               ),
             ),
             Positioned(
-              top: 200,
-              child: ModDrescription(
-                name: name,
-                stats: stats,
-                rarity: rarity,
+              top: wikiaUrl != null ? 175 : 200,
+              child: Padding(
+                padding: const EdgeInsets.only(bottom: 20.0),
+                child: ModDrescription(
+                  name: name,
+                  stats: stats,
+                  rarity: rarity,
+                ),
               ),
             ),
+            if (wikiaUrl != null)
+              Positioned(
+                top: 260,
+                child: TextButton(
+                  style: ButtonStyle(
+                    foregroundColor: MaterialStateProperty.all(
+                        Theme.of(context).textTheme.button?.color),
+                  ),
+                  onPressed: () => wikiaUrl?.launchLink(context),
+                  child: Text(context.l10n.seeWikia),
+                ),
+              ),
             Positioned(
               bottom: 25,
               child: Text(
