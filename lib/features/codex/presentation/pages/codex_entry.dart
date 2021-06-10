@@ -16,53 +16,85 @@ class CodexEntry extends StatelessWidget {
 
     return Scaffold(
       body: item.patchlogs != null
-          ? DefaultTabController(
-              length: 2,
-              child: NestedScrollView(
-                headerSliverBuilder: (context, index) {
-                  return [
-                    SliverPersistentHeader(
-                      pinned: true,
-                      delegate: BasicItemInfo(
-                        uniqueName: item.uniqueName,
-                        name: item.name,
-                        description: item.description?.parseHtmlString() ?? '',
-                        wikiaUrl: item.wikiaUrl,
-                        imageUrl: item.imageUrl,
-                        bottom: const TabBar(
-                          tabs: [Tab(text: 'Overview'), Tab(text: 'Patchlogs')],
-                        ),
-                        expandedHeight: heightRatio * 38,
-                      ),
-                    ),
-                  ];
-                },
-                body: TabBarView(
-                  children: [
-                    Overview(item: item),
-                    PatchlogsTimeline(patchlogs: item.patchlogs ?? [])
-                  ],
+          ? TabbedEntry(item: item, heightRatio: heightRatio)
+          : SingleEntry(item: item, heightRatio: heightRatio),
+    );
+  }
+}
+
+class SingleEntry extends StatelessWidget {
+  const SingleEntry({
+    Key? key,
+    required this.item,
+    required this.heightRatio,
+  }) : super(key: key);
+
+  final Item item;
+  final double heightRatio;
+
+  @override
+  Widget build(BuildContext context) {
+    return CustomScrollView(
+      slivers: [
+        SliverPersistentHeader(
+          pinned: true,
+          delegate: BasicItemInfo(
+            uniqueName: item.uniqueName,
+            name: item.name,
+            description: item.description?.parseHtmlString() ?? '',
+            wikiaUrl: item.wikiaUrl,
+            imageUrl: item.imageUrl,
+            expandedHeight: heightRatio * 38,
+          ),
+        ),
+        SliverToBoxAdapter(
+          child: Overview(item: item),
+        )
+      ],
+    );
+  }
+}
+
+class TabbedEntry extends StatelessWidget {
+  const TabbedEntry({
+    Key? key,
+    required this.item,
+    required this.heightRatio,
+  }) : super(key: key);
+
+  final Item item;
+  final double heightRatio;
+
+  @override
+  Widget build(BuildContext context) {
+    return DefaultTabController(
+      length: 2,
+      child: NestedScrollView(
+        headerSliverBuilder: (context, index) {
+          return [
+            SliverPersistentHeader(
+              pinned: true,
+              delegate: BasicItemInfo(
+                uniqueName: item.uniqueName,
+                name: item.name,
+                description: item.description?.parseHtmlString() ?? '',
+                wikiaUrl: item.wikiaUrl,
+                imageUrl: item.imageUrl,
+                bottom: const TabBar(
+                  tabs: [Tab(text: 'Overview'), Tab(text: 'Patchlogs')],
                 ),
+                expandedHeight: heightRatio * 38,
               ),
-            )
-          : CustomScrollView(
-              slivers: [
-                SliverPersistentHeader(
-                  pinned: true,
-                  delegate: BasicItemInfo(
-                    uniqueName: item.uniqueName,
-                    name: item.name,
-                    description: item.description?.parseHtmlString() ?? '',
-                    wikiaUrl: item.wikiaUrl,
-                    imageUrl: item.imageUrl,
-                    expandedHeight: heightRatio * 38,
-                  ),
-                ),
-                SliverToBoxAdapter(
-                  child: Overview(item: item),
-                )
-              ],
             ),
+          ];
+        },
+        body: TabBarView(
+          children: [
+            Overview(item: item),
+            PatchlogsTimeline(patchlogs: item.patchlogs ?? [])
+          ],
+        ),
+      ),
     );
   }
 }
@@ -72,20 +104,27 @@ class Overview extends StatelessWidget {
 
   final Item item;
 
+  bool get _isPowerSuit => item is PowerSuit;
+  bool get _isGun => item is ProjectileWeapon && item.category != 'Pets';
+  bool get _isMeleeWeapon => item is MeleeWeapon;
+  bool get _isFoundryItem {
+    return item is FoundryItem &&
+        (item as FoundryItem).components != null &&
+        ((item as FoundryItem).components?.isNotEmpty ?? false);
+  }
+
   @override
   Widget build(BuildContext context) {
     return ListView(
       key: const PageStorageKey('overview'),
       children: [
-        if (item is PowerSuit)
+        if (_isPowerSuit)
           FrameStats(powerSuit: item as PowerSuit)
-        else if (item is ProjectileWeapon && item.category != 'Pets')
+        else if (_isGun)
           GunStats(projectileWeapon: item as ProjectileWeapon)
-        else if (item is MeleeWeapon)
+        else if (_isMeleeWeapon)
           MeleeStats(meleeWeapon: item as MeleeWeapon),
-        if (item is FoundryItem &&
-            (item as FoundryItem).components != null &&
-            ((item as FoundryItem).components?.isNotEmpty ?? false))
+        if (_isFoundryItem)
           ItemComponents(
             itemImageUrl: item.imageUrl,
             components: (item as FoundryItem).components!,
