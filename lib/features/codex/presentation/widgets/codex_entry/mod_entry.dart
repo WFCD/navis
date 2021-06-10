@@ -175,9 +175,8 @@ class ModFrame extends StatelessWidget {
 
   final Image topRightBacker;
 
-  static final completer = Completer<ImageInfo>();
-
-  static final rankSlot = loadModPart(ModFrames.rankSlotEmpty);
+  static final _rankSlot = loadModPart(ModFrames.rankSlotActive);
+  static final _rankCompleteLine = loadModPart(ModFrames.rankCompleteLine);
 
   Future<ui.Image> _getImage() async {
     late ImageInfo imageInfo;
@@ -251,8 +250,12 @@ class ModFrame extends StatelessWidget {
               bottom: rarity != 'Legendary' ? -14 : -27,
               child: Row(
                 mainAxisSize: MainAxisSize.min,
-                children: [for (int i = 0; i < maxRank; i++) rankSlot],
+                children: [for (int i = 0; i < maxRank; i++) _rankSlot],
               ),
+            ),
+            Positioned(
+              bottom: rarity != 'Legendary' ? -13 : -26,
+              child: _rankCompleteLine,
             ),
             Positioned(
               bottom: -10,
