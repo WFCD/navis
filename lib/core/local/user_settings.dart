@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:logging/logging.dart';
@@ -29,22 +31,38 @@ class Usersettings with ChangeNotifier {
     return _instance ??= Usersettings(box);
   }
 
-  GamePlatforms? get platform {
+  Locale? get language {
+    final value = _box.get(SettingsKeys.userLanguage) as String?;
+
+    if (value != null) {
+      return Locale(value);
+    }
+
+    return null;
+  }
+
+  void setLanguage(Locale? value, {bool rebuild = true}) {
+    if (value != null) {
+      log('setting new lang ${value.languageCode}');
+      _box.put(SettingsKeys.userLanguage, value.languageCode);
+      if (rebuild) notifyListeners();
+    }
+  }
+
+  GamePlatforms get platform {
     final value = _box.get(SettingsKeys.platformKey) as String?;
 
     if (value != null) {
       return GamePlatformsX.fromString(value);
     }
 
-    return null;
+    return GamePlatforms.pc;
   }
 
-  set platform(GamePlatforms? value) {
-    if (value != null) {
-      _logger.info('setting new platform ${value.asString}');
-      _box.put(SettingsKeys.platformKey, value.asString);
-      notifyListeners();
-    }
+  set platform(GamePlatforms value) {
+    _logger.info('setting new platform ${value.asString}');
+    _box.put(SettingsKeys.platformKey, value.asString);
+    notifyListeners();
   }
 
   ThemeMode get theme {
@@ -68,6 +86,10 @@ class Usersettings with ChangeNotifier {
   bool get isOptOut => getToggle(MatomoTracker.kOptOut);
 
   set isOptOut(bool value) => setToggle(MatomoTracker.kOptOut, value);
+
+  bool get isFirstTime => getToggle(SettingsKeys.isFirstTime);
+
+  set isFirstTime(bool value) => setToggle(SettingsKeys.isFirstTime, value);
 
   bool getToggle(String key) {
     return _box.get(key, defaultValue: false) as bool;

@@ -76,7 +76,7 @@ class PlatformIconButton extends StatelessWidget {
 
   void _onPressed(BuildContext context) {
     sl<NotificationService>()
-        .unsubscribeFromPlatform(sl<Usersettings>().platform!);
+        .unsubscribeFromPlatform(sl<Usersettings>().platform);
 
     sl<NotificationService>().subscribeToPlatform(platform);
     sl<Usersettings>().platform = platform;

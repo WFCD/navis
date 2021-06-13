@@ -27,9 +27,9 @@ Future<void> startApp() async {
   HydratedBloc.storage = await HydratedStorage.build(storageDirectory: temp);
 
   await di.init();
-  if (sl<Usersettings>().platform == null) {
-    sl<Usersettings>().platform = GamePlatforms.pc;
+  if (!sl<Usersettings>().isFirstTime) {
     await sl<NotificationService>().subscribeToPlatform(GamePlatforms.pc);
+    sl<Usersettings>().isFirstTime = true;
   }
 
   runApp(
