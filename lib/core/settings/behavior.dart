@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -15,6 +17,11 @@ class Behavior extends StatelessWidget {
     return Column(children: <Widget>[
       const CategoryTitle(title: 'Behavior'),
       ListTile(
+        title: Text(l10n.appLangTitle),
+        subtitle: Text(l10n.appLangDescription),
+        onTap: () => LanguagePicker.showOptions(context),
+      ),
+      ListTile(
         title: Text(l10n.themeTitle),
         subtitle: Text(l10n.themeDescription),
         onTap: () => ThemePicker.showModes(context),
@@ -27,6 +34,49 @@ class Behavior extends StatelessWidget {
         onChanged: (b) => context.read<Usersettings>().backkey = b,
       )
     ]);
+  }
+}
+
+class LanguagePicker extends StatelessWidget {
+  const LanguagePicker({Key? key}) : super(key: key);
+
+  static Future<void> showOptions(BuildContext context) {
+    return showDialog<void>(
+      context: context,
+      builder: (_) {
+        return ChangeNotifierProvider.value(
+          value: Provider.of<Usersettings>(context),
+          child: const LanguagePicker(),
+        );
+      },
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = context.l10n;
+    final accentColor = Theme.of(context).accentColor;
+    final supportedLocales = NavisLocalizations.supportedLocales;
+
+    return NavisDialog(
+      content: ListView.builder(
+          itemCount: supportedLocales.length,
+          itemBuilder: (context, index) {
+            return RadioListTile<Locale>(
+              title: Text(supportedLocales[index].fullName),
+              value: supportedLocales[index],
+              groupValue: context.watch<Usersettings>().language,
+              activeColor: accentColor,
+              onChanged: (l) => context.read<Usersettings>().setLanguage(l),
+            );
+          }),
+      actions: <Widget>[
+        TextButton(
+          onPressed: () => Navigator.of(context).pop(),
+          child: Text(MaterialLocalizations.of(context).cancelButtonLabel),
+        )
+      ],
+    );
   }
 }
 

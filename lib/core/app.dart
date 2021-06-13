@@ -61,6 +61,20 @@ class _NavisAppState extends State<NavisApp> with WidgetsBindingObserver {
     return widget!;
   }
 
+  Locale localeResolutionCallback(
+      Locale? locale, Iterable<Locale> supportedLocales) {
+    for (final supportedLocale in supportedLocales) {
+      if (locale?.languageCode == supportedLocale.languageCode) {
+        context
+            .read<Usersettings>()
+            .setLanguage(supportedLocale, rebuild: false);
+        return supportedLocale;
+      }
+    }
+
+    return supportedLocales.firstWhere((e) => e.languageCode == 'en');
+  }
+
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     if (state == AppLifecycleState.resumed) {
@@ -90,17 +104,9 @@ class _NavisAppState extends State<NavisApp> with WidgetsBindingObserver {
         BaroInventory.route: (_) => const BaroInventory()
       },
       supportedLocales: NavisLocalizations.supportedLocales,
+      locale: context.read<Usersettings>().language,
       localizationsDelegates: NavisLocalizations.localizationsDelegates,
-      localeResolutionCallback:
-          (Locale? locale, Iterable<Locale> supportedLocales) {
-        for (final supportedLocale in supportedLocales) {
-          if (locale?.languageCode == supportedLocale.languageCode) {
-            return supportedLocale;
-          }
-        }
-
-        return supportedLocales.firstWhere((e) => e.languageCode == 'en');
-      },
+      localeResolutionCallback: localeResolutionCallback,
     );
   }
 

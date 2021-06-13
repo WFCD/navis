@@ -1,4 +1,6 @@
 class SettingsKeys {
+  static const String isFirstTime = 'firstTime';
+  static const String userLanguage = 'language';
   static const String platformKey = 'platform';
   static const String dateformatKey = 'dateformat';
   static const String theme = 'theme';
