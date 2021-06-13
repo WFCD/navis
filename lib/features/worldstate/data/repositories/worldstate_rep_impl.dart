@@ -59,8 +59,8 @@ class WorldstateRepositoryImpl implements WorldstateRepository {
     final now = DateTime.now();
     final timestamp = cache.getCachedStateTimestamp();
     final age = timestamp?.difference(now).abs() ?? const Duration(minutes: 2);
-    final request =
-        WorldstateRequest(usersettings.platform, Platform.localeName);
+    final request = WorldstateRequest(
+        usersettings.platform, usersettings.language?.languageCode ?? 'en');
 
     Result<Worldstate, Failure> getcached() {
       final cached = cache.getCachedState();

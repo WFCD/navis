@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 
+import '../../features/worldstate/presentation/bloc/solsystem_bloc.dart';
 import '../../l10n/l10n.dart';
 import '../local/user_settings.dart';
 import '../widgets/widgets.dart';
@@ -71,6 +73,13 @@ class LanguagePicker extends StatelessWidget {
         TextButton(
           onPressed: () => Navigator.of(context).pop(),
           child: Text(MaterialLocalizations.of(context).cancelButtonLabel),
+        ),
+        TextButton(
+          onPressed: () {
+            BlocProvider.of<SolsystemBloc>(context).update(forceUpdate: true);
+            Navigator.of(context).pop();
+          },
+          child: Text(MaterialLocalizations.of(context).okButtonLabel),
         )
       ],
     );
