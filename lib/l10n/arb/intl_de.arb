@@ -906,13 +906,13 @@
         "type": "text",
         "placeholder": {}
     },
-    "appLangTitle": "Language",
+    "appLangTitle": "Sprache",
     "@appLangTitle": {
         "description": "Title for app language options",
         "type": "text",
         "placeholder": {}
     },
-    "appLangDescription": "Override default behavior for language detection.",
+    "appLangDescription": "Standardverhalten für Spracherkennung überschreiben.",
     "@appLangDescription": {
         "description": "Description for language options",
         "type": "text",
