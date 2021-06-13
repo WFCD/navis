@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -54,7 +52,6 @@ class LanguagePicker extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = context.l10n;
     final accentColor = Theme.of(context).accentColor;
     final supportedLocales = NavisLocalizations.supportedLocales;
 
