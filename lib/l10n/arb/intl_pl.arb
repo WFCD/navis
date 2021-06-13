@@ -905,5 +905,17 @@
         "description": "Description of the analytics opting buttong",
         "type": "text",
         "placeholder": {}
+    },
+    "appLangTitle": "Language",
+    "@appLangTitle": {
+        "description": "Title for app language options",
+        "type": "text",
+        "placeholder": {}
+    },
+    "appLangDescription": "Override default behavior for language detection.",
+    "@appLangDescription": {
+        "description": "Description for language options",
+        "type": "text",
+        "placeholder": {}
     }
 }
