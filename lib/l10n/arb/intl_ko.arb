@@ -906,13 +906,13 @@
         "type": "text",
         "placeholder": {}
     },
-    "appLangTitle": "Language",
+    "appLangTitle": "언어",
     "@appLangTitle": {
         "description": "Title for app language options",
         "type": "text",
         "placeholder": {}
     },
-    "appLangDescription": "Override default behavior for language detection.",
+    "appLangDescription": "언어를 수동으로 설정합니다.",
     "@appLangDescription": {
         "description": "Description for language options",
         "type": "text",
