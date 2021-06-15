@@ -7,14 +7,14 @@ packages:
       name: _fe_analyzer_shared
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "21.0.0"
+    version: "22.0.0"
   analyzer:
     dependency: transitive
     description:
       name: analyzer
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.5.0"
+    version: "1.7.1"
   archive:
     dependency: transitive
     description:
@@ -28,7 +28,7 @@ packages:
       name: args
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.1.0"
+    version: "2.1.1"
   async:
     dependency: transitive
     description:
@@ -112,7 +112,7 @@ packages:
       name: coverage
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.2"
+    version: "1.0.3"
   crypto:
     dependency: transitive
     description:
@@ -140,7 +140,7 @@ packages:
       name: equatable
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.2"
+    version: "2.0.3"
   fake_async:
     dependency: transitive
     description:
@@ -154,7 +154,7 @@ packages:
       name: ffi
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.0"
+    version: "1.1.2"
   file:
     dependency: transitive
     description:
@@ -236,7 +236,7 @@ packages:
       name: flutter_cache_manager
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.0.2"
+    version: "3.1.1"
   flutter_localizations:
     dependency: "direct main"
     description: flutter
@@ -461,14 +461,14 @@ packages:
       name: package_info_plus
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.1"
+    version: "1.0.3"
   package_info_plus_linux:
     dependency: transitive
     description:
       name: package_info_plus_linux
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.1"
+    version: "1.0.2"
   package_info_plus_macos:
     dependency: transitive
     description:
@@ -489,7 +489,7 @@ packages:
       name: package_info_plus_web
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.1"
+    version: "1.0.2"
   package_info_plus_windows:
     dependency: transitive
     description:
@@ -524,7 +524,7 @@ packages:
       name: path_provider
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.1"
+    version: "2.0.2"
   path_provider_linux:
     dependency: transitive
     description:
@@ -629,7 +629,7 @@ packages:
       name: rxdart
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.27.0"
+    version: "0.27.1"
   sentry:
     dependency: transitive
     description:
@@ -650,7 +650,7 @@ packages:
       name: shared_preferences
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.5"
+    version: "2.0.6"
   shared_preferences_linux:
     dependency: transitive
     description:
@@ -720,7 +720,7 @@ packages:
       name: simple_icons
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "5.1.0"
+    version: "5.2.0"
   sky_engine:
     dependency: transitive
     description: flutter
@@ -886,7 +886,7 @@ packages:
       name: video_player
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.1.5"
+    version: "2.1.6"
   video_player_platform_interface:
     dependency: transitive
     description:
@@ -900,7 +900,7 @@ packages:
       name: video_player_web
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.0"
+    version: "2.0.1"
   vm_service:
     dependency: transitive
     description:
@@ -969,17 +969,17 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: cfbf22a083d0de55087c57ef0105c41f9c7449c0
+      resolved-ref: a6ad08150ae429c2cb762722b82c2f2f32a9dfbb
       url: "https://github.com/SlayerOrnstein/wfcd_client.git"
     source: git
-    version: "3.4.0"
+    version: "3.4.1"
   win32:
     dependency: transitive
     description:
       name: win32
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.1.1"
+    version: "2.1.5"
   xdg_directories:
     dependency: transitive
     description:
@@ -993,7 +993,7 @@ packages:
       name: xml
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "5.1.1"
+    version: "5.1.2"
   yaml:
     dependency: transitive
     description:

@@ -14,10 +14,12 @@ class ComponentDrops extends StatelessWidget {
         cacheExtent: 150,
         itemCount: drops.length,
         itemBuilder: (context, index) {
+          final percentage =
+              ((drops[index].chance ?? 0) * 100).toStringAsFixed(2);
+
           return ListTile(
             title: Text(drops[index].location),
-            subtitle: Text('${(drops[index].chance * 100).toStringAsFixed(2)}%'
-                ' drop chance'),
+            subtitle: Text('$percentage% drop chance'),
             dense: drops.length > 10,
           );
         },
