@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../l10n/l10n.dart';
-import '../bloc/navigation_bloc.dart';
+import '../cubits/navigation_cubit.dart';
 import '../themes/colors.dart';
 import '../utils/helper_methods.dart';
 import 'widgets.dart';
@@ -13,7 +13,7 @@ class DrawerOptions extends StatelessWidget {
   const DrawerOptions({Key? key}) : super(key: key);
 
   void _onTap(BuildContext context, NavigationEvent newRoute) {
-    BlocProvider.of<NavigationBloc>(context).add(newRoute);
+    BlocProvider.of<NavigationCubit>(context).changePage(newRoute);
     Navigator.of(context).pop();
   }
 
@@ -30,7 +30,7 @@ class DrawerOptions extends StatelessWidget {
 
     return ListTileTheme(
       selectedColor: secondary,
-      child: BlocBuilder<NavigationBloc, Widget>(
+      child: BlocBuilder<NavigationCubit, Widget>(
         builder: (BuildContext context, Widget state) {
           return ListView(
             children: <Widget>[
@@ -39,28 +39,28 @@ class DrawerOptions extends StatelessWidget {
                 title: Text(l10n.homePageTitle),
                 onTap: () => _onTap(context, NavigationEvent.timers),
                 selected: state ==
-                    NavigationBloc.navigationMap[NavigationEvent.timers],
+                    NavigationCubit.navigationMap[NavigationEvent.timers],
               ),
               ListTile(
                 leading: const Icon(Icons.web),
                 title: Text(l10n.warframeNewsTitle),
                 onTap: () => _onTap(context, NavigationEvent.warframeNews),
                 selected: state ==
-                    NavigationBloc.navigationMap[NavigationEvent.warframeNews],
+                    NavigationCubit.navigationMap[NavigationEvent.warframeNews],
               ),
               ListTile(
                 leading: const Icon(Icons.search),
                 title: Text(l10n.codexTitle),
                 onTap: () => _onTap(context, NavigationEvent.codex),
                 selected: state ==
-                    NavigationBloc.navigationMap[NavigationEvent.codex],
+                    NavigationCubit.navigationMap[NavigationEvent.codex],
               ),
               ListTile(
                 leading: const FaIcon(SyndicateGlyphs.simaris),
                 title: const Text('SynthTargets'),
                 onTap: () => _onTap(context, NavigationEvent.synthTargets),
                 selected: state ==
-                    NavigationBloc.navigationMap[NavigationEvent.synthTargets],
+                    NavigationCubit.navigationMap[NavigationEvent.synthTargets],
               ),
               ExpansionTile(
                 key: const Key('links'),

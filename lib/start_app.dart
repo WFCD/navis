@@ -11,7 +11,7 @@ import 'package:wfcd_client/wfcd_client.dart';
 import 'package:path_provider/path_provider.dart';
 
 import 'core/app.dart';
-import 'core/bloc/navigation_bloc.dart';
+import 'core/cubits/navigation_cubit.dart';
 import 'core/local/user_settings.dart';
 import 'core/services/notifications.dart';
 import 'features/codex/presentation/bloc/search_bloc.dart';
@@ -35,7 +35,7 @@ Future<void> startApp() async {
   runApp(
     MultiBlocProvider(
       providers: [
-        BlocProvider(create: (_) => sl<NavigationBloc>()),
+        BlocProvider(create: (_) => sl<NavigationCubit>()),
         BlocProvider(create: (_) => sl<SolsystemBloc>()),
         BlocProvider(create: (_) => sl<SearchBloc>()),
       ],

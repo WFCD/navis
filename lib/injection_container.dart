@@ -3,7 +3,7 @@ import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:package_info/package_info.dart';
 import 'package:wfcd_client/wfcd_client.dart';
 
-import 'core/bloc/navigation_bloc.dart';
+import 'core/cubits/navigation_cubit.dart';
 import 'core/local/user_settings.dart';
 import 'core/network/network_info.dart';
 import 'core/services/notifications.dart';
@@ -66,7 +66,7 @@ Future<void> init() async {
     ..registerSingleton<SearchItems>(SearchItems(sl<CodexRepository>()))
 
     // Blocs
-    ..registerFactory<NavigationBloc>(() => NavigationBloc())
+    ..registerFactory<NavigationCubit>(() => NavigationCubit())
     ..registerFactory<SolsystemBloc>(() {
       return SolsystemBloc(getWorldstate: sl<GetWorldstate>());
     })

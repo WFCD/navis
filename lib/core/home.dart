@@ -9,7 +9,7 @@ import 'package:simple_icons/simple_icons.dart';
 import '../constants/links.dart';
 import '../l10n/l10n.dart';
 import '../resources/resources.dart';
-import 'bloc/navigation_bloc.dart';
+import 'cubits/navigation_cubit.dart';
 import 'local/user_settings.dart';
 import 'utils/extensions.dart';
 import 'utils/helper_methods.dart';
@@ -100,7 +100,7 @@ class _HomeState extends State<Home> {
             ],
           ),
         ),
-        body: BlocBuilder<NavigationBloc, Widget>(
+        body: BlocBuilder<NavigationCubit, Widget>(
           builder: (BuildContext context, Widget state) {
             return AnimatedSwitcher(
               duration: const Duration(milliseconds: 250),
