@@ -16,16 +16,15 @@ class Usersettings with ChangeNotifier {
 
   static Usersettings? _instance;
 
-  static final _logger = Logger('Usersettings');
-
   static Future<Usersettings> initUsersettings() async {
-    _logger.info('Initializing Usersettings Hive');
+    log('Initializing Usersettings Hive', level: Level.INFO.value);
     final directory = await getApplicationDocumentsDirectory();
     Hive.init(directory.path);
 
     final box = await Hive.openBox<dynamic>('user_settings')
         .catchError((Object error, StackTrace stack) {
-      _logger.severe('Unable to open Usersettings Hive box', error, stack);
+      log('Unable to open Usersettings Hive box',
+          error: error, stackTrace: stack, level: Level.SEVERE.value);
     });
 
     return _instance ??= Usersettings(box);
@@ -43,7 +42,7 @@ class Usersettings with ChangeNotifier {
 
   void setLanguage(Locale? value, {bool rebuild = true}) {
     if (value != null) {
-      log('setting new lang ${value.languageCode}');
+      log('setting new lang ${value.languageCode}', level: Level.INFO.value);
       _box.put(SettingsKeys.userLanguage, value.languageCode);
       if (rebuild) notifyListeners();
     }
@@ -60,7 +59,7 @@ class Usersettings with ChangeNotifier {
   }
 
   set platform(GamePlatforms value) {
-    _logger.info('setting new platform ${value.asString}');
+    log('setting new platform ${value.asString}', level: Level.INFO.value);
     _box.put(SettingsKeys.platformKey, value.asString);
     notifyListeners();
   }

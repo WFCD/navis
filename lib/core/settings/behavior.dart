@@ -54,8 +54,8 @@ class LanguagePicker extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    const supportedLocales = NavisLocalizations.supportedLocales;
     final accentColor = Theme.of(context).accentColor;
-    final supportedLocales = NavisLocalizations.supportedLocales;
 
     return NavisDialog(
       content: ListView.builder(

@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:logging/logging.dart';
 import 'package:wfcd_client/wfcd_client.dart';
 
 class NotificationService {
@@ -37,6 +38,6 @@ class NotificationService {
   }
 
   void _log(String message) {
-    log(message, name: 'NotificationService');
+    log(message, name: 'NotificationService', level: Level.INFO.value);
   }
 }
