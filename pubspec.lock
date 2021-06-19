@@ -968,7 +968,7 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: HEAD
+      ref: "v3.4.1"
       resolved-ref: a6ad08150ae429c2cb762722b82c2f2f32a9dfbb
       url: "https://github.com/SlayerOrnstein/wfcd_client.git"
     source: git
