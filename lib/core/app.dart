@@ -63,16 +63,21 @@ class _NavisAppState extends State<NavisApp> with WidgetsBindingObserver {
 
   Locale localeResolutionCallback(
       Locale? locale, Iterable<Locale> supportedLocales) {
+    Locale? _locale;
+
     for (final supportedLocale in supportedLocales) {
       if (locale?.languageCode == supportedLocale.languageCode) {
-        context
-            .read<Usersettings>()
-            .setLanguage(supportedLocale, rebuild: false);
-        return supportedLocale;
+        _locale = supportedLocale;
       }
     }
 
-    return supportedLocales.firstWhere((e) => e.languageCode == 'en');
+    _locale ??= supportedLocales.firstWhere((e) => e.languageCode == 'en');
+
+    if (context.read<Usersettings>().language != _locale) {
+      context.read<Usersettings>().setLanguage(_locale, rebuild: false);
+    }
+
+    return _locale;
   }
 
   @override
