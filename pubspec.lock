@@ -879,7 +879,7 @@ packages:
       name: very_good_analysis
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.1.1"
+    version: "2.1.2"
   video_player:
     dependency: transitive
     description:
@@ -1007,7 +1007,7 @@ packages:
       name: youtube_explode_dart
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.9.4"
+    version: "1.9.6"
 sdks:
   dart: ">=2.13.0 <3.0.0"
   flutter: ">=2.0.0"
