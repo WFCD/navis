@@ -6,31 +6,40 @@ import 'package:youtube_explode_dart/youtube_explode_dart.dart';
 import 'package:retry/retry.dart';
 
 class VideoService {
-  Future<VideoInformation> getVideoInformation(String id) async {
-    return compute(_getVideoInformation, id);
+  VideoService({YoutubeHttpClient? youtubeHttpClient})
+      : _youtubeHttpClient = youtubeHttpClient ?? YoutubeHttpClient();
+
+  final YoutubeHttpClient _youtubeHttpClient;
+
+  Future<VideoInformation?> getVideoInformation(String id) async {
+    final request = VideoRequest(_youtubeHttpClient, id);
+    return compute(_getVideoInformation, request);
   }
 
   static const _timeout = Duration(seconds: 5);
 
-  static Future<VideoInformation> _getVideoInformation(String id) async {
-    final exploded = YoutubeExplode();
+  static Future<VideoInformation?> _getVideoInformation(
+      VideoRequest request) async {
+    final exploded = YoutubeExplode(request.client);
 
-    final video = await retry(
-      () => exploded.videos.get(id).timeout(_timeout),
-      retryIf: _shouldRetry,
-    );
-    final manifest = await retry(
-      () => exploded.videos.streamsClient.getManifest(id).timeout(_timeout),
-      retryIf: _shouldRetry,
-    );
+    try {
+      return retry<VideoInformation?>(
+        () async {
+          final video = await exploded.videos.get(request.id).timeout(_timeout);
+          final manifest = await exploded.videos.streamsClient
+              .getManifest(request.id)
+              .timeout(_timeout);
 
-    return VideoInformation(
-      title: video.title,
-      description: video.description,
-      author: video.author,
-      url: video.url,
-      muxedStreamInfo: manifest.muxed.toList(),
-    );
+          return VideoInformation(
+            video: video,
+            muxedStreamInfos: manifest.muxed.toList(),
+          );
+        },
+        retryIf: _shouldRetry,
+      );
+    } catch (e) {
+      return null;
+    }
   }
 
   static bool _shouldRetry(e) =>
@@ -40,21 +49,31 @@ class VideoService {
       e is RequestLimitExceededException;
 }
 
+class VideoRequest {
+  const VideoRequest(this.client, this.id);
+
+  final YoutubeHttpClient client;
+  final String id;
+}
+
 class VideoInformation {
   const VideoInformation({
-    required this.title,
-    required this.description,
-    required this.author,
-    required this.url,
-    required this.muxedStreamInfo,
-  });
+    required Video video,
+    required List<MuxedStreamInfo> muxedStreamInfos,
+  })  : _video = video,
+        _muxedStreamInfos = muxedStreamInfos;
 
-  final String title, description, author, url;
-  final List<MuxedStreamInfo> muxedStreamInfo;
+  final Video _video;
+  final List<MuxedStreamInfo> _muxedStreamInfos;
+
+  String get title => _video.title;
+  String get description => _video.description;
+  String get author => _video.author;
+  String get url => _video.url;
 
   MuxedStreamInfo get video {
-    return muxedStreamInfo
-        .firstWhere((element) => element.videoQuality == VideoQuality.high720);
+    return _muxedStreamInfos
+        .firstWhere((e) => e.videoQuality == VideoQuality.high720);
   }
 
   double get aspectRatio {

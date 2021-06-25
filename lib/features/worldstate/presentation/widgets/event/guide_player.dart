@@ -27,10 +27,11 @@ class EventVideoPlayer extends StatefulWidget {
 }
 
 class _YoutubePlayerState extends State<EventVideoPlayer> {
+  bool _loadingPlayer = true;
+
   ChewieController? _chewieController;
   VideoPlayerController? _videoPlayerController;
-
-  late VideoInformation videoInformation;
+  VideoInformation? videoInformation;
 
   @override
   void initState() {
@@ -43,11 +44,14 @@ class _YoutubePlayerState extends State<EventVideoPlayer> {
       videoInformation =
           await sl<VideoService>().getVideoInformation(widget.id);
 
-      _videoPlayerController = VideoPlayerController.network(
-          videoInformation.muxedStreamInfo.first.url.toString());
+      if (videoInformation != null) {
+        final videoInformation = this.videoInformation!;
 
-      if (mounted) {
+        _videoPlayerController = VideoPlayerController.network(
+            videoInformation.video.url.toString());
+
         setState(() {
+          _loadingPlayer = false;
           _chewieController = ChewieController(
             videoPlayerController: _videoPlayerController!,
             aspectRatio: videoInformation.aspectRatio,
@@ -60,38 +64,50 @@ class _YoutubePlayerState extends State<EventVideoPlayer> {
             ),
           );
         });
+      } else {
+        setState(() {
+          _loadingPlayer = false;
+        });
       }
+    }
+  }
+
+  Widget _buildPlayer(bool isControllerReady) {
+    if (isControllerReady) {
+      final videoInformation = this.videoInformation!;
+
+      return Player(
+        videoInformation: videoInformation,
+        controller: _chewieController!,
+        playerInformation: PlayerInformation(
+          title: videoInformation.title,
+          description: videoInformation.description,
+          author: videoInformation.author,
+          profileThumbnail: widget.profileThumbnail,
+          link: videoInformation.url,
+        ),
+      );
+    } else {
+      return const NavisErrorWidget();
     }
   }
 
   @override
   Widget build(BuildContext context) {
     return CustomCard(
-        padding: EdgeInsets.zero,
-        child: SizedBox(
-          height: (MediaQuery.of(context).size.height / 100) * 50,
-          child: _chewieController == null
-              ? const Center(child: CircularProgressIndicator())
-              : Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: <Widget>[
-                    AspectRatio(
-                      aspectRatio: videoInformation.aspectRatio,
-                      child: Chewie(controller: _chewieController!),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(16.0, 20.0, 16.0, 2.0),
-                      child: PlayerInformation(
-                        title: videoInformation.title,
-                        description: videoInformation.description,
-                        author: videoInformation.author,
-                        profileThumbnail: widget.profileThumbnail,
-                        link: videoInformation.url,
-                      ),
-                    )
-                  ],
-                ),
-        ));
+      padding: EdgeInsets.zero,
+      child: SizedBox(
+        height: (MediaQuery.of(context).size.height / 100) * 50,
+        child: AnimatedCrossFade(
+          duration: const Duration(milliseconds: 250),
+          crossFadeState: _loadingPlayer
+              ? CrossFadeState.showFirst
+              : CrossFadeState.showSecond,
+          firstChild: const Center(child: CircularProgressIndicator()),
+          secondChild: _buildPlayer(_chewieController != null),
+        ),
+      ),
+    );
   }
 
   @override
@@ -99,6 +115,36 @@ class _YoutubePlayerState extends State<EventVideoPlayer> {
     _videoPlayerController?.dispose();
     _chewieController?.dispose();
     super.dispose();
+  }
+}
+
+class Player extends StatelessWidget {
+  const Player({
+    Key? key,
+    required this.videoInformation,
+    required this.controller,
+    required this.playerInformation,
+  }) : super(key: key);
+
+  final VideoInformation videoInformation;
+  final ChewieController controller;
+  final PlayerInformation playerInformation;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: <Widget>[
+        AspectRatio(
+          aspectRatio: videoInformation.aspectRatio,
+          child: Chewie(controller: controller),
+        ),
+        Padding(
+          padding: const EdgeInsets.fromLTRB(16.0, 20.0, 16.0, 2.0),
+          child: playerInformation,
+        )
+      ],
+    );
   }
 }
 
