@@ -7,7 +7,7 @@ import 'package:simple_icons/simple_icons.dart';
 import '../../constants/links.dart';
 import '../../injection_container.dart';
 import '../../l10n/l10n.dart';
-import '../local/user_settings.dart';
+import '../notifiers/user_settings_notifier.dart';
 import '../utils/helper_methods.dart';
 import '../widgets/widgets.dart';
 
@@ -24,8 +24,8 @@ class AboutApp extends StatelessWidget {
         CheckboxListTile(
           title: Text(l10n.optOutOfAnalyticsTitle),
           subtitle: Text(l10n.optOutOfAnalyticsDescription),
-          value: context.watch<Usersettings>().isOptOut,
-          onChanged: (b) => context.read<Usersettings>().isOptOut = b ?? false,
+          value: context.watch<UserSettingsNotifier>().isOptOut,
+          onChanged: (b) => context.read<UserSettingsNotifier>().setOptOut(b!),
         ),
         ListTile(
           title: Text(l10n.reportBugsTitle),

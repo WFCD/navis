@@ -12,7 +12,7 @@ import 'package:path_provider/path_provider.dart';
 
 import 'core/app.dart';
 import 'core/cubits/navigation_cubit.dart';
-import 'core/local/user_settings.dart';
+import 'core/notifiers/user_settings_notifier.dart';
 import 'core/services/notifications.dart';
 import 'features/codex/presentation/bloc/search_bloc.dart';
 import 'features/worldstate/presentation/bloc/solsystem_bloc.dart';
@@ -27,9 +27,9 @@ Future<void> startApp() async {
   HydratedBloc.storage = await HydratedStorage.build(storageDirectory: temp);
 
   await di.init();
-  if (!sl<Usersettings>().isFirstTime) {
+  if (sl<UserSettingsNotifier>().isFirstTime) {
     await sl<NotificationService>().subscribeToPlatform(GamePlatforms.pc);
-    sl<Usersettings>().isFirstTime = true;
+    sl<UserSettingsNotifier>().setFirstTime(false);
   }
 
   runApp(
@@ -40,7 +40,7 @@ Future<void> startApp() async {
         BlocProvider(create: (_) => sl<SearchBloc>()),
       ],
       child: ChangeNotifierProvider.value(
-        value: sl<Usersettings>(),
+        value: sl<UserSettingsNotifier>(),
         child: const NavisApp(),
       ),
     ),

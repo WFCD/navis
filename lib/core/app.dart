@@ -14,7 +14,7 @@ import '../features/worldstate/presentation/pages/trader_inventory.dart';
 import '../injection_container.dart';
 import '../l10n/l10n.dart';
 import 'home.dart';
-import 'local/user_settings.dart';
+import 'notifiers/user_settings_notifier.dart';
 import 'services/notifications.dart';
 import 'settings/settings.dart';
 import 'themes/themes.dart';
@@ -73,8 +73,8 @@ class _NavisAppState extends State<NavisApp> with WidgetsBindingObserver {
 
     _locale ??= supportedLocales.firstWhere((e) => e.languageCode == 'en');
 
-    if (context.read<Usersettings>().language != _locale) {
-      context.read<Usersettings>().setLanguage(_locale, rebuild: false);
+    if (context.read<UserSettingsNotifier>().language != _locale) {
+      context.read<UserSettingsNotifier>().setLanguage(_locale);
     }
 
     return _locale;
@@ -92,7 +92,7 @@ class _NavisAppState extends State<NavisApp> with WidgetsBindingObserver {
     return MaterialApp(
       title: 'Navis',
       color: Colors.grey[900],
-      themeMode: context.watch<Usersettings>().theme,
+      themeMode: context.watch<UserSettingsNotifier>().theme,
       theme: NavisTheming.light,
       darkTheme: NavisTheming.dark,
       home: const Home(),
@@ -109,7 +109,7 @@ class _NavisAppState extends State<NavisApp> with WidgetsBindingObserver {
         BaroInventory.route: (_) => const BaroInventory()
       },
       supportedLocales: NavisLocalizations.supportedLocales,
-      locale: context.read<Usersettings>().language,
+      locale: context.read<UserSettingsNotifier>().language,
       localizationsDelegates: NavisLocalizations.localizationsDelegates,
       localeResolutionCallback: localeResolutionCallback,
     );

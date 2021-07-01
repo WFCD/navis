@@ -6,6 +6,7 @@ import 'package:wfcd_client/wfcd_client.dart';
 import 'core/cubits/navigation_cubit.dart';
 import 'core/local/user_settings.dart';
 import 'core/network/network_info.dart';
+import 'core/notifiers/user_settings_notifier.dart';
 import 'core/services/notifications.dart';
 import 'core/services/videos.dart';
 import 'features/codex/data/repositories/codex_repository_impl.dart';
@@ -47,6 +48,9 @@ Future<void> init() async {
 
   // Repository
   sl
+    ..registerSingleton<UserSettingsNotifier>(UserSettingsNotifier(
+      sl<Usersettings>(),
+    ))
     ..registerSingleton<WorldstateRepository>(
       WorldstateRepositoryImpl(
         sl<NetworkInfo>(),

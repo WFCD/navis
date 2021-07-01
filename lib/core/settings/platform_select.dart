@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:navis/core/notifiers/user_settings_notifier.dart';
 import 'package:provider/provider.dart';
 import 'package:simple_icons/simple_icons.dart';
 import 'package:wfcd_client/wfcd_client.dart';
 
 import '../../features/worldstate/presentation/bloc/solsystem_bloc.dart';
 import '../../injection_container.dart';
-import '../local/user_settings.dart';
 import '../services/notifications.dart';
 
 const pc = 'PC';
@@ -76,10 +76,10 @@ class PlatformIconButton extends StatelessWidget {
 
   void _onPressed(BuildContext context) {
     sl<NotificationService>()
-        .unsubscribeFromPlatform(sl<Usersettings>().platform);
+        .unsubscribeFromPlatform(sl<UserSettingsNotifier>().platform);
 
     sl<NotificationService>().subscribeToPlatform(platform);
-    sl<Usersettings>().platform = platform;
+    sl<UserSettingsNotifier>().setPlatform(platform);
 
     BlocProvider.of<SolsystemBloc>(context)
         .add(const SyncSystemStatus(forceUpdate: true));
@@ -88,7 +88,7 @@ class PlatformIconButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = (MediaQuery.of(context).size.shortestSide / 100) * 8.5;
-    final currentPlatform = context.watch<Usersettings>().platform;
+    final currentPlatform = context.watch<UserSettingsNotifier>().platform;
 
     return IconButton(
       tooltip: platformName,

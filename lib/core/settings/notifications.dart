@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 
 import '../../injection_container.dart';
 import '../../l10n/l10n.dart';
-import '../local/user_settings.dart';
+import '../notifiers/user_settings_notifier.dart';
 import '../services/notifications.dart';
 import '../utils/notification_filter.dart';
 import '../widgets/widgets.dart';
@@ -56,7 +56,7 @@ class Notifications extends StatelessWidget {
 }
 
 void _onChanged(BuildContext context, String key, bool value) {
-  context.read<Usersettings>().setToggle(key, value);
+  context.read<UserSettingsNotifier>().setToggle(key, value);
 
   if (value) {
     sl<NotificationService>().subscribeToNotification(key);
@@ -82,7 +82,7 @@ class _SimpleNotification extends StatelessWidget {
     return SwitchListTile(
       title: Text(name),
       subtitle: Text(description),
-      value: context.watch<Usersettings>().getToggle(optionKey),
+      value: context.watch<UserSettingsNotifier>().getToggle(optionKey),
       activeColor: Theme.of(context).accentColor,
       onChanged: (b) => _onChanged(context, optionKey, b),
     );
@@ -100,7 +100,7 @@ class FilterDialog extends StatelessWidget {
       context: context,
       builder: (_) {
         return ChangeNotifierProvider.value(
-          value: Provider.of<Usersettings>(context),
+          value: Provider.of<UserSettingsNotifier>(context),
           child: FilterDialog(options: options),
         );
       },
@@ -120,7 +120,7 @@ class FilterDialog extends StatelessWidget {
             NotificationCheckBox(
               option: _options[key]!,
               optionKey: key,
-              value: context.watch<Usersettings>().getToggle(key),
+              value: context.watch<UserSettingsNotifier>().getToggle(key),
             )
         ]),
       ),

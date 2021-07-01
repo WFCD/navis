@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
@@ -9,23 +10,21 @@ import 'package:wfcd_client/wfcd_client.dart';
 
 import '../../constants/storage_keys.dart';
 
-class Usersettings with ChangeNotifier {
+class Usersettings {
   Usersettings(this._box);
 
   final Box<dynamic> _box;
 
   static Usersettings? _instance;
 
-  static Future<Usersettings> initUsersettings() async {
+  static Future<Usersettings> initUsersettings([Directory? directory]) async {
     log('Initializing Usersettings Hive', level: Level.INFO.value);
-    final directory = await getApplicationDocumentsDirectory();
-    Hive.init(directory.path);
 
-    final box = await Hive.openBox<dynamic>('user_settings')
-        .catchError((Object error, StackTrace stack) {
-      log('Unable to open Usersettings Hive box',
-          error: error, stackTrace: stack, level: Level.SEVERE.value);
-    });
+    Hive.init(
+      directory?.path ?? (await getApplicationDocumentsDirectory()).path,
+    );
+
+    final box = await Hive.openBox<dynamic>('user_settings');
 
     return _instance ??= Usersettings(box);
   }
@@ -40,11 +39,10 @@ class Usersettings with ChangeNotifier {
     return null;
   }
 
-  void setLanguage(Locale? value, {bool rebuild = true}) {
+  void setLanguage(Locale? value) {
     if (value != null) {
       log('setting new lang ${value.languageCode}', level: Level.INFO.value);
       _box.put(SettingsKeys.userLanguage, value.languageCode);
-      if (rebuild) notifyListeners();
     }
   }
 
@@ -61,7 +59,6 @@ class Usersettings with ChangeNotifier {
   set platform(GamePlatforms value) {
     log('setting new platform ${value.asString}', level: Level.INFO.value);
     _box.put(SettingsKeys.platformKey, value.asString);
-    notifyListeners();
   }
 
   ThemeMode get theme {
@@ -75,7 +72,6 @@ class Usersettings with ChangeNotifier {
 
   set theme(ThemeMode mode) {
     _box.put(SettingsKeys.theme, mode.toString().split('.').last);
-    notifyListeners();
   }
 
   bool get backkey => getToggle(SettingsKeys.backKey);
@@ -86,16 +82,16 @@ class Usersettings with ChangeNotifier {
 
   set isOptOut(bool value) => setToggle(MatomoTracker.kOptOut, value);
 
-  bool get isFirstTime => getToggle(SettingsKeys.isFirstTime);
+  bool get isFirstTime =>
+      getToggle(SettingsKeys.isFirstTime, defaultValue: true);
 
   set isFirstTime(bool value) => setToggle(SettingsKeys.isFirstTime, value);
 
-  bool getToggle(String key) {
-    return _box.get(key, defaultValue: false) as bool;
+  bool getToggle(String key, {bool defaultValue = false}) {
+    return _box.get(key, defaultValue: defaultValue) as bool;
   }
 
   void setToggle(String key, bool value) {
     _box.put(key, value);
-    notifyListeners();
   }
 }

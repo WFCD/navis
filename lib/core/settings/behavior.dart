@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 
 import '../../features/worldstate/presentation/bloc/solsystem_bloc.dart';
 import '../../l10n/l10n.dart';
-import '../local/user_settings.dart';
+import '../notifiers/user_settings_notifier.dart';
 import '../widgets/widgets.dart';
 
 class Behavior extends StatelessWidget {
@@ -29,9 +29,9 @@ class Behavior extends StatelessWidget {
       SwitchListTile(
         title: Text(l10n.backOpensDrawerTitle),
         subtitle: Text(l10n.backOpensDrawerDescription),
-        value: context.watch<Usersettings>().backkey,
+        value: context.watch<UserSettingsNotifier>().backKey,
         activeColor: Theme.of(context).accentColor,
-        onChanged: (b) => context.read<Usersettings>().backkey = b,
+        onChanged: context.read<UserSettingsNotifier>().toggleBackKey,
       )
     ]);
   }
@@ -45,7 +45,7 @@ class LanguagePicker extends StatelessWidget {
       context: context,
       builder: (_) {
         return ChangeNotifierProvider.value(
-          value: Provider.of<Usersettings>(context),
+          value: Provider.of<UserSettingsNotifier>(context),
           child: const LanguagePicker(),
         );
       },
@@ -64,9 +64,11 @@ class LanguagePicker extends StatelessWidget {
             return RadioListTile<Locale>(
               title: Text(supportedLocales[index].fullName),
               value: supportedLocales[index],
-              groupValue: context.watch<Usersettings>().language,
+              groupValue: context.watch<UserSettingsNotifier>().language,
               activeColor: accentColor,
-              onChanged: (l) => context.read<Usersettings>().setLanguage(l),
+              onChanged: (l) => context
+                  .read<UserSettingsNotifier>()
+                  .setLanguage(l, rebuild: true),
             );
           }),
       actions: <Widget>[
@@ -94,7 +96,7 @@ class ThemePicker extends StatelessWidget {
       context: context,
       builder: (_) {
         return ChangeNotifierProvider.value(
-          value: Provider.of<Usersettings>(context),
+          value: Provider.of<UserSettingsNotifier>(context),
           child: const ThemePicker(),
         );
       },
@@ -102,9 +104,7 @@ class ThemePicker extends StatelessWidget {
   }
 
   void _onChanged(BuildContext context, ThemeMode? mode) {
-    if (mode == null) return;
-
-    context.read<Usersettings>().theme = mode;
+    if (mode != null) context.read<UserSettingsNotifier>().setTheme(mode);
     Navigator.of(context).pop();
   }
 
@@ -121,21 +121,21 @@ class ThemePicker extends StatelessWidget {
           RadioListTile<ThemeMode>(
             title: Text(l10n.lightThemeTitle),
             value: ThemeMode.light,
-            groupValue: context.watch<Usersettings>().theme,
+            groupValue: context.watch<UserSettingsNotifier>().theme,
             activeColor: accentColor,
             onChanged: (b) => _onChanged(context, b),
           ),
           RadioListTile<ThemeMode>(
             title: Text(l10n.darkThemeTitle),
             value: ThemeMode.dark,
-            groupValue: context.watch<Usersettings>().theme,
+            groupValue: context.watch<UserSettingsNotifier>().theme,
             activeColor: accentColor,
             onChanged: (b) => _onChanged(context, b),
           ),
           RadioListTile<ThemeMode>(
             title: Text(l10n.systemThemeTitle),
             value: ThemeMode.system,
-            groupValue: context.watch<Usersettings>().theme,
+            groupValue: context.watch<UserSettingsNotifier>().theme,
             activeColor: accentColor,
             onChanged: (b) => _onChanged(context, b),
           )
