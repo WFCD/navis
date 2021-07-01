@@ -38,6 +38,9 @@ Future<void> main() async {
     });
 
     test('Test theme toggles', () {
+      // Make sure that it returns ThemeMode.system by default
+      expect(settings.theme, ThemeMode.system);
+
       for (final mode in ThemeMode.values) {
         settings.theme = mode;
         expect(settings.theme, mode);
