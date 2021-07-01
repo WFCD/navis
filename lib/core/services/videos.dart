@@ -6,28 +6,22 @@ import 'package:youtube_explode_dart/youtube_explode_dart.dart';
 import 'package:retry/retry.dart';
 
 class VideoService {
-  VideoService({YoutubeHttpClient? youtubeHttpClient})
-      : _youtubeHttpClient = youtubeHttpClient ?? YoutubeHttpClient();
-
-  final YoutubeHttpClient _youtubeHttpClient;
-
-  Future<VideoInformation?> getVideoInformation(String id) async {
-    final request = VideoRequest(_youtubeHttpClient, id);
-    return compute(_getVideoInformation, request);
+  Future<VideoInformation?> getVideoInformation(String id,
+      [YoutubeExplode? explode]) async {
+    return compute(_getVideoInformation, id);
   }
 
   static const _timeout = Duration(seconds: 5);
 
-  static Future<VideoInformation?> _getVideoInformation(
-      VideoRequest request) async {
-    final exploded = YoutubeExplode(request.client);
+  static Future<VideoInformation?> _getVideoInformation(String id) async {
+    final exploded = YoutubeExplode();
 
     try {
       return retry<VideoInformation?>(
         () async {
-          final video = await exploded.videos.get(request.id).timeout(_timeout);
+          final video = await exploded.videos.get(id).timeout(_timeout);
           final manifest = await exploded.videos.streamsClient
-              .getManifest(request.id)
+              .getManifest(id)
               .timeout(_timeout);
 
           return VideoInformation(
@@ -47,13 +41,6 @@ class VideoService {
       e is TimeoutException ||
       e is FatalFailureException ||
       e is RequestLimitExceededException;
-}
-
-class VideoRequest {
-  const VideoRequest(this.client, this.id);
-
-  final YoutubeHttpClient client;
-  final String id;
 }
 
 class VideoInformation {
