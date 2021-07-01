@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:navis/core/notifiers/user_settings_notifier.dart';
 import 'package:provider/provider.dart';
 import 'package:simple_icons/simple_icons.dart';
 import 'package:wfcd_client/wfcd_client.dart';
 
 import '../../features/worldstate/presentation/bloc/solsystem_bloc.dart';
 import '../../injection_container.dart';
+import '../notifiers/user_settings_notifier.dart';
 import '../services/notifications.dart';
 
 const pc = 'PC';
