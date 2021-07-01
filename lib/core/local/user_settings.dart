@@ -11,7 +11,7 @@ import 'package:wfcd_client/wfcd_client.dart';
 import '../../constants/storage_keys.dart';
 
 class Usersettings {
-  Usersettings(this._box);
+  Usersettings._(this._box);
 
   final Box<dynamic> _box;
 
@@ -26,8 +26,14 @@ class Usersettings {
 
     final box = await Hive.openBox<dynamic>('user_settings');
 
-    return _instance ??= Usersettings(box);
+    return _instance ??= Usersettings._(box);
   }
+
+  // Application wise we don't need to ever close the box, since restarting the
+  // app already discards it, so we only need this to delete the box during
+  // testing on one system multiple times.
+  @visibleForTesting
+  Future<void> close() => _box.close();
 
   Locale? get language {
     final value = _box.get(SettingsKeys.userLanguage) as String?;

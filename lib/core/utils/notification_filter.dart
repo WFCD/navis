@@ -140,9 +140,8 @@ class LocalizedFilter {
     };
   }
 
-  static const tiers = <String>['Lith', 'Meso', 'Neo', 'Axi', 'Requiem'];
-
   Map<String, String> get fissures {
+    const _tiers = <String>['Lith', 'Meso', 'Neo', 'Axi', 'Requiem'];
     const commonTypes = <String>[
       'disruption',
       'exterminate',
@@ -164,7 +163,7 @@ class LocalizedFilter {
 
     final filters = <String, String>{};
 
-    for (final tier in tiers) {
+    for (final tier in _tiers) {
       var objectives = missionTypes;
 
       if (tier == 'Requiem') {
