@@ -21,7 +21,6 @@ void main() {
       toWorldstate(json.decode(worldstateFixture) as Map<String, dynamic>);
 
   late GetWorldstate getWorldstate;
-
   late SolsystemBloc solsystemBloc;
 
   setUpAll(() async {
@@ -34,15 +33,16 @@ void main() {
   });
 
   tearDownAll(() {
-    solsystemBloc.close();
-    HydratedBloc.storage.clear();
+    solsystemBloc
+      ..clear()
+      ..close();
   });
 
-  test('InitialState should be SolsystemInitial', () {
+  test('Test the initial State should be SolsystemInitial', () {
     expect(solsystemBloc.state, equals(SolsystemInitial()));
   });
 
-  test('should sync solsystem status', () async {
+  test('Test should sync solsystem status', () async {
     when(() => getWorldstate(any())).thenAnswer((_) async => Ok(tWorldstate));
 
     await solsystemBloc.update();
