@@ -1,21 +1,28 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:mocktail/mocktail.dart';
+import 'package:navis/features/worldstate/data/repositories/worldstate_rep_impl.dart';
 import 'package:navis/features/worldstate/domain/usecases/get_darvo_deal_info.dart';
 import 'package:navis/features/worldstate/presentation/bloc/darvodeal_bloc.dart';
+import 'package:oxidized/oxidized.dart';
+import 'package:wfcd_client/wfcd_client.dart';
+
+import '../../../../fixtures/fixture_reader.dart';
 
 class MockGetDarvoDealInfo extends Mock implements GetDarvoDealInfo {}
 
-void main() {
-  // final dealFixture = fixture('darvo_deal.json');
-  // final worldstateFixture = fixture('worldstate.json');
+class MockDealRequest extends Mock implements DealRequest {}
 
-  // final tDeal =
-  //     toBaseItems(json.decode(dealFixture) as List<Map<String, dynamic>>);
-  // final tWorldstate =
-  //     toWorldstate(json.decode(worldstateFixture) as Map<String, dynamic>);
+void main() {
+  final dealFixture = fixture('darvo_deal.json');
+  final worldstateFixture = fixture('worldstate.json');
+
+  final tDeal = toBaseItems(json.decode(dealFixture) as List<dynamic>);
+  final tWorldstate =
+      toWorldstate(json.decode(worldstateFixture) as Map<String, dynamic>);
 
   late GetDarvoDealInfo getDarvoDealInfo;
   late DarvodealBloc darvodealBloc;
@@ -27,6 +34,8 @@ void main() {
 
     getDarvoDealInfo = MockGetDarvoDealInfo();
     darvodealBloc = DarvodealBloc(getDarvoDealInfo: getDarvoDealInfo);
+
+    registerFallbackValue(MockDealRequest());
   });
 
   tearDownAll(() {
@@ -38,15 +47,16 @@ void main() {
     expect(darvodealBloc.state, equals(DarvodealInitial()));
   });
 
-  // test('Test should retrieve the test deal model', () async {
-  //   when(() => getDarvoDealInfo(any())).thenAnswer((_) async => Ok(tDeal));
+  test('Test should retrieve the test deal model', () async {
+    when(() => getDarvoDealInfo(any()))
+        .thenAnswer((_) async => Ok(tDeal.first));
 
-  //   darvodealBloc.add(LoadDarvodeal(tWorldstate.dailyDeals.first));
+    darvodealBloc.add(LoadDarvodeal(tWorldstate.dailyDeals.first));
 
-  //   //TODO: need a more specfic item to compare with
-  //   await untilCalled(() => getDarvoDealInfo(any()));
+    await untilCalled(() => getDarvoDealInfo(any()));
+    await Future.delayed(const Duration(seconds: 1));
 
-  //   verify(() => getDarvoDealInfo(any()));
-  //   expect(darvodealBloc.state, DarvoDealLoaded(tDeal));
-  // });
+    verify(() => getDarvoDealInfo(any()));
+    expect(darvodealBloc.state, DarvoDealLoaded(tDeal.first));
+  });
 }
