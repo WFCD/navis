@@ -59,4 +59,22 @@ void main() {
     verify(() => getDarvoDealInfo(any()));
     expect(darvodealBloc.state, DarvoDealLoaded(tDeal.first));
   });
+
+  test(
+    'Test to make sure the deal was saved into the Hydrated hive box',
+    () async {
+      when(() => getDarvoDealInfo(any()))
+          .thenAnswer((_) async => Ok(tDeal.first));
+
+      darvodealBloc.add(LoadDarvodeal(tWorldstate.dailyDeals.first));
+      await Future.delayed(const Duration(seconds: 1));
+
+      final cached = HydratedBloc.storage.read(darvodealBloc.storageToken)
+          as Map<String, dynamic>;
+
+      final deal = toBaseItem(cached['items'] as Map<String, dynamic>);
+
+      expect(deal.uniqueName, tDeal.first.uniqueName);
+    },
+  );
 }
