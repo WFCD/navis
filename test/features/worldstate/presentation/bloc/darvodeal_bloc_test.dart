@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter_test/flutter_test.dart';
@@ -6,21 +5,17 @@ import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:navis/features/worldstate/domain/usecases/get_darvo_deal_info.dart';
 import 'package:navis/features/worldstate/presentation/bloc/darvodeal_bloc.dart';
-import 'package:oxidized/oxidized.dart';
-import 'package:wfcd_client/wfcd_client.dart';
-
-import '../../../../fixtures/fixture_reader.dart';
 
 class MockGetDarvoDealInfo extends Mock implements GetDarvoDealInfo {}
 
 void main() {
-  final dealFixture = fixture('darvo_deal.json');
-  final worldstateFixture = fixture('worldstate.json');
+  // final dealFixture = fixture('darvo_deal.json');
+  // final worldstateFixture = fixture('worldstate.json');
 
-  final tDeal =
-      toBaseItems(json.decode(dealFixture) as List<Map<String, dynamic>>);
-  final tWorldstate =
-      toWorldstate(json.decode(worldstateFixture) as Map<String, dynamic>);
+  // final tDeal =
+  //     toBaseItems(json.decode(dealFixture) as List<Map<String, dynamic>>);
+  // final tWorldstate =
+  //     toWorldstate(json.decode(worldstateFixture) as Map<String, dynamic>);
 
   late GetDarvoDealInfo getDarvoDealInfo;
   late DarvodealBloc darvodealBloc;
