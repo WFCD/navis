@@ -41,65 +41,12 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = context.l10n;
-    final mediaQuery = MediaQuery.of(context);
-
     return WillPopScope(
       onWillPop: _willPop,
       child: Scaffold(
         key: scaffold,
         appBar: AppBar(),
-        drawer: Drawer(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: <Widget>[
-              SizedBox(
-                width: double.infinity,
-                height: 20 * (mediaQuery.size.height / 100),
-                child: Stack(
-                  fit: StackFit.passthrough,
-                  children: [
-                    ImageFiltered(
-                      imageFilter: ImageFilter.blur(sigmaX: 1.0, sigmaY: 1.0),
-                      child: const Image(
-                        image: AssetImage(NavisAssets.derelict),
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                    SafeArea(
-                      bottom: false,
-                      left: false,
-                      right: false,
-                      top: true,
-                      child: SvgPicture.asset(
-                        NavisAssets.wfcdLogoColor,
-                        color: Colors.white.withOpacity(0.5),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              const Expanded(child: DrawerOptions()),
-              const Divider(height: 4.0),
-              ListTile(
-                leading: const FaIcon(
-                  SimpleIcons.discord,
-                  color: Color(0xFF7289DA),
-                ),
-                title: Text(l10n.discordSupportTitle),
-                onTap: () => discordInvite.launchLink(context),
-              ),
-              ListTile(
-                leading: const Icon(Icons.settings),
-                title: Text(l10n.settingsTitle),
-                onTap: () {
-                  Navigator.of(context).pop();
-                  Navigator.of(context).pushNamed('/settings');
-                },
-              ),
-            ],
-          ),
-        ),
+        drawer: const NDrawer(),
         body: BlocBuilder<NavigationCubit, Widget>(
           builder: (BuildContext context, Widget state) {
             return AnimatedSwitcher(
@@ -108,6 +55,68 @@ class _HomeState extends State<Home> {
             );
           },
         ),
+      ),
+    );
+  }
+}
+
+class NDrawer extends StatelessWidget {
+  const NDrawer({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = context.l10n;
+    final mediaQuery = MediaQuery.of(context);
+
+    return Drawer(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: <Widget>[
+          SizedBox(
+            width: double.infinity,
+            height: 20 * (mediaQuery.size.height / 100),
+            child: Stack(
+              fit: StackFit.passthrough,
+              children: [
+                ImageFiltered(
+                  imageFilter: ImageFilter.blur(sigmaX: 1.0, sigmaY: 1.0),
+                  child: const Image(
+                    image: AssetImage(NavisAssets.derelict),
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                SafeArea(
+                  bottom: false,
+                  left: false,
+                  right: false,
+                  top: true,
+                  child: SvgPicture.asset(
+                    NavisAssets.wfcdLogoColor,
+                    color: Colors.white.withOpacity(0.5),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const Expanded(child: DrawerOptions()),
+          const Divider(height: 4.0),
+          ListTile(
+            leading: const FaIcon(
+              SimpleIcons.discord,
+              color: Color(0xFF7289DA),
+            ),
+            title: Text(l10n.discordSupportTitle),
+            onTap: () => discordInvite.launchLink(context),
+          ),
+          ListTile(
+            leading: const Icon(Icons.settings),
+            title: Text(l10n.settingsTitle),
+            onTap: () {
+              Navigator.of(context).pop();
+              Navigator.of(context).pushNamed('/settings');
+            },
+          ),
+        ],
       ),
     );
   }

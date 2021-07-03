@@ -56,7 +56,7 @@ class FissureWidget extends StatelessWidget {
                   return RelicIcons.requiem;
               }
             }(),
-            size: 50,
+            size: (mediaQuery.size.shortestSide / 100) * 10,
           ),
           FissureInfo(
             fissure: fissure,

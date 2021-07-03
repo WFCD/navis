@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 import 'package:wfcd_client/entities.dart';
 
 import '../../../../core/utils/helper_methods.dart';
@@ -12,12 +13,16 @@ class CodexEntry extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final item = ModalRoute.of(context)?.settings.arguments as Item;
-    final heightRatio = MediaQuery.of(context).size.longestSide / 100;
+    final heightRatio = MediaQuery.of(context).size.height / 100;
+    final heightMultiplier =
+        getValueForScreenType(context: context, mobile: 38.0, tablet: 32.0);
+
+    final height = heightRatio * heightMultiplier;
 
     return Scaffold(
       body: item.patchlogs != null
-          ? TabbedEntry(item: item, heightRatio: heightRatio)
-          : SingleEntry(item: item, heightRatio: heightRatio),
+          ? TabbedEntry(item: item, height: height)
+          : SingleEntry(item: item, height: height),
     );
   }
 }
@@ -26,11 +31,11 @@ class SingleEntry extends StatelessWidget {
   const SingleEntry({
     Key? key,
     required this.item,
-    required this.heightRatio,
+    required this.height,
   }) : super(key: key);
 
   final Item item;
-  final double heightRatio;
+  final double height;
 
   @override
   Widget build(BuildContext context) {
@@ -44,10 +49,10 @@ class SingleEntry extends StatelessWidget {
             description: item.description?.parseHtmlString() ?? '',
             wikiaUrl: item.wikiaUrl,
             imageUrl: item.imageUrl,
-            expandedHeight: heightRatio * 38,
+            expandedHeight: height,
           ),
         ),
-        SliverToBoxAdapter(
+        SliverFillRemaining(
           child: Overview(item: item),
         )
       ],
@@ -59,11 +64,11 @@ class TabbedEntry extends StatelessWidget {
   const TabbedEntry({
     Key? key,
     required this.item,
-    required this.heightRatio,
+    required this.height,
   }) : super(key: key);
 
   final Item item;
-  final double heightRatio;
+  final double height;
 
   @override
   Widget build(BuildContext context) {
@@ -83,7 +88,7 @@ class TabbedEntry extends StatelessWidget {
                 bottom: const TabBar(
                   tabs: [Tab(text: 'Overview'), Tab(text: 'Patchlogs')],
                 ),
-                expandedHeight: heightRatio * 38,
+                expandedHeight: height,
               ),
             ),
           ];

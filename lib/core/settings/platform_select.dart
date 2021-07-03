@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 import 'package:simple_icons/simple_icons.dart';
 import 'package:wfcd_client/wfcd_client.dart';
 
@@ -24,8 +25,15 @@ class PlatformSelect extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final paddingRatio = MediaQuery.of(context).size.longestSide / 100;
+    final padding = getValueForScreenType(
+      context: context,
+      mobile: paddingRatio * 2,
+      tablet: paddingRatio * 4,
+    );
+
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      padding: EdgeInsets.symmetric(vertical: padding),
       child: Row(
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -87,7 +95,7 @@ class PlatformIconButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = (MediaQuery.of(context).size.shortestSide / 100) * 8.5;
+    final size = (MediaQuery.of(context).size.shortestSide / 100) * 8;
     final currentPlatform = context.watch<UserSettingsNotifier>().platform;
 
     return IconButton(
