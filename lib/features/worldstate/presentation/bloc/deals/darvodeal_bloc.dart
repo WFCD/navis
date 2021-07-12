@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:equatable/equatable.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:wfcd_client/entities.dart';
+import 'package:wfcd_client/models.dart';
 import 'package:wfcd_client/wfcd_client.dart';
 
 import '../../../../../core/error/exceptions.dart';
@@ -17,6 +18,14 @@ class DarvodealBloc extends HydratedBloc<DarvodealEvent, DarvodealState> {
 
   final GetDarvoDealInfo getDarvoDealInfo;
 
+  static const unknownItem = MiscItemModel(
+    uniqueName: '',
+    name: '',
+    type: '',
+    category: 'unknown',
+    tradable: false,
+  );
+
   @override
   Stream<DarvodealState> mapEventToState(
     DarvodealEvent event,
@@ -29,7 +38,7 @@ class DarvodealBloc extends HydratedBloc<DarvodealEvent, DarvodealState> {
 
       yield either.match(
         (r) => DarvoDealLoaded(r),
-        (l) => throw CacheException(),
+        (l) => const DarvoDealLoaded(unknownItem),
       );
     }
   }

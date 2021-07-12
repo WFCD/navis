@@ -117,9 +117,11 @@ class WorldstateRepositoryImpl implements WorldstateRepository {
         try {
           final deal = await compute(_getDealInfo, name);
 
-          if (deal == null) return getCached();
-
-          cache.cacheDealInfo(id, deal);
+          if (deal == null) {
+            return getCached();
+          } else {
+            cache.cacheDealInfo(id, deal);
+          }
 
           return Ok(deal);
         } on SocketException {
