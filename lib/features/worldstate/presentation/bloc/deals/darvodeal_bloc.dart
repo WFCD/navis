@@ -6,7 +6,6 @@ import 'package:wfcd_client/entities.dart';
 import 'package:wfcd_client/models.dart';
 import 'package:wfcd_client/wfcd_client.dart';
 
-import '../../../../../core/error/exceptions.dart';
 import '../../../data/repositories/worldstate_rep_impl.dart';
 import '../../../domain/usecases/get_darvo_deal_info.dart';
 
