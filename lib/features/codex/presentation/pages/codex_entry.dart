@@ -15,7 +15,7 @@ class CodexEntry extends StatelessWidget {
     final item = ModalRoute.of(context)?.settings.arguments as Item;
     final heightRatio = MediaQuery.of(context).size.height / 100;
     final heightMultiplier =
-        getValueForScreenType(context: context, mobile: 38.0, tablet: 32.0);
+        getValueForScreenType(context: context, mobile: 32.0, tablet: 38.0);
 
     final height = heightRatio * heightMultiplier;
 
@@ -85,8 +85,10 @@ class TabbedEntry extends StatelessWidget {
                 description: item.description?.parseHtmlString() ?? '',
                 wikiaUrl: item.wikiaUrl,
                 imageUrl: item.imageUrl,
-                bottom: const TabBar(
-                  tabs: [Tab(text: 'Overview'), Tab(text: 'Patchlogs')],
+                bottom: TabBar(
+                  labelColor: Theme.of(context).textTheme.bodyText1?.color,
+                  indicatorColor: Theme.of(context).textTheme.bodyText1?.color,
+                  tabs: const [Tab(text: 'Overview'), Tab(text: 'Patchlogs')],
                 ),
                 expandedHeight: height,
               ),
