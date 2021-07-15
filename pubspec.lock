@@ -279,7 +279,7 @@ packages:
       name: get_it
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "7.1.3"
+    version: "7.2.0"
   glob:
     dependency: transitive
     description:
@@ -378,6 +378,15 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.1"
+  market_client:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: HEAD
+      resolved-ref: "63669d6bc2c7b73f7466b48dc2125d2b1b77abf6"
+      url: "https://github.com/SlayerOrnstein/market_client.git"
+    source: git
+    version: "0.0.0"
   matcher:
     dependency: transitive
     description:
@@ -968,11 +977,11 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: "v3.4.1"
-      resolved-ref: a6ad08150ae429c2cb762722b82c2f2f32a9dfbb
+      ref: "v3.4.2"
+      resolved-ref: "04f1156b46d347099384391d7f4e7db09df21911"
       url: "https://github.com/SlayerOrnstein/wfcd_client.git"
     source: git
-    version: "3.4.1"
+    version: "3.4.2"
   win32:
     dependency: transitive
     description:
@@ -1007,7 +1016,7 @@ packages:
       name: youtube_explode_dart
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.9.7"
+    version: "1.9.10"
 sdks:
   dart: ">=2.13.0 <3.0.0"
   flutter: ">=2.0.0"
