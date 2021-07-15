@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:responsive_builder/responsive_builder.dart';
 import 'package:wfcd_client/entities.dart';
 
 import '../../../../core/utils/helper_methods.dart';
@@ -16,16 +15,12 @@ class CodexEntry extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    const height = 200.0;
     final item = ModalRoute.of(context)?.settings.arguments as Item;
-    final heightRatio = MediaQuery.of(context).size.height / 100;
-    final heightMultiplier =
-        getValueForScreenType(context: context, mobile: 32.0, tablet: 38.0);
-
-    final height = heightRatio * heightMultiplier;
 
     return Scaffold(
       body: item.patchlogs != null
-          ? TabbedEntry(item: item, height: height)
+          ? TabbedEntry(item: item, height: height + kToolbarHeight)
           : SingleEntry(item: item, height: height),
     );
   }
@@ -76,8 +71,15 @@ class TabbedEntry extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final tabs = [
+      const Tab(text: 'Overview'),
+      if (item.patchlogs != null || item.patchlogs!.isNotEmpty)
+        const Tab(text: 'Patchlogs'),
+      if (item.tradable) const Tab(text: 'Market')
+    ];
+
     return DefaultTabController(
-      length: 3,
+      length: tabs.length,
       child: NestedScrollView(
         headerSliverBuilder: (context, index) {
           return [
@@ -92,12 +94,7 @@ class TabbedEntry extends StatelessWidget {
                 bottom: TabBar(
                   labelColor: Theme.of(context).textTheme.bodyText1?.color,
                   indicatorColor: Theme.of(context).textTheme.bodyText1?.color,
-                  tabs: [
-                    const Tab(text: 'Overview'),
-                    if (item.patchlogs != null || item.patchlogs!.isNotEmpty)
-                      const Tab(text: 'Patchlogs'),
-                    if (item.tradable) const Tab(text: 'Market')
-                  ],
+                  tabs: tabs,
                 ),
                 expandedHeight: height,
               ),
