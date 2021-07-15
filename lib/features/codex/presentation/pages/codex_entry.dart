@@ -3,8 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wfcd_client/entities.dart';
 
 import '../../../../core/utils/helper_methods.dart';
-import '../../../../injection_container.dart';
-import '../cubit/market_cubit.dart';
+import '../bloc/market_bloc.dart';
 import '../widgets/codex_widgets.dart';
 import '../widgets/market/market_order.dart';
 
@@ -135,6 +134,7 @@ class Overview extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView(
       key: const PageStorageKey('overview'),
+      padding: EdgeInsets.zero,
       children: [
         if (_isPowerSuit)
           FrameStats(powerSuit: item as PowerSuit)
@@ -162,27 +162,40 @@ class PatchlogsTimeline extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView.builder(
       key: const PageStorageKey('patchlogs'),
+      padding: EdgeInsets.zero,
       itemCount: patchlogs.length,
       itemBuilder: (_, index) => PatchlogCard(patchlog: patchlogs[index]),
     );
   }
 }
 
-class Market extends StatelessWidget {
+class Market extends StatefulWidget {
   const Market({Key? key, required this.itemName}) : super(key: key);
 
   final String itemName;
 
   @override
+  _MarketState createState() => _MarketState();
+}
+
+class _MarketState extends State<Market> {
+  @override
+  void initState() {
+    super.initState();
+
+    BlocProvider.of<MarketBloc>(context).add(FindOrders(widget.itemName));
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return BlocBuilder<MarketCubit, MarketState>(
-      bloc: sl<MarketCubit>()..findOrders(itemName),
+    return BlocBuilder<MarketBloc, MarketState>(
       builder: (context, state) {
         if (state is OrdersFound) {
           final orders = state.orders;
 
           return ListView.builder(
             key: const PageStorageKey('market'),
+            padding: EdgeInsets.zero,
             itemCount: orders.length,
             itemBuilder: (_, index) => MarketSellWidget(order: orders[index]),
           );

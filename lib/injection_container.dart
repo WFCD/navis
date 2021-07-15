@@ -15,8 +15,8 @@ import 'features/codex/domian/repositories/codex_repository.dart';
 import 'features/codex/domian/repositories/market_repository.dart';
 import 'features/codex/domian/usercases/get_orders.dart';
 import 'features/codex/domian/usercases/search_items.dart';
+import 'features/codex/presentation/bloc/market_bloc.dart';
 import 'features/codex/presentation/bloc/search_bloc.dart';
-import 'features/codex/presentation/cubit/market_cubit.dart';
 import 'features/synthtargets/data/repositories/synth_target_rep_impl.dart';
 import 'features/synthtargets/domain/repositories/synth_target_repository.dart';
 import 'features/synthtargets/domain/usecases/get_synth_targets.dart';
@@ -86,5 +86,5 @@ Future<void> init() async {
     })
     ..registerFactory(() => SynthtargetsBloc(sl<GetSynthTargets>()))
     ..registerFactory<SearchBloc>(() => SearchBloc(sl<SearchItems>()))
-    ..registerFactory(() => MarketCubit(sl<GetOrders>()));
+    ..registerFactory(() => MarketBloc(sl<GetOrders>()));
 }

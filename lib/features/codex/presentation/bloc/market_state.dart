@@ -1,4 +1,4 @@
-part of 'market_cubit.dart';
+part of 'market_bloc.dart';
 
 abstract class MarketState extends Equatable {
   const MarketState();
