@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:wfcd_client/entities.dart';
 
 import '../../../../core/utils/helper_methods.dart';
+import '../../../../injection_container.dart';
+import '../cubit/market_cubit.dart';
 import '../widgets/codex_widgets.dart';
+import '../widgets/market/market_order.dart';
 
 class CodexEntry extends StatelessWidget {
   const CodexEntry({Key? key}) : super(key: key);
@@ -73,7 +77,7 @@ class TabbedEntry extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 2,
+      length: 3,
       child: NestedScrollView(
         headerSliverBuilder: (context, index) {
           return [
@@ -88,7 +92,12 @@ class TabbedEntry extends StatelessWidget {
                 bottom: TabBar(
                   labelColor: Theme.of(context).textTheme.bodyText1?.color,
                   indicatorColor: Theme.of(context).textTheme.bodyText1?.color,
-                  tabs: const [Tab(text: 'Overview'), Tab(text: 'Patchlogs')],
+                  tabs: [
+                    const Tab(text: 'Overview'),
+                    if (item.patchlogs != null || item.patchlogs!.isNotEmpty)
+                      const Tab(text: 'Patchlogs'),
+                    if (item.tradable) const Tab(text: 'Market')
+                  ],
                 ),
                 expandedHeight: height,
               ),
@@ -98,7 +107,12 @@ class TabbedEntry extends StatelessWidget {
         body: TabBarView(
           children: [
             Overview(item: item),
-            PatchlogsTimeline(patchlogs: item.patchlogs ?? [])
+            if (item.patchlogs != null || item.patchlogs!.isNotEmpty)
+              PatchlogsTimeline(patchlogs: item.patchlogs ?? []),
+            if (item.tradable)
+              Market(
+                itemName: item.name,
+              )
           ],
         ),
       ),
@@ -153,6 +167,46 @@ class PatchlogsTimeline extends StatelessWidget {
       key: const PageStorageKey('patchlogs'),
       itemCount: patchlogs.length,
       itemBuilder: (_, index) => PatchlogCard(patchlog: patchlogs[index]),
+    );
+  }
+}
+
+class Market extends StatelessWidget {
+  const Market({Key? key, required this.itemName}) : super(key: key);
+
+  final String itemName;
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<MarketCubit, MarketState>(
+      bloc: sl<MarketCubit>()..findOrders(itemName),
+      builder: (context, state) {
+        if (state is OrdersFound) {
+          final orders = state.orders;
+
+          return ListView.builder(
+            key: const PageStorageKey('market'),
+            itemCount: orders.length,
+            itemBuilder: (_, index) => MarketSellWidget(order: orders[index]),
+          );
+        }
+
+        if (state is NoOrdersFound) {
+          return const Center(
+            child: Text('No seller orders found for this item'),
+          );
+        }
+
+        if (state is MarketError) {
+          return Center(
+            child: Text(state.message),
+          );
+        }
+
+        return const Center(
+          child: CircularProgressIndicator.adaptive(),
+        );
+      },
     );
   }
 }

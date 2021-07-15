@@ -10,9 +10,13 @@ import 'core/notifiers/user_settings_notifier.dart';
 import 'core/services/notifications.dart';
 import 'core/services/videos.dart';
 import 'features/codex/data/repositories/codex_repository_impl.dart';
+import 'features/codex/data/repositories/market_repository_impl.dart';
 import 'features/codex/domian/repositories/codex_repository.dart';
+import 'features/codex/domian/repositories/market_repository.dart';
+import 'features/codex/domian/usercases/get_orders.dart';
 import 'features/codex/domian/usercases/search_items.dart';
 import 'features/codex/presentation/bloc/search_bloc.dart';
+import 'features/codex/presentation/cubit/market_cubit.dart';
 import 'features/synthtargets/data/repositories/synth_target_rep_impl.dart';
 import 'features/synthtargets/domain/repositories/synth_target_repository.dart';
 import 'features/synthtargets/domain/usecases/get_synth_targets.dart';
@@ -60,6 +64,8 @@ Future<void> init() async {
     )
     ..registerSingleton<SynthRepository>(SynthRepositoryImpl(sl<NetworkInfo>()))
     ..registerSingleton<CodexRepository>(CodexRepositoryImpl(sl<NetworkInfo>()))
+    ..registerSingleton<MarketRepository>(
+        MarketRepositoryImpl(sl<NetworkInfo>(), sl<Usersettings>()))
 
     // Usecases
     ..registerSingleton<GetWorldstate>(
@@ -68,6 +74,7 @@ Future<void> init() async {
         GetDarvoDealInfo(sl<WorldstateRepository>()))
     ..registerSingleton<GetSynthTargets>(GetSynthTargets(sl<SynthRepository>()))
     ..registerSingleton<SearchItems>(SearchItems(sl<CodexRepository>()))
+    ..registerSingleton<GetOrders>(GetOrders(sl<MarketRepository>()))
 
     // Blocs
     ..registerFactory<NavigationCubit>(() => NavigationCubit())
@@ -78,5 +85,6 @@ Future<void> init() async {
       return DarvodealBloc(getDarvoDealInfo: sl<GetDarvoDealInfo>());
     })
     ..registerFactory(() => SynthtargetsBloc(sl<GetSynthTargets>()))
-    ..registerFactory<SearchBloc>(() => SearchBloc(sl<SearchItems>()));
+    ..registerFactory<SearchBloc>(() => SearchBloc(sl<SearchItems>()))
+    ..registerFactory(() => MarketCubit(sl<GetOrders>()));
 }
