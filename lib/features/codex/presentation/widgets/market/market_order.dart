@@ -187,7 +187,7 @@ class _MarketSellTrailing extends StatelessWidget {
             margin: const EdgeInsets.fromLTRB(8.0, 18.0, 8.0, 0),
             color: Theme.of(context).textTheme.bodyText2?.color,
           ),
-          _buildColumn(textTheme, 'Price', price)
+          _buildColumn(textTheme, 'Platinum', price)
         ],
       ),
     );
