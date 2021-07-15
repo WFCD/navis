@@ -48,10 +48,11 @@ class GunStats extends StatelessWidget {
                     polarities: projectileWeapon.polarities ?? <String>[],
                   ),
                 ),
-              RowItem(
-                text: Text(l10n.accuracyTitle),
-                child: Text('${roundDouble(projectileWeapon.accuracy, 1)}'),
-              ),
+              if (projectileWeapon.accuracy != null)
+                RowItem(
+                  text: Text(l10n.accuracyTitle),
+                  child: Text('${roundDouble(projectileWeapon.accuracy!, 1)}'),
+                ),
               RowItem(
                 text: Text(l10n.cricticalChanceTitle),
                 child: Text('''
@@ -73,14 +74,17 @@ ${(projectileWeapon.criticalChance * 100).roundToDouble()}%'''),
                 text: Text(l10n.multishotTitle),
                 child: Text('${projectileWeapon.multishot}'),
               ),
-              RowItem(
-                text: Text(l10n.noiseTitle),
-                child: Text(projectileWeapon.noise.toUpperCase()),
-              ),
-              RowItem(
-                text: Text(l10n.reloadTitle),
-                child: Text('${roundDouble(projectileWeapon.reloadTime, 1)}'),
-              ),
+              if (projectileWeapon.noise != null)
+                RowItem(
+                  text: Text(l10n.noiseTitle),
+                  child: Text(projectileWeapon.noise!.toUpperCase()),
+                ),
+              if (projectileWeapon.reloadTime != null)
+                RowItem(
+                  text: Text(l10n.reloadTitle),
+                  child:
+                      Text('${roundDouble(projectileWeapon.reloadTime!, 1)}'),
+                ),
               RowItem(
                 text: Text(l10n.rivenDispositionTitle),
                 child: RivenDisposition(
@@ -92,10 +96,11 @@ ${(projectileWeapon.criticalChance * 100).roundToDouble()}%'''),
                 child: Text('''
 ${(projectileWeapon.statusChance * 100).roundToDouble()}%'''),
               ),
-              RowItem(
-                text: Text(l10n.triggerTitle),
-                child: Text(projectileWeapon.trigger),
-              )
+              if (projectileWeapon.trigger != null)
+                RowItem(
+                  text: Text(l10n.triggerTitle),
+                  child: Text(projectileWeapon.trigger!),
+                )
             ],
           ),
           const SizedBox(height: 16.0),
