@@ -70,16 +70,16 @@ class BasicItemInfo extends SliverPersistentHeaderDelegate {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 8.0),
+                        padding: const EdgeInsets.only(bottom: 6.0),
                         child: Hero(
                           tag: uniqueName,
                           child: CircleAvatar(
                             backgroundImage:
                                 CachedNetworkImageProvider(imageUrl),
                             backgroundColor: Colors.grey,
-                            radius: (MediaQuery.of(context).size.longestSide /
+                            radius: (MediaQuery.of(context).size.shortestSide /
                                     100) *
-                                6,
+                                10,
                           ),
                         ),
                       ),
