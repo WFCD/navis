@@ -26,7 +26,7 @@ class MarketSellWidget extends StatelessWidget {
           Expanded(
             child: Padding(
               padding: const EdgeInsets.symmetric(
-                vertical: 8.0,
+                vertical: 4.0,
                 horizontal: 8.0,
               ),
               child: _MarketSellBody(
@@ -92,11 +92,18 @@ class _MarketSellLeading extends StatelessWidget {
               color: Theme.of(context).accentColor,
               borderRadius: BorderRadius.circular(4.0)),
           child: Text(
-            orderType.toString().split('.').last.toUpperCase(),
+            () {
+              switch (orderType) {
+                case OrderType.sell:
+                  return 'WTS';
+                case OrderType.buy:
+                  return 'WTB';
+              }
+            }(),
             style: Theme.of(context)
                 .textTheme
                 .caption
-                ?.copyWith(color: Colors.black),
+                ?.copyWith(color: Colors.black, fontWeight: FontWeight.bold),
           ),
         )
       ],
