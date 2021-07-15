@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:navis/core/notifiers/user_settings_notifier.dart';
 import 'package:provider/provider.dart';
 import 'package:simple_icons/simple_icons.dart';
 
@@ -27,7 +28,7 @@ class _HomeState extends State<Home> {
   final GlobalKey<ScaffoldState> scaffold = GlobalKey<ScaffoldState>();
 
   Future<bool> _willPop() {
-    if (context.read<Usersettings>().backkey) {
+    if (context.read<UserSettingsNotifier>().backKey) {
       if (!scaffold.currentState!.isDrawerOpen) {
         scaffold.currentState!.openDrawer();
         return Future.value(false);
