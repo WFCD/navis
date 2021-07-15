@@ -76,7 +76,7 @@ class _MarketSellLeading extends StatelessWidget {
               case UserStatus.ingame:
                 return Colors.purple;
               case UserStatus.offline:
-                return Colors.grey[850];
+                return Colors.grey[600];
             }
           }(),
           child: CircleAvatar(
