@@ -71,7 +71,7 @@ class BasicItemInfo extends SliverPersistentHeaderDelegate {
   double get maxExtent => expandedHeight;
 
   @override
-  double get minExtent => (kToolbarHeight * 2) + 30;
+  double get minExtent => (kToolbarHeight + kTextTabBarHeight);
 
   @override
   bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) {
