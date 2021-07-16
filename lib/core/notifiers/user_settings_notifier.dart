@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:wfcd_client/wfcd_client.dart';
@@ -29,8 +31,8 @@ class UserSettingsNotifier extends ChangeNotifier {
     if (rebuild) notifyListeners();
   }
 
-  void setPlatform(GamePlatforms platforms) {
-    _usersettings.platform = platform;
+  void setPlatform(GamePlatforms value) {
+    _usersettings.platform = value;
     notifyListeners();
   }
 
