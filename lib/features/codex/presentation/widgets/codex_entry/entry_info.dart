@@ -107,9 +107,8 @@ class _EntryInfoContent extends StatelessWidget {
       child: AnimatedContainer(
         duration: kThemeAnimationDuration,
         width: MediaQuery.of(context).size.width,
-        height: shrinkOffset > 0.0 ? 0 : (height / 100) * 50,
+        height: shrinkOffset > 0.0 ? 0 : (height / 100) * 53,
         child: FittedBox(
-          fit: BoxFit.fitHeight,
           clipBehavior: Clip.hardEdge,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
