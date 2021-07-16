@@ -1,8 +1,8 @@
 import 'package:equatable/equatable.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:market_client/market_client.dart';
-import 'package:navis/core/error/failures.dart';
 
+import '../../../../core/error/failures.dart';
 import '../../domian/usercases/get_orders.dart';
 
 part 'market_event.dart';
