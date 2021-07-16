@@ -1,5 +1,4 @@
 import 'dart:developer';
-import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
@@ -16,7 +15,7 @@ class Usersettings {
 
   static Usersettings? _instance;
 
-  static Future<Usersettings> initUsersettings([Directory? directory]) async {
+  static Future<Usersettings> initUsersettings() async {
     log('Initializing Usersettings Hive', level: Level.INFO.value);
     final box = await Hive.openBox<dynamic>('user_settings');
 
