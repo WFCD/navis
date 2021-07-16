@@ -24,3 +24,4 @@ jobs:
           extra_plugins: |
             @semantic-release/exec
             @semantic-release/git
+            @eclass/semantic-release-sentry-releases
