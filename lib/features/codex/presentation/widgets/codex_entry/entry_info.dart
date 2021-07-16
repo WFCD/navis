@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
@@ -32,27 +34,26 @@ class BasicItemInfo extends SliverPersistentHeaderDelegate {
     return Container(
       height: expandedHeight,
       color: Theme.of(context).canvasColor,
-      child: SingleChildScrollView(
-        physics: const NeverScrollableScrollPhysics(),
-        child: Column(
-          children: [
-            AppBar(
-              elevation: 0.0,
-              backgroundColor: Theme.of(context).canvasColor,
-              iconTheme: Theme.of(context).iconTheme,
-              brightness: Theme.of(context).brightness,
-              actions: [
-                TextButton(
-                  style: ButtonStyle(
-                    foregroundColor: MaterialStateProperty.all(
-                        Theme.of(context).textTheme.button?.color),
-                  ),
-                  onPressed: () => wikiaUrl?.launchLink(context),
-                  child: Text(context.l10n.seeWikia),
+      child: Stack(
+        children: <Widget>[
+          AppBar(
+            elevation: 0.0,
+            backgroundColor: Theme.of(context).canvasColor,
+            iconTheme: Theme.of(context).iconTheme,
+            brightness: Theme.of(context).brightness,
+            actions: [
+              TextButton(
+                style: ButtonStyle(
+                  foregroundColor: MaterialStateProperty.all(
+                      Theme.of(context).textTheme.button?.color),
                 ),
-              ],
-            ),
-            _EntryInfoContent(
+                onPressed: () => wikiaUrl?.launchLink(context),
+                child: Text(context.l10n.seeWikia),
+              ),
+            ],
+          ),
+          Center(
+            child: _EntryInfoContent(
               height: expandedHeight,
               shrinkOffset: shrinkOffset,
               uniqueName: uniqueName,
@@ -60,9 +61,10 @@ class BasicItemInfo extends SliverPersistentHeaderDelegate {
               name: name,
               description: description,
             ),
-            if (bottom != null) bottom!
-          ],
-        ),
+          ),
+          if (bottom != null)
+            Align(alignment: Alignment.bottomCenter, child: bottom!)
+        ],
       ),
     );
   }
@@ -107,11 +109,12 @@ class _EntryInfoContent extends StatelessWidget {
       child: AnimatedContainer(
         duration: kThemeAnimationDuration,
         width: MediaQuery.of(context).size.width,
-        height: shrinkOffset > 0.0 ? 0 : (height / 100) * 53,
+        height: shrinkOffset > 0.0 ? 0 : 106,
         child: FittedBox(
           clipBehavior: Clip.hardEdge,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
             children: [
               Padding(
                 padding: const EdgeInsets.only(bottom: 6.0),
