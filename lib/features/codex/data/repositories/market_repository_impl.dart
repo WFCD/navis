@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:market_client/market_client.dart';
-import 'package:navis/features/codex/data/datasources/market_cache.dart';
 import 'package:oxidized/oxidized.dart';
 import 'package:wfcd_client/wfcd_client.dart';
 
@@ -10,6 +9,7 @@ import '../../../../core/error/failures.dart';
 import '../../../../core/local/user_settings.dart';
 import '../../../../core/network/network_info.dart';
 import '../../domian/repositories/market_repository.dart';
+import '../datasources/market_cache.dart';
 
 class MarketRepositoryImpl extends MarketRepository {
   const MarketRepositoryImpl(this.networkInfo, this.usersettings, this.cache);
