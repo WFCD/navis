@@ -20,6 +20,9 @@ jobs:
         uses: cycjimmy/semantic-release-action@v2.5.4
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+          SENTRY_PROJECT: 'navis'
+          SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
         with:
           extra_plugins: |
             @semantic-release/exec
