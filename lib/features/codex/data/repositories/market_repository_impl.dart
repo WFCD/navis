@@ -63,7 +63,9 @@ class MarketRepositoryImpl extends MarketRepository {
     final itemUrl = (await api.getMarketItems())
         .firstWhere((e) => e.itemName.contains(req.itemUrl));
 
-    return await api.searchOrders(itemUrl.urlName);
+    return (await api.searchOrders(itemUrl.urlName))
+        .where((o) => o.orderType == OrderType.sell)
+        .toList();
   }
 }
 
