@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
@@ -31,9 +29,6 @@ class BasicItemInfo extends SliverPersistentHeaderDelegate {
     double shrinkOffset,
     bool overlapsContent,
   ) {
-    const textAlign = TextAlign.center;
-    final textTheme = Theme.of(context).textTheme;
-
     return Container(
       height: expandedHeight,
       color: Theme.of(context).canvasColor,
