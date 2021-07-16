@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wfcd_client/entities.dart';
 
 import '../../../../core/utils/helper_methods.dart';
+import '../../../../injection_container.dart';
 import '../bloc/market_bloc.dart';
 import '../widgets/codex_widgets.dart';
 import '../widgets/market/market_order.dart';
@@ -183,15 +184,9 @@ class Market extends StatefulWidget {
 
 class _MarketState extends State<Market> {
   @override
-  void initState() {
-    super.initState();
-
-    BlocProvider.of<MarketBloc>(context).add(FindOrders(widget.itemName));
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return BlocBuilder<MarketBloc, MarketState>(
+    return BlocBuilder(
+      bloc: sl<MarketBloc>()..add(FindOrders(widget.itemName)),
       builder: (context, state) {
         if (state is OrdersFound) {
           final orders = state.orders;
