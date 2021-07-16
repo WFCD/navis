@@ -11,8 +11,8 @@ import '../notifiers/user_settings_notifier.dart';
 import '../services/notifications.dart';
 
 const pc = 'PC';
-const ps4 = 'Sony PlayStation 4';
-const xb1 = 'Microsoft Xbox One';
+const ps4 = 'Sony PlayStation Network';
+const xb1 = 'Microsoft Xbox';
 const swi = 'Nintendo Switch';
 
 const pcColor = Color(0xFFFACA04);
