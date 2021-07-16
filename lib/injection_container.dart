@@ -1,6 +1,8 @@
 import 'package:get_it/get_it.dart';
+import 'package:hive/hive.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:package_info/package_info.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:wfcd_client/wfcd_client.dart';
 
 import 'core/cubits/navigation_cubit.dart';
@@ -9,6 +11,7 @@ import 'core/network/network_info.dart';
 import 'core/notifiers/user_settings_notifier.dart';
 import 'core/services/notifications.dart';
 import 'core/services/videos.dart';
+import 'features/codex/data/datasources/market_cache.dart';
 import 'features/codex/data/repositories/codex_repository_impl.dart';
 import 'features/codex/data/repositories/market_repository_impl.dart';
 import 'features/codex/domian/repositories/codex_repository.dart';
@@ -33,6 +36,11 @@ import 'features/worldstate/presentation/bloc/solsystem_bloc.dart';
 final GetIt sl = GetIt.instance;
 
 Future<void> init() async {
+  final temp = await getTemporaryDirectory();
+  final appDir = await getApplicationDocumentsDirectory();
+
+  Hive..init(appDir.path)..init(temp.path);
+
   // Core
   sl
     ..registerSingleton<NetworkInfo>(
@@ -43,12 +51,14 @@ Future<void> init() async {
     ..registerSingleton<NotificationService>(NotificationService())
 
     // Data sources
-    ..registerSingleton<WarframestatClient>(WarframestatClient())
     ..registerSingletonAsync(Usersettings.initUsersettings)
-    ..registerSingletonAsync<WarframestatCache>(WarframestatCache.initCache);
+    ..registerSingleton<WarframestatClient>(WarframestatClient())
+    ..registerSingletonAsync<WarframestatCache>(WarframestatCache.initCache)
+    ..registerSingletonAsync(MarketCache.initCache);
 
-  await sl.isReady<WarframestatCache>();
   await sl.isReady<Usersettings>();
+  await sl.isReady<WarframestatCache>();
+  await sl.isReady<MarketCache>();
 
   // Repository
   sl
@@ -64,8 +74,8 @@ Future<void> init() async {
     )
     ..registerSingleton<SynthRepository>(SynthRepositoryImpl(sl<NetworkInfo>()))
     ..registerSingleton<CodexRepository>(CodexRepositoryImpl(sl<NetworkInfo>()))
-    ..registerSingleton<MarketRepository>(
-        MarketRepositoryImpl(sl<NetworkInfo>(), sl<Usersettings>()))
+    ..registerSingleton<MarketRepository>(MarketRepositoryImpl(
+        sl<NetworkInfo>(), sl<Usersettings>(), sl<MarketCache>()))
 
     // Usecases
     ..registerSingleton<GetWorldstate>(
