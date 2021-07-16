@@ -29,16 +29,12 @@ class BasicItemInfo extends SliverPersistentHeaderDelegate {
     double shrinkOffset,
     bool overlapsContent,
   ) {
-    const textAlign = TextAlign.center;
-    final textTheme = Theme.of(context).textTheme;
-
     return Container(
       height: expandedHeight,
       color: Theme.of(context).canvasColor,
       child: SingleChildScrollView(
         physics: const NeverScrollableScrollPhysics(),
         child: Column(
-          mainAxisSize: MainAxisSize.min,
           children: [
             AppBar(
               elevation: 0.0,
@@ -56,50 +52,13 @@ class BasicItemInfo extends SliverPersistentHeaderDelegate {
                 ),
               ],
             ),
-            AnimatedOpacity(
-              duration: kThemeAnimationDuration,
-              opacity: 1 - (shrinkOffset / expandedHeight),
-              child: AnimatedContainer(
-                duration: kThemeAnimationDuration,
-                width: MediaQuery.of(context).size.width,
-                height: shrinkOffset > 0.0 ? 0 : (expandedHeight / 100) * 50,
-                child: FittedBox(
-                  fit: BoxFit.fitHeight,
-                  clipBehavior: Clip.hardEdge,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 6.0),
-                        child: Hero(
-                          tag: uniqueName,
-                          child: CircleAvatar(
-                            backgroundImage:
-                                CachedNetworkImageProvider(imageUrl),
-                            backgroundColor: Colors.grey,
-                            radius: (MediaQuery.of(context).size.shortestSide /
-                                    100) *
-                                10,
-                          ),
-                        ),
-                      ),
-                      Text(
-                        name,
-                        style: textTheme.subtitle1,
-                        textAlign: textAlign,
-                      ),
-                      SizedBox(
-                        width: (MediaQuery.of(context).size.width / 100) * 95,
-                        child: Text(
-                          description,
-                          style: textTheme.caption,
-                          textAlign: textAlign,
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-              ),
+            _EntryInfoContent(
+              height: expandedHeight,
+              shrinkOffset: shrinkOffset,
+              uniqueName: uniqueName,
+              imageUrl: imageUrl,
+              name: name,
+              description: description,
             ),
             if (bottom != null) bottom!
           ],
@@ -112,10 +71,78 @@ class BasicItemInfo extends SliverPersistentHeaderDelegate {
   double get maxExtent => expandedHeight;
 
   @override
-  double get minExtent => (kToolbarHeight * 2) + 30;
+  double get minExtent => (kToolbarHeight + kTextTabBarHeight);
 
   @override
   bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) {
     return false;
+  }
+}
+
+class _EntryInfoContent extends StatelessWidget {
+  const _EntryInfoContent({
+    Key? key,
+    required this.height,
+    required this.shrinkOffset,
+    required this.uniqueName,
+    required this.imageUrl,
+    required this.name,
+    required this.description,
+  }) : super(key: key);
+
+  final double shrinkOffset, height;
+  final String uniqueName;
+  final String imageUrl;
+  final String name;
+  final String description;
+
+  @override
+  Widget build(BuildContext context) {
+    const textAlign = TextAlign.center;
+    final textTheme = Theme.of(context).textTheme;
+
+    return AnimatedOpacity(
+      duration: kThemeAnimationDuration,
+      opacity: 1 - (shrinkOffset / height),
+      child: AnimatedContainer(
+        duration: kThemeAnimationDuration,
+        width: MediaQuery.of(context).size.width,
+        height: shrinkOffset > 0.0 ? 0 : (height / 100) * 50,
+        child: FittedBox(
+          fit: BoxFit.fitHeight,
+          clipBehavior: Clip.hardEdge,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(bottom: 6.0),
+                child: Hero(
+                  tag: uniqueName,
+                  child: CircleAvatar(
+                    backgroundImage: CachedNetworkImageProvider(imageUrl),
+                    backgroundColor: Colors.grey,
+                    radius:
+                        (MediaQuery.of(context).size.shortestSide / 100) * 8,
+                  ),
+                ),
+              ),
+              Text(
+                name,
+                style: textTheme.subtitle1,
+                textAlign: textAlign,
+              ),
+              SizedBox(
+                width: (MediaQuery.of(context).size.width / 100) * 95,
+                child: Text(
+                  description,
+                  style: textTheme.caption,
+                  textAlign: textAlign,
+                ),
+              )
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }

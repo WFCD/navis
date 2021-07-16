@@ -14,13 +14,16 @@ class CodexEntry extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const height = 200.0;
     final item = ModalRoute.of(context)?.settings.arguments as Item;
+    final heightRatio = MediaQuery.of(context).size.height / 100;
+    final height = heightRatio * 20;
 
-    return Scaffold(
-      body: item.patchlogs != null
-          ? TabbedEntry(item: item, height: height + kToolbarHeight)
-          : SingleEntry(item: item, height: height),
+    return SafeArea(
+      child: Scaffold(
+        body: item.patchlogs != null
+            ? TabbedEntry(item: item, height: height)
+            : SingleEntry(item: item, height: height),
+      ),
     );
   }
 }
@@ -95,7 +98,7 @@ class TabbedEntry extends StatelessWidget {
                   indicatorColor: Theme.of(context).textTheme.bodyText1?.color,
                   tabs: tabs,
                 ),
-                expandedHeight: height,
+                expandedHeight: height + kTextTabBarHeight,
               ),
             ),
           ];
