@@ -1,6 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:market_client/market_client.dart';
+import 'package:navis/core/error/failures.dart';
 
 import '../../domian/usercases/get_orders.dart';
 
@@ -26,7 +27,15 @@ class MarketBloc extends HydratedBloc<MarketEvent, MarketState> {
             return const NoOrdersFound();
           }
         },
-        (f) => const MarketError('Warframe Market returned and error'),
+        (f) {
+          if (f is CacheFailure) {
+            return const MarketError('There was a cache error');
+          } else if (f is ServerFailure) {
+            return const MarketError('Warframe Market returned and error');
+          } else {
+            return const MarketError('Unknown error occured');
+          }
+        },
       );
     }
   }

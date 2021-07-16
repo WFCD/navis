@@ -8,7 +8,7 @@ import 'package:wfcd_client/models.dart';
 import 'package:wfcd_client/wfcd_client.dart';
 
 class WarframestatCache {
-  const WarframestatCache(this._box);
+  const WarframestatCache._(this._box);
 
   final Box<dynamic> _box;
 
@@ -27,7 +27,7 @@ class WarframestatCache {
       },
     );
 
-    return _instance ??= WarframestatCache(box);
+    return _instance ??= WarframestatCache._(box);
   }
 
   static const String _dealId = 'dealId';

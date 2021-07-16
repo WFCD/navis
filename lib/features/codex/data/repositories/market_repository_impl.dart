@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:market_client/market_client.dart';
+import 'package:navis/features/codex/data/datasources/market_cache.dart';
 import 'package:oxidized/oxidized.dart';
 import 'package:wfcd_client/wfcd_client.dart';
 
@@ -11,26 +12,45 @@ import '../../../../core/network/network_info.dart';
 import '../../domian/repositories/market_repository.dart';
 
 class MarketRepositoryImpl extends MarketRepository {
-  const MarketRepositoryImpl(this.networkInfo, this.usersettings);
+  const MarketRepositoryImpl(this.networkInfo, this.usersettings, this.cache);
 
   final NetworkInfo networkInfo;
   final Usersettings usersettings;
+  final MarketCache cache;
 
   @override
   Future<Result<List<ItemOrder>, Failure>> retriveOrders(
       String itemName) async {
-    if (await networkInfo.isConnected) {
-      final req = MarketRequest(usersettings.language?.languageCode ?? 'en',
-          itemName, usersettings.platform);
+    final cItem = cache.getCachedItemName();
 
-      try {
-        final orders = await compute(_retriveOrders, req);
-        return Ok(orders);
-      } on SocketException {
-        return Err(ServerFailure());
+    Result<List<ItemOrder>, Failure> getcached() {
+      final cached = cache.getCachedOrders();
+
+      if (cached != null) {
+        return Ok(cached);
+      } else {
+        return Err(CacheFailure());
+      }
+    }
+
+    if (cItem != itemName) {
+      if (await networkInfo.isConnected) {
+        final req = MarketRequest(usersettings.language?.languageCode ?? 'en',
+            itemName, usersettings.platform);
+
+        try {
+          final orders = await compute(_retriveOrders, req);
+
+          cache.cacheOrders(itemName, orders);
+          return Ok(orders);
+        } on SocketException {
+          return Err(ServerFailure());
+        }
+      } else {
+        return getcached();
       }
     } else {
-      return Err(ServerFailure());
+      return getcached();
     }
   }
 
