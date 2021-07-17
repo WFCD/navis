@@ -17,7 +17,7 @@ class CodexEntry extends StatelessWidget {
   Widget build(BuildContext context) {
     final item = ModalRoute.of(context)?.settings.arguments as Item;
     final heightRatio = MediaQuery.of(context).size.height / 100;
-    final height = heightRatio * 20;
+    final height = heightRatio * 30;
 
     return SafeArea(
       child: Scaffold(
