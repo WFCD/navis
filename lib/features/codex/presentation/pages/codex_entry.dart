@@ -19,9 +19,9 @@ class CodexEntry extends StatelessWidget {
     final heightRatio = MediaQuery.of(context).size.height / 100;
     final height = heightRatio * 30;
 
-    return SafeArea(
-      child: Scaffold(
-        body: item.patchlogs != null
+    return Scaffold(
+      body: SafeArea(
+        child: item.patchlogs != null
             ? TabbedEntry(item: item, height: height)
             : SingleEntry(item: item, height: height),
       ),
