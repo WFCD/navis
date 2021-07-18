@@ -22,17 +22,23 @@ class MarketCache {
     return _instance ??= MarketCache._(box);
   }
 
+  static const _timestamp = 'timestamp';
   static const _itemName = 'itemName';
   static const _ordersKey = 'marketOrders';
 
   void cacheOrders(String itemName, List<ItemOrder> orders) {
     _box
+      ..put(_timestamp, DateTime.now())
       ..put(_itemName, itemName)
       ..put(_ordersKey, json.encode(orders.map((o) => o.toJson()).toList()));
   }
 
   String? getCachedItemName() {
-    return _box.get(_itemName, defaultValue: null);
+    return _box.get(_itemName);
+  }
+
+  DateTime? getTimestamp() {
+    return _box.get(_timestamp);
   }
 
   List<ItemOrder>? getCachedOrders() {

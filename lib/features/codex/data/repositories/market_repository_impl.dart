@@ -21,6 +21,8 @@ class MarketRepositoryImpl extends MarketRepository {
   @override
   Future<Result<List<ItemOrder>, Failure>> retriveOrders(
       String itemName) async {
+    const _expiredCacheTime = Duration(minutes: 5);
+    final cTimestamp = cache.getTimestamp()?.difference(DateTime.now());
     final cItem = cache.getCachedItemName();
 
     Result<List<ItemOrder>, Failure> getcached() {
@@ -33,7 +35,8 @@ class MarketRepositoryImpl extends MarketRepository {
       }
     }
 
-    if (cItem != itemName) {
+    if (cItem != itemName &&
+        (cTimestamp ?? _expiredCacheTime) <= _expiredCacheTime) {
       if (await networkInfo.isConnected) {
         final req = MarketRequest(usersettings.language?.languageCode ?? 'en',
             itemName, usersettings.platform);
