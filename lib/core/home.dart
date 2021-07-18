@@ -10,7 +10,7 @@ import '../constants/links.dart';
 import '../l10n/l10n.dart';
 import '../resources/resources.dart';
 import 'cubits/navigation_cubit.dart';
-import 'local/user_settings.dart';
+import 'notifiers/user_settings_notifier.dart';
 import 'utils/extensions.dart';
 import 'utils/helper_methods.dart';
 import 'widgets/drawer_options.dart';
@@ -27,7 +27,7 @@ class _HomeState extends State<Home> {
   final GlobalKey<ScaffoldState> scaffold = GlobalKey<ScaffoldState>();
 
   Future<bool> _willPop() {
-    if (context.read<Usersettings>().backkey) {
+    if (context.read<UserSettingsNotifier>().backKey) {
       if (!scaffold.currentState!.isDrawerOpen) {
         scaffold.currentState!.openDrawer();
         return Future.value(false);
