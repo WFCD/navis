@@ -3,12 +3,13 @@ import 'dart:async';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:wfcd_client/wfcd_client.dart';
-import 'package:path_provider/path_provider.dart';
 
 import 'core/app.dart';
 import 'core/cubits/navigation_cubit.dart';
@@ -20,6 +21,11 @@ import 'injection_container.dart';
 import 'injection_container.dart' as di;
 
 Future<void> startApp() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setSystemUIOverlayStyle(
+    const SystemUiOverlayStyle(statusBarColor: Colors.transparent),
+  );
+
   await Firebase.initializeApp();
   await FlutterWebBrowser.warmup();
 
