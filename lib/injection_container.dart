@@ -28,7 +28,10 @@ import 'features/worldstate/presentation/bloc/solsystem_bloc.dart';
 
 final GetIt sl = GetIt.instance;
 
+bool _isDebug = false;
+
 Future<void> init() async {
+  assert(_isDebug = true);
   // Core
   sl
     ..registerSingleton<NetworkInfo>(
@@ -36,7 +39,8 @@ Future<void> init() async {
     ..registerSingletonAsync<EventInfoParser>(EventInfoParser.loadEventData)
     ..registerSingleton<VideoService>(VideoService())
     ..registerSingletonAsync<PackageInfo>(PackageInfo.fromPlatform)
-    ..registerSingleton<NotificationService>(NotificationService())
+    ..registerSingleton<NotificationService>(
+        _isDebug ? NotificationServiceDebug() : NotificationServiceRelease())
 
     // Data sources
     ..registerSingleton<WarframestatClient>(WarframestatClient())
