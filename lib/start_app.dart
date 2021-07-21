@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
@@ -30,7 +31,12 @@ Future<void> startApp() async {
   await FlutterWebBrowser.warmup();
 
   final temp = await getTemporaryDirectory();
-  HydratedBloc.storage = await HydratedStorage.build(storageDirectory: temp);
+
+  HydratedBloc.storage =
+      await HydratedStorage.build(storageDirectory: temp).catchError((e) {
+    File('${temp.path}/hydrated_box').deleteSync();
+    return HydratedStorage.build(storageDirectory: temp);
+  });
 
   await di.init();
   if (sl<UserSettingsNotifier>().isFirstTime) {
