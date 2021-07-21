@@ -4,7 +4,11 @@ class ServerException implements Exception {}
 
 class CacheException implements Exception {}
 
-class UnknownException implements Exception {}
+class UnknownException implements Exception {
+  const UnknownException(this.message);
+
+  final String message;
+}
 
 class OfflineException implements Exception {}
 
@@ -15,6 +19,6 @@ T matchFailure<T>(Failure failure) {
     case CacheException:
       throw CacheException();
     default:
-      throw UnknownException();
+      throw UnknownException(failure.toString());
   }
 }
