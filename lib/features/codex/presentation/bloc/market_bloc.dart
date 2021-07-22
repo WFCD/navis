@@ -61,10 +61,6 @@ class MarketBloc extends HydratedBloc<MarketEvent, MarketState> {
   }
 
   List<ItemOrder> _sortOrders(List<ItemOrder> orders) {
-    return orders..sort((a, b) => a.user.status.compareTo(b.user.status));
+    return orders..sort((a, b) => a.compareTo(b));
   }
-}
-
-extension on UserStatus {
-  int compareTo(UserStatus other) => index.compareTo(other.index);
 }
