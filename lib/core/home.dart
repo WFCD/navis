@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 import 'package:simple_icons/simple_icons.dart';
 
 import '../constants/links.dart';
@@ -11,6 +12,7 @@ import '../l10n/l10n.dart';
 import '../resources/resources.dart';
 import 'cubits/navigation_cubit.dart';
 import 'notifiers/user_settings_notifier.dart';
+import 'settings/settings.dart';
 import 'utils/extensions.dart';
 import 'utils/helper_methods.dart';
 import 'widgets/drawer_options.dart';
@@ -112,8 +114,17 @@ class NDrawer extends StatelessWidget {
             leading: const Icon(Icons.settings),
             title: Text(l10n.settingsTitle),
             onTap: () {
-              Navigator.of(context).pop();
-              Navigator.of(context).pushNamed('/settings');
+              final deviceType = getDeviceType(mediaQuery.size);
+
+              if (deviceType != DeviceScreenType.mobile) {
+                showDialog(
+                  context: context,
+                  builder: (_) => const SettingsDialog(),
+                );
+              } else {
+                Navigator.of(context).pop();
+                Navigator.of(context).pushNamed('/settings');
+              }
             },
           ),
         ],

@@ -1,8 +1,10 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
@@ -21,11 +23,21 @@ import 'injection_container.dart';
 import 'injection_container.dart' as di;
 
 Future<void> startApp() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setSystemUIOverlayStyle(
+    const SystemUiOverlayStyle(statusBarColor: Colors.transparent),
+  );
+
   await Firebase.initializeApp();
   await FlutterWebBrowser.warmup();
 
   final temp = await getTemporaryDirectory();
-  HydratedBloc.storage = await HydratedStorage.build(storageDirectory: temp);
+
+  HydratedBloc.storage =
+      await HydratedStorage.build(storageDirectory: temp).catchError((e) {
+    File('${temp.path}/hydrated_box').deleteSync();
+    return HydratedStorage.build(storageDirectory: temp);
+  });
 
   await di.init();
   if (sl<UserSettingsNotifier>().isFirstTime) {

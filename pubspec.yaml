@@ -1,5 +1,5 @@
 name: navis
-version: 2.3.20+153
+version: 2.3.26+159
 description: Cephalon Navis is an Android app inspired by Warframe Hub.
 publish_to: none
 
@@ -31,7 +31,7 @@ dependencies:
   get_it: ^7.2.0
   hive: ^2.0.4
   hydrated_bloc: ^7.0.1
-  internet_connection_checker: ^0.0.1+1
+  internet_connection_checker: ^0.0.1+2
   intl: ^0.17.0
   matomo: ^1.0.0
   oxidized: ^4.2.0

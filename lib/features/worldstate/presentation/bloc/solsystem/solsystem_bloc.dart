@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:equatable/equatable.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:supercharged/supercharged.dart';
 import 'package:wfcd_client/entities.dart';
 import 'package:wfcd_client/models.dart';
@@ -34,8 +35,9 @@ class SolsystemBloc extends HydratedBloc<SyncEvent, SolsystemState> {
         yield const SystemError(serverFailureMessage);
       } on CacheException {
         yield const SystemError(cacheFailureMessage);
-      } on UnknownException {
-        yield const SystemError('Unknown error occured');
+      } catch (e, s) {
+        await Sentry.captureException(e, stackTrace: s);
+        yield SystemError(e.toString());
       }
     }
   }

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 
 import '../../../../../core/services/videos.dart';
+import '../../../../../core/themes/colors.dart';
 import '../../../../../core/utils/helper_methods.dart';
 import '../../../../../core/widgets/widgets.dart';
 import '../../../../../injection_container.dart';
@@ -59,7 +60,7 @@ class _YoutubePlayerState extends State<EventVideoPlayer> {
             showControlsOnInitialize: false,
             allowedScreenSleep: false,
             materialProgressColors: ChewieProgressColors(
-              playedColor: Theme.of(context).accentColor,
+              playedColor: secondary,
               bufferedColor: Colors.white,
             ),
           );
