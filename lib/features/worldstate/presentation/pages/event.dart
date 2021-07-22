@@ -2,14 +2,13 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:matomo/matomo.dart';
-import 'package:wfcd_client/entities.dart';
 import 'package:supercharged/supercharged.dart';
+import 'package:wfcd_client/entities.dart';
 
 import '../../../../injection_container.dart';
 import '../../data/datasources/event_info_parser.dart';
 import '../widgets/event/event_bounties.dart';
 import '../widgets/event/event_status.dart';
-import '../widgets/event/guide_player.dart';
 
 class EventInformation extends TraceableStatelessWidget {
   const EventInformation({Key? key}) : super(key: key);
@@ -48,11 +47,11 @@ class EventInformation extends TraceableStatelessWidget {
               rewards: event.eventRewards,
             ),
             if (event.jobs != null) EventBounties(jobs: event.jobs!),
-            if (eventInfo.howTos.isNotEmpty)
-              EventVideoPlayer(
-                id: eventInfo.howTos.first.id,
-                profileThumbnail: eventInfo.howTos.first.pThumbnail,
-              )
+            // if (eventInfo.howTos.isNotEmpty)
+            //   EventVideoPlayer(
+            //     id: eventInfo.howTos.first.id,
+            //     profileThumbnail: eventInfo.howTos.first.pThumbnail,
+            //   )
           ]),
         ),
       ]),
