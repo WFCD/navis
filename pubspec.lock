@@ -274,7 +274,7 @@ packages:
       name: flutter_web_browser
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.14.0"
+    version: "0.15.0"
   flutter_web_plugins:
     dependency: transitive
     description: flutter
@@ -382,11 +382,11 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: HEAD
-      resolved-ref: fff5c5e0f5f01b862536d93aa6d1c8cd82767aa1
+      ref: "v1.0.0"
+      resolved-ref: "6d10799055b3fc1ebbf626027bc21b89e159545b"
       url: "https://github.com/SlayerOrnstein/market_client.git"
     source: git
-    version: "0.0.0"
+    version: "1.0.0"
   matcher:
     dependency: transitive
     description:
