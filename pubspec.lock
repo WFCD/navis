@@ -968,11 +968,11 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: "v3.4.2"
-      resolved-ref: "04f1156b46d347099384391d7f4e7db09df21911"
+      ref: "v3.4.3"
+      resolved-ref: "57297d8efafb1cb66fc0c19e78a6994ebc5cce3d"
       url: "https://github.com/SlayerOrnstein/wfcd_client.git"
     source: git
-    version: "3.4.2"
+    version: "3.4.3"
   win32:
     dependency: transitive
     description:

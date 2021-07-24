@@ -124,18 +124,21 @@ class Overview extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView(
       key: const PageStorageKey('overview'),
+      padding: const EdgeInsets.fromLTRB(16.0, 0.0, 16.0, 16.0),
       children: [
+        if (_isFoundryItem) ...{
+          ItemComponents(
+            itemImageUrl: item.imageUrl,
+            components: (item as FoundryItem).components!,
+          ),
+          const SizedBox(height: 16.0),
+        },
         if (_isPowerSuit)
           FrameStats(powerSuit: item as PowerSuit)
         else if (_isGun)
           GunStats(projectileWeapon: item as ProjectileWeapon)
         else if (_isMeleeWeapon)
           MeleeStats(meleeWeapon: item as MeleeWeapon),
-        if (_isFoundryItem)
-          ItemComponents(
-            itemImageUrl: item.imageUrl,
-            components: (item as FoundryItem).components!,
-          ),
       ],
     );
   }

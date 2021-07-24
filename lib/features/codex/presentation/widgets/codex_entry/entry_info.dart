@@ -110,6 +110,7 @@ class _EntryInfoContent extends StatelessWidget {
         height: shrinkOffset > 0.0 ? 0 : 106,
         child: FittedBox(
           clipBehavior: Clip.hardEdge,
+          fit: BoxFit.contain,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,

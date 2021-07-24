@@ -26,54 +26,50 @@ class PatchlogCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomCard(
       padding: EdgeInsets.zero,
-      child: SizedBox(
-        height: 500,
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              height: 95,
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: CachedNetworkImageProvider(
-                      patchlog.imgUrl ?? _backupImage),
-                  fit: BoxFit.cover,
-                  colorFilter: ColorFilter.mode(
-                      Colors.black.withOpacity(.6), BlendMode.darken),
-                ),
-              ),
-              child: CategoryTitle(
-                title: patchlog.name,
-                subtitle: patchlog.date.format(context),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            height: 95,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image:
+                    CachedNetworkImageProvider(patchlog.imgUrl ?? _backupImage),
+                fit: BoxFit.cover,
+                colorFilter: ColorFilter.mode(
+                    Colors.black.withOpacity(.6), BlendMode.darken),
               ),
             ),
-            if (patchlog.additions.isNotEmpty) ...{
-              const CategoryTitle(title: 'Additions'),
-              _log(context, patchlog.additions)
-            },
-            if (patchlog.changes.isNotEmpty) ...{
-              const CategoryTitle(title: 'Changes'),
-              _log(context, patchlog.changes)
-            },
-            if (patchlog.fixes.isNotEmpty) ...{
-              const CategoryTitle(title: 'Fixes'),
-              _log(context, patchlog.fixes)
-            },
-            const Spacer(),
-            ButtonBar(
-              children: [
-                TextButton(
-                  style: ButtonStyle(
-                    foregroundColor: MaterialStateProperty.all(Colors.white),
-                  ),
-                  onPressed: () => patchlog.url.launchLink(context),
-                  child: const Text('FULL PATCH NOTES'),
-                )
-              ],
-            )
-          ],
-        ),
+            child: CategoryTitle(
+              title: patchlog.name,
+              subtitle: patchlog.date.format(context),
+            ),
+          ),
+          if (patchlog.additions.isNotEmpty) ...{
+            const CategoryTitle(title: 'Additions'),
+            _log(context, patchlog.additions)
+          },
+          if (patchlog.changes.isNotEmpty) ...{
+            const CategoryTitle(title: 'Changes'),
+            _log(context, patchlog.changes)
+          },
+          if (patchlog.fixes.isNotEmpty) ...{
+            const CategoryTitle(title: 'Fixes'),
+            _log(context, patchlog.fixes)
+          },
+          ButtonBar(
+            children: [
+              TextButton(
+                style: ButtonStyle(
+                  foregroundColor: MaterialStateProperty.all(Colors.white),
+                ),
+                onPressed: () => patchlog.url.launchLink(context),
+                child: const Text('FULL PATCH NOTES'),
+              )
+            ],
+          )
+        ],
       ),
     );
   }
