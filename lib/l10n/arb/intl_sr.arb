@@ -266,241 +266,241 @@
     "@helpfulLinksTitle": {
         "description": "Helpful Links title",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "behaviorTitle": "Behavior",
     "@behaviorTitle": {
         "description": "Behavior category title",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "themeTitle": "Theme",
     "@themeTitle": {
         "description": "Theme title",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "themeDescription": "Choose app theme.",
     "@themeDescription": {
         "description": "Theme option description",
         "typ": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "backOpensDrawerTitle": "Back button opens drawer",
     "@backOpensDrawerTitle": {
         "description": "Title for the option that allows back button to open the drawer",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "backOpensDrawerDescription": "Pressing the back button opens the drawer.",
     "@backOpensDrawerDescription": {
         "description": "Description for back button opens drawer option",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "notificationsTitle": "Notifications",
     "@notificationsTitle": {
         "description": "Notifications category title",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "rareAlertsNotificationTitle": "Rare Alerts",
     "@rareAlertsNotificationTitle": {
         "description": "Rare Alerts title",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "rareAlertsNotificationDescription": "Rare alert notifications, mainly gifts of the lotus.",
     "@rareAlertsNotificationDescription": {
         "description": "Description for rare alerts option",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "baroNotificationTitle": "Baro Ki'Teer",
     "@baroNotificationTitle": {
         "description": "Baro's notification title",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "baroNotificationDescription": "Notifications for both Baro's arrivial and departure.",
     "@baroNotificationDescription": {
         "description": "Notification description for both Baro's arrivial and departure.",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "darvoNotificationTitle": "Darvo's Daily Deals",
     "@darvoNotificationTitle": {
         "description": "Notification title for darvo's daily deals",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "darvoNotificationDescription": "Darvo's new find of the day.",
     "@darvoNotificationDescription": {
         "description": "Notification description for Darvo's Daily Deal",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "sortieNotificationTitle": "Sortie",
     "@sortieNotificationTitle": {
         "description": "Notification title for sorties",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "sortieNotificationDescription": "Notifications for new sorties.",
     "@sortieNotificationDescription": {
         "description": "description for sortie notification option",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "sentientOutpostNotificationTitle": "Sentient Outpost",
     "@sentientOutpostNotificationTitle": {
         "description": "Notification title for sentient outpost",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "sentientOutpostNotificationDescription": "Notifications for new sentient threats.",
     "@sentientOutpostNotificationDescription": {
         "description": "Notification description for sentient outpost option",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "warframeNewsTitle": "Warframe News",
     "@warframeNewsTitle": {
         "description": "Main Title for Warframe news page",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "warframeNewsNotificationTitle": "News",
     "@warframeNewsNotificationTitle": {
         "description": "Main Title for Warframe news notifications",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "warframeNewsNotificationDescription": "News notifications for Prime Access, Streams and Updates.",
     "@warframeNewsNotificationDescription": {
         "description": "Main description for Warframe news notifications",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "planetCyclesNotificationTitle": "Open World Cycles",
     "@planetCyclesNotificationTitle": {
         "description": "Main title for open world notifications",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "planetCyclesNotificationDescription": "Open world notifications for their given cycles.",
     "@planetCyclesNotificationDescription": {
         "description": "Main description for open world notifications",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "resourcesNotificationTitle": "Resources",
     "@resourcesNotificationTitle": {
         "description": "Main title for resource notifications",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "resourcesNotificationDescription": "Resources mostly found in invasions.",
     "@resourcesNotificationDescription": {
         "description": "Main description for resource notifications",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "fissuresNotificationTitle": "Fissure Missions",
     "@fissuresNotificationTitle": {
         "description": "Main title for fisssures notifications",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "fissuresNotificationDescription": "Filter fissure notifications by prefered mission type.",
     "@fissuresNotificationDescription": {
         "description": "Main description for fissures notifications",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "acolytesNotificationTitle": "Acolytes",
     "@acolytesNotificationTitle": {
         "description": "Main title for acolyte notifications",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "acolytesNotificationDescription": "Notifies when an acolyte is found.",
     "@acolytesNotificationDescription": {
         "description": "Main description for acolyte notifications",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "earthDayOption": "Earth Day",
     "@earthDayOption": {
         "description": "Earth cycle option",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "earthNightOption": "Earth Night",
     "@earthNightOption": {
         "description": "Earth cycle option",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "cetusDayOption": "Cetus Day",
     "@cetusDayOption": {
         "description": "Cetus cycle option",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "cetusNightOption": "Cetus Night",
     "@cetusNightOption": {
         "description": "Cetus cycle option",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "vallisWarmOption": "Orb Vallis Warm",
     "@vallisWarmOption": {
         "description": "Orb vallis cycle option",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "vallisColdOption": "Orb Vallis Cold",
     "@vallisColdOption": {
         "description": "Orb vallis cycle option",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "cambionFassOption": "Cambion Fass",
     "@cambionFassOption": {
         "description": "Cambion Fass cycle option",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "cambionVomeOption": "Cambion Vome",
     "@cambionVomeOption": {
         "description": "Cambion Fass cycle option",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "primeAccessNewsOption": "Prime Access",
     "@primeAccessNewsOption": {
         "description": "Warframe news option",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "streamNewsOption": "Stream Announcements",
     "@streamNewsOption": {
         "description": "Warframe news option",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "updateNewsOption": "Warframe Update News",
     "@updateNewsOption": {
         "description": "Warframe news option",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "updateDropTableDescription": "Last updated {date}",
     "@updateDropTableDescription": {
         "description": "Description for updating drop table with date of the last update",
         "type": "text",
-        "placeholder": {
+        "placeholders": {
             "date": {}
         }
     },
@@ -508,414 +508,422 @@
     "@reportBugsTitle": {
         "desciption": "Title for bug report link",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "reportBugsDescription": "Report bugs or request a feature.",
     "@reportBugsDescription": {
         "description": "Description for bug report link",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "aboutCategoryTitle": "About",
     "@aboutCategoryTitle": {
         "description": "Title for the about category of the settings page",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "lightThemeTitle": "Light",
     "@lightThemeTitle": {
         "description": "Title for light theme",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "darkThemeTitle": "Dark",
     "@darkThemeTitle": {
         "description": "Title for dark theme",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "systemThemeTitle": "System",
     "@systemThemeTitle": {
         "description": "Title for system theme",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "legalese": "Warframe and the Warframe logo are registered trademarks of Digital Extremes Ltd. Cephalon Navis nor WFCD are affiliated with Digital Extremes Ltd. in any way.",
     "@legalese": {
         "description": "Cephalon Navis legalese",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "homePageTitle": "Homepage",
     "@homePageTitle": {
         "description": "Displayes a link to Navis's homepage",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "issueTrackerDescription": "Report issues or feature request for this project's",
     "@issueTrackerDescription": {
         "description": "Description for Navis's issue tracker",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "issueTrackerTitle": "issues tracker",
     "@issueTrackerTitle": {
         "description": "Display link to Navis's issue tracker",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "warframeLinkTitle": "More information on Warframe can be found on their official site",
     "@warframeLinkTitle": {
         "description": "Description for Warframe's main site link",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "settingsTitle": "Settings",
     "@settingsTitle": {
         "description": "Settings title",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "dailyRewardTitle": "Daily Reward Reset Timer",
     "@dailyRewardTitle": {
         "description": "Title for daily reward timer",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "eliteBadgeTitle": "Elite",
     "@eliteBadgeTitle": {
         "description": "Nightwave Elite badge title",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "dailyNightwaveTitle": "Daily",
     "@dailyNightwaveTitle": {
         "description": "Nightwave daily title",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "weeklyNightwaveTitle": "Weekly",
     "@weeklyNightwaveTitle": {
         "description": "Nightwave weekly title",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "plainsofEidolonMapTitle": "Plains of Eidolon map",
     "@plainsofEidolonMapTitle": {
         "description": "Plains of Eidolon Map link title",
         "type": "text",
-        "placholder": {}
+        "placholders": {}
     },
     "orbVallisMapTitle": "Orb Vallis map",
     "@orbVallisMapTitle": {
         "description": "Orb Vallis Map link title",
         "type": "text",
-        "placholder": {}
+        "placholders": {}
     },
     "plainsofEidolonFishingDataTitle": "PoE: Fishing Data",
     "@plainsofEidolonFishingDataTitle": {
         "description": "Plains of Eidolon fishing data link title",
         "type": "text",
-        "placholder": {}
+        "placholders": {}
     },
     "orbVallisFishingDataTitle": "PoE: Fishing Data",
     "@orbVallisFishingDataTitle": {
         "description": "Orb Vallis fishing data link title",
         "type": "text",
-        "placholder": {}
+        "placholders": {}
     },
     "howToFishTitle": "How to fish",
     "@howToFishTitle": {
         "description": "How to fish link title",
         "type": "text",
-        "placholder": {}
+        "placholders": {}
     },
     "recentNewsCategoryTitle": "Most Recent News",
     "@recentNewsCategoryTitle": {
         "description": "Title for recent news title",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "pastNewsCategoryTitle": "Past News",
     "@pastNewsCategoryTitle": {
         "description": "Title for past Warframe news",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "warframePassiveTitle": "Passive",
     "@warframePassiveTitle": {
         "description": "Warframes passive title",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "auraTitle": "Aura Polarity",
     "@auraTitle": {
         "description": "Aura polarity title for items",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "preinstalledPolarities": "Preinstalled Polarities",
     "@preinstalledPolarities": {
         "description": "Preinstalled polarites title for items",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "shieldTitle": "Shield",
     "@shieldTitle": {
         "description": "Title for shield value",
         "typ": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "armorTitle": "Armor",
     "@armorTitle": {
         "description": "Title for armor value",
         "typ": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "healthTitle": "Health",
     "@healthTitle": {
         "description": "Title for health value",
         "typ": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "powerTitle": "Power",
     "@powerTitle": {
         "description": "Title for power value",
         "typ": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "sprintSpeedTitle": "Sprint Speed",
     "@sprintSpeedTitle": {
         "description": "Title for sprint speed value",
         "typ": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "abilitiesTitle": "Abilites",
     "@abilitiesTitle": {
         "description": "Title for warframe, archwings, and Necromech abilites",
         "typ": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "componentsTitle": "Components",
     "@componentsTitle": {
         "description": "Title for item components",
         "typ": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "fullPatchNotesTitle": "FULL PATCH NOTES",
     "@fullPatchNotesTitle": {
         "description": "Full Patch Notes Title",
         "typ": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "masteryRequirementTitle": "Mastery Requirement",
     "@masteryRequirementTitle": {
         "description": "Mastery requirement for item",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "weaponTypeTitle": "Weapon Type",
     "@weaponTypeTitle": {
         "description": "Weapon item type",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "accuracyTitle": "Accuracy",
     "@accuracyTitle": {
         "description": "Weapon accuracy title",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "cricticalChanceTitle": "Critical Chance",
     "@cricticalChanceTitle": {
         "description": "Weapon crictical chance",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "cricticalMultiplierTitle": "Critcial Multiplier",
     "@cricticalMultiplierTitle": {
         "description": "Weapon critical multiplier",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "fireRateTitle": "Fire Rate",
     "@fireRateTitle": {
         "description": "Weapon fire rate",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "magazineTitle": "Magazine",
     "@magazineTitle": {
         "description": "Weapon magazine size title",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "multishotTitle": "Multishot",
     "@multishotTitle": {
         "description": "Weapon multishot",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "noiseTitle": "Noise",
     "@noiseTitle": {
         "description": "Weapon noise type",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "reloadTitle": "Reload",
     "@reloadTitle": {
         "description": "Weapon item type",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "rivenDispositionTitle": "Riven Disposition",
     "@rivenDispositionTitle": {
         "description": "Weapon's riven disposition",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "statusChanceTitle": "Status Chance",
     "@statusChanceTitle": {
         "description": "Weapon's status chance",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "triggerTitle": "Trigger",
     "@triggerTitle": {
         "description": "Weapon item type",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "damageTitle": "Damage",
     "@damageTitle": {
         "description": "Weapon's damage category",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "totalDamageTitle": "Total Damage",
     "@totalDamageTitle": {
         "description": "Weapon's total damage'",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "stancePolarityTitle": "Stance Polarity",
     "@stancePolarityTitle": {
         "description": "Melee stance polarity title",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "attackSpeedTitle": "Attack Speed",
     "@attackSpeedTitle": {
         "description": "melee attack speed",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "followThroughTitle": "Follow Through",
     "@followThroughTitle": {
         "description": "Melee follow through title",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "rangeTitle": "Range",
     "@rangeTitle": {
         "description": "Melee's range title",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "slamAttackTitle": "Slam Attack",
     "@slamAttackTitle": {
         "description": "Melee's slam attack",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "slamRadialDamageTitle": "Slam Radial Damage",
     "@slamRadialDamageTitle": {
         "description": "Melee's Slam Radial Damage",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "slamRadiusTitle": "Slam Radius",
     "@slamRadiusTitle": {
         "description": "Slam Radius title",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "slideAttackTitle": "Slide Attack",
     "@slideAttackTitle": {
         "description": "Melee's slide attack",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "heavyAttackTitle": "Heavy Attack",
     "@heavyAttackTitle": {
         "description": "Heavy attack title",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "heavySlamAttackTitle": "Heavy Slam Attack",
     "@heavySlamAttackTitle": {
         "description": "Heavy Slam attack title",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "heavySlamRadialDamageTitle": "Heavy Slam Radial Damage",
     "@heavySlamRadialDamageTitle": {
         "description": "Heavy Slam attack title",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "heavySlamRadiusTitle": "Heavy Slam Radius",
     "@heavySlamRadiusTitle": {
         "description": "Heavy Slam attack title",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "windUpTitle": "Wind Up",
     "@windUpTitle": {
         "description": "melee's heavy wind up time title",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "discordSupportTitle": "Support",
     "@discordSupportTitle": {
         "description": "Discord support title",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "steelPathTitle": "Steel Path",
     "@steelPathTitle": {
         "description": "Steel path card title",
         "type": "text",
-        "placeholer": {}
+        "placeholers": {}
     },
     "syndicateDualScreenTitle": "Select Syndicate",
     "@syndicateDualScreenTitle": {
         "description": "User hint when under syndicate tabs using a tablet",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "optOutOfAnalyticsTitle": "Opt out of analytics",
     "@optOutOfAnalyticsTitle": {
         "description": "Title opting out of analytics",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "optOutOfAnalyticsDescription": "Disable analytics.",
     "@optOutOfAnalyticsDescription": {
         "description": "Description of the analytics opting buttong",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "appLangTitle": "Language",
     "@appLangTitle": {
         "description": "Title for app language options",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "appLangDescription": "Override default behavior for language detection.",
     "@appLangDescription": {
         "description": "Description for language options",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
+    },
+    "modLevelLabel": "Level {rank}",
+    "@modLevelLabel": {
+        "description": "The label shown to users as they slide the mod slider",
+        "type": "text",
+        "placeholders": {
+            "rank": {}
+        }
     }
 }
