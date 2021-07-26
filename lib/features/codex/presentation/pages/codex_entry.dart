@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:responsive_builder/responsive_builder.dart';
 import 'package:wfcd_client/entities.dart';
 
 import '../../../../core/utils/helper_methods.dart';
+import '../../../../core/widgets/category_title.dart';
+import '../widgets/codex_entry/mod_drops.dart';
+import '../widgets/codex_entry/mod_stats.dart';
 import '../widgets/codex_widgets.dart';
 
 class CodexEntry extends StatelessWidget {
@@ -14,10 +16,8 @@ class CodexEntry extends StatelessWidget {
   Widget build(BuildContext context) {
     final item = ModalRoute.of(context)?.settings.arguments as Item;
     final heightRatio = MediaQuery.of(context).size.height / 100;
-    final heightMultiplier =
-        getValueForScreenType(context: context, mobile: 32.0, tablet: 38.0);
 
-    final height = heightRatio * heightMultiplier;
+    final height = item is Mod ? kMinExtent : heightRatio * 30;
 
     return Scaffold(
       body: item.patchlogs != null
@@ -49,6 +49,7 @@ class SingleEntry extends StatelessWidget {
             description: item.description?.parseHtmlString() ?? '',
             wikiaUrl: item.wikiaUrl,
             imageUrl: item.imageUrl,
+            isMod: item is Mod,
             expandedHeight: height,
           ),
         ),
@@ -85,6 +86,7 @@ class TabbedEntry extends StatelessWidget {
                 description: item.description?.parseHtmlString() ?? '',
                 wikiaUrl: item.wikiaUrl,
                 imageUrl: item.imageUrl,
+                isMod: item is Mod,
                 bottom: TabBar(
                   labelColor: Theme.of(context).textTheme.bodyText1?.color,
                   indicatorColor: Theme.of(context).textTheme.bodyText1?.color,
@@ -114,6 +116,7 @@ class Overview extends StatelessWidget {
   bool get _isPowerSuit => item is PowerSuit;
   bool get _isGun => item is ProjectileWeapon && item.category != 'Pets';
   bool get _isMeleeWeapon => item is MeleeWeapon;
+  bool get _isMod => item is Mod;
   bool get _isFoundryItem {
     return item is FoundryItem &&
         (item as FoundryItem).components != null &&
@@ -133,12 +136,15 @@ class Overview extends StatelessWidget {
           ),
           const SizedBox(height: 16.0),
         },
-        if (_isPowerSuit)
-          FrameStats(powerSuit: item as PowerSuit)
-        else if (_isGun)
-          GunStats(projectileWeapon: item as ProjectileWeapon)
-        else if (_isMeleeWeapon)
-          MeleeStats(meleeWeapon: item as MeleeWeapon),
+        if (_isPowerSuit) FrameStats(powerSuit: item as PowerSuit),
+        if (_isGun) GunStats(projectileWeapon: item as ProjectileWeapon),
+        if (_isMeleeWeapon) MeleeStats(meleeWeapon: item as MeleeWeapon),
+        if (_isMod) ModStats(mod: item as Mod),
+        if (item.drops != null) ...{
+          const SizedBox(height: 20.0),
+          const CategoryTitle(title: 'Drops'),
+          ModDropLocations(drops: (item as Mod).drops!),
+        },
       ],
     );
   }

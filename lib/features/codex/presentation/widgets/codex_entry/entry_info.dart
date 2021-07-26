@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import '../../../../../core/utils/helper_methods.dart';
 import '../../../../../l10n/l10n.dart';
 
+double kMinExtent = (kToolbarHeight * 2) + 30;
+
 class BasicItemInfo extends SliverPersistentHeaderDelegate {
   const BasicItemInfo({
     required this.uniqueName,
@@ -13,6 +15,7 @@ class BasicItemInfo extends SliverPersistentHeaderDelegate {
     this.wikiaUrl,
     this.bottom,
     required this.expandedHeight,
+    this.isMod = false,
   });
 
   final String uniqueName;
@@ -22,6 +25,7 @@ class BasicItemInfo extends SliverPersistentHeaderDelegate {
   final String? wikiaUrl;
   final Widget? bottom;
   final double expandedHeight;
+  final bool isMod;
 
   @override
   Widget build(
@@ -50,16 +54,17 @@ class BasicItemInfo extends SliverPersistentHeaderDelegate {
               ),
             ],
           ),
-          Center(
-            child: _EntryInfoContent(
-              height: expandedHeight,
-              shrinkOffset: shrinkOffset,
-              uniqueName: uniqueName,
-              imageUrl: imageUrl,
-              name: name,
-              description: description,
+          if (!isMod)
+            Center(
+              child: _EntryInfoContent(
+                height: expandedHeight,
+                shrinkOffset: shrinkOffset,
+                uniqueName: uniqueName,
+                imageUrl: imageUrl,
+                name: name,
+                description: description,
+              ),
             ),
-          ),
           if (bottom != null)
             Align(alignment: Alignment.bottomCenter, child: bottom!)
         ],
@@ -71,7 +76,7 @@ class BasicItemInfo extends SliverPersistentHeaderDelegate {
   double get maxExtent => expandedHeight;
 
   @override
-  double get minExtent => (kToolbarHeight * 2) + 30;
+  double get minExtent => kMinExtent;
 
   @override
   bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) {

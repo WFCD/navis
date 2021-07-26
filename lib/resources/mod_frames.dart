@@ -54,6 +54,7 @@ class ModFrames {
   static const String polarityUmbra = 'PolarityUmbra.png';
   static const String rankCompleteLine = 'RankCompleteLine.png';
   static const String rankSlotActive = 'RankSlotActive.png';
+  static const String rankSlotEmpty = 'RankSlotEmpty.png';
   static const String raptorHeader = 'RaptorHeader.png';
   static const String rarePolarityCircle = 'RarePolarityCircle.png';
   static const String rarePolarityMark = 'RarePolarityMark.png';
