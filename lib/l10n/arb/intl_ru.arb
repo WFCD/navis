@@ -266,241 +266,241 @@
     "@helpfulLinksTitle": {
         "description": "Helpful Links title",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "behaviorTitle": "Оформление",
     "@behaviorTitle": {
         "description": "Behavior category title",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "themeTitle": "Тема",
     "@themeTitle": {
         "description": "Theme title",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "themeDescription": "Выбрать тему оформления.",
     "@themeDescription": {
         "description": "Theme option description",
         "typ": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "backOpensDrawerTitle": "Кнопка \"Назад\" открывает меню",
     "@backOpensDrawerTitle": {
         "description": "Title for the option that allows back button to open the drawer",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "backOpensDrawerDescription": "Нажатие кнопки \"Назад\" открывает боковое меню.",
     "@backOpensDrawerDescription": {
         "description": "Description for back button opens drawer option",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "notificationsTitle": "Уведомления",
     "@notificationsTitle": {
         "description": "Notifications category title",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "rareAlertsNotificationTitle": "Редкие Тревоги",
     "@rareAlertsNotificationTitle": {
         "description": "Rare Alerts title",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "rareAlertsNotificationDescription": "Оповещение о редких Тревогах, в основном Дары Лотус.",
     "@rareAlertsNotificationDescription": {
         "description": "Description for rare alerts option",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "baroNotificationTitle": "Баро Ки'Тиир",
     "@baroNotificationTitle": {
         "description": "Baro's notification title",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "baroNotificationDescription": "Оповещения о прибытии и отбытии Торговца из Бездны.",
     "@baroNotificationDescription": {
         "description": "Notification description for both Baro's arrivial and departure.",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "darvoNotificationTitle": "Предложения Дарво",
     "@darvoNotificationTitle": {
         "description": "Notification title for darvo's daily deals",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "darvoNotificationDescription": "Об ежедневных новых товарах у Дарво.",
     "@darvoNotificationDescription": {
         "description": "Notification description for Darvo's Daily Deal",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "sortieNotificationTitle": "Вылазка",
     "@sortieNotificationTitle": {
         "description": "Notification title for sorties",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "sortieNotificationDescription": "Об обновлении ежедневной Вылазки.",
     "@sortieNotificationDescription": {
         "description": "description for sortie notification option",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "sentientOutpostNotificationTitle": "Аномалия",
     "@sentientOutpostNotificationTitle": {
         "description": "Notification title for sentient outpost",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "sentientOutpostNotificationDescription": "Notifications for new sentient threats.",
     "@sentientOutpostNotificationDescription": {
         "description": "Notification description for sentient outpost option",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "warframeNewsTitle": "Новости Warframe",
     "@warframeNewsTitle": {
         "description": "Main Title for Warframe news page",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "warframeNewsNotificationTitle": "Новости",
     "@warframeNewsNotificationTitle": {
         "description": "Main Title for Warframe news notifications",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "warframeNewsNotificationDescription": "О Прайм Доступе, Стримах, Обновлениях.",
     "@warframeNewsNotificationDescription": {
         "description": "Main description for Warframe news notifications",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "planetCyclesNotificationTitle": "Циклы планет",
     "@planetCyclesNotificationTitle": {
         "description": "Main title for open world notifications",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "planetCyclesNotificationDescription": "О циклах на открытых локациях.",
     "@planetCyclesNotificationDescription": {
         "description": "Main description for open world notifications",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "resourcesNotificationTitle": "Ресурсы",
     "@resourcesNotificationTitle": {
         "description": "Main title for resource notifications",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "resourcesNotificationDescription": "О наградах: чертежи и ресурсы.",
     "@resourcesNotificationDescription": {
         "description": "Main description for resource notifications",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "fissuresNotificationTitle": "Разрывы Бездны",
     "@fissuresNotificationTitle": {
         "description": "Main title for fisssures notifications",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "fissuresNotificationDescription": "Filter fissure notifications by prefered mission type.",
     "@fissuresNotificationDescription": {
         "description": "Main description for fissures notifications",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "acolytesNotificationTitle": "Послушники Сталкера",
     "@acolytesNotificationTitle": {
         "description": "Main title for acolyte notifications",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "acolytesNotificationDescription": "Notifies when an acolyte is found.",
     "@acolytesNotificationDescription": {
         "description": "Main description for acolyte notifications",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "earthDayOption": "Земля - День",
     "@earthDayOption": {
         "description": "Earth cycle option",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "earthNightOption": "Земля - Ночь",
     "@earthNightOption": {
         "description": "Earth cycle option",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "cetusDayOption": "Цетус - День",
     "@cetusDayOption": {
         "description": "Cetus cycle option",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "cetusNightOption": "Цетус - Ночь",
     "@cetusNightOption": {
         "description": "Cetus cycle option",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "vallisWarmOption": "Долина Сфер - Тепло",
     "@vallisWarmOption": {
         "description": "Orb vallis cycle option",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "vallisColdOption": "Долина Сфер - Холод",
     "@vallisColdOption": {
         "description": "Orb vallis cycle option",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "cambionFassOption": "Цикл Фэз",
     "@cambionFassOption": {
         "description": "Cambion Fass cycle option",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "cambionVomeOption": "Цикл Воум",
     "@cambionVomeOption": {
         "description": "Cambion Fass cycle option",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "primeAccessNewsOption": "Прайм Доступ",
     "@primeAccessNewsOption": {
         "description": "Warframe news option",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "streamNewsOption": "Анонсы стримов",
     "@streamNewsOption": {
         "description": "Warframe news option",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "updateNewsOption": "Обновления и Патчи",
     "@updateNewsOption": {
         "description": "Warframe news option",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "updateDropTableDescription": "Данные от {date}",
     "@updateDropTableDescription": {
         "description": "Description for updating drop table with date of the last update",
         "type": "text",
-        "placeholder": {
+        "placeholders": {
             "date": {}
         }
     },
@@ -508,414 +508,422 @@
     "@reportBugsTitle": {
         "desciption": "Title for bug report link",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "reportBugsDescription": "Report bugs or request a feature.",
     "@reportBugsDescription": {
         "description": "Description for bug report link",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "aboutCategoryTitle": "О приложении",
     "@aboutCategoryTitle": {
         "description": "Title for the about category of the settings page",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "lightThemeTitle": "Светлая",
     "@lightThemeTitle": {
         "description": "Title for light theme",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "darkThemeTitle": "Тёмная",
     "@darkThemeTitle": {
         "description": "Title for dark theme",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "systemThemeTitle": "Системная",
     "@systemThemeTitle": {
         "description": "Title for system theme",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "legalese": "Warframe и логотип Warframe являются зарегистрированными торговыми марками Digital Extremes Ltd. Cephalon Navis и WFCD никаким образом не связаны с Digital Extremes Ltd.",
     "@legalese": {
         "description": "Cephalon Navis legalese",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "homePageTitle": "Домашняя",
     "@homePageTitle": {
         "description": "Displayes a link to Navis's homepage",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "issueTrackerDescription": "Сообщить об ошибке или запросить новые функции для этого проекта",
     "@issueTrackerDescription": {
         "description": "Description for Navis's issue tracker",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "issueTrackerTitle": "Баг-трекер",
     "@issueTrackerTitle": {
         "description": "Display link to Navis's issue tracker",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "warframeLinkTitle": "Больше информации о Warframe можно найти на их официальном сайте",
     "@warframeLinkTitle": {
         "description": "Description for Warframe's main site link",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "settingsTitle": "Настройки",
     "@settingsTitle": {
         "description": "Settings title",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "dailyRewardTitle": "Сброс ежедневных деяний",
     "@dailyRewardTitle": {
         "description": "Title for daily reward timer",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "eliteBadgeTitle": "Элитные",
     "@eliteBadgeTitle": {
         "description": "Nightwave Elite badge title",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "dailyNightwaveTitle": "Ежедневные",
     "@dailyNightwaveTitle": {
         "description": "Nightwave daily title",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "weeklyNightwaveTitle": "Еженедельные",
     "@weeklyNightwaveTitle": {
         "description": "Nightwave weekly title",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "plainsofEidolonMapTitle": "Карта Равнины Эйдолона",
     "@plainsofEidolonMapTitle": {
         "description": "Plains of Eidolon Map link title",
         "type": "text",
-        "placholder": {}
+        "placholders": {}
     },
     "orbVallisMapTitle": "Карта Долина Сфер",
     "@orbVallisMapTitle": {
         "description": "Orb Vallis Map link title",
         "type": "text",
-        "placholder": {}
+        "placholders": {}
     },
     "plainsofEidolonFishingDataTitle": "Эйдолон: Рыбалка",
     "@plainsofEidolonFishingDataTitle": {
         "description": "Plains of Eidolon fishing data link title",
         "type": "text",
-        "placholder": {}
+        "placholders": {}
     },
     "orbVallisFishingDataTitle": "Долина Сфер: Рыбалка",
     "@orbVallisFishingDataTitle": {
         "description": "Orb Vallis fishing data link title",
         "type": "text",
-        "placholder": {}
+        "placholders": {}
     },
     "howToFishTitle": "Как ловить",
     "@howToFishTitle": {
         "description": "How to fish link title",
         "type": "text",
-        "placholder": {}
+        "placholders": {}
     },
     "recentNewsCategoryTitle": "Последние новости",
     "@recentNewsCategoryTitle": {
         "description": "Title for recent news title",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "pastNewsCategoryTitle": "Прошлые новости",
     "@pastNewsCategoryTitle": {
         "description": "Title for past Warframe news",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "warframePassiveTitle": "Пассивное",
     "@warframePassiveTitle": {
         "description": "Warframes passive title",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "auraTitle": "Полярность Ауры",
     "@auraTitle": {
         "description": "Aura polarity title for items",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "preinstalledPolarities": "Предустановленные Полярности",
     "@preinstalledPolarities": {
         "description": "Preinstalled polarites title for items",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "shieldTitle": "Щиты",
     "@shieldTitle": {
         "description": "Title for shield value",
         "typ": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "armorTitle": "Броня",
     "@armorTitle": {
         "description": "Title for armor value",
         "typ": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "healthTitle": "Здоровье",
     "@healthTitle": {
         "description": "Title for health value",
         "typ": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "powerTitle": "Сила",
     "@powerTitle": {
         "description": "Title for power value",
         "typ": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "sprintSpeedTitle": "Скорость Бега",
     "@sprintSpeedTitle": {
         "description": "Title for sprint speed value",
         "typ": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "abilitiesTitle": "Способности",
     "@abilitiesTitle": {
         "description": "Title for warframe, archwings, and Necromech abilites",
         "typ": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "componentsTitle": "Компоненты",
     "@componentsTitle": {
         "description": "Title for item components",
         "typ": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "fullPatchNotesTitle": "Список Изменений",
     "@fullPatchNotesTitle": {
         "description": "Full Patch Notes Title",
         "typ": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "masteryRequirementTitle": "Требуемый Ранг Мастерства",
     "@masteryRequirementTitle": {
         "description": "Mastery requirement for item",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "weaponTypeTitle": "Тип оружия",
     "@weaponTypeTitle": {
         "description": "Weapon item type",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "accuracyTitle": "Точность",
     "@accuracyTitle": {
         "description": "Weapon accuracy title",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "cricticalChanceTitle": "Крит. шанс",
     "@cricticalChanceTitle": {
         "description": "Weapon crictical chance",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "cricticalMultiplierTitle": "Крит. Множитель",
     "@cricticalMultiplierTitle": {
         "description": "Weapon critical multiplier",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "fireRateTitle": "Скорострельность",
     "@fireRateTitle": {
         "description": "Weapon fire rate",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "magazineTitle": "Магазин",
     "@magazineTitle": {
         "description": "Weapon magazine size title",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "multishotTitle": "Мультивыстрел",
     "@multishotTitle": {
         "description": "Weapon multishot",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "noiseTitle": "Шумность",
     "@noiseTitle": {
         "description": "Weapon noise type",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "reloadTitle": "Перезарядка",
     "@reloadTitle": {
         "description": "Weapon item type",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "rivenDispositionTitle": "Синергия с Разломом",
     "@rivenDispositionTitle": {
         "description": "Weapon's riven disposition",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "statusChanceTitle": "Шанс статуса",
     "@statusChanceTitle": {
         "description": "Weapon's status chance",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "triggerTitle": "Режим",
     "@triggerTitle": {
         "description": "Weapon item type",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "damageTitle": "Урон",
     "@damageTitle": {
         "description": "Weapon's damage category",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "totalDamageTitle": "Всего урона",
     "@totalDamageTitle": {
         "description": "Weapon's total damage'",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "stancePolarityTitle": "Полярность Стойки",
     "@stancePolarityTitle": {
         "description": "Melee stance polarity title",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "attackSpeedTitle": "Скорость Атаки",
     "@attackSpeedTitle": {
         "description": "melee attack speed",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "followThroughTitle": "Пронзание Навылет",
     "@followThroughTitle": {
         "description": "Melee follow through title",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "rangeTitle": "Зона Поражения",
     "@rangeTitle": {
         "description": "Melee's range title",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "slamAttackTitle": "Удар по земле",
     "@slamAttackTitle": {
         "description": "Melee's slam attack",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "slamRadialDamageTitle": "Радиальный урон по земле",
     "@slamRadialDamageTitle": {
         "description": "Melee's Slam Radial Damage",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "slamRadiusTitle": "Радиус Удара по земле",
     "@slamRadiusTitle": {
         "description": "Slam Radius title",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "slideAttackTitle": "Удар в скольжении",
     "@slideAttackTitle": {
         "description": "Melee's slide attack",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "heavyAttackTitle": "Тяжелая атака",
     "@heavyAttackTitle": {
         "description": "Heavy attack title",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "heavySlamAttackTitle": "Тяжелый удар по земле",
     "@heavySlamAttackTitle": {
         "description": "Heavy Slam attack title",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "heavySlamRadialDamageTitle": "Тяжелый радиальный урон по земле",
     "@heavySlamRadialDamageTitle": {
         "description": "Heavy Slam attack title",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "heavySlamRadiusTitle": "Радиус тяжелого удара по земле",
     "@heavySlamRadiusTitle": {
         "description": "Heavy Slam attack title",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "windUpTitle": "Подготовка",
     "@windUpTitle": {
         "description": "melee's heavy wind up time title",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "discordSupportTitle": "Discord",
     "@discordSupportTitle": {
         "description": "Discord support title",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "steelPathTitle": "Стальной Путь",
     "@steelPathTitle": {
         "description": "Steel path card title",
         "type": "text",
-        "placeholer": {}
+        "placeholers": {}
     },
     "syndicateDualScreenTitle": "Выбрать синдикат",
     "@syndicateDualScreenTitle": {
         "description": "User hint when under syndicate tabs using a tablet",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "optOutOfAnalyticsTitle": "Opt out of analytics",
     "@optOutOfAnalyticsTitle": {
         "description": "Title opting out of analytics",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "optOutOfAnalyticsDescription": "Disable analytics.",
     "@optOutOfAnalyticsDescription": {
         "description": "Description of the analytics opting buttong",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "appLangTitle": "Language",
     "@appLangTitle": {
         "description": "Title for app language options",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
     },
     "appLangDescription": "Override default behavior for language detection.",
     "@appLangDescription": {
         "description": "Description for language options",
         "type": "text",
-        "placeholder": {}
+        "placeholders": {}
+    },
+    "modLevelLabel": "Level {rank}",
+    "@modLevelLabel": {
+        "description": "The label shown to users as they slide the mod slider",
+        "type": "text",
+        "placeholders": {
+            "rank": {}
+        }
     }
 }
