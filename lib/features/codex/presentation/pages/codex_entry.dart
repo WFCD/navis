@@ -3,8 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wfcd_client/entities.dart';
 
 import '../../../../core/utils/helper_methods.dart';
+import '../../../../core/widgets/category_title.dart';
 import '../../../../injection_container.dart';
 import '../bloc/market_bloc.dart';
+import '../widgets/codex_entry/mod_drops.dart';
+import '../widgets/codex_entry/mod_stats.dart';
 import '../widgets/codex_widgets.dart';
 import '../widgets/market/market_order.dart';
 
@@ -17,7 +20,8 @@ class CodexEntry extends StatelessWidget {
   Widget build(BuildContext context) {
     final item = ModalRoute.of(context)?.settings.arguments as Item;
     final heightRatio = MediaQuery.of(context).size.height / 100;
-    final height = heightRatio * 30;
+
+    final height = item is Mod ? kMinExtent : heightRatio * 30;
 
     return Scaffold(
       body: SafeArea(
@@ -51,6 +55,7 @@ class SingleEntry extends StatelessWidget {
             description: item.description?.parseHtmlString() ?? '',
             wikiaUrl: item.wikiaUrl,
             imageUrl: item.imageUrl,
+            isMod: item is Mod,
             expandedHeight: height,
           ),
         ),
@@ -94,6 +99,7 @@ class TabbedEntry extends StatelessWidget {
                 description: item.description?.parseHtmlString() ?? '',
                 wikiaUrl: item.wikiaUrl,
                 imageUrl: item.imageUrl,
+                isMod: item is Mod,
                 bottom: TabBar(
                   labelColor: Theme.of(context).textTheme.bodyText1?.color,
                   indicatorColor: Theme.of(context).textTheme.bodyText1?.color,
@@ -128,6 +134,7 @@ class Overview extends StatelessWidget {
   bool get _isPowerSuit => item is PowerSuit;
   bool get _isGun => item is ProjectileWeapon && item.category != 'Pets';
   bool get _isMeleeWeapon => item is MeleeWeapon;
+  bool get _isMod => item is Mod;
   bool get _isFoundryItem {
     return item is FoundryItem &&
         (item as FoundryItem).components != null &&
@@ -138,19 +145,24 @@ class Overview extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView(
       key: const PageStorageKey('overview'),
-      padding: EdgeInsets.zero,
+      padding: const EdgeInsets.fromLTRB(16.0, 0.0, 16.0, 16.0),
       children: [
-        if (_isPowerSuit)
-          FrameStats(powerSuit: item as PowerSuit)
-        else if (_isGun)
-          GunStats(projectileWeapon: item as ProjectileWeapon)
-        else if (_isMeleeWeapon)
-          MeleeStats(meleeWeapon: item as MeleeWeapon),
-        if (_isFoundryItem)
+        if (_isFoundryItem) ...{
           ItemComponents(
             itemImageUrl: item.imageUrl,
             components: (item as FoundryItem).components!,
           ),
+          const SizedBox(height: 16.0),
+        },
+        if (_isPowerSuit) FrameStats(powerSuit: item as PowerSuit),
+        if (_isGun) GunStats(projectileWeapon: item as ProjectileWeapon),
+        if (_isMeleeWeapon) MeleeStats(meleeWeapon: item as MeleeWeapon),
+        if (_isMod) ModStats(mod: item as Mod),
+        if (item.drops != null) ...{
+          const SizedBox(height: 20.0),
+          const CategoryTitle(title: 'Drops'),
+          ModDropLocations(drops: (item as Mod).drops!),
+        },
       ],
     );
   }

@@ -28,17 +28,17 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   final GlobalKey<ScaffoldState> scaffold = GlobalKey<ScaffoldState>();
 
-  Future<bool> _willPop() {
+  Future<bool> _willPop() async {
     if (context.read<UserSettingsNotifier>().backKey) {
       if (!scaffold.currentState!.isDrawerOpen) {
         scaffold.currentState!.openDrawer();
-        return Future.value(false);
+        return false;
       } else {
-        return Future.value(true);
+        return true;
       }
     }
 
-    return Future.value(true);
+    return true;
   }
 
   @override

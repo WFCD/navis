@@ -5,8 +5,6 @@ import 'dart:ui' as ui;
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../../core/utils/helper_methods.dart';
-import '../../../../../l10n/l10n.dart';
 import '../../../../../resources/resources.dart';
 import '../../../utils/mod_polarity.dart';
 import 'polarity.dart';
@@ -18,9 +16,11 @@ class ModFrame extends StatelessWidget {
     required this.stats,
     required this.compatName,
     required this.maxRank,
-    required this.baseDrain,
+    required this.rank,
+    required this.drain,
     required this.polarity,
     required this.rarity,
+    this.modSet,
     required this.background,
     required this.cornerLights,
     required this.frameTop,
@@ -37,9 +37,11 @@ class ModFrame extends StatelessWidget {
     required String stats,
     required String compatName,
     required int maxRank,
+    required int rank,
     required int baseDrain,
     required String polarity,
     required String rarity,
+    String? modSet,
     String? wikiaUrl,
   }) {
     return ModFrame._(
@@ -48,9 +50,11 @@ class ModFrame extends StatelessWidget {
       stats: stats,
       compatName: compatName,
       maxRank: maxRank,
-      baseDrain: baseDrain,
+      rank: rank,
+      drain: baseDrain,
       polarity: polarity,
       rarity: rarity,
+      modSet: modSet,
       background: loadModPart(ModFrames.bronzeBackground),
       cornerLights: loadModPart(ModFrames.bronzeCornerLights),
       frameTop: loadModPart(ModFrames.bronzeFrameTop),
@@ -68,9 +72,11 @@ class ModFrame extends StatelessWidget {
     required String stats,
     required String compatName,
     required int maxRank,
+    required int rank,
     required int baseDrain,
     required String polarity,
     required String rarity,
+    String? modSet,
     String? wikiaUrl,
   }) {
     return ModFrame._(
@@ -79,9 +85,11 @@ class ModFrame extends StatelessWidget {
       stats: stats,
       compatName: compatName,
       maxRank: maxRank,
-      baseDrain: baseDrain,
+      rank: rank,
+      drain: baseDrain,
       polarity: polarity,
       rarity: rarity,
+      modSet: modSet,
       background: loadModPart(ModFrames.silverBackground),
       cornerLights: loadModPart(ModFrames.silverCornerLights),
       frameTop: loadModPart(ModFrames.silverFrameTop),
@@ -99,9 +107,11 @@ class ModFrame extends StatelessWidget {
     required String stats,
     required String compatName,
     required int maxRank,
+    required int rank,
     required int baseDrain,
     required String polarity,
     required String rarity,
+    String? modSet,
     String? wikiaUrl,
   }) {
     return ModFrame._(
@@ -110,9 +120,11 @@ class ModFrame extends StatelessWidget {
       stats: stats,
       compatName: compatName,
       maxRank: maxRank,
-      baseDrain: baseDrain,
+      rank: rank,
+      drain: baseDrain,
       polarity: polarity,
       rarity: rarity,
+      modSet: modSet,
       background: loadModPart(ModFrames.goldBackground),
       cornerLights: loadModPart(ModFrames.goldCornerLights),
       frameTop: loadModPart(ModFrames.goldFrameTop),
@@ -130,9 +142,11 @@ class ModFrame extends StatelessWidget {
     required String stats,
     required String compatName,
     required int maxRank,
+    required int rank,
     required int baseDrain,
     required String polarity,
     required String rarity,
+    String? modSet,
     String? wikiaUrl,
   }) {
     return ModFrame._(
@@ -141,9 +155,11 @@ class ModFrame extends StatelessWidget {
       stats: stats,
       compatName: compatName,
       maxRank: maxRank,
-      baseDrain: baseDrain,
+      rank: rank,
+      drain: baseDrain,
       polarity: polarity,
       rarity: rarity,
+      modSet: modSet,
       background: loadModPart(ModFrames.legendaryBackground),
       cornerLights: loadModPart(ModFrames.legendaryCornerLights),
       frameTop: loadModPart(ModFrames.legendaryFrameTop),
@@ -157,9 +173,11 @@ class ModFrame extends StatelessWidget {
 
   final String image, name, stats, compatName, polarity, rarity;
 
+  final String? modSet;
+
   final String? wikiaUrl;
 
-  final int maxRank, baseDrain;
+  final int maxRank, rank, drain;
 
   final Image background;
 
@@ -175,7 +193,8 @@ class ModFrame extends StatelessWidget {
 
   final Image topRightBacker;
 
-  static final _rankSlot = loadModPart(ModFrames.rankSlotActive);
+  static final _rankSlotActive = loadModPart(ModFrames.rankSlotActive);
+  static final _rankSlotEmpty = loadModPart(ModFrames.rankSlotEmpty);
   static final _rankCompleteLine = loadModPart(ModFrames.rankCompleteLine);
 
   Future<ui.Image> _getImage() async {
@@ -191,11 +210,45 @@ class ModFrame extends StatelessWidget {
     return imageInfo.image;
   }
 
+  Image _getHeader(String setName) {
+    switch (setName) {
+      case '/Lotus/Upgrades/Mods/Sets/Gladiator/GladiatorSetMod':
+        return loadModPart(ModFrames.gladiatorHeader);
+      case '/Lotus/Upgrades/Mods/Sets/Vigilante/VigilanteSetMod':
+        return loadModPart(ModFrames.vigilanteHeader);
+      case '/Lotus/Upgrades/Mods/Sets/Hunter/HunterSetMod':
+        return loadModPart(ModFrames.hunterHeader);
+      case '/Lotus/Upgrades/Mods/Sets/Tek/TekSetMod':
+        return loadModPart(ModFrames.tekHeader);
+      case '/Lotus/Upgrades/Mods/Sets/Synth/SynthSetMod':
+        return loadModPart(ModFrames.synthHeader);
+      case '/Lotus/Upgrades/Mods/Sets/Mecha/MechaSetMod':
+        return loadModPart(ModFrames.mechaHeader);
+      case '/Lotus/Upgrades/Mods/Sets/Strain/StrainSetMod':
+        return loadModPart(ModFrames.strainHeader);
+      case '/Lotus/Upgrades/Mods/Sets/Hawk/HawkSetMod':
+        return loadModPart(ModFrames.hawkHeader);
+      case '/Lotus/Upgrades/Mods/Sets/Raptor/RaptorSetMod':
+        return loadModPart(ModFrames.raptorHeader);
+      case '/Lotus/Upgrades/Mods/Sets/Spider/SpiderSetMod':
+        return loadModPart(ModFrames.spiderHeader);
+      case '/Lotus/Upgrades/Mods/Sets/Ashen/AshenSetMod':
+        return loadModPart(ModFrames.ashenHeader);
+      case '/Lotus/Upgrades/Mods/Sets/Boneblade/BonebladeSetMod':
+        return loadModPart(ModFrames.bonebladeHeader);
+      case '/Lotus/Upgrades/Mods/Sets/Femur/FemurSetMod':
+        return loadModPart(ModFrames.femurHeader);
+      default:
+        return loadModPart(ModFrames.umbraHeader);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     const size = Size(260.0, 350.0);
 
     final imageHeight = (size.height / 100) * 50;
+    final imageWidth = (size.width / 100) * 94;
     final textTheme = Theme.of(context).textTheme;
 
     return Center(
@@ -214,48 +267,75 @@ class ModFrame extends StatelessWidget {
           fit: StackFit.expand,
           children: [
             Positioned(
-              top: 0,
-              left: 10,
-              child: FutureBuilder<ui.Image>(
-                future: _getImage(),
-                builder: (context, snapshot) {
-                  if (snapshot.hasData) {
-                    return CustomPaint(
-                      size: Size(size.width, imageHeight),
-                      painter: ModImageCropped(
-                        image: snapshot.data!,
-                        width: size.width - 19,
-                        height: imageHeight,
-                      ),
-                    );
-                  }
+              top: 1,
+              left: 8,
+              child: Container(
+                height: imageHeight,
+                width: imageWidth,
+                alignment: Alignment.center,
+                foregroundDecoration: BoxDecoration(
+                  gradient: RadialGradient(
+                    radius: 1.3,
+                    colors: [
+                      Colors.transparent,
+                      () {
+                        switch (rarity) {
+                          case 'Common':
+                            return const Color(0xFFCA9A87);
+                          case 'Rare':
+                            return const Color(0xFFFEEBC1);
+                          default:
+                            return Colors.white;
+                        }
+                      }()
+                    ],
+                  ),
+                ),
+                child: FutureBuilder<ui.Image>(
+                  future: _getImage(),
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      return CustomPaint(
+                        size: Size(size.width, imageHeight),
+                        painter: ModImageCropped(
+                          image: snapshot.data!,
+                          width: size.width - 19,
+                          height: imageHeight,
+                        ),
+                      );
+                    }
 
-                  return Container(
-                    height: imageHeight,
-                    alignment: Alignment.center,
-                    child: const CircularProgressIndicator(),
-                  );
-                },
+                    return const CircularProgressIndicator();
+                  },
+                ),
               ),
             ),
             Positioned(
               top: -15,
               child: frameTop,
             ),
+            if (modSet != null)
+              Positioned(
+                top: -19,
+                child: _getHeader(modSet!),
+              ),
             Positioned(
               bottom: -40,
               child: frameBottom,
             ),
             Positioned(
-              bottom: rarity != 'Legendary' ? -14 : -27,
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [for (int i = 0; i < maxRank; i++) _rankSlot],
-              ),
+              bottom: rarity != 'Legendary' ? -15 : -25,
+              child: _rankCompleteLine,
             ),
             Positioned(
-              bottom: rarity != 'Legendary' ? -13 : -26,
-              child: _rankCompleteLine,
+              bottom: rarity != 'Legendary' ? -14 : -26,
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  for (int i = 0; i < maxRank; i++)
+                    if (i < rank) _rankSlotActive else _rankSlotEmpty
+                ],
+              ),
             ),
             Positioned(
               bottom: -10,
@@ -270,7 +350,7 @@ class ModFrame extends StatelessWidget {
                 child: cornerLights,
               ),
             ),
-            Positioned(bottom: 20, child: lowerTab),
+            Positioned(bottom: 5, child: lowerTab),
             Positioned(right: 1, bottom: 51, child: sideLight),
             Positioned(
               left: 18,
@@ -289,7 +369,7 @@ class ModFrame extends StatelessWidget {
               top: 20,
               right: 30,
               child: Text(
-                baseDrain.toString(),
+                drain.toString(),
                 style: Theme.of(context)
                     .textTheme
                     .caption
@@ -315,20 +395,8 @@ class ModFrame extends StatelessWidget {
                 ),
               ),
             ),
-            if (wikiaUrl != null)
-              Positioned(
-                top: 260,
-                child: TextButton(
-                  style: ButtonStyle(
-                    foregroundColor: MaterialStateProperty.all(
-                        Theme.of(context).textTheme.button?.color),
-                  ),
-                  onPressed: () => wikiaUrl?.launchLink(context),
-                  child: Text(context.l10n.seeWikia),
-                ),
-              ),
             Positioned(
-              bottom: 25,
+              bottom: 10,
               child: Text(
                 compatName,
                 textAlign: TextAlign.center,

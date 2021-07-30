@@ -73,7 +73,8 @@ class SyndicatePageMobile extends StatelessWidget {
       children: <Widget>[
         _buildSyndicates(_worldstate.syndicateMissions),
         const SizedBox(height: 8.0),
-        if (state.isNightwaveActive) _buildNightwave(state.worldstate.nightwave)
+        if (state.isNightwaveActive)
+          _buildNightwave(state.worldstate.nightwave!)
       ],
     );
   }
@@ -126,7 +127,7 @@ class _SyndicatePageTabletState extends State<SyndicatePageTablet> {
                 const SizedBox(height: 8.0),
                 if (widget.state.isNightwaveActive)
                   _buildNightwave(
-                    widget.state.worldstate.nightwave,
+                    widget.state.worldstate.nightwave!,
                     onTap: _onTap,
                   )
               ],

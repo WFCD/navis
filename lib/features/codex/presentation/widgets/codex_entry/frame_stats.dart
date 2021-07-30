@@ -17,6 +17,7 @@ class FrameStats extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Text(context.l10n.warframePassiveTitle, style: textTheme.subtitle1),
           const SizedBox(height: 8.0),
@@ -24,7 +25,6 @@ class FrameStats extends StatelessWidget {
             (powerSuit as Warframe).passiveDescription,
             style: textTheme.caption?.copyWith(fontStyle: FontStyle.italic),
           ),
-          const Divider()
         ],
       ),
     );
@@ -33,65 +33,63 @@ class FrameStats extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
-    return CustomCard(
-      padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 8.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          if (powerSuit is Warframe) _passive(context),
-          const SizedBox(height: 16.0),
-          Stats(stats: <RowItem>[
-            if (powerSuit is Warframe && (powerSuit as Warframe).aura != null)
-              RowItem(
-                text: Text(l10n.auraTitle),
-                child: Polarity(polarity: (powerSuit as Warframe).aura!),
-              ),
-            if (powerSuit.polarities?.isNotEmpty ?? false)
-              RowItem(
-                text: Text(l10n.preinstalledPolarities),
-                child: PreinstalledPolarties(polarities: powerSuit.polarities!),
-              ),
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        const CategoryTitle(title: 'Stats', contentPadding: EdgeInsets.zero),
+        if (powerSuit is Warframe) _passive(context),
+        const SizedBox(height: 16.0),
+        Stats(stats: <RowItem>[
+          if (powerSuit is Warframe && (powerSuit as Warframe).aura != null)
             RowItem(
-              text: Text(l10n.shieldTitle),
-              child: Text('${powerSuit.shield}'),
+              text: Text(l10n.auraTitle),
+              child: Polarity(polarity: (powerSuit as Warframe).aura!),
             ),
+          if (powerSuit.polarities?.isNotEmpty ?? false)
             RowItem(
-              text: Text(l10n.armorTitle),
-              child: Text('${powerSuit.armor}'),
+              text: Text(l10n.preinstalledPolarities),
+              child: PreinstalledPolarties(polarities: powerSuit.polarities!),
             ),
+          RowItem(
+            text: Text(l10n.shieldTitle),
+            child: Text('${powerSuit.shield}'),
+          ),
+          RowItem(
+            text: Text(l10n.armorTitle),
+            child: Text('${powerSuit.armor}'),
+          ),
+          RowItem(
+            text: Text(l10n.healthTitle),
+            child: Text('${powerSuit.health}'),
+          ),
+          RowItem(
+            text: Text(l10n.powerTitle),
+            child: Text('${powerSuit.power}'),
+          ),
+          if (powerSuit is PlayerUsuablePowerSuit)
             RowItem(
-              text: Text(l10n.healthTitle),
-              child: Text('${powerSuit.health}'),
+              text: Text(l10n.sprintSpeedTitle),
+              child:
+                  Text('${(powerSuit as PlayerUsuablePowerSuit).sprintSpeed}'),
             ),
-            RowItem(
-              text: Text(l10n.powerTitle),
-              child: Text('${powerSuit.power}'),
-            ),
-            if (powerSuit is PlayerUsuablePowerSuit)
-              RowItem(
-                text: Text(l10n.sprintSpeedTitle),
-                child: Text(
-                    '${(powerSuit as PlayerUsuablePowerSuit).sprintSpeed}'),
-              ),
-          ]),
-          const SizedBox(height: 16.0),
-          if (powerSuit is PlayerUsuablePowerSuit) ...{
-            CategoryTitle(
-              title: l10n.abilitiesTitle,
+        ]),
+        const SizedBox(height: 16.0),
+        if (powerSuit is PlayerUsuablePowerSuit) ...{
+          CategoryTitle(
+            title: l10n.abilitiesTitle,
+            contentPadding: EdgeInsets.zero,
+          ),
+          for (final ability in (powerSuit as PlayerUsuablePowerSuit).abilities)
+            ListTile(
+              title: Text(ability.name),
+              subtitle: Text(ability.description),
+              dense: true,
+              isThreeLine: true,
               contentPadding: EdgeInsets.zero,
-            ),
-            for (final ability
-                in (powerSuit as PlayerUsuablePowerSuit).abilities)
-              ListTile(
-                title: Text(ability.name),
-                subtitle: Text(ability.description),
-                dense: true,
-                isThreeLine: true,
-                contentPadding: EdgeInsets.zero,
-              )
-          }
-        ],
-      ),
+            )
+        }
+      ],
     );
   }
 }

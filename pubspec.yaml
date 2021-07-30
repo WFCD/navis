@@ -1,5 +1,5 @@
 name: navis
-version: 2.3.26+159
+version: 2.3.31+164
 description: Cephalon Navis is an Android app inspired by Warframe Hub.
 publish_to: none
 
@@ -14,7 +14,7 @@ dependencies:
   wfcd_client:
     git:
       url: https://github.com/SlayerOrnstein/wfcd_client.git
-      ref: v3.4.2
+      ref: v3.4.7
   market_client:
     git:
       url: https://github.com/SlayerOrnstein/market_client.git

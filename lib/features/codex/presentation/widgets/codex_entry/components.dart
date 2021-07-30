@@ -18,9 +18,9 @@ class ItemComponents extends StatelessWidget {
 
   Widget _buildComponent(
     BuildContext context,
-    Component component,
+    Component component, [
     Widget? child,
-  ) {
+  ]) {
     return Tooltip(
       message: component.name,
       child: InkWell(
@@ -37,8 +37,9 @@ class ItemComponents extends StatelessWidget {
             );
           }
         },
-        child: Container(
-          constraints: const BoxConstraints.expand(width: 60, height: 60),
+        child: SizedBox(
+          width: 60.0,
+          height: 60.0,
           child: Stack(
             alignment: AlignmentDirectional.center,
             children: [
@@ -67,26 +68,26 @@ class ItemComponents extends StatelessWidget {
 
     final parts = components.where((c) => !c.name.contains('Blueprint'));
 
-    return CustomCard(
-      child: Column(
-        children: [
-          CategoryTitle(title: context.l10n.componentsTitle),
-          const SizedBox(height: 8.0),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              if (blueprint != null)
-                _buildComponent(
-                  context,
-                  blueprint,
-                  CachedNetworkImage(imageUrl: itemImageUrl),
-                ),
-              for (final component in parts)
-                _buildComponent(context, component, null)
-            ],
-          ),
-        ],
-      ),
+    return Column(
+      children: [
+        CategoryTitle(
+          title: context.l10n.componentsTitle,
+          contentPadding: EdgeInsets.zero,
+        ),
+        const SizedBox(height: 8.0),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            if (blueprint != null)
+              _buildComponent(
+                context,
+                blueprint,
+                CachedNetworkImage(imageUrl: itemImageUrl),
+              ),
+            for (final component in parts) _buildComponent(context, component)
+          ],
+        ),
+      ],
     );
   }
 }
