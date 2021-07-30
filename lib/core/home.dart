@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:navis/core/notifiers/user_settings_notifier.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:simple_icons/simple_icons.dart';
@@ -11,7 +12,6 @@ import '../constants/links.dart';
 import '../l10n/l10n.dart';
 import '../resources/resources.dart';
 import 'cubits/navigation_cubit.dart';
-import 'local/user_settings.dart';
 import 'settings/settings.dart';
 import 'utils/extensions.dart';
 import 'utils/helper_methods.dart';
@@ -28,17 +28,17 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   final GlobalKey<ScaffoldState> scaffold = GlobalKey<ScaffoldState>();
 
-  Future<bool> _willPop() {
-    if (context.read<Usersettings>().backkey) {
+  Future<bool> _willPop() async {
+    if (context.read<UserSettingsNotifier>().backKey) {
       if (!scaffold.currentState!.isDrawerOpen) {
         scaffold.currentState!.openDrawer();
-        return Future.value(false);
+        return false;
       } else {
-        return Future.value(true);
+        return true;
       }
     }
 
-    return Future.value(true);
+    return true;
   }
 
   @override
