@@ -25,7 +25,7 @@ class CodexEntry extends StatelessWidget {
 
     return Scaffold(
       body: SafeArea(
-        child: item.patchlogs != null
+        child: (item.patchlogs != null || item.tradable)
             ? TabbedEntry(item: item, height: height)
             : SingleEntry(item: item, height: height),
       ),
@@ -105,7 +105,7 @@ class TabbedEntry extends StatelessWidget {
                   indicatorColor: Theme.of(context).textTheme.bodyText1?.color,
                   tabs: tabs,
                 ),
-                expandedHeight: height + kTextTabBarHeight,
+                expandedHeight: height,
               ),
             ),
           ];
