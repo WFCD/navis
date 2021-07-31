@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'dart:developer';
 
 import 'package:hive/hive.dart';
@@ -22,36 +21,52 @@ class MarketCache {
     return _instance ??= MarketCache._(box);
   }
 
-  static const _timestamp = 'timestamp';
+  static const _itemsTimestamp = 'marketItemTimestampe';
+  static const _marketItems = 'marketItems';
+  static const _orderTimestamp = 'orderTimestamp';
   static const _itemName = 'itemName';
   static const _ordersKey = 'marketOrders';
 
+  void cacheItems(List<MarketItem> items) {
+    _box
+      ..put(_itemsTimestamp, DateTime.now())
+      ..put(_marketItems, items.map((e) => e.toJson()).toList());
+  }
+
   void cacheOrders(String itemName, List<ItemOrder> orders) {
     _box
-      ..put(_timestamp, DateTime.now())
+      ..put(_orderTimestamp, DateTime.now())
       ..put(_itemName, itemName)
-      ..put(_ordersKey, json.encode(orders.map((o) => o.toJson()).toList()));
+      ..put(_ordersKey, orders.map((o) => o.toJson()).toList());
+  }
+
+  DateTime? getItemsTimestamp() {
+    return _box.get(_itemsTimestamp);
   }
 
   String? getCachedItemName() {
     return _box.get(_itemName);
   }
 
-  DateTime? getTimestamp() {
-    return _box.get(_timestamp);
+  DateTime? getOrderTimestamp() {
+    return _box.get(_orderTimestamp);
   }
 
   List<ItemOrder>? getCachedOrders() {
-    final cached = _box.get(_ordersKey);
+    final cached = _box.get(_ordersKey) as List<Map<String, dynamic>>?;
 
     if (cached != null) {
-      final orders = json.decode(cached) as List<dynamic>;
-
-      return orders
-          .map((e) => ItemOrder.fromJson(e as Map<String, dynamic>))
-          .toList();
+      return cached.map((e) => ItemOrder.fromJson(e)).toList();
     }
 
     return null;
+  }
+
+  List<MarketItem>? getCachedItems() {
+    final cached = _box.get(_marketItems) as List<Map<String, dynamic>>?;
+
+    if (cached != null) {
+      return cached.map((e) => MarketItem.fromJson(e)).toList();
+    }
   }
 }
