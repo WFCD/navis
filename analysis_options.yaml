@@ -1,12 +1,15 @@
 include: package:very_good_analysis/analysis_options.yaml
+
 analyzer:
   exclude:
     - lib/generated/l10n.dart
     - lib/generated/intl/messages_*.dart
     - lib/src/**/*g.dart
     - lib/src/models/**/*.g.dart
+
 linter:
   rules:
     public_member_api_docs: false
     prefer_relative_imports: true
+    always_use_package_imports: false
     
