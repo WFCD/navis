@@ -81,7 +81,7 @@ class TabbedEntry extends StatelessWidget {
   Widget build(BuildContext context) {
     final tabs = [
       const Tab(text: 'Overview'),
-      if (item.patchlogs != null || item.patchlogs!.isNotEmpty)
+      if (item.patchlogs != null && (item.patchlogs?.isNotEmpty ?? false))
         const Tab(text: 'Patchlogs'),
       if (item.tradable) const Tab(text: 'Market')
     ];
@@ -113,7 +113,7 @@ class TabbedEntry extends StatelessWidget {
         body: TabBarView(
           children: [
             Overview(item: item),
-            if (item.patchlogs != null || item.patchlogs!.isNotEmpty)
+            if (item.patchlogs != null && (item.patchlogs?.isNotEmpty ?? false))
               PatchlogsTimeline(patchlogs: item.patchlogs ?? []),
             if (item.tradable)
               Market(
