@@ -43,6 +43,7 @@ class BasicItemInfo extends SliverPersistentHeaderDelegate {
             backgroundColor: Theme.of(context).canvasColor,
             iconTheme: Theme.of(context).iconTheme,
             brightness: Theme.of(context).brightness,
+            title: isMod ? Text(name) : null,
             actions: [
               TextButton(
                 style: ButtonStyle(
@@ -111,8 +112,8 @@ class _EntryInfoContent extends StatelessWidget {
       opacity: 1 - (shrinkOffset / height),
       child: AnimatedContainer(
         duration: kThemeAnimationDuration,
-        width: MediaQuery.of(context).size.width,
-        height: shrinkOffset > 0.0 ? 0 : 106,
+        width: (MediaQuery.of(context).size.width / 100) * 95,
+        height: shrinkOffset > 0.0 ? 0 : (height / 100) * 90,
         child: FittedBox(
           clipBehavior: Clip.hardEdge,
           fit: BoxFit.contain,

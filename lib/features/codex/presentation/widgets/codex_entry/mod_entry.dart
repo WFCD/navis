@@ -324,7 +324,7 @@ class ModFrame extends StatelessWidget {
               child: frameBottom,
             ),
             Positioned(
-              bottom: rarity != 'Legendary' ? -15 : -25,
+              bottom: rarity != 'Legendary' ? -12.5 : -26,
               child: _rankCompleteLine,
             ),
             Positioned(

@@ -39,7 +39,7 @@ class TraderCard extends StatelessWidget {
       title: l10n.baroTitle,
       child: Column(children: <Widget>[
         RowItem(
-          text: Text(trader.active ? l10n.baroArriving : l10n.baroLeaving),
+          text: Text(trader.active ? l10n.baroLeaving : l10n.baroArriving),
           padding: padding,
           child: CountdownTimer(
             expiry: trader.active ? trader.expiry! : trader.activation!,

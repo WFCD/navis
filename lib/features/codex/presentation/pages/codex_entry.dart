@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wfcd_client/entities.dart';
 
 import '../../../../core/utils/helper_methods.dart';
 import '../../../../core/widgets/category_title.dart';
+import '../../../../injection_container.dart';
+import '../bloc/market_bloc.dart';
 import '../widgets/codex_entry/mod_drops.dart';
 import '../widgets/codex_entry/mod_stats.dart';
 import '../widgets/codex_widgets.dart';
+import '../widgets/market/market_order.dart';
 
 class CodexEntry extends StatelessWidget {
   const CodexEntry({Key? key}) : super(key: key);
@@ -20,9 +24,11 @@ class CodexEntry extends StatelessWidget {
     final height = item is Mod ? kMinExtent : heightRatio * 30;
 
     return Scaffold(
-      body: item.patchlogs != null
-          ? TabbedEntry(item: item, height: height)
-          : SingleEntry(item: item, height: height),
+      body: SafeArea(
+        child: (item.patchlogs != null || item.tradable)
+            ? TabbedEntry(item: item, height: height)
+            : SingleEntry(item: item, height: height),
+      ),
     );
   }
 }
@@ -73,8 +79,15 @@ class TabbedEntry extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final tabs = [
+      const Tab(text: 'Overview'),
+      if (item.patchlogs != null && (item.patchlogs?.isNotEmpty ?? false))
+        const Tab(text: 'Patchlogs'),
+      if (item.tradable) const Tab(text: 'Market')
+    ];
+
     return DefaultTabController(
-      length: 2,
+      length: tabs.length,
       child: NestedScrollView(
         headerSliverBuilder: (context, index) {
           return [
@@ -90,7 +103,7 @@ class TabbedEntry extends StatelessWidget {
                 bottom: TabBar(
                   labelColor: Theme.of(context).textTheme.bodyText1?.color,
                   indicatorColor: Theme.of(context).textTheme.bodyText1?.color,
-                  tabs: const [Tab(text: 'Overview'), Tab(text: 'Patchlogs')],
+                  tabs: tabs,
                 ),
                 expandedHeight: height,
               ),
@@ -100,7 +113,12 @@ class TabbedEntry extends StatelessWidget {
         body: TabBarView(
           children: [
             Overview(item: item),
-            PatchlogsTimeline(patchlogs: item.patchlogs ?? [])
+            if (item.patchlogs != null && (item.patchlogs?.isNotEmpty ?? false))
+              PatchlogsTimeline(patchlogs: item.patchlogs ?? []),
+            if (item.tradable)
+              Market(
+                itemName: item.name,
+              )
           ],
         ),
       ),
@@ -160,8 +178,55 @@ class PatchlogsTimeline extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView.builder(
       key: const PageStorageKey('patchlogs'),
+      padding: EdgeInsets.zero,
       itemCount: patchlogs.length,
       itemBuilder: (_, index) => PatchlogCard(patchlog: patchlogs[index]),
+    );
+  }
+}
+
+class Market extends StatefulWidget {
+  const Market({Key? key, required this.itemName}) : super(key: key);
+
+  final String itemName;
+
+  @override
+  _MarketState createState() => _MarketState();
+}
+
+class _MarketState extends State<Market> {
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder(
+      bloc: sl<MarketBloc>()..add(FindOrders(widget.itemName)),
+      builder: (context, state) {
+        if (state is OrdersFound) {
+          final orders = state.orders;
+
+          return ListView.builder(
+            key: const PageStorageKey('market'),
+            padding: EdgeInsets.zero,
+            itemCount: orders.length,
+            itemBuilder: (_, index) => MarketSellWidget(order: orders[index]),
+          );
+        }
+
+        if (state is NoOrdersFound) {
+          return const Center(
+            child: Text('No seller orders found for this item'),
+          );
+        }
+
+        if (state is MarketError) {
+          return Center(
+            child: Text(state.message),
+          );
+        }
+
+        return const Center(
+          child: CircularProgressIndicator.adaptive(),
+        );
+      },
     );
   }
 }

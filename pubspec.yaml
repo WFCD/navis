@@ -15,13 +15,17 @@ dependencies:
     git:
       url: https://github.com/SlayerOrnstein/wfcd_client.git
       ref: v3.4.7
+  market_client:
+    git:
+      url: https://github.com/SlayerOrnstein/market_client.git
+      ref: v1.0.0
   bloc: ^7.0.0
   cached_network_image: ^3.0.0
   chewie: ^1.2.2
   equatable: ^2.0.3
   firebase_core: ^1.3.0
   firebase_messaging: ^10.0.3
-  flutter_bloc: ^7.0.1
+  flutter_bloc: ^7.1.0
   flutter_sticky_header: ^0.6.0
   flutter_svg: ^0.22.0
   flutter_web_browser: ^0.15.0
@@ -38,14 +42,14 @@ dependencies:
   sentry_flutter: ^5.1.0
   simple_icons: ^5.2.0
   supercharged: ^2.0.0
-  youtube_explode_dart: ^1.9.7
+  youtube_explode_dart: ^1.9.10
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   mocktail: ^0.1.4
   test: ^1.16.8
-  very_good_analysis: ^2.1.2
+  very_good_analysis: ^2.2.0
 
 flutter:
   generate: true
