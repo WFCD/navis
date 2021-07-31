@@ -43,6 +43,7 @@ class BasicItemInfo extends SliverPersistentHeaderDelegate {
             backgroundColor: Theme.of(context).canvasColor,
             iconTheme: Theme.of(context).iconTheme,
             brightness: Theme.of(context).brightness,
+            title: isMod ? Text(name) : null,
             actions: [
               TextButton(
                 style: ButtonStyle(
