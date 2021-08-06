@@ -99,11 +99,12 @@ This project relies on [flutter_localizations][flutter_localizations_link] and f
 
 ```arb
 {
-    "@@locale": "en",
-    "counterAppBarTitle": "Counter",
-    "@counterAppBarTitle": {
-        "description": "Text shown in the AppBar of the Counter Page"
-    },
+    "tapForMoreDetails": "Tap for more details",
+    "@tapForMoreDetails": {
+      "description": "General description to tell the user that this object takes you to a different page",
+      "type": "text",
+      "placeholders": {}
+    }
     "seeDetails": "See details",
     "@seeDetails": {
         "description": "General button to see more details of given object",
