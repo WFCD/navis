@@ -63,7 +63,7 @@ class EventBounties extends StatelessWidget {
           title: context.l10n.bountyTitle,
           style: category,
         ),
-        const SizedBox(height: 2.0),
+        const SizedBox(height: 2),
         ..._buildBounties(context)
       ]),
     );

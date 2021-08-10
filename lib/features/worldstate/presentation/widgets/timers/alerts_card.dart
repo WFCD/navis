@@ -38,7 +38,7 @@ class AlertWidget extends StatelessWidget {
         .levelInfo(mission.minEnemyLevel ?? 0, mission.maxEnemyLevel ?? 0);
 
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0),
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[

@@ -48,7 +48,7 @@ class ModStats extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const padding = EdgeInsets.only(top: 16.0);
+    const padding = EdgeInsets.only(top: 16);
 
     if (mod.levelStats != null && mod.levelStats!.length >= 3) {
       return Padding(

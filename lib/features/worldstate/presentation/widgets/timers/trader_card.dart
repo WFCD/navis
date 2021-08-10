@@ -21,14 +21,14 @@ class TraderCard extends StatelessWidget {
           .pushNamed(BaroInventory.route, arguments: inventory),
       child: Text(
         context.l10n.baroInventory,
-        style: const TextStyle(fontSize: 17.0, color: Colors.white),
+        style: const TextStyle(fontSize: 17, color: Colors.white),
       ),
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    const padding = EdgeInsets.symmetric(horizontal: 4.0, vertical: 4.0);
+    const padding = EdgeInsets.symmetric(horizontal: 4, vertical: 4);
     final l10n = context.l10n;
 
     final formattedDate = trader.active
@@ -64,7 +64,7 @@ class TraderCard extends StatelessWidget {
             text: formattedDate,
           ),
         ),
-        const SizedBox(height: 2.0),
+        const SizedBox(height: 2),
         if (trader.active) _buildButton(context, trader.inventory)
       ]),
     );

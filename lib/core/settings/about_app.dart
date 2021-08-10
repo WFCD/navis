@@ -41,7 +41,7 @@ class AboutApp extends StatelessWidget {
 class About extends StatelessWidget {
   const About({Key? key}) : super(key: key);
 
-  static const double _iconSize = 30.0;
+  static const double _iconSize = 30;
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +56,6 @@ class About extends StatelessWidget {
         theme.textTheme.bodyText1?.copyWith(color: theme.accentColor);
 
     return AboutListTile(
-      icon: null,
       applicationIcon: const Icon(
         NavisSysIcons.nightmare,
         size: 60,
@@ -65,7 +64,7 @@ class About extends StatelessWidget {
       applicationName: 'Cephalon Navis',
       applicationVersion: info.version,
       aboutBoxChildren: <Widget>[
-        const SizedBox(height: 12.0),
+        const SizedBox(height: 12),
         RichText(
           text: TextSpan(children: <TextSpan>[
             TextSpan(
@@ -104,7 +103,7 @@ class About extends StatelessWidget {
             ),
           ]),
         ),
-        const SizedBox(height: 12.0),
+        const SizedBox(height: 12),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[

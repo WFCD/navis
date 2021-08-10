@@ -40,7 +40,7 @@ class CodexSearchScreen extends TraceableStatelessWidget {
             } else if (state is CodexSearchEmpty) {
               return const Center(
                 child: Text(
-                  'Type what you\'re looking for into the search bar above!',
+                  "Type what you're looking for into the search bar above!",
                   textAlign: TextAlign.center,
                 ),
               );

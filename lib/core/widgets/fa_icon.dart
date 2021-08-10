@@ -105,7 +105,7 @@ class FaIcon extends StatelessWidget {
       switch (textDirection) {
         case TextDirection.rtl:
           iconWidget = Transform(
-            transform: Matrix4.identity()..scale(-1.0, 1.0, 1.0),
+            transform: Matrix4.identity()..scale(-1.0, 1, 1),
             alignment: Alignment.center,
             transformHitTests: false,
             child: iconWidget,

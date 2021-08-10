@@ -41,15 +41,15 @@ class MarketCache {
   }
 
   DateTime? getItemsTimestamp() {
-    return _box.get(_itemsTimestamp);
+    return _box.get(_itemsTimestamp) as DateTime?;
   }
 
   String? getCachedItemName() {
-    return _box.get(_itemName);
+    return _box.get(_itemName) as String?;
   }
 
   DateTime? getOrderTimestamp() {
-    return _box.get(_orderTimestamp);
+    return _box.get(_orderTimestamp) as DateTime?;
   }
 
   List<ItemOrder>? getCachedOrders() {

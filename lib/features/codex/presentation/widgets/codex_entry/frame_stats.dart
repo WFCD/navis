@@ -15,12 +15,12 @@ class FrameStats extends StatelessWidget {
     final textTheme = Theme.of(context).textTheme;
 
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      padding: const EdgeInsets.symmetric(vertical: 8),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Text(context.l10n.warframePassiveTitle, style: textTheme.subtitle1),
-          const SizedBox(height: 8.0),
+          const SizedBox(height: 8),
           Text(
             (powerSuit as Warframe).passiveDescription,
             style: textTheme.caption?.copyWith(fontStyle: FontStyle.italic),
@@ -39,7 +39,7 @@ class FrameStats extends StatelessWidget {
       children: <Widget>[
         const CategoryTitle(title: 'Stats', contentPadding: EdgeInsets.zero),
         if (powerSuit is Warframe) _passive(context),
-        const SizedBox(height: 16.0),
+        const SizedBox(height: 16),
         Stats(stats: <RowItem>[
           if (powerSuit is Warframe && (powerSuit as Warframe).aura != null)
             RowItem(
@@ -74,7 +74,7 @@ class FrameStats extends StatelessWidget {
                   Text('${(powerSuit as PlayerUsuablePowerSuit).sprintSpeed}'),
             ),
         ]),
-        const SizedBox(height: 16.0),
+        const SizedBox(height: 16),
         if (powerSuit is PlayerUsuablePowerSuit) ...{
           CategoryTitle(
             title: l10n.abilitiesTitle,

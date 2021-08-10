@@ -35,7 +35,6 @@ class PlatformSelect extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: padding),
       child: Row(
-        mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: const <Widget>[
           PlatformIconButton(

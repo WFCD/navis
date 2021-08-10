@@ -14,10 +14,11 @@ class BaroInventory extends TraceableStatelessWidget {
   @override
   Widget build(BuildContext context) {
     final inventory =
-        ModalRoute.of(context)?.settings.arguments as List<InventoryItem>;
+        // ignore: cast_nullable_to_non_nullable
+        ModalRoute.of(context)?.settings.arguments! as List<InventoryItem>;
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Baro\'s Inventory')),
+      appBar: AppBar(title: const Text("Baro's Inventory")),
       body: ScreenTypeLayout.builder(
         mobile: (_) => MobileInventoryDataTable(inventory: inventory),
         tablet: (_) => TabletInventoryDataTable(inventory: inventory),

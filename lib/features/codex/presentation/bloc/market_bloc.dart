@@ -45,7 +45,9 @@ class MarketBloc extends HydratedBloc<MarketEvent, MarketState> {
     final orders = json['orders'] as List<dynamic>;
 
     return OrdersFound(
-      orders.map((e) => ItemOrder.fromJson(e as Map<String, dynamic>)).toList(),
+      orders
+          .map((dynamic e) => ItemOrder.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
   }
 
@@ -54,7 +56,7 @@ class MarketBloc extends HydratedBloc<MarketEvent, MarketState> {
     if (state is OrdersFound && state.orders.isNotEmpty) {
       final orders = state.orders.map((e) => e.toJson());
 
-      return {'orders': orders.toList()};
+      return <String, dynamic>{'orders': orders.toList()};
     }
 
     return null;

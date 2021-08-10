@@ -11,12 +11,12 @@ class MarketSellWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomCard(
-      padding: const EdgeInsets.symmetric(horizontal: 4.0, vertical: 16.0),
+      padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 16),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 4.0),
+            padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 4),
             child: _MarketSellLeading(
               avater: order.user.avatar,
               orderType: order.orderType,
@@ -26,8 +26,8 @@ class MarketSellWidget extends StatelessWidget {
           Expanded(
             child: Padding(
               padding: const EdgeInsets.symmetric(
-                vertical: 4.0,
-                horizontal: 8.0,
+                vertical: 4,
+                horizontal: 8,
               ),
               child: _MarketSellBody(
                 username: order.user.ingameName,
@@ -36,7 +36,7 @@ class MarketSellWidget extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(top: 8.0, right: 16.0),
+            padding: const EdgeInsets.only(top: 8, right: 16),
             child: _MarketSellTrailing(
               quantity: order.quantity,
               price: order.platinum.toInt(),
@@ -86,11 +86,11 @@ class _MarketSellLeading extends StatelessWidget {
           ),
         ),
         Container(
-          margin: const EdgeInsets.only(top: 16.0),
-          padding: const EdgeInsets.all(2.0),
+          margin: const EdgeInsets.only(top: 16),
+          padding: const EdgeInsets.all(2),
           decoration: BoxDecoration(
               color: Theme.of(context).accentColor,
-              borderRadius: BorderRadius.circular(4.0)),
+              borderRadius: BorderRadius.circular(4)),
           child: Text(
             () {
               switch (orderType) {
@@ -135,12 +135,12 @@ class _MarketSellBody extends StatelessWidget {
           style: textTheme.subtitle1?.copyWith(fontWeight: FontWeight.w700),
         ),
         Padding(
-          padding: const EdgeInsets.only(top: 8.0),
+          padding: const EdgeInsets.only(top: 8),
           child: Row(
             children: [
               const Padding(
-                padding: EdgeInsets.only(right: 2.0, bottom: 2.0),
-                child: Icon(Icons.tag_faces, size: 15.0),
+                padding: EdgeInsets.only(right: 2, bottom: 2),
+                child: Icon(Icons.tag_faces, size: 15),
               ),
               Text(
                 'Reputation $reputation',
@@ -173,7 +173,7 @@ class _MarketSellTrailing extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(header, style: headerStyle),
-        const SizedBox(height: 6.0),
+        const SizedBox(height: 6),
         Text('$value'.padLeft(2, '0'), style: valueStyle)
       ],
     );
@@ -184,14 +184,14 @@ class _MarketSellTrailing extends StatelessWidget {
     final textTheme = Theme.of(context).textTheme;
 
     return SizedBox(
-      height: 65.0,
+      height: 65,
       child: Row(
         children: [
           _buildColumn(textTheme, 'Quantity', quantity),
           Container(
-            width: 20.0,
-            height: 2.0,
-            margin: const EdgeInsets.fromLTRB(8.0, 18.0, 8.0, 0),
+            width: 20,
+            height: 2,
+            margin: const EdgeInsets.fromLTRB(8, 18, 8, 0),
             color: Theme.of(context).textTheme.bodyText2?.color,
           ),
           _buildColumn(textTheme, 'Platinum', price)

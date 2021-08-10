@@ -17,7 +17,8 @@ class EventInformation extends TraceableStatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final event = ModalRoute.of(context)?.settings.arguments as Event;
+    // ignore: cast_nullable_to_non_nullable
+    final event = ModalRoute.of(context)?.settings.arguments! as Event;
     final eventInfo = sl<EventInfoParser>().getEventInfo(event.description);
 
     return Scaffold(

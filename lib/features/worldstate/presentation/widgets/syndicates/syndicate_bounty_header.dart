@@ -29,7 +29,7 @@ class SyndicateBountyHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AnimatedContainer(
-      height: 80.0,
+      height: 80,
       duration: const Duration(milliseconds: 250),
       color: faction.backgroundColor,
       alignment: Alignment.centerLeft,

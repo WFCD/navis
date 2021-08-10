@@ -22,7 +22,7 @@ class GunStats extends StatelessWidget {
           title: 'Stats',
           contentPadding: EdgeInsets.zero,
         ),
-        const SizedBox(height: 8.0),
+        const SizedBox(height: 8),
         Stats(
           stats: <RowItem>[
             RowItem(
@@ -94,12 +94,12 @@ ${(projectileWeapon.statusChance * 100).roundToDouble()}%'''),
               )
           ],
         ),
-        const SizedBox(height: 16.0),
+        const SizedBox(height: 16),
         CategoryTitle(
           title: l10n.damageTitle,
           contentPadding: EdgeInsets.zero,
         ),
-        const SizedBox(height: 16.0),
+        const SizedBox(height: 16),
         RowItem(
           text: Text(
             l10n.totalDamageTitle,
@@ -203,7 +203,7 @@ class MeleeStats extends StatelessWidget {
             ),
           ],
         ),
-        const SizedBox(height: 16.0),
+        const SizedBox(height: 16),
         CategoryTitle(
           title: l10n.heavyAttackTitle,
           contentPadding: EdgeInsets.zero,
@@ -230,7 +230,7 @@ class MeleeStats extends StatelessWidget {
             child: Text('${meleeWeapon.windUp?.toStringAsFixed(2) ?? 0}'),
           ),
         ]),
-        const SizedBox(height: 16.0),
+        const SizedBox(height: 16),
         CategoryTitle(
           title: l10n.damageTitle,
           contentPadding: EdgeInsets.zero,
@@ -258,9 +258,9 @@ class RivenDisposition extends StatelessWidget {
 
   Widget _buildDot(Color color, bool enable) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 4.0),
+      padding: const EdgeInsets.symmetric(horizontal: 4),
       child: Container(
-        constraints: const BoxConstraints.expand(width: 15.0, height: 15.0),
+        constraints: const BoxConstraints.expand(width: 15, height: 15),
         decoration: BoxDecoration(
             shape: BoxShape.circle,
             border: Border.all(color: color),

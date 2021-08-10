@@ -39,7 +39,7 @@ class BasicItemInfo extends SliverPersistentHeaderDelegate {
       child: Stack(
         children: <Widget>[
           AppBar(
-            elevation: 0.0,
+            elevation: 0,
             backgroundColor: Theme.of(context).canvasColor,
             iconTheme: Theme.of(context).iconTheme,
             brightness: Theme.of(context).brightness,
@@ -67,7 +67,7 @@ class BasicItemInfo extends SliverPersistentHeaderDelegate {
               ),
             ),
           if (bottom != null)
-            Align(alignment: Alignment.bottomCenter, child: bottom!)
+            Align(alignment: Alignment.bottomCenter, child: bottom)
         ],
       ),
     );
@@ -116,13 +116,11 @@ class _EntryInfoContent extends StatelessWidget {
         height: shrinkOffset > 0.0 ? 0 : (height / 100) * 90,
         child: FittedBox(
           clipBehavior: Clip.hardEdge,
-          fit: BoxFit.contain,
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
             children: [
               Padding(
-                padding: const EdgeInsets.only(bottom: 6.0),
+                padding: const EdgeInsets.only(bottom: 6),
                 child: Hero(
                   tag: uniqueName,
                   child: CircleAvatar(

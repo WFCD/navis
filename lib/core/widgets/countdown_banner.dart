@@ -9,7 +9,7 @@ class CountdownBanner extends StatelessWidget {
     required this.message,
     required this.time,
     this.color,
-    this.margin = const EdgeInsets.symmetric(horizontal: 4.0, vertical: 4.0),
+    this.margin = const EdgeInsets.symmetric(horizontal: 4, vertical: 4),
   }) : super(key: key);
 
   final String message;

@@ -25,7 +25,7 @@ class SortieCard extends StatelessWidget {
             ListTile(
               leading: FactionIcon(
                 faction: sortie.faction,
-                iconSize: 35.0,
+                iconSize: 35,
               ),
               title: Text(sortie.boss, style: boss),
               trailing: CountdownTimer(

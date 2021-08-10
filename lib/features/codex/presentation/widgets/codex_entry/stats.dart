@@ -18,7 +18,7 @@ class Stats extends StatelessWidget {
         children.add(stat);
       } else {
         children.add(Padding(
-          padding: const EdgeInsets.only(bottom: 16.0),
+          padding: const EdgeInsets.only(bottom: 16),
           child: stat,
         ));
       }

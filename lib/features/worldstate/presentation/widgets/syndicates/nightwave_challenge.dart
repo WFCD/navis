@@ -39,15 +39,14 @@ class NightwaveChallenge extends StatelessWidget {
     return Card(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
       child: Container(
-        margin: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0),
+        margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
         child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
               Text(challenge.title, style: title),
-              const SizedBox(height: 4.0),
+              const SizedBox(height: 4),
               Text(challenge.desc, style: desscription),
-              const SizedBox(height: 8.0),
+              const SizedBox(height: 8),
               Row(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   mainAxisAlignment: MainAxisAlignment.end,

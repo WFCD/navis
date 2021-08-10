@@ -2,7 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/widgets.dart';
 
 Image loadModPart(String partName) {
-  var partUrl = Uri.parse(
+  final partUrl = Uri.parse(
       'https://raw.githubusercontent.com/WFCD/genesis-assets/master/modFrames/$partName');
 
   return Image(
@@ -11,7 +11,7 @@ Image loadModPart(String partName) {
 }
 
 Image getPolarity(String polarity, {Color? color}) {
-  var polarityUrl = Uri.parse(
+  final polarityUrl = Uri.parse(
       'https://raw.githubusercontent.com/WFCD/genesis-assets/master/emoji/${polarity.toLowerCase()}.png');
 
   return Image(

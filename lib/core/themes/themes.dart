@@ -36,9 +36,9 @@ class NavisTheming {
   static const _appBarTheme = AppBarTheme(color: primary);
 
   static final _cardTheme = CardTheme(
-    elevation: 6.0,
-    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4.0)),
-    margin: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0),
+    elevation: 6,
+    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
+    margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
     clipBehavior: Clip.hardEdge,
   );
 }

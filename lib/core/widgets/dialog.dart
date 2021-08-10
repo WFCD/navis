@@ -19,7 +19,7 @@ class NavisDialog extends StatelessWidget {
     final dialogTheme = DialogTheme.of(context);
 
     final _title = Padding(
-      padding: const EdgeInsets.fromLTRB(24.0, 24.0, 24.0, 20.0),
+      padding: const EdgeInsets.fromLTRB(24, 24, 24, 20),
       child: DefaultTextStyle(
         style: dialogTheme.titleTextStyle ??
             Theme.of(context).textTheme.headline6!,
@@ -37,14 +37,14 @@ class NavisDialog extends StatelessWidget {
       child: Flexible(
         child: Padding(
           padding:
-              contentPadding ?? const EdgeInsets.fromLTRB(8.0, 10.0, 8.0, 14.0),
+              contentPadding ?? const EdgeInsets.fromLTRB(8, 10, 8, 14),
           child: content,
         ),
       ),
     );
 
     return Dialog(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
       child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.stretch,

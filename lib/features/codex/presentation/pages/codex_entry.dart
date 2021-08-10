@@ -18,7 +18,8 @@ class CodexEntry extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final item = ModalRoute.of(context)?.settings.arguments as Item;
+    // ignore: cast_nullable_to_non_nullable
+    final item = ModalRoute.of(context)?.settings.arguments! as Item;
     final heightRatio = MediaQuery.of(context).size.height / 100;
 
     final height = item is Mod ? kMinExtent : heightRatio * 30;
@@ -145,21 +146,21 @@ class Overview extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView(
       key: const PageStorageKey('overview'),
-      padding: const EdgeInsets.fromLTRB(16.0, 0.0, 16.0, 16.0),
+      padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
       children: [
         if (_isFoundryItem) ...{
           ItemComponents(
             itemImageUrl: item.imageUrl,
             components: (item as FoundryItem).components!,
           ),
-          const SizedBox(height: 16.0),
+          const SizedBox(height: 16),
         },
         if (_isPowerSuit) FrameStats(powerSuit: item as PowerSuit),
         if (_isGun) GunStats(projectileWeapon: item as ProjectileWeapon),
         if (_isMeleeWeapon) MeleeStats(meleeWeapon: item as MeleeWeapon),
         if (_isMod) ModStats(mod: item as Mod),
         if (item.drops != null) ...{
-          const SizedBox(height: 20.0),
+          const SizedBox(height: 20),
           const CategoryTitle(title: 'Drops'),
           ModDropLocations(drops: (item as Mod).drops!),
         },

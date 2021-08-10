@@ -72,7 +72,7 @@ class SyndicatePageMobile extends StatelessWidget {
     return ListView(
       children: <Widget>[
         _buildSyndicates(_worldstate.syndicateMissions),
-        const SizedBox(height: 8.0),
+        const SizedBox(height: 8),
         if (state.isNightwaveActive)
           _buildNightwave(state.worldstate.nightwave!)
       ],
@@ -116,7 +116,7 @@ class _SyndicatePageTabletState extends State<SyndicatePageTablet> {
       children: <Widget>[
         Expanded(
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 4.0),
+            padding: const EdgeInsets.symmetric(horizontal: 4),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
@@ -124,7 +124,7 @@ class _SyndicatePageTabletState extends State<SyndicatePageTablet> {
                   _worldstate.syndicateMissions,
                   onTap: _onTap,
                 ),
-                const SizedBox(height: 8.0),
+                const SizedBox(height: 8),
                 if (widget.state.isNightwaveActive)
                   _buildNightwave(
                     widget.state.worldstate.nightwave!,

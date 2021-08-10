@@ -23,11 +23,7 @@ class NotificationServiceRelease implements NotificationService {
 
   @override
   void configure() {
-    _messaging.requestPermission(
-      sound: true,
-      badge: true,
-      alert: true,
-    );
+    _messaging.requestPermission();
   }
 
   @override

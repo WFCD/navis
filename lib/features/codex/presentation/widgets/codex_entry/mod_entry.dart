@@ -201,7 +201,7 @@ class ModFrame extends StatelessWidget {
     late ImageInfo imageInfo;
     final img = CachedNetworkImageProvider(image);
 
-    img.resolve(const ImageConfiguration()).addListener(
+    img.resolve(ImageConfiguration.empty).addListener(
       ImageStreamListener((ImageInfo info, bool _) {
         imageInfo = info;
       }),
@@ -245,7 +245,7 @@ class ModFrame extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const size = Size(260.0, 350.0);
+    const size = Size(260, 350);
 
     final imageHeight = (size.height / 100) * 50;
     final imageWidth = (size.width / 100) * 94;
@@ -387,7 +387,7 @@ class ModFrame extends StatelessWidget {
             Positioned(
               top: wikiaUrl != null ? 175 : 200,
               child: Padding(
-                padding: const EdgeInsets.only(bottom: 20.0),
+                padding: const EdgeInsets.only(bottom: 20),
                 child: ModDrescription(
                   name: name,
                   stats: stats,
@@ -477,17 +477,17 @@ class ModImageCropped extends CustomPainter {
       [
         // Identity transform
         RSTransform.fromComponents(
-          rotation: 0.0,
-          scale: 1.0,
-          anchorX: 0.0,
-          anchorY: 0.0,
-          translateX: 0.0,
-          translateY: 0.0,
+          rotation: 0,
+          scale: 1,
+          anchorX: 0,
+          anchorY: 0,
+          translateX: 0,
+          translateY: 0,
         )
       ],
       [
         Rect.fromCenter(
-          center: const Offset(150.0, 90.0),
+          center: const Offset(150, 90),
           width: width,
           height: height,
         )

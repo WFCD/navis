@@ -5,6 +5,7 @@ import 'package:navis/features/worldstate/domain/repositories/worldstate_reposit
 import 'package:navis/features/worldstate/domain/usecases/get_worldstate.dart';
 import 'package:oxidized/oxidized.dart';
 import 'package:test/test.dart';
+import 'package:wfcd_client/entities.dart';
 import 'package:wfcd_client/wfcd_client.dart';
 
 import '../../../fixtures/fixture_reader.dart';
@@ -32,7 +33,7 @@ void main() {
 
     final result = await getWorldstate(false);
 
-    expect(result, equals(Ok(tWorldstate)));
+    expect(result, equals(Ok<Worldstate, dynamic>(tWorldstate)));
     verify(() =>
         mockRepository.getWorldstate(forceUpdate: any(named: 'forceUpdate')));
     verifyNoMoreInteractions(mockRepository);

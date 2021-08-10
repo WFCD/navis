@@ -38,8 +38,8 @@ class ItemComponents extends StatelessWidget {
           }
         },
         child: SizedBox(
-          width: 60.0,
-          height: 60.0,
+          width: 60,
+          height: 60,
           child: Stack(
             alignment: AlignmentDirectional.center,
             children: [
@@ -74,7 +74,7 @@ class ItemComponents extends StatelessWidget {
           title: context.l10n.componentsTitle,
           contentPadding: EdgeInsets.zero,
         ),
-        const SizedBox(height: 8.0),
+        const SizedBox(height: 8),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [

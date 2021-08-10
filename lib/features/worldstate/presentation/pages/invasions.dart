@@ -51,8 +51,8 @@ class TabletInvasions extends StatelessWidget {
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
         childAspectRatio: 2.5,
-        mainAxisSpacing: 4.0,
-        crossAxisSpacing: 2.0,
+        mainAxisSpacing: 4,
+        crossAxisSpacing: 2,
       ),
       itemCount: invasions.length,
       itemBuilder: (BuildContext context, int index) {

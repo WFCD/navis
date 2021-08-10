@@ -141,7 +141,7 @@ class Player extends StatelessWidget {
           child: Chewie(controller: controller),
         ),
         Padding(
-          padding: const EdgeInsets.fromLTRB(16.0, 20.0, 16.0, 2.0),
+          padding: const EdgeInsets.fromLTRB(16, 20, 16, 2),
           child: playerInformation,
         )
       ],
@@ -174,16 +174,15 @@ class PlayerInformation extends StatelessWidget {
           maxLines: 2,
           overflow: TextOverflow.ellipsis,
         ),
-        const SizedBox(height: 16.0),
+        const SizedBox(height: 16),
         Row(
-          mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
             if (profileThumbnail != null)
               CircleAvatar(
-                radius: 10.0,
+                radius: 10,
                 backgroundImage: CachedNetworkImageProvider(profileThumbnail!),
               ),
-            const SizedBox(width: 8.0),
+            const SizedBox(width: 8),
             Text(
               author,
               style: Theme.of(context).textTheme.caption,

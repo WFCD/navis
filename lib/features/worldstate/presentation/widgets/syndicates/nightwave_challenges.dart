@@ -16,7 +16,7 @@ class NightwaveChalleneges extends StatelessWidget {
     return BlocBuilder<SolsystemBloc, SolsystemState>(
       builder: (_, state) {
         if (state is SolState) {
-          const padding = SizedBox(height: 8.0);
+          const padding = SizedBox(height: 8);
 
           final daily = state.nightwaveDailies
               .map<NightwaveChallenge>((c) => NightwaveChallenge(challenge: c));

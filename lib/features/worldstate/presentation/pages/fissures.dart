@@ -50,9 +50,9 @@ class TabletFissures extends StatelessWidget {
     return GridView.builder(
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
-        childAspectRatio: 4.0,
-        mainAxisSpacing: 4.0,
-        crossAxisSpacing: 2.0,
+        childAspectRatio: 4,
+        mainAxisSpacing: 4,
+        crossAxisSpacing: 2,
       ),
       itemCount: fissures.length,
       itemBuilder: (BuildContext context, int index) {

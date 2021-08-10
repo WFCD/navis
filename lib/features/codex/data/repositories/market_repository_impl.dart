@@ -122,7 +122,7 @@ class MarketRepositoryImpl extends MarketRepository {
     );
     final api = MarketClient(client: client);
 
-    return await api.getMarketItems();
+    return api.getMarketItems();
   }
 }
 

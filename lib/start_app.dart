@@ -33,8 +33,8 @@ Future<void> startApp() async {
 
   final temp = await getTemporaryDirectory();
 
-  HydratedBloc.storage =
-      await HydratedStorage.build(storageDirectory: temp).catchError((e) {
+  HydratedBloc.storage = await HydratedStorage.build(storageDirectory: temp)
+      .catchError((dynamic e) {
     File('${temp.path}/hydrated_box').deleteSync();
     return HydratedStorage.build(storageDirectory: temp);
   });

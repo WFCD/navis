@@ -54,7 +54,7 @@ void main() {
     darvodealBloc.add(LoadDarvodeal(tWorldstate.dailyDeals.first));
 
     await untilCalled(() => getDarvoDealInfo(any()));
-    await Future.delayed(const Duration(seconds: 1));
+    await Future<void>.delayed(const Duration(seconds: 1));
 
     verify(() => getDarvoDealInfo(any()));
     expect(darvodealBloc.state, DarvoDealLoaded(tDeal.first));
@@ -67,7 +67,7 @@ void main() {
           .thenAnswer((_) async => Ok(tDeal.first));
 
       darvodealBloc.add(LoadDarvodeal(tWorldstate.dailyDeals.first));
-      await Future.delayed(const Duration(seconds: 1));
+      await Future<void>.delayed(const Duration(seconds: 1));
 
       final cached = HydratedBloc.storage.read(darvodealBloc.storageToken)
           as Map<String, dynamic>;

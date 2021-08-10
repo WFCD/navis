@@ -19,13 +19,13 @@ class InvasionProgress extends StatelessWidget {
     return Tooltip(
       message: '$attackingFaction vs $defendingFaction',
       child: Material(
-        elevation: 4.0,
+        elevation: 4,
         color: Colors.transparent,
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 500),
-          height: 20.0,
+          height: 20,
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(4.0),
+            borderRadius: BorderRadius.circular(4),
             gradient: LinearGradient(
               colors: <Color>[
                 factionColor(attackingFaction),

@@ -29,12 +29,12 @@ class SettingsDialog extends StatelessWidget {
     final widthRatio = screenSize.width / 100;
 
     return Dialog(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
       child: SizedBox(
         height: heightRatio * 90,
         width: widthRatio * 80,
         child: const Padding(
-          padding: EdgeInsets.all(8.0),
+          padding: EdgeInsets.all(8),
           child: SettingsContent(),
         ),
       ),

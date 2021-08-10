@@ -2,8 +2,8 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter/foundation.dart';
-import 'package:youtube_explode_dart/youtube_explode_dart.dart';
 import 'package:retry/retry.dart';
+import 'package:youtube_explode_dart/youtube_explode_dart.dart';
 
 class VideoService {
   Future<VideoInformation?> getVideoInformation(String id,
@@ -36,7 +36,7 @@ class VideoService {
     }
   }
 
-  static bool _shouldRetry(e) =>
+  static bool _shouldRetry(dynamic e) =>
       e is SocketException ||
       e is TimeoutException ||
       e is FatalFailureException ||

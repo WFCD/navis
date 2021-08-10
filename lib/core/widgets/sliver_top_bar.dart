@@ -194,7 +194,7 @@ class _SliverTopbarDelegate extends SliverPersistentHeaderDelegate {
       currentExtent: math.max(minExtent, maxExtent - shrinkOffset),
       child: Material(
         color: primary,
-        elevation: 4.0,
+        elevation: 4,
         child: child,
       ),
     );

@@ -53,7 +53,7 @@ class EventStatus extends StatelessWidget {
 
     return CustomCard(
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(8),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
@@ -63,9 +63,9 @@ class EventStatus extends StatelessWidget {
                 style: category,
                 contentPadding: EdgeInsets.zero,
               ),
-              const SizedBox(height: 2.0),
+              const SizedBox(height: 2),
               Text(tooltip!, style: tooltipStyle),
-              const SizedBox(height: 20.0),
+              const SizedBox(height: 20),
             },
             CategoryTitle(
               title: l10n.eventStatus,
@@ -76,27 +76,26 @@ class EventStatus extends StatelessWidget {
               text: Text(l10n.eventStatusNode, style: tooltipStyle),
               child: StaticBox.text(text: node),
             ),
-            const SizedBox(height: 8.0),
+            const SizedBox(height: 8),
             RowItem(
               text: Text(l10n.eventStatusProgress, style: tooltipStyle),
               child: StaticBox.text(text: '${health.toStringAsFixed(2)} %'),
             ),
-            const SizedBox(height: 8.0),
+            const SizedBox(height: 8),
             RowItem(
               text: Text(l10n.eventStatusEta, style: tooltipStyle),
               child: CountdownTimer(expiry: expiry),
             ),
             if (rewards.isNotEmpty) ...{
-              const SizedBox(height: 20.0),
+              const SizedBox(height: 20),
               CategoryTitle(
                 title: l10n.eventRewards,
                 style: category,
                 contentPadding: EdgeInsets.zero,
               ),
-              const SizedBox(height: 2.0),
+              const SizedBox(height: 2),
               Wrap(
-                alignment: WrapAlignment.start,
-                spacing: 6.0,
+                spacing: 6,
                 children: _buildRewards(),
               ),
             }

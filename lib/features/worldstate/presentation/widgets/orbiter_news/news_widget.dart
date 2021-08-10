@@ -20,7 +20,7 @@ class OrbiterNewsWidget extends StatelessWidget {
       child: InkWell(
         onTap: () => news.link.launchLink(context),
         child: Card(
-            margin: const EdgeInsets.symmetric(horizontal: 2.0, vertical: 4.0),
+            margin: const EdgeInsets.symmetric(horizontal: 2, vertical: 4),
             child: Container(
               height: 200,
               decoration: BoxDecoration(
@@ -37,7 +37,7 @@ class OrbiterNewsWidget extends StatelessWidget {
                       end: Alignment.topCenter,
                       stops: const <double>[
                         0.3,
-                        1.0
+                        1
                       ],
                       colors: <Color>[
                         Colors.black.withOpacity(0.7),

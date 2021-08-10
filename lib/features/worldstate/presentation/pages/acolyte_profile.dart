@@ -15,7 +15,8 @@ class AcolyteProfile extends TraceableStatelessWidget {
   @override
   Widget build(BuildContext context) {
     final acolyte =
-        ModalRoute.of(context)?.settings.arguments as PersistentEnemy;
+        // ignore: cast_nullable_to_non_nullable
+        ModalRoute.of(context)?.settings.arguments! as PersistentEnemy;
 
     return Scaffold(
       body: CustomScrollView(

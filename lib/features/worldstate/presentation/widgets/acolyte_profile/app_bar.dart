@@ -20,7 +20,7 @@ class AcolyteAppBar extends StatelessWidget {
       flexibleSpace: FlexibleSpaceBar(
         title: CircleAvatar(
           backgroundColor: Colors.transparent,
-          radius: 45.0,
+          radius: 45,
           backgroundImage: AssetImage(
             'assets/enemies/stalker/${acolyteName.toLowerCase()}.webp',
           ),

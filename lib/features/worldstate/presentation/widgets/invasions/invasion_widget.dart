@@ -13,7 +13,7 @@ class InvasionWidget extends StatelessWidget {
 
   Widget _buildDetails(
       BuildContext context, String node, String description, String eta) {
-    const shadow = Shadow(offset: Offset(1.0, 0.0), blurRadius: 4.0);
+    const shadow = Shadow(offset: Offset(1, 0), blurRadius: 4);
     final textTheme = Theme.of(context).textTheme;
 
     final nodeStyle = textTheme.subtitle1?.copyWith(
@@ -52,7 +52,7 @@ class InvasionWidget extends StatelessWidget {
             vsInfestation: invasion.vsInfestation,
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 4.0, vertical: 8.0),
+            padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 8),
             child: InvasionProgress(
               progress: (invasion.completion / 100).toDouble(),
               attackingFaction: invasion.attackingFaction,

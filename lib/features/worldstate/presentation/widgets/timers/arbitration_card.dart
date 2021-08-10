@@ -20,7 +20,7 @@ class ArbitrationCard extends StatelessWidget {
           children: <Widget>[
             if (arbitration.archwingRequired)
               const Padding(
-                padding: EdgeInsets.only(left: 6.0),
+                padding: EdgeInsets.only(left: 6),
                 child: NavisSystemIconWidgets.archwingIcon,
               ),
             Text(arbitration.node!),

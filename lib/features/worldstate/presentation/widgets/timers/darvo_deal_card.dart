@@ -56,7 +56,7 @@ class _DealWidgetState extends State<DealWidget> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                padding: const EdgeInsets.symmetric(horizontal: 8),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
@@ -69,11 +69,11 @@ class _DealWidgetState extends State<DealWidget> {
                                 ? state.item.description?.parseHtmlString()
                                 : null,
                       ),
-                    const SizedBox(height: 16.0),
+                    const SizedBox(height: 16),
                     Wrap(
                         crossAxisAlignment: WrapCrossAlignment.center,
-                        spacing: 10.0,
-                        runSpacing: 5.0,
+                        spacing: 10,
+                        runSpacing: 5,
                         children: <Widget>[
                           if (state is DarvodealLoading)
                             StaticBox.text(text: widget.deal.item),
@@ -141,7 +141,7 @@ class DealDetails extends StatelessWidget {
           style: textTheme.subtitle1?.copyWith(fontWeight: FontWeight.w500),
         ),
         if (itemDescription != null) ...{
-          const SizedBox(height: 8.0),
+          const SizedBox(height: 8),
           Text(
             itemDescription ?? '',
             maxLines: 7,
@@ -172,7 +172,7 @@ class ItemImage extends StatelessWidget {
     );
 
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.all(8),
       child: Center(
         child: ResponsiveBuilder(
           builder: (BuildContext context, SizingInformation sizing) {

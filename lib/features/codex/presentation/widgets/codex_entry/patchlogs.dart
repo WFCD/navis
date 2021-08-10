@@ -14,7 +14,7 @@ class PatchlogCard extends StatelessWidget {
 
   Widget _log(BuildContext context, String log) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+      padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Text(
         log.splitMapJoin('\n', onMatch: (m) => '\n\n', onNonMatch: (n) => n),
         style: Theme.of(context).textTheme.caption,

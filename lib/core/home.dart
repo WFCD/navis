@@ -72,7 +72,6 @@ class NDrawer extends StatelessWidget {
 
     return Drawer(
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
           SizedBox(
             width: double.infinity,
@@ -81,7 +80,7 @@ class NDrawer extends StatelessWidget {
               fit: StackFit.passthrough,
               children: [
                 ImageFiltered(
-                  imageFilter: ImageFilter.blur(sigmaX: 1.0, sigmaY: 1.0),
+                  imageFilter: ImageFilter.blur(sigmaX: 1, sigmaY: 1),
                   child: const Image(
                     image: AssetImage(NavisAssets.derelict),
                     fit: BoxFit.cover,
@@ -91,7 +90,6 @@ class NDrawer extends StatelessWidget {
                   bottom: false,
                   left: false,
                   right: false,
-                  top: true,
                   child: SvgPicture.asset(
                     NavisAssets.wfcdLogoColor,
                     color: Colors.white.withOpacity(0.5),
@@ -101,7 +99,7 @@ class NDrawer extends StatelessWidget {
             ),
           ),
           const Expanded(child: DrawerOptions()),
-          const Divider(height: 4.0),
+          const Divider(height: 4),
           ListTile(
             leading: const FaIcon(
               SimpleIcons.discord,
@@ -117,7 +115,7 @@ class NDrawer extends StatelessWidget {
               final deviceType = getDeviceType(mediaQuery.size);
 
               if (deviceType != DeviceScreenType.mobile) {
-                showDialog(
+                showDialog<void>(
                   context: context,
                   builder: (_) => const SettingsDialog(),
                 );

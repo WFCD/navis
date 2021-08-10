@@ -25,14 +25,14 @@ class AcolyteStatus extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const padding = EdgeInsets.symmetric(vertical: 4.0);
+    const padding = EdgeInsets.symmetric(vertical: 4);
 
     final l10n = context.l10n;
     final statTitle = Theme.of(context).textTheme.subtitle1;
     final statValue = Theme.of(context).textTheme.subtitle2;
 
     return CustomCard(
-      margin: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0),
+      margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[

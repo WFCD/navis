@@ -19,8 +19,7 @@ class InventoryDataSource extends DataTableSource {
           DataCell(Text(product.item), onTap: () {}),
           DataCell(Text('${product.ducats}'), onTap: () {}),
           DataCell(Text('${product.credits}cr'), onTap: () {})
-        ],
-        onSelectChanged: null);
+        ]);
   }
 
   @override

@@ -73,7 +73,6 @@ class TabletInventoryDataTable extends StatelessWidget {
     return SingleChildScrollView(
       child: PaginatedDataTable(
         header: const Text('Inventory'),
-        rowsPerPage: PaginatedDataTable.defaultRowsPerPage,
         onSelectAll: (selected) {},
         columns: _buildDataColumn(context),
         source: InventoryDataSource(inventory: inventory),

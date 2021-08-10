@@ -13,14 +13,15 @@ class BountiesPage extends TraceableStatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final syndicate = ModalRoute.of(context)?.settings.arguments as Syndicate;
+    // ignore: cast_nullable_to_non_nullable
+    final syndicate = ModalRoute.of(context)?.settings.arguments! as Syndicate;
     final backgroundColor =
         syndicateStringToEnum(syndicate.id!).backgroundColor;
 
     return Scaffold(
       appBar: AppBar(
         title: Text(syndicate.name.replaceFirst('Syndicate', '')),
-        titleSpacing: 0.0,
+        titleSpacing: 0,
         backgroundColor: backgroundColor,
       ),
       body: SyndicateBounties(syndicate: syndicate),

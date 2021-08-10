@@ -58,7 +58,7 @@ class SyndicateCard extends StatelessWidget {
       return InkWell(
         onTap: onTap ?? () => _onTap(context),
         customBorder:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(4.0)),
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
         child: CustomCard(
           color: syndicateName.backgroundColor,
           child: Padding(

@@ -80,7 +80,8 @@ void main() {
       when(() => getWorldstate(any())).thenAnswer((_) async => Ok(tWorldstate));
       await solsystemBloc.update();
 
-      final cached = HydratedBloc.storage.read(solsystemBloc.storageToken);
+      final cached = HydratedBloc.storage.read(solsystemBloc.storageToken)
+          as Map<String, dynamic>;
       final worldstate = WorldstateModel.fromJson(cached);
 
       expect(worldstate, tWorldstate);

@@ -46,10 +46,7 @@ class _NavisAppState extends State<NavisApp> with WidgetsBindingObserver {
 
   Widget _builder(BuildContext context, Widget? widget) {
     ErrorWidget.builder = (FlutterErrorDetails error) {
-      Widget _error = NavisErrorWidget(
-        details: error,
-        showStacktrace: true,
-      );
+      Widget _error = NavisErrorWidget(details: error);
 
       if (widget is Scaffold || widget is Navigator) {
         _error = Scaffold(body: Center(child: _error));

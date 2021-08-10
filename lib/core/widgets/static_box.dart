@@ -7,8 +7,8 @@ class StaticBox extends StatelessWidget {
   const StaticBox({
     Key? key,
     required this.tooltip,
-    this.padding = const EdgeInsets.all(4.0),
-    this.margin = const EdgeInsets.all(3.0),
+    this.padding = const EdgeInsets.all(4),
+    this.margin = const EdgeInsets.all(3),
     this.height,
     this.width,
     this.color,
@@ -21,8 +21,8 @@ class StaticBox extends StatelessWidget {
     Color? color,
     double? fontSize,
     TextStyle? style,
-    EdgeInsetsGeometry padding = const EdgeInsets.all(6.0),
-    EdgeInsetsGeometry margin = const EdgeInsets.all(3.0),
+    EdgeInsetsGeometry padding = const EdgeInsets.all(6),
+    EdgeInsetsGeometry margin = const EdgeInsets.all(3),
   }) {
     const _textColor = Colors.white;
 
@@ -59,7 +59,7 @@ class StaticBox extends StatelessWidget {
         curve: Curves.easeInOut,
         decoration: BoxDecoration(
           color: color ?? primary,
-          borderRadius: const BorderRadius.all(Radius.circular(3.0)),
+          borderRadius: const BorderRadius.all(Radius.circular(3)),
         ),
         child: child,
       ),

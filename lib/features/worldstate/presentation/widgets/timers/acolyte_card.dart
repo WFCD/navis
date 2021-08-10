@@ -45,7 +45,7 @@ class _AcolyteWidgetState extends State<AcolyteWidget>
         duration: const Duration(milliseconds: 300), vsync: this)
       ..addStatusListener(_statusListener);
 
-    _opacity = Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(
+    _opacity = Tween<double>(begin: 0, end: 1).animate(CurvedAnimation(
         parent: _controller!,
         curve: Curves.easeInOut,
         reverseCurve: Curves.easeInOut));

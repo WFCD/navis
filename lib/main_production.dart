@@ -13,7 +13,7 @@ Future<void> main() async {
         ..beforeSend = (SentryEvent event, {dynamic hint}) {
           final usersettings = sl<Usersettings>();
 
-          return event.copyWith(extra: {
+          return event.copyWith(extra: <String, dynamic>{
             'gamePlatform': usersettings.platform,
             'appLanguage': usersettings.language
           });

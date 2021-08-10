@@ -15,7 +15,7 @@ class ConstructionProgressCard extends StatelessWidget {
 
   Widget _paintProgress(Progress progress, TextStyle? style) {
     return SizedBox.fromSize(
-      size: const Size(70.0, 70.0),
+      size: const Size(70, 70),
       child: CustomPaint(
         foregroundPainter: ProgressPainter(
           completeColor: progress.color,
@@ -43,7 +43,7 @@ class ConstructionProgressCard extends StatelessWidget {
               Column(
                 children: <Widget>[
                   _paintProgress(progress, textTheme.headline6),
-                  const SizedBox(height: 16.0),
+                  const SizedBox(height: 16),
                   Text(progress.name, style: textTheme.headline6)
                 ],
               ),

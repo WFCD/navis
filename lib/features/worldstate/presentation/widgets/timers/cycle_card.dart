@@ -63,7 +63,7 @@ class CycleWidget extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           if (cycle.getStateBool) stateOne else stateTwo,
-          const SizedBox(width: 6.0),
+          const SizedBox(width: 6),
           CountdownTimer(expiry: cycle.expiry!),
         ],
       ),

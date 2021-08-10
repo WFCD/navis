@@ -15,8 +15,8 @@ class CountdownTimer extends StatefulWidget {
     this.color,
     this.size,
     this.style,
-    this.padding = const EdgeInsets.all(4.0),
-    this.margin = const EdgeInsets.all(3.0),
+    this.padding = const EdgeInsets.all(4),
+    this.margin = const EdgeInsets.all(3),
   }) : super(key: key);
 
   final DateTime expiry;
@@ -56,7 +56,7 @@ class _CountdownTimerState extends State<CountdownTimer>
 
     _controller!
       ..addStatusListener(_onEnd)
-      ..reverse(from: 1.0);
+      ..reverse(from: 1);
   }
 
   void _detectWarningLevel() {
@@ -65,7 +65,7 @@ class _CountdownTimerState extends State<CountdownTimer>
     if (_timeLeft > _max) {
       newLevel = Colors.green;
     } else if (_timeLeft < _max && _timeLeft > _minimum) {
-      newLevel = Colors.orange[700]!;
+      newLevel = Colors.orange[700];
     } else if (_timeLeft < _minimum) {
       newLevel = _expired ? primary : Colors.red;
     }
