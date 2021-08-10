@@ -925,5 +925,17 @@
         "placeholders": {
             "rank": {}
         }
+    },
+    "codexHint": "Type what you're looking for into the search bar above!",
+    "@codexHint": {
+        "description": "Codex description when a user enters the codex or when the search bar is empty",
+        "type": "text",
+        "placeholder": {}
+    },
+    "codexNoResults": "No results",
+    "@codexNoResults": {
+        "description": "Displayed when a search result in codex returns empty",
+        "type": "text",
+        "placeholder": {}
     }
 }
