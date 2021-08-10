@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-// ignore: import_of_legacy_library_into_null_safe
 import 'package:matomo/matomo.dart';
 
+import '../../../../l10n/l10n.dart';
 import '../bloc/search_bloc.dart';
 import '../widgets/codex_widgets.dart';
 
@@ -11,6 +11,8 @@ class CodexSearchScreen extends TraceableStatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = NavisLocalizations.of(context)!;
+
     return NestedScrollView(
       headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
         return <Widget>[
@@ -36,11 +38,11 @@ class CodexSearchScreen extends TraceableStatelessWidget {
               );
             } else if (state is CodexSuccessfulSearch &&
                 state.results.isEmpty) {
-              return const Center(child: Text('No Results'));
+              return Center(child: Text(l10n.codexNoResults));
             } else if (state is CodexSearchEmpty) {
-              return const Center(
+              return Center(
                 child: Text(
-                  "Type what you're looking for into the search bar above!",
+                  l10n.codexHint,
                   textAlign: TextAlign.center,
                 ),
               );
