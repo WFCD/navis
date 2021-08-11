@@ -449,7 +449,7 @@ packages:
       name: oxidized
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.2.0"
+    version: "5.0.0"
   package_config:
     dependency: transitive
     description:

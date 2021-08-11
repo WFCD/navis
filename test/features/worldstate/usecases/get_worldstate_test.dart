@@ -33,7 +33,7 @@ void main() {
 
     final result = await getWorldstate(false);
 
-    expect(result, equals(Ok<Worldstate, dynamic>(tWorldstate)));
+    expect(result, equals(Ok<Worldstate, Object>(tWorldstate)));
     verify(() =>
         mockRepository.getWorldstate(forceUpdate: any(named: 'forceUpdate')));
     verifyNoMoreInteractions(mockRepository);

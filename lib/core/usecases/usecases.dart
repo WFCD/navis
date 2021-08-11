@@ -5,10 +5,10 @@ import 'package:oxidized/oxidized.dart';
 import '../error/failures.dart';
 
 @immutable
-abstract class Usecase<Type, Params> {
+abstract class Usecase<T extends Object, Params> {
   const Usecase();
 
-  Future<Result<Type, Failure>> call(Params params);
+  Future<Result<T, Failure>> call(Params params);
 }
 
 class NoParama extends Equatable {
