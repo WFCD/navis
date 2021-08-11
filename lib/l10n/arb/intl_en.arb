@@ -937,5 +937,11 @@
     "description": "Displayed when a search result in codex returns empty",
     "type": "text",
     "placeholder": {}
+  },
+  "codexVaultedLabel": "Vaulted",
+  "@codexVaultedLabel": {
+    "description": "A label shown in codex items to detenote items that are vaulted",
+    "type": "text",
+    "placeholder": {}
   }
 }

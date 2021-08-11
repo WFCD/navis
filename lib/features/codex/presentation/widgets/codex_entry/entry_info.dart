@@ -16,6 +16,7 @@ class BasicItemInfo extends SliverPersistentHeaderDelegate {
     this.bottom,
     required this.expandedHeight,
     this.isMod = false,
+    this.isVaulted,
   });
 
   final String uniqueName;
@@ -26,6 +27,7 @@ class BasicItemInfo extends SliverPersistentHeaderDelegate {
   final Widget? bottom;
   final double expandedHeight;
   final bool isMod;
+  final bool? isVaulted;
 
   @override
   Widget build(
@@ -45,6 +47,16 @@ class BasicItemInfo extends SliverPersistentHeaderDelegate {
             brightness: Theme.of(context).brightness,
             title: isMod ? Text(name) : null,
             actions: [
+              if (isVaulted ?? false)
+                TextButton(
+                  style: ButtonStyle(
+                    foregroundColor:
+                        MaterialStateProperty.all(Theme.of(context).errorColor),
+                  ),
+                  onPressed: null,
+                  child:
+                      Text(NavisLocalizations.of(context)!.codexVaultedLabel),
+                ),
               TextButton(
                 style: ButtonStyle(
                   foregroundColor: MaterialStateProperty.all(

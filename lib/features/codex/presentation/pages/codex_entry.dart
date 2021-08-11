@@ -101,6 +101,8 @@ class TabbedEntry extends StatelessWidget {
                 wikiaUrl: item.wikiaUrl,
                 imageUrl: item.imageUrl,
                 isMod: item is Mod,
+                isVaulted:
+                    item is FoundryItem ? (item as FoundryItem).vaulted : null,
                 bottom: TabBar(
                   labelColor: Theme.of(context).textTheme.bodyText1?.color,
                   indicatorColor: Theme.of(context).textTheme.bodyText1?.color,
