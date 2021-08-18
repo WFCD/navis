@@ -49,7 +49,8 @@ body:
     id: platform-version
     attributes:
       label: Platform Version
-      description: The version of the platform, i.e. Android 11, iOS 14, etc.
+      description: The version of the platform.
+      placeholder: i.e. Android 11, iOS 14, etc.
     validations:
       required: true            
   - type: textarea
@@ -69,7 +70,7 @@ body:
     id: terms
     attributes:
       label: Code of Conduct
-      description: By submitting this issue, you agree to follow our [Code of Conduct](https://example.com)
+      description: By submitting this issue, you agree to follow our [Code of Conduct](https://github.com/WFCD/navis/blob/e31f0f5f19f6c5adecf09d4205ddba8794c99e5e/CODE_OF_CONDUCT.md)
       options:
         - label: I agree to follow this project's Code of Conduct
           required: true
