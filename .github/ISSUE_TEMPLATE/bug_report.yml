@@ -1,7 +1,7 @@
 name: Bug report
-about: Create a report to help us improve
-title: ''
-labels: ''
+description: Create a report to help us improve
+title: '[Bug]: '
+labels: bug
 body:
   - type: markdown
     attributes:
@@ -45,7 +45,7 @@ body:
         - iOS
     validations:
       required: true
-  - type: trextarea
+  - type: textarea
     id: platform-version
     attributes:
       label: Platform Version
