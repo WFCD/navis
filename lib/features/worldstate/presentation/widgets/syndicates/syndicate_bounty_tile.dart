@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:supercharged/supercharged.dart';
 import 'package:wfcd_client/entities.dart';
 
-import '../../../../../core/widgets/icons.dart';
+import '../../../../../core/widgets/widgets.dart';
 import '../../../../../l10n/l10n.dart';
 import '../../../utils/faction_utils.dart';
 
-class SyndicateBountyHeader extends StatelessWidget {
-  const SyndicateBountyHeader({
+class SyndicateBountyTile extends StatelessWidget {
+  const SyndicateBountyTile({
     Key? key,
     required this.job,
     required this.faction,
@@ -18,29 +18,24 @@ class SyndicateBountyHeader extends StatelessWidget {
 
   Widget _buildStanding() {
     return Row(mainAxisSize: MainAxisSize.min, children: <Widget>[
-      NavisSystemIconWidgets.standingIcon,
-      Text(
-        job.standingStages.sumBy((n) => n).toString(),
-        style: const TextStyle(color: Colors.white),
-      )
+      const Icon(NavisSysIcons.standing, size: 20),
+      Text(job.standingStages.sumBy((n) => n).toString())
     ]);
   }
 
   @override
   Widget build(BuildContext context) {
     return AnimatedContainer(
-      height: 80,
       duration: const Duration(milliseconds: 250),
-      color: faction.backgroundColor,
+      // color: faction.backgroundColor,
       alignment: Alignment.centerLeft,
-      child: ListTile(
-        title:
-            Text(job.type ?? '', style: const TextStyle(color: Colors.white)),
+      child: ExpansionTile(
+        title: Text(job.type ?? ''),
         subtitle: Text(
           context.l10n.levelInfo(job.enemyLevels.first, job.enemyLevels.last),
-          style: const TextStyle(color: Colors.white),
         ),
         trailing: _buildStanding(),
+        children: job.rewardPool.map((e) => ListTile(title: Text(e))).toList(),
       ),
     );
   }

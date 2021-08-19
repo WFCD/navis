@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:wfcd_client/entities.dart';
 
-import '../../../../../core/widgets/icons.dart';
 import '../../../../../core/widgets/widgets.dart';
 import '../../../../../l10n/l10n.dart';
 
@@ -20,7 +19,7 @@ class NightwaveChallenge extends StatelessWidget {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          NavisSystemIconWidgets.standingIcon,
+          const Icon(NavisSysIcons.standing, size: 20, color: Colors.white),
           Text(rep, style: const TextStyle(color: Colors.white))
         ],
       ),

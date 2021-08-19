@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_sticky_header/flutter_sticky_header.dart';
 import 'package:wfcd_client/entities.dart';
 
+import '../../../../../core/widgets/widgets.dart';
 import '../../../utils/faction_utils.dart';
-import 'syndicate_bounty_header.dart';
+import 'syndicate_bounty_tile.dart';
 
 class SyndicateBounties extends StatelessWidget {
   const SyndicateBounties({Key? key, required this.syndicate})
@@ -15,29 +15,19 @@ class SyndicateBounties extends StatelessWidget {
   Widget build(BuildContext context) {
     final jobs = syndicate.jobs..retainWhere((e) => e.type != null);
 
-    return CustomScrollView(
-      slivers: <Widget>[
-        for (Job job in jobs)
-          SliverStickyHeader(
-            header: SyndicateBountyHeader(
-              job: job,
-              faction: syndicateStringToEnum(syndicate.id!),
-            ),
-            sliver: SliverList(
-              delegate: SliverChildBuilderDelegate(
-                (BuildContext context, int index) {
-                  return ListTile(
-                    title: Text(
-                      job.rewardPool[index],
-                      style: Theme.of(context).textTheme.subtitle1,
-                    ),
-                  );
-                },
-                childCount: job.rewardPool.length,
-              ),
-            ),
-          )
-      ],
+    return ListView.builder(
+      itemCount: jobs.length,
+      itemBuilder: (context, index) {
+        final job = jobs[index];
+
+        return CustomCard(
+          padding: EdgeInsets.zero,
+          child: SyndicateBountyTile(
+            faction: syndicateStringToEnum(syndicate.id!),
+            job: job,
+          ),
+        );
+      },
     );
   }
 }
