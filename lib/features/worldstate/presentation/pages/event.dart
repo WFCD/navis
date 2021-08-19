@@ -48,11 +48,6 @@ class EventInformation extends TraceableStatelessWidget {
               rewards: event.eventRewards,
             ),
             if (event.jobs != null) EventBounties(jobs: event.jobs!),
-            // if (eventInfo.howTos.isNotEmpty)
-            //   EventVideoPlayer(
-            //     id: eventInfo.howTos.first.id,
-            //     profileThumbnail: eventInfo.howTos.first.pThumbnail,
-            //   )
           ]),
         ),
       ]),

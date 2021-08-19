@@ -10,7 +10,6 @@ import 'core/local/user_settings.dart';
 import 'core/network/network_info.dart';
 import 'core/notifiers/user_settings_notifier.dart';
 import 'core/services/notifications.dart';
-import 'core/services/videos.dart';
 import 'features/codex/data/datasources/market_cache.dart';
 import 'features/codex/data/repositories/codex_repository_impl.dart';
 import 'features/codex/data/repositories/market_repository_impl.dart';
@@ -49,7 +48,6 @@ Future<void> init() async {
     ..registerSingleton<NetworkInfo>(
         NetworkInfoImpl(InternetConnectionChecker()))
     ..registerSingletonAsync<EventInfoParser>(EventInfoParser.loadEventData)
-    ..registerSingleton<VideoService>(VideoService())
     ..registerSingletonAsync<PackageInfo>(PackageInfo.fromPlatform)
     ..registerSingleton<NotificationService>(
         _isDebug ? NotificationServiceDebug() : NotificationServiceRelease())

@@ -42,7 +42,6 @@ dependencies:
     git:
       url: https://github.com/SlayerOrnstein/wfcd_client.git
       ref: v3.5.3
-  youtube_explode_dart: ^1.9.10
 
 dev_dependencies:
   flutter_test:
@@ -72,6 +71,5 @@ flutter:
         - asset: assets/icons/SyndicateGlyphs.ttf
   assets:
     - assets/Derelict.webp
-    - assets/event_info.json
     - assets/wfcd_logo_color.svg
     # - assets/mod_frames/
