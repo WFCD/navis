@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:supercharged/supercharged.dart';
 import 'package:wfcd_client/entities.dart';
 
+import '../../../../../core/utils/extensions.dart';
 import '../../../../../core/widgets/widgets.dart';
 import '../../../../../l10n/l10n.dart';
 import '../../../utils/faction_utils.dart';
@@ -25,18 +26,14 @@ class SyndicateBountyTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedContainer(
-      duration: const Duration(milliseconds: 250),
-      // color: faction.backgroundColor,
-      alignment: Alignment.centerLeft,
-      child: ExpansionTile(
-        title: Text(job.type ?? ''),
-        subtitle: Text(
-          context.l10n.levelInfo(job.enemyLevels.first, job.enemyLevels.last),
-        ),
-        trailing: _buildStanding(),
-        children: job.rewardPool.map((e) => ListTile(title: Text(e))).toList(),
+    return ExpansionTile(
+      title: Text(job.type ?? ''),
+      subtitle: Text(
+        context.l10n.levelInfo(job.enemyLevels.first, job.enemyLevels.last),
       ),
+      trailing: _buildStanding(),
+      onExpansionChanged: (b) => context.scrollToSelectedContent(),
+      children: job.rewardPool.map((e) => ListTile(title: Text(e))).toList(),
     );
   }
 }
