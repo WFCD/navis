@@ -7,18 +7,16 @@ environment:
   sdk: ">=2.12.0 <3.0.0"
 
 dependencies:
-  bloc: ^7.1.0
+  bloc: ^7.2.0-dev.1
   cached_network_image: ^3.0.0
-  chewie: ^1.2.2
   equatable: ^2.0.3
-  firebase_core: ^1.5.0
-  firebase_messaging: ^10.0.5
+  firebase_core: ^1.6.0
+  firebase_messaging: ^10.0.6
   flutter:
     sdk: flutter
-  flutter_bloc: ^7.1.0
+  flutter_bloc: ^7.2.0
   flutter_localizations:
     sdk: flutter
-  flutter_sticky_header: ^0.6.0
   flutter_svg: ^0.22.0
   flutter_web_browser: ^0.15.0
   get_it: ^7.2.0
@@ -35,13 +33,13 @@ dependencies:
   package_info: ^2.0.2
   responsive_builder: ^0.4.1
   retry: ^3.1.0
-  sentry_flutter: ^6.0.0-beta.3
+  sentry_flutter: ^6.0.0
   simple_icons: ^5.2.0
   supercharged: ^2.0.0
   wfcd_client:
     git:
       url: https://github.com/SlayerOrnstein/wfcd_client.git
-      ref: v3.5.3
+      ref: v3.5.4
 
 dev_dependencies:
   flutter_test:
@@ -71,5 +69,6 @@ flutter:
         - asset: assets/icons/SyndicateGlyphs.ttf
   assets:
     - assets/Derelict.webp
+    - assets/event_info.json
     - assets/wfcd_logo_color.svg
     # - assets/mod_frames/
