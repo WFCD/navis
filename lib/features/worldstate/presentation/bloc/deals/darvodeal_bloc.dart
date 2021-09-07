@@ -13,7 +13,9 @@ part 'darvodeal_event.dart';
 part 'darvodeal_state.dart';
 
 class DarvodealBloc extends HydratedBloc<DarvodealEvent, DarvodealState> {
-  DarvodealBloc({required this.getDarvoDealInfo}) : super(DarvodealInitial());
+  DarvodealBloc({required this.getDarvoDealInfo}) : super(DarvodealInitial()) {
+    on<LoadDarvodeal>(_loadDeal);
+  }
 
   final GetDarvoDealInfo getDarvoDealInfo;
 
@@ -25,20 +27,20 @@ class DarvodealBloc extends HydratedBloc<DarvodealEvent, DarvodealState> {
     tradable: false,
   );
 
-  @override
-  Stream<DarvodealState> mapEventToState(
+  Future<void> _loadDeal(
     DarvodealEvent event,
-  ) async* {
+    Emitter<DarvodealState> emit,
+  ) async {
     if (event is LoadDarvodeal) {
-      yield DarvodealLoading();
+      emit(DarvodealLoading());
 
       final request = DealRequest(event.deal.id!, event.deal.item);
       final either = await getDarvoDealInfo(request);
 
-      yield either.match(
+      emit(either.match(
         (r) => DarvoDealLoaded(r),
         (l) => const DarvoDealLoaded(unknownItem),
-      );
+      ));
     }
   }
 

@@ -18,27 +18,27 @@ const String serverFailureMessage = 'Failed to contact server';
 const String cacheFailureMessage = 'Cache Failure';
 
 class SolsystemBloc extends HydratedBloc<SyncEvent, SolsystemState> {
-  SolsystemBloc({required this.getWorldstate}) : super(SolsystemInitial());
+  SolsystemBloc({required this.getWorldstate}) : super(SolsystemInitial()) {
+    on<SyncSystemStatus>(_syncSystem);
+  }
 
   final GetWorldstate getWorldstate;
 
-  @override
-  Stream<SolsystemState> mapEventToState(
-    SyncEvent event,
-  ) async* {
-    if (event is SyncSystemStatus) {
-      try {
-        final either = await getWorldstate(event.forceUpdate);
+  Future<void> _syncSystem(
+    SyncSystemStatus event,
+    Emitter<SolsystemState> emit,
+  ) async {
+    try {
+      final either = await getWorldstate(event.forceUpdate);
 
-        yield either.match((r) => SolState(cleanState(r)), matchFailure);
-      } on ServerException {
-        yield const SystemError(serverFailureMessage);
-      } on CacheException {
-        yield const SystemError(cacheFailureMessage);
-      } catch (e, s) {
-        await Sentry.captureException(e, stackTrace: s);
-        yield SystemError(e.toString());
-      }
+      either.match((r) => emit(SolState(cleanState(r))), matchFailure);
+    } on ServerException {
+      emit(const SystemError(serverFailureMessage));
+    } on CacheException {
+      emit(const SystemError(cacheFailureMessage));
+    } catch (e, s) {
+      await Sentry.captureException(e, stackTrace: s);
+      emit(SystemError(e.toString()));
     }
   }
 

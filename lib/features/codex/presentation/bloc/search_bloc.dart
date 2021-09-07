@@ -1,8 +1,6 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:rxdart/rxdart.dart';
-import 'package:supercharged/supercharged.dart';
 import 'package:wfcd_client/entities.dart';
 
 import '../../../../core/error/exceptions.dart';
@@ -14,70 +12,61 @@ export 'search_event.dart';
 export 'search_state.dart';
 
 class SearchBloc extends Bloc<SearchEvent, SearchState> {
-  SearchBloc(this.searchItems) : super(CodexSearchEmpty());
+  SearchBloc(this.searchItems) : super(CodexSearchEmpty()) {
+    on<SearchCodex>(_searchCodex);
+    on<SearchFilter>(_filterSearchResults);
+  }
 
   final SearchItems searchItems;
 
   late List<Item> _originalResults;
 
-  @override
-  Stream<Transition<SearchEvent, SearchState>> transformEvents(
-    Stream<SearchEvent> events,
-    TransitionFunction<SearchEvent, SearchState> transitionFn,
-  ) {
-    return super.transformEvents(
-      events.debounceTime(500.milliseconds).distinct(),
-      transitionFn,
-    );
-  }
+  Future<void> _searchCodex(
+    SearchCodex event,
+    Emitter<SearchState> emit,
+  ) async {
+    final text = event.text;
 
-  @override
-  Stream<SearchState> mapEventToState(
-    SearchEvent event,
-  ) async* {
-    if (event is SearchCodex) {
-      final text = event.text;
+    if (text.isEmpty) {
+      emit(CodexSearchEmpty());
+    } else {
+      emit(CodexSearching());
 
-      if (text.isEmpty) {
-        yield CodexSearchEmpty();
-      } else {
-        yield CodexSearching();
+      try {
+        final results = await searchItems(text);
 
-        try {
-          final results = await searchItems(text);
-
-          yield results.match(
+        emit(
+          results.match(
             (r) {
               _originalResults = r;
               return CodexSuccessfulSearch(r.cast<Item>());
             },
             matchFailure,
-          );
-        } catch (e) {
-          yield const CodexSearchError('Unknown Error occuroed');
-        }
+          ),
+        );
+      } catch (e) {
+        emit(const CodexSearchError('Unknown Error occuroed'));
       }
-    }
-
-    if (event is SearchFilter) {
-      yield CodexSearching();
-      final filteredResults = _filterResults(event.category);
-
-      yield CodexSuccessfulSearch(filteredResults ?? _originalResults);
     }
   }
 
-  List<Item>? _filterResults(String category) {
+  Future<void> _filterSearchResults(
+    SearchFilter event,
+    Emitter<SearchState> emit,
+  ) async {
+    emit(CodexSearching());
+
+    final category = event.category;
     if (FilterCategories.categories.contains(category)) {
       if (category == FilterCategories.all) {
-        return _originalResults;
+        return emit(CodexSuccessfulSearch(_originalResults));
       } else {
-        return List<Item>.from(_originalResults)
+        final results = List<Item>.from(_originalResults)
           ..retainWhere((e) => e.category == category);
+
+        emit(CodexSuccessfulSearch(results));
       }
     }
-
-    return null;
   }
 }
 

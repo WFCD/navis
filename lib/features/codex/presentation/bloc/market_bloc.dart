@@ -9,35 +9,37 @@ part 'market_event.dart';
 part 'market_state.dart';
 
 class MarketBloc extends HydratedBloc<MarketEvent, MarketState> {
-  MarketBloc(this.getOrders) : super(MarketInitial());
+  MarketBloc(this.getOrders) : super(MarketInitial()) {
+    on<FindOrders>(_findOrder);
+  }
 
   final GetOrders getOrders;
 
-  @override
-  Stream<MarketState> mapEventToState(MarketEvent event) async* {
-    if (event is FindOrders) {
-      yield const FindingOrders();
-      final _orders = await getOrders(event.item);
+  Future<void> _findOrder(FindOrders event, Emitter<MarketState> emit) async {
+    emit(const FindingOrders());
+    final _orders = await getOrders(event.item);
 
-      yield _orders.match(
-        (orders) {
-          if (orders.isNotEmpty) {
-            return OrdersFound(_sortOrders(orders));
-          } else {
-            return const NoOrdersFound();
-          }
-        },
-        (f) {
-          if (f is CacheFailure) {
-            return const MarketError('There was a cache error');
-          } else if (f is ServerFailure) {
-            return const MarketError('Warframe Market returned and error');
-          } else {
-            return const MarketError('Unknown error occured');
-          }
-        },
-      );
-    }
+    emit(
+      _orders.match((orders) {
+        if (orders.isNotEmpty) {
+          return OrdersFound(_sortOrders(orders));
+        } else {
+          return const NoOrdersFound();
+        }
+      }, (f) {
+        if (f is CacheFailure) {
+          return const MarketError('There was a cache error');
+        } else if (f is ServerFailure) {
+          return const MarketError('Warframe Market returned and error');
+        } else {
+          return const MarketError('Unknown error occured');
+        }
+      }),
+    );
+  }
+
+  List<ItemOrder> _sortOrders(List<ItemOrder> orders) {
+    return orders..sort((a, b) => a.compareTo(b));
   }
 
   @override
@@ -60,9 +62,5 @@ class MarketBloc extends HydratedBloc<MarketEvent, MarketState> {
     }
 
     return null;
-  }
-
-  List<ItemOrder> _sortOrders(List<ItemOrder> orders) {
-    return orders..sort((a, b) => a.compareTo(b));
   }
 }

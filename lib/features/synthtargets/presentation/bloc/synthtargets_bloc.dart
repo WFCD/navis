@@ -18,19 +18,20 @@ enum SynthtargetsEvent { update }
 class SynthtargetsBloc
     extends HydratedBloc<SynthtargetsEvent, SynthtargetsState> {
   SynthtargetsBloc(this.getSynthTargets) : super(SynthtargetsInitial()) {
+    on<SynthtargetsEvent>(_locateTargets);
     add(SynthtargetsEvent.update);
   }
 
   final GetSynthTargets getSynthTargets;
 
-  @override
-  Stream<SynthtargetsState> mapEventToState(
+  Future<void> _locateTargets(
     SynthtargetsEvent event,
-  ) async* {
+    Emitter<SynthtargetsState> emit,
+  ) async {
     if (event == SynthtargetsEvent.update) {
       final locating = await getSynthTargets(NoParama());
 
-      yield locating.match((r) => TargetsLocated(r), matchFailure);
+      emit(locating.match((r) => TargetsLocated(r), matchFailure));
     }
   }
 
