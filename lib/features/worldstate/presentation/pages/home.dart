@@ -118,7 +118,7 @@ class HomeFeedPage extends StatelessWidget {
                         .bodyText1
                         ?.color
                         ?.withOpacity(.7),
-                    indicatorColor: Theme.of(context).accentColor,
+                    indicatorColor: Theme.of(context).colorScheme.secondary,
                     tabs: Tabs.values
                         .map((t) => Tab(text: _getTabLocale(context, t)))
                         .toList(),

@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:market_client/market_client.dart';
+
 import '../../../../../core/widgets/widgets.dart';
 
 class MarketSellWidget extends StatelessWidget {
@@ -89,7 +90,7 @@ class _MarketSellLeading extends StatelessWidget {
           margin: const EdgeInsets.only(top: 16),
           padding: const EdgeInsets.all(2),
           decoration: BoxDecoration(
-              color: Theme.of(context).accentColor,
+              color: Theme.of(context).colorScheme.secondary,
               borderRadius: BorderRadius.circular(4)),
           child: Text(
             () {

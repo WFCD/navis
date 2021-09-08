@@ -47,7 +47,7 @@ class EventStatus extends StatelessWidget {
     final l10n = context.l10n;
 
     final category =
-        theme.textTheme.subtitle1?.copyWith(color: theme.accentColor);
+        theme.textTheme.subtitle1?.copyWith(color: theme.colorScheme.secondary);
     final tooltipStyle =
         Theme.of(context).textTheme.subtitle2?.copyWith(fontSize: 15);
 

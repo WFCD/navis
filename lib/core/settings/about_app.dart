@@ -53,7 +53,7 @@ class About extends StatelessWidget {
 
     final aboutTextStyle = theme.textTheme.bodyText1;
     final linkStyle =
-        theme.textTheme.bodyText1?.copyWith(color: theme.accentColor);
+        theme.textTheme.bodyText1?.copyWith(color: theme.colorScheme.secondary);
 
     return AboutListTile(
       applicationIcon: const Icon(

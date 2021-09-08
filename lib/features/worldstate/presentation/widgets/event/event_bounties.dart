@@ -55,7 +55,7 @@ class EventBounties extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final category =
-        theme.textTheme.subtitle1?.copyWith(color: theme.accentColor);
+        theme.textTheme.subtitle1?.copyWith(color: theme.colorScheme.secondary);
 
     return CustomCard(
       child: Column(children: <Widget>[

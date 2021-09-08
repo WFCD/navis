@@ -16,10 +16,8 @@ class CategoryTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _style = Theme.of(context)
-        .textTheme
-        .subtitle2
-        ?.copyWith(fontSize: 15, color: Theme.of(context).accentColor);
+    final _style = Theme.of(context).textTheme.subtitle2?.copyWith(
+        fontSize: 15, color: Theme.of(context).colorScheme.secondary);
 
     return ListTile(
       title: Text(title, style: style ?? _style),

@@ -44,7 +44,6 @@ class BasicItemInfo extends SliverPersistentHeaderDelegate {
             elevation: 0,
             backgroundColor: Theme.of(context).canvasColor,
             iconTheme: Theme.of(context).iconTheme,
-            brightness: Theme.of(context).brightness,
             title: isMod ? Text(name) : null,
             actions: [
               if (isVaulted ?? false)

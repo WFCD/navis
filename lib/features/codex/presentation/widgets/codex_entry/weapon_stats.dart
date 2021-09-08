@@ -277,7 +277,7 @@ class RivenDisposition extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
         for (int i = 0; i < maxDisposition; i++)
-          _buildDot(Theme.of(context).accentColor, i < disposition)
+          _buildDot(Theme.of(context).colorScheme.secondary, i < disposition)
       ],
     );
   }

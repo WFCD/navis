@@ -83,7 +83,7 @@ class _SimpleNotification extends StatelessWidget {
       title: Text(name),
       subtitle: Text(description),
       value: context.watch<UserSettingsNotifier>().getToggle(optionKey),
-      activeColor: Theme.of(context).accentColor,
+      activeColor: Theme.of(context).colorScheme.secondary,
       onChanged: (b) => _onChanged(context, optionKey, b),
     );
   }
@@ -151,7 +151,7 @@ class NotificationCheckBox extends StatelessWidget {
     return CheckboxListTile(
       title: Text(option),
       value: value,
-      activeColor: Theme.of(context).accentColor,
+      activeColor: Theme.of(context).colorScheme.secondary,
       onChanged: (b) => _onChanged(context, optionKey, b!),
     );
   }

@@ -30,7 +30,7 @@ class Behavior extends StatelessWidget {
         title: Text(l10n.backOpensDrawerTitle),
         subtitle: Text(l10n.backOpensDrawerDescription),
         value: context.watch<UserSettingsNotifier>().backKey,
-        activeColor: Theme.of(context).accentColor,
+        activeColor: Theme.of(context).colorScheme.secondary,
         onChanged: context.read<UserSettingsNotifier>().toggleBackKey,
       )
     ]);
@@ -55,7 +55,7 @@ class LanguagePicker extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const supportedLocales = NavisLocalizations.supportedLocales;
-    final accentColor = Theme.of(context).accentColor;
+    final accentColor = Theme.of(context).colorScheme.secondary;
 
     return NavisDialog(
       content: ListView.builder(
@@ -111,7 +111,7 @@ class ThemePicker extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
-    final accentColor = Theme.of(context).accentColor;
+    final accentColor = Theme.of(context).colorScheme.secondary;
 
     return NavisDialog(
       title: Text(l10n.themeTitle),
