@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:mocktail/mocktail.dart';
+import 'package:navis/core/error/failures.dart';
 import 'package:navis/features/worldstate/domain/repositories/worldstate_repository.dart';
 import 'package:navis/features/worldstate/domain/usecases/get_worldstate.dart';
 import 'package:oxidized/oxidized.dart';
@@ -33,7 +34,7 @@ void main() {
 
     final result = await getWorldstate(false);
 
-    expect(result, equals(Ok<Worldstate, Object>(tWorldstate)));
+    expect(result, equals(Ok<Worldstate, Failure>(tWorldstate)));
     verify(() =>
         mockRepository.getWorldstate(forceUpdate: any(named: 'forceUpdate')));
     verifyNoMoreInteractions(mockRepository);
