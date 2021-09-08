@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:wfcd_client/entities.dart';
 
 import '../../../../core/error/exceptions.dart';
@@ -13,7 +14,7 @@ export 'search_state.dart';
 
 class SearchBloc extends Bloc<SearchEvent, SearchState> {
   SearchBloc(this.searchItems) : super(CodexSearchEmpty()) {
-    on<SearchCodex>(_searchCodex);
+    on<SearchCodex>(_searchCodex, transformer: restartable());
     on<SearchFilter>(_filterSearchResults);
   }
 
