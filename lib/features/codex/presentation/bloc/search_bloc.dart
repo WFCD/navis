@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:bloc_concurrency/bloc_concurrency.dart';
+import 'package:rxdart/rxdart.dart';
 import 'package:wfcd_client/entities.dart';
 
 import '../../../../core/error/exceptions.dart';
@@ -14,7 +14,7 @@ export 'search_state.dart';
 
 class SearchBloc extends Bloc<SearchEvent, SearchState> {
   SearchBloc(this.searchItems) : super(CodexSearchEmpty()) {
-    on<SearchCodex>(_searchCodex, transformer: restartable());
+    on<SearchCodex>(_searchCodex, transformer: _waitForUser());
     on<SearchFilter>(_filterSearchResults);
   }
 
@@ -68,6 +68,15 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
         emit(CodexSuccessfulSearch(results));
       }
     }
+  }
+
+  EventTransformer<SearchEvent> _waitForUser() {
+    return (event, mapper) {
+      return event
+          .debounceTime(const Duration(milliseconds: 500))
+          .distinct()
+          .switchMap(mapper);
+    };
   }
 }
 
