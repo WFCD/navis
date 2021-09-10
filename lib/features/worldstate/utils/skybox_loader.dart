@@ -1,11 +1,13 @@
 String? getSkybox(String node) {
-  const _baseUrl =
-      'https://raw.githubusercontent.com/WFCD/navis/master/assets/skyboxes';
+  const caravaggio = 'https://cdn.warframestat.us/rs_512x512';
+  const baseUrl = 'https://cdn.warframestat.us/genesis/skyboxes';
   final nodeRegExp = RegExp(r'\(([^)]*)\)');
   final nodeBackground = nodeRegExp.firstMatch(node)?.group(1);
 
   if (nodeBackground != null) {
-    return '$_baseUrl/${nodeBackground.replaceAll(' ', '_')}.webp';
+    return Uri.parse(
+            '$caravaggio/$baseUrl/${nodeBackground.replaceAll(' ', '_')}.webp')
+        .toString();
   } else {
     return null;
   }
