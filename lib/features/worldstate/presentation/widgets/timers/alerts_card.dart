@@ -1,21 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wfcd_client/entities.dart';
 
 import '../../../../../core/widgets/icons.dart';
 import '../../../../../core/widgets/row_item.dart';
 import '../../../../../core/widgets/widgets.dart';
 import '../../../../../l10n/l10n.dart';
+import '../../bloc/solsystem_bloc.dart';
 
 class AlertsCard extends StatelessWidget {
-  const AlertsCard({Key? key, required this.alerts}) : super(key: key);
-
-  final List<Alert> alerts;
+  const AlertsCard({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return CustomCard(
-      child: Column(
-        children: alerts.map((a) => AlertWidget(alert: a)).toList(),
+      child: BlocBuilder<SolsystemBloc, SolsystemState>(
+        builder: (context, state) {
+          final alerts = (state as SolState).worldstate.alerts;
+
+          return Column(
+            children: alerts.map((a) => AlertWidget(alert: a)).toList(),
+          );
+        },
       ),
     );
   }
@@ -46,7 +52,7 @@ class AlertWidget extends StatelessWidget {
             icons: <Widget>[
               // Not sure we need to add nightmare
               // icon since alerts have be axed and
-              // nightmare alerts haven't been a thing
+              // nightmare alerts aren't visible to us.
               if (alert.archwingRequired ?? false)
                 NavisSystemIconWidgets.archwingIcon
             ],

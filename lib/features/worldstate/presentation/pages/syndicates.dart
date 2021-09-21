@@ -1,12 +1,14 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:matomo/matomo.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:wfcd_client/entities.dart';
 import 'package:wfcd_client/objects.dart';
 
+import '../../../../constants/default_durations.dart';
 import '../../../../core/widgets/widgets.dart';
 import '../../../../l10n/l10n.dart';
 import '../bloc/solsystem_bloc.dart';
@@ -15,15 +17,25 @@ import '../widgets/syndicates/syndicate_bounties.dart';
 import '../widgets/syndicates/syndicate_card.dart';
 
 class SyndicatePage extends TraceableStatelessWidget {
-  const SyndicatePage({Key? key, required this.state}) : super(key: key);
-
-  final SolState state;
+  const SyndicatePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return ScreenTypeLayout.builder(
-      mobile: (_) => SyndicatePageMobile(state: state),
-      tablet: (_) => SyndicatePageTablet(state: state),
+    return BlocBuilder<SolsystemBloc, SolsystemState>(
+      builder: (context, state) {
+        final worldstate = (state as SolState).worldstate;
+
+        return ScreenTypeLayout.builder(
+          mobile: (_) => SyndicatePageMobile(
+            syndicates: worldstate.syndicateMissions,
+            nightwave: worldstate.nightwave,
+          ),
+          tablet: (_) => SyndicatePageTablet(
+            syndicates: worldstate.syndicateMissions,
+            nightwave: worldstate.nightwave,
+          ),
+        );
+      },
     );
   }
 }
@@ -61,29 +73,36 @@ Widget _buildNightwave(Nightwave nightwave, {void Function(Nightwave)? onTap}) {
 }
 
 class SyndicatePageMobile extends StatelessWidget {
-  const SyndicatePageMobile({Key? key, required this.state}) : super(key: key);
+  const SyndicatePageMobile({
+    Key? key,
+    required this.syndicates,
+    this.nightwave,
+  }) : super(key: key);
 
-  final SolState state;
-
-  Worldstate get _worldstate => state.worldstate;
+  final List<Syndicate> syndicates;
+  final Nightwave? nightwave;
 
   @override
   Widget build(BuildContext context) {
     return ListView(
       children: <Widget>[
-        _buildSyndicates(_worldstate.syndicateMissions),
+        _buildSyndicates(syndicates),
         const SizedBox(height: 8),
-        if (state.isNightwaveActive)
-          _buildNightwave(state.worldstate.nightwave!)
+        if (nightwave != null) _buildNightwave(nightwave!)
       ],
     );
   }
 }
 
 class SyndicatePageTablet extends StatefulWidget {
-  const SyndicatePageTablet({Key? key, required this.state}) : super(key: key);
+  const SyndicatePageTablet({
+    Key? key,
+    required this.syndicates,
+    this.nightwave,
+  }) : super(key: key);
 
-  final SolState state;
+  final List<Syndicate> syndicates;
+  final Nightwave? nightwave;
 
   @override
   _SyndicatePageTabletState createState() => _SyndicatePageTabletState();
@@ -91,8 +110,6 @@ class SyndicatePageTablet extends StatefulWidget {
 
 class _SyndicatePageTabletState extends State<SyndicatePageTablet> {
   StreamController<Widget>? _controller;
-
-  Worldstate get _worldstate => widget.state.worldstate;
 
   @override
   void initState() {
@@ -120,16 +137,10 @@ class _SyndicatePageTabletState extends State<SyndicatePageTablet> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
-                _buildSyndicates(
-                  _worldstate.syndicateMissions,
-                  onTap: _onTap,
-                ),
+                _buildSyndicates(widget.syndicates, onTap: _onTap),
                 const SizedBox(height: 8),
-                if (widget.state.isNightwaveActive)
-                  _buildNightwave(
-                    widget.state.worldstate.nightwave!,
-                    onTap: _onTap,
-                  )
+                if (widget.nightwave != null)
+                  _buildNightwave(widget.nightwave!, onTap: _onTap)
               ],
             ),
           ),
@@ -141,7 +152,7 @@ class _SyndicatePageTabletState extends State<SyndicatePageTablet> {
                 stream: _controller?.stream,
                 builder: (_, snapshot) {
                   return AnimatedSwitcher(
-                    duration: const Duration(milliseconds: 250),
+                    duration: kAnimationShort,
                     switchInCurve: Curves.easeInCubic,
                     switchOutCurve: Curves.easeOutCubic,
                     child: snapshot.data,

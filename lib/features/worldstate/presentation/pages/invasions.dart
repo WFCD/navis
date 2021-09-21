@@ -1,5 +1,6 @@
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
-// ignore: import_of_legacy_library_into_null_safe
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:matomo/matomo.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:wfcd_client/entities.dart';
@@ -8,17 +9,28 @@ import '../bloc/solsystem_bloc.dart';
 import '../widgets/invasions/invasion_widget.dart';
 
 class InvasionsPage extends TraceableStatelessWidget {
-  const InvasionsPage({Key? key, required this.state}) : super(key: key);
+  const InvasionsPage({Key? key}) : super(key: key);
 
-  final SolState state;
+  bool _buildWhen(SolsystemState p, SolsystemState n) {
+    if (p is SolState && n is SolState) {
+      return p.worldstate.invasions.equals(n.worldstate.invasions);
+    }
+
+    return false;
+  }
 
   @override
   Widget build(BuildContext context) {
-    final invasions = state.worldstate.invasions;
+    return BlocBuilder<SolsystemBloc, SolsystemState>(
+      buildWhen: _buildWhen,
+      builder: (context, state) {
+        final invasions = (state as SolState).worldstate.invasions;
 
-    return ScreenTypeLayout.builder(
-      mobile: (context) => MobileInvasions(invasions: invasions),
-      tablet: (context) => TabletInvasions(invasions: invasions),
+        return ScreenTypeLayout.builder(
+          mobile: (context) => MobileInvasions(invasions: invasions),
+          tablet: (context) => TabletInvasions(invasions: invasions),
+        );
+      },
     );
   }
 }

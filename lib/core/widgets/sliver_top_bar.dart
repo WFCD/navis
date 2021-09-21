@@ -2,6 +2,8 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import '../../constants/default_durations.dart';
+
 import '../themes/colors.dart';
 
 class SliverTopbar extends StatefulWidget {
@@ -32,7 +34,7 @@ class _SliverTopbarState extends State<SliverTopbar>
     if (widget.snap && widget.floating) {
       _snapConfiguration = FloatingHeaderSnapConfiguration(
         curve: Curves.easeOut,
-        duration: const Duration(milliseconds: 200),
+        duration: kAnimationShort,
       );
     } else {
       _snapConfiguration = null;

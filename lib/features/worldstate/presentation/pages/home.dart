@@ -32,45 +32,45 @@ class HomeFeedPage extends StatelessWidget {
   Widget _buildView(Tabs tab, SolState state) {
     switch (tab) {
       case Tabs.timers:
-        return Timers(state: state);
+        return const Timers();
       case Tabs.fissures:
-        return FissuresPage(state: state);
+        return const FissuresPage();
       case Tabs.invasions:
-        return InvasionsPage(state: state);
+        return const InvasionsPage();
       default:
-        return SyndicatePage(state: state);
+        return const SyndicatePage();
     }
   }
 
-  Widget _tabBuilder(Tabs tab) {
+  Widget _tabBuilder(BuildContext context, Tabs tab) {
     return SafeArea(
       top: false,
       bottom: false,
-      child: BlocBuilder<SolsystemBloc, SolsystemState>(
-        builder: (BuildContext context, SolsystemState state) {
-          if (state is SolState) {
-            return CustomScrollView(
-              key: PageStorageKey<String>(tab.toString()),
-              slivers: [
-                SliverOverlapInjector(
-                  // This is the flip side of the SliverOverlapAbsorber above.
-                  handle:
-                      NestedScrollView.sliverOverlapAbsorberHandleFor(context),
-                ),
-                SliverFillRemaining(
-                  child: RefreshIndicator(
-                    onRefresh: BlocProvider.of<SolsystemBloc>(context).update,
-                    child: _buildView(tab, state),
+      child: RefreshIndicator(
+        onRefresh: BlocProvider.of<SolsystemBloc>(context).update,
+        child: BlocBuilder<SolsystemBloc, SolsystemState>(
+          builder: (BuildContext context, SolsystemState state) {
+            if (state is SolState) {
+              return CustomScrollView(
+                key: PageStorageKey<String>(tab.toString()),
+                slivers: [
+                  SliverOverlapInjector(
+                    // This is the flip side of the SliverOverlapAbsorber above.
+                    handle: NestedScrollView.sliverOverlapAbsorberHandleFor(
+                        context),
                   ),
-                )
-              ],
-            );
-          }
+                  SliverFillRemaining(
+                    child: _buildView(tab, state),
+                  )
+                ],
+              );
+            }
 
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
-        },
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          },
+        ),
       ),
     );
   }
@@ -127,7 +127,9 @@ class HomeFeedPage extends StatelessWidget {
               )
             ];
           },
-          body: TabBarView(children: Tabs.values.map(_tabBuilder).toList()),
+          body: TabBarView(
+              children:
+                  Tabs.values.map((e) => _tabBuilder(context, e)).toList()),
         ),
       ),
     );

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:wfcd_client/entities.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../../constants/default_durations.dart';
 import '../../../../../core/widgets/widgets.dart';
+import '../../bloc/solsystem_bloc.dart';
 import '../common/faction_logo.dart';
 
 class SortieCard extends StatelessWidget {
-  const SortieCard({Key? key, required this.sortie}) : super(key: key);
-
-  final Sortie sortie;
+  const SortieCard({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,29 +17,38 @@ class SortieCard extends StatelessWidget {
     final nodeMission = textTheme.subtitle1?.copyWith(fontSize: 15);
     final modifier = textTheme.caption?.copyWith(fontSize: 13);
 
-    return CustomCard(
-      child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          textBaseline: TextBaseline.alphabetic,
-          children: <Widget>[
-            ListTile(
-              leading: FactionIcon(
-                faction: sortie.faction,
-                iconSize: 35,
-              ),
-              title: Text(sortie.boss, style: boss),
-              trailing: CountdownTimer(
-                expiry: sortie.expiry ??
-                    DateTime.now().subtract(const Duration(seconds: 60)),
-              ),
-            ),
-            for (final variant in sortie.variants)
-              ListTile(
-                title: Text('${variant.missionType} - ${variant.node}',
-                    style: nodeMission),
-                subtitle: Text(variant.modifier, style: modifier),
-              )
-          ]),
+    return BlocBuilder<SolsystemBloc, SolsystemState>(
+      buildWhen: (p, n) =>
+          (p as SolState).worldstate.sortie.expiry !=
+          (n as SolState).worldstate.sortie.expiry,
+      builder: (context, state) {
+        final sortie = (state as SolState).worldstate.sortie;
+
+        return CustomCard(
+          child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              textBaseline: TextBaseline.alphabetic,
+              children: <Widget>[
+                ListTile(
+                  leading: FactionIcon(
+                    faction: sortie.faction,
+                    iconSize: 35,
+                  ),
+                  title: Text(sortie.boss, style: boss),
+                  trailing: CountdownTimer(
+                    expiry:
+                        sortie.expiry ?? DateTime.now().subtract(kDelayLong),
+                  ),
+                ),
+                for (final variant in sortie.variants)
+                  ListTile(
+                    title: Text('${variant.missionType} - ${variant.node}',
+                        style: nodeMission),
+                    subtitle: Text(variant.modifier, style: modifier),
+                  )
+              ]),
+        );
+      },
     );
   }
 }

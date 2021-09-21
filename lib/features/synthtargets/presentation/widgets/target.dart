@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:wfcd_client/entities.dart';
 
+import '../../../../constants/default_durations.dart';
+
 class TargetInfo extends StatelessWidget {
   const TargetInfo({Key? key, required this.target}) : super(key: key);
 
@@ -13,10 +15,8 @@ class TargetInfo extends StatelessWidget {
         title: Text(target.name),
         onExpansionChanged: (b) {
           if (b) {
-            Future<void>.delayed(const Duration(milliseconds: 200))
-                .then((value) {
-              Scrollable.ensureVisible(context,
-                  duration: const Duration(milliseconds: 200));
+            Future<void>.delayed(kAnimationShort).then((value) {
+              Scrollable.ensureVisible(context, duration: kAnimationShort);
             });
           }
         },

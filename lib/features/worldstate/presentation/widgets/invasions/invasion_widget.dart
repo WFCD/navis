@@ -9,7 +9,6 @@ class InvasionWidget extends StatelessWidget {
   const InvasionWidget({Key? key, required this.invasion}) : super(key: key);
 
   final Invasion invasion;
-  static const height = 200.0;
 
   Widget _buildDetails(
       BuildContext context, String node, String description, String eta) {

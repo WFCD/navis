@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:supercharged/supercharged.dart';
+import '../../constants/default_durations.dart';
 
 import '../../features/worldstate/presentation/bloc/solsystem_bloc.dart';
 import '../../l10n/l10n.dart';
@@ -48,7 +48,9 @@ class _CountdownTimerState extends State<CountdownTimer>
 
     _expired = difference <= Duration.zero;
     _controller = AnimationController(
-        duration: _expired ? 59.seconds : difference, vsync: this);
+      duration: _expired ? kDelayLong : difference,
+      vsync: this,
+    );
 
     if (widget.color == null) {
       _controller!.addListener(_detectWarningLevel);
@@ -120,7 +122,7 @@ class _CountdownTimerState extends State<CountdownTimer>
     final minutes = '${_timeLeft.inMinutes % 60}'.padLeft(2, '0');
     final seconds = '${_timeLeft.inSeconds % 60}'.padLeft(2, '0');
 
-    final is24hrs = _timeLeft < 1.days;
+    final is24hrs = _timeLeft < const Duration(days: 1);
 
     return '${_expired ? 'Expired: -' : ''}'
         '${!is24hrs ? '${days}d' : ''} $hours:$minutes:$seconds';

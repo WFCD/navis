@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../constants/default_durations.dart';
 
 class CustomCard extends StatelessWidget {
   const CustomCard({
@@ -52,7 +53,7 @@ class CustomCard extends StatelessWidget {
     return Semantics(
       container: _semanticContainer,
       child: AnimatedContainer(
-        duration: const Duration(milliseconds: 250),
+        duration: kAnimationShort,
         margin: margin,
         child: Material(
           type: MaterialType.card,

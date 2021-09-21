@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:supercharged/supercharged.dart';
 
 import '../themes/colors.dart';
 
@@ -51,7 +50,7 @@ class StaticBox extends StatelessWidget {
     return Tooltip(
       message: tooltip,
       child: AnimatedContainer(
-        duration: 250.milliseconds,
+        duration: kThemeAnimationDuration,
         padding: padding,
         height: height,
         width: width,

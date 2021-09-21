@@ -4,6 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:wfcd_client/entities.dart';
 
+import '../../../../constants/default_durations.dart';
 import '../../../../core/error/exceptions.dart';
 import '../../domian/usercases/search_items.dart';
 import 'search_event.dart';
@@ -72,10 +73,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
 
   EventTransformer<SearchEvent> _waitForUser() {
     return (event, mapper) {
-      return event
-          .debounceTime(const Duration(milliseconds: 500))
-          .distinct()
-          .switchMap(mapper);
+      return event.debounceTime(kAnimationLong).distinct().switchMap(mapper);
     };
   }
 }

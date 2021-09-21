@@ -7,6 +7,7 @@ import 'package:provider/provider.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:simple_icons/simple_icons.dart';
 
+import '../constants/default_durations.dart';
 import '../constants/links.dart';
 import '../l10n/l10n.dart';
 import '../resources/resources.dart';
@@ -52,7 +53,7 @@ class _HomeState extends State<Home> {
         body: BlocBuilder<NavigationCubit, Widget>(
           builder: (BuildContext context, Widget state) {
             return AnimatedSwitcher(
-              duration: const Duration(milliseconds: 250),
+              duration: kDelayShort,
               child: state,
             );
           },

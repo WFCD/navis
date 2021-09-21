@@ -37,7 +37,6 @@ class FissureWidget extends StatelessWidget {
 
     return SkyboxCard(
       node: fissure.node,
-      height: (mediaQuery.size.height / 100) * 15,
       padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 16),
       child: Row(
         children: <Widget>[

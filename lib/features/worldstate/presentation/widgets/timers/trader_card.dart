@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wfcd_client/entities.dart';
 
 import '../../../../../core/themes/colors.dart';
 import '../../../../../core/utils/extensions.dart';
 import '../../../../../core/widgets/widgets.dart';
 import '../../../../../l10n/l10n.dart';
+import '../../bloc/solsystem_bloc.dart';
 import '../../pages/trader_inventory.dart';
 
 class TraderCard extends StatelessWidget {
-  const TraderCard({Key? key, required this.trader}) : super(key: key);
-
-  final VoidTrader trader;
+  const TraderCard({Key? key}) : super(key: key);
 
   Widget _buildButton(BuildContext context, List<InventoryItem> inventory) {
     final width = MediaQuery.of(context).size.width;
@@ -29,44 +29,50 @@ class TraderCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const padding = EdgeInsets.symmetric(horizontal: 4, vertical: 4);
-    final l10n = context.l10n;
 
-    final formattedDate = trader.active
-        ? trader.expiry!.format(context)
-        : trader.activation!.format(context);
+    return BlocBuilder<SolsystemBloc, SolsystemState>(
+      builder: (context, state) {
+        final trader = (state as SolState).worldstate.voidTrader;
+        final l10n = context.l10n;
 
-    return CustomCard(
-      title: l10n.baroTitle,
-      child: Column(children: <Widget>[
-        RowItem(
-          text: Text(trader.active ? l10n.baroLeaving : l10n.baroArriving),
-          padding: padding,
-          child: CountdownTimer(
-            expiry: trader.active ? trader.expiry! : trader.activation!,
-          ),
-        ),
-        if (trader.active)
-          RowItem(
-            text: Text(l10n.baroLocation),
-            padding: padding,
-            child: StaticBox.text(
-              text: trader.location,
-              color: primary,
+        final formattedDate = trader.active
+            ? trader.expiry!.format(context)
+            : trader.activation!.format(context);
+
+        return CustomCard(
+          title: l10n.baroTitle,
+          child: Column(children: <Widget>[
+            RowItem(
+              text: Text(trader.active ? l10n.baroLeaving : l10n.baroArriving),
+              padding: padding,
+              child: CountdownTimer(
+                expiry: trader.active ? trader.expiry! : trader.activation!,
+              ),
             ),
-          ),
-        RowItem(
-          text: Text(
-            trader.active ? l10n.baroLeavesOn : l10n.baroArrivesOn,
-          ),
-          padding: padding,
-          child: StaticBox.text(
-            color: primary,
-            text: formattedDate,
-          ),
-        ),
-        const SizedBox(height: 2),
-        if (trader.active) _buildButton(context, trader.inventory)
-      ]),
+            if (trader.active)
+              RowItem(
+                text: Text(l10n.baroLocation),
+                padding: padding,
+                child: StaticBox.text(
+                  text: trader.location,
+                  color: primary,
+                ),
+              ),
+            RowItem(
+              text: Text(
+                trader.active ? l10n.baroLeavesOn : l10n.baroArrivesOn,
+              ),
+              padding: padding,
+              child: StaticBox.text(
+                color: primary,
+                text: formattedDate,
+              ),
+            ),
+            const SizedBox(height: 2),
+            if (trader.active) _buildButton(context, trader.inventory)
+          ]),
+        );
+      },
     );
   }
 }

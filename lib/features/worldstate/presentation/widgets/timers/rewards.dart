@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../../../constants/default_durations.dart';
 
 import '../../../../../core/widgets/widgets.dart';
 import '../../../../../l10n/l10n.dart';
@@ -10,7 +11,7 @@ class DailyReward extends StatelessWidget {
     final now = DateTime.now().toUtc();
 
     return DateTime.utc(now.year, now.month, now.day, 23, 59, 59, 999)
-        .add(const Duration(seconds: 1));
+        .add(kDelayShort);
   }
 
   @override

@@ -2,9 +2,9 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:matomo/matomo.dart';
-import 'package:supercharged/supercharged.dart';
 import 'package:wfcd_client/entities.dart';
 
+import '../../../../constants/default_durations.dart';
 import '../../../../injection_container.dart';
 import '../../data/datasources/event_info_parser.dart';
 import '../widgets/event/event_bounties.dart';
@@ -44,7 +44,7 @@ class EventInformation extends TraceableStatelessWidget {
               tooltip: event.tooltip ?? '',
               node: event.victimNode ?? event.node ?? '',
               health: event.eventHealth ?? 0.0,
-              expiry: event.expiry ?? DateTime.now().add(59.seconds),
+              expiry: event.expiry ?? DateTime.now().add(kDelayLong),
               rewards: event.eventRewards,
             ),
             if (event.jobs != null) EventBounties(jobs: event.jobs!),

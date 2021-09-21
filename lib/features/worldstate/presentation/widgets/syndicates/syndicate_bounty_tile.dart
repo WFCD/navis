@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:supercharged/supercharged.dart';
 import 'package:wfcd_client/entities.dart';
 
 import '../../../../../core/utils/extensions.dart';
@@ -20,7 +19,7 @@ class SyndicateBountyTile extends StatelessWidget {
   Widget _buildStanding() {
     return Row(mainAxisSize: MainAxisSize.min, children: <Widget>[
       const Icon(NavisSysIcons.standing, size: 20),
-      Text(job.standingStages.sumBy((n) => n).toString())
+      Text(job.standingStages.reduce((v, e) => v + e).toString())
     ]);
   }
 

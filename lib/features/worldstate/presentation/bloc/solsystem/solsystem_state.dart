@@ -31,8 +31,6 @@ class SolState extends SolsystemState {
 
   bool get outpostDetected => worldstate.anomalyDetected;
 
-  bool get isNightwaveActive => worldstate.nightwave != null;
-
   List<Challenge> get nightwaveDailies =>
       worldstate.nightwave?.daily ?? <Challenge>[];
 

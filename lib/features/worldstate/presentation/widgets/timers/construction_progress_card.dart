@@ -1,17 +1,18 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../core/widgets/widgets.dart';
+import '../../../../../l10n/l10n.dart';
+import '../../../utils/faction_utils.dart';
+import '../../bloc/solsystem/solsystem_bloc.dart';
 
 // For now I've opted to not add unknown construction progress
 // because well it's unknown and I've never actually seen it change
 // will add it when it actually changes
 class ConstructionProgressCard extends StatelessWidget {
-  const ConstructionProgressCard({Key? key, required this.constructionProgress})
-      : super(key: key);
-
-  final List<Progress> constructionProgress;
+  const ConstructionProgressCard({Key? key}) : super(key: key);
 
   Widget _paintProgress(Progress progress, TextStyle? style) {
     return SizedBox.fromSize(
@@ -32,22 +33,49 @@ class ConstructionProgressCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
+    final l10n = NavisLocalizations.of(context)!;
 
     return CustomCard(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: <Widget>[
-            for (final progress in constructionProgress)
-              Column(
-                children: <Widget>[
-                  _paintProgress(progress, textTheme.headline6),
-                  const SizedBox(height: 16),
-                  Text(progress.name, style: textTheme.headline6)
-                ],
-              ),
-          ],
+        child: BlocBuilder<SolsystemBloc, SolsystemState>(
+          buildWhen: (p, n) {
+            if (p is SolState && n is SolState) {
+              return p.worldstate.constructionProgress !=
+                  n.worldstate.constructionProgress;
+            }
+            return false;
+          },
+          builder: (context, state) {
+            final constructionProgress =
+                (state as SolState).worldstate.constructionProgress;
+
+            final formorian = Progress(
+              name: l10n.formorianTitle,
+              color: factionColor('Grineer'),
+              percentage: double.parse(constructionProgress.fomorianProgress),
+            );
+
+            final razorback = Progress(
+              name: l10n.razorbackTitle,
+              color: factionColor('Corpus'),
+              percentage: double.parse(constructionProgress.razorbackProgress),
+            );
+
+            return Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+                for (final progress in [formorian, razorback])
+                  Column(
+                    children: <Widget>[
+                      _paintProgress(progress, textTheme.headline6),
+                      const SizedBox(height: 16),
+                      Text(progress.name, style: textTheme.headline6)
+                    ],
+                  ),
+              ],
+            );
+          },
         ),
       ),
     );

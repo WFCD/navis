@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:matomo/matomo.dart';
 import 'package:responsive_builder/responsive_builder.dart';
@@ -8,17 +9,28 @@ import '../bloc/solsystem_bloc.dart';
 import '../widgets/fissures/fissure_widget.dart';
 
 class FissuresPage extends TraceableStatelessWidget {
-  const FissuresPage({Key? key, required this.state}) : super(key: key);
+  const FissuresPage({Key? key}) : super(key: key);
 
-  final SolState state;
+  bool _buildWhen(SolsystemState p, SolsystemState n) {
+    if (p is SolState && n is SolState) {
+      return p.worldstate.fissures.length != n.worldstate.fissures.length;
+    }
+
+    return false;
+  }
 
   @override
   Widget build(BuildContext context) {
-    final fissures = state.worldstate.fissures;
+    return BlocBuilder<SolsystemBloc, SolsystemState>(
+      buildWhen: _buildWhen,
+      builder: (context, state) {
+        final fissures = (state as SolState).worldstate.fissures;
 
-    return ScreenTypeLayout.builder(
-      mobile: (context) => MobileFissures(fissures: fissures),
-      tablet: (context) => TabletFissures(fissures: fissures),
+        return ScreenTypeLayout.builder(
+          mobile: (context) => MobileFissures(fissures: fissures),
+          tablet: (context) => TabletFissures(fissures: fissures),
+        );
+      },
     );
   }
 }
@@ -30,11 +42,17 @@ class MobileFissures extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final height = (MediaQuery.of(context).size.height / 100) * 15;
+
     return ListView.builder(
-      cacheExtent: 200,
+      cacheExtent: height * 5,
+      itemExtent: height,
       itemCount: fissures.length,
       itemBuilder: (BuildContext context, int index) {
-        return FissureWidget(fissure: fissures[index]);
+        return FissureWidget(
+          key: ValueKey(fissures[index].id),
+          fissure: fissures[index],
+        );
       },
     );
   }

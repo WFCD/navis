@@ -5,6 +5,7 @@ import 'package:oxidized/oxidized.dart';
 import 'package:wfcd_client/entities.dart';
 import 'package:wfcd_client/wfcd_client.dart';
 
+import '../../../../constants/default_durations.dart';
 import '../../../../core/error/failures.dart';
 import '../../../../core/local/user_settings.dart';
 import '../../../../core/network/network_info.dart';
@@ -54,11 +55,9 @@ class WorldstateRepositoryImpl implements WorldstateRepository {
   @override
   Future<Result<Worldstate, Failure>> getWorldstate(
       {bool forceUpdate = false}) async {
-    const refresh = Duration(minutes: 1);
-
     final now = DateTime.now();
     final timestamp = cache.getCachedStateTimestamp();
-    final age = timestamp?.difference(now).abs() ?? const Duration(minutes: 2);
+    final age = timestamp?.difference(now).abs() ?? kRefreshTimer;
     final request = WorldstateRequest(
         usersettings.platform, usersettings.language?.languageCode ?? 'en');
 
@@ -72,7 +71,7 @@ class WorldstateRepositoryImpl implements WorldstateRepository {
       }
     }
 
-    if (age >= refresh || forceUpdate) {
+    if (age >= kRefreshTimer || forceUpdate) {
       if (await networkInfo.isConnected) {
         final state =
             await compute(_getWorldstate, request).catchError((dynamic e) {

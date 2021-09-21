@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import '../../../../../constants/default_durations.dart';
 
 import '../../../utils/faction_utils.dart';
 
@@ -22,7 +23,7 @@ class InvasionProgress extends StatelessWidget {
         elevation: 4,
         color: Colors.transparent,
         child: AnimatedContainer(
-          duration: const Duration(milliseconds: 500),
+          duration: kAnimationLong,
           height: 20,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(4),

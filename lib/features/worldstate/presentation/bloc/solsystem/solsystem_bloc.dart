@@ -3,10 +3,10 @@ import 'dart:async';
 import 'package:equatable/equatable.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
-import 'package:supercharged/supercharged.dart';
 import 'package:wfcd_client/entities.dart';
 import 'package:wfcd_client/models.dart';
 
+import '../../../../../constants/default_durations.dart';
 import '../../../../../core/error/exceptions.dart';
 import '../../../domain/usecases/get_worldstate.dart';
 import '../../../utils/worldstate_util.dart';
@@ -43,8 +43,10 @@ class SolsystemBloc extends HydratedBloc<SyncEvent, SolsystemState> {
   }
 
   Future<void> update({bool forceUpdate = false}) async {
-    add(SyncSystemStatus(forceUpdate: forceUpdate));
-    await Future<void>.delayed(1.seconds);
+    await Future<void>.delayed(
+      kDelayShort,
+      () => add(SyncSystemStatus(forceUpdate: forceUpdate)),
+    );
   }
 
   @override

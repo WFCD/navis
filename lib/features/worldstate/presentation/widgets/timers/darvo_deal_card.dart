@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:responsive_builder/responsive_builder.dart';
@@ -7,21 +8,32 @@ import 'package:wfcd_client/entities.dart';
 import '../../../../../core/utils/extensions.dart';
 import '../../../../../core/utils/helper_methods.dart';
 import '../../../../../core/widgets/widgets.dart';
+import '../../../../../injection_container.dart';
 import '../../../../../l10n/l10n.dart';
 import '../../bloc/darvodeal_bloc.dart';
+import '../../bloc/solsystem_bloc.dart';
 
 class DarvoDealCard extends StatelessWidget {
-  const DarvoDealCard({Key? key, required this.deals}) : super(key: key);
-
-  final List<DarvoDeal> deals;
+  const DarvoDealCard({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final deal = deals.first;
+    return BlocProvider(
+      create: (context) => sl<DarvodealBloc>(),
+      child: BlocBuilder<SolsystemBloc, SolsystemState>(
+        buildWhen: (p, n) => (p as SolState)
+            .worldstate
+            .dailyDeals
+            .equals((n as SolState).worldstate.dailyDeals),
+        builder: (context, state) {
+          final dailyDeals = (state as SolState).worldstate.dailyDeals;
 
-    return CustomCard(
-      title: context.l10n.darvoNotificationTitle,
-      child: DealWidget(deal: deal),
+          return CustomCard(
+            title: context.l10n.darvoNotificationTitle,
+            child: DealWidget(deal: dailyDeals.first),
+          );
+        },
+      ),
     );
   }
 }

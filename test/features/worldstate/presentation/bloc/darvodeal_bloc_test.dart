@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:mocktail/mocktail.dart';
+import 'package:navis/constants/default_durations.dart';
 import 'package:navis/features/worldstate/data/repositories/worldstate_rep_impl.dart';
 import 'package:navis/features/worldstate/domain/usecases/get_darvo_deal_info.dart';
 import 'package:navis/features/worldstate/presentation/bloc/darvodeal_bloc.dart';
@@ -54,7 +55,7 @@ void main() {
     darvodealBloc.add(LoadDarvodeal(tWorldstate.dailyDeals.first));
 
     await untilCalled(() => getDarvoDealInfo(any()));
-    await Future<void>.delayed(const Duration(seconds: 1));
+    await Future<void>.delayed(kDelayShort);
 
     verify(() => getDarvoDealInfo(any()));
     expect(darvodealBloc.state, DarvoDealLoaded(tDeal.first));
@@ -67,7 +68,7 @@ void main() {
           .thenAnswer((_) async => Ok(tDeal.first));
 
       darvodealBloc.add(LoadDarvodeal(tWorldstate.dailyDeals.first));
-      await Future<void>.delayed(const Duration(seconds: 1));
+      await Future<void>.delayed(kDelayShort);
 
       final cached = HydratedBloc.storage.read(darvodealBloc.storageToken)
           as Map<String, dynamic>;

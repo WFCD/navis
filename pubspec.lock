@@ -35,14 +35,7 @@ packages:
       name: bloc
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "7.2.0-dev.1"
-  bloc_concurrency:
-    dependency: "direct main"
-    description:
-      name: bloc_concurrency
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.1.0-dev.1"
+    version: "7.2.0"
   boolean_selector:
     dependency: transitive
     description:
@@ -189,7 +182,7 @@ packages:
       name: firebase_messaging
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "10.0.6"
+    version: "10.0.7"
   firebase_messaging_platform_interface:
     dependency: transitive
     description:
@@ -222,7 +215,7 @@ packages:
       name: flutter_bloc
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "7.2.0"
+    version: "7.3.0"
   flutter_blurhash:
     dependency: transitive
     description:
@@ -328,7 +321,7 @@ packages:
       name: hydrated_bloc
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "7.0.1"
+    version: "7.1.0"
   internet_connection_checker:
     dependency: "direct main"
     description:
@@ -442,7 +435,7 @@ packages:
       name: oxidized
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "5.0.1"
+    version: "5.1.0"
   package_config:
     dependency: transitive
     description:
@@ -645,7 +638,7 @@ packages:
       name: sentry_flutter
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "6.0.0"
+    version: "6.0.1"
   shared_preferences:
     dependency: transitive
     description:
@@ -722,7 +715,7 @@ packages:
       name: simple_icons
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "5.2.0"
+    version: "5.14.0"
   sky_engine:
     dependency: transitive
     description: flutter
@@ -777,13 +770,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.0"
-  stream_transform:
-    dependency: transitive
-    description:
-      name: stream_transform
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.0.0"
   string_scanner:
     dependency: transitive
     description:
@@ -791,20 +777,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.0"
-  supercharged:
-    dependency: "direct main"
-    description:
-      name: supercharged
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.0.0"
-  supercharged_dart:
-    dependency: transitive
-    description:
-      name: supercharged_dart
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.0.0"
   synchronized:
     dependency: transitive
     description:

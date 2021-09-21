@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
 import 'package:html/parser.dart';
+import '../../constants/default_durations.dart';
 
 import '../themes/colors.dart';
 
 extension BuildContextNx on BuildContext {
   void scrollToSelectedContent() {
-    const duration = Duration(milliseconds: 200);
-
-    Future<void>.delayed(duration).then((value) {
-      Scrollable.ensureVisible(this, duration: duration);
+    Future<void>.delayed(kAnimationShort).then((value) {
+      Scrollable.ensureVisible(this, duration: kAnimationShort);
     });
   }
 }

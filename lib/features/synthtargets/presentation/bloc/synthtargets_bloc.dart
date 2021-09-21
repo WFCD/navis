@@ -2,11 +2,11 @@ import 'dart:async';
 
 import 'package:equatable/equatable.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
-import 'package:supercharged/supercharged.dart';
 import 'package:wfcd_client/entities.dart';
 import 'package:wfcd_client/models.dart';
 import 'package:wfcd_client/wfcd_client.dart';
 
+import '../../../../constants/default_durations.dart';
 import '../../../../core/error/exceptions.dart';
 import '../../../../core/usecases/usecases.dart';
 import '../../domain/usecases/get_synth_targets.dart';
@@ -36,7 +36,10 @@ class SynthtargetsBloc
   }
 
   Future<void> refresh() async {
-    await Future<void>.delayed(1.seconds, () => add(SynthtargetsEvent.update));
+    await Future<void>.delayed(
+      kRefreshTimer,
+      () => add(SynthtargetsEvent.update),
+    );
   }
 
   @override
