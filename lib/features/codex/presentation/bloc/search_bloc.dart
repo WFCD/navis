@@ -73,7 +73,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
 
   EventTransformer<SearchEvent> _waitForUser() {
     return (event, mapper) {
-      return event.debounceTime(kAnimationLong).distinct().switchMap(mapper);
+      return event.debounceTime(kAnimationLong).distinct().flatMap(mapper);
     };
   }
 }
