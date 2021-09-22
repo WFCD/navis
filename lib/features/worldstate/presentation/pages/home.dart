@@ -29,52 +29,6 @@ class HomeFeedPage extends StatelessWidget {
     }
   }
 
-  Widget _buildView(Tabs tab, SolState state) {
-    switch (tab) {
-      case Tabs.timers:
-        return const Timers();
-      case Tabs.fissures:
-        return const FissuresPage();
-      case Tabs.invasions:
-        return const InvasionsPage();
-      default:
-        return const SyndicatePage();
-    }
-  }
-
-  Widget _tabBuilder(BuildContext context, Tabs tab) {
-    return SafeArea(
-      top: false,
-      bottom: false,
-      child: RefreshIndicator(
-        onRefresh: BlocProvider.of<SolsystemBloc>(context).update,
-        child: BlocBuilder<SolsystemBloc, SolsystemState>(
-          builder: (BuildContext context, SolsystemState state) {
-            if (state is SolState) {
-              return CustomScrollView(
-                key: PageStorageKey<String>(tab.toString()),
-                slivers: [
-                  SliverOverlapInjector(
-                    // This is the flip side of the SliverOverlapAbsorber above.
-                    handle: NestedScrollView.sliverOverlapAbsorberHandleFor(
-                        context),
-                  ),
-                  SliverFillRemaining(
-                    child: _buildView(tab, state),
-                  )
-                ],
-              );
-            }
-
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          },
-        ),
-      ),
-    );
-  }
-
   void listener(BuildContext context, SolsystemState state) {
     const displayDuration = Duration(seconds: 50);
 
@@ -128,10 +82,51 @@ class HomeFeedPage extends StatelessWidget {
             ];
           },
           body: TabBarView(
-              children:
-                  Tabs.values.map((e) => _tabBuilder(context, e)).toList()),
+              children: Tabs.values.map((e) => _TabView(tab: e)).toList()),
         ),
       ),
+    );
+  }
+}
+
+class _TabView extends StatelessWidget {
+  const _TabView({Key? key, required this.tab}) : super(key: key);
+
+  final Tabs tab;
+
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      top: false,
+      bottom: false,
+      child: Builder(builder: (context) {
+        return CustomScrollView(
+          key: PageStorageKey<String>(tab.toString()),
+          slivers: [
+            SliverOverlapInjector(
+              // This is the flip side of the SliverOverlapAbsorber above.
+              handle: NestedScrollView.sliverOverlapAbsorberHandleFor(context),
+            ),
+            SliverFillRemaining(
+              child: RefreshIndicator(
+                onRefresh: BlocProvider.of<SolsystemBloc>(context).update,
+                child: () {
+                  switch (tab) {
+                    case Tabs.timers:
+                      return const Timers();
+                    case Tabs.fissures:
+                      return const FissuresPage();
+                    case Tabs.invasions:
+                      return const InvasionsPage();
+                    default:
+                      return const SyndicatePage();
+                  }
+                }(),
+              ),
+            )
+          ],
+        );
+      }),
     );
   }
 }
