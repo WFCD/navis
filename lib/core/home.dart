@@ -53,7 +53,7 @@ class _HomeState extends State<Home> {
         body: BlocBuilder<NavigationCubit, Widget>(
           builder: (BuildContext context, Widget state) {
             return AnimatedSwitcher(
-              duration: kDelayShort,
+              duration: kAnimationShort,
               child: state,
             );
           },
