@@ -68,7 +68,7 @@ class _CodexTextEditiorState extends State<CodexTextEditior> {
 
   void _onClear() {
     _textEditingController.clear();
-    FocusScope.of(context).requestFocus(FocusNode());
+    FocusScope.of(context).requestFocus();
     _searchBloc.add(const SearchCodex(''));
   }
 
@@ -89,6 +89,7 @@ class _CodexTextEditiorState extends State<CodexTextEditior> {
                     autocorrect: false,
                     onChanged: _dispatch,
                     onSubmitted: _dispatch,
+                    cursorColor: Theme.of(context).textTheme.bodyText1?.color,
                     textCapitalization: TextCapitalization.words,
                     decoration: const InputDecoration(
                       border: InputBorder.none,
