@@ -22,11 +22,18 @@ class MobileTimers extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilerProgressLoader<SolsystemBloc, SolsystemState>(
       buildWhen: (p, n) {
-        return (n as SolState)
-                .worldstate
-                .timestamp
-                .difference((p as SolState).worldstate.timestamp) >=
-            const Duration(minutes: 30);
+        if (p is SolState && n is SolState) {
+          final previous = p;
+          final next = n;
+
+          return previous.eventsActive != next.eventsActive ||
+              previous.arbitrationActive != next.arbitrationActive ||
+              previous.outpostDetected != next.outpostDetected ||
+              previous.activeAlerts != next.activeAlerts ||
+              previous.activeSales != next.activeSales;
+        }
+
+        return p is! SolState && n is SolState;
       },
       isLoaded: (state) => state is SolState,
       builder: (context, state) {
