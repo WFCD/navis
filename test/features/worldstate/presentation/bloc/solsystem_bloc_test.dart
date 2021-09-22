@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:mocktail/mocktail.dart';
+import 'package:navis/constants/default_durations.dart';
 import 'package:navis/core/error/exceptions.dart';
 import 'package:navis/features/worldstate/domain/usecases/get_worldstate.dart';
 import 'package:navis/features/worldstate/presentation/bloc/solsystem_bloc.dart';
@@ -43,12 +44,13 @@ void main() {
   });
 
   test('Test should sync solsystem status', () async {
-    when(() => getWorldstate(any())).thenAnswer((_) async => Ok(tWorldstate));
+    when(() => getWorldstate(false)).thenAnswer((_) async => Ok(tWorldstate));
 
     await solsystemBloc.update();
-    await untilCalled(() => getWorldstate(any()));
+    await untilCalled(() => getWorldstate(false));
 
     verify(() => getWorldstate(false));
+    await Future<void>.delayed(kDelayShort);
     expect(solsystemBloc.state, SolState(tWorldstate));
   });
 
@@ -57,7 +59,7 @@ void main() {
       when(() => getWorldstate(any())).thenThrow(ServerException());
 
       await solsystemBloc.update();
-      await untilCalled(() => getWorldstate(any()));
+      await untilCalled(() => getWorldstate(false));
 
       verify(() => getWorldstate(false));
       expect(solsystemBloc.state, const SystemError(serverFailureMessage));
