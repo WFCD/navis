@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:matomo/matomo.dart';
+import 'package:navis/core/widgets/bloc_progress_loader.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:wfcd_client/entities.dart';
 
@@ -21,8 +21,9 @@ class FissuresPage extends TraceableStatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<SolsystemBloc, SolsystemState>(
+    return BlocBuilerProgressLoader<SolsystemBloc, SolsystemState>(
       buildWhen: _buildWhen,
+      isLoaded: (state) => state is SolState,
       builder: (context, state) {
         final fissures = (state as SolState).worldstate.fissures;
 

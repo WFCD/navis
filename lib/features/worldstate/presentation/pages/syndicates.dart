@@ -1,8 +1,8 @@
 import 'dart:async';
 
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-// ignore: import_of_legacy_library_into_null_safe
 import 'package:matomo/matomo.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:wfcd_client/entities.dart';
@@ -19,9 +19,25 @@ import '../widgets/syndicates/syndicate_card.dart';
 class SyndicatePage extends TraceableStatelessWidget {
   const SyndicatePage({Key? key}) : super(key: key);
 
+  bool _buildWhen(SolsystemState p, SolsystemState n) {
+    final previous = (p as SolState).worldstate;
+    final next = (n as SolState).worldstate;
+
+    if (previous.nightwave != null || next.nightwave != null) {
+      return previous.syndicateMissions.first.expiry !=
+              next.syndicateMissions.first.expiry ||
+          previous.nightwave!.daily.equals(next.nightwave!.daily) ||
+          previous.nightwave!.weekly.equals(next.nightwave!.weekly);
+    }
+
+    return previous.syndicateMissions.first.expiry !=
+        next.syndicateMissions.first.expiry;
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<SolsystemBloc, SolsystemState>(
+      buildWhen: _buildWhen,
       builder: (context, state) {
         final worldstate = (state as SolState).worldstate;
 

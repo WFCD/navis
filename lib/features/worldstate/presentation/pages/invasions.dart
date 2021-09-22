@@ -1,7 +1,7 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:matomo/matomo.dart';
+import 'package:navis/core/widgets/bloc_progress_loader.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:wfcd_client/entities.dart';
 
@@ -21,8 +21,9 @@ class InvasionsPage extends TraceableStatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<SolsystemBloc, SolsystemState>(
+    return BlocBuilerProgressLoader<SolsystemBloc, SolsystemState>(
       buildWhen: _buildWhen,
+      isLoaded: (state) => state is SolState,
       builder: (context, state) {
         final invasions = (state as SolState).worldstate.invasions;
 
