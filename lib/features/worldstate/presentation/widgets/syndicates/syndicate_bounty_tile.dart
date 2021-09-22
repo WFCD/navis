@@ -26,6 +26,7 @@ class SyndicateBountyTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ExpansionTile(
+      key: PageStorageKey<String>(faction.toString()),
       title: Text(job.type ?? ''),
       subtitle: Text(
         context.l10n.levelInfo(job.enemyLevels.first, job.enemyLevels.last),

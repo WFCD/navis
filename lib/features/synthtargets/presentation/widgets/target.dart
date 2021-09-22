@@ -12,6 +12,7 @@ class TargetInfo extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       child: ExpansionTile(
+        key: PageStorageKey<String>(target.name),
         title: Text(target.name),
         onExpansionChanged: (b) {
           if (b) {
