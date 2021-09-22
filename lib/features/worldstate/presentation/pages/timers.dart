@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:matomo/matomo.dart';
-import 'package:navis/core/widgets/bloc_progress_loader.dart';
+import '../../../../core/widgets/bloc_progress_loader.dart';
 
 import '../bloc/solsystem_bloc.dart';
 import '../widgets/timers/timers.dart';

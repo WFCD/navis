@@ -1,10 +1,10 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:matomo/matomo.dart';
-import 'package:navis/core/widgets/bloc_progress_loader.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:wfcd_client/entities.dart';
 
+import '../../../../core/widgets/bloc_progress_loader.dart';
 import '../bloc/solsystem_bloc.dart';
 import '../widgets/invasions/invasion_widget.dart';
 
