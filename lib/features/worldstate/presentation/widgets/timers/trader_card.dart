@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wfcd_client/entities.dart';
 
+import '../../../../../constants/sizedbox_spacer.dart';
 import '../../../../../core/themes/colors.dart';
 import '../../../../../core/utils/extensions.dart';
 import '../../../../../core/widgets/widgets.dart';
@@ -68,7 +69,7 @@ class TraderCard extends StatelessWidget {
                 text: formattedDate,
               ),
             ),
-            const SizedBox(height: 2),
+            SizedBoxSpacer.spacerHeight2,
             if (trader.active) _buildButton(context, trader.inventory)
           ]),
         );

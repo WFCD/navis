@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:wfcd_client/entities.dart';
 
+import '../../../../../constants/sizedbox_spacer.dart';
 import '../../../../../core/widgets/widgets.dart';
 import '../../../../../l10n/l10n.dart';
 
@@ -43,9 +44,9 @@ class NightwaveChallenge extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Text(challenge.title, style: title),
-              const SizedBox(height: 4),
+              SizedBoxSpacer.spacerHeight4,
               Text(challenge.desc, style: desscription),
-              const SizedBox(height: 8),
+              SizedBoxSpacer.spacerHeight8,
               Row(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   mainAxisAlignment: MainAxisAlignment.end,

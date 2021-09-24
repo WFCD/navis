@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:wfcd_client/entities.dart';
 
+import '../../../../../constants/sizedbox_spacer.dart';
 import '../../../../../core/utils/extensions.dart';
 import '../../../../../core/utils/helper_methods.dart';
 import '../../../../../core/widgets/widgets.dart';
@@ -81,7 +82,7 @@ class _DealWidgetState extends State<DealWidget> {
                                 ? state.item.description?.parseHtmlString()
                                 : null,
                       ),
-                    const SizedBox(height: 16),
+                    SizedBoxSpacer.spacerHeight16,
                     Wrap(
                         crossAxisAlignment: WrapCrossAlignment.center,
                         spacing: 10,
@@ -153,7 +154,7 @@ class DealDetails extends StatelessWidget {
           style: textTheme.subtitle1?.copyWith(fontWeight: FontWeight.w500),
         ),
         if (itemDescription != null) ...{
-          const SizedBox(height: 8),
+          SizedBoxSpacer.spacerHeight8,
           Text(
             itemDescription ?? '',
             maxLines: 7,

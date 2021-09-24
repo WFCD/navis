@@ -11,13 +11,13 @@ class BackgroundImage extends StatelessWidget {
     this.imageUrl,
     this.height,
     this.padding = EdgeInsets.zero,
-    required this.child,
+    this.child,
   }) : super(key: key);
 
   final String? imageUrl;
   final double? height;
   final EdgeInsetsGeometry padding;
-  final Widget child;
+  final Widget? child;
 
   static const _derelict = AssetImage(NavisAssets.derelict);
 
@@ -39,7 +39,7 @@ class BackgroundImage extends StatelessWidget {
               image: imageProvider,
             ),
           ),
-          Padding(padding: padding, child: child)
+          if (child != null) Padding(padding: padding, child: child)
         ],
       ),
     );

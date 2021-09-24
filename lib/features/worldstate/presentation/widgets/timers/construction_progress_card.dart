@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../../../constants/sizedbox_spacer.dart';
 
 import '../../../../../core/widgets/widgets.dart';
 import '../../../../../l10n/l10n.dart';
@@ -69,7 +70,7 @@ class ConstructionProgressCard extends StatelessWidget {
                   Column(
                     children: <Widget>[
                       _paintProgress(progress, textTheme.headline6),
-                      const SizedBox(height: 16),
+                      SizedBoxSpacer.spacerHeight16,
                       Text(progress.name, style: textTheme.headline6)
                     ],
                   ),

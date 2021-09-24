@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:wfcd_client/entities.dart';
 
+import '../../../../../constants/sizedbox_spacer.dart';
 import '../../../../../core/widgets/widgets.dart';
 import '../../../../../l10n/l10n.dart';
 import 'polarity.dart';
@@ -20,7 +21,7 @@ class FrameStats extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Text(context.l10n.warframePassiveTitle, style: textTheme.subtitle1),
-          const SizedBox(height: 8),
+          SizedBoxSpacer.spacerHeight8,
           Text(
             (powerSuit as Warframe).passiveDescription,
             style: textTheme.caption?.copyWith(fontStyle: FontStyle.italic),
@@ -39,7 +40,7 @@ class FrameStats extends StatelessWidget {
       children: <Widget>[
         const CategoryTitle(title: 'Stats', contentPadding: EdgeInsets.zero),
         if (powerSuit is Warframe) _passive(context),
-        const SizedBox(height: 16),
+        SizedBoxSpacer.spacerHeight16,
         Stats(stats: <RowItem>[
           if (powerSuit is Warframe && (powerSuit as Warframe).aura != null)
             RowItem(
@@ -74,7 +75,7 @@ class FrameStats extends StatelessWidget {
                   Text('${(powerSuit as PlayerUsuablePowerSuit).sprintSpeed}'),
             ),
         ]),
-        const SizedBox(height: 16),
+        SizedBoxSpacer.spacerHeight16,
         if (powerSuit is PlayerUsuablePowerSuit) ...{
           CategoryTitle(
             title: l10n.abilitiesTitle,

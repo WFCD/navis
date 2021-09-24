@@ -5,6 +5,7 @@ import 'package:package_info/package_info.dart';
 import 'package:simple_icons/simple_icons.dart';
 
 import '../../constants/links.dart';
+import '../../constants/sizedbox_spacer.dart';
 import '../../injection_container.dart';
 import '../../l10n/l10n.dart';
 import '../notifiers/user_settings_notifier.dart';
@@ -64,7 +65,7 @@ class About extends StatelessWidget {
       applicationName: 'Cephalon Navis',
       applicationVersion: info.version,
       aboutBoxChildren: <Widget>[
-        const SizedBox(height: 12),
+        SizedBoxSpacer.spacerHeight12,
         RichText(
           text: TextSpan(children: <TextSpan>[
             TextSpan(
@@ -103,7 +104,7 @@ class About extends StatelessWidget {
             ),
           ]),
         ),
-        const SizedBox(height: 12),
+        SizedBoxSpacer.spacerHeight12,
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
@@ -113,7 +114,7 @@ class About extends StatelessWidget {
               splashColor: Colors.transparent,
               onPressed: () => discordInvite.launchLink(context),
             ),
-            const SizedBox(width: 25),
+            SizedBoxSpacer.spacerHeight24,
             IconButton(
               icon: Icon(
                 SimpleIcons.github,
@@ -123,7 +124,7 @@ class About extends StatelessWidget {
               splashColor: Colors.transparent,
               onPressed: () => projectPage.launchLink(context),
             ),
-            const SizedBox(width: 25),
+            SizedBoxSpacer.spacerHeight24,
             IconButton(
               icon: const FaIcon(
                 NavisSysIcons.wfcdLogoColor,

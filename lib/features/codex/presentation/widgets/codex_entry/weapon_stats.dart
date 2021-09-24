@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:wfcd_client/entities.dart';
 
+import '../../../../../constants/sizedbox_spacer.dart';
 import '../../../../../core/utils/helper_methods.dart';
 import '../../../../../core/widgets/widgets.dart';
 import '../../../../../l10n/l10n.dart';
@@ -22,7 +23,7 @@ class GunStats extends StatelessWidget {
           title: 'Stats',
           contentPadding: EdgeInsets.zero,
         ),
-        const SizedBox(height: 8),
+        SizedBoxSpacer.spacerHeight8,
         Stats(
           stats: <RowItem>[
             RowItem(
@@ -94,12 +95,12 @@ ${(projectileWeapon.statusChance * 100).roundToDouble()}%'''),
               )
           ],
         ),
-        const SizedBox(height: 16),
+        SizedBoxSpacer.spacerHeight16,
         CategoryTitle(
           title: l10n.damageTitle,
           contentPadding: EdgeInsets.zero,
         ),
-        const SizedBox(height: 16),
+        SizedBoxSpacer.spacerHeight16,
         RowItem(
           text: Text(
             l10n.totalDamageTitle,
@@ -203,7 +204,7 @@ class MeleeStats extends StatelessWidget {
             ),
           ],
         ),
-        const SizedBox(height: 16),
+        SizedBoxSpacer.spacerHeight16,
         CategoryTitle(
           title: l10n.heavyAttackTitle,
           contentPadding: EdgeInsets.zero,
@@ -230,7 +231,7 @@ class MeleeStats extends StatelessWidget {
             child: Text('${meleeWeapon.windUp?.toStringAsFixed(2) ?? 0}'),
           ),
         ]),
-        const SizedBox(height: 16),
+        SizedBoxSpacer.spacerHeight16,
         CategoryTitle(
           title: l10n.damageTitle,
           contentPadding: EdgeInsets.zero,

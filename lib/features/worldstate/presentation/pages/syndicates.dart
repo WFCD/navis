@@ -9,6 +9,7 @@ import 'package:wfcd_client/entities.dart';
 import 'package:wfcd_client/objects.dart';
 
 import '../../../../constants/default_durations.dart';
+import '../../../../constants/sizedbox_spacer.dart';
 import '../../../../core/widgets/widgets.dart';
 import '../../../../l10n/l10n.dart';
 import '../bloc/solsystem_bloc.dart';
@@ -103,7 +104,7 @@ class SyndicatePageMobile extends StatelessWidget {
     return ListView(
       children: <Widget>[
         _buildSyndicates(syndicates),
-        const SizedBox(height: 8),
+        SizedBoxSpacer.spacerHeight8,
         if (nightwave != null) _buildNightwave(nightwave!)
       ],
     );
@@ -154,7 +155,7 @@ class _SyndicatePageTabletState extends State<SyndicatePageTablet> {
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 _buildSyndicates(widget.syndicates, onTap: _onTap),
-                const SizedBox(height: 8),
+                SizedBoxSpacer.spacerHeight8,
                 if (widget.nightwave != null)
                   _buildNightwave(widget.nightwave!, onTap: _onTap)
               ],

@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:wfcd_client/entities.dart';
 
+import '../../../../../constants/sizedbox_spacer.dart';
 import '../../../../../core/widgets/widgets.dart';
 import '../../../../../l10n/l10n.dart';
 
@@ -63,9 +64,9 @@ class EventStatus extends StatelessWidget {
                 style: category,
                 contentPadding: EdgeInsets.zero,
               ),
-              const SizedBox(height: 2),
+              SizedBoxSpacer.spacerHeight2,
               Text(tooltip!, style: tooltipStyle),
-              const SizedBox(height: 20),
+              SizedBoxSpacer.spacerHeight20,
             },
             CategoryTitle(
               title: l10n.eventStatus,
@@ -76,24 +77,24 @@ class EventStatus extends StatelessWidget {
               text: Text(l10n.eventStatusNode, style: tooltipStyle),
               child: StaticBox.text(text: node),
             ),
-            const SizedBox(height: 8),
+            SizedBoxSpacer.spacerHeight8,
             RowItem(
               text: Text(l10n.eventStatusProgress, style: tooltipStyle),
               child: StaticBox.text(text: '${health.toStringAsFixed(2)} %'),
             ),
-            const SizedBox(height: 8),
+            SizedBoxSpacer.spacerHeight8,
             RowItem(
               text: Text(l10n.eventStatusEta, style: tooltipStyle),
               child: CountdownTimer(expiry: expiry),
             ),
             if (rewards.isNotEmpty) ...{
-              const SizedBox(height: 20),
+              SizedBoxSpacer.spacerHeight20,
               CategoryTitle(
                 title: l10n.eventRewards,
                 style: category,
                 contentPadding: EdgeInsets.zero,
               ),
-              const SizedBox(height: 2),
+              SizedBoxSpacer.spacerHeight2,
               Wrap(
                 spacing: 6,
                 children: _buildRewards(),

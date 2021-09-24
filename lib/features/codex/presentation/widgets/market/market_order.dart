@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:market_client/market_client.dart';
+import '../../../../../constants/sizedbox_spacer.dart';
 
 import '../../../../../core/widgets/widgets.dart';
 
@@ -174,7 +175,7 @@ class _MarketSellTrailing extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(header, style: headerStyle),
-        const SizedBox(height: 6),
+        SizedBoxSpacer.spacerHeight6,
         Text('$value'.padLeft(2, '0'), style: valueStyle)
       ],
     );

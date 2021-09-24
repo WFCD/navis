@@ -4,6 +4,7 @@ import 'dart:ui' as ui;
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import '../../../../../constants/sizedbox_spacer.dart';
 
 import '../../../../../resources/resources.dart';
 import '../../../utils/mod_polarity.dart';
@@ -443,7 +444,7 @@ class ModDrescription extends StatelessWidget {
           textAlign: TextAlign.center,
           style: textTheme.headline6?.copyWith(color: _textColor(rarity)),
         ),
-        const SizedBox(height: 15),
+        SizedBoxSpacer.spacerHeight14,
         SizedBox(
           width: 225,
           child: Text(

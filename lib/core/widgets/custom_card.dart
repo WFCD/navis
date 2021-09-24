@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../../constants/default_durations.dart';
 
 class CustomCard extends StatelessWidget {
@@ -16,22 +17,6 @@ class CustomCard extends StatelessWidget {
   final EdgeInsetsGeometry margin, padding;
   final Widget child;
 
-  Widget _buildTitle(BuildContext context, String text) {
-    final titleStyle = Theme.of(context)
-        .textTheme
-        .headline6
-        ?.copyWith(fontWeight: FontWeight.w500);
-
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8),
-      child: Text(
-        title!,
-        textAlign: TextAlign.center,
-        style: titleStyle,
-      ),
-    );
-  }
-
   static const double _defaultElevation = 1;
   static const _semanticContainer = true;
 
@@ -45,7 +30,10 @@ class CustomCard extends StatelessWidget {
           ? Column(
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[_buildTitle(context, title!), child],
+              children: <Widget>[
+                _BuildTitle(title: title),
+                child,
+              ],
             )
           : child,
     );
@@ -69,6 +57,32 @@ class CustomCard extends StatelessWidget {
             child: cardContent,
           ),
         ),
+      ),
+    );
+  }
+}
+
+class _BuildTitle extends StatelessWidget {
+  const _BuildTitle({
+    Key? key,
+    required this.title,
+  }) : super(key: key);
+
+  final String? title;
+
+  @override
+  Widget build(BuildContext context) {
+    final titleStyle = Theme.of(context)
+        .textTheme
+        .headline6
+        ?.copyWith(fontWeight: FontWeight.w500);
+
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8),
+      child: Text(
+        title!,
+        textAlign: TextAlign.center,
+        style: titleStyle,
       ),
     );
   }

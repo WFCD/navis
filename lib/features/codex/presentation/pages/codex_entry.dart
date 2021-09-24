@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wfcd_client/entities.dart';
 
+import '../../../../constants/sizedbox_spacer.dart';
 import '../../../../core/utils/helper_methods.dart';
 import '../../../../core/widgets/category_title.dart';
 import '../../../../injection_container.dart';
@@ -155,14 +156,14 @@ class Overview extends StatelessWidget {
             itemImageUrl: item.imageUrl,
             components: (item as FoundryItem).components!,
           ),
-          const SizedBox(height: 16),
+          SizedBoxSpacer.spacerHeight16,
         },
         if (_isPowerSuit) FrameStats(powerSuit: item as PowerSuit),
         if (_isGun) GunStats(projectileWeapon: item as ProjectileWeapon),
         if (_isMeleeWeapon) MeleeStats(meleeWeapon: item as MeleeWeapon),
         if (_isMod) ModStats(mod: item as Mod),
         if (item.drops != null) ...{
-          const SizedBox(height: 20),
+          SizedBoxSpacer.spacerHeight20,
           const CategoryTitle(title: 'Drops'),
           ModDropLocations(drops: (item as Mod).drops!),
         },

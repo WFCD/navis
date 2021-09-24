@@ -26,10 +26,7 @@ class AcolyteAppBar extends StatelessWidget {
           ),
         ),
         centerTitle: true,
-        background: BackgroundImage(
-          imageUrl: getSkybox(region),
-          child: const SizedBox(),
-        ),
+        background: BackgroundImage(imageUrl: getSkybox(region)),
       ),
     );
   }

@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:wfcd_client/entities.dart';
 
+import '../../../../../constants/sizedbox_spacer.dart';
 import '../../../../../core/widgets/widgets.dart';
 import '../../../../../l10n/l10n.dart';
 import '../../pages/component_drops.dart';
@@ -16,11 +17,46 @@ class ItemComponents extends StatelessWidget {
   final String itemImageUrl;
   final List<Component> components;
 
-  Widget _buildComponent(
-    BuildContext context,
-    Component component, [
-    Widget? child,
-  ]) {
+  @override
+  Widget build(BuildContext context) {
+    final blueprint = components.cast<Component?>().firstWhere(
+        (c) => c?.name.contains('Blueprint') ?? false,
+        orElse: () => null);
+
+    final parts = components.where((c) => !c.name.contains('Blueprint'));
+
+    return Column(
+      children: [
+        CategoryTitle(
+          title: context.l10n.componentsTitle,
+          contentPadding: EdgeInsets.zero,
+        ),
+        SizedBoxSpacer.spacerHeight8,
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            if (blueprint != null)
+              _BuildComponent(
+                component: blueprint,
+                child: CachedNetworkImage(imageUrl: itemImageUrl),
+              ),
+            for (final component in parts) _BuildComponent(component: component)
+          ],
+        ),
+      ],
+    );
+  }
+}
+
+class _BuildComponent extends StatelessWidget {
+  const _BuildComponent({Key? key, required this.component, this.child})
+      : super(key: key);
+
+  final Component component;
+  final Widget? child;
+
+  @override
+  Widget build(BuildContext context) {
     return Tooltip(
       message: component.name,
       child: InkWell(
@@ -52,42 +88,11 @@ class ItemComponents extends StatelessWidget {
                   ),
                 ),
               CachedNetworkImage(imageUrl: component.imageUrl),
-              if (child != null) child
+              if (child != null) child!
             ],
           ),
         ),
       ),
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final blueprint = components.cast<Component?>().firstWhere(
-        (c) => c?.name.contains('Blueprint') ?? false,
-        orElse: () => null);
-
-    final parts = components.where((c) => !c.name.contains('Blueprint'));
-
-    return Column(
-      children: [
-        CategoryTitle(
-          title: context.l10n.componentsTitle,
-          contentPadding: EdgeInsets.zero,
-        ),
-        const SizedBox(height: 8),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            if (blueprint != null)
-              _buildComponent(
-                context,
-                blueprint,
-                CachedNetworkImage(imageUrl: itemImageUrl),
-              ),
-            for (final component in parts) _buildComponent(context, component)
-          ],
-        ),
-      ],
     );
   }
 }

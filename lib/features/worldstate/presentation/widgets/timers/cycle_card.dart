@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wfcd_client/entities.dart';
 import 'package:wfcd_client/objects.dart';
 
+import '../../../../../constants/sizedbox_spacer.dart';
 import '../../../../../core/widgets/widgets.dart';
 import '../../../../../l10n/l10n.dart';
 import '../../bloc/solsystem/solsystem_bloc.dart';
@@ -121,7 +122,7 @@ class CycleWidget extends StatelessWidget {
                 entry.states[0]
               else
                 entry.states[1],
-              const SizedBox(width: 6),
+              SizedBoxSpacer.spacerWidth6,
               CountdownTimer(expiry: entry.cycle.expiry!),
             ],
           ),

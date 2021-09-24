@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:wfcd_client/entities.dart';
 
+import '../../../../../constants/sizedbox_spacer.dart';
 import '../../../../../core/widgets/widgets.dart';
 import '../../../../../l10n/l10n.dart';
 
@@ -63,7 +64,7 @@ class EventBounties extends StatelessWidget {
           title: context.l10n.bountyTitle,
           style: category,
         ),
-        const SizedBox(height: 2),
+        SizedBoxSpacer.spacerHeight2,
         ..._buildBounties(context)
       ]),
     );
