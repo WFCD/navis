@@ -13,6 +13,7 @@ import 'package:provider/provider.dart';
 import 'package:wfcd_client/wfcd_client.dart';
 
 import 'core/app.dart';
+import 'core/app_bloc_observer.dart';
 import 'core/cubits/navigation_cubit.dart';
 import 'core/notifiers/user_settings_notifier.dart';
 import 'core/services/notifications.dart';
@@ -23,6 +24,8 @@ import 'injection_container.dart';
 import 'injection_container.dart' as di;
 
 Future<void> startApp() async {
+  Bloc.observer = AppBlocObserver();
+
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(statusBarColor: Colors.transparent),
