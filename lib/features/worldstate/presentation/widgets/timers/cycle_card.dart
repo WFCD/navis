@@ -37,46 +37,53 @@ class CycleCard extends StatelessWidget {
         name: locale.earthCycleTitle,
         states: solCycle,
         cycle: worldstate.earthCycle,
-        buildWhen: (p, n) =>
-            p.worldstate.earthCycle.expiry != n.worldstate.earthCycle.expiry,
       ),
       CycleEntry(
         name: locale.cetusCycleTitle,
         states: solCycle,
         cycle: worldstate.cetusCycle,
-        buildWhen: (p, n) =>
-            p.worldstate.cetusCycle.expiry != n.worldstate.cetusCycle.expiry,
       ),
       CycleEntry(
         name: locale.vallisCycleTitle,
         states: tempCycle,
         cycle: worldstate.vallisCycle,
-        buildWhen: (p, n) =>
-            p.worldstate.vallisCycle.expiry != n.worldstate.vallisCycle.expiry,
       ),
       CycleEntry(
         name: locale.cambionCycleTitle,
         states: cambionCycle,
         cycle: worldstate.cetusCycle,
-        buildWhen: (p, n) =>
-            p.worldstate.cetusCycle.expiry != n.worldstate.cetusCycle.expiry,
       )
     ];
   }
 
+  bool _buildWhen(SolsystemState previous, SolsystemState next) {
+    final p = previous as SolState;
+    final n = next as SolState;
+
+    return p.worldstate.earthCycle.expiry != n.worldstate.earthCycle.expiry ||
+        p.worldstate.cetusCycle.expiry != n.worldstate.cetusCycle.expiry ||
+        p.worldstate.vallisCycle.expiry != n.worldstate.vallisCycle.expiry ||
+        p.worldstate.cetusCycle.expiry != n.worldstate.cetusCycle.expiry;
+  }
+
   @override
   Widget build(BuildContext context) {
-    final cycles = _buildCycles(
-      NavisLocalizations.of(context)!,
-      (BlocProvider.of<SolsystemBloc>(context).state as SolState).worldstate,
-    );
+    return BlocBuilder<SolsystemBloc, SolsystemState>(
+      buildWhen: _buildWhen,
+      builder: (context, state) {
+        final cycles = _buildCycles(
+          NavisLocalizations.of(context)!,
+          (state as SolState).worldstate,
+        );
 
-    return CustomCard(
-      child: Column(
-        children: <Widget>[
-          for (final cycle in cycles) CycleWidget(entry: cycle),
-        ],
-      ),
+        return CustomCard(
+          child: Column(
+            children: <Widget>[
+              for (final cycle in cycles) CycleWidget(entry: cycle),
+            ],
+          ),
+        );
+      },
     );
   }
 }
@@ -86,16 +93,11 @@ class CycleEntry {
     required this.states,
     required this.name,
     required this.cycle,
-    required this.buildWhen,
   });
 
   final List<Widget> states;
   final String name;
   final CycleObject cycle;
-
-  // We want to rebuild each one individually only when the timer actually
-  // changes so we need an a buildWhen for each timer.
-  final BlocBuilderCondition<SolState> buildWhen;
 }
 
 class CycleWidget extends StatelessWidget {
@@ -107,27 +109,20 @@ class CycleWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
 
-    return BlocBuilder<SolsystemBloc, SolsystemState>(
-      buildWhen: (p, n) => entry.buildWhen(p as SolState, n as SolState),
-      builder: (context, state) {
-        return ListTile(
-          title: Text(
-            entry.name,
-            style: textTheme.subtitle1?.copyWith(fontWeight: FontWeight.w600),
-          ),
-          trailing: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              if (entry.cycle.getStateBool)
-                entry.states[0]
-              else
-                entry.states[1],
-              SizedBoxSpacer.spacerWidth6,
-              CountdownTimer(expiry: entry.cycle.expiry!),
-            ],
-          ),
-        );
-      },
+    return ListTile(
+      key: ValueKey(entry.name),
+      title: Text(
+        entry.name,
+        style: textTheme.subtitle1?.copyWith(fontWeight: FontWeight.w600),
+      ),
+      trailing: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          if (entry.cycle.getStateBool) entry.states[0] else entry.states[1],
+          SizedBoxSpacer.spacerWidth6,
+          CountdownTimer(expiry: entry.cycle.expiry!),
+        ],
+      ),
     );
   }
 }
