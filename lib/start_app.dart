@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:io';
 
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
@@ -7,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
+import 'package:hive/hive.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
@@ -35,11 +35,27 @@ Future<void> startApp() async {
   await FlutterWebBrowser.warmup();
 
   final temp = await getTemporaryDirectory();
+  final appDir = await getApplicationDocumentsDirectory();
 
-  HydratedBloc.storage = await HydratedStorage.build(storageDirectory: temp)
-      .catchError((dynamic e) {
-    return HydratedStorage.build(storageDirectory: Directory.systemTemp);
-  });
+  Hive.init(appDir.path);
+  // HydratedBloc already runs Hive.init on the provided storageDirectoy, so
+  // it's not needed for temp storage.
+  try {
+    HydratedBloc.storage = await HydratedStorage.build(storageDirectory: temp);
+    // ignore: avoid_catching_errors
+  } on HiveError {
+    // I don't know what's causing the HiveError and at this point I would
+    // rather just recreate the entire folder and subfolders at this point
+    if (!temp.existsSync()) {
+      temp.createSync(recursive: true);
+    } else {
+      temp
+        ..deleteSync(recursive: true)
+        ..createSync(recursive: true);
+    }
+
+    HydratedBloc.storage = await HydratedStorage.build(storageDirectory: temp);
+  }
 
   await di.init();
   if (sl<UserSettingsNotifier>().isFirstTime) {

@@ -1,8 +1,6 @@
 import 'package:get_it/get_it.dart';
-import 'package:hive/hive.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:package_info/package_info.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:wfcd_client/wfcd_client.dart';
 
 import 'core/cubits/navigation_cubit.dart';
@@ -37,11 +35,6 @@ final GetIt sl = GetIt.instance;
 bool _isDebug = false;
 
 Future<void> init() async {
-  final temp = await getTemporaryDirectory();
-  final appDir = await getApplicationDocumentsDirectory();
-
-  Hive..init(appDir.path)..init(temp.path);
-
   assert(_isDebug = true);
   // Core
   sl
