@@ -7,6 +7,7 @@ environment:
   sdk: ">=2.12.0 <3.0.0"
 
 dependencies:
+  animations: ^2.0.1
   bloc: ^7.2.0
   cached_network_image: ^3.0.0
   equatable: ^2.0.3
@@ -27,7 +28,7 @@ dependencies:
   market_client:
     git:
       url: https://github.com/SlayerOrnstein/market_client.git
-      ref: v1.0.1
+      ref: v1.1.1
   matomo: ^1.0.0
   oxidized: ^5.1.0
   package_info: ^2.0.2
