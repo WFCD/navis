@@ -13,14 +13,16 @@ import '../widgets/codex_widgets.dart';
 import '../widgets/market/market_order.dart';
 
 class CodexEntry extends StatelessWidget {
-  const CodexEntry({Key? key}) : super(key: key);
+  const CodexEntry({Key? key, required this.item}) : super(key: key);
+
+  final Item item;
 
   static const route = '/codexEntry';
 
   @override
   Widget build(BuildContext context) {
     // ignore: cast_nullable_to_non_nullable
-    final item = ModalRoute.of(context)?.settings.arguments! as Item;
+    // final item = ModalRoute.of(context)?.settings.arguments! as Item;
     final heightRatio = MediaQuery.of(context).size.height / 100;
 
     final height = item is Mod ? kMinExtent : heightRatio * 30;

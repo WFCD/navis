@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
-import '../features/codex/presentation/pages/codex_entry.dart';
 import '../features/worldstate/presentation/bloc/solsystem_bloc.dart';
 import '../features/worldstate/presentation/pages/acolyte_profile.dart';
 import '../features/worldstate/presentation/pages/bounties.dart';
@@ -102,7 +101,6 @@ class _NavisAppState extends State<NavisApp> with WidgetsBindingObserver {
         SettingsPage.route: (_) => const SettingsPage(),
         NightwavesPage.route: (_) => const NightwavesPage(),
         BountiesPage.route: (_) => const BountiesPage(),
-        CodexEntry.route: (_) => const CodexEntry(),
         BaroInventory.route: (_) => const BaroInventory()
       },
       supportedLocales: NavisLocalizations.supportedLocales,

@@ -4,7 +4,6 @@ import 'package:wfcd_client/entities.dart';
 
 import '../../../../../core/utils/helper_methods.dart';
 import '../../../../../core/widgets/widgets.dart';
-import '../../pages/codex_entry.dart';
 
 class CodexResult extends StatelessWidget {
   const CodexResult({Key? key, required this.item}) : super(key: key);
@@ -47,9 +46,6 @@ class CodexResult extends StatelessWidget {
             description?.trim() ?? item.description?.parseHtmlString() ?? ''),
         isThreeLine: true,
         dense: true,
-        onTap: () {
-          Navigator.of(context).pushNamed(CodexEntry.route, arguments: item);
-        },
       ),
     );
   }
