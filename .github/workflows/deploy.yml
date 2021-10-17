@@ -46,7 +46,11 @@ jobs:
           base64 -di <<< $NAVIS_SERVICE_ACCOUNT > android/app/fastlane.json
 
       - name: Build App bundle
-        run: flutter build appbundle --dart-define=SENTRY_DSN=$SENTRY_DSN --dart-define=MATOMO_URL=$MATOMO_URL -t lib/main_production.dart --obfuscate --split-debug-info=debug_info
+        run: |
+          flutter build appbundle \
+            --dart-define=SENTRY_DSN=$SENTRY_DSN --dart-define=MATOMO_URL=$MATOMO_URL \
+            -t lib/main_production.dart \
+            --obfuscate --split-debug-info=debug_info
 
       - uses: actions/setup-ruby@v1
         with:
@@ -66,7 +70,9 @@ jobs:
 
       - name: Build split apks per abi
         run: |
-          flutter build apk --dart-define=SENTRY_DSN=$SENTRY_DSN --dart-define=MATOMO_URL=$MATOMO_URL -t lib/main_production.dart --split-per-abi
+          flutter build apk \
+          --dart-define=SENTRY_DSN=$SENTRY_DSN --dart-define=MATOMO_URL=$MATOMO_URL \
+          -t lib/main_production.dart --split-per-abi
 
       - name: Github Releases Deploy
         uses: xresloader/upload-to-github-release@v1
