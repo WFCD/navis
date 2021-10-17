@@ -62,8 +62,7 @@ jobs:
           subdirectory: android
 
       - name: Upload Debug symbols to Sentry
-        uses: dart-lang/setup-dart@v1.3
-        run: dart pub run sentry_dart_plugin
+        run: flutter packages pub run sentry_dart_plugin
 
       - name: Clean build directory
         run: flutter clean
