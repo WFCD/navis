@@ -52,6 +52,9 @@ jobs:
             -t lib/main_production.dart \
             --obfuscate --split-debug-info=debug_info
 
+      - name: Upload Debug symbols to Sentry
+        run: flutter packages pub run sentry_dart_plugin
+
       - uses: actions/setup-ruby@v1
         with:
           ruby-version: "2.7"
@@ -60,9 +63,6 @@ jobs:
         with:
           lane: beta
           subdirectory: android
-
-      - name: Upload Debug symbols to Sentry
-        run: flutter packages pub run sentry_dart_plugin
 
       - name: Clean build directory
         run: flutter clean
