@@ -1,8 +1,13 @@
 name: Deploy
 on:
-  release:
-    types: [created]
+  push:
+    branches:
+      - master
+  # release:
+  #   types: [created]
+
 env:
+  FLUTTER_VERSION: stable
   TENNO_CIPHER: ${{ secrets.TENNO_CIPHER }}
   TENNO_FIREBASE: ${{ secrets.TENNO_FIREBASE }}
   TENNO_STORE: ${{ secrets.TENNO_STORE }}
@@ -12,9 +17,12 @@ env:
   FASTLANE_SESSION: ${{ secrets.FASTLANE_SESSION }}
   FASTLANE_PASSWORD: ${{ secrets.FASTLANE_PASSWORD }}
   MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
-  FLUTTER_VERSION: stable
   SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
+  SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}
+  SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
+  SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
   MATOMO_URL: ${{ secrets.MATOMO_URL }}
+
 jobs:
   android-release:
     runs-on: ubuntu-latest
@@ -22,19 +30,28 @@ jobs:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
+
       - uses: actions/setup-java@v1
         with:
           java-version: "12.x"
+
       - uses: subosito/flutter-action@v1
         with:
           channel: ${{ env.FLUTTER_VERSION }}
+
       - name: Decode signing key and services json
         run: |
           base64 -d <<< $TENNO_STORE > android/keystore.jks
           base64 -d <<< $TENNO_FIREBASE > android/app/google-services.json
           base64 -di <<< $NAVIS_SERVICE_ACCOUNT > android/app/fastlane.json
+
       - name: Build App bundle
-        run: flutter build appbundle --dart-define=SENTRY_DSN=$SENTRY_DSN --dart-define=MATOMO_URL=$MATOMO_URL -t lib/main_production.dart
+        run: | 
+        flutter build appbundle \
+        --dart-define=SENTRY_DSN=$SENTRY_DSN --dart-define=MATOMO_URL=$MATOMO_URL \
+        -t lib/main_production.dart \
+        --obfuscate --split-debug-info=debug_info
+
       - uses: actions/setup-ruby@v1
         with:
           ruby-version: "2.7"
@@ -43,10 +60,20 @@ jobs:
         with:
           lane: beta
           subdirectory: android
+
+      - name: Upload Debug symbols to Sentry
+        uses: dart-lang/setup-dart@v1.3
+        run: dart pub run sentry_dart_plugin
+
       - name: Clean build directory
         run: flutter clean
+
       - name: Build split apks per abi
-        run: flutter build apk --dart-define=SENTRY_DSN=$SENTRY_DSN --dart-define=MATOMO_URL=$MATOMO_URL -t lib/main_production.dart --split-per-abi
+        run: |
+        flutter build apk \
+        --dart-define=SENTRY_DSN=$SENTRY_DSN --dart-define=MATOMO_URL=$MATOMO_URL \
+        -t lib/main_production.dart --split-per-abi
+
       - name: Github Releases Deploy
         uses: xresloader/upload-to-github-release@v1
         env:
@@ -55,6 +82,7 @@ jobs:
           file: "build/app/outputs/apk/release/*.apk"
           tags: true
           draft: false
+
   ios: # Github's MacOS images come with xcode preinstalled
     runs-on: macos-latest
     strategy:
@@ -63,24 +91,34 @@ jobs:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
+
       - uses: webfactory/ssh-agent@v0.4.1
         with:
           ssh-private-key: ${{ secrets.FASTLANE_DEPLOY_KEY }}
+
       - uses: subosito/flutter-action@v1
         with:
           channel: ${{ env.FLUTTER_VERSION }}
+
       - name: Decode service plist
         run: base64 -d <<< $FIREBASE_IOS > ios/Runner/GoogleService-Info.plist
+
       - name: Build ios using flutter
-        run: flutter build ios --dart-define=SENTRY_DSN=$SENTRY_DSN --dart-define=MATOMO_URL=$MATOMO_URL -t lib/main_production.dart --no-codesign
+        run: |
+        flutter build ios \
+        --dart-define=SENTRY_DSN=$SENTRY_DSN --dart-define=MATOMO_URL=$MATOMO_URL \
+        -t lib/main_production.dart --no-codesign
+
       - uses: actions/setup-ruby@v1
         with:
           ruby-version: "2.7"
+
       - name: App Store Deploy
         uses: maierj/fastlane-action@v2.0.0
         with:
           lane: beta
           subdirectory: ios
+
       - name: Github Releases Deploy
         uses: xresloader/upload-to-github-release@v1
         env:
