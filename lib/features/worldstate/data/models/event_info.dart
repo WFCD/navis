@@ -11,7 +11,8 @@ class EventInfoModel extends EventInfo {
       keyArt: json['keyArt'] as String,
       howTos: (json['howTo'] as List<dynamic>?)
               ?.map(
-                  (dynamic h) => HowToModel.fromJson(h as Map<String, dynamic>))
+                (dynamic h) => HowToModel.fromJson(h as Map<String, dynamic>),
+              )
               .toList() ??
           <HowTo>[],
     );

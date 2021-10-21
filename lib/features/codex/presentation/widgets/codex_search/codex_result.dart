@@ -43,7 +43,8 @@ class CodexResult extends StatelessWidget {
         ),
         title: Text(item.name),
         subtitle: Text(
-            description?.trim() ?? item.description?.parseHtmlString() ?? ''),
+          description?.trim() ?? item.description?.parseHtmlString() ?? '',
+        ),
         isThreeLine: true,
         dense: true,
       ),

@@ -92,10 +92,10 @@ Future<void> main() async {
         // Make sure the default value is false.
         expect(settings.getToggle(k), false);
 
-        settings.setToggle(k, true);
+        settings.setToggle(k, value: true);
         expect(settings.getToggle(k), true);
 
-        settings.setToggle(k, false);
+        settings.setToggle(k, value: false);
         expect(settings.getToggle(k), false);
       }
     }

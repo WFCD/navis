@@ -20,43 +20,42 @@ class OrbiterNewsWidget extends StatelessWidget {
       child: InkWell(
         onTap: () => news.link.launchLink(context),
         child: Card(
-            margin: const EdgeInsets.symmetric(horizontal: 2, vertical: 4),
+          margin: const EdgeInsets.symmetric(horizontal: 2, vertical: 4),
+          child: Container(
+            height: 200,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: CachedNetworkImageProvider(news.proxyImage),
+                fit: BoxFit.cover,
+              ),
+            ),
             child: Container(
-              height: 200,
+              alignment: Alignment.bottomCenter,
               decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: CachedNetworkImageProvider(news.proxyImage),
-                  fit: BoxFit.cover,
+                gradient: LinearGradient(
+                  begin: Alignment.bottomCenter,
+                  end: Alignment.topCenter,
+                  stops: const <double>[0.3, 1],
+                  colors: <Color>[
+                    Colors.black.withOpacity(0.7),
+                    Colors.transparent
+                  ],
                 ),
               ),
-              child: Container(
-                alignment: Alignment.bottomCenter,
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                      begin: Alignment.bottomCenter,
-                      end: Alignment.topCenter,
-                      stops: const <double>[
-                        0.3,
-                        1
-                      ],
-                      colors: <Color>[
-                        Colors.black.withOpacity(0.7),
-                        Colors.transparent
-                      ]),
+              child: ListTile(
+                title: Text(
+                  news.translations[currentLocale] ?? news.message,
+                  overflow: TextOverflow.ellipsis,
+                  // style: textTheme.bodyText1?.copyWith(fontSize: 16.0),
                 ),
-                child: ListTile(
-                  title: Text(
-                    news.translations[currentLocale] ?? news.message,
-                    overflow: TextOverflow.ellipsis,
-                    // style: textTheme.bodyText1?.copyWith(fontSize: 16.0),
-                  ),
-                  subtitle: Text(
-                    news.date.toLocal().format(context),
-                    // style: textTheme.caption,
-                  ),
+                subtitle: Text(
+                  news.date.toLocal().format(context),
+                  // style: textTheme.caption,
                 ),
               ),
-            )),
+            ),
+          ),
+        ),
       ),
     );
   }

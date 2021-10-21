@@ -20,8 +20,9 @@ class ItemComponents extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final blueprint = components.cast<Component?>().firstWhere(
-        (c) => c?.name.contains('Blueprint') ?? false,
-        orElse: () => null);
+          (c) => c?.name.contains('Blueprint') ?? false,
+          orElse: () => null,
+        );
 
     final parts = components.where((c) => !c.name.contains('Blueprint'));
 

@@ -60,7 +60,7 @@ Future<void> startApp() async {
   await di.init();
   if (sl<UserSettingsNotifier>().isFirstTime) {
     await sl<NotificationService>().subscribeToPlatform(GamePlatforms.pc);
-    sl<UserSettingsNotifier>().setFirstTime(false);
+    sl<UserSettingsNotifier>().setFirstTime(value: false);
   }
 
   runApp(

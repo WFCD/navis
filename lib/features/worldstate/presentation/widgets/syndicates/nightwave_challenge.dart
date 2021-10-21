@@ -41,26 +41,28 @@ class NightwaveChallenge extends StatelessWidget {
       child: Container(
         margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
         child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Text(challenge.title, style: title),
-              SizedBoxSpacer.spacerHeight4,
-              Text(challenge.desc, style: desscription),
-              SizedBoxSpacer.spacerHeight8,
-              Row(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: <Widget>[
-                    if (challenge.isElite)
-                      StaticBox.text(
-                        color: Colors.red,
-                        text: l10n.eliteBadgeTitle,
-                        fontSize: 14,
-                      ),
-                    _standingBadge(),
-                    CountdownTimer(expiry: challenge.expiry!)
-                  ]),
-            ]),
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Text(challenge.title, style: title),
+            SizedBoxSpacer.spacerHeight4,
+            Text(challenge.desc, style: desscription),
+            SizedBoxSpacer.spacerHeight8,
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: <Widget>[
+                if (challenge.isElite)
+                  StaticBox.text(
+                    color: Colors.red,
+                    text: l10n.eliteBadgeTitle,
+                    fontSize: 14,
+                  ),
+                _standingBadge(),
+                CountdownTimer(expiry: challenge.expiry!)
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

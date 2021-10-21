@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
 import 'package:html/parser.dart';
-import '../../constants/default_durations.dart';
 
+import '../../constants/default_durations.dart';
 import '../themes/colors.dart';
 
 extension BuildContextNx on BuildContext {
@@ -48,13 +48,15 @@ extension StringNx on String {
         ),
       );
     } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-        duration: Duration(seconds: 5),
-        content: Text(
-          'Unable to open, either no browser detected or an'
-          ' invalid link provided by API.',
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          duration: Duration(seconds: 5),
+          content: Text(
+            'Unable to open, either no browser detected or an'
+            ' invalid link provided by API.',
+          ),
         ),
-      ));
+      );
     }
   }
 }

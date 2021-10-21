@@ -2,8 +2,8 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../../constants/sizedbox_spacer.dart';
 
+import '../../../../../constants/sizedbox_spacer.dart';
 import '../../../../../core/widgets/widgets.dart';
 import '../../../../../l10n/l10n.dart';
 import '../../../utils/faction_utils.dart';
@@ -88,7 +88,7 @@ class Progress {
     required this.percentage,
     this.name = 'Unknown',
     this.color = Colors.white,
-  }) : assert(percentage > 0.0);
+  }) : assert(percentage > 0.0, 'Percentage should not be less then 0%');
 
   final double percentage;
   final Color color;
@@ -99,7 +99,7 @@ class ProgressPainter extends CustomPainter {
   const ProgressPainter({
     required this.completeColor,
     required this.completePercent,
-  }) : assert(completePercent > 0.0);
+  }) : assert(completePercent > 0.0, 'Percentage should not be less then 0%');
 
   final Color completeColor;
   final double completePercent;

@@ -26,27 +26,29 @@ class SortieCard extends StatelessWidget {
 
         return CustomCard(
           child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              textBaseline: TextBaseline.alphabetic,
-              children: <Widget>[
-                ListTile(
-                  leading: FactionIcon(
-                    faction: sortie.faction,
-                    iconSize: 35,
-                  ),
-                  title: Text(sortie.boss, style: boss),
-                  trailing: CountdownTimer(
-                    expiry:
-                        sortie.expiry ?? DateTime.now().subtract(kDelayLong),
-                  ),
+            crossAxisAlignment: CrossAxisAlignment.start,
+            textBaseline: TextBaseline.alphabetic,
+            children: <Widget>[
+              ListTile(
+                leading: FactionIcon(
+                  faction: sortie.faction,
+                  iconSize: 35,
                 ),
-                for (final variant in sortie.variants)
-                  ListTile(
-                    title: Text('${variant.missionType} - ${variant.node}',
-                        style: nodeMission),
-                    subtitle: Text(variant.modifier, style: modifier),
-                  )
-              ]),
+                title: Text(sortie.boss, style: boss),
+                trailing: CountdownTimer(
+                  expiry: sortie.expiry ?? DateTime.now().subtract(kDelayLong),
+                ),
+              ),
+              for (final variant in sortie.variants)
+                ListTile(
+                  title: Text(
+                    '${variant.missionType} - ${variant.node}',
+                    style: nodeMission,
+                  ),
+                  subtitle: Text(variant.modifier, style: modifier),
+                )
+            ],
+          ),
         );
       },
     );

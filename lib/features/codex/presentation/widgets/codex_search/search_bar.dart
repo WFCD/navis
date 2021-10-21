@@ -10,7 +10,10 @@ class CodexSearchBar extends SliverPersistentHeaderDelegate {
 
   @override
   Widget build(
-      BuildContext context, double shrinkOffset, bool overlapsContent) {
+    BuildContext context,
+    double shrinkOffset,
+    bool overlapsContent,
+  ) {
     return const Material(
       color: primary,
       child: SizedBox(
@@ -103,8 +106,10 @@ class _CodexTextEditiorState extends State<CodexTextEditior> {
                   icon: const Icon(Icons.filter_list),
                   itemBuilder: (context) {
                     return FilterCategories.categories
-                        .map((e) =>
-                            PopupMenuItem<String>(value: e, child: Text(e)))
+                        .map(
+                          (e) =>
+                              PopupMenuItem<String>(value: e, child: Text(e)),
+                        )
                         .toList();
                   },
                   onSelected: (s) => _searchBloc.add(SearchFilter(s)),

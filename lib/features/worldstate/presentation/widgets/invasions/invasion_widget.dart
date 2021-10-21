@@ -11,20 +11,30 @@ class InvasionWidget extends StatelessWidget {
   final Invasion invasion;
 
   Widget _buildDetails(
-      BuildContext context, String node, String description, String eta) {
+    BuildContext context,
+    String node,
+    String description,
+    String eta,
+  ) {
     const shadow = Shadow(offset: Offset(1, 0), blurRadius: 4);
     final textTheme = Theme.of(context).textTheme;
 
     final nodeStyle = textTheme.subtitle1?.copyWith(
-        color: Colors.white, fontSize: 15, shadows: <Shadow>[shadow]);
+      color: Colors.white,
+      fontSize: 15,
+      shadows: <Shadow>[shadow],
+    );
 
     final infoStyle = textTheme.caption
         ?.copyWith(color: Colors.white, shadows: <Shadow>[shadow]);
 
-    return Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
-      Text(node, style: nodeStyle),
-      Text('$description ($eta)', style: infoStyle),
-    ]);
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: <Widget>[
+        Text(node, style: nodeStyle),
+        Text('$description ($eta)', style: infoStyle),
+      ],
+    );
   }
 
   @override
@@ -53,7 +63,7 @@ class InvasionWidget extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 8),
             child: InvasionProgress(
-              progress: (invasion.completion / 100).toDouble(),
+              progress: invasion.completion / 100,
               attackingFaction: invasion.attackingFaction,
               defendingFaction: invasion.defendingFaction,
             ),

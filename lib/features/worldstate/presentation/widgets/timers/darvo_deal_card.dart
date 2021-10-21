@@ -65,66 +65,71 @@ class _DealWidgetState extends State<DealWidget> {
     return BlocBuilder<DarvodealBloc, DarvodealState>(
       builder: (context, state) {
         return Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    if (state is DarvoDealLoaded)
-                      DealDetails(
-                        imageUrl: state.item.imageUrl,
-                        itemName: widget.deal.item,
-                        itemDescription:
-                            state.item.description?.isNotEmpty ?? false
-                                ? state.item.description?.parseHtmlString()
-                                : null,
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  if (state is DarvoDealLoaded)
+                    DealDetails(
+                      imageUrl: state.item.imageUrl,
+                      itemName: widget.deal.item,
+                      itemDescription:
+                          state.item.description?.isNotEmpty ?? false
+                              ? state.item.description?.parseHtmlString()
+                              : null,
+                    ),
+                  SizedBoxSpacer.spacerHeight16,
+                  Wrap(
+                    crossAxisAlignment: WrapCrossAlignment.center,
+                    spacing: 10,
+                    runSpacing: 5,
+                    children: <Widget>[
+                      if (state is DarvodealLoading)
+                        StaticBox.text(text: widget.deal.item),
+                      StaticBox.text(
+                        text: '${widget.deal.salePrice}p',
+                        style: saleInfo,
                       ),
-                    SizedBoxSpacer.spacerHeight16,
-                    Wrap(
-                        crossAxisAlignment: WrapCrossAlignment.center,
-                        spacing: 10,
-                        runSpacing: 5,
-                        children: <Widget>[
-                          if (state is DarvodealLoading)
-                            StaticBox.text(text: widget.deal.item),
-                          StaticBox.text(
-                            text: '${widget.deal.salePrice}p',
-                            style: saleInfo,
-                          ),
-                          StaticBox.text(
-                            text:
-                                '${widget.deal.total - widget.deal.sold} / ${widget.deal.total}',
-                            style: saleInfo,
-                          ),
-                          StaticBox.text(
-                            text: '${widget.deal.discount}% OFF',
-                            style: saleInfo,
-                          ),
-                          CountdownTimer(
-                            expiry: widget.deal.expiry!,
-                            style: saleInfo,
-                          ),
-                        ]),
-                    if (state is DarvoDealLoaded)
-                      ButtonBar(children: <Widget>[
+                      StaticBox.text(
+                        text:
+                            '${widget.deal.total - widget.deal.sold} / ${widget.deal.total}',
+                        style: saleInfo,
+                      ),
+                      StaticBox.text(
+                        text: '${widget.deal.discount}% OFF',
+                        style: saleInfo,
+                      ),
+                      CountdownTimer(
+                        expiry: widget.deal.expiry!,
+                        style: saleInfo,
+                      ),
+                    ],
+                  ),
+                  if (state is DarvoDealLoaded)
+                    ButtonBar(
+                      children: <Widget>[
                         if (state.item.wikiaUrl != null)
                           TextButton(
                             style: ButtonStyle(
                               foregroundColor: MaterialStateProperty.all(
-                                  Theme.of(context).textTheme.button?.color),
+                                Theme.of(context).textTheme.button?.color,
+                              ),
                             ),
                             onPressed: () =>
                                 state.item.wikiaUrl?.launchLink(context),
                             child: Text(context.l10n.seeWikia),
                           ),
-                      ])
-                  ],
-                ),
-              )
-            ]);
+                      ],
+                    )
+                ],
+              ),
+            )
+          ],
+        );
       },
     );
   }

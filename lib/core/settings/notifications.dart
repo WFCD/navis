@@ -37,26 +37,28 @@ class Notifications extends StatelessWidget {
   Widget build(BuildContext context) {
     final filters = LocalizedFilter(context.l10n);
 
-    return Column(children: <Widget>[
-      const CategoryTitle(title: 'Notifications'),
-      for (Map<String, String> m in filters.simpleFilters)
-        _SimpleNotification(
-          name: m['name']!,
-          description: m['description']!,
-          optionKey: m['key']!,
-        ),
-      for (Map<String, String> k in filters.filtered)
-        ListTile(
-          title: Text(k['title']!),
-          subtitle: Text(k['description']!),
-          onTap: () => openDialog(context, filters, k['type']!),
-        ),
-    ]);
+    return Column(
+      children: <Widget>[
+        const CategoryTitle(title: 'Notifications'),
+        for (Map<String, String> m in filters.simpleFilters)
+          _SimpleNotification(
+            name: m['name']!,
+            description: m['description']!,
+            optionKey: m['key']!,
+          ),
+        for (Map<String, String> k in filters.filtered)
+          ListTile(
+            title: Text(k['title']!),
+            subtitle: Text(k['description']!),
+            onTap: () => openDialog(context, filters, k['type']!),
+          ),
+      ],
+    );
   }
 }
 
 void _onChanged(BuildContext context, String key, bool value) {
-  context.read<UserSettingsNotifier>().setToggle(key, value);
+  context.read<UserSettingsNotifier>().setToggle(key, value: value);
 
   if (value) {
     sl<NotificationService>().subscribeToNotification(key);
@@ -95,7 +97,9 @@ class FilterDialog extends StatelessWidget {
   final Map<String, String> options;
 
   static Future<void> showFilters(
-      BuildContext context, Map<String, String> options) {
+    BuildContext context,
+    Map<String, String> options,
+  ) {
     return showDialog<void>(
       context: context,
       builder: (_) {
@@ -115,14 +119,17 @@ class FilterDialog extends StatelessWidget {
     return NavisDialog(
       title: const Text('Filter Options'),
       content: SingleChildScrollView(
-        child: Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
-          for (String key in _options.keys)
-            NotificationCheckBox(
-              option: _options[key]!,
-              optionKey: key,
-              value: context.watch<UserSettingsNotifier>().getToggle(key),
-            )
-        ]),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            for (String key in _options.keys)
+              NotificationCheckBox(
+                option: _options[key]!,
+                optionKey: key,
+                value: context.watch<UserSettingsNotifier>().getToggle(key),
+              )
+          ],
+        ),
       ),
       actions: <Widget>[
         TextButton(

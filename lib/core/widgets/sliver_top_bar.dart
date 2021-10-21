@@ -2,8 +2,8 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import '../../constants/default_durations.dart';
 
+import '../../constants/default_durations.dart';
 import '../themes/colors.dart';
 
 class SliverTopbar extends StatefulWidget {
@@ -13,8 +13,10 @@ class SliverTopbar extends StatefulWidget {
     this.snap = false,
     this.floating = false,
     required this.child,
-  })  : assert(floating || !snap,
-            'The "snap" argument only makes sense for floating app bars.'),
+  })  : assert(
+          floating || !snap,
+          'The "snap" argument only makes sense for floating app bars.',
+        ),
         super(key: key);
 
   final bool snap;
@@ -186,7 +188,7 @@ class _SliverTopbarDelegate extends SliverPersistentHeaderDelegate {
     //    1   |    1     |        0       ||  1.0
     //    1   |    1     |        1       ||  fade
     final toolbarOpacity = !pinned || floating
-        ? (visibleMainHeight / kTextTabBarHeight).clamp(0.0, 1.0).toDouble()
+        ? (visibleMainHeight / kTextTabBarHeight).clamp(0.0, 1.0)
         : 1.0;
 
     final widget = FlexibleSpaceBar.createSettings(

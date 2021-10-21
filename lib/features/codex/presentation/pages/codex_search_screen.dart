@@ -13,9 +13,10 @@ class CodexSearchScreen extends TraceableStatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = NavisLocalizations.of(context)!;
-    final openContainerColor = Colors.transparent;
+    const openContainerColor = Colors.transparent;
     const openContainerElevation = 0.0;
+
+    final l10n = NavisLocalizations.of(context)!;
 
     return NestedScrollView(
       headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {

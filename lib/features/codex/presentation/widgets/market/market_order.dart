@@ -1,8 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:market_client/market_client.dart';
-import '../../../../../constants/sizedbox_spacer.dart';
 
+import '../../../../../constants/sizedbox_spacer.dart';
 import '../../../../../core/widgets/widgets.dart';
 
 class MarketSellWidget extends StatelessWidget {
@@ -84,15 +84,17 @@ class _MarketSellLeading extends StatelessWidget {
           child: CircleAvatar(
             backgroundColor: Colors.white,
             foregroundImage: CachedNetworkImageProvider(
-                'https://warframe.market/static/assets/${avater ?? _defaultAvater}'),
+              'https://warframe.market/static/assets/${avater ?? _defaultAvater}',
+            ),
           ),
         ),
         Container(
           margin: const EdgeInsets.only(top: 16),
           padding: const EdgeInsets.all(2),
           decoration: BoxDecoration(
-              color: Theme.of(context).colorScheme.secondary,
-              borderRadius: BorderRadius.circular(4)),
+            color: Theme.of(context).colorScheme.secondary,
+            borderRadius: BorderRadius.circular(4),
+          ),
           child: Text(
             () {
               switch (orderType) {

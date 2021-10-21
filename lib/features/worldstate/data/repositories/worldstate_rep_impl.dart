@@ -53,13 +53,16 @@ class WorldstateRepositoryImpl implements WorldstateRepository {
   }
 
   @override
-  Future<Result<Worldstate, Failure>> getWorldstate(
-      {bool forceUpdate = false}) async {
+  Future<Result<Worldstate, Failure>> getWorldstate({
+    bool forceUpdate = false,
+  }) async {
     final now = DateTime.now();
     final timestamp = cache.getCachedStateTimestamp();
     final age = timestamp?.difference(now).abs() ?? kRefreshTimer;
     final request = WorldstateRequest(
-        usersettings.platform, usersettings.language?.languageCode ?? 'en');
+      usersettings.platform,
+      usersettings.language?.languageCode ?? 'en',
+    );
 
     Result<Worldstate, Failure> getcached() {
       final cached = cache.getCachedState();
@@ -139,8 +142,10 @@ class WorldstateRepositoryImpl implements WorldstateRepository {
     final locale = request.locale.split('_').first;
     final supportedLocale = SupportedLocaleX.fromLocaleCode(locale);
 
-    return _warframestat.getWorldstate(request.platform,
-        language: supportedLocale);
+    return _warframestat.getWorldstate(
+      request.platform,
+      language: supportedLocale,
+    );
   }
 
   // Becasue compute needs an entry argument noParam can be anything

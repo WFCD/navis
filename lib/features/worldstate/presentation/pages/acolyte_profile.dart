@@ -26,15 +26,16 @@ class AcolyteProfile extends TraceableStatelessWidget {
             region: acolyte.lastDiscoveredAt,
           ),
           SliverList(
-              delegate: SliverChildListDelegate.fixed(<Widget>[
-            AcolyteStatus(
-              health: acolyte.healthPercent * 100,
-              rank: acolyte.rank,
-              location: acolyte.lastDiscoveredAt,
-              lastDiscoveredTime: acolyte.lastDiscoveredTime,
-              isDiscovered: acolyte.isDiscovered,
-            )
-          ]))
+            delegate: SliverChildListDelegate.fixed(<Widget>[
+              AcolyteStatus(
+                health: acolyte.healthPercent * 100,
+                rank: acolyte.rank,
+                location: acolyte.lastDiscoveredAt,
+                lastDiscoveredTime: acolyte.lastDiscoveredTime,
+                isDiscovered: acolyte.isDiscovered,
+              )
+            ]),
+          )
         ],
       ),
     );

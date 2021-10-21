@@ -21,7 +21,8 @@ class MarketRepositoryImpl extends MarketRepository {
 
   @override
   Future<Result<List<ItemOrder>, Failure>> retriveOrders(
-      String itemName) async {
+    String itemName,
+  ) async {
     const _expiredCacheTime = Duration(minutes: 5);
     final cTimestamp = cache.getOrderTimestamp()?.difference(DateTime.now());
     final cItem = cache.getCachedItemName();

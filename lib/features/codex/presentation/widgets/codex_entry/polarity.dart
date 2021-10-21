@@ -21,14 +21,14 @@ class Polarity extends StatelessWidget {
 
     if (rarity != null) {
       _color = () {
-        switch (rarity) {
+        switch (rarity!) {
           case Rarity.common:
             return const Color(0xFFCA9A87);
           case Rarity.rare:
             return const Color(0xFFFEEBC1);
           case Rarity.legendary:
             return Colors.white;
-          default:
+          case Rarity.uncommon:
             return Colors.white;
         }
       }();

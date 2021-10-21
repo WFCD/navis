@@ -17,10 +17,13 @@ class SyndicateBountyTile extends StatelessWidget {
   final SyndicateFaction faction;
 
   Widget _buildStanding() {
-    return Row(mainAxisSize: MainAxisSize.min, children: <Widget>[
-      const Icon(NavisSysIcons.standing, size: 20),
-      Text(job.standingStages.reduce((v, e) => v + e).toString())
-    ]);
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: <Widget>[
+        const Icon(NavisSysIcons.standing, size: 20),
+        Text(job.standingStages.reduce((v, e) => v + e).toString())
+      ],
+    );
   }
 
   @override

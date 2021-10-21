@@ -36,7 +36,9 @@ class WarframestatCache {
   static const String _targets = 'synthTargets';
 
   void cacheDealInfo(String id, Item item) {
-    _box..put(_dealId, id)..put(id, json.encode(fromBaseItem(item)));
+    _box
+      ..put(_dealId, id)
+      ..put(id, json.encode(fromBaseItem(item)));
   }
 
   void cacheSynthTargets(List<SynthTarget> targets) {
@@ -68,7 +70,8 @@ class WarframestatCache {
 
     if (cached != null) {
       return WorldstateModel.fromJson(
-          json.decode(cached) as Map<String, dynamic>);
+        json.decode(cached) as Map<String, dynamic>,
+      );
     }
 
     return null;

@@ -14,26 +14,29 @@ class Behavior extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
 
-    return Column(children: <Widget>[
-      const CategoryTitle(title: 'Behavior'),
-      ListTile(
-        title: Text(l10n.appLangTitle),
-        subtitle: Text(l10n.appLangDescription),
-        onTap: () => LanguagePicker.showOptions(context),
-      ),
-      ListTile(
-        title: Text(l10n.themeTitle),
-        subtitle: Text(l10n.themeDescription),
-        onTap: () => ThemePicker.showModes(context),
-      ),
-      SwitchListTile(
-        title: Text(l10n.backOpensDrawerTitle),
-        subtitle: Text(l10n.backOpensDrawerDescription),
-        value: context.watch<UserSettingsNotifier>().backKey,
-        activeColor: Theme.of(context).colorScheme.secondary,
-        onChanged: context.read<UserSettingsNotifier>().toggleBackKey,
-      )
-    ]);
+    return Column(
+      children: <Widget>[
+        const CategoryTitle(title: 'Behavior'),
+        ListTile(
+          title: Text(l10n.appLangTitle),
+          subtitle: Text(l10n.appLangDescription),
+          onTap: () => LanguagePicker.showOptions(context),
+        ),
+        ListTile(
+          title: Text(l10n.themeTitle),
+          subtitle: Text(l10n.themeDescription),
+          onTap: () => ThemePicker.showModes(context),
+        ),
+        SwitchListTile(
+          title: Text(l10n.backOpensDrawerTitle),
+          subtitle: Text(l10n.backOpensDrawerDescription),
+          value: context.watch<UserSettingsNotifier>().backKey,
+          activeColor: Theme.of(context).colorScheme.secondary,
+          onChanged: (b) =>
+              context.read<UserSettingsNotifier>().toggleBackKey(value: b),
+        )
+      ],
+    );
   }
 }
 
@@ -59,18 +62,19 @@ class LanguagePicker extends StatelessWidget {
 
     return NavisDialog(
       content: ListView.builder(
-          itemCount: supportedLocales.length,
-          itemBuilder: (context, index) {
-            return RadioListTile<Locale>(
-              title: Text(supportedLocales[index].fullName),
-              value: supportedLocales[index],
-              groupValue: context.watch<UserSettingsNotifier>().language,
-              activeColor: accentColor,
-              onChanged: (l) => context
-                  .read<UserSettingsNotifier>()
-                  .setLanguage(l, rebuild: true),
-            );
-          }),
+        itemCount: supportedLocales.length,
+        itemBuilder: (context, index) {
+          return RadioListTile<Locale>(
+            title: Text(supportedLocales[index].fullName),
+            value: supportedLocales[index],
+            groupValue: context.watch<UserSettingsNotifier>().language,
+            activeColor: accentColor,
+            onChanged: (l) => context
+                .read<UserSettingsNotifier>()
+                .setLanguage(l, rebuild: true),
+          );
+        },
+      ),
       actions: <Widget>[
         TextButton(
           onPressed: () => Navigator.of(context).pop(),

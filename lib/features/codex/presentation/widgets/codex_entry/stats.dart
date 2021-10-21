@@ -17,10 +17,12 @@ class Stats extends StatelessWidget {
       if (index == stats.length - 1) {
         children.add(stat);
       } else {
-        children.add(Padding(
-          padding: const EdgeInsets.only(bottom: 16),
-          child: stat,
-        ));
+        children.add(
+          Padding(
+            padding: const EdgeInsets.only(bottom: 16),
+            child: stat,
+          ),
+        );
       }
     }
 

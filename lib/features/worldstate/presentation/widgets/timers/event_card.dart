@@ -23,24 +23,27 @@ class EventCard extends StatelessWidget {
         builder: (context, state) {
           final events = (state as SolState).worldstate.events;
 
-          return Column(children: <Widget>[
-            for (final event in events)
-              ListTile(
-                title: Text(event.description),
-                subtitle: event.tooltip != null ? Text(event.tooltip!) : null,
-                trailing: TextButton(
-                  style: ButtonStyle(
-                    foregroundColor: MaterialStateProperty.all(
-                        Theme.of(context).textTheme.button?.color),
+          return Column(
+            children: <Widget>[
+              for (final event in events)
+                ListTile(
+                  title: Text(event.description),
+                  subtitle: event.tooltip != null ? Text(event.tooltip!) : null,
+                  trailing: TextButton(
+                    style: ButtonStyle(
+                      foregroundColor: MaterialStateProperty.all(
+                        Theme.of(context).textTheme.button?.color,
+                      ),
+                    ),
+                    onPressed: () {
+                      Navigator.of(context)
+                          .pushNamed(EventInformation.route, arguments: event);
+                    },
+                    child: Text(context.l10n.seeDetails),
                   ),
-                  onPressed: () {
-                    Navigator.of(context)
-                        .pushNamed(EventInformation.route, arguments: event);
-                  },
-                  child: Text(context.l10n.seeDetails),
-                ),
-              )
-          ]);
+                )
+            ],
+          );
         },
       ),
     );

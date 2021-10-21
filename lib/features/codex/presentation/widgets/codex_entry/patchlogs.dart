@@ -38,7 +38,9 @@ class PatchlogCard extends StatelessWidget {
                     CachedNetworkImageProvider(patchlog.imgUrl ?? _backupImage),
                 fit: BoxFit.cover,
                 colorFilter: ColorFilter.mode(
-                    Colors.black.withOpacity(.6), BlendMode.darken),
+                  Colors.black.withOpacity(.6),
+                  BlendMode.darken,
+                ),
               ),
             ),
             child: CategoryTitle(

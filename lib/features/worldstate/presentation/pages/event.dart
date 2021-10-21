@@ -22,35 +22,37 @@ class EventInformation extends TraceableStatelessWidget {
     final eventInfo = sl<EventInfoParser>().getEventInfo(event.description);
 
     return Scaffold(
-      body: CustomScrollView(slivers: <Widget>[
-        SliverAppBar(
-          pinned: true,
-          expandedHeight: (MediaQuery.of(context).size.height / 100) * 25,
-          backgroundColor: Theme.of(context).primaryColor,
-          flexibleSpace: FlexibleSpaceBar(
-            title: Text(event.description),
-            background: CachedNetworkImage(
-              imageUrl: eventInfo.keyArt,
-              fit: BoxFit.cover,
-              color: const Color.fromRGBO(34, 34, 34, .4),
-              colorBlendMode: BlendMode.darken,
+      body: CustomScrollView(
+        slivers: <Widget>[
+          SliverAppBar(
+            pinned: true,
+            expandedHeight: (MediaQuery.of(context).size.height / 100) * 25,
+            backgroundColor: Theme.of(context).primaryColor,
+            flexibleSpace: FlexibleSpaceBar(
+              title: Text(event.description),
+              background: CachedNetworkImage(
+                imageUrl: eventInfo.keyArt,
+                fit: BoxFit.cover,
+                color: const Color.fromRGBO(34, 34, 34, .4),
+                colorBlendMode: BlendMode.darken,
+              ),
             ),
           ),
-        ),
-        SliverList(
-          delegate: SliverChildListDelegate.fixed(<Widget>[
-            EventStatus(
-              description: event.description,
-              tooltip: event.tooltip ?? '',
-              node: event.victimNode ?? event.node ?? '',
-              health: event.eventHealth ?? 0.0,
-              expiry: event.expiry ?? DateTime.now().add(kDelayLong),
-              rewards: event.eventRewards,
-            ),
-            if (event.jobs != null) EventBounties(jobs: event.jobs!),
-          ]),
-        ),
-      ]),
+          SliverList(
+            delegate: SliverChildListDelegate.fixed(<Widget>[
+              EventStatus(
+                description: event.description,
+                tooltip: event.tooltip ?? '',
+                node: event.victimNode ?? event.node ?? '',
+                health: event.eventHealth ?? 0.0,
+                expiry: event.expiry ?? DateTime.now().add(kDelayLong),
+                rewards: event.eventRewards,
+              ),
+              if (event.jobs != null) EventBounties(jobs: event.jobs!),
+            ]),
+          ),
+        ],
+      ),
     );
   }
 }

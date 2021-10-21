@@ -75,22 +75,23 @@ class Usersettings {
 
   bool get backkey => getToggle(SettingsKeys.backKey);
 
-  set backkey(bool value) => setToggle(SettingsKeys.backKey, value);
+  set backkey(bool value) => setToggle(SettingsKeys.backKey, value: value);
 
   bool get isOptOut => getToggle(MatomoTracker.kOptOut);
 
-  set isOptOut(bool value) => setToggle(MatomoTracker.kOptOut, value);
+  set isOptOut(bool value) => setToggle(MatomoTracker.kOptOut, value: value);
 
   bool get isFirstTime =>
       getToggle(SettingsKeys.isFirstTime, defaultValue: true);
 
-  set isFirstTime(bool value) => setToggle(SettingsKeys.isFirstTime, value);
+  set isFirstTime(bool value) =>
+      setToggle(SettingsKeys.isFirstTime, value: value);
 
   bool getToggle(String key, {bool defaultValue = false}) {
     return _box.get(key, defaultValue: defaultValue) as bool;
   }
 
-  void setToggle(String key, bool value) {
+  void setToggle(String key, {required bool value}) {
     _box.put(key, value);
   }
 }

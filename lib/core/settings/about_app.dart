@@ -26,7 +26,8 @@ class AboutApp extends StatelessWidget {
           title: Text(l10n.optOutOfAnalyticsTitle),
           subtitle: Text(l10n.optOutOfAnalyticsDescription),
           value: context.watch<UserSettingsNotifier>().isOptOut,
-          onChanged: (b) => context.read<UserSettingsNotifier>().setOptOut(b!),
+          onChanged: (b) =>
+              context.read<UserSettingsNotifier>().setOptOut(value: b!),
         ),
         ListTile(
           title: Text(l10n.reportBugsTitle),
@@ -67,42 +68,44 @@ class About extends StatelessWidget {
       aboutBoxChildren: <Widget>[
         SizedBoxSpacer.spacerHeight12,
         RichText(
-          text: TextSpan(children: <TextSpan>[
-            TextSpan(
-              style: aboutTextStyle,
-              text: '${l10n.homePageTitle} ',
-            ),
-            TextSpan(
-              text: projectPage,
-              style: linkStyle,
-              recognizer: TapGestureRecognizer()
-                ..onTap = () => projectPage.launchLink(context),
-            ),
-            TextSpan(
-              style: aboutTextStyle,
-              text: '\n\n${l10n.issueTrackerDescription} ',
-            ),
-            TextSpan(
-              text: l10n.issueTrackerTitle,
-              style: linkStyle,
-              recognizer: TapGestureRecognizer()
-                ..onTap = () => issuePage.launchLink(context),
-            ),
-            TextSpan(
-              style: Theme.of(context).textTheme.caption,
-              text: '\n\n${l10n.legalese}',
-            ),
-            TextSpan(
-              style: Theme.of(context).textTheme.caption,
-              text: '${l10n.warframeLinkTitle} ',
-            ),
-            TextSpan(
-              text: warframePage,
-              style: linkStyle,
-              recognizer: TapGestureRecognizer()
-                ..onTap = () => warframePage.launchLink(context),
-            ),
-          ]),
+          text: TextSpan(
+            children: <TextSpan>[
+              TextSpan(
+                style: aboutTextStyle,
+                text: '${l10n.homePageTitle} ',
+              ),
+              TextSpan(
+                text: projectPage,
+                style: linkStyle,
+                recognizer: TapGestureRecognizer()
+                  ..onTap = () => projectPage.launchLink(context),
+              ),
+              TextSpan(
+                style: aboutTextStyle,
+                text: '\n\n${l10n.issueTrackerDescription} ',
+              ),
+              TextSpan(
+                text: l10n.issueTrackerTitle,
+                style: linkStyle,
+                recognizer: TapGestureRecognizer()
+                  ..onTap = () => issuePage.launchLink(context),
+              ),
+              TextSpan(
+                style: Theme.of(context).textTheme.caption,
+                text: '\n\n${l10n.legalese}',
+              ),
+              TextSpan(
+                style: Theme.of(context).textTheme.caption,
+                text: '${l10n.warframeLinkTitle} ',
+              ),
+              TextSpan(
+                text: warframePage,
+                style: linkStyle,
+                recognizer: TapGestureRecognizer()
+                  ..onTap = () => warframePage.launchLink(context),
+              ),
+            ],
+          ),
         ),
         SizedBoxSpacer.spacerHeight12,
         Row(

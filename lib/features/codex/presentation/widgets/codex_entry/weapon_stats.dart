@@ -48,8 +48,9 @@ class GunStats extends StatelessWidget {
               ),
             RowItem(
               text: Text(l10n.cricticalChanceTitle),
-              child: Text('''
-${(projectileWeapon.criticalChance * 100).roundToDouble()}%'''),
+              child: Text(
+                '${(projectileWeapon.criticalChance * 100).roundToDouble()}%',
+              ),
             ),
             RowItem(
               text: Text(l10n.cricticalMultiplierTitle),
@@ -85,8 +86,9 @@ ${(projectileWeapon.criticalChance * 100).roundToDouble()}%'''),
             ),
             RowItem(
               text: Text(l10n.statusChanceTitle),
-              child: Text('''
-${(projectileWeapon.statusChance * 100).roundToDouble()}%'''),
+              child: Text(
+                '${(projectileWeapon.statusChance * 100).roundToDouble()}%',
+              ),
             ),
             if (projectileWeapon.trigger != null)
               RowItem(
@@ -124,7 +126,7 @@ class MeleeStats extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
-    final totalDamage = roundDouble(meleeWeapon.totalDamage.toDouble(), 1);
+    final totalDamage = roundDouble(meleeWeapon.totalDamage, 1);
 
     return Column(
       children: [
@@ -161,7 +163,8 @@ class MeleeStats extends StatelessWidget {
             RowItem(
               text: Text(l10n.cricticalChanceTitle),
               child: Text(
-                  '${(meleeWeapon.criticalChance * 100).roundToDouble()}%'),
+                '${(meleeWeapon.criticalChance * 100).roundToDouble()}%',
+              ),
             ),
             RowItem(
               text: Text(l10n.cricticalMultiplierTitle),
@@ -209,28 +212,30 @@ class MeleeStats extends StatelessWidget {
           title: l10n.heavyAttackTitle,
           contentPadding: EdgeInsets.zero,
         ),
-        Stats(stats: [
-          RowItem(
-            text: Text(l10n.damageTitle),
-            child: Text('${meleeWeapon.heavyAttackDamage}'),
-          ),
-          RowItem(
-            text: Text(l10n.heavySlamAttackTitle),
-            child: Text('${meleeWeapon.heavySlamAttack}'),
-          ),
-          RowItem(
-            text: Text(l10n.heavySlamRadialDamageTitle),
-            child: Text('${meleeWeapon.heavySlamRadialDamage}'),
-          ),
-          RowItem(
-            text: Text(l10n.heavySlamRadiusTitle),
-            child: Text('${meleeWeapon.heavySlamRadius?.toDouble() ?? 0}'),
-          ),
-          RowItem(
-            text: Text(l10n.windUpTitle),
-            child: Text('${meleeWeapon.windUp?.toStringAsFixed(2) ?? 0}'),
-          ),
-        ]),
+        Stats(
+          stats: [
+            RowItem(
+              text: Text(l10n.damageTitle),
+              child: Text('${meleeWeapon.heavyAttackDamage}'),
+            ),
+            RowItem(
+              text: Text(l10n.heavySlamAttackTitle),
+              child: Text('${meleeWeapon.heavySlamAttack}'),
+            ),
+            RowItem(
+              text: Text(l10n.heavySlamRadialDamageTitle),
+              child: Text('${meleeWeapon.heavySlamRadialDamage}'),
+            ),
+            RowItem(
+              text: Text(l10n.heavySlamRadiusTitle),
+              child: Text('${meleeWeapon.heavySlamRadius?.toDouble() ?? 0}'),
+            ),
+            RowItem(
+              text: Text(l10n.windUpTitle),
+              child: Text('${meleeWeapon.windUp?.toStringAsFixed(2) ?? 0}'),
+            ),
+          ],
+        ),
         SizedBoxSpacer.spacerHeight16,
         CategoryTitle(
           title: l10n.damageTitle,
@@ -263,9 +268,10 @@ class RivenDisposition extends StatelessWidget {
       child: Container(
         constraints: const BoxConstraints.expand(width: 15, height: 15),
         decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            border: Border.all(color: color),
-            color: enable ? color : Colors.transparent),
+          shape: BoxShape.circle,
+          border: Border.all(color: color),
+          color: enable ? color : Colors.transparent,
+        ),
       ),
     );
   }

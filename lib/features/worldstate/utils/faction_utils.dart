@@ -45,17 +45,21 @@ const _infestIconColor = Color(0xFF2a3c2e);
 const _corruptedIconColor = Color(0xFFe9a835);
 
 SyndicateFaction syndicateStringToEnum(String faction) {
-  return SyndicateFaction.values.firstWhere((element) {
-    final syn = faction.toLowerCase();
+  return SyndicateFaction.values.firstWhere(
+    (element) {
+      final syn = faction.toLowerCase();
 
-    return syn.contains(element.toString().split('.').last);
-  }, orElse: () => SyndicateFaction.unknown);
+      return syn.contains(element.toString().split('.').last);
+    },
+    orElse: () => SyndicateFaction.unknown,
+  );
 }
 
 // Convert enum value to readable faction title
 String? _toTitle<T>(T value) {
   return toBeginningOfSentenceCase(
-      value.toString().split('.').last.replaceAll('_', ' '));
+    value.toString().split('.').last.replaceAll('_', ' '),
+  );
 }
 
 extension SyndicateFactionX on SyndicateFaction {
@@ -71,7 +75,7 @@ extension SyndicateFactionX on SyndicateFaction {
         return _nightwaveIconColor;
       case SyndicateFaction.cephalonSimaris:
         return _simarisIconColor;
-      default:
+      case SyndicateFaction.unknown:
         return Colors.white;
     }
   }
@@ -88,7 +92,7 @@ extension SyndicateFactionX on SyndicateFaction {
         return _simarisBackgroundColor;
       case SyndicateFaction.nightwave:
         return _nightwaveBackgroundColor;
-      default:
+      case SyndicateFaction.unknown:
         return primary;
     }
   }
@@ -105,7 +109,7 @@ extension EnemyFactionX on EnemyFaction {
         return _corpusIconColor;
       case EnemyFaction.corrupted:
         return _corruptedIconColor;
-      default:
+      case EnemyFaction.infested:
         return _infestIconColor;
     }
   }

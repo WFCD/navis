@@ -40,35 +40,45 @@ class SyndicatePage extends TraceableStatelessWidget {
     return BlocBuilder<SolsystemBloc, SolsystemState>(
       buildWhen: _buildWhen,
       builder: (context, state) {
-        final worldstate = (state as SolState).worldstate;
+        if (state is SolState) {
+          final worldstate = state.worldstate;
 
-        return ScreenTypeLayout.builder(
-          mobile: (_) => SyndicatePageMobile(
-            syndicates: worldstate.syndicateMissions,
-            nightwave: worldstate.nightwave,
-          ),
-          tablet: (_) => SyndicatePageTablet(
-            syndicates: worldstate.syndicateMissions,
-            nightwave: worldstate.nightwave,
-          ),
+          return ScreenTypeLayout.builder(
+            mobile: (_) => SyndicatePageMobile(
+              syndicates: worldstate.syndicateMissions,
+              nightwave: worldstate.nightwave,
+            ),
+            tablet: (_) => SyndicatePageTablet(
+              syndicates: worldstate.syndicateMissions,
+              nightwave: worldstate.nightwave,
+            ),
+          );
+        }
+
+        return const Center(
+          child: CircularProgressIndicator.adaptive(),
         );
       },
     );
   }
 }
 
-Widget _buildSyndicates(List<Syndicate> syndicates,
-    {void Function(Syndicate)? onTap}) {
+Widget _buildSyndicates(
+  List<Syndicate> syndicates, {
+  void Function(Syndicate)? onTap,
+}) {
   return Column(
     children: <Widget>[
       CountdownBanner(
         message: 'Bounties expire in:',
         time: syndicates.first.expiry!,
       ),
-      ...syndicates.map<SyndicateCard>((syn) => SyndicateCard(
-            syndicate: syn,
-            onTap: onTap == null ? null : () => onTap(syn),
-          )),
+      ...syndicates.map<SyndicateCard>(
+        (syn) => SyndicateCard(
+          syndicate: syn,
+          onTap: onTap == null ? null : () => onTap(syn),
+        ),
+      ),
     ],
   );
 }
@@ -165,16 +175,17 @@ class _SyndicatePageTabletState extends State<SyndicatePageTablet> {
         Expanded(
           child: Center(
             child: StreamBuilder<Widget>(
-                initialData: Text(context.l10n.syndicateDualScreenTitle),
-                stream: _controller?.stream,
-                builder: (_, snapshot) {
-                  return AnimatedSwitcher(
-                    duration: kAnimationShort,
-                    switchInCurve: Curves.easeInCubic,
-                    switchOutCurve: Curves.easeOutCubic,
-                    child: snapshot.data,
-                  );
-                }),
+              initialData: Text(context.l10n.syndicateDualScreenTitle),
+              stream: _controller?.stream,
+              builder: (_, snapshot) {
+                return AnimatedSwitcher(
+                  duration: kAnimationShort,
+                  switchInCurve: Curves.easeInCubic,
+                  switchOutCurve: Curves.easeOutCubic,
+                  child: snapshot.data,
+                );
+              },
+            ),
           ),
         )
       ],

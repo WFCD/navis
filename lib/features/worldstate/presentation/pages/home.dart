@@ -24,28 +24,25 @@ class HomeFeedPage extends StatelessWidget {
         return l10n.invasionsTitle;
       case Tabs.syndicates:
         return l10n.syndicatesTitle;
-      default:
+      case Tabs.timers:
         return l10n.timersTitle;
     }
   }
 
   void listener(BuildContext context, SolsystemState state) {
-    const displayDuration = Duration(seconds: 50);
-
     if (state is SystemError) {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text(state.message),
-        duration: displayDuration,
-      ));
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text(state.message)));
     } else if (state is SolState) {
       final now = DateTime.now();
       final timestamp = state.worldstate.timestamp;
 
       if (timestamp.difference(now) >= const Duration(minutes: 30)) {
-        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-          content: Text('Worldstate is out of date by more then 30 mins'),
-          duration: displayDuration,
-        ));
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Worldstate is out of date by more then 30 mins'),
+          ),
+        );
       }
     }
   }
@@ -82,7 +79,8 @@ class HomeFeedPage extends StatelessWidget {
             ];
           },
           body: TabBarView(
-              children: Tabs.values.map((e) => _TabView(tab: e)).toList()),
+            children: Tabs.values.map((e) => _TabView(tab: e)).toList(),
+          ),
         ),
       ),
     );
@@ -99,34 +97,37 @@ class _TabView extends StatelessWidget {
     return SafeArea(
       top: false,
       bottom: false,
-      child: Builder(builder: (context) {
-        return CustomScrollView(
-          key: PageStorageKey<String>(tab.toString()),
-          slivers: [
-            SliverOverlapInjector(
-              // This is the flip side of the SliverOverlapAbsorber above.
-              handle: NestedScrollView.sliverOverlapAbsorberHandleFor(context),
-            ),
-            SliverFillRemaining(
-              child: RefreshIndicator(
-                onRefresh: BlocProvider.of<SolsystemBloc>(context).update,
-                child: () {
-                  switch (tab) {
-                    case Tabs.timers:
-                      return const Timers();
-                    case Tabs.fissures:
-                      return const FissuresPage();
-                    case Tabs.invasions:
-                      return const InvasionsPage();
-                    default:
-                      return const SyndicatePage();
-                  }
-                }(),
+      child: Builder(
+        builder: (context) {
+          return CustomScrollView(
+            key: PageStorageKey<String>(tab.toString()),
+            slivers: [
+              SliverOverlapInjector(
+                // This is the flip side of the SliverOverlapAbsorber above.
+                handle:
+                    NestedScrollView.sliverOverlapAbsorberHandleFor(context),
               ),
-            )
-          ],
-        );
-      }),
+              SliverFillRemaining(
+                child: RefreshIndicator(
+                  onRefresh: BlocProvider.of<SolsystemBloc>(context).update,
+                  child: () {
+                    switch (tab) {
+                      case Tabs.timers:
+                        return const Timers();
+                      case Tabs.fissures:
+                        return const FissuresPage();
+                      case Tabs.invasions:
+                        return const InvasionsPage();
+                      case Tabs.syndicates:
+                        return const SyndicatePage();
+                    }
+                  }(),
+                ),
+              )
+            ],
+          );
+        },
+      ),
     );
   }
 }

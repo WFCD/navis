@@ -37,10 +37,12 @@ class DarvodealBloc extends HydratedBloc<DarvodealEvent, DarvodealState> {
       final request = DealRequest(event.deal.id!, event.deal.item);
       final either = await getDarvoDealInfo(request);
 
-      emit(either.match(
-        (r) => DarvoDealLoaded(r),
-        (l) => const DarvoDealLoaded(unknownItem),
-      ));
+      emit(
+        either.match(
+          (r) => DarvoDealLoaded(r),
+          (l) => const DarvoDealLoaded(unknownItem),
+        ),
+      );
     }
   }
 

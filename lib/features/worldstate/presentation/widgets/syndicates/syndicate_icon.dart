@@ -26,14 +26,15 @@ class GetSyndicateIcon extends StatelessWidget {
             return SyndicateGlyphs.nightwave;
           case SyndicateFaction.cephalonSimaris:
             return SyndicateGlyphs.simaris;
-          default:
+          case SyndicateFaction.unknown:
             return NavisSysIcons.nightmare;
         }
       }(),
       size: getValueForScreenType(
-          context: context,
-          mobile: (mediaQuery.size.longestSide / 100) * 7,
-          tablet: (mediaQuery.size.shortestSide / 100) * 8),
+        context: context,
+        mobile: (mediaQuery.size.longestSide / 100) * 7,
+        tablet: (mediaQuery.size.shortestSide / 100) * 8,
+      ),
       color: syndicate.iconColor,
     );
   }

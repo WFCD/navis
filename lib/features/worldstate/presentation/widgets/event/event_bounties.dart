@@ -44,8 +44,9 @@ class EventBounties extends StatelessWidget {
           ),
           actions: <Widget>[
             TextButton(
-                onPressed: () => Navigator.pop(context),
-                child: Text(MaterialLocalizations.of(context).closeButtonLabel))
+              onPressed: () => Navigator.pop(context),
+              child: Text(MaterialLocalizations.of(context).closeButtonLabel),
+            )
           ],
         );
       },
@@ -59,14 +60,16 @@ class EventBounties extends StatelessWidget {
         theme.textTheme.subtitle1?.copyWith(color: theme.colorScheme.secondary);
 
     return CustomCard(
-      child: Column(children: <Widget>[
-        CategoryTitle(
-          title: context.l10n.bountyTitle,
-          style: category,
-        ),
-        SizedBoxSpacer.spacerHeight2,
-        ..._buildBounties(context)
-      ]),
+      child: Column(
+        children: <Widget>[
+          CategoryTitle(
+            title: context.l10n.bountyTitle,
+            style: category,
+          ),
+          SizedBoxSpacer.spacerHeight2,
+          ..._buildBounties(context)
+        ],
+      ),
     );
   }
 }

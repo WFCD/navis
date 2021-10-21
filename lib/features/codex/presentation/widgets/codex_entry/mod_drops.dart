@@ -13,10 +13,12 @@ class ModDropLocations extends StatelessWidget {
 
     return Column(
       children: drops
-          .map<Widget>((e) => ListTile(
-                title: Text(e.location),
-                subtitle: Text('Drop chance ${e.chance! * 100}'),
-              ))
+          .map<Widget>(
+            (e) => ListTile(
+              title: Text(e.location),
+              subtitle: Text('Drop chance ${e.chance! * 100}'),
+            ),
+          )
           .toList(),
     );
   }

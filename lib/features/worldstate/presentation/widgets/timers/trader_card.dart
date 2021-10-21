@@ -42,36 +42,39 @@ class TraderCard extends StatelessWidget {
 
         return CustomCard(
           title: l10n.baroTitle,
-          child: Column(children: <Widget>[
-            RowItem(
-              text: Text(trader.active ? l10n.baroLeaving : l10n.baroArriving),
-              padding: padding,
-              child: CountdownTimer(
-                expiry: trader.active ? trader.expiry! : trader.activation!,
-              ),
-            ),
-            if (trader.active)
+          child: Column(
+            children: <Widget>[
               RowItem(
-                text: Text(l10n.baroLocation),
+                text:
+                    Text(trader.active ? l10n.baroLeaving : l10n.baroArriving),
                 padding: padding,
-                child: StaticBox.text(
-                  text: trader.location,
-                  color: primary,
+                child: CountdownTimer(
+                  expiry: trader.active ? trader.expiry! : trader.activation!,
                 ),
               ),
-            RowItem(
-              text: Text(
-                trader.active ? l10n.baroLeavesOn : l10n.baroArrivesOn,
+              if (trader.active)
+                RowItem(
+                  text: Text(l10n.baroLocation),
+                  padding: padding,
+                  child: StaticBox.text(
+                    text: trader.location,
+                    color: primary,
+                  ),
+                ),
+              RowItem(
+                text: Text(
+                  trader.active ? l10n.baroLeavesOn : l10n.baroArrivesOn,
+                ),
+                padding: padding,
+                child: StaticBox.text(
+                  color: primary,
+                  text: formattedDate,
+                ),
               ),
-              padding: padding,
-              child: StaticBox.text(
-                color: primary,
-                text: formattedDate,
-              ),
-            ),
-            SizedBoxSpacer.spacerHeight2,
-            if (trader.active) _buildButton(context, trader.inventory)
-          ]),
+              SizedBoxSpacer.spacerHeight2,
+              if (trader.active) _buildButton(context, trader.inventory)
+            ],
+          ),
         );
       },
     );

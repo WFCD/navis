@@ -8,18 +8,19 @@ class InventoryDataSource extends DataTableSource {
 
   @override
   DataRow? getRow(int index) {
-    assert(index >= 0);
+    assert(index >= 0, 'index should not be less then zero. value was $index');
     if (index >= inventory.length) return null;
 
     final product = inventory[index];
 
     return DataRow.byIndex(
-        index: index,
-        cells: <DataCell>[
-          DataCell(Text(product.item), onTap: () {}),
-          DataCell(Text('${product.ducats}'), onTap: () {}),
-          DataCell(Text('${product.credits}cr'), onTap: () {})
-        ]);
+      index: index,
+      cells: <DataCell>[
+        DataCell(Text(product.item), onTap: () {}),
+        DataCell(Text('${product.ducats}'), onTap: () {}),
+        DataCell(Text('${product.credits}cr'), onTap: () {})
+      ],
+    );
   }
 
   @override

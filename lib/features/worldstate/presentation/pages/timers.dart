@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:matomo/matomo.dart';
-import '../../../../core/widgets/bloc_progress_loader.dart';
 
+import '../../../../core/widgets/bloc_progress_loader.dart';
 import '../bloc/solsystem_bloc.dart';
 import '../widgets/timers/timers.dart';
 
@@ -21,6 +21,7 @@ class MobileTimers extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilerProgressLoader<SolsystemBloc, SolsystemState>(
+      isLoaded: (state) => state is SolState,
       buildWhen: (p, n) {
         if (p is SolState && n is SolState) {
           final previous = p;
@@ -35,7 +36,6 @@ class MobileTimers extends StatelessWidget {
 
         return p is! SolState && n is SolState;
       },
-      isLoaded: (state) => state is SolState,
       builder: (context, state) {
         final _state = state as SolState;
 

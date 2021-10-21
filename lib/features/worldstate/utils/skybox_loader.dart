@@ -6,8 +6,8 @@ String? getSkybox(String node) {
 
   if (nodeBackground != null) {
     return Uri.parse(
-            '$caravaggio/$baseUrl/${nodeBackground.replaceAll(' ', '_')}.webp')
-        .toString();
+      '$caravaggio/$baseUrl/${nodeBackground.replaceAll(' ', '_')}.webp',
+    ).toString();
   } else {
     return null;
   }

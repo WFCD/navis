@@ -39,23 +39,23 @@ class UserSettingsNotifier extends ChangeNotifier {
     notifyListeners();
   }
 
-  void toggleBackKey(bool value) {
+  void toggleBackKey({required bool value}) {
     _usersettings.backkey = value;
     notifyListeners();
   }
 
-  void setOptOut(bool value) {
+  void setOptOut({required bool value}) {
     _usersettings.isOptOut = value;
     notifyListeners();
   }
 
-  void setFirstTime(bool value) {
+  void setFirstTime({required bool value}) {
     _usersettings.isFirstTime = value;
     notifyListeners();
   }
 
-  void setToggle(String key, bool value) {
-    _usersettings.setToggle(key, value);
+  void setToggle(String key, {required bool value}) {
+    _usersettings.setToggle(key, value: value);
     notifyListeners();
   }
 }

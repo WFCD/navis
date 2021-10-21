@@ -59,7 +59,8 @@ class BasicItemInfo extends SliverPersistentHeaderDelegate {
               TextButton(
                 style: ButtonStyle(
                   foregroundColor: MaterialStateProperty.all(
-                      Theme.of(context).textTheme.button?.color),
+                    Theme.of(context).textTheme.button?.color,
+                  ),
                 ),
                 onPressed: () => wikiaUrl?.launchLink(context),
                 child: Text(context.l10n.seeWikia),

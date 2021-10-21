@@ -4,9 +4,11 @@ import '../../../presentation/widgets/common/background_image.dart';
 import '../../../utils/skybox_loader.dart';
 
 class AcolyteAppBar extends StatelessWidget {
-  const AcolyteAppBar(
-      {Key? key, required this.acolyteName, required this.region})
-      : super(key: key);
+  const AcolyteAppBar({
+    Key? key,
+    required this.acolyteName,
+    required this.region,
+  }) : super(key: key);
 
   final String acolyteName;
   final String region;

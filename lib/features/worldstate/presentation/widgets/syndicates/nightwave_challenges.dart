@@ -24,20 +24,22 @@ class NightwaveChalleneges extends StatelessWidget {
           final weekly = state.nightwaveWeeklies
               .map<NightwaveChallenge>((c) => NightwaveChallenge(challenge: c));
 
-          return ListView(children: <Widget>[
-            padding,
-            CategoryTitle(
-              title: context.l10n.dailyNightwaveTitle,
-              style: style,
-            ),
-            ...daily,
-            padding,
-            CategoryTitle(
-              title: context.l10n.weeklyNightwaveTitle,
-              style: style,
-            ),
-            ...weekly
-          ]);
+          return ListView(
+            children: <Widget>[
+              padding,
+              CategoryTitle(
+                title: context.l10n.dailyNightwaveTitle,
+                style: style,
+              ),
+              ...daily,
+              padding,
+              CategoryTitle(
+                title: context.l10n.weeklyNightwaveTitle,
+                style: style,
+              ),
+              ...weekly
+            ],
+          );
         }
 
         return const Center(child: CircularProgressIndicator());

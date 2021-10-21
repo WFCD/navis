@@ -35,15 +35,17 @@ final GetIt sl = GetIt.instance;
 bool _isDebug = false;
 
 Future<void> init() async {
-  assert(_isDebug = true);
+  assert(_isDebug = true, 'Set debug flage to true under debug mode');
   // Core
   sl
     ..registerSingleton<NetworkInfo>(
-        NetworkInfoImpl(InternetConnectionChecker()))
+      NetworkInfoImpl(InternetConnectionChecker()),
+    )
     ..registerSingletonAsync<EventInfoParser>(EventInfoParser.loadEventData)
     ..registerSingletonAsync<PackageInfo>(PackageInfo.fromPlatform)
     ..registerSingleton<NotificationService>(
-        _isDebug ? NotificationServiceDebug() : NotificationServiceRelease())
+      _isDebug ? NotificationServiceDebug() : NotificationServiceRelease(),
+    )
 
     // Data sources
     ..registerSingletonAsync(Usersettings.initUsersettings)
@@ -57,9 +59,11 @@ Future<void> init() async {
 
   // Repository
   sl
-    ..registerSingleton<UserSettingsNotifier>(UserSettingsNotifier(
-      sl<Usersettings>(),
-    ))
+    ..registerSingleton<UserSettingsNotifier>(
+      UserSettingsNotifier(
+        sl<Usersettings>(),
+      ),
+    )
     ..registerSingleton<WorldstateRepository>(
       WorldstateRepositoryImpl(
         sl<NetworkInfo>(),
@@ -69,14 +73,21 @@ Future<void> init() async {
     )
     ..registerSingleton<SynthRepository>(SynthRepositoryImpl(sl<NetworkInfo>()))
     ..registerSingleton<CodexRepository>(CodexRepositoryImpl(sl<NetworkInfo>()))
-    ..registerSingleton<MarketRepository>(MarketRepositoryImpl(
-        sl<NetworkInfo>(), sl<Usersettings>(), sl<MarketCache>()))
+    ..registerSingleton<MarketRepository>(
+      MarketRepositoryImpl(
+        sl<NetworkInfo>(),
+        sl<Usersettings>(),
+        sl<MarketCache>(),
+      ),
+    )
 
     // Usecases
     ..registerSingleton<GetWorldstate>(
-        GetWorldstate(sl<WorldstateRepository>()))
+      GetWorldstate(sl<WorldstateRepository>()),
+    )
     ..registerSingleton<GetDarvoDealInfo>(
-        GetDarvoDealInfo(sl<WorldstateRepository>()))
+      GetDarvoDealInfo(sl<WorldstateRepository>()),
+    )
     ..registerSingleton<GetSynthTargets>(GetSynthTargets(sl<SynthRepository>()))
     ..registerSingleton<SearchItems>(SearchItems(sl<CodexRepository>()))
     ..registerSingleton<GetOrders>(GetOrders(sl<MarketRepository>()))

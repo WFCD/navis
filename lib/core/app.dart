@@ -58,7 +58,9 @@ class _NavisAppState extends State<NavisApp> with WidgetsBindingObserver {
   }
 
   Locale localeResolutionCallback(
-      Locale? locale, Iterable<Locale> supportedLocales) {
+    Locale? locale,
+    Iterable<Locale> supportedLocales,
+  ) {
     Locale? _locale;
 
     for (final supportedLocale in supportedLocales) {

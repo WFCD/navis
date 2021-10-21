@@ -70,7 +70,10 @@ class FaIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    assert(this.textDirection != null || debugCheckHasDirectionality(context));
+    assert(
+      this.textDirection != null || debugCheckHasDirectionality(context),
+      'textDirection cannot be null',
+    );
     final textDirection = this.textDirection ?? Directionality.of(context);
 
     final iconTheme = IconTheme.of(context);

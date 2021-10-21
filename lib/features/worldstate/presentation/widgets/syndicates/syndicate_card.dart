@@ -18,9 +18,10 @@ class SyndicateCard extends StatelessWidget {
     this.syndicate,
     this.onTap,
   })  : assert(
-            syndicate != null || name != null,
-            'If name is null then it will default\n'
-            'to Syndicate.id instead, only one can be null but not both'),
+          syndicate != null || name != null,
+          'If name is null then it will default\n'
+          'to Syndicate.id instead, only one can be null but not both',
+        ),
         super(key: key);
 
   final String? name, caption;
@@ -31,13 +32,10 @@ class SyndicateCard extends StatelessWidget {
   void _onTap(BuildContext context) {
     final _syndicate = syndicateStringToEnum(syndicate?.id ?? name!);
 
-    switch (_syndicate) {
-      case SyndicateFaction.nightwave:
-        Navigator.of(context).pushNamed(NightwavesPage.route);
-        break;
-      default:
-        Navigator.of(context)
-            .pushNamed(BountiesPage.route, arguments: syndicate);
+    if (_syndicate == SyndicateFaction.nightwave) {
+      Navigator.of(context).pushNamed(NightwavesPage.route);
+    } else {
+      Navigator.of(context).pushNamed(BountiesPage.route, arguments: syndicate);
     }
   }
 
@@ -54,30 +52,32 @@ class SyndicateCard extends StatelessWidget {
         ?.copyWith(color: Typography.whiteMountainView.caption?.color);
 
     return ResponsiveBuilder(
-        builder: (BuildContext context, SizingInformation sizing) {
-      return InkWell(
-        onTap: onTap ?? () => _onTap(context),
-        customBorder:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
-        child: CustomCard(
-          color: syndicateName.backgroundColor,
-          child: Padding(
-            padding: EdgeInsets.symmetric(
-              vertical: (mediaQuery.size.longestSide / 100) * 1.5,
-            ),
-            child: ListTile(
-              leading: GetSyndicateIcon(syndicate: syndicateName),
-              title: Text(
+      builder: (BuildContext context, SizingInformation sizing) {
+        return InkWell(
+          onTap: onTap ?? () => _onTap(context),
+          customBorder:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
+          child: CustomCard(
+            color: syndicateName.backgroundColor,
+            child: Padding(
+              padding: EdgeInsets.symmetric(
+                vertical: (mediaQuery.size.longestSide / 100) * 1.5,
+              ),
+              child: ListTile(
+                leading: GetSyndicateIcon(syndicate: syndicateName),
+                title: Text(
                   syndicate?.name.replaceFirst('Syndicate', '') ?? name!,
-                  style: titleStyle),
-              subtitle: Text(
-                caption ?? context.l10n.tapForMoreDetails,
-                style: captionStyle,
+                  style: titleStyle,
+                ),
+                subtitle: Text(
+                  caption ?? context.l10n.tapForMoreDetails,
+                  style: captionStyle,
+                ),
               ),
             ),
           ),
-        ),
-      );
-    });
+        );
+      },
+    );
   }
 }

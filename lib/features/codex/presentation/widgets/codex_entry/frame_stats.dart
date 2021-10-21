@@ -41,40 +41,43 @@ class FrameStats extends StatelessWidget {
         const CategoryTitle(title: 'Stats', contentPadding: EdgeInsets.zero),
         if (powerSuit is Warframe) _passive(context),
         SizedBoxSpacer.spacerHeight16,
-        Stats(stats: <RowItem>[
-          if (powerSuit is Warframe && (powerSuit as Warframe).aura != null)
+        Stats(
+          stats: <RowItem>[
+            if (powerSuit is Warframe && (powerSuit as Warframe).aura != null)
+              RowItem(
+                text: Text(l10n.auraTitle),
+                child: Polarity(polarity: (powerSuit as Warframe).aura!),
+              ),
+            if (powerSuit.polarities?.isNotEmpty ?? false)
+              RowItem(
+                text: Text(l10n.preinstalledPolarities),
+                child: PreinstalledPolarties(polarities: powerSuit.polarities!),
+              ),
             RowItem(
-              text: Text(l10n.auraTitle),
-              child: Polarity(polarity: (powerSuit as Warframe).aura!),
+              text: Text(l10n.shieldTitle),
+              child: Text('${powerSuit.shield}'),
             ),
-          if (powerSuit.polarities?.isNotEmpty ?? false)
             RowItem(
-              text: Text(l10n.preinstalledPolarities),
-              child: PreinstalledPolarties(polarities: powerSuit.polarities!),
+              text: Text(l10n.armorTitle),
+              child: Text('${powerSuit.armor}'),
             ),
-          RowItem(
-            text: Text(l10n.shieldTitle),
-            child: Text('${powerSuit.shield}'),
-          ),
-          RowItem(
-            text: Text(l10n.armorTitle),
-            child: Text('${powerSuit.armor}'),
-          ),
-          RowItem(
-            text: Text(l10n.healthTitle),
-            child: Text('${powerSuit.health}'),
-          ),
-          RowItem(
-            text: Text(l10n.powerTitle),
-            child: Text('${powerSuit.power}'),
-          ),
-          if (powerSuit is PlayerUsuablePowerSuit)
             RowItem(
-              text: Text(l10n.sprintSpeedTitle),
-              child:
-                  Text('${(powerSuit as PlayerUsuablePowerSuit).sprintSpeed}'),
+              text: Text(l10n.healthTitle),
+              child: Text('${powerSuit.health}'),
             ),
-        ]),
+            RowItem(
+              text: Text(l10n.powerTitle),
+              child: Text('${powerSuit.power}'),
+            ),
+            if (powerSuit is PlayerUsuablePowerSuit)
+              RowItem(
+                text: Text(l10n.sprintSpeedTitle),
+                child: Text(
+                  '${(powerSuit as PlayerUsuablePowerSuit).sprintSpeed}',
+                ),
+              ),
+          ],
+        ),
         SizedBoxSpacer.spacerHeight16,
         if (powerSuit is PlayerUsuablePowerSuit) ...{
           CategoryTitle(
