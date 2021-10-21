@@ -68,7 +68,8 @@ jobs:
         run: |
           flutter build apk \
           --dart-define=SENTRY_DSN=$SENTRY_DSN --dart-define=MATOMO_URL=$MATOMO_URL \
-          -t lib/main_production.dart --split-per-abi
+          -t lib/main_production.dart --split-per-abi \
+          --obfuscate --split-debug-info=debug_info
 
       - name: Github Releases Deploy
         uses: xresloader/upload-to-github-release@v1
