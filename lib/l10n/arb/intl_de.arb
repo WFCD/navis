@@ -226,7 +226,7 @@
         "type": "text",
         "placeholders": {}
     },
-    "cambionCycleTitle": "Cambion Cycle",
+    "cambionCycleTitle": "Cambion Zyklus",
     "@cambionCycleTitle": {
         "description": "Cambion Cycle title",
         "type": "text",
@@ -286,7 +286,7 @@
         "typ": "text",
         "placeholders": {}
     },
-    "backOpensDrawerTitle": "Back button opens drawer",
+    "backOpensDrawerTitle": "Zurück-Taste öffnet die Übersicht",
     "@backOpensDrawerTitle": {
         "description": "Title for the option that allows back button to open the drawer",
         "type": "text",
@@ -424,7 +424,7 @@
         "type": "text",
         "placeholders": {}
     },
-    "acolytesNotificationDescription": "Notifies when an acolyte is found.",
+    "acolytesNotificationDescription": "Benachrichtigt wenn ein Akolyte gefunden wurde.",
     "@acolytesNotificationDescription": {
         "description": "Main description for acolyte notifications",
         "type": "text",
@@ -558,7 +558,7 @@
         "type": "text",
         "placeholders": {}
     },
-    "issueTrackerTitle": "issues tracker",
+    "issueTrackerTitle": "Fehler-Tracker",
     "@issueTrackerTitle": {
         "description": "Display link to Navis's issue tracker",
         "type": "text",
@@ -678,7 +678,7 @@
         "typ": "text",
         "placeholders": {}
     },
-    "powerTitle": "Power",
+    "powerTitle": "Kraft",
     "@powerTitle": {
         "description": "Title for power value",
         "typ": "text",
@@ -810,7 +810,7 @@
         "type": "text",
         "placeholders": {}
     },
-    "followThroughTitle": "Follow Through",
+    "followThroughTitle": "Durchschlag",
     "@followThroughTitle": {
         "description": "Melee follow through title",
         "type": "text",
@@ -822,13 +822,13 @@
         "type": "text",
         "placeholders": {}
     },
-    "slamAttackTitle": "Slam Attack",
+    "slamAttackTitle": "Slam Attacke",
     "@slamAttackTitle": {
         "description": "Melee's slam attack",
         "type": "text",
         "placeholders": {}
     },
-    "slamRadialDamageTitle": "Slam Radial Damage",
+    "slamRadialDamageTitle": "Slam Angriff Schaden",
     "@slamRadialDamageTitle": {
         "description": "Melee's Slam Radial Damage",
         "type": "text",
@@ -840,7 +840,7 @@
         "type": "text",
         "placeholders": {}
     },
-    "slideAttackTitle": "Slide Attack",
+    "slideAttackTitle": "Slide Angriff",
     "@slideAttackTitle": {
         "description": "Melee's slide attack",
         "type": "text",
@@ -852,19 +852,19 @@
         "type": "text",
         "placeholders": {}
     },
-    "heavySlamAttackTitle": "Heavy Slam Attack",
+    "heavySlamAttackTitle": "Schwerer Slam Angriff",
     "@heavySlamAttackTitle": {
         "description": "Heavy Slam attack title",
         "type": "text",
         "placeholders": {}
     },
-    "heavySlamRadialDamageTitle": "Heavy Slam Radial Damage",
+    "heavySlamRadialDamageTitle": "Schwerer Slam Angriff Schaden",
     "@heavySlamRadialDamageTitle": {
         "description": "Heavy Slam attack title",
         "type": "text",
         "placeholders": {}
     },
-    "heavySlamRadiusTitle": "Heavy Slam Radius",
+    "heavySlamRadiusTitle": "Schwerer Slam Radius",
     "@heavySlamRadiusTitle": {
         "description": "Heavy Slam attack title",
         "type": "text",
@@ -894,7 +894,7 @@
         "type": "text",
         "placeholders": {}
     },
-    "optOutOfAnalyticsTitle": "Opt out of analytics",
+    "optOutOfAnalyticsTitle": "Verlassen der Statistiken",
     "@optOutOfAnalyticsTitle": {
         "description": "Title opting out of analytics",
         "type": "text",
