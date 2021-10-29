@@ -540,19 +540,19 @@
         "type": "text",
         "placeholders": {}
     },
-    "legalese": "Warframe and the Warframe logo are registered trademarks of Digital Extremes Ltd. Cephalon Navis nor WFCD are affiliated with Digital Extremes Ltd. in any way.",
+    "legalese": "Warframe und das Warframe Logo sind eingetragene Warenzeichen von Digital Extremes Ltd. Weder Cephalon Navis oder WFCD sind in irgendeiner Weise mit Digital Extremes Ltd. verbunden.",
     "@legalese": {
         "description": "Cephalon Navis legalese",
         "type": "text",
         "placeholders": {}
     },
-    "homePageTitle": "Homepage",
+    "homePageTitle": "Webseite",
     "@homePageTitle": {
         "description": "Displayes a link to Navis's homepage",
         "type": "text",
         "placeholders": {}
     },
-    "issueTrackerDescription": "Report issues or feature request for this project's",
+    "issueTrackerDescription": "Melde Probleme oder stelle Anfragen für dieses Projekt",
     "@issueTrackerDescription": {
         "description": "Description for Navis's issue tracker",
         "type": "text",
@@ -564,19 +564,19 @@
         "type": "text",
         "placeholders": {}
     },
-    "warframeLinkTitle": "More information on Warframe can be found on their official site",
+    "warframeLinkTitle": "Weitere Informationen zu Warframe finden Sie auf ihrer offiziellen Webseite",
     "@warframeLinkTitle": {
         "description": "Description for Warframe's main site link",
         "type": "text",
         "placeholders": {}
     },
-    "settingsTitle": "Settings",
+    "settingsTitle": "Einstellungen",
     "@settingsTitle": {
         "description": "Settings title",
         "type": "text",
         "placeholders": {}
     },
-    "dailyRewardTitle": "Daily Reward Reset Timer",
+    "dailyRewardTitle": "Reset Timer für Tägliche Belohnungen",
     "@dailyRewardTitle": {
         "description": "Title for daily reward timer",
         "type": "text",
@@ -600,25 +600,25 @@
         "type": "text",
         "placeholders": {}
     },
-    "plainsofEidolonMapTitle": "Plains of Eidolon map",
+    "plainsofEidolonMapTitle": "Karte von den Ebenen von Eidolon",
     "@plainsofEidolonMapTitle": {
         "description": "Plains of Eidolon Map link title",
         "type": "text",
         "placholders": {}
     },
-    "orbVallisMapTitle": "Orb Vallis map",
+    "orbVallisMapTitle": "Karte von Orb Vallis",
     "@orbVallisMapTitle": {
         "description": "Orb Vallis Map link title",
         "type": "text",
         "placholders": {}
     },
-    "plainsofEidolonFishingDataTitle": "PoE: Fishing Data",
+    "plainsofEidolonFishingDataTitle": "Ebenen von Eidolon: Daten zum Angeln",
     "@plainsofEidolonFishingDataTitle": {
         "description": "Plains of Eidolon fishing data link title",
         "type": "text",
         "placholders": {}
     },
-    "orbVallisFishingDataTitle": "PoE: Fishing Data",
+    "orbVallisFishingDataTitle": "Ebenen von Eidolon: Daten zum Angeln",
     "@orbVallisFishingDataTitle": {
         "description": "Orb Vallis fishing data link title",
         "type": "text",
@@ -648,7 +648,7 @@
         "type": "text",
         "placeholders": {}
     },
-    "auraTitle": "Aura Polarity",
+    "auraTitle": "Aura Polarität",
     "@auraTitle": {
         "description": "Aura polarity title for items",
         "type": "text",
@@ -708,7 +708,7 @@
         "typ": "text",
         "placeholders": {}
     },
-    "masteryRequirementTitle": "Mastery Requirement",
+    "masteryRequirementTitle": "Meisterschaftsrang Anforderung",
     "@masteryRequirementTitle": {
         "description": "Mastery requirement for item",
         "type": "text",
@@ -726,13 +726,13 @@
         "type": "text",
         "placeholders": {}
     },
-    "cricticalChanceTitle": "Critical Chance",
+    "cricticalChanceTitle": "Kritische Chance",
     "@cricticalChanceTitle": {
         "description": "Weapon crictical chance",
         "type": "text",
         "placeholders": {}
     },
-    "cricticalMultiplierTitle": "Critcial Multiplier",
+    "cricticalMultiplierTitle": "Krit-Multiplikator",
     "@cricticalMultiplierTitle": {
         "description": "Weapon critical multiplier",
         "type": "text",
@@ -750,13 +750,13 @@
         "type": "text",
         "placeholders": {}
     },
-    "multishotTitle": "Multishot",
+    "multishotTitle": "Mehrfachschuss",
     "@multishotTitle": {
         "description": "Weapon multishot",
         "type": "text",
         "placeholders": {}
     },
-    "noiseTitle": "Noise",
+    "noiseTitle": "Lärm",
     "@noiseTitle": {
         "description": "Weapon noise type",
         "type": "text",
@@ -774,7 +774,7 @@
         "type": "text",
         "placeholders": {}
     },
-    "statusChanceTitle": "Status Chance",
+    "statusChanceTitle": "Statuschance",
     "@statusChanceTitle": {
         "description": "Weapon's status chance",
         "type": "text",
@@ -798,7 +798,7 @@
         "type": "text",
         "placeholders": {}
     },
-    "stancePolarityTitle": "Stance Polarity",
+    "stancePolarityTitle": "Haltungs-Polarität",
     "@stancePolarityTitle": {
         "description": "Melee stance polarity title",
         "type": "text",
