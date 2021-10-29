@@ -328,37 +328,37 @@
         "type": "text",
         "placeholders": {}
     },
-    "darvoNotificationTitle": "Darvo's Daily Deals",
+    "darvoNotificationTitle": "Tägliche Deals von Darvo",
     "@darvoNotificationTitle": {
         "description": "Notification title for darvo's daily deals",
         "type": "text",
         "placeholders": {}
     },
-    "darvoNotificationDescription": "Darvo's new find of the day.",
+    "darvoNotificationDescription": "Darvo's neue Entdeckung des Tages.",
     "@darvoNotificationDescription": {
         "description": "Notification description for Darvo's Daily Deal",
         "type": "text",
         "placeholders": {}
     },
-    "sortieNotificationTitle": "Sortie",
+    "sortieNotificationTitle": "Einsatz",
     "@sortieNotificationTitle": {
         "description": "Notification title for sorties",
         "type": "text",
         "placeholders": {}
     },
-    "sortieNotificationDescription": "Notifications for new sorties.",
+    "sortieNotificationDescription": "Benachrichtigungen für neue Einsätze.",
     "@sortieNotificationDescription": {
         "description": "description for sortie notification option",
         "type": "text",
         "placeholders": {}
     },
-    "sentientOutpostNotificationTitle": "Sentient Outpost",
+    "sentientOutpostNotificationTitle": "Sentient Außenposten",
     "@sentientOutpostNotificationTitle": {
         "description": "Notification title for sentient outpost",
         "type": "text",
         "placeholders": {}
     },
-    "sentientOutpostNotificationDescription": "Notifications for new sentient threats.",
+    "sentientOutpostNotificationDescription": "Benachrichtigungen für neue Sentient Bedrohungen.",
     "@sentientOutpostNotificationDescription": {
         "description": "Notification description for sentient outpost option",
         "type": "text",
@@ -370,55 +370,55 @@
         "type": "text",
         "placeholders": {}
     },
-    "warframeNewsNotificationTitle": "News",
+    "warframeNewsNotificationTitle": "Neuigkeiten",
     "@warframeNewsNotificationTitle": {
         "description": "Main Title for Warframe news notifications",
         "type": "text",
         "placeholders": {}
     },
-    "warframeNewsNotificationDescription": "News notifications for Prime Access, Streams and Updates.",
+    "warframeNewsNotificationDescription": "News-Benachrichtigungen für Prime Access, Streams und Updates.",
     "@warframeNewsNotificationDescription": {
         "description": "Main description for Warframe news notifications",
         "type": "text",
         "placeholders": {}
     },
-    "planetCyclesNotificationTitle": "Open World Cycles",
+    "planetCyclesNotificationTitle": "Open World Zyklus",
     "@planetCyclesNotificationTitle": {
         "description": "Main title for open world notifications",
         "type": "text",
         "placeholders": {}
     },
-    "planetCyclesNotificationDescription": "Open world notifications for their given cycles.",
+    "planetCyclesNotificationDescription": "Open world Benachrichtigungen für den jeweiligen Zyklus.",
     "@planetCyclesNotificationDescription": {
         "description": "Main description for open world notifications",
         "type": "text",
         "placeholders": {}
     },
-    "resourcesNotificationTitle": "Resources",
+    "resourcesNotificationTitle": "Ressourcen",
     "@resourcesNotificationTitle": {
         "description": "Main title for resource notifications",
         "type": "text",
         "placeholders": {}
     },
-    "resourcesNotificationDescription": "Resources mostly found in invasions.",
+    "resourcesNotificationDescription": "Ressourcen, die hauptsächlich in Invasionen gefunden werden.",
     "@resourcesNotificationDescription": {
         "description": "Main description for resource notifications",
         "type": "text",
         "placeholders": {}
     },
-    "fissuresNotificationTitle": "Fissure Missions",
+    "fissuresNotificationTitle": "Voidriss Missionen",
     "@fissuresNotificationTitle": {
         "description": "Main title for fisssures notifications",
         "type": "text",
         "placeholders": {}
     },
-    "fissuresNotificationDescription": "Filter fissure notifications by prefered mission type.",
+    "fissuresNotificationDescription": "Sortiere Voidrisse Benachrichtigungen nach bestimmten Missions Typ.",
     "@fissuresNotificationDescription": {
         "description": "Main description for fissures notifications",
         "type": "text",
         "placeholders": {}
     },
-    "acolytesNotificationTitle": "Acolytes",
+    "acolytesNotificationTitle": "Akolythen",
     "@acolytesNotificationTitle": {
         "description": "Main title for acolyte notifications",
         "type": "text",
@@ -430,25 +430,25 @@
         "type": "text",
         "placeholders": {}
     },
-    "earthDayOption": "Earth Day",
+    "earthDayOption": "Erde Tag",
     "@earthDayOption": {
         "description": "Earth cycle option",
         "type": "text",
         "placeholders": {}
     },
-    "earthNightOption": "Earth Night",
+    "earthNightOption": "Erde Nacht",
     "@earthNightOption": {
         "description": "Earth cycle option",
         "type": "text",
         "placeholders": {}
     },
-    "cetusDayOption": "Cetus Day",
+    "cetusDayOption": "Cetus Tag",
     "@cetusDayOption": {
         "description": "Cetus cycle option",
         "type": "text",
         "placeholders": {}
     },
-    "cetusNightOption": "Cetus Night",
+    "cetusNightOption": "Cetus Nacht",
     "@cetusNightOption": {
         "description": "Cetus cycle option",
         "type": "text",
@@ -460,7 +460,7 @@
         "type": "text",
         "placeholders": {}
     },
-    "vallisColdOption": "Orb Vallis Cold",
+    "vallisColdOption": "Orb Vallis Kalt",
     "@vallisColdOption": {
         "description": "Orb vallis cycle option",
         "type": "text",
@@ -484,13 +484,13 @@
         "type": "text",
         "placeholders": {}
     },
-    "streamNewsOption": "Stream Announcements",
+    "streamNewsOption": "Stream Bekannntgabungen",
     "@streamNewsOption": {
         "description": "Warframe news option",
         "type": "text",
         "placeholders": {}
     },
-    "updateNewsOption": "Warframe Update News",
+    "updateNewsOption": "Warframe Update Neuigkeiten",
     "@updateNewsOption": {
         "description": "Warframe news option",
         "type": "text",
