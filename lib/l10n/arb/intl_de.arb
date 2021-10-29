@@ -870,7 +870,7 @@
         "type": "text",
         "placeholders": {}
     },
-    "windUpTitle": "Wind Up",
+    "windUpTitle": "Ausholen",
     "@windUpTitle": {
         "description": "melee's heavy wind up time title",
         "type": "text",
@@ -882,7 +882,7 @@
         "type": "text",
         "placeholders": {}
     },
-    "steelPathTitle": "Steel Path",
+    "steelPathTitle": "Stählerner Pfad",
     "@steelPathTitle": {
         "description": "Steel path card title",
         "type": "text",
@@ -900,7 +900,7 @@
         "type": "text",
         "placeholders": {}
     },
-    "optOutOfAnalyticsDescription": "Disable analytics.",
+    "optOutOfAnalyticsDescription": "Statistiken deaktivieren.",
     "@optOutOfAnalyticsDescription": {
         "description": "Description of the analytics opting buttong",
         "type": "text",
@@ -918,7 +918,7 @@
         "type": "text",
         "placeholders": {}
     },
-    "modLevelLabel": "Level {rank}",
+    "modLevelLabel": "Stufe {rank}",
     "@modLevelLabel": {
         "description": "The label shown to users as they slide the mod slider",
         "type": "text",
@@ -926,13 +926,13 @@
             "rank": {}
         }
     },
-    "codexHint": "Type what you're looking for into the search bar above!",
+    "codexHint": "Schreibe in die Suchleiste oben wonach du suchst!",
     "@codexHint": {
         "description": "Codex description when a user enters the codex or when the search bar is empty",
         "type": "text",
         "placeholder": {}
     },
-    "codexNoResults": "No results",
+    "codexNoResults": "Keine Treffer",
     "@codexNoResults": {
         "description": "Displayed when a search result in codex returns empty",
         "type": "text",
