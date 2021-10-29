@@ -292,7 +292,7 @@
         "type": "text",
         "placeholders": {}
     },
-    "backOpensDrawerDescription": "Pressing the back button opens the drawer.",
+    "backOpensDrawerDescription": "Drücken der Zurück-Taste öffnet den Slider.",
     "@backOpensDrawerDescription": {
         "description": "Description for back button opens drawer option",
         "type": "text",
