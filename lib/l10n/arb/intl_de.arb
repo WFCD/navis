@@ -48,13 +48,13 @@
         "type": "text",
         "placeholders": {}
     },
-    "acolyteHealth": "Health",
+    "acolyteHealth": "Gesundheit",
     "@acolyteHealth": {
         "description": "Acolytes remaining health",
         "type": "text",
         "placeholders": {}
     },
-    "acolyteRank": "Acolyte Level",
+    "acolyteRank": "Akolyten Level",
     "@acolyteRank": {
         "description": "An acolyte's current level",
         "type": "text",
@@ -68,7 +68,7 @@
             "lastSeenTime": {}
         }
     },
-    "tapForMoreDetails": "Tap for more details",
+    "tapForMoreDetails": "Tippe für mehr Details",
     "@tapForMoreDetails": {
         "description": "General description to tell the user that this object takes you to a different page",
         "type": "text",
@@ -98,7 +98,7 @@
         "type": "text",
         "placeholders": {}
     },
-    "eventStatusNode": "Node",
+    "eventStatusNode": "Knoten",
     "@eventStatusNode": {
         "description": "The node that the event is taking place in",
         "type": "text",
@@ -116,13 +116,13 @@
         "type": "text",
         "placeholders": {}
     },
-    "eventRewards": "Rewards",
+    "eventRewards": "Belohnungen",
     "@eventRewards": {
         "description": "Event reward title",
         "type": "text",
         "placeholders": {}
     },
-    "bountyTitle": "Bounties",
+    "bountyTitle": "Aufträge",
     "@bountyTitle": {
         "description": "Bounty card title.",
         "type": "text",
@@ -140,7 +140,7 @@
         "type": "text",
         "placeholders": {}
     },
-    "baroTitle": "Void trader",
+    "baroTitle": "Void Händler",
     "@baroTitle": {
         "description": "Title for Baro Ki'Teer card",
         "type": "text",
@@ -190,7 +190,7 @@
             "date": {}
         }
     },
-    "kuvaBanner": "Kuva will refresh in",
+    "kuvaBanner": "Kuva wird aktualisiert in",
     "@kuvaBanner": {
         "description": "Kuva refresh countdown title",
         "type": "text",
@@ -238,19 +238,19 @@
         "type": "text",
         "placeholders": {}
     },
-    "fissuresTitle": "Fissures",
+    "fissuresTitle": "Void-Risse",
     "@fissuresTitle": {
         "description": "Fissures title",
         "type": "text",
         "placeholders": {}
     },
-    "invasionsTitle": "Invasions",
+    "invasionsTitle": "Invasionen",
     "@invasionsTitle": {
         "description": "Invasions title",
         "type": "text",
         "placeholders": {}
     },
-    "syndicatesTitle": "Syndicates",
+    "syndicatesTitle": "Syndikate",
     "@syndicatesTitle": {
         "description": "Syndicates title",
         "type": "text",
@@ -274,13 +274,13 @@
         "type": "text",
         "placeholders": {}
     },
-    "themeTitle": "Theme",
+    "themeTitle": "Thema",
     "@themeTitle": {
         "description": "Theme title",
         "type": "text",
         "placeholders": {}
     },
-    "themeDescription": "Choose app theme.",
+    "themeDescription": "App-Theme auswählen.",
     "@themeDescription": {
         "description": "Theme option description",
         "typ": "text",
@@ -304,13 +304,13 @@
         "type": "text",
         "placeholders": {}
     },
-    "rareAlertsNotificationTitle": "Rare Alerts",
+    "rareAlertsNotificationTitle": "Seltene Alarmierungen",
     "@rareAlertsNotificationTitle": {
         "description": "Rare Alerts title",
         "type": "text",
         "placeholders": {}
     },
-    "rareAlertsNotificationDescription": "Rare alert notifications, mainly gifts of the lotus.",
+    "rareAlertsNotificationDescription": "Seltene Alarmierungsbeanachrichtigung, meist Geschenke von Lotus.",
     "@rareAlertsNotificationDescription": {
         "description": "Description for rare alerts option",
         "type": "text",
