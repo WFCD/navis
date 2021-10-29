@@ -80,7 +80,7 @@
         "type": "text",
         "placeholders": {}
     },
-    "seeWikia": "Siehe Wikia",
+    "seeWikia": "Siehe Wiki",
     "@seeWikia": {
         "description": "General button to wikia of given item",
         "type": "text",
@@ -92,7 +92,7 @@
         "type": "text",
         "placeholders": {}
     },
-    "eventStatus": "Ereignisstatus",
+    "eventStatus": "Event Fortschritt",
     "@eventStatus": {
         "description": "Event status category title",
         "type": "text",
@@ -496,7 +496,7 @@
         "type": "text",
         "placeholders": {}
     },
-    "updateDropTableDescription": "Last updated {date}",
+    "updateDropTableDescription": "Letztes Update {date}",
     "@updateDropTableDescription": {
         "description": "Description for updating drop table with date of the last update",
         "type": "text",
@@ -504,7 +504,7 @@
             "date": {}
         }
     },
-    "reportBugsTitle": "Report Bugs",
+    "reportBugsTitle": "Fehler melden",
     "@reportBugsTitle": {
         "desciption": "Title for bug report link",
         "type": "text",
@@ -516,19 +516,19 @@
         "type": "text",
         "placeholders": {}
     },
-    "aboutCategoryTitle": "About",
+    "aboutCategoryTitle": "Über uns",
     "@aboutCategoryTitle": {
         "description": "Title for the about category of the settings page",
         "type": "text",
         "placeholders": {}
     },
-    "lightThemeTitle": "Light",
+    "lightThemeTitle": "Hell",
     "@lightThemeTitle": {
         "description": "Title for light theme",
         "type": "text",
         "placeholders": {}
     },
-    "darkThemeTitle": "Dark",
+    "darkThemeTitle": "Dunkel",
     "@darkThemeTitle": {
         "description": "Title for dark theme",
         "type": "text",
