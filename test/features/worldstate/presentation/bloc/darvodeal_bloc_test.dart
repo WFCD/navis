@@ -27,14 +27,20 @@ void main() {
 
   late GetDarvoDealInfo getDarvoDealInfo;
   late DarvodealBloc darvodealBloc;
+  late HydratedStorage storage;
 
   setUpAll(() async {
-    HydratedBloc.storage = await HydratedStorage.build(
-      storageDirectory: Directory.systemTemp,
+    storage = await HydratedStorage.build(
+      storageDirectory: await Directory.systemTemp.createTemp(),
     );
 
-    getDarvoDealInfo = MockGetDarvoDealInfo();
-    darvodealBloc = DarvodealBloc(getDarvoDealInfo: getDarvoDealInfo);
+    HydratedBlocOverrides.runZoned(
+      () {
+        getDarvoDealInfo = MockGetDarvoDealInfo();
+        darvodealBloc = DarvodealBloc(getDarvoDealInfo: getDarvoDealInfo);
+      },
+      storage: storage,
+    );
 
     registerFallbackValue(MockDealRequest());
   });
@@ -70,8 +76,8 @@ void main() {
       darvodealBloc.add(LoadDarvodeal(tWorldstate.dailyDeals.first));
       await Future<void>.delayed(kDelayShort);
 
-      final cached = HydratedBloc.storage.read(darvodealBloc.storageToken)
-          as Map<String, dynamic>;
+      final cached =
+          storage.read(darvodealBloc.storageToken) as Map<String, dynamic>;
 
       final deal = toBaseItem(cached['items'] as Map<String, dynamic>);
 

@@ -24,8 +24,6 @@ import 'injection_container.dart';
 import 'injection_container.dart' as di;
 
 Future<void> startApp() async {
-  Bloc.observer = AppBlocObserver();
-
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(statusBarColor: Colors.transparent),
@@ -34,14 +32,45 @@ Future<void> startApp() async {
   await Firebase.initializeApp();
   await FlutterWebBrowser.warmup();
 
-  final temp = await getTemporaryDirectory();
   final appDir = await getApplicationDocumentsDirectory();
 
   Hive.init(appDir.path);
+
+  await di.init();
+  if (sl<UserSettingsNotifier>().isFirstTime) {
+    await sl<NotificationService>().subscribeToPlatform(GamePlatforms.pc);
+    sl<UserSettingsNotifier>().setFirstTime(value: false);
+  }
+
+  HydratedBlocOverrides.runZoned(
+    () {
+      runApp(
+        MultiBlocProvider(
+          providers: [
+            BlocProvider(create: (_) => sl<NavigationCubit>()),
+            BlocProvider(create: (_) => sl<SolsystemBloc>()),
+            BlocProvider(create: (_) => sl<SearchBloc>()),
+            BlocProvider(create: (_) => sl<MarketBloc>())
+          ],
+          child: ChangeNotifierProvider.value(
+            value: sl<UserSettingsNotifier>(),
+            child: const NavisApp(),
+          ),
+        ),
+      );
+    },
+    blocObserver: AppBlocObserver(),
+    storage: await _storage(),
+  );
+}
+
+Future<HydratedStorage> _storage() async {
+  final temp = await getTemporaryDirectory();
+
   // HydratedBloc already runs Hive.init on the provided storageDirectoy, so
   // it's not needed for temp storage.
   try {
-    HydratedBloc.storage = await HydratedStorage.build(storageDirectory: temp);
+    return HydratedStorage.build(storageDirectory: temp);
     // ignore: avoid_catching_errors
   } on HiveError {
     // I don't know what's causing the HiveError and at this point I would
@@ -54,27 +83,6 @@ Future<void> startApp() async {
         ..createSync(recursive: true);
     }
 
-    HydratedBloc.storage = await HydratedStorage.build(storageDirectory: temp);
+    return HydratedStorage.build(storageDirectory: temp);
   }
-
-  await di.init();
-  if (sl<UserSettingsNotifier>().isFirstTime) {
-    await sl<NotificationService>().subscribeToPlatform(GamePlatforms.pc);
-    sl<UserSettingsNotifier>().setFirstTime(value: false);
-  }
-
-  runApp(
-    MultiBlocProvider(
-      providers: [
-        BlocProvider(create: (_) => sl<NavigationCubit>()),
-        BlocProvider(create: (_) => sl<SolsystemBloc>()),
-        BlocProvider(create: (_) => sl<SearchBloc>()),
-        BlocProvider(create: (_) => sl<MarketBloc>())
-      ],
-      child: ChangeNotifierProvider.value(
-        value: sl<UserSettingsNotifier>(),
-        child: const NavisApp(),
-      ),
-    ),
-  );
 }

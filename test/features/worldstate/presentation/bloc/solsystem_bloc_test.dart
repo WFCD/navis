@@ -23,14 +23,20 @@ void main() {
 
   late GetWorldstate getWorldstate;
   late SolsystemBloc solsystemBloc;
+  late HydratedStorage storage;
 
   setUpAll(() async {
-    HydratedBloc.storage = await HydratedStorage.build(
+    storage = await HydratedStorage.build(
       storageDirectory: await Directory.systemTemp.createTemp(),
     );
 
-    getWorldstate = MockGetWorldstate();
-    solsystemBloc = SolsystemBloc(getWorldstate: getWorldstate);
+    HydratedBlocOverrides.runZoned(
+      () {
+        getWorldstate = MockGetWorldstate();
+        solsystemBloc = SolsystemBloc(getWorldstate: getWorldstate);
+      },
+      storage: storage,
+    );
   });
 
   tearDownAll(() {
@@ -82,8 +88,8 @@ void main() {
       when(() => getWorldstate(any())).thenAnswer((_) async => Ok(tWorldstate));
       await solsystemBloc.update();
 
-      final cached = HydratedBloc.storage.read(solsystemBloc.storageToken)
-          as Map<String, dynamic>;
+      final cached =
+          storage.read(solsystemBloc.storageToken) as Map<String, dynamic>;
       final worldstate = WorldstateModel.fromJson(cached);
 
       expect(worldstate, tWorldstate);
