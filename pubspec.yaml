@@ -36,7 +36,7 @@ dependencies:
     path: packages/notification_repository
   package_info: ^2.0.2
   responsive_builder: ^0.4.1
-  sentry_flutter: ^6.1.2
+  sentry_flutter: ^6.2.0
   shimmer: ^2.0.0
   simple_icons: ^5.24.0
   user_settings:
@@ -54,7 +54,7 @@ dev_dependencies:
     sdk: flutter
   mocktail: ^0.2.0
   sentry_dart_plugin: ^1.0.0-beta.1
-  test: ^1.17.10
+  test: ^1.17.12
   very_good_analysis: ^2.4.0
 
 flutter:
