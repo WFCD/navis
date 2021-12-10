@@ -1,9 +1,8 @@
 import 'package:matomo/matomo.dart';
+import 'package:navis/injection_container.dart';
+import 'package:navis/start_app.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
-
-import 'core/local/user_settings.dart';
-import 'injection_container.dart';
-import 'start_app.dart';
+import 'package:user_settings/user_settings.dart';
 
 Future<void> main() async {
   await SentryFlutter.init(
@@ -11,7 +10,7 @@ Future<void> main() async {
       option
         ..dsn = const String.fromEnvironment('SENTRY_DSN')
         ..beforeSend = (SentryEvent event, {dynamic hint}) {
-          final usersettings = sl<Usersettings>();
+          final usersettings = sl<UserSettings>();
 
           return event.copyWith(
             extra: <String, dynamic>{

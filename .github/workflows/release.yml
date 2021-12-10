@@ -2,10 +2,7 @@ name: Release
 on:
   push:
     branches:
-      - master
-  pull_request:
-    branches:
-      - master
+      - next
 jobs:
   semantic-release:
     runs-on: ubuntu-latest
@@ -21,7 +18,7 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
           SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
-          SENTRY_PROJECT: 'navis'
+          SENTRY_PROJECT: "navis"
           SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
         with:
           extra_plugins: |

@@ -1,0 +1,24 @@
+name: worldstate_repository
+description: A Very Good Project created by Very Good CLI.
+version: 1.0.0+1
+publish_to: none
+
+environment:
+  sdk: ">=2.13.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  hive: ^2.0.4
+  user_settings:
+    path: ../user_settings
+  wfcd_client:
+    git:
+      url: https://github.com/SlayerOrnstein/wfcd_client.git
+      ref: v3.6.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  mocktail: ^0.2.0
+  very_good_analysis: ^2.3.0

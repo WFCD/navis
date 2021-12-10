@@ -1,0 +1,44 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:navis/l10n/l10n.dart';
+import 'package:navis/worldstate/cubits/solsystem_cubit.dart';
+import 'package:navis_ui/navis_ui.dart';
+
+class ArbitrationCard extends StatelessWidget {
+  const ArbitrationCard({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return AppCard(
+      child: BlocBuilder<SolsystemCubit, SolsystemState>(
+        builder: (context, state) {
+          final arbitration = (state as SolState).worldstate.arbitration!;
+
+          return ListTile(
+            leading: const Icon(SyndicateIcons.hexis, size: 50),
+            title: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                if (arbitration.archwingRequired)
+                  const Padding(
+                    padding: EdgeInsets.only(left: 6),
+                    child: Icon(
+                      AppIcons.archwing,
+                      color: Colors.blue,
+                      size: 25,
+                    ),
+                  ),
+                Text(arbitration.node!),
+              ],
+            ),
+            subtitle: Text('${arbitration.enemy} | ${arbitration.type}'),
+            trailing: CountdownTimer(
+              tooltip: context.l10n.countdownTooltip(arbitration.expiry!),
+              expiry: arbitration.expiry!,
+            ),
+          );
+        },
+      ),
+    );
+  }
+}

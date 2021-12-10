@@ -3,7 +3,6 @@ on:
   push:
     branches:
       - master
-      - null-safe
   pull_request:
     branches:
       - master

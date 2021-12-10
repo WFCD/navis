@@ -1,0 +1,38 @@
+import 'package:flutter/material.dart';
+import 'package:navis_ui/src/helpers/skybox_helper.dart';
+import 'package:navis_ui/src/theme.dart';
+import 'package:navis_ui/src/widgets/widgets.dart';
+
+class SkyboxCard extends StatelessWidget {
+  const SkyboxCard({
+    Key? key,
+    required this.node,
+    this.height,
+    this.width,
+    this.margin = const EdgeInsets.symmetric(vertical: 3, horizontal: 3),
+    this.padding = const EdgeInsets.symmetric(vertical: 3, horizontal: 3),
+    required this.child,
+  }) : super(key: key);
+
+  final String node;
+
+  final double? height, width;
+  final EdgeInsetsGeometry margin, padding;
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    return Theme(
+      data: NavisTheme.dark,
+      child: Card(
+        margin: margin,
+        child: BackgroundImage(
+          imageUrl: getSkybox(node),
+          height: height,
+          padding: padding,
+          child: child,
+        ),
+      ),
+    );
+  }
+}

@@ -1,0 +1,33 @@
+name: navis_ui
+description: A Very Good Project created by Very Good CLI.
+version: 1.0.0+1
+publish_to: none
+
+environment:
+  sdk: ">=2.14.0 <3.0.0"
+
+dependencies:
+  cached_network_image: ^3.1.0+1
+  flutter:
+    sdk: flutter
+  flutter_web_browser: ^0.16.0
+  html: ^0.15.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  very_good_analysis: ^2.4.0
+
+flutter:
+  fonts:
+    - family: FactionIcons
+      fonts:
+        - asset: assets/icons/FactionIcons.ttf
+    - family: RelicIcons
+      fonts:
+        - asset: assets/icons/RelicIcons.ttf
+    - family: SyndicateGlyphs
+      fonts:
+        - asset: assets/icons/SyndicateGlyphs.ttf
+  assets:
+    - assets/Derelict.webp

@@ -1,0 +1,22 @@
+name: user_settings
+description: A Very Good Project created by Very Good CLI.
+version: 1.0.0+1
+publish_to: none
+
+environment:
+  sdk: ">=2.13.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  hive: ^2.0.4
+  matomo: ^1.0.0
+  wfcd_client:
+    git:
+      url: https://github.com/SlayerOrnstein/wfcd_client.git
+      ref: v3.6.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  very_good_analysis: ^2.3.0
