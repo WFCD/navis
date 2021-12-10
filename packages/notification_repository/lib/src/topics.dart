@@ -1,12 +1,23 @@
-class Topic {
-  const Topic(this.topic);
+// ignore_for_file: public_member_api_docs
 
-  final String topic;
+/// {@template topic}
+/// An instance of the specfic topic.
+/// {@endtemplate}
+class Topic {
+  /// {@macro topic}
+  const Topic(this.name);
+
+  /// Then name of the topic.
+  final String name;
 
   @override
-  String toString() => topic;
+  String toString() => name;
 }
 
+/// This is an abstract class that holds all of our current constant topics that
+/// we already use, minus fissures that are created dynamically in app.
+///
+/// The description for these are all in the name.
 class Topics {
   static const Topic earthDayKey = Topic('earth_day');
   static const Topic earthNightKey = Topic('earth_night');

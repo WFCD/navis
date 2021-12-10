@@ -39,7 +39,7 @@ class Notifications extends StatelessWidget {
 }
 
 void _onChanged(BuildContext context, Topic topic, bool value) {
-  context.read<UserSettingsNotifier>().setToggle(topic.topic, value: value);
+  context.read<UserSettingsNotifier>().setToggle(topic.name, value: value);
 
   if (value) {
     sl<NotificationRepository>().subscribeToNotification(topic);
@@ -65,7 +65,7 @@ class _SimpleNotification extends StatelessWidget {
     return SwitchListTile(
       title: Text(name),
       subtitle: Text(description),
-      value: context.watch<UserSettingsNotifier>().getToggle(topic.topic),
+      value: context.watch<UserSettingsNotifier>().getToggle(topic.name),
       activeColor: Theme.of(context).colorScheme.secondary,
       onChanged: (b) => _onChanged(context, topic, b),
     );
@@ -109,7 +109,7 @@ class FilterDialog extends StatelessWidget {
                 topic: t.topic,
                 value: context
                     .watch<UserSettingsNotifier>()
-                    .getToggle(t.topic.topic),
+                    .getToggle(t.topic.name),
               )
           ],
         ),
