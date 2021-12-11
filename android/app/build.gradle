@@ -55,6 +55,18 @@ android {
         }
     }
 
+    flavorDimensions "default"
+    productFlavors { 
+        production {
+            dimension "default"
+            applicationIdSuffix ""
+        }      
+        development {
+            dimension "default"
+            applicationIdSuffix ".dev"
+        }
+    }
+
     buildTypes {
         debug {
             versionNameSuffix "-debug"
