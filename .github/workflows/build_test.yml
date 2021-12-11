@@ -1,0 +1,77 @@
+name: build_test
+
+on:
+  push:
+    branches:
+      - master
+
+  pull_request:
+    branches:
+      - master
+
+env:
+  SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
+  MATOMO_URL: ${{ secrets.MATOMO_URL }}
+
+jobs:
+  android:
+    runs-on: ubuntu-latest
+
+    env:
+      TENNO_CIPHER: ${{ secrets.TENNO_CIPHER }}
+      TENNO_FIREBASE: ${{ secrets.TENNO_FIREBASE }}
+      TENNO_STORE: ${{ secrets.TENNO_STORE }}
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/setup-java@v1
+        with:
+          java-version: "12.x"
+
+      - uses: subosito/flutter-action@v1
+        with:
+          channel: stable
+
+      - name: Decode signing key and services json
+        run: |
+          base64 -d <<< $TENNO_STORE > android/keystore.jks
+          $TENNO_FIREBASE > android/app/google-services.json
+
+      - name: Build apk
+        run: |
+          flutter build appbundle --dart-define=SENTRY_DSN=$SENTRY_DSN --dart-define=MATOMO_URL=$MATOMO_URL -t lib/main_development.dart
+          flutter clean # Cleaning before builds help remove an problems in between them
+          flutter build apk --dart-define=SENTRY_DSN=$SENTRY_DSN --dart-define=MATOMO_URL=$MATOMO_URL -t lib/main_development.dart --split-per-abi
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: android-test-artifacts
+          path: "build/app/outputs/apk/release/*.apk"
+
+  ios:
+    runs-on: macos-latest
+
+    strategy:
+      fail-fast: true
+
+    env:
+      FIREBASE_IOS: ${{ secrets.FIREBASE_IOS }}
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: subosito/flutter-action@v1
+        with:
+          channel: stable
+
+      - name: Decode service plist
+        run: base64 -d <<< $FIREBASE_IOS > ios/Runner/GoogleService-Info.plist
+
+      - name: Build ios using flutter
+        run: flutter build ios --dart-define=SENTRY_DSN=$SENTRY_DSN --dart-define=MATOMO_URL=$MATOMO_URL -t lib/main_development.dart --no-codesign
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: ios-test-artifacts
+          path: "build/ios/iphones/Runner.app"
