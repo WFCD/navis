@@ -36,7 +36,7 @@ jobs:
       - name: Decode signing key and services json
         run: |
           base64 -d <<< $TENNO_STORE > android/keystore.jks
-          $TENNO_FIREBASE > android/app/google-services.json
+          base64 -d <<< $TENNO_FIREBASE > android/app/google-services.json
 
       - name: Build apk
         run: |
