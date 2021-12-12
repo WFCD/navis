@@ -2,13 +2,11 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:navis/home/views/home.dart';
+import 'package:navis/home/home.dart';
 import 'package:navis/injection_container.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis/settings/settings.dart';
-import 'package:navis/worldstate/views/bounties.dart';
-import 'package:navis/worldstate/views/nightwaves.dart';
-import 'package:navis/worldstate/views/trader_inventory.dart';
+import 'package:navis/worldstate/worldstate.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:notification_repository/notification_repository.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
@@ -86,7 +84,7 @@ class _NavisAppState extends State<NavisApp> with WidgetsBindingObserver {
       builder: _builder,
       navigatorObservers: [SentryNavigatorObserver()],
       routes: <String, WidgetBuilder>{
-        // EventInformation.route: (_) => const EventInformation(),
+        EventInformation.route: (_) => const EventInformation(),
         SettingsView.route: (_) => const SettingsView(),
         NightwavesPage.route: (_) => const NightwavesPage(),
         BountiesPage.route: (_) => const BountiesPage(),
