@@ -44,7 +44,7 @@ jobs:
       - uses: actions/upload-artifact@v2
         with:
           name: android-test-artifacts
-          path: "build/app/outputs/apk/release/*.apk"
+          path: "build/app/outputs/apk/dev/*.apk"
 
   ios:
     runs-on: macos-latest
