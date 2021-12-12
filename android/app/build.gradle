@@ -27,14 +27,9 @@ apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
 android {
     compileSdkVersion 31
-    buildToolsVersion '31.0.0'
 
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
-    }
-
-    lintOptions {
-        disable 'InvalidPackage'
     }
 
     defaultConfig {
@@ -57,11 +52,11 @@ android {
 
     flavorDimensions "default"
     productFlavors { 
-        production {
+        prod {
             dimension "default"
             applicationIdSuffix ""
         }      
-        development {
+        dev {
             dimension "default"
             applicationIdSuffix ".dev"
         }
@@ -82,12 +77,6 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-    compileOptions {
-        sourceCompatibility "1.8"
-        targetCompatibility "1.8"
-    }
-
-
 }
 
 flutter {
@@ -96,7 +85,7 @@ flutter {
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
-    implementation 'com.google.firebase:firebase-messaging:22.0.0'
+    implementation 'com.google.firebase:firebase-messaging:23.0.0'
     implementation 'com.android.support:multidex:1.0.3'
 }
 
