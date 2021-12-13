@@ -26,7 +26,7 @@ class SyndicateBountyTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ExpansionTile(
-      key: PageStorageKey<String>(faction.toString()),
+      key: PageStorageKey<String>(job.type ?? DateTime.now().toIso8601String()),
       title: Text(job.type ?? ''),
       textColor: NavisColors.secondary,
       iconColor: NavisColors.secondary,
