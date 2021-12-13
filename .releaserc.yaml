@@ -11,4 +11,4 @@ plugins:
     - assets: ["pubspec.yaml"]
       message: "chore(release): ${nextRelease.version}"
 branches:
-  - master
+  - next
