@@ -25,8 +25,10 @@ class SyndicateBountyTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Need a unique fallback to create keys otherwise the same key can expand
+    // two seprate ExpansionTiles.
     return ExpansionTile(
-      key: PageStorageKey<String>(job.type ?? DateTime.now().toIso8601String()),
+      key: PageStorageKey<String>('$faction${job.type ?? job.totalStanding}'),
       title: Text(job.type ?? ''),
       textColor: NavisColors.secondary,
       iconColor: NavisColors.secondary,
