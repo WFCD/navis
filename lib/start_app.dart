@@ -27,13 +27,13 @@ Future<void> startApp() async {
   final appDir = await getApplicationDocumentsDirectory();
 
   Hive.init(appDir.path);
+  final storage = await HydratedStorage.build(storageDirectory: appDir);
 
   await init();
   if (sl<UserSettingsNotifier>().isFirstTime) {
     await sl<NotificationRepository>().subscribeToPlatform(GamePlatforms.pc);
   }
 
-  final storage = await HydratedStorage.build(storageDirectory: appDir);
   HydratedBlocOverrides.runZoned(
     () => runApp(
       ChangeNotifierProvider(

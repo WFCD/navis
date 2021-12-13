@@ -1,2 +1,0 @@
-- consistent app bar
-- added logo in drawer

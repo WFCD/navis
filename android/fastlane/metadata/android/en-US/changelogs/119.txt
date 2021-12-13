@@ -1,5 +1,0 @@
-Bug fixes:
-- add a discord link to nav drawer for user support
-
-Performance improvements:
-- scroll expansionTitle until visible
