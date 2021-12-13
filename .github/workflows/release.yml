@@ -14,7 +14,7 @@ jobs:
       - name: Set execute permissions for versioning script
         run: chmod +x deploy.sh
       - name: Semantic Release
-        uses: cycjimmy/semantic-release-action@v2.5.4
+        uses: cycjimmy/semantic-release-action@v2.7.0
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
         with:

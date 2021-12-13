@@ -10,6 +10,5 @@ plugins:
   - - "@semantic-release/git"
     - assets: ["pubspec.yaml"]
       message: "chore(release): ${nextRelease.version}"
-  - "@eclass/semantic-release-sentry-releases"
 branches:
   - master
