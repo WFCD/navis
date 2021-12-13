@@ -46,7 +46,7 @@ jobs:
         run: |
           flutter build appbundle \
             --dart-define=SENTRY_DSN=$SENTRY_DSN --dart-define=MATOMO_URL=$MATOMO_URL \
-            -t lib/main_production.dart \
+            -t lib/main_prod.dart --flavor prod \
             --obfuscate --split-debug-info=debug_info
 
       - name: Upload Debug symbols to Sentry
@@ -68,7 +68,7 @@ jobs:
         run: |
           flutter build apk \
           --dart-define=SENTRY_DSN=$SENTRY_DSN --dart-define=MATOMO_URL=$MATOMO_URL \
-          -t lib/main_production.dart --split-per-abi \
+          -t lib/main_prod.dart --flavor prod --split-per-abi \
           --obfuscate --split-debug-info=debug_info
 
       - name: Github Releases Deploy
@@ -76,7 +76,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         with:
-          file: "build/app/outputs/apk/release/*.apk"
+          file: "build/app/outputs/flutter-apk/app-*-prod-release.apk"
           tags: true
           draft: false
 
