@@ -26,7 +26,7 @@ platform :android do
 
       Dir.chdir "../.." do
         version = `flutter pub global run cider version`
-        versionCode = version.split('+').last.to_i
+        versionCode = version.split('+')
       end
 
       File.open("metadata/android/en-US/changelogs/#{versionCode}.txt", 'w') {|f| f.write(changelog)}
