@@ -30,7 +30,7 @@ class SortieCard extends StatelessWidget {
             children: <Widget>[
               ListTile(
                 leading: FactionIcon(
-                  name: sortie.faction,
+                  name: sortie.factionKey,
                   iconSize: 35,
                 ),
                 title: Text(sortie.boss, style: boss),

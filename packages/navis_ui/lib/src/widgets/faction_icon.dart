@@ -16,7 +16,13 @@ class FactionIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final faction = Factions.values.byName(name.toLowerCase());
+    Factions faction;
+
+    try {
+      faction = Factions.values.byName(name.toLowerCase());
+    } catch (e) {
+      faction = Factions.unknown;
+    }
 
     return AppIcon(
       faction.factionIcon,
