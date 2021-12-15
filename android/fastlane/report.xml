@@ -5,29 +5,27 @@
     
     
       
-      <testcase classname="fastlane.lanes" name="0: default_platform" time="0.0003304">
+      <testcase classname="fastlane.lanes" name="0: default_platform" time="0.0003746">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="1: git_tags" time="13.358309">
+      <testcase classname="fastlane.lanes" name="1: git_tags" time="14.7903146">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="2: analyze_commits" time="2.3578453">
+      <testcase classname="fastlane.lanes" name="2: analyze_commits" time="2.6798038">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="3: conventional_changelog" time="0.1604426">
+      <testcase classname="fastlane.lanes" name="3: conventional_changelog" time="0.2912863">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="4: upload_to_play_store" time="49.5071119">
-        
-          <failure message="/home/darkl/.local/share/gem/ruby/3.0.0/gems/fastlane-2.199.0/fastlane/lib/fastlane/actions/actions_helper.rb:67:in `execute_action&apos;&#10;/home/darkl/.local/share/gem/ruby/3.0.0/gems/fastlane-2.199.0/fastlane/lib/fastlane/runner.rb:255:in `block in execute_action&apos;&#10;/home/darkl/.local/share/gem/ruby/3.0.0/gems/fastlane-2.199.0/fastlane/lib/fastlane/runner.rb:229:in `chdir&apos;&#10;/home/darkl/.local/share/gem/ruby/3.0.0/gems/fastlane-2.199.0/fastlane/lib/fastlane/runner.rb:229:in `execute_action&apos;&#10;/home/darkl/.local/share/gem/ruby/3.0.0/gems/fastlane-2.199.0/fastlane/lib/fastlane/runner.rb:157:in `trigger_action_by_name&apos;&#10;/home/darkl/.local/share/gem/ruby/3.0.0/gems/fastlane-2.199.0/fastlane/lib/fastlane/fast_file.rb:159:in `method_missing&apos;&#10;Fastfile:34:in `block (2 levels) in parsing_binding&apos;&#10;/home/darkl/.local/share/gem/ruby/3.0.0/gems/fastlane-2.199.0/fastlane/lib/fastlane/lane.rb:33:in `call&apos;&#10;/home/darkl/.local/share/gem/ruby/3.0.0/gems/fastlane-2.199.0/fastlane/lib/fastlane/runner.rb:49:in `block in execute&apos;&#10;/home/darkl/.local/share/gem/ruby/3.0.0/gems/fastlane-2.199.0/fastlane/lib/fastlane/runner.rb:45:in `chdir&apos;&#10;/home/darkl/.local/share/gem/ruby/3.0.0/gems/fastlane-2.199.0/fastlane/lib/fastlane/runner.rb:45:in `execute&apos;&#10;/home/darkl/.local/share/gem/ruby/3.0.0/gems/fastlane-2.199.0/fastlane/lib/fastlane/lane_manager.rb:47:in `cruise_lane&apos;&#10;/home/darkl/.local/share/gem/ruby/3.0.0/gems/fastlane-2.199.0/fastlane/lib/fastlane/command_line_handler.rb:36:in `handle&apos;&#10;/home/darkl/.local/share/gem/ruby/3.0.0/gems/fastlane-2.199.0/fastlane/lib/fastlane/commands_generator.rb:109:in `block (2 levels) in run&apos;&#10;/home/darkl/.local/share/gem/ruby/3.0.0/gems/commander-4.6.0/lib/commander/command.rb:187:in `call&apos;&#10;/home/darkl/.local/share/gem/ruby/3.0.0/gems/commander-4.6.0/lib/commander/command.rb:157:in `run&apos;&#10;/home/darkl/.local/share/gem/ruby/3.0.0/gems/commander-4.6.0/lib/commander/runner.rb:444:in `run_active_command&apos;&#10;/home/darkl/.local/share/gem/ruby/3.0.0/gems/fastlane-2.199.0/fastlane_core/lib/fastlane_core/ui/fastlane_runner.rb:117:in `run!&apos;&#10;/home/darkl/.local/share/gem/ruby/3.0.0/gems/commander-4.6.0/lib/commander/delegates.rb:18:in `run!&apos;&#10;/home/darkl/.local/share/gem/ruby/3.0.0/gems/fastlane-2.199.0/fastlane/lib/fastlane/commands_generator.rb:353:in `run&apos;&#10;/home/darkl/.local/share/gem/ruby/3.0.0/gems/fastlane-2.199.0/fastlane/lib/fastlane/commands_generator.rb:42:in `start&apos;&#10;/home/darkl/.local/share/gem/ruby/3.0.0/gems/fastlane-2.199.0/fastlane/lib/fastlane/cli_tools_distributor.rb:122:in `take_off&apos;&#10;/home/darkl/.local/share/gem/ruby/3.0.0/gems/fastlane-2.199.0/bin/fastlane:23:in `&lt;top (required)&gt;&apos;&#10;/home/darkl/.local/share/gem/ruby/3.0.0/bin/fastlane:25:in `load&apos;&#10;/home/darkl/.local/share/gem/ruby/3.0.0/bin/fastlane:25:in `&lt;top (required)&gt;&apos;&#10;/home/darkl/.local/share/gem/ruby/3.0.0/gems/bundler-2.2.23/lib/bundler/cli/exec.rb:63:in `load&apos;&#10;/home/darkl/.local/share/gem/ruby/3.0.0/gems/bundler-2.2.23/lib/bundler/cli/exec.rb:63:in `kernel_load&apos;&#10;/home/darkl/.local/share/gem/ruby/3.0.0/gems/bundler-2.2.23/lib/bundler/cli/exec.rb:28:in `run&apos;&#10;/home/darkl/.local/share/gem/ruby/3.0.0/gems/bundler-2.2.23/lib/bundler/cli.rb:474:in `exec&apos;&#10;/home/darkl/.local/share/gem/ruby/3.0.0/gems/bundler-2.2.23/lib/bundler/vendor/thor/lib/thor/command.rb:27:in `run&apos;&#10;/home/darkl/.local/share/gem/ruby/3.0.0/gems/bundler-2.2.23/lib/bundler/vendor/thor/lib/thor/invocation.rb:127:in `invoke_command&apos;&#10;/home/darkl/.local/share/gem/ruby/3.0.0/gems/bundler-2.2.23/lib/bundler/vendor/thor/lib/thor.rb:392:in `dispatch&apos;&#10;/home/darkl/.local/share/gem/ruby/3.0.0/gems/bundler-2.2.23/lib/bundler/cli.rb:30:in `dispatch&apos;&#10;/home/darkl/.local/share/gem/ruby/3.0.0/gems/bundler-2.2.23/lib/bundler/vendor/thor/lib/thor/base.rb:485:in `start&apos;&#10;/home/darkl/.local/share/gem/ruby/3.0.0/gems/bundler-2.2.23/lib/bundler/cli.rb:24:in `start&apos;&#10;/home/darkl/.local/share/gem/ruby/3.0.0/gems/bundler-2.2.23/exe/bundle:49:in `block in &lt;top (required)&gt;&apos;&#10;/home/darkl/.local/share/gem/ruby/3.0.0/gems/bundler-2.2.23/lib/bundler/friendly_errors.rb:128:in `with_friendly_errors&apos;&#10;/home/darkl/.local/share/gem/ruby/3.0.0/gems/bundler-2.2.23/exe/bundle:37:in `&lt;top (required)&gt;&apos;&#10;/home/darkl/.local/share/gem/ruby/3.0.0/bin/bundle:23:in `load&apos;&#10;/home/darkl/.local/share/gem/ruby/3.0.0/bin/bundle:23:in `&lt;main&gt;&apos;&#10;&#10;Google Api Error: Invalid request - APK specifies a version code that has already been used." />
+      <testcase classname="fastlane.lanes" name="4: upload_to_play_store" time="14.6285285">
         
       </testcase>
     
