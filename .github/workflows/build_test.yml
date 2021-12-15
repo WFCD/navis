@@ -3,11 +3,11 @@ name: Dev builds
 on:
   push:
     branches:
-      - master
+      - next
 
   pull_request:
     branches:
-      - master
+      - next
 
 env:
   SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
