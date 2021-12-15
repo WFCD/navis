@@ -44,7 +44,7 @@ dependencies:
   wfcd_client:
     git:
       url: https://github.com/SlayerOrnstein/wfcd_client.git
-      ref: v3.7.0
+      ref: v3.7.1
   worldstate_repository:
     path: packages/worldstate_repository
 
