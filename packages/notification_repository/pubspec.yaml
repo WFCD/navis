@@ -8,14 +8,14 @@ environment:
 
 dependencies:
   firebase_core: ^1.10.0
-  firebase_messaging: ^11.1.0  
+  firebase_messaging: ^11.1.0
   flutter:
     sdk: flutter
   intl: ^0.17.0
   wfcd_client:
     git:
       url: https://github.com/SlayerOrnstein/wfcd_client.git
-      ref: v3.6.2 
+      ref: v3.7.0
 
 dev_dependencies:
   flutter_test:

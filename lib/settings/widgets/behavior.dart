@@ -92,9 +92,9 @@ class LanguagePicker extends StatelessWidget {
         ),
         TextButton(
           onPressed: () {
+            Navigator.of(context).pop();
             BlocProvider.of<SolsystemCubit>(context)
                 .fetchWorldstate(forceUpdate: true);
-            Navigator.of(context).pop();
           },
           child: Text(MaterialLocalizations.of(context).okButtonLabel),
         )
