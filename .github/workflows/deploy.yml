@@ -55,6 +55,8 @@ jobs:
       - uses: actions/setup-ruby@v1
         with:
           ruby-version: "2.7"
+      - name: Prepare fastlane deploy folders
+        run: mkdir -p fastlane/metadata/android/en-US/changelogs
       - name: Google Play Store Deploy
         uses: maierj/fastlane-action@v2.0.0
         with:
