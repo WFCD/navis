@@ -1,3 +1,0 @@
-Bug fixes:
-- quick workaround for sortie users using a different language
-- language dialog not disappearing or taking too long to go away after hitting ok
