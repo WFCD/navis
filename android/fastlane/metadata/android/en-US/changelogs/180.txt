@@ -1,3 +1,0 @@
-Bug fixes:
-- deals: Darvo's deal was loading before access to the cache was initiated causing problems loading information after caching
-- sortie: faction name mismatch caused an error to be thrown for infestation faction
