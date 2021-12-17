@@ -63,8 +63,8 @@ class InvasionWidget extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 8),
             child: InvasionProgress(
               progress: invasion.completion / 100,
-              attackingFaction: invasion.attackingFaction,
-              defendingFaction: invasion.defendingFaction,
+              attackingFaction: invasion.attacker.factionKey,
+              defendingFaction: invasion.defender.factionKey,
             ),
           ),
         ],
