@@ -2,16 +2,27 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/home/cubit/navigation_cubit.dart';
 import 'package:navis/home/widgets/n_drawer.dart';
+import 'package:navis/injection_container.dart';
+import 'package:navis/worldstate/cubits/darvodeal_cubit.dart';
+import 'package:navis/worldstate/cubits/solsystem_cubit.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:user_settings/user_settings.dart';
+import 'package:worldstate_repository/worldstate_repository.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (_) => NavigationCubit(),
+    final repository = sl<WorldstateRepository>();
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (_) => NavigationCubit()),
+        BlocProvider(
+          create: (_) => SolsystemCubit(repository)..fetchWorldstate(),
+        ),
+        BlocProvider(create: (_) => DarvodealCubit(repository))
+      ],
       child: const Home(),
     );
   }

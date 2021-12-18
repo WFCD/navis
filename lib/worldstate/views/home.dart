@@ -1,38 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:navis/injection_container.dart';
 import 'package:navis/l10n/l10n.dart';
-import 'package:navis/worldstate/cubits/darvodeal_cubit.dart';
 import 'package:navis/worldstate/cubits/solsystem_cubit.dart';
 import 'package:navis/worldstate/views/fissures.dart';
 import 'package:navis/worldstate/views/invasions.dart';
 import 'package:navis/worldstate/views/syndicates.dart';
 import 'package:navis/worldstate/views/timers.dart';
 import 'package:navis_ui/navis_ui.dart';
-import 'package:worldstate_repository/worldstate_repository.dart';
 
 enum Tabs { timers, fissures, invasions, syndicates }
 
 class FeedView extends StatelessWidget {
   const FeedView({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    final repository = sl<WorldstateRepository>();
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(
-          create: (_) => SolsystemCubit(repository)..fetchWorldstate(),
-        ),
-        BlocProvider(create: (_) => DarvodealCubit(repository))
-      ],
-      child: const MainFeed(),
-    );
-  }
-}
-
-class MainFeed extends StatelessWidget {
-  const MainFeed({Key? key}) : super(key: key);
 
   String _getTabLocale(BuildContext context, Tabs name) {
     final l10n = context.l10n;
