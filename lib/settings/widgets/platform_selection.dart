@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/injection_container.dart';
-import 'package:navis/worldstate/worldstate.dart';
+import 'package:navis/worldstate/cubits/solsystem_cubit.dart';
 import 'package:notification_repository/notification_repository.dart';
+import 'package:provider/provider.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:simple_icons/simple_icons.dart';
 import 'package:user_settings/user_settings.dart';
@@ -80,11 +81,12 @@ class PlatformIconButton extends StatelessWidget {
   final String platformName;
 
   void _onPressed(BuildContext context) {
+    Provider.of<UserSettingsNotifier>(context, listen: false)
+        .setPlatform(platform);
+
     sl<NotificationRepository>()
         .unsubscribeFromPlatform(sl<UserSettingsNotifier>().platform);
-
     sl<NotificationRepository>().subscribeToPlatform(platform);
-    sl<UserSettingsNotifier>().setPlatform(platform);
 
     BlocProvider.of<SolsystemCubit>(context).fetchWorldstate(forceUpdate: true);
   }
@@ -92,7 +94,8 @@ class PlatformIconButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = (MediaQuery.of(context).size.shortestSide / 100) * 8;
-    final currentPlatform = context.watch<UserSettingsNotifier>().platform;
+    final currentPlatform = context
+        .select<UserSettingsNotifier, GamePlatforms>((value) => value.platform);
 
     return IconButton(
       tooltip: platformName,
