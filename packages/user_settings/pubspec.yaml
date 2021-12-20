@@ -9,7 +9,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  hive: ^2.0.4
+  hive: ^2.0.5
   matomo: ^1.0.0
   wfcd_client:
     git:

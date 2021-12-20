@@ -19,7 +19,7 @@ dependencies:
   flutter_svg: ^1.0.0
   flutter_web_browser: ^0.16.0
   get_it: ^7.2.0
-  hive: ^2.0.4
+  hive: ^2.0.5
   hydrated_bloc: ^8.0.0
   intl: ^0.17.0
   market_client:
@@ -36,9 +36,9 @@ dependencies:
     path: packages/notification_repository
   package_info: ^2.0.2
   responsive_builder: ^0.4.1
-  sentry_flutter: ^6.2.0
+  sentry_flutter: ^6.2.2
   shimmer: ^2.0.0
-  simple_icons: ^5.24.0
+  simple_icons: ^6.1.0
   user_settings:
     path: packages/user_settings
   wfcd_client:

@@ -63,42 +63,42 @@ packages:
       name: firebase_core
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.10.0"
+    version: "1.10.6"
   firebase_core_platform_interface:
     dependency: transitive
     description:
       name: firebase_core_platform_interface
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.1.0"
+    version: "4.2.3"
   firebase_core_web:
     dependency: transitive
     description:
       name: firebase_core_web
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.2.0"
+    version: "1.5.3"
   firebase_messaging:
     dependency: "direct main"
     description:
       name: firebase_messaging
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "11.1.0"
+    version: "11.2.4"
   firebase_messaging_platform_interface:
     dependency: transitive
     description:
       name: firebase_messaging_platform_interface
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.0.9"
+    version: "3.1.4"
   firebase_messaging_web:
     dependency: transitive
     description:
       name: firebase_messaging_web
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.1.0"
+    version: "2.2.5"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -256,11 +256,11 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: "v3.7.0"
-      resolved-ref: bbb39744080591426fdcd45f1c0ee002ce4d7ffb
+      ref: "v3.7.1"
+      resolved-ref: c22a895d71c2f01cb2d3a1f6abdc929c0ed2b27f
       url: "https://github.com/SlayerOrnstein/wfcd_client.git"
     source: git
-    version: "3.7.0"
+    version: "3.7.1"
 sdks:
   dart: ">=2.14.0 <3.0.0"
   flutter: ">=1.12.13+hotfix.5"
