@@ -5,6 +5,7 @@ import 'package:navis/l10n/l10n.dart';
 import 'package:navis/worldstate/cubits/solsystem_cubit.dart';
 import 'package:navis/worldstate/views/event.dart';
 import 'package:navis_ui/navis_ui.dart';
+import 'package:wfcd_client/entities.dart';
 
 class EventCard extends StatelessWidget {
   const EventCard({Key? key}) : super(key: key);
@@ -20,7 +21,8 @@ class EventCard extends StatelessWidget {
           return false;
         },
         builder: (context, state) {
-          final events = (state as SolState).worldstate.events;
+          final events =
+              state is SolState ? state.worldstate.events : <Event>[];
 
           return Column(
             children: <Widget>[

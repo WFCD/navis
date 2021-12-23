@@ -12,14 +12,16 @@ class ArbitrationCard extends StatelessWidget {
     return AppCard(
       child: BlocBuilder<SolsystemCubit, SolsystemState>(
         builder: (context, state) {
-          final arbitration = (state as SolState).worldstate.arbitration!;
+          final arbitration =
+              state is SolState ? state.worldstate.arbitration! : null;
+          final expiry = arbitration?.expiry ?? DateTime.now().add(kDelayLong);
 
           return ListTile(
             leading: const Icon(SyndicateIcons.hexis, size: 50),
             title: Row(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
-                if (arbitration.archwingRequired)
+                if (arbitration?.archwingRequired ?? false)
                   const Padding(
                     padding: EdgeInsets.only(left: 6),
                     child: Icon(
@@ -28,13 +30,13 @@ class ArbitrationCard extends StatelessWidget {
                       size: 25,
                     ),
                   ),
-                Text(arbitration.node!),
+                Text(arbitration?.node ?? ''),
               ],
             ),
-            subtitle: Text('${arbitration.enemy} | ${arbitration.type}'),
+            subtitle: Text('${arbitration?.enemy} | ${arbitration?.type}'),
             trailing: CountdownTimer(
-              tooltip: context.l10n.countdownTooltip(arbitration.expiry!),
-              expiry: arbitration.expiry!,
+              tooltip: context.l10n.countdownTooltip(expiry),
+              expiry: expiry,
             ),
           );
         },
