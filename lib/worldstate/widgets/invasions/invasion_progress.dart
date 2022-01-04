@@ -14,8 +14,8 @@ class InvasionProgress extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final attacker = Factions.values.byName(defendingFaction.toLowerCase());
-    final defending = Factions.values.byName(attackingFaction.toLowerCase());
+    final attacker = Factions.values.byName(attackingFaction.toLowerCase());
+    final defending = Factions.values.byName(defendingFaction.toLowerCase());
 
     return Tooltip(
       message: '$attackingFaction vs $defendingFaction',
