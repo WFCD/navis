@@ -83,6 +83,12 @@ class WorldstateRepository {
         if (cache != null) return cache;
 
         rethrow;
+      } on FormatException {
+        final cache = _cache.getCachedState();
+
+        if (cache != null) return cache;
+
+        rethrow;
       }
     } else {
       final cache = _cache.getCachedState();

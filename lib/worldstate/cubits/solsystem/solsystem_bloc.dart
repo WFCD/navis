@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:navis/worldstate/cubits/solsystem/solsystem_state.dart';
@@ -7,8 +8,9 @@ import 'package:wfcd_client/entities.dart';
 import 'package:wfcd_client/models.dart';
 import 'package:worldstate_repository/worldstate_repository.dart';
 
-const String serverFailureMessage = 'Failed to contact server';
-const String cacheFailureMessage = 'Cache Failure';
+const String serverException = 'Failed to contact server';
+const String formatException = 'Server returned a malformed response';
+const String unknownException = r'Something happened ¯\_(ツ)_/¯';
 
 class SolsystemCubit extends HydratedCubit<SolsystemState> {
   SolsystemCubit(this.repository) : super(SolsystemInitial());
@@ -20,11 +22,10 @@ class SolsystemCubit extends HydratedCubit<SolsystemState> {
       final state = await repository.getWorldstate(forceUpdate: forceUpdate);
 
       emit(SolState(_cleanState(state)));
-    } on ServerException {
-      emit(const SystemError(serverFailureMessage));
     } catch (e, s) {
-      await Sentry.captureException(e, stackTrace: s);
-      emit(SystemError(e.toString()));
+      final current = state;
+      await _exceptionHandle(e, s);
+      emit(current);
     }
   }
 
@@ -46,6 +47,20 @@ class SolsystemCubit extends HydratedCubit<SolsystemState> {
     state.invasions.retainWhere((e) => !e.completed);
 
     return state;
+  }
+
+  Future<void> _exceptionHandle(Object exception, [StackTrace? s]) async {
+    switch (exception.runtimeType) {
+      case SocketException:
+        emit(const SystemError(serverException));
+        break;
+      case FormatException:
+        emit(const SystemError(formatException));
+        break;
+      default:
+        await Sentry.captureException(exception, stackTrace: s);
+        emit(const SystemError(unknownException));
+    }
   }
 
   @override

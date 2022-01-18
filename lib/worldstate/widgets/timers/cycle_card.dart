@@ -55,13 +55,19 @@ class CycleCard extends StatelessWidget {
   }
 
   bool _buildWhen(SolsystemState previous, SolsystemState next) {
-    final p = previous as SolState;
-    final n = next as SolState;
+    if (previous is SolState && next is SolState) {
+      final p = previous;
+      final n = next;
 
-    return p.worldstate.earthCycle.expiry != n.worldstate.earthCycle.expiry ||
-        p.worldstate.cetusCycle.expiry != n.worldstate.cetusCycle.expiry ||
-        p.worldstate.vallisCycle.expiry != n.worldstate.vallisCycle.expiry ||
-        p.worldstate.cetusCycle.expiry != n.worldstate.cetusCycle.expiry;
+      return p.worldstate.earthCycle.expiry != n.worldstate.earthCycle.expiry ||
+          p.worldstate.cetusCycle.expiry != n.worldstate.cetusCycle.expiry ||
+          p.worldstate.vallisCycle.expiry != n.worldstate.vallisCycle.expiry ||
+          p.worldstate.cetusCycle.expiry != n.worldstate.cetusCycle.expiry;
+    } else if (next is SystemError) {
+      return false;
+    } else {
+      return false;
+    }
   }
 
   @override

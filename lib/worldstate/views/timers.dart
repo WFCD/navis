@@ -31,6 +31,8 @@ class MobileTimers extends StatelessWidget {
               previous.outpostDetected != next.outpostDetected ||
               previous.activeAlerts != next.activeAlerts ||
               previous.activeSales != next.activeSales;
+        } else if (n is SystemError) {
+          return false;
         }
 
         return p is! SolState && n is SolState;
