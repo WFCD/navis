@@ -80,7 +80,7 @@
         "type": "text",
         "placeholders": {}
     },
-    "seeWikia": "Смотри Wikia",
+    "seeWikia": "Открыть на Fandom'е",
     "@seeWikia": {
         "description": "General button to wikia of given item",
         "type": "text",
@@ -140,7 +140,7 @@
         "type": "text",
         "placeholders": {}
     },
-    "baroTitle": "Торговец из Бездны",
+    "baroTitle": "Торговец Бездны",
     "@baroTitle": {
         "description": "Title for Baro Ki'Teer card",
         "type": "text",
@@ -152,25 +152,25 @@
         "type": "text",
         "placeholders": {}
     },
-    "baroArriving": "Баро Ки'Тиир появится через",
+    "baroArriving": "Баро Ки'Тиир прибудет через",
     "@baroArriving": {
         "description": "displays remaining time before Baro Ki'Teer arrives",
         "type": "text",
         "placeholders": {}
     },
-    "baroLocation": "Реле",
+    "baroLocation": "Расположение",
     "@baroLocation": {
         "description": "shows Baro ki'Teer's current location",
         "type": "text",
         "placeholders": {}
     },
-    "baroLeavesOn": "Отбудет в",
+    "baroLeavesOn": "Отбывает в",
     "@baroLeavesOn": {
         "description": "shows when Baro Ki'Teer is leaving",
         "type": "text",
         "placeholders": {}
     },
-    "baroArrivesOn": "Прибудет в",
+    "baroArrivesOn": "Прибывает в",
     "@baroArrivesOn": {
         "description": "shows at when Baro Ki'Teer will arrive",
         "type": "text",
