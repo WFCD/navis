@@ -328,7 +328,7 @@
         "type": "text",
         "placeholders": {}
     },
-    "darvoNotificationTitle": "Предложения Дарво",
+    "darvoNotificationTitle": "Ежедневные предложения Дарво",
     "@darvoNotificationTitle": {
         "description": "Notification title for darvo's daily deals",
         "type": "text",
@@ -576,13 +576,13 @@
         "type": "text",
         "placeholders": {}
     },
-    "dailyRewardTitle": "Сброс ежедневных деяний",
+    "dailyRewardTitle": "Таймер сброса ежедневной награды",
     "@dailyRewardTitle": {
         "description": "Title for daily reward timer",
         "type": "text",
         "placeholders": {}
     },
-    "eliteBadgeTitle": "Элитные",
+    "eliteBadgeTitle": "Элитное",
     "@eliteBadgeTitle": {
         "description": "Nightwave Elite badge title",
         "type": "text",
@@ -600,13 +600,13 @@
         "type": "text",
         "placeholders": {}
     },
-    "plainsofEidolonMapTitle": "Карта Равнины Эйдолона",
+    "plainsofEidolonMapTitle": "Карта Равнин Эйдолона",
     "@plainsofEidolonMapTitle": {
         "description": "Plains of Eidolon Map link title",
         "type": "text",
         "placholders": {}
     },
-    "orbVallisMapTitle": "Карта Долина Сфер",
+    "orbVallisMapTitle": "Карта Долины Сфер",
     "@orbVallisMapTitle": {
         "description": "Orb Vallis Map link title",
         "type": "text",
@@ -624,7 +624,7 @@
         "type": "text",
         "placholders": {}
     },
-    "howToFishTitle": "Как ловить",
+    "howToFishTitle": "Как рыбачить",
     "@howToFishTitle": {
         "description": "How to fish link title",
         "type": "text",
@@ -642,7 +642,7 @@
         "type": "text",
         "placeholders": {}
     },
-    "warframePassiveTitle": "Пассивное",
+    "warframePassiveTitle": "Пассивка",
     "@warframePassiveTitle": {
         "description": "Warframes passive title",
         "type": "text",
