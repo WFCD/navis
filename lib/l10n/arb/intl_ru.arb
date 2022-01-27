@@ -334,7 +334,7 @@
         "type": "text",
         "placeholders": {}
     },
-    "darvoNotificationDescription": "Об ежедневных новых товарах у Дарво.",
+    "darvoNotificationDescription": "Уведомляет о ежедневном товаре Дарво.",
     "@darvoNotificationDescription": {
         "description": "Notification description for Darvo's Daily Deal",
         "type": "text",
@@ -346,13 +346,13 @@
         "type": "text",
         "placeholders": {}
     },
-    "sortieNotificationDescription": "Об обновлении ежедневной Вылазки.",
+    "sortieNotificationDescription": "Уведомляет о новой Вылазке.",
     "@sortieNotificationDescription": {
         "description": "description for sortie notification option",
         "type": "text",
         "placeholders": {}
     },
-    "sentientOutpostNotificationTitle": "Аномалия",
+    "sentientOutpostNotificationTitle": "Мюрекс",
     "@sentientOutpostNotificationTitle": {
         "description": "Notification title for sentient outpost",
         "type": "text",
@@ -382,7 +382,7 @@
         "type": "text",
         "placeholders": {}
     },
-    "planetCyclesNotificationTitle": "Циклы планет",
+    "planetCyclesNotificationTitle": "Циклы открытых локаций",
     "@planetCyclesNotificationTitle": {
         "description": "Main title for open world notifications",
         "type": "text",
@@ -406,7 +406,7 @@
         "type": "text",
         "placeholders": {}
     },
-    "fissuresNotificationTitle": "Разрывы Бездны",
+    "fissuresNotificationTitle": "Миссии Разрыва Бездны",
     "@fissuresNotificationTitle": {
         "description": "Main title for fisssures notifications",
         "type": "text",
