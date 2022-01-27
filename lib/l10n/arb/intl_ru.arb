@@ -418,7 +418,7 @@
         "type": "text",
         "placeholders": {}
     },
-    "acolytesNotificationTitle": "Послушники Сталкера",
+    "acolytesNotificationTitle": "Послушники",
     "@acolytesNotificationTitle": {
         "description": "Main title for acolyte notifications",
         "type": "text",
