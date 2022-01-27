@@ -226,7 +226,7 @@
         "type": "text",
         "placeholders": {}
     },
-    "cambionCycleTitle": "Камбион",
+    "cambionCycleTitle": "Камбионский Дрейф",
     "@cambionCycleTitle": {
         "description": "Cambion Cycle title",
         "type": "text",
