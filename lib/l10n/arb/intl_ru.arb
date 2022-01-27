@@ -358,7 +358,7 @@
         "type": "text",
         "placeholders": {}
     },
-    "sentientOutpostNotificationDescription": "Notifications for new sentient threats.",
+    "sentientOutpostNotificationDescription": "Уведомляет о местоположении Мюрекса.",
     "@sentientOutpostNotificationDescription": {
         "description": "Notification description for sentient outpost option",
         "type": "text",
@@ -412,7 +412,7 @@
         "type": "text",
         "placeholders": {}
     },
-    "fissuresNotificationDescription": "Filter fissure notifications by prefered mission type.",
+    "fissuresNotificationDescription": "Фильтруйте уведомления о Разрывах Бездны по предпочитаемому типу миссии.",
     "@fissuresNotificationDescription": {
         "description": "Main description for fissures notifications",
         "type": "text",
@@ -424,7 +424,7 @@
         "type": "text",
         "placeholders": {}
     },
-    "acolytesNotificationDescription": "Notifies when an acolyte is found.",
+    "acolytesNotificationDescription": "Уведомляет о нахождении Послушника.",
     "@acolytesNotificationDescription": {
         "description": "Main description for acolyte notifications",
         "type": "text",
@@ -510,7 +510,7 @@
         "type": "text",
         "placeholders": {}
     },
-    "reportBugsDescription": "Report bugs or request a feature.",
+    "reportBugsDescription": "Сообщите об ошибках или запросите функцию.",
     "@reportBugsDescription": {
         "description": "Description for bug report link",
         "type": "text",
@@ -894,31 +894,31 @@
         "type": "text",
         "placeholders": {}
     },
-    "optOutOfAnalyticsTitle": "Opt out of analytics",
+    "optOutOfAnalyticsTitle": "Отказ от аналитики",
     "@optOutOfAnalyticsTitle": {
         "description": "Title opting out of analytics",
         "type": "text",
         "placeholders": {}
     },
-    "optOutOfAnalyticsDescription": "Disable analytics.",
+    "optOutOfAnalyticsDescription": "Отключить аналитику.",
     "@optOutOfAnalyticsDescription": {
         "description": "Description of the analytics opting buttong",
         "type": "text",
         "placeholders": {}
     },
-    "appLangTitle": "Language",
+    "appLangTitle": "Язык",
     "@appLangTitle": {
         "description": "Title for app language options",
         "type": "text",
         "placeholders": {}
     },
-    "appLangDescription": "Override default behavior for language detection.",
+    "appLangDescription": "Сменить язык приложения.",
     "@appLangDescription": {
         "description": "Description for language options",
         "type": "text",
         "placeholders": {}
     },
-    "modLevelLabel": "Level {rank}",
+    "modLevelLabel": "Уровень {rank}",
     "@modLevelLabel": {
         "description": "The label shown to users as they slide the mod slider",
         "type": "text",
@@ -926,13 +926,13 @@
             "rank": {}
         }
     },
-    "codexHint": "Type what you're looking for into the search bar above!",
+    "codexHint": "Введите запрос, который хотите найти в строке выше!",
     "@codexHint": {
         "description": "Codex description when a user enters the codex or when the search bar is empty",
         "type": "text",
         "placeholder": {}
     },
-    "codexNoResults": "No results",
+    "codexNoResults": "Ничего не найдено",
     "@codexNoResults": {
         "description": "Displayed when a search result in codex returns empty",
         "type": "text",
