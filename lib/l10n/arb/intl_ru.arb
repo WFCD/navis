@@ -478,7 +478,7 @@
         "type": "text",
         "placeholders": {}
     },
-    "primeAccessNewsOption": "Прайм Доступ",
+    "primeAccessNewsOption": "Прайм доступ",
     "@primeAccessNewsOption": {
         "description": "Warframe news option",
         "type": "text",
@@ -490,13 +490,13 @@
         "type": "text",
         "placeholders": {}
     },
-    "updateNewsOption": "Обновления и Патчи",
+    "updateNewsOption": "Новости обновления Warframe",
     "@updateNewsOption": {
         "description": "Warframe news option",
         "type": "text",
         "placeholders": {}
     },
-    "updateDropTableDescription": "Данные от {date}",
+    "updateDropTableDescription": "Последнее обновление {date}",
     "@updateDropTableDescription": {
         "description": "Description for updating drop table with date of the last update",
         "type": "text",
@@ -540,7 +540,7 @@
         "type": "text",
         "placeholders": {}
     },
-    "legalese": "Warframe и логотип Warframe являются зарегистрированными торговыми марками Digital Extremes Ltd. Cephalon Navis и WFCD никаким образом не связаны с Digital Extremes Ltd.",
+    "legalese": "Warframe и логотип Warframe являются зарегистрированными торговыми марками Digital Extremes Ltd.\nCephalon Navis и WFCD никаким образом не связаны с Digital Extremes Ltd.",
     "@legalese": {
         "description": "Cephalon Navis legalese",
         "type": "text",
