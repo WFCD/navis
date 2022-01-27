@@ -30,7 +30,7 @@
         "type": "text",
         "placeholders": {}
     },
-    "acolytePassLocation": "Место последнего просмотра",
+    "acolytePassLocation": "Последнее местоположение",
     "@acolytePassLocation": {
         "description": "Acolyte's pass location",
         "type": "text",
@@ -80,7 +80,7 @@
         "type": "text",
         "placeholders": {}
     },
-    "seeWikia": "Смотри Wikia",
+    "seeWikia": "Открыть на Fandom'е",
     "@seeWikia": {
         "description": "General button to wikia of given item",
         "type": "text",
@@ -140,7 +140,7 @@
         "type": "text",
         "placeholders": {}
     },
-    "baroTitle": "Торговец из Бездны",
+    "baroTitle": "Торговец Бездны",
     "@baroTitle": {
         "description": "Title for Baro Ki'Teer card",
         "type": "text",
@@ -152,25 +152,25 @@
         "type": "text",
         "placeholders": {}
     },
-    "baroArriving": "Баро Ки'Тиир появится через",
+    "baroArriving": "Баро Ки'Тиир прибудет через",
     "@baroArriving": {
         "description": "displays remaining time before Baro Ki'Teer arrives",
         "type": "text",
         "placeholders": {}
     },
-    "baroLocation": "Реле",
+    "baroLocation": "Расположение",
     "@baroLocation": {
         "description": "shows Baro ki'Teer's current location",
         "type": "text",
         "placeholders": {}
     },
-    "baroLeavesOn": "Отбудет в",
+    "baroLeavesOn": "Отбывает в",
     "@baroLeavesOn": {
         "description": "shows when Baro Ki'Teer is leaving",
         "type": "text",
         "placeholders": {}
     },
-    "baroArrivesOn": "Прибудет в",
+    "baroArrivesOn": "Прибывает в",
     "@baroArrivesOn": {
         "description": "shows at when Baro Ki'Teer will arrive",
         "type": "text",
@@ -226,7 +226,7 @@
         "type": "text",
         "placeholders": {}
     },
-    "cambionCycleTitle": "Камбион",
+    "cambionCycleTitle": "Камбионский Дрейф",
     "@cambionCycleTitle": {
         "description": "Cambion Cycle title",
         "type": "text",
@@ -328,13 +328,13 @@
         "type": "text",
         "placeholders": {}
     },
-    "darvoNotificationTitle": "Предложения Дарво",
+    "darvoNotificationTitle": "Ежедневные предложения Дарво",
     "@darvoNotificationTitle": {
         "description": "Notification title for darvo's daily deals",
         "type": "text",
         "placeholders": {}
     },
-    "darvoNotificationDescription": "Об ежедневных новых товарах у Дарво.",
+    "darvoNotificationDescription": "Уведомляет о ежедневном товаре Дарво.",
     "@darvoNotificationDescription": {
         "description": "Notification description for Darvo's Daily Deal",
         "type": "text",
@@ -346,19 +346,19 @@
         "type": "text",
         "placeholders": {}
     },
-    "sortieNotificationDescription": "Об обновлении ежедневной Вылазки.",
+    "sortieNotificationDescription": "Уведомляет о новой Вылазке.",
     "@sortieNotificationDescription": {
         "description": "description for sortie notification option",
         "type": "text",
         "placeholders": {}
     },
-    "sentientOutpostNotificationTitle": "Аномалия",
+    "sentientOutpostNotificationTitle": "Мюрекс",
     "@sentientOutpostNotificationTitle": {
         "description": "Notification title for sentient outpost",
         "type": "text",
         "placeholders": {}
     },
-    "sentientOutpostNotificationDescription": "Notifications for new sentient threats.",
+    "sentientOutpostNotificationDescription": "Уведомляет о местоположении Мюрекса.",
     "@sentientOutpostNotificationDescription": {
         "description": "Notification description for sentient outpost option",
         "type": "text",
@@ -382,7 +382,7 @@
         "type": "text",
         "placeholders": {}
     },
-    "planetCyclesNotificationTitle": "Циклы планет",
+    "planetCyclesNotificationTitle": "Циклы открытых локаций",
     "@planetCyclesNotificationTitle": {
         "description": "Main title for open world notifications",
         "type": "text",
@@ -406,25 +406,25 @@
         "type": "text",
         "placeholders": {}
     },
-    "fissuresNotificationTitle": "Разрывы Бездны",
+    "fissuresNotificationTitle": "Миссии Разрыва Бездны",
     "@fissuresNotificationTitle": {
         "description": "Main title for fisssures notifications",
         "type": "text",
         "placeholders": {}
     },
-    "fissuresNotificationDescription": "Filter fissure notifications by prefered mission type.",
+    "fissuresNotificationDescription": "Фильтруйте уведомления о Разрывах Бездны по предпочитаемому типу миссии.",
     "@fissuresNotificationDescription": {
         "description": "Main description for fissures notifications",
         "type": "text",
         "placeholders": {}
     },
-    "acolytesNotificationTitle": "Послушники Сталкера",
+    "acolytesNotificationTitle": "Послушники",
     "@acolytesNotificationTitle": {
         "description": "Main title for acolyte notifications",
         "type": "text",
         "placeholders": {}
     },
-    "acolytesNotificationDescription": "Notifies when an acolyte is found.",
+    "acolytesNotificationDescription": "Уведомляет о нахождении Послушника.",
     "@acolytesNotificationDescription": {
         "description": "Main description for acolyte notifications",
         "type": "text",
@@ -478,7 +478,7 @@
         "type": "text",
         "placeholders": {}
     },
-    "primeAccessNewsOption": "Прайм Доступ",
+    "primeAccessNewsOption": "Прайм доступ",
     "@primeAccessNewsOption": {
         "description": "Warframe news option",
         "type": "text",
@@ -490,13 +490,13 @@
         "type": "text",
         "placeholders": {}
     },
-    "updateNewsOption": "Обновления и Патчи",
+    "updateNewsOption": "Новости обновления Warframe",
     "@updateNewsOption": {
         "description": "Warframe news option",
         "type": "text",
         "placeholders": {}
     },
-    "updateDropTableDescription": "Данные от {date}",
+    "updateDropTableDescription": "Последнее обновление {date}",
     "@updateDropTableDescription": {
         "description": "Description for updating drop table with date of the last update",
         "type": "text",
@@ -510,7 +510,7 @@
         "type": "text",
         "placeholders": {}
     },
-    "reportBugsDescription": "Report bugs or request a feature.",
+    "reportBugsDescription": "Сообщите об ошибках или запросите функцию.",
     "@reportBugsDescription": {
         "description": "Description for bug report link",
         "type": "text",
@@ -540,7 +540,7 @@
         "type": "text",
         "placeholders": {}
     },
-    "legalese": "Warframe и логотип Warframe являются зарегистрированными торговыми марками Digital Extremes Ltd. Cephalon Navis и WFCD никаким образом не связаны с Digital Extremes Ltd.",
+    "legalese": "Warframe и логотип Warframe являются зарегистрированными торговыми марками Digital Extremes Ltd.\nCephalon Navis и WFCD никаким образом не связаны с Digital Extremes Ltd.",
     "@legalese": {
         "description": "Cephalon Navis legalese",
         "type": "text",
@@ -576,13 +576,13 @@
         "type": "text",
         "placeholders": {}
     },
-    "dailyRewardTitle": "Сброс ежедневных деяний",
+    "dailyRewardTitle": "Таймер сброса ежедневной награды",
     "@dailyRewardTitle": {
         "description": "Title for daily reward timer",
         "type": "text",
         "placeholders": {}
     },
-    "eliteBadgeTitle": "Элитные",
+    "eliteBadgeTitle": "Элитное",
     "@eliteBadgeTitle": {
         "description": "Nightwave Elite badge title",
         "type": "text",
@@ -600,13 +600,13 @@
         "type": "text",
         "placeholders": {}
     },
-    "plainsofEidolonMapTitle": "Карта Равнины Эйдолона",
+    "plainsofEidolonMapTitle": "Карта Равнин Эйдолона",
     "@plainsofEidolonMapTitle": {
         "description": "Plains of Eidolon Map link title",
         "type": "text",
         "placholders": {}
     },
-    "orbVallisMapTitle": "Карта Долина Сфер",
+    "orbVallisMapTitle": "Карта Долины Сфер",
     "@orbVallisMapTitle": {
         "description": "Orb Vallis Map link title",
         "type": "text",
@@ -624,7 +624,7 @@
         "type": "text",
         "placholders": {}
     },
-    "howToFishTitle": "Как ловить",
+    "howToFishTitle": "Как рыбачить",
     "@howToFishTitle": {
         "description": "How to fish link title",
         "type": "text",
@@ -642,7 +642,7 @@
         "type": "text",
         "placeholders": {}
     },
-    "warframePassiveTitle": "Пассивное",
+    "warframePassiveTitle": "Пассивка",
     "@warframePassiveTitle": {
         "description": "Warframes passive title",
         "type": "text",
@@ -894,31 +894,31 @@
         "type": "text",
         "placeholders": {}
     },
-    "optOutOfAnalyticsTitle": "Opt out of analytics",
+    "optOutOfAnalyticsTitle": "Отказ от аналитики",
     "@optOutOfAnalyticsTitle": {
         "description": "Title opting out of analytics",
         "type": "text",
         "placeholders": {}
     },
-    "optOutOfAnalyticsDescription": "Disable analytics.",
+    "optOutOfAnalyticsDescription": "Отключить аналитику.",
     "@optOutOfAnalyticsDescription": {
         "description": "Description of the analytics opting buttong",
         "type": "text",
         "placeholders": {}
     },
-    "appLangTitle": "Language",
+    "appLangTitle": "Язык",
     "@appLangTitle": {
         "description": "Title for app language options",
         "type": "text",
         "placeholders": {}
     },
-    "appLangDescription": "Override default behavior for language detection.",
+    "appLangDescription": "Сменить язык приложения.",
     "@appLangDescription": {
         "description": "Description for language options",
         "type": "text",
         "placeholders": {}
     },
-    "modLevelLabel": "Level {rank}",
+    "modLevelLabel": "Уровень {rank}",
     "@modLevelLabel": {
         "description": "The label shown to users as they slide the mod slider",
         "type": "text",
@@ -926,19 +926,19 @@
             "rank": {}
         }
     },
-    "codexHint": "Type what you're looking for into the search bar above!",
+    "codexHint": "Введите запрос, который хотите найти в строке выше!",
     "@codexHint": {
         "description": "Codex description when a user enters the codex or when the search bar is empty",
         "type": "text",
         "placeholder": {}
     },
-    "codexNoResults": "No results",
+    "codexNoResults": "Ничего не найдено",
     "@codexNoResults": {
         "description": "Displayed when a search result in codex returns empty",
         "type": "text",
         "placeholder": {}
     },
-    "codexVaultedLabel": "Vaulted",
+    "codexVaultedLabel": "В хранилище",
     "@codexVaultedLabel": {
         "description": "A label shown in codex items to detenote items that are vaulted",
         "type": "text",
