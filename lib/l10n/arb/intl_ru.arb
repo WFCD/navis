@@ -30,7 +30,7 @@
         "type": "text",
         "placeholders": {}
     },
-    "acolytePassLocation": "Место последнего просмотра",
+    "acolytePassLocation": "Последнее местоположение",
     "@acolytePassLocation": {
         "description": "Acolyte's pass location",
         "type": "text",
@@ -938,7 +938,7 @@
         "type": "text",
         "placeholder": {}
     },
-    "codexVaultedLabel": "Vaulted",
+    "codexVaultedLabel": "В хранилище",
     "@codexVaultedLabel": {
         "description": "A label shown in codex items to detenote items that are vaulted",
         "type": "text",
