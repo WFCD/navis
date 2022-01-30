@@ -10,7 +10,7 @@ dependencies:
   flutter:
     sdk: flutter
   hive: ^2.0.5
-  matomo: ^1.0.0
+  matomo: ^1.1.0
   wfcd_client:
     git:
       url: https://github.com/SlayerOrnstein/wfcd_client.git
