@@ -1,3 +1,6 @@
+pull_request_title: "fix(l10n): New %language% translations"
+commit_message: "fix(%language%): New translations in %original_file_name%"
+append_commit_message: false
 files:
   - source: lib/l10n/arb/intl_en.arb
     translation: /lib/l10n/arb/intl_%two_letters_code%.arb
