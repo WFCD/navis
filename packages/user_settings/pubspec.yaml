@@ -9,8 +9,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  hive: ^2.0.5
-  matomo: ^1.1.0
+  hive: 2.0.5
+  matomo: 1.1.0
   wfcd_client:
     git:
       url: https://github.com/SlayerOrnstein/wfcd_client.git
@@ -19,4 +19,4 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  very_good_analysis: ^2.3.0
+  very_good_analysis: 2.4.0
