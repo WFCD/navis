@@ -74,5 +74,7 @@ class MarketCache {
     if (cached != null) {
       return cached.map((e) => MarketItem.fromJson(e)).toList();
     }
+
+    return <MarketItem>[];
   }
 }
