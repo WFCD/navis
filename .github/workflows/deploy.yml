@@ -36,6 +36,9 @@ jobs:
         with:
           channel: ${{ env.FLUTTER_VERSION }}
 
+      - name: Setup Cider
+        run: flutter pub global activate cider
+
       - name: Decode signing key and services json
         run: |
           base64 -d <<< $TENNO_STORE > android/keystore.jks
