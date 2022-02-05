@@ -65,6 +65,9 @@ jobs:
       - name: Decode service plist
         run: base64 -d <<< $FIREBASE_IOS > ios/Runner/GoogleService-Info.plist
 
+      - name: Pod update
+        run: pod repo update
+
       - name: Build ios using flutter
         run: flutter build ios --dart-define=SENTRY_DSN=$SENTRY_DSN --dart-define=MATOMO_URL=$MATOMO_URL -t lib/main_dev.dart --no-codesign
 
