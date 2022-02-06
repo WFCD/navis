@@ -16,20 +16,13 @@ platform :android do
   desc 'Push the built release to Google Play beta track'
   lane :beta do
     begin
-     `flutter pub global activate cider`
-
       tags = git_tags(limit: 2)
       analyze_commits(match: tags[1])
       
       changelog = conventional_changelog(format: 'plain', display_title: false, display_links: false, order: ['feat', 'fix', 'perf'])
-      versionCode = ''
+      version = flutter_version()["version_code"]
 
-      Dir.chdir "../.." do
-        version = `flutter pub global run cider version`
-        versionCode = version.split('+').last
-      end
-
-      File.open("metadata/android/en-US/changelogs/#{versionCode}.txt", 'w') {|f| f.write(changelog)}
+      File.open("metadata/android/en-US/changelogs/#{version}.txt", 'w') {|f| f.write(changelog)}
 
       upload_to_play_store(
         track: 'beta',
