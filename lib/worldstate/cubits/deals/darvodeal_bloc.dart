@@ -12,9 +12,13 @@ class DarvodealCubit extends HydratedCubit<DarvodealState> {
 
   Future<void> fetchDeal(String id, String name) async {
     emit(DarvodealLoading());
-    final info = await repository.getDealInfo(id, name);
 
-    emit(DarvoDealLoaded(info));
+    try {
+      final info = await repository.getDealInfo(id, name);
+      emit(DarvoDealLoaded(info));
+    } catch (e) {
+      emit(DarvoDealNoInfo());
+    }
   }
 
   @override

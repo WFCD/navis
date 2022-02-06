@@ -81,7 +81,7 @@ class _DealWidgetState extends State<DealWidget> {
                     spacing: 10,
                     runSpacing: 5,
                     children: <Widget>[
-                      if (state is DarvodealLoading)
+                      if (state is! DarvoDealLoaded)
                         ColoredContainer.text(text: widget.deal.item),
                       ColoredContainer.text(
                         text: '${widget.deal.salePrice}p',

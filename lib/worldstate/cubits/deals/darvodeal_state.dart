@@ -25,3 +25,5 @@ class DarvoDealLoaded extends DarvodealState {
     return item.uniqueName;
   }
 }
+
+class DarvoDealNoInfo extends DarvodealState {}
