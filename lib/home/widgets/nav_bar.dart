@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/home/cubit/navigation_cubit.dart';
+import 'package:navis/l10n/l10n.dart';
 
 class CustomNavigationBar extends StatelessWidget {
   const CustomNavigationBar({Key? key}) : super(key: key);
@@ -18,22 +19,22 @@ class CustomNavigationBar extends StatelessWidget {
       selectedIndex: NavigationCubit.navigationMap.values
           .toList()
           .indexOf(context.watch<NavigationCubit>().state),
-      destinations: const [
+      destinations: [
         NavigationDestination(
-          icon: Icon(Icons.home_rounded),
-          label: 'Homepage',
+          icon: const Icon(Icons.home_rounded),
+          label: context.l10n.homePageTitle,
         ),
         NavigationDestination(
-          icon: Icon(Icons.web_rounded),
-          label: 'News',
+          icon: const Icon(Icons.web_rounded),
+          label: context.l10n.warframeNewsTitle,
         ),
         NavigationDestination(
-          icon: Icon(Icons.search_rounded),
-          label: 'Codex',
+          icon: const Icon(Icons.search_rounded),
+          label: context.l10n.codexTitle,
         ),
-        NavigationDestination(
+        const NavigationDestination(
           icon: Icon(Icons.explore_rounded),
-          label: 'Explore',
+          label: 'Explore', // TODO(SlayerOrnstein): add to translation arb.
         )
       ],
     );
