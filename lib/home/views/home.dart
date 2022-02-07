@@ -71,7 +71,6 @@ class _HomeState extends State<Home> {
                     builder: (_) => const SettingsDialog(),
                   );
                 } else {
-                  Navigator.of(context).pop();
                   Navigator.of(context).pushNamed('/settings');
                 }
               },
