@@ -61,6 +61,7 @@ class NavisTheme {
         if (states.contains(MaterialState.selected)) {
           return const IconThemeData(color: NavisColors.secondary);
         }
+        return null;
       }),
     );
   }
