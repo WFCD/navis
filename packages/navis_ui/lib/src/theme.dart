@@ -14,6 +14,7 @@ class NavisTheme {
       appBarTheme: _appBarTheme,
       cardTheme: _cardTheme,
       dialogTheme: _dialogTheme,
+      navigationBarTheme: _navigationBarThemeData,
     );
   }
 
@@ -26,9 +27,10 @@ class NavisTheme {
         brightness: Brightness.dark,
       ),
       cardTheme: _cardTheme.copyWith(color: Colors.grey[900]),
-      dialogTheme: const DialogTheme(backgroundColor: Color(0xff191919)),
-      dialogBackgroundColor: const Color(0xff191919),
-      canvasColor: const Color(0xff191919),
+      dialogTheme: const DialogTheme(backgroundColor: NavisColors.canvasColor),
+      dialogBackgroundColor: NavisColors.canvasColor,
+      canvasColor: NavisColors.canvasColor,
+      navigationBarTheme: _navigationBarThemeData,
     );
   }
 
@@ -48,6 +50,18 @@ class NavisTheme {
   static DialogTheme get _dialogTheme {
     return DialogTheme(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+    );
+  }
+
+  static NavigationBarThemeData get _navigationBarThemeData {
+    return NavigationBarThemeData(
+      backgroundColor: NavisColors.canvasColor,
+      indicatorColor: Colors.transparent,
+      iconTheme: MaterialStateProperty.resolveWith((states) {
+        if (states.contains(MaterialState.selected)) {
+          return const IconThemeData(color: NavisColors.secondary);
+        }
+      }),
     );
   }
 }
