@@ -5,14 +5,15 @@ class AppCard extends StatelessWidget {
     Key? key,
     this.title,
     this.color,
-    this.margin = const EdgeInsets.all(4),
+    this.margin,
     this.padding = const EdgeInsets.all(4),
     required this.child,
   }) : super(key: key);
 
   final String? title;
   final Color? color;
-  final EdgeInsetsGeometry margin, padding;
+  final EdgeInsetsGeometry padding;
+  final EdgeInsetsGeometry? margin;
   final Widget child;
 
   @override

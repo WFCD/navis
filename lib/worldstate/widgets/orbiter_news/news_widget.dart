@@ -17,7 +17,6 @@ class OrbiterNewsWidget extends StatelessWidget {
       child: InkWell(
         onTap: () => news.link.launchLink(context),
         child: Card(
-          margin: const EdgeInsets.symmetric(horizontal: 2, vertical: 4),
           child: Container(
             height: 200,
             decoration: BoxDecoration(
