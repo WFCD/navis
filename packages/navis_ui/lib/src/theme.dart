@@ -7,11 +7,11 @@ import 'package:navis_ui/navis_ui.dart';
 class NavisTheme {
   static ThemeData get standard {
     return ThemeData(
-      colorScheme: ColorScheme.fromSwatch(
-        primarySwatch: generateMaterialColor(NavisColors.blue),
-        accentColor: NavisColors.secondary,
+      colorScheme: ColorScheme.fromSeed(
+        seedColor: generateMaterialColor(NavisColors.blue),
+        secondary: NavisColors.secondary,
       ),
-      appBarTheme: _appBarTheme,
+      // appBarTheme: _appBarTheme,
       cardTheme: _cardTheme,
       dialogTheme: _dialogTheme,
       navigationBarTheme: _navigationBarThemeData,
@@ -20,10 +20,9 @@ class NavisTheme {
 
   static ThemeData get dark {
     return ThemeData(
-      appBarTheme: _appBarTheme,
-      colorScheme: ColorScheme.fromSwatch(
-        primarySwatch: generateMaterialColor(NavisColors.blue),
-        accentColor: NavisColors.secondary,
+      colorScheme: ColorScheme.fromSeed(
+        seedColor: generateMaterialColor(NavisColors.blue),
+        secondary: NavisColors.secondary,
         brightness: Brightness.dark,
       ),
       cardTheme: _cardTheme.copyWith(color: Colors.grey[900]),
@@ -34,15 +33,11 @@ class NavisTheme {
     );
   }
 
-  static AppBarTheme get _appBarTheme {
-    return const AppBarTheme(color: NavisColors.blue);
-  }
-
   static CardTheme get _cardTheme {
     return CardTheme(
       elevation: 6,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
-      margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+      margin: const EdgeInsets.symmetric(horizontal: 6, vertical: 4),
       clipBehavior: Clip.hardEdge,
     );
   }
@@ -55,8 +50,8 @@ class NavisTheme {
 
   static NavigationBarThemeData get _navigationBarThemeData {
     return NavigationBarThemeData(
-      backgroundColor: NavisColors.canvasColor,
       indicatorColor: Colors.transparent,
+      height: 60,
       iconTheme: MaterialStateProperty.resolveWith((states) {
         if (states.contains(MaterialState.selected)) {
           return const IconThemeData(color: NavisColors.secondary);
