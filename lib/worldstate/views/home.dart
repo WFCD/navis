@@ -60,18 +60,13 @@ class FeedView extends StatelessWidget {
                     NestedScrollView.sliverOverlapAbsorberHandleFor(context),
                 sliver: SliverTopbar(
                   pinned: true,
-                  child: TabBar(
-                    labelColor:
-                        Theme.of(context).primaryTextTheme.bodyText1?.color,
-                    unselectedLabelColor: Theme.of(context)
-                        .primaryTextTheme
-                        .bodyText1
-                        ?.color
-                        ?.withOpacity(.7),
-                    indicatorColor: Theme.of(context).colorScheme.secondary,
-                    tabs: Tabs.values
-                        .map((t) => Tab(text: _getTabLocale(context, t)))
-                        .toList(),
+                  child: Container(
+                    color: Theme.of(context).primaryColor,
+                    child: TabBar(
+                      tabs: Tabs.values
+                          .map((t) => Tab(text: _getTabLocale(context, t)))
+                          .toList(),
+                    ),
                   ),
                 ),
               )
