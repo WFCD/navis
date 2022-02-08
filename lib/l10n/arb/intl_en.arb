@@ -364,7 +364,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "warframeNewsTitle": "Warframe News",
+  "warframeNewsTitle": "News",
   "@warframeNewsTitle": {
     "description": "Main Title for Warframe news page",
     "type": "text",
@@ -546,7 +546,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "homePageTitle": "Homepage",
+  "homePageTitle": "Home",
   "@homePageTitle": {
     "description": "Displayes a link to Navis's homepage",
     "type": "text",
