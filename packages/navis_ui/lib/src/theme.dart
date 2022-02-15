@@ -64,7 +64,6 @@ class NavisTheme {
 
   static NavigationBarThemeData get _navigationBarThemeData {
     return NavigationBarThemeData(
-      backgroundColor: NavisColors.canvasColor,
       indicatorColor: Colors.transparent,
       iconTheme: MaterialStateProperty.resolveWith((states) {
         if (states.contains(MaterialState.selected)) {
