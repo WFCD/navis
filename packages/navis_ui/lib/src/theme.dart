@@ -40,6 +40,22 @@ class NavisTheme {
     );
   }
 
+  // The way I'm unserstanding it using ColorScheme.copyWith() is broken in that
+  // passing Brightness to it doesn't recreate the colors.
+  //
+  // i.e if the ColorScheme was created with Brightness.dark then using
+  // copyWith to change it to Brightness.light will only pass down the new
+  // Brightness value but also the colors that were generated the first time.
+  // Causing the new ColorScheme to have Brightness.light mixed with
+  // Brightness.dark ColorScheme.
+  static ColorScheme _colorScheme([Brightness brightness = Brightness.light]) {
+    return ColorScheme.fromSeed(
+      seedColor: generateMaterialColor(NavisColors.blue),
+      secondary: NavisColors.secondary,
+      brightness: brightness,
+    );
+  }
+
   static DialogTheme get _dialogTheme {
     return DialogTheme(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
