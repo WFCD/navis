@@ -11,26 +11,23 @@ class OrbiterNewsWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final currentLocale = Localizations.localeOf(context).languageCode;
 
-    return Theme(
-      data: NavisTheme.dark,
-      child: InkWell(
-        onTap: () => news.link.launchLink(context),
-        child: SizedBox(
-          height: 200,
-          child: Card(
-            child: BackgroundImage(
-              imageUrl: news.proxyImage,
-              child: ListTile(
-                title: Text(
-                  news.translations[currentLocale] ?? news.message,
-                  overflow: TextOverflow.ellipsis,
-                  // style: textTheme.bodyText1?.copyWith(fontSize: 16.0),
-                ),
-                subtitle: Text(
-                  MaterialLocalizations.of(context)
-                      .formatFullDate(news.date.toLocal()),
-                  // style: textTheme.caption,
-                ),
+    return InkWell(
+      onTap: () => news.link.launchLink(context),
+      child: SizedBox(
+        height: 200,
+        child: Card(
+          child: BackgroundImage(
+            imageUrl: news.proxyImage,
+            child: ListTile(
+              title: Text(
+                news.translations[currentLocale] ?? news.message,
+                overflow: TextOverflow.ellipsis,
+                // style: textTheme.bodyText1?.copyWith(fontSize: 16.0),
+              ),
+              subtitle: Text(
+                MaterialLocalizations.of(context)
+                    .formatFullDate(news.date.toLocal()),
+                // style: textTheme.caption,
               ),
             ),
           ),
