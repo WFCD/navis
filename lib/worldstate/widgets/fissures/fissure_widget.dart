@@ -6,8 +6,6 @@ import 'package:wfcd_client/entities.dart';
 class FissureWidget extends StatelessWidget {
   const FissureWidget({Key? key, required this.fissure}) : super(key: key);
 
-  static const height = 140.0;
-
   final VoidFissure fissure;
 
   static const color = Colors.white;

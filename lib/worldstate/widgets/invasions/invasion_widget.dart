@@ -38,36 +38,36 @@ class InvasionWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final widgetHeight = 20 * (MediaQuery.of(context).size.height / 100);
-
-    return SkyboxCard(
-      height: widgetHeight,
-      node: invasion.node,
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: <Widget>[
-          const Spacer(),
-          _buildDetails(
-            context,
-            invasion.node,
-            invasion.desc,
-            invasion.eta,
-          ),
-          const Spacer(),
-          InvasionReward(
-            attacker: invasion.attacker,
-            defender: invasion.defender,
-            vsInfestation: invasion.vsInfestation,
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 8),
-            child: InvasionProgress(
-              progress: invasion.completion / 100,
-              attackingFaction: invasion.attacker.factionKey,
-              defendingFaction: invasion.defender.factionKey,
+    return SizedBox(
+      height: 150,
+      child: SkyboxCard(
+        node: invasion.node,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            const Spacer(),
+            _buildDetails(
+              context,
+              invasion.node,
+              invasion.desc,
+              invasion.eta,
             ),
-          ),
-        ],
+            const Spacer(),
+            InvasionReward(
+              attacker: invasion.attacker,
+              defender: invasion.defender,
+              vsInfestation: invasion.vsInfestation,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 8),
+              child: InvasionProgress(
+                progress: invasion.completion / 100,
+                attackingFaction: invasion.attacker.factionKey,
+                defendingFaction: invasion.defender.factionKey,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

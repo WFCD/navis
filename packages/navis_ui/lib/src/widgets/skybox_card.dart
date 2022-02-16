@@ -7,8 +7,6 @@ class SkyboxCard extends StatelessWidget {
   const SkyboxCard({
     Key? key,
     required this.node,
-    this.height,
-    this.width,
     this.margin = const EdgeInsets.symmetric(vertical: 3, horizontal: 3),
     this.padding = const EdgeInsets.symmetric(vertical: 3, horizontal: 3),
     required this.child,
@@ -16,7 +14,6 @@ class SkyboxCard extends StatelessWidget {
 
   final String node;
 
-  final double? height, width;
   final EdgeInsetsGeometry margin, padding;
   final Widget child;
 
@@ -28,7 +25,6 @@ class SkyboxCard extends StatelessWidget {
         margin: margin,
         child: BackgroundImage(
           imageUrl: getSkybox(node),
-          height: height,
           padding: padding,
           child: child,
         ),
