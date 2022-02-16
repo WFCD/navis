@@ -35,7 +35,7 @@ class NavisTheme {
     return CardTheme(
       elevation: 6,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
-      margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+      margin: const EdgeInsets.symmetric(horizontal: 6, vertical: 4),
       clipBehavior: Clip.hardEdge,
     );
   }
