@@ -77,7 +77,6 @@ class _NavisAppState extends State<NavisApp> with WidgetsBindingObserver {
       title: 'Navis',
       color: Colors.grey[900],
       themeMode: context.watch<UserSettingsNotifier>().theme,
-      debugShowCheckedModeBanner: false,
       theme: NavisTheme.standard,
       darkTheme: NavisTheme.dark,
       home: const HomeView(),
