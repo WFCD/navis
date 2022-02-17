@@ -64,7 +64,9 @@ class NavisTheme {
 
   static NavigationBarThemeData get _navigationBarThemeData {
     return NavigationBarThemeData(
+      height: kBottomNavigationBarHeight,
       indicatorColor: Colors.transparent,
+      labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
       iconTheme: MaterialStateProperty.resolveWith((states) {
         if (states.contains(MaterialState.selected)) {
           return const IconThemeData(color: NavisColors.secondary);
