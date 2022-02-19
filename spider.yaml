@@ -16,6 +16,6 @@ use_part_of: true
 package: resources
 
 groups:
-  - path: assets/
+  - path: assets/bundled_assets/
     class_name: NavisAssets
     types: [.webp, .svg, .json]
