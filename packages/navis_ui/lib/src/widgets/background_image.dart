@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:navis_ui/navis_ui.dart';
 
 class BackgroundImage extends StatelessWidget {
   const BackgroundImage({
@@ -22,7 +23,7 @@ class BackgroundImage extends StatelessWidget {
         final height = constraints.maxHeight;
 
         if (imageUrl == null) {
-          return _ImageContainer(
+          return ImageContainer(
             imageProvider: _derelict,
             height: height,
             padding: padding,
@@ -35,7 +36,7 @@ class BackgroundImage extends StatelessWidget {
           height: height,
           width: constraints.maxWidth,
           imageBuilder: (context, imageProvider) {
-            return _ImageContainer(
+            return ImageContainer(
               imageProvider: imageProvider,
               height: height,
               padding: padding,
@@ -43,7 +44,7 @@ class BackgroundImage extends StatelessWidget {
             );
           },
           placeholder: (context, url) {
-            return _ImageContainer(
+            return ImageContainer(
               imageProvider: _derelict,
               height: height,
               padding: padding,
@@ -51,7 +52,7 @@ class BackgroundImage extends StatelessWidget {
             );
           },
           errorWidget: (context, url, dynamic error) {
-            return _ImageContainer(
+            return ImageContainer(
               imageProvider: _derelict,
               height: height,
               padding: padding,
@@ -64,8 +65,8 @@ class BackgroundImage extends StatelessWidget {
   }
 }
 
-class _ImageContainer extends StatelessWidget {
-  const _ImageContainer({
+class ImageContainer extends StatelessWidget {
+  const ImageContainer({
     Key? key,
     required this.imageProvider,
     required this.height,
@@ -80,25 +81,31 @@ class _ImageContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: height,
-      decoration: BoxDecoration(
-        image: DecorationImage(
-          image: imageProvider,
-          fit: BoxFit.cover,
-        ),
-      ),
+    return Theme(
+      data: NavisTheme.dark,
       child: Container(
-        alignment: Alignment.bottomCenter,
+        height: height,
         decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.bottomCenter,
-            end: Alignment.topCenter,
-            stops: const <double>[0.3, 1],
-            colors: <Color>[Colors.black.withOpacity(0.7), Colors.transparent],
+          image: DecorationImage(
+            image: imageProvider,
+            fit: BoxFit.cover,
           ),
         ),
-        child: Padding(padding: padding, child: child),
+        child: Container(
+          alignment: Alignment.bottomCenter,
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.bottomCenter,
+              end: Alignment.topCenter,
+              stops: const <double>[0.3, 1],
+              colors: <Color>[
+                Colors.black.withOpacity(0.7),
+                Colors.transparent
+              ],
+            ),
+          ),
+          child: Padding(padding: padding, child: child),
+        ),
       ),
     );
   }
