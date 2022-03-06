@@ -8,14 +8,12 @@ class FissureWidget extends StatelessWidget {
 
   final VoidFissure fissure;
 
-  static const color = Colors.white;
   static const shadow = Shadow(offset: Offset(1, 0), blurRadius: 3);
 
   static const _nodeStyle = TextStyle(
     fontWeight: FontWeight.bold,
     fontStyle: FontStyle.normal,
     fontSize: 18,
-    color: color,
     shadows: <Shadow>[shadow],
   );
 
@@ -23,7 +21,6 @@ class FissureWidget extends StatelessWidget {
     fontWeight: FontWeight.w500,
     fontStyle: FontStyle.normal,
     fontSize: 14,
-    color: color,
     shadows: <Shadow>[shadow],
   );
 
