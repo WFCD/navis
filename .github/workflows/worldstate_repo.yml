@@ -8,12 +8,6 @@ on:
 
 jobs:
   build:
-    defaults:
-      run:
-        working-directory: packages/worldstate_repository
-
-    runs-on: ubuntu-latest
-
     uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/flutter_package.yml@v1
     with:
       min_coverage: 90
