@@ -8,12 +8,7 @@ on:
 
 jobs:
   build:
-    defaults:
-      run:
-        working-directory: packages/market_repository
-
-    runs-on: ubuntu-latest
-
-    uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/flutter_package.yml@v1
+    uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/dart_package.yml@v1
     with:
+      working_directory: packages/market_repository
       min_coverage: 90
