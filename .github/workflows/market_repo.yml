@@ -10,7 +10,7 @@ jobs:
   build:
     defaults:
       run:
-        working-directory: packages/market_repo
+        working-directory: packages/market_repository
 
     runs-on: ubuntu-latest
 

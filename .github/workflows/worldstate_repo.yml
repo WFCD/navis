@@ -10,7 +10,7 @@ jobs:
   build:
     defaults:
       run:
-        working-directory: packages/worldstate_repo
+        working-directory: packages/worldstate_repository
 
     runs-on: ubuntu-latest
 
