@@ -10,4 +10,5 @@ jobs:
   build:
     uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/flutter_package.yml@v1
     with:
+      working_directory: packages/worldstate_repository
       min_coverage: 90
