@@ -56,7 +56,7 @@ class _BuildTitle extends StatelessWidget {
         ?.copyWith(fontWeight: FontWeight.w500);
 
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8),
+      padding: const EdgeInsets.only(bottom: 16),
       child: Text(
         title!,
         textAlign: TextAlign.center,
