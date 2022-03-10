@@ -20,7 +20,7 @@ dependencies:
   flutter_web_browser: 0.17.0
   get_it: 7.2.0
   hive: 2.0.6
-  hydrated_bloc: 8.0.0
+  hydrated_bloc: 8.1.0
   intl: 0.17.0
   market_client:
     git:
@@ -38,7 +38,7 @@ dependencies:
   responsive_builder: 0.4.2
   sentry_flutter: 6.3.0
   shimmer: 2.0.0
-  simple_icons: 6.11.0
+  simple_icons: 6.13.0
   user_settings:
     path: packages/user_settings
   wfcd_client:
