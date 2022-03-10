@@ -47,9 +47,6 @@ class MobileTimers extends StatelessWidget {
                   children: [
                     const DailyReward(),
                     const TraderCard(),
-                    // ignore: flutter_style_todos
-                    // TODO(SlayerOrnstein): Move construction progress to a
-                    //  compact card under the invasion tab.
                     if (state.eventsActive) const EventCard(),
                     if (state.arbitrationActive) const ArbitrationCard(),
                     if (state.outpostDetected) const SentientOutpostCard(),
