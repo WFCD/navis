@@ -71,16 +71,23 @@ class CodexSearch extends StatelessWidget {
                   );
                 },
               );
-            } else if (state is CodexSuccessfulSearch &&
-                state.results.isEmpty) {
+            }
+
+            if (state is CodexSuccessfulSearch && state.results.isEmpty) {
               return Center(child: Text(l10n.codexNoResults));
-            } else if (state is CodexSearchEmpty) {
+            }
+
+            if (state is CodexSearchEmpty) {
               return Center(
                 child: Text(
                   l10n.codexHint,
                   textAlign: TextAlign.center,
                 ),
               );
+            }
+
+            if (state is CodexSearchError) {
+              return Center(child: Text(state.message));
             }
 
             return const Center(child: CircularProgressIndicator());
