@@ -263,11 +263,11 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: "v3.7.2"
-      resolved-ref: "6abd0f71590fb5fb699af4ca98f8509ac54cab7f"
+      ref: "v3.8.0"
+      resolved-ref: "0b077c5e00f22f8bb29aa9c25e82dd14ade85707"
       url: "https://github.com/SlayerOrnstein/wfcd_client.git"
     source: git
-    version: "3.7.2"
+    version: "3.8.0"
 sdks:
   dart: ">=2.16.0 <3.0.0"
   flutter: ">=1.12.13+hotfix.5"

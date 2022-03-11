@@ -17,7 +17,7 @@ class MockUserSettings extends Mock implements UserSettings {}
 class MockWorldstateComputeRunners extends Mock
     implements WorldstateComputeRunners {}
 
-class FakeWorldstateRequest extends Fake implements WorldstateRequest {}
+class FakeWorldstateRequest extends Fake implements WorldstateRequestType {}
 
 void main() {
   final temp = Directory.systemTemp;
