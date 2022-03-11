@@ -11,6 +11,7 @@ class ConstructionProgressCard extends StatelessWidget {
     return AppCard(
       // TODO(SlayerOrnstein): add to loacle data.
       title: 'Construction Progress',
+
       child: BlocBuilder<SolsystemCubit, SolsystemState>(
         builder: (context, state) {
           const iconSize = 25.0;
@@ -25,7 +26,7 @@ class ConstructionProgressCard extends StatelessWidget {
               double.parse(constructionProgress.fomorianProgress).toInt();
 
           return Padding(
-            padding: const EdgeInsets.all(4),
+            padding: const EdgeInsets.only(bottom: 8.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
