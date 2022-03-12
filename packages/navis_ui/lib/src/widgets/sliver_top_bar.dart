@@ -1,8 +1,8 @@
 import 'dart:math' as math;
 
+import 'package:black_hole_flutter/black_hole_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:navis_ui/src/colors/app_colors.dart';
 
 class SliverTopbar extends StatefulWidget {
   const SliverTopbar({
@@ -195,8 +195,10 @@ class _SliverTopbarDelegate extends SliverPersistentHeaderDelegate {
       toolbarOpacity: toolbarOpacity,
       currentExtent: math.max(minExtent, maxExtent - shrinkOffset),
       child: Material(
-        color: NavisColors.blue,
         elevation: 4,
+        color: context.theme.brightness.isDark
+            ? context.theme.colorScheme.surface
+            : context.theme.colorScheme.primary,
         child: child,
       ),
     );

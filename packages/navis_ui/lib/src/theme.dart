@@ -8,7 +8,6 @@ class NavisTheme {
   static ThemeData get standard {
     return ThemeData(
       colorScheme: _colorScheme(),
-      appBarTheme: _appBarTheme,
       cardTheme: _cardTheme,
       dialogTheme: _dialogTheme,
       navigationBarTheme: _navigationBarThemeData,
@@ -17,7 +16,6 @@ class NavisTheme {
 
   static ThemeData get dark {
     return ThemeData(
-      appBarTheme: _appBarTheme,
       colorScheme: _colorScheme(Brightness.dark),
       cardTheme: _cardTheme.copyWith(color: Colors.grey[900]),
       dialogTheme: const DialogTheme(backgroundColor: NavisColors.canvasColor),
@@ -25,10 +23,6 @@ class NavisTheme {
       canvasColor: NavisColors.canvasColor,
       navigationBarTheme: _navigationBarThemeData,
     );
-  }
-
-  static AppBarTheme get _appBarTheme {
-    return const AppBarTheme(color: NavisColors.blue);
   }
 
   static CardTheme get _cardTheme {
