@@ -7,14 +7,6 @@ on:
       - ".github/workflows/worldstate_repo.yaml"
 
 jobs:
-  setup:
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: packages/worldstate_repository
-    steps:
-      - name: Fetch an updated worldstate
-        run: curl https://api.warframestat.us/pc >> test/fixtures/worldstate.json
   test:
     uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/flutter_package.yml@v1
     with:
