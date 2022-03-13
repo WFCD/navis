@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Fetch an updated worldstate
-        run: curl https://api.warframestat.us/pc > test/fixtures/worldstate.json
+        run: curl https://api.warframestat.us/pc >> test/fixtures/worldstate.json
   test:
     uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/flutter_package.yml@v1
     with:
