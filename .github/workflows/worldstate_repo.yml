@@ -9,6 +9,8 @@ on:
 jobs:
   setup:
     runs-on: ubuntu-latest
+    defaults:
+      working-directory: packages/worldstate_repository
     steps:
       - name: Fetch an updated worldstate
         run: curl https://api.warframestat.us/pc >> test/fixtures/worldstate.json
