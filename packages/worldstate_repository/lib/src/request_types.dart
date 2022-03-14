@@ -1,10 +1,13 @@
+// coverage:ignore-file
+
+import 'package:equatable/equatable.dart';
 import 'package:wfcd_client/wfcd_client.dart';
 
 /// {@template request_type}
 // ignore: comment_references
 /// Creates a request with the values needed to pass to a [WarframeClient]
 /// {@endtemplate}
-abstract class RequestType {
+abstract class RequestType extends Equatable {
   /// {@macro request_type}
   const RequestType({
     this.locale = 'en',
@@ -22,6 +25,9 @@ abstract class RequestType {
     final locale = this.locale.split('_').first;
     return SupportedLocaleX.fromLocaleCode(locale);
   }
+
+  @override
+  List<Object?> get props => [platform, language];
 }
 
 /// {@template worldstate_request}
@@ -59,4 +65,7 @@ class ItemSearchRequestType extends RequestType {
 
   /// The name of the item being searched for.
   final String itemName;
+
+  @override
+  List<Object?> get props => super.props..add(itemName);
 }

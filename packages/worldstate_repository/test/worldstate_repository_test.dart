@@ -1,6 +1,7 @@
+import 'dart:convert';
 import 'dart:io';
 
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hive/hive.dart';
 import 'package:mocktail/mocktail.dart';
@@ -70,13 +71,33 @@ void main() {
   });
 
   group('Test retrivial of data and caching', () {
-    test('worldstate', () async {
+    test('worldstate fetch', () async {
       when(() => mockRunners.getWorldstate(any()))
           .thenAnswer((_) async => worldstate);
 
       expect(await repo.getWorldstate(), equals(worldstate));
       expect(cache.getCachedStateTimestamp(), equals(worldstate.timestamp));
       expect(cache.getCachedState(), equals(worldstate));
+
+      reset(mockRunners);
+    });
+
+    test('worldstate fetch from cache', () async {
+      final now = DateTime.now().add(const Duration(seconds: 2)).toUtc();
+      final state = worldstate.copyWith(timestamp: now);
+
+      await testBox.put(WarframestatCache.worldstateTimestampKey, now);
+      await testBox.put(
+        WarframestatCache.worldstateKey,
+        json.encode(WorldstateModel.fromWorldstate(state).toJson()),
+      );
+
+      final s = await repo.getWorldstate();
+
+      expect(cache.getCachedStateTimestamp(), equals(now));
+      expect(s.timestamp, now);
+
+      reset(mockRunners);
     });
 
     test('synthtargets', () async {
@@ -119,6 +140,19 @@ void main() {
       await expectLater(
         repo.getWorldstate(),
         throwsA(isA<ServerException>()),
+      );
+    });
+
+    test('test worldstate FormatException', () async {
+      await testBox.delete(WarframestatCache.worldstateTimestampKey);
+      await testBox.delete(WarframestatCache.worldstateKey);
+
+      when(() => mockRunners.getWorldstate(any()))
+          .thenThrow(const FormatException());
+
+      await expectLater(
+        repo.getWorldstate(),
+        throwsA(isA<FormatException>()),
       );
     });
 
