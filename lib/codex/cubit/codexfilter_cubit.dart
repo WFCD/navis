@@ -9,7 +9,7 @@ export 'codexfilter_state.dart';
 class CodexfilterCubit extends Cubit<SearchState> {
   CodexfilterCubit() : super(CodexfilterInitial());
 
-  void filterResults(FilterCategory category, List<Item> originalResults) {
+  void filterResults(FilterCategory category, List<Item?> originalResults) {
     emit(CodexSearching());
 
     if (FilterCategories.categories.contains(category)) {
