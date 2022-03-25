@@ -26,7 +26,7 @@ class ConstructionProgressCard extends StatelessWidget {
               double.parse(constructionProgress.fomorianProgress).toInt();
 
           return Padding(
-            padding: const EdgeInsets.only(bottom: 8.0),
+            padding: const EdgeInsets.only(bottom: 8),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [

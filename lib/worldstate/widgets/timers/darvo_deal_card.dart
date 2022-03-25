@@ -185,9 +185,6 @@ class ItemImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final mediaQuery = MediaQuery.of(context);
-    final widthRatio = mediaQuery.size.shortestSide / 100;
-
     final error = Icon(
       Icons.error_outline,
       size: 50,
