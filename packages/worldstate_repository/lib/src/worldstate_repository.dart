@@ -50,13 +50,13 @@ class WorldstateRepository {
   Future<Worldstate> getWorldstate({bool forceUpdate = false}) async {
     final now = DateTime.now();
     final timestamp = _cache.getCachedStateTimestamp();
-    final age = timestamp?.difference(now) ?? _kRefreshTime;
+    final age = timestamp?.difference(now).abs() ?? _kRefreshTime;
     final request = WorldstateRequestType(
       locale: _settings.language?.languageCode ?? 'en',
       platform: _settings.platform,
     );
 
-    if (age <= _kRefreshTime || forceUpdate) {
+    if (age >= _kRefreshTime || forceUpdate) {
       try {
         final state = await _runners.getWorldstate(request);
         _cache.cacheWorldstate(state);
