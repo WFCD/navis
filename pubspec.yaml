@@ -37,7 +37,7 @@ dependencies:
     path: packages/notification_repository
   package_info: 2.0.2
   responsive_builder: 0.4.2
-  sentry_flutter: 6.3.0
+  sentry_flutter: 6.4.0
   shimmer: 2.0.0
   simple_icons: 6.13.0
   user_settings:
