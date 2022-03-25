@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/codex/bloc/search_bloc.dart';
-import 'package:navis/codex/cubit/codexfilter_cubit.dart';
+import 'package:navis/codex/utils/result_filters.dart';
 
 class CodexTextEditior extends StatefulWidget {
   const CodexTextEditior({Key? key}) : super(key: key);
@@ -80,8 +80,8 @@ class _CodexTextEditiorState extends State<CodexTextEditior> {
                       )
                       .toList();
                 },
-                onSelected: (s) => BlocProvider.of<CodexfilterCubit>(context)
-                    .filterResults(s, state.results),
+                onSelected: (s) =>
+                    BlocProvider.of<SearchBloc>(context).add(FilterResults(s)),
               ),
             if (_active)
               IconButton(

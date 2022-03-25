@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:matomo/matomo.dart';
 import 'package:navis/codex/bloc/search_bloc.dart';
-import 'package:navis/codex/cubit/codexfilter_cubit.dart';
 import 'package:navis/codex/views/codex_entry.dart';
 import 'package:navis/codex/widgets/codex_widgets.dart';
 import 'package:navis/injection_container.dart';
@@ -16,11 +15,8 @@ class CodexSearchView extends TraceableStatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(create: (_) => SearchBloc(sl<WorldstateRepository>())),
-        BlocProvider(create: (_) => CodexfilterCubit())
-      ],
+    return BlocProvider(
+      create: (_) => SearchBloc(sl<WorldstateRepository>()),
       child: const CodexSearch(),
     );
   }

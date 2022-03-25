@@ -1,38 +1,4 @@
-import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:navis/codex/bloc/search_state.dart';
-import 'package:navis/codex/cubit/codexfilter_state.dart';
-import 'package:wfcd_client/entities.dart';
-
-export 'codexfilter_state.dart';
-
-class CodexfilterCubit extends Cubit<SearchState> {
-  CodexfilterCubit() : super(CodexfilterInitial());
-
-  void filterResults(FilterCategory category, List<Item?> originalResults) {
-    emit(CodexSearching());
-
-    if (FilterCategories.categories.contains(category)) {
-      if (category == FilterCategories.all) {
-        return emit(CodexSuccessfulSearch(originalResults));
-      } else {
-        final results = List<Item>.from(originalResults)
-          ..retainWhere((e) => e.category == category.category);
-
-        emit(CodexSuccessfulSearch(results));
-      }
-    }
-  }
-}
-
-class FilterCategory extends Equatable {
-  const FilterCategory(this.category);
-
-  final String category;
-
-  @override
-  List<Object?> get props => [category];
-}
 
 class FilterCategories {
   static const categories = <FilterCategory>[
@@ -84,4 +50,13 @@ class FilterCategories {
   static const sigils = FilterCategory('Sigils');
   static const skins = FilterCategory('Skins');
   static const warframes = FilterCategory('Warframes');
+}
+
+class FilterCategory extends Equatable {
+  const FilterCategory(this.category);
+
+  final String category;
+
+  @override
+  List<Object?> get props => [category];
 }
