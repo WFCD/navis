@@ -58,10 +58,18 @@ class _CodexTextEditiorState extends State<CodexTextEditior> {
                   autocorrect: false,
                   onChanged: _dispatch,
                   onSubmitted: _dispatch,
-                  cursorColor: Theme.of(context).textTheme.bodyText1?.color,
+                  style: Theme.of(context)
+                      .textTheme
+                      .subtitle1
+                      ?.copyWith(color: Colors.white),
+                  cursorColor: Colors.white,
                   textCapitalization: TextCapitalization.words,
-                  decoration: const InputDecoration(
+                  decoration: InputDecoration(
                     border: InputBorder.none,
+                    hintStyle: Theme.of(context)
+                        .textTheme
+                        .subtitle2
+                        ?.copyWith(color: Colors.white38),
                     hintText: 'Search here...',
                   ),
                 ),
@@ -69,7 +77,7 @@ class _CodexTextEditiorState extends State<CodexTextEditior> {
             ),
             if (state is CodexSuccessfulSearch)
               PopupMenuButton<FilterCategory>(
-                icon: const Icon(Icons.filter_list),
+                icon: const Icon(Icons.filter_list, color: Colors.white),
                 itemBuilder: (context) {
                   return FilterCategories.categories
                       .map(
@@ -86,6 +94,7 @@ class _CodexTextEditiorState extends State<CodexTextEditior> {
             if (_active)
               IconButton(
                 icon: const Icon(Icons.clear),
+                color: Colors.white,
                 onPressed: _onClear,
               ),
           ],
