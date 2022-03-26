@@ -63,7 +63,7 @@ class FeedView extends StatelessWidget {
                   pinned: true,
                   child: TabBar(
                     indicatorColor: context.theme.brightness.isDark
-                        ? null
+                        ? context.theme.colorScheme.primary
                         : context.theme.colorScheme.secondary,
                     tabs: Tabs.values
                         .map((t) => Tab(text: _getTabLocale(context, t)))

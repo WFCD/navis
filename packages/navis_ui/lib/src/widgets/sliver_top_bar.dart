@@ -76,6 +76,9 @@ class SliverTopbarState extends State<SliverTopbar>
           topPadding: topPadding,
           collapsedHeight: collapsedHeight,
           vsync: this,
+          color: context.theme.brightness.isDark
+              ? context.theme.colorScheme.surface
+              : context.theme.colorScheme.primary,
           child: widget.child,
         ),
       ),
@@ -148,20 +151,26 @@ class _SliverTopbarDelegate extends SliverPersistentHeaderDelegate {
     required this.pinned,
     required this.topPadding,
     this.collapsedHeight,
+    this.color,
+    this.vsync,
     this.snapConfiguration,
-    required this.vsync,
     required this.child,
   });
 
   final bool floating;
+
   final bool pinned;
+
   final double topPadding;
+
   final double? collapsedHeight;
+
+  final Color? color;
 
   final Widget child;
 
   @override
-  final TickerProvider vsync;
+  final TickerProvider? vsync;
 
   @override
   final FloatingHeaderSnapConfiguration? snapConfiguration;
@@ -196,9 +205,7 @@ class _SliverTopbarDelegate extends SliverPersistentHeaderDelegate {
       currentExtent: math.max(minExtent, maxExtent - shrinkOffset),
       child: Material(
         elevation: 4,
-        color: context.theme.brightness.isDark
-            ? context.theme.colorScheme.surface
-            : context.theme.colorScheme.primary,
+        color: color,
         child: child,
       ),
     );
@@ -217,6 +224,8 @@ class _SliverTopbarDelegate extends SliverPersistentHeaderDelegate {
     return oldDelegate.pinned != pinned ||
         oldDelegate.floating != floating ||
         oldDelegate.collapsedHeight != collapsedHeight ||
+        oldDelegate.color != color ||
+        oldDelegate.vsync != vsync ||
         oldDelegate.snapConfiguration != snapConfiguration;
   }
 }
