@@ -4,7 +4,7 @@ on:
   pull_request:
     paths:
       - "packages/user_settings/**"
-      - ".github/workflows/market_repo.yaml"
+      - ".github/workflows/user_settings.yaml"
 
 jobs:
   build:
