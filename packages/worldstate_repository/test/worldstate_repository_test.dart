@@ -6,7 +6,6 @@ import 'package:mocktail/mocktail.dart';
 import 'package:user_settings/user_settings.dart';
 import 'package:wfcd_client/entities.dart';
 import 'package:wfcd_client/models.dart';
-import 'package:wfcd_client/wfcd_client.dart';
 import 'package:worldstate_repository/worldstate_repository.dart';
 
 import 'fakes.dart';
@@ -23,11 +22,11 @@ void main() {
   final Worldstate worldstate =
       WorldstateModel.fromJson(Fixtures.worldstateFixture);
 
-  final List<SynthTarget> synthTargets = Fixtures.synthTargetsFixture
-      .map((dynamic e) => SynthTargetModel.fromJson(e as Map<String, dynamic>))
-      .toList();
+  // final List<SynthTarget> synthTargets = Fixtures.synthTargetsFixture
+  //  .map((dynamic e) => SynthTargetModel.fromJson(e as Map<String, dynamic>))
+  //     .toList();
 
-  final testDeal = toBaseItem(Fixtures.dealFixture);
+  // final testDeal = toBaseItem(Fixtures.dealFixture);
 
   setUpAll(() async {
     final temp = Directory.systemTemp;
