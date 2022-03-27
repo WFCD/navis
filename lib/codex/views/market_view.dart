@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:market_repository/market_repository.dart';
 import 'package:navis/codex/cubit/market_bloc.dart';
 import 'package:navis/codex/widgets/market/market_order.dart';
-import 'package:navis/injection_container.dart';
 
 class MarketItemView extends StatelessWidget {
   const MarketItemView({Key? key, required this.itemName}) : super(key: key);
@@ -13,7 +12,9 @@ class MarketItemView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => MarketCubit(sl<MarketRepository>())..findOrder(itemName),
+      create: (_) =>
+          MarketCubit(RepositoryProvider.of<MarketRepository>(context))
+            ..findOrder(itemName),
       child: const Market(),
     );
   }

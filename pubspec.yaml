@@ -8,7 +8,7 @@ environment:
 
 dependencies:
   animations: 2.0.2
-  black_hole_flutter: ^0.3.5
+  black_hole_flutter: 0.3.5
   bloc: 8.0.3
   cached_network_image: 3.2.0
   equatable: 2.0.3
@@ -19,7 +19,6 @@ dependencies:
     sdk: flutter
   flutter_svg: 1.0.3
   flutter_web_browser: 0.17.0
-  get_it: 7.2.0
   hive: 2.0.6
   hydrated_bloc: 8.1.0
   intl: 0.17.0
@@ -79,7 +78,7 @@ flutter:
         - asset: assets/icons/SyndicateGlyphs.ttf
   assets:
     - assets/Derelict.webp
-    - assets/event_info.json
+    # - assets/event_info.json
     - assets/wfcd_logo_color.svg
     - assets/baro_banner.webp
 

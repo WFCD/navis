@@ -32,12 +32,6 @@ class SolState extends SolsystemState {
 
   bool get outpostDetected => worldstate.anomalyDetected;
 
-  List<Challenge> get nightwaveDailies =>
-      worldstate.nightwave?.daily ?? <Challenge>[];
-
-  List<Challenge> get nightwaveWeeklies =>
-      worldstate.nightwave?.weekly ?? <Challenge>[];
-
   @override
   List<Object> get props => [worldstate];
 

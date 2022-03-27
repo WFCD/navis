@@ -27,6 +27,7 @@ class TraderCard extends StatelessWidget {
               : null,
           child: AppCard(
             padding: EdgeInsets.zero,
+            color: const Color(0xFF82598b),
             child: SizedBox(
               height: 150,
               child: ImageContainer(

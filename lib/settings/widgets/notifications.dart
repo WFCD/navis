@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:navis/injection_container.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis/utils/notification_topic_filter.dart';
 import 'package:navis_ui/navis_ui.dart';
@@ -42,9 +41,9 @@ void _onChanged(BuildContext context, Topic topic, bool value) {
   context.read<UserSettingsNotifier>().setToggle(topic.name, value: value);
 
   if (value) {
-    sl<NotificationRepository>().subscribeToNotification(topic);
+    context.read<NotificationRepository>().subscribeToNotification(topic);
   } else {
-    sl<NotificationRepository>().unsubscribeFromNotification(topic);
+    context.read<NotificationRepository>().unsubscribeFromNotification(topic);
   }
 }
 
