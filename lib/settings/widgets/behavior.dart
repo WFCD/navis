@@ -26,14 +26,6 @@ class Behavior extends StatelessWidget {
           subtitle: Text(l10n.themeDescription),
           onTap: () => ThemePicker.showModes(context),
         ),
-        SwitchListTile(
-          title: Text(l10n.backOpensDrawerTitle),
-          subtitle: Text(l10n.backOpensDrawerDescription),
-          value: context.watch<UserSettingsNotifier>().backKey,
-          activeColor: Theme.of(context).colorScheme.secondary,
-          onChanged: (b) =>
-              context.read<UserSettingsNotifier>().toggleBackKey(value: b),
-        )
       ],
     );
   }
