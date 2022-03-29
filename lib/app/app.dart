@@ -32,12 +32,14 @@ class _NavisAppState extends State<NavisApp> with WidgetsBindingObserver {
 
   @override
   void didChangeDependencies() {
-    precacheImage(const AssetImage('assets/baro_banner.webp'), context);
-    precacheImage(const AssetImage('assets/Derelict.webp'), context);
+    const root = 'assets/bundled';
+
+    precacheImage(const AssetImage('$root/baro_banner.webp'), context);
+    precacheImage(const AssetImage('$root/Derelict.webp'), context);
     precachePicture(
       ExactAssetPicture(
         SvgPicture.svgStringDecoderBuilder,
-        'assets/wfcd_logo_color.svg',
+        '$root/wfcd_logo_color.svg',
       ),
       context,
     );

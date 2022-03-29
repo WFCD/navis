@@ -77,10 +77,10 @@ flutter:
       fonts:
         - asset: assets/icons/SyndicateGlyphs.ttf
   assets:
-    - assets/Derelict.webp
+    - assets/bundled/Derelict.webp
     # - assets/event_info.json
-    - assets/wfcd_logo_color.svg
-    - assets/baro_banner.webp
+    - assets/bundled/wfcd_logo_color.svg
+    - assets/bundled/baro_banner.webp
 
 sentry:
   upload_native_symbols: true

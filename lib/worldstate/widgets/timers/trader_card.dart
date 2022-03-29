@@ -31,7 +31,8 @@ class TraderCard extends StatelessWidget {
             child: SizedBox(
               height: 150,
               child: ImageContainer(
-                imageProvider: const AssetImage('assets/baro_banner.webp'),
+                imageProvider:
+                    const AssetImage('assets/bundled/baro_banner.webp'),
                 height: 150,
                 padding: EdgeInsets.zero,
                 child: ListTile(
