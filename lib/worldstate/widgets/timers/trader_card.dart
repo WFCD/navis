@@ -18,7 +18,7 @@ class TraderCard extends StatelessWidget {
         final date = MaterialLocalizations.of(context).formatFullDate(
           trader.active ? trader.expiry! : trader.activation!,
         );
-        final status = trader.active ? l10n.baroLeaving : l10n.baroArriving;
+        final status = trader.active ? l10n.baroLeavesOn : l10n.baroArrivesOn;
 
         return InkWell(
           onTap: trader.active
