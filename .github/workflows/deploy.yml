@@ -84,47 +84,47 @@ jobs:
           tags: true
           draft: false
 
-  # ios: # Github's MacOS images come with xcode preinstalled
-  #   runs-on: macos-latest
-  #   strategy:
-  #     fail-fast: true
-  #   steps:
-  #     - uses: actions/checkout@v2
-  #       with:
-  #         fetch-depth: 0
+  ios: # Github's MacOS images come with xcode preinstalled
+    runs-on: macos-latest
+    strategy:
+      fail-fast: true
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
 
-  #     - uses: webfactory/ssh-agent@v0.4.1
-  #       with:
-  #         ssh-private-key: ${{ secrets.FASTLANE_DEPLOY_KEY }}
+      - uses: webfactory/ssh-agent@v0.4.1
+        with:
+          ssh-private-key: ${{ secrets.FASTLANE_DEPLOY_KEY }}
 
-  #     - uses: subosito/flutter-action@v1
-  #       with:
-  #         channel: ${{ env.FLUTTER_VERSION }}
+      - uses: subosito/flutter-action@v1
+        with:
+          channel: ${{ env.FLUTTER_VERSION }}
 
-  #     - name: Decode service plist
-  #       run: base64 -d <<< $FIREBASE_IOS > ios/Runner/GoogleService-Info.plist
+      - name: Decode service plist
+        run: base64 -d <<< $FIREBASE_IOS > ios/Runner/GoogleService-Info.plist
 
-  #     - name: Build ios using flutter
-  #       run: |
-  #       flutter build ios \
-  #       --dart-define=SENTRY_DSN=$SENTRY_DSN --dart-define=MATOMO_URL=$MATOMO_URL \
-  #       -t lib/main_production.dart --no-codesign
+      - name: Build ios using flutter
+        run: |
+        flutter build ios \
+        --dart-define=SENTRY_DSN=$SENTRY_DSN --dart-define=MATOMO_URL=$MATOMO_URL \
+        -t lib/main_production.dart --no-codesign
 
-  #     - uses: actions/setup-ruby@v1
-  #       with:
-  #         ruby-version: "2.7"
+      - uses: actions/setup-ruby@v1
+        with:
+          ruby-version: "2.7"
 
-  #     - name: App Store Deploy
-  #       uses: maierj/fastlane-action@v2.0.0
-  #       with:
-  #         lane: beta
-  #         subdirectory: ios
+      - name: App Store Deploy
+        uses: maierj/fastlane-action@v2.0.0
+        with:
+          lane: beta
+          subdirectory: ios
 
-  #     - name: Github Releases Deploy
-  #       uses: xresloader/upload-to-github-release@v1
-  #       env:
-  #         GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-  #       with:
-  #         file: "ios/app-ios-release.ipa"
-  #         tags: true
-  #         draft: false
+      - name: Github Releases Deploy
+        uses: xresloader/upload-to-github-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+        with:
+          file: "ios/app-ios-release.ipa"
+          tags: true
+          draft: false
