@@ -105,7 +105,10 @@ jobs:
         run: base64 -d <<< $FIREBASE_IOS > ios/Runner/GoogleService-Info.plist
 
       - name: Build ios using flutter
-        run: flutter build ios --dart-define=SENTRY_DSN=$SENTRY_DSN --dart-define=MATOMO_URL=$MATOMO_URL -t lib/main_production.dart --no-codesign
+        run: | 
+          flutter build ios \
+          --dart-define=SENTRY_DSN=$SENTRY_DSN --dart-define=MATOMO_URL=$MATOMO_URL \
+          -t lib/main_prod.dart --no-codesign
 
       - uses: actions/setup-ruby@v1
         with:
