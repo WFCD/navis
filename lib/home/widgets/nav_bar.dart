@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/home/cubit/navigation_cubit.dart';
 import 'package:navis/l10n/l10n.dart';
+import 'package:navis_ui/navis_ui.dart';
 
 class CustomNavigationBar extends StatelessWidget {
   const CustomNavigationBar({Key? key}) : super(key: key);
@@ -33,8 +34,8 @@ class CustomNavigationBar extends StatelessWidget {
           label: context.l10n.codexTitle,
         ),
         NavigationDestination(
-          icon: const Icon(Icons.explore_rounded),
-          label: context.l10n.exploreTitle,
+          icon: const Icon(SyndicateIcons.simaris),
+          label: context.l10n.synthTargetTitle,
         )
       ],
     );

@@ -931,5 +931,11 @@
     "description": "Title for invasion constrcution progress",
     "type": "text",
     "placeholder": {}
+  },
+  "synthTargetTitle": "SynthTargets",
+  "@synthTargetTitle": {
+    "description": "Title for synthtargets",
+    "type": "text",
+    "placeholder": {}
   }
 }
