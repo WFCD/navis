@@ -919,5 +919,17 @@
     "description": "A label shown in codex items to detenote items that are vaulted",
     "type": "text",
     "placeholder": {}
+  },
+  "exploreTitle": "Explore",
+  "@exploreTitle": {
+    "description": "Title for explore page",
+    "type": "text",
+    "placeholder": {}
+  },
+  "constructionProgressTitle": "Construction Progress",
+  "@constructionProgressTitle": {
+    "description": "Title for invasion constrcution progress",
+    "type": "text",
+    "placeholder": {}
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:navis/l10n/l10n.dart';
 import 'package:navis/worldstate/cubits/solsystem_cubit.dart';
 import 'package:navis_ui/navis_ui.dart';
 
@@ -9,9 +10,7 @@ class ConstructionProgressCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppCard(
-      // TODO(SlayerOrnstein): add to loacle data.
-      title: 'Construction Progress',
-
+      title: NavisLocalizations.of(context)!.constructionProgressTitle,
       child: BlocBuilder<SolsystemCubit, SolsystemState>(
         builder: (context, state) {
           const iconSize = 25.0;

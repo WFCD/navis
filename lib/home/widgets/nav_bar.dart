@@ -32,9 +32,9 @@ class CustomNavigationBar extends StatelessWidget {
           icon: const Icon(Icons.search_rounded),
           label: context.l10n.codexTitle,
         ),
-        const NavigationDestination(
-          icon: Icon(Icons.explore_rounded),
-          label: 'Explore', // TODO(SlayerOrnstein): add to translation arb.
+        NavigationDestination(
+          icon: const Icon(Icons.explore_rounded),
+          label: context.l10n.exploreTitle,
         )
       ],
     );

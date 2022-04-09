@@ -12,8 +12,8 @@ class SynthTargetsView extends TraceableStatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (_) => SynthtargetsCubit(
-          RepositoryProvider.of<WorldstateRepository>(context))
-        ..fetchSynthtargets(),
+        RepositoryProvider.of<WorldstateRepository>(context),
+      )..fetchSynthtargets(),
       child: const SynthTargetsPage(),
     );
   }
