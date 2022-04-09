@@ -6,7 +6,6 @@ import 'package:navis/l10n/l10n.dart';
 import 'package:navis/worldstate/cubits/darvodeal_cubit.dart';
 import 'package:navis/worldstate/cubits/solsystem_cubit.dart';
 import 'package:navis_ui/navis_ui.dart';
-import 'package:responsive_builder/responsive_builder.dart';
 import 'package:wfcd_client/entities.dart';
 
 class DarvoDealCard extends StatelessWidget {
@@ -69,15 +68,15 @@ class _DealWidgetState extends State<DealWidget> {
                   ListTile(
                     leading: CachedNetworkImage(
                       imageUrl: state.item.imageUrl,
-                      // width: 50,
+                      fit: BoxFit.contain,
+                      width: 50,
                       errorWidget: (context, url, dynamic object) {
                         return Icon(
                           Icons.error_outline,
-                          size: 50,
                           color: Theme.of(context).errorColor,
                         );
                       },
-                      placeholder: (context, url) => const Center(
+                      placeholder: (context, url) => const SizedBox(
                         child: CircularProgressIndicator(),
                       ),
                     ),
@@ -136,77 +135,6 @@ class _DealWidgetState extends State<DealWidget> {
           ],
         );
       },
-    );
-  }
-}
-
-class DealDetails extends StatelessWidget {
-  const DealDetails({
-    Key? key,
-    required this.imageUrl,
-    required this.itemName,
-    this.itemDescription,
-  }) : super(key: key);
-
-  final String imageUrl, itemName;
-  final String? itemDescription;
-
-  @override
-  Widget build(BuildContext context) {
-    final textTheme = Theme.of(context).textTheme;
-
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        ItemImage(imageUrl: imageUrl),
-        Text(
-          itemName,
-          style: textTheme.subtitle1?.copyWith(fontWeight: FontWeight.w500),
-        ),
-        if (itemDescription != null) ...{
-          SizedBoxSpacer.spacerHeight8,
-          Text(
-            itemDescription ?? '',
-            maxLines: 7,
-            overflow: TextOverflow.ellipsis,
-            style:
-                textTheme.subtitle2?.copyWith(color: textTheme.caption?.color),
-          ),
-        }
-      ],
-    );
-  }
-}
-
-class ItemImage extends StatelessWidget {
-  const ItemImage({Key? key, required this.imageUrl}) : super(key: key);
-
-  final String imageUrl;
-
-  @override
-  Widget build(BuildContext context) {
-    final error = Icon(
-      Icons.error_outline,
-      size: 50,
-      color: Theme.of(context).errorColor,
-    );
-
-    return Padding(
-      padding: const EdgeInsets.all(8),
-      child: Center(
-        child: ResponsiveBuilder(
-          builder: (BuildContext context, SizingInformation sizing) {
-            return CachedNetworkImage(
-              imageUrl: imageUrl,
-              width: 25,
-              errorWidget: (context, url, dynamic object) => error,
-              placeholder: (context, url) => const Center(
-                child: CircularProgressIndicator(),
-              ),
-            );
-          },
-        ),
-      ),
     );
   }
 }
