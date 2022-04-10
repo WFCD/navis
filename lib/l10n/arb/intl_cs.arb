@@ -140,21 +140,9 @@
         "type": "text",
         "placeholders": {}
     },
-    "baroTitle": "Obchodník Voidu",
+    "baroTitle": "Baro Ki'Teer",
     "@baroTitle": {
         "description": "Title for Baro Ki'Teer card",
-        "type": "text",
-        "placeholders": {}
-    },
-    "baroLeaving": "Baro Ki'Teer odchází za",
-    "@baroLeaving": {
-        "description": "displays remaining time before Baro Ki'Teer leaves",
-        "type": "text",
-        "placeholders": {}
-    },
-    "baroArriving": "Baro Ki'Teer se objeví za",
-    "@baroArriving": {
-        "description": "displays remaining time before Baro Ki'Teer arrives",
         "type": "text",
         "placeholders": {}
     },
@@ -286,18 +274,6 @@
         "typ": "text",
         "placeholders": {}
     },
-    "backOpensDrawerTitle": "Tlačítko zpět otevře seznam",
-    "@backOpensDrawerTitle": {
-        "description": "Title for the option that allows back button to open the drawer",
-        "type": "text",
-        "placeholders": {}
-    },
-    "backOpensDrawerDescription": "Stisknutím tlačítka zpět se otevře seznam.",
-    "@backOpensDrawerDescription": {
-        "description": "Description for back button opens drawer option",
-        "type": "text",
-        "placeholders": {}
-    },
     "notificationsTitle": "Oznámení",
     "@notificationsTitle": {
         "description": "Notifications category title",
@@ -364,7 +340,7 @@
         "type": "text",
         "placeholders": {}
     },
-    "warframeNewsTitle": "Novinky Warframu",
+    "warframeNewsTitle": "News",
     "@warframeNewsTitle": {
         "description": "Main Title for Warframe news page",
         "type": "text",
@@ -546,7 +522,7 @@
         "type": "text",
         "placeholders": {}
     },
-    "homePageTitle": "Domů",
+    "homePageTitle": "Home",
     "@homePageTitle": {
         "description": "Displayes a link to Navis's homepage",
         "type": "text",
@@ -941,6 +917,24 @@
     "codexVaultedLabel": "Vaulted",
     "@codexVaultedLabel": {
         "description": "A label shown in codex items to detenote items that are vaulted",
+        "type": "text",
+        "placeholder": {}
+    },
+    "exploreTitle": "Explore",
+    "@exploreTitle": {
+        "description": "Title for explore page",
+        "type": "text",
+        "placeholder": {}
+    },
+    "constructionProgressTitle": "Construction Progress",
+    "@constructionProgressTitle": {
+        "description": "Title for invasion constrcution progress",
+        "type": "text",
+        "placeholder": {}
+    },
+    "synthTargetTitle": "SynthTargets",
+    "@synthTargetTitle": {
+        "description": "Title for synthtargets",
         "type": "text",
         "placeholder": {}
     }
