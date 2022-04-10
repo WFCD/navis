@@ -29,6 +29,7 @@ class CodexResult extends StatelessWidget {
     }
 
     return AppCard(
+      padding: EdgeInsets.zero,
       child: ListTile(
         leading: Hero(
           tag: item.uniqueName,

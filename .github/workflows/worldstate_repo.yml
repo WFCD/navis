@@ -7,36 +7,8 @@ on:
       - ".github/workflows/worldstate_repo.yaml"
 
 jobs:
-  build:
-    defaults:
-      run:
-        working-directory: packages/worldstate_repo
-
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v2
-
-      - name: Install Dart
-        uses: dart-lang/setup-dart@v1
-        with:
-          sdk: 2.15.0
-
-      - name: Install Dependencies
-        run: pub get
-
-      - name: Format
-        run: dartfmt --dry-run --set-exit-if-changed lib test
-
-      - name: Analyze
-        run: dart analyze --fatal-infos --fatal-warnings .
-
-      - name: Run tests
-        run: dart test --coverage=coverage && pub run coverage:format_coverage --lcov --in=coverage --out=coverage/lcov.info --packages=.packages --report-on=lib
-
-      - name: Check Code Coverage
-        uses: VeryGoodOpenSource/very_good_coverage@v1.2.0
-        with:
-          path: packages/worldstate_repository/coverage/lcov.info
-          min_coverage: 90
-          exclude: "**/*.g.dart **/*.gen.dart"
+  test:
+    uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/flutter_package.yml@v1
+    with:
+      working_directory: packages/worldstate_repository
+      min_coverage: 5

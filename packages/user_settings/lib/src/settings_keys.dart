@@ -12,8 +12,4 @@ class SettingsKeys {
 
   /// The key where the user's set ThemeMode is stored as a String.
   static const String theme = 'theme';
-
-  /// The key where the user's set preference on using the back key is stored
-  /// as a bool.
-  static const String backKey = 'back_key';
 }

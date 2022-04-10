@@ -46,14 +46,13 @@ class MobileTimers extends StatelessWidget {
                   cacheExtent: 500,
                   children: [
                     const DailyReward(),
-                    const ConstructionProgressCard(),
+                    const TraderCard(),
                     if (state.eventsActive) const EventCard(),
                     if (state.arbitrationActive) const ArbitrationCard(),
                     if (state.outpostDetected) const SentientOutpostCard(),
                     const SteelPathCard(),
                     if (state.activeAlerts) const AlertsCard(),
                     const CycleCard(),
-                    const TraderCard(),
                     if (state.activeSales) const DarvoDealCard(),
                     const SortieCard()
                   ],

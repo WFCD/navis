@@ -12,6 +12,7 @@ class SyndicateCard extends StatelessWidget {
     this.name,
     this.caption,
     this.syndicate,
+    this.nightwave,
     this.onTap,
   })  : assert(
           syndicate != null || name != null,
@@ -22,6 +23,7 @@ class SyndicateCard extends StatelessWidget {
 
   final String? name, caption;
   final Syndicate? syndicate;
+  final Nightwave? nightwave;
 
   final void Function()? onTap;
 
@@ -29,7 +31,8 @@ class SyndicateCard extends StatelessWidget {
     final _syndicate = syndicateStringToEnum(syndicate?.id ?? name!);
 
     if (_syndicate == Syndicates.nightwave) {
-      Navigator.of(context).pushNamed(NightwavesPage.route);
+      Navigator.of(context)
+          .pushNamed(NightwavesPage.route, arguments: nightwave);
     } else {
       Navigator.of(context).pushNamed(BountiesPage.route, arguments: syndicate);
     }

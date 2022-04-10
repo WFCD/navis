@@ -4,24 +4,8 @@ import 'package:user_settings/user_settings.dart';
 import 'package:wfcd_client/entities.dart';
 import 'package:wfcd_client/wfcd_client.dart';
 import 'package:worldstate_repository/src/exceptions.dart';
+import 'package:worldstate_repository/src/request_types.dart';
 import 'package:worldstate_repository/src/worldstate_cache.dart';
-
-/// {@template worldstate_request}
-/// Creates and instance of [WorldstateRequest] in order to pass down to compute
-/// runners.
-///
-/// See [compute]
-/// {@endtemplate}
-class WorldstateRequest {
-  /// {@macro worldstate_request}
-  const WorldstateRequest({required this.locale, required this.platform});
-
-  /// The language the request is made for.
-  final String locale;
-
-  /// The Game platform this request is for.
-  final GamePlatforms platform;
-}
 
 const _kRefreshTime = Duration(seconds: 1);
 
@@ -67,7 +51,7 @@ class WorldstateRepository {
     final now = DateTime.now();
     final timestamp = _cache.getCachedStateTimestamp();
     final age = timestamp?.difference(now).abs() ?? _kRefreshTime;
-    final request = WorldstateRequest(
+    final request = WorldstateRequestType(
       locale: _settings.language?.languageCode ?? 'en',
       platform: _settings.platform,
     );
@@ -142,29 +126,38 @@ class WorldstateRepository {
   ///
   /// Warframe-items: https://github.com/WFCD/warframe-items
   Future<List<Item>> searchItems(String text) async {
-    return _runners.searchItems(text);
+    final request = ItemSearchRequestType(
+      itemName: text,
+      locale: _settings.language?.languageCode ?? 'en',
+      platform: _settings.platform,
+    );
+
+    return _runners.searchItems(request);
   }
 }
 
+// coverage: ignore-start
 /// {@template runners}
 /// Holds functions used to fetch worldstate information in a seperate isolate.
 ///
 /// Should not be used directly and is only visible for testing purposes.
 /// [WorldstateRepository] uses this with caching.
 /// {@endtemplate}
-// coverage: ignore-start
 @visibleForTesting
 class WorldstateComputeRunners {
   /// {@macro runners}
   const WorldstateComputeRunners();
 
   /// Only used for testing that runners throw the right exceptions.
-  static WarframestatClient client([WarframestatClient? testClient]) {
-    return testClient ?? WarframestatClient();
+  static WarframestatClient client([
+    GamePlatforms platform = GamePlatforms.pc,
+    SupportedLocale language = SupportedLocale.en,
+  ]) {
+    return WarframestatClient(platform: platform, language: language);
   }
 
   /// Returns an instance of [Worldstate]
-  Future<Worldstate> getWorldstate(WorldstateRequest request) async {
+  Future<Worldstate> getWorldstate(WorldstateRequestType request) async {
     final state = await compute(_getWorldstate, request);
 
     if (state == null) {
@@ -206,22 +199,17 @@ class WorldstateComputeRunners {
 
   /// Searchs for Items using the worldstate-status warframe-items endpoint in
   /// a seperate isolate
-  Future<List<Item>> searchItems(String text) {
+  Future<List<Item>> searchItems(ItemSearchRequestType request) {
     try {
-      return compute(client().searchItems, text);
+      return compute(client(request.platform, request.language).searchItems,
+          request.itemName);
     } on Exception {
       throw const ServerException('Error communication with APi.');
     }
   }
 
-  static Future<Worldstate?> _getWorldstate(WorldstateRequest request) {
-    final locale = request.locale.split('_').first;
-    final supportedLocale = SupportedLocaleX.fromLocaleCode(locale);
-
-    return client().getWorldstate(
-      request.platform,
-      language: supportedLocale,
-    );
+  static Future<Worldstate?> _getWorldstate(WorldstateRequestType request) {
+    return client(request.platform, request.language).getWorldstate();
   }
 
   // Becasue compute needs an entry argument noParam can be anything

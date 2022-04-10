@@ -5,14 +5,15 @@ class AppCard extends StatelessWidget {
     Key? key,
     this.title,
     this.color,
-    this.margin = const EdgeInsets.all(4),
+    this.margin,
     this.padding = const EdgeInsets.all(4),
     required this.child,
   }) : super(key: key);
 
   final String? title;
   final Color? color;
-  final EdgeInsetsGeometry margin, padding;
+  final EdgeInsetsGeometry padding;
+  final EdgeInsetsGeometry? margin;
   final Widget child;
 
   @override
@@ -55,7 +56,7 @@ class _BuildTitle extends StatelessWidget {
         ?.copyWith(fontWeight: FontWeight.w500);
 
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8),
+      padding: const EdgeInsets.only(bottom: 16),
       child: Text(
         title!,
         textAlign: TextAlign.center,

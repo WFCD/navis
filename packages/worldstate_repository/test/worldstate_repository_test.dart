@@ -1,190 +1,128 @@
 import 'dart:io';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hive/hive.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:user_settings/user_settings.dart';
 import 'package:wfcd_client/entities.dart';
 import 'package:wfcd_client/models.dart';
-import 'package:wfcd_client/wfcd_client.dart';
 import 'package:worldstate_repository/worldstate_repository.dart';
 
-import 'fixtures/fixture_reader.dart';
-
-class MockUserSettings extends Mock implements UserSettings {}
-
-class MockWorldstateComputeRunners extends Mock
-    implements WorldstateComputeRunners {}
-
-class FakeWorldstateRequest extends Fake implements WorldstateRequest {}
+import 'fakes.dart';
+import 'fixtures/fixtures.dart';
+import 'mocks.dart';
 
 void main() {
-  final temp = Directory.systemTemp;
-  final mockRunners = MockWorldstateComputeRunners();
-
-  final worldstateFixture = fixture<Map<String, dynamic>>('worldstate.json');
-  final Worldstate worldstate = WorldstateModel.fromJson(worldstateFixture);
-
-  final synthTargetsFixture = fixture<List<dynamic>>('synthTargets.json');
-  final List<SynthTarget> synthTargets = synthTargetsFixture
-      .map((dynamic e) => SynthTargetModel.fromJson(e as Map<String, dynamic>))
-      .toList();
-
-  const kTestSearchTerm = 'Chroma Prime';
-  const kTestSearchId = 'mockID';
-  final dealFixture = fixture<Map<String, dynamic>>('darvo_deal.json');
-  final testDeal = toBaseItem(dealFixture);
-
   late UserSettings settings;
   late WarframestatCache cache;
   late WorldstateRepository repo;
   late Box<dynamic> testBox;
+  late WorldstateComputeRunners runners;
 
-  setUpAll(() => Hive.init(temp.path));
+  final Worldstate worldstate =
+      WorldstateModel.fromJson(Fixtures.worldstateFixture);
 
-  setUp(() async {
+  // final List<SynthTarget> synthTargets = Fixtures.synthTargetsFixture
+  //  .map((dynamic e) => SynthTargetModel.fromJson(e as Map<String, dynamic>))
+  //     .toList();
+
+  // final testDeal = toBaseItem(Fixtures.dealFixture);
+
+  setUpAll(() async {
+    final temp = Directory.systemTemp;
+    Hive.init(temp.path);
+
     settings = MockUserSettings();
     testBox = await Hive.openBox<dynamic>('test_box', path: temp.path);
     cache = await WarframestatCache.initCache(temp.path, testBox);
+    runners = MockWorldstateComputeRunners();
     repo = WorldstateRepository(
       settings: settings,
       cache: cache,
-      runners: mockRunners,
+      runners: runners,
     );
 
-    registerFallbackValue(FakeWorldstateRequest());
-    when(() => settings.platform).thenAnswer((_) => GamePlatforms.pc);
-    when(() => settings.language).thenAnswer((_) => const Locale('en'));
+    registerFallbackValue(FakeWorldstateRequestType());
+    registerFallbackValue(FakeItemSearchRequestType());
   });
 
-  tearDown(() {
-    testBox.clear();
-  });
-
-  test('Test cache init', () async {
-    expect(
-      await WarframestatCache.initCache(temp.path),
-      isA<WarframestatCache>(),
-    );
-  });
-
-  group('Test retrivial of data and caching', () {
-    test('worldstate', () async {
-      when(() => mockRunners.getWorldstate(any()))
-          .thenAnswer((_) async => worldstate);
-
-      expect(await repo.getWorldstate(), equals(worldstate));
-      expect(cache.getCachedStateTimestamp(), equals(worldstate.timestamp));
-      expect(cache.getCachedState(), equals(worldstate));
-    });
-
-    test('synthtargets', () async {
-      when(mockRunners.getTargets).thenAnswer((_) async => synthTargets);
-
-      expect(await repo.getSynthTargets(), equals(synthTargets));
-      expect(cache.getCachedTargets(), equals(synthTargets));
-    });
-
-    test("Test the an daily deal's information is retrived", () async {
-      when(() => mockRunners.getItemDealInfo(kTestSearchTerm))
-          .thenAnswer((_) async => testDeal);
-
-      final results = await repo.getDealInfo(kTestSearchId, kTestSearchTerm);
-
-      expect(results, equals(testDeal));
-      expect(cache.getCachedDeal(kTestSearchId), equals(testDeal));
-    });
-  });
-
-  group('Test exception handling', () {
-    reset(mockRunners);
-
-    test('Make sure a cached version of the state is returned', () async {
-      when(() => mockRunners.getWorldstate(any()))
-          .thenThrow(const ServerException(''));
-
-      cache.cacheWorldstate(worldstate);
-
-      expect(await repo.getWorldstate(), equals(worldstate));
-    });
-
-    test('Make sure the exception is rethrown', () async {
+  group('Worldstate', () {
+    // Make sure cached test data is cleared before moving on to the next test.
+    tearDown(() async {
       await testBox.delete(WarframestatCache.worldstateTimestampKey);
       await testBox.delete(WarframestatCache.worldstateKey);
-
-      when(() => mockRunners.getWorldstate(any()))
-          .thenThrow(const ServerException(''));
-
-      await expectLater(
-        repo.getWorldstate(),
-        throwsA(isA<ServerException>()),
-      );
     });
 
-    test(
-      'Make sure we force an update when cache is empty '
-      'and state is expired',
-      () async {
-        when(() => mockRunners.getWorldstate(any()))
-            .thenAnswer((_) async => worldstate);
+    test('get => state is cached in the background', () async {
+      when(() => runners.getWorldstate(any()))
+          .thenAnswer((_) async => worldstate);
 
-        cache.cacheWorldstate(worldstate);
-        await testBox.delete(WarframestatCache.worldstateKey);
+      await repo.getWorldstate();
 
-        await repo.getWorldstate();
-
-        verify(() => mockRunners.getWorldstate(any()));
-      },
-    );
-
-    test('SynthTarget ServerException', () async {
-      when(mockRunners.getTargets).thenThrow(const ServerException(''));
-
-      cache.cacheSynthTargets(synthTargets);
-
-      expect(await repo.getSynthTargets(), equals(synthTargets));
-
-      await testBox.delete(WarframestatCache.synthTargetsKey);
-      await expectLater(
-          repo.getSynthTargets(), throwsA(isA<ServerException>()));
+      expect(cache.getCachedStateTimestamp(), worldstate.timestamp);
+      expect(cache.getCachedState(), worldstate);
     });
 
-    test('Deal info ServerException', () async {
-      cache.cacheDealInfo(kTestSearchId, testDeal);
+    test('expired => get new worldstate', () async {
+      // The tearDown clears keys after every test so we need to have something
+      //in cache to test against the timestamp.
+      cache.cacheWorldstate(worldstate);
 
-      expect(
-        await repo.getDealInfo(kTestSearchId, kTestSearchTerm),
-        equals(testDeal),
-      );
+      final updateState =
+          worldstate.copyWith(timestamp: DateTime.now().toUtc());
 
-      await testBox.delete(WarframestatCache.dealIdKey);
-      when(() => mockRunners.getItemDealInfo(kTestSearchTerm))
-          .thenAnswer((_) async => testDeal);
+      when(() => runners.getWorldstate(any()))
+          .thenAnswer((_) async => updateState);
 
-      expect(
-        await repo.getDealInfo(kTestSearchId, kTestSearchTerm),
-        equals(testDeal),
-      );
+      final state = await repo.getWorldstate();
 
-      await testBox.delete(WarframestatCache.dealIdKey);
-      await testBox.delete(kTestSearchId);
-      when(() => mockRunners.getItemDealInfo(any()))
+      expect(state.timestamp, updateState.timestamp);
+    });
+
+    test('forced => gets a new state regardless of timestamp', () async {
+      final updateState =
+          worldstate.copyWith(timestamp: DateTime.now().toUtc());
+
+      // The tearDown clears keys after every test so we need to have something
+      //in cache to test against the timestamp.
+      cache.cacheWorldstate(updateState);
+
+      when(() => runners.getWorldstate(any()))
+          .thenAnswer((_) async => worldstate);
+
+      final state = await repo.getWorldstate(forceUpdate: true);
+
+      expect(state.timestamp, worldstate.timestamp);
+    });
+
+    test('throw exception => return cached state', () async {
+      // The tearDown clears keys after every test so we need to have something
+      //in cache to test against the timestamp.
+      cache.cacheWorldstate(worldstate);
+
+      when(() => runners.getWorldstate(any()))
           .thenThrow(const ServerException(''));
 
-      await expectLater(
-        repo.getDealInfo(kTestSearchId, kTestSearchTerm),
-        throwsA(isA<ServerException>()),
-      );
+      var state = await repo.getWorldstate();
+      expect(state.timestamp, worldstate.timestamp);
 
-      // We already deleted the cache version in the previous test
-      when(() => mockRunners.getItemDealInfo(kTestSearchTerm))
-          .thenThrow(const ItemNotFoundException(kTestSearchTerm));
+      when(() => runners.getWorldstate(any()))
+          .thenThrow(const FormatException());
 
-      await expectLater(
-        repo.getDealInfo(kTestSearchId, kTestSearchTerm),
-        throwsA(isA<ItemNotFoundException>()),
-      );
+      state = await repo.getWorldstate();
+      expect(state.timestamp, worldstate.timestamp);
+    });
+
+    test('throws exception and cache is empty => rethrows exception', () async {
+      when(() => runners.getWorldstate(any()))
+          .thenThrow(const ServerException(''));
+      expect(repo.getWorldstate(), throwsException);
+
+      when(() => runners.getWorldstate(any()))
+          .thenThrow(const FormatException());
+      expect(repo.getWorldstate(), throwsException);
     });
   });
+
+  group('Deal Item', () {});
 }

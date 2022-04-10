@@ -2,8 +2,8 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:navis/home/home.dart';
-import 'package:navis/injection_container.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis/settings/settings.dart';
 import 'package:navis/worldstate/worldstate.dart';
@@ -27,7 +27,23 @@ class _NavisAppState extends State<NavisApp> with WidgetsBindingObserver {
     super.initState();
     WidgetsBinding.instance?.addObserver(this);
 
-    sl<NotificationRepository>().configure();
+    context.read<NotificationRepository>().configure();
+  }
+
+  @override
+  void didChangeDependencies() {
+    const root = 'assets/bundled';
+
+    precacheImage(const AssetImage('$root/baro_banner.webp'), context);
+    precacheImage(const AssetImage('$root/Derelict.webp'), context);
+    precachePicture(
+      ExactAssetPicture(
+        SvgPicture.svgStringDecoderBuilder,
+        '$root/wfcd_logo_color.svg',
+      ),
+      context,
+    );
+    super.didChangeDependencies();
   }
 
   Widget _builder(BuildContext context, Widget? widget) {
@@ -77,7 +93,6 @@ class _NavisAppState extends State<NavisApp> with WidgetsBindingObserver {
       title: 'Navis',
       color: Colors.grey[900],
       themeMode: context.watch<UserSettingsNotifier>().theme,
-      debugShowCheckedModeBanner: false,
       theme: NavisTheme.standard,
       darkTheme: NavisTheme.dark,
       home: const HomeView(),

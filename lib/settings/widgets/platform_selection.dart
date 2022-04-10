@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:navis/injection_container.dart';
 import 'package:navis/worldstate/cubits/solsystem_cubit.dart';
 import 'package:notification_repository/notification_repository.dart';
 import 'package:provider/provider.dart';
@@ -84,9 +83,10 @@ class PlatformIconButton extends StatelessWidget {
     Provider.of<UserSettingsNotifier>(context, listen: false)
         .setPlatform(platform);
 
-    sl<NotificationRepository>()
-        .unsubscribeFromPlatform(sl<UserSettingsNotifier>().platform);
-    sl<NotificationRepository>().subscribeToPlatform(platform);
+    context
+        .read<NotificationRepository>()
+        .unsubscribeFromPlatform(context.read<UserSettingsNotifier>().platform);
+    context.read<NotificationRepository>().subscribeToPlatform(platform);
 
     BlocProvider.of<SolsystemCubit>(context).fetchWorldstate(forceUpdate: true);
   }

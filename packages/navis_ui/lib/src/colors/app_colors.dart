@@ -6,4 +6,6 @@ abstract class NavisColors {
   static const secondary = Color(0xFF00BC8C);
 
   static const backgroundColor = Color(0xFF121212);
+
+  static const canvasColor = Color(0xff191919);
 }

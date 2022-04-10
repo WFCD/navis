@@ -21,11 +21,6 @@ class UserSettingsNotifier extends ChangeNotifier {
   /// Get the stored [ThemeMode]
   ThemeMode get theme => _usersettings.theme;
 
-  /// Whether the user has opted to use the back key to open the side menu.
-  ///
-  /// The default value is false.
-  bool get backKey => _usersettings.backkey;
-
   /// Whether the user has opted out of anaylitcs.
   ///
   /// The default value is true.
@@ -57,12 +52,6 @@ class UserSettingsNotifier extends ChangeNotifier {
   /// {@macro stores}
   void setTheme(ThemeMode themeMode) {
     _usersettings.theme = themeMode;
-    notifyListeners();
-  }
-
-  /// {@macro stores}
-  void toggleBackKey({required bool value}) {
-    _usersettings.backkey = value;
     notifyListeners();
   }
 

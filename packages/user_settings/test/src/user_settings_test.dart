@@ -43,17 +43,6 @@ Future<void> main() async {
     }
   });
 
-  test('Test back key enable/disable toggle', () {
-    // Make sure the default value is false.
-    expect(settings.backkey, false);
-
-    settings.backkey = true;
-    expect(settings.backkey, true);
-
-    settings.backkey = false;
-    expect(settings.backkey, false);
-  });
-
   test('Test analytics enable/disable toggle', () {
     // Make sure the default value is false.
     expect(settings.isOptOut, false);

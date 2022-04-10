@@ -63,42 +63,42 @@ packages:
       name: firebase_core
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.12.0"
+    version: "1.13.1"
   firebase_core_platform_interface:
     dependency: transitive
     description:
       name: firebase_core_platform_interface
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.2.4"
+    version: "4.2.5"
   firebase_core_web:
     dependency: transitive
     description:
       name: firebase_core_web
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.5.4"
+    version: "1.6.1"
   firebase_messaging:
     dependency: "direct main"
     description:
       name: firebase_messaging
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "11.2.6"
+    version: "11.2.8"
   firebase_messaging_platform_interface:
     dependency: transitive
     description:
       name: firebase_messaging_platform_interface
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.1.6"
+    version: "3.2.1"
   firebase_messaging_web:
     dependency: transitive
     description:
       name: firebase_messaging_web
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.2.7"
+    version: "2.2.9"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -183,7 +183,7 @@ packages:
       name: plugin_platform_interface
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.2"
+    version: "2.1.2"
   retry:
     dependency: transitive
     description:
@@ -263,11 +263,11 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: "v3.7.2"
-      resolved-ref: "6abd0f71590fb5fb699af4ca98f8509ac54cab7f"
+      ref: "v3.8.0"
+      resolved-ref: "0b077c5e00f22f8bb29aa9c25e82dd14ade85707"
       url: "https://github.com/SlayerOrnstein/wfcd_client.git"
     source: git
-    version: "3.7.2"
+    version: "3.8.0"
 sdks:
-  dart: ">=2.14.0 <3.0.0"
+  dart: ">=2.16.0 <3.0.0"
   flutter: ">=1.12.13+hotfix.5"

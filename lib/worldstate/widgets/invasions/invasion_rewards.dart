@@ -19,6 +19,7 @@ class InvasionReward extends StatelessWidget {
     final d = Factions.values.byName(defender.factionKey.toLowerCase());
 
     return Row(
+      mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         if (!vsInfestation)
           Material(

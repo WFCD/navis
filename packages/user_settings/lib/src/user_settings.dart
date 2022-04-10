@@ -79,15 +79,6 @@ class UserSettings {
     _userSettingsBox.put(SettingsKeys.theme, mode.toString().split('.').last);
   }
 
-  /// Whether the user has selected to use the back button.
-  ///
-  /// Typically you'll want to get this to open the drawer in app when the user
-  /// presses the back butten.
-  bool get backkey => getToggle(SettingsKeys.backKey);
-
-  /// Updates the stored toggle for [UserSettings.backkey].
-  set backkey(bool value) => setToggle(SettingsKeys.backKey, value: value);
-
   /// Returns true if the user has opted to allow anaylics via Matomo.
   bool get isOptOut => getToggle(MatomoTracker.kOptOut);
 

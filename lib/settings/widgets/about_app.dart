@@ -1,7 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:navis/injection_container.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:package_info/package_info.dart';
@@ -39,11 +38,9 @@ class AboutApp extends StatelessWidget {
 class About extends StatelessWidget {
   const About({Key? key}) : super(key: key);
 
-  static const double _iconSize = 30;
-
   @override
   Widget build(BuildContext context) {
-    final info = sl<PackageInfo>();
+    const iconSize = 30.0;
 
     final theme = Theme.of(context);
     final l10n = context.l10n;
@@ -53,89 +50,97 @@ class About extends StatelessWidget {
     final linkStyle =
         theme.textTheme.bodyText1?.copyWith(color: theme.colorScheme.secondary);
 
-    return AboutListTile(
-      applicationIcon: const Icon(
-        AppIcons.nightmare,
-        size: 60,
-        color: Color(0xFF1565C0),
-      ),
-      applicationName: 'Cephalon Navis',
-      applicationVersion: info.version,
-      aboutBoxChildren: <Widget>[
-        SizedBoxSpacer.spacerHeight12,
-        RichText(
-          text: TextSpan(
-            children: <TextSpan>[
-              TextSpan(
-                style: aboutTextStyle,
-                text: '${l10n.homePageTitle} ',
-              ),
-              TextSpan(
-                text: projectPage,
-                style: linkStyle,
-                recognizer: TapGestureRecognizer()
-                  ..onTap = () => projectPage.launchLink(context),
-              ),
-              TextSpan(
-                style: aboutTextStyle,
-                text: '\n\n${l10n.issueTrackerDescription} ',
-              ),
-              TextSpan(
-                text: l10n.issueTrackerTitle,
-                style: linkStyle,
-                recognizer: TapGestureRecognizer()
-                  ..onTap = () => issuePage.launchLink(context),
-              ),
-              TextSpan(
-                style: Theme.of(context).textTheme.caption,
-                text: '\n\n${l10n.legalese}',
-              ),
-              TextSpan(
-                style: Theme.of(context).textTheme.caption,
-                text: '${l10n.warframeLinkTitle} ',
-              ),
-              TextSpan(
-                text: warframePage,
-                style: linkStyle,
-                recognizer: TapGestureRecognizer()
-                  ..onTap = () => warframePage.launchLink(context),
-              ),
-            ],
+    return FutureBuilder(
+      future: PackageInfo.fromPlatform(),
+      builder: (_, AsyncSnapshot<PackageInfo> snapshot) {
+        final info = snapshot.data;
+
+        return AboutListTile(
+          applicationIcon: const Icon(
+            AppIcons.nightmare,
+            size: 60,
+            color: Color(0xFF1565C0),
           ),
-        ),
-        SizedBoxSpacer.spacerHeight12,
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            IconButton(
-              icon: const Icon(SimpleIcons.discord, color: Color(0xFF7289DA)),
-              iconSize: _iconSize,
-              splashColor: Colors.transparent,
-              onPressed: () => discordInvite.launchLink(context),
-            ),
-            SizedBoxSpacer.spacerHeight24,
-            IconButton(
-              icon: Icon(
-                SimpleIcons.github,
-                color: isDark ? Colors.white : const Color(0xFF181717),
+          applicationName: 'Cephalon Navis',
+          applicationVersion: info?.version ?? '',
+          aboutBoxChildren: <Widget>[
+            SizedBoxSpacer.spacerHeight12,
+            RichText(
+              text: TextSpan(
+                children: <TextSpan>[
+                  TextSpan(
+                    style: aboutTextStyle,
+                    text: '${l10n.homePageTitle} ',
+                  ),
+                  TextSpan(
+                    text: projectPage,
+                    style: linkStyle,
+                    recognizer: TapGestureRecognizer()
+                      ..onTap = () => projectPage.launchLink(context),
+                  ),
+                  TextSpan(
+                    style: aboutTextStyle,
+                    text: '\n\n${l10n.issueTrackerDescription} ',
+                  ),
+                  TextSpan(
+                    text: l10n.issueTrackerTitle,
+                    style: linkStyle,
+                    recognizer: TapGestureRecognizer()
+                      ..onTap = () => issuePage.launchLink(context),
+                  ),
+                  TextSpan(
+                    style: Theme.of(context).textTheme.caption,
+                    text: '\n\n${l10n.legalese}',
+                  ),
+                  TextSpan(
+                    style: Theme.of(context).textTheme.caption,
+                    text: '${l10n.warframeLinkTitle} ',
+                  ),
+                  TextSpan(
+                    text: warframePage,
+                    style: linkStyle,
+                    recognizer: TapGestureRecognizer()
+                      ..onTap = () => warframePage.launchLink(context),
+                  ),
+                ],
               ),
-              iconSize: _iconSize,
-              splashColor: Colors.transparent,
-              onPressed: () => projectPage.launchLink(context),
             ),
-            SizedBoxSpacer.spacerHeight24,
-            IconButton(
-              icon: const AppIcon(
-                AppIcons.wfcdLogoColor,
-                color: Color(0xFF2e96ef),
-              ),
-              iconSize: _iconSize,
-              splashColor: Colors.transparent,
-              onPressed: () => communityPage.launchLink(context),
-            )
+            SizedBoxSpacer.spacerHeight12,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                IconButton(
+                  icon:
+                      const Icon(SimpleIcons.discord, color: Color(0xFF7289DA)),
+                  iconSize: iconSize,
+                  splashColor: Colors.transparent,
+                  onPressed: () => discordInvite.launchLink(context),
+                ),
+                SizedBoxSpacer.spacerHeight24,
+                IconButton(
+                  icon: Icon(
+                    SimpleIcons.github,
+                    color: isDark ? Colors.white : const Color(0xFF181717),
+                  ),
+                  iconSize: iconSize,
+                  splashColor: Colors.transparent,
+                  onPressed: () => projectPage.launchLink(context),
+                ),
+                SizedBoxSpacer.spacerHeight24,
+                IconButton(
+                  icon: const AppIcon(
+                    AppIcons.wfcdLogoColor,
+                    color: Color(0xFF2e96ef),
+                  ),
+                  iconSize: iconSize,
+                  splashColor: Colors.transparent,
+                  onPressed: () => communityPage.launchLink(context),
+                )
+              ],
+            ),
           ],
-        ),
-      ],
+        );
+      },
     );
   }
 }

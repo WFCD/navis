@@ -1,3 +1,4 @@
+import 'package:black_hole_flutter/black_hole_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/l10n/l10n.dart';
@@ -61,14 +62,9 @@ class FeedView extends StatelessWidget {
                 sliver: SliverTopbar(
                   pinned: true,
                   child: TabBar(
-                    labelColor:
-                        Theme.of(context).primaryTextTheme.bodyText1?.color,
-                    unselectedLabelColor: Theme.of(context)
-                        .primaryTextTheme
-                        .bodyText1
-                        ?.color
-                        ?.withOpacity(.7),
-                    indicatorColor: Theme.of(context).colorScheme.secondary,
+                    indicatorColor: context.theme.brightness.isDark
+                        ? context.theme.colorScheme.primary
+                        : context.theme.colorScheme.secondary,
                     tabs: Tabs.values
                         .map((t) => Tab(text: _getTabLocale(context, t)))
                         .toList(),

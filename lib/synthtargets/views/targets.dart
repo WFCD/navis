@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:matomo/matomo.dart';
-import 'package:navis/injection_container.dart';
 import 'package:navis/synthtargets/cubit/synthtargets_cubit.dart';
 import 'package:navis/synthtargets/widgets/target.dart';
 import 'package:worldstate_repository/worldstate_repository.dart';
@@ -12,8 +11,9 @@ class SynthTargetsView extends TraceableStatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) =>
-          SynthtargetsCubit(sl<WorldstateRepository>())..fetchSynthtargets(),
+      create: (_) => SynthtargetsCubit(
+        RepositoryProvider.of<WorldstateRepository>(context),
+      )..fetchSynthtargets(),
       child: const SynthTargetsPage(),
     );
   }

@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:matomo/matomo.dart';
-import 'package:navis/injection_container.dart';
-import 'package:navis/worldstate/cubits/solsystem_cubit.dart';
 import 'package:navis/worldstate/widgets/syndicates/nightwave_challenges.dart';
-import 'package:worldstate_repository/worldstate_repository.dart';
+import 'package:wfcd_client/entities.dart';
 
 class NightwavesPage extends TraceableStatelessWidget {
   const NightwavesPage({Key? key}) : super(key: key);
@@ -13,15 +10,16 @@ class NightwavesPage extends TraceableStatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final nightwave = ModalRoute.of(context)?.settings.arguments as Nightwave?;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Nightwave'),
         backgroundColor: const Color(0xFF6C1822),
       ),
-      body: BlocProvider(
-        create: (_) => SolsystemCubit(sl<WorldstateRepository>()),
-        child: const NightwaveChalleneges(),
-      ),
+      body: nightwave != null
+          ? NightwaveChalleneges(nightwave: nightwave)
+          : const Center(child: Text('No active Nightwave')),
     );
   }
 }

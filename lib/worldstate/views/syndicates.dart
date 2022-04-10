@@ -105,6 +105,7 @@ Widget _buildNightwave(Nightwave nightwave, {void Function(Nightwave)? onTap}) {
       SyndicateCard(
         name: 'Nightwave',
         caption: 'Season ${nightwave.season}',
+        nightwave: nightwave,
         onTap: onTap == null ? null : () => onTap(nightwave),
       )
     ],
@@ -160,7 +161,9 @@ class _SyndicatePageTabletState extends State<SyndicatePageTablet> {
     if (object is Syndicate) {
       _controller?.sink.add(SyndicateBounties(syndicate: object));
     } else {
-      _controller?.sink.add(const NightwaveChalleneges());
+      // Since the widget itself isn't visible when nightwave are inactive it
+      // seems alright to force this.
+      _controller?.sink.add(NightwaveChalleneges(nightwave: widget.nightwave!));
     }
   }
 
