@@ -1,4 +1,4 @@
-pull_request_title: "fix(l10n): New %language% translations"
+pull_request_title: "fix(l10n): New translations"
 commit_message: "fix(%language%): New translations in %original_file_name%"
 append_commit_message: false
 files:
