@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:navis/home/home.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis/settings/settings.dart';
@@ -32,15 +31,14 @@ class _NavisAppState extends State<NavisApp> with WidgetsBindingObserver {
 
   @override
   void didChangeDependencies() {
-    const root = 'assets/bundled';
+    const package = 'navis_ui';
 
-    precacheImage(const AssetImage('$root/baro_banner.webp'), context);
-    precacheImage(const AssetImage('$root/Derelict.webp'), context);
-    precachePicture(
-      ExactAssetPicture(
-        SvgPicture.svgStringDecoderBuilder,
-        '$root/wfcd_logo_color.svg',
-      ),
+    precacheImage(
+      const AssetImage('assets/baro_banner.webp', package: package),
+      context,
+    );
+    precacheImage(
+      const AssetImage('assets/Derelict.webp', package: package),
       context,
     );
     super.didChangeDependencies();

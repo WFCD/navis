@@ -18,7 +18,7 @@ class NightwaveChallenge extends StatelessWidget {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          const Icon(AppIcons.standing, size: 20, color: Colors.white),
+          const Icon(GenesisAssets.standing, size: 20, color: Colors.white),
           Text(rep, style: const TextStyle(color: Colors.white))
         ],
       ),
@@ -41,20 +41,18 @@ class NightwaveChallenge extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Text(challenge.title, style: title),
-            SizedBoxSpacer.spacerHeight4,
-            Text(challenge.desc, style: desscription),
-            SizedBoxSpacer.spacerHeight8,
+            ListTile(
+              leading: NightwaveIcon(
+                isElite: challenge.isElite,
+                isDaily: challenge.isDaily ?? false,
+              ),
+              title: Text(challenge.title, style: title),
+              subtitle: Text(challenge.desc, style: desscription),
+            ),
             Row(
               crossAxisAlignment: CrossAxisAlignment.end,
               mainAxisAlignment: MainAxisAlignment.end,
               children: <Widget>[
-                if (challenge.isElite)
-                  ColoredContainer.text(
-                    color: Colors.red,
-                    text: l10n.eliteBadgeTitle,
-                    fontSize: 14,
-                  ),
                 _standingBadge(),
                 CountdownTimer(
                   tooltip: l10n.countdownTooltip(challenge.expiry!),
@@ -66,5 +64,37 @@ class NightwaveChallenge extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+class NightwaveIcon extends StatelessWidget {
+  const NightwaveIcon({Key? key, this.isElite = false, this.isDaily = false})
+      : super(key: key);
+
+  final bool isElite, isDaily;
+
+  @override
+  Widget build(BuildContext context) {
+    const _kIconSize = 30.0;
+    late Widget icon;
+
+    if (isElite) {
+      icon = const AppIcon(
+        GenesisAssets.elite,
+        size: _kIconSize,
+      );
+    } else if (isDaily) {
+      icon = const AppIcon(
+        GenesisAssets.daily,
+        size: _kIconSize,
+      );
+    } else {
+      icon = const AppIcon(
+        GenesisAssets.weekly,
+        size: _kIconSize,
+      );
+    }
+
+    return icon;
   }
 }

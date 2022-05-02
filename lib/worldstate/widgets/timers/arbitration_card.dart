@@ -17,7 +17,7 @@ class ArbitrationCard extends StatelessWidget {
           final expiry = arbitration?.expiry ?? DateTime.now().add(kDelayLong);
 
           return ListTile(
-            leading: const Icon(SyndicateIcons.hexis, size: 50),
+            leading: const AppIcon(GenesisAssets.arbitrations, size: 40),
             title: Row(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
@@ -25,7 +25,7 @@ class ArbitrationCard extends StatelessWidget {
                   const Padding(
                     padding: EdgeInsets.only(left: 6),
                     child: Icon(
-                      AppIcons.archwing,
+                      GenesisAssets.archwing,
                       color: Colors.blue,
                       size: 25,
                     ),

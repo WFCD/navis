@@ -50,7 +50,7 @@ class AlertWidget extends StatelessWidget {
               // Since nightmare alerts aren't visible in the worldstate there
               // is no need for a nightmare icon for alerts.
               if (alert.archwingRequired ?? false)
-                const Icon(AppIcons.archwing, color: Colors.blue, size: 25)
+                const Icon(GenesisAssets.archwing, color: Colors.blue, size: 25)
             ],
             text: Text(node),
             child:

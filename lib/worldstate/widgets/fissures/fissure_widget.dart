@@ -31,15 +31,15 @@ class FissureWidget extends StatelessWidget {
     final icon = () {
       switch (fissure.tier) {
         case 'Lith':
-          return RelicIcons.lith;
+          return GenesisAssets.lith;
         case 'Meso':
-          return RelicIcons.meso;
+          return GenesisAssets.meso;
         case 'Neo':
-          return RelicIcons.neo;
+          return GenesisAssets.neo;
         case 'Axi':
-          return RelicIcons.axi;
+          return GenesisAssets.axi;
         default:
-          return RelicIcons.requiem;
+          return GenesisAssets.requiem;
       }
     }();
 
@@ -99,7 +99,7 @@ class FissureInfo extends StatelessWidget {
                   if (fissure.isStorm)
                     const Padding(
                       padding: EdgeInsets.only(right: 8),
-                      child: Icon(AppIcons.archwing, size: 20),
+                      child: Icon(GenesisAssets.archwing, size: 20),
                     ),
                   Text(
                     '${fissure.missionType} | ${fissure.tier}',

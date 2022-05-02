@@ -35,7 +35,7 @@ class ConstructionProgressCard extends StatelessWidget {
                   child: Row(
                     children: [
                       AppIcon(
-                        FactionIcons.grineer,
+                        GenesisAssets.grineer,
                         size: iconSize,
                         color: Factions.grineer.primaryColor,
                       ),
@@ -58,7 +58,7 @@ class ConstructionProgressCard extends StatelessWidget {
                       ),
                       SizedBoxSpacer.spacerWidth12,
                       AppIcon(
-                        FactionIcons.corpus,
+                        GenesisAssets.corpus,
                         size: iconSize,
                         color: Factions.corpus.primaryColor,
                       ),

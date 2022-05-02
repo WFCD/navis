@@ -18,17 +18,17 @@ extension SyndicatesX on Syndicates {
   IconData get syndicateIcon {
     switch (this) {
       case Syndicates.cetus:
-        return SyndicateIcons.ostron;
+        return GenesisAssets.ostron;
       case Syndicates.solaris:
-        return SyndicateIcons.solaris;
+        return GenesisAssets.solaris;
       case Syndicates.entrati:
-        return SyndicateIcons.entrati;
+        return GenesisAssets.entrati;
       case Syndicates.nightwave:
-        return SyndicateIcons.nightwave;
+        return GenesisAssets.nightwave;
       case Syndicates.simaris:
-        return SyndicateIcons.simaris;
+        return GenesisAssets.simaris;
       case Syndicates.unknown:
-        return SyndicateIcons.hexis;
+        return GenesisAssets.hexis;
     }
   }
 

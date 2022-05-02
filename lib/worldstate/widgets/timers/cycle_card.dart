@@ -21,7 +21,7 @@ class CycleCard extends StatelessWidget {
     ];
 
     const tempCycle = <Icon>[
-      Icon(AppIcons.heatWave, color: Colors.red, size: size),
+      Icon(Icons.sunny, color: Colors.red, size: size),
       Icon(Icons.ac_unit, color: Colors.blue, size: size)
     ];
 

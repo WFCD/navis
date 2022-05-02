@@ -11,7 +11,7 @@ dependencies:
   cached_network_image: 3.2.0
   flutter:
     sdk: flutter
-  flutter_web_browser: 0.17.0
+  flutter_web_browser: 0.17.1
   html: 0.15.0
 
 dev_dependencies:
@@ -21,14 +21,9 @@ dev_dependencies:
 
 flutter:
   fonts:
-    - family: FactionIcons
+    - family: GenesisAssets
       fonts:
-        - asset: assets/icons/FactionIcons.ttf
-    - family: RelicIcons
-      fonts:
-        - asset: assets/icons/RelicIcons.ttf
-    - family: SyndicateGlyphs
-      fonts:
-        - asset: assets/icons/SyndicateGlyphs.ttf
+        - asset: lib/fonts/GenesisAssets.ttf
   assets:
     - assets/Derelict.webp
+    - assets/baro_banner.webp

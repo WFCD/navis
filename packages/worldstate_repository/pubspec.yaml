@@ -10,7 +10,7 @@ dependencies:
   equatable: ^2.0.3
   flutter:
     sdk: flutter
-  hive: 2.0.6
+  hive: 2.1.0
   user_settings:
     path: ../user_settings
   wfcd_client:

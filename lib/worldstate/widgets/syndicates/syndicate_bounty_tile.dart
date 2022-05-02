@@ -17,7 +17,7 @@ class SyndicateBountyTile extends StatelessWidget {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
-        const Icon(AppIcons.standing, size: 20),
+        const Icon(GenesisAssets.standing, size: 20),
         Text(job.standingStages.reduce((v, e) => v + e).toString())
       ],
     );

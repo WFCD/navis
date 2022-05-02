@@ -14,7 +14,8 @@ class BackgroundImage extends StatelessWidget {
   final EdgeInsetsGeometry padding;
   final Widget child;
 
-  static const _derelict = AssetImage('assets/bundled/Derelict.webp');
+  static const _derelict =
+      AssetImage('assets/Derelict.webp', package: 'navis_ui');
 
   @override
   Widget build(BuildContext context) {

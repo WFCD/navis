@@ -24,7 +24,7 @@ class SentientOutpostCard extends StatelessWidget {
           final expiry = outpost.expiry!;
 
           return ListTile(
-            leading: const Icon(FactionIcons.sentient, size: 50),
+            leading: const Icon(GenesisAssets.sentient, size: 40),
             title: Text(mission?.node ?? ''),
             subtitle: Text('${mission?.faction} | ${mission?.type}'),
             trailing: CountdownTimer(

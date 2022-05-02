@@ -57,7 +57,7 @@ class About extends StatelessWidget {
 
         return AboutListTile(
           applicationIcon: const Icon(
-            AppIcons.nightmare,
+            GenesisAssets.nightmare,
             size: 60,
             color: Color(0xFF1565C0),
           ),
@@ -129,7 +129,7 @@ class About extends StatelessWidget {
                 SizedBoxSpacer.spacerHeight24,
                 IconButton(
                   icon: const AppIcon(
-                    AppIcons.wfcdLogoColor,
+                    GenesisAssets.wfcdLogo,
                     color: Color(0xFF2e96ef),
                   ),
                   iconSize: iconSize,

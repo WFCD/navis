@@ -8,17 +8,17 @@ extension FactionsX on Factions {
   IconData get factionIcon {
     switch (this) {
       case Factions.grineer:
-        return FactionIcons.grineer;
+        return GenesisAssets.grineer;
       case Factions.corpus:
-        return FactionIcons.corpus;
+        return GenesisAssets.corpus;
       case Factions.corrupted:
-        return FactionIcons.corrupted;
+        return GenesisAssets.corrupted;
       case Factions.infestation:
-        return FactionIcons.infested;
+        return GenesisAssets.infested;
       case Factions.infested:
-        return FactionIcons.infested;
+        return GenesisAssets.infested;
       case Factions.unknown:
-        return FactionIcons.sentient;
+        return GenesisAssets.sentient;
     }
   }
 

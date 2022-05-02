@@ -34,7 +34,7 @@ class CustomNavigationBar extends StatelessWidget {
           label: context.l10n.codexTitle,
         ),
         NavigationDestination(
-          icon: const Icon(SyndicateIcons.simaris),
+          icon: const Icon(GenesisAssets.simaris),
           label: context.l10n.synthTargetTitle,
         )
       ],
