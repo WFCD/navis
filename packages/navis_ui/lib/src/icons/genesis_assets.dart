@@ -32,7 +32,7 @@ class GenesisAssets {
   static const IconData weekly =
       IconData(0xe804, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData wfcdLogo =
-      IconData(0xe805, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+      IconData(0xe81c, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData arbitrations =
       IconData(0xe806, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData archwing =

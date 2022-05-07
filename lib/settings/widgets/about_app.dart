@@ -110,13 +110,16 @@ class About extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 IconButton(
-                  icon:
-                      const Icon(SimpleIcons.discord, color: Color(0xFF7289DA)),
+                  icon: const AppIcon(
+                    GenesisAssets.wfcdLogo,
+                    color: Color(0xFF2e96ef),
+                  ),
                   iconSize: iconSize,
+                  padding: EdgeInsets.zero,
                   splashColor: Colors.transparent,
-                  onPressed: () => discordInvite.launchLink(context),
+                  onPressed: () => communityPage.launchLink(context),
                 ),
-                SizedBoxSpacer.spacerHeight24,
+                SizedBoxSpacer.spacerWidth24,
                 IconButton(
                   icon: Icon(
                     SimpleIcons.github,
@@ -126,16 +129,14 @@ class About extends StatelessWidget {
                   splashColor: Colors.transparent,
                   onPressed: () => projectPage.launchLink(context),
                 ),
-                SizedBoxSpacer.spacerHeight24,
+                SizedBoxSpacer.spacerWidth12,
                 IconButton(
-                  icon: const AppIcon(
-                    GenesisAssets.wfcdLogo,
-                    color: Color(0xFF2e96ef),
-                  ),
+                  icon:
+                      const Icon(SimpleIcons.discord, color: Color(0xFF7289DA)),
                   iconSize: iconSize,
                   splashColor: Colors.transparent,
-                  onPressed: () => communityPage.launchLink(context),
-                )
+                  onPressed: () => discordInvite.launchLink(context),
+                ),
               ],
             ),
           ],
