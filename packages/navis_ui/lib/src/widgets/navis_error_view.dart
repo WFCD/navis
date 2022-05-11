@@ -43,13 +43,9 @@ class _NavisErrorPage extends StatelessWidget {
     Key? key,
     required this.title,
     required this.description,
-    this.details,
-    this.showStacktrace = true,
   }) : super(key: key);
 
   final String title, description;
-  final FlutterErrorDetails? details;
-  final bool showStacktrace;
 
   @override
   Widget build(BuildContext context) {
@@ -73,12 +69,6 @@ class _NavisErrorPage extends StatelessWidget {
           description,
           textAlign: TextAlign.center,
         ),
-        SizedBoxSpacer.spacerHeight12,
-        if (showStacktrace)
-          LimitedBox(
-            maxHeight: 100,
-            child: Text(details?.exceptionAsString() ?? ''),
-          )
       ],
     );
   }
@@ -89,13 +79,9 @@ class _NavisErrorWidget extends StatelessWidget {
     Key? key,
     required this.title,
     required this.description,
-    this.details,
-    this.showStacktrace = true,
   }) : super(key: key);
 
   final String title, description;
-  final FlutterErrorDetails? details;
-  final bool showStacktrace;
 
   @override
   Widget build(BuildContext context) {
@@ -118,12 +104,6 @@ class _NavisErrorWidget extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
         ),
-        SizedBoxSpacer.spacerHeight12,
-        if (showStacktrace)
-          LimitedBox(
-            maxHeight: 100,
-            child: Text(details?.exceptionAsString() ?? ''),
-          )
       ],
     );
   }

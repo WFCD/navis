@@ -153,7 +153,6 @@ class _ModBuilder extends StatelessWidget {
     required this.drain,
     required this.polarity,
     required this.rarity,
-    this.wikiaUrl,
   }) : super(key: key);
 
   final String imageUrl;
@@ -166,7 +165,6 @@ class _ModBuilder extends StatelessWidget {
   final int drain;
   final String polarity;
   final String rarity;
-  final String? wikiaUrl;
 
   @override
   Widget build(BuildContext context) {
@@ -183,7 +181,6 @@ class _ModBuilder extends StatelessWidget {
           baseDrain: drain,
           polarity: polarity,
           rarity: rarity,
-          wikiaUrl: wikiaUrl,
         );
       case 'Uncommon':
         return ModFrame.uncommon(
@@ -197,7 +194,6 @@ class _ModBuilder extends StatelessWidget {
           baseDrain: drain,
           polarity: polarity,
           rarity: rarity,
-          wikiaUrl: wikiaUrl,
         );
       case 'Legendary':
         return ModFrame.primed(
@@ -211,7 +207,6 @@ class _ModBuilder extends StatelessWidget {
           baseDrain: drain,
           polarity: polarity,
           rarity: rarity,
-          wikiaUrl: wikiaUrl,
         );
       default:
         return ModFrame.common(
@@ -225,7 +220,6 @@ class _ModBuilder extends StatelessWidget {
           baseDrain: drain,
           polarity: polarity,
           rarity: rarity,
-          wikiaUrl: wikiaUrl,
         );
     }
   }

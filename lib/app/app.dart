@@ -24,7 +24,7 @@ class _NavisAppState extends State<NavisApp> with WidgetsBindingObserver {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance?.addObserver(this);
+    WidgetsBinding.instance.addObserver(this);
 
     context.read<NotificationRepository>().configure();
   }
@@ -113,7 +113,7 @@ class _NavisAppState extends State<NavisApp> with WidgetsBindingObserver {
   @override
   void dispose() {
     _timer?.cancel();
-    WidgetsBinding.instance?.removeObserver(this);
+    WidgetsBinding.instance.removeObserver(this);
     super.dispose();
   }
 }
