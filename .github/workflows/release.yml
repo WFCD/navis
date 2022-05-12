@@ -12,7 +12,7 @@ jobs:
           persist-credentials: false
       - uses: dart-lang/setup-dart@v1
       - name: Install Dart packages
-        run: pub global activate cider
+        run: dart pub global activate cider
       - name: Set execute permissions for versioning script
         run: chmod +x deploy.sh
       - name: Semantic Release
