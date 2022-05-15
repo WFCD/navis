@@ -7,7 +7,7 @@ import 'package:wfcd_client/entities.dart';
 import 'package:wfcd_client/objects.dart';
 
 class CycleCard extends StatelessWidget {
-  const CycleCard({Key? key}) : super(key: key);
+  const CycleCard({super.key});
 
   List<CycleEntry> _buildCycles(
     NavisLocalizations locale,
@@ -105,7 +105,7 @@ class CycleEntry {
 }
 
 class CycleWidget extends StatelessWidget {
-  const CycleWidget({Key? key, required this.entry}) : super(key: key);
+  const CycleWidget({super.key, required this.entry});
 
   final CycleEntry entry;
 

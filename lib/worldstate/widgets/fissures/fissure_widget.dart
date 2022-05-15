@@ -4,7 +4,7 @@ import 'package:navis_ui/navis_ui.dart';
 import 'package:wfcd_client/entities.dart';
 
 class FissureWidget extends StatelessWidget {
-  const FissureWidget({Key? key, required this.fissure}) : super(key: key);
+  const FissureWidget({super.key, required this.fissure});
 
   final VoidFissure fissure;
 
@@ -69,13 +69,12 @@ class FissureWidget extends StatelessWidget {
 
 class FissureInfo extends StatelessWidget {
   const FissureInfo({
-    Key? key,
+    super.key,
     required this.fissure,
     required TextStyle nodeStyle,
     required TextStyle missionTypeStyle,
   })  : _nodeStyle = nodeStyle,
-        _missionTypeStyle = missionTypeStyle,
-        super(key: key);
+        _missionTypeStyle = missionTypeStyle;
 
   final VoidFissure fissure;
   final TextStyle _nodeStyle;

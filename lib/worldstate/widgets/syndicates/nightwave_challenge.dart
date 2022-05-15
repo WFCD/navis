@@ -4,8 +4,7 @@ import 'package:navis_ui/navis_ui.dart';
 import 'package:wfcd_client/entities.dart';
 
 class NightwaveChallenge extends StatelessWidget {
-  const NightwaveChallenge({Key? key, required this.challenge})
-      : super(key: key);
+  const NightwaveChallenge({super.key, required this.challenge});
 
   final Challenge challenge;
 
@@ -68,8 +67,7 @@ class NightwaveChallenge extends StatelessWidget {
 }
 
 class NightwaveIcon extends StatelessWidget {
-  const NightwaveIcon({Key? key, this.isElite = false, this.isDaily = false})
-      : super(key: key);
+  const NightwaveIcon({super.key, this.isElite = false, this.isDaily = false});
 
   final bool isElite, isDaily;
 

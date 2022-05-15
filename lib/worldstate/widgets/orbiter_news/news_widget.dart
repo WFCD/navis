@@ -3,7 +3,7 @@ import 'package:navis_ui/navis_ui.dart';
 import 'package:wfcd_client/entities.dart';
 
 class OrbiterNewsWidget extends StatelessWidget {
-  const OrbiterNewsWidget({Key? key, required this.news}) : super(key: key);
+  const OrbiterNewsWidget({super.key, required this.news});
 
   final OrbiterNews news;
 
@@ -39,10 +39,10 @@ class OrbiterNewsWidget extends StatelessWidget {
 
 class NewsInformation extends StatelessWidget {
   const NewsInformation({
-    Key? key,
+    super.key,
     required this.timestamp,
     required this.message,
-  }) : super(key: key);
+  });
 
   final String timestamp, message;
 

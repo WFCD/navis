@@ -7,7 +7,7 @@ import 'package:provider/provider.dart';
 import 'package:user_settings/user_settings.dart';
 
 class Notifications extends StatelessWidget {
-  const Notifications({Key? key}) : super(key: key);
+  const Notifications({super.key});
 
   void openDialog(BuildContext context, List<SimpleTopics> filters) {
     FilterDialog.showFilters(context, filters);
@@ -49,11 +49,10 @@ void _onChanged(BuildContext context, Topic topic, bool value) {
 
 class _SimpleNotification extends StatelessWidget {
   const _SimpleNotification({
-    Key? key,
     required this.name,
     required this.description,
     required this.topic,
-  }) : super(key: key);
+  });
 
   final String name;
   final String description;
@@ -72,7 +71,7 @@ class _SimpleNotification extends StatelessWidget {
 }
 
 class FilterDialog extends StatelessWidget {
-  const FilterDialog({Key? key, required this.options}) : super(key: key);
+  const FilterDialog({super.key, required this.options});
 
   final List<SimpleTopics> options;
 
@@ -125,11 +124,11 @@ class FilterDialog extends StatelessWidget {
 
 class NotificationCheckBox extends StatelessWidget {
   const NotificationCheckBox({
-    Key? key,
+    super.key,
     required this.title,
     required this.topic,
     required this.value,
-  }) : super(key: key);
+  });
 
   final String title;
   final Topic topic;

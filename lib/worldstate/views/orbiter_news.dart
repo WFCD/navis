@@ -7,7 +7,7 @@ import 'package:navis_ui/navis_ui.dart';
 import 'package:wfcd_client/entities.dart';
 
 class OrbiterNewsPage extends TraceableStatelessWidget {
-  const OrbiterNewsPage({Key? key}) : super(key: key);
+  const OrbiterNewsPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +20,7 @@ class OrbiterNewsPage extends TraceableStatelessWidget {
       child: RefreshIndicator(
         onRefresh: BlocProvider.of<SolsystemCubit>(context).fetchWorldstate,
         child: state is! SolState
-            ? const SizedBox(height: 0, width: 0)
+            ? const SizedBox.shrink()
             : ListView.builder(
                 cacheExtent: 200,
                 itemCount: orbitNews.length,

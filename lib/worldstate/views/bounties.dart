@@ -6,7 +6,7 @@ import 'package:navis_ui/navis_ui.dart';
 import 'package:wfcd_client/entities.dart';
 
 class BountiesPage extends TraceableStatelessWidget {
-  const BountiesPage({Key? key}) : super(key: key);
+  const BountiesPage({super.key});
 
   static const String route = '/bounties';
 

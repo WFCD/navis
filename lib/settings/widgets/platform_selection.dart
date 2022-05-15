@@ -19,7 +19,7 @@ const xb1Color = Color(0xFF107C10);
 const swiColor = Color(0xFFE60012);
 
 class PlatformSelect extends StatelessWidget {
-  const PlatformSelect({Key? key}) : super(key: key);
+  const PlatformSelect({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -67,12 +67,12 @@ class PlatformSelect extends StatelessWidget {
 
 class PlatformIconButton extends StatelessWidget {
   const PlatformIconButton({
-    Key? key,
+    super.key,
     required this.platform,
     required this.platformIcon,
     required this.platformColor,
     required this.platformName,
-  }) : super(key: key);
+  });
 
   final GamePlatforms platform;
   final IconData platformIcon;

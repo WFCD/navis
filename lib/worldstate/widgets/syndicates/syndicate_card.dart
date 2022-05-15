@@ -8,7 +8,7 @@ import 'package:wfcd_client/entities.dart';
 
 class SyndicateCard extends StatelessWidget {
   const SyndicateCard({
-    Key? key,
+    super.key,
     this.name,
     this.caption,
     this.syndicate,
@@ -18,8 +18,7 @@ class SyndicateCard extends StatelessWidget {
           syndicate != null || name != null,
           'If name is null then it will default\n'
           'to Syndicate.id instead, only one can be null but not both',
-        ),
-        super(key: key);
+        );
 
   final String? name, caption;
   final Syndicate? syndicate;

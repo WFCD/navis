@@ -6,7 +6,7 @@ import 'package:responsive_builder/responsive_builder.dart';
 import 'package:wfcd_client/entities.dart';
 
 class BaroInventory extends TraceableStatelessWidget {
-  const BaroInventory({Key? key}) : super(key: key);
+  const BaroInventory({super.key});
 
   static const route = '/baro_inventory';
 

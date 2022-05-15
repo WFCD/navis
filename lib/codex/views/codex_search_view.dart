@@ -10,7 +10,7 @@ import 'package:navis_ui/navis_ui.dart';
 import 'package:worldstate_repository/worldstate_repository.dart';
 
 class CodexSearchView extends TraceableStatelessWidget {
-  const CodexSearchView({Key? key}) : super(key: key);
+  const CodexSearchView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +23,7 @@ class CodexSearchView extends TraceableStatelessWidget {
 }
 
 class CodexSearch extends StatelessWidget {
-  const CodexSearch({Key? key}) : super(key: key);
+  const CodexSearch({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -5,8 +5,7 @@ import 'package:navis/codex/utils/mod_polarity.dart';
 enum Rarity { common, uncommon, rare, legendary }
 
 class Polarity extends StatelessWidget {
-  const Polarity({Key? key, required this.polarity, this.rarity})
-      : super(key: key);
+  const Polarity({super.key, required this.polarity, this.rarity});
 
   final String polarity;
   final Rarity? rarity;
@@ -40,8 +39,7 @@ class Polarity extends StatelessWidget {
 }
 
 class PreinstalledPolarties extends StatelessWidget {
-  const PreinstalledPolarties({Key? key, required this.polarities})
-      : super(key: key);
+  const PreinstalledPolarties({super.key, required this.polarities});
 
   final List<String> polarities;
 

@@ -4,8 +4,7 @@ import 'package:navis_ui/navis_ui.dart';
 import 'package:wfcd_client/entities.dart';
 
 class SyndicateBounties extends StatelessWidget {
-  const SyndicateBounties({Key? key, required this.syndicate})
-      : super(key: key);
+  const SyndicateBounties({super.key, required this.syndicate});
 
   final Syndicate syndicate;
 

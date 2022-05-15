@@ -5,7 +5,7 @@ import 'package:navis/worldstate/cubits/solsystem_cubit.dart';
 import 'package:navis_ui/navis_ui.dart';
 
 class ConstructionProgressCard extends StatelessWidget {
-  const ConstructionProgressCard({Key? key}) : super(key: key);
+  const ConstructionProgressCard({super.key});
 
   @override
   Widget build(BuildContext context) {

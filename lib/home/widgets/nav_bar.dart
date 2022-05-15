@@ -4,7 +4,7 @@ import 'package:navis/home/cubit/navigation_cubit.dart';
 import 'package:navis/l10n/l10n.dart';
 
 class CustomNavigationBar extends StatelessWidget {
-  const CustomNavigationBar({Key? key}) : super(key: key);
+  const CustomNavigationBar({super.key});
 
   void _onTap(BuildContext context, NavigationEvent newRoute) {
     BlocProvider.of<NavigationCubit>(context).changePage(newRoute);

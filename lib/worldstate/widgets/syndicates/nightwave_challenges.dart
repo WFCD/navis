@@ -3,8 +3,7 @@ import 'package:navis/worldstate/widgets/syndicates/nightwave_challenge.dart';
 import 'package:wfcd_client/entities.dart';
 
 class NightwaveChalleneges extends StatelessWidget {
-  const NightwaveChalleneges({Key? key, required this.nightwave})
-      : super(key: key);
+  const NightwaveChalleneges({super.key, required this.nightwave});
 
   final Nightwave nightwave;
 

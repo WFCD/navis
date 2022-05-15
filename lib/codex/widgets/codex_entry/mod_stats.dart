@@ -7,7 +7,7 @@ import 'package:navis_ui/navis_ui.dart';
 import 'package:wfcd_client/entities.dart';
 
 class ModStats extends StatelessWidget {
-  const ModStats({Key? key, required this.mod}) : super(key: key);
+  const ModStats({super.key, required this.mod});
 
   final Mod mod;
 
@@ -82,11 +82,10 @@ typedef BuildRankedMod = Widget Function(BuildContext, int);
 
 class _ModWithStats extends StatefulWidget {
   const _ModWithStats({
-    Key? key,
     required this.levels,
     required this.maxRank,
     required this.builder,
-  }) : super(key: key);
+  });
 
   final int levels;
   final double maxRank;
@@ -142,7 +141,6 @@ class __ModWithStatsState extends State<_ModWithStats> {
 
 class _ModBuilder extends StatelessWidget {
   const _ModBuilder({
-    Key? key,
     required this.imageUrl,
     required this.name,
     required this.stats,
@@ -153,7 +151,7 @@ class _ModBuilder extends StatelessWidget {
     required this.drain,
     required this.polarity,
     required this.rarity,
-  }) : super(key: key);
+  });
 
   final String imageUrl;
   final String name;

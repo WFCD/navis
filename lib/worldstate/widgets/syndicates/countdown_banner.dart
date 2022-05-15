@@ -4,12 +4,12 @@ import 'package:navis_ui/navis_ui.dart';
 
 class CountdownBanner extends StatelessWidget {
   const CountdownBanner({
-    Key? key,
+    super.key,
     required this.message,
     required this.time,
     this.color,
     this.margin = const EdgeInsets.symmetric(horizontal: 4, vertical: 4),
-  }) : super(key: key);
+  });
 
   final String message;
   final DateTime time;

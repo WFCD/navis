@@ -7,7 +7,7 @@ import 'package:navis_ui/navis_ui.dart';
 import 'package:wfcd_client/entities.dart';
 
 class EventInformation extends TraceableStatelessWidget {
-  const EventInformation({Key? key}) : super(key: key);
+  const EventInformation({super.key});
 
   static const route = 'event_information';
 

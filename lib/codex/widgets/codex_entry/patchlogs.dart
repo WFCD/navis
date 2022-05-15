@@ -4,7 +4,7 @@ import 'package:navis_ui/navis_ui.dart';
 import 'package:wfcd_client/entities.dart';
 
 class PatchlogCard extends StatelessWidget {
-  const PatchlogCard({Key? key, required this.patchlog}) : super(key: key);
+  const PatchlogCard({super.key, required this.patchlog});
 
   final Patchlog patchlog;
 

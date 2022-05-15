@@ -7,7 +7,7 @@ import 'package:provider/provider.dart';
 import 'package:user_settings/user_settings.dart';
 
 class Behavior extends StatelessWidget {
-  const Behavior({Key? key}) : super(key: key);
+  const Behavior({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +32,7 @@ class Behavior extends StatelessWidget {
 }
 
 class LanguagePicker extends StatelessWidget {
-  const LanguagePicker({Key? key}) : super(key: key);
+  const LanguagePicker({super.key});
 
   static Future<void> showOptions(BuildContext context) {
     return showDialog<void>(
@@ -96,7 +96,7 @@ class LanguagePicker extends StatelessWidget {
 }
 
 class ThemePicker extends StatelessWidget {
-  const ThemePicker({Key? key}) : super(key: key);
+  const ThemePicker({super.key});
 
   static Future<void> showModes(BuildContext context) {
     return showDialog<void>(

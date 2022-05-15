@@ -5,14 +5,14 @@ import 'package:wfcd_client/entities.dart';
 
 class EventStatus extends StatelessWidget {
   const EventStatus({
-    Key? key,
+    super.key,
     required this.description,
     this.tooltip,
     required this.node,
     required this.health,
     required this.expiry,
     required this.rewards,
-  }) : super(key: key);
+  });
 
   final String description, node;
   final String? tooltip;

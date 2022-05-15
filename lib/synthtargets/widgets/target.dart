@@ -3,7 +3,7 @@ import 'package:navis_ui/navis_ui.dart';
 import 'package:wfcd_client/entities.dart';
 
 class TargetInfo extends StatelessWidget {
-  const TargetInfo({Key? key, required this.target}) : super(key: key);
+  const TargetInfo({super.key, required this.target});
 
   final SynthTarget target;
 

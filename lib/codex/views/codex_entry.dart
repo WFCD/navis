@@ -7,7 +7,7 @@ import 'package:navis_ui/navis_ui.dart';
 import 'package:wfcd_client/entities.dart';
 
 class CodexEntry extends StatelessWidget {
-  const CodexEntry({Key? key, required this.item}) : super(key: key);
+  const CodexEntry({super.key, required this.item});
 
   final Item item;
 
@@ -33,10 +33,10 @@ class CodexEntry extends StatelessWidget {
 
 class SingleEntry extends StatelessWidget {
   const SingleEntry({
-    Key? key,
+    super.key,
     required this.item,
     required this.height,
-  }) : super(key: key);
+  });
 
   final Item item;
   final double height;
@@ -67,10 +67,10 @@ class SingleEntry extends StatelessWidget {
 
 class TabbedEntry extends StatelessWidget {
   const TabbedEntry({
-    Key? key,
+    super.key,
     required this.item,
     required this.height,
-  }) : super(key: key);
+  });
 
   final Item item;
   final double height;
@@ -124,7 +124,7 @@ class TabbedEntry extends StatelessWidget {
 }
 
 class Overview extends StatelessWidget {
-  const Overview({Key? key, required this.item}) : super(key: key);
+  const Overview({super.key, required this.item});
 
   final Item item;
 
@@ -166,8 +166,7 @@ class Overview extends StatelessWidget {
 }
 
 class PatchlogsTimeline extends StatelessWidget {
-  const PatchlogsTimeline({Key? key, required this.patchlogs})
-      : super(key: key);
+  const PatchlogsTimeline({super.key, required this.patchlogs});
 
   final List<Patchlog> patchlogs;
 

@@ -5,7 +5,7 @@ import 'package:navis/worldstate/cubits/solsystem_cubit.dart';
 import 'package:navis_ui/navis_ui.dart';
 
 class SentientOutpostCard extends StatelessWidget {
-  const SentientOutpostCard({Key? key}) : super(key: key);
+  const SentientOutpostCard({super.key});
 
   @override
   Widget build(BuildContext context) {

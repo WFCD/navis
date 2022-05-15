@@ -5,7 +5,7 @@ import 'package:navis/worldstate/cubits/solsystem_cubit.dart';
 import 'package:navis_ui/navis_ui.dart';
 
 class SortieCard extends StatelessWidget {
-  const SortieCard({Key? key}) : super(key: key);
+  const SortieCard({super.key});
 
   @override
   Widget build(BuildContext context) {

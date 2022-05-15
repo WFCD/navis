@@ -4,7 +4,7 @@ import 'package:navis_ui/navis_ui.dart';
 import 'package:wfcd_client/entities.dart';
 
 class CodexResult extends StatelessWidget {
-  const CodexResult({Key? key, required this.item}) : super(key: key);
+  const CodexResult({super.key, required this.item});
 
   final Item item;
 

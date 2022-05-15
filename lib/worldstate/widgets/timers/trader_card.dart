@@ -6,7 +6,7 @@ import 'package:navis/worldstate/views/trader_inventory.dart';
 import 'package:navis_ui/navis_ui.dart';
 
 class TraderCard extends StatelessWidget {
-  const TraderCard({Key? key}) : super(key: key);
+  const TraderCard({super.key});
 
   @override
   Widget build(BuildContext context) {

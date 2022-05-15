@@ -6,7 +6,7 @@ import 'package:navis_ui/navis_ui.dart';
 import 'package:wfcd_client/entities.dart';
 
 class AlertsCard extends StatelessWidget {
-  const AlertsCard({Key? key}) : super(key: key);
+  const AlertsCard({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +25,7 @@ class AlertsCard extends StatelessWidget {
 }
 
 class AlertWidget extends StatelessWidget {
-  const AlertWidget({Key? key, required this.alert}) : super(key: key);
+  const AlertWidget({super.key, required this.alert});
 
   final Alert alert;
 

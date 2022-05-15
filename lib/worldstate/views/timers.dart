@@ -7,7 +7,7 @@ import 'package:navis_ui/navis_ui.dart';
 import 'package:nil/nil.dart';
 
 class Timers extends TraceableStatelessWidget {
-  const Timers({Key? key}) : super(key: key);
+  const Timers({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +16,7 @@ class Timers extends TraceableStatelessWidget {
 }
 
 class MobileTimers extends StatelessWidget {
-  const MobileTimers({Key? key}) : super(key: key);
+  const MobileTimers({super.key});
 
   @override
   Widget build(BuildContext context) {

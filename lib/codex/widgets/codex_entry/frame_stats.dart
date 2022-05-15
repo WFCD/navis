@@ -6,7 +6,7 @@ import 'package:navis_ui/navis_ui.dart';
 import 'package:wfcd_client/entities.dart';
 
 class FrameStats extends StatelessWidget {
-  const FrameStats({Key? key, required this.powerSuit}) : super(key: key);
+  const FrameStats({super.key, required this.powerSuit});
 
   final PowerSuit powerSuit;
 

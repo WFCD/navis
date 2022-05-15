@@ -5,7 +5,7 @@ import 'package:navis/codex/cubit/market_bloc.dart';
 import 'package:navis/codex/widgets/market/market_order.dart';
 
 class MarketItemView extends StatelessWidget {
-  const MarketItemView({Key? key, required this.itemName}) : super(key: key);
+  const MarketItemView({super.key, required this.itemName});
 
   final String itemName;
 
@@ -21,7 +21,7 @@ class MarketItemView extends StatelessWidget {
 }
 
 class Market extends StatelessWidget {
-  const Market({Key? key}) : super(key: key);
+  const Market({super.key});
 
   @override
   Widget build(BuildContext context) {

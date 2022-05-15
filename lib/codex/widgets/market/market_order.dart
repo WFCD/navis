@@ -4,7 +4,7 @@ import 'package:market_client/market_client.dart';
 import 'package:navis_ui/navis_ui.dart';
 
 class MarketSellWidget extends StatelessWidget {
-  const MarketSellWidget({Key? key, required this.order}) : super(key: key);
+  const MarketSellWidget({super.key, required this.order});
 
   final ItemOrder order;
 
@@ -50,11 +50,10 @@ class MarketSellWidget extends StatelessWidget {
 
 class _MarketSellLeading extends StatelessWidget {
   const _MarketSellLeading({
-    Key? key,
     this.avater,
     required this.orderType,
     required this.status,
-  }) : super(key: key);
+  });
 
   final String? avater;
   final OrderType orderType;
@@ -115,10 +114,9 @@ class _MarketSellLeading extends StatelessWidget {
 
 class _MarketSellBody extends StatelessWidget {
   const _MarketSellBody({
-    Key? key,
     required this.username,
     required this.reputation,
-  }) : super(key: key);
+  });
 
   final String username;
   final int reputation;
@@ -158,10 +156,9 @@ class _MarketSellBody extends StatelessWidget {
 
 class _MarketSellTrailing extends StatelessWidget {
   const _MarketSellTrailing({
-    Key? key,
     required this.quantity,
     required this.price,
-  }) : super(key: key);
+  });
 
   final int quantity, price;
 

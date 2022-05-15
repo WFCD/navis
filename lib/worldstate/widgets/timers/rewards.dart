@@ -3,7 +3,7 @@ import 'package:navis/l10n/l10n.dart';
 import 'package:navis_ui/navis_ui.dart';
 
 class DailyReward extends StatelessWidget {
-  const DailyReward({Key? key}) : super(key: key);
+  const DailyReward({super.key});
 
   DateTime get endOfDay {
     final now = DateTime.now().toUtc();

@@ -4,7 +4,7 @@ import 'package:navis_ui/navis_ui.dart';
 import 'package:wfcd_client/entities.dart';
 
 class EventBounties extends StatelessWidget {
-  const EventBounties({Key? key, required this.jobs}) : super(key: key);
+  const EventBounties({super.key, required this.jobs});
 
   final List<Job> jobs;
 

@@ -14,7 +14,7 @@ double _roundDouble(double value, int places) {
 }
 
 class GunStats extends StatelessWidget {
-  const GunStats({Key? key, required this.projectileWeapon}) : super(key: key);
+  const GunStats({super.key, required this.projectileWeapon});
 
   final ProjectileWeapon projectileWeapon;
 
@@ -124,7 +124,7 @@ class GunStats extends StatelessWidget {
 }
 
 class MeleeStats extends StatelessWidget {
-  const MeleeStats({Key? key, required this.meleeWeapon}) : super(key: key);
+  const MeleeStats({super.key, required this.meleeWeapon});
 
   final MeleeWeapon meleeWeapon;
 
@@ -262,8 +262,7 @@ class MeleeStats extends StatelessWidget {
 }
 
 class RivenDisposition extends StatelessWidget {
-  const RivenDisposition({Key? key, required this.disposition})
-      : super(key: key);
+  const RivenDisposition({super.key, required this.disposition});
 
   final int disposition;
 

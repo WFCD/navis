@@ -9,7 +9,7 @@ import 'package:responsive_builder/responsive_builder.dart';
 import 'package:wfcd_client/entities.dart';
 
 class FissuresPage extends TraceableStatelessWidget {
-  const FissuresPage({Key? key}) : super(key: key);
+  const FissuresPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +30,7 @@ class FissuresPage extends TraceableStatelessWidget {
 }
 
 class MobileFissures extends StatelessWidget {
-  const MobileFissures({Key? key, required this.fissures}) : super(key: key);
+  const MobileFissures({super.key, required this.fissures});
 
   final List<VoidFissure> fissures;
 
@@ -53,7 +53,7 @@ class MobileFissures extends StatelessWidget {
 }
 
 class TabletFissures extends StatelessWidget {
-  const TabletFissures({Key? key, required this.fissures}) : super(key: key);
+  const TabletFissures({super.key, required this.fissures});
 
   final List<VoidFissure> fissures;
 

@@ -9,7 +9,7 @@ import 'package:navis_ui/navis_ui.dart';
 import 'package:wfcd_client/entities.dart';
 
 class DarvoDealCard extends StatelessWidget {
-  const DarvoDealCard({Key? key}) : super(key: key);
+  const DarvoDealCard({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +32,7 @@ class DarvoDealCard extends StatelessWidget {
 }
 
 class DealWidget extends StatefulWidget {
-  const DealWidget({Key? key, required this.deal}) : super(key: key);
+  const DealWidget({super.key, required this.deal});
 
   final DarvoDeal deal;
 

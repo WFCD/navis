@@ -6,7 +6,7 @@ import 'package:navis/synthtargets/widgets/target.dart';
 import 'package:worldstate_repository/worldstate_repository.dart';
 
 class SynthTargetsView extends TraceableStatelessWidget {
-  const SynthTargetsView({Key? key}) : super(key: key);
+  const SynthTargetsView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +20,7 @@ class SynthTargetsView extends TraceableStatelessWidget {
 }
 
 class SynthTargetsPage extends StatelessWidget {
-  const SynthTargetsPage({Key? key}) : super(key: key);
+  const SynthTargetsPage({super.key});
 
   @override
   Widget build(BuildContext context) {

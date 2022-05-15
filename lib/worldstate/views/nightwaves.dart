@@ -4,7 +4,7 @@ import 'package:navis/worldstate/widgets/syndicates/nightwave_challenges.dart';
 import 'package:wfcd_client/entities.dart';
 
 class NightwavesPage extends TraceableStatelessWidget {
-  const NightwavesPage({Key? key}) : super(key: key);
+  const NightwavesPage({super.key});
 
   static const route = '/nightwave';
 

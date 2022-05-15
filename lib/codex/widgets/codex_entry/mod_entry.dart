@@ -423,11 +423,11 @@ Color _textColor(String rarity) {
 
 class ModDrescription extends StatelessWidget {
   const ModDrescription({
-    Key? key,
+    super.key,
     required this.name,
     required this.stats,
     required this.rarity,
-  }) : super(key: key);
+  });
 
   final String name, stats, rarity;
 

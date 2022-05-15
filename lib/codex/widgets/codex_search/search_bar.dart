@@ -4,7 +4,7 @@ import 'package:navis/codex/bloc/search_bloc.dart';
 import 'package:navis/codex/utils/result_filters.dart';
 
 class CodexTextEditior extends StatefulWidget {
-  const CodexTextEditior({Key? key}) : super(key: key);
+  const CodexTextEditior({super.key});
 
   @override
   _CodexTextEditiorState createState() => _CodexTextEditiorState();

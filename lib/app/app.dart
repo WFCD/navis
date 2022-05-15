@@ -12,7 +12,7 @@ import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:user_settings/user_settings.dart';
 
 class NavisApp extends StatefulWidget {
-  const NavisApp({Key? key}) : super(key: key);
+  const NavisApp({super.key});
 
   @override
   _NavisAppState createState() => _NavisAppState();

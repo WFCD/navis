@@ -9,7 +9,7 @@ import 'package:responsive_builder/responsive_builder.dart';
 import 'package:wfcd_client/entities.dart';
 
 class InvasionsPage extends TraceableStatelessWidget {
-  const InvasionsPage({Key? key}) : super(key: key);
+  const InvasionsPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +30,7 @@ class InvasionsPage extends TraceableStatelessWidget {
 }
 
 class MobileInvasions extends StatelessWidget {
-  const MobileInvasions({Key? key, required this.invasions}) : super(key: key);
+  const MobileInvasions({super.key, required this.invasions});
 
   final List<Invasion> invasions;
 
@@ -51,7 +51,7 @@ class MobileInvasions extends StatelessWidget {
 }
 
 class TabletInvasions extends StatelessWidget {
-  const TabletInvasions({Key? key, required this.invasions}) : super(key: key);
+  const TabletInvasions({super.key, required this.invasions});
 
   final List<Invasion> invasions;
 

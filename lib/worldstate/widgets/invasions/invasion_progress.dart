@@ -3,11 +3,11 @@ import 'package:navis_ui/navis_ui.dart';
 
 class InvasionProgress extends StatelessWidget {
   const InvasionProgress({
-    Key? key,
+    super.key,
     required this.progress,
     required this.attackingFaction,
     required this.defendingFaction,
-  }) : super(key: key);
+  });
 
   final String attackingFaction, defendingFaction;
   final double progress;

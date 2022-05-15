@@ -8,7 +8,7 @@ import 'package:simple_icons/simple_icons.dart';
 import 'package:user_settings/user_settings.dart';
 
 class AboutApp extends StatelessWidget {
-  const AboutApp({Key? key}) : super(key: key);
+  const AboutApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +36,7 @@ class AboutApp extends StatelessWidget {
 }
 
 class About extends StatelessWidget {
-  const About({Key? key}) : super(key: key);
+  const About({super.key});
 
   @override
   Widget build(BuildContext context) {

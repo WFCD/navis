@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:navis_ui/navis_ui.dart';
 
 class Stats extends StatelessWidget {
-  const Stats({Key? key, required this.stats}) : super(key: key);
+  const Stats({super.key, required this.stats});
 
   final List<RowItem> stats;
 

@@ -14,7 +14,7 @@ import 'package:wfcd_client/entities.dart';
 import 'package:wfcd_client/objects.dart';
 
 class SyndicatePage extends TraceableStatelessWidget {
-  const SyndicatePage({Key? key}) : super(key: key);
+  const SyndicatePage({super.key});
 
   bool _buildWhen(SolsystemState p, SolsystemState n) {
     final previous = (p as SolState).worldstate;
@@ -114,10 +114,10 @@ Widget _buildNightwave(Nightwave nightwave, {void Function(Nightwave)? onTap}) {
 
 class SyndicatePageMobile extends StatelessWidget {
   const SyndicatePageMobile({
-    Key? key,
+    super.key,
     required this.syndicates,
     this.nightwave,
-  }) : super(key: key);
+  });
 
   final List<Syndicate> syndicates;
   final Nightwave? nightwave;
@@ -136,10 +136,10 @@ class SyndicatePageMobile extends StatelessWidget {
 
 class SyndicatePageTablet extends StatefulWidget {
   const SyndicatePageTablet({
-    Key? key,
+    super.key,
     required this.syndicates,
     this.nightwave,
-  }) : super(key: key);
+  });
 
   final List<Syndicate> syndicates;
   final Nightwave? nightwave;

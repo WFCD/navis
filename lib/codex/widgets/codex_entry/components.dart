@@ -7,10 +7,10 @@ import 'package:wfcd_client/entities.dart';
 
 class ItemComponents extends StatelessWidget {
   const ItemComponents({
-    Key? key,
+    super.key,
     required this.itemImageUrl,
     required this.components,
-  }) : super(key: key);
+  });
 
   final String itemImageUrl;
   final List<Component> components;
@@ -48,8 +48,7 @@ class ItemComponents extends StatelessWidget {
 }
 
 class _BuildComponent extends StatelessWidget {
-  const _BuildComponent({Key? key, required this.component, this.child})
-      : super(key: key);
+  const _BuildComponent({required this.component, this.child});
 
   final Component component;
   final Widget? child;

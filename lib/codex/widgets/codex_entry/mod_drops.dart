@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:wfcd_client/entities.dart';
 
 class ModDropLocations extends StatelessWidget {
-  const ModDropLocations({Key? key, required this.drops}) : super(key: key);
+  const ModDropLocations({super.key, required this.drops});
 
   final List<Drop> drops;
 

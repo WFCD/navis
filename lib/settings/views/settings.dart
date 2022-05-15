@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:navis/settings/widgets/widgets.dart';
 
 class SettingsView extends StatelessWidget {
-  const SettingsView({Key? key}) : super(key: key);
+  const SettingsView({super.key});
 
   static const route = '/settings';
 
@@ -16,7 +16,7 @@ class SettingsView extends StatelessWidget {
 }
 
 class SettingsDialog extends StatelessWidget {
-  const SettingsDialog({Key? key}) : super(key: key);
+  const SettingsDialog({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +39,7 @@ class SettingsDialog extends StatelessWidget {
 }
 
 class SettingsContent extends StatelessWidget {
-  const SettingsContent({Key? key}) : super(key: key);
+  const SettingsContent({super.key});
 
   static const _children = [
     PlatformSelect(),

@@ -4,11 +4,11 @@ import 'package:wfcd_client/entities.dart';
 
 class InvasionReward extends StatelessWidget {
   const InvasionReward({
-    Key? key,
+    super.key,
     required this.attacker,
     required this.defender,
     this.vsInfestation = false,
-  }) : super(key: key);
+  });
 
   final Faction attacker, defender;
   final bool vsInfestation;

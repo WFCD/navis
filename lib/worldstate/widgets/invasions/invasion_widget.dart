@@ -5,7 +5,7 @@ import 'package:navis_ui/navis_ui.dart';
 import 'package:wfcd_client/entities.dart';
 
 class InvasionWidget extends StatelessWidget {
-  const InvasionWidget({Key? key, required this.invasion}) : super(key: key);
+  const InvasionWidget({super.key, required this.invasion});
 
   final Invasion invasion;
 

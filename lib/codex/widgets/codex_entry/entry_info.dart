@@ -98,14 +98,13 @@ class BasicItemInfo extends SliverPersistentHeaderDelegate {
 
 class _EntryInfoContent extends StatelessWidget {
   const _EntryInfoContent({
-    Key? key,
     required this.height,
     required this.shrinkOffset,
     required this.uniqueName,
     required this.imageUrl,
     required this.name,
     required this.description,
-  }) : super(key: key);
+  });
 
   final double shrinkOffset, height;
   final String uniqueName;

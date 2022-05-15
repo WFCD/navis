@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:wfcd_client/entities.dart';
 
 class ComponentDrops extends StatelessWidget {
-  const ComponentDrops({Key? key, required this.drops}) : super(key: key);
+  const ComponentDrops({super.key, required this.drops});
 
   final List<Drop> drops;
 

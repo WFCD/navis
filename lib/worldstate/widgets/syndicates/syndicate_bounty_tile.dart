@@ -5,10 +5,10 @@ import 'package:wfcd_client/entities.dart';
 
 class SyndicateBountyTile extends StatelessWidget {
   const SyndicateBountyTile({
-    Key? key,
+    super.key,
     required this.job,
     required this.faction,
-  }) : super(key: key);
+  });
 
   final Job job;
   final Syndicates faction;

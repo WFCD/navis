@@ -5,7 +5,7 @@ import 'package:navis/worldstate/cubits/solsystem_cubit.dart';
 import 'package:navis_ui/navis_ui.dart';
 
 class ArbitrationCard extends StatelessWidget {
-  const ArbitrationCard({Key? key}) : super(key: key);
+  const ArbitrationCard({super.key});
 
   @override
   Widget build(BuildContext context) {
