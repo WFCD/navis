@@ -80,13 +80,12 @@ class PlatformIconButton extends StatelessWidget {
   final String platformName;
 
   void _onPressed(BuildContext context) {
-    Provider.of<UserSettingsNotifier>(context, listen: false)
-        .setPlatform(platform);
-
     context
-        .read<NotificationRepository>()
-        .unsubscribeFromPlatform(context.read<UserSettingsNotifier>().platform);
-    context.read<NotificationRepository>().subscribeToPlatform(platform);
+      ..read<NotificationRepository>().unsubscribeFromPlatform(
+        context.read<UserSettingsNotifier>().platform,
+      )
+      ..read<UserSettingsNotifier>().setPlatform(platform)
+      ..read<NotificationRepository>().subscribeToPlatform(platform);
 
     BlocProvider.of<SolsystemCubit>(context).fetchWorldstate(forceUpdate: true);
   }

@@ -27,6 +27,10 @@ class _NavisAppState extends State<NavisApp> with WidgetsBindingObserver {
     WidgetsBinding.instance.addObserver(this);
 
     context.read<NotificationRepository>().configure();
+    if (context.read<UserSettingsNotifier>().isFirstTime) {
+      final platform = context.read<UserSettingsNotifier>().platform;
+      context.read<NotificationRepository>().subscribeToPlatform(platform);
+    }
   }
 
   @override
