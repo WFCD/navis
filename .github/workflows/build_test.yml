@@ -58,7 +58,7 @@ jobs:
       - uses: subosito/flutter-action@v2
         with:
           channel: stable
-          architecture: arm64
+          architecture: x64
 
       - name: Decode service plist
         run: base64 -d <<< $FIREBASE_IOS > ios/Runner/GoogleService-Info.plist
