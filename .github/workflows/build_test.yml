@@ -41,7 +41,7 @@ jobs:
       - name: Build apks
         run: flutter build apk --dart-define=SENTRY_DSN=$SENTRY_DSN --dart-define=MATOMO_URL=$MATOMO_URL --flavor dev -t lib/main_dev.dart --split-per-abi
 
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v3
         with:
           name: android-test-artifacts
           path: "build/app/outputs/flutter-apk/app-*-dev-release.apk"
@@ -69,7 +69,7 @@ jobs:
       - name: Build ios using flutter
         run: flutter build ios --dart-define=SENTRY_DSN=$SENTRY_DSN --dart-define=MATOMO_URL=$MATOMO_URL -t lib/main_dev.dart --no-codesign
 
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v3
         with:
           name: ios-test-artifacts
           path: "build/ios/iphoneos/Runner.app"
