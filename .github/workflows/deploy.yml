@@ -60,7 +60,7 @@ jobs:
         run: mkdir -p android/fastlane/metadata/android/en-US/changelogs
 
       - name: Google Play Store Deploy
-        uses: maierj/fastlane-action@v2.0.0
+        uses: maierj/fastlane-action@v2.2.1
         with:
           lane: beta
           subdirectory: android
@@ -115,7 +115,7 @@ jobs:
           ruby-version: "2.7"
 
       - name: App Store Deploy
-        uses: maierj/fastlane-action@v2.0.0
+        uses: maierj/fastlane-action@v2.2.1
         with:
           lane: beta
           subdirectory: ios
