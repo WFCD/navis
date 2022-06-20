@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/worldstate/cubits/solsystem_cubit.dart';
 import 'package:notification_repository/notification_repository.dart';
-import 'package:provider/provider.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:simple_icons/simple_icons.dart';
 import 'package:user_settings/user_settings.dart';
