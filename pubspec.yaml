@@ -50,7 +50,7 @@ dependencies:
 
 dev_dependencies:
   bloc_test: 9.0.3
-  dart_code_metrics: ^4.15.2
+  dart_code_metrics: ^4.16.0
   flutter_test:
     sdk: flutter
   mocktail: 0.3.0
