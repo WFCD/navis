@@ -26,6 +26,13 @@ class Behavior extends StatelessWidget {
           subtitle: Text(l10n.themeDescription),
           onTap: () => ThemePicker.showModes(context),
         ),
+        CheckboxListTile(
+          title: Text(l10n.enableBetaFeaturesTitle),
+          subtitle: Text(l10n.enableBetaFeaturesDescription),
+          value: context.watch<UserSettingsNotifier>().enableBeta,
+          onChanged: (value) =>
+              context.read<UserSettingsNotifier>().setBeta(value: value!),
+        ),
       ],
     );
   }

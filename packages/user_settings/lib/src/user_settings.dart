@@ -95,6 +95,12 @@ class UserSettings {
     return true;
   }
 
+  /// Gets value for beta features.
+  bool get enableBeta => getToggle(SettingsKeys.beta);
+
+  /// Sets value for beta features.
+  set enableBeta(bool value) => setToggle(SettingsKeys.beta, value: value);
+
   /// Get a custom key value in [UserSettings].
   ///
   /// User [UserSettings.setToggle] to set your key-value before getting it's

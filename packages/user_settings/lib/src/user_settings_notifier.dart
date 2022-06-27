@@ -32,6 +32,9 @@ class UserSettingsNotifier extends ChangeNotifier {
   /// which will return false.
   bool get isFirstTime => _usersettings.isFirstTime;
 
+  /// Whether the user has opted into beta features or not.
+  bool get enableBeta => _usersettings.enableBeta;
+
   /// A helper function to get arbitary toggles.
   bool getToggle(String key) => _usersettings.getToggle(key);
 
@@ -58,6 +61,11 @@ class UserSettingsNotifier extends ChangeNotifier {
   /// {@macro stores}
   void setOptOut({required bool value}) {
     _usersettings.isOptOut = value;
+    notifyListeners();
+  }
+
+  void setBeta({required bool value}) {
+    _usersettings.enableBeta = value;
     notifyListeners();
   }
 

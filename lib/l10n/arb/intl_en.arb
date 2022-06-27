@@ -937,5 +937,17 @@
     "description": "Title for synthtargets",
     "type": "text",
     "placeholder": {}
+  },
+  "enableBetaFeaturesTitle": "Enable beta features",
+  "@enableBetaFeaturesTitle": {
+    "description": "Title for beta feature enabler",
+    "type": "text",
+    "placeholder": {}
+  },
+  "enableBetaFeaturesDescription": "Enable beta features",
+  "@enableBetaFeaturesDescription": {
+    "description": "Description for beta feature enabler",
+    "type": "text",
+    "placeholder": {}
   }
 }

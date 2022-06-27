@@ -12,4 +12,7 @@ class SettingsKeys {
 
   /// The key where the user's set ThemeMode is stored as a String.
   static const String theme = 'theme';
+
+  /// The key where the beta flag is stored.
+  static const String beta = 'beta';
 }
