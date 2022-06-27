@@ -944,7 +944,7 @@
     "type": "text",
     "placeholder": {}
   },
-  "enableBetaFeaturesDescription": "Enable beta features",
+  "enableBetaFeaturesDescription": "Enable API endpoints that are still in development.",
   "@enableBetaFeaturesDescription": {
     "description": "Description for beta feature enabler",
     "type": "text",
