@@ -220,6 +220,12 @@
     "type": "text",
     "placeholders": {}
   },
+  "zarimanCycleTitle": "Zariman Cycle",
+  "@zarimanCycleTitle": {
+    "description": "Zariman Cycle title",
+    "type": "text",
+    "placeholder": {}
+  },
   "timersTitle": "Timers",
   "@timersTitle": {
     "description": "Times title",
