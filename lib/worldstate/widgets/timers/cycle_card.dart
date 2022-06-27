@@ -30,6 +30,11 @@ class CycleCard extends StatelessWidget {
       ColoredContainer.text(text: 'Vome')
     ];
 
+    final zarimanCycle = <Widget>[
+      const FactionIcon(name: 'Corpus'),
+      const FactionIcon(name: 'Grineer')
+    ];
+
     return <CycleEntry>[
       CycleEntry(
         name: locale.earthCycleTitle,
@@ -50,6 +55,11 @@ class CycleCard extends StatelessWidget {
         name: locale.cambionCycleTitle,
         states: cambionCycle,
         cycle: worldstate.cetusCycle,
+      ),
+      CycleEntry(
+        name: 'Zariman',
+        cycle: worldstate.zarimanCycle,
+        states: zarimanCycle,
       )
     ];
   }

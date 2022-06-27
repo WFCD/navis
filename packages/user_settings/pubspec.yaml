@@ -14,7 +14,7 @@ dependencies:
   wfcd_client:
     git:
       url: https://github.com/SlayerOrnstein/wfcd_client.git
-      ref: v3.9.0
+      ref: v3.9.3
 
 dev_dependencies:
   flutter_test:
