@@ -23,7 +23,7 @@ class CodexEntry extends StatelessWidget {
 
     return Scaffold(
       body: SafeArea(
-        child: (item.patchlogs != null || item.tradable)
+        child: (item.patchlogs != null || (item.tradable ?? false))
             ? TabbedEntry(item: item, height: height)
             : SingleEntry(item: item, height: height),
       ),
@@ -81,7 +81,7 @@ class TabbedEntry extends StatelessWidget {
       const Tab(text: 'Overview'),
       if (item.patchlogs != null && (item.patchlogs?.isNotEmpty ?? false))
         const Tab(text: 'Patchlogs'),
-      if (item.tradable) const Tab(text: 'Market')
+      if (item.tradable ?? false) const Tab(text: 'Market')
     ];
 
     return DefaultTabController(
@@ -115,7 +115,7 @@ class TabbedEntry extends StatelessWidget {
             Overview(item: item),
             if (item.patchlogs != null && (item.patchlogs?.isNotEmpty ?? false))
               PatchlogsTimeline(patchlogs: item.patchlogs ?? []),
-            if (item.tradable) MarketItemView(itemName: item.name)
+            if (item.tradable ?? false) MarketItemView(itemName: item.name)
           ],
         ),
       ),
