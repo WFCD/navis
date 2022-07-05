@@ -64,6 +64,7 @@ class UserSettingsNotifier extends ChangeNotifier {
     notifyListeners();
   }
 
+  /// {@macro stores}
   void setBeta({required bool value}) {
     _usersettings.enableBeta = value;
     notifyListeners();
