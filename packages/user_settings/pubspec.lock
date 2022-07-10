@@ -431,11 +431,11 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: "v3.9.4"
-      resolved-ref: "212a141c0ced1aea6dc2f0b54e545d4583b5fa32"
+      ref: "v3.9.5"
+      resolved-ref: "284fec5bd54d171339e22fa5cdca92f58e569087"
       url: "https://github.com/SlayerOrnstein/wfcd_client.git"
     source: git
-    version: "3.9.4"
+    version: "3.9.5"
   win32:
     dependency: transitive
     description:
