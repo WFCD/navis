@@ -729,7 +729,7 @@ packages:
       name: sentry
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "6.6.3"
+    version: "6.7.0"
   sentry_dart_plugin:
     dependency: "direct dev"
     description:
@@ -743,7 +743,7 @@ packages:
       name: sentry_flutter
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "6.6.3"
+    version: "6.7.0"
   shared_preferences:
     dependency: transitive
     description:
