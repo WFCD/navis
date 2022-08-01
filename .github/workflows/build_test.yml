@@ -37,7 +37,7 @@ jobs:
       - name: Decode signing key and services json
         run: |
           base64 -d <<< $TENNO_STORE > android/keystore.jks
-          base64 -d <<< $TENNO_FIREBASE > android/app/google-services.json
+          echo $TENNO_FIREBASE > android/app/google-services.json
 
       - name: Build apks
         run: flutter build apk --dart-define=SENTRY_DSN=$SENTRY_DSN --dart-define=MATOMO_URL=$MATOMO_URL --flavor dev -t lib/main_dev.dart --split-per-abi
@@ -62,7 +62,7 @@ jobs:
           architecture: x64
 
       - name: Decode service plist
-        run: base64 -d <<< $FIREBASE_IOS > ios/Runner/GoogleService-Info.plist
+        run: echo $FIREBASE_IOS > ios/Runner/GoogleService-Info.plist
 
       - name: Pod update
         run: pod repo update
