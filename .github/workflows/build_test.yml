@@ -35,7 +35,9 @@ jobs:
           channel: stable
 
       - name: Decode signing key and services json
-        run: base64 -d <<< $TENNO_STORE > android/keystore.jks
+        run: |
+          base64 -d <<< $TENNO_STORE > android/keystore.jks
+          base64 -d <<< $TENNO_FIREBASE > lib/firebase_options.dart
 
       - name: Build apks
         run: flutter build apk --dart-define=SENTRY_DSN=$SENTRY_DSN --dart-define=MATOMO_URL=$MATOMO_URL --flavor dev -t lib/main_dev.dart --split-per-abi
@@ -58,6 +60,11 @@ jobs:
         with:
           channel: stable
           architecture: x64
+
+      - name: Decode signing key and services json
+        run: |
+          base64 -d <<< $FIREBASE_IOS > ios/firebase_app_id_file.json
+          base64 -d <<< $TENNO_FIREBASE > lib/firebase_options.dart
 
       - name: Pod update
         run: pod repo update

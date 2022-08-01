@@ -102,3 +102,5 @@ android/app/google-services.b4
 android/app/fastlane.b4
 ios/Runner/GeneratedPluginRegistrant.h
 .fvm/flutter_sdk
+lib/firebase_options.dart
+ios/firebase_app_id_file.json
