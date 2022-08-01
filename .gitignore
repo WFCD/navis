@@ -53,7 +53,7 @@ local.properties
 *.jks
 android/.project
 android/app/fastlane.json
-android/app/google-services.json
+# android/app/google-services.json
 android/app/app.iml
 android/app/.project
 android/app/.classpath
@@ -87,7 +87,7 @@ android/app/.classpath
 **/ios/ServiceDefinitions.json
 **/ios/Runner/GeneratedPluginRegistrant.*
 ios/Flutter/flutter_export_environment.sh
-ios/Runner/GoogleService-Info.plist
+# ios/Runner/GoogleService-Info.plist
 ios/Runner.app.dSYM.zip
 ios/Runner.ipa
 
