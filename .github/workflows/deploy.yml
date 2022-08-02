@@ -5,11 +5,7 @@ on:
 
 env:
   FLUTTER_VERSION: stable
-  TENNO_CIPHER: ${{ secrets.TENNO_CIPHER }}
-  TENNO_FIREBASE: ${{ secrets.TENNO_FIREBASE }}
-  TENNO_STORE: ${{ secrets.TENNO_STORE }}
   NAVIS_SERVICE_ACCOUNT: ${{ secrets.NAVIS_SERVICE_ACCOUNT }}
-  FIREBASE_IOS: ${{ secrets.FIREBASE_IOS }}
   FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD: ${{ secrets.FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD }}
   FASTLANE_SESSION: ${{ secrets.FASTLANE_SESSION }}
   FASTLANE_PASSWORD: ${{ secrets.FASTLANE_PASSWORD }}
@@ -37,10 +33,15 @@ jobs:
         with:
           channel: ${{ env.FLUTTER_VERSION }}
 
-      - name: Decode signing key and services json
-        run: |
-          base64 -d <<< $TENNO_STORE > android/keystore.jks
-          base64 -di <<< $NAVIS_SERVICE_ACCOUNT > android/app/fastlane.json
+      - name: Retrieve signing key
+        env:
+          KEYSTORE: ${{ secrets.KEYSTORE }}
+        run: echo $KEYSTORE | base64 --decode > android/keystore.jks
+
+      - name: Retrieve Firebase options
+        env:
+          FIREBASE_OPTIONS: ${{ secrets.FIREBASE_OPTIONS }}
+        run: echo $FIREBASE_OPTIONS | base64 --decode > lib/firebase_options.dart
 
       - name: Build App bundle
         run: |
@@ -86,8 +87,7 @@ jobs:
 
   ios: # Github's MacOS images come with xcode preinstalled
     runs-on: macos-latest
-    strategy:
-      fail-fast: true
+
     steps:
       - uses: actions/checkout@v2
         with:
@@ -100,6 +100,14 @@ jobs:
       - uses: subosito/flutter-action@v1
         with:
           channel: ${{ env.FLUTTER_VERSION }}
+
+      - name: Decode signing key and services json
+        env:
+          FIREBASE_IOS: ${{ secrets.FIREBASE_IOS }}
+          FIREBASE_OPTIONS: ${{ secrets.FIREBASE_OPTIONS }}
+        run: |
+          echo $FIREBASE_IOS | base64 --decode > ios/firebase_app_id_file.json
+          echo $FIREBASE_OPTIONS | base64 --decode > lib/firebase_options.dart
 
       - name: Build ios using flutter
         run: |

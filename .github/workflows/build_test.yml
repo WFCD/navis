@@ -28,6 +28,7 @@ jobs:
       - uses: subosito/flutter-action@v2
         with:
           channel: stable
+
       - name: Retrieve signing key
         env:
           KEYSTORE: ${{ secrets.KEYSTORE }}
