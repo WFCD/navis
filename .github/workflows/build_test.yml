@@ -28,15 +28,15 @@ jobs:
       - uses: subosito/flutter-action@v2
         with:
           channel: stable
+      - name: Retrieve signing key
+        env:
+          KEYSTORE: ${{ secrets.KEYSTORE }}
+        run: echo $KEYSTORE | base64 --decode > android/keystore.jks
 
-      - name: Decode signing key and services json
+      - name: Retrieve Firebase options
         env:
           FIREBASE_OPTIONS: ${{ secrets.FIREBASE_OPTIONS }}
-          KEYSTORE: ${{ secrets.KEYSTORE }}
-        run: |
-          base64 --version
-          echo $FIREBASE_OPTIONS | base64 --decode > lib/firebase_options.dart
-          echo $KEYSTORE | base64 --decode > android/keystore.jks
+        run: echo $FIREBASE_OPTIONS | base64 --decode > lib/firebase_options.dart
 
       - name: Build apks
         env:
