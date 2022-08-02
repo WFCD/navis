@@ -220,6 +220,12 @@
         "type": "text",
         "placeholders": {}
     },
+    "zarimanCycleTitle": "Zariman Cycle",
+    "@zarimanCycleTitle": {
+        "description": "Zariman Cycle title",
+        "type": "text",
+        "placeholder": {}
+    },
     "timersTitle": "Таймеры",
     "@timersTitle": {
         "description": "Times title",
@@ -935,6 +941,18 @@
     "synthTargetTitle": "SynthTargets",
     "@synthTargetTitle": {
         "description": "Title for synthtargets",
+        "type": "text",
+        "placeholder": {}
+    },
+    "enableBetaFeaturesTitle": "Enable beta features",
+    "@enableBetaFeaturesTitle": {
+        "description": "Title for beta feature enabler",
+        "type": "text",
+        "placeholder": {}
+    },
+    "enableBetaFeaturesDescription": "Enable API endpoints that are still in development.",
+    "@enableBetaFeaturesDescription": {
+        "description": "Description for beta feature enabler",
         "type": "text",
         "placeholder": {}
     }
