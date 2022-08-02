@@ -31,7 +31,6 @@ jobs:
 
       - name: Decode signing key and services json
         env:
-          TENNO_CIPHER: ${{ secrets.TENNO_CIPHER }}
           FIREBASE_OPTIONS: ${{ secrets.FIREBASE_OPTIONS }}
           KEYSTORE: ${{ secrets.KEYSTORE }}
         run: |
@@ -39,6 +38,8 @@ jobs:
           echo $FIREBASE_OPTIONS | base64 --decode > lib/firebase_options.dart
 
       - name: Build apks
+        env:
+          KEYSTOREPASS: ${{ secrets.KEYSTOREPASS }}
         run: flutter build apk --dart-define=SENTRY_DSN=$SENTRY_DSN --dart-define=MATOMO_URL=$MATOMO_URL --flavor dev -t lib/main_dev.dart --split-per-abi
 
       - uses: actions/upload-artifact@v3
