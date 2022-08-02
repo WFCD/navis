@@ -45,9 +45,9 @@ android {
     signingConfigs {
         release {
             storeFile file("../keystore.jks")
-            storePassword "$System.env.TENNO_CIPHER"
+            storePassword "$System.env.KEYSTOREPASS"
             keyAlias "upload"
-            keyPassword "$System.env.TENNO_CIPHER"
+            keyPassword "$System.env.KEYSTOREPASS"
         }
     }
 
