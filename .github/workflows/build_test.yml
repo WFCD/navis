@@ -50,9 +50,6 @@ jobs:
   ios:
     runs-on: macos-latest
 
-    env:
-      FIREBASE_IOS: ${{ secrets.FIREBASE_IOS }}
-
     steps:
       - uses: actions/checkout@v3
 
@@ -60,6 +57,9 @@ jobs:
         with:
           channel: stable
           architecture: x64
+
+      - name: DW
+        run: base64 --version
 
       - name: Decode signing key and services json
         env:
