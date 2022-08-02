@@ -34,6 +34,7 @@ jobs:
           FIREBASE_OPTIONS: ${{ secrets.FIREBASE_OPTIONS }}
           KEYSTORE: ${{ secrets.KEYSTORE }}
         run: |
+          base64 --version
           echo $FIREBASE_OPTIONS | base64 --decode > lib/firebase_options.dart
           echo $KEYSTORE | base64 --decode > android/keystore.jks
 
@@ -57,9 +58,6 @@ jobs:
         with:
           channel: stable
           architecture: x64
-
-      - name: DW
-        run: base64 --version
 
       - name: Decode signing key and services json
         env:
