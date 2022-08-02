@@ -22,7 +22,6 @@ if (flutterVersionName == null) {
 }
 
 apply plugin: 'com.android.application'
-apply plugin: 'com.google.gms.google-services'
 apply plugin: 'kotlin-android'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
@@ -45,9 +44,9 @@ android {
     signingConfigs {
         release {
             storeFile file("../keystore.jks")
-            storePassword "$System.env.TENNO_CIPHER"
+            storePassword "$System.env.KEYSTOREPASS"
             keyAlias "upload"
-            keyPassword "$System.env.TENNO_CIPHER"
+            keyPassword "$System.env.KEYSTOREPASS"
         }
     }
 

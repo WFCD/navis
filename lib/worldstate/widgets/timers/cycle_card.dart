@@ -60,7 +60,7 @@ class CycleCard extends StatelessWidget {
       ),
       if (settings.enableBeta)
         CycleEntry(
-          name: 'Zariman',
+          name: locale.zarimanCycleTitle,
           cycle: worldstate.zarimanCycle,
           states: zarimanCycle,
         )

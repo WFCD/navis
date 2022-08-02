@@ -17,11 +17,6 @@ jobs:
   android:
     runs-on: ubuntu-latest
 
-    env:
-      TENNO_CIPHER: ${{ secrets.TENNO_CIPHER }}
-      TENNO_FIREBASE: ${{ secrets.TENNO_FIREBASE }}
-      TENNO_STORE: ${{ secrets.TENNO_STORE }}
-
     steps:
       - uses: actions/checkout@v3
 
@@ -33,13 +28,19 @@ jobs:
       - uses: subosito/flutter-action@v2
         with:
           channel: stable
+      - name: Retrieve signing key
+        env:
+          KEYSTORE: ${{ secrets.KEYSTORE }}
+        run: echo $KEYSTORE | base64 --decode > android/keystore.jks
 
-      - name: Decode signing key and services json
-        run: |
-          base64 -d <<< $TENNO_STORE > android/keystore.jks
-          base64 -d <<< $TENNO_FIREBASE > android/app/google-services.json
+      - name: Retrieve Firebase options
+        env:
+          FIREBASE_OPTIONS: ${{ secrets.FIREBASE_OPTIONS }}
+        run: echo $FIREBASE_OPTIONS | base64 --decode > lib/firebase_options.dart
 
       - name: Build apks
+        env:
+          KEYSTOREPASS: ${{ secrets.KEYSTOREPASS }}
         run: flutter build apk --dart-define=SENTRY_DSN=$SENTRY_DSN --dart-define=MATOMO_URL=$MATOMO_URL --flavor dev -t lib/main_dev.dart --split-per-abi
 
       - uses: actions/upload-artifact@v3
@@ -50,9 +51,6 @@ jobs:
   ios:
     runs-on: macos-latest
 
-    env:
-      FIREBASE_IOS: ${{ secrets.FIREBASE_IOS }}
-
     steps:
       - uses: actions/checkout@v3
 
@@ -61,8 +59,13 @@ jobs:
           channel: stable
           architecture: x64
 
-      - name: Decode service plist
-        run: base64 -d <<< $FIREBASE_IOS > ios/Runner/GoogleService-Info.plist
+      - name: Decode signing key and services json
+        env:
+          FIREBASE_IOS: ${{ secrets.FIREBASE_IOS }}
+          FIREBASE_OPTIONS: ${{ secrets.FIREBASE_OPTIONS }}
+        run: |
+          echo $FIREBASE_IOS | base64 --decode > ios/firebase_app_id_file.json
+          echo $FIREBASE_OPTIONS | base64 --decode > lib/firebase_options.dart
 
       - name: Pod update
         run: pod repo update

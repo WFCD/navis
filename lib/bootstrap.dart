@@ -9,6 +9,7 @@ import 'package:flutter_web_browser/flutter_web_browser.dart';
 import 'package:hive/hive.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:market_repository/market_repository.dart';
+import 'package:navis/firebase_options.dart';
 import 'package:navis/worldstate/cubits/darvodeal_cubit.dart';
 import 'package:navis/worldstate/cubits/solsystem_cubit.dart';
 import 'package:notification_repository/notification_repository.dart';
@@ -41,7 +42,7 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
   Hive.init(appDir.path);
   final storage = await HydratedStorage.build(storageDirectory: appDir);
 
-  await Firebase.initializeApp();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await FlutterWebBrowser.warmup();
 
   final app = await _startProviders(await builder());

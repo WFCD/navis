@@ -1,5 +1,5 @@
 name: navis
-version: 2.7.0+203
+version: 2.7.3+206
 description: Cephalon Navis is an Android app inspired by Warframe Hub.
 publish_to: none
 
@@ -17,7 +17,7 @@ dependencies:
   flutter_bloc: 8.0.1
   flutter_localizations:
     sdk: flutter
-  flutter_svg: ^1.1.0
+  flutter_svg: ^1.1.1
   flutter_web_browser: 0.17.1
   hive: 2.1.0
   hydrated_bloc: 8.1.0
@@ -36,7 +36,7 @@ dependencies:
     path: packages/notification_repository
   package_info: 2.0.2
   responsive_builder: 0.4.2
-  sentry_flutter: ^6.6.0
+  sentry_flutter: ^6.9.0
   shimmer: 2.0.0
   simple_icons: ^7.1.0
   user_settings:
@@ -44,13 +44,13 @@ dependencies:
   wfcd_client:
     git:
       url: https://github.com/SlayerOrnstein/wfcd_client.git
-      ref: v3.9.3
+      ref: v3.9.6
   worldstate_repository:
     path: packages/worldstate_repository
 
 dev_dependencies:
   bloc_test: 9.0.3
-  dart_code_metrics: ^4.16.0
+  dart_code_metrics: ^4.17.0
   flutter_test:
     sdk: flutter
   mocktail: 0.3.0
