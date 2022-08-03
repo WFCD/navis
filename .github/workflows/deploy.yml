@@ -44,6 +44,8 @@ jobs:
         run: echo $FIREBASE_OPTIONS | base64 --decode > lib/firebase_options.dart
 
       - name: Build App bundle
+        env:
+          KEYSTOREPASS: ${{ secrets.KEYSTOREPASS }}
         run: |
           flutter build appbundle \
             --dart-define=SENTRY_DSN=$SENTRY_DSN --dart-define=MATOMO_URL=$MATOMO_URL \
@@ -70,6 +72,8 @@ jobs:
         run: flutter clean
 
       - name: Build split apks per abi
+        env:
+          KEYSTOREPASS: ${{ secrets.KEYSTOREPASS }}
         run: |
           flutter build apk \
           --dart-define=SENTRY_DSN=$SENTRY_DSN --dart-define=MATOMO_URL=$MATOMO_URL \
@@ -100,6 +104,7 @@ jobs:
       - uses: subosito/flutter-action@v1
         with:
           channel: ${{ env.FLUTTER_VERSION }}
+          architecture: x64
 
       - name: Decode signing key and services json
         env:
