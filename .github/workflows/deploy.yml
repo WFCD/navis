@@ -1,7 +1,8 @@
-name: Deploy
+name: Release deploy
 on:
   release:
-    types: [created]
+    types:
+      - created
 
 env:
   FLUTTER_VERSION: stable
@@ -10,35 +11,35 @@ env:
   FASTLANE_SESSION: ${{ secrets.FASTLANE_SESSION }}
   FASTLANE_PASSWORD: ${{ secrets.FASTLANE_PASSWORD }}
   MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
+  MATOMO_URL: ${{ secrets.MATOMO_URL }}
   SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
   SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}
   SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
   SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
-  MATOMO_URL: ${{ secrets.MATOMO_URL }}
 
 jobs:
-  android-release:
-    runs-on: ubuntu-latest
+  release-android-google-play:
+    runs-on: ubuntu-20.04
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
       - uses: actions/setup-java@v3
         with:
-          distribution: temurin
-          java-version: "11"
+          distribution: microsoft
+          java-version: 11
 
-      - uses: subosito/flutter-action@v2
+      - uses: subosito/flutter-action@v3
         with:
           channel: ${{ env.FLUTTER_VERSION }}
 
-      - name: Retrieve signing key
+      - name: Retrieve signing keys
         env:
           KEYSTORE: ${{ secrets.KEYSTORE }}
         run: echo $KEYSTORE | base64 --decode > android/keystore.jks
 
-      - name: Retrieve Firebase options
+      - name: Setup Firebase
         env:
           FIREBASE_OPTIONS: ${{ secrets.FIREBASE_OPTIONS }}
         run: echo $FIREBASE_OPTIONS | base64 --decode > lib/firebase_options.dart
@@ -52,48 +53,20 @@ jobs:
             -t lib/main_prod.dart --flavor prod \
             --obfuscate --split-debug-info=debug_info
 
-      - name: Upload Debug symbols to Sentry
+      - name: Upload Sentry debug symbols
         run: flutter packages pub run sentry_dart_plugin
 
-      - uses: actions/setup-ruby@v1
-        with:
-          ruby-version: "2.7"
-
-      - name: Prepare fastlane deploy folders
-        run: mkdir -p android/fastlane/metadata/android/en-US/changelogs
-
-      - name: Google Play Store Deploy
-        uses: maierj/fastlane-action@v2.2.1
+      - name: Fastlane Google Play deploy
+        uses: maierj/fastlane-action@v3
         with:
           lane: beta
           subdirectory: android
 
-      - name: Clean build directory
-        run: flutter clean
-
-      - name: Build split apks per abi
-        env:
-          KEYSTOREPASS: ${{ secrets.KEYSTOREPASS }}
-        run: |
-          flutter build apk \
-          --dart-define=SENTRY_DSN=$SENTRY_DSN --dart-define=MATOMO_URL=$MATOMO_URL \
-          -t lib/main_prod.dart --flavor prod --split-per-abi \
-          --obfuscate --split-debug-info=debug_info
-
-      - name: Github Releases Deploy
-        uses: xresloader/upload-to-github-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-        with:
-          file: "build/app/outputs/flutter-apk/app-*-prod-release.apk"
-          tags: true
-          draft: false
-
-  ios: # Github's MacOS images come with xcode preinstalled
-    runs-on: macos-latest
+  release-ios-appstore:
+    runs-on: macos-12
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
@@ -101,12 +74,12 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.FASTLANE_DEPLOY_KEY }}
 
-      - uses: subosito/flutter-action@v2
+      - uses: subosito/flutter-action@v3
         with:
           channel: ${{ env.FLUTTER_VERSION }}
           architecture: x64
 
-      - name: Decode signing key and services json
+      - name: Setup Firebase
         env:
           FIREBASE_IOS: ${{ secrets.FIREBASE_IOS }}
           FIREBASE_OPTIONS: ${{ secrets.FIREBASE_OPTIONS }}
@@ -130,8 +103,83 @@ jobs:
           lane: beta
           subdirectory: ios
 
+  release-android-github:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-java@v3
+        with:
+          distribution: microsoft
+          java-version: 11
+
+      - uses: subosito/flutter-action@v3
+        with:
+          channel: ${{ env.FLUTTER_VERSION }}
+
+      - name: Retrieve signing keys
+        env:
+          KEYSTORE: ${{ secrets.KEYSTORE }}
+        run: echo $KEYSTORE | base64 --decode > android/keystore.jks
+
+      - name: Setup Firebase
+        env:
+          FIREBASE_OPTIONS: ${{ secrets.FIREBASE_OPTIONS }}
+        run: echo $FIREBASE_OPTIONS | base64 --decode > lib/firebase_options.dart
+
+      - name: Build split apks per abi
+        env:
+          KEYSTOREPASS: ${{ secrets.KEYSTOREPASS }}
+        run: |
+          flutter build apk \
+          --dart-define=SENTRY_DSN=$SENTRY_DSN --dart-define=MATOMO_URL=$MATOMO_URL \
+          -t lib/main_prod.dart --flavor prod --split-per-abi \
+          --obfuscate --split-debug-info=debug_info
+
       - name: Github Releases Deploy
         uses: xresloader/upload-to-github-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+        with:
+          file: "build/app/outputs/flutter-apk/app-*-prod-release.apk"
+          tags: true
+          draft: false
+
+  release-ios-github:
+    runs-on: macos-12
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - uses: webfactory/ssh-agent@v3
+        with:
+          ssh-private-key: ${{ secrets.FASTLANE_DEPLOY_KEY }}
+
+      - uses: subosito/flutter-action@v3
+        with:
+          channel: ${{ env.FLUTTER_VERSION }}
+          architecture: x64
+
+      - name: Setup Firebase
+        env:
+          FIREBASE_IOS: ${{ secrets.FIREBASE_IOS }}
+          FIREBASE_OPTIONS: ${{ secrets.FIREBASE_OPTIONS }}
+        run: |
+          echo $FIREBASE_IOS | base64 --decode > ios/firebase_app_id_file.json
+          echo $FIREBASE_OPTIONS | base64 --decode > lib/firebase_options.dart
+
+      - name: Build ios using flutter
+        run: |
+          flutter build ios \
+          --dart-define=SENTRY_DSN=$SENTRY_DSN --dart-define=MATOMO_URL=$MATOMO_URL \
+          -t lib/main_prod.dart --no-codesign
+
+      - name: Github Releases Deploy
+        uses: xresloader/upload-to-github-release@v3
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         with:
