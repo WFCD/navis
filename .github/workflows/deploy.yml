@@ -30,7 +30,7 @@ jobs:
           distribution: microsoft
           java-version: 11
 
-      - uses: subosito/flutter-action@v2
+      - uses: subosito/flutter-action@v2.2.1
         with:
           channel: ${{ env.FLUTTER_VERSION }}
           cache: true
@@ -83,7 +83,7 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.FASTLANE_DEPLOY_KEY }}
 
-      - uses: subosito/flutter-action@v2
+      - uses: subosito/flutter-action@v2.2.1
         with:
           channel: ${{ env.FLUTTER_VERSION }}
           cache: true
@@ -127,7 +127,7 @@ jobs:
           distribution: microsoft
           java-version: 11
 
-      - uses: subosito/flutter-action@v2
+      - uses: subosito/flutter-action@v2.2.1
         with:
           channel: ${{ env.FLUTTER_VERSION }}
           cache: true
@@ -171,11 +171,11 @@ jobs:
         with:
           fetch-depth: 0
 
-      - uses: webfactory/ssh-agent@v3
+      - uses: webfactory/ssh-agent@v0.5.4
         with:
           ssh-private-key: ${{ secrets.FASTLANE_DEPLOY_KEY }}
 
-      - uses: subosito/flutter-action@v2
+      - uses: subosito/flutter-action@v2.2.1
         with:
           channel: ${{ env.FLUTTER_VERSION }}
           cache: true
