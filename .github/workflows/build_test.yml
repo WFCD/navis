@@ -9,10 +9,6 @@ on:
     branches:
       - master
 
-env:
-  SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
-  MATOMO_URL: ${{ secrets.MATOMO_URL }}
-
 jobs:
   android:
     runs-on: ubuntu-latest
@@ -42,7 +38,7 @@ jobs:
       - name: Build apks
         env:
           KEYSTOREPASS: ${{ secrets.KEYSTOREPASS }}
-        run: flutter build apk --dart-define=SENTRY_DSN=$SENTRY_DSN --dart-define=MATOMO_URL=$MATOMO_URL --flavor dev -t lib/main_dev.dart --split-per-abi
+        run: flutter build apk --flavor dev -t lib/main_dev.dart --split-per-abi
 
       - uses: actions/upload-artifact@v3
         with:
@@ -72,7 +68,7 @@ jobs:
         run: pod repo update
 
       - name: Build ios using flutter
-        run: flutter build ios --dart-define=SENTRY_DSN=$SENTRY_DSN --dart-define=MATOMO_URL=$MATOMO_URL -t lib/main_dev.dart --no-codesign
+        run: flutter build ios -t lib/main_dev.dart --no-codesign
 
       - uses: actions/upload-artifact@v3
         with:
