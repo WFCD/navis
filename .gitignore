@@ -104,3 +104,4 @@ ios/Runner/GeneratedPluginRegistrant.h
 .fvm/flutter_sdk
 lib/firebase_options.dart
 ios/firebase_app_id_file.json
+android/fastlane/service_account.json

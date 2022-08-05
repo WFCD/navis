@@ -110,7 +110,7 @@ jobs:
           ruby-version: "2.7"
 
       - name: App Store Deploy
-        uses: maierj/fastlane-action@v2.6.1
+        uses: maierj/fastlane-action@v2.2.1
         with:
           lane: beta
           subdirectory: ios
@@ -201,6 +201,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         with:
-          file: "ios/app-ios-release.ipa"
+          file: "build/ios/iphoneos/Runner.app"
           tags: true
           draft: false
