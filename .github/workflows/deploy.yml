@@ -56,6 +56,11 @@ jobs:
       - name: Upload Sentry debug symbols
         run: flutter packages pub run sentry_dart_plugin
 
+      - name: Retrieve service account
+        env:
+          KEYSTORE: ${{ secrets.KEYSTORE }}
+        run: echo $NAVIS_SERVICE_ACCOUNT | base64 --decode > android/app/fastlane.json
+
       - name: Fastlane Google Play deploy
         uses: maierj/fastlane-action@v3
         with:
