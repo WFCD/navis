@@ -30,9 +30,13 @@ jobs:
           distribution: microsoft
           java-version: 11
 
-      - uses: subosito/flutter-action@v3
+      - uses: subosito/flutter-action@v2
         with:
           channel: ${{ env.FLUTTER_VERSION }}
+          cache: true
+          cache-key: "flutter-:os:-:channel:-:version:-:arch:-:hash:" # optional, change this to force refresh cache
+          cache-path: "${{ runner.tool_cache }}/flutter/:channel:-:version:-:arch:" # optional, change this to specify the cache path
+          architecture: x64 # optional, x64 or arm64
 
       - name: Retrieve signing keys
         env:
@@ -79,10 +83,13 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.FASTLANE_DEPLOY_KEY }}
 
-      - uses: subosito/flutter-action@v3
+      - uses: subosito/flutter-action@v2
         with:
           channel: ${{ env.FLUTTER_VERSION }}
-          architecture: x64
+          cache: true
+          cache-key: "flutter-:os:-:channel:-:version:-:arch:-:hash:" # optional, change this to force refresh cache
+          cache-path: "${{ runner.tool_cache }}/flutter/:channel:-:version:-:arch:" # optional, change this to specify the cache path
+          architecture: x64 # optional, x64 or arm64
 
       - name: Setup Firebase
         env:
@@ -120,9 +127,13 @@ jobs:
           distribution: microsoft
           java-version: 11
 
-      - uses: subosito/flutter-action@v3
+      - uses: subosito/flutter-action@v2
         with:
           channel: ${{ env.FLUTTER_VERSION }}
+          cache: true
+          cache-key: "flutter-:os:-:channel:-:version:-:arch:-:hash:" # optional, change this to force refresh cache
+          cache-path: "${{ runner.tool_cache }}/flutter/:channel:-:version:-:arch:" # optional, change this to specify the cache path
+          architecture: x64 # optional, x64 or arm64
 
       - name: Retrieve signing keys
         env:
@@ -164,10 +175,13 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.FASTLANE_DEPLOY_KEY }}
 
-      - uses: subosito/flutter-action@v3
+      - uses: subosito/flutter-action@v2
         with:
           channel: ${{ env.FLUTTER_VERSION }}
-          architecture: x64
+          cache: true
+          cache-key: "flutter-:os:-:channel:-:version:-:arch:-:hash:" # optional, change this to force refresh cache
+          cache-path: "${{ runner.tool_cache }}/flutter/:channel:-:version:-:arch:" # optional, change this to specify the cache path
+          architecture: x64 # optional, x64 or arm64
 
       - name: Setup Firebase
         env:
