@@ -30,7 +30,7 @@ jobs:
           distribution: microsoft
           java-version: 11
 
-      - uses: subosito/flutter-action@v2.2.1
+      - uses: subosito/flutter-action@v2.6.1
         with:
           channel: ${{ env.FLUTTER_VERSION }}
           cache: true
@@ -66,7 +66,7 @@ jobs:
         run: echo $NAVIS_SERVICE_ACCOUNT | base64 --decode > android/app/fastlane.json
 
       - name: Fastlane Google Play deploy
-        uses: maierj/fastlane-action@v3
+        uses: maierj/fastlane-action@v2.2.1
         with:
           lane: beta
           subdirectory: android
@@ -83,7 +83,7 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.FASTLANE_DEPLOY_KEY }}
 
-      - uses: subosito/flutter-action@v2.2.1
+      - uses: subosito/flutter-action@v2.6.1
         with:
           channel: ${{ env.FLUTTER_VERSION }}
           cache: true
@@ -110,7 +110,7 @@ jobs:
           ruby-version: "2.7"
 
       - name: App Store Deploy
-        uses: maierj/fastlane-action@v2.2.1
+        uses: maierj/fastlane-action@v2.6.1
         with:
           lane: beta
           subdirectory: ios
@@ -127,13 +127,12 @@ jobs:
           distribution: microsoft
           java-version: 11
 
-      - uses: subosito/flutter-action@v2.2.1
+      - uses: subosito/flutter-action@v2.6.1
         with:
           channel: ${{ env.FLUTTER_VERSION }}
           cache: true
           cache-key: "flutter-:os:-:channel:-:version:-:arch:-:hash:" # optional, change this to force refresh cache
           cache-path: "${{ runner.tool_cache }}/flutter/:channel:-:version:-:arch:" # optional, change this to specify the cache path
-          architecture: x64 # optional, x64 or arm64
 
       - name: Retrieve signing keys
         env:
@@ -155,7 +154,7 @@ jobs:
           --obfuscate --split-debug-info=debug_info
 
       - name: Github Releases Deploy
-        uses: xresloader/upload-to-github-release@v1
+        uses: xresloader/upload-to-github-release@v1.3.4
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         with:
@@ -175,7 +174,7 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.FASTLANE_DEPLOY_KEY }}
 
-      - uses: subosito/flutter-action@v2.2.1
+      - uses: subosito/flutter-action@v2.6.1
         with:
           channel: ${{ env.FLUTTER_VERSION }}
           cache: true
@@ -198,7 +197,7 @@ jobs:
           -t lib/main_prod.dart --no-codesign
 
       - name: Github Releases Deploy
-        uses: xresloader/upload-to-github-release@v3
+        uses: xresloader/upload-to-github-release@v1.3.4
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         with:
