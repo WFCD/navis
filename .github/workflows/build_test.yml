@@ -87,6 +87,14 @@ jobs:
           channel: stable
           architecture: x64
 
+      - name: Setup Firebase
+        env:
+          FIREBASE_IOS: ${{ secrets.FIREBASE_IOS }}
+          FIREBASE_OPTIONS: ${{ secrets.FIREBASE_OPTIONS }}
+        run: |
+          echo $FIREBASE_IOS | base64 --decode > ios/firebase_app_id_file.json
+          echo $FIREBASE_OPTIONS | base64 --decode > lib/firebase_options.dart
+
       - name: Build app
         run: flutter build ipa -t lib/main_dev.dart --export-options-plist=ios/ExportOptions.plist
 
