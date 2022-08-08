@@ -9,7 +9,7 @@ environment:
 dependencies:
   animations: ^2.0.3
   black_hole_flutter: 0.3.5
-  bloc: 8.0.3
+  bloc: ^8.1.0
   cached_network_image: 3.2.0
   equatable: 2.0.3
   flutter:
