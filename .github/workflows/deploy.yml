@@ -38,10 +38,10 @@ jobs:
           cache-path: "${{ runner.tool_cache }}/flutter/:channel:-:version:-:arch:" # optional, change this to specify the cache path
           architecture: x64 # optional, x64 or arm64
 
-      - name: Retrieve signing keys
+      - name: Retrieve signing key
         env:
           KEYSTORE: ${{ secrets.KEYSTORE }}
-        run: echo $KEYSTORE | base64 --decode > android/keystore.jks
+        run: echo $KEYSTORE | base64 -di > android/keystore.jks
 
       - name: Setup Firebase
         env:
@@ -63,7 +63,7 @@ jobs:
       - name: Retrieve service account
         env:
           KEYSTORE: ${{ secrets.KEYSTORE }}
-        run: echo $NAVIS_SERVICE_ACCOUNT | base64 --decode > android/app/fastlane.json
+        run: echo $NAVIS_SERVICE_ACCOUNT | base64 -di > android/fastlane/service_account.json
 
       - name: Fastlane Google Play deploy
         uses: maierj/fastlane-action@v2.2.1
