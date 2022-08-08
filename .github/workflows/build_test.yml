@@ -85,7 +85,7 @@ jobs:
           architecture: x64
 
       - name: Build app
-        run: flutter build ipa -t lib/main_dev.dart --export-option-plist=ios/ExportOptions.plist
+        run: flutter build ipa -t lib/main_dev.dart --export-options-plist=ios/ExportOptions.plist
 
       - name: Uploade artifacts
         uses: actions/upload-artifact@v3
