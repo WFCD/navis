@@ -28,8 +28,11 @@ jobs:
           channel: stable
 
       - name: Install keystore and Firebase keys
+        env:
+          KEYSTORE: ${{ secrets.KEYSTORE }}
+          FIREBASE_OPTIONS: ${{ secrets.FIREBASE_OPTIONS }}
         run: |
-          echo $KEYSTORE | base64 --decode > android/keystore.jks
+          echo $KEYSTORE | base64 -di > android/keystore.jks
           echo $FIREBASE_OPTIONS | base64 --decode > lib/firebase_options.dart
 
       - name: Build app
