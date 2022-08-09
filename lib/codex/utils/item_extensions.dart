@@ -4,6 +4,6 @@ extension ItemX on Item {
   bool get isMarketTradable {
     final isPrime = name.contains('Prime');
 
-    return tradable ?? isPrime;
+    return (tradable ?? false) || isPrime;
   }
 }

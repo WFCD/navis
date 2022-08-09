@@ -116,7 +116,7 @@ class TabbedEntry extends StatelessWidget {
             Overview(item: item),
             if (item.patchlogs != null && (item.patchlogs?.isNotEmpty ?? false))
               PatchlogsTimeline(patchlogs: item.patchlogs ?? []),
-            if (item.tradable ?? false) MarketItemView(itemName: item.name)
+            if (item.isMarketTradable) MarketItemView(itemName: item.name)
           ],
         ),
       ),
