@@ -22,10 +22,13 @@ jobs:
           distribution: temurin
           java-version: "11"
 
-      - name: Install Flutter SDK
-        uses: subosito/flutter-action@v2
+      - uses: subosito/flutter-action@v2.6.1
         with:
           channel: stable
+          cache: true
+          cache-key: "flutter-:os:-:channel:-:version:-:arch:-:hash:" # optional, change this to force refresh cache
+          cache-path: "${{ runner.tool_cache }}/flutter/:channel:-:version:-:arch:" # optional, change this to specify the cache path
+          architecture: x64 # optional, x64 or arm64
 
       - name: Install keystore and Firebase keys
         env:
@@ -81,11 +84,13 @@ jobs:
           mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
           cp $PP_PATH ~/Library/MobileDevice/Provisioning\ Profiles
 
-      - name: Install Flutter SDK
-        uses: subosito/flutter-action@v2
+      - uses: subosito/flutter-action@v2.6.1
         with:
           channel: stable
-          architecture: x64
+          cache: true
+          cache-key: "flutter-:os:-:channel:-:version:-:arch:-:hash:" # optional, change this to force refresh cache
+          cache-path: "${{ runner.tool_cache }}/flutter/:channel:-:version:-:arch:" # optional, change this to specify the cache path
+          architecture: x64 # optional, x64 or arm64
 
       - name: Setup Firebase
         env:
