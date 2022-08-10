@@ -97,9 +97,6 @@ ios/Runner.ipa
 !**/ios/**/default.pbxuser
 !**/ios/**/default.perspectivev3
 !/packages/flutter_tools/test/data/dart_dependencies_test/**/.packages
-android/keystore.b4
-android/app/google-services.b4
-android/app/fastlane.b4
 ios/Runner/GeneratedPluginRegistrant.h
 .fvm/flutter_sdk
 lib/firebase_options.dart
