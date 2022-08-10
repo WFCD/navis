@@ -101,8 +101,8 @@ jobs:
       - name: Build ios using flutter
         run: |
           flutter build ios \
-          --dart-define=SENTRY_DSN=$SENTRY_DSN --dart-define=MATOMO_URL=$MATOMO_URL \
-          -t lib/main_prod.dart --no-codesign
+            --dart-define=SENTRY_DSN=$SENTRY_DSN --dart-define=MATOMO_URL=$MATOMO_URL \
+            -t lib/main_prod.dart --no-codesign
 
       - uses: actions/setup-ruby@v1
         with:
@@ -148,9 +148,9 @@ jobs:
           KEYSTOREPASS: ${{ secrets.KEYSTOREPASS }}
         run: |
           flutter build apk \
-          --dart-define=SENTRY_DSN=$SENTRY_DSN --dart-define=MATOMO_URL=$MATOMO_URL \
-          -t lib/main_prod.dart --flavor prod --split-per-abi \
-          --obfuscate --split-debug-info=debug_info
+            --dart-define=SENTRY_DSN=$SENTRY_DSN --dart-define=MATOMO_URL=$MATOMO_URL \
+            -t lib/main_prod.dart --flavor prod --split-per-abi \
+            --obfuscate --split-debug-info=debug_info
 
       - name: Github Releases Deploy
         uses: xresloader/upload-to-github-release@v1.3.4
@@ -211,9 +211,10 @@ jobs:
           echo $FIREBASE_OPTIONS | base64 --decode > lib/firebase_options.dart
 
       - name: Build app
-        run: flutter build ipa \
-          --dart-define=SENTRY_DSN=$SENTRY_DSN --dart-define=MATOMO_URL=$MATOMO_URL \
-          -t lib/main_prod.dart --export-options-plist=ios/ExportOptions.plist
+        run: |
+          flutter build ipa \
+            --dart-define=SENTRY_DSN=$SENTRY_DSN --dart-define=MATOMO_URL=$MATOMO_URL \
+            -t lib/main_prod.dart --export-options-plist=ios/ExportOptions.plist
 
       - name: Uploade artifacts
         uses: actions/upload-artifact@v3
@@ -226,4 +227,4 @@ jobs:
         if: ${{ always() }}
         run: |
           security delete-keychain $RUNNER_TEMP/app-signing.keychain-db
-          rm ~/Library/MobileDevice/Provisioni
+          rm ~/Library/MobileDevice/Provisioning\ Profiles/build_pp.mobileprovision
