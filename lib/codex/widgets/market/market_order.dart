@@ -6,7 +6,7 @@ import 'package:navis_ui/navis_ui.dart';
 class MarketSellWidget extends StatelessWidget {
   const MarketSellWidget({super.key, required this.order});
 
-  final ItemOrder order;
+  final OrderRow order;
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +39,7 @@ class MarketSellWidget extends StatelessWidget {
             padding: const EdgeInsets.only(top: 8, right: 16),
             child: _MarketSellTrailing(
               quantity: order.quantity,
-              price: order.platinum.toInt(),
+              price: order.platinum,
             ),
           )
         ],

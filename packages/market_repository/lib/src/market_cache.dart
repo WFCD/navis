@@ -31,7 +31,7 @@ class MarketCache {
   /// Caches the market item list for later use.
   ///
   /// Also caches a timestamp of the date it was cached for cache invalidation.
-  void cacheItems(List<MarketItem> items) {
+  void cacheItems(List<ItemShort> items) {
     _box
       ..put(_itemsTimestamp, DateTime.now())
       ..put(_marketItems, items.map((e) => e.toJson()).toList());
@@ -40,7 +40,7 @@ class MarketCache {
   /// Caches the list of orders for a specific item.
   ///
   /// Also caches the item's name, and a timestamp of when it was cached.
-  void cacheOrders(String itemName, List<ItemOrder> orders) {
+  void cacheOrders(String itemName, List<OrderRow> orders) {
     _box
       ..put(_orderTimestamp, DateTime.now())
       ..put(_itemName, itemName)
@@ -57,24 +57,24 @@ class MarketCache {
   DateTime? get ordersTimestamp => _box.get(_orderTimestamp) as DateTime?;
 
   /// Returns all cached sell orders.
-  List<ItemOrder>? get cachedOrders {
+  List<OrderRow>? get cachedOrders {
     final cached = _box.get(_ordersKey) as List<Map<String, dynamic>>?;
 
     if (cached != null) {
-      return cached.map((e) => ItemOrder.fromJson(e)).toList();
+      return cached.map((e) => OrderRow.fromJson(e)).toList();
     }
 
     return null;
   }
 
   /// Returns all cached market items.
-  List<MarketItem>? get cachedItems {
+  List<ItemShort>? get cachedItems {
     final cached = _box.get(_marketItems) as List<Map<String, dynamic>>?;
 
     if (cached != null) {
-      return cached.map((e) => MarketItem.fromJson(e)).toList();
+      return cached.map((e) => ItemShort.fromJson(e)).toList();
     }
 
-    return <MarketItem>[];
+    return <ItemShort>[];
   }
 }

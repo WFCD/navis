@@ -17,7 +17,7 @@ class FindingOrders extends MarketState {
 class OrdersFound extends MarketState {
   const OrdersFound(this.orders);
 
-  final List<ItemOrder> orders;
+  final List<OrderRow> orders;
 }
 
 class NoOrdersFound extends MarketState {

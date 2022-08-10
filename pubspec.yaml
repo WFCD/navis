@@ -25,7 +25,7 @@ dependencies:
   market_client:
     git:
       url: https://github.com/SlayerOrnstein/market_client.git
-      ref: v1.1.1
+      ref: 2417521468a17f0dc3cf7ed5b2d4265bff15efaf
   market_repository:
     path: packages/market_repository
   matomo: 1.1.0
