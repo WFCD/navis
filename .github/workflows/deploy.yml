@@ -73,7 +73,6 @@ jobs:
 
   release-ios-appstore:
     runs-on: macos-12
-
     steps:
       - uses: actions/checkout@v3
         with:
@@ -164,23 +163,44 @@ jobs:
 
   release-ios-github:
     runs-on: macos-12
-
     steps:
-      - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-      - uses: webfactory/ssh-agent@v0.5.4
-        with:
-          ssh-private-key: ${{ secrets.FASTLANE_DEPLOY_KEY }}
+      - name: Install Apple certificate and provisioning profile
+        env:
+          APPSTORE_CERT: ${{ secrets.APPSTORE_CERT }}
+          APPSTORE_CERT_PASSWORD: ${{ secrets.APPSTORE_CERT_PASSWORD }}
+          MOBILEPROVISION: ${{ secrets.MOBILEPROVISION }}
+          KEYCHAIN_PASSWORD: ${{ secrets.KEYCHAIN_PASSWORD }}
+        run: |
+          # create variables
+          CERTIFICATE_PATH=$RUNNER_TEMP/build_certificate.p12
+          PP_PATH=$RUNNER_TEMP/build_pp.mobileprovision
+          KEYCHAIN_PATH=$RUNNER_TEMP/app-signing.keychain-db
 
-      - uses: subosito/flutter-action@v2.6.1
+          # import certificate and provisioning profile from secrets
+          echo -n "$APPSTORE_CERT" | base64 --decode --output $CERTIFICATE_PATH
+          echo -n "$MOBILEPROVISION" | base64 --decode --output $PP_PATH
+
+          # create temporary keychain
+          security create-keychain -p "$KEYCHAIN_PASSWORD" $KEYCHAIN_PATH
+          security set-keychain-settings -lut 21600 $KEYCHAIN_PATH
+          security unlock-keychain -p "$KEYCHAIN_PASSWORD" $KEYCHAIN_PATH
+
+          # import certificate to keychain
+          security import $CERTIFICATE_PATH -P "$APPSTORE_CERT_PASSWORD" -A -t cert -f pkcs12 -k $KEYCHAIN_PATH
+          security list-keychain -d user -s $KEYCHAIN_PATH
+
+          # apply provisioning profile
+          mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
+          cp $PP_PATH ~/Library/MobileDevice/Provisioning\ Profiles
+
+      - name: Install Flutter SDK
+        uses: subosito/flutter-action@v2
         with:
-          channel: ${{ env.FLUTTER_VERSION }}
-          cache: true
-          cache-key: "flutter-:os:-:channel:-:version:-:arch:-:hash:" # optional, change this to force refresh cache
-          cache-path: "${{ runner.tool_cache }}/flutter/:channel:-:version:-:arch:" # optional, change this to specify the cache path
-          architecture: x64 # optional, x64 or arm64
+          channel: stable
+          architecture: x64
 
       - name: Setup Firebase
         env:
@@ -190,17 +210,18 @@ jobs:
           echo $FIREBASE_IOS | base64 --decode > ios/firebase_app_id_file.json
           echo $FIREBASE_OPTIONS | base64 --decode > lib/firebase_options.dart
 
-      - name: Build ios using flutter
-        run: |
-          flutter build ios \
-          --dart-define=SENTRY_DSN=$SENTRY_DSN --dart-define=MATOMO_URL=$MATOMO_URL \
-          -t lib/main_prod.dart --no-codesign
+      - name: Build app
+        run: flutter build ipa -t lib/main_dev.dart --export-options-plist=ios/ExportOptions.plist
 
-      - name: Github Releases Deploy
-        uses: xresloader/upload-to-github-release@v1.3.4
-        env:
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+      - name: Uploade artifacts
+        uses: actions/upload-artifact@v3
         with:
-          file: "build/ios/iphoneos/Runner.app"
-          tags: true
-          draft: false
+          name: ios-test-artifact
+          path: "build/ios/ipa/*.ipa"
+
+      # Only needed for self-hosted runners but I'm a paraniod person.
+      - name: Clean up keychain and provisioning profile
+        if: ${{ always() }}
+        run: |
+          security delete-keychain $RUNNER_TEMP/app-signing.keychain-db
+          rm ~/Library/MobileDevice/Provisioni
