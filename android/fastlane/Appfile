@@ -1,2 +1,2 @@
-json_key_file "fastlane/fastlane.json"
+json_key_file "fastlane/service_account.json"
 package_name("com.cephalon.navis")
