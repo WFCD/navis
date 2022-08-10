@@ -26,7 +26,7 @@ class MarketRepository {
   /// Retrives a List of sell orders for a specfic item, also caches them in
   /// case the user checks out the same item twice. Invalidates the cache after
   /// 1 min for order accuracy.
-  Future<List<ItemOrder>> retriveOrders(String itemName) async {
+  Future<List<OrderRow>> retriveOrders(String itemName) async {
     const _expiredCacheTime = Duration(minutes: 1);
     final cTimestamp = cache.ordersTimestamp?.difference(DateTime.now());
     final cItem = cache.cachedItemName;
@@ -42,9 +42,9 @@ class MarketRepository {
 
       try {
         final orders = await compute(MarketComputeRunners.searchOrders, req);
-        cache.cacheOrders(itemName, orders.sellOrders);
+        cache.cacheOrders(itemName, orders.selling);
 
-        return orders.sellOrders;
+        return orders.selling;
       } on SocketException {
         final cached = cache.cachedOrders;
 
@@ -61,11 +61,12 @@ class MarketRepository {
     }
   }
 
+  // ignore: comment_references
   /// Returns a list of [MarketItem]s and caches them for one week.
   ///
   /// If there is no list in cache a request will be made, after all calls to
   /// this function will return from cache.
-  Future<List<MarketItem>> getItems() async {
+  Future<List<ItemShort>> getItems() async {
     const _expiredCacheTime = Duration(days: 7);
     final cTimestamp = cache.itemsTimestamp;
     final cDuration =
@@ -112,12 +113,12 @@ class MarketComputeRunners {
   const MarketComputeRunners._();
 
   /// Retrives a list of both sell and buy orders for an item.
-  static Future<MarketOrders> searchOrders(MarketSearchRequest request) {
+  static Future<OrderSet<OrderRow>> searchOrders(MarketSearchRequest request) {
     return compute(_searchOrders, request);
   }
 
   /// Gets a list of market specific item information.
-  static Future<List<MarketItem>> getMarketItems(MarketItemRequest request) {
+  static Future<List<ItemShort>> getMarketItems(MarketItemRequest request) {
     return compute(_getMarketItems, request);
   }
 
@@ -126,18 +127,19 @@ class MarketComputeRunners {
     return MarketClient(client: client);
   }
 
-  static Future<MarketOrders> _searchOrders(MarketSearchRequest req) async {
+  static Future<OrderSet<OrderRow>> _searchOrders(
+      MarketSearchRequest req) async {
     final api = _client(req.marketPlatform, req.languageCode);
 
     final items = req.items;
     final itemUrl = items.firstWhere((e) => e.itemName.contains(req.itemUrl));
 
-    return api.searchOrders(itemUrl.urlName);
+    return api.items.searchOrders(itemUrl.urlName);
   }
 
-  static Future<List<MarketItem>> _getMarketItems(MarketItemRequest req) {
+  static Future<List<ItemShort>> _getMarketItems(MarketItemRequest req) {
     final api = _client(req.marketPlatform, req.languageCode);
-    return api.getMarketItems();
+    return api.items.getMarketItems();
   }
 }
 // coverage: ignore-end

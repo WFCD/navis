@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:navis/codex/utils/item_extensions.dart';
 import 'package:navis/codex/views/market_view.dart';
 import 'package:navis/codex/widgets/codex_entry/mod_drops.dart';
 import 'package:navis/codex/widgets/codex_entry/mod_stats.dart';
@@ -81,7 +82,7 @@ class TabbedEntry extends StatelessWidget {
       const Tab(text: 'Overview'),
       if (item.patchlogs != null && (item.patchlogs?.isNotEmpty ?? false))
         const Tab(text: 'Patchlogs'),
-      if (item.tradable ?? false) const Tab(text: 'Market')
+      if (item.isMarketTradable) const Tab(text: 'Market')
     ];
 
     return DefaultTabController(
@@ -115,7 +116,7 @@ class TabbedEntry extends StatelessWidget {
             Overview(item: item),
             if (item.patchlogs != null && (item.patchlogs?.isNotEmpty ?? false))
               PatchlogsTimeline(patchlogs: item.patchlogs ?? []),
-            if (item.tradable ?? false) MarketItemView(itemName: item.name)
+            if (item.isMarketTradable) MarketItemView(itemName: item.name)
           ],
         ),
       ),

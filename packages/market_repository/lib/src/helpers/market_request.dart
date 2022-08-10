@@ -27,7 +27,7 @@ class MarketSearchRequest {
   ///
   /// Because there are a lot of items and we need to pass down a list to a
   /// compute in order to look for the [itemUrl] without stalling the UI thread.
-  final List<MarketItem> items;
+  final List<ItemShort> items;
 
   /// Returns a [MarketPlatform] equivalent of [GamePlatforms]
   MarketPlatform get marketPlatform => platform.marketPlatform;

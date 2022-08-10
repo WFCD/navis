@@ -34,7 +34,7 @@ class MarketCubit extends HydratedCubit<MarketState> {
 
     return OrdersFound(
       orders
-          .map((dynamic e) => ItemOrder.fromJson(e as Map<String, dynamic>))
+          .map((dynamic e) => OrderRow.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
   }
