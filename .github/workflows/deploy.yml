@@ -211,7 +211,9 @@ jobs:
           echo $FIREBASE_OPTIONS | base64 --decode > lib/firebase_options.dart
 
       - name: Build app
-        run: flutter build ipa -t lib/main_dev.dart --export-options-plist=ios/ExportOptions.plist
+        run: flutter build ipa \
+          --dart-define=SENTRY_DSN=$SENTRY_DSN --dart-define=MATOMO_URL=$MATOMO_URL \
+          -t lib/main_prod.dart --export-options-plist=ios/ExportOptions.plist
 
       - name: Uploade artifacts
         uses: actions/upload-artifact@v3
