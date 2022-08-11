@@ -216,11 +216,14 @@ jobs:
             --dart-define=SENTRY_DSN=$SENTRY_DSN --dart-define=MATOMO_URL=$MATOMO_URL \
             -t lib/main_prod.dart --export-options-plist=ios/ExportOptions.plist
 
-      - name: Uploade artifacts
-        uses: actions/upload-artifact@v3
+      - name: Github Releases Deploy
+        uses: xresloader/upload-to-github-release@v1.3.4
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         with:
-          name: ios-test-artifact
-          path: "build/ios/ipa/*.ipa"
+          file: "build/ios/ipa/*.ipa"
+          tags: true
+          draft: false
 
       # Only needed for self-hosted runners but I'm a paraniod person.
       - name: Clean up keychain and provisioning profile
