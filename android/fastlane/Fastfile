@@ -27,7 +27,6 @@ platform :android do
       upload_to_play_store(
         track: 'beta',
         aab: '../build/app/outputs/bundle/prodRelease/app-prod-release.aab',
-        json_key: 'app/fastlane.json',
       )
     rescue => exception
       raise exception unless exception.message.include?('apkNotificationMessageKeyUpgradeVersionConflict')
