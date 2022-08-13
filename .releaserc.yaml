@@ -13,6 +13,9 @@ plugins:
       message: "chore(release): ${nextRelease.version}"
 branches:
   - name: master
+    channel: alpha
+    prerelease: alpha
   - name: beta
     channel: beta
     prerelease: true
+  - name: stable
