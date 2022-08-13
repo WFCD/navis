@@ -3,23 +3,33 @@ on:
   push:
     branches:
       - master
+      - beta
+      - stable
 jobs:
   semantic-release:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v3
         with:
           persist-credentials: false
-      - uses: dart-lang/setup-dart@v1
-      - name: Install Dart packages
-        run: dart pub global activate cider
-      - name: Set execute permissions for versioning script
-        run: chmod +x deploy.sh
+
+      - name: Install Dart SDK
+        uses: dart-lang/setup-dart@v1.3
+
+      - name: Install required Dart packages
+        run: |
+          dart pub global activate cider
+          # export PATH="$PATH":"$HOME/.pub-cache/bin"
+
       - name: Semantic Release
+        id: semantic
         uses: cycjimmy/semantic-release-action@v3.1.0
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
-        with:
-          extra_plugins: |
-            @semantic-release/exec
-            @semantic-release/git
+
+      - name: Update pubspec
+        if: steps.semantic.outputs.new_release_published == 'true'
+        env:
+          NEW_RELEASE: ${{ steps.semantic.outputs.new_release_version }}
+        run: sh .github/workflows/scripts/update_pubspec.sh
