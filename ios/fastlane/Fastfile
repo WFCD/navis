@@ -38,11 +38,11 @@ platform :ios do
         force: true, # Skip HTMl report verification
         skip_metadata: true,
         skip_screenshots: true,
-        ipa: '../build/ios/ipa/*.ipa',
+        ipa: '../build/ios/ipa/Navis.ipa',
         metadata_path: "./metadata"
       )
     rescue => exception
-      raise exception unless exception.message.include?('Error uploading ipa file')
+      raise exception unless exception.message.include?('The provided entity includes a relationship with an invalid value')
       puts 'Current version already present. Omitting this upload'
     end
   end
@@ -54,10 +54,10 @@ platform :ios do
         distribute_external: true,
         groups: ["Zariman Ten Zero"],
         changelog: generate_changelog,
-        ipa: '../build/ios/ipa/*.ipa'
+        ipa: '../build/ios/ipa/Navis.ipa'
       )
     rescue => exception
-      raise exception unless exception.message.include?('Error uploading ipa file')
+      raise exception unless exception.message.include?('The provided entity includes a relationship with an invalid value')
       puts 'Current version already present. Omitting this upload'
     end
   end
