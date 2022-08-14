@@ -7,8 +7,8 @@ let VERSION_CODE=$((CURRENT_VERSION + 1))
 
 cider version "$NEW_RELEASE+$VERSION_CODE"
 
-git config --global user.name "${{ env.CI_COMMIT_AUTHOR }}"
-git config --global user.email "noreply@users.github.com"
+git config --global user.name "wfcd-bot-boi"
+git config --global user.email "wfcd-bot-boi@users.noreply.github.com"
 
 git pull --rebase
 
