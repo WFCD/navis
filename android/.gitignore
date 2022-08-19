@@ -12,4 +12,5 @@ key.properties
 **/*.keystore
 **/*.jks
 
-/fastlane/report.xml
+fastlane/report.xml
+fastlane/metadata/**/**/**/*.txt

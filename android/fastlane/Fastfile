@@ -13,24 +13,41 @@
 default_platform(:android)
 
 platform :android do
-  desc 'Push the built release to Google Play beta track'
-  lane :beta do
-    begin
-      tags = git_tags(limit: 2)
-      analyze_commits(match: tags[1])
-      
-      changelog = conventional_changelog(format: 'plain', display_title: false, display_links: false, order: ['feat', 'fix', 'perf'])
-      version = flutter_version()["version_code"]
-
-      File.open("metadata/android/en-US/changelogs/#{version}.txt", 'w') {|f| f.write(changelog)}
-
-      upload_to_play_store(
-        track: 'beta',
-        aab: '../build/app/outputs/bundle/prodRelease/app-prod-release.aab',
-      )
-    rescue => exception
-      raise exception unless exception.message.include?('apkNotificationMessageKeyUpgradeVersionConflict')
-      puts 'Current version already present on the Play Store. Omitting this upload.'
-    end
+  desc 'Push to alpha track'
+  lane :alpha do
+    generate_changelog
+    upload_to_store('alpha')
   end
+
+  desc 'Push to beta track'
+  lane :beta do
+    generate_changelog
+    upload_to_store('beta')
+  end
+
+  desc 'Push to production track'
+  lane :production do
+    generate_changelog
+    upload_to_store('production')
+  end
+end
+
+def generate_changelog()
+  tags = git_tags(limit: 2)
+  analyze_commits(match: tags[1])
+  
+  changelog = conventional_changelog(format: 'plain', display_title: false, display_links: false, order: ['feat', 'fix', 'perf'])
+  version = flutter_version()["version_code"]
+
+  File.open("metadata/android/en-US/changelogs/#{version}.txt", 'w') {|f| f.write(changelog)}
+end
+
+def upload_to_store(track)
+  upload_to_play_store(
+    track: track,
+    aab: '../build/app/outputs/bundle/prodRelease/app-prod-release.aab',
+  )
+rescue => exception
+  raise exception unless exception.message.include?('apkNotificationMessageKeyUpgradeVersionConflict')
+  puts 'Current version already present on the Play Store. Omitting this upload.'
 end

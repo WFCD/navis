@@ -8,7 +8,14 @@ plugins:
   - - "@semantic-release/exec"
     - prepareCmd: "./deploy.sh ${nextRelease.version}"
   - - "@semantic-release/git"
-    - assets: ["pubspec.yaml"]
+    - assets:
+        - pubspec.yaml
       message: "chore(release): ${nextRelease.version}"
 branches:
-  - master
+  - name: master
+    channel: alpha
+    prerelease: alpha
+  - name: beta
+    channel: beta
+    prerelease: true
+  - name: stable
