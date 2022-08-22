@@ -11,7 +11,7 @@ dependencies:
   black_hole_flutter: 0.3.5
   bloc: ^8.1.0
   cached_network_image: 3.2.0
-  equatable: ^2.0.4
+  equatable: ^2.0.5
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.1
