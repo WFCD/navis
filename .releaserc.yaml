@@ -4,13 +4,6 @@ plugins:
         - type: perf
           release: patch
   - "@semantic-release/release-notes-generator"
-  - "@semantic-release/github"
-  - - "@semantic-release/exec"
-    - prepareCmd: "./deploy.sh ${nextRelease.version}"
-  - - "@semantic-release/git"
-    - assets:
-        - pubspec.yaml
-      message: "chore(release): ${nextRelease.version}"
 branches:
   - name: master
     channel: alpha
