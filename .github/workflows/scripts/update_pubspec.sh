@@ -2,7 +2,7 @@
 
 # export PATH="$PATH":"$HOME/.pub-cache/bin"
 
-let CURRENT_VERSION="$(cider version | cut -d'+' -f2)"
+CURRENT_VERSION="$(cider version | cut -d'+' -f2)"
 
 cider version "$NEW_RELEASE+$((CURRENT_VERSION + 1))"
 
