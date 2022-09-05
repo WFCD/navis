@@ -9,9 +9,8 @@ cider version "$NEW_RELEASE+$((CURRENT_VERSION + 1))"
 git config --global user.name "wfcd-bot-boi"
 git config --global user.email "wfcd-bot-boi@users.noreply.github.com"
 
-git pull --rebase
-
 git add pubspec.yaml
 git commit -a -m "chore(release): $NEW_RELEASE"
 
+git pull --rebase
 git push
