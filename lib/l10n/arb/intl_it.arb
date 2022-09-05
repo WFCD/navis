@@ -42,7 +42,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "acolyteLastSeen": "Ultima visita",
+  "acolyteLastSeen": "Ultimo avvistamento",
   "@acolyteLastSeen": {
     "description": "The elapsed time since the acolyte was last seen",
     "type": "text",
@@ -104,37 +104,37 @@
     "type": "text",
     "placeholders": {}
   },
-  "eventStatusProgress": "Progress",
+  "eventStatusProgress": "Progresso",
   "@eventStatusProgress": {
     "description": "The progress of the current event from 0 to 100 %",
     "type": "text",
     "placeholders": {}
   },
-  "eventStatusEta": "Time left (ETA)",
+  "eventStatusEta": "Tempo rimanente",
   "@eventStatusEta": {
     "description": "Current events remaining estimated time",
     "type": "text",
     "placeholders": {}
   },
-  "eventRewards": "Rewards",
+  "eventRewards": "Ricompense",
   "@eventRewards": {
     "description": "Event reward title",
     "type": "text",
     "placeholders": {}
   },
-  "bountyTitle": "Bounties",
+  "bountyTitle": "Taglie",
   "@bountyTitle": {
     "description": "Bounty card title.",
     "type": "text",
     "placeholders": {}
   },
-  "errorTitle": "An application error has occurred",
+  "errorTitle": "Si è verificato un errore dell'applicazione",
   "@errorTitle": {
     "description": "error title",
     "type": "text",
     "placeholders": {}
   },
-  "errorDescription": "There was unexpected error in core system.\nReporting error to system admin...",
+  "errorDescription": "Si è verificato un errore imprevisto nel sistema centrale.\nSegnalando l'errore all'amministratore di sistema...",
   "@errorDescription": {
     "description": "error description",
     "type": "text",
@@ -146,31 +146,31 @@
     "type": "text",
     "placeholders": {}
   },
-  "baroLocation": "Location",
+  "baroLocation": "Posizione",
   "@baroLocation": {
     "description": "shows Baro ki'Teer's current location",
     "type": "text",
     "placeholders": {}
   },
-  "baroLeavesOn": "Leaves on",
+  "baroLeavesOn": "Parte",
   "@baroLeavesOn": {
     "description": "shows when Baro Ki'Teer is leaving",
     "type": "text",
     "placeholders": {}
   },
-  "baroArrivesOn": "Arrives on",
+  "baroArrivesOn": "Arriva",
   "@baroArrivesOn": {
     "description": "shows at when Baro Ki'Teer will arrive",
     "type": "text",
     "placeholders": {}
   },
-  "baroInventory": "Baro Ki'Teeer Inventory",
+  "baroInventory": "Inventario di Baro Ki'Teer",
   "@baroInventory": {
     "description": "Baro Ki'Teeer Inventory button label",
     "type": "text",
     "placeholders": {}
   },
-  "countdownTooltip": "Ends on {date}",
+  "countdownTooltip": "Termina {date}",
   "@countdownTooltip": {
     "description": "Countdown tooltip with end date of the current running timer",
     "type": "text",
@@ -178,7 +178,7 @@
       "date": {}
     }
   },
-  "kuvaBanner": "Kuva will refresh in",
+  "kuvaBanner": "Kuva si aggiornerà in",
   "@kuvaBanner": {
     "description": "Kuva refresh countdown title",
     "type": "text",
@@ -196,55 +196,55 @@
     "type": "text",
     "placeholders": {}
   },
-  "earthCycleTitle": "Earth Cycle",
+  "earthCycleTitle": "Ciclo Terra",
   "@earthCycleTitle": {
     "description": "Earth cycle title",
     "type": "text",
     "placeholders": {}
   },
-  "cetusCycleTitle": "Cetus Cycle",
+  "cetusCycleTitle": "Ciclo Cetus",
   "@cetusCycleTitle": {
     "description": "Cetus cycle title",
     "type": "text",
     "placeholders": {}
   },
-  "vallisCycleTitle": "Vallis Cycle",
+  "vallisCycleTitle": "Ciclo Vallis",
   "@vallisCycleTitle": {
     "description": "Vallis cycle title",
     "type": "text",
     "placeholders": {}
   },
-  "cambionCycleTitle": "Cambion Cycle",
+  "cambionCycleTitle": "Ciclo Cambion",
   "@cambionCycleTitle": {
     "description": "Cambion Cycle title",
     "type": "text",
     "placeholders": {}
   },
-  "zarimanCycleTitle": "Zariman Cycle",
+  "zarimanCycleTitle": "Ciclo Zariman",
   "@zarimanCycleTitle": {
     "description": "Zariman Cycle title",
     "type": "text",
     "placeholder": {}
   },
-  "timersTitle": "Timers",
+  "timersTitle": "Timer",
   "@timersTitle": {
     "description": "Times title",
     "type": "text",
     "placeholders": {}
   },
-  "fissuresTitle": "Fissures",
+  "fissuresTitle": "Fratture",
   "@fissuresTitle": {
     "description": "Fissures title",
     "type": "text",
     "placeholders": {}
   },
-  "invasionsTitle": "Invasions",
+  "invasionsTitle": "Invasioni",
   "@invasionsTitle": {
     "description": "Invasions title",
     "type": "text",
     "placeholders": {}
   },
-  "syndicatesTitle": "Syndicates",
+  "syndicatesTitle": "Associazioni",
   "@syndicatesTitle": {
     "description": "Syndicates title",
     "type": "text",
@@ -256,43 +256,43 @@
     "type": "text",
     "placeholders": {}
   },
-  "helpfulLinksTitle": "Helpful Links",
+  "helpfulLinksTitle": "Link utili",
   "@helpfulLinksTitle": {
     "description": "Helpful Links title",
     "type": "text",
     "placeholders": {}
   },
-  "behaviorTitle": "Behavior",
+  "behaviorTitle": "Funzionalità",
   "@behaviorTitle": {
     "description": "Behavior category title",
     "type": "text",
     "placeholders": {}
   },
-  "themeTitle": "Theme",
+  "themeTitle": "Tema",
   "@themeTitle": {
     "description": "Theme title",
     "type": "text",
     "placeholders": {}
   },
-  "themeDescription": "Choose app theme.",
+  "themeDescription": "Scegli il tema dell'app.",
   "@themeDescription": {
     "description": "Theme option description",
     "typ": "text",
     "placeholders": {}
   },
-  "notificationsTitle": "Notifications",
+  "notificationsTitle": "Notifiche",
   "@notificationsTitle": {
     "description": "Notifications category title",
     "type": "text",
     "placeholders": {}
   },
-  "rareAlertsNotificationTitle": "Rare Alerts",
+  "rareAlertsNotificationTitle": "Allerte rare",
   "@rareAlertsNotificationTitle": {
     "description": "Rare Alerts title",
     "type": "text",
     "placeholders": {}
   },
-  "rareAlertsNotificationDescription": "Rare alert notifications, mainly gifts of the lotus.",
+  "rareAlertsNotificationDescription": "Notifiche per allerte rare, solitamente doni di Lotus.",
   "@rareAlertsNotificationDescription": {
     "description": "Description for rare alerts option",
     "type": "text",
@@ -304,145 +304,145 @@
     "type": "text",
     "placeholders": {}
   },
-  "baroNotificationDescription": "Notifications for both Baro's arrivial and departure.",
+  "baroNotificationDescription": "Notifiche per gli arrivi e le partenze di Baro.",
   "@baroNotificationDescription": {
     "description": "Notification description for both Baro's arrivial and departure.",
     "type": "text",
     "placeholders": {}
   },
-  "darvoNotificationTitle": "Darvo's Daily Deals",
+  "darvoNotificationTitle": "Sconto giornaliero di Darvo",
   "@darvoNotificationTitle": {
     "description": "Notification title for darvo's daily deals",
     "type": "text",
     "placeholders": {}
   },
-  "darvoNotificationDescription": "Darvo's new find of the day.",
+  "darvoNotificationDescription": "La nuova offerta del giorno di Darvo.",
   "@darvoNotificationDescription": {
     "description": "Notification description for Darvo's Daily Deal",
     "type": "text",
     "placeholders": {}
   },
-  "sortieNotificationTitle": "Sortie",
+  "sortieNotificationTitle": "Incursione",
   "@sortieNotificationTitle": {
     "description": "Notification title for sorties",
     "type": "text",
     "placeholders": {}
   },
-  "sortieNotificationDescription": "Notifications for new sorties.",
+  "sortieNotificationDescription": "Notifiche per nuove incursioni.",
   "@sortieNotificationDescription": {
     "description": "description for sortie notification option",
     "type": "text",
     "placeholders": {}
   },
-  "sentientOutpostNotificationTitle": "Sentient Outpost",
+  "sentientOutpostNotificationTitle": "Avamposti senzienti",
   "@sentientOutpostNotificationTitle": {
     "description": "Notification title for sentient outpost",
     "type": "text",
     "placeholders": {}
   },
-  "sentientOutpostNotificationDescription": "Notifications for new sentient threats.",
+  "sentientOutpostNotificationDescription": "Notifiche per nuove minacce senzienti.",
   "@sentientOutpostNotificationDescription": {
     "description": "Notification description for sentient outpost option",
     "type": "text",
     "placeholders": {}
   },
-  "warframeNewsTitle": "News",
+  "warframeNewsTitle": "Novità",
   "@warframeNewsTitle": {
     "description": "Main Title for Warframe news page",
     "type": "text",
     "placeholders": {}
   },
-  "warframeNewsNotificationTitle": "News",
+  "warframeNewsNotificationTitle": "Novità",
   "@warframeNewsNotificationTitle": {
     "description": "Main Title for Warframe news notifications",
     "type": "text",
     "placeholders": {}
   },
-  "warframeNewsNotificationDescription": "News notifications for Prime Access, Streams and Updates.",
+  "warframeNewsNotificationDescription": "Notifiche di notizie per Accesso Prime, stream e aggiornamenti.",
   "@warframeNewsNotificationDescription": {
     "description": "Main description for Warframe news notifications",
     "type": "text",
     "placeholders": {}
   },
-  "planetCyclesNotificationTitle": "Open World Cycles",
+  "planetCyclesNotificationTitle": "Cicli dei mondi aperti",
   "@planetCyclesNotificationTitle": {
     "description": "Main title for open world notifications",
     "type": "text",
     "placeholders": {}
   },
-  "planetCyclesNotificationDescription": "Open world notifications for their given cycles.",
+  "planetCyclesNotificationDescription": "Notifiche per i cicli dei mondi aperti.",
   "@planetCyclesNotificationDescription": {
     "description": "Main description for open world notifications",
     "type": "text",
     "placeholders": {}
   },
-  "resourcesNotificationTitle": "Resources",
+  "resourcesNotificationTitle": "Risorse",
   "@resourcesNotificationTitle": {
     "description": "Main title for resource notifications",
     "type": "text",
     "placeholders": {}
   },
-  "resourcesNotificationDescription": "Resources mostly found in invasions.",
+  "resourcesNotificationDescription": "Risorse trovate principalmente nelle invasioni.",
   "@resourcesNotificationDescription": {
     "description": "Main description for resource notifications",
     "type": "text",
     "placeholders": {}
   },
-  "fissuresNotificationTitle": "Fissure Missions",
+  "fissuresNotificationTitle": "Missioni delle fratture",
   "@fissuresNotificationTitle": {
     "description": "Main title for fisssures notifications",
     "type": "text",
     "placeholders": {}
   },
-  "fissuresNotificationDescription": "Filter fissure notifications by prefered mission type.",
+  "fissuresNotificationDescription": "Filtra le notifiche delle fratture in base al tipo di missione preferito.",
   "@fissuresNotificationDescription": {
     "description": "Main description for fissures notifications",
     "type": "text",
     "placeholders": {}
   },
-  "acolytesNotificationTitle": "Acolytes",
+  "acolytesNotificationTitle": "Accoliti",
   "@acolytesNotificationTitle": {
     "description": "Main title for acolyte notifications",
     "type": "text",
     "placeholders": {}
   },
-  "acolytesNotificationDescription": "Notifies when an acolyte is found.",
+  "acolytesNotificationDescription": "Notifica quando viene trovato un accolito.",
   "@acolytesNotificationDescription": {
     "description": "Main description for acolyte notifications",
     "type": "text",
     "placeholders": {}
   },
-  "earthDayOption": "Earth Day",
+  "earthDayOption": "Terra giorno",
   "@earthDayOption": {
     "description": "Earth cycle option",
     "type": "text",
     "placeholders": {}
   },
-  "earthNightOption": "Earth Night",
+  "earthNightOption": "Terra notte",
   "@earthNightOption": {
     "description": "Earth cycle option",
     "type": "text",
     "placeholders": {}
   },
-  "cetusDayOption": "Cetus Day",
+  "cetusDayOption": "Cetus giorno",
   "@cetusDayOption": {
     "description": "Cetus cycle option",
     "type": "text",
     "placeholders": {}
   },
-  "cetusNightOption": "Cetus Night",
+  "cetusNightOption": "Cetus notte",
   "@cetusNightOption": {
     "description": "Cetus cycle option",
     "type": "text",
     "placeholders": {}
   },
-  "vallisWarmOption": "Orb Vallis Warm",
+  "vallisWarmOption": "Orb Vallis caldo",
   "@vallisWarmOption": {
     "description": "Orb vallis cycle option",
     "type": "text",
     "placeholders": {}
   },
-  "vallisColdOption": "Orb Vallis Cold",
+  "vallisColdOption": "Orb Vallis freddo",
   "@vallisColdOption": {
     "description": "Orb vallis cycle option",
     "type": "text",
@@ -460,25 +460,25 @@
     "type": "text",
     "placeholders": {}
   },
-  "primeAccessNewsOption": "Prime Access",
+  "primeAccessNewsOption": "Accesso Prime",
   "@primeAccessNewsOption": {
     "description": "Warframe news option",
     "type": "text",
     "placeholders": {}
   },
-  "streamNewsOption": "Stream Announcements",
+  "streamNewsOption": "Annunci di stream",
   "@streamNewsOption": {
     "description": "Warframe news option",
     "type": "text",
     "placeholders": {}
   },
-  "updateNewsOption": "Warframe Update News",
+  "updateNewsOption": "Notizie degli aggiornamenti",
   "@updateNewsOption": {
     "description": "Warframe news option",
     "type": "text",
     "placeholders": {}
   },
-  "updateDropTableDescription": "Last updated {date}",
+  "updateDropTableDescription": "Ultimo aggiornamento {date}",
   "@updateDropTableDescription": {
     "description": "Description for updating drop table with date of the last update",
     "type": "text",
@@ -486,43 +486,43 @@
       "date": {}
     }
   },
-  "reportBugsTitle": "Report Bugs",
+  "reportBugsTitle": "Segnala bug",
   "@reportBugsTitle": {
     "desciption": "Title for bug report link",
     "type": "text",
     "placeholders": {}
   },
-  "reportBugsDescription": "Report bugs or request a feature.",
+  "reportBugsDescription": "Segnala un bug o suggerisci nuove funzionalità.",
   "@reportBugsDescription": {
     "description": "Description for bug report link",
     "type": "text",
     "placeholders": {}
   },
-  "aboutCategoryTitle": "About",
+  "aboutCategoryTitle": "Informazioni",
   "@aboutCategoryTitle": {
     "description": "Title for the about category of the settings page",
     "type": "text",
     "placeholders": {}
   },
-  "lightThemeTitle": "Light",
+  "lightThemeTitle": "Chiaro",
   "@lightThemeTitle": {
     "description": "Title for light theme",
     "type": "text",
     "placeholders": {}
   },
-  "darkThemeTitle": "Dark",
+  "darkThemeTitle": "Scuro",
   "@darkThemeTitle": {
     "description": "Title for dark theme",
     "type": "text",
     "placeholders": {}
   },
-  "systemThemeTitle": "System",
+  "systemThemeTitle": "Sistema",
   "@systemThemeTitle": {
     "description": "Title for system theme",
     "type": "text",
     "placeholders": {}
   },
-  "legalese": "Warframe and the Warframe logo are registered trademarks of Digital Extremes Ltd. Cephalon Navis nor WFCD are affiliated with Digital Extremes Ltd. in any way.",
+  "legalese": "Warframe e il logo Warframe sono marchi registrati di Digital Extremes Ltd. Cephalon Navis e WFCD non sono affiliati a Digital Extremes Ltd. in alcun modo.",
   "@legalese": {
     "description": "Cephalon Navis legalese",
     "type": "text",
@@ -546,13 +546,13 @@
     "type": "text",
     "placeholders": {}
   },
-  "warframeLinkTitle": "More information on Warframe can be found on their official site",
+  "warframeLinkTitle": "Maggiori informazioni su Warframe possono essere trovate sul sito ufficiale",
   "@warframeLinkTitle": {
     "description": "Description for Warframe's main site link",
     "type": "text",
     "placeholders": {}
   },
-  "settingsTitle": "Settings",
+  "settingsTitle": "Impostazioni",
   "@settingsTitle": {
     "description": "Settings title",
     "type": "text",
@@ -870,7 +870,7 @@
     "type": "text",
     "placeholers": {}
   },
-  "syndicateDualScreenTitle": "Select Syndicate",
+  "syndicateDualScreenTitle": "Scegli associazione",
   "@syndicateDualScreenTitle": {
     "description": "User hint when under syndicate tabs using a tablet",
     "type": "text",
