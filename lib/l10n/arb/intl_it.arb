@@ -534,7 +534,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "issueTrackerDescription": "Report issues or feature request for this project's",
+  "issueTrackerDescription": "Segnala problemi o suggerisci nuove funzionalità per questo progetto:",
   "@issueTrackerDescription": {
     "description": "Description for Navis's issue tracker",
     "type": "text",
@@ -558,7 +558,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "dailyRewardTitle": "Daily Reward Reset Timer",
+  "dailyRewardTitle": "Reset delle ricompense giornaliere",
   "@dailyRewardTitle": {
     "description": "Title for daily reward timer",
     "type": "text",
@@ -570,25 +570,25 @@
     "type": "text",
     "placeholders": {}
   },
-  "dailyNightwaveTitle": "Daily",
+  "dailyNightwaveTitle": "Giornaliera",
   "@dailyNightwaveTitle": {
     "description": "Nightwave daily title",
     "type": "text",
     "placeholders": {}
   },
-  "weeklyNightwaveTitle": "Weekly",
+  "weeklyNightwaveTitle": "Settimanale",
   "@weeklyNightwaveTitle": {
     "description": "Nightwave weekly title",
     "type": "text",
     "placeholders": {}
   },
-  "plainsofEidolonMapTitle": "Plains of Eidolon map",
+  "plainsofEidolonMapTitle": "Mappa delle Piane di Eidolon",
   "@plainsofEidolonMapTitle": {
     "description": "Plains of Eidolon Map link title",
     "type": "text",
     "placholders": {}
   },
-  "orbVallisMapTitle": "Orb Vallis map",
+  "orbVallisMapTitle": "Mappa di Orb Vallis",
   "@orbVallisMapTitle": {
     "description": "Orb Vallis Map link title",
     "type": "text",
