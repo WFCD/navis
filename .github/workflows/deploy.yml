@@ -74,7 +74,7 @@ jobs:
 
       - name: Fastlane Google Play deploy
         uses: maierj/fastlane-action@v2.2.1
-        if: ${{ contains(github.GITHUB_REF, "stable") }}
+        if: ${{ !contains(github.GITHUB_REF, "beta") }}
         with:
           lane: production
           subdirectory: android
@@ -147,7 +147,7 @@ jobs:
 
       - name: App Store Deploy
         uses: maierj/fastlane-action@v2.2.1
-        if: ${{ contains(github.GITHUB_REF, "beta") }}
+        if: ${{ !contains(github.GITHUB_REF, "beta") }}
         with:
           lane: production
           subdirectory: ios
