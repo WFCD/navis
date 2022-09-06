@@ -166,7 +166,7 @@
   },
   "baroInventory": "Inventario di Baro Ki'Teer",
   "@baroInventory": {
-    "description": "Baro Ki'Teeer Inventory button label",
+    "description": "Baro Ki'Teer Inventory button label",
     "type": "text",
     "placeholders": {}
   },
@@ -708,8 +708,8 @@
     "type": "text",
     "placeholders": {}
   },
-  "cricticalChanceTitle": "Critical Chance",
-  "@cricticalChanceTitle": {
+  "criticalChanceTitle": "Critical Chance",
+  "@criticalChanceTitle": {
     "description": "Weapon crictical chance",
     "type": "text",
     "placeholders": {}
