@@ -606,109 +606,109 @@
     "type": "text",
     "placholders": {}
   },
-  "howToFishTitle": "How to fish",
+  "howToFishTitle": "Come pescare",
   "@howToFishTitle": {
     "description": "How to fish link title",
     "type": "text",
     "placholders": {}
   },
-  "recentNewsCategoryTitle": "Most Recent News",
+  "recentNewsCategoryTitle": "Notizie più recenti",
   "@recentNewsCategoryTitle": {
     "description": "Title for recent news title",
     "type": "text",
     "placeholders": {}
   },
-  "pastNewsCategoryTitle": "Past News",
+  "pastNewsCategoryTitle": "Notizie passate",
   "@pastNewsCategoryTitle": {
     "description": "Title for past Warframe news",
     "type": "text",
     "placeholders": {}
   },
-  "warframePassiveTitle": "Passive",
+  "warframePassiveTitle": "Passiva",
   "@warframePassiveTitle": {
     "description": "Warframes passive title",
     "type": "text",
     "placeholders": {}
   },
-  "auraTitle": "Aura Polarity",
+  "auraTitle": "Polarità aura",
   "@auraTitle": {
     "description": "Aura polarity title for items",
     "type": "text",
     "placeholders": {}
   },
-  "preinstalledPolarities": "Preinstalled Polarities",
+  "preinstalledPolarities": "Polarità preinstallate",
   "@preinstalledPolarities": {
     "description": "Preinstalled polarites title for items",
     "type": "text",
     "placeholders": {}
   },
-  "shieldTitle": "Shield",
+  "shieldTitle": "Scudo",
   "@shieldTitle": {
     "description": "Title for shield value",
     "typ": "text",
     "placeholders": {}
   },
-  "armorTitle": "Armor",
+  "armorTitle": "Armatura",
   "@armorTitle": {
     "description": "Title for armor value",
     "typ": "text",
     "placeholders": {}
   },
-  "healthTitle": "Health",
+  "healthTitle": "Salute",
   "@healthTitle": {
     "description": "Title for health value",
     "typ": "text",
     "placeholders": {}
   },
-  "powerTitle": "Power",
+  "powerTitle": "Energia",
   "@powerTitle": {
     "description": "Title for power value",
     "typ": "text",
     "placeholders": {}
   },
-  "sprintSpeedTitle": "Sprint Speed",
+  "sprintSpeedTitle": "Velocità scatto",
   "@sprintSpeedTitle": {
     "description": "Title for sprint speed value",
     "typ": "text",
     "placeholders": {}
   },
-  "abilitiesTitle": "Abilites",
+  "abilitiesTitle": "Abilità",
   "@abilitiesTitle": {
     "description": "Title for warframe, archwings, and Necromech abilites",
     "typ": "text",
     "placeholders": {}
   },
-  "componentsTitle": "Components",
+  "componentsTitle": "Componenti",
   "@componentsTitle": {
     "description": "Title for item components",
     "typ": "text",
     "placeholders": {}
   },
-  "fullPatchNotesTitle": "FULL PATCH NOTES",
+  "fullPatchNotesTitle": "NOTE DELLE PATCH",
   "@fullPatchNotesTitle": {
     "description": "Full Patch Notes Title",
     "typ": "text",
     "placeholders": {}
   },
-  "masteryRequirementTitle": "Mastery Requirement",
+  "masteryRequirementTitle": "Maestria richiesta",
   "@masteryRequirementTitle": {
     "description": "Mastery requirement for item",
     "type": "text",
     "placeholders": {}
   },
-  "weaponTypeTitle": "Weapon Type",
+  "weaponTypeTitle": "Tipologia arma",
   "@weaponTypeTitle": {
     "description": "Weapon item type",
     "type": "text",
     "placeholders": {}
   },
-  "accuracyTitle": "Accuracy",
+  "accuracyTitle": "Precisione",
   "@accuracyTitle": {
     "description": "Weapon accuracy title",
     "type": "text",
     "placeholders": {}
   },
-  "cricticalChanceTitle": "Critical Chance",
+  "cricticalChanceTitle": "Probabilità critico",
   "@cricticalChanceTitle": {
     "description": "Weapon crictical chance",
     "type": "text",
