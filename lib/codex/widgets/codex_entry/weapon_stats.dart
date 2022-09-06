@@ -52,7 +52,7 @@ class GunStats extends StatelessWidget {
                 child: Text('${_roundDouble(projectileWeapon.accuracy!, 1)}'),
               ),
             RowItem(
-              text: Text(l10n.cricticalChanceTitle),
+              text: Text(l10n.criticalChanceTitle),
               child: Text(
                 '${(projectileWeapon.criticalChance * 100).roundToDouble()}%',
               ),
@@ -166,7 +166,7 @@ class MeleeStats extends StatelessWidget {
               child: Text(meleeWeapon.attackSpeed.toStringAsFixed(2)),
             ),
             RowItem(
-              text: Text(l10n.cricticalChanceTitle),
+              text: Text(l10n.criticalChanceTitle),
               child: Text(
                 '${(meleeWeapon.criticalChance * 100).roundToDouble()}%',
               ),
