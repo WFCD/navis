@@ -17,9 +17,10 @@ jobs:
         uses: dart-lang/setup-dart@v1.3
 
       - name: Install required Dart packages
-        run: |
-          dart pub global activate cider
-          # export PATH="$PATH":"$HOME/.pub-cache/bin"
+        run: dart pub global activate cider
+
+      - name: Create executable
+        run: chmod +x .github/workflows/scripts/update_pubspec.sh
 
       - name: Semantic Release
         id: semantic
