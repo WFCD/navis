@@ -600,7 +600,7 @@
     "type": "text",
     "placholders": {}
   },
-  "orbVallisFishingDataTitle": "PoE: Fishing Data",
+  "orbVallisFishingDataTitle": "Vallis: Fishing Data",
   "@orbVallisFishingDataTitle": {
     "description": "Orb Vallis fishing data link title",
     "type": "text",
@@ -708,8 +708,8 @@
     "type": "text",
     "placeholders": {}
   },
-  "cricticalChanceTitle": "Critical Chance",
-  "@cricticalChanceTitle": {
+  "criticalChanceTitle": "Critical Chance",
+  "@criticalChanceTitle": {
     "description": "Weapon crictical chance",
     "type": "text",
     "placeholders": {}
