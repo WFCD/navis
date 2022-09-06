@@ -4,10 +4,10 @@ on:
   push:
     branches:
       - master
-
+      - beta
   pull_request:
     branches:
-      - master
+      - beta
 
 jobs:
   android:
