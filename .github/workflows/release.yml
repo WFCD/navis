@@ -26,9 +26,7 @@ jobs:
         uses: cycjimmy/semantic-release-action@v3.1.1
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
-
-      - name: Update pubspec
-        if: steps.semantic.outputs.new_release_published == 'true'
-        env:
-          NEW_RELEASE: ${{ steps.semantic.outputs.new_release_version }}
-        run: sh .github/workflows/scripts/update_pubspec.sh
+        with:
+          extra_plugins: |
+            @semantic-release/exec
+            @semantic-release/git
