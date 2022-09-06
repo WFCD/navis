@@ -15,4 +15,3 @@ branches:
   - name: beta
     channel: beta
     prerelease: true
-  - name: stable
