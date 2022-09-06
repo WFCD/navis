@@ -2,8 +2,8 @@ name: Release
 on:
   push:
     branches:
+      - master
       - beta
-      - stable
 jobs:
   semantic-release:
     runs-on: ubuntu-latest
