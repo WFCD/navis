@@ -38,7 +38,7 @@ dependencies:
   responsive_builder: ^0.4.3
   sentry_flutter: ^6.9.1
   shimmer: 2.0.0
-  simple_icons: ^7.1.0
+  simple_icons: ^7.10.0
   user_settings:
     path: packages/user_settings
   wfcd_client:
