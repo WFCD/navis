@@ -8,23 +8,136 @@ import 'package:nil/nil.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:wfcd_client/entities.dart';
 
-class FissuresPage extends TraceableStatelessWidget {
+class FissuresPage extends TraceableStatefulWidget {
   const FissuresPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    final state = context.watch<SolsystemCubit>().state;
-    final fissures =
-        state is SolState ? state.worldstate.fissures : <VoidFissure>[];
+  State<FissuresPage> createState() => _FissuresPageState();
+}
 
-    return ViewLoading(
-      isLoading: state is! SolState,
-      child: state is! SolState
-          ? nil
-          : ScreenTypeLayout.builder(
-              mobile: (context) => MobileFissures(fissures: fissures),
-              tablet: (context) => TabletFissures(fissures: fissures),
+enum FissureFilter { all, fissures, voidStorm, steelPath }
+
+class _FissuresPageState extends State<FissuresPage> {
+  late SolsystemState state;
+  late List<VoidFissure> _fissures;
+  FissureFilter _filter = FissureFilter.all;
+
+  final _allFocus = FocusNode();
+  final _fissuresFocus = FocusNode();
+  final _stormFocus = FocusNode();
+  final _steelFocus = FocusNode();
+
+  @override
+  void initState() {
+    super.initState();
+
+    state = context.read<SolsystemCubit>().state;
+    _fissures = state is SolState
+        ? (state as SolState).worldstate.fissures
+        : <VoidFissure>[];
+  }
+
+  void _onPressed(FissureFilter filter) {
+    if (!mounted) return;
+
+    final original = state is SolState
+        ? (state as SolState).worldstate.fissures
+        : <VoidFissure>[];
+
+    List<VoidFissure> f;
+    switch (filter) {
+      case FissureFilter.all:
+        f = List<VoidFissure>.from(original);
+        break;
+      case FissureFilter.fissures:
+        f = List<VoidFissure>.from(original)
+            .where((f) => !f.isHard && !f.isStorm)
+            .toList();
+        break;
+      case FissureFilter.voidStorm:
+        f = List<VoidFissure>.from(original).where((f) => f.isStorm).toList();
+        break;
+      case FissureFilter.steelPath:
+        f = List<VoidFissure>.from(original).where((f) => f.isHard).toList();
+        break;
+    }
+
+    setState(() {
+      _fissures = f;
+      _filter = filter;
+
+      switch (filter) {
+        case FissureFilter.all:
+          _allFocus.requestFocus();
+          break;
+        case FissureFilter.fissures:
+          _fissuresFocus.requestFocus();
+          break;
+        case FissureFilter.voidStorm:
+          _stormFocus.requestFocus();
+          break;
+        case FissureFilter.steelPath:
+          _steelFocus.requestFocus();
+          break;
+      }
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final buttonStyle = ButtonStyle(
+      backgroundColor: MaterialStateColor.resolveWith((states) {
+        if (states.contains(MaterialState.focused)) {
+          return NavisColors.blue;
+        }
+
+        return Colors.transparent;
+      }),
+    );
+
+    return Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            OutlinedButton(
+              onPressed: () => _onPressed(FissureFilter.all),
+              focusNode: _allFocus,
+              style: buttonStyle,
+              child: const Text('All'),
             ),
+            OutlinedButton(
+              onPressed: () => _onPressed(FissureFilter.fissures),
+              focusNode: _fissuresFocus,
+              style: buttonStyle,
+              child: const Text('Fissures'),
+            ),
+            OutlinedButton(
+              onPressed: () => _onPressed(FissureFilter.voidStorm),
+              focusNode: _stormFocus,
+              style: buttonStyle,
+              child: const Text('Void Storm'),
+            ),
+            OutlinedButton(
+              onPressed: () => _onPressed(FissureFilter.steelPath),
+              focusNode: _steelFocus,
+              style: buttonStyle,
+              child: const Text('Steel Path'),
+            ),
+          ],
+        ),
+        Expanded(
+          child: ViewLoading(
+            isLoading: state is! SolState,
+            child: state is! SolState
+                ? nil
+                : ScreenTypeLayout.builder(
+                    mobile: (context) => MobileFissures(fissures: _fissures),
+                    tablet: (context) => TabletFissures(fissures: _fissures),
+                  ),
+          ),
+        ),
+      ],
     );
   }
 }
@@ -42,6 +155,7 @@ class MobileFissures extends StatelessWidget {
       cacheExtent: height * 5,
       itemExtent: height,
       itemCount: fissures.length,
+      shrinkWrap: true,
       itemBuilder: (BuildContext context, int index) {
         return FissureWidget(
           key: ValueKey(fissures[index].id),
