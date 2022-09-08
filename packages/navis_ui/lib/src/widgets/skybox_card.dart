@@ -9,12 +9,14 @@ class SkyboxCard extends StatelessWidget {
     required this.node,
     this.margin = const EdgeInsets.symmetric(vertical: 3, horizontal: 3),
     this.padding = const EdgeInsets.symmetric(vertical: 3, horizontal: 3),
+    this.height = 100,
     required this.child,
   }) : super(key: key);
 
   final String node;
 
   final EdgeInsetsGeometry margin, padding;
+  final double height;
   final Widget child;
 
   @override
@@ -23,10 +25,13 @@ class SkyboxCard extends StatelessWidget {
       data: NavisTheme.dark,
       child: AppCard(
         padding: EdgeInsets.zero,
-        child: BackgroundImage(
-          imageUrl: getSkybox(node),
-          padding: padding,
-          child: child,
+        child: SizedBox(
+          height: height,
+          child: BackgroundImage(
+            imageUrl: getSkybox(node),
+            padding: padding,
+            child: child,
+          ),
         ),
       ),
     );
