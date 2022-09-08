@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:matomo/matomo.dart';
+import 'package:navis/l10n/l10n.dart';
 import 'package:navis/worldstate/cubits/solsystem_cubit.dart';
 import 'package:navis/worldstate/widgets/fissure_widgets.dart';
 import 'package:navis_ui/navis_ui.dart';
@@ -85,6 +86,7 @@ class _FissuresPageState extends State<FissuresPage> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     final buttonStyle = ButtonStyle(
       backgroundColor: MaterialStateColor.resolveWith((states) {
         if (states.contains(MaterialState.focused)) {
@@ -104,25 +106,25 @@ class _FissuresPageState extends State<FissuresPage> {
               onPressed: () => _onPressed(FissureFilter.all),
               focusNode: _allFocus,
               style: buttonStyle,
-              child: const Text('All'),
+              child: Text(l10n.allFissuresButton),
             ),
             OutlinedButton(
               onPressed: () => _onPressed(FissureFilter.fissures),
               focusNode: _fissuresFocus,
               style: buttonStyle,
-              child: const Text('Fissures'),
+              child: Text(l10n.fissuresTitle),
             ),
             OutlinedButton(
               onPressed: () => _onPressed(FissureFilter.voidStorm),
               focusNode: _stormFocus,
               style: buttonStyle,
-              child: const Text('Void Storm'),
+              child: Text(l10n.voidStormFissuresButton),
             ),
             OutlinedButton(
               onPressed: () => _onPressed(FissureFilter.steelPath),
               focusNode: _steelFocus,
               style: buttonStyle,
-              child: const Text('Steel Path'),
+              child: Text(l10n.steelPathTitle),
             ),
           ],
         ),
