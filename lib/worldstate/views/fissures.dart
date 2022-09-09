@@ -58,7 +58,17 @@ class _FissuresViewState extends State<FissuresView> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    _updateFocus(context.watch<FissureFilterCubit>().state.type);
+
+    final ff = context.watch<FissureFilterCubit>();
+    _updateFocus(ff.state.type);
+
+    // Need to make sure that fissures are updated from worldstate.
+    // Otherwise fissures stored in the filter cubit will be out of sync.
+    final state = context.watch<SolsystemCubit>().state;
+    final fissures =
+        state is SolState ? state.worldstate.fissures : <VoidFissure>[];
+
+    ff.filterFissures(ff.state.type, fissures);
   }
 
   void _onPressed(BuildContext context, FissureFilter filter) {
