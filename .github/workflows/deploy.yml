@@ -65,7 +65,7 @@ jobs:
           KEYSTORE: ${{ secrets.KEYSTORE }}
         run: echo $NAVIS_SERVICE_ACCOUNT | base64 -di > android/fastlane/service_account.json
 
-      - name: Fastlane Google Play deploy
+      - name: Fastlane Google Play deploy Beta
         uses: maierj/fastlane-action@v2.2.1
         if: contains(github.ref_name, 'beta')
         with:
@@ -138,16 +138,16 @@ jobs:
         with:
           ruby-version: "2.7"
 
-      - name: App Store Deploy
+      - name: App Store Deploy Beta
         uses: maierj/fastlane-action@v2.2.1
-        if: contains(github.GITHUB_REF, 'beta')
+        if: contains(github.ref_name, 'beta')
         with:
           lane: beta
           subdirectory: ios
 
       - name: App Store Deploy
         uses: maierj/fastlane-action@v2.2.1
-        if: contains(github.GITHUB_REF, 'beta') == false
+        if: contains(github.ref_name, 'beta') == false
         with:
           lane: production
           subdirectory: ios
@@ -190,8 +190,20 @@ jobs:
             -t lib/main_prod.dart --flavor prod --split-per-abi \
             --obfuscate --split-debug-info=debug_info
 
+      - name: Github Releases Deploy Beta
+        uses: xresloader/upload-to-github-release@v1.3.6
+        if: contains(github.ref_name, 'beta')
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+        with:
+          file: "build/app/outputs/flutter-apk/app-*-prod-release.apk"
+          tags: true
+          draft: false
+          prerelease: true
+
       - name: Github Releases Deploy
         uses: xresloader/upload-to-github-release@v1.3.6
+        if: contains(github.ref_name, 'beta') == false
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         with:
@@ -254,8 +266,20 @@ jobs:
             --dart-define=SENTRY_DSN=$SENTRY_DSN --dart-define=MATOMO_URL=$MATOMO_URL \
             -t lib/main_prod.dart --export-options-plist=ios/ExportOptions.plist
 
-      - name: Github Releases Deploy
+      - name: Github Releases Deploy Beta
         uses: xresloader/upload-to-github-release@v1.3.6
+        if: contains(github.ref_name, 'beta')
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+        with:
+          file: "build/ios/ipa/*.ipa"
+          tags: true
+          draft: false
+          prerelease: true
+
+       - name: Github Releases Deploy
+        uses: xresloader/upload-to-github-release@v1.3.6
+        if: contains(github.ref_name, 'beta') == false
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         with:
