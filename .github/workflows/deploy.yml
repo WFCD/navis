@@ -277,7 +277,7 @@ jobs:
           draft: false
           prerelease: true
 
-       - name: Github Releases Deploy
+      - name: Github Releases Deploy
         uses: xresloader/upload-to-github-release@v1.3.6
         if: contains(github.ref_name, 'beta') == false
         env:
