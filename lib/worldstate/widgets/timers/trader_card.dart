@@ -35,7 +35,6 @@ class TraderCard extends StatelessWidget {
                   'assets/baro_banner.webp',
                   package: 'navis_ui',
                 ),
-                height: 150,
                 padding: EdgeInsets.zero,
                 child: ListTile(
                   title: Text(l10n.baroTitle),

@@ -955,5 +955,17 @@
     "description": "Description for beta feature enabler",
     "type": "text",
     "placeholder": {}
+  },
+  "allFissuresButton": "All",
+  "@allFissuresButton": {
+    "description": "Button label for all fissures",
+    "type": "text",
+    "placeholder": {}
+  },
+  "voidStormFissuresButton": "Void Storms",
+  "@voidStormFissuresButton": {
+    "description": "Button label for void storm fissures",
+    "type": "text",
+    "placeholder": {}
   }
 }
