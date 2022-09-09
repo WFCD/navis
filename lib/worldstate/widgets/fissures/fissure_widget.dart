@@ -26,7 +26,6 @@ class FissureWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final mediaQuery = MediaQuery.of(context);
     final expiry = fissure.expiry!;
     final icon = () {
       switch (fissure.tier) {
