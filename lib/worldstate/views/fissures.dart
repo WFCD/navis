@@ -1,3 +1,4 @@
+import 'package:black_hole_flutter/black_hole_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/l10n/l10n.dart';
@@ -73,7 +74,15 @@ class _FissuresViewState extends State<FissuresView> {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
     final fissures = context.watch<FissureFilterCubit>().state.filter();
+
     final buttonStyle = ButtonStyle(
+      foregroundColor: MaterialStateColor.resolveWith((states) {
+        if (states.contains(MaterialState.focused)) {
+          return Colors.white;
+        }
+
+        return context.theme.isDark ? Colors.white : context.theme.primaryColor;
+      }),
       backgroundColor: MaterialStateColor.resolveWith((states) {
         if (states.contains(MaterialState.focused)) {
           return NavisColors.blue;
