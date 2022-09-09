@@ -13,5 +13,4 @@ plugins:
 branches:
   - name: master
   - name: beta
-    channel: beta
     prerelease: true
