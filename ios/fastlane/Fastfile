@@ -14,19 +14,17 @@ update_fastlane
 
 default_platform(:ios)
 
-before_all do |lane|
-  tags = git_tags(limit: 2)
-  analyze_commits(match: tags[1])
-  
-  changelog = conventional_changelog(format: 'plain', display_title: false, display_links: false, order: ['feat', 'fix', 'perf'])
-
-  File.open("metadata/en-US/release_notes.txt", 'w') {|f| f.write(changelog)}
-end
-
 platform :ios do
   desc "Push to App Store"
   lane :production do
     begin
+      tags = git_tags(limit: 2)
+      analyze_commits(match: tags[1])
+  
+      changelog = conventional_changelog(format: 'plain', display_title: false, display_links: false, order: ['feat', 'fix', 'perf'])
+
+      File.open("metadata/en-US/release_notes.txt", 'w') {|f| f.write(changelog)}
+
       deliver(
         submit_for_review: true,
         automatic_release: true,
@@ -45,10 +43,15 @@ platform :ios do
   desc "Push build to TestFlight"
   lane :beta do
     begin
+      tags = git_tags(limit: 2)
+      analyze_commits(match: tags[1])
+  
+      changelog = conventional_changelog(format: 'plain', display_title: false, display_links: false, order: ['feat', 'fix', 'perf'])
+
       upload_to_testflight(
         distribute_external: true,
         groups: ["Zariman Ten Zero"],
-        changelog: generate_changelog,
+        changelog: changelog,
         ipa: '../build/ios/ipa/Navis.ipa'
       )
     rescue => exception
