@@ -9,17 +9,17 @@ environment:
 dependencies:
   animations: ^2.0.4
   black_hole_flutter: 0.3.5
-  bloc: ^8.1.0
-  cached_network_image: 3.2.0
-  equatable: ^2.0.5
+  bloc: 8.1.0
+  cached_network_image: 3.2.2
+  equatable: 2.0.5
   flutter:
     sdk: flutter
-  flutter_bloc: ^8.1.1
+  flutter_bloc: 8.1.1
   flutter_localizations:
     sdk: flutter
-  flutter_svg: ^1.1.4
+  flutter_svg: 1.1.5
   flutter_web_browser: 0.17.1
-  hive: 2.1.0
+  hive: 2.2.3
   hydrated_bloc: 8.1.0
   intl: 0.17.0
   market_client:
@@ -35,28 +35,29 @@ dependencies:
   notification_repository:
     path: packages/notification_repository
   package_info: 2.0.2
-  responsive_builder: ^0.4.3
-  sentry_flutter: ^6.9.1
+  responsive_builder: 0.4.3
+  sentry_flutter: 6.9.1
+  sentry_logging: ^6.9.1
   shimmer: 2.0.0
-  simple_icons: ^7.10.0
+  simple_icons: 7.10.0
   user_settings:
     path: packages/user_settings
   wfcd_client:
     git:
       url: https://github.com/SlayerOrnstein/wfcd_client.git
-      ref: v3.10.0
+      ref: v3.10.1
   worldstate_repository:
     path: packages/worldstate_repository
 
 dev_dependencies:
-  bloc_test: ^9.1.0
-  dart_code_metrics: ^4.17.1
+  bloc_test: 9.1.0
+  dart_code_metrics: 4.17.1
   flutter_test:
     sdk: flutter
   mocktail: 0.3.0
   sentry_dart_plugin: 1.0.0-beta.2
-  test: ^1.21.4
-  very_good_analysis: ^3.0.1
+  test: 1.21.4
+  very_good_analysis: 3.0.2
 
 flutter:
   generate: true
