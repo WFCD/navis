@@ -159,7 +159,7 @@ class Overview extends StatelessWidget {
         if (item.drops != null) ...{
           SizedBoxSpacer.spacerHeight20,
           const CategoryTitle(title: 'Drops'),
-          ModDropLocations(drops: (item as Mod).drops!),
+          ModDropLocations(drops: item.drops!),
         },
       ],
     );
