@@ -3,9 +3,11 @@ enable-beta-ecosystems: true
 updates:
   - package-ecosystem: "pub"
     directory: "/"
+    target-branch: "beta"
     schedule:
       interval: "daily"
   - package-ecosystem: github-actions
     directory: "/"
+    target-branch: "beta"
     schedule:
       interval: "daily"
