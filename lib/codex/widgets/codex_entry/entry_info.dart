@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis_ui/navis_ui.dart';
 
-double kMinExtent = (kToolbarHeight * 2) + 30;
+double kMinExtent = kToolbarHeight + kTextTabBarHeight;
 
 class BasicItemInfo extends SliverPersistentHeaderDelegate {
   const BasicItemInfo({
