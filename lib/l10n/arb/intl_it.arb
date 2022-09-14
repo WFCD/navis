@@ -540,7 +540,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "issueTrackerTitle": "issues tracker",
+  "issueTrackerTitle": "issue tracker",
   "@issueTrackerTitle": {
     "description": "Display link to Navis's issue tracker",
     "type": "text",
@@ -594,7 +594,7 @@
     "type": "text",
     "placholders": {}
   },
-  "plainsofEidolonFishingDataTitle": "PoE: Fishing Data",
+  "plainsofEidolonFishingDataTitle": "Eidolon: dati pesca",
   "@plainsofEidolonFishingDataTitle": {
     "description": "Plains of Eidolon fishing data link title",
     "type": "text",
@@ -606,175 +606,175 @@
     "type": "text",
     "placholders": {}
   },
-  "howToFishTitle": "How to fish",
+  "howToFishTitle": "Come pescare",
   "@howToFishTitle": {
     "description": "How to fish link title",
     "type": "text",
     "placholders": {}
   },
-  "recentNewsCategoryTitle": "Most Recent News",
+  "recentNewsCategoryTitle": "Notizie recenti",
   "@recentNewsCategoryTitle": {
     "description": "Title for recent news title",
     "type": "text",
     "placeholders": {}
   },
-  "pastNewsCategoryTitle": "Past News",
+  "pastNewsCategoryTitle": "Notizie passate",
   "@pastNewsCategoryTitle": {
     "description": "Title for past Warframe news",
     "type": "text",
     "placeholders": {}
   },
-  "warframePassiveTitle": "Passive",
+  "warframePassiveTitle": "Passiva",
   "@warframePassiveTitle": {
     "description": "Warframes passive title",
     "type": "text",
     "placeholders": {}
   },
-  "auraTitle": "Aura Polarity",
+  "auraTitle": "Polarità aura",
   "@auraTitle": {
     "description": "Aura polarity title for items",
     "type": "text",
     "placeholders": {}
   },
-  "preinstalledPolarities": "Preinstalled Polarities",
+  "preinstalledPolarities": "Polarità preinstallate",
   "@preinstalledPolarities": {
     "description": "Preinstalled polarites title for items",
     "type": "text",
     "placeholders": {}
   },
-  "shieldTitle": "Shield",
+  "shieldTitle": "Scudo",
   "@shieldTitle": {
     "description": "Title for shield value",
     "typ": "text",
     "placeholders": {}
   },
-  "armorTitle": "Armor",
+  "armorTitle": "Armatura",
   "@armorTitle": {
     "description": "Title for armor value",
     "typ": "text",
     "placeholders": {}
   },
-  "healthTitle": "Health",
+  "healthTitle": "Salute",
   "@healthTitle": {
     "description": "Title for health value",
     "typ": "text",
     "placeholders": {}
   },
-  "powerTitle": "Power",
+  "powerTitle": "Energia",
   "@powerTitle": {
     "description": "Title for power value",
     "typ": "text",
     "placeholders": {}
   },
-  "sprintSpeedTitle": "Sprint Speed",
+  "sprintSpeedTitle": "Velocità scatto",
   "@sprintSpeedTitle": {
     "description": "Title for sprint speed value",
     "typ": "text",
     "placeholders": {}
   },
-  "abilitiesTitle": "Abilites",
+  "abilitiesTitle": "Abilità",
   "@abilitiesTitle": {
     "description": "Title for warframe, archwings, and Necromech abilites",
     "typ": "text",
     "placeholders": {}
   },
-  "componentsTitle": "Components",
+  "componentsTitle": "Componenti",
   "@componentsTitle": {
     "description": "Title for item components",
     "typ": "text",
     "placeholders": {}
   },
-  "fullPatchNotesTitle": "FULL PATCH NOTES",
+  "fullPatchNotesTitle": "NOTE DELLE PATCH",
   "@fullPatchNotesTitle": {
     "description": "Full Patch Notes Title",
     "typ": "text",
     "placeholders": {}
   },
-  "masteryRequirementTitle": "Mastery Requirement",
+  "masteryRequirementTitle": "Maestria richiesta",
   "@masteryRequirementTitle": {
     "description": "Mastery requirement for item",
     "type": "text",
     "placeholders": {}
   },
-  "weaponTypeTitle": "Weapon Type",
+  "weaponTypeTitle": "Tipologia arma",
   "@weaponTypeTitle": {
     "description": "Weapon item type",
     "type": "text",
     "placeholders": {}
   },
-  "accuracyTitle": "Accuracy",
+  "accuracyTitle": "Precisione",
   "@accuracyTitle": {
     "description": "Weapon accuracy title",
     "type": "text",
     "placeholders": {}
   },
-  "criticalChanceTitle": "Critical Chance",
+  "criticalChanceTitle": "Probabilità critico",
   "@criticalChanceTitle": {
     "description": "Weapon crictical chance",
     "type": "text",
     "placeholders": {}
   },
-  "cricticalMultiplierTitle": "Critcial Multiplier",
+  "cricticalMultiplierTitle": "Moltiplicatore critico",
   "@cricticalMultiplierTitle": {
     "description": "Weapon critical multiplier",
     "type": "text",
     "placeholders": {}
   },
-  "fireRateTitle": "Fire Rate",
+  "fireRateTitle": "Rateo di fuoco",
   "@fireRateTitle": {
     "description": "Weapon fire rate",
     "type": "text",
     "placeholders": {}
   },
-  "magazineTitle": "Magazine",
+  "magazineTitle": "Caricatore",
   "@magazineTitle": {
     "description": "Weapon magazine size title",
     "type": "text",
     "placeholders": {}
   },
-  "multishotTitle": "Multishot",
+  "multishotTitle": "Sparo multiplo",
   "@multishotTitle": {
     "description": "Weapon multishot",
     "type": "text",
     "placeholders": {}
   },
-  "noiseTitle": "Noise",
+  "noiseTitle": "Rumore",
   "@noiseTitle": {
     "description": "Weapon noise type",
     "type": "text",
     "placeholders": {}
   },
-  "reloadTitle": "Reload",
+  "reloadTitle": "Ricarica",
   "@reloadTitle": {
     "description": "Weapon item type",
     "type": "text",
     "placeholders": {}
   },
-  "rivenDispositionTitle": "Riven Disposition",
+  "rivenDispositionTitle": "Propensione Riven",
   "@rivenDispositionTitle": {
     "description": "Weapon's riven disposition",
     "type": "text",
     "placeholders": {}
   },
-  "statusChanceTitle": "Status Chance",
+  "statusChanceTitle": "Probabilità effetto",
   "@statusChanceTitle": {
     "description": "Weapon's status chance",
     "type": "text",
     "placeholders": {}
   },
-  "triggerTitle": "Trigger",
+  "triggerTitle": "Azione",
   "@triggerTitle": {
     "description": "Weapon item type",
     "type": "text",
     "placeholders": {}
   },
-  "damageTitle": "Damage",
+  "damageTitle": "Danno",
   "@damageTitle": {
     "description": "Weapon's damage category",
     "type": "text",
     "placeholders": {}
   },
-  "totalDamageTitle": "Total Damage",
+  "totalDamageTitle": "Danno totale",
   "@totalDamageTitle": {
     "description": "Weapon's total damage'",
     "type": "text",
@@ -876,31 +876,31 @@
     "type": "text",
     "placeholders": {}
   },
-  "optOutOfAnalyticsTitle": "Opt out of analytics",
+  "optOutOfAnalyticsTitle": "Disabilita raccolta dati",
   "@optOutOfAnalyticsTitle": {
     "description": "Title opting out of analytics",
     "type": "text",
     "placeholders": {}
   },
-  "optOutOfAnalyticsDescription": "Disable analytics.",
+  "optOutOfAnalyticsDescription": "Disabilita raccolta dati statistici.",
   "@optOutOfAnalyticsDescription": {
     "description": "Description of the analytics opting buttong",
     "type": "text",
     "placeholders": {}
   },
-  "appLangTitle": "Language",
+  "appLangTitle": "Lingua",
   "@appLangTitle": {
     "description": "Title for app language options",
     "type": "text",
     "placeholders": {}
   },
-  "appLangDescription": "Override default behavior for language detection.",
+  "appLangDescription": "Ignora la lingua rilevata come predefinita di sistema.",
   "@appLangDescription": {
     "description": "Description for language options",
     "type": "text",
     "placeholders": {}
   },
-  "modLevelLabel": "Level {rank}",
+  "modLevelLabel": "Livello: {rank}",
   "@modLevelLabel": {
     "description": "The label shown to users as they slide the mod slider",
     "type": "text",
@@ -914,7 +914,7 @@
     "type": "text",
     "placeholder": {}
   },
-  "codexNoResults": "No results",
+  "codexNoResults": "Nessun risultato",
   "@codexNoResults": {
     "description": "Displayed when a search result in codex returns empty",
     "type": "text",
@@ -926,7 +926,7 @@
     "type": "text",
     "placeholder": {}
   },
-  "exploreTitle": "Explore",
+  "exploreTitle": "Esplora",
   "@exploreTitle": {
     "description": "Title for explore page",
     "type": "text",
@@ -944,13 +944,13 @@
     "type": "text",
     "placeholder": {}
   },
-  "enableBetaFeaturesTitle": "Enable beta features",
+  "enableBetaFeaturesTitle": "Abilita funzionalità in beta",
   "@enableBetaFeaturesTitle": {
     "description": "Title for beta feature enabler",
     "type": "text",
     "placeholder": {}
   },
-  "enableBetaFeaturesDescription": "Enable API endpoints that are still in development.",
+  "enableBetaFeaturesDescription": "Abilita degli endpoint API che sono ancora in fase di sviluppo.",
   "@enableBetaFeaturesDescription": {
     "description": "Description for beta feature enabler",
     "type": "text",
