@@ -53,6 +53,9 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
   );
 }
 
+// Only runs at the start of the app in order to start services, will not
+// rebuild after the app starts.
+// ignore: avoid-returning-widgets
 Future<Widget> _startProviders(Widget app) async {
   final appDir = await getApplicationDocumentsDirectory();
   final temp = await getTemporaryDirectory();
@@ -85,7 +88,7 @@ Future<Widget> _startProviders(Widget app) async {
           BlocProvider(
             create: (_) => SolsystemCubit(worldstateRepo)..fetchWorldstate(),
           ),
-          BlocProvider(create: (_) => DarvodealCubit(worldstateRepo))
+          BlocProvider(create: (_) => DarvodealCubit(worldstateRepo)),
         ],
         child: app,
       ),
