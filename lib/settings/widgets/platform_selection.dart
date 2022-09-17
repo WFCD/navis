@@ -34,39 +34,38 @@ class PlatformSelect extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: const <Widget>[
-          PlatformIconButton(
+          _PlatformIconButton(
             platform: GamePlatforms.pc,
             platformIcon: SimpleIcons.steam,
             platformName: pc,
             platformColor: pcColor,
           ),
-          PlatformIconButton(
+          _PlatformIconButton(
             platform: GamePlatforms.ps4,
             platformIcon: SimpleIcons.playstation,
             platformName: ps4,
             platformColor: ps4Color,
           ),
-          PlatformIconButton(
+          _PlatformIconButton(
             platform: GamePlatforms.xb1,
             platformIcon: SimpleIcons.xbox,
             platformName: xb1,
             platformColor: xb1Color,
           ),
-          PlatformIconButton(
+          _PlatformIconButton(
             platform: GamePlatforms.swi,
             platformIcon: SimpleIcons.nintendoswitch,
             platformName: swi,
             platformColor: swiColor,
-          )
+          ),
         ],
       ),
     );
   }
 }
 
-class PlatformIconButton extends StatelessWidget {
-  const PlatformIconButton({
-    super.key,
+class _PlatformIconButton extends StatelessWidget {
+  const _PlatformIconButton({
     required this.platform,
     required this.platformIcon,
     required this.platformColor,
