@@ -5,11 +5,10 @@ export 'package:flutter_gen/gen_l10n/navis_localizations.dart';
 
 extension AppLocalizationsX on BuildContext {
   NavisLocalizations get l10n {
-    final locale = NavisLocalizations.of(this);
-
-    if (locale != null) return locale;
-
-    throw Exception('NavisLocalization is not in the given context');
+    // Truthfully this should never be null when it's being put into the context
+    // as the start of the app.
+    // ignore: avoid-non-null-assertion
+    return NavisLocalizations.of(this)!;
   }
 }
 
