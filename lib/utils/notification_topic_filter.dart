@@ -77,7 +77,7 @@ class NotificationTopics {
       SimpleTopics(title: l10n.vallisWarmOption, topic: Topics.warmKey),
       SimpleTopics(title: l10n.vallisColdOption, topic: Topics.coldKey),
       SimpleTopics(title: l10n.cambionFassOption, topic: Topics.fassKey),
-      SimpleTopics(title: l10n.cambionVomeOption, topic: Topics.vomeKey)
+      SimpleTopics(title: l10n.cambionVomeOption, topic: Topics.vomeKey),
     ];
   }
 
@@ -104,10 +104,12 @@ class NotificationTopics {
       SimpleTopics(title: 'Malice', topic: Topics.maliceKey),
       SimpleTopics(title: 'Misery', topic: Topics.miseryKey),
       SimpleTopics(title: 'Torment', topic: Topics.tormentKey),
-      SimpleTopics(title: 'Violence', topic: Topics.violenceKey)
+      SimpleTopics(title: 'Violence', topic: Topics.violenceKey),
     ];
   }
 
+  // It's a really long list.
+  // ignore: long-method
   List<SimpleTopics> get resources {
     return const [
       SimpleTopics(
