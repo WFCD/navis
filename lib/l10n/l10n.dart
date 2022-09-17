@@ -4,13 +4,18 @@ import 'package:flutter_gen/gen_l10n/navis_localizations.dart';
 export 'package:flutter_gen/gen_l10n/navis_localizations.dart';
 
 extension AppLocalizationsX on BuildContext {
-  NavisLocalizations get l10n => NavisLocalizations.of(this)!;
+  NavisLocalizations get l10n {
+    final locale = NavisLocalizations.of(this);
+
+    if (locale != null) return locale;
+
+    throw Exception('NavisLocalization is not in the given context');
+  }
 }
 
 extension LocalesX on Locale {
   String get fullName {
-    // ignore: unnecessary_this
-    return _isoLangs[this.languageCode]!['nativeName'] ?? 'Unknown';
+    return _isoLangs[languageCode]!['nativeName'] ?? 'Unknown';
   }
 }
 
