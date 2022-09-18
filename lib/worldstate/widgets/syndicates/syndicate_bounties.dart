@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:navis/worldstate/widgets/syndicates/syndicate_bounty_tile.dart';
+import 'package:navis/worldstate/worldstate.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:wfcd_client/entities.dart';
 

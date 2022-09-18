@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:matomo/matomo.dart';
 import 'package:navis/l10n/l10n.dart';
-import 'package:navis/worldstate/widgets/trader_widgets.dart';
+import 'package:navis/worldstate/worldstate.dart';
 import 'package:wfcd_client/entities.dart';
 
 class BaroInventory extends TraceableStatelessWidget {

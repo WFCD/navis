@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:navis/worldstate/widgets/syndicates/nightwave_challenge.dart';
+import 'package:navis/worldstate/worldstate.dart';
 import 'package:wfcd_client/entities.dart';
 
 class NightwaveChalleneges extends StatelessWidget {

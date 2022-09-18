@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:navis/worldstate/widgets/invasions/invasion_progress.dart';
-import 'package:navis/worldstate/widgets/invasions/invasion_rewards.dart';
+import 'package:navis/worldstate/worldstate.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:wfcd_client/entities.dart';
 

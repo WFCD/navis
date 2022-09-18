@@ -1,3 +1,4 @@
+import 'package:black_hole_flutter/black_hole_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/l10n/l10n.dart';
@@ -126,8 +127,6 @@ class _CycleWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final textTheme = Theme.of(context).textTheme;
-
     // Will default to DateTime.now() under the hood.
     // ignore: avoid-non-null-assertion
     final expiry = entry.cycle.expiry!;
@@ -136,7 +135,8 @@ class _CycleWidget extends StatelessWidget {
       key: ValueKey(entry.name),
       title: Text(
         entry.name,
-        style: textTheme.subtitle1?.copyWith(fontWeight: FontWeight.w600),
+        style:
+            context.textTheme.subtitle1?.copyWith(fontWeight: FontWeight.w600),
       ),
       trailing: Row(
         mainAxisSize: MainAxisSize.min,

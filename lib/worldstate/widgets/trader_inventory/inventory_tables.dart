@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:navis/worldstate/widgets/trader_inventory/inventory_data_source.dart';
+import 'package:navis/worldstate/worldstate.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:wfcd_client/entities.dart';
 

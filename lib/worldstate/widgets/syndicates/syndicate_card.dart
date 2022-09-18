@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:navis/l10n/l10n.dart';
-import 'package:navis/worldstate/views/bounties.dart';
-import 'package:navis/worldstate/views/nightwaves.dart';
+import 'package:navis/worldstate/worldstate.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:wfcd_client/entities.dart';
