@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:navis/codex/utils/item_extensions.dart';
 import 'package:navis/codex/views/market_view.dart';
-import 'package:navis/codex/widgets/codex_entry/mod_drops.dart';
+import 'package:navis/codex/widgets/codex_entry/drops.dart';
 import 'package:navis/codex/widgets/codex_entry/mod_stats.dart';
 import 'package:navis/codex/widgets/codex_widgets.dart';
 import 'package:navis_ui/navis_ui.dart';
@@ -164,7 +164,7 @@ class _Overview extends StatelessWidget {
         if (item.drops != null) ...{
           SizedBoxSpacer.spacerHeight20,
           const CategoryTitle(title: 'Drops'),
-          ModDropLocations(drops: item.drops ?? <Drop>[]),
+          DropLocations(drops: item.drops ?? <Drop>[]),
         },
       ],
     );
