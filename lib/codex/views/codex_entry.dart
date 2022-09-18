@@ -124,7 +124,7 @@ class _TabbedEntry extends StatelessWidget {
 }
 
 class _Overview extends StatelessWidget {
-  const _Overview({super.key, required this.item});
+  const _Overview({required this.item});
 
   final Item item;
 
@@ -172,7 +172,7 @@ class _Overview extends StatelessWidget {
 }
 
 class _PatchlogsTimeline extends StatelessWidget {
-  const _PatchlogsTimeline({super.key, required this.patchlogs});
+  const _PatchlogsTimeline({required this.patchlogs});
 
   final List<Patchlog> patchlogs;
 

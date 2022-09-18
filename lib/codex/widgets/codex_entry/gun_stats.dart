@@ -4,8 +4,6 @@
 // ignore_for_file: avoid-non-null-assertion
 import 'package:flutter/material.dart';
 import 'package:navis/codex/utils/stats.dart';
-import 'package:navis/codex/widgets/codex_entry/preinstalled_polarities.dart';
-import 'package:navis/codex/widgets/codex_entry/riven_disposition.dart';
 import 'package:navis/codex/widgets/codex_widgets.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis_ui/navis_ui.dart';

@@ -40,7 +40,7 @@ class Behavior extends StatelessWidget {
 }
 
 class _LanguagePicker extends StatelessWidget {
-  const _LanguagePicker({super.key});
+  const _LanguagePicker();
 
   static Future<void> showOptions(BuildContext context) {
     return showDialog<void>(
@@ -97,7 +97,7 @@ class _LanguagePicker extends StatelessWidget {
 }
 
 class _ThemePicker extends StatelessWidget {
-  const _ThemePicker({super.key});
+  const _ThemePicker();
 
   static Future<void> showModes(BuildContext context) {
     return showDialog<void>(

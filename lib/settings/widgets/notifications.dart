@@ -73,7 +73,7 @@ class _SimpleNotification extends StatelessWidget {
 }
 
 class _FilterDialog extends StatelessWidget {
-  const _FilterDialog({super.key, required this.options});
+  const _FilterDialog({required this.options});
 
   final List<SimpleTopics> options;
 

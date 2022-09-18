@@ -20,7 +20,7 @@ class SynthTargetsView extends TraceableStatelessWidget {
 }
 
 class _SynthTargetsPage extends StatelessWidget {
-  const _SynthTargetsPage({super.key});
+  const _SynthTargetsPage();
 
   @override
   Widget build(BuildContext context) {
