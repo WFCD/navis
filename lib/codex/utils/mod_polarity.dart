@@ -1,3 +1,7 @@
+// These are helper functions are are gonna be rebuilt every time a user goes
+// to another mod regardles.
+// ignore_for_file: avoid-returning-widgets
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/widgets.dart';
 

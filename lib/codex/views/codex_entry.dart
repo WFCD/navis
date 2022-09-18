@@ -16,8 +16,7 @@ class CodexEntry extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // ignore: cast_nullable_to_non_nullable
-    // final item = ModalRoute.of(context)?.settings.arguments! as Item;
+    // Final item = ModalRoute.of(context)?.settings.arguments! as Item;.
     final heightRatio = MediaQuery.of(context).size.height / 100;
 
     final height = item is Mod ? kMinExtent : heightRatio * 30;
@@ -25,19 +24,15 @@ class CodexEntry extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: (item.patchlogs != null || (item.tradable ?? false))
-            ? TabbedEntry(item: item, height: height)
-            : SingleEntry(item: item, height: height),
+            ? _TabbedEntry(item: item, height: height)
+            : _SingleEntry(item: item, height: height),
       ),
     );
   }
 }
 
-class SingleEntry extends StatelessWidget {
-  const SingleEntry({
-    super.key,
-    required this.item,
-    required this.height,
-  });
+class _SingleEntry extends StatelessWidget {
+  const _SingleEntry({required this.item, required this.height});
 
   final Item item;
   final double height;
@@ -59,64 +54,68 @@ class SingleEntry extends StatelessWidget {
           ),
         ),
         SliverFillRemaining(
-          child: Overview(item: item),
-        )
+          child: _Overview(item: item),
+        ),
       ],
     );
   }
 }
 
-class TabbedEntry extends StatelessWidget {
-  const TabbedEntry({
-    super.key,
-    required this.item,
-    required this.height,
-  });
+class _TabbedEntry extends StatelessWidget {
+  const _TabbedEntry({required this.item, required this.height});
 
   final Item item;
   final double height;
 
+  List<Widget> _headerSliverBuilder(BuildContext context, List<Widget> tabs) {
+    final textColor = Theme.of(context).textTheme.bodyText1?.color;
+
+    return [
+      SliverPersistentHeader(
+        pinned: true,
+        delegate: BasicItemInfo(
+          uniqueName: item.uniqueName,
+          name: item.name,
+          description: item.description?.parseHtmlString() ?? '',
+          wikiaUrl: item.wikiaUrl,
+          imageUrl: item.imageUrl,
+          isMod: item is Mod,
+          isVaulted: item is FoundryItem ? (item as FoundryItem).vaulted : null,
+          bottom: TabBar(
+            labelColor: textColor,
+            // We want the same color
+            // ignore: no-equal-arguments
+            indicatorColor: textColor,
+            tabs: tabs,
+          ),
+          expandedHeight: height,
+        ),
+      ),
+    ];
+  }
+
   @override
   Widget build(BuildContext context) {
+    final patchlogs = item.patchlogs;
+
     final tabs = [
       const Tab(text: 'Overview'),
-      if (item.patchlogs != null && (item.patchlogs?.isNotEmpty ?? false))
+      if (patchlogs != null && (patchlogs.isNotEmpty))
         const Tab(text: 'Patchlogs'),
-      if (item.isMarketTradable) const Tab(text: 'Market')
+      if (item.isMarketTradable) const Tab(text: 'Market'),
     ];
 
     return DefaultTabController(
       length: tabs.length,
       child: NestedScrollView(
-        headerSliverBuilder: (context, index) {
-          return [
-            SliverPersistentHeader(
-              pinned: true,
-              delegate: BasicItemInfo(
-                uniqueName: item.uniqueName,
-                name: item.name,
-                description: item.description?.parseHtmlString() ?? '',
-                wikiaUrl: item.wikiaUrl,
-                imageUrl: item.imageUrl,
-                isMod: item is Mod,
-                isVaulted:
-                    item is FoundryItem ? (item as FoundryItem).vaulted : null,
-                bottom: TabBar(
-                  labelColor: Theme.of(context).textTheme.bodyText1?.color,
-                  indicatorColor: Theme.of(context).textTheme.bodyText1?.color,
-                  tabs: tabs,
-                ),
-                expandedHeight: height,
-              ),
-            ),
-          ];
-        },
+        headerSliverBuilder: (context, _) =>
+            _headerSliverBuilder(context, tabs),
         body: TabBarView(
           children: [
-            Overview(item: item),
+            _Overview(item: item),
             if (item.patchlogs != null && (item.patchlogs?.isNotEmpty ?? false))
-              PatchlogsTimeline(patchlogs: item.patchlogs ?? []),
-            if (item.isMarketTradable) MarketItemView(itemName: item.name)
+              _PatchlogsTimeline(patchlogs: item.patchlogs ?? []),
+            if (item.isMarketTradable) MarketItemView(itemName: item.name),
           ],
         ),
       ),
@@ -124,8 +123,8 @@ class TabbedEntry extends StatelessWidget {
   }
 }
 
-class Overview extends StatelessWidget {
-  const Overview({super.key, required this.item});
+class _Overview extends StatelessWidget {
+  const _Overview({super.key, required this.item});
 
   final Item item;
 
@@ -133,22 +132,28 @@ class Overview extends StatelessWidget {
   bool get _isGun => item is ProjectileWeapon && item.category != 'Pets';
   bool get _isMeleeWeapon => item is MeleeWeapon;
   bool get _isMod => item is Mod;
+
   bool get _isFoundryItem {
-    return item is FoundryItem &&
-        (item as FoundryItem).components != null &&
-        ((item as FoundryItem).components?.isNotEmpty ?? false);
+    if (item is FoundryItem) {
+      final foundryItem = item as FoundryItem;
+
+      return foundryItem.components != null &&
+          (foundryItem.components?.isNotEmpty ?? false);
+    }
+
+    return false;
   }
 
   @override
   Widget build(BuildContext context) {
     return ListView(
       key: const PageStorageKey('overview'),
-      padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
+      padding: const EdgeInsets.only(left: 16, right: 16, bottom: 16),
       children: [
         if (_isFoundryItem) ...{
           ItemComponents(
             itemImageUrl: item.imageUrl,
-            components: (item as FoundryItem).components!,
+            components: (item as FoundryItem).components ?? <Component>[],
           ),
           SizedBoxSpacer.spacerHeight16,
         },
@@ -159,15 +164,15 @@ class Overview extends StatelessWidget {
         if (item.drops != null) ...{
           SizedBoxSpacer.spacerHeight20,
           const CategoryTitle(title: 'Drops'),
-          ModDropLocations(drops: item.drops!),
+          ModDropLocations(drops: item.drops ?? <Drop>[]),
         },
       ],
     );
   }
 }
 
-class PatchlogsTimeline extends StatelessWidget {
-  const PatchlogsTimeline({super.key, required this.patchlogs});
+class _PatchlogsTimeline extends StatelessWidget {
+  const _PatchlogsTimeline({super.key, required this.patchlogs});
 
   final List<Patchlog> patchlogs;
 

@@ -1,3 +1,6 @@
+// These will start late regardless.
+// ignore_for_file: avoid-late-keyword
+import 'package:black_hole_flutter/black_hole_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/codex/bloc/search_bloc.dart';
@@ -43,6 +46,17 @@ class _CodexTextEditiorState extends State<CodexTextEditior> {
     _searchBloc.add(const SearchCodex(''));
   }
 
+  List<PopupMenuEntry<FilterCategory>> _itemBuilder() {
+    return FilterCategories.categories
+        .map(
+          (e) => PopupMenuItem<FilterCategory>(
+            value: e,
+            child: Text(e.category),
+          ),
+        )
+        .toList();
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<SearchBloc, SearchState>(
@@ -56,19 +70,19 @@ class _CodexTextEditiorState extends State<CodexTextEditior> {
                 child: TextField(
                   controller: _textEditingController,
                   autocorrect: false,
+
                   onChanged: _dispatch,
+                  // We actually want the same thing to happen on change and on
+                  // submission.
+                  // ignore: no-equal-arguments
                   onSubmitted: _dispatch,
-                  style: Theme.of(context)
-                      .textTheme
-                      .subtitle1
+                  style: context.textTheme.subtitle1
                       ?.copyWith(color: Colors.white),
                   cursorColor: Colors.white,
                   textCapitalization: TextCapitalization.words,
                   decoration: InputDecoration(
                     border: InputBorder.none,
-                    hintStyle: Theme.of(context)
-                        .textTheme
-                        .subtitle2
+                    hintStyle: context.textTheme.subtitle2
                         ?.copyWith(color: Colors.white38),
                     hintText: 'Search here...',
                   ),
@@ -78,16 +92,7 @@ class _CodexTextEditiorState extends State<CodexTextEditior> {
             if (state is CodexSuccessfulSearch)
               PopupMenuButton<FilterCategory>(
                 icon: const Icon(Icons.filter_list, color: Colors.white),
-                itemBuilder: (context) {
-                  return FilterCategories.categories
-                      .map(
-                        (e) => PopupMenuItem<FilterCategory>(
-                          value: e,
-                          child: Text(e.category),
-                        ),
-                      )
-                      .toList();
-                },
+                itemBuilder: (_) => _itemBuilder(),
                 onSelected: (s) =>
                     BlocProvider.of<SearchBloc>(context).add(FilterResults(s)),
               ),

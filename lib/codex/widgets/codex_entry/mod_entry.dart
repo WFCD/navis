@@ -1,3 +1,6 @@
+// This is what just worked for the style.
+// ignore_for_file: no-magic-number
+
 import 'dart:async';
 import 'dart:math' as math;
 import 'dart:ui' as ui;
@@ -198,49 +201,16 @@ class ModFrame extends StatelessWidget {
   static final _rankCompleteLine = loadModPart(ModFrames.rankCompleteLine);
 
   Future<ui.Image> _getImage() async {
+    // This is gonna be assinged late regardless.
+    // ignore: avoid-late-keyword
     late ImageInfo imageInfo;
     final img = CachedNetworkImageProvider(image);
 
     img.resolve(ImageConfiguration.empty).addListener(
-      ImageStreamListener((ImageInfo info, bool _) {
-        imageInfo = info;
-      }),
-    );
+          ImageStreamListener((ImageInfo info, bool _) => imageInfo = info),
+        );
 
     return imageInfo.image;
-  }
-
-  Image _getHeader(String setName) {
-    switch (setName) {
-      case '/Lotus/Upgrades/Mods/Sets/Gladiator/GladiatorSetMod':
-        return loadModPart(ModFrames.gladiatorHeader);
-      case '/Lotus/Upgrades/Mods/Sets/Vigilante/VigilanteSetMod':
-        return loadModPart(ModFrames.vigilanteHeader);
-      case '/Lotus/Upgrades/Mods/Sets/Hunter/HunterSetMod':
-        return loadModPart(ModFrames.hunterHeader);
-      case '/Lotus/Upgrades/Mods/Sets/Tek/TekSetMod':
-        return loadModPart(ModFrames.tekHeader);
-      case '/Lotus/Upgrades/Mods/Sets/Synth/SynthSetMod':
-        return loadModPart(ModFrames.synthHeader);
-      case '/Lotus/Upgrades/Mods/Sets/Mecha/MechaSetMod':
-        return loadModPart(ModFrames.mechaHeader);
-      case '/Lotus/Upgrades/Mods/Sets/Strain/StrainSetMod':
-        return loadModPart(ModFrames.strainHeader);
-      case '/Lotus/Upgrades/Mods/Sets/Hawk/HawkSetMod':
-        return loadModPart(ModFrames.hawkHeader);
-      case '/Lotus/Upgrades/Mods/Sets/Raptor/RaptorSetMod':
-        return loadModPart(ModFrames.raptorHeader);
-      case '/Lotus/Upgrades/Mods/Sets/Spider/SpiderSetMod':
-        return loadModPart(ModFrames.spiderHeader);
-      case '/Lotus/Upgrades/Mods/Sets/Ashen/AshenSetMod':
-        return loadModPart(ModFrames.ashenHeader);
-      case '/Lotus/Upgrades/Mods/Sets/Boneblade/BonebladeSetMod':
-        return loadModPart(ModFrames.bonebladeHeader);
-      case '/Lotus/Upgrades/Mods/Sets/Femur/FemurSetMod':
-        return loadModPart(ModFrames.femurHeader);
-      default:
-        return loadModPart(ModFrames.umbraHeader);
-    }
   }
 
   @override
@@ -249,7 +219,9 @@ class ModFrame extends StatelessWidget {
 
     final imageHeight = (size.height / 100) * 50;
     final imageWidth = (size.width / 100) * 94;
+
     final textTheme = Theme.of(context).textTheme;
+    final textColor = _textColor(rarity);
 
     return Center(
       child: Container(
@@ -268,6 +240,8 @@ class ModFrame extends StatelessWidget {
           children: [
             Positioned(
               top: 1,
+              // This is what just worked for the style.
+              // ignore: no-magic-number
               left: 8,
               child: Container(
                 height: imageHeight,
@@ -287,19 +261,23 @@ class ModFrame extends StatelessWidget {
                           default:
                             return Colors.white;
                         }
-                      }()
+                      }(),
                     ],
                   ),
                 ),
                 child: FutureBuilder<ui.Image>(
                   future: _getImage(),
                   builder: (context, snapshot) {
-                    if (snapshot.hasData) {
+                    const magicPaddingNumber = 19;
+
+                    if (snapshot.hasData && snapshot.data != null) {
                       return CustomPaint(
                         size: Size(size.width, imageHeight),
                         painter: ModImageCropped(
+                          // Already being checked for null.
+                          // ignore: avoid-non-null-assertion
                           image: snapshot.data!,
-                          width: size.width - 19,
+                          width: size.width - magicPaddingNumber,
                           height: imageHeight,
                         ),
                       );
@@ -317,7 +295,9 @@ class ModFrame extends StatelessWidget {
             if (modSet != null)
               Positioned(
                 top: -19,
-                child: _getHeader(modSet!),
+                // Already being checked for null.
+                // ignore: avoid-non-null-assertion
+                child: _ModHeader(setName: modSet!),
               ),
             Positioned(
               bottom: -40,
@@ -333,7 +313,7 @@ class ModFrame extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   for (int i = 0; i < maxRank; i++)
-                    if (i < rank) _rankSlotActive else _rankSlotEmpty
+                    if (i < rank) _rankSlotActive else _rankSlotEmpty,
                 ],
               ),
             ),
@@ -370,10 +350,8 @@ class ModFrame extends StatelessWidget {
               right: 30,
               child: Text(
                 drain.toString(),
-                style: Theme.of(context)
-                    .textTheme
-                    .caption
-                    ?.copyWith(fontSize: 15, color: _textColor(rarity)),
+                style:
+                    textTheme.caption?.copyWith(fontSize: 15, color: textColor),
               ),
             ),
             Positioned(
@@ -388,7 +366,7 @@ class ModFrame extends StatelessWidget {
               top: wikiaUrl != null ? 175 : 200,
               child: Padding(
                 padding: const EdgeInsets.only(bottom: 20),
-                child: ModDrescription(
+                child: _ModDrescription(
                   name: name,
                   stats: stats,
                   rarity: rarity,
@@ -400,13 +378,53 @@ class ModFrame extends StatelessWidget {
               child: Text(
                 compatName,
                 textAlign: TextAlign.center,
-                style: textTheme.subtitle1?.copyWith(color: _textColor(rarity)),
+                style: textTheme.subtitle1?.copyWith(color: textColor),
               ),
             ),
           ],
         ),
       ),
     );
+  }
+}
+
+class _ModHeader extends StatelessWidget {
+  const _ModHeader({required this.setName});
+
+  final String setName;
+
+  @override
+  Widget build(BuildContext context) {
+    switch (setName) {
+      case '/Lotus/Upgrades/Mods/Sets/Gladiator/GladiatorSetMod':
+        return loadModPart(ModFrames.gladiatorHeader);
+      case '/Lotus/Upgrades/Mods/Sets/Vigilante/VigilanteSetMod':
+        return loadModPart(ModFrames.vigilanteHeader);
+      case '/Lotus/Upgrades/Mods/Sets/Hunter/HunterSetMod':
+        return loadModPart(ModFrames.hunterHeader);
+      case '/Lotus/Upgrades/Mods/Sets/Tek/TekSetMod':
+        return loadModPart(ModFrames.tekHeader);
+      case '/Lotus/Upgrades/Mods/Sets/Synth/SynthSetMod':
+        return loadModPart(ModFrames.synthHeader);
+      case '/Lotus/Upgrades/Mods/Sets/Mecha/MechaSetMod':
+        return loadModPart(ModFrames.mechaHeader);
+      case '/Lotus/Upgrades/Mods/Sets/Strain/StrainSetMod':
+        return loadModPart(ModFrames.strainHeader);
+      case '/Lotus/Upgrades/Mods/Sets/Hawk/HawkSetMod':
+        return loadModPart(ModFrames.hawkHeader);
+      case '/Lotus/Upgrades/Mods/Sets/Raptor/RaptorSetMod':
+        return loadModPart(ModFrames.raptorHeader);
+      case '/Lotus/Upgrades/Mods/Sets/Spider/SpiderSetMod':
+        return loadModPart(ModFrames.spiderHeader);
+      case '/Lotus/Upgrades/Mods/Sets/Ashen/AshenSetMod':
+        return loadModPart(ModFrames.ashenHeader);
+      case '/Lotus/Upgrades/Mods/Sets/Boneblade/BonebladeSetMod':
+        return loadModPart(ModFrames.bonebladeHeader);
+      case '/Lotus/Upgrades/Mods/Sets/Femur/FemurSetMod':
+        return loadModPart(ModFrames.femurHeader);
+      default:
+        return loadModPart(ModFrames.umbraHeader);
+    }
   }
 }
 
@@ -421,9 +439,8 @@ Color _textColor(String rarity) {
   }
 }
 
-class ModDrescription extends StatelessWidget {
-  const ModDrescription({
-    super.key,
+class _ModDrescription extends StatelessWidget {
+  const _ModDrescription({
     required this.name,
     required this.stats,
     required this.rarity,
@@ -433,7 +450,9 @@ class ModDrescription extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    const statsBoxWidth = 225.0;
     final textTheme = Theme.of(context).textTheme;
+    final textColor = _textColor(rarity);
 
     return Column(
       mainAxisSize: MainAxisSize.min,
@@ -441,15 +460,15 @@ class ModDrescription extends StatelessWidget {
         Text(
           name,
           textAlign: TextAlign.center,
-          style: textTheme.headline6?.copyWith(color: _textColor(rarity)),
+          style: textTheme.headline6?.copyWith(color: textColor),
         ),
         SizedBoxSpacer.spacerHeight14,
         SizedBox(
-          width: 225,
+          width: statsBoxWidth,
           child: Text(
             stats,
             textAlign: TextAlign.center,
-            style: textTheme.caption?.copyWith(color: _textColor(rarity)),
+            style: textTheme.caption?.copyWith(color: textColor),
           ),
         ),
       ],
@@ -483,14 +502,14 @@ class ModImageCropped extends CustomPainter {
           anchorY: 0,
           translateX: 0,
           translateY: 0,
-        )
+        ),
       ],
       [
         Rect.fromCenter(
           center: const Offset(150, 90),
           width: width,
           height: height,
-        )
+        ),
       ],
       [/* No need for colors */],
       BlendMode.src,

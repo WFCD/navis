@@ -22,15 +22,13 @@ class ComponentDrops extends StatelessWidget {
       MaterialPageRoute<void>(
         builder: (BuildContext context) {
           return BlocProvider(
-            create: (context) {
-              return SearchBloc(
-                RepositoryProvider.of<WorldstateRepository>(context),
-              );
-            },
+            create: (context) => SearchBloc(
+              RepositoryProvider.of<WorldstateRepository>(context),
+            ),
             child: Scaffold(
               body: Builder(
                 builder: (context) {
-                  final l10n = NavisLocalizations.of(context)!;
+                  final l10n = context.l10n;
 
                   context.watch<SearchBloc>().add(SearchCodex(relic));
                   final state = context.watch<SearchBloc>().state;
@@ -39,9 +37,8 @@ class ComponentDrops extends StatelessWidget {
                     return const Center(child: CircularProgressIndicator());
                   }
 
-                  final item = state.results.firstWhereOrNull(
-                    (e) => e?.name.contains(relic) ?? false,
-                  );
+                  final item = state.results
+                      .firstWhereOrNull((e) => e.name.contains(relic));
 
                   if (item == null) {
                     return Center(child: Text(l10n.codexNoResults));
@@ -59,6 +56,9 @@ class ComponentDrops extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    const cacheExtent = 150.0;
+    const densityThreshold = 10;
+
     final _drops = List<Drop>.from(drops)
       ..sort((a, b) {
         return ((b.chance ?? 0) * 100).compareTo((a.chance ?? 0) * 100);
@@ -67,7 +67,7 @@ class ComponentDrops extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(),
       body: ListView.builder(
-        cacheExtent: 150,
+        cacheExtent: cacheExtent,
         itemCount: _drops.length,
         itemBuilder: (context, index) {
           final dropName = _drops[index].location;
@@ -83,7 +83,7 @@ class ComponentDrops extends StatelessWidget {
                       context,
                       dropName.replaceFirst('Relic', '').trim(),
                     ),
-            dense: _drops.length > 10,
+            dense: _drops.length > densityThreshold,
           );
         },
       ),

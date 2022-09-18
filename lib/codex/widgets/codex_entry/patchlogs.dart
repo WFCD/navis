@@ -10,16 +10,6 @@ class PatchlogCard extends StatelessWidget {
 
   static const _backupImage = 'https://i.imgur.com/CNrsc7V.png';
 
-  Widget _log(BuildContext context, String log) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
-      child: Text(
-        log.splitMapJoin('\n', onMatch: (m) => '\n\n', onNonMatch: (n) => n),
-        style: Theme.of(context).textTheme.caption,
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return AppCard(
@@ -29,6 +19,8 @@ class PatchlogCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
+            // This is what just worked for the style.
+            // ignore: no-magic-number
             height: 95,
             decoration: BoxDecoration(
               image: DecorationImage(
@@ -36,7 +28,9 @@ class PatchlogCard extends StatelessWidget {
                     CachedNetworkImageProvider(patchlog.imgUrl ?? _backupImage),
                 fit: BoxFit.cover,
                 colorFilter: ColorFilter.mode(
-                  Colors.black.withOpacity(.6),
+                  // This is what just worked for the style.
+                  // ignore: no-magic-number
+                  Colors.black.withOpacity(0.6),
                   BlendMode.darken,
                 ),
               ),
@@ -49,15 +43,15 @@ class PatchlogCard extends StatelessWidget {
           ),
           if (patchlog.additions.isNotEmpty) ...{
             const CategoryTitle(title: 'Additions'),
-            _log(context, patchlog.additions)
+            _PatchlogEntry(context: context, log: patchlog.additions),
           },
           if (patchlog.changes.isNotEmpty) ...{
             const CategoryTitle(title: 'Changes'),
-            _log(context, patchlog.changes)
+            _PatchlogEntry(context: context, log: patchlog.changes),
           },
           if (patchlog.fixes.isNotEmpty) ...{
             const CategoryTitle(title: 'Fixes'),
-            _log(context, patchlog.fixes)
+            _PatchlogEntry(context: context, log: patchlog.fixes),
           },
           ButtonBar(
             children: [
@@ -67,10 +61,28 @@ class PatchlogCard extends StatelessWidget {
                 ),
                 onPressed: () => patchlog.url.launchLink(context),
                 child: const Text('FULL PATCH NOTES'),
-              )
+              ),
             ],
-          )
+          ),
         ],
+      ),
+    );
+  }
+}
+
+class _PatchlogEntry extends StatelessWidget {
+  const _PatchlogEntry({required this.context, required this.log});
+
+  final BuildContext context;
+  final String log;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      child: Text(
+        log.splitMapJoin('\n', onMatch: (m) => '\n\n', onNonMatch: (n) => n),
+        style: Theme.of(context).textTheme.caption,
       ),
     );
   }

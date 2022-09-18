@@ -1,7 +1,11 @@
 export 'codex_entry/components.dart';
 export 'codex_entry/entry_info.dart';
 export 'codex_entry/frame_stats.dart';
+export 'codex_entry/gun_stats.dart';
+export 'codex_entry/melee_stats.dart';
 export 'codex_entry/patchlogs.dart';
-export 'codex_entry/weapon_stats.dart';
+export 'codex_entry/preinstalled_polarities.dart';
+export 'codex_entry/riven_disposition.dart';
+export 'codex_entry/stats.dart';
 export 'codex_search/codex_result.dart';
 export 'codex_search/search_bar.dart';

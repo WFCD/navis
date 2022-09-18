@@ -13,13 +13,11 @@ class CodexResult extends StatelessWidget {
     String? description;
 
     if (item is Mod) {
-      if ((item as Mod).levelStats != null) {
-        description = (item as Mod).levelStats?.last['stats']!.fold('', (p, e) {
-          if (p == null) {
-            return '$e ';
-          } else {
-            return '$p $e ';
-          }
+      final levelStats = (item as Mod).levelStats;
+
+      if (levelStats != null) {
+        description = levelStats.last['stats']!.fold('', (p, e) {
+          return p == null ? '$e ' : '$p $e ';
         });
       }
 

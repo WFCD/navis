@@ -16,12 +16,10 @@ class ModStats extends StatelessWidget {
 
     if (mod.levelStats != null) {
       description =
+          // Already being checked for null.
+          // ignore: avoid-non-null-assertion
           mod.levelStats![rank ?? 0]['stats']!.fold<String>('', (p, e) {
-        if (p.isEmpty) {
-          return '$e\n';
-        } else {
-          return '$p$e\n';
-        }
+        return p.isEmpty ? '$e\n' : '$p$e\n';
       });
     }
 
@@ -30,7 +28,7 @@ class ModStats extends StatelessWidget {
         '';
   }
 
-  Widget _buildRankedMod(BuildContext context, int rank) {
+  Widget _buildRankedMod(int rank) {
     return _ModBuilder(
       imageUrl: mod.imageUrl,
       name: mod.name,
@@ -48,33 +46,38 @@ class ModStats extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const padding = EdgeInsets.only(top: 16);
+    const statsLimit = 3;
 
-    if (mod.levelStats != null && mod.levelStats!.length >= 3) {
+    final levelStats = mod.levelStats;
+
+    // Already being checked for null.
+    // ignore: avoid-non-null-assertion
+    if (mod.levelStats != null && levelStats!.length >= statsLimit) {
       return Padding(
         padding: padding,
         child: _ModWithStats(
-          levels: mod.levelStats!.length,
+          levels: levelStats.length,
           maxRank: mod.fusionLimit.toDouble(),
-          builder: _buildRankedMod,
-        ),
-      );
-    } else {
-      return Padding(
-        padding: padding,
-        child: _ModBuilder(
-          imageUrl: mod.imageUrl,
-          name: mod.name,
-          stats: _modDescription(),
-          maxRank: mod.fusionLimit,
-          rank: mod.fusionLimit,
-          drain: mod.baseDrain.isNegative ? mod.fusionLimit : mod.baseDrain,
-          polarity: mod.polarity,
-          compatName: mod.compatName,
-          modSet: mod.modSet,
-          rarity: mod.rarity,
+          builder: (_, rank) => _buildRankedMod(rank),
         ),
       );
     }
+
+    return Padding(
+      padding: padding,
+      child: _ModBuilder(
+        imageUrl: mod.imageUrl,
+        name: mod.name,
+        stats: _modDescription(),
+        maxRank: mod.fusionLimit,
+        rank: 0,
+        drain: mod.baseDrain.isNegative ? mod.fusionLimit : mod.baseDrain,
+        polarity: mod.polarity,
+        compatName: mod.compatName,
+        modSet: mod.modSet,
+        rarity: mod.rarity,
+      ),
+    );
   }
 }
 
@@ -117,14 +120,13 @@ class __ModWithStatsState extends State<_ModWithStats> {
         return Column(
           children: [
             Slider(
-              label: NavisLocalizations.of(context)!
-                  .modLevelLabel(snapshot.data ?? 0),
+              label: context.l10n.modLevelLabel(snapshot.data ?? 0),
               value: snapshot.data?.toDouble() ?? 0.0,
               max: widget.maxRank,
               divisions: widget.levels - 1,
               onChanged: onChanged,
             ),
-            widget.builder(context, snapshot.data ?? 0)
+            widget.builder(context, snapshot.data ?? 0),
           ],
         );
       },
