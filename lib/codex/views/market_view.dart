@@ -15,13 +15,13 @@ class MarketItemView extends StatelessWidget {
       create: (_) =>
           MarketCubit(RepositoryProvider.of<MarketRepository>(context))
             ..findOrder(itemName),
-      child: const Market(),
+      child: const _Market(),
     );
   }
 }
 
-class Market extends StatelessWidget {
-  const Market({super.key});
+class _Market extends StatelessWidget {
+  const _Market();
 
   @override
   Widget build(BuildContext context) {

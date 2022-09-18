@@ -10,7 +10,7 @@ class Notifications extends StatelessWidget {
   const Notifications({super.key});
 
   void openDialog(BuildContext context, List<SimpleTopics> filters) {
-    FilterDialog.showFilters(context, filters);
+    _FilterDialog.showFilters(context, filters);
   }
 
   @override
@@ -23,7 +23,7 @@ class Notifications extends StatelessWidget {
         for (final topic in filters.simpleFilters)
           _SimpleNotification(
             name: topic.title,
-            description: topic.description!,
+            description: topic.description,
             topic: topic.topic,
           ),
         for (final mt in filters.filtered)
@@ -50,19 +50,21 @@ void _onChanged(BuildContext context, Topic topic, bool value) {
 class _SimpleNotification extends StatelessWidget {
   const _SimpleNotification({
     required this.name,
-    required this.description,
+    this.description,
     required this.topic,
   });
 
   final String name;
-  final String description;
+  final String? description;
   final Topic topic;
 
   @override
   Widget build(BuildContext context) {
     return SwitchListTile(
       title: Text(name),
-      subtitle: Text(description),
+      // We're already checking for null.
+      //ignore: avoid-non-null-assertion
+      subtitle: description != null ? Text(description!) : null,
       value: context.watch<UserSettingsNotifier>().getToggle(topic.name),
       activeColor: Theme.of(context).colorScheme.secondary,
       onChanged: (b) => _onChanged(context, topic, b),
@@ -70,8 +72,8 @@ class _SimpleNotification extends StatelessWidget {
   }
 }
 
-class FilterDialog extends StatelessWidget {
-  const FilterDialog({super.key, required this.options});
+class _FilterDialog extends StatelessWidget {
+  const _FilterDialog({required this.options});
 
   final List<SimpleTopics> options;
 
@@ -84,7 +86,7 @@ class FilterDialog extends StatelessWidget {
       builder: (_) {
         return ChangeNotifierProvider.value(
           value: Provider.of<UserSettingsNotifier>(context),
-          child: FilterDialog(options: options),
+          child: _FilterDialog(options: options),
         );
       },
     );
@@ -102,13 +104,13 @@ class FilterDialog extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             for (final t in _options)
-              NotificationCheckBox(
+              _NotificationCheckBox(
                 title: t.title,
                 topic: t.topic,
                 value: context
                     .watch<UserSettingsNotifier>()
                     .getToggle(t.topic.name),
-              )
+              ),
           ],
         ),
       ),
@@ -122,9 +124,8 @@ class FilterDialog extends StatelessWidget {
   }
 }
 
-class NotificationCheckBox extends StatelessWidget {
-  const NotificationCheckBox({
-    super.key,
+class _NotificationCheckBox extends StatelessWidget {
+  const _NotificationCheckBox({
     required this.title,
     required this.topic,
     required this.value,
@@ -140,7 +141,7 @@ class NotificationCheckBox extends StatelessWidget {
       title: Text(title),
       value: value,
       activeColor: Theme.of(context).colorScheme.secondary,
-      onChanged: (b) => _onChanged(context, topic, b!),
+      onChanged: (b) => _onChanged(context, topic, b ?? false),
     );
   }
 }

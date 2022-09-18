@@ -24,7 +24,7 @@ class FilterCategories {
     sentinels,
     sigils,
     skins,
-    warframes
+    warframes,
   ];
 
   static const all = FilterCategory('All');

@@ -13,14 +13,18 @@ class EventInformation extends TraceableStatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // There are checks in othere places that ensure this is a non null
+    // Event type.
     // ignore: cast_nullable_to_non_nullable
-    final event = ModalRoute.of(context)?.settings.arguments! as Event;
+    final event = ModalRoute.of(context)?.settings.arguments as Event;
 
     return Scaffold(
       body: CustomScrollView(
         slivers: <Widget>[
           SliverAppBar(
             pinned: true,
+            // It's just what works for the style.
+            // ignore: no-magic-number
             expandedHeight: (MediaQuery.of(context).size.height / 100) * 25,
             backgroundColor: Theme.of(context).primaryColor,
             flexibleSpace: FlexibleSpaceBar(
@@ -28,7 +32,7 @@ class EventInformation extends TraceableStatelessWidget {
               background: CachedNetworkImage(
                 imageUrl: 'https://i.imgur.com/CNrsc7V.png',
                 fit: BoxFit.cover,
-                color: const Color.fromRGBO(34, 34, 34, .4),
+                color: const Color.fromRGBO(34, 34, 34, 0.4),
                 colorBlendMode: BlendMode.darken,
               ),
             ),
@@ -43,6 +47,8 @@ class EventInformation extends TraceableStatelessWidget {
                 expiry: event.expiry ?? DateTime.now().add(kDelayLong),
                 rewards: event.eventRewards,
               ),
+              // Already being checked for null.
+              // ignore: avoid-non-null-assertion
               if (event.jobs != null) EventBounties(jobs: event.jobs!),
             ]),
           ),

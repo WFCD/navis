@@ -8,7 +8,7 @@ class CountdownBanner extends StatelessWidget {
     required this.message,
     required this.time,
     this.color,
-    this.margin = const EdgeInsets.symmetric(horizontal: 4, vertical: 4),
+    this.margin = const EdgeInsets.all(4),
   });
 
   final String message;
@@ -18,7 +18,7 @@ class CountdownBanner extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = NavisLocalizations.of(context)!;
+    final l10n = context.l10n;
 
     return Container(
       margin: margin,
@@ -26,10 +26,14 @@ class CountdownBanner extends StatelessWidget {
       child: RowItem(
         text: Text(
           message,
+          // It's what worked for the style.
+          // ignore: no-magic-number
           style: Theme.of(context).textTheme.headline6?.copyWith(fontSize: 16),
         ),
         child: CountdownTimer(
           tooltip: l10n.countdownTooltip(time),
+          // It's what worked for the style.
+          // ignore: no-magic-number
           size: 16,
           expiry: time,
         ),

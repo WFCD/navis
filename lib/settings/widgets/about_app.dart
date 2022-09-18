@@ -22,33 +22,34 @@ class AboutApp extends StatelessWidget {
           subtitle: Text(l10n.optOutOfAnalyticsDescription),
           value: context.watch<UserSettingsNotifier>().isOptOut,
           onChanged: (b) =>
-              context.read<UserSettingsNotifier>().setOptOut(value: b!),
+              context.read<UserSettingsNotifier>().setOptOut(value: b ?? false),
         ),
         ListTile(
           title: Text(l10n.reportBugsTitle),
           subtitle: Text(l10n.reportBugsDescription),
           onTap: () => issuePage.launchLink(context),
         ),
-        const About()
+        const _About(),
       ],
     );
   }
 }
 
-class About extends StatelessWidget {
-  const About({super.key});
+class _About extends StatelessWidget {
+  const _About();
 
   @override
   Widget build(BuildContext context) {
     const iconSize = 30.0;
 
     final theme = Theme.of(context);
+    final textTheme = theme.textTheme;
     final l10n = context.l10n;
     final isDark = theme.brightness != Brightness.light;
 
-    final aboutTextStyle = theme.textTheme.bodyText1;
+    final aboutTextStyle = textTheme.bodyText1;
     final linkStyle =
-        theme.textTheme.bodyText1?.copyWith(color: theme.colorScheme.secondary);
+        textTheme.bodyText1?.copyWith(color: theme.colorScheme.secondary);
 
     return FutureBuilder(
       future: PackageInfo.fromPlatform(),
@@ -89,11 +90,11 @@ class About extends StatelessWidget {
                       ..onTap = () => issuePage.launchLink(context),
                   ),
                   TextSpan(
-                    style: Theme.of(context).textTheme.caption,
+                    style: textTheme.caption,
                     text: '\n\n${l10n.legalese}',
                   ),
                   TextSpan(
-                    style: Theme.of(context).textTheme.caption,
+                    style: textTheme.caption,
                     text: '${l10n.warframeLinkTitle} ',
                   ),
                   TextSpan(

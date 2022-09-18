@@ -1,3 +1,4 @@
+import 'package:black_hole_flutter/black_hole_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis_ui/navis_ui.dart';
@@ -29,7 +30,7 @@ class EventStatus extends StatelessWidget {
 
         rewards.addAll([
           Chip(label: Text(r.first.trim())),
-          Chip(label: Text(r.last.trim()))
+          Chip(label: Text(r.last.trim())),
         ]);
       } else {
         rewards.add(Chip(label: Text(reward.itemString)));
@@ -41,13 +42,12 @@ class EventStatus extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
+    const fixedString = 2;
     final l10n = context.l10n;
-
-    final category =
-        theme.textTheme.subtitle1?.copyWith(color: theme.colorScheme.secondary);
+    final category = context.textTheme.subtitle1
+        ?.copyWith(color: context.theme.colorScheme.secondary);
     final tooltipStyle =
-        Theme.of(context).textTheme.subtitle2?.copyWith(fontSize: 15);
+        context.theme.textTheme.subtitle2?.copyWith(fontSize: 15);
 
     return AppCard(
       child: Padding(
@@ -62,7 +62,7 @@ class EventStatus extends StatelessWidget {
                 contentPadding: EdgeInsets.zero,
               ),
               SizedBoxSpacer.spacerHeight2,
-              Text(tooltip!, style: tooltipStyle),
+              Text(tooltip ?? '', style: tooltipStyle),
               SizedBoxSpacer.spacerHeight20,
             },
             CategoryTitle(
@@ -77,8 +77,9 @@ class EventStatus extends StatelessWidget {
             SizedBoxSpacer.spacerHeight8,
             RowItem(
               text: Text(l10n.eventStatusProgress, style: tooltipStyle),
-              child:
-                  ColoredContainer.text(text: '${health.toStringAsFixed(2)} %'),
+              child: ColoredContainer.text(
+                text: '${health.toStringAsFixed(fixedString)} %',
+              ),
             ),
             SizedBoxSpacer.spacerHeight8,
             RowItem(
@@ -97,10 +98,14 @@ class EventStatus extends StatelessWidget {
               ),
               SizedBoxSpacer.spacerHeight2,
               Wrap(
+                // It's what worked for the style.
+                // ignore: no-magic-number
                 spacing: 6,
+                // We're just building the list somewhere else.
+                // ignore: avoid-returning-widgets
                 children: _buildRewards(),
               ),
-            }
+            },
           ],
         ),
       ),

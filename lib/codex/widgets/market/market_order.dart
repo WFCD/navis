@@ -1,3 +1,4 @@
+import 'package:black_hole_flutter/black_hole_flutter.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:market_client/market_client.dart';
@@ -16,7 +17,7 @@ class MarketSellWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 4),
+            padding: const EdgeInsets.all(4),
             child: _MarketSellLeading(
               avater: order.user.avatar,
               orderType: order.orderType,
@@ -41,7 +42,7 @@ class MarketSellWidget extends StatelessWidget {
               quantity: order.quantity,
               price: order.platinum,
             ),
-          )
+          ),
         ],
       ),
     );
@@ -67,6 +68,8 @@ class _MarketSellLeading extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         CircleAvatar(
+          // This is what just worked for the style.
+          // ignore: no-magic-number
           radius: 22.5,
           backgroundColor: () {
             switch (status) {
@@ -89,8 +92,8 @@ class _MarketSellLeading extends StatelessWidget {
           margin: const EdgeInsets.only(top: 16),
           padding: const EdgeInsets.all(2),
           decoration: BoxDecoration(
-            color: Theme.of(context).colorScheme.secondary,
-            borderRadius: BorderRadius.circular(4),
+            color: context.theme.colorScheme.secondary,
+            borderRadius: const BorderRadius.all(Radius.circular(8)),
           ),
           child: Text(
             () {
@@ -101,12 +104,10 @@ class _MarketSellLeading extends StatelessWidget {
                   return 'WTB';
               }
             }(),
-            style: Theme.of(context)
-                .textTheme
-                .caption
+            style: context.theme.textTheme.caption
                 ?.copyWith(color: Colors.black, fontWeight: FontWeight.bold),
           ),
-        )
+        ),
       ],
     );
   }
@@ -145,10 +146,10 @@ class _MarketSellBody extends StatelessWidget {
               Text(
                 'Reputation $reputation',
                 style: textTheme.caption,
-              )
+              ),
             ],
           ),
-        )
+        ),
       ],
     );
   }
@@ -162,7 +163,48 @@ class _MarketSellTrailing extends StatelessWidget {
 
   final int quantity, price;
 
-  Widget _buildColumn(TextTheme textTheme, String header, int value) {
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      // This is what just worked for the style.
+      // ignore: no-magic-number
+      height: 65,
+      child: Row(
+        children: [
+          _MarketColumn(
+            header: 'Quantity',
+            value: quantity,
+          ),
+          Container(
+            // This is what just worked for the style.
+            // ignore: no-magic-number
+            width: 20,
+            // This is what just worked for the style.
+            // ignore: no-magic-number
+            height: 2,
+            margin: const EdgeInsets.only(left: 8, top: 18, right: 8),
+            color: context.theme.textTheme.bodyText2?.color,
+          ),
+          _MarketColumn(
+            header: 'Platinum',
+            value: price,
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _MarketColumn extends StatelessWidget {
+  const _MarketColumn({required this.header, required this.value});
+
+  final String header;
+  final int value;
+
+  @override
+  Widget build(BuildContext context) {
+    const stringPadding = 2;
+    final textTheme = context.textTheme;
     final headerStyle =
         textTheme.caption?.copyWith(fontWeight: FontWeight.w500);
     final valueStyle =
@@ -173,29 +215,8 @@ class _MarketSellTrailing extends StatelessWidget {
       children: [
         Text(header, style: headerStyle),
         SizedBoxSpacer.spacerHeight6,
-        Text('$value'.padLeft(2, '0'), style: valueStyle)
+        Text('$value'.padLeft(stringPadding, '0'), style: valueStyle),
       ],
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final textTheme = Theme.of(context).textTheme;
-
-    return SizedBox(
-      height: 65,
-      child: Row(
-        children: [
-          _buildColumn(textTheme, 'Quantity', quantity),
-          Container(
-            width: 20,
-            height: 2,
-            margin: const EdgeInsets.fromLTRB(8, 18, 8, 0),
-            color: Theme.of(context).textTheme.bodyText2?.color,
-          ),
-          _buildColumn(textTheme, 'Platinum', price)
-        ],
-      ),
     );
   }
 }

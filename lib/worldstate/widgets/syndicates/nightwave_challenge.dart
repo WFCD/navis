@@ -8,22 +8,6 @@ class NightwaveChallenge extends StatelessWidget {
 
   final Challenge challenge;
 
-  Widget _standingBadge() {
-    final rep = '${challenge.reputation}';
-
-    return ColoredContainer(
-      tooltip: rep,
-      color: Colors.red,
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: <Widget>[
-          const Icon(GenesisAssets.standing, size: 20, color: Colors.white),
-          Text(rep, style: const TextStyle(color: Colors.white))
-        ],
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
@@ -34,14 +18,16 @@ class NightwaveChallenge extends StatelessWidget {
         ?.copyWith(fontSize: 14, color: textTheme.caption?.color);
 
     return Card(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(Radius.circular(8)),
+      ),
       child: Container(
-        margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+        margin: const EdgeInsets.all(8),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             ListTile(
-              leading: NightwaveIcon(
+              leading: _NightwaveIcon(
                 isElite: challenge.isElite,
                 isDaily: challenge.isDaily ?? false,
               ),
@@ -52,11 +38,15 @@ class NightwaveChallenge extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.end,
               mainAxisAlignment: MainAxisAlignment.end,
               children: <Widget>[
-                _standingBadge(),
+                _StandingBadge(challenge: challenge),
                 CountdownTimer(
+                  // Will default to DateTime.now() under the hood.
+                  // ignore: avoid-non-null-assertion
                   tooltip: l10n.countdownTooltip(challenge.expiry!),
+                  // Will default to DateTime.now() under the hood.
+                  // ignore: avoid-non-null-assertion
                   expiry: challenge.expiry!,
-                )
+                ),
               ],
             ),
           ],
@@ -66,15 +56,38 @@ class NightwaveChallenge extends StatelessWidget {
   }
 }
 
-class NightwaveIcon extends StatelessWidget {
-  const NightwaveIcon({super.key, this.isElite = false, this.isDaily = false});
+class _StandingBadge extends StatelessWidget {
+  const _StandingBadge({required this.challenge});
+
+  final Challenge challenge;
+
+  @override
+  Widget build(BuildContext context) {
+    final rep = '${challenge.reputation}';
+
+    return ColoredContainer(
+      tooltip: rep,
+      color: Colors.red,
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          const Icon(GenesisAssets.standing, size: 20, color: Colors.white),
+          Text(rep, style: const TextStyle(color: Colors.white)),
+        ],
+      ),
+    );
+  }
+}
+
+class _NightwaveIcon extends StatelessWidget {
+  const _NightwaveIcon({this.isElite = false, this.isDaily = false});
 
   final bool isElite, isDaily;
 
   @override
   Widget build(BuildContext context) {
     const _kIconSize = 30.0;
-    late Widget icon;
+    Widget icon;
 
     if (isElite) {
       icon = const AppIcon(

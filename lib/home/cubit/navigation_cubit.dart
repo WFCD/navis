@@ -14,7 +14,7 @@ class NavigationCubit extends Cubit<Widget> {
     NavigationEvent.timers: const FeedView(),
     NavigationEvent.warframeNews: const OrbiterNewsPage(),
     NavigationEvent.codex: const CodexSearchView(),
-    NavigationEvent.synthTargets: const SynthTargetsView()
+    NavigationEvent.synthTargets: const SynthTargetsView(),
   };
 
   void changePage(NavigationEvent event) {

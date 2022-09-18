@@ -14,20 +14,33 @@ class HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (_) => NavigationCubit(),
-      child: const Home(),
+      child: const _Home(),
     );
   }
 }
 
-class Home extends StatefulWidget {
-  const Home({super.key});
+class _Home extends StatefulWidget {
+  const _Home();
 
   @override
   _HomeState createState() => _HomeState();
 }
 
-class _HomeState extends State<Home> {
+class _HomeState extends State<_Home> {
   final GlobalKey<ScaffoldState> scaffold = GlobalKey<ScaffoldState>();
+
+  void _onPressed() {
+    final deviceType = getDeviceType(MediaQuery.of(context).size);
+
+    if (deviceType != DeviceScreenType.mobile) {
+      showDialog<void>(
+        context: context,
+        builder: (_) => const SettingsDialog(),
+      );
+    } else {
+      Navigator.of(context).pushNamed('/settings');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,20 +53,9 @@ class _HomeState extends State<Home> {
             icon: const AppIcon(SimpleIcons.discord),
           ),
           IconButton(
-            onPressed: () {
-              final deviceType = getDeviceType(MediaQuery.of(context).size);
-
-              if (deviceType != DeviceScreenType.mobile) {
-                showDialog<void>(
-                  context: context,
-                  builder: (_) => const SettingsDialog(),
-                );
-              } else {
-                Navigator.of(context).pushNamed('/settings');
-              }
-            },
+            onPressed: _onPressed,
             icon: const Icon(Icons.settings_rounded),
-          )
+          ),
         ],
       ),
       body: BlocBuilder<NavigationCubit, Widget>(

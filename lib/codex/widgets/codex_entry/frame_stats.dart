@@ -1,5 +1,7 @@
+// ignore_for_file: prefer-moving-to-variable
 import 'package:flutter/material.dart';
 import 'package:navis/codex/widgets/codex_entry/polarity.dart';
+import 'package:navis/codex/widgets/codex_entry/preinstalled_polarities.dart';
 import 'package:navis/codex/widgets/codex_entry/stats.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis_ui/navis_ui.dart';
@@ -10,25 +12,6 @@ class FrameStats extends StatelessWidget {
 
   final PowerSuit powerSuit;
 
-  Widget _passive(BuildContext context) {
-    final textTheme = Theme.of(context).textTheme;
-
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Text(context.l10n.warframePassiveTitle, style: textTheme.subtitle1),
-          SizedBoxSpacer.spacerHeight8,
-          Text(
-            (powerSuit as Warframe).passiveDescription,
-            style: textTheme.caption?.copyWith(fontStyle: FontStyle.italic),
-          ),
-        ],
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
@@ -37,18 +20,22 @@ class FrameStats extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         const CategoryTitle(title: 'Stats', contentPadding: EdgeInsets.zero),
-        if (powerSuit is Warframe) _passive(context),
+        if (powerSuit is Warframe) _Passive(powerSuit: powerSuit),
         SizedBoxSpacer.spacerHeight16,
         Stats(
           stats: <RowItem>[
             if (powerSuit is Warframe && (powerSuit as Warframe).aura != null)
               RowItem(
                 text: Text(l10n.auraTitle),
+                // Already being checked for null.
+                // ignore: avoid-non-null-assertion
                 child: Polarity(polarity: (powerSuit as Warframe).aura!),
               ),
             if (powerSuit.polarities?.isNotEmpty ?? false)
               RowItem(
                 text: Text(l10n.preinstalledPolarities),
+                // Already being checked for null.
+                // ignore: avoid-non-null-assertion
                 child: PreinstalledPolarties(polarities: powerSuit.polarities!),
               ),
             RowItem(
@@ -89,9 +76,35 @@ class FrameStats extends StatelessWidget {
               dense: true,
               isThreeLine: true,
               contentPadding: EdgeInsets.zero,
-            )
-        }
+            ),
+        },
       ],
+    );
+  }
+}
+
+class _Passive extends StatelessWidget {
+  const _Passive({required this.powerSuit});
+
+  final PowerSuit powerSuit;
+
+  @override
+  Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
+
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Text(context.l10n.warframePassiveTitle, style: textTheme.subtitle1),
+          SizedBoxSpacer.spacerHeight8,
+          Text(
+            (powerSuit as Warframe).passiveDescription,
+            style: textTheme.caption?.copyWith(fontStyle: FontStyle.italic),
+          ),
+        ],
+      ),
     );
   }
 }

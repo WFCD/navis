@@ -39,7 +39,8 @@ class ItemComponents extends StatelessWidget {
                 component: blueprint,
                 child: CachedNetworkImage(imageUrl: itemImageUrl),
               ),
-            for (final component in parts) _BuildComponent(component: component)
+            for (final component in parts)
+              _BuildComponent(component: component),
           ],
         ),
       ],
@@ -53,26 +54,30 @@ class _BuildComponent extends StatelessWidget {
   final Component component;
   final Widget? child;
 
+  void _onTap(BuildContext context) {
+    if (component.drops != null && (component.drops?.isNotEmpty ?? false)) {
+      Navigator.of(context).push(
+        MaterialPageRoute<void>(
+          builder: (context) => ComponentDrops(
+            // Already being checked for null.
+            // ignore: avoid-non-null-assertion
+            drops: component.drops!,
+          ),
+        ),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    const imageBoxSize = 60.0;
+
     return Tooltip(
       message: component.name,
       child: InkWell(
-        onTap: () {
-          if (component.drops != null &&
-              (component.drops?.isNotEmpty ?? false)) {
-            Navigator.of(context).push(
-              MaterialPageRoute<void>(
-                builder: (context) => ComponentDrops(
-                  drops: component.drops!,
-                ),
-              ),
-            );
-          }
-        },
-        child: SizedBox(
-          width: 60,
-          height: 60,
+        onTap: () => _onTap(context),
+        child: SizedBox.square(
+          dimension: imageBoxSize,
           child: Stack(
             alignment: AlignmentDirectional.center,
             children: [
@@ -85,7 +90,9 @@ class _BuildComponent extends StatelessWidget {
                   ),
                 ),
               CachedNetworkImage(imageUrl: component.imageUrl),
-              if (child != null) child!
+              // Already being checked for null.
+              // ignore: avoid-non-null-assertion
+              if (child != null) child!,
             ],
           ),
         ),

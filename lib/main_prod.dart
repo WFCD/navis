@@ -5,6 +5,8 @@ import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:sentry_logging/sentry_logging.dart';
 
 Future<void> main() async {
+  const siteId = 2;
+
   await SentryFlutter.init(
     (option) {
       option
@@ -13,7 +15,7 @@ Future<void> main() async {
     },
     appRunner: () async {
       await MatomoTracker().initialize(
-        siteId: 2,
+        siteId: siteId,
         url: const String.fromEnvironment('MATOMO_URL'),
       );
 

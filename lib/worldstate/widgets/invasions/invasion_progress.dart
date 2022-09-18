@@ -14,22 +14,27 @@ class InvasionProgress extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    const decimalPoint = 100;
     final attacker = Factions.values.byName(attackingFaction.toLowerCase());
     final defending = Factions.values.byName(defendingFaction.toLowerCase());
 
     return Tooltip(
       message: '$attackingFaction vs $defendingFaction',
       child: Material(
+        // It's what worked for the style.
+        // ignore: no-magic-number
         elevation: 4,
         color: Colors.transparent,
         child: AnimatedContainer(
           duration: kAnimationLong,
+          // It's what worked for the style.
+          // ignore: no-magic-number
           height: 20,
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(4),
+            borderRadius: const BorderRadius.all(Radius.circular(4)),
             gradient: LinearGradient(
               colors: <Color>[attacker.primaryColor, defending.primaryColor],
-              stops: <double>[progress, progress / 100],
+              stops: <double>[progress, progress / decimalPoint],
               begin: AlignmentDirectional.centerStart,
               end: AlignmentDirectional.centerEnd,
             ),

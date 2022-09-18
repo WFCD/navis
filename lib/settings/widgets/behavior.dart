@@ -19,27 +19,28 @@ class Behavior extends StatelessWidget {
         ListTile(
           title: Text(l10n.appLangTitle),
           subtitle: Text(l10n.appLangDescription),
-          onTap: () => LanguagePicker.showOptions(context),
+          onTap: () => _LanguagePicker.showOptions(context),
         ),
         ListTile(
           title: Text(l10n.themeTitle),
           subtitle: Text(l10n.themeDescription),
-          onTap: () => ThemePicker.showModes(context),
+          onTap: () => _ThemePicker.showModes(context),
         ),
         CheckboxListTile(
           title: Text(l10n.enableBetaFeaturesTitle),
           subtitle: Text(l10n.enableBetaFeaturesDescription),
           value: context.watch<UserSettingsNotifier>().enableBeta,
-          onChanged: (value) =>
-              context.read<UserSettingsNotifier>().setBeta(value: value!),
+          onChanged: (value) => context
+              .read<UserSettingsNotifier>()
+              .setBeta(value: value ?? false),
         ),
       ],
     );
   }
 }
 
-class LanguagePicker extends StatelessWidget {
-  const LanguagePicker({super.key});
+class _LanguagePicker extends StatelessWidget {
+  const _LanguagePicker();
 
   static Future<void> showOptions(BuildContext context) {
     return showDialog<void>(
@@ -47,26 +48,23 @@ class LanguagePicker extends StatelessWidget {
       builder: (_) {
         return ChangeNotifierProvider.value(
           value: Provider.of<UserSettingsNotifier>(context),
-          child: const LanguagePicker(),
+          child: const _LanguagePicker(),
         );
       },
     );
   }
 
+  void _onPressed(BuildContext context) {
+    Navigator.of(context).pop();
+    BlocProvider.of<SolsystemCubit>(context).fetchWorldstate(forceUpdate: true);
+  }
+
   @override
   Widget build(BuildContext context) {
     const supportedLocales = NavisLocalizations.supportedLocales;
-    final accentColor = Theme.of(context).colorScheme.secondary;
 
-//  (final l in supportedLocales)
-//           RadioListTile<Locale>(
-//             title: Text(l.fullName),
-//             value: l,
-//             groupValue: context.watch<UserSettingsNotifier>().language,
-//             activeColor: accentColor,
-//             onChanged: (l) =>
-//                 context.read<UserSettingsNotifier>().setLanguage(l),
-//           )
+    final materialLocalizations = MaterialLocalizations.of(context);
+    final accentColor = Theme.of(context).colorScheme.secondary;
 
     return NavisDialog(
       content: ListView.builder(
@@ -87,23 +85,19 @@ class LanguagePicker extends StatelessWidget {
       actions: [
         TextButton(
           onPressed: () => Navigator.of(context).pop(),
-          child: Text(MaterialLocalizations.of(context).cancelButtonLabel),
+          child: Text(materialLocalizations.cancelButtonLabel),
         ),
         TextButton(
-          onPressed: () {
-            Navigator.of(context).pop();
-            BlocProvider.of<SolsystemCubit>(context)
-                .fetchWorldstate(forceUpdate: true);
-          },
-          child: Text(MaterialLocalizations.of(context).okButtonLabel),
-        )
+          onPressed: () => _onPressed(context),
+          child: Text(materialLocalizations.okButtonLabel),
+        ),
       ],
     );
   }
 }
 
-class ThemePicker extends StatelessWidget {
-  const ThemePicker({super.key});
+class _ThemePicker extends StatelessWidget {
+  const _ThemePicker();
 
   static Future<void> showModes(BuildContext context) {
     return showDialog<void>(
@@ -111,7 +105,7 @@ class ThemePicker extends StatelessWidget {
       builder: (_) {
         return ChangeNotifierProvider.value(
           value: Provider.of<UserSettingsNotifier>(context),
-          child: const ThemePicker(),
+          child: const _ThemePicker(),
         );
       },
     );
@@ -125,6 +119,7 @@ class ThemePicker extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
+    final groupValue = context.watch<UserSettingsNotifier>().theme;
     final accentColor = Theme.of(context).colorScheme.secondary;
 
     return SimpleDialog(
@@ -133,21 +128,21 @@ class ThemePicker extends StatelessWidget {
         RadioListTile<ThemeMode>(
           title: Text(l10n.lightThemeTitle),
           value: ThemeMode.light,
-          groupValue: context.watch<UserSettingsNotifier>().theme,
+          groupValue: groupValue,
           activeColor: accentColor,
           onChanged: (b) => _onChanged(context, b),
         ),
         RadioListTile<ThemeMode>(
           title: Text(l10n.darkThemeTitle),
           value: ThemeMode.dark,
-          groupValue: context.watch<UserSettingsNotifier>().theme,
+          groupValue: groupValue,
           activeColor: accentColor,
           onChanged: (b) => _onChanged(context, b),
         ),
         RadioListTile<ThemeMode>(
           title: Text(l10n.systemThemeTitle),
           value: ThemeMode.system,
-          groupValue: context.watch<UserSettingsNotifier>().theme,
+          groupValue: groupValue,
           activeColor: accentColor,
           onChanged: (b) => _onChanged(context, b),
         ),
@@ -156,9 +151,9 @@ class ThemePicker extends StatelessWidget {
             TextButton(
               onPressed: () => Navigator.of(context).pop(),
               child: Text(MaterialLocalizations.of(context).cancelButtonLabel),
-            )
+            ),
           ],
-        )
+        ),
       ],
     );
   }

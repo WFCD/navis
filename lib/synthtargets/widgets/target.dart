@@ -7,6 +7,15 @@ class TargetInfo extends StatelessWidget {
 
   final SynthTarget target;
 
+  void _onExpansionChanged(BuildContext context, {bool isExpanded = false}) {
+    if (isExpanded) {
+      Future<void>.delayed(
+        kAnimationShort,
+        () => Scrollable.ensureVisible(context, duration: kAnimationShort),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -14,14 +23,10 @@ class TargetInfo extends StatelessWidget {
         key: PageStorageKey<String>(target.name),
         title: Text(target.name),
         textColor: NavisColors.secondary,
+        // We want the smae color.
+        // ignore: no-equal-arguments
         iconColor: NavisColors.secondary,
-        onExpansionChanged: (b) {
-          if (b) {
-            Future<void>.delayed(kAnimationShort).then((value) {
-              Scrollable.ensureVisible(context, duration: kAnimationShort);
-            });
-          }
-        },
+        onExpansionChanged: (b) => _onExpansionChanged(context, isExpanded: b),
         children: target.locations.map<Widget>((l) {
           return ListTile(
             title: Text('${l.planet} (${l.mission})'),

@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:matomo/matomo.dart';
-import 'package:navis/worldstate/cubits/solsystem_cubit.dart';
-import 'package:navis/worldstate/widgets/invasion_widgets.dart';
+import 'package:navis/worldstate/worldstate.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:nil/nil.dart';
 import 'package:responsive_builder/responsive_builder.dart';
@@ -22,15 +21,15 @@ class InvasionsPage extends TraceableStatelessWidget {
       child: state is! SolState
           ? nil
           : ScreenTypeLayout.builder(
-              mobile: (context) => MobileInvasions(invasions: invasions),
-              tablet: (context) => TabletInvasions(invasions: invasions),
+              mobile: (context) => _MobileInvasions(invasions: invasions),
+              tablet: (context) => _TabletInvasions(invasions: invasions),
             ),
     );
   }
 }
 
-class MobileInvasions extends StatelessWidget {
-  const MobileInvasions({super.key, required this.invasions});
+class _MobileInvasions extends StatelessWidget {
+  const _MobileInvasions({required this.invasions});
 
   final List<Invasion> invasions;
 
@@ -44,14 +43,14 @@ class MobileInvasions extends StatelessWidget {
             (context, index) => InvasionWidget(invasion: invasions[index]),
             childCount: invasions.length,
           ),
-        )
+        ),
       ],
     );
   }
 }
 
-class TabletInvasions extends StatelessWidget {
-  const TabletInvasions({super.key, required this.invasions});
+class _TabletInvasions extends StatelessWidget {
+  const _TabletInvasions({required this.invasions});
 
   final List<Invasion> invasions;
 

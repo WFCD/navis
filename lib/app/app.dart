@@ -27,8 +27,10 @@ class _NavisAppState extends State<NavisApp> with WidgetsBindingObserver {
     WidgetsBinding.instance.addObserver(this);
 
     context.read<NotificationRepository>().configure();
-    if (context.read<UserSettingsNotifier>().isFirstTime) {
-      final platform = context.read<UserSettingsNotifier>().platform;
+
+    final userSettingsNotifier = context.read<UserSettingsNotifier>();
+    if (userSettingsNotifier.isFirstTime) {
+      final platform = userSettingsNotifier.platform;
       context.read<NotificationRepository>().subscribeToPlatform(platform);
     }
   }
@@ -65,7 +67,9 @@ class _NavisAppState extends State<NavisApp> with WidgetsBindingObserver {
       return _error;
     };
 
-    return widget!;
+    if (widget != null) return widget;
+
+    throw Exception('Widget is null');
   }
 
   Locale localeResolutionCallback(
@@ -105,7 +109,7 @@ class _NavisAppState extends State<NavisApp> with WidgetsBindingObserver {
         SettingsView.route: (_) => const SettingsView(),
         NightwavesPage.route: (_) => const NightwavesPage(),
         BountiesPage.route: (_) => const BountiesPage(),
-        BaroInventory.route: (_) => const BaroInventory()
+        BaroInventory.route: (_) => const BaroInventory(),
       },
       supportedLocales: NavisLocalizations.supportedLocales,
       locale: context.read<UserSettingsNotifier>().language,
