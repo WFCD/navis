@@ -22,15 +22,15 @@ class InvasionsPage extends TraceableStatelessWidget {
       child: state is! SolState
           ? nil
           : ScreenTypeLayout.builder(
-              mobile: (context) => MobileInvasions(invasions: invasions),
-              tablet: (context) => TabletInvasions(invasions: invasions),
+              mobile: (context) => _MobileInvasions(invasions: invasions),
+              tablet: (context) => _TabletInvasions(invasions: invasions),
             ),
     );
   }
 }
 
-class MobileInvasions extends StatelessWidget {
-  const MobileInvasions({super.key, required this.invasions});
+class _MobileInvasions extends StatelessWidget {
+  const _MobileInvasions({required this.invasions});
 
   final List<Invasion> invasions;
 
@@ -44,14 +44,14 @@ class MobileInvasions extends StatelessWidget {
             (context, index) => InvasionWidget(invasion: invasions[index]),
             childCount: invasions.length,
           ),
-        )
+        ),
       ],
     );
   }
 }
 
-class TabletInvasions extends StatelessWidget {
-  const TabletInvasions({super.key, required this.invasions});
+class _TabletInvasions extends StatelessWidget {
+  const _TabletInvasions({required this.invasions});
 
   final List<Invasion> invasions;
 

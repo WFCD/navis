@@ -11,6 +11,7 @@ class OrbiterNewsPage extends TraceableStatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    const cacheExtent = 200.0;
     final state = context.watch<SolsystemCubit>().state;
     final orbitNews =
         state is SolState ? state.worldstate.news : <OrbiterNews>[];
@@ -22,7 +23,7 @@ class OrbiterNewsPage extends TraceableStatelessWidget {
         child: state is! SolState
             ? const SizedBox.shrink()
             : ListView.builder(
-                cacheExtent: 200,
+                cacheExtent: cacheExtent,
                 itemCount: orbitNews.length,
                 itemBuilder: (context, index) {
                   return OrbiterNewsWidget(news: orbitNews[index]);

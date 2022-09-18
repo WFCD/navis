@@ -494,7 +494,7 @@ class ModImageCropped extends CustomPainter {
     canvas.drawAtlas(
       image,
       [
-        // Identity transform
+        // Identity transform.
         RSTransform.fromComponents(
           rotation: 0,
           scale: 1,
@@ -513,7 +513,7 @@ class ModImageCropped extends CustomPainter {
       ],
       [/* No need for colors */],
       BlendMode.src,
-      null, // No need for cullRect,
+      null, // No need for cullRect.
       paint,
     );
   }

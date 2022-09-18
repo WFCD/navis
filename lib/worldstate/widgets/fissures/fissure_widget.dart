@@ -26,7 +26,6 @@ class FissureWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final expiry = fissure.expiry!;
     final icon = () {
       switch (fissure.tier) {
         case 'Lith':
@@ -49,28 +48,33 @@ class FissureWidget extends StatelessWidget {
         children: <Widget>[
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8),
+            // It's what worked for the style.
+            // ignore: no-magic-number
             child: Icon(icon, size: 40),
           ),
           Expanded(
-            child: FissureInfo(
+            child: _FissureInfo(
               fissure: fissure,
               nodeStyle: _nodeStyle,
               missionTypeStyle: _missionTypeStyle,
             ),
           ),
           CountdownTimer(
-            tooltip: NavisLocalizations.of(context)!.countdownTooltip(expiry),
-            expiry: expiry,
-          )
+            // Will default to DateTime.now() under the hood.
+            // ignore: avoid-non-null-assertion
+            tooltip: context.l10n.countdownTooltip(fissure.expiry!),
+            // Will default to DateTime.now() under the hood.
+            // ignore: avoid-non-null-assertion
+            expiry: fissure.expiry!,
+          ),
         ],
       ),
     );
   }
 }
 
-class FissureInfo extends StatelessWidget {
-  const FissureInfo({
-    super.key,
+class _FissureInfo extends StatelessWidget {
+  const _FissureInfo({
     required this.fissure,
     required TextStyle nodeStyle,
     required TextStyle missionTypeStyle,

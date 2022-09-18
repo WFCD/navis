@@ -20,19 +20,19 @@ class FissuresPage extends StatelessWidget {
 
     return BlocProvider(
       create: (_) => FissureFilterCubit(fissures),
-      child: const FissuresView(),
+      child: const _FissuresView(),
     );
   }
 }
 
-class FissuresView extends StatefulWidget {
-  const FissuresView({super.key});
+class _FissuresView extends StatefulWidget {
+  const _FissuresView();
 
   @override
-  State<FissuresView> createState() => _FissuresViewState();
+  State<_FissuresView> createState() => _FissuresViewState();
 }
 
-class _FissuresViewState extends State<FissuresView> {
+class _FissuresViewState extends State<_FissuresView> {
   final _allFocus = FocusNode();
   final _fissuresFocus = FocusNode();
   final _stormFocus = FocusNode();
@@ -137,8 +137,8 @@ class _FissuresViewState extends State<FissuresView> {
           child: ViewLoading(
             isLoading: fissures.isEmpty,
             child: ScreenTypeLayout.builder(
-              mobile: (context) => MobileFissures(fissures: fissures),
-              tablet: (context) => TabletFissures(fissures: fissures),
+              mobile: (context) => _MobileFissures(fissures: fissures),
+              tablet: (context) => _TabletFissures(fissures: fissures),
             ),
           ),
         ),
@@ -147,17 +147,18 @@ class _FissuresViewState extends State<FissuresView> {
   }
 }
 
-class MobileFissures extends StatelessWidget {
-  const MobileFissures({super.key, required this.fissures});
+class _MobileFissures extends StatelessWidget {
+  const _MobileFissures({required this.fissures});
 
   final List<VoidFissure> fissures;
 
   @override
   Widget build(BuildContext context) {
+    const cacheExntent = 300.0;
     final height = (MediaQuery.of(context).size.height / 100) * 15;
 
     return ListView.builder(
-      cacheExtent: height * 5,
+      cacheExtent: cacheExntent,
       itemExtent: height,
       itemCount: fissures.length,
       shrinkWrap: true,
@@ -171,8 +172,8 @@ class MobileFissures extends StatelessWidget {
   }
 }
 
-class TabletFissures extends StatelessWidget {
-  const TabletFissures({super.key, required this.fissures});
+class _TabletFissures extends StatelessWidget {
+  const _TabletFissures({required this.fissures});
 
   final List<VoidFissure> fissures;
 

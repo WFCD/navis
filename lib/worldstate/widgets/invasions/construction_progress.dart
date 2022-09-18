@@ -10,7 +10,7 @@ class ConstructionProgressCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppCard(
-      title: NavisLocalizations.of(context)!.constructionProgressTitle,
+      title: context.l10n.constructionProgressTitle,
       child: BlocBuilder<SolsystemCubit, SolsystemState>(
         builder: (context, state) {
           const iconSize = 25.0;

@@ -19,22 +19,22 @@ class CycleCard extends StatelessWidget {
 
     const solCycle = <Icon>[
       Icon(Icons.brightness_7, color: Colors.amber, size: size),
-      Icon(Icons.brightness_3, color: Colors.blue, size: size)
+      Icon(Icons.brightness_3, color: Colors.blue, size: size),
     ];
 
     const tempCycle = <Icon>[
       Icon(Icons.sunny, color: Colors.red, size: size),
-      Icon(Icons.ac_unit, color: Colors.blue, size: size)
+      Icon(Icons.ac_unit, color: Colors.blue, size: size),
     ];
 
     final cambionCycle = <Widget>[
       ColoredContainer.text(text: 'Fass'),
-      ColoredContainer.text(text: 'Vome')
+      ColoredContainer.text(text: 'Vome'),
     ];
 
     final zarimanCycle = <Widget>[
       const FactionIcon(name: 'Corpus'),
-      const FactionIcon(name: 'Grineer')
+      const FactionIcon(name: 'Grineer'),
     ];
 
     return <CycleEntry>[
@@ -63,7 +63,7 @@ class CycleCard extends StatelessWidget {
           name: locale.zarimanCycleTitle,
           cycle: worldstate.zarimanCycle,
           states: zarimanCycle,
-        )
+        ),
     ];
   }
 
@@ -74,13 +74,14 @@ class CycleCard extends StatelessWidget {
 
       return p.worldstate.earthCycle.expiry != n.worldstate.earthCycle.expiry ||
           p.worldstate.cetusCycle.expiry != n.worldstate.cetusCycle.expiry ||
-          p.worldstate.vallisCycle.expiry != n.worldstate.vallisCycle.expiry ||
-          p.worldstate.cetusCycle.expiry != n.worldstate.cetusCycle.expiry;
-    } else if (next is SystemError) {
-      return false;
-    } else {
+          p.worldstate.vallisCycle.expiry != n.worldstate.vallisCycle.expiry;
+    }
+
+    if (next is SystemError) {
       return false;
     }
+
+    return false;
   }
 
   @override
@@ -90,14 +91,14 @@ class CycleCard extends StatelessWidget {
       builder: (context, state) {
         final cycles = _buildCycles(
           context.watch<UserSettingsNotifier>(),
-          NavisLocalizations.of(context)!,
+          context.l10n,
           (state as SolState).worldstate,
         );
 
         return AppCard(
           child: Column(
             children: <Widget>[
-              for (final cycle in cycles) CycleWidget(entry: cycle),
+              for (final cycle in cycles) _CycleWidget(entry: cycle),
             ],
           ),
         );
@@ -118,14 +119,18 @@ class CycleEntry {
   final CycleObject cycle;
 }
 
-class CycleWidget extends StatelessWidget {
-  const CycleWidget({super.key, required this.entry});
+class _CycleWidget extends StatelessWidget {
+  const _CycleWidget({required this.entry});
 
   final CycleEntry entry;
 
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
+
+    // Will default to DateTime.now() under the hood.
+    // ignore: avoid-non-null-assertion
+    final expiry = entry.cycle.expiry!;
 
     return ListTile(
       key: ValueKey(entry.name),
@@ -136,11 +141,11 @@ class CycleWidget extends StatelessWidget {
       trailing: Row(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          if (entry.cycle.getStateBool) entry.states[0] else entry.states[1],
+          if (entry.cycle.getStateBool) entry.states.first else entry.states[1],
           SizedBoxSpacer.spacerWidth6,
           CountdownTimer(
-            tooltip: context.l10n.countdownTooltip(entry.cycle.expiry!),
-            expiry: entry.cycle.expiry!,
+            tooltip: context.l10n.countdownTooltip(expiry),
+            expiry: expiry,
           ),
         ],
       ),

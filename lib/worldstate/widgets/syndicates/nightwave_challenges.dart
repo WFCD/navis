@@ -14,7 +14,7 @@ class NightwaveChalleneges extends StatelessWidget {
         ...nightwave.daily
             .map<NightwaveChallenge>((c) => NightwaveChallenge(challenge: c)),
         ...nightwave.weekly
-            .map<NightwaveChallenge>((c) => NightwaveChallenge(challenge: c))
+            .map<NightwaveChallenge>((c) => NightwaveChallenge(challenge: c)),
       ],
     );
   }

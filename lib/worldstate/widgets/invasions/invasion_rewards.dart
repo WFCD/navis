@@ -23,6 +23,8 @@ class InvasionReward extends StatelessWidget {
       children: <Widget>[
         if (!vsInfestation)
           Material(
+            // It's what worked for the style.
+            // ignore: no-magic-number
             elevation: 4,
             color: Colors.transparent,
             child: ColoredContainer.text(
@@ -32,6 +34,8 @@ class InvasionReward extends StatelessWidget {
           ),
         const Spacer(),
         Material(
+          // It's what worked for the style.
+          // ignore: no-magic-number
           elevation: 4,
           color: Colors.transparent,
           child: ColoredContainer.text(

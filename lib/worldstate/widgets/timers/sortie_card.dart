@@ -21,6 +21,9 @@ class SortieCard extends StatelessWidget {
           (n as SolState).worldstate.sortie.expiry,
       builder: (context, state) {
         final sortie = (state as SolState).worldstate.sortie;
+
+        // Will default to DateTime.now() under the hood.
+        // ignore: avoid-non-null-assertion
         final expiry = sortie.expiry!;
 
         return AppCard(
@@ -31,6 +34,8 @@ class SortieCard extends StatelessWidget {
               ListTile(
                 leading: FactionIcon(
                   name: sortie.factionKey ?? sortie.faction,
+                  // It's what worked for the style.
+                  // ignore: no-magic-number
                   iconSize: 35,
                 ),
                 title: Text(sortie.boss, style: boss),
@@ -46,7 +51,7 @@ class SortieCard extends StatelessWidget {
                     style: nodeMission,
                   ),
                   subtitle: Text(variant.modifier, style: modifier),
-                )
+                ),
             ],
           ),
         );

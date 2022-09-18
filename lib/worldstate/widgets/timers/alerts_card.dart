@@ -16,7 +16,7 @@ class AlertsCard extends StatelessWidget {
           final alerts = (state as SolState).worldstate.alerts;
 
           return Column(
-            children: alerts.map((a) => AlertWidget(alert: a)).toList(),
+            children: alerts.map((a) => _AlertWidget(alert: a)).toList(),
           );
         },
       ),
@@ -24,8 +24,8 @@ class AlertsCard extends StatelessWidget {
   }
 }
 
-class AlertWidget extends StatelessWidget {
-  const AlertWidget({super.key, required this.alert});
+class _AlertWidget extends StatelessWidget {
+  const _AlertWidget({required this.alert});
 
   final Alert alert;
 
@@ -41,7 +41,7 @@ class AlertWidget extends StatelessWidget {
         .levelInfo(mission.minEnemyLevel ?? 0, mission.maxEnemyLevel ?? 0);
 
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+      padding: const EdgeInsets.all(8),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
@@ -50,7 +50,11 @@ class AlertWidget extends StatelessWidget {
               // Since nightmare alerts aren't visible in the worldstate there
               // is no need for a nightmare icon for alerts.
               if (alert.archwingRequired ?? false)
-                const Icon(GenesisAssets.archwing, color: Colors.blue, size: 25)
+                const Icon(
+                  GenesisAssets.archwing,
+                  color: Colors.blue,
+                  size: 25,
+                ),
             ],
             text: Text(node),
             child:
@@ -62,10 +66,14 @@ class AlertWidget extends StatelessWidget {
               style: textTheme.caption,
             ),
             child: CountdownTimer(
+              // Will default to DateTime.now() under the hood.
+              // ignore: avoid-non-null-assertion
               tooltip: context.l10n.countdownTooltip(alert.expiry!),
+              // Will default to DateTime.now() under the hood.
+              // ignore: avoid-non-null-assertion
               expiry: alert.expiry!,
             ),
-          )
+          ),
         ],
       ),
     );

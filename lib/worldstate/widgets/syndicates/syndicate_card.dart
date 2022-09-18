@@ -14,7 +14,7 @@ class SyndicateCard extends StatelessWidget {
     this.syndicate,
     this.nightwave,
     this.onTap,
-  })  : assert(
+  }) : assert(
           syndicate != null || name != null,
           'If name is null then it will default\n'
           'to Syndicate.id instead, only one can be null but not both',
@@ -27,7 +27,7 @@ class SyndicateCard extends StatelessWidget {
   final void Function()? onTap;
 
   void _onTap(BuildContext context) {
-    final _syndicate = syndicateStringToEnum(syndicate?.id ?? name!);
+    final _syndicate = syndicateStringToEnum(syndicate?.id ?? name ?? '');
 
     if (_syndicate == Syndicates.nightwave) {
       Navigator.of(context)
@@ -41,7 +41,7 @@ class SyndicateCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
     final mediaQuery = MediaQuery.of(context);
-    final syndicateName = syndicateStringToEnum(syndicate?.id ?? name!);
+    final syndicateName = syndicateStringToEnum(syndicate?.id ?? name ?? '');
 
     final titleStyle = textTheme.subtitle1
         ?.copyWith(color: Typography.whiteMountainView.subtitle1?.color);
@@ -53,18 +53,23 @@ class SyndicateCard extends StatelessWidget {
       builder: (BuildContext context, SizingInformation sizing) {
         return InkWell(
           onTap: onTap ?? () => _onTap(context),
-          customBorder:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
+          customBorder: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(4)),
+          ),
           child: AppCard(
             color: syndicateName.secondryColor,
             child: Padding(
               padding: EdgeInsets.symmetric(
+                // It's what worked for the style.
+                // ignore: no-magic-number
                 vertical: (mediaQuery.size.longestSide / 100) * 1.5,
               ),
               child: ListTile(
+                // It's what worked for the style.
+                // ignore: no-magic-number
                 leading: SyndicateIcon(syndicate: syndicateName, iconSize: 50),
                 title: Text(
-                  syndicate?.name.replaceFirst('Syndicate', '') ?? name!,
+                  syndicate?.name.replaceFirst('Syndicate', '') ?? name ?? '',
                   style: titleStyle,
                 ),
                 subtitle: Text(
