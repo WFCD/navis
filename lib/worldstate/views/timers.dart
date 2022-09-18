@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:matomo/matomo.dart';
+import 'package:navis/worldstate/widgets/timers/archon_card.dart';
 import 'package:navis/worldstate/worldstate.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:nil/nil.dart';
@@ -57,6 +58,7 @@ class _MobileTimers extends StatelessWidget {
                     if (state.activeAlerts) const AlertsCard(),
                     const CycleCard(),
                     if (state.activeSales) const DarvoDealCard(),
+                    const ArchonHuntCard(),
                     const SortieCard(),
                   ],
                 ),

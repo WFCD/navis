@@ -19,7 +19,7 @@ class GenesisAssets {
   GenesisAssets._();
 
   static const _kFontFam = 'GenesisAssets';
-  static const String? _kFontPkg = null;
+  static const String? _kFontPkg = 'navis_ui';
 
   static const IconData sentient =
       IconData(0xe800, fontFamily: _kFontFam, fontPackage: _kFontPkg);
