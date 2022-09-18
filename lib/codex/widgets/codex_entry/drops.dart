@@ -39,7 +39,7 @@ class _DropEntry extends StatelessWidget {
 
     return ListTile(
       title: Text(location),
-      subtitle: Text('Drop chance $dropChance'),
+      subtitle: Text('Drop chance $dropChance%'),
     );
   }
 }
