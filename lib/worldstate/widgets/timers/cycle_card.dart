@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis/worldstate/cubits/solsystem_cubit.dart';
 import 'package:navis_ui/navis_ui.dart';
-import 'package:user_settings/user_settings.dart';
 import 'package:wfcd_client/entities.dart';
 import 'package:wfcd_client/objects.dart';
 
@@ -12,7 +11,6 @@ class CycleCard extends StatelessWidget {
   const CycleCard({super.key});
 
   List<CycleEntry> _buildCycles(
-    UserSettingsNotifier settings,
     NavisLocalizations locale,
     Worldstate worldstate,
   ) {
@@ -59,12 +57,11 @@ class CycleCard extends StatelessWidget {
         states: cambionCycle,
         cycle: worldstate.cetusCycle,
       ),
-      if (settings.enableBeta)
-        CycleEntry(
-          name: locale.zarimanCycleTitle,
-          cycle: worldstate.zarimanCycle,
-          states: zarimanCycle,
-        ),
+      CycleEntry(
+        name: locale.zarimanCycleTitle,
+        cycle: worldstate.zarimanCycle,
+        states: zarimanCycle,
+      ),
     ];
   }
 
@@ -90,11 +87,8 @@ class CycleCard extends StatelessWidget {
     return BlocBuilder<SolsystemCubit, SolsystemState>(
       buildWhen: _buildWhen,
       builder: (context, state) {
-        final cycles = _buildCycles(
-          context.watch<UserSettingsNotifier>(),
-          context.l10n,
-          (state as SolState).worldstate,
-        );
+        final cycles =
+            _buildCycles(context.l10n, (state as SolState).worldstate);
 
         return AppCard(
           child: Column(
