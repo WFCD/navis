@@ -757,7 +757,7 @@ packages:
       name: sentry_logging
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "6.9.1"
+    version: "6.10.0"
   shared_preferences:
     dependency: transitive
     description:
