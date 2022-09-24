@@ -140,7 +140,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "baroTitle": "Baro Ki'Teer",
+  "baroTitle": "바로 키 티어",
   "@baroTitle": {
     "description": "Title for Baro Ki'Teer card",
     "type": "text",
@@ -220,7 +220,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "zarimanCycleTitle": "Zariman Cycle",
+  "zarimanCycleTitle": "자리만 주기",
   "@zarimanCycleTitle": {
     "description": "Zariman Cycle title",
     "type": "text",
@@ -346,7 +346,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "warframeNewsTitle": "News",
+  "warframeNewsTitle": "새로운 소식",
   "@warframeNewsTitle": {
     "description": "Main Title for Warframe news page",
     "type": "text",
@@ -528,7 +528,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "homePageTitle": "Home",
+  "homePageTitle": "홈",
   "@homePageTitle": {
     "description": "Displayes a link to Navis's homepage",
     "type": "text",
@@ -708,7 +708,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "criticalChanceTitle": "Critical Chance",
+  "criticalChanceTitle": "치명타 확률",
   "@criticalChanceTitle": {
     "description": "Weapon crictical chance",
     "type": "text",
@@ -900,7 +900,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "modLevelLabel": "Level {rank}",
+  "modLevelLabel": "레벨 {rank}",
   "@modLevelLabel": {
     "description": "The label shown to users as they slide the mod slider",
     "type": "text",
@@ -908,61 +908,61 @@
       "rank": {}
     }
   },
-  "codexHint": "Type what you're looking for into the search bar above!",
+  "codexHint": "찾고 있는 걸 상단의 검색창에 입력해주세요!",
   "@codexHint": {
     "description": "Codex description when a user enters the codex or when the search bar is empty",
     "type": "text",
     "placeholder": {}
   },
-  "codexNoResults": "No results",
+  "codexNoResults": "결과 없음",
   "@codexNoResults": {
     "description": "Displayed when a search result in codex returns empty",
     "type": "text",
     "placeholder": {}
   },
-  "codexVaultedLabel": "Vaulted",
+  "codexVaultedLabel": "볼트에 들어감",
   "@codexVaultedLabel": {
     "description": "A label shown in codex items to detenote items that are vaulted",
     "type": "text",
     "placeholder": {}
   },
-  "exploreTitle": "Explore",
+  "exploreTitle": "탐색",
   "@exploreTitle": {
     "description": "Title for explore page",
     "type": "text",
     "placeholder": {}
   },
-  "constructionProgressTitle": "Construction Progress",
+  "constructionProgressTitle": "건설 진행도",
   "@constructionProgressTitle": {
     "description": "Title for invasion constrcution progress",
     "type": "text",
     "placeholder": {}
   },
-  "synthTargetTitle": "SynthTargets",
+  "synthTargetTitle": "신디시스 목표",
   "@synthTargetTitle": {
     "description": "Title for synthtargets.",
     "type": "text",
     "placeholder": {}
   },
-  "archonHuntTitle": "Archon Hunt",
+  "archonHuntTitle": "집정관 사냥",
   "@archonHuntTitle": {
     "description": "Title for archon hunt notification toggle.",
     "type": "text",
     "placeholder": {}
   },
-  "archonHuntDescription": "Archon hunt reset notification.",
+  "archonHuntDescription": "집정관 사냥 초기화 알림.",
   "@archonHuntDescription": {
     "description": "Description for archon hunt notification toggle.",
     "type": "text",
     "placeholder": {}
   },
-  "allFissuresButton": "All",
+  "allFissuresButton": "모두",
   "@allFissuresButton": {
     "description": "Button label for all fissures",
     "type": "text",
     "placeholder": {}
   },
-  "voidStormFissuresButton": "Void Storms",
+  "voidStormFissuresButton": "보이드 폭풍",
   "@voidStormFissuresButton": {
     "description": "Button label for void storm fissures",
     "type": "text",
