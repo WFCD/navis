@@ -940,19 +940,31 @@
   },
   "synthTargetTitle": "SynthTargets",
   "@synthTargetTitle": {
-    "description": "Title for synthtargets",
+    "description": "Title for synthtargets.",
     "type": "text",
     "placeholder": {}
   },
-  "enableBetaFeaturesTitle": "Enable beta features",
-  "@enableBetaFeaturesTitle": {
-    "description": "Title for beta feature enabler",
+  "archonHuntTitle": "Archon Hunt",
+  "@archonHuntTitle": {
+    "description": "Title for archon hunt notification toggle.",
     "type": "text",
     "placeholder": {}
   },
-  "enableBetaFeaturesDescription": "Enable API endpoints that are still in development.",
-  "@enableBetaFeaturesDescription": {
-    "description": "Description for beta feature enabler",
+  "archonHuntDescription": "Archon hunt reset notification.",
+  "@archonHuntDescription": {
+    "description": "Description for archon hunt notification toggle.",
+    "type": "text",
+    "placeholder": {}
+  },
+  "allFissuresButton": "All",
+  "@allFissuresButton": {
+    "description": "Button label for all fissures",
+    "type": "text",
+    "placeholder": {}
+  },
+  "voidStormFissuresButton": "Void Storms",
+  "@voidStormFissuresButton": {
+    "description": "Button label for void storm fissures",
     "type": "text",
     "placeholder": {}
   }
