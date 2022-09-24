@@ -47,6 +47,27 @@ class FeedView extends StatelessWidget {
     }
   }
 
+  List<Widget> _headerSliverBuilder(BuildContext context) {
+    final colorScheme = context.theme.colorScheme;
+
+    return <Widget>[
+      SliverOverlapAbsorber(
+        handle: NestedScrollView.sliverOverlapAbsorberHandleFor(context),
+        sliver: SliverTopbar(
+          pinned: true,
+          child: TabBar(
+            indicatorColor: context.theme.isDark
+                ? colorScheme.primary
+                : colorScheme.secondary,
+            tabs: Tabs.values
+                .map((t) => Tab(text: _getTabLocale(context, t)))
+                .toList(),
+          ),
+        ),
+      ),
+    ];
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocListener<SolsystemCubit, SolsystemState>(
@@ -54,25 +75,7 @@ class FeedView extends StatelessWidget {
       child: DefaultTabController(
         length: Tabs.values.length,
         child: NestedScrollView(
-          headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
-            return <Widget>[
-              SliverOverlapAbsorber(
-                handle:
-                    NestedScrollView.sliverOverlapAbsorberHandleFor(context),
-                sliver: SliverTopbar(
-                  pinned: true,
-                  child: TabBar(
-                    indicatorColor: context.theme.brightness.isDark
-                        ? context.theme.colorScheme.primary
-                        : context.theme.colorScheme.secondary,
-                    tabs: Tabs.values
-                        .map((t) => Tab(text: _getTabLocale(context, t)))
-                        .toList(),
-                  ),
-                ),
-              )
-            ];
-          },
+          headerSliverBuilder: (context, _) => _headerSliverBuilder(context),
           body: TabBarView(
             children: Tabs.values.map((e) => _TabView(tab: e)).toList(),
           ),
@@ -119,7 +122,7 @@ class _TabView extends StatelessWidget {
                     }
                   }(),
                 ),
-              )
+              ),
             ],
           );
         },

@@ -21,12 +21,9 @@ class BackgroundImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        final height = constraints.maxHeight;
-
         if (imageUrl == null) {
           return ImageContainer(
             imageProvider: _derelict,
-            height: height,
             padding: padding,
             child: const SizedBox(),
           );
@@ -34,12 +31,11 @@ class BackgroundImage extends StatelessWidget {
 
         return CachedNetworkImage(
           imageUrl: imageUrl!,
-          height: height,
+          // height: height,
           width: constraints.maxWidth,
           imageBuilder: (context, imageProvider) {
             return ImageContainer(
               imageProvider: imageProvider,
-              height: height,
               padding: padding,
               child: child,
             );
@@ -47,7 +43,6 @@ class BackgroundImage extends StatelessWidget {
           placeholder: (context, url) {
             return ImageContainer(
               imageProvider: _derelict,
-              height: height,
               padding: padding,
               child: child,
             );
@@ -55,7 +50,6 @@ class BackgroundImage extends StatelessWidget {
           errorWidget: (context, url, dynamic error) {
             return ImageContainer(
               imageProvider: _derelict,
-              height: height,
               padding: padding,
               child: child,
             );
@@ -70,13 +64,12 @@ class ImageContainer extends StatelessWidget {
   const ImageContainer({
     Key? key,
     required this.imageProvider,
-    required this.height,
     required this.padding,
     required this.child,
   }) : super(key: key);
 
   final ImageProvider imageProvider;
-  final double? height;
+
   final EdgeInsetsGeometry padding;
   final Widget child;
 
@@ -85,7 +78,6 @@ class ImageContainer extends StatelessWidget {
     return Theme(
       data: NavisTheme.dark,
       child: Container(
-        height: height,
         decoration: BoxDecoration(
           image: DecorationImage(
             image: imageProvider,

@@ -13,9 +13,7 @@ class CustomNavigationBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return NavigationBar(
-      onDestinationSelected: (i) {
-        _onTap(context, NavigationEvent.values[i]);
-      },
+      onDestinationSelected: (i) => _onTap(context, NavigationEvent.values[i]),
       selectedIndex: NavigationCubit.navigationMap.values
           .toList()
           .indexOf(context.watch<NavigationCubit>().state),
@@ -35,7 +33,7 @@ class CustomNavigationBar extends StatelessWidget {
         NavigationDestination(
           icon: const Icon(Icons.explore_rounded),
           label: context.l10n.synthTargetTitle,
-        )
+        ),
       ],
     );
   }

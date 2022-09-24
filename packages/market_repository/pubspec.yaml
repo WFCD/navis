@@ -9,7 +9,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  hive: 2.1.0
+  hive: 2.2.3
   market_client:
     git:
       url: https://github.com/SlayerOrnstein/market_client.git
@@ -19,9 +19,8 @@ dependencies:
   wfcd_client:
     git:
       url: https://github.com/SlayerOrnstein/wfcd_client.git
-      ref: v3.9.6
+      ref: v3.10.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  very_good_analysis: 2.4.0

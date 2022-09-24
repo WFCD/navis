@@ -8,16 +8,19 @@ environment:
 
 dependencies:
   black_hole_flutter: ^0.3.5
-  cached_network_image: 3.2.0
+  cached_network_image: 3.2.2
   flutter:
     sdk: flutter
   flutter_web_browser: 0.17.1
   html: 0.15.0
+  wfcd_client:
+    git:
+      url: https://github.com/SlayerOrnstein/wfcd_client.git
+      ref: v3.10.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  very_good_analysis: 2.4.0
 
 flutter:
   fonts:

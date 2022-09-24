@@ -2,7 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:navis_ui/src/colors/colors.dart';
 import 'package:navis_ui/src/icons/icons.dart';
 
-enum Factions { grineer, corpus, corrupted, infestation, infested, unknown }
+enum Factions {
+  grineer,
+  corpus,
+  corrupted,
+  infestation,
+  infested,
+  narmer,
+  unknown
+}
 
 extension FactionsX on Factions {
   IconData get factionIcon {
@@ -17,6 +25,8 @@ extension FactionsX on Factions {
         return GenesisAssets.infested;
       case Factions.infested:
         return GenesisAssets.infested;
+      case Factions.narmer:
+        return GenesisAssets.narmer;
       case Factions.unknown:
         return GenesisAssets.sentient;
     }
@@ -35,6 +45,8 @@ extension FactionsX on Factions {
         return FactionIconColors.infested;
       case Factions.infested:
         return FactionIconColors.infested;
+      case Factions.narmer:
+        return FactionIconColors.corrupted;
       case Factions.unknown:
         return NavisColors.blue;
     }
@@ -53,6 +65,8 @@ extension FactionsX on Factions {
         return Colors.green;
       case Factions.infested:
         return Colors.green;
+      case Factions.narmer:
+        return Colors.yellow[300]!;
       case Factions.unknown:
         return NavisColors.blue;
     }

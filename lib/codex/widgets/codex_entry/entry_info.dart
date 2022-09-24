@@ -1,9 +1,10 @@
+import 'package:black_hole_flutter/black_hole_flutter.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis_ui/navis_ui.dart';
 
-double kMinExtent = (kToolbarHeight * 2) + 30;
+const kMinExtent = kToolbarHeight + kTextTabBarHeight;
 
 class BasicItemInfo extends SliverPersistentHeaderDelegate {
   const BasicItemInfo({
@@ -34,31 +35,32 @@ class BasicItemInfo extends SliverPersistentHeaderDelegate {
     double shrinkOffset,
     bool overlapsContent,
   ) {
+    final canvasColor = context.theme.canvasColor;
+
     return Container(
       height: expandedHeight,
-      color: Theme.of(context).canvasColor,
+      color: canvasColor,
       child: Stack(
         children: <Widget>[
           AppBar(
             elevation: 0,
-            backgroundColor: Theme.of(context).canvasColor,
-            iconTheme: Theme.of(context).iconTheme,
+            backgroundColor: canvasColor,
+            iconTheme: context.theme.iconTheme,
             title: isMod ? Text(name) : null,
             actions: [
               if (isVaulted ?? false)
                 TextButton(
                   style: ButtonStyle(
                     foregroundColor:
-                        MaterialStateProperty.all(Theme.of(context).errorColor),
+                        MaterialStateProperty.all(context.theme.errorColor),
                   ),
                   onPressed: null,
-                  child:
-                      Text(NavisLocalizations.of(context)!.codexVaultedLabel),
+                  child: Text(context.l10n.codexVaultedLabel),
                 ),
               TextButton(
                 style: ButtonStyle(
                   foregroundColor: MaterialStateProperty.all(
-                    Theme.of(context).textTheme.button?.color,
+                    context.theme.textTheme.button?.color,
                   ),
                 ),
                 onPressed: () => wikiaUrl?.launchLink(context),
@@ -78,7 +80,7 @@ class BasicItemInfo extends SliverPersistentHeaderDelegate {
               ),
             ),
           if (bottom != null)
-            Align(alignment: Alignment.bottomCenter, child: bottom)
+            Align(alignment: Alignment.bottomCenter, child: bottom),
         ],
       ),
     );
@@ -88,7 +90,7 @@ class BasicItemInfo extends SliverPersistentHeaderDelegate {
   double get maxExtent => expandedHeight;
 
   @override
-  double get minExtent => kMinExtent;
+  double get minExtent => kToolbarHeight + kTextTabBarHeight;
 
   @override
   bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) {
@@ -116,14 +118,22 @@ class _EntryInfoContent extends StatelessWidget {
   Widget build(BuildContext context) {
     const textAlign = TextAlign.center;
     final textTheme = Theme.of(context).textTheme;
+    final mediaQuerySize = MediaQuery.of(context).size;
+
+    final animatedContainerWidth = (mediaQuerySize.width / 100) * 95;
+    final animatedContainerHeight =
+        shrinkOffset > 0.0 ? 0.0 : (height / 100) * 90;
+
+    final imageContainerRadius = (mediaQuerySize.shortestSide / 100) * 8;
+    final descriptionBoxWidth = (mediaQuerySize.width / 100) * 95;
 
     return AnimatedOpacity(
       duration: kThemeAnimationDuration,
       opacity: 1 - (shrinkOffset / height),
       child: AnimatedContainer(
         duration: kThemeAnimationDuration,
-        width: (MediaQuery.of(context).size.width / 100) * 95,
-        height: shrinkOffset > 0.0 ? 0 : (height / 100) * 90,
+        width: animatedContainerWidth,
+        height: animatedContainerHeight,
         child: FittedBox(
           clipBehavior: Clip.hardEdge,
           child: Column(
@@ -136,8 +146,7 @@ class _EntryInfoContent extends StatelessWidget {
                   child: CircleAvatar(
                     backgroundImage: CachedNetworkImageProvider(imageUrl),
                     backgroundColor: Colors.grey,
-                    radius:
-                        (MediaQuery.of(context).size.shortestSide / 100) * 8,
+                    radius: imageContainerRadius,
                   ),
                 ),
               ),
@@ -147,13 +156,13 @@ class _EntryInfoContent extends StatelessWidget {
                 textAlign: textAlign,
               ),
               SizedBox(
-                width: (MediaQuery.of(context).size.width / 100) * 95,
+                width: descriptionBoxWidth,
                 child: Text(
                   description,
                   style: textTheme.caption,
                   textAlign: textAlign,
                 ),
-              )
+              ),
             ],
           ),
         ),

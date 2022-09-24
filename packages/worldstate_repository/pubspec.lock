@@ -98,7 +98,7 @@ packages:
       name: equatable
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.3"
+    version: "2.0.5"
   fake_async:
     dependency: transitive
     description:
@@ -162,7 +162,7 @@ packages:
       name: hive
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.1.0"
+    version: "2.2.3"
   html:
     dependency: transitive
     description:
@@ -176,7 +176,7 @@ packages:
       name: http
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.13.4"
+    version: "0.13.5"
   http_multi_server:
     dependency: transitive
     description:
@@ -211,7 +211,7 @@ packages:
       name: json_annotation
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.5.0"
+    version: "4.6.0"
   logging:
     dependency: transitive
     description:
@@ -588,13 +588,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.2"
-  very_good_analysis:
-    dependency: "direct dev"
-    description:
-      name: very_good_analysis
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.4.0"
   vm_service:
     dependency: transitive
     description:
@@ -627,11 +620,11 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: "v3.9.6"
-      resolved-ref: "3388566a1d1ddd9cc1aeef9e4f80b03687a9d4f0"
+      ref: "v3.10.1"
+      resolved-ref: f1910a88a23eeedff31a2659945a61b462768313
       url: "https://github.com/SlayerOrnstein/wfcd_client.git"
     source: git
-    version: "3.9.6"
+    version: "3.10.1"
   win32:
     dependency: transitive
     description:
@@ -654,5 +647,5 @@ packages:
     source: hosted
     version: "3.1.0"
 sdks:
-  dart: ">=2.17.0 <3.0.0"
+  dart: ">=2.18.0 <3.0.0"
   flutter: ">=2.8.0"

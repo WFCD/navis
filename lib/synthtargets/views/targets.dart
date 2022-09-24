@@ -14,16 +14,18 @@ class SynthTargetsView extends TraceableStatelessWidget {
       create: (_) => SynthtargetsCubit(
         RepositoryProvider.of<WorldstateRepository>(context),
       )..fetchSynthtargets(),
-      child: const SynthTargetsPage(),
+      child: const _SynthTargetsPage(),
     );
   }
 }
 
-class SynthTargetsPage extends StatelessWidget {
-  const SynthTargetsPage({super.key});
+class _SynthTargetsPage extends StatelessWidget {
+  const _SynthTargetsPage();
 
   @override
   Widget build(BuildContext context) {
+    const cacheExtent = 500.0;
+
     return RefreshIndicator(
       onRefresh: BlocProvider.of<SynthtargetsCubit>(context).fetchSynthtargets,
       child: BlocBuilder<SynthtargetsCubit, SynthtargetsState>(
@@ -32,7 +34,7 @@ class SynthTargetsPage extends StatelessWidget {
             final targets = state.targets;
 
             return ListView.builder(
-              cacheExtent: 500,
+              cacheExtent: cacheExtent,
               itemCount: targets.length,
               itemBuilder: (BuildContext context, int index) {
                 return TargetInfo(target: targets[index]);

@@ -24,7 +24,7 @@ jobs:
           distribution: temurin
           java-version: "11"
 
-      - uses: subosito/flutter-action@v2.6.2
+      - uses: subosito/flutter-action@v2.7.1
         with:
           channel: stable
           cache: true
@@ -86,7 +86,7 @@ jobs:
           mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
           cp $PP_PATH ~/Library/MobileDevice/Provisioning\ Profiles
 
-      - uses: subosito/flutter-action@v2.6.2
+      - uses: subosito/flutter-action@v2.7.1
         with:
           channel: stable
           cache: true

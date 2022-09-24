@@ -1,9 +1,9 @@
+import 'package:black_hole_flutter/black_hole_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis/worldstate/cubits/solsystem_cubit.dart';
 import 'package:navis_ui/navis_ui.dart';
-import 'package:user_settings/user_settings.dart';
 import 'package:wfcd_client/entities.dart';
 import 'package:wfcd_client/objects.dart';
 
@@ -11,7 +11,6 @@ class CycleCard extends StatelessWidget {
   const CycleCard({super.key});
 
   List<CycleEntry> _buildCycles(
-    UserSettingsNotifier settings,
     NavisLocalizations locale,
     Worldstate worldstate,
   ) {
@@ -19,22 +18,22 @@ class CycleCard extends StatelessWidget {
 
     const solCycle = <Icon>[
       Icon(Icons.brightness_7, color: Colors.amber, size: size),
-      Icon(Icons.brightness_3, color: Colors.blue, size: size)
+      Icon(Icons.brightness_3, color: Colors.blue, size: size),
     ];
 
     const tempCycle = <Icon>[
       Icon(Icons.sunny, color: Colors.red, size: size),
-      Icon(Icons.ac_unit, color: Colors.blue, size: size)
+      Icon(Icons.ac_unit, color: Colors.blue, size: size),
     ];
 
     final cambionCycle = <Widget>[
       ColoredContainer.text(text: 'Fass'),
-      ColoredContainer.text(text: 'Vome')
+      ColoredContainer.text(text: 'Vome'),
     ];
 
     final zarimanCycle = <Widget>[
       const FactionIcon(name: 'Corpus'),
-      const FactionIcon(name: 'Grineer')
+      const FactionIcon(name: 'Grineer'),
     ];
 
     return <CycleEntry>[
@@ -58,12 +57,11 @@ class CycleCard extends StatelessWidget {
         states: cambionCycle,
         cycle: worldstate.cetusCycle,
       ),
-      if (settings.enableBeta)
-        CycleEntry(
-          name: locale.zarimanCycleTitle,
-          cycle: worldstate.zarimanCycle,
-          states: zarimanCycle,
-        )
+      CycleEntry(
+        name: locale.zarimanCycleTitle,
+        cycle: worldstate.zarimanCycle,
+        states: zarimanCycle,
+      ),
     ];
   }
 
@@ -74,13 +72,14 @@ class CycleCard extends StatelessWidget {
 
       return p.worldstate.earthCycle.expiry != n.worldstate.earthCycle.expiry ||
           p.worldstate.cetusCycle.expiry != n.worldstate.cetusCycle.expiry ||
-          p.worldstate.vallisCycle.expiry != n.worldstate.vallisCycle.expiry ||
-          p.worldstate.cetusCycle.expiry != n.worldstate.cetusCycle.expiry;
-    } else if (next is SystemError) {
-      return false;
-    } else {
+          p.worldstate.vallisCycle.expiry != n.worldstate.vallisCycle.expiry;
+    }
+
+    if (next is SystemError) {
       return false;
     }
+
+    return false;
   }
 
   @override
@@ -88,16 +87,13 @@ class CycleCard extends StatelessWidget {
     return BlocBuilder<SolsystemCubit, SolsystemState>(
       buildWhen: _buildWhen,
       builder: (context, state) {
-        final cycles = _buildCycles(
-          context.watch<UserSettingsNotifier>(),
-          NavisLocalizations.of(context)!,
-          (state as SolState).worldstate,
-        );
+        final cycles =
+            _buildCycles(context.l10n, (state as SolState).worldstate);
 
         return AppCard(
           child: Column(
             children: <Widget>[
-              for (final cycle in cycles) CycleWidget(entry: cycle),
+              for (final cycle in cycles) _CycleWidget(entry: cycle),
             ],
           ),
         );
@@ -118,29 +114,32 @@ class CycleEntry {
   final CycleObject cycle;
 }
 
-class CycleWidget extends StatelessWidget {
-  const CycleWidget({super.key, required this.entry});
+class _CycleWidget extends StatelessWidget {
+  const _CycleWidget({required this.entry});
 
   final CycleEntry entry;
 
   @override
   Widget build(BuildContext context) {
-    final textTheme = Theme.of(context).textTheme;
+    // Will default to DateTime.now() under the hood.
+    // ignore: avoid-non-null-assertion
+    final expiry = entry.cycle.expiry!;
 
     return ListTile(
       key: ValueKey(entry.name),
       title: Text(
         entry.name,
-        style: textTheme.subtitle1?.copyWith(fontWeight: FontWeight.w600),
+        style:
+            context.textTheme.subtitle1?.copyWith(fontWeight: FontWeight.w600),
       ),
       trailing: Row(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          if (entry.cycle.getStateBool) entry.states[0] else entry.states[1],
+          if (entry.cycle.getStateBool) entry.states.first else entry.states[1],
           SizedBoxSpacer.spacerWidth6,
           CountdownTimer(
-            tooltip: context.l10n.countdownTooltip(entry.cycle.expiry!),
-            expiry: entry.cycle.expiry!,
+            tooltip: context.l10n.countdownTooltip(expiry),
+            expiry: expiry,
           ),
         ],
       ),

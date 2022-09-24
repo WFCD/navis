@@ -1,3 +1,5 @@
+// We actually want the same color and elevation for containers.
+// ignore_for_file: no-equal-arguments
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -17,53 +19,56 @@ class CodexSearchView extends TraceableStatelessWidget {
     return BlocProvider(
       create: (_) =>
           SearchBloc(RepositoryProvider.of<WorldstateRepository>(context)),
-      child: const CodexSearch(),
+      child: const _CodexSearch(),
     );
   }
 }
 
-class CodexSearch extends StatelessWidget {
-  const CodexSearch({super.key});
+class _CodexSearch extends StatelessWidget {
+  const _CodexSearch();
+
+  List<Widget> _headerSliverBuilder(BuildContext context) {
+    return <Widget>[
+      SliverOverlapAbsorber(
+        handle: NestedScrollView.sliverOverlapAbsorberHandleFor(context),
+        sliver: const SliverTopbar(
+          floating: true,
+          snap: true,
+          child: CodexTextEditior(),
+        ),
+      ),
+    ];
+  }
 
   @override
   Widget build(BuildContext context) {
     const openContainerColor = Colors.transparent;
     const openContainerElevation = 0.0;
+    const cacheExtent = 250.0;
 
-    final l10n = NavisLocalizations.of(context)!;
+    final l10n = context.l10n;
 
     return NestedScrollView(
       floatHeaderSlivers: true,
-      headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
-        return <Widget>[
-          SliverOverlapAbsorber(
-            handle: NestedScrollView.sliverOverlapAbsorberHandleFor(context),
-            sliver: const SliverTopbar(
-              floating: true,
-              snap: true,
-              child: CodexTextEditior(),
-            ),
-          )
-        ];
-      },
+      headerSliverBuilder: (context, _) => _headerSliverBuilder(context),
       body: BlocBuilder<SearchBloc, SearchState>(
         builder: (context, state) {
           if (state is CodexSuccessfulSearch && state.results.isNotEmpty) {
             return ListView.builder(
               itemCount: state.results.length,
-              cacheExtent: 250,
+              cacheExtent: cacheExtent,
               itemBuilder: (BuildContext context, int index) {
                 return OpenContainer(
                   openColor: openContainerColor,
-                  closedColor: openContainerColor,
                   openElevation: openContainerElevation,
+                  closedColor: openContainerColor,
                   closedElevation: openContainerElevation,
                   transitionType: ContainerTransitionType.fadeThrough,
                   openBuilder: (_, __) {
-                    return CodexEntry(item: state.results[index]!);
+                    return CodexEntry(item: state.results[index]);
                   },
                   closedBuilder: (_, __) {
-                    return CodexResult(item: state.results[index]!);
+                    return CodexResult(item: state.results[index]);
                   },
                 );
               },

@@ -14,6 +14,8 @@ class OrbiterNewsWidget extends StatelessWidget {
     return InkWell(
       onTap: () => news.link.launchLink(context),
       child: SizedBox(
+        // It's what worked for the style.
+        // ignore: no-magic-number
         height: 200,
         child: Card(
           child: BackgroundImage(
@@ -22,44 +24,14 @@ class OrbiterNewsWidget extends StatelessWidget {
               title: Text(
                 news.translations[currentLocale] ?? news.message,
                 overflow: TextOverflow.ellipsis,
-                // style: textTheme.bodyText1?.copyWith(fontSize: 16.0),
               ),
               subtitle: Text(
                 MaterialLocalizations.of(context)
                     .formatFullDate(news.date.toLocal()),
-                // style: textTheme.caption,
               ),
             ),
           ),
         ),
-      ),
-    );
-  }
-}
-
-class NewsInformation extends StatelessWidget {
-  const NewsInformation({
-    super.key,
-    required this.timestamp,
-    required this.message,
-  });
-
-  final String timestamp, message;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 100,
-      width: MediaQuery.of(context).size.shortestSide,
-      alignment: Alignment.center,
-      color: Colors.black.withOpacity(.4),
-      child: Text(
-        '[$timestamp ago] $message',
-        textAlign: TextAlign.center,
-        style: Theme.of(context)
-            .textTheme
-            .headline6
-            ?.copyWith(color: Colors.white, fontSize: 14),
       ),
     );
   }

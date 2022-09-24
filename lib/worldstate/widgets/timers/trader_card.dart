@@ -16,7 +16,9 @@ class TraderCard extends StatelessWidget {
         final l10n = context.l10n;
 
         final date = MaterialLocalizations.of(context).formatFullDate(
-          trader.active ? trader.expiry! : trader.activation!,
+          trader.active
+              ? trader.expiry ?? DateTime.now()
+              : trader.activation ?? DateTime.now(),
         );
         final status = trader.active ? l10n.baroLeavesOn : l10n.baroArrivesOn;
 
@@ -29,13 +31,14 @@ class TraderCard extends StatelessWidget {
             padding: EdgeInsets.zero,
             color: const Color(0xFF82598b),
             child: SizedBox(
+              // It's what worked for the style.
+              // ignore: no-magic-number
               height: 150,
               child: ImageContainer(
                 imageProvider: const AssetImage(
                   'assets/baro_banner.webp',
                   package: 'navis_ui',
                 ),
-                height: 150,
                 padding: EdgeInsets.zero,
                 child: ListTile(
                   title: Text(l10n.baroTitle),
@@ -47,6 +50,8 @@ class TraderCard extends StatelessWidget {
                   trailing: CountdownTimer(
                     tooltip: l10n.countdownTooltip(date),
                     color: const Color(0xFF82598b),
+                    // Will default to DateTime.now() under the hood.
+                    // ignore: avoid-non-null-assertion
                     expiry: trader.active ? trader.expiry! : trader.activation!,
                   ),
                 ),

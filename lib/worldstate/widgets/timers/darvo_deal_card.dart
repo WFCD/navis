@@ -24,15 +24,15 @@ class DarvoDealCard extends StatelessWidget {
         return AppCard(
           title: context.l10n.darvoNotificationTitle,
           padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 4),
-          child: DealWidget(deal: dailyDeals.first),
+          child: _DealWidget(deal: dailyDeals.first),
         );
       },
     );
   }
 }
 
-class DealWidget extends StatefulWidget {
-  const DealWidget({super.key, required this.deal});
+class _DealWidget extends StatefulWidget {
+  const _DealWidget({required this.deal});
 
   final DarvoDeal deal;
 
@@ -40,16 +40,21 @@ class DealWidget extends StatefulWidget {
   _DealWidgetState createState() => _DealWidgetState();
 }
 
-class _DealWidgetState extends State<DealWidget> {
+class _DealWidgetState extends State<_DealWidget> {
   @override
   void initState() {
     super.initState();
     BlocProvider.of<DarvodealCubit>(context)
-        .fetchDeal(widget.deal.id!, widget.deal.item);
+        .fetchDeal(widget.deal.id ?? '', widget.deal.item);
   }
 
   @override
   Widget build(BuildContext context) {
+    // Will default to DateTime.now() under the hood.
+    // ignore: avoid-non-null-assertion
+    final expiry = widget.deal.expiry!;
+    final item = widget.deal.item;
+    final total = widget.deal.total;
     final saleInfo = Theme.of(context)
         .textTheme
         .subtitle2
@@ -69,6 +74,8 @@ class _DealWidgetState extends State<DealWidget> {
                     leading: CachedNetworkImage(
                       imageUrl: state.item.imageUrl,
                       fit: BoxFit.contain,
+                      // It's what worked for the style.
+                      // ignore: no-magic-number
                       width: 50,
                       errorWidget: (context, url, dynamic object) {
                         return Icon(
@@ -80,7 +87,7 @@ class _DealWidgetState extends State<DealWidget> {
                         child: CircularProgressIndicator(),
                       ),
                     ),
-                    title: Text(widget.deal.item),
+                    title: Text(item),
                     subtitle: Text(
                       state.item.description?.parseHtmlString() ?? '',
                     ),
@@ -88,18 +95,21 @@ class _DealWidgetState extends State<DealWidget> {
                 SizedBoxSpacer.spacerHeight16,
                 Wrap(
                   crossAxisAlignment: WrapCrossAlignment.center,
+                  // It's what worked for the style.
+                  // ignore: no-magic-number
                   spacing: 10,
+                  // It's what worked for the style.
+                  // ignore: no-magic-number
                   runSpacing: 5,
                   children: <Widget>[
                     if (state is! DarvoDealLoaded)
-                      ColoredContainer.text(text: widget.deal.item),
+                      ColoredContainer.text(text: item),
                     ColoredContainer.text(
                       text: '${widget.deal.salePrice}p',
                       style: saleInfo,
                     ),
                     ColoredContainer.text(
-                      text:
-                          '${widget.deal.total - widget.deal.sold} / ${widget.deal.total}',
+                      text: '${total - widget.deal.sold} / $total',
                       style: saleInfo,
                     ),
                     ColoredContainer.text(
@@ -107,9 +117,8 @@ class _DealWidgetState extends State<DealWidget> {
                       style: saleInfo,
                     ),
                     CountdownTimer(
-                      tooltip:
-                          context.l10n.countdownTooltip(widget.deal.expiry!),
-                      expiry: widget.deal.expiry!,
+                      tooltip: context.l10n.countdownTooltip(expiry),
+                      expiry: expiry,
                       style: saleInfo,
                     ),
                   ],
@@ -129,9 +138,9 @@ class _DealWidgetState extends State<DealWidget> {
                           child: Text(context.l10n.seeWikia),
                         ),
                     ],
-                  )
+                  ),
               ],
-            )
+            ),
           ],
         );
       },

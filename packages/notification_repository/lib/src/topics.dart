@@ -32,6 +32,7 @@ class Topics {
   static const Topic baroKey = Topic('baro');
   static const Topic darvoKey = Topic('darvo');
   static const Topic sortiesKey = Topic('sorties');
+  static const Topic archonHuntKey = Topic('archon_hunt');
   static const Topic sentientOutpost = Topic('sentient_outpost');
 
   static const Topic newsPrimeKey = Topic('news_prime');
