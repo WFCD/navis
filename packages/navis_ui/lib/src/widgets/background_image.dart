@@ -19,41 +19,37 @@ class BackgroundImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        if (imageUrl == null) {
-          return ImageContainer(
-            imageProvider: _derelict,
-            padding: padding,
-            child: const SizedBox(),
-          );
-        }
+    if (imageUrl == null) {
+      return ImageContainer(
+        imageProvider: _derelict,
+        padding: padding,
+        child: const SizedBox(),
+      );
+    }
 
-        return CachedNetworkImage(
-          imageUrl: imageUrl!,
-          // height: height,
-          width: constraints.maxWidth,
-          imageBuilder: (context, imageProvider) {
-            return ImageContainer(
-              imageProvider: imageProvider,
-              padding: padding,
-              child: child,
-            );
-          },
-          placeholder: (context, url) {
-            return ImageContainer(
-              imageProvider: _derelict,
-              padding: padding,
-              child: child,
-            );
-          },
-          errorWidget: (context, url, dynamic error) {
-            return ImageContainer(
-              imageProvider: _derelict,
-              padding: padding,
-              child: child,
-            );
-          },
+    return CachedNetworkImage(
+      imageUrl: imageUrl!,
+      height: 350,
+      width: 150,
+      imageBuilder: (context, imageProvider) {
+        return ImageContainer(
+          imageProvider: imageProvider,
+          padding: padding,
+          child: child,
+        );
+      },
+      placeholder: (context, url) {
+        return ImageContainer(
+          imageProvider: _derelict,
+          padding: padding,
+          child: child,
+        );
+      },
+      errorWidget: (context, url, dynamic error) {
+        return ImageContainer(
+          imageProvider: _derelict,
+          padding: padding,
+          child: child,
         );
       },
     );
