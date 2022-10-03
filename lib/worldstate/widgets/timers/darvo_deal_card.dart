@@ -64,7 +64,6 @@ class _DealWidgetState extends State<_DealWidget> {
       builder: (context, state) {
         return Column(
           mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -93,35 +92,39 @@ class _DealWidgetState extends State<_DealWidget> {
                     ),
                   ),
                 SizedBoxSpacer.spacerHeight16,
-                Wrap(
-                  crossAxisAlignment: WrapCrossAlignment.center,
-                  // It's what worked for the style.
-                  // ignore: no-magic-number
-                  spacing: 10,
-                  // It's what worked for the style.
-                  // ignore: no-magic-number
-                  runSpacing: 5,
-                  children: <Widget>[
-                    if (state is! DarvoDealLoaded)
-                      ColoredContainer.text(text: item),
-                    ColoredContainer.text(
-                      text: '${widget.deal.salePrice}p',
-                      style: saleInfo,
-                    ),
-                    ColoredContainer.text(
-                      text: '${total - widget.deal.sold} / $total',
-                      style: saleInfo,
-                    ),
-                    ColoredContainer.text(
-                      text: '${widget.deal.discount}% OFF',
-                      style: saleInfo,
-                    ),
-                    CountdownTimer(
-                      tooltip: context.l10n.countdownTooltip(expiry),
-                      expiry: expiry,
-                      style: saleInfo,
-                    ),
-                  ],
+                Center(
+                  child: Wrap(
+                    alignment: WrapAlignment.center,
+
+                    crossAxisAlignment: WrapCrossAlignment.center,
+                    // It's what worked for the style.
+                    // ignore: no-magic-number
+                    spacing: 10,
+                    // It's what worked for the style.
+                    // ignore: no-magic-number
+                    runSpacing: 5,
+                    children: <Widget>[
+                      if (state is! DarvoDealLoaded)
+                        ColoredContainer.text(text: item),
+                      ColoredContainer.text(
+                        text: '${widget.deal.salePrice}p',
+                        style: saleInfo,
+                      ),
+                      ColoredContainer.text(
+                        text: '${total - widget.deal.sold} / $total',
+                        style: saleInfo,
+                      ),
+                      ColoredContainer.text(
+                        text: '${widget.deal.discount}% OFF',
+                        style: saleInfo,
+                      ),
+                      CountdownTimer(
+                        tooltip: context.l10n.countdownTooltip(expiry),
+                        expiry: expiry,
+                        style: saleInfo,
+                      ),
+                    ],
+                  ),
                 ),
                 if (state is DarvoDealLoaded)
                   ButtonBar(
