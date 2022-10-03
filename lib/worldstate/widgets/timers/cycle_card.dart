@@ -31,9 +31,9 @@ class CycleCard extends StatelessWidget {
       ColoredContainer.text(text: 'Vome'),
     ];
 
-    final zarimanCycle = <Widget>[
-      const FactionIcon(name: 'Corpus'),
-      const FactionIcon(name: 'Grineer'),
+    const zarimanCycle = <Widget>[
+      FactionIcon(name: 'Corpus'),
+      FactionIcon(name: 'Grineer'),
     ];
 
     return <CycleEntry>[
