@@ -15,7 +15,8 @@ class EventStatus extends StatelessWidget {
     required this.rewards,
   });
 
-  final String description, node;
+  final String description;
+  final String node;
   final String? tooltip;
   final double health;
   final DateTime expiry;

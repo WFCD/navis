@@ -161,7 +161,8 @@ class _MarketSellTrailing extends StatelessWidget {
     required this.price,
   });
 
-  final int quantity, price;
+  final int quantity;
+  final int price;
 
   @override
   Widget build(BuildContext context) {

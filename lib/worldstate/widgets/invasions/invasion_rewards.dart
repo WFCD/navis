@@ -10,7 +10,8 @@ class InvasionReward extends StatelessWidget {
     this.vsInfestation = false,
   });
 
-  final Faction attacker, defender;
+  final Faction attacker;
+  final Faction defender;
   final bool vsInfestation;
 
   @override

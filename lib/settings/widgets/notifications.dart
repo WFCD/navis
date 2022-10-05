@@ -94,7 +94,7 @@ class _FilterDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _options = List<SimpleTopics>.from(options)
+    final options = List<SimpleTopics>.from(this.options)
       ..sort((a, b) => a.title.compareTo(b.title));
 
     return NavisDialog(
@@ -103,7 +103,7 @@ class _FilterDialog extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            for (final t in _options)
+            for (final t in options)
               _NotificationCheckBox(
                 title: t.title,
                 topic: t.topic,

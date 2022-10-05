@@ -19,10 +19,10 @@ class Polarity extends StatelessWidget {
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
-    var _color = isDark ? Colors.white : null;
+    var color = isDark ? Colors.white : null;
 
     if (rarity != null) {
-      _color = () {
+      color = () {
         // Already being checked for null.
         // ignore: avoid-non-null-assertion
         switch (rarity!) {
@@ -42,7 +42,7 @@ class Polarity extends StatelessWidget {
       // This is what just worked for the style.
       // ignore: no-magic-number
       width: 20,
-      child: getPolarity(polarity, color: _color),
+      child: getPolarity(polarity, color: color),
     );
   }
 }

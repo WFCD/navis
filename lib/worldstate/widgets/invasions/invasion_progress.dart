@@ -9,7 +9,8 @@ class InvasionProgress extends StatelessWidget {
     required this.defendingFaction,
   });
 
-  final String attackingFaction, defendingFaction;
+  final String attackingFaction;
+  final String defendingFaction;
   final double progress;
 
   @override

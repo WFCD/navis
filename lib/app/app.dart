@@ -54,17 +54,17 @@ class _NavisAppState extends State<NavisApp> with WidgetsBindingObserver {
     final l10n = NavisLocalizations.of(context);
 
     ErrorWidget.builder = (FlutterErrorDetails error) {
-      Widget _error = NavisErrorWidget(
+      Widget errorWidget = NavisErrorWidget(
         title: l10n?.errorTitle ?? 'An application error has occurred',
         description: l10n?.errorDescription ?? 'There was unexpected error.',
         details: error,
       );
 
       if (widget is Scaffold || widget is Navigator) {
-        _error = Scaffold(body: Center(child: _error));
+        errorWidget = Scaffold(body: Center(child: errorWidget));
       }
 
-      return _error;
+      return errorWidget;
     };
 
     if (widget != null) return widget;
@@ -76,21 +76,23 @@ class _NavisAppState extends State<NavisApp> with WidgetsBindingObserver {
     Locale? locale,
     Iterable<Locale> supportedLocales,
   ) {
-    Locale? _locale;
+    Locale? newLocale;
 
     for (final supportedLocale in supportedLocales) {
       if (locale?.languageCode == supportedLocale.languageCode) {
-        _locale = supportedLocale;
+        newLocale = supportedLocale;
       }
     }
 
-    _locale ??= supportedLocales.firstWhere((e) => e.languageCode == 'en');
+    newLocale ??= supportedLocales.firstWhere((e) => e.languageCode == 'en');
 
-    if (context.read<UserSettingsNotifier>().language != _locale) {
-      context.read<UserSettingsNotifier>().setLanguage(_locale, notify: false);
+    if (context.read<UserSettingsNotifier>().language != newLocale) {
+      context
+          .read<UserSettingsNotifier>()
+          .setLanguage(newLocale, notify: false);
     }
 
-    return _locale;
+    return newLocale;
   }
 
   @override

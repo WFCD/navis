@@ -261,7 +261,7 @@ class NotificationTopics {
   }
 
   Iterable<SimpleTopics> get fissures sync* {
-    const _tiers = <String>['Lith', 'Meso', 'Neo', 'Axi', 'Requiem'];
+    const tiers = <String>['Lith', 'Meso', 'Neo', 'Axi', 'Requiem'];
     const missionTypes = <String>[
       'capture',
       'defense',
@@ -277,7 +277,7 @@ class NotificationTopics {
       'survival',
     ];
 
-    for (final tier in _tiers) {
+    for (final tier in tiers) {
       for (final objective in missionTypes) {
         final cleaned = objective.replaceAll('_', ' ');
 

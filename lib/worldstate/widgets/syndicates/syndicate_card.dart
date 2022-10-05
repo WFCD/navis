@@ -19,20 +19,22 @@ class SyndicateCard extends StatelessWidget {
           'to Syndicate.id instead, only one can be null but not both',
         );
 
-  final String? name, caption;
+  final String? name;
+  final String? caption;
   final Syndicate? syndicate;
   final Nightwave? nightwave;
 
   final void Function()? onTap;
 
   void _onTap(BuildContext context) {
-    final _syndicate = syndicateStringToEnum(syndicate?.id ?? name ?? '');
+    final syndicateEnum = syndicateStringToEnum(syndicate?.id ?? name ?? '');
 
-    if (_syndicate == Syndicates.nightwave) {
+    if (syndicateEnum == Syndicates.nightwave) {
       Navigator.of(context)
           .pushNamed(NightwavesPage.route, arguments: nightwave);
     } else {
-      Navigator.of(context).pushNamed(BountiesPage.route, arguments: syndicate);
+      Navigator.of(context)
+          .pushNamed(BountiesPage.route, arguments: syndicateEnum);
     }
   }
 

@@ -174,13 +174,27 @@ class ModFrame extends StatelessWidget {
     );
   }
 
-  final String image, name, stats, compatName, polarity, rarity;
+  final String image;
+
+  final String name;
+
+  final String stats;
+
+  final String compatName;
+
+  final String polarity;
+
+  final String rarity;
 
   final String? modSet;
 
   final String? wikiaUrl;
 
-  final int maxRank, rank, drain;
+  final int maxRank;
+
+  final int rank;
+
+  final int drain;
 
   final Image background;
 
@@ -446,7 +460,9 @@ class _ModDrescription extends StatelessWidget {
     required this.rarity,
   });
 
-  final String name, stats, rarity;
+  final String name;
+  final String stats;
+  final String rarity;
 
   @override
   Widget build(BuildContext context) {

@@ -82,27 +82,28 @@ class _StandingBadge extends StatelessWidget {
 class _NightwaveIcon extends StatelessWidget {
   const _NightwaveIcon({this.isElite = false, this.isDaily = false});
 
-  final bool isElite, isDaily;
+  final bool isElite;
+  final bool isDaily;
 
   @override
   Widget build(BuildContext context) {
-    const _kIconSize = 30.0;
+    const kIconSize = 30.0;
     Widget icon;
 
     if (isElite) {
       icon = const AppIcon(
         GenesisAssets.elite,
-        size: _kIconSize,
+        size: kIconSize,
       );
     } else if (isDaily) {
       icon = const AppIcon(
         GenesisAssets.daily,
-        size: _kIconSize,
+        size: kIconSize,
       );
     } else {
       icon = const AppIcon(
         GenesisAssets.weekly,
-        size: _kIconSize,
+        size: kIconSize,
       );
     }
 

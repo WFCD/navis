@@ -108,7 +108,8 @@ class _EntryInfoContent extends StatelessWidget {
     required this.description,
   });
 
-  final double shrinkOffset, height;
+  final double shrinkOffset;
+  final double height;
   final String uniqueName;
   final String imageUrl;
   final String name;

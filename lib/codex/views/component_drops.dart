@@ -59,7 +59,7 @@ class ComponentDrops extends StatelessWidget {
     const cacheExtent = 150.0;
     const densityThreshold = 10;
 
-    final _drops = List<Drop>.from(drops)
+    final drops = List<Drop>.from(this.drops)
       ..sort((a, b) {
         return ((b.chance ?? 0) * 100).compareTo((a.chance ?? 0) * 100);
       });
@@ -68,11 +68,11 @@ class ComponentDrops extends StatelessWidget {
       appBar: AppBar(),
       body: ListView.builder(
         cacheExtent: cacheExtent,
-        itemCount: _drops.length,
+        itemCount: drops.length,
         itemBuilder: (context, index) {
-          final dropName = _drops[index].location;
+          final dropName = drops[index].location;
           final percentage =
-              ((_drops[index].chance ?? 0) * 100).toStringAsFixed(2);
+              ((drops[index].chance ?? 0) * 100).toStringAsFixed(2);
 
           return ListTile(
             title: Text(dropName),
@@ -83,7 +83,7 @@ class ComponentDrops extends StatelessWidget {
                       context,
                       dropName.replaceFirst('Relic', '').trim(),
                     ),
-            dense: _drops.length > densityThreshold,
+            dense: drops.length > densityThreshold,
           );
         },
       ),
