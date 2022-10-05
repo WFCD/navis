@@ -33,8 +33,7 @@ class SyndicateCard extends StatelessWidget {
       Navigator.of(context)
           .pushNamed(NightwavesPage.route, arguments: nightwave);
     } else {
-      Navigator.of(context)
-          .pushNamed(BountiesPage.route, arguments: syndicateEnum);
+      Navigator.of(context).pushNamed(BountiesPage.route, arguments: syndicate);
     }
   }
 
