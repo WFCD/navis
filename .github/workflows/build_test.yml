@@ -153,7 +153,7 @@ jobs:
           architecture: x64 # optional, x64 or arm64
 
       - name: Build web app
-        run: flutter build web -t lib/main_dev.dart
+        run: flutter build web -t lib/main_dev.dart --base-href=/navis/
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1.0.4
