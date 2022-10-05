@@ -162,7 +162,6 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1.0.4
         with:
-          name: github-pages
           path: ${{ runner.temp }}/artifact.tar
 
       - name: Deploy to GitHub Pages
