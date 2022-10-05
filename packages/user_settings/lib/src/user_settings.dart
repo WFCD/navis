@@ -83,7 +83,7 @@ class UserSettings {
   bool get isOptOut => getToggle(MatomoTracker.kOptOut);
 
   /// Allows the user to opt in or out of anaylic tracking via Matomo
-  set isOptOut(bool value) => setToggle(MatomoTracker.kOptOut, value: value);
+  set isOptOut(bool value) => setToggle(MatomoTracker.kOptOut, value);
 
   /// Whether it's the first time the user has opened the app.
   bool get isFirstTime {
@@ -91,7 +91,7 @@ class UserSettings {
       return getToggle(SettingsKeys.isFirstTime);
     }
 
-    setToggle(SettingsKeys.isFirstTime, value: false);
+    setToggle(SettingsKeys.isFirstTime, false);
     return true;
   }
 
@@ -106,7 +106,7 @@ class UserSettings {
   /// Save a custom key-value in [UserSettings]
   ///
   /// Use [UserSettings.getToggle] to get your value later
-  void setToggle(String key, {required bool value}) {
+  void setToggle(String key, bool value) {
     _userSettingsBox.put(key, value);
   }
 

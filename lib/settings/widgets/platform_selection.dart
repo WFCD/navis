@@ -80,9 +80,9 @@ class _PlatformIconButton extends StatelessWidget {
   void _onPressed(BuildContext context) {
     context
       ..read<NotificationRepository>().unsubscribeFromPlatform(
-        context.read<UserSettingsNotifier>().platform,
+        context.read<UserSettingsCubit>().state.platform,
       )
-      ..read<UserSettingsNotifier>().setPlatform(platform)
+      ..read<UserSettingsCubit>().setPlatform(platform)
       ..read<NotificationRepository>().subscribeToPlatform(platform);
 
     BlocProvider.of<SolsystemCubit>(context).fetchWorldstate(forceUpdate: true);
@@ -91,8 +91,7 @@ class _PlatformIconButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = (MediaQuery.of(context).size.shortestSide / 100) * 8;
-    final currentPlatform = context
-        .select<UserSettingsNotifier, GamePlatforms>((value) => value.platform);
+    final currentPlatform = context.watch<UserSettingsCubit>().state.platform;
 
     return IconButton(
       tooltip: platformName,

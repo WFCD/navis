@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis/utils/notification_topic_filter.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:notification_repository/notification_repository.dart';
-import 'package:provider/provider.dart';
 import 'package:user_settings/user_settings.dart';
 
 class Notifications extends StatelessWidget {
@@ -38,7 +38,7 @@ class Notifications extends StatelessWidget {
 }
 
 void _onChanged(BuildContext context, Topic topic, bool value) {
-  context.read<UserSettingsNotifier>().setToggle(topic.name, value: value);
+  context.read<UserSettingsCubit>().state.setToggle(topic.name, value);
 
   if (value) {
     context.read<NotificationRepository>().subscribeToNotification(topic);
@@ -65,7 +65,7 @@ class _SimpleNotification extends StatelessWidget {
       // We're already checking for null.
       //ignore: avoid-non-null-assertion
       subtitle: description != null ? Text(description!) : null,
-      value: context.watch<UserSettingsNotifier>().getToggle(topic.name),
+      value: context.watch<UserSettingsCubit>().state.getToggle(topic.name),
       activeColor: Theme.of(context).colorScheme.secondary,
       onChanged: (b) => _onChanged(context, topic, b),
     );
@@ -84,8 +84,8 @@ class _FilterDialog extends StatelessWidget {
     return showDialog<void>(
       context: context,
       builder: (_) {
-        return ChangeNotifierProvider.value(
-          value: Provider.of<UserSettingsNotifier>(context),
+        return BlocProvider.value(
+          value: BlocProvider.of<UserSettingsCubit>(context),
           child: _FilterDialog(options: options),
         );
       },
@@ -108,7 +108,8 @@ class _FilterDialog extends StatelessWidget {
                 title: t.title,
                 topic: t.topic,
                 value: context
-                    .watch<UserSettingsNotifier>()
+                    .watch<UserSettingsCubit>()
+                    .state
                     .getToggle(t.topic.name),
               ),
           ],
