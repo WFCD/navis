@@ -153,7 +153,7 @@ jobs:
           flutter build web -t lib/main_dev.dart
           tar \
           --dereference --hard-dereference \
-          --directory build\web \
+          --directory build/web \
           -cvf "$RUNNER_TEMP/artifact.tar" \
           --exclude=.git \
           --exclude=.github \
