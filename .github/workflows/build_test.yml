@@ -132,6 +132,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
+      - name: Setup Pages
+        uses: actions/configure-pages@v2
+
       - name: Setup Firebase config
         env:
           FIREBASE_OPTIONS: ${{ secrets.FIREBASE_OPTIONS }}
@@ -147,10 +150,21 @@ jobs:
           architecture: x64 # optional, x64 or arm64
 
       - name: Build web app
-        run: flutter build web -t lib/main_dev.dart
+        run: |
+          flutter build web -t lib/main_dev.dart
+          tar \
+          --dereference --hard-dereference \
+          --directory build\web \
+          -cvf "$RUNNER_TEMP/artifact.tar" \
+          --exclude=.git \
+          --exclude=.github \
+          .
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v1.0.4
+        with:
+          name: github-pages
+          path: ${{ runner.temp }}/artifact.tar
 
       - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: build/web
+        uses: actions/deploy-pages@v1
