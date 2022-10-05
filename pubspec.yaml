@@ -7,7 +7,7 @@ environment:
   sdk: ">=2.18.0 <3.0.0"
 
 dependencies:
-  animations: ^2.0.5
+  animations: ^2.0.6
   black_hole_flutter: 0.3.5
   bloc: 8.1.0
   cached_network_image: 3.2.2
