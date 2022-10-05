@@ -1,0 +1,91 @@
+{
+  "project_info": {
+    "project_number": "806141072319",
+    "firebase_url": "https://navis-209719.firebaseio.com",
+    "project_id": "navis-209719",
+    "storage_bucket": "navis-209719.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:806141072319:android:951a2e6ccce8304c78870a",
+        "android_client_info": {
+          "package_name": "com.cephalon.navis"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "806141072319-h7n9d5lu0hino2ejtbmm3aieph30jkoh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.cephalon.navis",
+            "certificate_hash": "cde468379e1483a98ae62e8de816b09988508895"
+          }
+        },
+        {
+          "client_id": "806141072319-n4fou7lr4k3hrd0hnb3vn549um1a6spc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBJm2OmYR-UIvXmSG5Lo0bEMa8F_8W7yuo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "806141072319-n4fou7lr4k3hrd0hnb3vn549um1a6spc.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "806141072319-8ndqkfb3pqq7ler31h9n86o2u35g29kf.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.cephalon.navis"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:806141072319:android:9c583ecbd12e111578870a",
+        "android_client_info": {
+          "package_name": "com.cephalon.navis.dev"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "806141072319-n4fou7lr4k3hrd0hnb3vn549um1a6spc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBJm2OmYR-UIvXmSG5Lo0bEMa8F_8W7yuo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "806141072319-n4fou7lr4k3hrd0hnb3vn549um1a6spc.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "806141072319-8ndqkfb3pqq7ler31h9n86o2u35g29kf.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.cephalon.navis"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

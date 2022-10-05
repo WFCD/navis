@@ -2,10 +2,11 @@ import 'dart:async';
 import 'dart:developer';
 
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
-import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:market_repository/market_repository.dart';
 import 'package:navis/app/app.dart';
@@ -31,23 +32,24 @@ class AppBlocObserver extends BlocObserver {
 }
 
 Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
-  WidgetsFlutterBinding.ensureInitialized();
+  await Hive.initFlutter();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(statusBarColor: Colors.transparent),
   );
 
-  final appDir = await getApplicationDocumentsDirectory();
-  final temp = await getTemporaryDirectory();
+  if (!kIsWeb) await FlutterWebBrowser.warmup();
 
-  Hive.init(appDir.path);
+  final appDir = kIsWeb
+      ? HydratedStorage.webStorageDirectory
+      : await getApplicationDocumentsDirectory();
+
   final storage = await HydratedStorage.build(storageDirectory: appDir);
 
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  await FlutterWebBrowser.warmup();
-
   final usersettings = await UserSettings.initSettings(appDir.path);
-  final warframestateCache = await WarframestatCache.initCache(temp.path);
-  final marketCache = await MarketCache.initCache(temp.path);
+  final warframestateCache = await WarframestatCache.initCache(appDir.path);
+  final marketCache = await MarketCache.initCache(appDir.path);
   final notificationRepo = NotificationRepository();
 
   final worldstateRepo = WorldstateRepository(
