@@ -1,6 +1,6 @@
 name: notification_repository
 description: A Very Good Project created by Very Good CLI.
-version: 1.1.0
+version: 1.2.0
 publish_to: none
 
 environment:
