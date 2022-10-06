@@ -4,15 +4,17 @@ import 'dart:developer';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
 import 'package:hive/hive.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:market_repository/market_repository.dart';
-import 'package:navis/app/app.dart';
 import 'package:navis/firebase_options.dart';
-import 'package:navis/worldstate/worldstate.dart';
+import 'package:navis/worldstate/cubits/darvodeal_cubit.dart';
+import 'package:navis/worldstate/cubits/solsystem_cubit.dart';
 import 'package:notification_repository/notification_repository.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:provider/provider.dart';
 import 'package:user_settings/user_settings.dart';
 import 'package:worldstate_repository/worldstate_repository.dart';
 
@@ -37,19 +39,33 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
   );
 
   final appDir = await getApplicationDocumentsDirectory();
-  final temp = await getTemporaryDirectory();
-
   Hive.init(appDir.path);
   final storage = await HydratedStorage.build(storageDirectory: appDir);
 
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await FlutterWebBrowser.warmup();
 
+  final app = await _startProviders(await builder());
+  HydratedBlocOverrides.runZoned(
+    () => runApp(app),
+    storage: storage,
+    blocObserver: AppBlocObserver(),
+  );
+}
+
+// Only runs at the start of the app in order to start services, will not
+// rebuild after the app starts.
+// ignore: avoid-returning-widgets
+Future<Widget> _startProviders(Widget app) async {
+  final appDir = await getApplicationDocumentsDirectory();
+  final temp = await getTemporaryDirectory();
+
   final usersettings = await UserSettings.initSettings(appDir.path);
   final warframestateCache = await WarframestatCache.initCache(temp.path);
   final marketCache = await MarketCache.initCache(temp.path);
-  final notificationRepo = NotificationRepository();
 
+  final usprovider = UserSettingsNotifier(usersettings);
+  final notificationRepo = NotificationRepository();
   final worldstateRepo = WorldstateRepository(
     settings: usersettings,
     cache: warframestateCache,
@@ -59,25 +75,23 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
     cache: marketCache,
   );
 
-  await HydratedBlocOverrides.runZoned(
-    () async {
-      runApp(
-        UserSettingsWidget(
-          settings: usersettings,
-          child: DependenciesProvider(
-            notifications: notificationRepo,
-            worldstateRepository: worldstateRepo,
-            marketRepository: marketRepo,
-            child: BlocProviders(
-              solsystemCubit: SolsystemCubit(worldstateRepo),
-              darvodealCubit: DarvodealCubit(worldstateRepo),
-              child: await builder(),
-            ),
+  return ChangeNotifierProvider.value(
+    value: usprovider,
+    child: MultiRepositoryProvider(
+      providers: [
+        RepositoryProvider.value(value: worldstateRepo),
+        RepositoryProvider.value(value: marketRepo),
+        RepositoryProvider.value(value: notificationRepo),
+      ],
+      child: MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create: (_) => SolsystemCubit(worldstateRepo)..fetchWorldstate(),
           ),
-        ),
-      );
-    },
-    storage: storage,
-    blocObserver: AppBlocObserver(),
+          BlocProvider(create: (_) => DarvodealCubit(worldstateRepo)),
+        ],
+        child: app,
+      ),
+    ),
   );
 }

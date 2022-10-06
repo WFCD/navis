@@ -13,7 +13,6 @@ class AboutApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
-    final isOptOut = context.watch<UserSettingsCubit>().state.isOptOut;
 
     return Column(
       children: <Widget>[
@@ -21,9 +20,9 @@ class AboutApp extends StatelessWidget {
         CheckboxListTile(
           title: Text(l10n.optOutOfAnalyticsTitle),
           subtitle: Text(l10n.optOutOfAnalyticsDescription),
-          value: isOptOut,
+          value: context.watch<UserSettingsNotifier>().isOptOut,
           onChanged: (b) =>
-              context.read<UserSettingsCubit>().setOptOut(b ?? false),
+              context.read<UserSettingsNotifier>().setOptOut(value: b ?? false),
         ),
         ListTile(
           title: Text(l10n.reportBugsTitle),

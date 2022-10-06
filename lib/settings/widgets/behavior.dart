@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis/worldstate/cubits/solsystem_cubit.dart';
 import 'package:navis_ui/navis_ui.dart';
+import 'package:provider/provider.dart';
 import 'package:user_settings/user_settings.dart';
 
 class Behavior extends StatelessWidget {
@@ -36,10 +37,12 @@ class _LanguagePicker extends StatelessWidget {
   static Future<void> showOptions(BuildContext context) {
     return showDialog<void>(
       context: context,
-      builder: (_) => BlocProvider.value(
-        value: BlocProvider.of<UserSettingsCubit>(context),
-        child: const _LanguagePicker(),
-      ),
+      builder: (_) {
+        return ChangeNotifierProvider.value(
+          value: Provider.of<UserSettingsNotifier>(context),
+          child: const _LanguagePicker(),
+        );
+      },
     );
   }
 
@@ -54,7 +57,6 @@ class _LanguagePicker extends StatelessWidget {
 
     final materialLocalizations = MaterialLocalizations.of(context);
     final accentColor = Theme.of(context).colorScheme.secondary;
-    final locale = context.watch<UserSettingsCubit>().state.language;
 
     return NavisDialog(
       content: ListView.builder(
@@ -65,11 +67,10 @@ class _LanguagePicker extends StatelessWidget {
           return RadioListTile<Locale>(
             title: Text(l.fullName),
             value: l,
-            groupValue: locale,
+            groupValue: context.watch<UserSettingsNotifier>().language,
             activeColor: accentColor,
-            onChanged: (l) => context
-                .read<UserSettingsCubit>()
-                .setLanguage(l ?? const Locale('en')),
+            onChanged: (l) =>
+                context.read<UserSettingsNotifier>().setLanguage(l),
           );
         },
       ),
@@ -94,8 +95,8 @@ class _ThemePicker extends StatelessWidget {
     return showDialog<void>(
       context: context,
       builder: (_) {
-        return BlocProvider.value(
-          value: BlocProvider.of<UserSettingsCubit>(context),
+        return ChangeNotifierProvider.value(
+          value: Provider.of<UserSettingsNotifier>(context),
           child: const _ThemePicker(),
         );
       },
@@ -103,15 +104,15 @@ class _ThemePicker extends StatelessWidget {
   }
 
   void _onChanged(BuildContext context, ThemeMode? mode) {
-    if (mode != null) context.read<UserSettingsCubit>().setTheme(mode);
+    if (mode != null) context.read<UserSettingsNotifier>().setTheme(mode);
     Navigator.of(context).pop();
   }
 
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
+    final groupValue = context.watch<UserSettingsNotifier>().theme;
     final accentColor = Theme.of(context).colorScheme.secondary;
-    final groupValue = context.watch<UserSettingsCubit>().state.theme;
 
     return SimpleDialog(
       title: Text(l10n.themeTitle),
