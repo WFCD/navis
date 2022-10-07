@@ -18,7 +18,7 @@ class Topic {
 /// we already use, minus fissures that are created dynamically in app.
 ///
 /// The description for these are all in the name.
-class Topics {
+abstract class Topics {
   static const Topic earthDayKey = Topic('earth_day');
   static const Topic earthNightKey = Topic('earth_night');
   static const Topic dayKey = Topic('cetus_day');
@@ -95,4 +95,71 @@ class Topics {
   static const Topic strunBarrel = Topic('strun_barrel');
   static const Topic strunReciever = Topic('strun_reciever');
   static const Topic strunStock = Topic('strun_stock');
+
+  static List<Topic> get topics {
+    return [
+      earthDayKey,
+      earthNightKey,
+      dayKey,
+      nightKey,
+      warmKey,
+      coldKey,
+      vomeKey,
+      fassKey,
+      alertsKey,
+      baroKey,
+      darvoKey,
+      sortiesKey,
+      archonHuntKey,
+      sentientOutpost,
+      newsPrimeKey,
+      newsStreamKey,
+      newsUpdateKey,
+      angstkey,
+      maliceKey,
+      maniaKey,
+      miseryKey,
+      tormentKey,
+      violenceKey,
+      sniptronVandalBP,
+      sniptronVandalBarrel,
+      sniptronVandalReceiver,
+      sniptronVandalStock,
+      sheevBlade,
+      sheevHeatsink,
+      sheevHilt,
+      deraVandalBarrel,
+      deraVandalBP,
+      deraVandalReceiver,
+      deraVandalStock,
+      wraithTwinVipersBP,
+      wraithTwinVipersBarrels,
+      wraithTwinVipersReceivers,
+      wraithTwinVipersLink,
+      latronWraithReceiver,
+      latronWraithBarrel,
+      latronWraithStock,
+      latronWraithBP,
+      strunWraithBP,
+      strunWraithBarrel,
+      strunWraithReceiver,
+      strunWraithStock,
+      karakWraithBP,
+      karakWraithBarrel,
+      karakWraithReceiver,
+      karakWraithStock,
+      fieldron,
+      detoniteInjector,
+      aladNavCoordinate,
+      mutagenMass,
+      orokinCatalyst,
+      orokinReactor,
+      forma,
+      exilusAdapter,
+      strunBP,
+      strunBarrel,
+      strunReciever,
+      strunStock,
+    ];
+  }
 }

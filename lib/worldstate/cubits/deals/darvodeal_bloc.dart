@@ -18,6 +18,7 @@ class DarvodealCubit extends HydratedCubit<DarvodealState> {
       emit(DarvoDealLoaded(info));
     } catch (e) {
       emit(DarvoDealNoInfo());
+      rethrow;
     }
   }
 

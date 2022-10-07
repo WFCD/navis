@@ -21,10 +21,9 @@ class MarketCubit extends HydratedCubit<MarketState> {
       } else {
         emit(const NoOrdersFound());
       }
-    } on MarketServerException {
-      emit(const MarketError('Warframe Market returned and error'));
     } catch (e) {
-      emit(const MarketError('Unknown error occured'));
+      emit(const MarketError('Problem proccesing Market response.'));
+      rethrow;
     }
   }
 

@@ -38,6 +38,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
         emit(CodexSuccessfulSearch(_results));
       } catch (e) {
         emit(const CodexSearchError('Unknown Error occuroed'));
+        rethrow;
       }
     }
   }

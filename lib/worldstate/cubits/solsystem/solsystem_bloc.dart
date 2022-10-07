@@ -26,6 +26,9 @@ class SolsystemCubit extends HydratedCubit<SolsystemState> {
       final current = state;
       await _exceptionHandle(e, s);
       emit(current);
+
+      // Rethrow the error so the obsover can catch it and send it to sentry.
+      rethrow;
     }
   }
 

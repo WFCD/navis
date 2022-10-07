@@ -22,7 +22,8 @@ dependencies:
   flutter_svg: ^1.1.5
   flutter_web_browser: 0.17.1
   hive: 2.2.3
-  hydrated_bloc: 8.1.0
+  hive_flutter: ^1.1.0
+  hydrated_bloc: ^9.0.0-dev.3
   intl: 0.17.0
   market_client:
     git:
@@ -71,4 +72,5 @@ flutter:
 sentry:
   upload_native_symbols: true
   include_native_sources: true
+  upload_source_maps: true
   wait_for_processing: true
