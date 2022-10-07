@@ -40,6 +40,7 @@ local.properties
 /build/
 /gen
 /lib/generated/intl/*.dart
+debug_info/
 
 # Android related
 **/android/**/gradle-wrapper.jar
