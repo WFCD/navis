@@ -58,7 +58,7 @@ jobs:
           flutter build appbundle \
             --dart-define=SENTRY_DSN=$SENTRY_DSN --dart-define=MATOMO_URL=$MATOMO_URL \
             -t lib/main_prod.dart --flavor prod \
-            --obfuscate --split-debug-info=debug_info
+            --split-debug-info=debug_info
 
       - name: Upload Sentry debug symbols
         run: flutter packages pub run sentry_dart_plugin
@@ -193,7 +193,7 @@ jobs:
           flutter build apk \
             --dart-define=SENTRY_DSN=$SENTRY_DSN --dart-define=MATOMO_URL=$MATOMO_URL \
             -t lib/main_prod.dart --flavor prod --split-per-abi \
-            --obfuscate --split-debug-info=debug_info
+            --split-debug-info=debug_info
 
       - name: Github Releases Deploy Beta
         uses: xresloader/upload-to-github-release@v1.3.6
