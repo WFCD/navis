@@ -72,5 +72,4 @@ flutter:
 sentry:
   upload_native_symbols: true
   include_native_sources: true
-  upload_source_maps: true
   wait_for_processing: true
