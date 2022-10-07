@@ -18,6 +18,8 @@ class SynthtargetsCubit extends HydratedCubit<SynthtargetsState> {
   Future<void> fetchSynthtargets() async {
     final targets = await repository.getSynthTargets();
 
+    if (isClosed) return;
+
     emit(TargetsLocated(targets));
   }
 
