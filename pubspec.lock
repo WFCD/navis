@@ -426,7 +426,7 @@ packages:
       name: json_annotation
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.6.0"
+    version: "4.7.0"
   logging:
     dependency: transitive
     description:
@@ -1047,11 +1047,11 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: "v3.10.1"
-      resolved-ref: f1910a88a23eeedff31a2659945a61b462768313
+      ref: "v3.10.2"
+      resolved-ref: bb3b7bc02fe6684f482a2a68b5b722792213501c
       url: "https://github.com/SlayerOrnstein/wfcd_client.git"
     source: git
-    version: "3.10.1"
+    version: "3.10.2"
   win32:
     dependency: transitive
     description:
