@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/worldstate/cubits/solsystem_cubit.dart';
 import 'package:notification_repository/notification_repository.dart';
 import 'package:responsive_builder/responsive_builder.dart';
+import 'package:settings_ui/settings_ui.dart';
 import 'package:simple_icons/simple_icons.dart';
 import 'package:user_settings/user_settings.dart';
 import 'package:wfcd_client/wfcd_client.dart';
@@ -17,7 +18,7 @@ const ps4Color = Color(0xFF003791);
 const xb1Color = Color(0xFF107C10);
 const swiColor = Color(0xFFE60012);
 
-class PlatformSelect extends StatelessWidget {
+class PlatformSelect extends AbstractSettingsTile {
   const PlatformSelect({super.key});
 
   @override

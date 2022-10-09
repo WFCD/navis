@@ -108,7 +108,7 @@ class _NavisAppState extends State<NavisApp> with WidgetsBindingObserver {
       navigatorObservers: [SentryNavigatorObserver()],
       routes: <String, WidgetBuilder>{
         EventInformation.route: (_) => const EventInformation(),
-        SettingsView.route: (_) => const SettingsView(),
+        SettingsPage.route: (_) => const SettingsPage(),
         NightwavesPage.route: (_) => const NightwavesPage(),
         BountiesPage.route: (_) => const BountiesPage(),
         BaroInventory.route: (_) => const BaroInventory(),

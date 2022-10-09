@@ -1,42 +1,15 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:package_info/package_info.dart';
+import 'package:settings_ui/settings_ui.dart';
 import 'package:simple_icons/simple_icons.dart';
-import 'package:user_settings/user_settings.dart';
 
-class AboutApp extends StatelessWidget {
-  const AboutApp({super.key});
+class AboutApp extends AbstractSettingsTile {
+  const AboutApp({super.key, this.l10n});
 
-  @override
-  Widget build(BuildContext context) {
-    final l10n = context.l10n;
-
-    return Column(
-      children: <Widget>[
-        CategoryTitle(title: l10n.aboutCategoryTitle),
-        CheckboxListTile(
-          title: Text(l10n.optOutOfAnalyticsTitle),
-          subtitle: Text(l10n.optOutOfAnalyticsDescription),
-          value: context.watch<UserSettingsNotifier>().isOptOut,
-          onChanged: (b) =>
-              context.read<UserSettingsNotifier>().setOptOut(value: b ?? false),
-        ),
-        ListTile(
-          title: Text(l10n.reportBugsTitle),
-          subtitle: Text(l10n.reportBugsDescription),
-          onTap: () => issuePage.launchLink(context),
-        ),
-        const _About(),
-      ],
-    );
-  }
-}
-
-class _About extends StatelessWidget {
-  const _About();
+  final NavisLocalizations? l10n;
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +17,7 @@ class _About extends StatelessWidget {
 
     final theme = Theme.of(context);
     final textTheme = theme.textTheme;
-    final l10n = context.l10n;
+    final l10n = this.l10n ?? context.l10n;
     final isDark = theme.brightness != Brightness.light;
 
     final aboutTextStyle = textTheme.bodyText1;
@@ -56,7 +29,7 @@ class _About extends StatelessWidget {
       builder: (_, AsyncSnapshot<PackageInfo> snapshot) {
         final info = snapshot.data;
 
-        return AboutListTile(
+        return AboutDialog(
           applicationIcon: const Icon(
             GenesisAssets.nightmare,
             size: 60,
@@ -64,7 +37,7 @@ class _About extends StatelessWidget {
           ),
           applicationName: 'Cephalon Navis',
           applicationVersion: info?.version ?? '',
-          aboutBoxChildren: <Widget>[
+          children: <Widget>[
             SizedBoxSpacer.spacerHeight12,
             RichText(
               text: TextSpan(
