@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:feedback_sentry/feedback_sentry.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -63,7 +64,7 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
             ),
             BlocProvider(create: (_) => DarvodealCubit(worldstateRepo)),
           ],
-          child: await builder(),
+          child: BetterFeedback(child: await builder()),
         ),
       ),
     ),

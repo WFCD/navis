@@ -13,6 +13,7 @@ dependencies:
   cached_network_image: 3.2.2
   collection: ^1.16.0
   equatable: 2.0.5
+  feedback_sentry: ^2.3.0
   firebase_core: ^1.22.0
   flutter:
     sdk: flutter
@@ -43,6 +44,7 @@ dependencies:
   rxdart: ^0.27.5
   sentry_flutter: ^6.11.1
   sentry_logging: ^6.11.2
+  settings_ui: ^2.0.2
   shimmer: 2.0.0
   simple_icons: 7.10.0
   user_settings:
