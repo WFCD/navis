@@ -26,12 +26,12 @@ class _NavisAppState extends State<NavisApp> with WidgetsBindingObserver {
     super.initState();
     WidgetsBinding.instance.addObserver(this);
 
-    context.read<NotificationRepository>().configure();
-
+    final notifications = context.read<NotificationRepository>()..configure();
     final userSettingsNotifier = context.read<UserSettingsNotifier>();
+
     if (userSettingsNotifier.isFirstTime) {
       final platform = userSettingsNotifier.platform;
-      context.read<NotificationRepository>().subscribeToPlatform(platform);
+      notifications.subscribeToPlatform(platform);
     }
   }
 
@@ -86,10 +86,9 @@ class _NavisAppState extends State<NavisApp> with WidgetsBindingObserver {
 
     newLocale ??= supportedLocales.firstWhere((e) => e.languageCode == 'en');
 
-    if (context.read<UserSettingsNotifier>().language != newLocale) {
-      context
-          .read<UserSettingsNotifier>()
-          .setLanguage(newLocale, notify: false);
+    final settings = context.read<UserSettingsNotifier>();
+    if (settings.language != newLocale) {
+      settings.setLanguage(newLocale, notify: false);
     }
 
     return newLocale;
