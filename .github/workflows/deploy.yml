@@ -69,14 +69,14 @@ jobs:
         run: echo $NAVIS_SERVICE_ACCOUNT | base64 -di > android/fastlane/service_account.json
 
       - name: Fastlane Google Play deploy Beta
-        uses: maierj/fastlane-action@v2.2.1
+        uses: maierj/fastlane-action@v2.3.0
         if: contains(github.ref_name, 'beta')
         with:
           lane: beta
           subdirectory: android
 
       - name: Fastlane Google Play deploy
-        uses: maierj/fastlane-action@v2.2.1
+        uses: maierj/fastlane-action@v2.3.0
         if: contains(github.ref_name, 'beta') == false
         with:
           lane: production
@@ -144,14 +144,14 @@ jobs:
           ruby-version: "2.7"
 
       - name: App Store Deploy Beta
-        uses: maierj/fastlane-action@v2.2.1
+        uses: maierj/fastlane-action@v2.3.0
         if: contains(github.ref_name, 'beta')
         with:
           lane: beta
           subdirectory: ios
 
       - name: App Store Deploy
-        uses: maierj/fastlane-action@v2.2.1
+        uses: maierj/fastlane-action@v2.3.0
         if: contains(github.ref_name, 'beta') == false
         with:
           lane: production
