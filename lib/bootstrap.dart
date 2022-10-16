@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:feedback_sentry/feedback_sentry.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -21,9 +20,10 @@ import 'package:worldstate_repository/worldstate_repository.dart';
 
 Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
   WidgetsFlutterBinding.ensureInitialized();
-  SystemChrome.setSystemUIOverlayStyle(
-    const SystemUiOverlayStyle(statusBarColor: Colors.transparent),
-  );
+  // SystemChrome.setSystemUIOverlayStyle(
+  //   const SystemUiOverlayStyle(statusBarColor: Colors.transparent),
+  // );
+
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await FlutterWebBrowser.warmup();
   await Hive.initFlutter();
@@ -49,22 +49,25 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
   Bloc.observer = AppBlocObserver();
   HydratedBloc.storage = await HydratedStorage.build(storageDirectory: appDir);
   runApp(
-    ChangeNotifierProvider.value(
-      value: usprovider,
-      child: MultiRepositoryProvider(
-        providers: [
-          RepositoryProvider.value(value: worldstateRepo),
-          RepositoryProvider.value(value: marketRepo),
-          RepositoryProvider.value(value: notificationRepo),
-        ],
-        child: MultiBlocProvider(
+    BetterFeedback(
+      child: ChangeNotifierProvider.value(
+        value: usprovider,
+        child: MultiRepositoryProvider(
           providers: [
-            BlocProvider(
-              create: (_) => SolsystemCubit(worldstateRepo)..fetchWorldstate(),
-            ),
-            BlocProvider(create: (_) => DarvodealCubit(worldstateRepo)),
+            RepositoryProvider.value(value: worldstateRepo),
+            RepositoryProvider.value(value: marketRepo),
+            RepositoryProvider.value(value: notificationRepo),
           ],
-          child: BetterFeedback(child: await builder()),
+          child: MultiBlocProvider(
+            providers: [
+              BlocProvider(
+                create: (_) =>
+                    SolsystemCubit(worldstateRepo)..fetchWorldstate(),
+              ),
+              BlocProvider(create: (_) => DarvodealCubit(worldstateRepo)),
+            ],
+            child: await builder(),
+          ),
         ),
       ),
     ),
