@@ -18,7 +18,7 @@ class EventStatus extends StatelessWidget {
   final String description;
   final String node;
   final String? tooltip;
-  final double health;
+  final double? health;
   final DateTime expiry;
   final List<Reward> rewards;
 
@@ -76,12 +76,13 @@ class EventStatus extends StatelessWidget {
               child: ColoredContainer.text(text: node),
             ),
             SizedBoxSpacer.spacerHeight8,
-            RowItem(
-              text: Text(l10n.eventStatusProgress, style: tooltipStyle),
-              child: ColoredContainer.text(
-                text: '${health.toStringAsFixed(fixedString)} %',
+            if (health != null && !health!.isNaN)
+              RowItem(
+                text: Text(l10n.eventStatusProgress, style: tooltipStyle),
+                child: ColoredContainer.text(
+                  text: '${health!.toStringAsFixed(fixedString)} %',
+                ),
               ),
-            ),
             SizedBoxSpacer.spacerHeight8,
             RowItem(
               text: Text(l10n.eventStatusEta, style: tooltipStyle),
