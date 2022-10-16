@@ -43,7 +43,7 @@ class EventInformation extends TraceableStatelessWidget {
                 description: event.description,
                 tooltip: event.tooltip ?? '',
                 node: event.victimNode ?? event.node ?? '',
-                health: event.eventHealth ?? 0.0,
+                health: event.eventHealth,
                 expiry: event.expiry ?? DateTime.now().add(kDelayLong),
                 rewards: event.eventRewards,
               ),
