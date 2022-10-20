@@ -140,7 +140,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "baroTitle": "Baro Ki'Teer",
+  "baroTitle": "Баро Ки'Тиир",
   "@baroTitle": {
     "description": "Title for Baro Ki'Teer card",
     "type": "text",
@@ -184,13 +184,13 @@
     "type": "text",
     "placeholders": {}
   },
-  "formorianTitle": "Fomorian",
+  "formorianTitle": "Фоморианец",
   "@formorianTitle": {
     "description": "Fomorian progress title",
     "type": "text",
     "placeholders": {}
   },
-  "razorbackTitle": "Razorback",
+  "razorbackTitle": "Армада Секачей",
   "@razorbackTitle": {
     "description": "Razorback progress title",
     "type": "text",
@@ -220,7 +220,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "zarimanCycleTitle": "Zariman Cycle",
+  "zarimanCycleTitle": "Цикл на Заримане",
   "@zarimanCycleTitle": {
     "description": "Zariman Cycle title",
     "type": "text",
@@ -346,7 +346,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "warframeNewsTitle": "News",
+  "warframeNewsTitle": "Новости",
   "@warframeNewsTitle": {
     "description": "Main Title for Warframe news page",
     "type": "text",
@@ -528,7 +528,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "homePageTitle": "Home",
+  "homePageTitle": "Главная",
   "@homePageTitle": {
     "description": "Displayes a link to Navis's homepage",
     "type": "text",
@@ -708,7 +708,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "criticalChanceTitle": "Critical Chance",
+  "criticalChanceTitle": "Шанс крита",
   "@criticalChanceTitle": {
     "description": "Weapon crictical chance",
     "type": "text",
@@ -926,7 +926,7 @@
     "type": "text",
     "placeholder": {}
   },
-  "exploreTitle": "Explore",
+  "exploreTitle": "Исследовать",
   "@exploreTitle": {
     "description": "Title for explore page",
     "type": "text",
