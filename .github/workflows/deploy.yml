@@ -196,7 +196,7 @@ jobs:
             --split-debug-info=debug_info
 
       - name: Github Releases Deploy Beta
-        uses: xresloader/upload-to-github-release@v1.3.7
+        uses: xresloader/upload-to-github-release@v1.3.9
         if: contains(github.ref_name, 'beta')
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
@@ -207,7 +207,7 @@ jobs:
           prerelease: true
 
       - name: Github Releases Deploy
-        uses: xresloader/upload-to-github-release@v1.3.7
+        uses: xresloader/upload-to-github-release@v1.3.9
         if: contains(github.ref_name, 'beta') == false
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
@@ -272,7 +272,7 @@ jobs:
             -t lib/main_prod.dart --export-options-plist=ios/ExportOptions.plist
 
       - name: Github Releases Deploy Beta
-        uses: xresloader/upload-to-github-release@v1.3.7
+        uses: xresloader/upload-to-github-release@v1.3.9
         if: contains(github.ref_name, 'beta')
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
@@ -283,7 +283,7 @@ jobs:
           prerelease: true
 
       - name: Github Releases Deploy
-        uses: xresloader/upload-to-github-release@v1.3.7
+        uses: xresloader/upload-to-github-release@v1.3.9
         if: contains(github.ref_name, 'beta') == false
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
