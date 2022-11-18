@@ -42,7 +42,7 @@ dependencies:
   path_provider: ^2.0.11
   responsive_builder: 0.4.3
   rxdart: ^0.27.5
-  sentry_flutter: ^6.13.1
+  sentry_flutter: ^6.16.0
   sentry_logging: ^6.13.0
   settings_ui: ^2.0.2
   shimmer: 2.0.0
