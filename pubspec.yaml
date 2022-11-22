@@ -43,7 +43,7 @@ dependencies:
   responsive_builder: 0.4.3
   rxdart: ^0.27.5
   sentry_flutter: ^6.13.1
-  sentry_logging: ^6.13.0
+  sentry_logging: ^6.16.1
   settings_ui: ^2.0.2
   shimmer: 2.0.0
   simple_icons: 7.10.0
