@@ -8,7 +8,7 @@ environment:
 
 dependencies:
   black_hole_flutter: ^0.3.5
-  cached_network_image: 3.2.2
+  cached_network_image: 3.2.3
   flutter:
     sdk: flutter
   flutter_web_browser: 0.17.1

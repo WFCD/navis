@@ -23,7 +23,7 @@ class SettingsPage extends StatelessWidget {
 }
 
 class _SettingsView extends StatelessWidget {
-  const _SettingsView({super.key});
+  const _SettingsView();
 
   void _onNotificationChanged(BuildContext context, Topic topic, bool value) {
     context.read<UserSettingsNotifier>().setToggle(topic.name, value: value);
