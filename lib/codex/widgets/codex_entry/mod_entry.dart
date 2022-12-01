@@ -41,8 +41,8 @@ class ModFrame extends StatelessWidget {
     required String compatName,
     required int maxRank,
     required int rank,
-    required int baseDrain,
-    required String polarity,
+    required int? baseDrain,
+    required String? polarity,
     required String rarity,
     String? modSet,
     String? wikiaUrl,
@@ -76,8 +76,8 @@ class ModFrame extends StatelessWidget {
     required String compatName,
     required int maxRank,
     required int rank,
-    required int baseDrain,
-    required String polarity,
+    required int? baseDrain,
+    required String? polarity,
     required String rarity,
     String? modSet,
     String? wikiaUrl,
@@ -111,8 +111,8 @@ class ModFrame extends StatelessWidget {
     required String compatName,
     required int maxRank,
     required int rank,
-    required int baseDrain,
-    required String polarity,
+    required int? baseDrain,
+    required String? polarity,
     required String rarity,
     String? modSet,
     String? wikiaUrl,
@@ -146,8 +146,8 @@ class ModFrame extends StatelessWidget {
     required String compatName,
     required int maxRank,
     required int rank,
-    required int baseDrain,
-    required String polarity,
+    required int? baseDrain,
+    required String? polarity,
     required String rarity,
     String? modSet,
     String? wikiaUrl,
@@ -182,7 +182,7 @@ class ModFrame extends StatelessWidget {
 
   final String compatName;
 
-  final String polarity;
+  final String? polarity;
 
   final String rarity;
 
@@ -194,7 +194,7 @@ class ModFrame extends StatelessWidget {
 
   final int rank;
 
-  final int drain;
+  final int? drain;
 
   final Image background;
 
@@ -359,23 +359,25 @@ class ModFrame extends StatelessWidget {
               right: 7,
               child: topRightBacker,
             ),
-            Positioned(
-              top: 20,
-              right: 30,
-              child: Text(
-                drain.toString(),
-                style:
-                    textTheme.caption?.copyWith(fontSize: 15, color: textColor),
+            if (drain != null)
+              Positioned(
+                top: 20,
+                right: 30,
+                child: Text(
+                  drain.toString(),
+                  style: textTheme.caption
+                      ?.copyWith(fontSize: 15, color: textColor),
+                ),
               ),
-            ),
-            Positioned(
-              top: 19,
-              right: 9,
-              child: Polarity(
-                polarity: polarity,
-                rarity: rarity.fromString(),
+            if (polarity != null)
+              Positioned(
+                top: 19,
+                right: 9,
+                child: Polarity(
+                  polarity: polarity!,
+                  rarity: rarity.fromString(),
+                ),
               ),
-            ),
             Positioned(
               top: wikiaUrl != null ? 175 : 200,
               child: Padding(

@@ -35,11 +35,11 @@ class ModStats extends StatelessWidget {
       stats: _modDescription(rank),
       compatName: mod.compatName,
       modSet: mod.modSet,
-      maxRank: mod.fusionLimit,
+      maxRank: mod.fusionLimit ?? 0,
       rank: rank,
-      drain: mod.baseDrain + rank,
+      drain: mod.baseDrain ?? 0 + rank,
       polarity: mod.polarity,
-      rarity: mod.rarity,
+      rarity: mod.rarity ?? 'Rare',
     );
   }
 
@@ -57,7 +57,7 @@ class ModStats extends StatelessWidget {
         padding: padding,
         child: _ModWithStats(
           levels: levelStats.length,
-          maxRank: mod.fusionLimit.toDouble(),
+          maxRank: mod.fusionLimit?.toDouble() ?? 0.0,
           builder: (_, rank) => _buildRankedMod(rank),
         ),
       );
@@ -69,13 +69,15 @@ class ModStats extends StatelessWidget {
         imageUrl: mod.imageUrl,
         name: mod.name,
         stats: _modDescription(),
-        maxRank: mod.fusionLimit,
+        maxRank: mod.fusionLimit ?? 0,
         rank: 0,
-        drain: mod.baseDrain.isNegative ? mod.fusionLimit : mod.baseDrain,
+        drain: (mod.baseDrain?.isNegative ?? false)
+            ? mod.fusionLimit
+            : mod.baseDrain,
         polarity: mod.polarity,
         compatName: mod.compatName,
         modSet: mod.modSet,
-        rarity: mod.rarity,
+        rarity: mod.rarity ?? 'Rare',
       ),
     );
   }
@@ -162,8 +164,8 @@ class _ModBuilder extends StatelessWidget {
   final String? modSet;
   final int maxRank;
   final int rank;
-  final int drain;
-  final String polarity;
+  final int? drain;
+  final String? polarity;
   final String rarity;
 
   @override

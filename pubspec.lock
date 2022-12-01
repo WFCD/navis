@@ -717,12 +717,12 @@ packages:
     source: hosted
     version: "4.2.4"
   provider:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: provider
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "6.0.2"
+    version: "6.0.4"
   pub_semver:
     dependency: transitive
     description:
@@ -1068,11 +1068,11 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: "v3.11.0"
-      resolved-ref: "3773019308381a3a15f4520f2015ad14e2792ff6"
+      ref: "v3.11.1"
+      resolved-ref: "17807034670fbf01ea6e01b9cf567e1f70c0faa2"
       url: "https://github.com/SlayerOrnstein/wfcd_client.git"
     source: git
-    version: "3.11.0"
+    version: "3.11.1"
   win32:
     dependency: transitive
     description:
