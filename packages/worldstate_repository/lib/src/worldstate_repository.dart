@@ -99,7 +99,8 @@ class WorldstateRepository {
       // If for whatever reason getItemDealInfo throws an error then we're just
       // gonna let it bubble up since at this point the Item is different and
       // there is no point in returning the cached version.
-      final deal = await _runners.getItemDealInfo(name);
+      final deal = await _runners.getItemDealInfo(
+          id.replaceAll(RegExp(r'([0-9])\w+'), ''), name);
 
       _cache.cacheDealInfo(id, deal);
 
@@ -178,9 +179,9 @@ class WorldstateComputeRunners {
 
   /// Returns one instance of [Item], will throw [ItemNotFoundException] if
   /// it's unable to find a matching [Item] from [name].
-  Future<Item> getItemDealInfo(String name) async {
+  Future<Item> getItemDealInfo(String uniqueName, String name) async {
     try {
-      final deal = await compute(_getDealInfo, name);
+      final deal = await compute(_getDealInfo, _DealInfo(uniqueName, name));
 
       if (deal == null) {
         throw const ItemNotFoundException(
@@ -217,11 +218,18 @@ class WorldstateComputeRunners {
     return client().getSynthTargets();
   }
 
-  static Future<Item?> _getDealInfo(String name) async {
-    final results = List<Item?>.from(await client().searchItems(name));
+  static Future<Item?> _getDealInfo(_DealInfo info) async {
+    final results = List<Item?>.from(await client().searchItems(info.name));
 
-    return results
-        .firstWhereOrNull((r) => r?.name.toLowerCase() == name.toLowerCase());
+    return results.firstWhereOrNull(
+        (r) => r?.uniqueName.contains(info.uniqueName) ?? false);
   }
+}
+
+class _DealInfo {
+  _DealInfo(this.uniqueName, this.name);
+
+  final String uniqueName;
+  final String name;
 }
 // coverage: ignore-end
