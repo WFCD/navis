@@ -1,6 +1,6 @@
 {
   "@@last_modified": "2020-03-03T16:56:42.387837",
-  "levelInfo": "Level: {min} - {max}",
+  "levelInfo": "Niveau : {min} - {max}",
   "@levelInfo": {
     "description": "The information of the current enemy levels",
     "type": "text",
@@ -9,7 +9,7 @@
       "max": {}
     }
   },
-  "activeAcolyte": "{agentType} | level: {rank}",
+  "activeAcolyte": "{agentType} | niveau : {rank}",
   "@activeAcolyte": {
     "description": "acolyte title with level",
     "type": "text",
@@ -18,49 +18,49 @@
       "rank": {}
     }
   },
-  "locating": "Locating...",
+  "locating": "Localisation...",
   "@locating": {
     "description": "Shows up when an acolyte's current location is unknown, may be used in other parts of the app",
     "type": "text",
     "placeholders": {}
   },
-  "acolyteCurrentLocation": "Current location",
+  "acolyteCurrentLocation": "Emplacement actuel",
   "@acolyteCurrentLocation": {
     "description": "Acolyte's current location",
     "type": "text",
     "placeholders": {}
   },
-  "acolytePassLocation": "Last seen location",
+  "acolytePassLocation": "Dernière localisation connue",
   "@acolytePassLocation": {
     "description": "Acolyte's pass location",
     "type": "text",
     "placeholders": {}
   },
-  "acolyteFound": "Found",
+  "acolyteFound": "Trouvé",
   "@acolyteFound": {
     "description": "The elapsed time after an acolyte was found",
     "type": "text",
     "placeholders": {}
   },
-  "acolyteLastSeen": "Last seen",
+  "acolyteLastSeen": "Vu pour la dernière fois",
   "@acolyteLastSeen": {
     "description": "The elapsed time since the acolyte was last seen",
     "type": "text",
     "placeholders": {}
   },
-  "acolyteHealth": "Health",
+  "acolyteHealth": "Santé",
   "@acolyteHealth": {
     "description": "Acolytes remaining health",
     "type": "text",
     "placeholders": {}
   },
-  "acolyteRank": "Acolyte Level",
+  "acolyteRank": "Niveau d'Acolyte",
   "@acolyteRank": {
     "description": "An acolyte's current level",
     "type": "text",
     "placeholders": {}
   },
-  "acolyteElapsedTime": "{lastSeenTime} minutes ago",
+  "acolyteElapsedTime": "Il y a {lastSeenTime} minutes",
   "@acolyteElapsedTime": {
     "description": "Time since acolyte has either been found or last seen",
     "type": "text",
@@ -68,19 +68,19 @@
       "lastSeenTime": {}
     }
   },
-  "tapForMoreDetails": "Tap for more details",
+  "tapForMoreDetails": "Appuyez pour plus de détails",
   "@tapForMoreDetails": {
     "description": "General description to tell the user that this object takes you to a different page",
     "type": "text",
     "placeholders": {}
   },
-  "seeDetails": "See details",
+  "seeDetails": "Voir les détails",
   "@seeDetails": {
     "description": "General button to see more details of given object",
     "type": "text",
     "placeholders": {}
   },
-  "seeWikia": "See Wikia",
+  "seeWikia": "Voir Wikia",
   "@seeWikia": {
     "description": "General button to wikia of given item",
     "type": "text",
@@ -92,31 +92,31 @@
     "type": "text",
     "placeholders": {}
   },
-  "eventStatus": "Event Status",
+  "eventStatus": "Statut de l'évènement",
   "@eventStatus": {
     "description": "Event status category title",
     "type": "text",
     "placeholders": {}
   },
-  "eventStatusNode": "Node",
+  "eventStatusNode": "Noeud",
   "@eventStatusNode": {
     "description": "The node that the event is taking place in",
     "type": "text",
     "placeholders": {}
   },
-  "eventStatusProgress": "Progress",
+  "eventStatusProgress": "Progression",
   "@eventStatusProgress": {
     "description": "The progress of the current event from 0 to 100 %",
     "type": "text",
     "placeholders": {}
   },
-  "eventStatusEta": "Time left (ETA)",
+  "eventStatusEta": "Temps restant (ETA)",
   "@eventStatusEta": {
     "description": "Current events remaining estimated time",
     "type": "text",
     "placeholders": {}
   },
-  "eventRewards": "Rewards",
+  "eventRewards": "Récompenses",
   "@eventRewards": {
     "description": "Event reward title",
     "type": "text",
