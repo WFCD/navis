@@ -122,19 +122,19 @@
     "type": "text",
     "placeholders": {}
   },
-  "bountyTitle": "Bounties",
+  "bountyTitle": "Mises à Prix",
   "@bountyTitle": {
     "description": "Bounty card title.",
     "type": "text",
     "placeholders": {}
   },
-  "errorTitle": "An application error has occurred",
+  "errorTitle": "Une erreur inattendue s’est produite",
   "@errorTitle": {
     "description": "error title",
     "type": "text",
     "placeholders": {}
   },
-  "errorDescription": "There was unexpected error in core system.\nReporting error to system admin...",
+  "errorDescription": "Il y a eu une erreur inattendue au sein du système.\nSignalement de l'erreur à l'administrateur du système...",
   "@errorDescription": {
     "description": "error description",
     "type": "text",
@@ -146,19 +146,19 @@
     "type": "text",
     "placeholders": {}
   },
-  "baroLocation": "Location",
+  "baroLocation": "Localisation",
   "@baroLocation": {
     "description": "shows Baro ki'Teer's current location",
     "type": "text",
     "placeholders": {}
   },
-  "baroLeavesOn": "Leaves on",
+  "baroLeavesOn": "Se retire le",
   "@baroLeavesOn": {
     "description": "shows when Baro Ki'Teer is leaving",
     "type": "text",
     "placeholders": {}
   },
-  "baroArrivesOn": "Arrives on",
+  "baroArrivesOn": "Arrive le",
   "@baroArrivesOn": {
     "description": "shows at when Baro Ki'Teer will arrive",
     "type": "text",
@@ -170,7 +170,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "countdownTooltip": "Ends on {date}",
+  "countdownTooltip": "Se termine le {date}",
   "@countdownTooltip": {
     "description": "Countdown tooltip with end date of the current running timer",
     "type": "text",
@@ -178,7 +178,7 @@
       "date": {}
     }
   },
-  "kuvaBanner": "Kuva will refresh in",
+  "kuvaBanner": "Kuva va s'actualiser dans",
   "@kuvaBanner": {
     "description": "Kuva refresh countdown title",
     "type": "text",
@@ -196,37 +196,37 @@
     "type": "text",
     "placeholders": {}
   },
-  "earthCycleTitle": "Earth Cycle",
+  "earthCycleTitle": "Cycle Terrestre",
   "@earthCycleTitle": {
     "description": "Earth cycle title",
     "type": "text",
     "placeholders": {}
   },
-  "cetusCycleTitle": "Cetus Cycle",
+  "cetusCycleTitle": "Cycle de Cetus",
   "@cetusCycleTitle": {
     "description": "Cetus cycle title",
     "type": "text",
     "placeholders": {}
   },
-  "vallisCycleTitle": "Vallis Cycle",
+  "vallisCycleTitle": "Cycle de la Vallée",
   "@vallisCycleTitle": {
     "description": "Vallis cycle title",
     "type": "text",
     "placeholders": {}
   },
-  "cambionCycleTitle": "Cambion Cycle",
+  "cambionCycleTitle": "Cycle de Cambion",
   "@cambionCycleTitle": {
     "description": "Cambion Cycle title",
     "type": "text",
     "placeholders": {}
   },
-  "zarimanCycleTitle": "Zariman Cycle",
+  "zarimanCycleTitle": "Cycle du Zariman",
   "@zarimanCycleTitle": {
     "description": "Zariman Cycle title",
     "type": "text",
     "placeholder": {}
   },
-  "timersTitle": "Timers",
+  "timersTitle": "Minuteurs",
   "@timersTitle": {
     "description": "Times title",
     "type": "text",
@@ -244,7 +244,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "syndicatesTitle": "Syndicates",
+  "syndicatesTitle": "Syndicats",
   "@syndicatesTitle": {
     "description": "Syndicates title",
     "type": "text",
@@ -256,25 +256,25 @@
     "type": "text",
     "placeholders": {}
   },
-  "helpfulLinksTitle": "Helpful Links",
+  "helpfulLinksTitle": "Liens utiles",
   "@helpfulLinksTitle": {
     "description": "Helpful Links title",
     "type": "text",
     "placeholders": {}
   },
-  "behaviorTitle": "Behavior",
+  "behaviorTitle": "Comportement",
   "@behaviorTitle": {
     "description": "Behavior category title",
     "type": "text",
     "placeholders": {}
   },
-  "themeTitle": "Theme",
+  "themeTitle": "Thème",
   "@themeTitle": {
     "description": "Theme title",
     "type": "text",
     "placeholders": {}
   },
-  "themeDescription": "Choose app theme.",
+  "themeDescription": "Choisir le thème de l'application.",
   "@themeDescription": {
     "description": "Theme option description",
     "typ": "text",
@@ -286,13 +286,13 @@
     "type": "text",
     "placeholders": {}
   },
-  "rareAlertsNotificationTitle": "Rare Alerts",
+  "rareAlertsNotificationTitle": "Alertes Rares",
   "@rareAlertsNotificationTitle": {
     "description": "Rare Alerts title",
     "type": "text",
     "placeholders": {}
   },
-  "rareAlertsNotificationDescription": "Rare alert notifications, mainly gifts of the lotus.",
+  "rareAlertsNotificationDescription": "Notifications d'alertes rares, principalement des cadeaux du Lotus.",
   "@rareAlertsNotificationDescription": {
     "description": "Description for rare alerts option",
     "type": "text",
@@ -304,19 +304,19 @@
     "type": "text",
     "placeholders": {}
   },
-  "baroNotificationDescription": "Notifications for both Baro's arrivial and departure.",
+  "baroNotificationDescription": "Notifications du départ & de l'arrivée de Baro.",
   "@baroNotificationDescription": {
     "description": "Notification description for both Baro's arrivial and departure.",
     "type": "text",
     "placeholders": {}
   },
-  "darvoNotificationTitle": "Darvo's Daily Deals",
+  "darvoNotificationTitle": "Offres du jour de Darvo",
   "@darvoNotificationTitle": {
     "description": "Notification title for darvo's daily deals",
     "type": "text",
     "placeholders": {}
   },
-  "darvoNotificationDescription": "Darvo's new find of the day.",
+  "darvoNotificationDescription": "Nouvelle trouvaille de Darvo.",
   "@darvoNotificationDescription": {
     "description": "Notification description for Darvo's Daily Deal",
     "type": "text",
@@ -328,7 +328,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "sortieNotificationDescription": "Notifications for new sorties.",
+  "sortieNotificationDescription": "Notifications de nouvelles sorties.",
   "@sortieNotificationDescription": {
     "description": "description for sortie notification option",
     "type": "text",
@@ -642,265 +642,265 @@
     "type": "text",
     "placeholders": {}
   },
-  "shieldTitle": "Shield",
+  "shieldTitle": "Bouclier",
   "@shieldTitle": {
     "description": "Title for shield value",
     "typ": "text",
     "placeholders": {}
   },
-  "armorTitle": "Armor",
+  "armorTitle": "Armure",
   "@armorTitle": {
     "description": "Title for armor value",
     "typ": "text",
     "placeholders": {}
   },
-  "healthTitle": "Health",
+  "healthTitle": "Santé",
   "@healthTitle": {
     "description": "Title for health value",
     "typ": "text",
     "placeholders": {}
   },
-  "powerTitle": "Power",
+  "powerTitle": "Pouvoir",
   "@powerTitle": {
     "description": "Title for power value",
     "typ": "text",
     "placeholders": {}
   },
-  "sprintSpeedTitle": "Sprint Speed",
+  "sprintSpeedTitle": "Vitesse de course",
   "@sprintSpeedTitle": {
     "description": "Title for sprint speed value",
     "typ": "text",
     "placeholders": {}
   },
-  "abilitiesTitle": "Abilites",
+  "abilitiesTitle": "Capacités",
   "@abilitiesTitle": {
     "description": "Title for warframe, archwings, and Necromech abilites",
     "typ": "text",
     "placeholders": {}
   },
-  "componentsTitle": "Components",
+  "componentsTitle": "Composants",
   "@componentsTitle": {
     "description": "Title for item components",
     "typ": "text",
     "placeholders": {}
   },
-  "fullPatchNotesTitle": "FULL PATCH NOTES",
+  "fullPatchNotesTitle": "PATCH NOTE COMPLET",
   "@fullPatchNotesTitle": {
     "description": "Full Patch Notes Title",
     "typ": "text",
     "placeholders": {}
   },
-  "masteryRequirementTitle": "Mastery Requirement",
+  "masteryRequirementTitle": "Condition de niveau de maîtrise",
   "@masteryRequirementTitle": {
     "description": "Mastery requirement for item",
     "type": "text",
     "placeholders": {}
   },
-  "weaponTypeTitle": "Weapon Type",
+  "weaponTypeTitle": "Type d'arme",
   "@weaponTypeTitle": {
     "description": "Weapon item type",
     "type": "text",
     "placeholders": {}
   },
-  "accuracyTitle": "Accuracy",
+  "accuracyTitle": "Précision",
   "@accuracyTitle": {
     "description": "Weapon accuracy title",
     "type": "text",
     "placeholders": {}
   },
-  "criticalChanceTitle": "Critical Chance",
+  "criticalChanceTitle": "Chances de critique",
   "@criticalChanceTitle": {
     "description": "Weapon crictical chance",
     "type": "text",
     "placeholders": {}
   },
-  "cricticalMultiplierTitle": "Critcial Multiplier",
+  "cricticalMultiplierTitle": "Multiplieur de critique",
   "@cricticalMultiplierTitle": {
     "description": "Weapon critical multiplier",
     "type": "text",
     "placeholders": {}
   },
-  "fireRateTitle": "Fire Rate",
+  "fireRateTitle": "Cadence de tir",
   "@fireRateTitle": {
     "description": "Weapon fire rate",
     "type": "text",
     "placeholders": {}
   },
-  "magazineTitle": "Magazine",
+  "magazineTitle": "Chargeur",
   "@magazineTitle": {
     "description": "Weapon magazine size title",
     "type": "text",
     "placeholders": {}
   },
-  "multishotTitle": "Multishot",
+  "multishotTitle": "Tir multiple",
   "@multishotTitle": {
     "description": "Weapon multishot",
     "type": "text",
     "placeholders": {}
   },
-  "noiseTitle": "Noise",
+  "noiseTitle": "Bruit",
   "@noiseTitle": {
     "description": "Weapon noise type",
     "type": "text",
     "placeholders": {}
   },
-  "reloadTitle": "Reload",
+  "reloadTitle": "Rechargement",
   "@reloadTitle": {
     "description": "Weapon item type",
     "type": "text",
     "placeholders": {}
   },
-  "rivenDispositionTitle": "Riven Disposition",
+  "rivenDispositionTitle": "Disposition de Riven",
   "@rivenDispositionTitle": {
     "description": "Weapon's riven disposition",
     "type": "text",
     "placeholders": {}
   },
-  "statusChanceTitle": "Status Chance",
+  "statusChanceTitle": "Chance de statut",
   "@statusChanceTitle": {
     "description": "Weapon's status chance",
     "type": "text",
     "placeholders": {}
   },
-  "triggerTitle": "Trigger",
+  "triggerTitle": "Déclencheur",
   "@triggerTitle": {
     "description": "Weapon item type",
     "type": "text",
     "placeholders": {}
   },
-  "damageTitle": "Damage",
+  "damageTitle": "Dégâts",
   "@damageTitle": {
     "description": "Weapon's damage category",
     "type": "text",
     "placeholders": {}
   },
-  "totalDamageTitle": "Total Damage",
+  "totalDamageTitle": "Dégâts totaux",
   "@totalDamageTitle": {
     "description": "Weapon's total damage'",
     "type": "text",
     "placeholders": {}
   },
-  "stancePolarityTitle": "Stance Polarity",
+  "stancePolarityTitle": "Polarité de posture",
   "@stancePolarityTitle": {
     "description": "Melee stance polarity title",
     "type": "text",
     "placeholders": {}
   },
-  "attackSpeedTitle": "Attack Speed",
+  "attackSpeedTitle": "Vitesse d'attaque",
   "@attackSpeedTitle": {
     "description": "melee attack speed",
     "type": "text",
     "placeholders": {}
   },
-  "followThroughTitle": "Follow Through",
+  "followThroughTitle": "Répercussion",
   "@followThroughTitle": {
     "description": "Melee follow through title",
     "type": "text",
     "placeholders": {}
   },
-  "rangeTitle": "Range",
+  "rangeTitle": "Portée",
   "@rangeTitle": {
     "description": "Melee's range title",
     "type": "text",
     "placeholders": {}
   },
-  "slamAttackTitle": "Slam Attack",
+  "slamAttackTitle": "Attaque piquée",
   "@slamAttackTitle": {
     "description": "Melee's slam attack",
     "type": "text",
     "placeholders": {}
   },
-  "slamRadialDamageTitle": "Slam Radial Damage",
+  "slamRadialDamageTitle": "Dégâts radiaux de l'attaque piquée",
   "@slamRadialDamageTitle": {
     "description": "Melee's Slam Radial Damage",
     "type": "text",
     "placeholders": {}
   },
-  "slamRadiusTitle": "Slam Radius",
+  "slamRadiusTitle": "Rayon de l'attaque piquée",
   "@slamRadiusTitle": {
     "description": "Slam Radius title",
     "type": "text",
     "placeholders": {}
   },
-  "slideAttackTitle": "Slide Attack",
+  "slideAttackTitle": "Attaque glissée",
   "@slideAttackTitle": {
     "description": "Melee's slide attack",
     "type": "text",
     "placeholders": {}
   },
-  "heavyAttackTitle": "Heavy Attack",
+  "heavyAttackTitle": "Attaque Lourde",
   "@heavyAttackTitle": {
     "description": "Heavy attack title",
     "type": "text",
     "placeholders": {}
   },
-  "heavySlamAttackTitle": "Heavy Slam Attack",
+  "heavySlamAttackTitle": "Attaque piquée lourde",
   "@heavySlamAttackTitle": {
     "description": "Heavy Slam attack title",
     "type": "text",
     "placeholders": {}
   },
-  "heavySlamRadialDamageTitle": "Heavy Slam Radial Damage",
+  "heavySlamRadialDamageTitle": "Dégâts radiaux de l'attaque piquée lourde",
   "@heavySlamRadialDamageTitle": {
     "description": "Heavy Slam attack title",
     "type": "text",
     "placeholders": {}
   },
-  "heavySlamRadiusTitle": "Heavy Slam Radius",
+  "heavySlamRadiusTitle": "Rayon de l'attaque piquée lourde",
   "@heavySlamRadiusTitle": {
     "description": "Heavy Slam attack title",
     "type": "text",
     "placeholders": {}
   },
-  "windUpTitle": "Wind Up",
+  "windUpTitle": "Attaque chargée",
   "@windUpTitle": {
     "description": "melee's heavy wind up time title",
     "type": "text",
     "placeholders": {}
   },
-  "discordSupportTitle": "Support",
+  "discordSupportTitle": "Assistance",
   "@discordSupportTitle": {
     "description": "Discord support title",
     "type": "text",
     "placeholders": {}
   },
-  "steelPathTitle": "Steel Path",
+  "steelPathTitle": "Route de l'Acier",
   "@steelPathTitle": {
     "description": "Steel path card title",
     "type": "text",
     "placeholers": {}
   },
-  "syndicateDualScreenTitle": "Select Syndicate",
+  "syndicateDualScreenTitle": "Sélectionner un Syndicat",
   "@syndicateDualScreenTitle": {
     "description": "User hint when under syndicate tabs using a tablet",
     "type": "text",
     "placeholders": {}
   },
-  "optOutOfAnalyticsTitle": "Opt out of analytics",
+  "optOutOfAnalyticsTitle": "Désactiver les analyses",
   "@optOutOfAnalyticsTitle": {
     "description": "Title opting out of analytics",
     "type": "text",
     "placeholders": {}
   },
-  "optOutOfAnalyticsDescription": "Disable analytics.",
+  "optOutOfAnalyticsDescription": "Désactiver les analytiques.",
   "@optOutOfAnalyticsDescription": {
     "description": "Description of the analytics opting buttong",
     "type": "text",
     "placeholders": {}
   },
-  "appLangTitle": "Language",
+  "appLangTitle": "Langue",
   "@appLangTitle": {
     "description": "Title for app language options",
     "type": "text",
     "placeholders": {}
   },
-  "appLangDescription": "Override default behavior for language detection.",
+  "appLangDescription": "Outrepasser le comportement par défaut de la détection de langue.",
   "@appLangDescription": {
     "description": "Description for language options",
     "type": "text",
     "placeholders": {}
   },
-  "modLevelLabel": "Level {rank}",
+  "modLevelLabel": "Niveau {rank}",
   "@modLevelLabel": {
     "description": "The label shown to users as they slide the mod slider",
     "type": "text",
@@ -908,13 +908,13 @@
       "rank": {}
     }
   },
-  "codexHint": "Type what you're looking for into the search bar above!",
+  "codexHint": "Écrivez ce que vous recherchez dans la barre de recherche au dessus!",
   "@codexHint": {
     "description": "Codex description when a user enters the codex or when the search bar is empty",
     "type": "text",
     "placeholder": {}
   },
-  "codexNoResults": "No results",
+  "codexNoResults": "Pas de résultat",
   "@codexNoResults": {
     "description": "Displayed when a search result in codex returns empty",
     "type": "text",
@@ -926,43 +926,43 @@
     "type": "text",
     "placeholder": {}
   },
-  "exploreTitle": "Explore",
+  "exploreTitle": "Explorer",
   "@exploreTitle": {
     "description": "Title for explore page",
     "type": "text",
     "placeholder": {}
   },
-  "constructionProgressTitle": "Construction Progress",
+  "constructionProgressTitle": "Avancement de la construction",
   "@constructionProgressTitle": {
     "description": "Title for invasion constrcution progress",
     "type": "text",
     "placeholder": {}
   },
-  "synthTargetTitle": "SynthTargets",
+  "synthTargetTitle": "Cible de synthèse",
   "@synthTargetTitle": {
     "description": "Title for synthtargets.",
     "type": "text",
     "placeholder": {}
   },
-  "archonHuntTitle": "Archon Hunt",
+  "archonHuntTitle": "Chasse d'Archonte",
   "@archonHuntTitle": {
     "description": "Title for archon hunt notification toggle.",
     "type": "text",
     "placeholder": {}
   },
-  "archonHuntDescription": "Archon hunt reset notification.",
+  "archonHuntDescription": "Notification de réinitialisation de la chasse d'Archonte.",
   "@archonHuntDescription": {
     "description": "Description for archon hunt notification toggle.",
     "type": "text",
     "placeholder": {}
   },
-  "allFissuresButton": "All",
+  "allFissuresButton": "Toutes",
   "@allFissuresButton": {
     "description": "Button label for all fissures",
     "type": "text",
     "placeholder": {}
   },
-  "voidStormFissuresButton": "Void Storms",
+  "voidStormFissuresButton": "Tempête du Néant",
   "@voidStormFissuresButton": {
     "description": "Button label for void storm fissures",
     "type": "text",
