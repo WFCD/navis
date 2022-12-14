@@ -334,67 +334,67 @@
     "type": "text",
     "placeholders": {}
   },
-  "sentientOutpostNotificationTitle": "Sentient Outpost",
+  "sentientOutpostNotificationTitle": "Avant-poste Sentient",
   "@sentientOutpostNotificationTitle": {
     "description": "Notification title for sentient outpost",
     "type": "text",
     "placeholders": {}
   },
-  "sentientOutpostNotificationDescription": "Notifications for new sentient threats.",
+  "sentientOutpostNotificationDescription": "Notifications de nouvelles menaces sentient.",
   "@sentientOutpostNotificationDescription": {
     "description": "Notification description for sentient outpost option",
     "type": "text",
     "placeholders": {}
   },
-  "warframeNewsTitle": "News",
+  "warframeNewsTitle": "Actualités",
   "@warframeNewsTitle": {
     "description": "Main Title for Warframe news page",
     "type": "text",
     "placeholders": {}
   },
-  "warframeNewsNotificationTitle": "News",
+  "warframeNewsNotificationTitle": "Actualités",
   "@warframeNewsNotificationTitle": {
     "description": "Main Title for Warframe news notifications",
     "type": "text",
     "placeholders": {}
   },
-  "warframeNewsNotificationDescription": "News notifications for Prime Access, Streams and Updates.",
+  "warframeNewsNotificationDescription": "Nouvelles notifications pour l'accès Prime, les directs et les mises à jour.",
   "@warframeNewsNotificationDescription": {
     "description": "Main description for Warframe news notifications",
     "type": "text",
     "placeholders": {}
   },
-  "planetCyclesNotificationTitle": "Open World Cycles",
+  "planetCyclesNotificationTitle": "Cycles des mondes ouverts",
   "@planetCyclesNotificationTitle": {
     "description": "Main title for open world notifications",
     "type": "text",
     "placeholders": {}
   },
-  "planetCyclesNotificationDescription": "Open world notifications for their given cycles.",
+  "planetCyclesNotificationDescription": "Ouvrir les notifications des mondes ouverts pour leurs cycles respectifs.",
   "@planetCyclesNotificationDescription": {
     "description": "Main description for open world notifications",
     "type": "text",
     "placeholders": {}
   },
-  "resourcesNotificationTitle": "Resources",
+  "resourcesNotificationTitle": "Ressources",
   "@resourcesNotificationTitle": {
     "description": "Main title for resource notifications",
     "type": "text",
     "placeholders": {}
   },
-  "resourcesNotificationDescription": "Resources mostly found in invasions.",
+  "resourcesNotificationDescription": "Ressources principalement trouvées dans les invasions.",
   "@resourcesNotificationDescription": {
     "description": "Main description for resource notifications",
     "type": "text",
     "placeholders": {}
   },
-  "fissuresNotificationTitle": "Fissure Missions",
+  "fissuresNotificationTitle": "Missions de fissures",
   "@fissuresNotificationTitle": {
     "description": "Main title for fisssures notifications",
     "type": "text",
     "placeholders": {}
   },
-  "fissuresNotificationDescription": "Filter fissure notifications by prefered mission type.",
+  "fissuresNotificationDescription": "Filtrer les notifications de fissure par type de mission préféré.",
   "@fissuresNotificationDescription": {
     "description": "Main description for fissures notifications",
     "type": "text",
@@ -406,43 +406,43 @@
     "type": "text",
     "placeholders": {}
   },
-  "acolytesNotificationDescription": "Notifies when an acolyte is found.",
+  "acolytesNotificationDescription": "Notifie quand un acolyte est trouvé.",
   "@acolytesNotificationDescription": {
     "description": "Main description for acolyte notifications",
     "type": "text",
     "placeholders": {}
   },
-  "earthDayOption": "Earth Day",
+  "earthDayOption": "Jour Terrestre",
   "@earthDayOption": {
     "description": "Earth cycle option",
     "type": "text",
     "placeholders": {}
   },
-  "earthNightOption": "Earth Night",
+  "earthNightOption": "Nuit Terrestre",
   "@earthNightOption": {
     "description": "Earth cycle option",
     "type": "text",
     "placeholders": {}
   },
-  "cetusDayOption": "Cetus Day",
+  "cetusDayOption": "Cetus Jour",
   "@cetusDayOption": {
     "description": "Cetus cycle option",
     "type": "text",
     "placeholders": {}
   },
-  "cetusNightOption": "Cetus Night",
+  "cetusNightOption": "Cetus Nuit",
   "@cetusNightOption": {
     "description": "Cetus cycle option",
     "type": "text",
     "placeholders": {}
   },
-  "vallisWarmOption": "Orb Vallis Warm",
+  "vallisWarmOption": "Vallée d'Orbis Chaud",
   "@vallisWarmOption": {
     "description": "Orb vallis cycle option",
     "type": "text",
     "placeholders": {}
   },
-  "vallisColdOption": "Orb Vallis Cold",
+  "vallisColdOption": "Vallée d'Orbis Froid",
   "@vallisColdOption": {
     "description": "Orb vallis cycle option",
     "type": "text",
@@ -460,25 +460,25 @@
     "type": "text",
     "placeholders": {}
   },
-  "primeAccessNewsOption": "Prime Access",
+  "primeAccessNewsOption": "Accès Prime",
   "@primeAccessNewsOption": {
     "description": "Warframe news option",
     "type": "text",
     "placeholders": {}
   },
-  "streamNewsOption": "Stream Announcements",
+  "streamNewsOption": "Annonces de live",
   "@streamNewsOption": {
     "description": "Warframe news option",
     "type": "text",
     "placeholders": {}
   },
-  "updateNewsOption": "Warframe Update News",
+  "updateNewsOption": "Actualités des MàJ Warframe",
   "@updateNewsOption": {
     "description": "Warframe news option",
     "type": "text",
     "placeholders": {}
   },
-  "updateDropTableDescription": "Last updated {date}",
+  "updateDropTableDescription": "Dernière mise à jour {date}",
   "@updateDropTableDescription": {
     "description": "Description for updating drop table with date of the last update",
     "type": "text",
@@ -486,49 +486,49 @@
       "date": {}
     }
   },
-  "reportBugsTitle": "Report Bugs",
+  "reportBugsTitle": "Signaler un bug",
   "@reportBugsTitle": {
     "desciption": "Title for bug report link",
     "type": "text",
     "placeholders": {}
   },
-  "reportBugsDescription": "Report bugs or request a feature.",
+  "reportBugsDescription": "Signaler un bug ou proposer une fonctionnalité.",
   "@reportBugsDescription": {
     "description": "Description for bug report link",
     "type": "text",
     "placeholders": {}
   },
-  "aboutCategoryTitle": "About",
+  "aboutCategoryTitle": "À propos",
   "@aboutCategoryTitle": {
     "description": "Title for the about category of the settings page",
     "type": "text",
     "placeholders": {}
   },
-  "lightThemeTitle": "Light",
+  "lightThemeTitle": "Clair",
   "@lightThemeTitle": {
     "description": "Title for light theme",
     "type": "text",
     "placeholders": {}
   },
-  "darkThemeTitle": "Dark",
+  "darkThemeTitle": "Sombre",
   "@darkThemeTitle": {
     "description": "Title for dark theme",
     "type": "text",
     "placeholders": {}
   },
-  "systemThemeTitle": "System",
+  "systemThemeTitle": "Système",
   "@systemThemeTitle": {
     "description": "Title for system theme",
     "type": "text",
     "placeholders": {}
   },
-  "legalese": "Warframe and the Warframe logo are registered trademarks of Digital Extremes Ltd. Cephalon Navis nor WFCD are affiliated with Digital Extremes Ltd. in any way.",
+  "legalese": "Warframe et le logo Warframe sont des marques déposées de Digital Extremes Ltd. Cephalon Navis et WFCD ne sont pas affiliés avec Digital Extremes Ltd.",
   "@legalese": {
     "description": "Cephalon Navis legalese",
     "type": "text",
     "placeholders": {}
   },
-  "homePageTitle": "Home",
+  "homePageTitle": "Accueil",
   "@homePageTitle": {
     "description": "Displayes a link to Navis's homepage",
     "type": "text",
@@ -540,61 +540,61 @@
     "type": "text",
     "placeholders": {}
   },
-  "issueTrackerTitle": "issues tracker",
+  "issueTrackerTitle": "suivi des problèmes",
   "@issueTrackerTitle": {
     "description": "Display link to Navis's issue tracker",
     "type": "text",
     "placeholders": {}
   },
-  "warframeLinkTitle": "More information on Warframe can be found on their official site",
+  "warframeLinkTitle": "Plus d'informations Warframe peuvent être trouvées sur leur site officiel",
   "@warframeLinkTitle": {
     "description": "Description for Warframe's main site link",
     "type": "text",
     "placeholders": {}
   },
-  "settingsTitle": "Settings",
+  "settingsTitle": "Parramètres",
   "@settingsTitle": {
     "description": "Settings title",
     "type": "text",
     "placeholders": {}
   },
-  "dailyRewardTitle": "Daily Reward Reset Timer",
+  "dailyRewardTitle": "Délai de réinitialisation des récompenses quotidiennes",
   "@dailyRewardTitle": {
     "description": "Title for daily reward timer",
     "type": "text",
     "placeholders": {}
   },
-  "eliteBadgeTitle": "Elite",
+  "eliteBadgeTitle": "Élite",
   "@eliteBadgeTitle": {
     "description": "Nightwave Elite badge title",
     "type": "text",
     "placeholders": {}
   },
-  "dailyNightwaveTitle": "Daily",
+  "dailyNightwaveTitle": "Quotidien",
   "@dailyNightwaveTitle": {
     "description": "Nightwave daily title",
     "type": "text",
     "placeholders": {}
   },
-  "weeklyNightwaveTitle": "Weekly",
+  "weeklyNightwaveTitle": "Hebdomadaire",
   "@weeklyNightwaveTitle": {
     "description": "Nightwave weekly title",
     "type": "text",
     "placeholders": {}
   },
-  "plainsofEidolonMapTitle": "Plains of Eidolon map",
+  "plainsofEidolonMapTitle": "Carte des plaines d’Eidolon",
   "@plainsofEidolonMapTitle": {
     "description": "Plains of Eidolon Map link title",
     "type": "text",
     "placholders": {}
   },
-  "orbVallisMapTitle": "Orb Vallis map",
+  "orbVallisMapTitle": "Carte de la vallée d'orbis",
   "@orbVallisMapTitle": {
     "description": "Orb Vallis Map link title",
     "type": "text",
     "placholders": {}
   },
-  "plainsofEidolonFishingDataTitle": "PoE: Fishing Data",
+  "plainsofEidolonFishingDataTitle": "PdE: Données de pêche",
   "@plainsofEidolonFishingDataTitle": {
     "description": "Plains of Eidolon fishing data link title",
     "type": "text",
@@ -606,37 +606,37 @@
     "type": "text",
     "placholders": {}
   },
-  "howToFishTitle": "How to fish",
+  "howToFishTitle": "Comment pêcher",
   "@howToFishTitle": {
     "description": "How to fish link title",
     "type": "text",
     "placholders": {}
   },
-  "recentNewsCategoryTitle": "Most Recent News",
+  "recentNewsCategoryTitle": "Actualités les plus récentes",
   "@recentNewsCategoryTitle": {
     "description": "Title for recent news title",
     "type": "text",
     "placeholders": {}
   },
-  "pastNewsCategoryTitle": "Past News",
+  "pastNewsCategoryTitle": "Actualités passées",
   "@pastNewsCategoryTitle": {
     "description": "Title for past Warframe news",
     "type": "text",
     "placeholders": {}
   },
-  "warframePassiveTitle": "Passive",
+  "warframePassiveTitle": "Passif",
   "@warframePassiveTitle": {
     "description": "Warframes passive title",
     "type": "text",
     "placeholders": {}
   },
-  "auraTitle": "Aura Polarity",
+  "auraTitle": "Polarité d'Aura",
   "@auraTitle": {
     "description": "Aura polarity title for items",
     "type": "text",
     "placeholders": {}
   },
-  "preinstalledPolarities": "Preinstalled Polarities",
+  "preinstalledPolarities": "Polarités préinstallées",
   "@preinstalledPolarities": {
     "description": "Preinstalled polarites title for items",
     "type": "text",
