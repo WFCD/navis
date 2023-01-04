@@ -1,6 +1,7 @@
 import 'package:feedback_sentry/feedback_sentry.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis/settings/settings.dart';
 import 'package:navis/utils/notification_topic_filter.dart';
@@ -63,8 +64,8 @@ class _SettingsView extends StatelessWidget {
             SettingsTile.navigation(
               title: Text(l10n.themeTitle),
               description: Text(l10n.themeDescription),
-              value: Text(settings.theme.name),
-              onPressed: ThemePicker.showModes,
+              value: Text(toBeginningOfSentenceCase(settings.theme.name) ?? ''),
+              onPressed: (context) => ThemePicker.showModes(context, l10n),
             ),
             SettingsTile.switchTile(
               title: Text(l10n.optOutOfAnalyticsTitle),
