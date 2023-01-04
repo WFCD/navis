@@ -68,6 +68,12 @@ jobs:
           KEYSTORE: ${{ secrets.KEYSTORE }}
         run: echo $NAVIS_SERVICE_ACCOUNT | base64 -di > android/fastlane/service_account.json
 
+      - uses: actions/setup-ruby@v1
+        with:
+          ruby-version: "3.0"
+          bundler-cache: true
+          working-directory: android
+
       - name: Fastlane Google Play deploy Beta
         uses: maierj/fastlane-action@v3.0.0
         if: contains(github.ref_name, 'beta')
@@ -141,7 +147,9 @@ jobs:
 
       - uses: actions/setup-ruby@v1
         with:
-          ruby-version: "2.7"
+          ruby-version: "3.0"
+          bundler-cache: true
+          working-directory: ios
 
       - name: App Store Deploy Beta
         uses: maierj/fastlane-action@v3.0.0
