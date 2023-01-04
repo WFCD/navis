@@ -65,11 +65,11 @@ class NotificationTopics {
         description: l10n.fissuresNotificationDescription,
         filters: fissures.toList(),
       ),
-      MultiTopic(
-        title: l10n.acolytesNotificationTitle,
-        description: l10n.acolytesNotificationDescription,
-        filters: acolytes,
-      ),
+      // MultiTopic(
+      //   title: l10n.acolytesNotificationTitle,
+      //   description: l10n.acolytesNotificationDescription,
+      //   filters: acolytes,
+      // ),
     ];
   }
 
@@ -103,15 +103,15 @@ class NotificationTopics {
     ];
   }
 
-  List<SimpleTopics> get acolytes {
-    return const [
-      SimpleTopics(title: 'Angst', topic: Topics.angstkey),
-      SimpleTopics(title: 'Malice', topic: Topics.maliceKey),
-      SimpleTopics(title: 'Misery', topic: Topics.miseryKey),
-      SimpleTopics(title: 'Torment', topic: Topics.tormentKey),
-      SimpleTopics(title: 'Violence', topic: Topics.violenceKey),
-    ];
-  }
+  // List<SimpleTopics> get acolytes {
+  //   return const [
+  //     SimpleTopics(title: 'Angst', topic: Topics.angstkey),
+  //     SimpleTopics(title: 'Malice', topic: Topics.maliceKey),
+  //     SimpleTopics(title: 'Misery', topic: Topics.miseryKey),
+  //     SimpleTopics(title: 'Torment', topic: Topics.tormentKey),
+  //     SimpleTopics(title: 'Violence', topic: Topics.violenceKey),
+  //   ];
+  // }
 
   // It's a really long list.
   // ignore: long-method
