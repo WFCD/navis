@@ -4,15 +4,17 @@ import 'package:provider/provider.dart';
 import 'package:user_settings/user_settings.dart';
 
 class ThemePicker extends StatelessWidget {
-  const ThemePicker({super.key});
+  const ThemePicker({super.key, required this.l10n});
 
-  static Future<void> showModes(BuildContext context) {
+  final NavisLocalizations l10n;
+
+  static Future<void> showModes(BuildContext context, NavisLocalizations l10n) {
     return showDialog<void>(
       context: context,
       builder: (_) {
         return ChangeNotifierProvider.value(
           value: Provider.of<UserSettingsNotifier>(context),
-          child: const ThemePicker(),
+          child: ThemePicker(l10n: l10n),
         );
       },
     );
@@ -25,7 +27,6 @@ class ThemePicker extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = context.l10n;
     final groupValue = context.watch<UserSettingsNotifier>().theme;
     final accentColor = Theme.of(context).colorScheme.secondary;
 
