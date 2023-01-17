@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/utils/notification_topic_filter.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:notification_repository/notification_repository.dart';
@@ -17,8 +18,15 @@ class FilterDialog extends StatelessWidget {
     return showDialog<void>(
       context: context,
       builder: (_) {
-        return ChangeNotifierProvider.value(
-          value: Provider.of<UserSettingsNotifier>(context),
+        return MultiProvider(
+          providers: [
+            ChangeNotifierProvider.value(
+              value: Provider.of<UserSettingsNotifier>(context),
+            ),
+            RepositoryProvider.value(
+              value: Provider.of<NotificationRepository>(context),
+            )
+          ],
           child: FilterDialog(options: options),
         );
       },
