@@ -54,7 +54,7 @@ dependencies:
   warframestat_client:
     git:
       url: https://github.com/SlayerOrnstein/warframestat_client.git
-      ref: v1.5.9
+      ref: v1.5.10
   worldstate_repository:
     path: packages/worldstate_repository
 

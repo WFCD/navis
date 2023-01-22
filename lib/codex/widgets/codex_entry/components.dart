@@ -38,10 +38,9 @@ class ItemComponents extends StatelessWidget {
 }
 
 class _BuildComponent extends StatelessWidget {
-  const _BuildComponent({required this.component, this.child});
+  const _BuildComponent({required this.component});
 
   final Component component;
-  final Widget? child;
 
   void _onTap(BuildContext context) {
     if (component.drops != null && (component.drops?.isNotEmpty ?? false)) {
