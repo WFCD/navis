@@ -5,8 +5,6 @@ import 'package:navis/l10n/l10n.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
-const kMinExtent = kToolbarHeight + kTextTabBarHeight;
-
 class BasicItemInfo extends SliverPersistentHeaderDelegate {
   const BasicItemInfo({
     required this.uniqueName,
@@ -14,9 +12,7 @@ class BasicItemInfo extends SliverPersistentHeaderDelegate {
     required this.description,
     required this.imageUrl,
     this.wikiaUrl,
-    this.bottom,
     required this.expandedHeight,
-    this.isMod = false,
     this.isVaulted,
   });
 
@@ -25,9 +21,7 @@ class BasicItemInfo extends SliverPersistentHeaderDelegate {
   final String description;
   final String imageUrl;
   final String? wikiaUrl;
-  final Widget? bottom;
   final double expandedHeight;
-  final bool isMod;
   final bool? isVaulted;
 
   @override
@@ -38,40 +32,40 @@ class BasicItemInfo extends SliverPersistentHeaderDelegate {
   ) {
     final canvasColor = context.theme.canvasColor;
 
-    return Container(
-      height: expandedHeight,
-      color: canvasColor,
-      child: Stack(
-        children: <Widget>[
-          AppBar(
-            elevation: 0,
-            backgroundColor: canvasColor,
-            iconTheme: context.theme.iconTheme,
-            title: isMod ? Text(name) : null,
-            actions: [
-              if (isVaulted ?? false)
+    return Material(
+      elevation: 4,
+      child: Container(
+        height: expandedHeight,
+        color: canvasColor,
+        child: Stack(
+          children: <Widget>[
+            AppBar(
+              elevation: 0,
+              backgroundColor: canvasColor,
+              iconTheme: context.theme.iconTheme,
+              actions: [
+                if (isVaulted ?? false)
+                  TextButton(
+                    style: ButtonStyle(
+                      foregroundColor:
+                          MaterialStateProperty.all(context.theme.errorColor),
+                    ),
+                    onPressed: null,
+                    child: Text(context.l10n.codexVaultedLabel),
+                  ),
                 TextButton(
                   style: ButtonStyle(
                     foregroundColor: MaterialStateProperty.all(
-                      context.theme.colorScheme.error,
+                      context.theme.textTheme.button?.color,
                     ),
                   ),
-                  onPressed: null,
-                  child: Text(context.l10n.codexVaultedLabel),
+                  onPressed: () => wikiaUrl?.launchLink(context),
+                  child: Text(context.l10n.seeWikia),
                 ),
-              TextButton(
-                style: ButtonStyle(
-                  foregroundColor: MaterialStateProperty.all(
-                    context.theme.textTheme.labelLarge?.color,
-                  ),
-                ),
-                onPressed: () => wikiaUrl?.launchLink(context),
-                child: Text(context.l10n.seeWikia),
-              ),
-            ],
-          ),
-          if (!isMod)
-            Center(
+              ],
+            ),
+            Align(
+              alignment: Alignment.bottomCenter,
               child: _EntryInfoContent(
                 height: expandedHeight,
                 shrinkOffset: shrinkOffset,
@@ -81,9 +75,8 @@ class BasicItemInfo extends SliverPersistentHeaderDelegate {
                 description: description,
               ),
             ),
-          if (bottom != null)
-            Align(alignment: Alignment.bottomCenter, child: bottom),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -92,7 +85,7 @@ class BasicItemInfo extends SliverPersistentHeaderDelegate {
   double get maxExtent => expandedHeight;
 
   @override
-  double get minExtent => kToolbarHeight + kTextTabBarHeight;
+  double get minExtent => kToolbarHeight;
 
   @override
   bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) {

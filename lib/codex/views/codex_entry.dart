@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:navis/codex/widgets/codex_entry/drops.dart';
 import 'package:navis/codex/widgets/codex_widgets.dart';
 import 'package:navis/utils/item_extensions.dart';
 import 'package:navis_ui/navis_ui.dart';
@@ -146,7 +145,7 @@ class _Overview extends StatelessWidget {
     // Final item = ModalRoute.of(context)?.settings.arguments! as Item;.
     final heightRatio = MediaQuery.of(context).size.height / 100;
 
-    final height = item is Mod ? kMinExtent : heightRatio * 30;
+    final height = item is Mod ? kToolbarHeight : heightRatio * 25;
 
     return Scaffold(
       body: SafeArea(
@@ -160,34 +159,36 @@ class _Overview extends StatelessWidget {
                 description: item.description?.parseHtmlString() ?? '',
                 wikiaUrl: item.wikiaUrl,
                 imageUrl: item.imageUrl,
-                isMod: item is Mod,
                 expandedHeight: height,
               ),
             ),
-            SliverPadding(
-              padding: const EdgeInsets.only(left: 16, right: 16, bottom: 16),
-              sliver: SliverList(
-                delegate: SliverChildListDelegate.fixed(
-                  [
-                    if (_isFoundryItem) ...{
-                      ItemComponents(
+            SliverList(
+              delegate: SliverChildListDelegate.fixed(
+                [
+                  if (_isFoundryItem)
+                    AppCard(
+                      padding: const EdgeInsets.symmetric(vertical: 10),
+                      child: ItemComponents(
                         itemImageUrl: item.imageUrl,
-                        components:
-                            (item as BuildableItem).components ?? <Component>[],
+                        components: (item as BuildableItem).components!,
                       ),
-                      SizedBoxSpacer.spacerHeight16,
-                    },
-                    if (_isPowerSuit) FrameStats(powerSuit: item as PowerSuit),
-                    if (_isGun) GunStats(gun: item as Gun),
-                    if (_isMeleeWeapon) MeleeStats(melee: item as Melee),
-                    if (item is DroppableItem &&
-                        (item as DroppableItem).drops != null) ...{
-                      SizedBoxSpacer.spacerHeight20,
-                      const CategoryTitle(title: 'Drops'),
-                      DropLocations(drops: (item as DroppableItem).drops!),
-                    },
-                  ],
-                ),
+                    ),
+                  if (_isPowerSuit)
+                    AppCard(
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      child: FrameStats(powerSuit: item as PowerSuit),
+                    ),
+                  if (_isGun)
+                    AppCard(
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      child: GunStats(gun: item as Gun),
+                    ),
+                  if (_isMeleeWeapon)
+                    AppCard(
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      child: MeleeStats(melee: item as Melee),
+                    ),
+                ],
               ),
             ),
           ],
