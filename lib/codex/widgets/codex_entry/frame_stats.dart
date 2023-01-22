@@ -1,5 +1,6 @@
 // ignore_for_file: prefer-moving-to-variable
 import 'package:flutter/material.dart';
+import 'package:navis/codex/utils/stats.dart';
 import 'package:navis/codex/widgets/codex_entry/polarity.dart';
 import 'package:navis/codex/widgets/codex_entry/preinstalled_polarities.dart';
 import 'package:navis/codex/widgets/codex_entry/stats.dart';
@@ -19,9 +20,8 @@ class FrameStats extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        const CategoryTitle(title: 'Stats', contentPadding: EdgeInsets.zero),
         if (powerSuit is Warframe) _Passive(warframe: powerSuit as Warframe),
-        SizedBoxSpacer.spacerHeight16,
+        const CategoryTitle(title: 'Stats', contentPadding: EdgeInsets.zero),
         Stats(
           stats: <RowItem>[
             if (powerSuit is Warframe && (powerSuit as Warframe).aura != null)
@@ -54,7 +54,7 @@ class FrameStats extends StatelessWidget {
               RowItem(
                 text: Text(l10n.sprintSpeedTitle),
                 child: Text(
-                  '${(powerSuit as Warframe).sprintSpeed}',
+                  '${statRoundDouble((powerSuit as Warframe).sprintSpeed, 2)}',
                 ),
               ),
           ],
