@@ -98,7 +98,7 @@ packages:
     source: hosted
     version: "1.6.2"
   crypto:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: crypto
       sha256: aa274aa7774f8964e4f4f38cc994db7b6158dd36e9187aaceaddc994b35c6c67
@@ -502,15 +502,7 @@ packages:
       sha256: "307de764d305289ff24ad257ad5c5793ce56d04947599ad68b3baa124105fc17"
       url: "https://pub.dev"
     source: hosted
-    version: "2.1.3"
-  retry:
-    dependency: transitive
-    description:
-      name: retry
-      sha256: "45dfeebaf095b606fdb9dbfb4c114cc204449bc274783b452658365e03afdbab"
-      url: "https://pub.dev"
-    source: hosted
-    version: "3.1.0"
+    version: "2.1.0"
   shared_preferences:
     dependency: transitive
     description:
@@ -738,7 +730,16 @@ packages:
       sha256: e7fb6c2282f7631712b69c19d1bff82f3767eea33a2321c14fa59ad67ea391c7
       url: "https://pub.dev"
     source: hosted
-    version: "9.4.0"
+    version: "7.5.0"
+  warframestat_client:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: "v1.4.0"
+      resolved-ref: b151f33f4b34b1322019d6c3c16d9af0d612d0cf
+      url: "https://github.com/SlayerOrnstein/warframestat_client.git"
+    source: git
+    version: "1.4.0"
   watcher:
     dependency: transitive
     description:
@@ -762,16 +763,7 @@ packages:
       sha256: "67d3a8b6c79e1987d19d848b0892e582dbb0c66c57cc1fef58a177dd2aa2823d"
       url: "https://pub.dev"
     source: hosted
-    version: "1.2.0"
-  wfcd_client:
-    dependency: "direct main"
-    description:
-      path: "."
-      ref: "v3.11.1"
-      resolved-ref: "17807034670fbf01ea6e01b9cf567e1f70c0faa2"
-      url: "https://github.com/SlayerOrnstein/wfcd_client.git"
-    source: git
-    version: "3.11.1"
+    version: "1.0.0"
   win32:
     dependency: transitive
     description:

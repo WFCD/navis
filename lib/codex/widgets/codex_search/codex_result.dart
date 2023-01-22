@@ -1,7 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:navis/utils/item_extensions.dart';
 import 'package:navis_ui/navis_ui.dart';
-import 'package:wfcd_client/entities.dart';
+import 'package:warframestat_client/warframestat_client.dart';
 
 class CodexResult extends StatelessWidget {
   const CodexResult({super.key, required this.item});
@@ -16,7 +17,7 @@ class CodexResult extends StatelessWidget {
       final levelStats = (item as Mod).levelStats;
 
       if (levelStats != null) {
-        description = levelStats.last['stats']!.fold('', (p, e) {
+        description = levelStats.last.stats.fold('', (p, e) {
           return p == null ? '$e ' : '$p $e ';
         });
       }

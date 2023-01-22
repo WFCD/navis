@@ -3,7 +3,7 @@ import 'package:navis/l10n/l10n.dart';
 import 'package:navis/worldstate/worldstate.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:responsive_builder/responsive_builder.dart';
-import 'package:wfcd_client/entities.dart';
+import 'package:warframestat_client/warframestat_client.dart';
 
 class SyndicateCard extends StatelessWidget {
   const SyndicateCard({
@@ -16,12 +16,13 @@ class SyndicateCard extends StatelessWidget {
   }) : assert(
           syndicate != null || name != null,
           'If name is null then it will default\n'
-          'to Syndicate.id instead, only one can be null but not both',
+          'to Syndicate.syndicateKey instead, '
+          'only one can be null but not both',
         );
 
   final String? name;
   final String? caption;
-  final Syndicate? syndicate;
+  final SyndicateMission? syndicate;
   final Nightwave? nightwave;
 
   final void Function()? onTap;
@@ -69,7 +70,7 @@ class SyndicateCard extends StatelessWidget {
                 // ignore: no-magic-number
                 leading: SyndicateIcon(syndicate: syndicateName, iconSize: 50),
                 title: Text(
-                  syndicate?.name.replaceFirst('Syndicate', '') ?? name ?? '',
+                  syndicate?.syndicateKey ?? name ?? '',
                   style: titleStyle,
                 ),
                 subtitle: Text(

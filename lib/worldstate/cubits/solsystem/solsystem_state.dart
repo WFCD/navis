@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:wfcd_client/entities.dart';
+import 'package:warframestat_client/warframestat_client.dart';
 
 abstract class SolsystemState extends Equatable {
   const SolsystemState();
@@ -20,17 +20,17 @@ class SolState extends SolsystemState {
 
   final Worldstate worldstate;
 
-  bool get activeAcolytes => worldstate.enemyActive;
+  // bool get activeAcolytes => worldstate.enemyActive;
 
-  bool get activeAlerts => worldstate.activeAlerts;
+  bool get activeAlerts => worldstate.alerts.isNotEmpty;
 
-  bool get activeSales => worldstate.isSaleActive;
+  bool get activeSales => worldstate.flashSales.isNotEmpty;
 
-  bool get arbitrationActive => worldstate.activeArbitration;
+  bool get arbitrationActive => worldstate.arbitration != null;
 
-  bool get eventsActive => worldstate.activeEvents;
+  bool get eventsActive => worldstate.events.isNotEmpty;
 
-  bool get outpostDetected => worldstate.anomalyDetected;
+  bool get outpostDetected => worldstate.sentientOutposts != null;
 
   @override
   List<Object> get props => [worldstate];

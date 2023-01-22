@@ -1167,6 +1167,15 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "9.4.0"
+  warframestat_client:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: "v1.5.9"
+      resolved-ref: "88d467b6be6518d5a2b3cb64ec69849429ba4cc3"
+      url: "https://github.com/SlayerOrnstein/warframestat_client.git"
+    source: git
+    version: "1.5.9"
   watcher:
     dependency: transitive
     description:
@@ -1190,16 +1199,7 @@ packages:
       sha256: "67d3a8b6c79e1987d19d848b0892e582dbb0c66c57cc1fef58a177dd2aa2823d"
       url: "https://pub.dev"
     source: hosted
-    version: "1.2.0"
-  wfcd_client:
-    dependency: "direct main"
-    description:
-      path: "."
-      ref: "v3.11.1"
-      resolved-ref: "17807034670fbf01ea6e01b9cf567e1f70c0faa2"
-      url: "https://github.com/SlayerOrnstein/wfcd_client.git"
-    source: git
-    version: "3.11.1"
+    version: "1.0.0"
   win32:
     dependency: transitive
     description:

@@ -1,18 +1,14 @@
-// This is what just worked for the style.
-// ignore_for_file: no-magic-number
-// Already being checked for null.
-// ignore_for_file: avoid-non-null-assertion
 import 'package:flutter/material.dart';
 import 'package:navis/codex/utils/stats.dart';
 import 'package:navis/codex/widgets/codex_widgets.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis_ui/navis_ui.dart';
-import 'package:wfcd_client/entities.dart';
+import 'package:warframestat_client/warframestat_client.dart';
 
 class GunStats extends StatelessWidget {
-  const GunStats({super.key, required this.projectileWeapon});
+  const GunStats({super.key, required this.gun});
 
-  final ProjectileWeapon projectileWeapon;
+  final Gun gun;
 
   @override
   Widget build(BuildContext context) {
@@ -28,76 +24,77 @@ class GunStats extends StatelessWidget {
         SizedBoxSpacer.spacerHeight8,
         Stats(
           stats: <RowItem>[
-            RowItem(
-              text: Text(l10n.masteryRequirementTitle),
-              child: Text('${projectileWeapon.masteryReq}'),
-            ),
+            if (gun.masterReq != null)
+              RowItem(
+                text: Text(l10n.masteryRequirementTitle),
+                child: Text('${gun.masterReq}'),
+              ),
             RowItem(
               text: Text(l10n.weaponTypeTitle),
-              child: Text(projectileWeapon.type),
+              child: Text(gun.type),
             ),
-            if (projectileWeapon.polarities?.isNotEmpty ?? false)
+            if (gun.polarities?.isNotEmpty ?? false)
               RowItem(
                 text: Text(l10n.preinstalledPolarities),
                 child: PreinstalledPolarties(
-                  polarities: projectileWeapon.polarities ?? <String>[],
+                  polarities: gun.polarities ?? <String>[],
                 ),
               ),
-            if (projectileWeapon.accuracy != null)
+            if (gun.accuracy != null)
               RowItem(
                 text: Text(l10n.accuracyTitle),
-                child:
-                    Text('${statRoundDouble(projectileWeapon.accuracy!, 1)}'),
+                child: Text('${statRoundDouble(gun.accuracy!.toDouble(), 1)}'),
               ),
             RowItem(
               text: Text(l10n.criticalChanceTitle),
               child: Text(
-                '${(projectileWeapon.criticalChance * 100).roundToDouble()}%',
+                '${(gun.criticalChance * 100).roundToDouble()}%',
               ),
             ),
             RowItem(
               text: Text(l10n.cricticalMultiplierTitle),
-              child: Text('${projectileWeapon.criticalMultiplier}x'),
+              child: Text('${gun.criticalMultiplier}x'),
             ),
             RowItem(
               text: Text(l10n.fireRateTitle),
-              child: Text(projectileWeapon.fireRate.toStringAsFixed(2)),
+              child: Text(gun.fireRate.toStringAsFixed(2)),
             ),
             RowItem(
               text: Text(l10n.magazineTitle),
-              child: Text('${projectileWeapon.magazineSize}'),
+              child: Text('${gun.magazineSize}'),
             ),
             RowItem(
               text: Text(l10n.multishotTitle),
-              child: Text('${projectileWeapon.multishot}'),
+              child: Text('${gun.multishot}'),
             ),
-            if (projectileWeapon.noise != null)
+            if (gun.noise != null)
               RowItem(
                 text: Text(l10n.noiseTitle),
-                child: Text(projectileWeapon.noise!.toUpperCase()),
+                child: Text(gun.noise!.toUpperCase()),
               ),
-            if (projectileWeapon.reloadTime != null)
+            if (gun.reloadTime != null)
               RowItem(
                 text: Text(l10n.reloadTitle),
-                child:
-                    Text('${statRoundDouble(projectileWeapon.reloadTime!, 1)}'),
+                child: Text(
+                  '${statRoundDouble(gun.reloadTime!.toDouble(), 1)}',
+                ),
               ),
             RowItem(
               text: Text(l10n.rivenDispositionTitle),
               child: RivenDisposition(
-                disposition: projectileWeapon.disposition ?? 0,
+                disposition: gun.disposition,
               ),
             ),
             RowItem(
               text: Text(l10n.statusChanceTitle),
               child: Text(
-                '${(projectileWeapon.statusChance * 100).roundToDouble()}%',
+                '${(gun.procChance * 100).roundToDouble()}%',
               ),
             ),
-            if (projectileWeapon.trigger != null)
+            if (gun.trigger != null)
               RowItem(
                 text: Text(l10n.triggerTitle),
-                child: Text(projectileWeapon.trigger!),
+                child: Text(gun.trigger!),
               ),
           ],
         ),
@@ -113,7 +110,7 @@ class GunStats extends StatelessWidget {
             style: textStyle,
           ),
           child: Text(
-            '${statRoundDouble(projectileWeapon.totalDamage, 1)}',
+            '${statRoundDouble(gun.totalDamage.toDouble(), 1)}',
             style: textStyle,
           ),
         ),

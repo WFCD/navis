@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:notification_repository/src/topics.dart';
-import 'package:wfcd_client/wfcd_client.dart';
+import 'package:warframestat_client/warframestat_client.dart';
 
 // TODO(SlayerOrnstein): We might need to use other services that also provide
 //  ADM for amazon devices
@@ -24,13 +24,13 @@ class NotificationRepository {
   void configure() => _messaging.requestPermission();
 
   /// Subscribes to the [GamePlatforms]
-  Future<void> subscribeToPlatform(GamePlatforms platform) async {
+  Future<void> subscribeToPlatform(GamePlatform platform) async {
     _log('subscribing to ${platform.name} topic');
     await _messaging.subscribeToTopic(platform.name);
   }
 
   /// Unsubscribes from the [GamePlatforms]
-  Future<void> unsubscribeFromPlatform(GamePlatforms platform) async {
+  Future<void> unsubscribeFromPlatform(GamePlatform platform) async {
     _log('unsubscribing from ${platform.name} topic');
     await _messaging.unsubscribeFromTopic(platform.name);
   }

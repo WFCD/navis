@@ -1,9 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:navis/codex/views/component_drops.dart';
+import 'package:navis/codex/codex.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis_ui/navis_ui.dart';
-import 'package:wfcd_client/entities.dart';
+import 'package:warframestat_client/warframestat_client.dart';
 
 class ItemComponents extends StatelessWidget {
   const ItemComponents({

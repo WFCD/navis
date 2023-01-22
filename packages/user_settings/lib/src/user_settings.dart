@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:matomo/matomo.dart';
 import 'package:user_settings/src/settings_keys.dart';
-import 'package:wfcd_client/wfcd_client.dart';
+import 'package:warframestat_client/warframestat_client.dart';
 
 /// {@template user_settings}
 /// A Hive box for saving user simple user settings
@@ -28,14 +28,14 @@ class UserSettings {
   }
 
   /// Returns the stored language as a locale.
-  Locale? get language {
+  Locale get language {
     final value = _userSettingsBox.get(SettingsKeys.userLanguage) as String?;
 
     if (value != null) {
       return Locale(value);
     }
 
-    return null;
+    return Locale('en');
   }
 
   /// Updates the stored [UserSettings.language].
@@ -47,20 +47,20 @@ class UserSettings {
   }
 
   /// Returns the stored [GamePlatforms].
-  GamePlatforms get platform {
+  GamePlatform get platform {
     final value = _userSettingsBox.get(SettingsKeys.platformKey) as String?;
 
     if (value != null) {
-      return GamePlatformsX.fromString(value);
+      return GamePlatform.values.byName(value);
     }
 
-    return GamePlatforms.pc;
+    return GamePlatform.pc;
   }
 
   /// Updates the stored [UserSettings.platform].
-  set platform(GamePlatforms value) {
-    log('setting new platform ${value.asString}');
-    _userSettingsBox.put(SettingsKeys.platformKey, value.asString);
+  set platform(GamePlatform value) {
+    log('setting new platform ${value.name}');
+    _userSettingsBox.put(SettingsKeys.platformKey, value.name);
   }
 
   /// Returns [ThemeMode] value from the stored string value.

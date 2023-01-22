@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:wfcd_client/entities.dart';
+import 'package:warframestat_client/warframestat_client.dart';
 
 class DropLocations extends StatelessWidget {
   const DropLocations({super.key, required this.drops});
@@ -30,7 +30,7 @@ class _DropEntry extends StatelessWidget {
   const _DropEntry({required this.location, required this.chance});
 
   final String location;
-  final double chance;
+  final num chance;
 
   @override
   Widget build(BuildContext context) {

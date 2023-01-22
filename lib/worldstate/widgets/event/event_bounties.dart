@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis_ui/navis_ui.dart';
-import 'package:wfcd_client/entities.dart';
+import 'package:warframestat_client/warframestat_client.dart';
 
 class EventBounties extends StatelessWidget {
   const EventBounties({super.key, required this.jobs});
 
-  final List<Job> jobs;
+  final List<SyndicateJob> jobs;
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +32,7 @@ class EventBounties extends StatelessWidget {
 class _BuildBounties extends StatelessWidget {
   const _BuildBounties({required this.jobs});
 
-  final List<Job> jobs;
+  final List<SyndicateJob> jobs;
 
   void _showDialog(BuildContext context, String type, List<String> rewards) {
     final size = MediaQuery.of(context).size;

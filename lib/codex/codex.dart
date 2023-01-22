@@ -1,6 +1,9 @@
+export '../utils/item_extensions.dart';
 export 'bloc/search_bloc.dart';
 export 'cubit/market_bloc.dart';
 export 'utils/mod_polarity.dart';
+export 'utils/result_filters.dart';
+export 'utils/stats.dart';
 export 'views/codex_entry.dart';
 export 'views/codex_search_view.dart';
 export 'views/component_drops.dart';

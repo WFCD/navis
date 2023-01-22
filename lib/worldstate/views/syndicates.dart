@@ -9,8 +9,7 @@ import 'package:navis/worldstate/worldstate.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:nil/nil.dart';
 import 'package:responsive_builder/responsive_builder.dart';
-import 'package:wfcd_client/entities.dart';
-import 'package:wfcd_client/objects.dart';
+import 'package:warframestat_client/warframestat_client.dart';
 
 class SyndicatePage extends TraceableStatelessWidget {
   const SyndicatePage({super.key});
@@ -41,22 +40,8 @@ class SyndicatePage extends TraceableStatelessWidget {
       builder: (context, state) {
         final syndicateMissions = state is SolState
             ? state.worldstate.syndicateMissions
-            : <Syndicate>[];
-        final nightwave = state is SolState
-            ? state.worldstate.nightwave
-            : Nightwave(
-                id: 'id',
-                activation: DateTime.now(),
-                expiry: DateTime.now().add(kThemeAnimationDuration),
-                startString: 'startString',
-                tag: 'tag',
-                active: false,
-                season: 0,
-                phase: 0,
-                possibleChallenges: const <Challenge>[],
-                activeChallenges: const <Challenge>[],
-                rewardTypes: const <String>[],
-              );
+            : <SyndicateMission>[];
+        final nightwave = state is SolState ? state.worldstate.nightwave : null;
 
         return ViewLoading(
           isLoading: state is! SolState,
@@ -81,8 +66,8 @@ class SyndicatePage extends TraceableStatelessWidget {
 class _BuildSyndicates extends StatelessWidget {
   const _BuildSyndicates({required this.syndicates, this.onTap});
 
-  final List<Syndicate> syndicates;
-  final void Function(Syndicate)? onTap;
+  final List<SyndicateMission> syndicates;
+  final void Function(SyndicateMission)? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -139,7 +124,7 @@ class _BuildNightwave extends StatelessWidget {
 class _SyndicatePageMobile extends StatelessWidget {
   const _SyndicatePageMobile({required this.syndicates, this.nightwave});
 
-  final List<Syndicate> syndicates;
+  final List<SyndicateMission> syndicates;
   final Nightwave? nightwave;
 
   @override
@@ -148,8 +133,6 @@ class _SyndicatePageMobile extends StatelessWidget {
       children: <Widget>[
         _BuildSyndicates(syndicates: syndicates),
         SizedBoxSpacer.spacerHeight8,
-        // Already being checked for null.
-        // ignore: avoid-non-null-assertion
         if (nightwave != null) _BuildNightwave(nightwave: nightwave!),
       ],
     );
@@ -159,7 +142,7 @@ class _SyndicatePageMobile extends StatelessWidget {
 class _SyndicatePageTablet extends StatefulWidget {
   const _SyndicatePageTablet({required this.syndicates, this.nightwave});
 
-  final List<Syndicate> syndicates;
+  final List<SyndicateMission> syndicates;
   final Nightwave? nightwave;
 
   @override
@@ -176,7 +159,7 @@ class _SyndicatePageTabletState extends State<_SyndicatePageTablet> {
   }
 
   void _onTap(WorldstateObject object) {
-    if (object is Syndicate) {
+    if (object is SyndicateMission) {
       _controller?.sink.add(SyndicateBounties(syndicate: object));
     } else {
       // Since the widget itself isn't visible when nightwave are inactive it

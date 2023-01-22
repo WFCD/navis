@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:matomo/matomo.dart';
 import 'package:navis/worldstate/worldstate.dart';
 import 'package:navis_ui/navis_ui.dart';
-import 'package:wfcd_client/entities.dart';
+import 'package:warframestat_client/warframestat_client.dart';
 
 class OrbiterNewsPage extends TraceableStatelessWidget {
   const OrbiterNewsPage({super.key});
@@ -12,8 +12,7 @@ class OrbiterNewsPage extends TraceableStatelessWidget {
   Widget build(BuildContext context) {
     const cacheExtent = 200.0;
     final state = context.watch<SolsystemCubit>().state;
-    final orbitNews =
-        state is SolState ? state.worldstate.news : <OrbiterNews>[];
+    final orbitNews = state is SolState ? state.worldstate.news : <News>[];
 
     return ViewLoading(
       isLoading: state is! SolState,

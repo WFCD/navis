@@ -51,10 +51,10 @@ dependencies:
   simple_icons: ^7.10.0
   user_settings:
     path: packages/user_settings
-  wfcd_client:
+  warframestat_client:
     git:
-      url: https://github.com/SlayerOrnstein/wfcd_client.git
-      ref: v3.11.1
+      url: https://github.com/SlayerOrnstein/warframestat_client.git
+      ref: v1.5.9
   worldstate_repository:
     path: packages/worldstate_repository
 

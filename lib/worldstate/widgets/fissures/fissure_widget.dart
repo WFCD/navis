@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis_ui/navis_ui.dart';
-import 'package:wfcd_client/entities.dart';
+import 'package:warframestat_client/warframestat_client.dart';
 
 class FissureWidget extends StatelessWidget {
   const FissureWidget({super.key, required this.fissure});
 
-  final VoidFissure fissure;
+  final Fissure fissure;
 
   static const shadow = Shadow(offset: Offset(1, 0), blurRadius: 3);
 
@@ -81,7 +81,7 @@ class _FissureInfo extends StatelessWidget {
   })  : _nodeStyle = nodeStyle,
         _missionTypeStyle = missionTypeStyle;
 
-  final VoidFissure fissure;
+  final Fissure fissure;
   final TextStyle _nodeStyle;
   final TextStyle _missionTypeStyle;
 

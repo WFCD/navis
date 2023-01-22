@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis/worldstate/cubits/solsystem_cubit.dart';
 import 'package:navis_ui/navis_ui.dart';
-import 'package:wfcd_client/entities.dart';
+import 'package:warframestat_client/warframestat_client.dart';
 
 class AlertsCard extends StatelessWidget {
   const AlertsCard({super.key});
@@ -49,7 +49,7 @@ class _AlertWidget extends StatelessWidget {
             icons: <Widget>[
               // Since nightmare alerts aren't visible in the worldstate there
               // is no need for a nightmare icon for alerts.
-              if (alert.archwingRequired ?? false)
+              if (mission.archwingRequired ?? false)
                 const Icon(
                   GenesisAssets.archwing,
                   color: Colors.blue,

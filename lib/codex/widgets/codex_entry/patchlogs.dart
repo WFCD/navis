@@ -1,14 +1,13 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:navis/utils/item_extensions.dart';
 import 'package:navis_ui/navis_ui.dart';
-import 'package:wfcd_client/entities.dart';
+import 'package:warframestat_client/warframestat_client.dart';
 
 class PatchlogCard extends StatelessWidget {
   const PatchlogCard({super.key, required this.patchlog});
 
   final Patchlog patchlog;
-
-  static const _backupImage = 'https://i.imgur.com/CNrsc7V.png';
 
   @override
   Widget build(BuildContext context) {
@@ -24,8 +23,7 @@ class PatchlogCard extends StatelessWidget {
             height: 95,
             decoration: BoxDecoration(
               image: DecorationImage(
-                image:
-                    CachedNetworkImageProvider(patchlog.imgUrl ?? _backupImage),
+                image: CachedNetworkImageProvider(patchlog.imageUrl),
                 fit: BoxFit.cover,
                 colorFilter: ColorFilter.mode(
                   // This is what just worked for the style.

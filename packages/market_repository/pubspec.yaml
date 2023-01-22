@@ -16,10 +16,10 @@ dependencies:
       ref: 2417521468a17f0dc3cf7ed5b2d4265bff15efaf
   user_settings:
     path: ../user_settings
-  wfcd_client:
+  warframestat_client:
     git:
-      url: https://github.com/SlayerOrnstein/wfcd_client.git
-      ref: v3.11.1
+      url: https://github.com/SlayerOrnstein/warframestat_client.git
+      ref: v1.5.9
 
 dev_dependencies:
   flutter_test:

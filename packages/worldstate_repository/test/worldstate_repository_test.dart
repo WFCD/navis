@@ -4,11 +4,9 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:hive/hive.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:user_settings/user_settings.dart';
-import 'package:wfcd_client/entities.dart';
-import 'package:wfcd_client/models.dart';
+import 'package:warframestat_client/warframestat_client.dart';
 import 'package:worldstate_repository/worldstate_repository.dart';
 
-import 'fakes.dart';
 import 'fixtures/fixtures.dart';
 import 'mocks.dart';
 
@@ -19,8 +17,7 @@ void main() {
   late Box<dynamic> testBox;
   late WorldstateComputeRunners runners;
 
-  final Worldstate worldstate =
-      WorldstateModel.fromJson(Fixtures.worldstateFixture);
+  final Worldstate worldstate = Worldstate.fromJson(Fixtures.worldstateFixture);
 
   // final List<SynthTarget> synthTargets = Fixtures.synthTargetsFixture
   //  .map((dynamic e) => SynthTargetModel.fromJson(e as Map<String, dynamic>))
@@ -41,9 +38,6 @@ void main() {
       cache: cache,
       runners: runners,
     );
-
-    registerFallbackValue(FakeWorldstateRequestType());
-    registerFallbackValue(FakeItemSearchRequestType());
   });
 
   group('Worldstate', () {
@@ -68,8 +62,9 @@ void main() {
       //in cache to test against the timestamp.
       cache.cacheWorldstate(worldstate);
 
-      final updateState =
-          worldstate.copyWith(timestamp: DateTime.now().toUtc());
+      final fixture = Fixtures.worldstateFixture;
+      fixture['timestamp'] = DateTime.now().toUtc();
+      final updateState = Worldstate.fromJson(fixture);
 
       when(() => runners.getWorldstate(any()))
           .thenAnswer((_) async => updateState);
@@ -80,8 +75,9 @@ void main() {
     });
 
     test('forced => gets a new state regardless of timestamp', () async {
-      final updateState =
-          worldstate.copyWith(timestamp: DateTime.now().toUtc());
+      final fixture = Fixtures.worldstateFixture;
+      fixture['timestamp'] = DateTime.now().toUtc();
+      final updateState = Worldstate.fromJson(fixture);
 
       // The tearDown clears keys after every test so we need to have something
       //in cache to test against the timestamp.
