@@ -43,12 +43,12 @@ class GunStats extends StatelessWidget {
             if (gun.accuracy != null)
               RowItem(
                 text: Text(l10n.accuracyTitle),
-                child: Text('${statRoundDouble(gun.accuracy!.toDouble(), 1)}'),
+                child: Text('${statRoundDouble(gun.accuracy!, 1)}'),
               ),
             RowItem(
               text: Text(l10n.criticalChanceTitle),
               child: Text(
-                '${(gun.criticalChance * 100).roundToDouble()}%',
+                '${gun.criticalChance * 100}%',
               ),
             ),
             RowItem(
@@ -63,10 +63,11 @@ class GunStats extends StatelessWidget {
               text: Text(l10n.magazineTitle),
               child: Text('${gun.magazineSize}'),
             ),
-            RowItem(
-              text: Text(l10n.multishotTitle),
-              child: Text('${gun.multishot}'),
-            ),
+            if (gun.multishot != null && gun.multishot! > 1.0)
+              RowItem(
+                text: Text(l10n.multishotTitle),
+                child: Text('${statRoundDouble(gun.multishot!, 2)}%'),
+              ),
             if (gun.noise != null)
               RowItem(
                 text: Text(l10n.noiseTitle),
@@ -75,9 +76,7 @@ class GunStats extends StatelessWidget {
             if (gun.reloadTime != null)
               RowItem(
                 text: Text(l10n.reloadTitle),
-                child: Text(
-                  '${statRoundDouble(gun.reloadTime!.toDouble(), 1)}',
-                ),
+                child: Text(gun.reloadTime!.toStringAsFixed(2)),
               ),
             RowItem(
               text: Text(l10n.rivenDispositionTitle),
@@ -103,7 +102,6 @@ class GunStats extends StatelessWidget {
           title: l10n.damageTitle,
           contentPadding: EdgeInsets.zero,
         ),
-        SizedBoxSpacer.spacerHeight16,
         RowItem(
           text: Text(
             l10n.totalDamageTitle,
@@ -114,6 +112,7 @@ class GunStats extends StatelessWidget {
             style: textStyle,
           ),
         ),
+        SizedBoxSpacer.spacerHeight16,
       ],
     );
   }
