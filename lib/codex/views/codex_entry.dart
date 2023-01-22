@@ -134,7 +134,7 @@ class _Overview extends StatelessWidget {
       final foundryItem = item as BuildableItem;
 
       return foundryItem.components != null &&
-          (foundryItem.components?.isNotEmpty ?? false);
+          foundryItem.components!.length > 1;
     }
 
     return false;
