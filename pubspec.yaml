@@ -8,46 +8,46 @@ environment:
 
 dependencies:
   animations: ^2.0.7
-  black_hole_flutter: 0.3.5
-  bloc: 8.1.0
-  cached_network_image: 3.2.3
-  collection: 1.16.0
-  equatable: 2.0.5
+  black_hole_flutter: ^0.3.5
+  bloc: ^8.1.0
+  cached_network_image: ^3.2.3
+  collection: ^1.17.0
+  equatable: ^2.0.5
   feedback_sentry: ^2.3.0
-  firebase_core: 2.3.0
+  firebase_core: ^2.3.0
   flutter:
     sdk: flutter
-  flutter_bloc: 8.1.1
+  flutter_bloc: ^8.1.1
   flutter_localizations:
     sdk: flutter
-  flutter_svg: 1.1.6
-  flutter_web_browser: 0.17.1
-  hive: 2.2.3
+  flutter_svg: ^1.1.6
+  flutter_web_browser: ^0.17.1
+  hive: ^2.2.3
   hive_flutter: ^1.1.0
-  hydrated_bloc: 9.0.0
-  intl: 0.17.0
+  hydrated_bloc: ^9.0.0
+  intl: ^0.17.0
   market_client:
     git:
       url: https://github.com/SlayerOrnstein/market_client.git
       ref: 2417521468a17f0dc3cf7ed5b2d4265bff15efaf
   market_repository:
     path: packages/market_repository
-  matomo: 1.1.0
+  matomo: ^1.1.0
   navis_ui:
     path: packages/navis_ui
-  nil: 1.1.1
+  nil: ^1.1.1
   notification_repository:
     path: packages/notification_repository
-  package_info: 2.0.2
-  path_provider: ^2.0.11
+  package_info: ^2.0.2
+  path_provider: ^2.0.12
   provider: ^6.0.5
   responsive_builder: ^0.5.0+1
-  rxdart: 0.27.7
-  sentry_flutter: ^6.18.2
-  sentry_logging: ^6.18.1
+  rxdart: ^0.27.7
+  sentry_flutter: ^6.18.3
+  sentry_logging: ^6.18.3
   settings_ui: ^2.0.2
-  shimmer: 2.0.0
-  simple_icons: 7.10.0
+  shimmer: ^2.0.0
+  simple_icons: ^7.10.0
   user_settings:
     path: packages/user_settings
   wfcd_client:
@@ -58,13 +58,13 @@ dependencies:
     path: packages/worldstate_repository
 
 dev_dependencies:
-  bloc_test: 9.1.0
+  bloc_test: ^9.1.0
   flutter_test:
     sdk: flutter
-  mocktail: 0.3.0
+  mocktail: ^0.3.0
   path: ^1.8.2
   sentry_dart_plugin: ^1.0.0-beta.5
-  test: ^1.21.4
+  test: ^1.22.0
   very_good_analysis: ^3.1.0
 
 flutter:
