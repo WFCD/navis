@@ -272,9 +272,12 @@ class NotificationTopics {
       'disruption',
       'exterminate',
       'mobile_defense',
+      'orphix',
       'rescue',
+      'skirmish',
       'spy',
       'survival',
+      'volatile',
     ];
 
     for (final tier in tiers) {
