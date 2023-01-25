@@ -64,13 +64,13 @@ class _InvasionDetails extends StatelessWidget {
     const shadow = Shadow(offset: Offset(1, 0), blurRadius: 4);
     final textTheme = Theme.of(context).textTheme;
 
-    final nodeStyle = textTheme.subtitle1?.copyWith(
+    final nodeStyle = textTheme.titleMedium?.copyWith(
       color: Colors.white,
       fontSize: 15,
       shadows: <Shadow>[shadow],
     );
 
-    final infoStyle = textTheme.caption
+    final infoStyle = textTheme.bodySmall
         ?.copyWith(color: Colors.white, shadows: <Shadow>[shadow]);
 
     return Column(

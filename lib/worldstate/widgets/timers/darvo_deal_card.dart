@@ -57,7 +57,7 @@ class _DealWidgetState extends State<_DealWidget> {
     final total = widget.deal.total;
     final saleInfo = Theme.of(context)
         .textTheme
-        .subtitle2
+        .titleSmall
         ?.copyWith(fontWeight: FontWeight.w500);
 
     return BlocBuilder<DarvodealCubit, DarvodealState>(
@@ -79,7 +79,7 @@ class _DealWidgetState extends State<_DealWidget> {
                       errorWidget: (context, url, dynamic object) {
                         return Icon(
                           Icons.error_outline,
-                          color: Theme.of(context).errorColor,
+                          color: Theme.of(context).colorScheme.error,
                         );
                       },
                       placeholder: (context, url) => const SizedBox(
@@ -133,7 +133,7 @@ class _DealWidgetState extends State<_DealWidget> {
                         TextButton(
                           style: ButtonStyle(
                             foregroundColor: MaterialStateProperty.all(
-                              Theme.of(context).textTheme.button?.color,
+                              Theme.of(context).textTheme.labelLarge?.color,
                             ),
                           ),
                           onPressed: () =>

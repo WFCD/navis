@@ -10,19 +10,19 @@ List<DataColumn> _buildDataColumn(BuildContext context) {
     DataColumn(
       label: Text(
         'Item',
-        style: textTheme.bodyText2,
+        style: textTheme.bodyMedium,
       ),
     ),
     DataColumn(
       label: Text(
         'Ducats',
-        style: textTheme.bodyText2,
+        style: textTheme.bodyMedium,
       ),
     ),
     DataColumn(
       label: Text(
         'Credits',
-        style: textTheme.bodyText2,
+        style: textTheme.bodyMedium,
       ),
     ),
   ];

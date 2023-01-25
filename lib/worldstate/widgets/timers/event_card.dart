@@ -37,7 +37,7 @@ class EventCard extends StatelessWidget {
                   trailing: TextButton(
                     style: ButtonStyle(
                       foregroundColor: MaterialStateProperty.all(
-                        Theme.of(context).textTheme.button?.color,
+                        Theme.of(context).textTheme.labelLarge?.color,
                       ),
                     ),
                     onPressed: () => Navigator.of(context)

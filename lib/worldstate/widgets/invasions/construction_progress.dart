@@ -42,7 +42,7 @@ class ConstructionProgressCard extends StatelessWidget {
                       SizedBoxSpacer.spacerWidth12,
                       Text(
                         '$razorbackProgress%',
-                        style: textTheme.headline6,
+                        style: textTheme.titleLarge,
                       ),
                     ],
                   ),
@@ -54,7 +54,7 @@ class ConstructionProgressCard extends StatelessWidget {
                     children: [
                       Text(
                         '$fomorianProgress%',
-                        style: textTheme.headline6,
+                        style: textTheme.titleLarge,
                       ),
                       SizedBoxSpacer.spacerWidth12,
                       AppIcon(

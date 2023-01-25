@@ -97,11 +97,11 @@ class _Passive extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Text(context.l10n.warframePassiveTitle, style: textTheme.subtitle1),
+          Text(context.l10n.warframePassiveTitle, style: textTheme.titleMedium),
           SizedBoxSpacer.spacerHeight8,
           Text(
             (powerSuit as Warframe).passiveDescription,
-            style: textTheme.caption?.copyWith(fontStyle: FontStyle.italic),
+            style: textTheme.bodySmall?.copyWith(fontStyle: FontStyle.italic),
           ),
         ],
       ),

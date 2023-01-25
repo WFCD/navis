@@ -20,9 +20,9 @@ class AboutApp extends AbstractSettingsTile {
     final l10n = this.l10n ?? context.l10n;
     final isDark = theme.brightness != Brightness.light;
 
-    final aboutTextStyle = textTheme.bodyText1;
+    final aboutTextStyle = textTheme.bodyLarge;
     final linkStyle =
-        textTheme.bodyText1?.copyWith(color: theme.colorScheme.secondary);
+        textTheme.bodyLarge?.copyWith(color: theme.colorScheme.secondary);
 
     return FutureBuilder(
       future: PackageInfo.fromPlatform(),
@@ -63,11 +63,11 @@ class AboutApp extends AbstractSettingsTile {
                       ..onTap = () => issuePage.launchLink(context),
                   ),
                   TextSpan(
-                    style: textTheme.caption,
+                    style: textTheme.bodySmall,
                     text: '\n\n${l10n.legalese}',
                   ),
                   TextSpan(
-                    style: textTheme.caption,
+                    style: textTheme.bodySmall,
                     text: '${l10n.warframeLinkTitle} ',
                   ),
                   TextSpan(

@@ -104,7 +104,7 @@ class _MarketSellLeading extends StatelessWidget {
                   return 'WTB';
               }
             }(),
-            style: context.theme.textTheme.caption
+            style: context.theme.textTheme.bodySmall
                 ?.copyWith(color: Colors.black, fontWeight: FontWeight.bold),
           ),
         ),
@@ -133,7 +133,7 @@ class _MarketSellBody extends StatelessWidget {
           username,
           maxLines: 1,
           overflow: TextOverflow.ellipsis,
-          style: textTheme.subtitle1?.copyWith(fontWeight: FontWeight.w700),
+          style: textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700),
         ),
         Padding(
           padding: const EdgeInsets.only(top: 8),
@@ -145,7 +145,7 @@ class _MarketSellBody extends StatelessWidget {
               ),
               Text(
                 'Reputation $reputation',
-                style: textTheme.caption,
+                style: textTheme.bodySmall,
               ),
             ],
           ),
@@ -184,7 +184,7 @@ class _MarketSellTrailing extends StatelessWidget {
             // ignore: no-magic-number
             height: 2,
             margin: const EdgeInsets.only(left: 8, top: 18, right: 8),
-            color: context.theme.textTheme.bodyText2?.color,
+            color: context.theme.textTheme.bodyMedium?.color,
           ),
           _MarketColumn(
             header: 'Platinum',
@@ -207,9 +207,9 @@ class _MarketColumn extends StatelessWidget {
     const stringPadding = 2;
     final textTheme = context.textTheme;
     final headerStyle =
-        textTheme.caption?.copyWith(fontWeight: FontWeight.w500);
+        textTheme.bodySmall?.copyWith(fontWeight: FontWeight.w500);
     final valueStyle =
-        textTheme.headline5?.copyWith(fontWeight: FontWeight.w800);
+        textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.w800);
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,

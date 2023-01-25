@@ -45,10 +45,10 @@ class EventStatus extends StatelessWidget {
   Widget build(BuildContext context) {
     const fixedString = 2;
     final l10n = context.l10n;
-    final category = context.textTheme.subtitle1
+    final category = context.textTheme.titleMedium
         ?.copyWith(color: context.theme.colorScheme.secondary);
     final tooltipStyle =
-        context.theme.textTheme.subtitle2?.copyWith(fontSize: 15);
+        context.theme.textTheme.titleSmall?.copyWith(fontSize: 15);
 
     return AppCard(
       child: Padding(

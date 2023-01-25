@@ -82,7 +82,7 @@ class _PatchlogEntry extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Text(
         log.splitMapJoin('\n', onMatch: (m) => '\n\n', onNonMatch: (n) => n),
-        style: Theme.of(context).textTheme.caption,
+        style: Theme.of(context).textTheme.bodySmall,
       ),
     );
   }

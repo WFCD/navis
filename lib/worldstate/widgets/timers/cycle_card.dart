@@ -129,8 +129,8 @@ class _CycleWidget extends StatelessWidget {
       key: ValueKey(entry.name),
       title: Text(
         entry.name,
-        style:
-            context.textTheme.subtitle1?.copyWith(fontWeight: FontWeight.w600),
+        style: context.textTheme.titleMedium
+            ?.copyWith(fontWeight: FontWeight.w600),
       ),
       trailing: Row(
         mainAxisSize: MainAxisSize.min,

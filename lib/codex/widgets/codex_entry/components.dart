@@ -86,7 +86,7 @@ class _BuildComponent extends StatelessWidget {
                   alignment: Alignment.topRight,
                   child: Text(
                     'x${component.itemCount}',
-                    style: Theme.of(context).textTheme.caption,
+                    style: Theme.of(context).textTheme.bodySmall,
                   ),
                 ),
               CachedNetworkImage(imageUrl: component.imageUrl),

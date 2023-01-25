@@ -76,13 +76,13 @@ class _CodexTextEditiorState extends State<CodexTextEditior> {
                   // submission.
                   // ignore: no-equal-arguments
                   onSubmitted: _dispatch,
-                  style: context.textTheme.subtitle1
+                  style: context.textTheme.titleMedium
                       ?.copyWith(color: Colors.white),
                   cursorColor: Colors.white,
                   textCapitalization: TextCapitalization.words,
                   decoration: InputDecoration(
                     border: InputBorder.none,
-                    hintStyle: context.textTheme.subtitle2
+                    hintStyle: context.textTheme.titleSmall
                         ?.copyWith(color: Colors.white38),
                     hintText: 'Search here...',
                   ),

@@ -55,13 +55,13 @@ class _NavisErrorPage extends StatelessWidget {
       children: [
         Icon(
           Icons.error_outline,
-          color: Theme.of(context).errorColor,
+          color: Theme.of(context).colorScheme.error,
           size: 40,
         ),
         SizedBoxSpacer.spacerHeight8,
         Text(
           title,
-          style: Theme.of(context).textTheme.headline6,
+          style: Theme.of(context).textTheme.titleLarge,
           textAlign: TextAlign.center,
         ),
         SizedBoxSpacer.spacerHeight12,
@@ -91,12 +91,12 @@ class _NavisErrorWidget extends StatelessWidget {
         ListTile(
           leading: Icon(
             Icons.error_outline,
-            color: Theme.of(context).errorColor,
+            color: Theme.of(context).colorScheme.error,
             size: 40,
           ),
           title: Text(
             title,
-            style: Theme.of(context).textTheme.headline6,
+            style: Theme.of(context).textTheme.titleLarge,
             textAlign: TextAlign.center,
           ),
           subtitle: Text(

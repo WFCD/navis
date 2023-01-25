@@ -43,11 +43,11 @@ class SyndicateCard extends StatelessWidget {
     final mediaQuery = MediaQuery.of(context);
     final syndicateName = syndicateStringToEnum(syndicate?.id ?? name ?? '');
 
-    final titleStyle = textTheme.subtitle1
-        ?.copyWith(color: Typography.whiteMountainView.subtitle1?.color);
+    final titleStyle = textTheme.titleMedium
+        ?.copyWith(color: Typography.whiteMountainView.titleMedium?.color);
 
-    final captionStyle = textTheme.caption
-        ?.copyWith(color: Typography.whiteMountainView.caption?.color);
+    final captionStyle = textTheme.bodySmall
+        ?.copyWith(color: Typography.whiteMountainView.bodySmall?.color);
 
     return ResponsiveBuilder(
       builder: (BuildContext context, SizingInformation sizing) {

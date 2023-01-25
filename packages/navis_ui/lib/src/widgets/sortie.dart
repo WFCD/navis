@@ -22,7 +22,7 @@ class Sortie extends StatelessWidget {
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
 
-    final bossTextStlye = textTheme.headline6;
+    final bossTextStlye = textTheme.titleLarge;
 
     return AppCard(
       child: Column(
@@ -56,8 +56,8 @@ class _Variant extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final nodeMission = context.textTheme.subtitle1?.copyWith(fontSize: 15);
-    final modifier = context.textTheme.caption?.copyWith(fontSize: 13);
+    final nodeMission = context.textTheme.titleMedium?.copyWith(fontSize: 15);
+    final modifier = context.textTheme.bodySmall?.copyWith(fontSize: 13);
 
     return ListTile(
       title: Text(
@@ -76,8 +76,8 @@ class _Mission extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final nodeMission = context.textTheme.subtitle1?.copyWith(fontSize: 15);
-    final modifier = context.textTheme.caption?.copyWith(fontSize: 13);
+    final nodeMission = context.textTheme.titleMedium?.copyWith(fontSize: 15);
+    final modifier = context.textTheme.bodySmall?.copyWith(fontSize: 13);
     final exclusiveWeapon = mission.exclusiveWeapon;
 
     return ListTile(

@@ -51,8 +51,9 @@ class BasicItemInfo extends SliverPersistentHeaderDelegate {
               if (isVaulted ?? false)
                 TextButton(
                   style: ButtonStyle(
-                    foregroundColor:
-                        MaterialStateProperty.all(context.theme.errorColor),
+                    foregroundColor: MaterialStateProperty.all(
+                      context.theme.colorScheme.error,
+                    ),
                   ),
                   onPressed: null,
                   child: Text(context.l10n.codexVaultedLabel),
@@ -60,7 +61,7 @@ class BasicItemInfo extends SliverPersistentHeaderDelegate {
               TextButton(
                 style: ButtonStyle(
                   foregroundColor: MaterialStateProperty.all(
-                    context.theme.textTheme.button?.color,
+                    context.theme.textTheme.labelLarge?.color,
                   ),
                 ),
                 onPressed: () => wikiaUrl?.launchLink(context),
@@ -153,14 +154,14 @@ class _EntryInfoContent extends StatelessWidget {
               ),
               Text(
                 name,
-                style: textTheme.subtitle1,
+                style: textTheme.titleMedium,
                 textAlign: textAlign,
               ),
               SizedBox(
                 width: descriptionBoxWidth,
                 child: Text(
                   description,
-                  style: textTheme.caption,
+                  style: textTheme.bodySmall,
                   textAlign: textAlign,
                 ),
               ),

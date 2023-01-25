@@ -52,7 +52,7 @@ class _BuildTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     final titleStyle = Theme.of(context)
         .textTheme
-        .headline6
+        .titleLarge
         ?.copyWith(fontWeight: FontWeight.w500);
 
     return Padding(

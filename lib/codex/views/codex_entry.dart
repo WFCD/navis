@@ -68,7 +68,7 @@ class _TabbedEntry extends StatelessWidget {
   final double height;
 
   List<Widget> _headerSliverBuilder(BuildContext context, List<Widget> tabs) {
-    final textColor = Theme.of(context).textTheme.bodyText1?.color;
+    final textColor = Theme.of(context).textTheme.bodyLarge?.color;
 
     return [
       SliverPersistentHeader(

@@ -63,7 +63,7 @@ class _AlertWidget extends StatelessWidget {
           RowItem(
             text: Text(
               '$type ($faction) | $enemyLvlRange',
-              style: textTheme.caption,
+              style: textTheme.bodySmall,
             ),
             child: CountdownTimer(
               // Will default to DateTime.now() under the hood.

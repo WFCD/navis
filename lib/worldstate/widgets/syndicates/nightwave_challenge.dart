@@ -13,9 +13,9 @@ class NightwaveChallenge extends StatelessWidget {
     final textTheme = Theme.of(context).textTheme;
     final l10n = context.l10n;
 
-    final title = textTheme.subtitle1;
-    final desscription = textTheme.bodyText2
-        ?.copyWith(fontSize: 14, color: textTheme.caption?.color);
+    final title = textTheme.titleMedium;
+    final desscription = textTheme.bodyMedium
+        ?.copyWith(fontSize: 14, color: textTheme.bodySmall?.color);
 
     return Card(
       shape: const RoundedRectangleBorder(

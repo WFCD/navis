@@ -365,7 +365,7 @@ class ModFrame extends StatelessWidget {
                 right: 30,
                 child: Text(
                   drain.toString(),
-                  style: textTheme.caption
+                  style: textTheme.bodySmall
                       ?.copyWith(fontSize: 15, color: textColor),
                 ),
               ),
@@ -394,7 +394,7 @@ class ModFrame extends StatelessWidget {
               child: Text(
                 compatName,
                 textAlign: TextAlign.center,
-                style: textTheme.subtitle1?.copyWith(color: textColor),
+                style: textTheme.titleMedium?.copyWith(color: textColor),
               ),
             ),
           ],
@@ -478,7 +478,7 @@ class _ModDrescription extends StatelessWidget {
         Text(
           name,
           textAlign: TextAlign.center,
-          style: textTheme.headline6?.copyWith(color: textColor),
+          style: textTheme.titleLarge?.copyWith(color: textColor),
         ),
         SizedBoxSpacer.spacerHeight14,
         SizedBox(
@@ -486,7 +486,7 @@ class _ModDrescription extends StatelessWidget {
           child: Text(
             stats,
             textAlign: TextAlign.center,
-            style: textTheme.caption?.copyWith(color: textColor),
+            style: textTheme.bodySmall?.copyWith(color: textColor),
           ),
         ),
       ],

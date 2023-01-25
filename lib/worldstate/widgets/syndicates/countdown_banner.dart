@@ -28,7 +28,7 @@ class CountdownBanner extends StatelessWidget {
           message,
           // It's what worked for the style.
           // ignore: no-magic-number
-          style: Theme.of(context).textTheme.headline6?.copyWith(fontSize: 16),
+          style: Theme.of(context).textTheme.titleLarge?.copyWith(fontSize: 16),
         ),
         child: CountdownTimer(
           tooltip: l10n.countdownTooltip(time),
