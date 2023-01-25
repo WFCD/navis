@@ -20,10 +20,8 @@ class SyndicateBountyTile extends StatelessWidget {
     return ExpansionTile(
       key: PageStorageKey<String>('$faction${job.type ?? job.totalStanding}'),
       title: Text(job.type ?? ''),
-      textColor: NavisColors.secondary,
-      // Already being checked for null.
-      // ignore: no-equal-arguments
-      iconColor: NavisColors.secondary,
+      // textColor: NavisColors.secondary,
+      // iconColor: NavisColors.secondary,
       subtitle: Text(
         context.l10n.levelInfo(job.enemyLevels.first, job.enemyLevels.last),
       ),

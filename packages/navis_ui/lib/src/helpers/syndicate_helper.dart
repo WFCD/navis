@@ -46,7 +46,7 @@ extension SyndicatesX on Syndicates {
       case Syndicates.simaris:
         return SyndicateColors.simarisIconColor;
       case Syndicates.unknown:
-        return NavisColors.blue;
+        return Colors.blue;
     }
   }
 

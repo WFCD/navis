@@ -11,6 +11,7 @@ class CycleCard extends StatelessWidget {
   const CycleCard({super.key});
 
   List<CycleEntry> _buildCycles(
+    BuildContext context,
     NavisLocalizations locale,
     Worldstate worldstate,
   ) {
@@ -26,9 +27,13 @@ class CycleCard extends StatelessWidget {
       Icon(Icons.ac_unit, color: Colors.blue, size: size),
     ];
 
+    final theme = context.theme;
+    final containerColor = theme.isLight
+        ? theme.colorScheme.primary
+        : theme.colorScheme.primaryContainer;
     final cambionCycle = <Widget>[
-      ColoredContainer.text(text: 'Fass'),
-      ColoredContainer.text(text: 'Vome'),
+      ColoredContainer.text(text: 'Fass', color: containerColor),
+      ColoredContainer.text(text: 'Vome', color: containerColor),
     ];
 
     const zarimanCycle = <Widget>[
@@ -88,7 +93,7 @@ class CycleCard extends StatelessWidget {
       buildWhen: _buildWhen,
       builder: (context, state) {
         final cycles =
-            _buildCycles(context.l10n, (state as SolState).worldstate);
+            _buildCycles(context, context.l10n, (state as SolState).worldstate);
 
         return AppCard(
           child: Column(

@@ -48,7 +48,7 @@ extension FactionsX on Factions {
       case Factions.narmer:
         return FactionIconColors.corrupted;
       case Factions.unknown:
-        return NavisColors.blue;
+        return Colors.blue;
     }
   }
 
@@ -68,7 +68,7 @@ extension FactionsX on Factions {
       case Factions.narmer:
         return Colors.yellow[300]!;
       case Factions.unknown:
-        return NavisColors.blue;
+        return Colors.blue;
     }
   }
 }

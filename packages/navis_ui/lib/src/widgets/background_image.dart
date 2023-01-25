@@ -1,6 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:navis_ui/navis_ui.dart';
 
 class BackgroundImage extends StatelessWidget {
   const BackgroundImage({
@@ -71,30 +70,24 @@ class ImageContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Theme(
-      data: NavisTheme.dark,
+    return Container(
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          image: imageProvider,
+          fit: BoxFit.cover,
+        ),
+      ),
       child: Container(
+        alignment: Alignment.bottomCenter,
         decoration: BoxDecoration(
-          image: DecorationImage(
-            image: imageProvider,
-            fit: BoxFit.cover,
+          gradient: LinearGradient(
+            begin: Alignment.bottomCenter,
+            end: Alignment.topCenter,
+            stops: const <double>[0.3, 1],
+            colors: <Color>[Colors.black.withOpacity(0.7), Colors.transparent],
           ),
         ),
-        child: Container(
-          alignment: Alignment.bottomCenter,
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.bottomCenter,
-              end: Alignment.topCenter,
-              stops: const <double>[0.3, 1],
-              colors: <Color>[
-                Colors.black.withOpacity(0.7),
-                Colors.transparent
-              ],
-            ),
-          ),
-          child: Padding(padding: padding, child: child),
-        ),
+        child: Padding(padding: padding, child: child),
       ),
     );
   }

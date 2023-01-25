@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:navis_ui/src/helpers/skybox_helper.dart';
-import 'package:navis_ui/src/theme.dart';
-import 'package:navis_ui/src/widgets/widgets.dart';
+import 'package:navis_ui/navis_ui.dart';
 
 class SkyboxCard extends StatelessWidget {
   const SkyboxCard({
@@ -22,7 +20,7 @@ class SkyboxCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Theme(
-      data: NavisTheme.dark,
+      data: NavisThemes.dark,
       child: AppCard(
         padding: EdgeInsets.zero,
         child: SizedBox(

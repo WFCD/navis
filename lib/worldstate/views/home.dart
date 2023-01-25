@@ -1,4 +1,3 @@
-import 'package:black_hole_flutter/black_hole_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/l10n/l10n.dart';
@@ -48,20 +47,17 @@ class FeedView extends StatelessWidget {
   }
 
   List<Widget> _headerSliverBuilder(BuildContext context) {
-    final colorScheme = context.theme.colorScheme;
-
     return <Widget>[
       SliverOverlapAbsorber(
         handle: NestedScrollView.sliverOverlapAbsorberHandleFor(context),
         sliver: SliverTopbar(
           pinned: true,
-          child: TabBar(
-            indicatorColor: context.theme.isDark
-                ? colorScheme.primary
-                : colorScheme.secondary,
-            tabs: Tabs.values
-                .map((t) => Tab(text: _getTabLocale(context, t)))
-                .toList(),
+          child: Material(
+            child: TabBar(
+              tabs: Tabs.values
+                  .map((t) => Tab(text: _getTabLocale(context, t)))
+                  .toList(),
+            ),
           ),
         ),
       ),

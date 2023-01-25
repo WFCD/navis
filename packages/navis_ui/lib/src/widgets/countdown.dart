@@ -1,5 +1,5 @@
+import 'package:black_hole_flutter/black_hole_flutter.dart';
 import 'package:flutter/material.dart';
-import 'package:navis_ui/src/colors/app_colors.dart';
 import 'package:navis_ui/src/widgets/app_container.dart';
 
 class CountdownTimer extends StatefulWidget {
@@ -61,19 +61,19 @@ class CountdownTimerState extends State<CountdownTimer>
   }
 
   void _detectWarningLevel() {
-    Color? newLevel;
+    Color newLevel;
 
     if (_timeLeft > _max) {
       newLevel = Colors.green;
     } else if (_timeLeft < _max && _timeLeft > _minimum) {
-      newLevel = Colors.orange[700];
-    } else if (_timeLeft < _minimum) {
-      newLevel = _expired ? NavisColors.blue : Colors.red;
+      newLevel = Colors.orange[700]!;
+    } else {
+      newLevel = Colors.red;
     }
 
-    if (mounted && _warningLevel != newLevel!) {
+    if (context.mounted) {
       setState(() {
-        _warningLevel = newLevel!;
+        _warningLevel = newLevel;
       });
     }
   }
@@ -129,9 +129,19 @@ class CountdownTimerState extends State<CountdownTimer>
 
   @override
   Widget build(BuildContext context) {
+    final theme = context.theme;
+    Color color = _warningLevel;
+
+    if (widget.color != null) color = widget.color!;
+    if (_expired) {
+      color = theme.isLight
+          ? theme.colorScheme.primary
+          : theme.colorScheme.primaryContainer;
+    }
+
     return ColoredContainer(
       tooltip: widget.tooltip,
-      color: widget.color ?? _warningLevel,
+      color: color,
       padding: widget.padding,
       margin: widget.margin,
       child: AnimatedBuilder(

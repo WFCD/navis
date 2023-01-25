@@ -1,3 +1,4 @@
+import 'package:black_hole_flutter/black_hole_flutter.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
@@ -50,8 +51,6 @@ class _DealWidgetState extends State<_DealWidget> {
 
   @override
   Widget build(BuildContext context) {
-    // Will default to DateTime.now() under the hood.
-    // ignore: avoid-non-null-assertion
     final expiry = widget.deal.expiry!;
     final item = widget.deal.item;
     final total = widget.deal.total;
@@ -59,6 +58,11 @@ class _DealWidgetState extends State<_DealWidget> {
         .textTheme
         .titleSmall
         ?.copyWith(fontWeight: FontWeight.w500);
+
+    final theme = context.theme;
+    final color = theme.isLight
+        ? theme.colorScheme.primary
+        : theme.colorScheme.primaryContainer;
 
     return BlocBuilder<DarvodealCubit, DarvodealState>(
       builder: (context, state) {
@@ -73,8 +77,6 @@ class _DealWidgetState extends State<_DealWidget> {
                     leading: CachedNetworkImage(
                       imageUrl: state.item.imageUrl,
                       fit: BoxFit.contain,
-                      // It's what worked for the style.
-                      // ignore: no-magic-number
                       width: 50,
                       errorWidget: (context, url, dynamic object) {
                         return Icon(
@@ -95,13 +97,8 @@ class _DealWidgetState extends State<_DealWidget> {
                 Center(
                   child: Wrap(
                     alignment: WrapAlignment.center,
-
                     crossAxisAlignment: WrapCrossAlignment.center,
-                    // It's what worked for the style.
-                    // ignore: no-magic-number
                     spacing: 10,
-                    // It's what worked for the style.
-                    // ignore: no-magic-number
                     runSpacing: 5,
                     children: <Widget>[
                       if (state is! DarvoDealLoaded)
@@ -109,14 +106,17 @@ class _DealWidgetState extends State<_DealWidget> {
                       ColoredContainer.text(
                         text: '${widget.deal.salePrice}p',
                         style: saleInfo,
+                        color: color,
                       ),
                       ColoredContainer.text(
                         text: '${total - widget.deal.sold} / $total',
                         style: saleInfo,
+                        color: color,
                       ),
                       ColoredContainer.text(
                         text: '${widget.deal.discount}% OFF',
                         style: saleInfo,
+                        color: color,
                       ),
                       CountdownTimer(
                         tooltip: context.l10n.countdownTooltip(expiry),

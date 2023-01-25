@@ -22,10 +22,8 @@ class TargetInfo extends StatelessWidget {
       child: ExpansionTile(
         key: PageStorageKey<String>(target.name),
         title: Text(target.name),
-        textColor: NavisColors.secondary,
-        // We want the smae color.
-        // ignore: no-equal-arguments
-        iconColor: NavisColors.secondary,
+        // textColor: NavisColors.secondary,
+        // iconColor: NavisColors.secondary,
         onExpansionChanged: (b) => _onExpansionChanged(context, isExpanded: b),
         children: target.locations.map<Widget>((l) {
           return ListTile(

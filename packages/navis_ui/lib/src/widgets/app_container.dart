@@ -1,5 +1,5 @@
+import 'package:black_hole_flutter/black_hole_flutter.dart';
 import 'package:flutter/material.dart';
-import 'package:navis_ui/src/colors/app_colors.dart';
 
 class ColoredContainer extends StatelessWidget {
   const ColoredContainer({
@@ -55,7 +55,7 @@ class ColoredContainer extends StatelessWidget {
         margin: margin,
         curve: Curves.easeInOut,
         decoration: BoxDecoration(
-          color: color ?? NavisColors.blue,
+          color: color ?? context.theme.primaryColor,
           borderRadius: const BorderRadius.all(Radius.circular(3)),
         ),
         child: child,

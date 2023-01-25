@@ -1,7 +1,7 @@
+import 'package:black_hole_flutter/black_hole_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
 import 'package:html/parser.dart';
-import 'package:navis_ui/src/colors/colors.dart';
 
 extension StringNx on String {
   String parseHtmlString() {
@@ -15,9 +15,10 @@ extension StringNx on String {
     try {
       await FlutterWebBrowser.openWebPage(
         url: this,
-        customTabsOptions: const CustomTabsOptions(
-          defaultColorSchemeParams:
-              CustomTabsColorSchemeParams(toolbarColor: NavisColors.blue),
+        customTabsOptions: CustomTabsOptions(
+          defaultColorSchemeParams: CustomTabsColorSchemeParams(
+            toolbarColor: context.theme.primaryColor,
+          ),
           urlBarHidingEnabled: true,
           showTitle: true,
         ),

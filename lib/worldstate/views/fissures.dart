@@ -93,7 +93,11 @@ class _FissuresViewState extends State<_FissuresView> {
       }),
       backgroundColor: MaterialStateColor.resolveWith((states) {
         if (states.contains(MaterialState.focused)) {
-          return NavisColors.blue;
+          final theme = context.theme;
+
+          return theme.isLight
+              ? theme.colorScheme.primary
+              : theme.colorScheme.primaryContainer;
         }
 
         return Colors.transparent;
