@@ -70,20 +70,17 @@ class _CodexTextEditiorState extends State<CodexTextEditior> {
                 child: TextField(
                   controller: _textEditingController,
                   autocorrect: false,
-
                   onChanged: _dispatch,
                   // We actually want the same thing to happen on change and on
                   // submission.
                   // ignore: no-equal-arguments
                   onSubmitted: _dispatch,
-                  style: context.textTheme.titleMedium
-                      ?.copyWith(color: Colors.white),
-                  cursorColor: Colors.white,
+                  style: context.textTheme.titleMedium,
+
                   textCapitalization: TextCapitalization.words,
                   decoration: InputDecoration(
                     border: InputBorder.none,
-                    hintStyle: context.textTheme.titleSmall
-                        ?.copyWith(color: Colors.white38),
+                    hintStyle: context.textTheme.titleSmall,
                     hintText: 'Search here...',
                   ),
                 ),
@@ -91,7 +88,7 @@ class _CodexTextEditiorState extends State<CodexTextEditior> {
             ),
             if (state is CodexSuccessfulSearch)
               PopupMenuButton<FilterCategory>(
-                icon: const Icon(Icons.filter_list, color: Colors.white),
+                icon: const Icon(Icons.filter_list),
                 itemBuilder: (_) => _itemBuilder(),
                 onSelected: (s) =>
                     BlocProvider.of<SearchBloc>(context).add(FilterResults(s)),
@@ -99,7 +96,6 @@ class _CodexTextEditiorState extends State<CodexTextEditior> {
             if (_active)
               IconButton(
                 icon: const Icon(Icons.clear),
-                color: Colors.white,
                 onPressed: _onClear,
               ),
           ],
