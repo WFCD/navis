@@ -160,19 +160,12 @@ class _Overview extends StatelessWidget {
                 wikiaUrl: item.wikiaUrl,
                 imageUrl: item.imageUrl,
                 expandedHeight: height,
+                isVaulted: (item as EquipableItem).vaulted,
               ),
             ),
             SliverList(
               delegate: SliverChildListDelegate.fixed(
                 [
-                  if (_isFoundryItem)
-                    AppCard(
-                      padding: const EdgeInsets.symmetric(vertical: 10),
-                      child: ItemComponents(
-                        itemImageUrl: item.imageUrl,
-                        components: (item as BuildableItem).components!,
-                      ),
-                    ),
                   if (_isPowerSuit)
                     AppCard(
                       padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -187,6 +180,34 @@ class _Overview extends StatelessWidget {
                     AppCard(
                       padding: const EdgeInsets.symmetric(horizontal: 10),
                       child: MeleeStats(melee: item as Melee),
+                    ),
+                  // if (item is EquipableItem &&
+                  //         (item as EquipableItem).isPrime ||
+                  //     item.tradable)
+                  //   AppCard(
+                  //     child: Column(
+                  //       children: const [
+                  //         CategoryTitle(title: 'Warframe Market'),
+                  //         SizedBox.shrink(),
+                  //       ],
+                  //     ),
+                  //   ),
+                  if (_isFoundryItem)
+                    AppCard(
+                      padding: const EdgeInsets.symmetric(vertical: 10),
+                      child: Column(
+                        children: [
+                          const CategoryTitle(title: 'Components'),
+                          ItemComponents(
+                            itemImageUrl: item.imageUrl,
+                            components: (item as BuildableItem).components!,
+                          )
+                        ],
+                      ),
+                    ),
+                  if (item.patchlogs != null)
+                    PatchlogCard(
+                      patchlogs: item.patchlogs!.getRange(0, 4).toList(),
                     ),
                 ],
               ),
