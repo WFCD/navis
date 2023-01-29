@@ -142,7 +142,7 @@ class _Overview extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Final item = ModalRoute.of(context)?.settings.arguments! as Item;.
+    final patchlogs = item.patchlogs;
     final heightRatio = MediaQuery.of(context).size.height / 100;
 
     final height = item is Mod ? kToolbarHeight : heightRatio * 25;
@@ -207,9 +207,14 @@ class _Overview extends StatelessWidget {
                         ],
                       ),
                     ),
-                  if (item.patchlogs != null)
+                  if (patchlogs != null)
                     PatchlogCard(
-                      patchlogs: item.patchlogs!.getRange(0, 4).toList(),
+                      patchlogs: patchlogs
+                          .getRange(
+                            0,
+                            patchlogs.length > 4 ? 4 : patchlogs.length,
+                          )
+                          .toList(),
                     ),
                 ],
               ),
