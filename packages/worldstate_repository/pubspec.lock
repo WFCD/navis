@@ -499,7 +499,7 @@ packages:
     dependency: transitive
     description:
       name: pub_semver
-      sha256: "307de764d305289ff24ad257ad5c5793ce56d04947599ad68b3baa124105fc17"
+      sha256: b5a5fcc6425ea43704852ba4453ba94b08c2226c63418a260240c3a054579014
       url: "https://pub.dev"
     source: hosted
     version: "2.1.0"
@@ -730,16 +730,16 @@ packages:
       sha256: e7fb6c2282f7631712b69c19d1bff82f3767eea33a2321c14fa59ad67ea391c7
       url: "https://pub.dev"
     source: hosted
-    version: "7.5.0"
+    version: "9.4.0"
   warframestat_client:
     dependency: "direct main"
     description:
       path: "."
-      ref: "v1.4.0"
-      resolved-ref: b151f33f4b34b1322019d6c3c16d9af0d612d0cf
+      ref: "v1.5.10"
+      resolved-ref: "0d1ec8162caff48e56f9b254fcfae29bdcff7933"
       url: "https://github.com/SlayerOrnstein/warframestat_client.git"
     source: git
-    version: "1.4.0"
+    version: "1.5.10"
   watcher:
     dependency: transitive
     description:
@@ -760,7 +760,7 @@ packages:
     dependency: transitive
     description:
       name: webkit_inspection_protocol
-      sha256: "67d3a8b6c79e1987d19d848b0892e582dbb0c66c57cc1fef58a177dd2aa2823d"
+      sha256: "5adb6ab8ed14e22bb907aae7338f0c206ea21e7a27004e97664b16c120306f00"
       url: "https://pub.dev"
     source: hosted
     version: "1.0.0"

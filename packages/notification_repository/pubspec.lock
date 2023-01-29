@@ -276,16 +276,16 @@ packages:
       sha256: "80b3257d1492ce4d091729e3a67a60407d227c27241d6927be0130c98e741803"
       url: "https://pub.dev"
     source: hosted
-    version: "2.1.2"
+    version: "2.1.4"
   warframestat_client:
     dependency: "direct main"
     description:
       path: "."
-      ref: "v1.4.0"
-      resolved-ref: b151f33f4b34b1322019d6c3c16d9af0d612d0cf
+      ref: "v1.5.10"
+      resolved-ref: "0d1ec8162caff48e56f9b254fcfae29bdcff7933"
       url: "https://github.com/SlayerOrnstein/warframestat_client.git"
     source: git
-    version: "1.4.0"
+    version: "1.5.10"
 sdks:
   dart: ">=2.18.0 <3.0.0"
   flutter: ">=1.20.0"
