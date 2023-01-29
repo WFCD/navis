@@ -20,7 +20,6 @@ class FrameStats extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        if (powerSuit is Warframe) _Passive(warframe: powerSuit as Warframe),
         const CategoryTitle(title: 'Stats', contentPadding: EdgeInsets.zero),
         Stats(
           stats: <RowItem>[
@@ -64,6 +63,15 @@ class FrameStats extends StatelessWidget {
           title: l10n.abilitiesTitle,
           contentPadding: EdgeInsets.zero,
         ),
+        if (powerSuit is Warframe &&
+            (powerSuit as Warframe).passiveDescription != null)
+          ListTile(
+            title: Text(context.l10n.warframePassiveTitle),
+            subtitle: Text((powerSuit as Warframe).passiveDescription!),
+            dense: true,
+            isThreeLine: true,
+            contentPadding: EdgeInsets.zero,
+          ),
         for (final ability in powerSuit.abilities)
           ListTile(
             title: Text(ability.name),
