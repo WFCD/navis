@@ -1171,11 +1171,11 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: "v1.5.10"
-      resolved-ref: "0d1ec8162caff48e56f9b254fcfae29bdcff7933"
+      ref: "v1.5.11"
+      resolved-ref: "5cf169d18e3f637d20c3d3bfda598c674ec7a380"
       url: "https://github.com/SlayerOrnstein/warframestat_client.git"
     source: git
-    version: "1.5.10"
+    version: "1.5.11"
   watcher:
     dependency: transitive
     description:
