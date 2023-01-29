@@ -30,18 +30,14 @@ class BasicItemInfo extends SliverPersistentHeaderDelegate {
     double shrinkOffset,
     bool overlapsContent,
   ) {
-    final canvasColor = context.theme.canvasColor;
-
     return Material(
       elevation: 4,
-      child: Container(
+      child: SizedBox(
         height: expandedHeight,
-        color: canvasColor,
         child: Stack(
           children: <Widget>[
             AppBar(
               elevation: 0,
-              backgroundColor: canvasColor,
               iconTheme: context.theme.iconTheme,
               actions: [
                 if (isVaulted ?? false)
