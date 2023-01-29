@@ -1,17 +1,20 @@
 import 'package:warframestat_client/warframestat_client.dart';
 
+const _baseUrl = 'https://cdn.warframestat.us';
+const _opts = 'o_webp,progressive_false';
+
 extension ItemX on Item {
-  String get imageUrl => _imageUrl(imageName);
+  String get imageUrl {
+    final uriEncoded = Uri.encodeFull('$_baseUrl/img/$imageName');
+
+    return '$_baseUrl/$_opts/$uriEncoded';
+  }
 }
 
 extension PatchlogX on Patchlog {
-  String get imageUrl => _imageUrl(imgUrl);
-}
+  String get imageUrl {
+    final uriEncoded = Uri.encodeFull(imgUrl);
 
-String _imageUrl(String? imageName) {
-  const baseUrl = 'https://cdn.warframestat.us';
-  const opts = 'o_webp,progressive_false';
-  final uriEncoded = Uri.encodeFull('$baseUrl/img/$imageName');
-
-  return '$baseUrl/$opts/$uriEncoded';
+    return '$_baseUrl/$_opts/$uriEncoded';
+  }
 }
