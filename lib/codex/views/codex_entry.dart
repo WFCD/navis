@@ -160,7 +160,9 @@ class _Overview extends StatelessWidget {
                 wikiaUrl: item.wikiaUrl,
                 imageUrl: item.imageUrl,
                 expandedHeight: height,
-                isVaulted: (item as EquipableItem).vaulted,
+                isVaulted: item is EquipableItem
+                    ? (item as EquipableItem).vaulted
+                    : false,
               ),
             ),
             SliverList(
