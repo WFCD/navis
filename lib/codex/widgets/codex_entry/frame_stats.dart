@@ -95,7 +95,7 @@ class _Passive extends StatelessWidget {
           SizedBoxSpacer.spacerHeight8,
           Text(
             warframe.passiveDescription ?? '',
-            style: textTheme.caption?.copyWith(fontStyle: FontStyle.italic),
+            style: textTheme.bodySmall?.copyWith(fontStyle: FontStyle.italic),
           ),
         ],
       ),
