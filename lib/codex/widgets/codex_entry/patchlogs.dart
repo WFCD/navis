@@ -44,21 +44,3 @@ class PatchlogCard extends StatelessWidget {
     );
   }
 }
-
-class _PatchlogEntry extends StatelessWidget {
-  const _PatchlogEntry({required this.context, required this.log});
-
-  final BuildContext context;
-  final String log;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
-      child: Text(
-        log.splitMapJoin('\n', onMatch: (m) => '\n\n', onNonMatch: (n) => n),
-        style: Theme.of(context).textTheme.bodySmall,
-      ),
-    );
-  }
-}

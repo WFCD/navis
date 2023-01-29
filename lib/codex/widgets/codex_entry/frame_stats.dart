@@ -84,29 +84,3 @@ class FrameStats extends StatelessWidget {
     );
   }
 }
-
-class _Passive extends StatelessWidget {
-  const _Passive({required this.warframe});
-
-  final Warframe warframe;
-
-  @override
-  Widget build(BuildContext context) {
-    final textTheme = Theme.of(context).textTheme;
-
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Text(context.l10n.warframePassiveTitle, style: textTheme.titleMedium),
-          SizedBoxSpacer.spacerHeight8,
-          Text(
-            warframe.passiveDescription ?? '',
-            style: textTheme.bodySmall?.copyWith(fontStyle: FontStyle.italic),
-          ),
-        ],
-      ),
-    );
-  }
-}
