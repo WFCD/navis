@@ -43,12 +43,12 @@ class GunStats extends StatelessWidget {
             if (gun.accuracy != null)
               RowItem(
                 text: Text(l10n.accuracyTitle),
-                child: Text('${statRoundDouble(gun.accuracy!, 1)}'),
+                child: Text('${statRoundDouble(gun.accuracy!, 2)}'),
               ),
             RowItem(
               text: Text(l10n.criticalChanceTitle),
               child: Text(
-                '${gun.criticalChance * 100}%',
+                '${statRoundDouble(gun.criticalChance * 100, 2)}%',
               ),
             ),
             RowItem(
