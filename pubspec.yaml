@@ -65,7 +65,7 @@ dev_dependencies:
   path: ^1.8.2
   sentry_dart_plugin: ^1.0.0-beta.5
   test: ^1.22.0
-  very_good_analysis: ^3.1.0
+  very_good_analysis: ^4.0.0+1
 
 flutter:
   generate: true
