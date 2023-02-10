@@ -14,3 +14,4 @@ linter:
   rules:
     public_member_api_docs: false
     library_private_types_in_public_api: false
+    always_put_required_named_parameters_first: false
