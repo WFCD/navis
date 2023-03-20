@@ -195,14 +195,12 @@ class _SyndicatePageTabletState extends State<_SyndicatePageTablet> {
         Expanded(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 4),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
+            child: ListView(
               children: <Widget>[
                 _BuildSyndicates(syndicates: widget.syndicates, onTap: _onTap),
                 SizedBoxSpacer.spacerHeight8,
                 if (widget.nightwave != null)
                   // Already being checked for null.
-                  // ignore: avoid-non-null-assertion
                   _BuildNightwave(nightwave: widget.nightwave!, onTap: _onTap),
               ],
             ),
