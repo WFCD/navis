@@ -8,19 +8,19 @@ environment:
 
 dependencies:
   animations: ^2.0.7
-  black_hole_flutter: ^0.3.5
+  black_hole_flutter: ^1.0.1
   bloc: ^8.1.1
   cached_network_image: ^3.2.3
   collection: ^1.17.0
   equatable: ^2.0.5
   feedback_sentry: ^2.3.0
-  firebase_core: ^2.3.0
+  firebase_core: ^2.8.0
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.2
   flutter_localizations:
     sdk: flutter
-  flutter_svg: ^2.0.3
+  flutter_svg: ^2.0.4
   flutter_web_browser: ^0.17.1
   hive: ^2.2.3
   hive_flutter: ^1.1.0

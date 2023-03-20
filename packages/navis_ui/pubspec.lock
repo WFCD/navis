@@ -13,10 +13,10 @@ packages:
     dependency: "direct main"
     description:
       name: black_hole_flutter
-      sha256: ad957dd07106932f07b040dcc4d08c7532a284821183a21ca5ad993b545c2707
+      sha256: "08bc83e6fa553b26f6017260927b523dde52eade52a45869c4d35e979bb8207f"
       url: "https://pub.dev"
     source: hosted
-    version: "0.3.5"
+    version: "1.0.1"
   boolean_selector:
     dependency: transitive
     description:
@@ -159,10 +159,10 @@ packages:
     dependency: "direct main"
     description:
       name: html
-      sha256: bfef906cbd4e78ef49ae511d9074aebd1d2251482ef601a280973e8b58b51bbf
+      sha256: "79d498e6d6761925a34ee5ea8fa6dfef38607781d2fa91e37523474282af55cb"
       url: "https://pub.dev"
     source: hosted
-    version: "0.15.0"
+    version: "0.15.2"
   http:
     dependency: transitive
     description:
@@ -458,5 +458,5 @@ packages:
     source: hosted
     version: "0.2.0+3"
 sdks:
-  dart: ">=2.18.0 <3.0.0"
-  flutter: ">=3.3.0"
+  dart: ">=2.19.0 <3.0.0"
+  flutter: ">=3.7.0"

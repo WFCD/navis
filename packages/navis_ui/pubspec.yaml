@@ -7,12 +7,12 @@ environment:
   sdk: ">=2.18.0 <3.0.0"
 
 dependencies:
-  black_hole_flutter: ^0.3.5
-  cached_network_image: 3.2.3
+  black_hole_flutter: ^1.0.1
+  cached_network_image: ^3.2.3
   flutter:
     sdk: flutter
-  flutter_web_browser: 0.17.1
-  html: 0.15.0
+  flutter_web_browser: ^0.17.1
+  html: ^0.15.2
   wfcd_client:
     git:
       url: https://github.com/SlayerOrnstein/wfcd_client.git
