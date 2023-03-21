@@ -3,6 +3,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis_ui/navis_ui.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 
 const kMinExtent = kToolbarHeight + kTextTabBarHeight;
 
@@ -126,7 +127,7 @@ class _EntryInfoContent extends StatelessWidget {
     final animatedContainerHeight =
         shrinkOffset > 0.0 ? 0.0 : (height / 100) * 90;
 
-    final imageContainerRadius = (mediaQuerySize.shortestSide / 100) * 8;
+    final imageContainerRadius = (mediaQuerySize.shortestSide / 100) * 6;
     final descriptionBoxWidth = (mediaQuerySize.width / 100) * 95;
 
     return AnimatedOpacity(
@@ -138,34 +139,55 @@ class _EntryInfoContent extends StatelessWidget {
         height: animatedContainerHeight,
         child: FittedBox(
           clipBehavior: Clip.hardEdge,
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(bottom: 6),
-                child: Hero(
-                  tag: uniqueName,
-                  child: CircleAvatar(
-                    backgroundImage: CachedNetworkImageProvider(imageUrl),
-                    backgroundColor: Colors.grey,
-                    radius: imageContainerRadius,
+          child: ScreenTypeLayout.builder(
+            mobile: (_) {
+              return Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 6),
+                    child: Hero(
+                      tag: uniqueName,
+                      child: CircleAvatar(
+                        backgroundImage: CachedNetworkImageProvider(imageUrl),
+                        backgroundColor: Colors.grey,
+                        radius: imageContainerRadius,
+                      ),
+                    ),
                   ),
-                ),
-              ),
-              Text(
-                name,
-                style: textTheme.titleMedium,
-                textAlign: textAlign,
-              ),
-              SizedBox(
+                  Text(
+                    name,
+                    style: textTheme.titleMedium,
+                    textAlign: textAlign,
+                  ),
+                  SizedBox(
+                    width: descriptionBoxWidth,
+                    child: Text(
+                      description,
+                      style: textTheme.bodySmall,
+                      textAlign: textAlign,
+                    ),
+                  ),
+                ],
+              );
+            },
+            tablet: (_) {
+              return SizedBox(
                 width: descriptionBoxWidth,
-                child: Text(
-                  description,
-                  style: textTheme.bodySmall,
-                  textAlign: textAlign,
+                child: ListTile(
+                  leading: Hero(
+                    tag: uniqueName,
+                    child: CircleAvatar(
+                      backgroundImage: CachedNetworkImageProvider(imageUrl),
+                      backgroundColor: Colors.grey,
+                      radius: imageContainerRadius,
+                    ),
+                  ),
+                  title: Text(name),
+                  subtitle: Text(description),
                 ),
-              ),
-            ],
+              );
+            },
           ),
         ),
       ),
