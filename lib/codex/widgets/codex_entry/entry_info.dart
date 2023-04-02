@@ -11,8 +11,9 @@ class BasicItemInfo extends SliverPersistentHeaderDelegate {
     required this.name,
     required this.description,
     required this.imageUrl,
-    this.wikiaUrl,
     required this.expandedHeight,
+    this.enable = true,
+    this.wikiaUrl,
     this.isVaulted,
   });
 
@@ -23,6 +24,7 @@ class BasicItemInfo extends SliverPersistentHeaderDelegate {
   final String? wikiaUrl;
   final double expandedHeight;
   final bool? isVaulted;
+  final bool enable;
 
   @override
   Widget build(
@@ -61,17 +63,18 @@ class BasicItemInfo extends SliverPersistentHeaderDelegate {
                 ),
               ],
             ),
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: _EntryInfoContent(
-                height: expandedHeight,
-                shrinkOffset: shrinkOffset,
-                uniqueName: uniqueName,
-                imageUrl: imageUrl,
-                name: name,
-                description: description,
+            if (enable)
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: _EntryInfoContent(
+                  height: expandedHeight,
+                  shrinkOffset: shrinkOffset,
+                  uniqueName: uniqueName,
+                  imageUrl: imageUrl,
+                  name: name,
+                  description: description,
+                ),
               ),
-            ),
           ],
         ),
       ),

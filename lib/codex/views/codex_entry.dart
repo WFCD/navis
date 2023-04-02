@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:navis/codex/widgets/codex_entry/mod_stats.dart';
 import 'package:navis/codex/widgets/codex_widgets.dart';
 import 'package:navis/utils/item_extensions.dart';
 import 'package:navis_ui/navis_ui.dart';
@@ -127,8 +128,7 @@ class _Overview extends StatelessWidget {
   bool get _isPowerSuit => item is PowerSuit;
   bool get _isGun => item is Gun;
   bool get _isMeleeWeapon => item is Melee;
-  // bool get _isMod => item is Mod;
-
+  bool get _isMod => item is Mod;
   bool get _isFoundryItem {
     if (item is BuildableItem) {
       final foundryItem = item as BuildableItem;
@@ -147,6 +147,12 @@ class _Overview extends StatelessWidget {
 
     final height = item is Mod ? kToolbarHeight : heightRatio * 25;
 
+    if (_isMod) {
+      (item as Mod).drops!.sort(
+            (a, b) => ((b.chance ?? 0) * 100).compareTo((a.chance ?? 0) * 100),
+          );
+    }
+
     return Scaffold(
       body: SafeArea(
         child: CustomScrollView(
@@ -160,6 +166,7 @@ class _Overview extends StatelessWidget {
                 wikiaUrl: item.wikiaUrl,
                 imageUrl: item.imageUrl,
                 expandedHeight: height,
+                enable: !_isMod,
                 isVaulted: item is EquipableItem
                     ? (item as EquipableItem).vaulted
                     : false,
@@ -196,18 +203,30 @@ class _Overview extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(horizontal: 10),
                       child: MeleeStats(melee: item as Melee),
                     ),
-                  // if (item is EquipableItem &&
-                  //         (item as EquipableItem).isPrime ||
-                  //     item.tradable)
-                  //   AppCard(
-                  //     child: Column(
-                  //       children: const [
-                  //         CategoryTitle(title: 'Warframe Market'),
-                  //         SizedBox.shrink(),
-                  //       ],
-                  //     ),
-                  //   ),
-
+                  if (_isMod) ...{
+                    ModStats(mod: item as Mod),
+                    SizedBoxSpacer.spacerHeight24,
+                    AppCard(
+                      child: Column(
+                        children: (item as Mod)
+                            .drops!
+                            .getRange(
+                              0,
+                              (item as Mod).drops!.length > 4
+                                  ? 4
+                                  : (item as Mod).drops!.length,
+                            )
+                            .map((e) => ListTile(
+                                  title: Text(e.location),
+                                  subtitle: Text(
+                                    'Drop Chance '
+                                    '${(e.chance! * 100).toStringAsFixed(2)}%',
+                                  ),
+                                ))
+                            .toList(),
+                      ),
+                    ),
+                  },
                   if (patchlogs != null)
                     PatchlogCard(
                       patchlogs: patchlogs
