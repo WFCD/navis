@@ -42,6 +42,8 @@ class CodexResult extends StatelessWidget {
         title: Text(item.name),
         subtitle: Text(
           description?.trim() ?? item.description?.parseHtmlString() ?? '',
+          maxLines: 2,
+          overflow: TextOverflow.ellipsis,
         ),
         isThreeLine: true,
         dense: true,

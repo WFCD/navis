@@ -27,10 +27,10 @@ class MeleeStats extends StatelessWidget {
         ),
         Stats(
           stats: <RowItem>[
-            if (melee.masterReq != null)
+            if (melee.masteryReq != null)
               RowItem(
                 text: Text(l10n.masteryRequirementTitle),
-                child: Text('${melee.masterReq}'),
+                child: Text('${melee.masteryReq}'),
               ),
             RowItem(
               text: Text(l10n.weaponTypeTitle),

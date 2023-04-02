@@ -24,10 +24,10 @@ class GunStats extends StatelessWidget {
         SizedBoxSpacer.spacerHeight8,
         Stats(
           stats: <RowItem>[
-            if (gun.masterReq != null)
+            if (gun.masteryReq != null)
               RowItem(
                 text: Text(l10n.masteryRequirementTitle),
-                child: Text('${gun.masterReq}'),
+                child: Text('${gun.masteryReq}'),
               ),
             RowItem(
               text: Text(l10n.weaponTypeTitle),
