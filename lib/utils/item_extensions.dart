@@ -13,7 +13,7 @@ extension ItemX on Item {
 
 extension PatchlogX on Patchlog {
   String get imageUrl {
-    final uriEncoded = Uri.encodeFull(imgUrl);
+    final uriEncoded = Uri.encodeFull(imgUrl ?? '');
 
     return '$_baseUrl/$_opts/$uriEncoded';
   }
