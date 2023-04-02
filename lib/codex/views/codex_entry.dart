@@ -168,6 +168,19 @@ class _Overview extends StatelessWidget {
             SliverList(
               delegate: SliverChildListDelegate.fixed(
                 [
+                  if (_isFoundryItem)
+                    AppCard(
+                      padding: const EdgeInsets.symmetric(vertical: 10),
+                      child: Column(
+                        children: [
+                          const CategoryTitle(title: 'Components'),
+                          ItemComponents(
+                            itemImageUrl: item.imageUrl,
+                            components: (item as BuildableItem).components!,
+                          )
+                        ],
+                      ),
+                    ),
                   if (_isPowerSuit)
                     AppCard(
                       padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -194,19 +207,7 @@ class _Overview extends StatelessWidget {
                   //       ],
                   //     ),
                   //   ),
-                  if (_isFoundryItem)
-                    AppCard(
-                      padding: const EdgeInsets.symmetric(vertical: 10),
-                      child: Column(
-                        children: [
-                          const CategoryTitle(title: 'Components'),
-                          ItemComponents(
-                            itemImageUrl: item.imageUrl,
-                            components: (item as BuildableItem).components!,
-                          )
-                        ],
-                      ),
-                    ),
+
                   if (patchlogs != null)
                     PatchlogCard(
                       patchlogs: patchlogs
