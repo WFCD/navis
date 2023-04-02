@@ -534,7 +534,7 @@ packages:
     source: hosted
     version: "1.1.0"
   meta:
-    dependency: transitive
+    dependency: "direct overridden"
     description:
       name: meta
       sha256: "6c268b42ed578a53088d834796959e4a1814b5e9e164f147f580a386e5decf42"
@@ -1171,11 +1171,11 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: "v1.5.11"
-      resolved-ref: "5cf169d18e3f637d20c3d3bfda598c674ec7a380"
+      ref: "v1.5.16"
+      resolved-ref: "237a6d74dd794e8aeb742030f5a9fd3d0dd479d2"
       url: "https://github.com/SlayerOrnstein/warframestat_client.git"
     source: git
-    version: "1.5.11"
+    version: "1.5.16"
   watcher:
     dependency: transitive
     description:

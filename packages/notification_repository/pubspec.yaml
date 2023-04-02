@@ -15,7 +15,7 @@ dependencies:
   wfcd_client:
     git:
       url: https://github.com/SlayerOrnstein/warframestat_client.git
-      ref: v1.5.11
+      ref: v1.5.16
 
 dev_dependencies:
   flutter_test:
