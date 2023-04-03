@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:black_hole_flutter/black_hole_flutter.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -119,9 +121,6 @@ class _EntryInfoContent extends StatelessWidget {
     final animatedContainerWidth = (mediaQuerySize.width / 100) * 95;
     final animatedContainerHeight =
         shrinkOffset > 0.0 ? 0.0 : (height / 100) * 90;
-
-    final imageContainerRadius = (mediaQuerySize.shortestSide / 100) * 6;
-    final descriptionBoxWidth = (mediaQuerySize.width / 100) * 95;
 
     return AnimatedOpacity(
       duration: kThemeAnimationDuration,
