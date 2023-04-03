@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:navis/codex/codex.dart';
+import 'package:navis_ui/navis_ui.dart';
 import 'package:warframestat_client/warframestat_client.dart';
 
 class ItemComponents extends StatelessWidget {
@@ -22,17 +23,26 @@ class ItemComponents extends StatelessWidget {
 
     final parts = components.where((c) => !c.name.contains('Blueprint'));
 
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        if (blueprint != null)
-          _BuildBlueprint(
-            blueprintImage: blueprint.imageUrl,
-            componentImage: itemImageUrl,
-            drops: blueprint.drops,
+    return AppCard(
+      padding: const EdgeInsets.symmetric(vertical: 10),
+      child: Column(
+        children: [
+          const CategoryTitle(title: 'Components'),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              if (blueprint != null)
+                _BuildBlueprint(
+                  blueprintImage: blueprint.imageUrl,
+                  componentImage: itemImageUrl,
+                  drops: blueprint.drops,
+                ),
+              for (final component in parts)
+                _BuildComponent(component: component),
+            ],
           ),
-        for (final component in parts) _BuildComponent(component: component),
-      ],
+        ],
+      ),
     );
   }
 }

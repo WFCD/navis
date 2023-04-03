@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:warframestat_client/warframestat_client.dart';
 
-// TODO(SLayerOrnstein): add a more detailed patchlog page
-//  with maybe a timeline.
 class PatchlogCard extends StatelessWidget {
   const PatchlogCard({super.key, required this.patchlogs});
 
@@ -11,6 +9,9 @@ class PatchlogCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final maxRange = this.patchlogs.length > 4 ? 4 : this.patchlogs.length;
+    final patchlogs = List.of(this.patchlogs.getRange(0, maxRange));
+
     return AppCard(
       padding: EdgeInsets.zero,
       child: Column(
@@ -19,28 +20,28 @@ class PatchlogCard extends StatelessWidget {
         children: [
           const CategoryTitle(title: 'Patchlogs'),
           ...patchlogs.map(
-            (e) => ListTile(
-              title: Text(e.name),
-              subtitle: Text(
-                MaterialLocalizations.of(context)
-                    .formatFullDate(e.date.toLocal()),
-              ),
-              onTap: () => e.url.launchLink(context),
-            ),
+            (e) => _PatchlogEntry(patchlog: e),
           ),
-          // ButtonBar(
-          //   children: [
-          //     TextButton(
-          //       style: ButtonStyle(
-          //         foregroundColor: MaterialStateProperty.all(Colors.white),
-          //       ),
-          //       onPressed: () {},
-          //       child: const Text('See more patchlogs'),
-          //     ),
-          //   ],
-          // ),
         ],
       ),
+    );
+  }
+}
+
+class _PatchlogEntry extends StatelessWidget {
+  const _PatchlogEntry({required this.patchlog});
+
+  final Patchlog patchlog;
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      title: Text(patchlog.name),
+      subtitle: Text(
+        MaterialLocalizations.of(context)
+            .formatFullDate(patchlog.date.toLocal()),
+      ),
+      onTap: () => patchlog.url.launchLink(context),
     );
   }
 }

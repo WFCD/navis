@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:navis/codex/widgets/codex_entry/drops.dart';
 import 'package:navis/codex/widgets/codex_entry/mod_stats.dart';
 import 'package:navis/codex/widgets/codex_widgets.dart';
 import 'package:navis/utils/item_extensions.dart';
@@ -147,12 +148,6 @@ class _Overview extends StatelessWidget {
 
     final height = item is Mod ? kToolbarHeight : heightRatio * 25;
 
-    if (_isMod) {
-      (item as Mod).drops!.sort(
-            (a, b) => ((b.chance ?? 0) * 100).compareTo((a.chance ?? 0) * 100),
-          );
-    }
-
     return Scaffold(
       body: SafeArea(
         child: CustomScrollView(
@@ -176,17 +171,9 @@ class _Overview extends StatelessWidget {
               delegate: SliverChildListDelegate.fixed(
                 [
                   if (_isFoundryItem)
-                    AppCard(
-                      padding: const EdgeInsets.symmetric(vertical: 10),
-                      child: Column(
-                        children: [
-                          const CategoryTitle(title: 'Components'),
-                          ItemComponents(
-                            itemImageUrl: item.imageUrl,
-                            components: (item as BuildableItem).components!,
-                          )
-                        ],
-                      ),
+                    ItemComponents(
+                      itemImageUrl: item.imageUrl,
+                      components: (item as BuildableItem).components!,
                     ),
                   if (_isPowerSuit)
                     AppCard(
@@ -206,36 +193,9 @@ class _Overview extends StatelessWidget {
                   if (_isMod) ...{
                     ModStats(mod: item as Mod),
                     SizedBoxSpacer.spacerHeight24,
-                    AppCard(
-                      child: Column(
-                        children: (item as Mod)
-                            .drops!
-                            .getRange(
-                              0,
-                              (item as Mod).drops!.length > 4
-                                  ? 4
-                                  : (item as Mod).drops!.length,
-                            )
-                            .map((e) => ListTile(
-                                  title: Text(e.location),
-                                  subtitle: Text(
-                                    'Drop Chance '
-                                    '${(e.chance! * 100).toStringAsFixed(2)}%',
-                                  ),
-                                ))
-                            .toList(),
-                      ),
-                    ),
+                    DropLocations(drops: (item as Mod).drops!)
                   },
-                  if (patchlogs != null)
-                    PatchlogCard(
-                      patchlogs: patchlogs
-                          .getRange(
-                            0,
-                            patchlogs.length > 4 ? 4 : patchlogs.length,
-                          )
-                          .toList(),
-                    ),
+                  if (patchlogs != null) PatchlogCard(patchlogs: patchlogs),
                 ],
               ),
             ),
