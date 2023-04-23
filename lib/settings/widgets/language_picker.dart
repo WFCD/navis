@@ -13,9 +13,12 @@ class LanguagePicker extends StatelessWidget {
     return showDialog<void>(
       context: context,
       builder: (_) {
-        return ChangeNotifierProvider.value(
-          value: Provider.of<UserSettingsNotifier>(context),
-          child: const LanguagePicker(),
+        return BlocProvider.value(
+          value: BlocProvider.of<SolsystemCubit>(context),
+          child: ChangeNotifierProvider.value(
+            value: Provider.of<UserSettingsNotifier>(context),
+            child: const LanguagePicker(),
+          ),
         );
       },
     );
