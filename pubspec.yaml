@@ -13,7 +13,7 @@ dependencies:
   cached_network_image: ^3.2.3
   collection: ^1.17.0
   equatable: ^2.0.5
-  feedback_sentry: ^2.3.0
+  feedback_sentry: ^2.4.0
   firebase_core: ^2.10.0
   flutter:
     sdk: flutter
@@ -40,12 +40,12 @@ dependencies:
   notification_repository:
     path: packages/notification_repository
   package_info: ^2.0.2
-  path_provider: ^2.0.13
+  path_provider: ^2.0.14
   provider: ^6.0.5
   responsive_builder: ^0.6.4
   rxdart: ^0.27.7
-  sentry_flutter: ^6.22.0
-  sentry_logging: ^6.19.0
+  sentry_flutter: ^7.4.2
+  sentry_logging: ^7.4.2
   settings_ui: ^2.0.2
   shimmer: ^2.0.0
   simple_icons: ^7.10.0
