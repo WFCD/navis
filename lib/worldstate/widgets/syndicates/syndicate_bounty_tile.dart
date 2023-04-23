@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis_ui/navis_ui.dart';
-import 'package:wfcd_client/entities.dart';
+import 'package:warframestat_client/warframestat_client.dart';
 
 class SyndicateBountyTile extends StatelessWidget {
   const SyndicateBountyTile({
@@ -10,7 +10,7 @@ class SyndicateBountyTile extends StatelessWidget {
     required this.faction,
   });
 
-  final Job job;
+  final SyndicateJob job;
   final Syndicates faction;
 
   @override
@@ -18,14 +18,14 @@ class SyndicateBountyTile extends StatelessWidget {
     // Need a unique fallback to create keys otherwise the same key can expand
     // two seprate ExpansionTiles.
     return ExpansionTile(
-      key: PageStorageKey<String>('$faction${job.type ?? job.totalStanding}'),
+      key: PageStorageKey<String>('$faction${job.id}'),
       title: Text(job.type ?? ''),
       // textColor: NavisColors.secondary,
       // iconColor: NavisColors.secondary,
       subtitle: Text(
         context.l10n.levelInfo(job.enemyLevels.first, job.enemyLevels.last),
       ),
-      trailing: _Standing(job: job),
+      trailing: _Standing(standingStages: job.standingStages),
       onExpansionChanged: (b) => context.scrollToSelectedContent(),
       children: job.rewardPool.map((e) => ListTile(title: Text(e))).toList(),
     );
@@ -33,9 +33,9 @@ class SyndicateBountyTile extends StatelessWidget {
 }
 
 class _Standing extends StatelessWidget {
-  const _Standing({required this.job});
+  const _Standing({required this.standingStages});
 
-  final Job job;
+  final List<int> standingStages;
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +43,7 @@ class _Standing extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         const Icon(GenesisAssets.standing, size: 20),
-        Text(job.standingStages.reduce((v, e) => v + e).toString()),
+        Text(standingStages.reduce((v, e) => v + e).toString()),
       ],
     );
   }

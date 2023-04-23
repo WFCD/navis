@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:navis_ui/navis_ui.dart';
-import 'package:wfcd_client/entities.dart';
+import 'package:warframestat_client/warframestat_client.dart';
 
 class InvasionReward extends StatelessWidget {
   const InvasionReward({
@@ -10,8 +10,8 @@ class InvasionReward extends StatelessWidget {
     this.vsInfestation = false,
   });
 
-  final Faction attacker;
-  final Faction defender;
+  final InvasionFaction attacker;
+  final InvasionFaction defender;
   final bool vsInfestation;
 
   @override

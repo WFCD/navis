@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:navis/worldstate/worldstate.dart';
 import 'package:responsive_builder/responsive_builder.dart';
-import 'package:wfcd_client/entities.dart';
+import 'package:warframestat_client/warframestat_client.dart';
 
 List<DataColumn> _buildDataColumn(BuildContext context) {
   final textTheme = Theme.of(context).textTheme;
@@ -31,7 +31,7 @@ List<DataColumn> _buildDataColumn(BuildContext context) {
 class InventoryDataTable extends StatelessWidget {
   const InventoryDataTable({super.key, required this.inventory});
 
-  final List<InventoryItem> inventory;
+  final List<TraderItem> inventory;
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +45,7 @@ class InventoryDataTable extends StatelessWidget {
 class _MobileInventoryDataTable extends StatelessWidget {
   const _MobileInventoryDataTable({required this.inventory});
 
-  final List<InventoryItem> inventory;
+  final List<TraderItem> inventory;
 
   @override
   Widget build(BuildContext context) {
@@ -82,7 +82,7 @@ class _MobileInventoryDataTable extends StatelessWidget {
 class _TabletInventoryDataTable extends StatelessWidget {
   const _TabletInventoryDataTable({required this.inventory});
 
-  final List<InventoryItem> inventory;
+  final List<TraderItem> inventory;
 
   @override
   Widget build(BuildContext context) {

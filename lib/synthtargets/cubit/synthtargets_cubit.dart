@@ -2,8 +2,7 @@ import 'dart:async';
 
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:navis/synthtargets/cubit/synthtargets_state.dart';
-import 'package:wfcd_client/models.dart';
-import 'package:wfcd_client/wfcd_client.dart';
+import 'package:warframestat_client/warframestat_client.dart';
 import 'package:worldstate_repository/worldstate_repository.dart';
 
 export 'synthtargets_state.dart';
@@ -27,15 +26,17 @@ class SynthtargetsCubit extends HydratedCubit<SynthtargetsState> {
   SynthtargetsState fromJson(Map<String, dynamic> json) {
     final targets = json['state'] as List<dynamic>;
 
-    return TargetsLocated(toSynthTargets(targets));
+    return TargetsLocated(
+      targets
+          .map((e) => SynthTarget.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
   }
 
   @override
   Map<String, dynamic>? toJson(SynthtargetsState state) {
     if (state is TargetsLocated) {
-      final targets = state.targets
-          .map((dynamic e) => (e as SynthTargetModel).toJson())
-          .toList();
+      final targets = state.targets.map((e) => e.toJson()).toList();
 
       return <String, dynamic>{'state': targets};
     }

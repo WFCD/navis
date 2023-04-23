@@ -1,5 +1,7 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:market_client/market_client.dart';
-import 'package:wfcd_client/wfcd_client.dart';
+import 'package:warframestat_client/warframestat_client.dart';
 
 /// {@template search_request}
 /// Creates a search request instance to send to MarketClient compute runners.
@@ -18,7 +20,7 @@ class MarketSearchRequest {
   final String itemUrl;
 
   /// The game platform the request is for.
-  final GamePlatforms platform;
+  final GamePlatform platform;
 
   /// The language to return results in.
   final String languageCode;
@@ -41,7 +43,7 @@ class MarketItemRequest {
   const MarketItemRequest({required this.platform, required this.languageCode});
 
   /// The game platform the request is for.
-  final GamePlatforms platform;
+  final GamePlatform platform;
 
   /// The language to return results in.
   final String languageCode;
@@ -50,17 +52,17 @@ class MarketItemRequest {
   MarketPlatform get marketPlatform => platform.marketPlatform;
 }
 
-extension on GamePlatforms {
+extension on GamePlatform {
   /// Returns a [MarketPlatform] equivalent of [GamePlatforms]
   MarketPlatform get marketPlatform {
     switch (this) {
-      case GamePlatforms.pc:
+      case GamePlatform.pc:
         return MarketPlatform.pc;
-      case GamePlatforms.ps4:
+      case GamePlatform.ps4:
         return MarketPlatform.ps4;
-      case GamePlatforms.xb1:
+      case GamePlatform.xb1:
         return MarketPlatform.xbox;
-      case GamePlatforms.swi:
+      case GamePlatform.swi:
         return MarketPlatform.swi;
     }
   }

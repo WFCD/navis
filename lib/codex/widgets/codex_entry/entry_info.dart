@@ -5,18 +5,15 @@ import 'package:navis/l10n/l10n.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
-const kMinExtent = kToolbarHeight + kTextTabBarHeight;
-
 class BasicItemInfo extends SliverPersistentHeaderDelegate {
   const BasicItemInfo({
     required this.uniqueName,
     required this.name,
     required this.description,
     required this.imageUrl,
-    this.wikiaUrl,
-    this.bottom,
     required this.expandedHeight,
-    this.isMod = false,
+    this.enable = true,
+    this.wikiaUrl,
     this.isVaulted,
   });
 
@@ -25,10 +22,9 @@ class BasicItemInfo extends SliverPersistentHeaderDelegate {
   final String description;
   final String imageUrl;
   final String? wikiaUrl;
-  final Widget? bottom;
   final double expandedHeight;
-  final bool isMod;
   final bool? isVaulted;
+  final bool enable;
 
   @override
   Widget build(
@@ -36,54 +32,51 @@ class BasicItemInfo extends SliverPersistentHeaderDelegate {
     double shrinkOffset,
     bool overlapsContent,
   ) {
-    final canvasColor = context.theme.canvasColor;
-
-    return Container(
-      height: expandedHeight,
-      color: canvasColor,
-      child: Stack(
-        children: <Widget>[
-          AppBar(
-            elevation: 0,
-            backgroundColor: canvasColor,
-            iconTheme: context.theme.iconTheme,
-            title: isMod ? Text(name) : null,
-            actions: [
-              if (isVaulted ?? false)
+    return Material(
+      elevation: 4,
+      child: SizedBox(
+        height: expandedHeight,
+        child: Stack(
+          children: <Widget>[
+            AppBar(
+              elevation: 0,
+              iconTheme: context.theme.iconTheme,
+              actions: [
+                if (isVaulted ?? false)
+                  TextButton(
+                    style: ButtonStyle(
+                      foregroundColor: MaterialStateProperty.all(
+                        context.theme.colorScheme.error,
+                      ),
+                    ),
+                    onPressed: null,
+                    child: Text(context.l10n.codexVaultedLabel),
+                  ),
                 TextButton(
                   style: ButtonStyle(
                     foregroundColor: MaterialStateProperty.all(
-                      context.theme.colorScheme.error,
+                      context.theme.textTheme.labelLarge?.color,
                     ),
                   ),
-                  onPressed: null,
-                  child: Text(context.l10n.codexVaultedLabel),
+                  onPressed: () => wikiaUrl?.launchLink(context),
+                  child: Text(context.l10n.seeWikia),
                 ),
-              TextButton(
-                style: ButtonStyle(
-                  foregroundColor: MaterialStateProperty.all(
-                    context.theme.textTheme.labelLarge?.color,
-                  ),
-                ),
-                onPressed: () => wikiaUrl?.launchLink(context),
-                child: Text(context.l10n.seeWikia),
-              ),
-            ],
-          ),
-          if (!isMod)
-            Center(
-              child: _EntryInfoContent(
-                height: expandedHeight,
-                shrinkOffset: shrinkOffset,
-                uniqueName: uniqueName,
-                imageUrl: imageUrl,
-                name: name,
-                description: description,
-              ),
+              ],
             ),
-          if (bottom != null)
-            Align(alignment: Alignment.bottomCenter, child: bottom),
-        ],
+            if (enable)
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: _EntryInfoContent(
+                  height: expandedHeight,
+                  shrinkOffset: shrinkOffset,
+                  uniqueName: uniqueName,
+                  imageUrl: imageUrl,
+                  name: name,
+                  description: description,
+                ),
+              ),
+          ],
+        ),
       ),
     );
   }
@@ -92,7 +85,7 @@ class BasicItemInfo extends SliverPersistentHeaderDelegate {
   double get maxExtent => expandedHeight;
 
   @override
-  double get minExtent => kToolbarHeight + kTextTabBarHeight;
+  double get minExtent => kToolbarHeight;
 
   @override
   bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) {
@@ -123,12 +116,12 @@ class _EntryInfoContent extends StatelessWidget {
     final textTheme = Theme.of(context).textTheme;
     final mediaQuerySize = MediaQuery.of(context).size;
 
+    final imageContainerRadius = (mediaQuerySize.shortestSide / 100) * 8;
+    final descriptionBoxWidth = (mediaQuerySize.width / 100) * 95;
+
     final animatedContainerWidth = (mediaQuerySize.width / 100) * 95;
     final animatedContainerHeight =
         shrinkOffset > 0.0 ? 0.0 : (height / 100) * 90;
-
-    final imageContainerRadius = (mediaQuerySize.shortestSide / 100) * 6;
-    final descriptionBoxWidth = (mediaQuerySize.width / 100) * 95;
 
     return AnimatedOpacity(
       duration: kThemeAnimationDuration,

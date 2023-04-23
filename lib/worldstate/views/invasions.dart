@@ -5,7 +5,7 @@ import 'package:navis/worldstate/worldstate.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:nil/nil.dart';
 import 'package:responsive_builder/responsive_builder.dart';
-import 'package:wfcd_client/entities.dart';
+import 'package:warframestat_client/warframestat_client.dart';
 
 class InvasionsPage extends TraceableStatelessWidget {
   const InvasionsPage({super.key});

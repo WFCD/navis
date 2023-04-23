@@ -1,11 +1,11 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:navis/worldstate/cubits/solsystem/solsystem_state.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
-import 'package:wfcd_client/entities.dart';
-import 'package:wfcd_client/models.dart';
+import 'package:warframestat_client/warframestat_client.dart';
 import 'package:worldstate_repository/worldstate_repository.dart';
 
 const String serverException = 'Failed to contact server';
@@ -21,35 +21,37 @@ class SolsystemCubit extends HydratedCubit<SolsystemState> {
     try {
       final state = await repository.getWorldstate(forceUpdate: forceUpdate);
 
-      emit(SolState(_cleanState(state)));
+      _cleanState(state);
+
+      emit(SolState(state));
     } catch (e, s) {
       final current = state;
       await _exceptionHandle(e, s);
       emit(current);
+
+      debugPrintStack(stackTrace: s);
 
       // Rethrow the error so the obsover can catch it and send it to sentry.
       rethrow;
     }
   }
 
-  Worldstate _cleanState(Worldstate state) {
+  void _cleanState(Worldstate state) {
     state.alerts.retainWhere((e) => e.active);
 
     state.news.sort((a, b) => b.date.compareTo(a.date));
 
-    state.persistentEnemies?.sort((a, b) => a.agentType.compareTo(b.agentType));
+// state.persistentEnemies?.sort((a, b) => a.agentType.compareTo(b.agentType));
 
     state.syndicateMissions
       ..retainWhere((s) => s.jobs.isNotEmpty)
-      ..sort((a, b) => a.name.compareTo(b.name));
+      ..sort((a, b) => a.syndicate.compareTo(b.syndicate));
 
     state.fissures
       ..retainWhere((e) => !e.expired)
       ..sort((a, b) => a.tierNum.compareTo(b.tierNum));
 
     state.invasions.retainWhere((e) => !e.completed);
-
-    return state;
   }
 
   Future<void> _exceptionHandle(Object exception, [StackTrace? s]) async {
@@ -71,7 +73,7 @@ class SolsystemCubit extends HydratedCubit<SolsystemState> {
     try {
       // Because worldstate is cleaned when it's cached there
       // is no need to clean it when returning from cache.
-      return SolState(WorldstateModel.fromJson(json));
+      return SolState(Worldstate.fromJson(json));
     } catch (e) {
       return null;
     }
@@ -80,7 +82,7 @@ class SolsystemCubit extends HydratedCubit<SolsystemState> {
   @override
   Map<String, dynamic>? toJson(SolsystemState state) {
     if (state is SolState) {
-      return (state.worldstate as WorldstateModel).toJson();
+      return (state.worldstate).toJson();
     }
 
     return null;

@@ -4,8 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis/worldstate/cubits/solsystem_cubit.dart';
 import 'package:navis_ui/navis_ui.dart';
-import 'package:wfcd_client/entities.dart';
-import 'package:wfcd_client/objects.dart';
+import 'package:warframestat_client/warframestat_client.dart';
 
 class CycleCard extends StatelessWidget {
   const CycleCard({super.key});
@@ -140,7 +139,7 @@ class _CycleWidget extends StatelessWidget {
       trailing: Row(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          if (entry.cycle.getStateBool) entry.states.first else entry.states[1],
+          if (entry.cycle.stateBool) entry.states.first else entry.states[1],
           SizedBoxSpacer.spacerWidth6,
           CountdownTimer(
             tooltip: context.l10n.countdownTooltip(expiry),

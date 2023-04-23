@@ -1,11 +1,12 @@
 // ignore_for_file: prefer-moving-to-variable
 import 'package:flutter/material.dart';
+import 'package:navis/codex/utils/stats.dart';
 import 'package:navis/codex/widgets/codex_entry/polarity.dart';
 import 'package:navis/codex/widgets/codex_entry/preinstalled_polarities.dart';
 import 'package:navis/codex/widgets/codex_entry/stats.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis_ui/navis_ui.dart';
-import 'package:wfcd_client/entities.dart';
+import 'package:warframestat_client/warframestat_client.dart';
 
 class FrameStats extends StatelessWidget {
   const FrameStats({super.key, required this.powerSuit});
@@ -20,22 +21,16 @@ class FrameStats extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         const CategoryTitle(title: 'Stats', contentPadding: EdgeInsets.zero),
-        if (powerSuit is Warframe) _Passive(powerSuit: powerSuit),
-        SizedBoxSpacer.spacerHeight16,
         Stats(
           stats: <RowItem>[
             if (powerSuit is Warframe && (powerSuit as Warframe).aura != null)
               RowItem(
                 text: Text(l10n.auraTitle),
-                // Already being checked for null.
-                // ignore: avoid-non-null-assertion
                 child: Polarity(polarity: (powerSuit as Warframe).aura!),
               ),
             if (powerSuit.polarities?.isNotEmpty ?? false)
               RowItem(
                 text: Text(l10n.preinstalledPolarities),
-                // Already being checked for null.
-                // ignore: avoid-non-null-assertion
                 child: PreinstalledPolarties(polarities: powerSuit.polarities!),
               ),
             RowItem(
@@ -54,57 +49,38 @@ class FrameStats extends StatelessWidget {
               text: Text(l10n.powerTitle),
               child: Text('${powerSuit.power}'),
             ),
-            if (powerSuit is PlayerUsuablePowerSuit)
+            if (powerSuit is Warframe)
               RowItem(
                 text: Text(l10n.sprintSpeedTitle),
                 child: Text(
-                  '${(powerSuit as PlayerUsuablePowerSuit).sprintSpeed}',
+                  '${statRoundDouble((powerSuit as Warframe).sprintSpeed, 2)}',
                 ),
               ),
           ],
         ),
         SizedBoxSpacer.spacerHeight16,
-        if (powerSuit is PlayerUsuablePowerSuit) ...{
-          CategoryTitle(
-            title: l10n.abilitiesTitle,
+        CategoryTitle(
+          title: l10n.abilitiesTitle,
+          contentPadding: EdgeInsets.zero,
+        ),
+        if (powerSuit is Warframe &&
+            (powerSuit as Warframe).passiveDescription != null)
+          ListTile(
+            title: Text(context.l10n.warframePassiveTitle),
+            subtitle: Text((powerSuit as Warframe).passiveDescription!),
+            dense: true,
+            isThreeLine: true,
             contentPadding: EdgeInsets.zero,
           ),
-          for (final ability in (powerSuit as PlayerUsuablePowerSuit).abilities)
-            ListTile(
-              title: Text(ability.name),
-              subtitle: Text(ability.description),
-              dense: true,
-              isThreeLine: true,
-              contentPadding: EdgeInsets.zero,
-            ),
-        },
-      ],
-    );
-  }
-}
-
-class _Passive extends StatelessWidget {
-  const _Passive({required this.powerSuit});
-
-  final PowerSuit powerSuit;
-
-  @override
-  Widget build(BuildContext context) {
-    final textTheme = Theme.of(context).textTheme;
-
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Text(context.l10n.warframePassiveTitle, style: textTheme.titleMedium),
-          SizedBoxSpacer.spacerHeight8,
-          Text(
-            (powerSuit as Warframe).passiveDescription,
-            style: textTheme.bodySmall?.copyWith(fontStyle: FontStyle.italic),
+        for (final ability in powerSuit.abilities)
+          ListTile(
+            title: Text(ability.name),
+            subtitle: Text(ability.description),
+            dense: true,
+            isThreeLine: true,
+            contentPadding: EdgeInsets.zero,
           ),
-        ],
-      ),
+      ],
     );
   }
 }

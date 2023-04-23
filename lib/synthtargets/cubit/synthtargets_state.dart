@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:wfcd_client/entities.dart';
+import 'package:warframestat_client/warframestat_client.dart';
 
 abstract class SynthtargetsState extends Equatable {
   const SynthtargetsState();

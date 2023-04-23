@@ -4,10 +4,11 @@ import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/l10n/l10n.dart';
+import 'package:navis/utils/item_extensions.dart';
 import 'package:navis/worldstate/cubits/darvodeal_cubit.dart';
 import 'package:navis/worldstate/cubits/solsystem_cubit.dart';
 import 'package:navis_ui/navis_ui.dart';
-import 'package:wfcd_client/entities.dart';
+import 'package:warframestat_client/warframestat_client.dart';
 
 class DarvoDealCard extends StatelessWidget {
   const DarvoDealCard({super.key});
@@ -35,7 +36,7 @@ class DarvoDealCard extends StatelessWidget {
 class _DealWidget extends StatefulWidget {
   const _DealWidget({required this.deal});
 
-  final DarvoDeal deal;
+  final DailyDeal deal;
 
   @override
   _DealWidgetState createState() => _DealWidgetState();

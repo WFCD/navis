@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:matomo/matomo.dart';
 import 'package:navis/worldstate/widgets/syndicates/syndicate_bounties.dart';
 import 'package:navis_ui/navis_ui.dart';
-import 'package:wfcd_client/entities.dart';
+import 'package:warframestat_client/warframestat_client.dart';
 
 class BountiesPage extends TraceableStatelessWidget {
   const BountiesPage({super.key});
@@ -12,14 +12,16 @@ class BountiesPage extends TraceableStatelessWidget {
   @override
   Widget build(BuildContext context) {
     // We have checks in other places to make sre this is never null.
-    // ignore: cast_nullable_to_non_nullable
-    final syndicate = ModalRoute.of(context)?.settings.arguments as Syndicate;
+    final syndicate =
+        // ignore: cast_nullable_to_non_nullable
+        ModalRoute.of(context)?.settings.arguments as SyndicateMission;
+
     final backgroundColor =
         syndicateStringToEnum(syndicate.id ?? 'navis').secondryColor;
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(syndicate.name.replaceFirst('Syndicate', '')),
+        title: Text(syndicate.syndicate.replaceFirst('Syndicate', '')),
         titleSpacing: 0,
         backgroundColor: backgroundColor,
       ),

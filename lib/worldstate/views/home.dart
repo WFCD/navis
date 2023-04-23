@@ -52,12 +52,10 @@ class FeedView extends StatelessWidget {
         handle: NestedScrollView.sliverOverlapAbsorberHandleFor(context),
         sliver: SliverTopbar(
           pinned: true,
-          child: Material(
-            child: TabBar(
-              tabs: Tabs.values
-                  .map((t) => Tab(text: _getTabLocale(context, t)))
-                  .toList(),
-            ),
+          child: TabBar(
+            tabs: Tabs.values
+                .map((t) => Tab(text: _getTabLocale(context, t)))
+                .toList(),
           ),
         ),
       ),

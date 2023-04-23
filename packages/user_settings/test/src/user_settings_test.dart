@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:user_settings/user_settings.dart';
-import 'package:wfcd_client/wfcd_client.dart';
+import 'package:warframestat_client/warframestat_client.dart';
 
 Future<void> main() async {
   final temp = await Directory.systemTemp.createTemp();
@@ -27,7 +27,7 @@ Future<void> main() async {
   });
 
   test('Test platform toggles', () {
-    for (final platform in GamePlatforms.values) {
+    for (final platform in GamePlatform.values) {
       settings.platform = platform;
       expect(settings.platform, platform);
     }

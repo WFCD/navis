@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:wfcd_client/entities.dart';
+import 'package:warframestat_client/warframestat_client.dart';
 
 class InventoryDataSource extends DataTableSource {
   InventoryDataSource({required this.inventory});
 
-  final List<InventoryItem> inventory;
+  final List<TraderItem> inventory;
 
   @override
   DataRow? getRow(int index) {

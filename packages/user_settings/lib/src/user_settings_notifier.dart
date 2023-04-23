@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:user_settings/src/user_settings.dart';
-import 'package:wfcd_client/wfcd_client.dart';
+import 'package:warframestat_client/warframestat_client.dart';
 
 /// {@template user_settings_notifier}
 /// A [ChangeNotifier] for [UserSettings]
@@ -16,7 +16,7 @@ class UserSettingsNotifier extends ChangeNotifier {
   Locale? get language => _usersettings.language;
 
   /// Get the stored [GamePlatforms]
-  GamePlatforms get platform => _usersettings.platform;
+  GamePlatform get platform => _usersettings.platform;
 
   /// Get the stored [ThemeMode]
   ThemeMode get theme => _usersettings.theme;
@@ -44,7 +44,7 @@ class UserSettingsNotifier extends ChangeNotifier {
   }
 
   /// {@macro stores}
-  void setPlatform(GamePlatforms value) {
+  void setPlatform(GamePlatform value) {
     _usersettings.platform = value;
     notifyListeners();
   }

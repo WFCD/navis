@@ -35,7 +35,7 @@ class MarketRepository {
         (cTimestamp ?? _expiredCacheTime) <= _expiredCacheTime) {
       final req = MarketSearchRequest(
         itemUrl: itemName,
-        languageCode: usersettings.language?.languageCode ?? 'en',
+        languageCode: usersettings.language.languageCode,
         platform: usersettings.platform,
         items: await getItems(),
       );
@@ -74,7 +74,7 @@ class MarketRepository {
 
     if (cDuration >= _expiredCacheTime) {
       final req = MarketItemRequest(
-        languageCode: usersettings.language?.languageCode ?? 'en',
+        languageCode: usersettings.language.languageCode,
         platform: usersettings.platform,
       );
 

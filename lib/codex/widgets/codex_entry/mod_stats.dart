@@ -3,29 +3,28 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:navis/codex/widgets/codex_entry/mod_entry.dart';
 import 'package:navis/l10n/l10n.dart';
-import 'package:navis_ui/navis_ui.dart';
-import 'package:wfcd_client/entities.dart';
+import 'package:navis/utils/item_extensions.dart';
+import 'package:warframestat_client/warframestat_client.dart';
 
 class ModStats extends StatelessWidget {
   const ModStats({super.key, required this.mod});
 
   final Mod mod;
 
-  String _modDescription([int? rank]) {
-    String? description;
-
-    if (mod.levelStats != null) {
-      description =
-          // Already being checked for null.
-          // ignore: avoid-non-null-assertion
-          mod.levelStats![rank ?? 0]['stats']!.fold<String>('', (p, e) {
-        return p.isEmpty ? '$e\n' : '$p$e\n';
-      });
+  String _modDescription([int rank = 0]) {
+    if (mod.description != null && mod.description!.isNotEmpty) {
+      return mod.description!;
     }
 
-    return description?.parseHtmlString() ??
-        mod.description?.parseHtmlString() ??
-        '';
+    final description = StringBuffer();
+
+    if (mod.levelStats != null) {
+      for (final stat in mod.levelStats![rank].stats) {
+        description.write('$stat\n');
+      }
+    }
+
+    return description.toString();
   }
 
   Widget _buildRankedMod(int rank) {
@@ -35,11 +34,11 @@ class ModStats extends StatelessWidget {
       stats: _modDescription(rank),
       compatName: mod.compatName,
       modSet: mod.modSet,
-      maxRank: mod.fusionLimit ?? 0,
+      maxRank: mod.fusionLimit,
       rank: rank,
-      drain: mod.baseDrain ?? 0 + rank,
+      drain: mod.baseDrain + rank,
       polarity: mod.polarity,
-      rarity: mod.rarity ?? 'Rare',
+      rarity: mod.rarity.name,
     );
   }
 
@@ -57,7 +56,7 @@ class ModStats extends StatelessWidget {
         padding: padding,
         child: _ModWithStats(
           levels: levelStats.length,
-          maxRank: mod.fusionLimit?.toDouble() ?? 0.0,
+          maxRank: mod.fusionLimit.toDouble(),
           builder: (_, rank) => _buildRankedMod(rank),
         ),
       );
@@ -69,15 +68,13 @@ class ModStats extends StatelessWidget {
         imageUrl: mod.imageUrl,
         name: mod.name,
         stats: _modDescription(),
-        maxRank: mod.fusionLimit ?? 0,
+        maxRank: mod.fusionLimit,
         rank: 0,
-        drain: (mod.baseDrain?.isNegative ?? false)
-            ? mod.fusionLimit
-            : mod.baseDrain,
+        drain: (mod.baseDrain.isNegative) ? mod.fusionLimit : mod.baseDrain,
         polarity: mod.polarity,
         compatName: mod.compatName,
         modSet: mod.modSet,
-        rarity: mod.rarity ?? 'Rare',
+        rarity: mod.rarity.name,
       ),
     );
   }

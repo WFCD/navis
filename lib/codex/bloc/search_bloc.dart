@@ -6,7 +6,7 @@ import 'package:navis/codex/bloc/search_state.dart';
 import 'package:navis/codex/utils/result_filters.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:rxdart/rxdart.dart';
-import 'package:wfcd_client/entities.dart';
+import 'package:warframestat_client/warframestat_client.dart';
 import 'package:worldstate_repository/worldstate_repository.dart';
 
 export 'search_event.dart';

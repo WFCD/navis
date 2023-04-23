@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:navis_ui/navis_ui.dart';
-import 'package:wfcd_client/entities.dart';
+import 'package:warframestat_client/warframestat_client.dart';
 
 class TargetInfo extends StatelessWidget {
   const TargetInfo({super.key, required this.target});

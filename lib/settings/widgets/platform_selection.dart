@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/worldstate/cubits/solsystem_cubit.dart';
@@ -6,7 +8,7 @@ import 'package:responsive_builder/responsive_builder.dart';
 import 'package:settings_ui/settings_ui.dart';
 import 'package:simple_icons/simple_icons.dart';
 import 'package:user_settings/user_settings.dart';
-import 'package:wfcd_client/wfcd_client.dart';
+import 'package:warframestat_client/warframestat_client.dart';
 
 const pc = 'PC';
 const ps4 = 'Sony PlayStation Network';
@@ -36,25 +38,25 @@ class PlatformSelect extends AbstractSettingsTile {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: const <Widget>[
           _PlatformIconButton(
-            platform: GamePlatforms.pc,
+            platform: GamePlatform.pc,
             platformIcon: SimpleIcons.steam,
             platformName: pc,
             platformColor: pcColor,
           ),
           _PlatformIconButton(
-            platform: GamePlatforms.ps4,
+            platform: GamePlatform.ps4,
             platformIcon: SimpleIcons.playstation,
             platformName: ps4,
             platformColor: ps4Color,
           ),
           _PlatformIconButton(
-            platform: GamePlatforms.xb1,
+            platform: GamePlatform.xb1,
             platformIcon: SimpleIcons.xbox,
             platformName: xb1,
             platformColor: xb1Color,
           ),
           _PlatformIconButton(
-            platform: GamePlatforms.swi,
+            platform: GamePlatform.swi,
             platformIcon: SimpleIcons.nintendoswitch,
             platformName: swi,
             platformColor: swiColor,
@@ -73,7 +75,7 @@ class _PlatformIconButton extends StatelessWidget {
     required this.platformName,
   });
 
-  final GamePlatforms platform;
+  final GamePlatform platform;
   final IconData platformIcon;
   final Color platformColor;
   final String platformName;
@@ -93,7 +95,7 @@ class _PlatformIconButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = (MediaQuery.of(context).size.shortestSide / 100) * 8;
     final currentPlatform = context
-        .select<UserSettingsNotifier, GamePlatforms>((value) => value.platform);
+        .select<UserSettingsNotifier, GamePlatform>((value) => value.platform);
 
     return IconButton(
       tooltip: platformName,

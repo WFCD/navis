@@ -23,7 +23,7 @@ class ArbitrationCard extends StatelessWidget {
             title: Row(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
-                if (arbitration?.archwingRequired ?? false)
+                if (arbitration?.archwing ?? false)
                   const Padding(
                     padding: EdgeInsets.only(left: 6),
                     child: Icon(

@@ -9,8 +9,8 @@ class SentientOutpostCard extends StatelessWidget {
 
   bool _buildWhen(SolsystemState p, SolsystemState n) {
     if (p is SolState && n is SolState) {
-      return p.worldstate.sentientOutposts.expiry !=
-          n.worldstate.sentientOutposts.expiry;
+      return p.worldstate.sentientOutposts?.expiry !=
+          n.worldstate.sentientOutposts?.expiry;
     }
 
     return false;
@@ -23,11 +23,9 @@ class SentientOutpostCard extends StatelessWidget {
         buildWhen: _buildWhen,
         builder: (context, state) {
           final outpost = (state as SolState).worldstate.sentientOutposts;
-          final mission = outpost.mission;
+          final mission = outpost?.mission;
 
-          // Will default to DateTime.now() under the hood.
-          // ignore: avoid-non-null-assertion
-          final expiry = outpost.expiry!;
+          final expiry = outpost?.expiry ?? DateTime.now();
 
           return ListTile(
             leading: const Icon(GenesisAssets.sentient, size: 40),

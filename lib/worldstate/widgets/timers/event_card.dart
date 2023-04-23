@@ -5,7 +5,7 @@ import 'package:navis/l10n/l10n.dart';
 import 'package:navis/worldstate/cubits/solsystem_cubit.dart';
 import 'package:navis/worldstate/views/event.dart';
 import 'package:navis_ui/navis_ui.dart';
-import 'package:wfcd_client/entities.dart';
+import 'package:warframestat_client/warframestat_client.dart';
 
 class EventCard extends StatelessWidget {
   const EventCard({super.key});
@@ -25,7 +25,7 @@ class EventCard extends StatelessWidget {
         buildWhen: _buildWhen,
         builder: (context, state) {
           final events =
-              state is SolState ? state.worldstate.events : <Event>[];
+              state is SolState ? state.worldstate.events : <WorldEvent>[];
 
           return Column(
             children: <Widget>[

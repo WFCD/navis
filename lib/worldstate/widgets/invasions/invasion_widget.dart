@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:navis/worldstate/worldstate.dart';
 import 'package:navis_ui/navis_ui.dart';
-import 'package:wfcd_client/entities.dart';
+import 'package:warframestat_client/warframestat_client.dart';
 
 class InvasionWidget extends StatelessWidget {
   const InvasionWidget({super.key, required this.invasion});

@@ -5,7 +5,7 @@ import 'package:navis/l10n/l10n.dart';
 import 'package:navis/worldstate/worldstate.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:responsive_builder/responsive_builder.dart';
-import 'package:wfcd_client/entities.dart';
+import 'package:warframestat_client/warframestat_client.dart';
 
 class FissuresPage extends StatelessWidget {
   const FissuresPage({super.key});
@@ -14,7 +14,7 @@ class FissuresPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final state = context.watch<SolsystemCubit>().state;
     final fissures =
-        state is SolState ? state.worldstate.fissures : <VoidFissure>[];
+        state is SolState ? state.worldstate.fissures : <Fissure>[];
 
     return BlocProvider(
       create: (_) => FissureFilterCubit(fissures),
@@ -64,7 +64,7 @@ class _FissuresViewState extends State<_FissuresView> {
     // Otherwise fissures stored in the filter cubit will be out of sync.
     final state = context.read<SolsystemCubit>().state;
     final fissures =
-        state is SolState ? state.worldstate.fissures : <VoidFissure>[];
+        state is SolState ? state.worldstate.fissures : <Fissure>[];
 
     ff.filterFissures(ff.state.type, fissures);
   }
@@ -72,7 +72,7 @@ class _FissuresViewState extends State<_FissuresView> {
   void _onPressed(BuildContext context, FissureFilter filter) {
     final state = context.read<SolsystemCubit>().state;
     final fissures =
-        state is SolState ? state.worldstate.fissures : <VoidFissure>[];
+        state is SolState ? state.worldstate.fissures : <Fissure>[];
 
     context.read<FissureFilterCubit>().filterFissures(filter, fissures);
     _updateFocus(filter);
@@ -152,7 +152,7 @@ class _FissuresViewState extends State<_FissuresView> {
 class _MobileFissures extends StatelessWidget {
   const _MobileFissures({required this.fissures});
 
-  final List<VoidFissure> fissures;
+  final List<Fissure> fissures;
 
   @override
   Widget build(BuildContext context) {
@@ -177,7 +177,7 @@ class _MobileFissures extends StatelessWidget {
 class _TabletFissures extends StatelessWidget {
   const _TabletFissures({required this.fissures});
 
-  final List<VoidFissure> fissures;
+  final List<Fissure> fissures;
 
   @override
   Widget build(BuildContext context) {

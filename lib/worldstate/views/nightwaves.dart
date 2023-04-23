@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:matomo/matomo.dart';
 import 'package:navis/worldstate/widgets/syndicates/nightwave_challenges.dart';
-import 'package:wfcd_client/entities.dart';
+import 'package:warframestat_client/warframestat_client.dart';
 
 class NightwavesPage extends TraceableStatelessWidget {
   const NightwavesPage({super.key});

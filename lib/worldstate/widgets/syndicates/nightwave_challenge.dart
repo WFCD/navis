@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis_ui/navis_ui.dart';
-import 'package:wfcd_client/entities.dart';
+import 'package:warframestat_client/warframestat_client.dart';
 
 class NightwaveChallenge extends StatelessWidget {
   const NightwaveChallenge({super.key, required this.challenge});
@@ -29,7 +29,7 @@ class NightwaveChallenge extends StatelessWidget {
             ListTile(
               leading: _NightwaveIcon(
                 isElite: challenge.isElite,
-                isDaily: challenge.isDaily ?? false,
+                isDaily: challenge.isDaily,
               ),
               title: Text(challenge.title, style: title),
               subtitle: Text(challenge.desc, style: desscription),

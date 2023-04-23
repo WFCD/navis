@@ -1,7 +1,3 @@
-// This is what just worked for the style.
-// ignore_for_file: no-magic-number
-// Already being checked for null.
-// ignore_for_file: avoid-non-null-assertion
 import 'package:flutter/material.dart';
 import 'package:navis/codex/utils/stats.dart';
 import 'package:navis/codex/widgets/codex_entry/polarity.dart';
@@ -10,18 +6,18 @@ import 'package:navis/codex/widgets/codex_entry/riven_disposition.dart';
 import 'package:navis/codex/widgets/codex_entry/stats.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis_ui/navis_ui.dart';
-import 'package:wfcd_client/entities.dart';
+import 'package:warframestat_client/warframestat_client.dart';
 
 class MeleeStats extends StatelessWidget {
-  const MeleeStats({super.key, required this.meleeWeapon});
+  const MeleeStats({super.key, required this.melee});
 
-  final MeleeWeapon meleeWeapon;
+  final Melee melee;
 
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
     final textStyle = Theme.of(context).textTheme.titleMedium;
-    final totalDamage = statRoundDouble(meleeWeapon.totalDamage, 1);
+    final totalDamage = statRoundDouble(melee.totalDamage.toDouble(), 1);
 
     return Column(
       children: [
@@ -31,74 +27,68 @@ class MeleeStats extends StatelessWidget {
         ),
         Stats(
           stats: <RowItem>[
-            RowItem(
-              text: Text(l10n.masteryRequirementTitle),
-              child: Text('${meleeWeapon.masteryReq}'),
-            ),
+            if (melee.masteryReq != null)
+              RowItem(
+                text: Text(l10n.masteryRequirementTitle),
+                child: Text('${melee.masteryReq}'),
+              ),
             RowItem(
               text: Text(l10n.weaponTypeTitle),
-              child: Text(meleeWeapon.type),
+              child: Text(melee.type),
             ),
-            if (meleeWeapon.stancePolarity != null)
+            if (melee.stancePolarity != null)
               RowItem(
                 text: Text(l10n.stancePolarityTitle),
-                child: Polarity(polarity: meleeWeapon.stancePolarity!),
+                child: Polarity(polarity: melee.stancePolarity!),
               ),
-            if (meleeWeapon.polarities?.isNotEmpty ?? false)
+            if (melee.polarities?.isNotEmpty ?? false)
               RowItem(
                 text: Text(l10n.preinstalledPolarities),
                 child: PreinstalledPolarties(
-                  polarities: meleeWeapon.polarities!,
+                  polarities: melee.polarities!,
                 ),
               ),
             RowItem(
-              text: Text(l10n.attackSpeedTitle),
-              child: Text(meleeWeapon.attackSpeed.toStringAsFixed(2)),
-            ),
-            RowItem(
               text: Text(l10n.criticalChanceTitle),
               child: Text(
-                '${(meleeWeapon.criticalChance * 100).roundToDouble()}%',
+                '${(melee.criticalChance * 100).roundToDouble()}%',
               ),
             ),
             RowItem(
               text: Text(l10n.cricticalMultiplierTitle),
-              child: Text('${meleeWeapon.criticalMultiplier}x'),
+              child: Text('${melee.criticalMultiplier}x'),
             ),
             RowItem(
               text: Text(l10n.followThroughTitle),
-              child:
-                  Text('${meleeWeapon.followThrough?.toStringAsFixed(2) ?? 0}'),
+              child: Text('${melee.followThrough?.toStringAsFixed(2) ?? 0}'),
             ),
             RowItem(
               text: Text(l10n.rangeTitle),
-              child: Text('${meleeWeapon.range?.toStringAsFixed(2) ?? 0}'),
+              child: Text('${melee.range?.toStringAsFixed(2) ?? 0}'),
             ),
             RowItem(
               text: Text(l10n.slamAttackTitle),
-              child: Text('${meleeWeapon.slamAttack}'),
+              child: Text('${melee.slamAttack}'),
             ),
             RowItem(
               text: Text(l10n.slamRadialDamageTitle),
-              child: Text('${meleeWeapon.slamRadialDamage}'),
+              child: Text('${melee.slamRadialDamage}'),
             ),
             RowItem(
               text: Text(l10n.slamRadiusTitle),
-              child: Text('${meleeWeapon.slamRadius?.toStringAsFixed(2) ?? 0}'),
+              child: Text('${melee.slamRadius?.toStringAsFixed(2) ?? 0}'),
             ),
             RowItem(
               text: Text(l10n.slideAttackTitle),
-              child: Text('${meleeWeapon.slideAttack}'),
+              child: Text('${melee.slideAttack}'),
             ),
             RowItem(
               text: Text(l10n.rivenDispositionTitle),
-              child:
-                  RivenDisposition(disposition: meleeWeapon.disposition ?? 0),
+              child: RivenDisposition(disposition: melee.disposition),
             ),
             RowItem(
               text: Text(l10n.statusChanceTitle),
-              child:
-                  Text('${(meleeWeapon.statusChance * 100).roundToDouble()}%'),
+              child: Text('${(melee.procChance * 100).roundToDouble()}%'),
             ),
           ],
         ),
@@ -111,23 +101,23 @@ class MeleeStats extends StatelessWidget {
           stats: [
             RowItem(
               text: Text(l10n.damageTitle),
-              child: Text('${meleeWeapon.heavyAttackDamage}'),
+              child: Text('${melee.heavyAttackDamage}'),
             ),
             RowItem(
               text: Text(l10n.heavySlamAttackTitle),
-              child: Text('${meleeWeapon.heavySlamAttack}'),
+              child: Text('${melee.heavySlamAttack}'),
             ),
             RowItem(
               text: Text(l10n.heavySlamRadialDamageTitle),
-              child: Text('${meleeWeapon.heavySlamRadialDamage}'),
+              child: Text('${melee.heavySlamRadialDamage}'),
             ),
             RowItem(
               text: Text(l10n.heavySlamRadiusTitle),
-              child: Text('${meleeWeapon.heavySlamRadius?.toDouble() ?? 0}'),
+              child: Text('${melee.heavySlamRadius?.toDouble() ?? 0}'),
             ),
             RowItem(
               text: Text(l10n.windUpTitle),
-              child: Text('${meleeWeapon.windUp?.toStringAsFixed(2) ?? 0}'),
+              child: Text('${melee.windUp?.toStringAsFixed(2) ?? 0}'),
             ),
           ],
         ),

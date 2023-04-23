@@ -1,9 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:navis/codex/views/component_drops.dart';
-import 'package:navis/l10n/l10n.dart';
+import 'package:navis/codex/codex.dart';
 import 'package:navis_ui/navis_ui.dart';
-import 'package:wfcd_client/entities.dart';
+import 'package:warframestat_client/warframestat_client.dart';
 
 class ItemComponents extends StatelessWidget {
   const ItemComponents({
@@ -24,45 +23,40 @@ class ItemComponents extends StatelessWidget {
 
     final parts = components.where((c) => !c.name.contains('Blueprint'));
 
-    return Column(
-      children: [
-        CategoryTitle(
-          title: context.l10n.componentsTitle,
-          contentPadding: EdgeInsets.zero,
-        ),
-        SizedBoxSpacer.spacerHeight8,
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            if (blueprint != null)
-              _BuildComponent(
-                component: blueprint,
-                child: CachedNetworkImage(imageUrl: itemImageUrl),
-              ),
-            for (final component in parts)
-              _BuildComponent(component: component),
-          ],
-        ),
-      ],
+    return AppCard(
+      padding: const EdgeInsets.symmetric(vertical: 10),
+      child: Column(
+        children: [
+          const CategoryTitle(title: 'Components'),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              if (blueprint != null)
+                _BuildBlueprint(
+                  blueprintImage: blueprint.imageUrl,
+                  componentImage: itemImageUrl,
+                  drops: blueprint.drops,
+                ),
+              for (final component in parts)
+                _BuildComponent(component: component),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }
 
 class _BuildComponent extends StatelessWidget {
-  const _BuildComponent({required this.component, this.child});
+  const _BuildComponent({required this.component});
 
   final Component component;
-  final Widget? child;
 
   void _onTap(BuildContext context) {
     if (component.drops != null && (component.drops?.isNotEmpty ?? false)) {
       Navigator.of(context).push(
         MaterialPageRoute<void>(
-          builder: (context) => ComponentDrops(
-            // Already being checked for null.
-            // ignore: avoid-non-null-assertion
-            drops: component.drops!,
-          ),
+          builder: (context) => ComponentDrops(drops: component.drops!),
         ),
       );
     }
@@ -79,7 +73,6 @@ class _BuildComponent extends StatelessWidget {
         child: SizedBox.square(
           dimension: imageBoxSize,
           child: Stack(
-            alignment: AlignmentDirectional.center,
             children: [
               if (component.itemCount > 1)
                 Align(
@@ -90,12 +83,42 @@ class _BuildComponent extends StatelessWidget {
                   ),
                 ),
               CachedNetworkImage(imageUrl: component.imageUrl),
-              // Already being checked for null.
-              // ignore: avoid-non-null-assertion
-              if (child != null) child!,
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+class _BuildBlueprint extends StatelessWidget {
+  const _BuildBlueprint({
+    required this.blueprintImage,
+    required this.componentImage,
+    required this.drops,
+  });
+
+  final String blueprintImage;
+  final String componentImage;
+  final List<Drop>? drops;
+
+  void _onTap(BuildContext context) {
+    if (drops != null && (drops?.isNotEmpty ?? false)) {
+      Navigator.of(context).push(
+        MaterialPageRoute<void>(
+          builder: (context) => ComponentDrops(drops: drops!),
+        ),
+      );
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: () => _onTap(context),
+      child: CircleAvatar(
+        radius: 25,
+        foregroundImage: CachedNetworkImageProvider(componentImage),
       ),
     );
   }
