@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:black_hole_flutter/black_hole_flutter.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -117,6 +115,9 @@ class _EntryInfoContent extends StatelessWidget {
     const textAlign = TextAlign.center;
     final textTheme = Theme.of(context).textTheme;
     final mediaQuerySize = MediaQuery.of(context).size;
+
+    final imageContainerRadius = (mediaQuerySize.shortestSide / 100) * 8;
+    final descriptionBoxWidth = (mediaQuerySize.width / 100) * 95;
 
     final animatedContainerWidth = (mediaQuerySize.width / 100) * 95;
     final animatedContainerHeight =

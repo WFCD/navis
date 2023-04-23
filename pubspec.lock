@@ -803,14 +803,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.6.4"
-  retry:
-    dependency: transitive
-    description:
-      name: retry
-      sha256: a8a1e475a100a0bdc73f529ca8ea1e9c9c76bec8ad86a1f47780139a34ce7aea
-      url: "https://pub.dev"
-    source: hosted
-    version: "3.1.1"
   rxdart:
     dependency: "direct main"
     description:
@@ -1171,11 +1163,11 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: "v1.5.18"
-      resolved-ref: "9c6d72373a711bc47b997c5ecf673d3cc74b95bc"
+      ref: "v1.5.20"
+      resolved-ref: "9fe391a1f7ffe8648ef081ce66679a6aa5266747"
       url: "https://github.com/SlayerOrnstein/warframestat_client.git"
     source: git
-    version: "1.5.18"
+    version: "1.5.20"
   watcher:
     dependency: transitive
     description:
@@ -1196,7 +1188,7 @@ packages:
     dependency: transitive
     description:
       name: webkit_inspection_protocol
-      sha256: "67d3a8b6c79e1987d19d848b0892e582dbb0c66c57cc1fef58a177dd2aa2823d"
+      sha256: "5adb6ab8ed14e22bb907aae7338f0c206ea21e7a27004e97664b16c120306f00"
       url: "https://pub.dev"
     source: hosted
     version: "1.0.0"

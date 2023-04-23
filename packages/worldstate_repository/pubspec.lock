@@ -337,7 +337,7 @@ packages:
     source: hosted
     version: "1.1.0"
   meta:
-    dependency: transitive
+    dependency: "direct overridden"
     description:
       name: meta
       sha256: "6c268b42ed578a53088d834796959e4a1814b5e9e164f147f580a386e5decf42"
@@ -735,11 +735,11 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: "v1.5.10"
-      resolved-ref: "0d1ec8162caff48e56f9b254fcfae29bdcff7933"
+      ref: "v1.5.20"
+      resolved-ref: "9fe391a1f7ffe8648ef081ce66679a6aa5266747"
       url: "https://github.com/SlayerOrnstein/warframestat_client.git"
     source: git
-    version: "1.5.10"
+    version: "1.5.20"
   watcher:
     dependency: transitive
     description:
@@ -789,5 +789,5 @@ packages:
     source: hosted
     version: "3.1.1"
 sdks:
-  dart: ">=2.18.0 <3.0.0"
+  dart: ">=2.19.0 <3.0.0"
   flutter: ">=3.0.0"

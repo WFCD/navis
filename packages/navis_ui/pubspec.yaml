@@ -13,10 +13,13 @@ dependencies:
     sdk: flutter
   flutter_web_browser: ^0.17.1
   html: ^0.15.2
-  wfcd_client:
+  warframestat_client:
     git:
       url: https://github.com/SlayerOrnstein/warframestat_client.git
-      ref: v1.5.18
+      ref: v1.5.20
+
+dependency_overrides:
+  meta: ^1.8.0
 
 dev_dependencies:
   flutter_test:
