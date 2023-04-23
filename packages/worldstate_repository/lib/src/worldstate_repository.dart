@@ -179,8 +179,6 @@ class WorldstateComputeRunners {
           _getDealInfo, _ItemSearch(query: uniqueName, language: language));
 
       return deal;
-    } on ItemNotFoundException {
-      rethrow;
     } catch (e) {
       throw const ServerException(
         "Error retriving information on deal's item.",
