@@ -79,3 +79,5 @@ sentry:
   upload_debug_symbols: true
   upload_sources: true
   wait_for_processing: true
+  # Temporarily enable
+  ignore_missing: true
