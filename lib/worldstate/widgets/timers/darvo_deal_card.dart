@@ -19,40 +19,33 @@ class DarvoDealCard extends StatelessWidget {
     return previous.worldstate.dailyDeals.equals(current.worldstate.dailyDeals);
   }
 
-  void _listener(BuildContext context, SolsystemState state) {
-    if (state is! SolState) return;
-
-    final deal = state.worldstate.dailyDeals.first;
-
-    BlocProvider.of<DarvodealCubit>(context)
-        .fetchDeal(deal.id ?? '', deal.item);
-  }
-
   @override
   Widget build(BuildContext context) {
-    return BlocListener<SolsystemCubit, SolsystemState>(
-      listener: _listener,
-      child: BlocBuilder<SolsystemCubit, SolsystemState>(
-        buildWhen: _buildWhen,
-        builder: (context, state) {
-          final dailyDeals = (state as SolState).worldstate.dailyDeals;
+    return BlocBuilder<SolsystemCubit, SolsystemState>(
+      buildWhen: _buildWhen,
+      builder: (context, state) {
+        final dailyDeals = (state as SolState).worldstate.dailyDeals;
 
-          return AppCard(
-            title: context.l10n.darvoNotificationTitle,
-            padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 4),
-            child: _DealWidget(deal: dailyDeals.first),
-          );
-        },
-      ),
+        return AppCard(
+          title: context.l10n.darvoNotificationTitle,
+          padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 4),
+          child: _DealWidget(deal: dailyDeals.first),
+        );
+      },
     );
   }
 }
 
-class _DealWidget extends StatelessWidget {
+class _DealWidget extends StatefulWidget {
   const _DealWidget({required this.deal});
 
   final DailyDeal deal;
 
+  @override
+  State<_DealWidget> createState() => _DealWidgetState();
+}
+
+class _DealWidgetState extends State<_DealWidget> {
   bool _buildWhen(DarvodealState previous, DarvodealState current) {
     if (previous is! DarvoDealLoaded || current is! DarvoDealLoaded) {
       // Return true so the UI can adapt to not having info.
@@ -63,10 +56,18 @@ class _DealWidget extends StatelessWidget {
   }
 
   @override
+  void initState() {
+    super.initState();
+
+    BlocProvider.of<DarvodealCubit>(context)
+        .fetchDeal(widget.deal.id ?? '', widget.deal.item);
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final expiry = deal.expiry!;
-    final item = deal.item;
-    final total = deal.total;
+    final expiry = widget.deal.expiry!;
+    final item = widget.deal.item;
+    final total = widget.deal.total;
     final saleInfo = Theme.of(context)
         .textTheme
         .titleSmall
@@ -118,17 +119,17 @@ class _DealWidget extends StatelessWidget {
                       if (state is! DarvoDealLoaded)
                         ColoredContainer.text(text: item),
                       ColoredContainer.text(
-                        text: '${deal.salePrice}p',
+                        text: '${widget.deal.salePrice}p',
                         style: saleInfo,
                         color: color,
                       ),
                       ColoredContainer.text(
-                        text: '${total - deal.sold} / $total',
+                        text: '${total - widget.deal.sold} / $total',
                         style: saleInfo,
                         color: color,
                       ),
                       ColoredContainer.text(
-                        text: '${deal.discount}% OFF',
+                        text: '${widget.deal.discount}% OFF',
                         style: saleInfo,
                         color: color,
                       ),
