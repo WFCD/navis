@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:flutter/foundation.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:navis/worldstate/cubits/solsystem/solsystem_state.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
@@ -29,7 +28,9 @@ class SolsystemCubit extends HydratedCubit<SolsystemState> {
       await _exceptionHandle(e, s);
       emit(current);
 
-      debugPrintStack(stackTrace: s);
+      // SocketExceptions are when the user disconnects from the internet
+      // and so we don't need to track these errors.
+      if (e is SocketException) return;
 
       // Rethrow the error so the obsover can catch it and send it to sentry.
       rethrow;
