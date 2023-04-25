@@ -99,9 +99,7 @@ class WorldstateRepository {
       // If for whatever reason getItemDealInfo throws an error then we're just
       // gonna let it bubble up since at this point the Item is different and
       // there is no point in returning the cached version.
-      final deal = await _runners.getItemDealInfo(
-          id.replaceAll(RegExp(r'([0-9])\w+'), ''), _language);
-
+      final deal = await _runners.getItemDealInfo(name, _language);
       if (deal != null) _cache.cacheDealInfo(id, deal);
 
       return deal;
@@ -190,8 +188,8 @@ class WorldstateComputeRunners {
     final client = WarframeItemsClient(language: info.language, ua: userAgent);
     final results = List<Item?>.from(await client.search(info.query));
 
-    return results
-        .firstWhereOrNull((r) => r?.uniqueName.contains(info.query) ?? false);
+    return results.firstWhereOrNull((r) =>
+        r?.name.toLowerCase().contains(info.query.toLowerCase()) ?? false);
   }
 
   /// Searchs for Items using the worldstate-status warframe-items endpoint in

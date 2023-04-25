@@ -16,7 +16,10 @@ class DarvodealCubit extends HydratedCubit<DarvodealState> {
     try {
       final info = await repository.getDealInfo(id, name);
 
-      if (info != null) emit(DarvoDealLoaded(info));
+      if (info != null) {
+        emit(DarvoDealLoaded(info));
+        return;
+      }
 
       emit(DarvoDealNoInfo());
     } catch (e) {

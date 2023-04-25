@@ -13,48 +13,60 @@ import 'package:warframestat_client/warframestat_client.dart';
 class DarvoDealCard extends StatelessWidget {
   const DarvoDealCard({super.key});
 
+  bool _buildWhen(SolsystemState previous, SolsystemState current) {
+    if (previous is! SolState || current is! SolState) return true;
+
+    return previous.worldstate.dailyDeals.equals(current.worldstate.dailyDeals);
+  }
+
+  void _listener(BuildContext context, SolsystemState state) {
+    if (state is! SolState) return;
+
+    final deal = state.worldstate.dailyDeals.first;
+
+    BlocProvider.of<DarvodealCubit>(context)
+        .fetchDeal(deal.id ?? '', deal.item);
+  }
+
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<SolsystemCubit, SolsystemState>(
-      buildWhen: (p, n) => (p as SolState)
-          .worldstate
-          .dailyDeals
-          .equals((n as SolState).worldstate.dailyDeals),
-      builder: (context, state) {
-        final dailyDeals = (state as SolState).worldstate.dailyDeals;
+    return BlocListener<SolsystemCubit, SolsystemState>(
+      listener: _listener,
+      child: BlocBuilder<SolsystemCubit, SolsystemState>(
+        buildWhen: _buildWhen,
+        builder: (context, state) {
+          final dailyDeals = (state as SolState).worldstate.dailyDeals;
 
-        return AppCard(
-          title: context.l10n.darvoNotificationTitle,
-          padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 4),
-          child: _DealWidget(deal: dailyDeals.first),
-        );
-      },
+          return AppCard(
+            title: context.l10n.darvoNotificationTitle,
+            padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 4),
+            child: _DealWidget(deal: dailyDeals.first),
+          );
+        },
+      ),
     );
   }
 }
 
-class _DealWidget extends StatefulWidget {
+class _DealWidget extends StatelessWidget {
   const _DealWidget({required this.deal});
 
   final DailyDeal deal;
 
-  @override
-  _DealWidgetState createState() => _DealWidgetState();
-}
+  bool _buildWhen(DarvodealState previous, DarvodealState current) {
+    if (previous is! DarvoDealLoaded || current is! DarvoDealLoaded) {
+      // Return true so the UI can adapt to not having info.
+      return true;
+    }
 
-class _DealWidgetState extends State<_DealWidget> {
-  @override
-  void initState() {
-    super.initState();
-    BlocProvider.of<DarvodealCubit>(context)
-        .fetchDeal(widget.deal.id ?? '', widget.deal.item);
+    return previous.item.uniqueName == current.item.uniqueName;
   }
 
   @override
   Widget build(BuildContext context) {
-    final expiry = widget.deal.expiry!;
-    final item = widget.deal.item;
-    final total = widget.deal.total;
+    final expiry = deal.expiry!;
+    final item = deal.item;
+    final total = deal.total;
     final saleInfo = Theme.of(context)
         .textTheme
         .titleSmall
@@ -66,6 +78,7 @@ class _DealWidgetState extends State<_DealWidget> {
         : theme.colorScheme.primaryContainer;
 
     return BlocBuilder<DarvodealCubit, DarvodealState>(
+      buildWhen: _buildWhen,
       builder: (context, state) {
         return Column(
           mainAxisSize: MainAxisSize.min,
@@ -105,17 +118,17 @@ class _DealWidgetState extends State<_DealWidget> {
                       if (state is! DarvoDealLoaded)
                         ColoredContainer.text(text: item),
                       ColoredContainer.text(
-                        text: '${widget.deal.salePrice}p',
+                        text: '${deal.salePrice}p',
                         style: saleInfo,
                         color: color,
                       ),
                       ColoredContainer.text(
-                        text: '${total - widget.deal.sold} / $total',
+                        text: '${total - deal.sold} / $total',
                         style: saleInfo,
                         color: color,
                       ),
                       ColoredContainer.text(
-                        text: '${widget.deal.discount}% OFF',
+                        text: '${deal.discount}% OFF',
                         style: saleInfo,
                         color: color,
                       ),
