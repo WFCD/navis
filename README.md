@@ -13,20 +13,17 @@ Cephalon Navis is an Android app inspired by [Warframe Hub](https://hub.warframe
 
 ### Features:
 
-- Display Warframe news
+- Warframe news
 - in-game events
 - Darvo daily deal of the day
-- Baro Ki'Teer in-game information
+- Baro Ki'Teer timer and inventory
 - Sorties
 - Void Fissures and Void storms
-- invasions, including Fomorian and Razorback construction progress
-- Cetus and Earth Day/Night cycle
-- Orb vallis Warm/Cold cycle
+- invasions and construction progress
+- Open world cycle timers
 - Open world syndicate bounties
 - Nightwaves
-- Links to useful guides for new players to learn how to fish and find open world maps
 - Notifications (mostly done)
-- supports PC, PS4, Xbox and Nintendo Switch
 
 ### Credits:
 
