@@ -32,7 +32,8 @@ platform :ios do
         skip_metadata: true,
         skip_screenshots: true,
         ipa: '../build/ios/ipa/Navis.ipa',
-        metadata_path: "./metadata",
+        metadata_path: "./fastlane/metadata",
+        precheck_include_in_app_purchases: false,
         submission_information: {
           add_id_info_limits_tracking: true,
           add_id_info_serves_ads: false,
