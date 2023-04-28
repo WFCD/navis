@@ -108,7 +108,7 @@ class WarframestatCache {
     final cached = _readDisk<List<dynamic>>(synthTargetsKey);
 
     return cached
-        ?.map((dynamic t) => t as Map<String, dynamic>)
+        ?.map((dynamic t) => Map<String, dynamic>.from(t))
         .map((e) => SynthTarget.fromJson(e))
         .toList();
   }
