@@ -20,9 +20,11 @@ class ConstructionProgressCard extends StatelessWidget {
               (state as SolState).worldstate.constructionProgress;
 
           final razorbackProgress =
-              double.parse(constructionProgress.razorbackProgress).toInt();
+              double.parse(constructionProgress.razorbackProgress)
+                  .toStringAsFixed(2);
           final fomorianProgress =
-              double.parse(constructionProgress.fomorianProgress).toInt();
+              double.parse(constructionProgress.fomorianProgress)
+                  .toStringAsFixed(2);
 
           return Padding(
             padding: const EdgeInsets.only(bottom: 8),
@@ -41,7 +43,7 @@ class ConstructionProgressCard extends StatelessWidget {
                       ),
                       SizedBoxSpacer.spacerWidth12,
                       Text(
-                        '$razorbackProgress%',
+                        '$fomorianProgress%',
                         style: textTheme.titleLarge,
                       ),
                     ],
@@ -53,7 +55,7 @@ class ConstructionProgressCard extends StatelessWidget {
                   child: Row(
                     children: [
                       Text(
-                        '$fomorianProgress%',
+                        '$razorbackProgress%',
                         style: textTheme.titleLarge,
                       ),
                       SizedBoxSpacer.spacerWidth12,
