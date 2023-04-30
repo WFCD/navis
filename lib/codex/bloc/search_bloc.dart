@@ -6,6 +6,7 @@ import 'package:navis/codex/bloc/search_state.dart';
 import 'package:navis/codex/utils/result_filters.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:warframestat_client/warframestat_client.dart';
 import 'package:worldstate_repository/worldstate_repository.dart';
 
@@ -66,5 +67,20 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
     return (event, mapper) {
       return event.debounceTime(kAnimationLong).distinct().flatMap(mapper);
     };
+  }
+
+  @override
+  void onEvent(SearchEvent event) {
+    if (event is SearchCodex) {
+      final crumb = Breadcrumb(
+        type: 'codex',
+        category: 'codex.search',
+        data: {'query': event.text},
+      );
+
+      Sentry.addBreadcrumb(crumb);
+    }
+
+    super.onEvent(event);
   }
 }
