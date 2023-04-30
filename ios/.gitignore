@@ -33,3 +33,5 @@ Runner/GeneratedPluginRegistrant.*
 
 fastlane/metadata/**/*.txt
 fastlane/report.xml
+
+!fastlane/metadata/copyright.txt
