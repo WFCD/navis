@@ -11,14 +11,11 @@ dependencies:
   firebase_messaging: ^14.3.0
   flutter:
     sdk: flutter
-  intl: ^0.17.0
+  intl: ^0.18.0
   warframestat_client:
     git:
       url: https://github.com/SlayerOrnstein/warframestat_client.git
       ref: v1.5.26
-
-dependency_overrides:
-  meta: ^1.8.0
 
 dev_dependencies:
   flutter_test:

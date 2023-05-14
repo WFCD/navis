@@ -9,17 +9,14 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  hive: 2.2.3
-  matomo: 1.1.0
+  hive: ^2.2.3
+  matomo_tracker: ^3.1.0
   notification_repository:
     path: ../notification_repository
   warframestat_client:
     git:
       url: https://github.com/SlayerOrnstein/warframestat_client.git
       ref: v1.5.26
-
-dependency_overrides:
-  meta: ^1.8.0
 
 dev_dependencies:
   flutter_test:

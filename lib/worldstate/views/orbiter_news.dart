@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:matomo/matomo.dart';
+import 'package:matomo_tracker/matomo_tracker.dart';
 import 'package:navis/worldstate/worldstate.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:warframestat_client/warframestat_client.dart';
 
-class OrbiterNewsPage extends TraceableStatelessWidget {
+class OrbiterNewsPage extends StatelessWidget {
   const OrbiterNewsPage({super.key});
 
   @override
@@ -14,19 +14,22 @@ class OrbiterNewsPage extends TraceableStatelessWidget {
     final state = context.watch<SolsystemCubit>().state;
     final orbitNews = state is SolState ? state.worldstate.news : <News>[];
 
-    return ViewLoading(
-      isLoading: state is! SolState,
-      child: RefreshIndicator(
-        onRefresh: BlocProvider.of<SolsystemCubit>(context).fetchWorldstate,
-        child: state is! SolState
-            ? const SizedBox.shrink()
-            : ListView.builder(
-                cacheExtent: cacheExtent,
-                itemCount: orbitNews.length,
-                itemBuilder: (context, index) {
-                  return OrbiterNewsWidget(news: orbitNews[index]);
-                },
-              ),
+    return TraceableWidget(
+      traceTitle: 'Orbiter News',
+      child: ViewLoading(
+        isLoading: state is! SolState,
+        child: RefreshIndicator(
+          onRefresh: BlocProvider.of<SolsystemCubit>(context).fetchWorldstate,
+          child: state is! SolState
+              ? const SizedBox.shrink()
+              : ListView.builder(
+                  cacheExtent: cacheExtent,
+                  itemCount: orbitNews.length,
+                  itemBuilder: (context, index) {
+                    return OrbiterNewsWidget(news: orbitNews[index]);
+                  },
+                ),
+        ),
       ),
     );
   }

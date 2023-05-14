@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:matomo/matomo.dart';
+import 'package:matomo_tracker/matomo_tracker.dart';
 import 'package:navis/worldstate/worldstate.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:nil/nil.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:warframestat_client/warframestat_client.dart';
 
-class InvasionsPage extends TraceableStatelessWidget {
+class InvasionsPage extends StatelessWidget {
   const InvasionsPage({super.key});
 
   @override
@@ -16,14 +16,17 @@ class InvasionsPage extends TraceableStatelessWidget {
     final invasions =
         state is SolState ? state.worldstate.invasions : <Invasion>[];
 
-    return ViewLoading(
-      isLoading: state is! SolState,
-      child: state is! SolState
-          ? nil
-          : ScreenTypeLayout.builder(
-              mobile: (context) => _MobileInvasions(invasions: invasions),
-              tablet: (context) => _TabletInvasions(invasions: invasions),
-            ),
+    return TraceableWidget(
+      traceTitle: 'Invasions',
+      child: ViewLoading(
+        isLoading: state is! SolState,
+        child: state is! SolState
+            ? nil
+            : ScreenTypeLayout.builder(
+                mobile: (context) => _MobileInvasions(invasions: invasions),
+                tablet: (context) => _TabletInvasions(invasions: invasions),
+              ),
+      ),
     );
   }
 }

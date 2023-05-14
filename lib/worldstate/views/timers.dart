@@ -1,17 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:matomo/matomo.dart';
+import 'package:matomo_tracker/matomo_tracker.dart';
 import 'package:navis/worldstate/widgets/timers/archon_card.dart';
 import 'package:navis/worldstate/worldstate.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:nil/nil.dart';
 
-class Timers extends TraceableStatelessWidget {
+class Timers extends StatelessWidget {
   const Timers({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const _MobileTimers();
+    return const TraceableWidget(
+      traceTitle: 'Timers',
+      child: _MobileTimers(),
+    );
   }
 }
 

@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
-import 'package:matomo/matomo.dart';
+import 'package:matomo_tracker/matomo_tracker.dart';
 import 'package:user_settings/src/settings_keys.dart';
 import 'package:warframestat_client/warframestat_client.dart';
 
@@ -80,10 +80,10 @@ class UserSettings {
   }
 
   /// Returns true if the user has opted to allow anaylics via Matomo.
-  bool get isOptOut => getToggle(MatomoTracker.kOptOut);
+  bool get isOptOut => MatomoTracker.instance.optOut;
 
   /// Allows the user to opt in or out of anaylic tracking via Matomo
-  set isOptOut(bool value) => setToggle(MatomoTracker.kOptOut, value: value);
+  set isOptOut(bool value) => MatomoTracker.instance.setOptOut(optOut: value);
 
   /// Whether it's the first time the user has opened the app.
   bool get isFirstTime {

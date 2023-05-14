@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:matomo/matomo.dart';
+import 'package:matomo_tracker/matomo_tracker.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis/worldstate/worldstate.dart';
 import 'package:navis_ui/navis_ui.dart';
@@ -11,7 +11,7 @@ import 'package:nil/nil.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:warframestat_client/warframestat_client.dart';
 
-class SyndicatePage extends TraceableStatelessWidget {
+class SyndicatePage extends StatelessWidget {
   const SyndicatePage({super.key});
 
   bool _buildWhen(SolsystemState p, SolsystemState n) {
@@ -43,20 +43,23 @@ class SyndicatePage extends TraceableStatelessWidget {
             : <SyndicateMission>[];
         final nightwave = state is SolState ? state.worldstate.nightwave : null;
 
-        return ViewLoading(
-          isLoading: state is! SolState,
-          child: state is! SolState
-              ? nil
-              : ScreenTypeLayout.builder(
-                  mobile: (_) => _SyndicatePageMobile(
-                    syndicates: syndicateMissions,
-                    nightwave: nightwave,
+        return TraceableWidget(
+          traceTitle: 'Syndicates',
+          child: ViewLoading(
+            isLoading: state is! SolState,
+            child: state is! SolState
+                ? nil
+                : ScreenTypeLayout.builder(
+                    mobile: (_) => _SyndicatePageMobile(
+                      syndicates: syndicateMissions,
+                      nightwave: nightwave,
+                    ),
+                    tablet: (_) => _SyndicatePageTablet(
+                      syndicates: syndicateMissions,
+                      nightwave: nightwave,
+                    ),
                   ),
-                  tablet: (_) => _SyndicatePageTablet(
-                    syndicates: syndicateMissions,
-                    nightwave: nightwave,
-                  ),
-                ),
+          ),
         );
       },
     );

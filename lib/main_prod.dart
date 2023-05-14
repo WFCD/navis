@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:matomo/matomo.dart';
+import 'package:matomo_tracker/matomo_tracker.dart';
 import 'package:navis/app/app.dart';
 import 'package:navis/bootstrap.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
@@ -21,7 +21,7 @@ Future<void> main() async {
         ..addIntegration(LoggingIntegration());
     },
     appRunner: () async {
-      await MatomoTracker().initialize(
+      await MatomoTracker.instance.initialize(
         siteId: siteId,
         url: const String.fromEnvironment('MATOMO_URL'),
       );

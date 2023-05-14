@@ -1,20 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:matomo/matomo.dart';
+import 'package:matomo_tracker/matomo_tracker.dart';
 import 'package:navis/synthtargets/cubit/synthtargets_cubit.dart';
 import 'package:navis/synthtargets/widgets/target.dart';
 import 'package:worldstate_repository/worldstate_repository.dart';
 
-class SynthTargetsView extends TraceableStatelessWidget {
+class SynthTargetsView extends StatelessWidget {
   const SynthTargetsView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (_) => SynthtargetsCubit(
-        RepositoryProvider.of<WorldstateRepository>(context),
-      )..fetchSynthtargets(),
-      child: const _SynthTargetsPage(),
+    return TraceableWidget(
+      traceTitle: 'SynthTargets',
+      child: BlocProvider(
+        create: (_) => SynthtargetsCubit(
+          RepositoryProvider.of<WorldstateRepository>(context),
+        )..fetchSynthtargets(),
+        child: const _SynthTargetsPage(),
+      ),
     );
   }
 }

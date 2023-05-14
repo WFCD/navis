@@ -3,7 +3,7 @@
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:matomo/matomo.dart';
+import 'package:matomo_tracker/matomo_tracker.dart';
 import 'package:navis/codex/bloc/search_bloc.dart';
 import 'package:navis/codex/views/codex_entry.dart';
 import 'package:navis/codex/widgets/codex_widgets.dart';
@@ -11,15 +11,18 @@ import 'package:navis/l10n/l10n.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:worldstate_repository/worldstate_repository.dart';
 
-class CodexSearchView extends TraceableStatelessWidget {
+class CodexSearchView extends StatelessWidget {
   const CodexSearchView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (_) =>
-          SearchBloc(RepositoryProvider.of<WorldstateRepository>(context)),
-      child: const _CodexSearch(),
+    return TraceableWidget(
+      traceTitle: 'Codex',
+      child: BlocProvider(
+        create: (_) =>
+            SearchBloc(RepositoryProvider.of<WorldstateRepository>(context)),
+        child: const _CodexSearch(),
+      ),
     );
   }
 }
