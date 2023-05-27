@@ -28,7 +28,7 @@ Future<void> main() async {
 
       await bootstrap(() {
         return DefaultAssetBundle(
-          bundle: SentryAssetBundle(enableStructuredDataTracing: true),
+          bundle: SentryAssetBundle(),
           child: const NavisApp(),
         );
       });

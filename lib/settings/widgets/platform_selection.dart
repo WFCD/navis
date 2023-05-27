@@ -34,9 +34,9 @@ class PlatformSelect extends AbstractSettingsTile {
 
     return Padding(
       padding: EdgeInsets.symmetric(vertical: padding),
-      child: Row(
+      child: const Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: const <Widget>[
+        children: <Widget>[
           _PlatformIconButton(
             platform: GamePlatform.pc,
             platformIcon: SimpleIcons.steam,

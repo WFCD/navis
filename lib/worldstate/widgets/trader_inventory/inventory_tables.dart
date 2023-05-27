@@ -52,12 +52,8 @@ class _MobileInventoryDataTable extends StatelessWidget {
     return SingleChildScrollView(
       child: DataTable(
         columns: _buildDataColumn(context),
-        // It's what worked for the style.
-        // ignore: no-magic-number
         columnSpacing: 32,
-        // It's what worked for the style.
-        // ignore: no-magic-number
-        dataRowHeight: 52,
+        dataRowMaxHeight: 52,
         rows: <DataRow>[
           for (final product in inventory)
             DataRow(
