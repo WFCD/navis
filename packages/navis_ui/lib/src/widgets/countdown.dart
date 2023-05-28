@@ -1,6 +1,6 @@
 import 'package:black_hole_flutter/black_hole_flutter.dart';
 import 'package:flutter/material.dart';
-import 'package:navis_ui/src/widgets/app_container.dart';
+import 'package:navis_ui/navis_ui.dart';
 
 class CountdownTimer extends StatefulWidget {
   const CountdownTimer({
@@ -29,43 +29,44 @@ class CountdownTimer extends StatefulWidget {
 
 class CountdownTimerState extends State<CountdownTimer>
     with TickerProviderStateMixin {
-  static const _max = Duration(hours: 1);
-  static const _minimum = Duration(minutes: 10);
-
-  AnimationController? _controller;
+  late AnimationController _controller;
+  late Animation<double> _animation;
+  late Duration _remainingTime;
 
   bool _expired = false;
   Color _warningLevel = Colors.green;
 
-  DateTime get _now => DateTime.now();
-  DateTime get _localExpiry => widget.expiry.toLocal();
-  Duration get _timeLeft => _controller!.duration! * _controller!.value;
-
   void _setupCountdown() {
-    const defaultTime = Duration(seconds: 60);
-    final difference = _localExpiry.difference(_now);
+    final expirationDate = widget.expiry.toLocal();
+    final currentTime = DateTime.now();
 
-    _expired = difference <= Duration.zero;
-    _controller = AnimationController(
-      duration: _expired ? defaultTime : difference,
-      vsync: this,
-    );
-
-    if (widget.color == null) {
-      _controller!.addListener(_detectWarningLevel);
+    _remainingTime = expirationDate.difference(currentTime);
+    if (_remainingTime <= Duration.zero) {
+      _remainingTime = Duration(seconds: 60);
+      _expired = true;
     }
 
-    _controller!
+    _controller = AnimationController(duration: _remainingTime, vsync: this);
+    _animation = Tween<double>(begin: 1.0, end: 0.0).animate(_controller);
+
+    if (widget.color == null) {
+      _controller.addListener(_detectWarningLevel);
+    }
+
+    _controller
       ..addStatusListener(_onEnd)
-      ..reverse(from: 1);
+      ..forward();
   }
 
   void _detectWarningLevel() {
-    Color newLevel;
+    const max = Duration(minutes: 60);
+    const minimum = Duration(minutes: 10);
+    final remainingTime = _remainingTime * _animation.value;
 
-    if (_timeLeft > _max) {
+    Color newLevel;
+    if (remainingTime > max) {
       newLevel = Colors.green;
-    } else if (_timeLeft < _max && _timeLeft > _minimum) {
+    } else if (remainingTime < max && remainingTime > minimum) {
       newLevel = Colors.orange[700]!;
     } else {
       newLevel = Colors.red;
@@ -79,15 +80,13 @@ class CountdownTimerState extends State<CountdownTimer>
   }
 
   void _onEnd(AnimationStatus status) {
-    if (status == AnimationStatus.dismissed) {
+    if (status == AnimationStatus.completed) {
       if (mounted) {
-        if (_controller != null) {
-          _controller!
-            ..removeListener(_detectWarningLevel)
-            ..removeStatusListener(_onEnd)
-            ..dispose();
-          setState(_setupCountdown);
-        }
+        _controller
+          ..removeListener(_detectWarningLevel)
+          ..removeStatusListener(_onEnd)
+          ..dispose();
+        setState(_setupCountdown);
       }
 
       widget.onTimerEnd?.call();
@@ -105,23 +104,21 @@ class CountdownTimerState extends State<CountdownTimer>
     super.didUpdateWidget(oldWidget);
 
     if (oldWidget.expiry != widget.expiry) {
-      if (_controller != null) {
-        _controller!
-          ..removeListener(_detectWarningLevel)
-          ..removeStatusListener(_onEnd)
-          ..dispose();
-        setState(_setupCountdown);
-      }
+      _controller
+        ..removeListener(_detectWarningLevel)
+        ..removeStatusListener(_onEnd)
+        ..dispose();
+      setState(_setupCountdown);
     }
   }
 
-  String _timerVersions() {
-    final days = '${_timeLeft.inDays}';
-    final hours = '${_timeLeft.inHours % 24}';
-    final minutes = '${_timeLeft.inMinutes % 60}'.padLeft(2, '0');
-    final seconds = '${_timeLeft.inSeconds % 60}'.padLeft(2, '0');
+  String _formatDuration(Duration duration) {
+    final days = duration.inDays;
+    final hours = duration.inHours.remainder(24);
+    final minutes = duration.inMinutes.remainder(60).toString().padLeft(2, '0');
+    final seconds = duration.inSeconds.remainder(60).toString().padLeft(2, '0');
 
-    final is24hrs = _timeLeft < const Duration(days: 1);
+    final is24hrs = duration < const Duration(days: 1);
 
     return '${_expired ? 'Expired: -' : ''}'
         '${!is24hrs ? '${days}d' : ''} $hours:$minutes:$seconds';
@@ -145,10 +142,12 @@ class CountdownTimerState extends State<CountdownTimer>
       padding: widget.padding,
       margin: widget.margin,
       child: AnimatedBuilder(
-        animation: _controller!,
+        animation: _controller,
         builder: (BuildContext context, Widget? child) {
+          final remainingTime = _remainingTime * _animation.value;
+
           return Text(
-            _timerVersions(),
+            _formatDuration(remainingTime),
             style: widget.style?.copyWith(color: Colors.white) ??
                 TextStyle(fontSize: widget.size, color: Colors.white),
           );
@@ -159,12 +158,10 @@ class CountdownTimerState extends State<CountdownTimer>
 
   @override
   void dispose() {
-    if (_controller != null) {
-      _controller!
-        ..removeListener(_detectWarningLevel)
-        ..removeStatusListener(_onEnd)
-        ..dispose();
-    }
+    _controller
+      ..removeListener(_detectWarningLevel)
+      ..removeStatusListener(_onEnd)
+      ..dispose();
 
     super.dispose();
   }
