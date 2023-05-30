@@ -33,11 +33,11 @@ class MarketRepository {
 
     if (cItem != itemName &&
         (cTimestamp ?? _expiredCacheTime) <= _expiredCacheTime) {
-      final req = MarketSearchRequest(
-        itemUrl: itemName,
-        languageCode: usersettings.language.languageCode,
-        platform: usersettings.platform,
-        items: await getItems(),
+      final req = (
+        itemName,
+        usersettings.platform,
+        usersettings.language.languageCode,
+        await getItems(),
       );
 
       try {
@@ -73,10 +73,7 @@ class MarketRepository {
         cTimestamp?.difference(DateTime.now()) ?? _expiredCacheTime;
 
     if (cDuration >= _expiredCacheTime) {
-      final req = MarketItemRequest(
-        languageCode: usersettings.language.languageCode,
-        platform: usersettings.platform,
-      );
+      final req = (usersettings.platform, usersettings.language.languageCode);
 
       try {
         final items = await compute(MarketComputeRunners.getMarketItems, req);
@@ -129,16 +126,16 @@ class MarketComputeRunners {
 
   static Future<OrderSet<OrderRow>> _searchOrders(
       MarketSearchRequest req) async {
-    final api = _client(req.marketPlatform, req.languageCode);
+    final api = _client(req.$2.marketPlatform, req.$3);
 
-    final items = req.items;
-    final itemUrl = items.firstWhere((e) => e.itemName.contains(req.itemUrl));
+    final items = req.$4;
+    final itemUrl = items.firstWhere((e) => e.itemName.contains(req.$1));
 
     return api.items.searchOrders(itemUrl.urlName);
   }
 
   static Future<List<ItemShort>> _getMarketItems(MarketItemRequest req) {
-    final api = _client(req.marketPlatform, req.languageCode);
+    final api = _client(req.$1.marketPlatform, req.$2);
     return api.items.getMarketItems();
   }
 }

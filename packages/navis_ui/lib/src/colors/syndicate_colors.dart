@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 
-class SyndicateColors {
+abstract class SyndicateColors {
   static const ostronsIconColor = Color(0xFFE8DDAF);
   static const solarisIconColor = Color(0xFFD8C38F);
   static const entratiIconColor = Color(0xFFbb9129);

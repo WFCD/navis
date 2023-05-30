@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:warframestat_client/warframestat_client.dart';
 
-abstract class SolsystemState extends Equatable {
+sealed class SolsystemState extends Equatable {
   const SolsystemState();
 }
 

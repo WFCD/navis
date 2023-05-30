@@ -18,24 +18,22 @@ class AppCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final cardContent = Padding(
-      padding: padding,
-      child: title != null
-          ? Column(
-              mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                _BuildTitle(title: title),
-                child,
-              ],
-            )
-          : child,
-    );
-
     return Card(
       color: color,
       margin: margin,
-      child: cardContent,
+      child: Padding(
+        padding: padding,
+        child: title != null
+            ? Column(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  _BuildTitle(title: title),
+                  child,
+                ],
+              )
+            : child,
+      ),
     );
   }
 }

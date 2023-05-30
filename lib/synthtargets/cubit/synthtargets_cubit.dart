@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:navis/synthtargets/cubit/synthtargets_state.dart';
@@ -15,11 +16,17 @@ class SynthtargetsCubit extends HydratedCubit<SynthtargetsState> {
   final WorldstateRepository repository;
 
   Future<void> fetchSynthtargets() async {
-    final targets = await repository.getSynthTargets();
+    try {
+      final targets = await repository.getSynthTargets();
 
-    if (isClosed) return;
+      if (isClosed) return;
 
-    emit(TargetsLocated(targets));
+      emit(TargetsLocated(targets));
+    } catch (e) {
+      if (e is SocketException) return;
+
+      rethrow;
+    }
   }
 
   @override

@@ -56,7 +56,7 @@ class SolsystemCubit extends HydratedCubit<SolsystemState> {
   }
 
   Future<void> _exceptionHandle(Object exception, [StackTrace? s]) async {
-    switch (exception.runtimeType) {
+    switch (exception) {
       case SocketException:
         emit(const SystemError(serverException));
       case FormatException:

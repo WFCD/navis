@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:bloc/bloc.dart';
 import 'package:navis/codex/bloc/search_event.dart';
@@ -39,6 +40,9 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
         emit(CodexSuccessfulSearch(_results));
       } catch (e) {
         emit(const CodexSearchError('Unknown Error occuroed'));
+
+        if (e is SocketException) return;
+
         rethrow;
       }
     }

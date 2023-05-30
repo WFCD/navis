@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:warframestat_client/warframestat_client.dart';
 
-abstract class SynthtargetsState extends Equatable {
+sealed class SynthtargetsState extends Equatable {
   const SynthtargetsState();
 }
 
@@ -17,9 +17,9 @@ class TargetsLocated extends SynthtargetsState {
 
   @override
   List<Object> get props => [targets];
+}
 
+class TargetsNotFound extends SynthtargetsState {
   @override
-  String toString() {
-    return 'targets located ${DateTime.now()}';
-  }
+  List<Object?> get props => [];
 }

@@ -125,11 +125,13 @@ class WorldstateRepository {
   ///
   /// Warframe-items: https://github.com/WFCD/warframe-items
   Future<List<Item>> searchItems(String text) async {
-    final request = _ItemSearch(query: text, language: _language);
+    final request = (text, _language);
 
     return _runners.searchItems(request);
   }
 }
+
+typedef _ItemSearch = (String query, Language language);
 
 // coverage: ignore-start
 /// {@template runners}
@@ -173,8 +175,7 @@ class WorldstateComputeRunners {
   /// it's unable to find a matching [Item] from [name].
   Future<Item?> getItemDealInfo(String uniqueName, Language language) async {
     try {
-      final deal = await compute(
-          _getDealInfo, _ItemSearch(query: uniqueName, language: language));
+      final deal = await compute(_getDealInfo, (uniqueName, language));
 
       return deal;
     } catch (e) {
@@ -185,11 +186,11 @@ class WorldstateComputeRunners {
   }
 
   static Future<Item?> _getDealInfo(_ItemSearch info) async {
-    final client = WarframeItemsClient(language: info.language, ua: userAgent);
-    final results = List<Item?>.from(await client.search(info.query));
+    final client = WarframeItemsClient(language: info.$2, ua: userAgent);
+    final results = List<Item?>.from(await client.search(info.$1));
 
-    return results.firstWhereOrNull((r) =>
-        r?.name.toLowerCase().contains(info.query.toLowerCase()) ?? false);
+    return results.firstWhereOrNull(
+        (r) => r?.name.toLowerCase().contains(info.$1.toLowerCase()) ?? false);
   }
 
   /// Searchs for Items using the worldstate-status warframe-items endpoint in
@@ -203,17 +204,11 @@ class WorldstateComputeRunners {
   }
 
   static Future<List<Item>> _searchhItems(_ItemSearch search) {
-    final client =
-        WarframeItemsClient(language: search.language, ua: userAgent);
+    final client = WarframeItemsClient(language: search.$2, ua: userAgent);
 
-    return client.search(search.query);
+    return client.search(search.$1);
   }
 }
 
-class _ItemSearch {
-  const _ItemSearch({required this.query, required this.language});
 
-  final String query;
-  final Language language;
-}
 // coverage: ignore-end

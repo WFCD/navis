@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:navis_ui/src/colors/colors.dart';
-import 'package:navis_ui/src/icons/icons.dart';
+import 'package:navis_ui/navis_ui.dart';
 
 enum Factions {
   grineer,
