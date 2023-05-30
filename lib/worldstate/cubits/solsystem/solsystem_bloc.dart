@@ -59,10 +59,8 @@ class SolsystemCubit extends HydratedCubit<SolsystemState> {
     switch (exception.runtimeType) {
       case SocketException:
         emit(const SystemError(serverException));
-        break;
       case FormatException:
         emit(const SystemError(formatException));
-        break;
       default:
         await Sentry.captureException(exception, stackTrace: s);
         emit(const SystemError(unknownException));

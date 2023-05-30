@@ -40,16 +40,12 @@ class _FissuresViewState extends State<_FissuresView> {
     switch (filter) {
       case FissureFilter.all:
         _allFocus.requestFocus();
-        break;
       case FissureFilter.fissures:
         _fissuresFocus.requestFocus();
-        break;
       case FissureFilter.voidStorm:
         _stormFocus.requestFocus();
-        break;
       case FissureFilter.steelPath:
         _steelFocus.requestFocus();
-        break;
     }
   }
 

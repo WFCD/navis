@@ -14,16 +14,12 @@ class FissureFilterCubit extends HydratedCubit<FissureFilterState> {
     switch (filter) {
       case FissureFilter.all:
         emit(Unfiltred(fissures: fissures));
-        break;
       case FissureFilter.fissures:
         emit(Fissures(fissures: fissures));
-        break;
       case FissureFilter.voidStorm:
         emit(VoidStorms(fissures: fissures));
-        break;
       case FissureFilter.steelPath:
         emit(SteelPathFissures(fissures: fissures));
-        break;
     }
   }
 
