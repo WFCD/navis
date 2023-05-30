@@ -120,7 +120,7 @@ class CountdownTimerState extends State<CountdownTimer>
 
     final is24hrs = duration < const Duration(days: 1);
 
-    return '${_expired ? 'Expired: -' : ''}'
+    return '${_expired ? 'Expired:' : ''}'
         '${!is24hrs ? '${days}d' : ''} $hours:$minutes:$seconds';
   }
 
