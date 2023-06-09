@@ -92,15 +92,16 @@ class WorldstateRepository {
   /// this function will throw an [ItemNotFoundException].
   ///
   /// Warframe-items: https://github.com/WFCD/warframe-items
-  Future<Item?> getDealInfo(String id, String name) async {
+  Future<Item?> getDealInfo(String uniqueName, String name) async {
     final cachedId = _cache.getCachedDealId();
 
-    if (cachedId != null && cachedId != id || cachedId == null) {
+    if (cachedId != null && cachedId != uniqueName || cachedId == null) {
       // If for whatever reason getItemDealInfo throws an error then we're just
       // gonna let it bubble up since at this point the Item is different and
       // there is no point in returning the cached version.
-      final deal = await _runners.getItemDealInfo(name, _language);
-      if (deal != null) _cache.cacheDealInfo(id, deal);
+      final deal =
+          await _runners.getItemDealInfo((uniqueName, name, _language));
+      if (deal != null) _cache.cacheDealInfo(uniqueName, deal);
 
       return deal;
     } else {
@@ -111,7 +112,7 @@ class WorldstateRepository {
       //
       // Note: Darvo's Deal widget itself has a way of working around this error
       // by showing a bare bone widget with just the deal information itself.
-      return _cache.getCachedDeal(id)!;
+      return _cache.getCachedDeal(uniqueName)!;
     }
   }
 
@@ -125,13 +126,13 @@ class WorldstateRepository {
   ///
   /// Warframe-items: https://github.com/WFCD/warframe-items
   Future<List<Item>> searchItems(String text) async {
-    final request = (text, _language);
+    final request = ('', text, _language);
 
     return _runners.searchItems(request);
   }
 }
 
-typedef _ItemSearch = (String query, Language language);
+typedef _ItemSearch = (String uniqueName, String name, Language language);
 
 // coverage: ignore-start
 /// {@template runners}
@@ -173,9 +174,9 @@ class WorldstateComputeRunners {
 
   /// Returns one instance of [Item], will throw [ItemNotFoundException] if
   /// it's unable to find a matching [Item] from [name].
-  Future<Item?> getItemDealInfo(String uniqueName, Language language) async {
+  Future<Item?> getItemDealInfo(_ItemSearch info) async {
     try {
-      final deal = await compute(_getDealInfo, (uniqueName, language));
+      final deal = await compute(_getDealInfo, info);
 
       return deal;
     } catch (e) {
@@ -186,11 +187,11 @@ class WorldstateComputeRunners {
   }
 
   static Future<Item?> _getDealInfo(_ItemSearch info) async {
-    final client = WarframeItemsClient(language: info.$2, ua: userAgent);
-    final results = List<Item?>.from(await client.search(info.$1));
+    final client = WarframeItemsClient(language: info.$3, ua: userAgent);
+    final results = await client.search(info.$2);
+    final uniqueName = info.$1.split('/').last;
 
-    return results.firstWhereOrNull(
-        (r) => r?.name.toLowerCase().contains(info.$1.toLowerCase()) ?? false);
+    return results.firstWhereOrNull((r) => r.uniqueName.contains(uniqueName));
   }
 
   /// Searchs for Items using the worldstate-status warframe-items endpoint in
@@ -204,9 +205,9 @@ class WorldstateComputeRunners {
   }
 
   static Future<List<Item>> _searchhItems(_ItemSearch search) {
-    final client = WarframeItemsClient(language: search.$2, ua: userAgent);
+    final client = WarframeItemsClient(language: search.$3, ua: userAgent);
 
-    return client.search(search.$1);
+    return client.search(search.$2);
   }
 }
 

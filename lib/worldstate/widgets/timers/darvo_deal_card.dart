@@ -60,7 +60,7 @@ class _DealWidgetState extends State<_DealWidget> {
     super.initState();
 
     BlocProvider.of<DarvodealCubit>(context)
-        .fetchDeal(widget.deal.id ?? '', widget.deal.item);
+        .fetchDeal(widget.deal.uniqueName, widget.deal.item);
   }
 
   @override

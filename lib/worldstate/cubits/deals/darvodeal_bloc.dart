@@ -10,11 +10,11 @@ class DarvodealCubit extends HydratedCubit<DarvodealState> {
 
   final WorldstateRepository repository;
 
-  Future<void> fetchDeal(String id, String name) async {
+  Future<void> fetchDeal(String uniqueName, String name) async {
     emit(DarvodealLoading());
 
     try {
-      final info = await repository.getDealInfo(id, name);
+      final info = await repository.getDealInfo(uniqueName, name);
 
       if (info != null) {
         emit(DarvoDealLoaded(info));
