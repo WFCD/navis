@@ -33,6 +33,11 @@ class _NavisAppState extends State<NavisApp> with WidgetsBindingObserver {
       final platform = userSettingsNotifier.platform;
       notifications.subscribeToPlatform(platform);
     }
+
+    _timer = Timer.periodic(
+      const Duration(seconds: 60),
+      (_) => context.read<SolsystemCubit>().fetchWorldstate(forceUpdate: true),
+    );
   }
 
   @override
