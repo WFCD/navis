@@ -1,4 +1,3 @@
-import 'package:black_hole_flutter/black_hole_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/l10n/l10n.dart';
@@ -76,61 +75,11 @@ class _FissuresViewState extends State<_FissuresView> {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = context.l10n;
     final fissures = context.watch<FissureFilterCubit>().state.filter();
-
-    final buttonStyle = ButtonStyle(
-      foregroundColor: MaterialStateColor.resolveWith((states) {
-        if (states.contains(MaterialState.focused)) {
-          return Colors.white;
-        }
-
-        return context.theme.isDark ? Colors.white : context.theme.primaryColor;
-      }),
-      backgroundColor: MaterialStateColor.resolveWith((states) {
-        if (states.contains(MaterialState.focused)) {
-          final theme = context.theme;
-
-          return theme.isLight
-              ? theme.colorScheme.primary
-              : theme.colorScheme.primaryContainer;
-        }
-
-        return Colors.transparent;
-      }),
-    );
 
     return Column(
       children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            OutlinedButton(
-              onPressed: () => _onPressed(context, FissureFilter.all),
-              focusNode: _allFocus,
-              style: buttonStyle,
-              child: Text(l10n.allFissuresButton),
-            ),
-            OutlinedButton(
-              onPressed: () => _onPressed(context, FissureFilter.fissures),
-              focusNode: _fissuresFocus,
-              style: buttonStyle,
-              child: Text(l10n.fissuresTitle),
-            ),
-            OutlinedButton(
-              onPressed: () => _onPressed(context, FissureFilter.voidStorm),
-              focusNode: _stormFocus,
-              style: buttonStyle,
-              child: Text(l10n.voidStormFissuresButton),
-            ),
-            OutlinedButton(
-              onPressed: () => _onPressed(context, FissureFilter.steelPath),
-              focusNode: _steelFocus,
-              style: buttonStyle,
-              child: Text(l10n.steelPathTitle),
-            ),
-          ],
-        ),
+        const _FissureFilter(),
         Expanded(
           child: ViewLoading(
             isLoading: fissures.isEmpty,
@@ -187,6 +136,57 @@ class _TabletFissures extends StatelessWidget {
       itemCount: fissures.length,
       itemBuilder: (BuildContext context, int index) {
         return FissureWidget(fissure: fissures[index]);
+      },
+    );
+  }
+}
+
+class _FissureFilter extends StatelessWidget {
+  const _FissureFilter();
+
+  void onSelected(BuildContext context, FissureFilter filter) {
+    final state = context.read<SolsystemCubit>().state;
+    final fissures =
+        state is SolState ? state.worldstate.fissures : <Fissure>[];
+
+    context.read<FissureFilterCubit>().filterFissures(filter, fissures);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = context.l10n;
+
+    return BlocBuilder<FissureFilterCubit, FissureFilterState>(
+      builder: (_, state) {
+        return Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            ChoiceChip(
+              label: Text(l10n.allFissuresButton),
+              tooltip: l10n.allFissuresButton,
+              selected: state is Unfiltred,
+              onSelected: (_) => onSelected(context, FissureFilter.all),
+            ),
+            ChoiceChip(
+              label: Text(l10n.fissuresTitle),
+              tooltip: l10n.fissuresTitle,
+              selected: state is Fissures,
+              onSelected: (_) => onSelected(context, FissureFilter.fissures),
+            ),
+            ChoiceChip(
+              label: Text(l10n.voidStormFissuresButton),
+              tooltip: l10n.voidStormFissuresButton,
+              selected: state is VoidStorms,
+              onSelected: (_) => onSelected(context, FissureFilter.voidStorm),
+            ),
+            ChoiceChip(
+              label: Text(l10n.steelPathTitle),
+              tooltip: l10n.steelPathTitle,
+              selected: state is SteelPathFissures,
+              onSelected: (_) => onSelected(context, FissureFilter.steelPath),
+            ),
+          ],
+        );
       },
     );
   }
