@@ -12,7 +12,6 @@ class CountdownTimer extends StatefulWidget {
     this.style,
     this.padding = const EdgeInsets.all(4),
     this.margin = const EdgeInsets.all(3),
-    this.onTimerEnd,
   }) : super(key: key);
 
   final String tooltip;
@@ -21,7 +20,6 @@ class CountdownTimer extends StatefulWidget {
   final double? size;
   final TextStyle? style;
   final EdgeInsetsGeometry padding, margin;
-  final Future<void> Function()? onTimerEnd;
 
   @override
   CountdownTimerState createState() => CountdownTimerState();
@@ -33,7 +31,7 @@ class CountdownTimerState extends State<CountdownTimer>
   late Animation<double> _animation;
   late Duration _remainingTime;
 
-  bool _expired = false;
+  bool _isExpired = false;
   Color _warningLevel = Colors.green;
 
   void _setupCountdown() {
@@ -43,7 +41,7 @@ class CountdownTimerState extends State<CountdownTimer>
     _remainingTime = expirationDate.difference(currentTime);
     if (_remainingTime <= Duration.zero) {
       _remainingTime = Duration(seconds: 60);
-      _expired = true;
+      _isExpired = true;
     }
 
     _controller = AnimationController(duration: _remainingTime, vsync: this);
@@ -82,14 +80,9 @@ class CountdownTimerState extends State<CountdownTimer>
   void _onEnd(AnimationStatus status) {
     if (status == AnimationStatus.completed) {
       if (mounted) {
-        _controller
-          ..removeListener(_detectWarningLevel)
-          ..removeStatusListener(_onEnd)
-          ..dispose();
+        _controller.dispose();
         setState(_setupCountdown);
       }
-
-      widget.onTimerEnd?.call();
     }
   }
 
@@ -104,10 +97,8 @@ class CountdownTimerState extends State<CountdownTimer>
     super.didUpdateWidget(oldWidget);
 
     if (oldWidget.expiry != widget.expiry) {
-      _controller
-        ..removeListener(_detectWarningLevel)
-        ..removeStatusListener(_onEnd)
-        ..dispose();
+      _controller.dispose();
+      _isExpired = false;
       setState(_setupCountdown);
     }
   }
@@ -120,7 +111,7 @@ class CountdownTimerState extends State<CountdownTimer>
 
     final is24hrs = duration < const Duration(days: 1);
 
-    return '${_expired ? 'Expired:' : ''}'
+    return '${_isExpired ? 'Expired:' : ''}'
         '${!is24hrs ? '${days}d' : ''} $hours:$minutes:$seconds';
   }
 
@@ -130,7 +121,7 @@ class CountdownTimerState extends State<CountdownTimer>
     Color color = _warningLevel;
 
     if (widget.color != null) color = widget.color!;
-    if (_expired) {
+    if (_isExpired) {
       color = theme.isLight
           ? theme.colorScheme.primary
           : theme.colorScheme.primaryContainer;
@@ -158,10 +149,8 @@ class CountdownTimerState extends State<CountdownTimer>
 
   @override
   void dispose() {
-    _controller
-      ..removeListener(_detectWarningLevel)
-      ..removeStatusListener(_onEnd)
-      ..dispose();
+    _controller.dispose();
+    _isExpired = false;
 
     super.dispose();
   }
