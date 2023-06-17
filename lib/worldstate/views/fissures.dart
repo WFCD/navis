@@ -64,15 +64,6 @@ class _FissuresViewState extends State<_FissuresView> {
     ff.filterFissures(ff.state.type, fissures);
   }
 
-  void _onPressed(BuildContext context, FissureFilter filter) {
-    final state = context.read<SolsystemCubit>().state;
-    final fissures =
-        state is SolState ? state.worldstate.fissures : <Fissure>[];
-
-    context.read<FissureFilterCubit>().filterFissures(filter, fissures);
-    _updateFocus(filter);
-  }
-
   @override
   Widget build(BuildContext context) {
     final fissures = context.watch<FissureFilterCubit>().state.filter();
