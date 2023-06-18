@@ -19,7 +19,7 @@ class NavisApp extends StatefulWidget {
 }
 
 class _NavisAppState extends State<NavisApp> with WidgetsBindingObserver {
-  Timer? _timer;
+  late Timer _timer;
 
   @override
   void initState() {
@@ -53,6 +53,23 @@ class _NavisAppState extends State<NavisApp> with WidgetsBindingObserver {
       context,
     );
     super.didChangeDependencies();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    switch (state) {
+      case AppLifecycleState.resumed:
+        _timer = Timer.periodic(
+          const Duration(seconds: 60),
+          (_) =>
+              context.read<SolsystemCubit>().fetchWorldstate(forceUpdate: true),
+        );
+
+      case AppLifecycleState.inactive ||
+            AppLifecycleState.paused ||
+            AppLifecycleState.detached:
+        _timer.cancel();
+    }
   }
 
   Widget _builder(BuildContext context, Widget? widget) {
@@ -126,7 +143,7 @@ class _NavisAppState extends State<NavisApp> with WidgetsBindingObserver {
 
   @override
   void dispose() {
-    _timer?.cancel();
+    _timer.cancel();
     WidgetsBinding.instance.removeObserver(this);
     super.dispose();
   }
