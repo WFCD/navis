@@ -64,6 +64,16 @@ class _DealWidgetState extends State<_DealWidget> {
   }
 
   @override
+  void didUpdateWidget(covariant _DealWidget oldWidget) {
+    super.didUpdateWidget(oldWidget);
+
+    if (oldWidget.deal.uniqueName != widget.deal.uniqueName) {
+      BlocProvider.of<DarvodealCubit>(context)
+          .fetchDeal(widget.deal.uniqueName, widget.deal.item);
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     final deal = widget.deal;
 
