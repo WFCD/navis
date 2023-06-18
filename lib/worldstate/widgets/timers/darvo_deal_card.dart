@@ -142,8 +142,8 @@ class _DealItemInformation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const aspectRatio = 4 / 3;
-    final thumbnailWidth = context.mediaQuery.size.width * 0.45;
+    const aspectRatio = 1 / 1;
+    final thumbnailWidth = context.mediaQuery.size.width * 0.35;
 
     return Column(
       children: [
@@ -165,6 +165,7 @@ class _DealItemInformation extends StatelessWidget {
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
           ),
+          isThreeLine: true,
         ),
       ],
     );
