@@ -436,11 +436,11 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: "v1.6.3"
-      resolved-ref: "72ae14d9e8293b2f6d0b4d92d41adb6e1396c622"
+      ref: "v1.6.4"
+      resolved-ref: bac137e498c6c51e897b1cef8e837bcd615a955c
       url: "https://github.com/SlayerOrnstein/warframestat_client.git"
     source: git
-    version: "1.6.3"
+    version: "1.6.4"
   win32:
     dependency: transitive
     description:
