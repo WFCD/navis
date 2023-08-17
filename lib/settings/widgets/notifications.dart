@@ -25,7 +25,7 @@ class FilterDialog extends StatelessWidget {
             ),
             RepositoryProvider.value(
               value: Provider.of<NotificationRepository>(context),
-            )
+            ),
           ],
           child: FilterDialog(options: options),
         );
