@@ -67,7 +67,8 @@ class _NavisAppState extends State<NavisApp> with WidgetsBindingObserver {
 
       case AppLifecycleState.inactive ||
             AppLifecycleState.paused ||
-            AppLifecycleState.detached:
+            AppLifecycleState.detached ||
+            AppLifecycleState.hidden:
         _timer.cancel();
     }
   }
