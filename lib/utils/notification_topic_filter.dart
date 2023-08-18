@@ -35,11 +35,11 @@ class NotificationTopics {
         description: l10n.archonHuntDescription,
         topic: Topics.archonHuntKey,
       ),
-      SimpleTopics(
-        title: l10n.sentientOutpostNotificationTitle,
-        description: l10n.sentientOutpostNotificationDescription,
-        topic: Topics.sentientOutpost,
-      ),
+      // SimpleTopics(
+      //   title: l10n.sentientOutpostNotificationTitle,
+      //   description: l10n.sentientOutpostNotificationDescription,
+      //   topic: Topics.sentientOutpost,
+      // ),
     ];
   }
 
