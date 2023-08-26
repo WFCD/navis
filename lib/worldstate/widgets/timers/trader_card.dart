@@ -41,11 +41,9 @@ class TraderCard extends StatelessWidget {
                   ),
                   padding: EdgeInsets.zero,
                   child: ListTile(
-                    title: Text(l10n.baroTitle),
+                    title: Text('${l10n.baroTitle} | ${trader.location}'),
                     subtitle: Text(
-                      trader.active
-                          ? 'Tap for Inventory\n$status $date'
-                          : '$status $date',
+                      '$status $date',
                     ),
                     trailing: CountdownTimer(
                       tooltip: l10n.countdownTooltip(date),
