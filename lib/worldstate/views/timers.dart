@@ -28,7 +28,7 @@ class _MobileTimers extends StatelessWidget {
 
       return previous.eventsActive != next.eventsActive ||
           previous.arbitrationActive != next.arbitrationActive ||
-          previous.outpostDetected != next.outpostDetected ||
+          // previous.outpostDetected != next.outpostDetected ||
           previous.activeAlerts != next.activeAlerts ||
           previous.activeSales != next.activeSales;
     } else if (n is SystemError) {
@@ -56,7 +56,7 @@ class _MobileTimers extends StatelessWidget {
                     const TraderCard(),
                     if (state.eventsActive) const EventCard(),
                     if (state.arbitrationActive) const ArbitrationCard(),
-                    if (state.outpostDetected) const SentientOutpostCard(),
+                    // if (state.outpostDetected) const SentientOutpostCard(),
                     const SteelPathCard(),
                     if (state.activeAlerts) const AlertsCard(),
                     const CycleCard(),

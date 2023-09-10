@@ -33,7 +33,7 @@ abstract class Topics {
   static const Topic darvoKey = Topic('darvo');
   static const Topic sortiesKey = Topic('sorties');
   static const Topic archonHuntKey = Topic('archon_hunt');
-  static const Topic sentientOutpost = Topic('sentient_outpost');
+  // static const Topic sentientOutpost = Topic('sentient_outpost');
 
   static const Topic newsPrimeKey = Topic('news_prime');
   static const Topic newsStreamKey = Topic('news_stream');
@@ -111,7 +111,7 @@ abstract class Topics {
       darvoKey,
       sortiesKey,
       archonHuntKey,
-      sentientOutpost,
+      // sentientOutpost,
       newsPrimeKey,
       newsStreamKey,
       newsUpdateKey,
