@@ -14,7 +14,7 @@ dependencies:
   collection: ^1.17.1
   equatable: ^2.0.5
   feedback_sentry: ^2.4.0
-  firebase_core: ^2.15.0
+  firebase_core: ^2.16.0
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.3
