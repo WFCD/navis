@@ -10,7 +10,7 @@ dependencies:
   animations: ^2.0.8
   black_hole_flutter: ^1.0.3
   bloc: ^8.1.2
-  cached_network_image: ^3.2.3
+  cached_network_image: ^3.3.0
   collection: ^1.17.1
   equatable: ^2.0.5
   feedback_sentry: ^2.4.0
