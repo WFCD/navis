@@ -24,12 +24,45 @@ class DarvoDealCard extends StatelessWidget {
     return BlocBuilder<SolsystemCubit, SolsystemState>(
       buildWhen: _buildWhen,
       builder: (context, state) {
-        final dailyDeals = (state as SolState).worldstate.dailyDeals;
+        final deal = (state as SolState).worldstate.dailyDeals.first;
+        final stock = deal.total - deal.sold;
+        final inStock = stock != 0;
 
-        return AppCard(
-          title: context.l10n.darvoNotificationTitle,
-          padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 4),
-          child: _DealWidget(deal: dailyDeals.first),
+        return ClipRRect(
+          child: Banner(
+            message: context.l10n.discountTitle(deal.discount),
+            location: BannerLocation.topStart,
+            child: AppCard(
+              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text('${context.l10n.saleEndsTitle}:'),
+                      SizedBoxSpacer.spacerWidth16,
+                      CountdownTimer(
+                        tooltip: context.materialLocalizations
+                            .formatFullDate(deal.expiry!),
+                        expiry: deal.expiry!,
+                        padding: const EdgeInsets.symmetric(horizontal: 4),
+                        margin: EdgeInsets.zero,
+                      ),
+                    ],
+                  ),
+                  ColoredContainer.text(
+                    text: inStock
+                        ? context.l10n.inStockInformation(stock)
+                        : context.l10n.outOfStockTitle,
+                    color: inStock ? Colors.green : Colors.red,
+                    padding: const EdgeInsets.symmetric(horizontal: 4),
+                    margin: const EdgeInsets.only(top: 10),
+                  ),
+                  _DealWidget(deal: deal),
+                ],
+              ),
+            ),
+          ),
         );
       },
     );
@@ -80,47 +113,37 @@ class _DealWidgetState extends State<_DealWidget> {
     return BlocBuilder<DarvodealCubit, DarvodealState>(
       buildWhen: _buildWhen,
       builder: (context, state) {
-        return Column(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            Column(
-              children: <Widget>[
-                if (state is DarvoDealLoaded)
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 8),
-                    child: _DealItemInformation(
-                      name: deal.item,
-                      description:
-                          state.item.description?.parseHtmlString() ?? '',
-                      imageUrl: state.item.imageUrl,
-                    ),
-                  ),
-                _SaleInformation(
-                  name: deal.item,
-                  salePrice: deal.salePrice,
-                  discount: deal.discount,
-                  sold: deal.sold,
-                  total: deal.total,
-                  expiry: deal.expiry!,
-                  enableNameChip: state is! DarvoDealLoaded,
+        final item = state is DarvoDealLoaded ? state.item : null;
+
+        return Row(
+          children: [
+            if (item != null)
+              Padding(
+                padding: const EdgeInsets.only(right: 4),
+                child: CircleAvatar(
+                  radius: 25,
+                  backgroundColor: Colors.grey,
+                  backgroundImage: CachedNetworkImageProvider(item.imageUrl),
                 ),
-                if (state is DarvoDealLoaded)
-                  ButtonBar(
-                    children: <Widget>[
-                      if (state.item.wikiaUrl != null)
-                        TextButton(
-                          style: ButtonStyle(
-                            foregroundColor: MaterialStateProperty.all(
-                              Theme.of(context).textTheme.labelLarge?.color,
-                            ),
-                          ),
-                          onPressed: () =>
-                              state.item.wikiaUrl?.launchLink(context),
-                          child: Text(context.l10n.seeWikia),
-                        ),
-                    ],
-                  ),
-              ],
+              ),
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                  vertical: 4,
+                  horizontal: 8,
+                ),
+                child: ListTile(
+                  title: Text(item?.name ?? deal.item),
+                  contentPadding: EdgeInsets.zero,
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 8, right: 8),
+              child: _DarvoPlatTrailing(
+                salePrice: deal.salePrice,
+                originalPrice: deal.originalPrice,
+              ),
             ),
           ],
         );
@@ -129,110 +152,63 @@ class _DealWidgetState extends State<_DealWidget> {
   }
 }
 
-class _DealItemInformation extends StatelessWidget {
-  const _DealItemInformation({
-    required this.name,
-    required this.description,
-    required this.imageUrl,
+class _DarvoPlatTrailing extends StatelessWidget {
+  const _DarvoPlatTrailing({
+    required this.salePrice,
+    required this.originalPrice,
   });
 
-  final String name;
-  final String description;
-  final String imageUrl;
+  final int salePrice;
+  final int originalPrice;
 
   @override
   Widget build(BuildContext context) {
-    const aspectRatio = 1 / 1;
-    final thumbnailWidth = context.mediaQuery.size.width * 0.35;
-
-    return Column(
-      children: [
-        SizedBox(
-          width: thumbnailWidth,
-          height: thumbnailWidth / aspectRatio,
-          child: CachedNetworkImage(
-            imageUrl: imageUrl,
-            fit: BoxFit.cover,
-            placeholder: (context, url) =>
-                const Center(child: CircularProgressIndicator()),
-            errorWidget: (context, url, error) => const Icon(Icons.error),
+    return SizedBox(
+      height: 65,
+      child: Row(
+        children: [
+          _DarvoPlatColumn(
+            header: context.l10n.salePriceTitle,
+            value: salePrice,
           ),
-        ),
-        ListTile(
-          title: Text(name),
-          subtitle: Text(
-            description,
-            maxLines: 2,
-            overflow: TextOverflow.ellipsis,
+          Container(
+            width: 10,
+            height: 2,
+            margin: const EdgeInsets.only(left: 8, top: 18, right: 8),
+            color: context.theme.textTheme.bodyMedium?.color,
           ),
-          isThreeLine: true,
-        ),
-      ],
+          _DarvoPlatColumn(
+            header: context.l10n.originalPriceTitle,
+            value: originalPrice,
+          ),
+        ],
+      ),
     );
   }
 }
 
-class _SaleInformation extends StatelessWidget {
-  const _SaleInformation({
-    required this.name,
-    required this.salePrice,
-    required this.discount,
-    required this.sold,
-    required this.total,
-    required this.expiry,
-    this.enableNameChip = false,
-  });
+class _DarvoPlatColumn extends StatelessWidget {
+  const _DarvoPlatColumn({required this.header, required this.value});
 
-  final String name;
-  final int salePrice;
-  final int discount;
-  final int sold;
-  final int total;
-  final DateTime expiry;
-  final bool enableNameChip;
+  final String header;
+  final int value;
 
   @override
   Widget build(BuildContext context) {
-    final saleInfo = Theme.of(context)
-        .textTheme
-        .titleSmall
-        ?.copyWith(fontWeight: FontWeight.w500);
+    const stringPadding = 2;
+    final textTheme = context.textTheme;
+    final headerStyle =
+        textTheme.labelSmall?.copyWith(fontWeight: FontWeight.w500);
+    final valueStyle =
+        textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.w800);
 
-    final theme = context.theme;
-    final color = theme.isLight
-        ? theme.colorScheme.primary
-        : theme.colorScheme.primaryContainer;
-
-    return Center(
-      child: Wrap(
-        alignment: WrapAlignment.center,
-        crossAxisAlignment: WrapCrossAlignment.center,
-        spacing: 10,
-        runSpacing: 5,
-        children: <Widget>[
-          if (enableNameChip) ColoredContainer.text(text: name, color: color),
-          ColoredContainer.text(
-            text: '${salePrice}p',
-            style: saleInfo,
-            color: color,
-          ),
-          ColoredContainer.text(
-            text: '${total - sold} / $total',
-            style: saleInfo,
-            color: color,
-          ),
-          ColoredContainer.text(
-            text: '$discount% OFF',
-            style: saleInfo,
-            color: color,
-          ),
-          CountdownTimer(
-            tooltip: context.l10n.countdownTooltip(expiry),
-            expiry: expiry,
-            style: saleInfo,
-          ),
-        ],
-      ),
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Text(header, style: headerStyle),
+        SizedBoxSpacer.spacerHeight6,
+        Text('$value'.padLeft(stringPadding, '0'), style: valueStyle),
+      ],
     );
   }
 }

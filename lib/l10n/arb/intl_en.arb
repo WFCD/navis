@@ -967,5 +967,45 @@
     "description": "Button label for void storm fissures",
     "type": "text",
     "placeholder": {}
+  },
+  "saleEndsTitle": "SALE ENDS",
+  "@saleEndsTitle": {
+    "description": "Sale ends title for countdown timer",
+    "type": "text",
+    "placeholder": {}
+  },
+  "salePriceTitle": "Sale price",
+  "@salePriceTitle": {
+    "description": "Displays the item's sale price for darvo sales",
+    "type": "text",
+    "placeholder": {}
+  },
+  "originalPriceTitle": "Original Price",
+  "@originalPriceTitle": {
+    "description": "Displays the item's original price for darvo sales",
+    "type": "text",
+    "placeholder": {}
+  },
+  "discountTitle": "{discount} OFF!",
+  "@discountTitle": {
+    "description": "Displays the discount applied for a given darvo sale",
+    "type": "text",
+    "placeholder": {
+      "discount": {}
+    }
+  },
+  "inStockInformation": "Only {stock} left",
+  "@inStockInformation": {
+    "description": "Displays the stock information for a darvo deal",
+    "type": "text",
+    "placeholder": {
+      "stock": {}
+    }
+  },
+  "outOfStockTitle": "OUT OF STOCK",
+  "@outOfStockTitle": {
+    "description": "Tells the user when darvo is out of stock for the current sale",
+    "type": "text",
+    "placeholder": {}
   }
 }
