@@ -19,7 +19,8 @@ class CountdownTimer extends StatefulWidget {
   final Color? color;
   final double? size;
   final TextStyle? style;
-  final EdgeInsetsGeometry padding, margin;
+  final EdgeInsetsGeometry padding;
+  final EdgeInsetsGeometry margin;
 
   @override
   CountdownTimerState createState() => CountdownTimerState();
@@ -127,6 +128,13 @@ class CountdownTimerState extends State<CountdownTimer>
           : theme.colorScheme.primaryContainer;
     }
 
+    TextStyle? style;
+    if (widget.color == Colors.transparent) {
+      style = widget.style;
+    } else {
+      style = widget.style?.copyWith(color: Colors.white);
+    }
+
     return ColoredContainer(
       tooltip: widget.tooltip,
       color: color,
@@ -139,8 +147,8 @@ class CountdownTimerState extends State<CountdownTimer>
 
           return Text(
             _formatDuration(remainingTime),
-            style: widget.style?.copyWith(color: Colors.white) ??
-                TextStyle(fontSize: widget.size, color: Colors.white),
+            style:
+                style ?? TextStyle(fontSize: widget.size, color: Colors.white),
           );
         },
       ),

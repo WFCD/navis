@@ -15,7 +15,6 @@ class BaroInventory extends StatelessWidget {
         ModalRoute.of(context)?.settings.arguments as List<TraderItem>?;
 
     return TraceableWidget(
-      traceTitle: "Baro's Inventory",
       child: Scaffold(
         appBar: AppBar(title: Text(context.l10n.baroInventory)),
         body: InventoryDataTable(inventory: inventory ?? []),

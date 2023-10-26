@@ -15,7 +15,6 @@ class OrbiterNewsPage extends StatelessWidget {
     final orbitNews = state is SolState ? state.worldstate.news : <News>[];
 
     return TraceableWidget(
-      traceTitle: 'Orbiter News',
       child: ViewLoading(
         isLoading: state is! SolState,
         child: RefreshIndicator(

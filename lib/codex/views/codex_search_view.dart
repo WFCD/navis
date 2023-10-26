@@ -17,7 +17,6 @@ class CodexSearchView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TraceableWidget(
-      traceTitle: 'Codex',
       child: BlocProvider(
         create: (_) =>
             SearchBloc(RepositoryProvider.of<WorldstateRepository>(context)),

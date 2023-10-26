@@ -44,7 +44,6 @@ class SyndicatePage extends StatelessWidget {
         final nightwave = state is SolState ? state.worldstate.nightwave : null;
 
         return TraceableWidget(
-          traceTitle: 'Syndicates',
           child: ViewLoading(
             isLoading: state is! SolState,
             child: state is! SolState

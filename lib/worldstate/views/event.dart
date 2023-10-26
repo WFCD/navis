@@ -27,7 +27,6 @@ class EventInformation extends StatelessWidget {
     final event = ModalRoute.of(context)?.settings.arguments as WorldEvent;
 
     return TraceableWidget(
-      traceTitle: 'WorldEvents',
       child: Scaffold(
         body: CustomScrollView(
           slivers: <Widget>[

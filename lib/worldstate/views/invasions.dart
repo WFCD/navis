@@ -17,7 +17,6 @@ class InvasionsPage extends StatelessWidget {
         state is SolState ? state.worldstate.invasions : <Invasion>[];
 
     return TraceableWidget(
-      traceTitle: 'Invasions',
       child: ViewLoading(
         isLoading: state is! SolState,
         child: state is! SolState

@@ -11,7 +11,6 @@ class SynthTargetsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TraceableWidget(
-      traceTitle: 'SynthTargets',
       child: BlocProvider(
         create: (_) => SynthtargetsCubit(
           RepositoryProvider.of<WorldstateRepository>(context),

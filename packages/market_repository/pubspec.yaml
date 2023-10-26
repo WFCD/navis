@@ -13,13 +13,16 @@ dependencies:
   market_client:
     git:
       url: https://github.com/SlayerOrnstein/market_client.git
-      ref: 2417521468a17f0dc3cf7ed5b2d4265bff15efaf
+      ref: v4.0.2
   user_settings:
     path: ../user_settings
   warframestat_client:
     git:
       url: https://github.com/SlayerOrnstein/warframestat_client.git
-      ref: v1.6.4
+      ref: v1.7.7
+
+dependency_overrides:
+  uuid: 4.1.0
 
 dev_dependencies:
   flutter_test:

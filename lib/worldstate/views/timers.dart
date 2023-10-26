@@ -12,7 +12,6 @@ class Timers extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const TraceableWidget(
-      traceTitle: 'Timers',
       child: _MobileTimers(),
     );
   }

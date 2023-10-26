@@ -13,7 +13,6 @@ class NightwavesPage extends StatelessWidget {
     final nightwave = ModalRoute.of(context)?.settings.arguments as Nightwave?;
 
     return TraceableWidget(
-      traceTitle: 'Nightwaves',
       child: Scaffold(
         appBar: AppBar(
           title: const Text('Nightwave'),

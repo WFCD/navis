@@ -42,9 +42,12 @@ class MarketRepository {
 
       try {
         final orders = await compute(MarketComputeRunners.searchOrders, req);
-        cache.cacheOrders(itemName, orders.selling);
+        final onSale =
+            orders.where((o) => o.orderType == OrderType.sell).toList();
 
-        return orders.selling;
+        cache.cacheOrders(itemName, onSale);
+
+        return onSale;
       } on SocketException {
         final cached = cache.cachedOrders;
 
@@ -110,7 +113,7 @@ class MarketComputeRunners {
   const MarketComputeRunners._();
 
   /// Retrives a list of both sell and buy orders for an item.
-  static Future<OrderSet<OrderRow>> searchOrders(MarketSearchRequest request) {
+  static Future<List<OrderRow>> searchOrders(MarketSearchRequest request) {
     return compute(_searchOrders, request);
   }
 
@@ -119,24 +122,23 @@ class MarketComputeRunners {
     return compute(_getMarketItems, request);
   }
 
-  static MarketClient _client(MarketPlatform platform, String languageCode) {
+  static ItemsEndpoint _client(MarketPlatform platform, String languageCode) {
     final client = MarketHttpClient(platform: platform, language: languageCode);
-    return MarketClient(client: client);
+    return ItemsEndpoint(client);
   }
 
-  static Future<OrderSet<OrderRow>> _searchOrders(
-      MarketSearchRequest req) async {
+  static Future<List<OrderRow>> _searchOrders(MarketSearchRequest req) async {
     final api = _client(req.$2.marketPlatform, req.$3);
 
     final items = req.$4;
     final itemUrl = items.firstWhere((e) => e.itemName.contains(req.$1));
 
-    return api.items.searchOrders(itemUrl.urlName);
+    return (await api.getItemOrders(itemUrl.urlName)).$1;
   }
 
   static Future<List<ItemShort>> _getMarketItems(MarketItemRequest req) {
     final api = _client(req.$1.marketPlatform, req.$2);
-    return api.items.getMarketItems();
+    return api.getItems();
   }
 }
 // coverage: ignore-end

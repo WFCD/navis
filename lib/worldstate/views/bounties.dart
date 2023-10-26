@@ -20,7 +20,6 @@ class BountiesPage extends StatelessWidget {
         syndicateStringToEnum(syndicate.id ?? 'navis').secondryColor;
 
     return TraceableWidget(
-      traceTitle: 'Syndicate Bounties',
       child: Scaffold(
         appBar: AppBar(
           title: Text(syndicate.syndicate.replaceFirst('Syndicate', '')),
