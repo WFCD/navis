@@ -196,8 +196,11 @@ jobs:
 
       - name: Setup Firebase
         env:
+          FIREBASE_ANDROID: ${{ secrets.FIREBASE_ANDROID }}
           FIREBASE_OPTIONS: ${{ secrets.FIREBASE_OPTIONS }}
-        run: echo $FIREBASE_OPTIONS | base64 --decode > lib/firebase_options.dart
+        run: |
+          echo $FIREBASE_OPTIONS | base64 --decode > lib/firebase_options.dart
+          echo $FIREBASE_ANDROID | base64 --decode > android/app/google-services.json
 
       - name: Build split apks per abi
         env:
@@ -274,9 +277,11 @@ jobs:
         env:
           FIREBASE_IOS: ${{ secrets.FIREBASE_IOS }}
           FIREBASE_OPTIONS: ${{ secrets.FIREBASE_OPTIONS }}
+          FIREBASE_IOS_SERVICES: ${{ secrets.FIREBASE_IOS_SERVICES }}
         run: |
           echo $FIREBASE_IOS | base64 --decode > ios/firebase_app_id_file.json
           echo $FIREBASE_OPTIONS | base64 --decode > lib/firebase_options.dart
+          echo $FIREBASE_IOS_SERVICES | base64 --decode > ios/runner/GoogleService-Info.plist
 
       - name: Build app
         run: |
