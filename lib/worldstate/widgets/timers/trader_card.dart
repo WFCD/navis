@@ -21,6 +21,8 @@ class TraderCard extends StatelessWidget {
               : trader.activation ?? DateTime.now(),
         );
         final status = trader.active ? l10n.baroLeavesOn : l10n.baroArrivesOn;
+        final title =
+            '${l10n.baroTitle} ${trader.active ? '| ${trader.location}' : ''}';
 
         return InkWell(
           onTap: trader.active
@@ -41,7 +43,7 @@ class TraderCard extends StatelessWidget {
                   ),
                   padding: EdgeInsets.zero,
                   child: ListTile(
-                    title: Text('${l10n.baroTitle} | ${trader.location}'),
+                    title: Text(title),
                     subtitle: Text(
                       '$status $date',
                     ),
