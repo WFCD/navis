@@ -986,7 +986,7 @@
     "type": "text",
     "placeholder": {}
   },
-  "discountTitle": "{discount} OFF!",
+  "discountTitle": "{discount}% OFF!",
   "@discountTitle": {
     "description": "Displays the discount applied for a given darvo sale",
     "type": "text",
