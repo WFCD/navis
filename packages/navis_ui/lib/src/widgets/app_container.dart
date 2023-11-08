@@ -21,8 +21,6 @@ class ColoredContainer extends StatelessWidget {
     EdgeInsetsGeometry padding = const EdgeInsets.all(6),
     EdgeInsetsGeometry margin = const EdgeInsets.all(3),
   }) {
-    const _textColor = Colors.white;
-
     return ColoredContainer(
       tooltip: text,
       padding: padding,
@@ -31,15 +29,16 @@ class ColoredContainer extends StatelessWidget {
       child: Text(
         text,
         overflow: TextOverflow.ellipsis,
-        style: style?.copyWith(color: _textColor) ??
-            TextStyle(color: _textColor, fontSize: fontSize),
+        style: style,
       ),
     );
   }
-  final String tooltip;
 
-  final EdgeInsetsGeometry padding, margin;
-  final double? height, width;
+  final String tooltip;
+  final EdgeInsetsGeometry padding;
+  final EdgeInsetsGeometry margin;
+  final double? height;
+  final double? width;
   final Color? color;
   final Widget child;
 
@@ -55,10 +54,13 @@ class ColoredContainer extends StatelessWidget {
         margin: margin,
         curve: Curves.easeInOut,
         decoration: BoxDecoration(
-          color: color ?? context.theme.primaryColor,
+          color: color ?? context.theme.colorScheme.inversePrimary,
           borderRadius: const BorderRadius.all(Radius.circular(3)),
         ),
-        child: child,
+        child: DefaultTextStyle.merge(
+          style: color == null ? null : const TextStyle(color: Colors.white),
+          child: child,
+        ),
       ),
     );
   }
