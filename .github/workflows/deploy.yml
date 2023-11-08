@@ -33,7 +33,7 @@ jobs:
           java-version: 11
 
       - name: Setup Flutter
-        uses: subosito/flutter-action@v2.11.0
+        uses: subosito/flutter-action@v2.12.0
         with:
           channel: ${{ env.FLUTTER_VERSION }}
           cache: true
@@ -129,7 +129,7 @@ jobs:
           cp $PP_PATH ~/Library/MobileDevice/Provisioning\ Profiles
 
       - name: Install Flutter SDK
-        uses: subosito/flutter-action@v2.11.0
+        uses: subosito/flutter-action@v2.12.0
         with:
           channel: stable
           architecture: x64
@@ -182,7 +182,7 @@ jobs:
           distribution: microsoft
           java-version: 11
 
-      - uses: subosito/flutter-action@v2.11.0
+      - uses: subosito/flutter-action@v2.12.0
         with:
           channel: ${{ env.FLUTTER_VERSION }}
           cache: true
@@ -268,7 +268,7 @@ jobs:
           cp $PP_PATH ~/Library/MobileDevice/Provisioning\ Profiles
 
       - name: Install Flutter SDK
-        uses: subosito/flutter-action@v2.11.0
+        uses: subosito/flutter-action@v2.12.0
         with:
           channel: stable
           architecture: x64
