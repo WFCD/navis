@@ -83,6 +83,11 @@ class NotificationTopics {
       SimpleTopics(title: l10n.vallisColdOption, topic: Topics.coldKey),
       SimpleTopics(title: l10n.cambionFassOption, topic: Topics.fassKey),
       SimpleTopics(title: l10n.cambionVomeOption, topic: Topics.vomeKey),
+      SimpleTopics(title: l10n.duviriJoy, topic: Topics.joyKey),
+      SimpleTopics(title: l10n.duviriAnger, topic: Topics.angerKey),
+      SimpleTopics(title: l10n.duviriEnvy, topic: Topics.envyKey),
+      SimpleTopics(title: l10n.duviriSorrow, topic: Topics.sorrowKey),
+      SimpleTopics(title: l10n.duviriFear, topic: Topics.fearKey),
     ];
   }
 

@@ -1007,5 +1007,35 @@
     "description": "Tells the user when darvo is out of stock for the current sale",
     "type": "text",
     "placeholder": {}
+  },
+  "duviriJoy": "Duviri Joy",
+  "@duviriJoy": {
+    "description": "Duviri joy state. If Duviri doesn't have a translatetion then only joy can be translated.",
+    "type": "text",
+    "placeholder": {}
+  },
+  "duviriAnger": "Duviri Anger",
+  "@duviriAnger": {
+    "description": "Duviri anger state. If Duviri doesn't have a translatetion then only joy can be translated.",
+    "type": "text",
+    "placeholder": {}
+  },
+  "duviriEnvy": "Duviri Envy",
+  "@duviriEnvy": {
+    "description": "Duviri envy state. If Duviri doesn't have a translatetion then only joy can be translated.",
+    "type": "text",
+    "placeholder": {}
+  },
+  "duviriSorrow": "Duviri Sorrow",
+  "@duviriSorrow": {
+    "description": "Duviri sorrow state. If Duviri doesn't have a translatetion then only joy can be translated.",
+    "type": "text",
+    "placeholder": {}
+  },
+  "duviriFear": "Duviri Fear",
+  "@duviriFear": {
+    "description": "Duviri Fear state. If Duviri doesn't have a translatetion then only joy can be translated.",
+    "type": "text",
+    "placeholder": {}
   }
 }

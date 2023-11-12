@@ -28,6 +28,12 @@ abstract class Topics {
   static const Topic vomeKey = Topic('cambion_vome');
   static const Topic fassKey = Topic('cambion_fass');
 
+  static const Topic joyKey = Topic('duviri_joy');
+  static const Topic angerKey = Topic('duviri_anger');
+  static const Topic envyKey = Topic('duviri_envy');
+  static const Topic sorrowKey = Topic('duviri_sorrow');
+  static const Topic fearKey = Topic('duviri_fear');
+
   static const Topic alertsKey = Topic('rare_alerts');
   static const Topic baroKey = Topic('baro');
   static const Topic darvoKey = Topic('darvo');

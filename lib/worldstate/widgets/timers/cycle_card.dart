@@ -1,6 +1,7 @@
 import 'package:black_hole_flutter/black_hole_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis/worldstate/cubits/solsystem_cubit.dart';
 import 'package:navis_ui/navis_ui.dart';
@@ -87,13 +88,36 @@ class CycleCard extends StatelessWidget {
     return BlocBuilder<SolsystemCubit, SolsystemState>(
       buildWhen: _buildWhen,
       builder: (context, state) {
-        final cycles =
-            _buildCycles(context, context.l10n, (state as SolState).worldstate);
+        final worldstate = (state as SolState).worldstate;
+        final cycles = _buildCycles(context, context.l10n, worldstate);
+        final duviriCycle = worldstate.duviriCycle;
 
         return AppCard(
           child: Column(
             children: <Widget>[
               for (final cycle in cycles) _CycleWidget(entry: cycle),
+              ListTile(
+                title: Text(
+                  'Duviri Cycle',
+                  style: context.textTheme.titleMedium
+                      ?.copyWith(fontWeight: FontWeight.w600),
+                ),
+                trailing: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    ColoredContainer.text(
+                      text: toBeginningOfSentenceCase(duviriCycle.state) ??
+                          duviriCycle.state,
+                    ),
+                    SizedBoxSpacer.spacerWidth6,
+                    CountdownTimer(
+                      tooltip:
+                          context.l10n.countdownTooltip(duviriCycle.expiry!),
+                      expiry: duviriCycle.expiry!,
+                    ),
+                  ],
+                ),
+              )
             ],
           ),
         );
