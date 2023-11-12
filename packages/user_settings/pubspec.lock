@@ -456,11 +456,11 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: "v1.7.7"
-      resolved-ref: "3a1aa1d2b403ed2487836965647303aedcb421c4"
+      ref: "v1.8.0"
+      resolved-ref: "4065e599902e75343d2f628aec8dbf40d2f939c1"
       url: "https://github.com/SlayerOrnstein/warframestat_client.git"
     source: git
-    version: "1.7.7"
+    version: "1.8.0"
   web:
     dependency: transitive
     description:
@@ -494,5 +494,5 @@ packages:
     source: hosted
     version: "1.0.2"
 sdks:
-  dart: ">=3.1.0-185.0.dev <4.0.0"
+  dart: ">=3.1.5 <4.0.0"
   flutter: ">=3.7.0"
