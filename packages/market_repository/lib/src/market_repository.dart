@@ -9,7 +9,7 @@ import 'package:user_settings/user_settings.dart';
 
 /// {@template market_repo}
 /// A repository to contact and cache request from Warframe market.
-/// {@endtamplate}
+/// {@endtemplate}
 class MarketRepository {
   /// {@macro market_repo}
   const MarketRepository({required this.usersettings, required this.cache});
