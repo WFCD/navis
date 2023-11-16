@@ -81,7 +81,7 @@ class SolsystemCubit extends HydratedCubit<SolsystemState> {
   @override
   Map<String, dynamic>? toJson(SolsystemState state) {
     if (state is SolState) {
-      return (state.worldstate).toJson();
+      return state.worldstate.toJson();
     }
 
     return null;
