@@ -26,6 +26,8 @@ void main() {
   // final testDeal = toBaseItem(Fixtures.dealFixture);
 
   setUpAll(() async {
+    registerFallbackValue(Language.en);
+
     final temp = Directory.systemTemp;
     Hive.init(temp.path);
 
@@ -63,7 +65,7 @@ void main() {
       cache.cacheWorldstate(worldstate);
 
       final fixture = Fixtures.worldstateFixture;
-      fixture['timestamp'] = DateTime.now().toUtc();
+      fixture['timestamp'] = DateTime.now().toUtc().toIso8601String();
       final updateState = Worldstate.fromJson(fixture);
 
       when(() => runners.getWorldstate(any()))
@@ -76,7 +78,7 @@ void main() {
 
     test('forced => gets a new state regardless of timestamp', () async {
       final fixture = Fixtures.worldstateFixture;
-      fixture['timestamp'] = DateTime.now().toUtc();
+      fixture['timestamp'] = DateTime.now().toUtc().toIso8601String();
       final updateState = Worldstate.fromJson(fixture);
 
       // The tearDown clears keys after every test so we need to have something
