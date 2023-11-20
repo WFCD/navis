@@ -275,7 +275,7 @@ class NotificationTopics {
       'hijack',
       'sabotage',
       'disruption',
-      'exterminate',
+      'extermination',
       'mobile_defense',
       'orphix',
       'rescue',
