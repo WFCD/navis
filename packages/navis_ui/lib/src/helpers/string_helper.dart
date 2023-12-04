@@ -1,6 +1,6 @@
 import 'package:black_hole_flutter/black_hole_flutter.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_web_browser/flutter_web_browser.dart';
+import 'package:flutter_custom_tabs/flutter_custom_tabs.dart';
 import 'package:html/parser.dart';
 
 extension StringNx on String {
@@ -13,19 +13,23 @@ extension StringNx on String {
     if (pop) Navigator.of(context).pop();
 
     try {
-      await FlutterWebBrowser.openWebPage(
-        url: this,
+      await launchUrl(
+        Uri.parse(this),
         customTabsOptions: CustomTabsOptions(
-          defaultColorSchemeParams: CustomTabsColorSchemeParams(
-            toolbarColor: context.theme.primaryColor,
-          ),
           urlBarHidingEnabled: true,
           showTitle: true,
+          colorSchemes: CustomTabsColorSchemes.defaults(
+            toolbarColor: context.theme.colorScheme.surface,
+          ),
+          closeButton: CustomTabsCloseButton(
+            icon: CustomTabsCloseButtonIcon.back,
+          ),
         ),
-        safariVCOptions: const SafariViewControllerOptions(
+        safariVCOptions: SafariViewControllerOptions(
+          preferredBarTintColor: context.theme.colorScheme.surface,
+          preferredControlTintColor: context.theme.colorScheme.onSurface,
           barCollapsingEnabled: true,
           dismissButtonStyle: SafariViewControllerDismissButtonStyle.close,
-          modalPresentationCapturesStatusBarAppearance: true,
         ),
       );
     } catch (e) {

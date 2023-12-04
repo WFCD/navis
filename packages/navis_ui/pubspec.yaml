@@ -11,7 +11,7 @@ dependencies:
   cached_network_image: ^3.3.0
   flutter:
     sdk: flutter
-  flutter_web_browser: ^0.17.1
+  flutter_custom_tabs: ^2.0.0-beta.1
   html: ^0.15.2
   intl: ^0.18.0
   warframestat_client:

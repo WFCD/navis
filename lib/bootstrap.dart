@@ -4,7 +4,6 @@ import 'package:feedback_sentry/feedback_sentry.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_web_browser/flutter_web_browser.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:market_repository/market_repository.dart';
@@ -25,7 +24,6 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
   // );
 
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  await FlutterWebBrowser.warmup();
   await Hive.initFlutter();
 
   final appDir = await getApplicationDocumentsDirectory();
