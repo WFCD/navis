@@ -4,7 +4,6 @@ import 'package:matomo_tracker/matomo_tracker.dart';
 import 'package:navis/worldstate/widgets/timers/archon_card.dart';
 import 'package:navis/worldstate/worldstate.dart';
 import 'package:navis_ui/navis_ui.dart';
-import 'package:nil/nil.dart';
 
 class Timers extends StatelessWidget {
   const Timers({super.key});
@@ -46,24 +45,22 @@ class _MobileTimers extends StatelessWidget {
       builder: (_, state) {
         return ViewLoading(
           isLoading: state is! SolState,
-          child: state is! SolState
-              ? nil
-              : ListView(
-                  cacheExtent: cacheExtent,
-                  children: [
-                    const DailyReward(),
-                    const TraderCard(),
-                    if (state.eventsActive) const EventCard(),
-                    if (state.arbitrationActive) const ArbitrationCard(),
-                    // if (state.outpostDetected) const SentientOutpostCard(),
-                    const SteelPathCard(),
-                    if (state.activeAlerts) const AlertsCard(),
-                    const CycleCard(),
-                    if (state.activeSales) const DarvoDealCard(),
-                    const ArchonHuntCard(),
-                    const SortieCard(),
-                  ],
-                ),
+          child: ListView(
+            cacheExtent: cacheExtent,
+            children: [
+              const DailyReward(),
+              const TraderCard(),
+              if ((state as SolState).eventsActive) const EventCard(),
+              if (state.arbitrationActive) const ArbitrationCard(),
+              // if (state.outpostDetected) const SentientOutpostCard(),
+              const SteelPathCard(),
+              if (state.activeAlerts) const AlertsCard(),
+              const CycleCard(),
+              if (state.activeSales) const DarvoDealCard(),
+              const ArchonHuntCard(),
+              const SortieCard(),
+            ],
+          ),
         );
       },
     );
