@@ -62,7 +62,7 @@ class _SettingsView extends StatelessWidget {
 
     return SettingsList(
       sections: [
-        const SettingsSection(tiles: [PlatformSelect()]),
+        // const SettingsSection(tiles: [PlatformSelect()]),
         SettingsSection(
           title: const Text('Behavior'),
           tiles: [
