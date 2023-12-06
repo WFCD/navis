@@ -1065,7 +1065,7 @@ packages:
     source: hosted
     version: "2.2.1"
   user_settings:
-    dependency: "direct main"
+    dependency: transitive
     description:
       path: "packages/user_settings"
       relative: true

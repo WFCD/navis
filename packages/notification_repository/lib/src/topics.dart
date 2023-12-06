@@ -102,6 +102,33 @@ abstract class Topics {
   static const Topic strunReciever = Topic('strun_reciever');
   static const Topic strunStock = Topic('strun_stock');
 
+  static Iterable<Topic> generateFissureTopics() sync* {
+    const tiers = <String>['Lith', 'Meso', 'Neo', 'Axi', 'Requiem'];
+    const missionTypes = <String>[
+      'capture',
+      'defense',
+      'excavation',
+      'interception',
+      'hijack',
+      'sabotage',
+      'disruption',
+      'extermination',
+      'mobile_defense',
+      'orphix',
+      'rescue',
+      'skirmish',
+      'spy',
+      'survival',
+      'volatile',
+    ];
+
+    for (final tier in tiers) {
+      for (final objective in missionTypes) {
+        yield Topic('$tier.$objective');
+      }
+    }
+  }
+
   static List<Topic> get topics {
     return [
       earthDayKey,
@@ -166,6 +193,7 @@ abstract class Topics {
       strunBarrel,
       strunReciever,
       strunStock,
+      ...generateFissureTopics()
     ];
   }
 }

@@ -1,5 +1,3 @@
-/// Stores constant values for UserSettings keys stored in the UserSetting hive
-/// box.
 class SettingsKeys {
   /// The key where the setting for app first launch is stored.
   static const String isFirstTime = 'firstTime';

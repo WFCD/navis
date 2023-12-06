@@ -1,3 +1,4 @@
+import 'package:black_hole_flutter/black_hole_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:matomo_tracker/matomo_tracker.dart';
@@ -18,7 +19,8 @@ class OrbiterNewsPage extends StatelessWidget {
       child: ViewLoading(
         isLoading: state is! SolState,
         child: RefreshIndicator(
-          onRefresh: BlocProvider.of<SolsystemCubit>(context).fetchWorldstate,
+          onRefresh: () => BlocProvider.of<SolsystemCubit>(context)
+              .fetchWorldstate(context.locale, forceUpdate: true),
           child: state is! SolState
               ? const SizedBox.shrink()
               : ListView.builder(

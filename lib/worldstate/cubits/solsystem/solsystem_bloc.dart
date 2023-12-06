@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:flutter/material.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:navis/worldstate/cubits/solsystem/solsystem_state.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
@@ -16,9 +17,15 @@ class SolsystemCubit extends HydratedCubit<SolsystemState> {
 
   final WorldstateRepository repository;
 
-  Future<void> fetchWorldstate({bool forceUpdate = false}) async {
+  Future<void> fetchWorldstate(
+    Locale locale, {
+    bool forceUpdate = false,
+  }) async {
     try {
-      final state = await repository.getWorldstate(forceUpdate: forceUpdate);
+      final state = await repository.getWorldstate(
+        language: Language.values.byName(locale.languageCode),
+        forceUpdate: forceUpdate,
+      );
 
       _cleanState(state);
 

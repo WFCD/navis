@@ -266,34 +266,15 @@ class NotificationTopics {
   }
 
   Iterable<SimpleTopics> get fissures sync* {
-    const tiers = <String>['Lith', 'Meso', 'Neo', 'Axi', 'Requiem'];
-    const missionTypes = <String>[
-      'capture',
-      'defense',
-      'excavation',
-      'interception',
-      'hijack',
-      'sabotage',
-      'disruption',
-      'extermination',
-      'mobile_defense',
-      'orphix',
-      'rescue',
-      'skirmish',
-      'spy',
-      'survival',
-      'volatile',
-    ];
+    for (final topic in Topics.generateFissureTopics()) {
+      final topicd = topic.name.split('.');
+      final tier = topicd.first;
+      final mission = topicd.last.replaceAll('_', ' ');
 
-    for (final tier in tiers) {
-      for (final objective in missionTypes) {
-        final cleaned = objective.replaceAll('_', ' ');
-
-        yield SimpleTopics(
-          title: '$tier ${toBeginningOfSentenceCase(cleaned)}',
-          topic: Topic('$tier.$objective'),
-        );
-      }
+      yield SimpleTopics(
+        title: '$tier ${toBeginningOfSentenceCase(mission)}',
+        topic: Topic('$tier.$mission'),
+      );
     }
   }
 }

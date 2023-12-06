@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:black_hole_flutter/black_hole_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/home/home.dart';
@@ -9,7 +10,7 @@ import 'package:navis/worldstate/worldstate.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:notification_repository/notification_repository.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
-import 'package:user_settings/user_settings.dart';
+import 'package:warframestat_client/warframestat_client.dart';
 
 class NavisApp extends StatefulWidget {
   const NavisApp({super.key});
@@ -27,32 +28,28 @@ class _NavisAppState extends State<NavisApp> with WidgetsBindingObserver {
     WidgetsBinding.instance.addObserver(this);
 
     final notifications = context.read<NotificationRepository>()..configure();
-    final userSettingsNotifier = context.read<UserSettingsNotifier>();
+    final userSettingsCubit = context.read<UserSettingsCubit>();
+    final settings = userSettingsCubit.state;
+    final isFirstTime = switch (settings) {
+      UserSettingsSuccess() => settings.isFirstTime,
+      _ => true
+    };
 
-    if (userSettingsNotifier.isFirstTime) {
-      final platform = userSettingsNotifier.platform;
-      notifications.subscribeToPlatform(platform);
+    if (isFirstTime) {
+      switch (settings) {
+        case UserSettingsSuccess():
+          notifications.subscribeToPlatform(settings.platform);
+        default:
+          notifications.subscribeToPlatform(GamePlatform.pc);
+      }
     }
 
     _timer = Timer.periodic(
       const Duration(seconds: 60),
-      (_) => context.read<SolsystemCubit>().fetchWorldstate(forceUpdate: true),
+      (_) => context
+          .read<SolsystemCubit>()
+          .fetchWorldstate(context.locale, forceUpdate: true),
     );
-  }
-
-  @override
-  void didChangeDependencies() {
-    const package = 'navis_ui';
-
-    precacheImage(
-      const AssetImage('assets/baro_banner.webp', package: package),
-      context,
-    );
-    precacheImage(
-      const AssetImage('assets/Derelict.webp', package: package),
-      context,
-    );
-    super.didChangeDependencies();
   }
 
   @override
@@ -61,8 +58,9 @@ class _NavisAppState extends State<NavisApp> with WidgetsBindingObserver {
       case AppLifecycleState.resumed:
         _timer = Timer.periodic(
           const Duration(seconds: 60),
-          (_) =>
-              context.read<SolsystemCubit>().fetchWorldstate(forceUpdate: true),
+          (_) => context
+              .read<SolsystemCubit>()
+              .fetchWorldstate(context.locale, forceUpdate: true),
         );
 
       case AppLifecycleState.inactive ||
@@ -99,6 +97,7 @@ class _NavisAppState extends State<NavisApp> with WidgetsBindingObserver {
     Locale? locale,
     Iterable<Locale> supportedLocales,
   ) {
+    const defaultLocale = Locale('en');
     Locale? newLocale;
 
     for (final supportedLocale in supportedLocales) {
@@ -107,11 +106,17 @@ class _NavisAppState extends State<NavisApp> with WidgetsBindingObserver {
       }
     }
 
-    newLocale ??= supportedLocales.firstWhere((e) => e.languageCode == 'en');
+    newLocale ??= defaultLocale;
 
-    final settings = context.read<UserSettingsNotifier>();
-    if (settings.language != newLocale) {
-      settings.setLanguage(newLocale, notify: false);
+    final userSettingsCubit = context.read<UserSettingsCubit>();
+    final settings = userSettingsCubit.state;
+    final language = switch (settings) {
+      UserSettingsSuccess() => settings.language,
+      _ => defaultLocale
+    };
+
+    if (language != newLocale) {
+      userSettingsCubit.updateLanguage(newLocale);
     }
 
     return newLocale;
@@ -119,10 +124,22 @@ class _NavisAppState extends State<NavisApp> with WidgetsBindingObserver {
 
   @override
   Widget build(BuildContext context) {
+    final settings = context.watch<UserSettingsCubit>().state;
+
+    final themeMode = switch (settings) {
+      UserSettingsSuccess() => settings.themeMode,
+      _ => ThemeMode.system
+    };
+
+    final language = switch (settings) {
+      UserSettingsSuccess() => settings.language,
+      _ => const Locale('en')
+    };
+
     return MaterialApp(
       title: 'Navis',
       color: Colors.grey[900],
-      themeMode: context.watch<UserSettingsNotifier>().theme,
+      themeMode: themeMode,
       theme: ThemeData(useMaterial3: true, colorScheme: lightColorScheme),
       darkTheme: ThemeData(useMaterial3: true, colorScheme: darkColorScheme),
       home: const HomeView(),
@@ -136,7 +153,7 @@ class _NavisAppState extends State<NavisApp> with WidgetsBindingObserver {
         BaroInventory.route: (_) => const BaroInventory(),
       },
       supportedLocales: NavisLocalizations.supportedLocales,
-      locale: context.read<UserSettingsNotifier>().language,
+      locale: language,
       localizationsDelegates: NavisLocalizations.localizationsDelegates,
       localeResolutionCallback: localeResolutionCallback,
     );

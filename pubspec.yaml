@@ -47,8 +47,6 @@ dependencies:
   settings_ui: ^2.0.2
   shimmer: ^3.0.0
   simple_icons: ^7.10.0
-  user_settings:
-    path: packages/user_settings
   warframestat_client:
     git:
       url: https://github.com/SlayerOrnstein/warframestat_client.git

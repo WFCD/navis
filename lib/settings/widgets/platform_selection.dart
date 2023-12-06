@@ -1,13 +1,14 @@
 // ignore_for_file: deprecated_member_use
 
+import 'package:black_hole_flutter/black_hole_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:navis/settings/settings.dart';
 import 'package:navis/worldstate/cubits/solsystem_cubit.dart';
 import 'package:notification_repository/notification_repository.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:settings_ui/settings_ui.dart';
 import 'package:simple_icons/simple_icons.dart';
-import 'package:user_settings/user_settings.dart';
 import 'package:warframestat_client/warframestat_client.dart';
 
 const pc = 'PC';
@@ -81,21 +82,27 @@ class _PlatformIconButton extends StatelessWidget {
   final String platformName;
 
   void _onPressed(BuildContext context) {
+    final oldPlatform =
+        (context.read<UserSettingsCubit>().state as UserSettingsSuccess)
+            .platform;
+
     context
-      ..read<NotificationRepository>().unsubscribeFromPlatform(
-        context.read<UserSettingsNotifier>().platform,
-      )
-      ..read<UserSettingsNotifier>().setPlatform(platform)
+      ..read<NotificationRepository>().unsubscribeFromPlatform(oldPlatform)
+      ..read<UserSettingsCubit>().updatePlatform(platform)
       ..read<NotificationRepository>().subscribeToPlatform(platform);
 
-    BlocProvider.of<SolsystemCubit>(context).fetchWorldstate(forceUpdate: true);
+    BlocProvider.of<SolsystemCubit>(context)
+        .fetchWorldstate(context.locale, forceUpdate: true);
   }
 
   @override
   Widget build(BuildContext context) {
     final size = (MediaQuery.of(context).size.shortestSide / 100) * 8;
-    final currentPlatform = context
-        .select<UserSettingsNotifier, GamePlatform>((value) => value.platform);
+    final settings = context.watch<UserSettingsCubit>().state;
+    final currentPlatform = switch (settings) {
+      UserSettingsSuccess() => settings.platform,
+      _ => GamePlatform.pc,
+    };
 
     return IconButton(
       tooltip: platformName,

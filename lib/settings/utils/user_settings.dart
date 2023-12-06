@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:matomo_tracker/matomo_tracker.dart';
-import 'package:user_settings/src/settings_keys.dart';
+import 'package:navis/settings/settings.dart';
 import 'package:warframestat_client/warframestat_client.dart';
 
 /// {@template user_settings}
@@ -35,11 +35,11 @@ class UserSettings {
       return Locale(value);
     }
 
-    return Locale('en');
+    return const Locale('en');
   }
 
   /// Updates the stored [UserSettings.language].
-  void setLanguage(Locale? value) {
+  set language(Locale? value) {
     if (value != null) {
       log('setting new lang ${value.languageCode}');
       _userSettingsBox.put(SettingsKeys.userLanguage, value.languageCode);

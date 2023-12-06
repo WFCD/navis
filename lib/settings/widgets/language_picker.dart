@@ -1,10 +1,10 @@
+import 'package:black_hole_flutter/black_hole_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/l10n/l10n.dart';
+import 'package:navis/settings/settings.dart';
 import 'package:navis/worldstate/cubits/solsystem_cubit.dart';
 import 'package:navis_ui/navis_ui.dart';
-import 'package:provider/provider.dart';
-import 'package:user_settings/user_settings.dart';
 
 class LanguagePicker extends StatelessWidget {
   const LanguagePicker({super.key});
@@ -13,12 +13,15 @@ class LanguagePicker extends StatelessWidget {
     return showDialog<void>(
       context: context,
       builder: (_) {
-        return BlocProvider.value(
-          value: BlocProvider.of<SolsystemCubit>(context),
-          child: ChangeNotifierProvider.value(
-            value: Provider.of<UserSettingsNotifier>(context),
-            child: const LanguagePicker(),
-          ),
+        final ws = BlocProvider.of<SolsystemCubit>(context);
+        final us = BlocProvider.of<UserSettingsCubit>(context);
+
+        return MultiBlocProvider(
+          providers: [
+            BlocProvider.value(value: ws),
+            BlocProvider.value(value: us),
+          ],
+          child: const LanguagePicker(),
         );
       },
     );
@@ -26,7 +29,8 @@ class LanguagePicker extends StatelessWidget {
 
   void _onPressed(BuildContext context) {
     Navigator.of(context).pop();
-    BlocProvider.of<SolsystemCubit>(context).fetchWorldstate(forceUpdate: true);
+    BlocProvider.of<SolsystemCubit>(context)
+        .fetchWorldstate(context.locale, forceUpdate: true);
   }
 
   @override
@@ -35,6 +39,12 @@ class LanguagePicker extends StatelessWidget {
 
     final materialLocalizations = MaterialLocalizations.of(context);
     final accentColor = Theme.of(context).colorScheme.secondary;
+
+    final settings = context.watch<UserSettingsCubit>().state;
+    final language = switch (settings) {
+      UserSettingsSuccess() => settings.language,
+      _ => context.locale
+    };
 
     return NavisDialog(
       content: ListView.builder(
@@ -45,10 +55,12 @@ class LanguagePicker extends StatelessWidget {
           return RadioListTile<Locale>(
             title: Text(l.fullName),
             value: l,
-            groupValue: context.watch<UserSettingsNotifier>().language,
+            groupValue: language,
             activeColor: accentColor,
-            onChanged: (l) =>
-                context.read<UserSettingsNotifier>().setLanguage(l),
+            onChanged: (l) {
+              if (l == null) return;
+              context.read<UserSettingsCubit>().updateLanguage(l);
+            },
           );
         },
       ),

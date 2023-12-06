@@ -1,34 +1,48 @@
+import 'package:black_hole_flutter/black_hole_flutter.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/l10n/l10n.dart';
-import 'package:provider/provider.dart';
-import 'package:user_settings/user_settings.dart';
+import 'package:navis/settings/settings.dart';
 
 class ThemePicker extends StatelessWidget {
-  const ThemePicker({super.key, required this.l10n});
+  const ThemePicker({super.key});
 
-  final NavisLocalizations l10n;
-
-  static Future<void> showModes(BuildContext context, NavisLocalizations l10n) {
+  static Future<void> showModes(BuildContext context) {
     return showDialog<void>(
       context: context,
       builder: (_) {
-        return ChangeNotifierProvider.value(
-          value: Provider.of<UserSettingsNotifier>(context),
-          child: ThemePicker(l10n: l10n),
+        return BlocProvider.value(
+          value: BlocProvider.of<UserSettingsCubit>(context),
+          child: Localizations(
+            locale: context.locale,
+            delegates: NavisLocalizations.localizationsDelegates,
+            child: const ThemePicker(),
+          ),
         );
       },
     );
   }
 
   void _onChanged(BuildContext context, ThemeMode? mode) {
-    if (mode != null) context.read<UserSettingsNotifier>().setTheme(mode);
+    if (mode == null) return;
+
+    final state = context.read<UserSettingsCubit>().state;
+    if (state is UserSettingsSuccess) {
+      context.read<UserSettingsCubit>().updateThemeMode(mode);
+    }
+
     Navigator.of(context).pop();
   }
 
   @override
   Widget build(BuildContext context) {
-    final groupValue = context.watch<UserSettingsNotifier>().theme;
     final accentColor = Theme.of(context).colorScheme.secondary;
+    final l10n = context.l10n;
+    final state = context.watch<UserSettingsCubit>().state;
+    final groupValue = switch (state) {
+      UserSettingsSuccess() => state.themeMode,
+      _ => ThemeMode.light,
+    };
 
     return SimpleDialog(
       title: Text(l10n.themeTitle),

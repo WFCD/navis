@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hive/hive.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:user_settings/user_settings.dart';
 import 'package:warframestat_client/warframestat_client.dart';
 import 'package:worldstate_repository/worldstate_repository.dart';
 
@@ -11,7 +10,6 @@ import 'fixtures/fixtures.dart';
 import 'mocks.dart';
 
 void main() {
-  late UserSettings settings;
   late WarframestatCache cache;
   late WorldstateRepository repo;
   late Box<dynamic> testBox;
@@ -31,15 +29,10 @@ void main() {
     final temp = Directory.systemTemp;
     Hive.init(temp.path);
 
-    settings = MockUserSettings();
     testBox = await Hive.openBox<dynamic>('test_box', path: temp.path);
     cache = await WarframestatCache.initCache(temp.path, testBox);
     runners = MockWorldstateComputeRunners();
-    repo = WorldstateRepository(
-      settings: settings,
-      cache: cache,
-      runners: runners,
-    );
+    repo = WorldstateRepository(cache: cache, runners: runners);
   });
 
   group('Worldstate', () {

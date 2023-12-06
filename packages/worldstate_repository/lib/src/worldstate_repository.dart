@@ -1,6 +1,5 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/foundation.dart';
-import 'package:user_settings/user_settings.dart';
 import 'package:warframestat_client/warframestat_client.dart';
 import 'package:worldstate_repository/src/exceptions.dart';
 import 'package:worldstate_repository/src/worldstate_cache.dart';
@@ -13,49 +12,48 @@ const _kRefreshTime = Duration(seconds: 1);
 class WorldstateRepository {
   /// {@macro worldstate_repository}
   const WorldstateRepository({
-    required UserSettings settings,
     required WarframestatCache cache,
     WorldstateComputeRunners? runners,
-  })  : _settings = settings,
-        _cache = cache,
+  })  : _cache = cache,
         _runners = runners ?? const WorldstateComputeRunners();
 
   final WarframestatCache _cache;
-  final UserSettings _settings;
 
   // Only use for testing and nothing else. Unless for some reason we need this
   // to be platform specfic it shouldn't be touched outside of testing
   final WorldstateComputeRunners _runners;
 
-  Language get _language =>
-      Language.values.byName(_settings.language.languageCode);
-
   /// Retrives a list of [SynthTarget]s.
   ///
   /// Keep in mind that this doesn't get Player specific targets only location
   /// of known targets.
-  Future<List<SynthTarget>> getSynthTargets() async {
+  Future<List<SynthTarget>> getSynthTargets({
+    Language language = Language.en,
+  }) async {
     final cached = _cache.getCachedTargets();
 
     if (cached != null) {
       return cached;
     }
 
-    final targets = await _runners.getTargets(_language);
+    final targets = await _runners.getTargets(language);
     _cache.cacheSynthTargets(targets);
 
     return targets;
   }
 
   /// Gets the current worldstate via WFCD's worldstate-status API.
-  Future<Worldstate> getWorldstate({bool forceUpdate = false}) async {
+  Future<Worldstate> getWorldstate({
+    Language language = Language.en,
+    bool forceUpdate = false,
+  }) async {
     final now = DateTime.now();
     final timestamp = _cache.getCachedStateTimestamp();
     final age = timestamp?.difference(now).abs() ?? _kRefreshTime;
 
     if (age >= _kRefreshTime || forceUpdate) {
       try {
-        final state = await _runners.getWorldstate(_language);
+        final state = await _runners.getWorldstate(language);
 
         if (state == null) throw ServerException('worldstate empty');
         _cache.cacheWorldstate(state);
@@ -92,15 +90,18 @@ class WorldstateRepository {
   /// this function will throw an [ItemNotFoundException].
   ///
   /// Warframe-items: https://github.com/WFCD/warframe-items
-  Future<Item?> getDealInfo(String uniqueName, String name) async {
+  Future<Item?> getDealInfo(
+    String uniqueName,
+    String name, {
+    Language language = Language.en,
+  }) async {
     final cachedId = _cache.getCachedDealId();
 
     if (cachedId != null && cachedId != uniqueName || cachedId == null) {
       // If for whatever reason getItemDealInfo throws an error then we're just
       // gonna let it bubble up since at this point the Item is different and
       // there is no point in returning the cached version.
-      final deal =
-          await _runners.getItemDealInfo((uniqueName, name, _language));
+      final deal = await _runners.getItemDealInfo((uniqueName, name, language));
       if (deal != null) _cache.cacheDealInfo(uniqueName, deal);
 
       return deal;
@@ -125,8 +126,11 @@ class WorldstateRepository {
   /// items are added.
   ///
   /// Warframe-items: https://github.com/WFCD/warframe-items
-  Future<List<Item>> searchItems(String text) async {
-    final request = ('', text, _language);
+  Future<List<Item>> searchItems(
+    String text, {
+    Language language = Language.en,
+  }) async {
+    final request = ('', text, language);
 
     return _runners.searchItems(request);
   }

@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:navis/utils/notification_topic_filter.dart';
+import 'package:navis/settings/settings.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:notification_repository/notification_repository.dart';
-import 'package:provider/provider.dart';
-import 'package:user_settings/user_settings.dart';
 
 class FilterDialog extends StatelessWidget {
   const FilterDialog({super.key, required this.options});
@@ -18,16 +16,16 @@ class FilterDialog extends StatelessWidget {
     return showDialog<void>(
       context: context,
       builder: (_) {
-        return MultiProvider(
-          providers: [
-            ChangeNotifierProvider.value(
-              value: Provider.of<UserSettingsNotifier>(context),
-            ),
-            RepositoryProvider.value(
-              value: Provider.of<NotificationRepository>(context),
-            ),
-          ],
-          child: FilterDialog(options: options),
+        final notifications =
+            RepositoryProvider.of<NotificationRepository>(context);
+        final usersettings = BlocProvider.of<UserSettingsCubit>(context);
+
+        return RepositoryProvider.value(
+          value: notifications,
+          child: BlocProvider.value(
+            value: usersettings,
+            child: FilterDialog(options: options),
+          ),
         );
       },
     );
@@ -45,13 +43,7 @@ class FilterDialog extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             for (final t in options)
-              _NotificationCheckBox(
-                title: t.title,
-                topic: t.topic,
-                value: context
-                    .watch<UserSettingsNotifier>()
-                    .getToggle(t.topic.name),
-              ),
+              _NotificationCheckBox(title: t.title, topic: t.topic),
           ],
         ),
       ),
@@ -66,18 +58,13 @@ class FilterDialog extends StatelessWidget {
 }
 
 class _NotificationCheckBox extends StatelessWidget {
-  const _NotificationCheckBox({
-    required this.title,
-    required this.topic,
-    required this.value,
-  });
+  const _NotificationCheckBox({required this.title, required this.topic});
 
   final String title;
   final Topic topic;
-  final bool value;
 
   void _onChanged(BuildContext context, Topic topic, bool value) {
-    context.read<UserSettingsNotifier>().setToggle(topic.name, value: value);
+    context.read<UserSettingsCubit>().updateToggle(topic.name, value: value);
 
     if (value) {
       context.read<NotificationRepository>().subscribeToNotification(topic);
@@ -88,9 +75,15 @@ class _NotificationCheckBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final settings = context.watch<UserSettingsCubit>().state;
+    final toggles = switch (settings) {
+      UserSettingsSuccess() => settings.toggles,
+      _ => <String, bool>{}
+    };
+
     return CheckboxListTile(
       title: Text(title),
-      value: value,
+      value: toggles[topic.name] ?? false,
       activeColor: Theme.of(context).colorScheme.secondary,
       onChanged: (b) => _onChanged(context, topic, b ?? false),
     );
