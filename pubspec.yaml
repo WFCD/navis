@@ -12,6 +12,7 @@ dependencies:
   bloc: ^8.1.2
   cached_network_image: ^3.3.0
   collection: ^1.17.2
+  dynamic_color: ^1.6.8
   equatable: ^2.0.5
   feedback_sentry: ^3.0.0
   firebase_core: ^2.22.0
