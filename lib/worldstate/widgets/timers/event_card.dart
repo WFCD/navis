@@ -34,7 +34,6 @@ class EventCard extends StatelessWidget {
             SolState() => state.worldstate.events,
             _ => <WorldEvent>[],
           };
-          ;
 
           return Column(
             children: <Widget>[

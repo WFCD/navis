@@ -46,6 +46,7 @@ class UserSettings {
     }
   }
 
+  // ignore: comment_references
   /// Returns the stored [GamePlatforms].
   GamePlatform get platform {
     final value = _userSettingsBox.get(SettingsKeys.platformKey) as String?;

@@ -113,7 +113,7 @@ class CycleCard extends StatelessWidget {
                 ),
                 name: 'Duviri Cycle',
                 expiry: duviriCycle?.expiry,
-              )
+              ),
             ],
           ),
         );

@@ -53,7 +53,7 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
             ),
             BlocProvider(
               create: (_) => UserSettingsCubit(settings: usersettings),
-            )
+            ),
           ],
           child: await builder(),
         ),
