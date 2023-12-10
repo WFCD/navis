@@ -47,9 +47,9 @@ class _TraderDetails extends StatelessWidget {
         };
 
         final isActive = trader?.active ?? false;
-
-        final date =
-            isActive ? trader?.expiry ?? now : trader?.activation ?? now;
+        final date = MaterialLocalizations.of(context).formatFullDate(
+          isActive ? trader?.expiry ?? now : trader?.activation ?? now,
+        );
 
         final status = isActive ? l10n.baroLeavesOn : l10n.baroArrivesOn;
         final title = '${l10n.baroTitle} '
