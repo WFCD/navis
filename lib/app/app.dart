@@ -124,6 +124,14 @@ class _NavisAppState extends State<NavisApp> with WidgetsBindingObserver {
   }
 
   @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+
+    BlocProvider.of<SolsystemCubit>(context)
+        .fetchWorldstate(context.locale, forceUpdate: true);
+  }
+
+  @override
   Widget build(BuildContext context) {
     final settings = context.watch<UserSettingsCubit>().state;
 

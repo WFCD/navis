@@ -10,12 +10,18 @@ import 'package:warframestat_client/warframestat_client.dart';
 class EventCard extends StatelessWidget {
   const EventCard({super.key});
 
-  bool _buildWhen(SolsystemState p, SolsystemState n) {
-    if (p is SolState && n is SolState) {
-      return p.worldstate.events.equals(n.worldstate.events);
-    }
+  bool _buildWhen(SolsystemState previous, SolsystemState next) {
+    final previousWorldEvents = switch (previous) {
+      SolState() => previous.worldstate.events,
+      _ => <WorldEvent>[],
+    };
 
-    return false;
+    final nextWorldEvents = switch (next) {
+      SolState() => next.worldstate.events,
+      _ => <WorldEvent>[],
+    };
+
+    return !previousWorldEvents.equals(nextWorldEvents);
   }
 
   @override
@@ -24,8 +30,11 @@ class EventCard extends StatelessWidget {
       child: BlocBuilder<SolsystemCubit, SolsystemState>(
         buildWhen: _buildWhen,
         builder: (context, state) {
-          final events =
-              state is SolState ? state.worldstate.events : <WorldEvent>[];
+          final events = switch (state) {
+            SolState() => state.worldstate.events,
+            _ => <WorldEvent>[],
+          };
+          ;
 
           return Column(
             children: <Widget>[

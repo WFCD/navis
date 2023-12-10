@@ -7,23 +7,36 @@ import 'package:navis_ui/navis_ui.dart';
 class ArchonHuntCard extends StatelessWidget {
   const ArchonHuntCard({super.key});
 
+  bool _buildWhen(SolsystemState previous, SolsystemState next) {
+    final previousArchonHunt = switch (previous) {
+      SolState() => previous.worldstate.archonHunt,
+      _ => null,
+    };
+
+    final nextArchonHunt = switch (next) {
+      SolState() => next.worldstate.archonHunt,
+      _ => null,
+    };
+
+    return previousArchonHunt?.expiry != nextArchonHunt?.expiry;
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<SolsystemCubit, SolsystemState>(
-      buildWhen: (p, n) =>
-          (p as SolState).worldstate.sortie.expiry !=
-          (n as SolState).worldstate.sortie.expiry,
+      buildWhen: _buildWhen,
       builder: (context, state) {
-        final archonHunt = (state as SolState).worldstate.archonHunt;
+        final archonHunt = switch (state) {
+          SolState() => state.worldstate.archonHunt,
+          _ => null,
+        };
 
-        // Will default to DateTime.now() under the hood.
-        // ignore: avoid-non-null-assertion
-        final expiry = archonHunt.expiry!;
+        final expiry = archonHunt?.expiry ?? DateTime.now();
 
         return Sortie(
-          faction: archonHunt.factionKey ?? archonHunt.faction,
-          boss: archonHunt.boss,
-          missions: archonHunt.missions,
+          faction: archonHunt?.factionKey ?? archonHunt?.faction ?? '',
+          boss: archonHunt?.boss ?? '',
+          missions: archonHunt?.missions,
           timer: CountdownTimer(
             tooltip: context.l10n.countdownTooltip(expiry),
             expiry: expiry,

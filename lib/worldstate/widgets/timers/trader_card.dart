@@ -10,54 +10,67 @@ class TraderCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return Theme(
+      data: NavisThemes.dark,
+      child: const AppCard(
+        padding: EdgeInsets.zero,
+        color: Color(0xFF82598b),
+        child: SizedBox(
+          height: 150,
+          child: ImageContainer(
+            imageProvider: AssetImage(
+              'assets/baro_banner.webp',
+              package: 'navis_ui',
+            ),
+            padding: EdgeInsets.zero,
+            child: _TraderDetails(),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _TraderDetails extends StatelessWidget {
+  const _TraderDetails();
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = context.l10n;
+
     return BlocBuilder<SolsystemCubit, SolsystemState>(
       builder: (context, state) {
-        final trader = (state as SolState).worldstate.voidTrader;
-        final l10n = context.l10n;
+        final now = DateTime.now();
+        final trader = switch (state) {
+          SolState() => state.worldstate.voidTrader,
+          _ => null,
+        };
 
-        final date = MaterialLocalizations.of(context).formatFullDate(
-          trader.active
-              ? trader.expiry ?? DateTime.now()
-              : trader.activation ?? DateTime.now(),
-        );
-        final status = trader.active ? l10n.baroLeavesOn : l10n.baroArrivesOn;
-        final title =
-            '${l10n.baroTitle} ${trader.active ? '| ${trader.location}' : ''}';
+        final isActive = trader?.active ?? false;
+
+        final date =
+            isActive ? trader?.expiry ?? now : trader?.activation ?? now;
+
+        final status = isActive ? l10n.baroLeavesOn : l10n.baroArrivesOn;
+        final title = '${l10n.baroTitle} '
+            '${isActive ? '| ${trader?.location ?? ''}' : ''}';
 
         return InkWell(
-          onTap: trader.active
+          onTap: isActive
               ? () => Navigator.of(context)
-                  .pushNamed(BaroInventory.route, arguments: trader.inventory)
+                  .pushNamed(BaroInventory.route, arguments: trader?.inventory)
               : null,
-          child: Theme(
-            data: NavisThemes.dark,
-            child: AppCard(
-              padding: EdgeInsets.zero,
+          child: ListTile(
+            title: Text(title),
+            subtitle: Text(
+              '$status $date',
+            ),
+            trailing: CountdownTimer(
+              tooltip: l10n.countdownTooltip(date),
               color: const Color(0xFF82598b),
-              child: SizedBox(
-                height: 150,
-                child: ImageContainer(
-                  imageProvider: const AssetImage(
-                    'assets/baro_banner.webp',
-                    package: 'navis_ui',
-                  ),
-                  padding: EdgeInsets.zero,
-                  child: ListTile(
-                    title: Text(title),
-                    subtitle: Text(
-                      '$status $date',
-                    ),
-                    trailing: CountdownTimer(
-                      tooltip: l10n.countdownTooltip(date),
-                      color: const Color(0xFF82598b),
-                      // Will default to DateTime.now() under the hood.
-                      // ignore: avoid-non-null-assertion
-                      expiry:
-                          trader.active ? trader.expiry! : trader.activation!,
-                    ),
-                  ),
-                ),
-              ),
+              // Will default to DateTime.now() under the hood.
+              // ignore: avoid-non-null-assertion
+              expiry: (isActive ? trader?.expiry : trader?.activation) ?? now,
             ),
           ),
         );

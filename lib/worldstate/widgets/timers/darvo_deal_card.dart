@@ -13,10 +13,18 @@ import 'package:warframestat_client/warframestat_client.dart';
 class DarvoDealCard extends StatelessWidget {
   const DarvoDealCard({super.key});
 
-  bool _buildWhen(SolsystemState previous, SolsystemState current) {
-    if (previous is! SolState || current is! SolState) return true;
+  bool _buildWhen(SolsystemState previous, SolsystemState next) {
+    final previousDailyDeals = switch (previous) {
+      SolState() => previous.worldstate.dailyDeals,
+      _ => <DailyDeal>[],
+    };
 
-    return previous.worldstate.dailyDeals.equals(current.worldstate.dailyDeals);
+    final nextDailyDeals = switch (next) {
+      SolState() => next.worldstate.dailyDeals,
+      _ => <DailyDeal>[],
+    };
+
+    return !previousDailyDeals.equals(nextDailyDeals);
   }
 
   @override
@@ -24,13 +32,24 @@ class DarvoDealCard extends StatelessWidget {
     return BlocBuilder<SolsystemCubit, SolsystemState>(
       buildWhen: _buildWhen,
       builder: (context, state) {
-        final deal = (state as SolState).worldstate.dailyDeals.first;
-        final stock = deal.total - deal.sold;
+        final deal = switch (state) {
+          SolState() => state.worldstate.dailyDeals.first,
+          _ => null,
+        };
+
+        final int stock;
+        if (deal != null) {
+          stock = deal.total - deal.sold;
+        } else {
+          stock = 0;
+        }
+
         final inStock = stock != 0;
+        final expiry = deal?.expiry ?? DateTime.now();
 
         return ClipRRect(
           child: Banner(
-            message: context.l10n.discountTitle(deal.discount),
+            message: context.l10n.discountTitle(deal?.discount ?? 0),
             location: BannerLocation.topStart,
             child: AppCard(
               padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
@@ -43,8 +62,8 @@ class DarvoDealCard extends StatelessWidget {
                       SizedBoxSpacer.spacerWidth16,
                       CountdownTimer(
                         tooltip: context.materialLocalizations
-                            .formatFullDate(deal.expiry!),
-                        expiry: deal.expiry!,
+                            .formatFullDate(expiry),
+                        expiry: expiry,
                         padding: const EdgeInsets.symmetric(horizontal: 4),
                         margin: EdgeInsets.zero,
                       ),
@@ -58,7 +77,7 @@ class DarvoDealCard extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(horizontal: 4),
                     margin: const EdgeInsets.only(top: 10),
                   ),
-                  _DealWidget(deal: deal),
+                  if (deal != null) _DealWidget(deal: deal),
                 ],
               ),
             ),

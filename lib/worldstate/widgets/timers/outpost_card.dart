@@ -7,13 +7,18 @@ import 'package:navis_ui/navis_ui.dart';
 class SentientOutpostCard extends StatelessWidget {
   const SentientOutpostCard({super.key});
 
-  bool _buildWhen(SolsystemState p, SolsystemState n) {
-    if (p is SolState && n is SolState) {
-      return p.worldstate.sentientOutposts?.expiry !=
-          n.worldstate.sentientOutposts?.expiry;
-    }
+  bool _buildWhen(SolsystemState previous, SolsystemState next) {
+    final previousOutpost = switch (previous) {
+      SolState() => previous.worldstate.sentientOutposts,
+      _ => null,
+    };
 
-    return false;
+    final nextOutpost = switch (next) {
+      SolState() => next.worldstate.sentientOutposts,
+      _ => null,
+    };
+
+    return previousOutpost?.mission?.node != nextOutpost?.mission?.node;
   }
 
   @override
@@ -22,15 +27,19 @@ class SentientOutpostCard extends StatelessWidget {
       child: BlocBuilder<SolsystemCubit, SolsystemState>(
         buildWhen: _buildWhen,
         builder: (context, state) {
-          final outpost = (state as SolState).worldstate.sentientOutposts;
-          final mission = outpost?.mission;
+          final outpost = switch (state) {
+            SolState() => state.worldstate.sentientOutposts,
+            _ => null,
+          };
 
+          final mission = outpost?.mission;
           final expiry = outpost?.expiry ?? DateTime.now();
 
           return ListTile(
             leading: const Icon(GenesisAssets.sentient, size: 40),
             title: Text(mission?.node ?? ''),
-            subtitle: Text('${mission?.faction} | ${mission?.type}'),
+            subtitle:
+                Text('${mission?.faction ?? ''} | ${mission?.type ?? ''}'),
             trailing: CountdownTimer(
               tooltip: context.l10n.countdownTooltip(expiry),
               expiry: expiry,

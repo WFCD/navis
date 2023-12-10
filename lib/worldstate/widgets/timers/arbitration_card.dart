@@ -12,10 +12,11 @@ class ArbitrationCard extends StatelessWidget {
     return AppCard(
       child: BlocBuilder<SolsystemCubit, SolsystemState>(
         builder: (context, state) {
-          final arbitration =
-              // Already being checked for null.
-              // ignore: avoid-non-null-assertion
-              state is SolState ? state.worldstate.arbitration! : null;
+          final arbitration = switch (state) {
+            SolState() => state.worldstate.arbitration,
+            _ => null
+          };
+
           final expiry = arbitration?.expiry ?? DateTime.now().add(kDelayLong);
 
           return ListTile(

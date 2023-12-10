@@ -7,63 +7,32 @@ import 'package:navis/worldstate/cubits/solsystem_cubit.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:warframestat_client/warframestat_client.dart';
 
+const double _iconSize = 28;
+
 class CycleCard extends StatelessWidget {
   const CycleCard({super.key});
 
-  List<CycleEntry> _buildCycles(
-    BuildContext context,
-    NavisLocalizations locale,
-    Worldstate worldstate,
-  ) {
-    const size = 28.0;
+  Widget _earthStateIcon(EarthState state) {
+    return switch (state) {
+      EarthState.day =>
+        const Icon(Icons.brightness_7, color: Colors.amber, size: _iconSize),
+      EarthState.night =>
+        const Icon(Icons.brightness_3, color: Colors.blue, size: _iconSize),
+    };
+  }
 
-    const solCycle = <Icon>[
-      Icon(Icons.brightness_7, color: Colors.amber, size: size),
-      Icon(Icons.brightness_3, color: Colors.blue, size: size),
-    ];
+  Widget _vallisStateIcon(VallisState state) {
+    return switch (state) {
+      VallisState.cold =>
+        const Icon(Icons.ac_unit, color: Colors.blue, size: _iconSize),
+      VallisState.warm =>
+        const Icon(Icons.sunny, color: Colors.red, size: _iconSize),
+    };
+  }
 
-    const tempCycle = <Icon>[
-      Icon(Icons.sunny, color: Colors.red, size: size),
-      Icon(Icons.ac_unit, color: Colors.blue, size: size),
-    ];
-
-    final cambionCycle = <Widget>[
-      ColoredContainer.text(text: 'Fass'),
-      ColoredContainer.text(text: 'Vome'),
-    ];
-
-    const zarimanCycle = <Widget>[
-      FactionIcon(name: 'Corpus'),
-      FactionIcon(name: 'Grineer'),
-    ];
-
-    return <CycleEntry>[
-      CycleEntry(
-        name: locale.earthCycleTitle,
-        states: solCycle,
-        cycle: worldstate.earthCycle,
-      ),
-      CycleEntry(
-        name: locale.cetusCycleTitle,
-        states: solCycle,
-        cycle: worldstate.cetusCycle,
-      ),
-      CycleEntry(
-        name: locale.vallisCycleTitle,
-        states: tempCycle,
-        cycle: worldstate.vallisCycle,
-      ),
-      CycleEntry(
-        name: locale.cambionCycleTitle,
-        states: cambionCycle,
-        cycle: worldstate.cetusCycle,
-      ),
-      CycleEntry(
-        name: locale.zarimanCycleTitle,
-        cycle: worldstate.zarimanCycle,
-        states: zarimanCycle,
-      ),
-    ];
+  // Keep the function in case there's ever an icon for Fass and Vome.
+  Widget _cambionStateIcon(CambionState state) {
+    return ColoredContainer.text(text: toBeginningOfSentenceCase(state.name)!);
   }
 
   bool _buildWhen(SolsystemState previous, SolsystemState next) {
@@ -88,36 +57,63 @@ class CycleCard extends StatelessWidget {
     return BlocBuilder<SolsystemCubit, SolsystemState>(
       buildWhen: _buildWhen,
       builder: (context, state) {
-        final worldstate = (state as SolState).worldstate;
-        final cycles = _buildCycles(context, context.l10n, worldstate);
-        final duviriCycle = worldstate.duviriCycle;
+        final locale = context.l10n;
+        final worldstate = switch (state) {
+          SolState() => state.worldstate,
+          _ => null,
+        };
+
+        final earthCycle = worldstate?.earthCycle;
+        final cetusCycle = worldstate?.cetusCycle;
+        final vallisCycle = worldstate?.vallisCycle;
+        final cambionCycle = worldstate?.cambionCycle;
+        final zarimanCycle = worldstate?.zarimanCycle;
+        final duviriCycle = worldstate?.duviriCycle;
 
         return AppCard(
           child: Column(
             children: <Widget>[
-              for (final cycle in cycles) _CycleWidget(entry: cycle),
-              ListTile(
-                title: Text(
-                  'Duviri Cycle',
-                  style: context.textTheme.titleMedium
-                      ?.copyWith(fontWeight: FontWeight.w600),
-                ),
-                trailing: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: <Widget>[
-                    ColoredContainer.text(
-                      text: toBeginningOfSentenceCase(duviriCycle.state) ??
-                          duviriCycle.state,
-                    ),
-                    SizedBoxSpacer.spacerWidth6,
-                    CountdownTimer(
-                      tooltip:
-                          context.l10n.countdownTooltip(duviriCycle.expiry!),
-                      expiry: duviriCycle.expiry!,
-                    ),
-                  ],
-                ),
+              _CycleRow(
+                currentState:
+                    _earthStateIcon(earthCycle?.state ?? EarthState.day),
+                name: locale.earthCycleTitle,
+                expiry: earthCycle?.expiry,
               ),
+              _CycleRow(
+                currentState:
+                    _earthStateIcon(cetusCycle?.state ?? EarthState.day),
+                name: locale.cetusCycleTitle,
+                expiry: cetusCycle?.expiry,
+              ),
+              _CycleRow(
+                currentState:
+                    _vallisStateIcon(vallisCycle?.state ?? VallisState.warm),
+                name: locale.vallisCycleTitle,
+                expiry: vallisCycle?.expiry,
+              ),
+              _CycleRow(
+                currentState:
+                    _cambionStateIcon(cambionCycle?.state ?? CambionState.fass),
+                name: locale.cambionCycleTitle,
+                expiry: cambionCycle?.expiry,
+              ),
+              _CycleRow(
+                currentState: FactionIcon(
+                  name: zarimanCycle?.state.name ?? ZarimanState.corpus.name,
+                  iconSize: _iconSize,
+                ),
+                name: locale.zarimanCycleTitle,
+                expiry: zarimanCycle?.expiry,
+              ),
+              _CycleRow(
+                currentState: ColoredContainer.text(
+                  text: toBeginningOfSentenceCase(
+                    duviriCycle?.state.name ?? DuviriState.anger.name,
+                  )!,
+                ),
+                name: 'Duviri Cycle',
+                expiry: duviriCycle?.expiry,
+              )
             ],
           ),
         );
@@ -126,40 +122,31 @@ class CycleCard extends StatelessWidget {
   }
 }
 
-class CycleEntry {
-  const CycleEntry({
-    required this.states,
+class _CycleRow extends StatelessWidget {
+  const _CycleRow({
+    required this.currentState,
     required this.name,
-    required this.cycle,
+    required this.expiry,
   });
 
-  final List<Widget> states;
+  final Widget currentState;
   final String name;
-  final CycleObject cycle;
-}
-
-class _CycleWidget extends StatelessWidget {
-  const _CycleWidget({required this.entry});
-
-  final CycleEntry entry;
+  final DateTime? expiry;
 
   @override
   Widget build(BuildContext context) {
-    // Will default to DateTime.now() under the hood.
-    // ignore: avoid-non-null-assertion
-    final expiry = entry.cycle.expiry!;
+    final expiry = this.expiry ?? DateTime.now();
 
     return ListTile(
-      key: ValueKey(entry.name),
       title: Text(
-        entry.name,
+        name,
         style: context.textTheme.titleMedium
             ?.copyWith(fontWeight: FontWeight.w600),
       ),
       trailing: Row(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          if (entry.cycle.stateBool) entry.states.first else entry.states[1],
+          currentState,
           SizedBoxSpacer.spacerWidth6,
           CountdownTimer(
             tooltip: context.l10n.countdownTooltip(expiry),

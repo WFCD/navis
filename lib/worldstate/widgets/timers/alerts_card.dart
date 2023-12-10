@@ -13,7 +13,10 @@ class AlertsCard extends StatelessWidget {
     return AppCard(
       child: BlocBuilder<SolsystemCubit, SolsystemState>(
         builder: (context, state) {
-          final alerts = (state as SolState).worldstate.alerts;
+          final alerts = switch (state) {
+            SolState() => state.worldstate.alerts,
+            _ => <Alert>[],
+          };
 
           return Column(
             children: alerts.map((a) => _AlertWidget(alert: a)).toList(),

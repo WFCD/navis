@@ -19,44 +19,33 @@ class Timers extends StatelessWidget {
 class _MobileTimers extends StatelessWidget {
   const _MobileTimers();
 
-  bool _buildWhen(SolsystemState p, SolsystemState n) {
-    if (p is SolState && n is SolState) {
-      final previous = p;
-      final next = n;
-
-      return previous.eventsActive != next.eventsActive ||
-          previous.arbitrationActive != next.arbitrationActive ||
-          // previous.outpostDetected != next.outpostDetected ||
-          previous.activeAlerts != next.activeAlerts ||
-          previous.activeSales != next.activeSales;
-    } else if (n is SystemError) {
-      return false;
-    }
-
-    return p is! SolState && n is SolState;
-  }
-
   @override
   Widget build(BuildContext context) {
     const cacheExtent = 500.0;
 
     return BlocBuilder<SolsystemCubit, SolsystemState>(
-      buildWhen: _buildWhen,
       builder: (_, state) {
+        final worldstate = switch (state) {
+          SolState() => state,
+          _ => null,
+        };
+
         return ViewLoading(
-          isLoading: state is! SolState,
+          isLoading: worldstate == null,
           child: ListView(
+            shrinkWrap: true,
             cacheExtent: cacheExtent,
             children: [
               const DailyReward(),
               const TraderCard(),
-              if ((state as SolState).eventsActive) const EventCard(),
-              if (state.arbitrationActive) const ArbitrationCard(),
+              if (worldstate?.eventsActive ?? false) const EventCard(),
+              if (worldstate?.arbitrationActive ?? false)
+                const ArbitrationCard(),
               // if (state.outpostDetected) const SentientOutpostCard(),
               const SteelPathCard(),
-              if (state.activeAlerts) const AlertsCard(),
+              if (worldstate?.activeAlerts ?? false) const AlertsCard(),
               const CycleCard(),
-              if (state.activeSales) const DarvoDealCard(),
+              if (worldstate?.activeSales ?? false) const DarvoDealCard(),
               const ArchonHuntCard(),
               const SortieCard(),
             ],

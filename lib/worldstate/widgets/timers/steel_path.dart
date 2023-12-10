@@ -21,15 +21,16 @@ class SteelPathCard extends StatelessWidget {
       child: BlocBuilder<SolsystemCubit, SolsystemState>(
         buildWhen: _buildWhen,
         builder: (context, state) {
-          final steelPath = (state as SolState).worldstate.steelPath;
+          final steelPath = switch (state) {
+            SolState() => state.worldstate.steelPath,
+            _ => null,
+          };
 
-          // Will default to DateTime.now() under the hood.
-          // ignore: avoid-non-null-assertion
-          final expiry = steelPath.expiry!;
+          final expiry = steelPath?.expiry ?? DateTime.now();
 
           return ListTile(
             title: Text(context.l10n.steelPathTitle),
-            subtitle: Text(steelPath.currentReward.name),
+            subtitle: Text(steelPath?.currentReward.name ?? ''),
             trailing: CountdownTimer(
               tooltip: context.l10n.countdownTooltip(expiry),
               expiry: expiry,

@@ -7,7 +7,7 @@ environment:
   sdk: ">=3.2.0 <4.0.0"
 
 dependencies:
-  firebase_core: ^2.16.0
+  firebase_core: ^2.24.2
   firebase_messaging: ^14.6.8
   flutter:
     sdk: flutter
@@ -15,7 +15,7 @@ dependencies:
   warframestat_client:
     git:
       url: https://github.com/SlayerOrnstein/warframestat_client.git
-      ref: v1.8.0
+      ref: v2.0.0
 
 dev_dependencies:
   flutter_test:

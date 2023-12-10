@@ -46,8 +46,7 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
         child: MultiBlocProvider(
           providers: [
             BlocProvider(
-              create: (context) => SolsystemCubit(worldstateRepo)
-                ..fetchWorldstate(usersettings.language, forceUpdate: true),
+              create: (context) => SolsystemCubit(worldstateRepo),
             ),
             BlocProvider(
               create: (_) => DarvodealCubit(worldstateRepo),
