@@ -12,37 +12,34 @@ class InvasionWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     const decimalPoint = 100;
 
-    return SizedBox(
-      // It's what worked for the style.
-      // ignore: no-magic-number
-      height: 150,
-      child: SkyboxCard(
-        node: invasion.node,
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            const Spacer(),
-            _InvasionDetails(
-              node: invasion.node,
-              description: invasion.desc,
-              eta: invasion.eta,
+    return SkyboxCard(
+      node: invasion.node,
+      height: 170,
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          const Spacer(),
+          _InvasionDetails(
+            node: invasion.node,
+            description: invasion.desc,
+            eta: invasion.eta,
+          ),
+          const Spacer(),
+          InvasionReward(
+            attacker: invasion.attacker,
+            defender: invasion.defender,
+            vsInfestation: invasion.vsInfestation,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 8),
+            child: InvasionProgress(
+              progress: invasion.completion / decimalPoint,
+              attackingFaction: invasion.attacker.factionKey,
+              defendingFaction: invasion.defender.factionKey,
             ),
-            const Spacer(),
-            InvasionReward(
-              attacker: invasion.attacker,
-              defender: invasion.defender,
-              vsInfestation: invasion.vsInfestation,
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 8),
-              child: InvasionProgress(
-                progress: invasion.completion / decimalPoint,
-                attackingFaction: invasion.attacker.factionKey,
-                defendingFaction: invasion.defender.factionKey,
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

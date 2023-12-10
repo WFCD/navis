@@ -48,8 +48,6 @@ class FissureWidget extends StatelessWidget {
         children: <Widget>[
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8),
-            // It's what worked for the style.
-            // ignore: no-magic-number
             child: Icon(icon, size: 40),
           ),
           Expanded(
@@ -60,11 +58,7 @@ class FissureWidget extends StatelessWidget {
             ),
           ),
           CountdownTimer(
-            // Will default to DateTime.now() under the hood.
-            // ignore: avoid-non-null-assertion
             tooltip: context.l10n.countdownTooltip(fissure.expiry!),
-            // Will default to DateTime.now() under the hood.
-            // ignore: avoid-non-null-assertion
             expiry: fissure.expiry!,
           ),
         ],

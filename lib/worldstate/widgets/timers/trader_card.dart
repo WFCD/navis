@@ -12,8 +12,8 @@ class TraderCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Theme(
       data: NavisThemes.dark,
-      child: const AppCard(
-        padding: EdgeInsets.zero,
+      child: const Card(
+        clipBehavior: Clip.antiAlias,
         color: Color(0xFF82598b),
         child: SizedBox(
           height: 150,

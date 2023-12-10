@@ -21,8 +21,9 @@ class SkyboxCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Theme(
       data: NavisThemes.dark,
-      child: AppCard(
-        padding: EdgeInsets.zero,
+      child: Card(
+        clipBehavior: Clip.antiAlias,
+        margin: margin,
         child: SizedBox(
           height: height,
           child: BackgroundImage(
