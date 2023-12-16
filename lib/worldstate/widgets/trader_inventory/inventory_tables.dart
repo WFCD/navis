@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:navis/worldstate/widgets/trader_inventory/inventory.dart';
 import 'package:navis/worldstate/worldstate.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:warframestat_client/warframestat_client.dart';
@@ -49,28 +50,11 @@ class _MobileInventoryDataTable extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: DataTable(
-        columns: _buildDataColumn(context),
-        columnSpacing: 32,
-        dataRowMaxHeight: 52,
-        rows: <DataRow>[
-          for (final product in inventory)
-            DataRow(
-              cells: <DataCell>[
-                DataCell(
-                  Text(
-                    product.item,
-                    softWrap: true,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                ),
-                DataCell(Text('${product.ducats}')),
-                DataCell(Text('${product.credits}cr')),
-              ],
-            ),
-        ],
-      ),
+    return ListView.builder(
+      itemCount: inventory.length,
+      itemBuilder: (context, index) {
+        return TraderItemView(traderItem: inventory[index]);
+      },
     );
   }
 }
