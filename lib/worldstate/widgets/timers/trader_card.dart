@@ -1,38 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/l10n/l10n.dart';
-import 'package:navis/worldstate/cubits/solsystem_cubit.dart';
-import 'package:navis/worldstate/views/trader_inventory.dart';
+import 'package:navis/worldstate/worldstate.dart';
 import 'package:navis_ui/navis_ui.dart';
 
 class TraderCard extends StatelessWidget {
   const TraderCard({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Theme(
-      data: NavisThemes.dark,
-      child: const Card(
-        clipBehavior: Clip.antiAlias,
-        color: Color(0xFF82598b),
-        child: SizedBox(
-          height: 150,
-          child: ImageContainer(
-            imageProvider: AssetImage(
-              'assets/baro_banner.webp',
-              package: 'navis_ui',
-            ),
-            padding: EdgeInsets.zero,
-            child: _TraderDetails(),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class _TraderDetails extends StatelessWidget {
-  const _TraderDetails();
 
   @override
   Widget build(BuildContext context) {
@@ -55,22 +28,43 @@ class _TraderDetails extends StatelessWidget {
         final title = '${l10n.baroTitle} '
             '${isActive ? '| ${trader?.location ?? ''}' : ''}';
 
-        return InkWell(
-          onTap: isActive
-              ? () => Navigator.of(context)
-                  .pushNamed(BaroInventory.route, arguments: trader?.inventory)
-              : null,
-          child: ListTile(
-            title: Text(title),
-            subtitle: Text(
-              '$status $date',
-            ),
-            trailing: CountdownTimer(
-              tooltip: l10n.countdownTooltip(date),
-              color: const Color(0xFF82598b),
-              // Will default to DateTime.now() under the hood.
-              // ignore: avoid-non-null-assertion
-              expiry: (isActive ? trader?.expiry : trader?.activation) ?? now,
+        return Theme(
+          data: NavisThemes.dark,
+          child: Card(
+            clipBehavior: Clip.antiAlias,
+            color: const Color(0xFF82598b),
+            child: InkWell(
+              onTap: isActive
+                  ? () => Navigator.of(context).pushNamed(
+                        BaroInventory.route,
+                        arguments: trader?.inventory,
+                      )
+                  : null,
+              child: SizedBox(
+                height: 150,
+                child: ImageContainer(
+                  imageProvider: const AssetImage(
+                    'assets/baro_banner.webp',
+                    package: 'navis_ui',
+                  ),
+                  padding: EdgeInsets.zero,
+                  child: ListTile(
+                    title: Text(title),
+                    subtitle: Text(
+                      '$status $date',
+                    ),
+                    trailing: CountdownTimer(
+                      tooltip: l10n.countdownTooltip(date),
+                      color: const Color(0xFF82598b),
+                      // Will default to DateTime.now() under the hood.
+                      // ignore: avoid-non-null-assertion
+                      expiry:
+                          (isActive ? trader?.expiry : trader?.activation) ??
+                              now,
+                    ),
+                  ),
+                ),
+              ),
             ),
           ),
         );
