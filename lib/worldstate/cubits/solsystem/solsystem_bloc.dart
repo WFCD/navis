@@ -23,7 +23,10 @@ class SolsystemCubit extends HydratedCubit<SolsystemState> {
   }) async {
     try {
       final state = await repository.getWorldstate(
-        language: Language.values.byName(locale.languageCode),
+        language: Language.values.firstWhere(
+          (e) => e.name == locale.languageCode,
+          orElse: () => Language.en,
+        ),
         forceUpdate: forceUpdate,
       );
 
