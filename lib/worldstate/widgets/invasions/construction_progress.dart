@@ -16,14 +16,16 @@ class ConstructionProgressCard extends StatelessWidget {
           const iconSize = 25.0;
           final textTheme = Theme.of(context).textTheme;
 
-          final constructionProgress =
-              (state as SolState).worldstate.constructionProgress;
+          final constructionProgress = switch (state) {
+            SolState() => state.worldstate.constructionProgress,
+            _ => null
+          };
 
           final razorbackProgress =
-              double.parse(constructionProgress.razorbackProgress)
+              double.parse(constructionProgress?.razorbackProgress ?? '0')
                   .toStringAsFixed(2);
           final fomorianProgress =
-              double.parse(constructionProgress.fomorianProgress)
+              double.parse(constructionProgress?.fomorianProgress ?? '0')
                   .toStringAsFixed(2);
 
           return Padding(
