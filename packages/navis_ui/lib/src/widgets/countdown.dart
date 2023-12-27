@@ -15,7 +15,7 @@ class CountdownTimer extends StatefulWidget {
   }) : super(key: key);
 
   final String tooltip;
-  final DateTime expiry;
+  final DateTime? expiry;
   final Color? color;
   final double? size;
   final TextStyle? style;
@@ -36,10 +36,10 @@ class CountdownTimerState extends State<CountdownTimer>
   Color _warningLevel = Colors.green;
 
   void _setupCountdown() {
-    final expirationDate = widget.expiry.toLocal();
-    final currentTime = DateTime.now();
+    final expirationDate = widget.expiry?.toLocal();
+    final now = DateTime.now();
 
-    _remainingTime = expirationDate.difference(currentTime);
+    _remainingTime = expirationDate?.difference(now) ?? Duration(seconds: 60);
     if (_remainingTime <= Duration.zero) {
       _remainingTime = Duration(seconds: 60);
       _isExpired = true;

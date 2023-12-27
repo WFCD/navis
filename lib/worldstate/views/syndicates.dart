@@ -76,7 +76,7 @@ class _BuildSyndicates extends StatelessWidget {
           message: 'Bounties expire in:',
           // Will default to DateTime.now() under the hood.
           // ignore: avoid-non-null-assertion
-          time: syndicates.first.expiry!,
+          time: syndicates.first.expiry,
         ),
         ...syndicates.map<SyndicateCard>(
           (syn) => SyndicateCard(

@@ -12,7 +12,7 @@ class CountdownBanner extends StatelessWidget {
   });
 
   final String message;
-  final DateTime time;
+  final DateTime? time;
   final Color? color;
   final EdgeInsets margin;
 
@@ -31,9 +31,7 @@ class CountdownBanner extends StatelessWidget {
           style: Theme.of(context).textTheme.titleLarge?.copyWith(fontSize: 16),
         ),
         child: CountdownTimer(
-          tooltip: l10n.countdownTooltip(time),
-          // It's what worked for the style.
-          // ignore: no-magic-number
+          tooltip: l10n.countdownTooltip(time ?? DateTime.now()),
           size: 16,
           expiry: time,
         ),
