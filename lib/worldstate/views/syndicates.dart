@@ -105,7 +105,7 @@ class _BuildNightwave extends StatelessWidget {
           message: 'Season ends in:',
           // Will default to DateTime.now() under the hood.
           // ignore: avoid-non-null-assertion
-          time: nightwave.expiry!,
+          time: nightwave.expiry,
         ),
         SyndicateCard(
           name: 'Nightwave',

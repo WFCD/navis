@@ -74,7 +74,7 @@ class _AlertWidget extends StatelessWidget {
               tooltip: context.l10n.countdownTooltip(alert.expiry!),
               // Will default to DateTime.now() under the hood.
               // ignore: avoid-non-null-assertion
-              expiry: alert.expiry!,
+              expiry: alert.expiry,
             ),
           ),
         ],

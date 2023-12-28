@@ -45,7 +45,7 @@ class NightwaveChallenge extends StatelessWidget {
                   tooltip: l10n.countdownTooltip(challenge.expiry!),
                   // Will default to DateTime.now() under the hood.
                   // ignore: avoid-non-null-assertion
-                  expiry: challenge.expiry!,
+                  expiry: challenge.expiry,
                 ),
               ],
             ),

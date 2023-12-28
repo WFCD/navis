@@ -59,7 +59,7 @@ class FissureWidget extends StatelessWidget {
           ),
           CountdownTimer(
             tooltip: context.l10n.countdownTooltip(fissure.expiry!),
-            expiry: fissure.expiry!,
+            expiry: fissure.expiry,
           ),
         ],
       ),
