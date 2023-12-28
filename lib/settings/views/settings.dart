@@ -122,6 +122,7 @@ class _SettingsView extends StatelessWidget {
               title: const Text('About app'),
               onPressed: (context) => showDialog<void>(
                 context: context,
+                useRootNavigator: false,
                 builder: (context) => AboutApp(l10n: l10n),
               ),
             ),

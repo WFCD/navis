@@ -15,6 +15,7 @@ class FilterDialog extends StatelessWidget {
   ) {
     return showDialog<void>(
       context: context,
+      useRootNavigator: false,
       builder: (_) {
         final notifications =
             RepositoryProvider.of<NotificationRepository>(context);
