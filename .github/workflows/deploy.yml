@@ -5,7 +5,7 @@ on:
       - created
 
 env:
-  FLUTTER_VERSION: stable
+  FLUTTER_VERSION: beta
   NAVIS_SERVICE_ACCOUNT: ${{ secrets.NAVIS_SERVICE_ACCOUNT }}
   FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD: ${{ secrets.FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD }}
   FASTLANE_SESSION: ${{ secrets.FASTLANE_SESSION }}
@@ -131,8 +131,11 @@ jobs:
       - name: Install Flutter SDK
         uses: subosito/flutter-action@v2.11.0
         with:
-          channel: stable
-          architecture: x64
+          channel: ${{ env.FLUTTER_VERSION }}
+          cache: true
+          cache-key: "flutter-:os:-:channel:-:version:-:arch:-:hash:" # optional, change this to force refresh cache
+          cache-path: "${{ runner.tool_cache }}/flutter/:channel:-:version:-:arch:" # optional, change this to specify the cache path
+          architecture: x64 # optional, x64 or arm64
 
       - name: Setup Firebase
         env:
@@ -188,6 +191,7 @@ jobs:
           cache: true
           cache-key: "flutter-:os:-:channel:-:version:-:arch:-:hash:" # optional, change this to force refresh cache
           cache-path: "${{ runner.tool_cache }}/flutter/:channel:-:version:-:arch:" # optional, change this to specify the cache path
+          architecture: x64 # optional, x64 or arm64
 
       - name: Retrieve signing keys
         env:
@@ -270,8 +274,11 @@ jobs:
       - name: Install Flutter SDK
         uses: subosito/flutter-action@v2.11.0
         with:
-          channel: stable
-          architecture: x64
+          channel: ${{ env.FLUTTER_VERSION }}
+          cache: true
+          cache-key: "flutter-:os:-:channel:-:version:-:arch:-:hash:" # optional, change this to force refresh cache
+          cache-path: "${{ runner.tool_cache }}/flutter/:channel:-:version:-:arch:" # optional, change this to specify the cache path
+          architecture: x64 # optional, x64 or arm64
 
       - name: Setup Firebase
         env:
