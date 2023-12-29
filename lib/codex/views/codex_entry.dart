@@ -95,9 +95,10 @@ class _Overview extends StatelessWidget {
                   if (_isMod) ...{
                     ModStats(mod: item as Mod),
                     SizedBoxSpacer.spacerHeight24,
-                    if ((item as Mod).drops != null)
-                      DropLocations(drops: (item as Mod).drops!),
                   },
+                  if (item is DroppableItem &&
+                      (item as DroppableItem).drops != null)
+                    DropLocations(drops: (item as DroppableItem).drops!),
                   if (patchlogs != null) PatchlogCard(patchlogs: patchlogs),
                 ],
               ),
