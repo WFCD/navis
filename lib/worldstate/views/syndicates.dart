@@ -14,18 +14,23 @@ class SyndicatePage extends StatelessWidget {
   const SyndicatePage({super.key});
 
   bool _buildWhen(SolsystemState p, SolsystemState n) {
-    final previous = (p as SolState).worldstate;
-    final next = (n as SolState).worldstate;
+    final previous = switch (p) {
+      SolState() => p.worldstate,
+      _ => null,
+    };
+
+    final next = switch (n) {
+      SolState() => n.worldstate,
+      _ => null,
+    };
+
+    if (previous == null || next == null) return true;
 
     if (previous.nightwave != null || next.nightwave != null) {
       return previous.syndicateMissions.first.expiry !=
               next.syndicateMissions.first.expiry ||
-          // Already being checked for null.
-          // ignore: avoid-non-null-assertion
-          previous.nightwave!.daily.equals(next.nightwave!.daily) ||
-          // Already being checked for null.
-          // ignore: avoid-non-null-assertion
-          previous.nightwave!.weekly.equals(next.nightwave!.weekly);
+          previous.nightwave!.activeChallenges
+              .equals(next.nightwave!.activeChallenges);
     }
 
     return previous.syndicateMissions.first.expiry !=
@@ -63,10 +68,10 @@ class SyndicatePage extends StatelessWidget {
 }
 
 class _BuildSyndicates extends StatelessWidget {
-  const _BuildSyndicates({required this.syndicates, this.onTap});
+  const _BuildSyndicates({required this.syndicates, required this.onTap});
 
   final List<SyndicateMission> syndicates;
-  final void Function(SyndicateMission)? onTap;
+  final void Function(SyndicateMission) onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -74,16 +79,12 @@ class _BuildSyndicates extends StatelessWidget {
       children: <Widget>[
         CountdownBanner(
           message: 'Bounties expire in:',
-          // Will default to DateTime.now() under the hood.
-          // ignore: avoid-non-null-assertion
           time: syndicates.first.expiry,
         ),
         ...syndicates.map<SyndicateCard>(
           (syn) => SyndicateCard(
             syndicate: syn,
-            // Already being checked for null.
-            // ignore: avoid-non-null-assertion
-            onTap: onTap != null ? () => onTap!.call(syn) : null,
+            onTap: () => onTap(syn),
           ),
         ),
       ],
@@ -92,10 +93,10 @@ class _BuildSyndicates extends StatelessWidget {
 }
 
 class _BuildNightwave extends StatelessWidget {
-  const _BuildNightwave({required this.nightwave, this.onTap});
+  const _BuildNightwave({required this.nightwave, required this.onTap});
 
   final Nightwave nightwave;
-  final void Function(Nightwave)? onTap;
+  final void Function() onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -111,9 +112,7 @@ class _BuildNightwave extends StatelessWidget {
           name: 'Nightwave',
           caption: 'Season ${nightwave.season}',
           nightwave: nightwave,
-          // Already being checked for null.
-          // ignore: avoid-non-null-assertion
-          onTap: onTap != null ? () => onTap!.call(nightwave) : null,
+          onTap: onTap,
         ),
       ],
     );
@@ -130,9 +129,21 @@ class _SyndicatePageMobile extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView(
       children: <Widget>[
-        _BuildSyndicates(syndicates: syndicates),
+        _BuildSyndicates(
+          syndicates: syndicates,
+          onTap: (s) {
+            Navigator.of(context).pushNamed(BountiesPage.route, arguments: s);
+          },
+        ),
         SizedBoxSpacer.spacerHeight8,
-        if (nightwave != null) _BuildNightwave(nightwave: nightwave!),
+        if (nightwave != null)
+          _BuildNightwave(
+            nightwave: nightwave!,
+            onTap: () {
+              Navigator.of(context)
+                  .pushNamed(NightwavesPage.route, arguments: nightwave);
+            },
+          ),
       ],
     );
   }
@@ -157,17 +168,6 @@ class _SyndicatePageTabletState extends State<_SyndicatePageTablet> {
     _controller = StreamController<Widget>();
   }
 
-  void _onTap(WorldstateObject object) {
-    if (object is SyndicateMission) {
-      _controller?.sink.add(SyndicateBounties(syndicate: object));
-    } else {
-      // Since the widget itself isn't visible when nightwave are inactive it
-      // seems alright to force this.
-      // ignore: avoid-non-null-assertion
-      _controller?.sink.add(NightwaveChalleneges(nightwave: widget.nightwave!));
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -179,11 +179,23 @@ class _SyndicatePageTabletState extends State<_SyndicatePageTablet> {
             padding: const EdgeInsets.symmetric(horizontal: 4),
             child: ListView(
               children: <Widget>[
-                _BuildSyndicates(syndicates: widget.syndicates, onTap: _onTap),
+                _BuildSyndicates(
+                  syndicates: widget.syndicates,
+                  onTap: (s) {
+                    _controller?.sink.add(SyndicateBounties(syndicate: s));
+                  },
+                ),
                 SizedBoxSpacer.spacerHeight8,
                 if (widget.nightwave != null)
                   // Already being checked for null.
-                  _BuildNightwave(nightwave: widget.nightwave!, onTap: _onTap),
+                  _BuildNightwave(
+                    nightwave: widget.nightwave!,
+                    onTap: () {
+                      _controller?.sink.add(
+                        NightwaveChalleneges(nightwave: widget.nightwave!),
+                      );
+                    },
+                  ),
               ],
             ),
           ),

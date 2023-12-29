@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:navis/l10n/l10n.dart';
-import 'package:navis/worldstate/worldstate.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:warframestat_client/warframestat_client.dart';
@@ -27,17 +26,6 @@ class SyndicateCard extends StatelessWidget {
 
   final void Function()? onTap;
 
-  void _onTap(BuildContext context) {
-    final syndicateEnum = syndicateStringToEnum(syndicate?.id ?? name ?? '');
-
-    if (syndicateEnum == Syndicates.nightwave) {
-      Navigator.of(context)
-          .pushNamed(NightwavesPage.route, arguments: nightwave);
-    } else {
-      Navigator.of(context).pushNamed(BountiesPage.route, arguments: syndicate);
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
@@ -53,7 +41,7 @@ class SyndicateCard extends StatelessWidget {
     return ResponsiveBuilder(
       builder: (BuildContext context, SizingInformation sizing) {
         return InkWell(
-          onTap: onTap ?? () => _onTap(context),
+          onTap: onTap,
           customBorder: const RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(4)),
           ),
