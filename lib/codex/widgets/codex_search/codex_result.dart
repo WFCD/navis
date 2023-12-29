@@ -39,7 +39,7 @@ class CodexResult extends StatelessWidget {
             backgroundColor: Theme.of(context).canvasColor,
           ),
         ),
-        title: Text(item.name),
+        title: Text(item.name.parseHtmlString()),
         subtitle: Text(
           description?.trim() ?? item.description?.parseHtmlString() ?? '',
           maxLines: 2,
