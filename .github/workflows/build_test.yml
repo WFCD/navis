@@ -50,7 +50,7 @@ jobs:
         run: flutter build apk --flavor dev -t lib/main_dev.dart --split-per-abi
 
       - name: Uploade artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: android-test-artifacts
           path: "build/app/outputs/flutter-apk/app-*-dev-release.apk"
@@ -112,7 +112,7 @@ jobs:
         run: flutter build ipa -t lib/main_dev.dart --export-options-plist=ios/ExportOptions.plist
 
       - name: Uploade artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: ios-test-artifact
           path: "build/ios/ipa/*.ipa"
