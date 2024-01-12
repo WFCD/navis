@@ -33,7 +33,7 @@ dependencies:
   notification_repository:
     path: packages/notification_repository
   package_info_plus: ^5.0.1
-  path_provider: ^2.1.1
+  path_provider: ^2.1.2
   provider: ^6.1.1
   responsive_builder: ^0.7.0
   rxdart: ^0.27.7
