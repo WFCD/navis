@@ -137,6 +137,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.18.0"
+  compute:
+    dependency: transitive
+    description:
+      name: compute
+      sha256: b70190d59352a267a9765a77b97d0f619874c84d30c5193ae71050ee22ab2ef7
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.2"
   convert:
     dependency: transitive
     description:
@@ -1108,11 +1116,11 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: "v2.0.1"
-      resolved-ref: "78a3fb4851a4af4a486f64f9324c256b49177daf"
+      ref: "v2.1.0"
+      resolved-ref: d8a87cb98463448fe0bc142e1c49a7809c4fc65e
       url: "https://github.com/SlayerOrnstein/warframestat_client.git"
     source: git
-    version: "2.0.1"
+    version: "2.1.0"
   watcher:
     dependency: transitive
     description:
