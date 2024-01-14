@@ -3,6 +3,7 @@
 import 'package:black_hole_flutter/black_hole_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 import 'package:navis/codex/bloc/search_bloc.dart';
 import 'package:navis/codex/utils/result_filters.dart';
 
@@ -46,12 +47,12 @@ class _CodexTextEditiorState extends State<CodexTextEditior> {
     _searchBloc.add(const SearchCodex(''));
   }
 
-  List<PopupMenuEntry<FilterCategory>> _itemBuilder() {
-    return FilterCategories.categories
+  List<PopupMenuEntry<WarframeItemCategory>> _itemBuilder() {
+    return WarframeItemCategory.values
         .map(
-          (e) => PopupMenuItem<FilterCategory>(
+          (e) => PopupMenuItem<WarframeItemCategory>(
             value: e,
-            child: Text(e.category),
+            child: Text(toBeginningOfSentenceCase(e.name, 'en')!),
           ),
         )
         .toList();
@@ -87,7 +88,7 @@ class _CodexTextEditiorState extends State<CodexTextEditior> {
               ),
             ),
             if (state is CodexSuccessfulSearch)
-              PopupMenuButton<FilterCategory>(
+              PopupMenuButton<WarframeItemCategory>(
                 icon: const Icon(Icons.filter_list),
                 itemBuilder: (_) => _itemBuilder(),
                 onSelected: (s) =>

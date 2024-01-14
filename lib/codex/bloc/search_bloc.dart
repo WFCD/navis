@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:io';
 
 import 'package:bloc/bloc.dart';
 import 'package:navis/codex/bloc/search_event.dart';
@@ -38,12 +37,14 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
       try {
         _results = await repository.searchItems(text);
         emit(CodexSuccessfulSearch(_results));
-      } catch (e) {
+      } catch (error, stackTrace) {
+        await Sentry.captureException(
+          error,
+          stackTrace: stackTrace,
+          hint: Hint.withMap({'query': event.text}),
+        );
+
         emit(const CodexSearchError('Unknown Error occuroed'));
-
-        if (e is SocketException) return;
-
-        rethrow;
       }
     }
   }
@@ -55,15 +56,13 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
     emit(CodexSearching());
 
     final originalResults = List<Item>.from(_results);
-    if (FilterCategories.categories.contains(event.category)) {
-      if (event.category == FilterCategories.all) {
-        return emit(CodexSuccessfulSearch(originalResults));
-      } else {
-        final results = List<Item>.from(originalResults)
-          ..retainWhere((e) => e.category == event.category.category);
+    if (event.category == WarframeItemCategory.all) {
+      return emit(CodexSuccessfulSearch(originalResults));
+    } else {
+      final results = List<Item>.from(originalResults)
+        ..retainWhere((e) => e.category.toLowerCase() == event.category.name);
 
-        emit(CodexSuccessfulSearch(results));
-      }
+      emit(CodexSuccessfulSearch(results));
     }
   }
 
@@ -71,20 +70,5 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
     return (event, mapper) {
       return event.debounceTime(kAnimationLong).distinct().flatMap(mapper);
     };
-  }
-
-  @override
-  void onEvent(SearchEvent event) {
-    if (event is SearchCodex) {
-      final crumb = Breadcrumb(
-        type: 'codex',
-        category: 'codex.search',
-        data: {'query': event.text},
-      );
-
-      Sentry.addBreadcrumb(crumb);
-    }
-
-    super.onEvent(event);
   }
 }

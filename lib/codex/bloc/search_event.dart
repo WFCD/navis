@@ -17,7 +17,7 @@ class SearchCodex extends SearchEvent {
 class FilterResults extends SearchEvent {
   const FilterResults(this.category);
 
-  final FilterCategory category;
+  final WarframeItemCategory category;
 
   @override
   List<Object?> get props => [category];
