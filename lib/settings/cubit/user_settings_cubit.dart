@@ -8,7 +8,7 @@ import 'package:warframestat_client/warframestat_client.dart';
 part 'user_settings_state.dart';
 
 class UserSettingsCubit extends Cubit<UserSettingsState> {
-  UserSettingsCubit({required UserSettings settings})
+  UserSettingsCubit(UserSettings settings)
       : _settings = settings,
         super(UserSettingsInitial()) {
     _initSettings();
