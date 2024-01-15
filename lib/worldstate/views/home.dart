@@ -2,7 +2,7 @@ import 'package:black_hole_flutter/black_hole_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/l10n/l10n.dart';
-import 'package:navis/worldstate/cubits/solsystem_cubit.dart';
+import 'package:navis/worldstate/cubits/worldstate_cubit.dart';
 import 'package:navis/worldstate/views/fissures.dart';
 import 'package:navis/worldstate/views/invasions.dart';
 import 'package:navis/worldstate/views/syndicates.dart';
@@ -30,10 +30,10 @@ class FeedView extends StatelessWidget {
   }
 
   void listener(BuildContext context, SolsystemState state) {
-    if (state is SystemError) {
+    if (state is WorldstateFailure) {
       ScaffoldMessenger.of(context)
           .showSnackBar(SnackBar(content: Text(state.message)));
-    } else if (state is SolState) {
+    } else if (state is WorldstateSuccess) {
       final now = DateTime.now();
       final timestamp = state.worldstate.timestamp;
 
@@ -65,7 +65,7 @@ class FeedView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<SolsystemCubit, SolsystemState>(
+    return BlocListener<WorldstateCubit, SolsystemState>(
       listener: listener,
       child: DefaultTabController(
         length: Tabs.values.length,
@@ -102,7 +102,7 @@ class _TabView extends StatelessWidget {
               ),
               SliverFillRemaining(
                 child: RefreshIndicator(
-                  onRefresh: () => BlocProvider.of<SolsystemCubit>(context)
+                  onRefresh: () => BlocProvider.of<WorldstateCubit>(context)
                       .fetchWorldstate(context.locale, forceUpdate: true),
                   child: () {
                     switch (tab) {

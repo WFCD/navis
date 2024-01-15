@@ -11,11 +11,11 @@ class TraderCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
 
-    return BlocBuilder<SolsystemCubit, SolsystemState>(
+    return BlocBuilder<WorldstateCubit, SolsystemState>(
       builder: (context, state) {
         final now = DateTime.now();
         final trader = switch (state) {
-          SolState() => state.worldstate.voidTrader,
+          WorldstateSuccess() => state.worldstate.voidTrader,
           _ => null,
         };
 

@@ -2,7 +2,7 @@ import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/l10n/l10n.dart';
-import 'package:navis/worldstate/cubits/solsystem_cubit.dart';
+import 'package:navis/worldstate/cubits/worldstate_cubit.dart';
 import 'package:navis/worldstate/views/event.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:warframestat_client/warframestat_client.dart';
@@ -12,12 +12,12 @@ class EventCard extends StatelessWidget {
 
   bool _buildWhen(SolsystemState previous, SolsystemState next) {
     final previousWorldEvents = switch (previous) {
-      SolState() => previous.worldstate.events,
+      WorldstateSuccess() => previous.worldstate.events,
       _ => <WorldEvent>[],
     };
 
     final nextWorldEvents = switch (next) {
-      SolState() => next.worldstate.events,
+      WorldstateSuccess() => next.worldstate.events,
       _ => <WorldEvent>[],
     };
 
@@ -27,11 +27,11 @@ class EventCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppCard(
-      child: BlocBuilder<SolsystemCubit, SolsystemState>(
+      child: BlocBuilder<WorldstateCubit, SolsystemState>(
         buildWhen: _buildWhen,
         builder: (context, state) {
           final events = switch (state) {
-            SolState() => state.worldstate.events,
+            WorldstateSuccess() => state.worldstate.events,
             _ => <WorldEvent>[],
           };
 

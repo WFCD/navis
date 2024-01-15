@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis/settings/settings.dart';
-import 'package:navis/worldstate/cubits/solsystem_cubit.dart';
+import 'package:navis/worldstate/worldstate.dart';
 import 'package:navis_ui/navis_ui.dart';
 
 class LanguagePicker extends StatelessWidget {
@@ -13,7 +13,7 @@ class LanguagePicker extends StatelessWidget {
     return showDialog<void>(
       context: context,
       builder: (_) {
-        final ws = BlocProvider.of<SolsystemCubit>(context);
+        final ws = BlocProvider.of<WorldstateCubit>(context);
         final us = BlocProvider.of<UserSettingsCubit>(context);
 
         return MultiBlocProvider(
@@ -29,7 +29,7 @@ class LanguagePicker extends StatelessWidget {
 
   void _onPressed(BuildContext context) {
     Navigator.of(context).pop();
-    BlocProvider.of<SolsystemCubit>(context)
+    BlocProvider.of<WorldstateCubit>(context)
         .fetchWorldstate(context.locale, forceUpdate: true);
   }
 

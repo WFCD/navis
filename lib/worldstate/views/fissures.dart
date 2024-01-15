@@ -11,9 +11,9 @@ class FissuresPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final state = context.watch<SolsystemCubit>().state;
+    final state = context.watch<WorldstateCubit>().state;
     final fissures =
-        state is SolState ? state.worldstate.fissures : <Fissure>[];
+        state is WorldstateSuccess ? state.worldstate.fissures : <Fissure>[];
 
     return BlocProvider(
       create: (_) => FissureFilterCubit(fissures),
@@ -57,9 +57,9 @@ class _FissuresViewState extends State<_FissuresView> {
 
     // Need to make sure that fissures are updated from worldstate.
     // Otherwise fissures stored in the filter cubit will be out of sync.
-    final state = context.read<SolsystemCubit>().state;
+    final state = context.read<WorldstateCubit>().state;
     final fissures =
-        state is SolState ? state.worldstate.fissures : <Fissure>[];
+        state is WorldstateSuccess ? state.worldstate.fissures : <Fissure>[];
 
     ff.filterFissures(ff.state.type, fissures);
   }
@@ -136,9 +136,9 @@ class _FissureFilter extends StatelessWidget {
   const _FissureFilter();
 
   void onSelected(BuildContext context, FissureFilter filter) {
-    final state = context.read<SolsystemCubit>().state;
+    final state = context.read<WorldstateCubit>().state;
     final fissures =
-        state is SolState ? state.worldstate.fissures : <Fissure>[];
+        state is WorldstateSuccess ? state.worldstate.fissures : <Fissure>[];
 
     context.read<FissureFilterCubit>().filterFissures(filter, fissures);
   }

@@ -48,7 +48,7 @@ class _NavisAppState extends State<NavisApp> with WidgetsBindingObserver {
     _timer = Timer.periodic(
       const Duration(seconds: 60),
       (_) => context
-          .read<SolsystemCubit>()
+          .read<WorldstateCubit>()
           .fetchWorldstate(context.locale, forceUpdate: true),
     );
   }
@@ -60,7 +60,7 @@ class _NavisAppState extends State<NavisApp> with WidgetsBindingObserver {
         _timer = Timer.periodic(
           const Duration(seconds: 60),
           (_) => context
-              .read<SolsystemCubit>()
+              .read<WorldstateCubit>()
               .fetchWorldstate(context.locale, forceUpdate: true),
         );
 
@@ -127,7 +127,7 @@ class _NavisAppState extends State<NavisApp> with WidgetsBindingObserver {
   void didChangeDependencies() {
     super.didChangeDependencies();
 
-    BlocProvider.of<SolsystemCubit>(context)
+    BlocProvider.of<WorldstateCubit>(context)
         .fetchWorldstate(context.locale, forceUpdate: true);
   }
 

@@ -15,12 +15,12 @@ class SyndicatePage extends StatelessWidget {
 
   bool _buildWhen(SolsystemState p, SolsystemState n) {
     final previous = switch (p) {
-      SolState() => p.worldstate,
+      WorldstateSuccess() => p.worldstate,
       _ => null,
     };
 
     final next = switch (n) {
-      SolState() => n.worldstate,
+      WorldstateSuccess() => n.worldstate,
       _ => null,
     };
 
@@ -39,17 +39,18 @@ class SyndicatePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<SolsystemCubit, SolsystemState>(
+    return BlocBuilder<WorldstateCubit, SolsystemState>(
       buildWhen: _buildWhen,
       builder: (context, state) {
-        final syndicateMissions = state is SolState
+        final syndicateMissions = state is WorldstateSuccess
             ? state.worldstate.syndicateMissions
             : <SyndicateMission>[];
-        final nightwave = state is SolState ? state.worldstate.nightwave : null;
+        final nightwave =
+            state is WorldstateSuccess ? state.worldstate.nightwave : null;
 
         return TraceableWidget(
           child: ViewLoading(
-            isLoading: state is! SolState,
+            isLoading: state is! WorldstateSuccess,
             child: ScreenTypeLayout.builder(
               mobile: (_) => _SyndicatePageMobile(
                 syndicates: syndicateMissions,

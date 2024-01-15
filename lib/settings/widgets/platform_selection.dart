@@ -4,7 +4,7 @@ import 'package:black_hole_flutter/black_hole_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/settings/settings.dart';
-import 'package:navis/worldstate/cubits/solsystem_cubit.dart';
+import 'package:navis/worldstate/worldstate.dart';
 import 'package:notification_repository/notification_repository.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:settings_ui/settings_ui.dart';
@@ -91,7 +91,7 @@ class _PlatformIconButton extends StatelessWidget {
       ..read<UserSettingsCubit>().updatePlatform(platform)
       ..read<NotificationRepository>().subscribeToPlatform(platform);
 
-    BlocProvider.of<SolsystemCubit>(context)
+    BlocProvider.of<WorldstateCubit>(context)
         .fetchWorldstate(context.locale, forceUpdate: true);
   }
 

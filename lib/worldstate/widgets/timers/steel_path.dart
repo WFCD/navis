@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/l10n/l10n.dart';
-import 'package:navis/worldstate/cubits/solsystem_cubit.dart';
+import 'package:navis/worldstate/cubits/worldstate_cubit.dart';
 import 'package:navis_ui/navis_ui.dart';
 
 class SteelPathCard extends StatelessWidget {
   const SteelPathCard({super.key});
 
   bool _buildWhen(SolsystemState p, SolsystemState n) {
-    if (p is SolState && n is SolState) {
+    if (p is WorldstateSuccess && n is WorldstateSuccess) {
       return p.worldstate.steelPath.expiry != n.worldstate.steelPath.expiry;
     }
 
@@ -18,11 +18,11 @@ class SteelPathCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppCard(
-      child: BlocBuilder<SolsystemCubit, SolsystemState>(
+      child: BlocBuilder<WorldstateCubit, SolsystemState>(
         buildWhen: _buildWhen,
         builder: (context, state) {
           final steelPath = switch (state) {
-            SolState() => state.worldstate.steelPath,
+            WorldstateSuccess() => state.worldstate.steelPath,
             _ => null,
           };
 

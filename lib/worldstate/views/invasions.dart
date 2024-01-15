@@ -11,13 +11,13 @@ class InvasionsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final state = context.watch<SolsystemCubit>().state;
+    final state = context.watch<WorldstateCubit>().state;
     final invasions =
-        state is SolState ? state.worldstate.invasions : <Invasion>[];
+        state is WorldstateSuccess ? state.worldstate.invasions : <Invasion>[];
 
     return TraceableWidget(
       child: ViewLoading(
-        isLoading: state is! SolState,
+        isLoading: state is! WorldstateSuccess,
         child: ScreenTypeLayout.builder(
           mobile: (context) => _MobileInvasions(invasions: invasions),
           tablet: (context) => _TabletInvasions(invasions: invasions),

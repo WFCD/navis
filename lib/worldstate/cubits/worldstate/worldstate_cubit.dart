@@ -1,19 +1,21 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
-import 'package:navis/worldstate/cubits/solsystem/solsystem_state.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:warframestat_client/warframestat_client.dart';
 import 'package:worldstate_repository/worldstate_repository.dart';
+
+part 'worldstate_state.dart';
 
 const String serverException = 'Failed to contact server';
 const String formatException = 'Server returned a malformed response';
 const String unknownException = r'Something happened ¯\_(ツ)_/¯';
 
-class SolsystemCubit extends HydratedCubit<SolsystemState> {
-  SolsystemCubit(this.repository) : super(SolsystemInitial());
+class WorldstateCubit extends HydratedCubit<SolsystemState> {
+  WorldstateCubit(this.repository) : super(SolsystemInitial());
 
   final WorldstateRepository repository;
 
@@ -32,7 +34,7 @@ class SolsystemCubit extends HydratedCubit<SolsystemState> {
 
       _cleanState(state);
 
-      emit(SolState(state));
+      emit(WorldstateSuccess(state));
     } catch (e, s) {
       final current = state;
       await _exceptionHandle(e, s);
@@ -68,12 +70,12 @@ class SolsystemCubit extends HydratedCubit<SolsystemState> {
   Future<void> _exceptionHandle(Object exception, [StackTrace? s]) async {
     switch (exception) {
       case SocketException:
-        emit(const SystemError(serverException));
+        emit(const WorldstateFailure(serverException));
       case FormatException:
-        emit(const SystemError(formatException));
+        emit(const WorldstateFailure(formatException));
       default:
         await Sentry.captureException(exception, stackTrace: s);
-        emit(const SystemError(unknownException));
+        emit(const WorldstateFailure(unknownException));
     }
   }
 
@@ -82,7 +84,7 @@ class SolsystemCubit extends HydratedCubit<SolsystemState> {
     try {
       // Because worldstate is cleaned when it's cached there
       // is no need to clean it when returning from cache.
-      return SolState(Worldstate.fromJson(json));
+      return WorldstateSuccess(Worldstate.fromJson(json));
     } catch (e) {
       return null;
     }
@@ -90,7 +92,7 @@ class SolsystemCubit extends HydratedCubit<SolsystemState> {
 
   @override
   Map<String, dynamic>? toJson(SolsystemState state) {
-    if (state is SolState) {
+    if (state is WorldstateSuccess) {
       return state.worldstate.toJson();
     }
 

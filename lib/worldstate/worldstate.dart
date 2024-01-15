@@ -1,6 +1,6 @@
 export 'cubits/darvodeal_cubit.dart';
 export 'cubits/fissure_filter.dart';
-export 'cubits/solsystem_cubit.dart';
+export 'cubits/worldstate_cubit.dart';
 export 'views/bounties.dart';
 export 'views/event.dart';
 export 'views/fissures.dart';

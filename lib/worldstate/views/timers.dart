@@ -23,10 +23,10 @@ class _MobileTimers extends StatelessWidget {
   Widget build(BuildContext context) {
     const cacheExtent = 500.0;
 
-    return BlocBuilder<SolsystemCubit, SolsystemState>(
+    return BlocBuilder<WorldstateCubit, SolsystemState>(
       builder: (_, state) {
         final worldstate = switch (state) {
-          SolState() => state,
+          WorldstateSuccess() => state,
           _ => null,
         };
 

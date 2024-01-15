@@ -12,16 +12,17 @@ class OrbiterNewsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const cacheExtent = 200.0;
-    final state = context.watch<SolsystemCubit>().state;
-    final orbitNews = state is SolState ? state.worldstate.news : <News>[];
+    final state = context.watch<WorldstateCubit>().state;
+    final orbitNews =
+        state is WorldstateSuccess ? state.worldstate.news : <News>[];
 
     return TraceableWidget(
       child: ViewLoading(
-        isLoading: state is! SolState,
+        isLoading: state is! WorldstateSuccess,
         child: RefreshIndicator(
-          onRefresh: () => BlocProvider.of<SolsystemCubit>(context)
+          onRefresh: () => BlocProvider.of<WorldstateCubit>(context)
               .fetchWorldstate(context.locale, forceUpdate: true),
-          child: state is! SolState
+          child: state is! WorldstateSuccess
               ? const SizedBox.shrink()
               : ListView.builder(
                   cacheExtent: cacheExtent,

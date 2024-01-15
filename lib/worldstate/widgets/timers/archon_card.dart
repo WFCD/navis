@@ -9,12 +9,12 @@ class ArchonHuntCard extends StatelessWidget {
 
   bool _buildWhen(SolsystemState previous, SolsystemState next) {
     final previousArchonHunt = switch (previous) {
-      SolState() => previous.worldstate.archonHunt,
+      WorldstateSuccess() => previous.worldstate.archonHunt,
       _ => null,
     };
 
     final nextArchonHunt = switch (next) {
-      SolState() => next.worldstate.archonHunt,
+      WorldstateSuccess() => next.worldstate.archonHunt,
       _ => null,
     };
 
@@ -23,11 +23,11 @@ class ArchonHuntCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<SolsystemCubit, SolsystemState>(
+    return BlocBuilder<WorldstateCubit, SolsystemState>(
       buildWhen: _buildWhen,
       builder: (context, state) {
         final archonHunt = switch (state) {
-          SolState() => state.worldstate.archonHunt,
+          WorldstateSuccess() => state.worldstate.archonHunt,
           _ => null,
         };
 

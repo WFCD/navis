@@ -6,7 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/codex/codex.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis/worldstate/cubits/darvodeal_cubit.dart';
-import 'package:navis/worldstate/cubits/solsystem_cubit.dart';
+import 'package:navis/worldstate/cubits/worldstate_cubit.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:warframestat_client/warframestat_client.dart';
 
@@ -15,12 +15,12 @@ class DarvoDealCard extends StatelessWidget {
 
   bool _buildWhen(SolsystemState previous, SolsystemState next) {
     final previousDailyDeals = switch (previous) {
-      SolState() => previous.worldstate.dailyDeals,
+      WorldstateSuccess() => previous.worldstate.dailyDeals,
       _ => <DailyDeal>[],
     };
 
     final nextDailyDeals = switch (next) {
-      SolState() => next.worldstate.dailyDeals,
+      WorldstateSuccess() => next.worldstate.dailyDeals,
       _ => <DailyDeal>[],
     };
 
@@ -29,11 +29,11 @@ class DarvoDealCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<SolsystemCubit, SolsystemState>(
+    return BlocBuilder<WorldstateCubit, SolsystemState>(
       buildWhen: _buildWhen,
       builder: (context, state) {
         final deal = switch (state) {
-          SolState() => state.worldstate.dailyDeals.first,
+          WorldstateSuccess() => state.worldstate.dailyDeals.first,
           _ => null,
         };
 

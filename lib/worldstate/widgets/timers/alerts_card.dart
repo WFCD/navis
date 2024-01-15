@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/l10n/l10n.dart';
-import 'package:navis/worldstate/cubits/solsystem_cubit.dart';
+import 'package:navis/worldstate/cubits/worldstate_cubit.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:warframestat_client/warframestat_client.dart';
 
@@ -11,10 +11,10 @@ class AlertsCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppCard(
-      child: BlocBuilder<SolsystemCubit, SolsystemState>(
+      child: BlocBuilder<WorldstateCubit, SolsystemState>(
         builder: (context, state) {
           final alerts = switch (state) {
-            SolState() => state.worldstate.alerts,
+            WorldstateSuccess() => state.worldstate.alerts,
             _ => <Alert>[],
           };
 

@@ -11,13 +11,13 @@ class ConstructionProgressCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return AppCard(
       title: context.l10n.constructionProgressTitle,
-      child: BlocBuilder<SolsystemCubit, SolsystemState>(
+      child: BlocBuilder<WorldstateCubit, SolsystemState>(
         builder: (context, state) {
           const iconSize = 25.0;
           final textTheme = Theme.of(context).textTheme;
 
           final constructionProgress = switch (state) {
-            SolState() => state.worldstate.constructionProgress,
+            WorldstateSuccess() => state.worldstate.constructionProgress,
             _ => null
           };
 

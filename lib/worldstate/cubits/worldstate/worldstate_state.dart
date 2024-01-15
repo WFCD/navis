@@ -1,5 +1,4 @@
-import 'package:equatable/equatable.dart';
-import 'package:warframestat_client/warframestat_client.dart';
+part of 'worldstate_cubit.dart';
 
 sealed class SolsystemState extends Equatable {
   const SolsystemState();
@@ -10,13 +9,13 @@ class SolsystemInitial extends SolsystemState {
   List<Object> get props => [];
 }
 
-class DetectingState extends SolsystemState {
+class LoadingWorldstate extends SolsystemState {
   @override
   List<Object> get props => [];
 }
 
-class SolState extends SolsystemState {
-  const SolState(this.worldstate);
+class WorldstateSuccess extends SolsystemState {
+  const WorldstateSuccess(this.worldstate);
 
   final Worldstate worldstate;
 
@@ -41,8 +40,8 @@ class SolState extends SolsystemState {
   }
 }
 
-class SystemError extends SolsystemState {
-  const SystemError(this.message);
+class WorldstateFailure extends SolsystemState {
+  const WorldstateFailure(this.message);
 
   final String message;
 

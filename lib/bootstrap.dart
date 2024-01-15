@@ -9,8 +9,7 @@ import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:navis/app/app_observer.dart';
 import 'package:navis/firebase_options.dart';
 import 'package:navis/settings/settings.dart';
-import 'package:navis/worldstate/cubits/darvodeal_cubit.dart';
-import 'package:navis/worldstate/cubits/solsystem_cubit.dart';
+import 'package:navis/worldstate/worldstate.dart';
 import 'package:notification_repository/notification_repository.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:worldstate_repository/worldstate_repository.dart';
@@ -46,7 +45,7 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
         child: MultiBlocProvider(
           providers: [
             BlocProvider(
-              create: (context) => SolsystemCubit(worldstateRepo),
+              create: (context) => WorldstateCubit(worldstateRepo),
             ),
             BlocProvider(
               create: (_) => DarvodealCubit(worldstateRepo),

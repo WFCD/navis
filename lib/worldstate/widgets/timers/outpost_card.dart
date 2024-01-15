@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/l10n/l10n.dart';
-import 'package:navis/worldstate/cubits/solsystem_cubit.dart';
+import 'package:navis/worldstate/cubits/worldstate_cubit.dart';
 import 'package:navis_ui/navis_ui.dart';
 
 class SentientOutpostCard extends StatelessWidget {
@@ -9,12 +9,12 @@ class SentientOutpostCard extends StatelessWidget {
 
   bool _buildWhen(SolsystemState previous, SolsystemState next) {
     final previousOutpost = switch (previous) {
-      SolState() => previous.worldstate.sentientOutposts,
+      WorldstateSuccess() => previous.worldstate.sentientOutposts,
       _ => null,
     };
 
     final nextOutpost = switch (next) {
-      SolState() => next.worldstate.sentientOutposts,
+      WorldstateSuccess() => next.worldstate.sentientOutposts,
       _ => null,
     };
 
@@ -24,11 +24,11 @@ class SentientOutpostCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppCard(
-      child: BlocBuilder<SolsystemCubit, SolsystemState>(
+      child: BlocBuilder<WorldstateCubit, SolsystemState>(
         buildWhen: _buildWhen,
         builder: (context, state) {
           final outpost = switch (state) {
-            SolState() => state.worldstate.sentientOutposts,
+            WorldstateSuccess() => state.worldstate.sentientOutposts,
             _ => null,
           };
 
