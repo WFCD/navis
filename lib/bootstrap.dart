@@ -24,10 +24,9 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
   await Hive.initFlutter();
 
   final appDir = await getApplicationDocumentsDirectory();
-  final temp = await getTemporaryDirectory();
 
   final usersettings = await UserSettings.initSettings(appDir.path);
-  final warframestateCache = await WarframestatCache.initCache(temp.path);
+  final warframestateCache = await WarframestatCache.initCache(appDir.path);
 
   final notificationRepo = NotificationRepository();
   final worldstateRepo = WorldstateRepository(cache: warframestateCache);
