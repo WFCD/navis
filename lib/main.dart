@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:matomo_tracker/matomo_tracker.dart';
 import 'package:navis/app/app.dart';
 import 'package:navis/bootstrap.dart';
@@ -16,22 +17,26 @@ Future<void> main() async {
     (option) {
       option
         ..dsn = const String.fromEnvironment('SENTRY_DSN')
-        ..enableBreadcrumbTrackingForCurrentPlatform()
+        ..enableDeduplication = true
+        ..debug = kDebugMode || kProfileMode
         ..tracesSampleRate = tracesSampleRate
+        ..enableBreadcrumbTrackingForCurrentPlatform()
         ..addIntegration(LoggingIntegration());
     },
     appRunner: () async {
-      await MatomoTracker.instance.initialize(
-        siteId: siteId,
-        url: const String.fromEnvironment('MATOMO_URL'),
-      );
+      if (!kDebugMode || !kProfileMode) {
+        await MatomoTracker.instance.initialize(
+          siteId: siteId,
+          url: const String.fromEnvironment('MATOMO_URL'),
+        );
+      }
 
-      await bootstrap(() {
-        return DefaultAssetBundle(
+      await bootstrap(
+        () => DefaultAssetBundle(
           bundle: SentryAssetBundle(),
           child: const NavisApp(),
-        );
-      });
+        ),
+      );
     },
   );
 }
