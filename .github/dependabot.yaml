@@ -3,24 +3,24 @@ enable-beta-ecosystems: true
 updates:
   - package-ecosystem: "pub"
     directory: "/"
-    target-branch: "beta"
+    target-branch: "master"
     schedule:
       interval: "daily"
 
   - package-ecosystem: github-actions
     directory: "/"
-    target-branch: "beta"
+    target-branch: "master"
     schedule:
       interval: "daily"
 
   - package-ecosystem: "bundler"
     directory: "/android"
-    target-branch: "beta"
+    target-branch: "master"
     schedule:
       interval: "daily"
 
   - package-ecosystem: "bundler"
     directory: "/ios"
-    target-branch: "beta"
+    target-branch: "master"
     schedule:
       interval: "daily"
