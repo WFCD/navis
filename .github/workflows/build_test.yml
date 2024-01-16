@@ -70,6 +70,7 @@ jobs:
       - name: Setup certs using fastlane
         working-directory: ios
         env:
+          FASTLANE_SESSION: ${{ secrets.FASTLANE_SESSION }}
           FASTLANE_PASSWORD: ${{ secrets.FASTLANE_PASSWORD }}
           MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
           MATCH_GIT_BASIC_AUTHORIZATION: ${{ secrets.MATCH_GIT_BASIC_AUTHORIZATION }}
