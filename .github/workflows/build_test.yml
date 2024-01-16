@@ -72,7 +72,7 @@ jobs:
         env:
           FASTLANE_PASSWORD: ${{ secrets.FASTLANE_PASSWORD }}
           MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
-          MATCH_GIT_BASIC_AUTHORIZATION: ${{ secrets.PERSONAL_GH_TOKEN }}
+          MATCH_GIT_BASIC_AUTHORIZATION: ${{ secrets.MATCH_GIT_BASIC_AUTHORIZATION }}
         run: bundle exec fastlane match appstore
 
       - uses: subosito/flutter-action@v2.11.0
