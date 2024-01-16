@@ -73,7 +73,6 @@ jobs:
           working-directory: ios
 
       - name: Fastlane CI setup
-        working-directory: ios
         run: bundle exec fastlane run setup_ci
 
       - name: Setup certs using fastlane
