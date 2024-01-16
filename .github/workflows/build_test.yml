@@ -75,7 +75,9 @@ jobs:
           SPACESHIP_ONLY_ALLOW_INTERACTIVE_2FA: ${{ secrets.SPACESHIP_ONLY_ALLOW_INTERACTIVE_2FA }}
           MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
           MATCH_GIT_BASIC_AUTHORIZATION: ${{ secrets.MATCH_GIT_BASIC_AUTHORIZATION }}
-        run: bundle exec fastlane run setup_ci
+        run: |
+          bundle exec fastlane run setup_ci
+          bundle exec fastlane match appstore
 
       - uses: subosito/flutter-action@v2.11.0
         with:
