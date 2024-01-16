@@ -56,7 +56,7 @@ jobs:
           path: "build/app/outputs/flutter-apk/app-*-dev-release.apk"
 
   ios:
-    runs-on: macos-latest-xlarge
+    runs-on: macos-13-xl
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
