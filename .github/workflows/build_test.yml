@@ -56,7 +56,7 @@ jobs:
           path: "build/app/outputs/flutter-apk/app-*-dev-release.apk"
 
   ios:
-    runs-on: macos-latest
+    runs-on: macos-latest-xlarge
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -83,7 +83,7 @@ jobs:
           cache: true
           cache-key: "flutter-:os:-:channel:-:version:-:arch:-:hash:" # optional, change this to force refresh cache
           cache-path: "${{ runner.tool_cache }}/flutter/:channel:-:version:-:arch:" # optional, change this to specify the cache path
-          architecture: x64 # optional, x64 or arm64
+          architecture: arm64 # optional, x64 or arm64
 
       - name: Setup Firebase
         env:
@@ -103,10 +103,3 @@ jobs:
         with:
           name: ios-test-artifact
           path: "build/ios/ipa/*.ipa"
-
-      # Only needed for self-hosted runners but I'm a paraniod person.
-      - name: Clean up keychain and provisioning profile
-        if: ${{ always() }}
-        run: |
-          security delete-keychain $RUNNER_TEMP/app-signing.keychain-db
-          rm ~/Library/MobileDevice/Provisioning\ Profiles/build_pp.mobileprovision
