@@ -16,8 +16,7 @@ class BountiesPage extends StatelessWidget {
         // ignore: cast_nullable_to_non_nullable
         ModalRoute.of(context)?.settings.arguments as SyndicateMission;
 
-    final backgroundColor =
-        syndicateStringToEnum(syndicate.id ?? 'navis').secondryColor;
+    final backgroundColor = syndicateStringToEnum(syndicate.id).secondryColor;
 
     return TraceableWidget(
       child: Scaffold(
