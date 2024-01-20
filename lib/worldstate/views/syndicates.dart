@@ -102,13 +102,8 @@ class _SyndicatePageMobile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView(
+      padding: const EdgeInsets.only(top: 4),
       children: <Widget>[
-        _BuildSyndicates(
-          syndicates: syndicates,
-          onTap: (s) {
-            Navigator.of(context).pushNamed(BountiesPage.route, arguments: s);
-          },
-        ),
         if (nightwave != null)
           NightwaveCard(
             nightwave: nightwave!,
@@ -117,6 +112,12 @@ class _SyndicatePageMobile extends StatelessWidget {
                   .pushNamed(NightwavesPage.route, arguments: nightwave);
             },
           ),
+        _BuildSyndicates(
+          syndicates: syndicates,
+          onTap: (s) {
+            Navigator.of(context).pushNamed(BountiesPage.route, arguments: s);
+          },
+        ),
       ],
     );
   }
@@ -151,13 +152,8 @@ class _SyndicatePageTabletState extends State<_SyndicatePageTablet> {
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 4),
             child: ListView(
+              padding: const EdgeInsets.only(top: 8),
               children: <Widget>[
-                _BuildSyndicates(
-                  syndicates: widget.syndicates,
-                  onTap: (s) {
-                    _controller?.sink.add(SyndicateBounties(syndicate: s));
-                  },
-                ),
                 if (widget.nightwave != null)
                   NightwaveCard(
                     nightwave: widget.nightwave!,
@@ -167,6 +163,12 @@ class _SyndicatePageTabletState extends State<_SyndicatePageTablet> {
                       );
                     },
                   ),
+                _BuildSyndicates(
+                  syndicates: widget.syndicates,
+                  onTap: (s) {
+                    _controller?.sink.add(SyndicateBounties(syndicate: s));
+                  },
+                ),
               ],
             ),
           ),
