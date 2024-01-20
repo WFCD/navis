@@ -19,10 +19,10 @@ class NightwaveCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SyndicateCard(
-      syndicateId: nightwave.id!,
+      syndicateId: nightwave.id,
       caption: 'Season ${nightwave.season}',
       trailing: CountdownTimer(
-        tooltip: context.l10n.countdownTooltip(nightwave.expiry!),
+        tooltip: context.l10n.countdownTooltip(nightwave.expiry),
         expiry: nightwave.expiry,
         color: Colors.red[600],
       ),
