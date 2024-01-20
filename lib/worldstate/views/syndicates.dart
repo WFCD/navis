@@ -84,7 +84,7 @@ class _BuildSyndicates extends StatelessWidget {
         ),
         ...syndicates.map<SyndicateCard>(
           (syn) => SyndicateCard(
-            syndicateId: syn.id!,
+            syndicateId: syn.id,
             onTap: () => onTap(syn),
           ),
         ),
