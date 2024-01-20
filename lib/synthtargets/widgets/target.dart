@@ -19,8 +19,10 @@ class TargetInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+      clipBehavior: Clip.hardEdge,
       child: ExpansionTile(
         key: PageStorageKey<String>(target.name),
+        shape: const Border(),
         title: Text(target.name),
         // textColor: NavisColors.secondary,
         // iconColor: NavisColors.secondary,
