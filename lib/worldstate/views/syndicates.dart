@@ -84,36 +84,9 @@ class _BuildSyndicates extends StatelessWidget {
         ),
         ...syndicates.map<SyndicateCard>(
           (syn) => SyndicateCard(
-            syndicate: syn,
+            syndicateId: syn.id!,
             onTap: () => onTap(syn),
           ),
-        ),
-      ],
-    );
-  }
-}
-
-class _BuildNightwave extends StatelessWidget {
-  const _BuildNightwave({required this.nightwave, required this.onTap});
-
-  final Nightwave nightwave;
-  final void Function() onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        CountdownBanner(
-          message: 'Season ends in:',
-          // Will default to DateTime.now() under the hood.
-          // ignore: avoid-non-null-assertion
-          time: nightwave.expiry,
-        ),
-        SyndicateCard(
-          name: 'Nightwave',
-          caption: 'Season ${nightwave.season}',
-          nightwave: nightwave,
-          onTap: onTap,
         ),
       ],
     );
@@ -136,9 +109,8 @@ class _SyndicatePageMobile extends StatelessWidget {
             Navigator.of(context).pushNamed(BountiesPage.route, arguments: s);
           },
         ),
-        SizedBoxSpacer.spacerHeight8,
         if (nightwave != null)
-          _BuildNightwave(
+          NightwaveCard(
             nightwave: nightwave!,
             onTap: () {
               Navigator.of(context)
@@ -186,10 +158,8 @@ class _SyndicatePageTabletState extends State<_SyndicatePageTablet> {
                     _controller?.sink.add(SyndicateBounties(syndicate: s));
                   },
                 ),
-                SizedBoxSpacer.spacerHeight8,
                 if (widget.nightwave != null)
-                  // Already being checked for null.
-                  _BuildNightwave(
+                  NightwaveCard(
                     nightwave: widget.nightwave!,
                     onTap: () {
                       _controller?.sink.add(
