@@ -7,6 +7,7 @@ export 'invasions/invasion_rewards.dart';
 export 'invasions/invasion_widget.dart';
 export 'orbiter_news/news_widget.dart';
 export 'syndicates/countdown_banner.dart';
+export 'syndicates/nightwave_card.dart';
 export 'syndicates/nightwave_challenge.dart';
 export 'syndicates/nightwave_challenges.dart';
 export 'syndicates/syndicate_bounties.dart';

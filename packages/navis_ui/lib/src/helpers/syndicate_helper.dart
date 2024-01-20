@@ -6,10 +6,7 @@ enum Syndicates { cetus, solaris, entrati, nightwave, simaris, unknown }
 
 Syndicates syndicateStringToEnum(String faction) {
   return Syndicates.values.firstWhere(
-    (e) {
-      final syn = faction.toLowerCase();
-      return syn.contains(e.toString().split('.').last);
-    },
+    (e) => faction.toLowerCase().contains(e.name),
     orElse: () => Syndicates.unknown,
   );
 }
