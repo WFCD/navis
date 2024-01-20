@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:matomo_tracker/matomo_tracker.dart';
 import 'package:navis/worldstate/widgets/event/event_bounties.dart';
 import 'package:navis/worldstate/widgets/event/event_status.dart';
-import 'package:navis_ui/navis_ui.dart';
 import 'package:warframestat_client/warframestat_client.dart';
 
 class EventInformation extends StatelessWidget {
@@ -53,7 +52,7 @@ class EventInformation extends StatelessWidget {
                   tooltip: event.tooltip ?? '',
                   node: event.victimNode ?? event.node ?? '',
                   health: event.eventHealth(),
-                  expiry: event.expiry ?? DateTime.now().add(kDelayLong),
+                  expiry: event.expiry,
                   rewards: eventRewards(event.rewards, event.interimSteps),
                 ),
                 // Already being checked for null.
