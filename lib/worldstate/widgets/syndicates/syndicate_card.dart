@@ -9,11 +9,13 @@ class SyndicateCard extends StatelessWidget {
     super.key,
     required this.syndicateId,
     this.caption,
+    this.trailing,
     required this.onTap,
   });
 
   final String syndicateId;
   final String? caption;
+  final Widget? trailing;
   final void Function()? onTap;
 
   @override
@@ -52,6 +54,7 @@ class SyndicateCard extends StatelessWidget {
                   caption ?? context.l10n.tapForMoreDetails,
                   style: captionStyle,
                 ),
+                trailing: trailing,
               ),
             ),
           ),
