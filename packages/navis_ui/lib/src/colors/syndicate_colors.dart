@@ -2,14 +2,14 @@ import 'package:flutter/widgets.dart';
 
 abstract class SyndicateColors {
   static const ostronsIconColor = Color(0xFFE8DDAF);
-  static const solarisIconColor = Color(0xFFD8C38F);
-  static const entratiIconColor = Color(0xFFbb9129);
-  static const nightwaveIconColor = Color(0xFFFFAEAA);
-  static const simarisIconColor = Color(0xFFEBD18F);
+  static const solarisIconColor = Color(0xFFD7C38F);
+  static const entratiIconColor = Color(0xFFBC9028);
+  static const nightwaveIconColor = Color(0xFFFEADAA);
+  static const simarisIconColor = Color(0xFFEBD28E);
 
-  static const ostronsBackgroundColor = Color(0xFFB74624);
-  static const solarisBackgroundColor = Color(0xFF5F3C0D);
-  static const entratiBackgroundColor = Color(0xFF4e5360);
-  static const nightwaveBackgroundColor = Color(0xFF6C1822);
-  static const simarisBackgroundColor = Color(0xFF5F3C0D);
+  static const ostronsBackgroundColor = Color(0xFF92381D);
+  static const solarisBackgroundColor = Color(0xFF523A29);
+  static const entratiBackgroundColor = Color(0xFF3D4245);
+  static const nightwaveBackgroundColor = Color(0xFF611E26);
+  static const simarisBackgroundColor = Color(0xFF4C300A);
 }
