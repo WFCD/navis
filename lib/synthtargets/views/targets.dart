@@ -8,14 +8,19 @@ import 'package:worldstate_repository/worldstate_repository.dart';
 class SynthTargetsView extends StatelessWidget {
   const SynthTargetsView({super.key});
 
+  static const route = '/simaris';
+
   @override
   Widget build(BuildContext context) {
     return TraceableWidget(
-      child: BlocProvider(
-        create: (_) => SynthtargetsCubit(
-          RepositoryProvider.of<WorldstateRepository>(context),
-        )..fetchSynthtargets(),
-        child: const _SynthTargetsPage(),
+      child: Scaffold(
+        appBar: AppBar(),
+        body: BlocProvider(
+          create: (_) => SynthtargetsCubit(
+            RepositoryProvider.of<WorldstateRepository>(context),
+          )..fetchSynthtargets(),
+          child: const _SynthTargetsPage(),
+        ),
       ),
     );
   }
@@ -28,25 +33,22 @@ class _SynthTargetsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     const cacheExtent = 500.0;
 
-    return RefreshIndicator(
-      onRefresh: BlocProvider.of<SynthtargetsCubit>(context).fetchSynthtargets,
-      child: BlocBuilder<SynthtargetsCubit, SynthtargetsState>(
-        builder: (BuildContext context, SynthtargetsState state) {
-          if (state is TargetsLocated) {
-            final targets = state.targets;
+    return BlocBuilder<SynthtargetsCubit, SynthtargetsState>(
+      builder: (BuildContext context, SynthtargetsState state) {
+        if (state is TargetsLocated) {
+          final targets = state.targets;
 
-            return ListView.builder(
-              cacheExtent: cacheExtent,
-              itemCount: targets.length,
-              itemBuilder: (BuildContext context, int index) {
-                return TargetInfo(target: targets[index]);
-              },
-            );
-          }
+          return ListView.builder(
+            cacheExtent: cacheExtent,
+            itemCount: targets.length,
+            itemBuilder: (BuildContext context, int index) {
+              return TargetInfo(target: targets[index]);
+            },
+          );
+        }
 
-          return const Center(child: CircularProgressIndicator());
-        },
-      ),
+        return const Center(child: CircularProgressIndicator());
+      },
     );
   }
 }

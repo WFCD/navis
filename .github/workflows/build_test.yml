@@ -47,7 +47,9 @@ jobs:
       - name: Build app
         env:
           KEYSTOREPASS: ${{ secrets.KEYSTOREPASS }}
-        run: flutter build apk --flavor dev --split-per-abi
+        run: |
+          flutter pub get
+          flutter build apk --flavor dev --split-per-abi
 
       - name: Uploade artifacts
         uses: actions/upload-artifact@v3
@@ -103,7 +105,9 @@ jobs:
           echo $FIREBASE_IOS_SERVICES | base64 --decode > ios/runner/GoogleService-Info.plist
 
       - name: Build app
-        run: flutter build ipa --export-options-plist=ios/ExportOptions.plist
+        run: |
+          flutter pub get
+          flutter build ipa --export-options-plist=ios/ExportOptions.plist
 
       - name: Uploade artifacts
         uses: actions/upload-artifact@v3

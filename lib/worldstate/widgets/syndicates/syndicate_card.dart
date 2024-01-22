@@ -1,36 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:responsive_builder/responsive_builder.dart';
-import 'package:warframestat_client/warframestat_client.dart';
 
 class SyndicateCard extends StatelessWidget {
   const SyndicateCard({
     super.key,
-    this.name,
+    required this.syndicateId,
     this.caption,
-    this.syndicate,
-    this.nightwave,
-    this.onTap,
-  }) : assert(
-          syndicate != null || name != null,
-          'If name is null then it will default\n'
-          'to Syndicate.syndicateKey instead, '
-          'only one can be null but not both',
-        );
+    this.trailing,
+    required this.onTap,
+  });
 
-  final String? name;
+  final String syndicateId;
   final String? caption;
-  final SyndicateMission? syndicate;
-  final Nightwave? nightwave;
-
+  final Widget? trailing;
   final void Function()? onTap;
 
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
     final mediaQuery = MediaQuery.of(context);
-    final syndicateName = syndicateStringToEnum(syndicate?.id ?? name ?? '');
+    final syndicateName = syndicateStringToEnum(syndicateId);
 
     final titleStyle = textTheme.titleMedium
         ?.copyWith(color: Typography.whiteMountainView.titleMedium?.color);
@@ -49,22 +41,20 @@ class SyndicateCard extends StatelessWidget {
             color: syndicateName.secondryColor,
             child: Padding(
               padding: EdgeInsets.symmetric(
-                // It's what worked for the style.
-                // ignore: no-magic-number
                 vertical: (mediaQuery.size.longestSide / 100) * 1.5,
               ),
               child: ListTile(
-                // It's what worked for the style.
-                // ignore: no-magic-number
                 leading: SyndicateIcon(syndicate: syndicateName, iconSize: 50),
                 title: Text(
-                  syndicate?.syndicateKey ?? name ?? '',
+                  toBeginningOfSentenceCase(syndicateName.name) ??
+                      syndicateName.name,
                   style: titleStyle,
                 ),
                 subtitle: Text(
                   caption ?? context.l10n.tapForMoreDetails,
                   style: captionStyle,
                 ),
+                trailing: trailing,
               ),
             ),
           ),

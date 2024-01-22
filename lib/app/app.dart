@@ -7,6 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/home/home.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis/settings/settings.dart';
+import 'package:navis/synthtargets/views/targets.dart';
 import 'package:navis/worldstate/worldstate.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:notification_repository/notification_repository.dart';
@@ -168,6 +169,7 @@ class _NavisAppState extends State<NavisApp> with WidgetsBindingObserver {
             NightwavesPage.route: (_) => const NightwavesPage(),
             BountiesPage.route: (_) => const BountiesPage(),
             BaroInventory.route: (_) => const BaroInventory(),
+            SynthTargetsView.route: (_) => const SynthTargetsView()
           },
           supportedLocales: NavisLocalizations.supportedLocales,
           locale: language,
