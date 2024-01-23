@@ -169,7 +169,7 @@ class _NavisAppState extends State<NavisApp> with WidgetsBindingObserver {
             NightwavesPage.route: (_) => const NightwavesPage(),
             BountiesPage.route: (_) => const BountiesPage(),
             BaroInventory.route: (_) => const BaroInventory(),
-            SynthTargetsView.route: (_) => const SynthTargetsView()
+            SynthTargetsView.route: (_) => const SynthTargetsView(),
           },
           supportedLocales: NavisLocalizations.supportedLocales,
           locale: language,

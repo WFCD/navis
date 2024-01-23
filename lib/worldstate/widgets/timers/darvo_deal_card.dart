@@ -104,7 +104,7 @@ class _DealWidgetState extends State<_DealWidget> {
       return true;
     }
 
-    return previous.item.uniqueName == current.item.uniqueName;
+    return previous.item.uniqueName != current.item.uniqueName;
   }
 
   @override

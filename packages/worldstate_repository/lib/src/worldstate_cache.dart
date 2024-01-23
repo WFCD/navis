@@ -86,7 +86,7 @@ class WarframestatCache {
 
     if (cached == null) return null;
 
-    return toItem(json.decode(cached) as Map<String, dynamic>);
+    return MinimalItem.fromJson(json.decode(cached) as Map<String, dynamic>);
   }
 
   /// Get the timestamp for a stored [Worldstate].
@@ -108,8 +108,8 @@ class WarframestatCache {
     final cached = _readDisk<List<dynamic>>(synthTargetsKey);
 
     return cached
-        ?.map((dynamic t) => Map<String, dynamic>.from(t))
-        .map((e) => SynthTarget.fromJson(e))
+        ?.map((t) => Map<String, dynamic>.from(t as Map))
+        .map(SynthTarget.fromJson)
         .toList();
   }
 

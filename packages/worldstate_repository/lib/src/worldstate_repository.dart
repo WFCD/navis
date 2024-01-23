@@ -1,27 +1,23 @@
 import 'package:collection/collection.dart';
-import 'package:flutter/foundation.dart';
+import 'package:http/http.dart';
 import 'package:warframestat_client/warframestat_client.dart';
 import 'package:worldstate_repository/src/exceptions.dart';
 import 'package:worldstate_repository/src/worldstate_cache.dart';
 
-const _kRefreshTime = Duration(seconds: 1);
+const _refreshTime = Duration(seconds: 1);
+const String _userAgent = 'navis';
 
 /// {@template worldstate_repository}
 /// A Very Good Project created by Very Good CLI.
 /// {@endtemplate}
 class WorldstateRepository {
   /// {@macro worldstate_repository}
-  const WorldstateRepository({
-    required WarframestatCache cache,
-    WorldstateComputeRunners? runners,
-  })  : _cache = cache,
-        _runners = runners ?? const WorldstateComputeRunners();
+  WorldstateRepository({Client? client, required WarframestatCache cache})
+      : _client = client ?? Client(),
+        _cache = cache;
 
+  final Client _client;
   final WarframestatCache _cache;
-
-  // Only use for testing and nothing else. Unless for some reason we need this
-  // to be platform specfic it shouldn't be touched outside of testing
-  final WorldstateComputeRunners _runners;
 
   /// Retrives a list of [SynthTarget]s.
   ///
@@ -30,13 +26,19 @@ class WorldstateRepository {
   Future<List<SynthTarget>> getSynthTargets({
     Language language = Language.en,
   }) async {
+    final client = SynthTaretClient(
+      client: _client,
+      language: language,
+      ua: _userAgent,
+    );
+
     final cached = _cache.getCachedTargets();
 
     if (cached != null) {
       return cached;
     }
 
-    final targets = await _runners.getTargets(language);
+    final targets = await client.fetchTargets();
     _cache.cacheSynthTargets(targets);
 
     return targets;
@@ -49,13 +51,18 @@ class WorldstateRepository {
   }) async {
     final now = DateTime.now();
     final timestamp = _cache.getCachedStateTimestamp();
-    final age = timestamp?.difference(now).abs() ?? _kRefreshTime;
+    final age = timestamp?.difference(now).abs() ?? _refreshTime;
 
-    if (age >= _kRefreshTime || forceUpdate) {
+    if (age >= _refreshTime || forceUpdate) {
       try {
-        final state = await _runners.getWorldstate(language);
+        final client = WorldstateClient(
+          client: _client,
+          language: language,
+          ua: _userAgent,
+        );
 
-        if (state == null) throw ServerException('worldstate empty');
+        final state = await client.fetchWorldstate();
+
         _cache.cacheWorldstate(state);
 
         return state;
@@ -95,13 +102,23 @@ class WorldstateRepository {
     String name, {
     Language language = Language.en,
   }) async {
+    final client = WarframeItemsClient(
+      client: _client,
+      language: language,
+      ua: _userAgent,
+    );
+
     final cachedId = _cache.getCachedDealId();
 
     if (cachedId != null && cachedId != uniqueName || cachedId == null) {
       // If for whatever reason getItemDealInfo throws an error then we're just
       // gonna let it bubble up since at this point the Item is different and
       // there is no point in returning the cached version.
-      final deal = await _runners.getItemDealInfo((uniqueName, name, language));
+      final results = await client.search(name);
+      final internalName = uniqueName.split('/').last;
+      final deal =
+          results.firstWhereOrNull((i) => i.uniqueName.contains(internalName));
+
       if (deal != null) _cache.cacheDealInfo(uniqueName, deal);
 
       return deal;
@@ -127,93 +144,15 @@ class WorldstateRepository {
   ///
   /// Warframe-items: https://github.com/WFCD/warframe-items
   Future<List<Item>> searchItems(
-    String text, {
+    String query, {
     Language language = Language.en,
   }) async {
-    final request = ('', text, language);
+    final client = WarframeItemsClient(
+      client: _client,
+      language: language,
+      ua: _userAgent,
+    );
 
-    return _runners.searchItems(request);
+    return client.search(query);
   }
 }
-
-typedef _ItemSearch = (String uniqueName, String name, Language language);
-
-// coverage: ignore-start
-/// {@template runners}
-/// Holds functions used to fetch worldstate information in a seperate isolate.
-///
-/// Should not be used directly and is only visible for testing purposes.
-/// [WorldstateRepository] uses this with caching.
-/// {@endtemplate}
-@visibleForTesting
-class WorldstateComputeRunners {
-  /// {@macro runners}
-  const WorldstateComputeRunners();
-
-  static const String userAgent = 'navis';
-
-  /// Returns an instance of [Worldstate]
-  Future<Worldstate?> getWorldstate(Language language) async {
-    return await compute(_getWorldstate, language);
-  }
-
-  static Future<Worldstate?> _getWorldstate(Language language) {
-    final client = WorldstateClient(language: language, ua: userAgent);
-
-    return client.currentState();
-  }
-
-  /// Returns a list of [SynthTarget]
-  Future<List<SynthTarget>> getTargets(Language language) async {
-    try {
-      return await compute(_getTargets, language);
-    } catch (e) {
-      throw const ServerException('Error retriving targets.');
-    }
-  }
-
-  static Future<List<SynthTarget>> _getTargets(Language language) {
-    return SynthTaretClient(language: language, ua: userAgent).getTargets();
-  }
-
-  /// Returns one instance of [Item], will throw [ItemNotFoundException] if
-  /// it's unable to find a matching [Item] from [name].
-  Future<Item?> getItemDealInfo(_ItemSearch info) async {
-    try {
-      final deal = await compute(_getDealInfo, info);
-
-      return deal;
-    } catch (e) {
-      throw const ServerException(
-        "Error retriving information on deal's item.",
-      );
-    }
-  }
-
-  static Future<Item?> _getDealInfo(_ItemSearch info) async {
-    final client = WarframeItemsClient(language: info.$3, ua: userAgent);
-    final results = await client.search(info.$2);
-    final uniqueName = info.$1.split('/').last;
-
-    return results.firstWhereOrNull((r) => r.uniqueName.contains(uniqueName));
-  }
-
-  /// Searchs for Items using the worldstate-status warframe-items endpoint in
-  /// a seperate isolate
-  Future<List<Item>> searchItems(_ItemSearch search) {
-    try {
-      return compute(_searchhItems, search);
-    } on Exception {
-      throw const ServerException('Error communication with APi.');
-    }
-  }
-
-  static Future<List<Item>> _searchhItems(_ItemSearch search) {
-    final client = WarframeItemsClient(language: search.$3, ua: userAgent);
-
-    return client.search(search.$2);
-  }
-}
-
-
-// coverage: ignore-end

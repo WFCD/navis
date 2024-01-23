@@ -1,4 +1,3 @@
-library worldstate_repository;
 
 export 'src/exceptions.dart';
 export 'src/worldstate_cache.dart';

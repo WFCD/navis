@@ -18,7 +18,6 @@ Future<void> main() async {
       option
         ..dsn = const String.fromEnvironment('SENTRY_DSN')
         ..enableDeduplication = true
-        ..debug = kDebugMode || kProfileMode
         ..tracesSampleRate = tracesSampleRate
         ..enableBreadcrumbTrackingForCurrentPlatform()
         ..addIntegration(LoggingIntegration());

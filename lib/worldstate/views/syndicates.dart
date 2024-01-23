@@ -127,7 +127,7 @@ class _SyndicatePageMobile extends StatelessWidget {
           onTap: () {
             Navigator.of(context).pushNamed(SynthTargetsView.route);
           },
-        )
+        ),
       ],
     );
   }

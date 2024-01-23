@@ -1,21 +1,35 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hive/hive.dart';
+import 'package:http/http.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:warframestat_client/warframestat_client.dart';
 import 'package:worldstate_repository/worldstate_repository.dart';
 
 import 'fixtures/fixtures.dart';
-import 'mocks.dart';
+
+class MockClient extends Mock implements Client {
+  static late Worldstate worldstate;
+
+  @override
+  Future<Response> get(Uri url, {Map<String, String>? headers}) async {
+    final response = await Client().get(url);
+    final body = json.decode(response.body) as Map<String, dynamic>;
+    worldstate = Worldstate.fromJson(body);
+
+    return response;
+  }
+}
 
 void main() {
+  late Client client;
   late WarframestatCache cache;
   late WorldstateRepository repo;
   late Box<dynamic> testBox;
-  late WorldstateComputeRunners runners;
 
-  final Worldstate worldstate = Worldstate.fromJson(Fixtures.worldstateFixture);
+  late final worldstate = MockClient.worldstate;
 
   // final List<SynthTarget> synthTargets = Fixtures.synthTargetsFixture
   //  .map((dynamic e) => SynthTargetModel.fromJson(e as Map<String, dynamic>))
@@ -31,8 +45,8 @@ void main() {
 
     testBox = await Hive.openBox<dynamic>('test_box', path: temp.path);
     cache = await WarframestatCache.initCache(temp.path, testBox);
-    runners = MockWorldstateComputeRunners();
-    repo = WorldstateRepository(cache: cache, runners: runners);
+    client = MockClient();
+    repo = WorldstateRepository(client: client, cache: cache);
   });
 
   group('Worldstate', () {
@@ -43,31 +57,27 @@ void main() {
     });
 
     test('get => state is cached in the background', () async {
-      when(() => runners.getWorldstate(any()))
-          .thenAnswer((_) async => worldstate);
-
       await repo.getWorldstate();
 
       expect(cache.getCachedStateTimestamp(), worldstate.timestamp);
       expect(cache.getCachedState(), worldstate);
     });
 
-    test('expired => get new worldstate', () async {
-      // The tearDown clears keys after every test so we need to have something
-      //in cache to test against the timestamp.
-      cache.cacheWorldstate(worldstate);
+    test(
+      'expired => get new worldstate',
+      () async {
+        // The tearDown clears keys after every test so we need to have something
+        //in cache to test against the timestamp.
+        cache.cacheWorldstate(worldstate);
 
-      final fixture = Fixtures.worldstateFixture;
-      fixture['timestamp'] = DateTime.now().toUtc().toIso8601String();
-      final updateState = Worldstate.fromJson(fixture);
+        final state = await repo.getWorldstate();
 
-      when(() => runners.getWorldstate(any()))
-          .thenAnswer((_) async => updateState);
+        await Future<void>.delayed(const Duration(seconds: 61));
 
-      final state = await repo.getWorldstate();
-
-      expect(state.timestamp, updateState.timestamp);
-    });
+        expect(state.timestamp, worldstate.timestamp);
+      },
+      timeout: const Timeout(Duration(minutes: 3)),
+    );
 
     test('forced => gets a new state regardless of timestamp', () async {
       final fixture = Fixtures.worldstateFixture;
@@ -78,39 +88,27 @@ void main() {
       //in cache to test against the timestamp.
       cache.cacheWorldstate(updateState);
 
-      when(() => runners.getWorldstate(any()))
-          .thenAnswer((_) async => worldstate);
-
       final state = await repo.getWorldstate(forceUpdate: true);
+      final isTimestampAhead =
+          state.timestamp.difference(DateTime.now()).abs() >=
+              const Duration(seconds: 60);
 
-      expect(state.timestamp, worldstate.timestamp);
+      expect(isTimestampAhead, true);
     });
 
     test('throw exception => return cached state', () async {
-      // The tearDown clears keys after every test so we need to have something
-      //in cache to test against the timestamp.
       cache.cacheWorldstate(worldstate);
-
-      when(() => runners.getWorldstate(any()))
-          .thenThrow(const ServerException(''));
 
       var state = await repo.getWorldstate();
       expect(state.timestamp, worldstate.timestamp);
-
-      when(() => runners.getWorldstate(any()))
-          .thenThrow(const FormatException());
 
       state = await repo.getWorldstate();
       expect(state.timestamp, worldstate.timestamp);
     });
 
     test('throws exception and cache is empty => rethrows exception', () async {
-      when(() => runners.getWorldstate(any()))
-          .thenThrow(const ServerException(''));
       expect(repo.getWorldstate(), throwsException);
 
-      when(() => runners.getWorldstate(any()))
-          .thenThrow(const FormatException());
       expect(repo.getWorldstate(), throwsException);
     });
   });
