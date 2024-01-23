@@ -37,7 +37,7 @@ dependencies:
   provider: ^6.1.1
   responsive_builder: ^0.7.0
   rxdart: ^0.27.7
-  sentry_flutter: ^7.14.0
+  sentry_flutter: ^7.15.0
   sentry_logging: ^7.14.0
   settings_ui: ^2.0.2
   shimmer: ^3.0.0
