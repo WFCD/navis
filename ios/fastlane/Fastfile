@@ -20,10 +20,7 @@ platform :ios do
     begin
       tags = git_tags(limit: 2)
       analyze_commits(match: tags[1])
-  
       changelog = conventional_changelog(format: 'plain', display_title: false, display_links: false, order: ['feat', 'fix', 'perf'])
-
-      File.open("metadata/en-US/release_notes.txt", 'w') {|f| f.write(changelog)}
 
       deliver(
         submit_for_review: true,
@@ -33,6 +30,9 @@ platform :ios do
         skip_screenshots: true,
         ipa: '../build/ios/ipa/Navis.ipa',
         precheck_include_in_app_purchases: false,
+        release_notes: {
+          'default' => changelog
+        }
         submission_information: {
           add_id_info_limits_tracking: true,
           add_id_info_serves_ads: false,

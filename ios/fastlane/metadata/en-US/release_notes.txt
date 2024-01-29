@@ -1,2 +1,0 @@
-Bug fixes:
-- droping sentry breadcrumbs in an effort to track down a bug with darvo deals
