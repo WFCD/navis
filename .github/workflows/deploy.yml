@@ -18,7 +18,7 @@ env:
   SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
 
 jobs:
-  release-android-google-play:
+  android-google-play:
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout repository
@@ -60,8 +60,7 @@ jobs:
         run: |
           flutter build appbundle \
             --dart-define=SENTRY_DSN=$SENTRY_DSN --dart-define=MATOMO_URL=$MATOMO_URL \
-            -t lib/main_prod.dart --flavor prod \
-            --split-debug-info=debug_info
+            --flavor prod --split-debug-info=debug_info
 
       - name: Upload Sentry debug symbols
         run: flutter packages pub run sentry_dart_plugin
@@ -91,7 +90,7 @@ jobs:
           lane: production
           subdirectory: android
 
-  release-ios-appstore:
+  ios-appstore:
     runs-on: macos-latest
     steps:
       - name: Checkout repository
@@ -99,34 +98,23 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Install Apple certificate and provisioning profile
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.3.0
+          bundler-cache: true
+          working-directory: ios
+
+      - name: Setup certs using fastlane
+        working-directory: ios
         env:
-          APPSTORE_CERT: ${{ secrets.APPSTORE_CERT }}
-          APPSTORE_CERT_PASSWORD: ${{ secrets.APPSTORE_CERT_PASSWORD }}
-          MOBILEPROVISION: ${{ secrets.MOBILEPROVISION }}
-          KEYCHAIN_PASSWORD: ${{ secrets.KEYCHAIN_PASSWORD }}
+          FASTLANE_SESSION: ${{ secrets.FASTLANE_SESSION }}
+          FASTLANE_PASSWORD: ${{ secrets.FASTLANE_PASSWORD }}
+          SPACESHIP_ONLY_ALLOW_INTERACTIVE_2FA: ${{ secrets.SPACESHIP_ONLY_ALLOW_INTERACTIVE_2FA }}
+          MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
+          MATCH_GIT_BASIC_AUTHORIZATION: ${{ secrets.MATCH_GIT_BASIC_AUTHORIZATION }}
         run: |
-          # create variables
-          CERTIFICATE_PATH=$RUNNER_TEMP/build_certificate.p12
-          PP_PATH=$RUNNER_TEMP/build_pp.mobileprovision
-          KEYCHAIN_PATH=$RUNNER_TEMP/app-signing.keychain-db
-
-          # import certificate and provisioning profile from secrets
-          echo -n "$APPSTORE_CERT" | base64 --decode --output $CERTIFICATE_PATH
-          echo -n "$MOBILEPROVISION" | base64 --decode --output $PP_PATH
-
-          # create temporary keychain
-          security create-keychain -p "$KEYCHAIN_PASSWORD" $KEYCHAIN_PATH
-          security set-keychain-settings -lut 21600 $KEYCHAIN_PATH
-          security unlock-keychain -p "$KEYCHAIN_PASSWORD" $KEYCHAIN_PATH
-
-          # import certificate to keychain
-          security import $CERTIFICATE_PATH -P "$APPSTORE_CERT_PASSWORD" -A -t cert -f pkcs12 -k $KEYCHAIN_PATH
-          security list-keychain -d user -s $KEYCHAIN_PATH
-
-          # apply provisioning profile
-          mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
-          cp $PP_PATH ~/Library/MobileDevice/Provisioning\ Profiles
+          bundle exec fastlane run setup_ci
+          bundle exec fastlane match appstore --readonly true -s "fastlane_tmp_keychain"
 
       - name: Install Flutter SDK
         uses: subosito/flutter-action@v2.11.0
@@ -151,29 +139,17 @@ jobs:
         run: |
           flutter build ipa \
             --dart-define=SENTRY_DSN=$SENTRY_DSN --dart-define=MATOMO_URL=$MATOMO_URL \
-            -t lib/main_prod.dart --export-options-plist=ios/ExportOptions.plist
-
-      - uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: "3.2.2"
-          bundler-cache: true
-          working-directory: ios
+            --export-options-plist=ios/ExportOptions.plist
 
       - name: App Store Deploy Beta
-        uses: maierj/fastlane-action@v3.0.0
         if: contains(github.ref_name, 'beta')
-        with:
-          lane: beta
-          subdirectory: ios
+        run: bundle exec fastlane beta
 
       - name: App Store Deploy
-        uses: maierj/fastlane-action@v3.0.0
         if: contains(github.ref_name, 'beta') == false
-        with:
-          lane: production
-          subdirectory: ios
+        run: bundle exec fastlane production
 
-  release-android-github:
+  android-github:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v4
@@ -212,8 +188,7 @@ jobs:
         run: |
           flutter build apk \
             --dart-define=SENTRY_DSN=$SENTRY_DSN --dart-define=MATOMO_URL=$MATOMO_URL \
-            -t lib/main_prod.dart --flavor prod --split-per-abi \
-            --split-debug-info=debug_info
+            --flavor prod --split-per-abi --split-debug-info=debug_info
 
       - name: Github Releases Deploy Beta
         uses: xresloader/upload-to-github-release@v1.3.12
@@ -236,40 +211,29 @@ jobs:
           tags: true
           draft: false
 
-  release-ios-github:
+  ios-github:
     runs-on: macos-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Install Apple certificate and provisioning profile
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.3.0
+          bundler-cache: true
+          working-directory: ios
+
+      - name: Setup certs using fastlane
+        working-directory: ios
         env:
-          APPSTORE_CERT: ${{ secrets.APPSTORE_CERT }}
-          APPSTORE_CERT_PASSWORD: ${{ secrets.APPSTORE_CERT_PASSWORD }}
-          MOBILEPROVISION: ${{ secrets.MOBILEPROVISION }}
-          KEYCHAIN_PASSWORD: ${{ secrets.KEYCHAIN_PASSWORD }}
+          FASTLANE_SESSION: ${{ secrets.FASTLANE_SESSION }}
+          FASTLANE_PASSWORD: ${{ secrets.FASTLANE_PASSWORD }}
+          SPACESHIP_ONLY_ALLOW_INTERACTIVE_2FA: ${{ secrets.SPACESHIP_ONLY_ALLOW_INTERACTIVE_2FA }}
+          MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
+          MATCH_GIT_BASIC_AUTHORIZATION: ${{ secrets.MATCH_GIT_BASIC_AUTHORIZATION }}
         run: |
-          # create variables
-          CERTIFICATE_PATH=$RUNNER_TEMP/build_certificate.p12
-          PP_PATH=$RUNNER_TEMP/build_pp.mobileprovision
-          KEYCHAIN_PATH=$RUNNER_TEMP/app-signing.keychain-db
-
-          # import certificate and provisioning profile from secrets
-          echo -n "$APPSTORE_CERT" | base64 --decode --output $CERTIFICATE_PATH
-          echo -n "$MOBILEPROVISION" | base64 --decode --output $PP_PATH
-
-          # create temporary keychain
-          security create-keychain -p "$KEYCHAIN_PASSWORD" $KEYCHAIN_PATH
-          security set-keychain-settings -lut 21600 $KEYCHAIN_PATH
-          security unlock-keychain -p "$KEYCHAIN_PASSWORD" $KEYCHAIN_PATH
-
-          # import certificate to keychain
-          security import $CERTIFICATE_PATH -P "$APPSTORE_CERT_PASSWORD" -A -t cert -f pkcs12 -k $KEYCHAIN_PATH
-          security list-keychain -d user -s $KEYCHAIN_PATH
-
-          # apply provisioning profile
-          mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
-          cp $PP_PATH ~/Library/MobileDevice/Provisioning\ Profiles
+          bundle exec fastlane run setup_ci
+          bundle exec fastlane match appstore --readonly true -s "fastlane_tmp_keychain"
 
       - name: Install Flutter SDK
         uses: subosito/flutter-action@v2.11.0
@@ -294,7 +258,7 @@ jobs:
         run: |
           flutter build ipa \
             --dart-define=SENTRY_DSN=$SENTRY_DSN --dart-define=MATOMO_URL=$MATOMO_URL \
-            -t lib/main_prod.dart --export-options-plist=ios/ExportOptions.plist
+            --export-options-plist=ios/ExportOptions.plist
 
       - name: Github Releases Deploy Beta
         uses: xresloader/upload-to-github-release@v1.3.12
@@ -316,10 +280,3 @@ jobs:
           file: "build/ios/ipa/*.ipa"
           tags: true
           draft: false
-
-      # Only needed for self-hosted runners but I'm a paraniod person.
-      - name: Clean up keychain and provisioning profile
-        if: ${{ always() }}
-        run: |
-          security delete-keychain $RUNNER_TEMP/app-signing.keychain-db
-          rm ~/Library/MobileDevice/Provisioning\ Profiles/build_pp.mobileprovision
