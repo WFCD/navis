@@ -38,7 +38,7 @@ class ModStats extends StatelessWidget {
       rank: rank,
       drain: mod.baseDrain + rank,
       polarity: mod.polarity,
-      rarity: mod.rarity.name,
+      rarity: mod.rarity!.name,
     );
   }
 
@@ -74,7 +74,7 @@ class ModStats extends StatelessWidget {
         polarity: mod.polarity,
         compatName: mod.compatName,
         modSet: mod.modSet,
-        rarity: mod.rarity.name,
+        rarity: mod.rarity!.name,
       ),
     );
   }

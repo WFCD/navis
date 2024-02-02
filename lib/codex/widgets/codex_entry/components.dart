@@ -53,10 +53,12 @@ class _BuildComponent extends StatelessWidget {
   final Component component;
 
   void _onTap(BuildContext context) {
-    if (component.drops != null && (component.drops?.isNotEmpty ?? false)) {
+    final drops = component.drops;
+
+    if (drops != null && drops.isNotEmpty) {
       Navigator.of(context).push(
         MaterialPageRoute<void>(
-          builder: (context) => ComponentDrops(drops: component.drops!),
+          builder: (context) => ComponentDrops(drops: drops),
         ),
       );
     }

@@ -34,7 +34,7 @@ class MeleeStats extends StatelessWidget {
               ),
             RowItem(
               text: Text(l10n.weaponTypeTitle),
-              child: Text(melee.type),
+              child: Text(melee.type.category),
             ),
             if (melee.stancePolarity != null)
               RowItem(

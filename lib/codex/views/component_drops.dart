@@ -44,7 +44,7 @@ class ComponentDrops extends StatelessWidget {
                     return Center(child: Text(l10n.codexNoResults));
                   }
 
-                  return CodexEntry(item: item);
+                  return EntryView(item: item);
                 },
               ),
             ),

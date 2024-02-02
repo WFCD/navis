@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:navis/codex/utils/stats.dart';
-import 'package:navis/codex/widgets/codex_widgets.dart';
+import 'package:navis/codex/codex.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:warframestat_client/warframestat_client.dart';
@@ -31,7 +30,7 @@ class GunStats extends StatelessWidget {
               ),
             RowItem(
               text: Text(l10n.weaponTypeTitle),
-              child: Text(gun.type),
+              child: Text(gun.type.category),
             ),
             if (gun.polarities?.isNotEmpty ?? false)
               RowItem(

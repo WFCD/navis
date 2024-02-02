@@ -8,17 +8,18 @@ class DropLocations extends StatelessWidget {
   final List<Drop> drops;
 
   int _sortDrops(Drop a, Drop b) {
-    return ((b.chance ?? 0) * 100).compareTo((a.chance ?? 0) * 100);
+    return (b.chance! * 100).compareTo(a.chance! * 100);
   }
 
   @override
   Widget build(BuildContext context) {
-    final maxRange = this.drops.length > 4 ? 4 : this.drops.length;
-    final drops = List.of(this.drops.getRange(0, maxRange))..sort(_sortDrops);
+    final maxRange = drops.length < 4 ? drops.length : 4;
+    drops.sort(_sortDrops);
 
     return AppCard(
       child: Column(
         children: drops
+            .getRange(0, maxRange)
             .map((e) => _DropEntry(location: e.location, chance: e.chance!))
             .toList(),
       ),

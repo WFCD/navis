@@ -15,7 +15,10 @@ dependencies:
   warframestat_client:
     git:
       url: https://github.com/SlayerOrnstein/warframestat_client.git
-      ref: v3.0.1
+      ref: v3.6.0
+
+dependency_overrides:
+  web: 0.3.0
 
 dev_dependencies:
   flutter_test:

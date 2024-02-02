@@ -143,7 +143,7 @@ class WorldstateRepository {
   /// items are added.
   ///
   /// Warframe-items: https://github.com/WFCD/warframe-items
-  Future<List<Item>> searchItems(
+  Future<List<MinimalItem>> searchItems(
     String query, {
     Language language = Language.en,
   }) async {
@@ -154,5 +154,18 @@ class WorldstateRepository {
     );
 
     return client.search(query);
+  }
+
+  Future<Item> fetchItem(
+    String uniqueName, {
+    Language language = Language.en,
+  }) async {
+    final client = WarframeItemsClient(
+      client: _client,
+      language: language,
+      ua: _userAgent,
+    );
+
+    return client.fetchItem(uniqueName);
   }
 }

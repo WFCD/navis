@@ -21,7 +21,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
 
   final WorldstateRepository repository;
 
-  List<Item> _results = [];
+  List<MinimalItem> _results = [];
 
   Future<void> _searchCodex(
     SearchCodex event,
@@ -55,11 +55,11 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
   ) async {
     emit(CodexSearching());
 
-    final originalResults = List<Item>.from(_results);
+    final originalResults = List<MinimalItem>.from(_results);
     if (event.category == WarframeItemCategory.all) {
       return emit(CodexSuccessfulSearch(originalResults));
     } else {
-      final results = List<Item>.from(originalResults)
+      final results = List<MinimalItem>.from(originalResults)
         ..retainWhere((e) => e.category.toLowerCase() == event.category.name);
 
       emit(CodexSuccessfulSearch(results));

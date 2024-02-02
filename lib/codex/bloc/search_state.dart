@@ -18,7 +18,7 @@ class CodexSearching extends SearchState {
 class CodexSuccessfulSearch extends SearchState {
   const CodexSuccessfulSearch(this.results);
 
-  final List<Item> results;
+  final List<MinimalItem> results;
 
   @override
   List<Object?> get props => [results];

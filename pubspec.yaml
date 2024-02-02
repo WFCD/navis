@@ -45,12 +45,12 @@ dependencies:
   warframestat_client:
     git:
       url: https://github.com/SlayerOrnstein/warframestat_client.git
-      ref: v3.0.1
+      ref: v3.6.0
   worldstate_repository:
     path: packages/worldstate_repository
 
 dependency_overrides:
-  uuid: 4.1.0
+  web: 0.3.0
 
 dev_dependencies:
   bloc_test: ^9.1.5

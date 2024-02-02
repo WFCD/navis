@@ -473,19 +473,35 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: "v3.0.1"
-      resolved-ref: "911359e21ce614412c51d9b489fbc0887d4a60ab"
+      ref: "v3.6.0"
+      resolved-ref: b7fd17a851f75a4e194a69a211d8a53f00f06a6a
       url: "https://github.com/SlayerOrnstein/warframestat_client.git"
     source: git
-    version: "3.0.1"
+    version: "3.6.0"
   web:
-    dependency: transitive
+    dependency: "direct overridden"
     description:
       name: web
       sha256: afe077240a270dcfd2aafe77602b4113645af95d0ad31128cc02bce5ac5d5152
       url: "https://pub.dev"
     source: hosted
     version: "0.3.0"
+  web_socket_channel:
+    dependency: transitive
+    description:
+      name: web_socket_channel
+      sha256: "939ab60734a4f8fa95feacb55804fa278de28bdeef38e616dc08e44a84adea23"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.4.3"
+  web_socket_client:
+    dependency: transitive
+    description:
+      name: web_socket_client
+      sha256: "64c703569a5a274b4e6303de4797264051b042821b44ff516ccef354ba8b108a"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.1.1"
   win32:
     dependency: transitive
     description:

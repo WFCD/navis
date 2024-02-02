@@ -12,7 +12,7 @@ class BasicItemInfo extends SliverPersistentHeaderDelegate {
     required this.description,
     required this.imageUrl,
     required this.expandedHeight,
-    this.enable = true,
+    this.disableInfo = false,
     this.wikiaUrl,
     this.isVaulted,
   });
@@ -24,7 +24,7 @@ class BasicItemInfo extends SliverPersistentHeaderDelegate {
   final String? wikiaUrl;
   final double expandedHeight;
   final bool? isVaulted;
-  final bool enable;
+  final bool disableInfo;
 
   @override
   Widget build(
@@ -52,18 +52,19 @@ class BasicItemInfo extends SliverPersistentHeaderDelegate {
                     onPressed: null,
                     child: Text(context.l10n.codexVaultedLabel),
                   ),
-                TextButton(
-                  style: ButtonStyle(
-                    foregroundColor: MaterialStateProperty.all(
-                      context.theme.textTheme.labelLarge?.color,
+                if (wikiaUrl != null)
+                  TextButton(
+                    style: ButtonStyle(
+                      foregroundColor: MaterialStateProperty.all(
+                        context.theme.textTheme.labelLarge?.color,
+                      ),
                     ),
+                    onPressed: () => wikiaUrl?.launchLink(context),
+                    child: Text(context.l10n.seeWikia),
                   ),
-                  onPressed: () => wikiaUrl?.launchLink(context),
-                  child: Text(context.l10n.seeWikia),
-                ),
               ],
             ),
-            if (enable)
+            if (!disableInfo)
               Align(
                 alignment: Alignment.bottomCenter,
                 child: _EntryInfoContent(
