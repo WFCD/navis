@@ -32,7 +32,7 @@ platform :ios do
         precheck_include_in_app_purchases: false,
         release_notes: {
           'default' => changelog
-        }
+        },
         submission_information: {
           add_id_info_limits_tracking: true,
           add_id_info_serves_ads: false,
