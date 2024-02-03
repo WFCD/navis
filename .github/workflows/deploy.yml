@@ -143,10 +143,12 @@ jobs:
 
       - name: App Store Deploy Beta
         if: contains(github.ref_name, 'beta')
+        working-directory: ios
         run: bundle exec fastlane beta
 
       - name: App Store Deploy
         if: contains(github.ref_name, 'beta') == false
+        working-directory: ios
         run: bundle exec fastlane production
 
   android-github:
