@@ -2,11 +2,11 @@ import 'package:black_hole_flutter/black_hole_flutter.dart';
 import 'package:feedback_sentry/feedback_sentry.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_settings_ui/flutter_settings_ui.dart';
 import 'package:intl/intl.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis/settings/settings.dart';
 import 'package:notification_repository/notification_repository.dart';
-import 'package:settings_ui/settings_ui.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});
