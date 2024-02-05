@@ -22,25 +22,6 @@ class EventStatus extends StatelessWidget {
   final DateTime expiry;
   final List<Reward> rewards;
 
-  List<Widget> _buildRewards() {
-    final rewards = <Widget>[];
-
-    for (final reward in this.rewards) {
-      if (reward.itemString.contains('+')) {
-        final r = reward.itemString.split('+');
-
-        rewards.addAll([
-          Chip(label: Text(r.first.trim())),
-          Chip(label: Text(r.last.trim())),
-        ]);
-      } else {
-        rewards.add(Chip(label: Text(reward.itemString)));
-      }
-    }
-
-    return rewards;
-  }
-
   @override
   Widget build(BuildContext context) {
     const fixedString = 2;
@@ -76,7 +57,7 @@ class EventStatus extends StatelessWidget {
               child: ColoredContainer.text(text: node),
             ),
             SizedBoxSpacer.spacerHeight8,
-            if (health != null && !health!.isNaN)
+            if (health != null && !health!.isNaN && !health!.isInfinite)
               RowItem(
                 text: Text(l10n.eventStatusProgress, style: tooltipStyle),
                 child: ColoredContainer.text(
@@ -99,18 +80,37 @@ class EventStatus extends StatelessWidget {
                 contentPadding: EdgeInsets.zero,
               ),
               SizedBoxSpacer.spacerHeight2,
-              Wrap(
-                // It's what worked for the style.
-                // ignore: no-magic-number
-                spacing: 6,
-                // We're just building the list somewhere else.
-                // ignore: avoid-returning-widgets
-                children: _buildRewards(),
-              ),
+              _RewardChips(rewards: rewards),
             },
           ],
         ),
       ),
     );
+  }
+}
+
+class _RewardChips extends StatelessWidget {
+  const _RewardChips({required this.rewards});
+
+  final List<Reward> rewards;
+
+  @override
+  Widget build(BuildContext context) {
+    final rewards = <Widget>[];
+
+    for (final reward in this.rewards) {
+      if (reward.itemString.contains('+')) {
+        final r = reward.itemString.split('+');
+
+        rewards.addAll([
+          Chip(label: Text(r.first.trim())),
+          Chip(label: Text(r.last.trim())),
+        ]);
+      } else {
+        rewards.add(Chip(label: Text(reward.itemString)));
+      }
+    }
+
+    return Wrap(spacing: 6, children: rewards);
   }
 }
