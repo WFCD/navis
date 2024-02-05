@@ -32,7 +32,7 @@ class AboutApp extends AbstractSettingsTile {
         return AboutDialog(
           applicationIcon: const Icon(
             GenesisAssets.nightmare,
-            size: 60,
+            size: 50,
             color: Color(0xFF1565C0),
           ),
           applicationName: 'Cephalon Navis',
@@ -44,7 +44,7 @@ class AboutApp extends AbstractSettingsTile {
                 children: <TextSpan>[
                   TextSpan(
                     style: aboutTextStyle,
-                    text: '${l10n.homePageTitle} ',
+                    text: '${l10n.sourceCode} \n',
                   ),
                   TextSpan(
                     text: projectPage,
@@ -64,11 +64,11 @@ class AboutApp extends AbstractSettingsTile {
                   ),
                   TextSpan(
                     style: textTheme.bodySmall,
-                    text: '\n\n${l10n.legalese}',
+                    text: '\n\n${l10n.legalese}\n\n',
                   ),
                   TextSpan(
                     style: textTheme.bodySmall,
-                    text: '${l10n.warframeLinkTitle} ',
+                    text: '${l10n.warframeLinkTitle}. \n',
                   ),
                   TextSpan(
                     text: warframePage,

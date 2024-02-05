@@ -534,6 +534,12 @@
     "type": "text",
     "placeholders": {}
   },
+  "sourceCode": "Source code",
+  "@sourceCode": {
+    "description": "Displayes a link to Navis's source code",
+    "type": "text",
+    "placeholders": {}
+  },
   "issueTrackerDescription": "Report issues or feature request for this project",
   "@issueTrackerDescription": {
     "description": "Description for Navis's issue tracker",
