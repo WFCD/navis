@@ -127,6 +127,10 @@ class NotificationTopics {
         topic: Topics.sniptronVandalBP,
       ),
       SimpleTopics(
+        title: 'Snipetron Vandal Barrel',
+        topic: Topics.sniptronVandalBarrel,
+      ),
+      SimpleTopics(
         title: 'Snipetron Vandal Receiver',
         topic: Topics.sniptronVandalBarrel,
       ),
