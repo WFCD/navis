@@ -273,7 +273,7 @@ class NotificationTopics {
 
       yield SimpleTopics(
         title: '$tier ${toBeginningOfSentenceCase(mission)}',
-        topic: Topic('$tier.$mission'),
+        topic: topic,
       );
     }
   }
