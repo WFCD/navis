@@ -20,7 +20,8 @@ Future<void> main() async {
         ..enableDeduplication = true
         ..tracesSampleRate = tracesSampleRate
         ..enableBreadcrumbTrackingForCurrentPlatform()
-        ..addIntegration(LoggingIntegration());
+        ..addIntegration(LoggingIntegration())
+        ..beforeSend = _beforeSend;
     },
     appRunner: () async {
       if (!kDebugMode || !kProfileMode) {
@@ -38,4 +39,10 @@ Future<void> main() async {
       );
     },
   );
+}
+
+SentryEvent? _beforeSend(SentryEvent event, {Hint? hint}) {
+  if (kDebugMode || kProfileMode) return null;
+
+  return event;
 }
