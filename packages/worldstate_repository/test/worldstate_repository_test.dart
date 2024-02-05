@@ -66,8 +66,8 @@ void main() {
     test(
       'expired => get new worldstate',
       () async {
-        // The tearDown clears keys after every test so we need to have something
-        //in cache to test against the timestamp.
+        // The tearDown clears keys after every test so we need to have
+        // something in cache to test against the timestamp.
         cache.cacheWorldstate(worldstate);
 
         final state = await repo.getWorldstate();

@@ -193,7 +193,7 @@ abstract class Topics {
       strunBarrel,
       strunReciever,
       strunStock,
-      ...generateFissureTopics()
+      ...generateFissureTopics(),
     ];
   }
 }
