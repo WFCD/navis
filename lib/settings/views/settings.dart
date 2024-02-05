@@ -61,6 +61,7 @@ class _SettingsView extends StatelessWidget {
     };
 
     return SettingsList(
+      platform: DevicePlatform.android,
       sections: [
         // const SettingsSection(tiles: [PlatformSelect()]),
         SettingsSection(
