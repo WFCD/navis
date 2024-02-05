@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'dart:io';
 
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:notification_repository/src/topics.dart';
@@ -23,28 +24,50 @@ class NotificationRepository {
   /// Has a platform check inside the lib itself.
   void configure() => _messaging.requestPermission(provisional: true);
 
-  /// Subscribes to the [GamePlatforms]
-  Future<void> subscribeToPlatform(GamePlatform platform) async {
-    _log('subscribing to ${platform.name} topic');
-    await _messaging.subscribeToTopic(platform.name);
+  // IOS requires and APNS check, if the first time fails we can wait the
+  // 5 seconds. But if it's not availble the second time we can assume that
+  // they've been configured in correctly or just taking awhile, an app refresh
+  // should take care of it.
+  Future<void> _iosAPNSCheck() async {
+    if (!Platform.isIOS) return;
+
+    var apns = await _messaging.getAPNSToken();
+    if (apns != null) return;
+
+    await Future<void>.delayed(const Duration(seconds: 5));
+
+    apns = await _messaging.getAPNSToken();
+    if (apns != null) return;
+
+    throw Exception('Failed to get APNS');
   }
 
-  /// Unsubscribes from the [GamePlatforms]
+  /// Subscribes to the [GamePlatform]
+  Future<void> subscribeToPlatform(GamePlatform platform) async {
+    await _iosAPNSCheck();
+    await _messaging.subscribeToTopic(platform.name);
+    _log('subscribed to ${platform.name}');
+  }
+
+  /// Unsubscribes from the [GamePlatform]
   Future<void> unsubscribeFromPlatform(GamePlatform platform) async {
-    _log('unsubscribing from ${platform.name} topic');
+    await _iosAPNSCheck();
     await _messaging.unsubscribeFromTopic(platform.name);
+    _log('unsubscribed from ${platform.name}');
   }
 
   /// Subscribes to any [Topic] found in [Topics]
   Future<void> subscribeToNotification(Topic topic) async {
-    _log('subscribing to $topic');
-    await _messaging.subscribeToTopic(topic.toString());
+    await _iosAPNSCheck();
+    await _messaging.subscribeToTopic(topic.name);
+    _log('subscribed to ${topic.name}');
   }
 
   /// Unsubscribes to any [Topic] found in [Topics]
   Future<void> unsubscribeFromNotification(Topic topic) async {
-    _log('unsubscribing from $topic');
-    await _messaging.unsubscribeFromTopic(topic.toString());
+    await _iosAPNSCheck();
+    await _messaging.subscribeToTopic(topic.name);
+    _log('unsubscribed to ${topic.name}');
   }
 
   void _log(String message) {
