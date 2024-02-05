@@ -21,7 +21,7 @@ class NotificationRepository {
   /// Request persmission on iOS
   ///
   /// Has a platform check inside the lib itself.
-  void configure() => _messaging.requestPermission();
+  void configure() => _messaging.requestPermission(provisional: true);
 
   /// Subscribes to the [GamePlatforms]
   Future<void> subscribeToPlatform(GamePlatform platform) async {
