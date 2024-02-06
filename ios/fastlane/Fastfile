@@ -27,6 +27,7 @@ platform :ios do
       deliver(
         submit_for_review: true,
         automatic_release: true,
+        reject_if_possible: true,
         force: true, # Skip HTMl report verification
         skip_screenshots: true,
         ipa: '../build/ios/ipa/Navis.ipa',
