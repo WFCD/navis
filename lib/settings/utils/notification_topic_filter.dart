@@ -155,10 +155,6 @@ class NotificationTopics {
         topic: Topics.deraVandalBP,
       ),
       SimpleTopics(
-        title: 'Dera Vandal Blueprint',
-        topic: Topics.deraVandalBP,
-      ),
-      SimpleTopics(
         title: 'Dera Vandal Barrel',
         topic: Topics.deraVandalBarrel,
       ),
