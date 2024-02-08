@@ -10,7 +10,11 @@ class FissureFilterCubit extends HydratedCubit<FissureFilterState> {
   FissureFilterCubit(List<Fissure> fissures)
       : super(Unfiltred(fissures: fissures));
 
+  FissureFilter _filter = FissureFilter.all;
+
   void filterFissures(FissureFilter filter, List<Fissure> fissures) {
+    _filter = filter;
+
     switch (filter) {
       case FissureFilter.all:
         emit(Unfiltred(fissures: fissures));
@@ -21,6 +25,10 @@ class FissureFilterCubit extends HydratedCubit<FissureFilterState> {
       case FissureFilter.steelPath:
         emit(SteelPathFissures(fissures: fissures));
     }
+  }
+
+  void updateFissues(List<Fissure> fissures) {
+    filterFissures(_filter, fissures);
   }
 
   @override

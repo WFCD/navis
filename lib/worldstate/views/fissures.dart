@@ -147,38 +147,46 @@ class _FissureFilter extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
 
-    return BlocBuilder<FissureFilterCubit, FissureFilterState>(
-      builder: (_, state) {
-        return Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            ChoiceChip(
-              label: Text(l10n.allFissuresButton),
-              tooltip: l10n.allFissuresButton,
-              selected: state is Unfiltred,
-              onSelected: (_) => onSelected(context, FissureFilter.all),
-            ),
-            ChoiceChip(
-              label: Text(l10n.fissuresTitle),
-              tooltip: l10n.fissuresTitle,
-              selected: state is Fissures,
-              onSelected: (_) => onSelected(context, FissureFilter.fissures),
-            ),
-            ChoiceChip(
-              label: Text(l10n.voidStormFissuresButton),
-              tooltip: l10n.voidStormFissuresButton,
-              selected: state is VoidStorms,
-              onSelected: (_) => onSelected(context, FissureFilter.voidStorm),
-            ),
-            ChoiceChip(
-              label: Text(l10n.steelPathTitle),
-              tooltip: l10n.steelPathTitle,
-              selected: state is SteelPathFissures,
-              onSelected: (_) => onSelected(context, FissureFilter.steelPath),
-            ),
-          ],
-        );
+    return BlocListener<WorldstateCubit, SolsystemState>(
+      listener: (context, state) {
+        if (state is WorldstateSuccess) {
+          BlocProvider.of<FissureFilterCubit>(context)
+              .updateFissues(state.worldstate.fissures);
+        }
       },
+      child: BlocBuilder<FissureFilterCubit, FissureFilterState>(
+        builder: (_, state) {
+          return Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              ChoiceChip(
+                label: Text(l10n.allFissuresButton),
+                tooltip: l10n.allFissuresButton,
+                selected: state is Unfiltred,
+                onSelected: (_) => onSelected(context, FissureFilter.all),
+              ),
+              ChoiceChip(
+                label: Text(l10n.fissuresTitle),
+                tooltip: l10n.fissuresTitle,
+                selected: state is Fissures,
+                onSelected: (_) => onSelected(context, FissureFilter.fissures),
+              ),
+              ChoiceChip(
+                label: Text(l10n.voidStormFissuresButton),
+                tooltip: l10n.voidStormFissuresButton,
+                selected: state is VoidStorms,
+                onSelected: (_) => onSelected(context, FissureFilter.voidStorm),
+              ),
+              ChoiceChip(
+                label: Text(l10n.steelPathTitle),
+                tooltip: l10n.steelPathTitle,
+                selected: state is SteelPathFissures,
+                onSelected: (_) => onSelected(context, FissureFilter.steelPath),
+              ),
+            ],
+          );
+        },
+      ),
     );
   }
 }
