@@ -3,10 +3,12 @@ plugins:
     - releaseRules:
         - type: perf
           release: patch
-  - "@semantic-release/release-notes-generator"
+  - - "@semantic-release/release-notes-generator"
+    - presets: conventionalcommits
   - "@semantic-release/github"
-  - - "@semantic-release/exec"
-    - prepareCmd: ".github/workflows/scripts/update_pubspec.sh ${nextRelease.version}"
+  - - "semantic-release-pub"
+    - publishPub: false
+    - updateBuildNumber: true
   - - "@semantic-release/git"
     - assets: ["pubspec.yaml"]
       message: "chore(release): ${nextRelease.version}"

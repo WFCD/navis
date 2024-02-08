@@ -15,27 +15,14 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-tags: true
-          persist-credentials: false
-
-      - name: Install Dart SDK
-        uses: dart-lang/setup-dart@v1.4
-
-      - name: Install required Dart packages
-        run: dart pub global activate cider
-
-      - name: Create executable
-        run: chmod +x .github/workflows/scripts/update_pubspec.sh
+          token: ${{ secrets.GH_TOKEN }}
 
       - name: Semantic Release
         id: semantic
         uses: cycjimmy/semantic-release-action@v4.0.0
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
-          GIT_AUTHOR_EMAIL: ${{ secrets.GIT_AUTHOR_EMAIL }}
-          GIT_AUTHOR_NAME: ${{ secrets.GIT_AUTHOR_NAME }}
-          GIT_COMITTER_EMAIL: ${{ secrets.GIT_COMITTER_EMAIL }}
-          GIT_COMITTER_NAME: ${{ secrets.GIT_COMITTER_NAME }}
         with:
           extra_plugins: |
-            @semantic-release/exec
             @semantic-release/git
+            semantic-release-pub
