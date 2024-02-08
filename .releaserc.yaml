@@ -8,7 +8,7 @@ plugins:
   - "@semantic-release/github"
   - - "semantic-release-pub"
     - publishPub: false
-    - updateBuildNumber: true
+      updateBuildNumber: true
   - - "@semantic-release/git"
     - assets: ["pubspec.yaml"]
       message: "chore(release): ${nextRelease.version}"
