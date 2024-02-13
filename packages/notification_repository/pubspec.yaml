@@ -16,7 +16,7 @@ dependencies:
   warframestat_client:
     git:
       url: https://github.com/SlayerOrnstein/warframestat_client.git
-      ref: v3.6.0
+      ref: v3.6.1
 
 dependency_overrides:
   web: 0.3.0
