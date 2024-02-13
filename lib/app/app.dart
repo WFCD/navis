@@ -10,9 +10,7 @@ import 'package:navis/settings/settings.dart';
 import 'package:navis/synthtargets/views/targets.dart';
 import 'package:navis/worldstate/worldstate.dart';
 import 'package:navis_ui/navis_ui.dart';
-import 'package:notification_repository/notification_repository.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
-import 'package:warframestat_client/warframestat_client.dart';
 
 class NavisApp extends StatefulWidget {
   const NavisApp({super.key});
@@ -28,23 +26,6 @@ class _NavisAppState extends State<NavisApp> with WidgetsBindingObserver {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addObserver(this);
-
-    final notifications = context.read<NotificationRepository>()..configure();
-    final userSettingsCubit = context.read<UserSettingsCubit>();
-    final settings = userSettingsCubit.state;
-    final isFirstTime = switch (settings) {
-      UserSettingsSuccess() => settings.isFirstTime,
-      _ => true
-    };
-
-    if (isFirstTime) {
-      switch (settings) {
-        case UserSettingsSuccess():
-          notifications.subscribeToPlatform(settings.platform);
-        default:
-          notifications.subscribeToPlatform(GamePlatform.pc);
-      }
-    }
 
     _timer = Timer.periodic(
       const Duration(seconds: 60),

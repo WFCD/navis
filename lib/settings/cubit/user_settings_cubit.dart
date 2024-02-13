@@ -3,7 +3,6 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:navis/settings/settings.dart';
 import 'package:notification_repository/notification_repository.dart';
-import 'package:warframestat_client/warframestat_client.dart';
 
 part 'user_settings_state.dart';
 
@@ -19,11 +18,6 @@ class UserSettingsCubit extends Cubit<UserSettingsState> {
   void updateLanguage(Locale language) {
     _settings.language = language;
     emit((state as UserSettingsSuccess).copyWith(language: _settings.language));
-  }
-
-  void updatePlatform(GamePlatform platform) {
-    _settings.platform = platform;
-    emit((state as UserSettingsSuccess).copyWith(platform: _settings.platform));
   }
 
   void updateThemeMode(ThemeMode themeMode) {
@@ -50,7 +44,6 @@ class UserSettingsCubit extends Cubit<UserSettingsState> {
     final settings = UserSettingsSuccess(
       language: _settings.language,
       themeMode: _settings.theme,
-      platform: _settings.platform,
       isOptOut: _settings.isOptOut,
       isFirstTime: _settings.isFirstTime,
       toggles: <String, bool>{

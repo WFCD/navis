@@ -3,7 +3,6 @@ import 'dart:io';
 
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:notification_repository/src/topics.dart';
-import 'package:warframestat_client/warframestat_client.dart';
 
 // TODO(SlayerOrnstein): We might need to use other services that also provide
 //  ADM for amazon devices
@@ -40,20 +39,6 @@ class NotificationRepository {
     if (apns != null) return;
 
     throw Exception('Failed to get APNS');
-  }
-
-  /// Subscribes to the [GamePlatform]
-  Future<void> subscribeToPlatform(GamePlatform platform) async {
-    await _iosAPNSCheck();
-    await _messaging.subscribeToTopic(platform.name);
-    _log('subscribed to ${platform.name}');
-  }
-
-  /// Unsubscribes from the [GamePlatform]
-  Future<void> unsubscribeFromPlatform(GamePlatform platform) async {
-    await _iosAPNSCheck();
-    await _messaging.unsubscribeFromTopic(platform.name);
-    _log('unsubscribed from ${platform.name}');
   }
 
   /// Subscribes to any [Topic] found in [Topics]

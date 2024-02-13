@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:matomo_tracker/matomo_tracker.dart';
 import 'package:navis/settings/settings.dart';
-import 'package:warframestat_client/warframestat_client.dart';
 
 /// {@template user_settings}
 /// A Hive box for saving user simple user settings
@@ -44,24 +43,6 @@ class UserSettings {
       log('setting new lang ${value.languageCode}');
       _userSettingsBox.put(SettingsKeys.userLanguage, value.languageCode);
     }
-  }
-
-  // ignore: comment_references
-  /// Returns the stored [GamePlatforms].
-  GamePlatform get platform {
-    final value = _userSettingsBox.get(SettingsKeys.platformKey) as String?;
-
-    if (value != null) {
-      return GamePlatform.values.byName(value);
-    }
-
-    return GamePlatform.pc;
-  }
-
-  /// Updates the stored [UserSettings.platform].
-  set platform(GamePlatform value) {
-    log('setting new platform ${value.name}');
-    _userSettingsBox.put(SettingsKeys.platformKey, value.name);
   }
 
   /// Returns [ThemeMode] value from the stored string value.

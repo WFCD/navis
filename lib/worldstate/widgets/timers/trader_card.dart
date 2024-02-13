@@ -15,7 +15,7 @@ class TraderCard extends StatelessWidget {
       builder: (context, state) {
         final now = DateTime.now();
         final trader = switch (state) {
-          WorldstateSuccess() => state.worldstate.voidTrader,
+          WorldstateSuccess() => state.worldstate.voidTraders.first,
           _ => null,
         };
 
