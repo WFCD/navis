@@ -86,10 +86,11 @@ class _Overview extends StatelessWidget {
               }
 
               List<Drop>? drops;
-              if (item is DroppableItem && (item.drops?.isNotEmpty ?? false)) {
+              if (item is DroppableItem) {
                 drops = item.drops;
               }
 
+              debugPrint(drops.toString());
               return ListView(
                 children: [
                   if (isFoundryItem)
