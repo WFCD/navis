@@ -1038,7 +1038,7 @@
     "type": "text",
     "placeholder": {}
   },
-  "duviriFear": "雙衍悖論: 恐",
+  "duviriFear": "雙衍悖論: 懼",
   "@duviriFear": {
     "description": "Duviri Fear state. If Duviri doesn't have a translatetion then only joy can be translated.",
     "type": "text",
