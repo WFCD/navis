@@ -534,6 +534,12 @@
     "type": "text",
     "placeholders": {}
   },
+  "sourceCode": "Source code",
+  "@sourceCode": {
+    "description": "Displayes a link to Navis's source code",
+    "type": "text",
+    "placeholders": {}
+  },
   "issueTrackerDescription": "Segnala problemi o suggerisci nuove funzionalità per questo progetto:",
   "@issueTrackerDescription": {
     "description": "Description for Navis's issue tracker",
@@ -780,91 +786,91 @@
     "type": "text",
     "placeholders": {}
   },
-  "stancePolarityTitle": "Stance Polarity",
+  "stancePolarityTitle": "Polarità Stile",
   "@stancePolarityTitle": {
     "description": "Melee stance polarity title",
     "type": "text",
     "placeholders": {}
   },
-  "attackSpeedTitle": "Attack Speed",
+  "attackSpeedTitle": "Velocità Attacco",
   "@attackSpeedTitle": {
     "description": "melee attack speed",
     "type": "text",
     "placeholders": {}
   },
-  "followThroughTitle": "Follow Through",
+  "followThroughTitle": "Continuazione",
   "@followThroughTitle": {
     "description": "Melee follow through title",
     "type": "text",
     "placeholders": {}
   },
-  "rangeTitle": "Range",
+  "rangeTitle": "Portata",
   "@rangeTitle": {
     "description": "Melee's range title",
     "type": "text",
     "placeholders": {}
   },
-  "slamAttackTitle": "Slam Attack",
+  "slamAttackTitle": "Schianto A Terra",
   "@slamAttackTitle": {
     "description": "Melee's slam attack",
     "type": "text",
     "placeholders": {}
   },
-  "slamRadialDamageTitle": "Slam Radial Damage",
+  "slamRadialDamageTitle": "Danno Ad Area Schianto",
   "@slamRadialDamageTitle": {
     "description": "Melee's Slam Radial Damage",
     "type": "text",
     "placeholders": {}
   },
-  "slamRadiusTitle": "Slam Radius",
+  "slamRadiusTitle": "Raggio Schianto A Terra",
   "@slamRadiusTitle": {
     "description": "Slam Radius title",
     "type": "text",
     "placeholders": {}
   },
-  "slideAttackTitle": "Slide Attack",
+  "slideAttackTitle": "Attacco In Scivolata",
   "@slideAttackTitle": {
     "description": "Melee's slide attack",
     "type": "text",
     "placeholders": {}
   },
-  "heavyAttackTitle": "Heavy Attack",
+  "heavyAttackTitle": "Attacco Pesante",
   "@heavyAttackTitle": {
     "description": "Heavy attack title",
     "type": "text",
     "placeholders": {}
   },
-  "heavySlamAttackTitle": "Heavy Slam Attack",
+  "heavySlamAttackTitle": "Danno Schianto Pesante",
   "@heavySlamAttackTitle": {
     "description": "Heavy Slam attack title",
     "type": "text",
     "placeholders": {}
   },
-  "heavySlamRadialDamageTitle": "Heavy Slam Radial Damage",
+  "heavySlamRadialDamageTitle": "Danno Ad Area Schianto Pesante",
   "@heavySlamRadialDamageTitle": {
     "description": "Heavy Slam attack title",
     "type": "text",
     "placeholders": {}
   },
-  "heavySlamRadiusTitle": "Heavy Slam Radius",
+  "heavySlamRadiusTitle": "Raggio Schianto Pesante",
   "@heavySlamRadiusTitle": {
     "description": "Heavy Slam attack title",
     "type": "text",
     "placeholders": {}
   },
-  "windUpTitle": "Wind Up",
+  "windUpTitle": "Recupero",
   "@windUpTitle": {
     "description": "melee's heavy wind up time title",
     "type": "text",
     "placeholders": {}
   },
-  "discordSupportTitle": "Support",
+  "discordSupportTitle": "Assistenza",
   "@discordSupportTitle": {
     "description": "Discord support title",
     "type": "text",
     "placeholders": {}
   },
-  "steelPathTitle": "Steel Path",
+  "steelPathTitle": "Percorso D'Acciaio",
   "@steelPathTitle": {
     "description": "Steel path card title",
     "type": "text",
@@ -908,7 +914,7 @@
       "rank": {}
     }
   },
-  "codexHint": "Type what you're looking for into the search bar above!",
+  "codexHint": "Digita cosa vuoi cercare nella barra di ricerca sopra!",
   "@codexHint": {
     "description": "Codex description when a user enters the codex or when the search bar is empty",
     "type": "text",
@@ -920,7 +926,7 @@
     "type": "text",
     "placeholder": {}
   },
-  "codexVaultedLabel": "Vaulted",
+  "codexVaultedLabel": "Nel vault",
   "@codexVaultedLabel": {
     "description": "A label shown in codex items to detenote items that are vaulted",
     "type": "text",
@@ -932,39 +938,109 @@
     "type": "text",
     "placeholder": {}
   },
-  "constructionProgressTitle": "Construction Progress",
+  "constructionProgressTitle": "Progresso Costruzione",
   "@constructionProgressTitle": {
     "description": "Title for invasion constrcution progress",
     "type": "text",
     "placeholder": {}
   },
-  "synthTargetTitle": "SynthTargets",
+  "synthTargetTitle": "Obiettivi Sintesi",
   "@synthTargetTitle": {
     "description": "Title for synthtargets.",
     "type": "text",
     "placeholder": {}
   },
-  "archonHuntTitle": "Archon Hunt",
+  "archonHuntTitle": "Caccia Archon",
   "@archonHuntTitle": {
     "description": "Title for archon hunt notification toggle.",
     "type": "text",
     "placeholder": {}
   },
-  "archonHuntDescription": "Archon hunt reset notification.",
+  "archonHuntDescription": "Notifica di reset della caccia Archon.",
   "@archonHuntDescription": {
     "description": "Description for archon hunt notification toggle.",
     "type": "text",
     "placeholder": {}
   },
-  "allFissuresButton": "All",
+  "allFissuresButton": "Tutte",
   "@allFissuresButton": {
     "description": "Button label for all fissures",
     "type": "text",
     "placeholder": {}
   },
-  "voidStormFissuresButton": "Void Storms",
+  "voidStormFissuresButton": "Tempeste Void",
   "@voidStormFissuresButton": {
     "description": "Button label for void storm fissures",
+    "type": "text",
+    "placeholder": {}
+  },
+  "saleEndsTitle": "SALE ENDS",
+  "@saleEndsTitle": {
+    "description": "Sale ends title for countdown timer",
+    "type": "text",
+    "placeholder": {}
+  },
+  "salePriceTitle": "Sale price",
+  "@salePriceTitle": {
+    "description": "Displays the item's sale price for darvo sales",
+    "type": "text",
+    "placeholder": {}
+  },
+  "originalPriceTitle": "Original Price",
+  "@originalPriceTitle": {
+    "description": "Displays the item's original price for darvo sales",
+    "type": "text",
+    "placeholder": {}
+  },
+  "discountTitle": "{discount}% OFF!",
+  "@discountTitle": {
+    "description": "Displays the discount applied for a given darvo sale",
+    "type": "text",
+    "placeholder": {
+      "discount": {}
+    }
+  },
+  "inStockInformation": "Only {stock} left",
+  "@inStockInformation": {
+    "description": "Displays the stock information for a darvo deal",
+    "type": "text",
+    "placeholder": {
+      "stock": {}
+    }
+  },
+  "outOfStockTitle": "OUT OF STOCK",
+  "@outOfStockTitle": {
+    "description": "Tells the user when darvo is out of stock for the current sale",
+    "type": "text",
+    "placeholder": {}
+  },
+  "duviriJoy": "Duviri Joy",
+  "@duviriJoy": {
+    "description": "Duviri joy state. If Duviri doesn't have a translatetion then only joy can be translated.",
+    "type": "text",
+    "placeholder": {}
+  },
+  "duviriAnger": "Duviri Anger",
+  "@duviriAnger": {
+    "description": "Duviri anger state. If Duviri doesn't have a translatetion then only joy can be translated.",
+    "type": "text",
+    "placeholder": {}
+  },
+  "duviriEnvy": "Duviri Envy",
+  "@duviriEnvy": {
+    "description": "Duviri envy state. If Duviri doesn't have a translatetion then only joy can be translated.",
+    "type": "text",
+    "placeholder": {}
+  },
+  "duviriSorrow": "Duviri Sorrow",
+  "@duviriSorrow": {
+    "description": "Duviri sorrow state. If Duviri doesn't have a translatetion then only joy can be translated.",
+    "type": "text",
+    "placeholder": {}
+  },
+  "duviriFear": "Duviri Fear",
+  "@duviriFear": {
+    "description": "Duviri Fear state. If Duviri doesn't have a translatetion then only joy can be translated.",
     "type": "text",
     "placeholder": {}
   }
