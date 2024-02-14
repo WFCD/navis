@@ -1,6 +1,6 @@
 {
   "@@last_modified": "2020-03-03T16:56:42.387837",
-  "levelInfo": "Level: {min} - {max}",
+  "levelInfo": "Nivel: {min} - {max}",
   "@levelInfo": {
     "description": "The information of the current enemy levels",
     "type": "text",
@@ -80,7 +80,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "seeWikia": "See Wikia",
+  "seeWikia": "Ver Wikia",
   "@seeWikia": {
     "description": "General button to wikia of given item",
     "type": "text",
@@ -346,7 +346,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "warframeNewsTitle": "News",
+  "warframeNewsTitle": "Noticias",
   "@warframeNewsTitle": {
     "description": "Main Title for Warframe news page",
     "type": "text",
@@ -394,7 +394,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "fissuresNotificationDescription": "Filter fissure notifications by prefered mission type.",
+  "fissuresNotificationDescription": "Filtrar notificaciones de fisura por tipo de misión preferida.",
   "@fissuresNotificationDescription": {
     "description": "Main description for fissures notifications",
     "type": "text",
@@ -576,13 +576,13 @@
     "type": "text",
     "placeholders": {}
   },
-  "dailyNightwaveTitle": "Daily",
+  "dailyNightwaveTitle": "Diario",
   "@dailyNightwaveTitle": {
     "description": "Nightwave daily title",
     "type": "text",
     "placeholders": {}
   },
-  "weeklyNightwaveTitle": "Weekly",
+  "weeklyNightwaveTitle": "Semanal",
   "@weeklyNightwaveTitle": {
     "description": "Nightwave weekly title",
     "type": "text",
@@ -618,7 +618,7 @@
     "type": "text",
     "placholders": {}
   },
-  "recentNewsCategoryTitle": "Most Recent News",
+  "recentNewsCategoryTitle": "Noticias más recientes",
   "@recentNewsCategoryTitle": {
     "description": "Title for recent news title",
     "type": "text",
@@ -630,97 +630,97 @@
     "type": "text",
     "placeholders": {}
   },
-  "warframePassiveTitle": "Passive",
+  "warframePassiveTitle": "Pasivo",
   "@warframePassiveTitle": {
     "description": "Warframes passive title",
     "type": "text",
     "placeholders": {}
   },
-  "auraTitle": "Aura Polarity",
+  "auraTitle": "Polaridad aural",
   "@auraTitle": {
     "description": "Aura polarity title for items",
     "type": "text",
     "placeholders": {}
   },
-  "preinstalledPolarities": "Preinstalled Polarities",
+  "preinstalledPolarities": "Polaridades preinstaladas",
   "@preinstalledPolarities": {
     "description": "Preinstalled polarites title for items",
     "type": "text",
     "placeholders": {}
   },
-  "shieldTitle": "Shield",
+  "shieldTitle": "Escudo",
   "@shieldTitle": {
     "description": "Title for shield value",
     "typ": "text",
     "placeholders": {}
   },
-  "armorTitle": "Armor",
+  "armorTitle": "Armadura",
   "@armorTitle": {
     "description": "Title for armor value",
     "typ": "text",
     "placeholders": {}
   },
-  "healthTitle": "Health",
+  "healthTitle": "Salud",
   "@healthTitle": {
     "description": "Title for health value",
     "typ": "text",
     "placeholders": {}
   },
-  "powerTitle": "Power",
+  "powerTitle": "Poder",
   "@powerTitle": {
     "description": "Title for power value",
     "typ": "text",
     "placeholders": {}
   },
-  "sprintSpeedTitle": "Sprint Speed",
+  "sprintSpeedTitle": "Velocidad de Sprint",
   "@sprintSpeedTitle": {
     "description": "Title for sprint speed value",
     "typ": "text",
     "placeholders": {}
   },
-  "abilitiesTitle": "Abilites",
+  "abilitiesTitle": "Habilidades",
   "@abilitiesTitle": {
     "description": "Title for warframe, archwings, and Necromech abilites",
     "typ": "text",
     "placeholders": {}
   },
-  "componentsTitle": "Components",
+  "componentsTitle": "Componentes",
   "@componentsTitle": {
     "description": "Title for item components",
     "typ": "text",
     "placeholders": {}
   },
-  "fullPatchNotesTitle": "FULL PATCH NOTES",
+  "fullPatchNotesTitle": "NOTAS DE PATCH FULL",
   "@fullPatchNotesTitle": {
     "description": "Full Patch Notes Title",
     "typ": "text",
     "placeholders": {}
   },
-  "masteryRequirementTitle": "Mastery Requirement",
+  "masteryRequirementTitle": "Requisito de maestría",
   "@masteryRequirementTitle": {
     "description": "Mastery requirement for item",
     "type": "text",
     "placeholders": {}
   },
-  "weaponTypeTitle": "Weapon Type",
+  "weaponTypeTitle": "Tipo de arma",
   "@weaponTypeTitle": {
     "description": "Weapon item type",
     "type": "text",
     "placeholders": {}
   },
-  "accuracyTitle": "Accuracy",
+  "accuracyTitle": "Precisión",
   "@accuracyTitle": {
     "description": "Weapon accuracy title",
     "type": "text",
     "placeholders": {}
   },
-  "criticalChanceTitle": "Critical Chance",
+  "criticalChanceTitle": "Probabilidad crítica",
   "@criticalChanceTitle": {
     "description": "Weapon crictical chance",
     "type": "text",
     "placeholders": {}
   },
-  "cricticalMultiplierTitle": "Critcial Multiplier",
+  "cricticalMultiplierTitle": "Multiplicador Critcial",
   "@cricticalMultiplierTitle": {
     "description": "Weapon critical multiplier",
     "type": "text",
@@ -744,13 +744,13 @@
     "type": "text",
     "placeholders": {}
   },
-  "noiseTitle": "Noise",
+  "noiseTitle": "Ruido",
   "@noiseTitle": {
     "description": "Weapon noise type",
     "type": "text",
     "placeholders": {}
   },
-  "reloadTitle": "Reload",
+  "reloadTitle": "Recargar",
   "@reloadTitle": {
     "description": "Weapon item type",
     "type": "text",
