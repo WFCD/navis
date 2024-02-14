@@ -1032,13 +1032,13 @@
     "type": "text",
     "placeholder": {}
   },
-  "duviriSorrow": "雙衍悖論: 哀",
+  "duviriSorrow": "雙衍王境: 哀",
   "@duviriSorrow": {
     "description": "Duviri sorrow state. If Duviri doesn't have a translatetion then only joy can be translated.",
     "type": "text",
     "placeholder": {}
   },
-  "duviriFear": "雙衍悖論: 懼",
+  "duviriFear": "雙衍王境: 懼",
   "@duviriFear": {
     "description": "Duviri Fear state. If Duviri doesn't have a translatetion then only joy can be translated.",
     "type": "text",
