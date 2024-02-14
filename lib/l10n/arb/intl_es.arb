@@ -534,6 +534,12 @@
     "type": "text",
     "placeholders": {}
   },
+  "sourceCode": "Source code",
+  "@sourceCode": {
+    "description": "Displayes a link to Navis's source code",
+    "type": "text",
+    "placeholders": {}
+  },
   "issueTrackerDescription": "Reporta problemas o solicitudes para este proyecto",
   "@issueTrackerDescription": {
     "description": "Description for Navis's issue tracker",
@@ -965,6 +971,76 @@
   "voidStormFissuresButton": "Void Storms",
   "@voidStormFissuresButton": {
     "description": "Button label for void storm fissures",
+    "type": "text",
+    "placeholder": {}
+  },
+  "saleEndsTitle": "SALE ENDS",
+  "@saleEndsTitle": {
+    "description": "Sale ends title for countdown timer",
+    "type": "text",
+    "placeholder": {}
+  },
+  "salePriceTitle": "Sale price",
+  "@salePriceTitle": {
+    "description": "Displays the item's sale price for darvo sales",
+    "type": "text",
+    "placeholder": {}
+  },
+  "originalPriceTitle": "Original Price",
+  "@originalPriceTitle": {
+    "description": "Displays the item's original price for darvo sales",
+    "type": "text",
+    "placeholder": {}
+  },
+  "discountTitle": "{discount}% OFF!",
+  "@discountTitle": {
+    "description": "Displays the discount applied for a given darvo sale",
+    "type": "text",
+    "placeholder": {
+      "discount": {}
+    }
+  },
+  "inStockInformation": "Only {stock} left",
+  "@inStockInformation": {
+    "description": "Displays the stock information for a darvo deal",
+    "type": "text",
+    "placeholder": {
+      "stock": {}
+    }
+  },
+  "outOfStockTitle": "OUT OF STOCK",
+  "@outOfStockTitle": {
+    "description": "Tells the user when darvo is out of stock for the current sale",
+    "type": "text",
+    "placeholder": {}
+  },
+  "duviriJoy": "Duviri Joy",
+  "@duviriJoy": {
+    "description": "Duviri joy state. If Duviri doesn't have a translatetion then only joy can be translated.",
+    "type": "text",
+    "placeholder": {}
+  },
+  "duviriAnger": "Duviri Anger",
+  "@duviriAnger": {
+    "description": "Duviri anger state. If Duviri doesn't have a translatetion then only joy can be translated.",
+    "type": "text",
+    "placeholder": {}
+  },
+  "duviriEnvy": "Duviri Envy",
+  "@duviriEnvy": {
+    "description": "Duviri envy state. If Duviri doesn't have a translatetion then only joy can be translated.",
+    "type": "text",
+    "placeholder": {}
+  },
+  "duviriSorrow": "Duviri Sorrow",
+  "@duviriSorrow": {
+    "description": "Duviri sorrow state. If Duviri doesn't have a translatetion then only joy can be translated.",
+    "type": "text",
+    "placeholder": {}
+  },
+  "duviriFear": "Duviri Fear",
+  "@duviriFear": {
+    "description": "Duviri Fear state. If Duviri doesn't have a translatetion then only joy can be translated.",
     "type": "text",
     "placeholder": {}
   }
