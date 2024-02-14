@@ -77,6 +77,8 @@ Make sure that you follow all the instructions and everything should run smoothl
 
 This project relies on [flutter_localizations][flutter_localizations_link] and follows the [official internationalization guide for Flutter][internationalization_link].
 
+The translations themselves are done on [Crowdin](https://navis.t.warframestat.us/).
+
 ### Adding Strings
 
 1. To add a new localizable string, open the `app_en.arb` file at `lib/l10n/arb/app_en.arb`.
