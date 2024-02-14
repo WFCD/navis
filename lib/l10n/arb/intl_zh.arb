@@ -202,7 +202,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "cetusCycleTitle": "希图斯循环",
+  "cetusCycleTitle": "希圖斯循環",
   "@cetusCycleTitle": {
     "description": "Cetus cycle title",
     "type": "text",
@@ -334,7 +334,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "sentientOutpostNotificationTitle": "Sentient Outpost",
+  "sentientOutpostNotificationTitle": "Sentient 前哨",
   "@sentientOutpostNotificationTitle": {
     "description": "Notification title for sentient outpost",
     "type": "text",
@@ -406,55 +406,55 @@
     "type": "text",
     "placeholders": {}
   },
-  "acolytesNotificationDescription": "Notifies when an acolyte is found.",
+  "acolytesNotificationDescription": "当找到Aacolyte时通知",
   "@acolytesNotificationDescription": {
     "description": "Main description for acolyte notifications",
     "type": "text",
     "placeholders": {}
   },
-  "earthDayOption": "Earth Day",
+  "earthDayOption": "地球白天",
   "@earthDayOption": {
     "description": "Earth cycle option",
     "type": "text",
     "placeholders": {}
   },
-  "earthNightOption": "Earth Night",
+  "earthNightOption": "地球黑夜",
   "@earthNightOption": {
     "description": "Earth cycle option",
     "type": "text",
     "placeholders": {}
   },
-  "cetusDayOption": "Cetus Day",
+  "cetusDayOption": "希圖斯白天",
   "@cetusDayOption": {
     "description": "Cetus cycle option",
     "type": "text",
     "placeholders": {}
   },
-  "cetusNightOption": "Cetus Night",
+  "cetusNightOption": "希圖斯黑夜",
   "@cetusNightOption": {
     "description": "Cetus cycle option",
     "type": "text",
     "placeholders": {}
   },
-  "vallisWarmOption": "Orb Vallis Warm",
+  "vallisWarmOption": "奥布山谷溫暖",
   "@vallisWarmOption": {
     "description": "Orb vallis cycle option",
     "type": "text",
     "placeholders": {}
   },
-  "vallisColdOption": "Orb Vallis Cold",
+  "vallisColdOption": "奥布山谷寒冷",
   "@vallisColdOption": {
     "description": "Orb vallis cycle option",
     "type": "text",
     "placeholders": {}
   },
-  "cambionFassOption": "Cambion Fass",
+  "cambionFassOption": "魔胎之境 Fass",
   "@cambionFassOption": {
     "description": "Cambion Fass cycle option",
     "type": "text",
     "placeholders": {}
   },
-  "cambionVomeOption": "Cambion Vome",
+  "cambionVomeOption": "魔胎之境 Vome",
   "@cambionVomeOption": {
     "description": "Cambion Fass cycle option",
     "type": "text",
@@ -466,19 +466,19 @@
     "type": "text",
     "placeholders": {}
   },
-  "streamNewsOption": "Stream Announcements",
+  "streamNewsOption": "Stream公告",
   "@streamNewsOption": {
     "description": "Warframe news option",
     "type": "text",
     "placeholders": {}
   },
-  "updateNewsOption": "Warframe Update News",
+  "updateNewsOption": "Warframe 更新新聞",
   "@updateNewsOption": {
     "description": "Warframe news option",
     "type": "text",
     "placeholders": {}
   },
-  "updateDropTableDescription": "Last updated {date}",
+  "updateDropTableDescription": "最後一次更新於 {date}",
   "@updateDropTableDescription": {
     "description": "Description for updating drop table with date of the last update",
     "type": "text",
@@ -486,55 +486,55 @@
       "date": {}
     }
   },
-  "reportBugsTitle": "Report Bugs",
+  "reportBugsTitle": "反饋問題",
   "@reportBugsTitle": {
     "desciption": "Title for bug report link",
     "type": "text",
     "placeholders": {}
   },
-  "reportBugsDescription": "Report bugs or request a feature.",
+  "reportBugsDescription": "反饋問題或提交新功能請求",
   "@reportBugsDescription": {
     "description": "Description for bug report link",
     "type": "text",
     "placeholders": {}
   },
-  "aboutCategoryTitle": "About",
+  "aboutCategoryTitle": "關於",
   "@aboutCategoryTitle": {
     "description": "Title for the about category of the settings page",
     "type": "text",
     "placeholders": {}
   },
-  "lightThemeTitle": "Light",
+  "lightThemeTitle": "淺色",
   "@lightThemeTitle": {
     "description": "Title for light theme",
     "type": "text",
     "placeholders": {}
   },
-  "darkThemeTitle": "Dark",
+  "darkThemeTitle": "深色",
   "@darkThemeTitle": {
     "description": "Title for dark theme",
     "type": "text",
     "placeholders": {}
   },
-  "systemThemeTitle": "System",
+  "systemThemeTitle": "跟隨系統",
   "@systemThemeTitle": {
     "description": "Title for system theme",
     "type": "text",
     "placeholders": {}
   },
-  "legalese": "Warframe and the Warframe logo are registered trademarks of Digital Extremes Ltd. Cephalon Navis nor WFCD are affiliated with Digital Extremes Ltd. in any way.",
+  "legalese": "Warframe 和 Warframe 標誌為 Digital Extremes Ltd. 的註冊商標。Cephalon Navis 和 WFCD 均不以任何方式隸屬於 Digital Extremes Ltd.。",
   "@legalese": {
     "description": "Cephalon Navis legalese",
     "type": "text",
     "placeholders": {}
   },
-  "homePageTitle": "Home",
+  "homePageTitle": "主頁",
   "@homePageTitle": {
     "description": "Displayes a link to Navis's homepage",
     "type": "text",
     "placeholders": {}
   },
-  "sourceCode": "Source code",
+  "sourceCode": "源代碼",
   "@sourceCode": {
     "description": "Displayes a link to Navis's source code",
     "type": "text",
@@ -546,61 +546,61 @@
     "type": "text",
     "placeholders": {}
   },
-  "issueTrackerTitle": "issues tracker",
+  "issueTrackerTitle": "問題追蹤器",
   "@issueTrackerTitle": {
     "description": "Display link to Navis's issue tracker",
     "type": "text",
     "placeholders": {}
   },
-  "warframeLinkTitle": "More information on Warframe can be found on their official site",
+  "warframeLinkTitle": "有關 Warframe 的更多資訊可以在其官方網站上找到",
   "@warframeLinkTitle": {
     "description": "Description for Warframe's main site link",
     "type": "text",
     "placeholders": {}
   },
-  "settingsTitle": "Settings",
+  "settingsTitle": "設定",
   "@settingsTitle": {
     "description": "Settings title",
     "type": "text",
     "placeholders": {}
   },
-  "dailyRewardTitle": "Daily Reward Reset Timer",
+  "dailyRewardTitle": "每日獻禮重置計時器:",
   "@dailyRewardTitle": {
     "description": "Title for daily reward timer",
     "type": "text",
     "placeholders": {}
   },
-  "eliteBadgeTitle": "Elite",
+  "eliteBadgeTitle": "精英",
   "@eliteBadgeTitle": {
     "description": "Nightwave Elite badge title",
     "type": "text",
     "placeholders": {}
   },
-  "dailyNightwaveTitle": "Daily",
+  "dailyNightwaveTitle": "每日",
   "@dailyNightwaveTitle": {
     "description": "Nightwave daily title",
     "type": "text",
     "placeholders": {}
   },
-  "weeklyNightwaveTitle": "Weekly",
+  "weeklyNightwaveTitle": "每週",
   "@weeklyNightwaveTitle": {
     "description": "Nightwave weekly title",
     "type": "text",
     "placeholders": {}
   },
-  "plainsofEidolonMapTitle": "Plains of Eidolon map",
+  "plainsofEidolonMapTitle": "夜灵平野地圖",
   "@plainsofEidolonMapTitle": {
     "description": "Plains of Eidolon Map link title",
     "type": "text",
     "placholders": {}
   },
-  "orbVallisMapTitle": "Orb Vallis map",
+  "orbVallisMapTitle": "奥布山谷地圖",
   "@orbVallisMapTitle": {
     "description": "Orb Vallis Map link title",
     "type": "text",
     "placholders": {}
   },
-  "plainsofEidolonFishingDataTitle": "PoE: Fishing Data",
+  "plainsofEidolonFishingDataTitle": "夜灵平野: 釣魚數據",
   "@plainsofEidolonFishingDataTitle": {
     "description": "Plains of Eidolon fishing data link title",
     "type": "text",
@@ -612,25 +612,25 @@
     "type": "text",
     "placholders": {}
   },
-  "howToFishTitle": "How to fish",
+  "howToFishTitle": "如何釣魚",
   "@howToFishTitle": {
     "description": "How to fish link title",
     "type": "text",
     "placholders": {}
   },
-  "recentNewsCategoryTitle": "Most Recent News",
+  "recentNewsCategoryTitle": "最近的新聞",
   "@recentNewsCategoryTitle": {
     "description": "Title for recent news title",
     "type": "text",
     "placeholders": {}
   },
-  "pastNewsCategoryTitle": "Past News",
+  "pastNewsCategoryTitle": "過去的新聞",
   "@pastNewsCategoryTitle": {
     "description": "Title for past Warframe news",
     "type": "text",
     "placeholders": {}
   },
-  "warframePassiveTitle": "Passive",
+  "warframePassiveTitle": "被動",
   "@warframePassiveTitle": {
     "description": "Warframes passive title",
     "type": "text",
@@ -798,7 +798,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "followThroughTitle": "Follow Through",
+  "followThroughTitle": "顺势",
   "@followThroughTitle": {
     "description": "Melee follow through title",
     "type": "text",
@@ -938,61 +938,61 @@
     "type": "text",
     "placeholder": {}
   },
-  "constructionProgressTitle": "Construction Progress",
+  "constructionProgressTitle": "建造進度",
   "@constructionProgressTitle": {
     "description": "Title for invasion constrcution progress",
     "type": "text",
     "placeholder": {}
   },
-  "synthTargetTitle": "SynthTargets",
+  "synthTargetTitle": "結合儀式",
   "@synthTargetTitle": {
     "description": "Title for synthtargets.",
     "type": "text",
     "placeholder": {}
   },
-  "archonHuntTitle": "Archon Hunt",
+  "archonHuntTitle": "執政官狩獵",
   "@archonHuntTitle": {
     "description": "Title for archon hunt notification toggle.",
     "type": "text",
     "placeholder": {}
   },
-  "archonHuntDescription": "Archon hunt reset notification.",
+  "archonHuntDescription": "執政官狩獵重置通知",
   "@archonHuntDescription": {
     "description": "Description for archon hunt notification toggle.",
     "type": "text",
     "placeholder": {}
   },
-  "allFissuresButton": "All",
+  "allFissuresButton": "全部",
   "@allFissuresButton": {
     "description": "Button label for all fissures",
     "type": "text",
     "placeholder": {}
   },
-  "voidStormFissuresButton": "Void Storms",
+  "voidStormFissuresButton": "虛空風暴",
   "@voidStormFissuresButton": {
     "description": "Button label for void storm fissures",
     "type": "text",
     "placeholder": {}
   },
-  "saleEndsTitle": "SALE ENDS",
+  "saleEndsTitle": "销售结束",
   "@saleEndsTitle": {
     "description": "Sale ends title for countdown timer",
     "type": "text",
     "placeholder": {}
   },
-  "salePriceTitle": "Sale price",
+  "salePriceTitle": "售價",
   "@salePriceTitle": {
     "description": "Displays the item's sale price for darvo sales",
     "type": "text",
     "placeholder": {}
   },
-  "originalPriceTitle": "Original Price",
+  "originalPriceTitle": "原價",
   "@originalPriceTitle": {
     "description": "Displays the item's original price for darvo sales",
     "type": "text",
     "placeholder": {}
   },
-  "discountTitle": "{discount}% OFF!",
+  "discountTitle": "立省 {discount}%",
   "@discountTitle": {
     "description": "Displays the discount applied for a given darvo sale",
     "type": "text",
@@ -1000,7 +1000,7 @@
       "discount": {}
     }
   },
-  "inStockInformation": "Only {stock} left",
+  "inStockInformation": "只剩下 {stock}",
   "@inStockInformation": {
     "description": "Displays the stock information for a darvo deal",
     "type": "text",
@@ -1008,37 +1008,37 @@
       "stock": {}
     }
   },
-  "outOfStockTitle": "OUT OF STOCK",
+  "outOfStockTitle": "售罄",
   "@outOfStockTitle": {
     "description": "Tells the user when darvo is out of stock for the current sale",
     "type": "text",
     "placeholder": {}
   },
-  "duviriJoy": "Duviri Joy",
+  "duviriJoy": "雙衍王境: 喜",
   "@duviriJoy": {
     "description": "Duviri joy state. If Duviri doesn't have a translatetion then only joy can be translated.",
     "type": "text",
     "placeholder": {}
   },
-  "duviriAnger": "Duviri Anger",
+  "duviriAnger": "雙衍王境: 怒",
   "@duviriAnger": {
     "description": "Duviri anger state. If Duviri doesn't have a translatetion then only joy can be translated.",
     "type": "text",
     "placeholder": {}
   },
-  "duviriEnvy": "Duviri Envy",
+  "duviriEnvy": "雙衍王境: 嫉",
   "@duviriEnvy": {
     "description": "Duviri envy state. If Duviri doesn't have a translatetion then only joy can be translated.",
     "type": "text",
     "placeholder": {}
   },
-  "duviriSorrow": "Duviri Sorrow",
+  "duviriSorrow": "雙衍悖論: 悲",
   "@duviriSorrow": {
     "description": "Duviri sorrow state. If Duviri doesn't have a translatetion then only joy can be translated.",
     "type": "text",
     "placeholder": {}
   },
-  "duviriFear": "Duviri Fear",
+  "duviriFear": "雙衍悖論: 恐",
   "@duviriFear": {
     "description": "Duviri Fear state. If Duviri doesn't have a translatetion then only joy can be translated.",
     "type": "text",
