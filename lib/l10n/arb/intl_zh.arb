@@ -1,6 +1,6 @@
 {
   "@@last_modified": "2020-03-03T16:56:42.387837",
-  "levelInfo": "Level: {min} - {max}",
+  "levelInfo": "等級: {min} - {max}",
   "@levelInfo": {
     "description": "The information of the current enemy levels",
     "type": "text",
@@ -9,7 +9,7 @@
       "max": {}
     }
   },
-  "activeAcolyte": "{agentType} | level: {rank}",
+  "activeAcolyte": "{agentType} | 等級: {rank}",
   "@activeAcolyte": {
     "description": "acolyte title with level",
     "type": "text",
@@ -18,49 +18,49 @@
       "rank": {}
     }
   },
-  "locating": "Locating...",
+  "locating": "定位中...",
   "@locating": {
     "description": "Shows up when an acolyte's current location is unknown, may be used in other parts of the app",
     "type": "text",
     "placeholders": {}
   },
-  "acolyteCurrentLocation": "Current location",
+  "acolyteCurrentLocation": "當前的位置",
   "@acolyteCurrentLocation": {
     "description": "Acolyte's current location",
     "type": "text",
     "placeholders": {}
   },
-  "acolytePassLocation": "Last seen location",
+  "acolytePassLocation": "最後看到的位置",
   "@acolytePassLocation": {
     "description": "Acolyte's pass location",
     "type": "text",
     "placeholders": {}
   },
-  "acolyteFound": "Found",
+  "acolyteFound": "已找到",
   "@acolyteFound": {
     "description": "The elapsed time after an acolyte was found",
     "type": "text",
     "placeholders": {}
   },
-  "acolyteLastSeen": "Last seen",
+  "acolyteLastSeen": "最後一次看到",
   "@acolyteLastSeen": {
     "description": "The elapsed time since the acolyte was last seen",
     "type": "text",
     "placeholders": {}
   },
-  "acolyteHealth": "Health",
+  "acolyteHealth": "生命值",
   "@acolyteHealth": {
     "description": "Acolytes remaining health",
     "type": "text",
     "placeholders": {}
   },
-  "acolyteRank": "Acolyte Level",
+  "acolyteRank": "Acolyte 等級",
   "@acolyteRank": {
     "description": "An acolyte's current level",
     "type": "text",
     "placeholders": {}
   },
-  "acolyteElapsedTime": "{lastSeenTime} minutes ago",
+  "acolyteElapsedTime": "{lastSeenTime} 分鐘前",
   "@acolyteElapsedTime": {
     "description": "Time since acolyte has either been found or last seen",
     "type": "text",
@@ -68,73 +68,73 @@
       "lastSeenTime": {}
     }
   },
-  "tapForMoreDetails": "Tap for more details",
+  "tapForMoreDetails": "點擊以查看更多詳細信息",
   "@tapForMoreDetails": {
     "description": "General description to tell the user that this object takes you to a different page",
     "type": "text",
     "placeholders": {}
   },
-  "seeDetails": "See details",
+  "seeDetails": "查看詳情",
   "@seeDetails": {
     "description": "General button to see more details of given object",
     "type": "text",
     "placeholders": {}
   },
-  "seeWikia": "See Wikia",
+  "seeWikia": "查看維基百科",
   "@seeWikia": {
     "description": "General button to wikia of given item",
     "type": "text",
     "placeholders": {}
   },
-  "eventDescription": "Description",
+  "eventDescription": "介紹",
   "@eventDescription": {
     "description": "Event description category title",
     "type": "text",
     "placeholders": {}
   },
-  "eventStatus": "Event Status",
+  "eventStatus": "事件狀態",
   "@eventStatus": {
     "description": "Event status category title",
     "type": "text",
     "placeholders": {}
   },
-  "eventStatusNode": "Node",
+  "eventStatusNode": "節點",
   "@eventStatusNode": {
     "description": "The node that the event is taking place in",
     "type": "text",
     "placeholders": {}
   },
-  "eventStatusProgress": "Progress",
+  "eventStatusProgress": "進度",
   "@eventStatusProgress": {
     "description": "The progress of the current event from 0 to 100 %",
     "type": "text",
     "placeholders": {}
   },
-  "eventStatusEta": "Time left (ETA)",
+  "eventStatusEta": "剩餘時間 (ETA)",
   "@eventStatusEta": {
     "description": "Current events remaining estimated time",
     "type": "text",
     "placeholders": {}
   },
-  "eventRewards": "Rewards",
+  "eventRewards": "獎勵",
   "@eventRewards": {
     "description": "Event reward title",
     "type": "text",
     "placeholders": {}
   },
-  "bountyTitle": "Bounties",
+  "bountyTitle": "賞金",
   "@bountyTitle": {
     "description": "Bounty card title.",
     "type": "text",
     "placeholders": {}
   },
-  "errorTitle": "An application error has occurred",
+  "errorTitle": "發生錯誤",
   "@errorTitle": {
     "description": "error title",
     "type": "text",
     "placeholders": {}
   },
-  "errorDescription": "There was unexpected error in core system.\nReporting error to system admin...",
+  "errorDescription": "核心系統發生意外錯誤\n正在向系統管理員報告錯誤...",
   "@errorDescription": {
     "description": "error description",
     "type": "text",
@@ -146,19 +146,19 @@
     "type": "text",
     "placeholders": {}
   },
-  "baroLocation": "Location",
+  "baroLocation": "位置",
   "@baroLocation": {
     "description": "shows Baro ki'Teer's current location",
     "type": "text",
     "placeholders": {}
   },
-  "baroLeavesOn": "Leaves on",
+  "baroLeavesOn": "離開在",
   "@baroLeavesOn": {
     "description": "shows when Baro Ki'Teer is leaving",
     "type": "text",
     "placeholders": {}
   },
-  "baroArrivesOn": "Arrives on",
+  "baroArrivesOn": "到達在",
   "@baroArrivesOn": {
     "description": "shows at when Baro Ki'Teer will arrive",
     "type": "text",
@@ -170,7 +170,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "countdownTooltip": "Ends on {date}",
+  "countdownTooltip": "完結於 {date}",
   "@countdownTooltip": {
     "description": "Countdown tooltip with end date of the current running timer",
     "type": "text",
@@ -178,7 +178,7 @@
       "date": {}
     }
   },
-  "kuvaBanner": "Kuva will refresh in",
+  "kuvaBanner": "Kuva 將會刷新在",
   "@kuvaBanner": {
     "description": "Kuva refresh countdown title",
     "type": "text",
@@ -196,55 +196,55 @@
     "type": "text",
     "placeholders": {}
   },
-  "earthCycleTitle": "Earth Cycle",
+  "earthCycleTitle": "地球循環",
   "@earthCycleTitle": {
     "description": "Earth cycle title",
     "type": "text",
     "placeholders": {}
   },
-  "cetusCycleTitle": "Cetus Cycle",
+  "cetusCycleTitle": "希图斯循环",
   "@cetusCycleTitle": {
     "description": "Cetus cycle title",
     "type": "text",
     "placeholders": {}
   },
-  "vallisCycleTitle": "Vallis Cycle",
+  "vallisCycleTitle": "奥布山谷循環",
   "@vallisCycleTitle": {
     "description": "Vallis cycle title",
     "type": "text",
     "placeholders": {}
   },
-  "cambionCycleTitle": "Cambion Cycle",
+  "cambionCycleTitle": "魔胎之境循環",
   "@cambionCycleTitle": {
     "description": "Cambion Cycle title",
     "type": "text",
     "placeholders": {}
   },
-  "zarimanCycleTitle": "Zariman Cycle",
+  "zarimanCycleTitle": "扎日曼號循環",
   "@zarimanCycleTitle": {
     "description": "Zariman Cycle title",
     "type": "text",
     "placeholder": {}
   },
-  "timersTitle": "Timers",
+  "timersTitle": "計時器",
   "@timersTitle": {
     "description": "Times title",
     "type": "text",
     "placeholders": {}
   },
-  "fissuresTitle": "Fissures",
+  "fissuresTitle": "虛空裂縫",
   "@fissuresTitle": {
     "description": "Fissures title",
     "type": "text",
     "placeholders": {}
   },
-  "invasionsTitle": "Invasions",
+  "invasionsTitle": "入侵",
   "@invasionsTitle": {
     "description": "Invasions title",
     "type": "text",
     "placeholders": {}
   },
-  "syndicatesTitle": "Syndicates",
+  "syndicatesTitle": "集團",
   "@syndicatesTitle": {
     "description": "Syndicates title",
     "type": "text",
@@ -256,43 +256,43 @@
     "type": "text",
     "placeholders": {}
   },
-  "helpfulLinksTitle": "Helpful Links",
+  "helpfulLinksTitle": "有用的連結",
   "@helpfulLinksTitle": {
     "description": "Helpful Links title",
     "type": "text",
     "placeholders": {}
   },
-  "behaviorTitle": "Behavior",
+  "behaviorTitle": "喜好",
   "@behaviorTitle": {
     "description": "Behavior category title",
     "type": "text",
     "placeholders": {}
   },
-  "themeTitle": "Theme",
+  "themeTitle": "主題",
   "@themeTitle": {
     "description": "Theme title",
     "type": "text",
     "placeholders": {}
   },
-  "themeDescription": "Choose app theme.",
+  "themeDescription": "選擇主題",
   "@themeDescription": {
     "description": "Theme option description",
     "typ": "text",
     "placeholders": {}
   },
-  "notificationsTitle": "Notifications",
+  "notificationsTitle": "通知",
   "@notificationsTitle": {
     "description": "Notifications category title",
     "type": "text",
     "placeholders": {}
   },
-  "rareAlertsNotificationTitle": "Rare Alerts",
+  "rareAlertsNotificationTitle": "稀有警報",
   "@rareAlertsNotificationTitle": {
     "description": "Rare Alerts title",
     "type": "text",
     "placeholders": {}
   },
-  "rareAlertsNotificationDescription": "Rare alert notifications, mainly gifts of the lotus.",
+  "rareAlertsNotificationDescription": "稀有警報通知，主要是Lotus的賞賜",
   "@rareAlertsNotificationDescription": {
     "description": "Description for rare alerts option",
     "type": "text",
@@ -304,31 +304,31 @@
     "type": "text",
     "placeholders": {}
   },
-  "baroNotificationDescription": "Notifications for both Baro's arrivial and departure.",
+  "baroNotificationDescription": "Baro Ki'Teer 到達和離開的通知",
   "@baroNotificationDescription": {
     "description": "Notification description for both Baro's arrivial and departure.",
     "type": "text",
     "placeholders": {}
   },
-  "darvoNotificationTitle": "Darvo's Daily Deals",
+  "darvoNotificationTitle": "Darvo 的每天優惠",
   "@darvoNotificationTitle": {
     "description": "Notification title for darvo's daily deals",
     "type": "text",
     "placeholders": {}
   },
-  "darvoNotificationDescription": "Darvo's new find of the day.",
+  "darvoNotificationDescription": "Darvo 每天的新發現",
   "@darvoNotificationDescription": {
     "description": "Notification description for Darvo's Daily Deal",
     "type": "text",
     "placeholders": {}
   },
-  "sortieNotificationTitle": "Sortie",
+  "sortieNotificationTitle": "突擊",
   "@sortieNotificationTitle": {
     "description": "Notification title for sorties",
     "type": "text",
     "placeholders": {}
   },
-  "sortieNotificationDescription": "Notifications for new sorties.",
+  "sortieNotificationDescription": "新突襲通知",
   "@sortieNotificationDescription": {
     "description": "description for sortie notification option",
     "type": "text",
@@ -340,61 +340,61 @@
     "type": "text",
     "placeholders": {}
   },
-  "sentientOutpostNotificationDescription": "Notifications for new sentient threats.",
+  "sentientOutpostNotificationDescription": "新 Sentient 威脅通知",
   "@sentientOutpostNotificationDescription": {
     "description": "Notification description for sentient outpost option",
     "type": "text",
     "placeholders": {}
   },
-  "warframeNewsTitle": "News",
+  "warframeNewsTitle": "新聞",
   "@warframeNewsTitle": {
     "description": "Main Title for Warframe news page",
     "type": "text",
     "placeholders": {}
   },
-  "warframeNewsNotificationTitle": "News",
+  "warframeNewsNotificationTitle": "新聞",
   "@warframeNewsNotificationTitle": {
     "description": "Main Title for Warframe news notifications",
     "type": "text",
     "placeholders": {}
   },
-  "warframeNewsNotificationDescription": "News notifications for Prime Access, Streams and Updates.",
+  "warframeNewsNotificationDescription": "Prime Access, Streams 和更新的通知",
   "@warframeNewsNotificationDescription": {
     "description": "Main description for Warframe news notifications",
     "type": "text",
     "placeholders": {}
   },
-  "planetCyclesNotificationTitle": "Open World Cycles",
+  "planetCyclesNotificationTitle": "開放世界循環",
   "@planetCyclesNotificationTitle": {
     "description": "Main title for open world notifications",
     "type": "text",
     "placeholders": {}
   },
-  "planetCyclesNotificationDescription": "Open world notifications for their given cycles.",
+  "planetCyclesNotificationDescription": "開放世界循環通知",
   "@planetCyclesNotificationDescription": {
     "description": "Main description for open world notifications",
     "type": "text",
     "placeholders": {}
   },
-  "resourcesNotificationTitle": "Resources",
+  "resourcesNotificationTitle": "資源",
   "@resourcesNotificationTitle": {
     "description": "Main title for resource notifications",
     "type": "text",
     "placeholders": {}
   },
-  "resourcesNotificationDescription": "Resources mostly found in invasions.",
+  "resourcesNotificationDescription": "主要在入侵中找到的資源",
   "@resourcesNotificationDescription": {
     "description": "Main description for resource notifications",
     "type": "text",
     "placeholders": {}
   },
-  "fissuresNotificationTitle": "Fissure Missions",
+  "fissuresNotificationTitle": "裂縫任務",
   "@fissuresNotificationTitle": {
     "description": "Main title for fisssures notifications",
     "type": "text",
     "placeholders": {}
   },
-  "fissuresNotificationDescription": "Filter fissure notifications by prefered mission type.",
+  "fissuresNotificationDescription": "通過喜好任務類型過濾裂縫通知",
   "@fissuresNotificationDescription": {
     "description": "Main description for fissures notifications",
     "type": "text",
@@ -534,6 +534,12 @@
     "type": "text",
     "placeholders": {}
   },
+  "sourceCode": "Source code",
+  "@sourceCode": {
+    "description": "Displayes a link to Navis's source code",
+    "type": "text",
+    "placeholders": {}
+  },
   "issueTrackerDescription": "Report issues or feature request for this project's",
   "@issueTrackerDescription": {
     "description": "Description for Navis's issue tracker",
@@ -630,163 +636,163 @@
     "type": "text",
     "placeholders": {}
   },
-  "auraTitle": "Aura Polarity",
+  "auraTitle": "光環極性",
   "@auraTitle": {
     "description": "Aura polarity title for items",
     "type": "text",
     "placeholders": {}
   },
-  "preinstalledPolarities": "Preinstalled Polarities",
+  "preinstalledPolarities": "預先安裝的極性",
   "@preinstalledPolarities": {
     "description": "Preinstalled polarites title for items",
     "type": "text",
     "placeholders": {}
   },
-  "shieldTitle": "Shield",
+  "shieldTitle": "護盾",
   "@shieldTitle": {
     "description": "Title for shield value",
     "typ": "text",
     "placeholders": {}
   },
-  "armorTitle": "Armor",
+  "armorTitle": "護甲",
   "@armorTitle": {
     "description": "Title for armor value",
     "typ": "text",
     "placeholders": {}
   },
-  "healthTitle": "Health",
+  "healthTitle": "生命值",
   "@healthTitle": {
     "description": "Title for health value",
     "typ": "text",
     "placeholders": {}
   },
-  "powerTitle": "Power",
+  "powerTitle": "能量值",
   "@powerTitle": {
     "description": "Title for power value",
     "typ": "text",
     "placeholders": {}
   },
-  "sprintSpeedTitle": "Sprint Speed",
+  "sprintSpeedTitle": "疾跑速度",
   "@sprintSpeedTitle": {
     "description": "Title for sprint speed value",
     "typ": "text",
     "placeholders": {}
   },
-  "abilitiesTitle": "Abilites",
+  "abilitiesTitle": "技能",
   "@abilitiesTitle": {
     "description": "Title for warframe, archwings, and Necromech abilites",
     "typ": "text",
     "placeholders": {}
   },
-  "componentsTitle": "Components",
+  "componentsTitle": "組件",
   "@componentsTitle": {
     "description": "Title for item components",
     "typ": "text",
     "placeholders": {}
   },
-  "fullPatchNotesTitle": "FULL PATCH NOTES",
+  "fullPatchNotesTitle": "完整更新日志",
   "@fullPatchNotesTitle": {
     "description": "Full Patch Notes Title",
     "typ": "text",
     "placeholders": {}
   },
-  "masteryRequirementTitle": "Mastery Requirement",
+  "masteryRequirementTitle": "段位等級要求",
   "@masteryRequirementTitle": {
     "description": "Mastery requirement for item",
     "type": "text",
     "placeholders": {}
   },
-  "weaponTypeTitle": "Weapon Type",
+  "weaponTypeTitle": "武器類型",
   "@weaponTypeTitle": {
     "description": "Weapon item type",
     "type": "text",
     "placeholders": {}
   },
-  "accuracyTitle": "Accuracy",
+  "accuracyTitle": "精准度",
   "@accuracyTitle": {
     "description": "Weapon accuracy title",
     "type": "text",
     "placeholders": {}
   },
-  "criticalChanceTitle": "Critical Chance",
+  "criticalChanceTitle": "暴擊率",
   "@criticalChanceTitle": {
     "description": "Weapon crictical chance",
     "type": "text",
     "placeholders": {}
   },
-  "cricticalMultiplierTitle": "Critcial Multiplier",
+  "cricticalMultiplierTitle": "暴击倍率",
   "@cricticalMultiplierTitle": {
     "description": "Weapon critical multiplier",
     "type": "text",
     "placeholders": {}
   },
-  "fireRateTitle": "Fire Rate",
+  "fireRateTitle": "射速",
   "@fireRateTitle": {
     "description": "Weapon fire rate",
     "type": "text",
     "placeholders": {}
   },
-  "magazineTitle": "Magazine",
+  "magazineTitle": "彈夾",
   "@magazineTitle": {
     "description": "Weapon magazine size title",
     "type": "text",
     "placeholders": {}
   },
-  "multishotTitle": "Multishot",
+  "multishotTitle": "多重射擊",
   "@multishotTitle": {
     "description": "Weapon multishot",
     "type": "text",
     "placeholders": {}
   },
-  "noiseTitle": "Noise",
+  "noiseTitle": "噪音",
   "@noiseTitle": {
     "description": "Weapon noise type",
     "type": "text",
     "placeholders": {}
   },
-  "reloadTitle": "Reload",
+  "reloadTitle": "重裝子彈",
   "@reloadTitle": {
     "description": "Weapon item type",
     "type": "text",
     "placeholders": {}
   },
-  "rivenDispositionTitle": "Riven Disposition",
+  "rivenDispositionTitle": "裂罅倾向性",
   "@rivenDispositionTitle": {
     "description": "Weapon's riven disposition",
     "type": "text",
     "placeholders": {}
   },
-  "statusChanceTitle": "Status Chance",
+  "statusChanceTitle": "觸發機率",
   "@statusChanceTitle": {
     "description": "Weapon's status chance",
     "type": "text",
     "placeholders": {}
   },
-  "triggerTitle": "Trigger",
+  "triggerTitle": "射擊類型",
   "@triggerTitle": {
     "description": "Weapon item type",
     "type": "text",
     "placeholders": {}
   },
-  "damageTitle": "Damage",
+  "damageTitle": "傷害",
   "@damageTitle": {
     "description": "Weapon's damage category",
     "type": "text",
     "placeholders": {}
   },
-  "totalDamageTitle": "Total Damage",
+  "totalDamageTitle": "總傷害",
   "@totalDamageTitle": {
     "description": "Weapon's total damage'",
     "type": "text",
     "placeholders": {}
   },
-  "stancePolarityTitle": "Stance Polarity",
+  "stancePolarityTitle": "架式極性",
   "@stancePolarityTitle": {
     "description": "Melee stance polarity title",
     "type": "text",
     "placeholders": {}
   },
-  "attackSpeedTitle": "Attack Speed",
+  "attackSpeedTitle": "攻速",
   "@attackSpeedTitle": {
     "description": "melee attack speed",
     "type": "text",
@@ -798,109 +804,109 @@
     "type": "text",
     "placeholders": {}
   },
-  "rangeTitle": "Range",
+  "rangeTitle": "攻擊範圍",
   "@rangeTitle": {
     "description": "Melee's range title",
     "type": "text",
     "placeholders": {}
   },
-  "slamAttackTitle": "Slam Attack",
+  "slamAttackTitle": "震地攻擊",
   "@slamAttackTitle": {
     "description": "Melee's slam attack",
     "type": "text",
     "placeholders": {}
   },
-  "slamRadialDamageTitle": "Slam Radial Damage",
+  "slamRadialDamageTitle": "震地範圍傷害",
   "@slamRadialDamageTitle": {
     "description": "Melee's Slam Radial Damage",
     "type": "text",
     "placeholders": {}
   },
-  "slamRadiusTitle": "Slam Radius",
+  "slamRadiusTitle": "震地攻擊半徑",
   "@slamRadiusTitle": {
     "description": "Slam Radius title",
     "type": "text",
     "placeholders": {}
   },
-  "slideAttackTitle": "Slide Attack",
+  "slideAttackTitle": "滑行攻擊",
   "@slideAttackTitle": {
     "description": "Melee's slide attack",
     "type": "text",
     "placeholders": {}
   },
-  "heavyAttackTitle": "Heavy Attack",
+  "heavyAttackTitle": "重擊",
   "@heavyAttackTitle": {
     "description": "Heavy attack title",
     "type": "text",
     "placeholders": {}
   },
-  "heavySlamAttackTitle": "Heavy Slam Attack",
+  "heavySlamAttackTitle": "重震地攻擊",
   "@heavySlamAttackTitle": {
     "description": "Heavy Slam attack title",
     "type": "text",
     "placeholders": {}
   },
-  "heavySlamRadialDamageTitle": "Heavy Slam Radial Damage",
+  "heavySlamRadialDamageTitle": "重震地範圍傷害",
   "@heavySlamRadialDamageTitle": {
     "description": "Heavy Slam attack title",
     "type": "text",
     "placeholders": {}
   },
-  "heavySlamRadiusTitle": "Heavy Slam Radius",
+  "heavySlamRadiusTitle": "重震地攻擊範圍",
   "@heavySlamRadiusTitle": {
     "description": "Heavy Slam attack title",
     "type": "text",
     "placeholders": {}
   },
-  "windUpTitle": "Wind Up",
+  "windUpTitle": "畜力時間",
   "@windUpTitle": {
     "description": "melee's heavy wind up time title",
     "type": "text",
     "placeholders": {}
   },
-  "discordSupportTitle": "Support",
+  "discordSupportTitle": "技術支持",
   "@discordSupportTitle": {
     "description": "Discord support title",
     "type": "text",
     "placeholders": {}
   },
-  "steelPathTitle": "Steel Path",
+  "steelPathTitle": "鋼鐵之路",
   "@steelPathTitle": {
     "description": "Steel path card title",
     "type": "text",
     "placeholers": {}
   },
-  "syndicateDualScreenTitle": "Select Syndicate",
+  "syndicateDualScreenTitle": "選擇集團",
   "@syndicateDualScreenTitle": {
     "description": "User hint when under syndicate tabs using a tablet",
     "type": "text",
     "placeholders": {}
   },
-  "optOutOfAnalyticsTitle": "Opt out of analytics",
+  "optOutOfAnalyticsTitle": "選擇退出分析計劃",
   "@optOutOfAnalyticsTitle": {
     "description": "Title opting out of analytics",
     "type": "text",
     "placeholders": {}
   },
-  "optOutOfAnalyticsDescription": "Disable analytics.",
+  "optOutOfAnalyticsDescription": "停用分析",
   "@optOutOfAnalyticsDescription": {
     "description": "Description of the analytics opting buttong",
     "type": "text",
     "placeholders": {}
   },
-  "appLangTitle": "Language",
+  "appLangTitle": "語言",
   "@appLangTitle": {
     "description": "Title for app language options",
     "type": "text",
     "placeholders": {}
   },
-  "appLangDescription": "Override default behavior for language detection.",
+  "appLangDescription": "覆寫預設語言檢測",
   "@appLangDescription": {
     "description": "Description for language options",
     "type": "text",
     "placeholders": {}
   },
-  "modLevelLabel": "Level {rank}",
+  "modLevelLabel": "等級 {rank}",
   "@modLevelLabel": {
     "description": "The label shown to users as they slide the mod slider",
     "type": "text",
@@ -908,25 +914,25 @@
       "rank": {}
     }
   },
-  "codexHint": "Type what you're looking for into the search bar above!",
+  "codexHint": "在上方搜尋欄輸入你想搜尋的東西!",
   "@codexHint": {
     "description": "Codex description when a user enters the codex or when the search bar is empty",
     "type": "text",
     "placeholder": {}
   },
-  "codexNoResults": "No results",
+  "codexNoResults": "未能找到結果",
   "@codexNoResults": {
     "description": "Displayed when a search result in codex returns empty",
     "type": "text",
     "placeholder": {}
   },
-  "codexVaultedLabel": "Vaulted",
+  "codexVaultedLabel": "已入庫",
   "@codexVaultedLabel": {
     "description": "A label shown in codex items to detenote items that are vaulted",
     "type": "text",
     "placeholder": {}
   },
-  "exploreTitle": "Explore",
+  "exploreTitle": "探索",
   "@exploreTitle": {
     "description": "Title for explore page",
     "type": "text",
@@ -965,6 +971,76 @@
   "voidStormFissuresButton": "Void Storms",
   "@voidStormFissuresButton": {
     "description": "Button label for void storm fissures",
+    "type": "text",
+    "placeholder": {}
+  },
+  "saleEndsTitle": "SALE ENDS",
+  "@saleEndsTitle": {
+    "description": "Sale ends title for countdown timer",
+    "type": "text",
+    "placeholder": {}
+  },
+  "salePriceTitle": "Sale price",
+  "@salePriceTitle": {
+    "description": "Displays the item's sale price for darvo sales",
+    "type": "text",
+    "placeholder": {}
+  },
+  "originalPriceTitle": "Original Price",
+  "@originalPriceTitle": {
+    "description": "Displays the item's original price for darvo sales",
+    "type": "text",
+    "placeholder": {}
+  },
+  "discountTitle": "{discount}% OFF!",
+  "@discountTitle": {
+    "description": "Displays the discount applied for a given darvo sale",
+    "type": "text",
+    "placeholder": {
+      "discount": {}
+    }
+  },
+  "inStockInformation": "Only {stock} left",
+  "@inStockInformation": {
+    "description": "Displays the stock information for a darvo deal",
+    "type": "text",
+    "placeholder": {
+      "stock": {}
+    }
+  },
+  "outOfStockTitle": "OUT OF STOCK",
+  "@outOfStockTitle": {
+    "description": "Tells the user when darvo is out of stock for the current sale",
+    "type": "text",
+    "placeholder": {}
+  },
+  "duviriJoy": "Duviri Joy",
+  "@duviriJoy": {
+    "description": "Duviri joy state. If Duviri doesn't have a translatetion then only joy can be translated.",
+    "type": "text",
+    "placeholder": {}
+  },
+  "duviriAnger": "Duviri Anger",
+  "@duviriAnger": {
+    "description": "Duviri anger state. If Duviri doesn't have a translatetion then only joy can be translated.",
+    "type": "text",
+    "placeholder": {}
+  },
+  "duviriEnvy": "Duviri Envy",
+  "@duviriEnvy": {
+    "description": "Duviri envy state. If Duviri doesn't have a translatetion then only joy can be translated.",
+    "type": "text",
+    "placeholder": {}
+  },
+  "duviriSorrow": "Duviri Sorrow",
+  "@duviriSorrow": {
+    "description": "Duviri sorrow state. If Duviri doesn't have a translatetion then only joy can be translated.",
+    "type": "text",
+    "placeholder": {}
+  },
+  "duviriFear": "Duviri Fear",
+  "@duviriFear": {
+    "description": "Duviri Fear state. If Duviri doesn't have a translatetion then only joy can be translated.",
     "type": "text",
     "placeholder": {}
   }
