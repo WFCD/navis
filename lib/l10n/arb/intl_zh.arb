@@ -1032,7 +1032,7 @@
     "type": "text",
     "placeholder": {}
   },
-  "duviriSorrow": "雙衍悖論: 悲",
+  "duviriSorrow": "雙衍悖論: 哀",
   "@duviriSorrow": {
     "description": "Duviri sorrow state. If Duviri doesn't have a translatetion then only joy can be translated.",
     "type": "text",
