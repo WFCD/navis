@@ -1026,7 +1026,7 @@
     "type": "text",
     "placeholder": {}
   },
-  "duviriEnvy": "雙衍王境: 嫉",
+  "duviriEnvy": "雙衍王境: 妒",
   "@duviriEnvy": {
     "description": "Duviri envy state. If Duviri doesn't have a translatetion then only joy can be translated.",
     "type": "text",
