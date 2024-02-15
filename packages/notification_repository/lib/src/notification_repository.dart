@@ -21,7 +21,7 @@ class NotificationRepository {
   /// Request persmission on iOS
   ///
   /// Has a platform check inside the lib itself.
-  void configure() => _messaging.requestPermission(provisional: true);
+  void configure() => _messaging.requestPermission(provisional: Platform.isIOS);
 
   // IOS requires and APNS check, if the first time fails we can wait the
   // 5 seconds. But if it's not availble the second time we can assume that
