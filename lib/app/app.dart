@@ -10,6 +10,7 @@ import 'package:navis/settings/settings.dart';
 import 'package:navis/synthtargets/views/targets.dart';
 import 'package:navis/worldstate/worldstate.dart';
 import 'package:navis_ui/navis_ui.dart';
+import 'package:notification_repository/notification_repository.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
 class NavisApp extends StatefulWidget {
@@ -26,6 +27,8 @@ class _NavisAppState extends State<NavisApp> with WidgetsBindingObserver {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addObserver(this);
+
+    context.read<NotificationRepository>().configure();
 
     _timer = Timer.periodic(
       const Duration(seconds: 60),
