@@ -22,7 +22,7 @@ extension StringNx on String {
             toolbarColor: context.theme.colorScheme.surface,
           ),
           closeButton: CustomTabsCloseButton(
-            icon: CustomTabsCloseButtonIcon.back,
+            icon: CustomTabsCloseButtonIcons.back,
           ),
         ),
         safariVCOptions: SafariViewControllerOptions(
