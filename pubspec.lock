@@ -253,10 +253,10 @@ packages:
     dependency: transitive
     description:
       name: file
-      sha256: "1b92bec4fc2a72f59a8e15af5f52cd441e4a7860b49499d69dfa817af20e925d"
+      sha256: "5fc22d7c25582e38ad9a8515372cd9a93834027aacf1801cf01164dac0ffa08c"
       url: "https://pub.dev"
     source: hosted
-    version: "6.1.4"
+    version: "7.0.0"
   firebase_core:
     dependency: "direct main"
     description:
@@ -759,10 +759,10 @@ packages:
     dependency: transitive
     description:
       name: process
-      sha256: "53fd8db9cec1d37b0574e12f07520d582019cb6c44abf5479a01505099a34a09"
+      sha256: "21e54fd2faf1b5bdd5102afd25012184a6793927648ea81eea80552ac9405b32"
       url: "https://pub.dev"
     source: hosted
-    version: "4.2.4"
+    version: "5.0.2"
   properties:
     dependency: transitive
     description:
@@ -1025,7 +1025,7 @@ packages:
     source: hosted
     version: "1.2.1"
   test:
-    dependency: "direct dev"
+    dependency: transitive
     description:
       name: test
       sha256: a1f7595805820fcc05e5c52e3a231aedd0b72972cb333e8c738a8b1239448b6f
@@ -1132,11 +1132,11 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: "v3.6.2"
-      resolved-ref: "7df96c98facf17a9740ab812a049da0546bcf736"
+      ref: "v3.6.3"
+      resolved-ref: d0c93ad5d6f13a342972914e1416e07cf6d37d1c
       url: "https://github.com/SlayerOrnstein/warframestat_client.git"
     source: git
-    version: "3.6.2"
+    version: "3.6.3"
   watcher:
     dependency: transitive
     description:

@@ -43,7 +43,7 @@ dependencies:
   warframestat_client:
     git:
       url: https://github.com/SlayerOrnstein/warframestat_client.git
-      ref: v3.6.2
+      ref: v3.6.3
   worldstate_repository:
     path: packages/worldstate_repository
 
@@ -57,7 +57,6 @@ dev_dependencies:
   mocktail: ^1.0.3
   path: ^1.8.3
   sentry_dart_plugin: ^1.7.1
-  test: 1.24.9
   very_good_analysis: ^5.1.0
 
 flutter:
