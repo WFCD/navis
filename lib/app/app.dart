@@ -151,7 +151,6 @@ class _NavisAppState extends State<NavisApp> with WidgetsBindingObserver {
             EventInformation.route: (_) => const EventInformation(),
             SettingsPage.route: (_) => const SettingsPage(),
             NightwavesPage.route: (_) => const NightwavesPage(),
-            BountiesPage.route: (_) => const BountiesPage(),
             BaroInventory.route: (_) => const BaroInventory(),
             SynthTargetsView.route: (_) => const SynthTargetsView(),
           },
