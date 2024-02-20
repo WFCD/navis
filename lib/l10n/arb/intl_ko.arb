@@ -504,6 +504,24 @@
     "type": "text",
     "placeholders": {}
   },
+  "aboutAppTitle": "About app",
+  "@aboutAppTitle": {
+    "description": "Title for the about app dialog",
+    "type": "text",
+    "placeholders": {}
+  },
+  "contributeTranslationsTitle": "Contribute Translations",
+  "@contributeTranslationsTitle": {
+    "description": "Title for contribute translations link",
+    "type": "text",
+    "placeholders": {}
+  },
+  "contributeTranslationsDescription": "Volunteer to contribute translations",
+  "@contributeTranslationsDescription": {
+    "description": "Description for contribute translations link",
+    "type": "text",
+    "placeholders": {}
+  },
   "lightThemeTitle": "라이트",
   "@lightThemeTitle": {
     "description": "Title for light theme",
