@@ -6,6 +6,7 @@ import 'package:flutter_settings_ui/flutter_settings_ui.dart';
 import 'package:intl/intl.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis/settings/settings.dart';
+import 'package:navis_ui/navis_ui.dart';
 import 'package:notification_repository/notification_repository.dart';
 
 class SettingsPage extends StatelessWidget {
@@ -111,7 +112,7 @@ class _SettingsView extends StatelessWidget {
           ],
         ),
         SettingsSection(
-          title: const Text('About'),
+          title: Text(l10n.aboutCategoryTitle),
           tiles: [
             SettingsTile.navigation(
               title: Text(l10n.reportBugsTitle),
@@ -120,7 +121,13 @@ class _SettingsView extends StatelessWidget {
                   BetterFeedback.of(context).showAndUploadToSentry(),
             ),
             SettingsTile.navigation(
-              title: const Text('About app'),
+              title: Text(l10n.contributeTranslationsTitle),
+              description: Text(l10n.contributeTranslationsDescription),
+              onPressed: (context) =>
+                  contributeTranslations.launchLink(context),
+            ),
+            SettingsTile.navigation(
+              title: Text(l10n.aboutAppTitle),
               onPressed: (context) => showDialog<void>(
                 context: context,
                 useRootNavigator: false,
