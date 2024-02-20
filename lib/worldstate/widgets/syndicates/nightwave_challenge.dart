@@ -71,7 +71,7 @@ class _StandingBadge extends StatelessWidget {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          const Icon(GenesisAssets.standing, size: 20, color: Colors.white),
+          const Icon(WarframeSymbols.standing, size: 20, color: Colors.white),
           Text(rep, style: const TextStyle(color: Colors.white)),
         ],
       ),
@@ -92,17 +92,17 @@ class _NightwaveIcon extends StatelessWidget {
 
     if (isElite) {
       icon = const AppIcon(
-        GenesisAssets.elite,
+        WarframeSymbols.nightwaves_elite,
         size: kIconSize,
       );
     } else if (isDaily) {
       icon = const AppIcon(
-        GenesisAssets.daily,
+        WarframeSymbols.nightwaves_daily,
         size: kIconSize,
       );
     } else {
       icon = const AppIcon(
-        GenesisAssets.weekly,
+        WarframeSymbols.nightwaves_weekly,
         size: kIconSize,
       );
     }

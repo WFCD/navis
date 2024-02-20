@@ -1,1 +1,1 @@
-export 'genesis_assets.dart';
+export 'warframe_symbols.dart';

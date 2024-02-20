@@ -39,7 +39,7 @@ class ConstructionProgressCard extends StatelessWidget {
                   child: Row(
                     children: [
                       AppIcon(
-                        GenesisAssets.grineer,
+                        WarframeSymbols.factions_grineer,
                         size: iconSize,
                         color: Factions.grineer.primaryColor,
                       ),
@@ -62,7 +62,7 @@ class ConstructionProgressCard extends StatelessWidget {
                       ),
                       SizedBoxSpacer.spacerWidth12,
                       AppIcon(
-                        GenesisAssets.corpus,
+                        WarframeSymbols.factions_corpus,
                         size: iconSize,
                         color: Factions.corpus.primaryColor,
                       ),

@@ -25,9 +25,9 @@ dependency_overrides:
 flutter:
   uses-material-design: true
   fonts:
-    - family: GenesisAssets
+    - family: Warframe-symbols
       fonts:
-        - asset: lib/fonts/GenesisAssets.ttf
+        - asset: lib/fonts/Warframe-symbols.ttf
   assets:
     - assets/Derelict.webp
     - assets/baro_banner.webp

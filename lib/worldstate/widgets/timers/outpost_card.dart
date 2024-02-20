@@ -36,7 +36,7 @@ class SentientOutpostCard extends StatelessWidget {
           final expiry = outpost?.expiry ?? DateTime.now();
 
           return ListTile(
-            leading: const Icon(GenesisAssets.sentient, size: 40),
+            leading: const Icon(WarframeSymbols.factions_sentient, size: 40),
             title: Text(mission?.node ?? ''),
             subtitle:
                 Text('${mission?.faction ?? ''} | ${mission?.type ?? ''}'),

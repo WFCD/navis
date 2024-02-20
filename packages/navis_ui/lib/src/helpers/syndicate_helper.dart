@@ -15,17 +15,17 @@ extension SyndicatesX on Syndicates {
   IconData get syndicateIcon {
     switch (this) {
       case Syndicates.cetus:
-        return GenesisAssets.ostron;
+        return WarframeSymbols.ostron;
       case Syndicates.solaris:
-        return GenesisAssets.solaris;
+        return WarframeSymbols.solaris;
       case Syndicates.entrati:
-        return GenesisAssets.entrati;
+        return WarframeSymbols.entrati;
       case Syndicates.nightwave:
-        return GenesisAssets.nightwave;
+        return WarframeSymbols.nightwave;
       case Syndicates.simaris:
-        return GenesisAssets.simaris;
+        return WarframeSymbols.simaris;
       case Syndicates.unknown:
-        return GenesisAssets.hexis;
+        return WarframeSymbols.hexis;
     }
   }
 

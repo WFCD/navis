@@ -54,7 +54,7 @@ class _AlertWidget extends StatelessWidget {
               // is no need for a nightmare icon for alerts.
               if (mission.archwingRequired ?? false)
                 const Icon(
-                  GenesisAssets.archwing,
+                  WarframeSymbols.archwing,
                   color: Colors.blue,
                   size: 25,
                 ),

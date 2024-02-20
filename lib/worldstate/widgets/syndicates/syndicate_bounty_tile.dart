@@ -38,7 +38,7 @@ class _Standing extends StatelessWidget {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
-        const Icon(GenesisAssets.standing, size: 20),
+        const Icon(WarframeSymbols.standing, size: 20),
         Text(standingStages.reduce((v, e) => v + e).toString()),
       ],
     );

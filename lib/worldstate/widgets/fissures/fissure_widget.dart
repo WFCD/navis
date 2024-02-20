@@ -29,15 +29,15 @@ class FissureWidget extends StatelessWidget {
     final icon = () {
       switch (fissure.tier) {
         case 'Lith':
-          return GenesisAssets.lith;
+          return WarframeSymbols.fissures_lith;
         case 'Meso':
-          return GenesisAssets.meso;
+          return WarframeSymbols.fissures_meso;
         case 'Neo':
-          return GenesisAssets.neo;
+          return WarframeSymbols.fissures_neo;
         case 'Axi':
-          return GenesisAssets.axi;
+          return WarframeSymbols.fissures_axi;
         default:
-          return GenesisAssets.requiem;
+          return WarframeSymbols.fissures_requiem;
       }
     }();
 
@@ -96,12 +96,12 @@ class _FissureInfo extends StatelessWidget {
                 if (fissure.isStorm)
                   const Padding(
                     padding: EdgeInsets.only(right: 8),
-                    child: Icon(GenesisAssets.archwing, size: 20),
+                    child: Icon(WarframeSymbols.archwing, size: 20),
                   ),
                 if (fissure.isHard)
                   const Padding(
                     padding: EdgeInsets.only(right: 8),
-                    child: Icon(GenesisAssets.arbitrations, size: 20),
+                    child: Icon(WarframeSymbols.arbitrations, size: 20),
                   ),
                 Text(
                   '${fissure.missionType} | ${fissure.tier}',

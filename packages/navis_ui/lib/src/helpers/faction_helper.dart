@@ -15,19 +15,19 @@ extension FactionsX on Factions {
   IconData get factionIcon {
     switch (this) {
       case Factions.grineer:
-        return GenesisAssets.grineer;
+        return WarframeSymbols.factions_grineer;
       case Factions.corpus:
-        return GenesisAssets.corpus;
+        return WarframeSymbols.factions_corpus;
       case Factions.corrupted:
-        return GenesisAssets.corrupted;
+        return WarframeSymbols.factions_corrupted;
       case Factions.infestation:
-        return GenesisAssets.infested;
+        return WarframeSymbols.factions_infested;
       case Factions.infested:
-        return GenesisAssets.infested;
+        return WarframeSymbols.factions_infested;
       case Factions.narmer:
-        return GenesisAssets.narmer;
+        return WarframeSymbols.factions_narmer;
       case Factions.unknown:
-        return GenesisAssets.sentient;
+        return WarframeSymbols.factions_sentient;
     }
   }
 

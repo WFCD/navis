@@ -31,7 +31,7 @@ class AboutApp extends AbstractSettingsTile {
 
         return AboutDialog(
           applicationIcon: const Icon(
-            GenesisAssets.nightmare,
+            WarframeSymbols.nightmare,
             size: 50,
             color: Color(0xFF1565C0),
           ),
@@ -57,10 +57,21 @@ class AboutApp extends AbstractSettingsTile {
                     text: '\n\n${l10n.issueTrackerDescription} ',
                   ),
                   TextSpan(
-                    text: l10n.issueTrackerTitle,
+                    text: '${l10n.issueTrackerTitle}\n\n',
                     style: linkStyle,
                     recognizer: TapGestureRecognizer()
                       ..onTap = () => issuePage.launchLink(context),
+                  ),
+                  TextSpan(
+                    text: 'Contribute translations\n',
+                    style: aboutTextStyle,
+                  ),
+                  TextSpan(
+                    text: contributeTranslations,
+                    style: linkStyle,
+                    recognizer: TapGestureRecognizer()
+                      ..onTap =
+                          () => contributeTranslations.launchLink(context),
                   ),
                   TextSpan(
                     style: textTheme.bodySmall,
@@ -84,16 +95,14 @@ class AboutApp extends AbstractSettingsTile {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 IconButton(
-                  icon: const AppIcon(
-                    GenesisAssets.wfcdLogo,
+                  icon: const Icon(
+                    WarframeSymbols.wfcd,
                     color: Color(0xFF2e96ef),
                   ),
                   iconSize: iconSize,
-                  padding: EdgeInsets.zero,
                   splashColor: Colors.transparent,
                   onPressed: () => communityPage.launchLink(context),
                 ),
-                SizedBoxSpacer.spacerWidth24,
                 IconButton(
                   icon: Icon(
                     SimpleIcons.github,
@@ -103,7 +112,7 @@ class AboutApp extends AbstractSettingsTile {
                   splashColor: Colors.transparent,
                   onPressed: () => projectPage.launchLink(context),
                 ),
-                SizedBoxSpacer.spacerWidth12,
+                SizedBoxSpacer.spacerWidth8,
                 IconButton(
                   icon:
                       const Icon(SimpleIcons.discord, color: Color(0xFF7289DA)),
