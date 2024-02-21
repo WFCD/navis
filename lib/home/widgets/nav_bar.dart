@@ -13,6 +13,7 @@ class CustomNavigationBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return NavigationBar(
+      height: kBottomNavigationBarHeight,
       onDestinationSelected: (i) => _onTap(context, NavigationEvent.values[i]),
       selectedIndex: NavigationCubit.navigationMap.values
           .toList()
