@@ -87,41 +87,36 @@ class _TabView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      top: false,
-      bottom: false,
-      child: Builder(
-        builder: (context) {
-          return CustomScrollView(
-            key: PageStorageKey<String>(tab.toString()),
-            slivers: [
-              SliverOverlapInjector(
-                // This is the flip side of the SliverOverlapAbsorber above.
-                handle:
-                    NestedScrollView.sliverOverlapAbsorberHandleFor(context),
+    return Builder(
+      builder: (context) {
+        return CustomScrollView(
+          key: PageStorageKey<String>(tab.toString()),
+          slivers: [
+            SliverOverlapInjector(
+              // This is the flip side of the SliverOverlapAbsorber above.
+              handle: NestedScrollView.sliverOverlapAbsorberHandleFor(context),
+            ),
+            SliverFillRemaining(
+              child: RefreshIndicator(
+                onRefresh: () => BlocProvider.of<WorldstateCubit>(context)
+                    .fetchWorldstate(context.locale, forceUpdate: true),
+                child: () {
+                  switch (tab) {
+                    case Tabs.timers:
+                      return const Timers();
+                    case Tabs.fissures:
+                      return const FissuresPage();
+                    case Tabs.invasions:
+                      return const InvasionsPage();
+                    case Tabs.syndicates:
+                      return const SyndicatePage();
+                  }
+                }(),
               ),
-              SliverFillRemaining(
-                child: RefreshIndicator(
-                  onRefresh: () => BlocProvider.of<WorldstateCubit>(context)
-                      .fetchWorldstate(context.locale, forceUpdate: true),
-                  child: () {
-                    switch (tab) {
-                      case Tabs.timers:
-                        return const Timers();
-                      case Tabs.fissures:
-                        return const FissuresPage();
-                      case Tabs.invasions:
-                        return const InvasionsPage();
-                      case Tabs.syndicates:
-                        return const SyndicatePage();
-                    }
-                  }(),
-                ),
-              ),
-            ],
-          );
-        },
-      ),
+            ),
+          ],
+        );
+      },
     );
   }
 }
