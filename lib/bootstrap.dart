@@ -1,8 +1,8 @@
 import 'dart:async';
 
-import 'package:feedback_sentry/feedback_sentry.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:navis/app/app_observer.dart';
@@ -26,12 +26,10 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
   HydratedBloc.storage = await HydratedStorage.build(storageDirectory: appDir);
 
   runApp(
-    BetterFeedback(
-      child: RepositoryBootstrap(
-        settings: settings,
-        warframestatCache: warframestateCache,
-        child: BlocBootstrap(child: await builder()),
-      ),
+    RepositoryBootstrap(
+      settings: settings,
+      warframestatCache: warframestateCache,
+      child: BlocBootstrap(child: await builder()),
     ),
   );
 }

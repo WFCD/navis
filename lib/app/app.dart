@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:black_hole_flutter/black_hole_flutter.dart';
 import 'package:dynamic_color/dynamic_color.dart';
+import 'package:feedback_sentry/feedback_sentry.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/home/home.dart';
@@ -112,8 +113,14 @@ class _NavisAppState extends State<NavisApp> with WidgetsBindingObserver {
   void didChangeDependencies() {
     super.didChangeDependencies();
 
+    final settings = context.read<UserSettingsCubit>().state;
+    final language = switch (settings) {
+      UserSettingsSuccess() => settings.language,
+      _ => const Locale('en')
+    };
+
     BlocProvider.of<WorldstateCubit>(context)
-        .fetchWorldstate(context.locale, forceUpdate: true);
+        .fetchWorldstate(language, forceUpdate: true);
   }
 
   @override
@@ -132,33 +139,37 @@ class _NavisAppState extends State<NavisApp> with WidgetsBindingObserver {
 
     return DynamicColorBuilder(
       builder: (lightDynamic, darkDynamic) {
-        return MaterialApp(
-          title: 'Navis',
-          color: Colors.grey[900],
-          themeMode: themeMode,
-          theme: ThemeData(
-            useMaterial3: true,
-            colorScheme: lightDynamic ?? lightColorScheme,
-          ),
-          darkTheme: ThemeData(
-            useMaterial3: true,
-            colorScheme: darkDynamic ?? darkColorScheme,
-          ),
-          home: const HomeView(),
-          builder: _builder,
-          navigatorObservers: [SentryNavigatorObserver()],
-          routes: <String, WidgetBuilder>{
-            EventInformation.route: (_) => const EventInformation(),
-            SettingsPage.route: (_) => const SettingsPage(),
-            NightwavesPage.route: (_) => const NightwavesPage(),
-            BountiesPage.route: (_) => const BountiesPage(),
-            BaroInventory.route: (_) => const BaroInventory(),
-            SynthTargetsView.route: (_) => const SynthTargetsView(),
-          },
-          supportedLocales: NavisLocalizations.supportedLocales,
-          locale: language,
+        return BetterFeedback(
+          pixelRatio: 1,
           localizationsDelegates: NavisLocalizations.localizationsDelegates,
-          localeResolutionCallback: localeResolutionCallback,
+          child: MaterialApp(
+            title: 'Navis',
+            color: Colors.grey[900],
+            themeMode: themeMode,
+            theme: ThemeData(
+              useMaterial3: true,
+              colorScheme: lightDynamic ?? lightColorScheme,
+            ),
+            darkTheme: ThemeData(
+              useMaterial3: true,
+              colorScheme: darkDynamic ?? darkColorScheme,
+            ),
+            home: const HomeView(),
+            builder: _builder,
+            navigatorObservers: [SentryNavigatorObserver()],
+            routes: <String, WidgetBuilder>{
+              EventInformation.route: (_) => const EventInformation(),
+              SettingsPage.route: (_) => const SettingsPage(),
+              NightwavesPage.route: (_) => const NightwavesPage(),
+              BountiesPage.route: (_) => const BountiesPage(),
+              BaroInventory.route: (_) => const BaroInventory(),
+              SynthTargetsView.route: (_) => const SynthTargetsView(),
+            },
+            supportedLocales: NavisLocalizations.supportedLocales,
+            locale: language,
+            localizationsDelegates: NavisLocalizations.localizationsDelegates,
+            localeResolutionCallback: localeResolutionCallback,
+          ),
         );
       },
     );
