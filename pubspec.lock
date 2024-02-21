@@ -827,6 +827,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "7.16.1"
+  sentry_hive:
+    dependency: transitive
+    description:
+      name: sentry_hive
+      sha256: eec8171790cd8e18f20e384ba615554b9064beaf31183c9c6534931bc10828c3
+      url: "https://pub.dev"
+    source: hosted
+    version: "7.16.1"
   sentry_logging:
     dependency: "direct main"
     description:

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/settings/settings.dart';
 import 'package:notification_repository/notification_repository.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:worldstate_repository/worldstate_repository.dart';
 
 class RepositoryBootstrap extends StatefulWidget {
@@ -30,6 +31,7 @@ class _RepositoryBootstrapState extends State<RepositoryBootstrap> {
 
     _notifications = NotificationRepository();
     _worldstateRepository = WorldstateRepository(
+      client: SentryHttpClient(),
       cache: widget.warframestatCache,
     );
   }

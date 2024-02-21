@@ -16,12 +16,13 @@ Future<void> main() async {
   await SentryFlutter.init(
     (option) {
       option
-        ..dsn = const String.fromEnvironment('SENTRY_DSN')
+        ..dsn = kDebugMode || kProfileMode
+            ? ''
+            : const String.fromEnvironment('SENTRY_DSN')
         ..enableDeduplication = true
         ..tracesSampleRate = tracesSampleRate
         ..enableBreadcrumbTrackingForCurrentPlatform()
-        ..addIntegration(LoggingIntegration())
-        ..beforeSend = _beforeSend;
+        ..addIntegration(LoggingIntegration());
     },
     appRunner: () async {
       if (!kDebugMode || !kProfileMode) {
@@ -39,10 +40,4 @@ Future<void> main() async {
       );
     },
   );
-}
-
-SentryEvent? _beforeSend(SentryEvent event, {Hint? hint}) {
-  if (kDebugMode || kProfileMode) return null;
-
-  return event;
 }

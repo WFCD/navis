@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:hive/hive.dart';
+import 'package:sentry_hive/sentry_hive.dart';
 import 'package:warframestat_client/warframestat_client.dart';
 
 /// {@template warframestate_cache}
@@ -35,7 +36,8 @@ class WarframestatCache {
 
     log('Initializing WarframestatCache Hive');
 
-    final box = testBox ?? await Hive.openBox<dynamic>(kBoxName, path: path);
+    final box =
+        testBox ?? await SentryHive.openBox<dynamic>(kBoxName, path: path);
     return _instance ??= WarframestatCache._(box);
   }
 
