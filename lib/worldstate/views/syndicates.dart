@@ -117,11 +117,7 @@ class _SyndicatePageMobile extends StatelessWidget {
         _BuildSyndicates(
           syndicates: syndicates,
           onTap: (s) {
-            Navigator.of(context).push(
-              MaterialPageRoute<void>(
-                builder: (_) => BountiesPage(syndicate: s),
-              ),
-            );
+            Navigator.of(context).pushNamed(BountiesPage.route, arguments: s);
           },
         ),
         const Divider(),
