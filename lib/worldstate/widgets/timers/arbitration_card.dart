@@ -20,7 +20,7 @@ class ArbitrationCard extends StatelessWidget {
           final expiry = arbitration?.expiry ?? DateTime.now().add(kDelayLong);
 
           return ListTile(
-            leading: const AppIcon(WarframeSymbols.arbitrations, size: 40),
+            leading: const AppIcon(WarframeSymbols.arbitrations, size: 50),
             title: Row(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
