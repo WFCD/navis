@@ -93,20 +93,20 @@ class _FissureInfo extends StatelessWidget {
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                if (fissure.isStorm)
-                  const Padding(
-                    padding: EdgeInsets.only(right: 8),
-                    child: Icon(WarframeSymbols.archwing, size: 20),
-                  ),
-                if (fissure.isHard)
-                  const Padding(
-                    padding: EdgeInsets.only(right: 8),
-                    child: Icon(WarframeSymbols.arbitrations, size: 20),
-                  ),
                 Text(
                   '${fissure.missionType} | ${fissure.tier}',
                   style: _missionTypeStyle,
                 ),
+                if (fissure.isStorm)
+                  const Padding(
+                    padding: EdgeInsets.only(left: 8),
+                    child: Icon(WarframeSymbols.archwing, size: 20),
+                  ),
+                if (fissure.isHard)
+                  const Padding(
+                    padding: EdgeInsets.only(left: 8),
+                    child: Icon(WarframeSymbols.sp_logo, size: 20),
+                  ),
               ],
             ),
           ),
