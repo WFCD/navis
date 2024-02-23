@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:navis/utils/utils.dart';
 import 'package:navis/worldstate/cubits/deals/darvodeal_state.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:warframestat_client/warframestat_client.dart';
 import 'package:worldstate_repository/worldstate_repository.dart';
 
@@ -36,18 +37,23 @@ class DarvodealCubit extends HydratedCubit<DarvodealState> {
   }
 
   @override
-  DarvodealState fromJson(Map<String, dynamic> json) {
-    final item = json['item'] as Map<String, dynamic>?;
+  DarvodealState fromJson(Map<String, dynamic>? json) {
+    Sentry.addBreadcrumb(Breadcrumb(message: 'DarvoDealCubit.fromJson'));
+    if (json == null) return DarvodealLoading();
 
-    if (item == null) return DarvodealLoading();
-
-    return DarvoDealLoaded(toItem(item));
+    try {
+      return DarvoDealLoaded(MinimalItem.fromJson(json));
+    } catch (e, s) {
+      Sentry.captureException(e, stackTrace: s);
+      return DarvodealInitial();
+    }
   }
 
   @override
   Map<String, dynamic>? toJson(DarvodealState state) {
+    Sentry.addBreadcrumb(Breadcrumb(message: 'DarvoDealCubit.toJson'));
     if (state is DarvoDealLoaded) {
-      return <String, dynamic>{'item': state.item.toJson()};
+      return state.item.toJson();
     }
 
     return null;

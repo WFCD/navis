@@ -8,10 +8,7 @@ import 'package:sentry_logging/sentry_logging.dart';
 
 Future<void> main() async {
   const siteId = 2;
-
-  // Can be any value between 0 and 1.
-  // 0.25 = 25%
-  const tracesSampleRate = 0.25;
+  const tracesSampleRate = 1.0;
 
   await SentryFlutter.init(
     (option) {

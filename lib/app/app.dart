@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:black_hole_flutter/black_hole_flutter.dart';
 import 'package:dynamic_color/dynamic_color.dart';
 import 'package:feedback_sentry/feedback_sentry.dart';
 import 'package:flutter/material.dart';
@@ -31,23 +30,33 @@ class _NavisAppState extends State<NavisApp> with WidgetsBindingObserver {
 
     context.read<NotificationRepository>().configure();
 
+    final settings = context.read<UserSettingsCubit>().state;
+    final language = switch (settings) {
+      UserSettingsSuccess() => settings.language,
+      _ => const Locale('en')
+    };
+
     _timer = Timer.periodic(
       const Duration(seconds: 60),
-      (_) => context
-          .read<WorldstateCubit>()
-          .fetchWorldstate(context.locale, forceUpdate: true),
+      (_) => BlocProvider.of<WorldstateCubit>(context)
+          .fetchWorldstate(language, forceUpdate: true),
     );
   }
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
+    final settings = context.read<UserSettingsCubit>().state;
+    final language = switch (settings) {
+      UserSettingsSuccess() => settings.language,
+      _ => const Locale('en')
+    };
+
     switch (state) {
       case AppLifecycleState.resumed:
         _timer = Timer.periodic(
           const Duration(seconds: 60),
-          (_) => context
-              .read<WorldstateCubit>()
-              .fetchWorldstate(context.locale, forceUpdate: true),
+          (_) => BlocProvider.of<WorldstateCubit>(context)
+              .fetchWorldstate(language, forceUpdate: true),
         );
 
       case AppLifecycleState.inactive ||

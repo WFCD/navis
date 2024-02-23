@@ -72,10 +72,12 @@ class WorldstateCubit extends HydratedCubit<SolsystemState> {
   }
 
   @override
-  SolsystemState? fromJson(Map<String, dynamic> json) {
+  SolsystemState? fromJson(Map<String, dynamic>? json) {
+    Sentry.addBreadcrumb(Breadcrumb(message: 'WorldstateCubit.fromJson'));
+
+    if (json == null) return null;
+
     try {
-      // Because worldstate is cleaned when it's cached there
-      // is no need to clean it when returning from cache.
       return WorldstateSuccess(Worldstate.fromJson(json));
     } catch (e) {
       return null;
