@@ -10,6 +10,7 @@ import 'package:navis/app/widgets/bloc_bootstrap.dart';
 import 'package:navis/app/widgets/repo_bootstrap.dart';
 import 'package:navis/firebase_options.dart';
 import 'package:navis/settings/settings.dart';
+import 'package:navis/utils/utils.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:worldstate_repository/worldstate_repository.dart';
 
@@ -23,7 +24,9 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
   final warframestateCache = await WarframestatCache.initCache(appDir.path);
 
   Bloc.observer = AppBlocObserver();
-  HydratedBloc.storage = await HydratedStorage.build(storageDirectory: appDir);
+  HydratedBloc.storage = await SentryHydratedStorage.build(
+    storageDirectory: await getTemporaryDirectory(),
+  );
 
   runApp(
     RepositoryBootstrap(

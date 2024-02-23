@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:matomo_tracker/matomo_tracker.dart';
 import 'package:navis/settings/settings.dart';
+import 'package:sentry_hive/sentry_hive.dart';
 
 /// {@template user_settings}
 /// A Hive box for saving user simple user settings
@@ -21,7 +22,7 @@ class UserSettings {
   /// You must call [Hive.init(path)] before calling this function
   static Future<UserSettings> initSettings(String path) async {
     log('Initializing Usersettings Hive');
-    final box = await Hive.openBox<dynamic>('user_settings', path: path);
+    final box = await SentryHive.openBox<dynamic>('user_settings', path: path);
 
     return _instance ??= UserSettings._(box);
   }

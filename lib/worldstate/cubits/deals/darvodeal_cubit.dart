@@ -41,7 +41,7 @@ class DarvodealCubit extends HydratedCubit<DarvodealState> {
 
     if (item == null) return DarvodealLoading();
 
-    return DarvoDealLoaded(MinimalItem.fromJson(json));
+    return DarvoDealLoaded(toItem(item));
   }
 
   @override
