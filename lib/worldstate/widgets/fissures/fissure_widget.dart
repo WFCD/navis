@@ -26,6 +26,9 @@ class FissureWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    const iconSize = 100.0;
+    const opacity = .30;
+
     final icon = () {
       switch (fissure.tier) {
         case 'Lith':
@@ -44,22 +47,40 @@ class FissureWidget extends StatelessWidget {
     return SkyboxCard(
       node: fissure.node,
       padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 16),
-      child: Row(
-        children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8),
-            child: Icon(icon, size: 40),
-          ),
-          Expanded(
-            child: _FissureInfo(
-              fissure: fissure,
-              nodeStyle: _nodeStyle,
-              missionTypeStyle: _missionTypeStyle,
+      child: Stack(
+        children: [
+          if (fissure.isStorm)
+            const Center(
+              child: Opacity(
+                opacity: opacity,
+                child: AppIcon(WarframeSymbols.archwing, size: iconSize),
+              ),
             ),
-          ),
-          CountdownTimer(
-            tooltip: context.l10n.countdownTooltip(fissure.expiry),
-            expiry: fissure.expiry,
+          if (fissure.isHard)
+            const Center(
+              child: Opacity(
+                opacity: opacity,
+                child: AppIcon(WarframeSymbols.sp_logo, size: iconSize),
+              ),
+            ),
+          Row(
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8),
+                child: Icon(icon, size: 40),
+              ),
+              Expanded(
+                child: _FissureInfo(
+                  fissure: fissure,
+                  nodeStyle: _nodeStyle,
+                  missionTypeStyle: _missionTypeStyle,
+                ),
+              ),
+              CountdownTimer(
+                tooltip: context.l10n.countdownTooltip(fissure.expiry),
+                expiry: fissure.expiry,
+              ),
+            ],
           ),
         ],
       ),
@@ -90,24 +111,9 @@ class _FissureInfo extends StatelessWidget {
           Text(fissure.node, style: _nodeStyle),
           Padding(
             padding: const EdgeInsets.only(top: 4),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                Text(
-                  '${fissure.missionType} | ${fissure.tier}',
-                  style: _missionTypeStyle,
-                ),
-                if (fissure.isStorm)
-                  const Padding(
-                    padding: EdgeInsets.only(left: 8),
-                    child: Icon(WarframeSymbols.archwing, size: 20),
-                  ),
-                if (fissure.isHard)
-                  const Padding(
-                    padding: EdgeInsets.only(left: 8),
-                    child: Icon(WarframeSymbols.sp_logo, size: 20),
-                  ),
-              ],
+            child: Text(
+              '${fissure.missionType} | ${fissure.tier}',
+              style: _missionTypeStyle,
             ),
           ),
         ],
