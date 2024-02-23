@@ -75,11 +75,13 @@ sentry:
 
 
 flutter_launcher_icons:
-  image_path: "assets/ic_launch.png"
+  image_path: 'assets/ic_launch.png'
   android: true
   ios: true
   remove_alpha_ios: true
-  background_color_ios: "#ffffff"
+  background_color_ios: '#FFFFFF'
+  adaptive_icon_foreground: 'assets/android12splash.png'
+  adaptive_icon_background: '#FFFFFF'
 
 flutter_native_splash:
   image: assets/ic_launch.png
@@ -87,7 +89,3 @@ flutter_native_splash:
   color_dark: "#121212"
   android_12:
     image: assets/android12splash.png
-    color: "#FFFFFF"
-    icon_background_color: "#FFFFFF"
-    color_dark: "#121212"
-    icon_background_color_dark: "#121212"
