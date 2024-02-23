@@ -32,7 +32,7 @@ class _HomeState extends State<_Home> {
     return Scaffold(
       key: scaffold,
       appBar: AppBar(
-        toolbarHeight: 30,
+        toolbarHeight: kTextTabBarHeight,
         actions: [
           IconButton(
             onPressed: () => discordInvite.launchLink(context),
