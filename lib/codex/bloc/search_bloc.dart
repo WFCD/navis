@@ -4,6 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:navis/codex/bloc/search_event.dart';
 import 'package:navis/codex/bloc/search_state.dart';
 import 'package:navis/codex/utils/result_filters.dart';
+import 'package:navis/utils/utils.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
@@ -35,8 +36,14 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
       emit(CodexSearching());
 
       try {
-        _results = await repository.searchItems(text);
-        emit(CodexSuccessfulSearch(_results));
+        CodexSuccessfulSearch state;
+        if (await hasInternetConnection) {
+          state = await _emitResults(text);
+          emit(state);
+        }
+
+        state = await onReconnect(() async => _emitResults(text));
+        emit(state);
       } catch (error, stackTrace) {
         await Sentry.captureException(
           error,
@@ -47,6 +54,12 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
         emit(const CodexSearchError('Unknown Error occuroed'));
       }
     }
+  }
+
+  Future<CodexSuccessfulSearch> _emitResults(String query) async {
+    _results = await repository.searchItems(query);
+
+    return CodexSuccessfulSearch(_results);
   }
 
   Future<void> _filterResults(

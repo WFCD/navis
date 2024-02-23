@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:hydrated_bloc/hydrated_bloc.dart';
+import 'package:navis/utils/utils.dart';
 import 'package:navis/worldstate/cubits/deals/darvodeal_state.dart';
 import 'package:warframestat_client/warframestat_client.dart';
 import 'package:worldstate_repository/worldstate_repository.dart';
@@ -14,7 +15,14 @@ class DarvodealCubit extends HydratedCubit<DarvodealState> {
     emit(DarvodealLoading());
 
     try {
-      final info = await repository.getDealInfo(uniqueName, name);
+      Item? info;
+      if (await hasInternetConnection) {
+        info = await repository.getDealInfo(uniqueName, name);
+      }
+
+      info = await onReconnect(
+        () async => repository.getDealInfo(uniqueName, name),
+      );
 
       if (info != null) {
         emit(DarvoDealLoaded(info));
