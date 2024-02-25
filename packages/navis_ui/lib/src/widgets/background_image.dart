@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:navis_ui/gen/assets.gen.dart';
 
 class BackgroundImage extends StatelessWidget {
   const BackgroundImage({
@@ -13,14 +14,11 @@ class BackgroundImage extends StatelessWidget {
   final EdgeInsetsGeometry padding;
   final Widget child;
 
-  static const _derelict =
-      AssetImage('assets/Derelict.webp', package: 'navis_ui');
-
   @override
   Widget build(BuildContext context) {
     if (imageUrl == null) {
       return ImageContainer(
-        imageProvider: _derelict,
+        imageProvider: Assets.derelict.provider(),
         padding: padding,
         child: const SizedBox(),
       );
@@ -39,14 +37,14 @@ class BackgroundImage extends StatelessWidget {
       },
       placeholder: (context, url) {
         return ImageContainer(
-          imageProvider: _derelict,
+          imageProvider: Assets.derelict.provider(),
           padding: padding,
           child: child,
         );
       },
       errorWidget: (context, url, dynamic error) {
         return ImageContainer(
-          imageProvider: _derelict,
+          imageProvider: Assets.derelict.provider(),
           padding: padding,
           child: child,
         );

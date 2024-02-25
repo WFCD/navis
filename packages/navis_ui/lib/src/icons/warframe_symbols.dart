@@ -6,11 +6,12 @@
 //      fonts:
 //       - asset: fonts/Warframe-symbols.ttf
 import 'package:flutter/widgets.dart';
+import 'package:navis_ui/gen/fonts.gen.dart';
 
 class WarframeSymbols {
   WarframeSymbols._();
 
-  static const String _fontFamily = 'Warframe-symbols';
+  static const String _fontFamily = FontFamily.warframeSymbols;
   static const String _fontPackage = 'navis_ui';
 
   static const IconData arbitrations =

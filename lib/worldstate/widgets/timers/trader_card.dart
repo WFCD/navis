@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:navis/gen/assets.gen.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis/worldstate/worldstate.dart';
 import 'package:navis_ui/navis_ui.dart';
@@ -43,10 +44,7 @@ class TraderCard extends StatelessWidget {
               child: SizedBox(
                 height: 150,
                 child: ImageContainer(
-                  imageProvider: const AssetImage(
-                    'assets/baro_banner.webp',
-                    package: 'navis_ui',
-                  ),
+                  imageProvider: Assets.baroBanner.provider(),
                   padding: EdgeInsets.zero,
                   child: ListTile(
                     title: Text(title),

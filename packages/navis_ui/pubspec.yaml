@@ -14,10 +14,7 @@ dependencies:
   flutter_custom_tabs: ^2.0.0+1
   html: ^0.15.2
   intl: ^0.18.0
-  warframestat_client:
-    git:
-      url: https://github.com/SlayerOrnstein/warframestat_client.git
-      ref: v3.6.3
+  warframestat_client: ^3.6.4
 
 dependency_overrides: 
   web: 0.3.0
@@ -30,4 +27,8 @@ flutter:
         - asset: lib/fonts/Warframe-symbols.ttf
   assets:
     - assets/Derelict.webp
-    - assets/baro_banner.webp
+
+flutter_gen:
+  assets:
+    outputs:
+      package_parameter_enabled: true
