@@ -77,14 +77,14 @@ jobs:
           working-directory: android
 
       - name: Fastlane Google Play deploy Beta
-        uses: maierj/fastlane-action@v3.0.0
+        uses: maierj/fastlane-action@v3.1.0
         if: contains(github.ref_name, 'beta')
         with:
           lane: beta
           subdirectory: android
 
       - name: Fastlane Google Play deploy
-        uses: maierj/fastlane-action@v3.0.0
+        uses: maierj/fastlane-action@v3.1.0
         if: contains(github.ref_name, 'beta') == false
         with:
           lane: production
