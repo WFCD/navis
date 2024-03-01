@@ -51,7 +51,7 @@ class NotificationRepository {
   /// Unsubscribes to any [Topic] found in [Topics]
   Future<void> unsubscribeFromNotification(Topic topic) async {
     await _iosAPNSCheck();
-    await _messaging.subscribeToTopic(topic.name);
+    await _messaging.unsubscribeFromTopic(topic.name);
     _log('unsubscribed to ${topic.name}');
   }
 
