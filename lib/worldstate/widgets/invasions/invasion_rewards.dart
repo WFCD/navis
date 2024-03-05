@@ -30,7 +30,7 @@ class InvasionReward extends StatelessWidget {
             color: Colors.transparent,
             child: ColoredContainer.text(
               color: a.primaryColor,
-              text: attacker.reward.itemString,
+              text: attacker.reward!.itemString,
             ),
           ),
         const Spacer(),
@@ -41,7 +41,7 @@ class InvasionReward extends StatelessWidget {
           color: Colors.transparent,
           child: ColoredContainer.text(
             color: d.primaryColor,
-            text: defender.reward.itemString,
+            text: defender.reward!.itemString,
           ),
         ),
       ],
