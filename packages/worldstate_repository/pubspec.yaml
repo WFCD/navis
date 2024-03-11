@@ -15,7 +15,7 @@ dependencies:
   hive: ^2.2.3
   http: ^1.2.0
   sentry_hive: ^7.16.1
-  warframestat_client: ^3.6.4
+  warframestat_client: ^3.6.6
 
 dependency_overrides: 
   web: 0.3.0
