@@ -7,6 +7,24 @@ updates:
     schedule:
       interval: "daily"
 
+  - package-ecosystem: "pub"
+    directory: "/packages/navis_ui"
+    target-branch: "master"
+    schedule:
+      interval: "daily"
+
+  - package-ecosystem: "pub"
+    directory: "/packages/notification_repository"
+    target-branch: "master"
+    schedule:
+      interval: "daily"
+
+  - package-ecosystem: "pub"
+    directory: "/packages/worldstate_repository"
+    target-branch: "master"
+    schedule:
+      interval: "daily"
+
   - package-ecosystem: github-actions
     directory: "/"
     target-branch: "master"
