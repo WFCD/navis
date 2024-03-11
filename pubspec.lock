@@ -13,10 +13,10 @@ packages:
     dependency: transitive
     description:
       name: _flutterfire_internals
-      sha256: "1a52f1afae8ab7ac4741425114713bdbba802f1ce1e0648e167ffcc6e05e96cf"
+      sha256: "4eec93681221723a686ad580c2e7d960e1017cf1a4e0a263c2573c2c6b0bf5cd"
       url: "https://pub.dev"
     source: hosted
-    version: "1.3.21"
+    version: "1.3.25"
   analyzer:
     dependency: transitive
     description:
@@ -317,10 +317,10 @@ packages:
     dependency: "direct main"
     description:
       name: firebase_core
-      sha256: a746f861618eef57a11d8b658a2db1fa5a336fc82ba65b7763d7e2292687de2b
+      sha256: "53316975310c8af75a96e365f9fccb67d1c544ef0acdbf0d88bbe30eedd1c4f9"
       url: "https://pub.dev"
     source: hosted
-    version: "2.26.0"
+    version: "2.27.0"
   firebase_core_platform_interface:
     dependency: transitive
     description:
@@ -341,26 +341,26 @@ packages:
     dependency: transitive
     description:
       name: firebase_messaging
-      sha256: "9c97b20c012542252a8853f11334efd833ddae83551fe37d27f87d885c655038"
+      sha256: e41586e0fd04fe9a40424f8b0053d0832e6d04f49e020cdaf9919209a28497e9
       url: "https://pub.dev"
     source: hosted
-    version: "14.7.15"
+    version: "14.7.19"
   firebase_messaging_platform_interface:
     dependency: transitive
     description:
       name: firebase_messaging_platform_interface
-      sha256: d464b255e922c7915dc4b0ebc305ebad4e1f130519bee3d6e568ef2ea1613a4b
+      sha256: f7a9d74ff7fc588a924f6b2eaeaa148b0db521b13a9db55f6ad45864fa98c06e
       url: "https://pub.dev"
     source: hosted
-    version: "4.5.23"
+    version: "4.5.27"
   firebase_messaging_web:
     dependency: transitive
     description:
       name: firebase_messaging_web
-      sha256: f3f71aeec719ec1fe2c99f75cd74d00d33f1c240cf1e402cc9d43883e84f935a
+      sha256: fc21e771166860c55b103701c5ac7cdb2eec28897b97c42e6e5703cbedf9e02e
       url: "https://pub.dev"
     source: hosted
-    version: "3.6.4"
+    version: "3.6.8"
   flutter:
     dependency: "direct main"
     description: flutter
