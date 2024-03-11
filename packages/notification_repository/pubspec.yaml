@@ -12,7 +12,7 @@ dependencies:
   flutter:
     sdk: flutter
   intl: ^0.18.0
-  warframestat_client: ^3.6.4
+  warframestat_client: ^3.6.6
 
 dependency_overrides:
   web: 0.3.0
