@@ -191,18 +191,18 @@ packages:
     dependency: transitive
     description:
       name: sentry
-      sha256: d2ee9c850d876d285f22e2e662f400ec2438df9939fe4acd5d780df9841794ce
+      sha256: a524a87d096799b775530176c8c082afe7aa1f10cc31ba078fecdd74e9afc923
       url: "https://pub.dev"
     source: hosted
-    version: "7.16.1"
+    version: "7.17.0"
   sentry_hive:
     dependency: "direct main"
     description:
       name: sentry_hive
-      sha256: eec8171790cd8e18f20e384ba615554b9064beaf31183c9c6534931bc10828c3
+      sha256: "515dfc56fa7bdcd491ff9b894b5578a4b09057950db2fe87c7fe721a80df8927"
       url: "https://pub.dev"
     source: hosted
-    version: "7.16.1"
+    version: "7.17.0"
   sky_engine:
     dependency: transitive
     description: flutter
