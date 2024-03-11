@@ -16,7 +16,7 @@ dependencies:
   dynamic_color: ^1.7.0
   equatable: ^2.0.5
   feedback_sentry: ^3.0.0
-  firebase_core: ^2.26.0
+  firebase_core: ^2.27.0
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.4
