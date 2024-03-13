@@ -90,7 +90,6 @@ class _Overview extends StatelessWidget {
                 drops = item.drops;
               }
 
-              debugPrint(drops.toString());
               return ListView(
                 children: [
                   if (isFoundryItem)

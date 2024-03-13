@@ -8,7 +8,10 @@ class DropLocations extends StatelessWidget {
   final List<Drop> drops;
 
   int _sortDrops(Drop a, Drop b) {
-    return (b.chance! * 100).compareTo(a.chance! * 100);
+    final chanceA = a.chance ?? 0;
+    final chanceB = b.chance ?? 0;
+
+    return (chanceB * 100).compareTo(chanceA * 100);
   }
 
   @override
