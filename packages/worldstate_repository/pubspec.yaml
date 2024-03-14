@@ -14,7 +14,7 @@ dependencies:
     sdk: flutter
   hive: ^2.2.3
   http: ^1.2.0
-  sentry_hive: ^7.17.0
+  sentry_hive: ^7.18.0
   warframestat_client: ^3.6.8
 
 dependency_overrides: 
