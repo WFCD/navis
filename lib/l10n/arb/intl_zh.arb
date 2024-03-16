@@ -504,19 +504,19 @@
     "type": "text",
     "placeholders": {}
   },
-  "aboutAppTitle": "About app",
+  "aboutAppTitle": "關於應用程式",
   "@aboutAppTitle": {
     "description": "Title for the about app dialog",
     "type": "text",
     "placeholders": {}
   },
-  "contributeTranslationsTitle": "Contribute Translations",
+  "contributeTranslationsTitle": "提交翻譯",
   "@contributeTranslationsTitle": {
     "description": "Title for contribute translations link",
     "type": "text",
     "placeholders": {}
   },
-  "contributeTranslationsDescription": "Volunteer to contribute translations",
+  "contributeTranslationsDescription": "志願者提交翻譯",
   "@contributeTranslationsDescription": {
     "description": "Description for contribute translations link",
     "type": "text",
