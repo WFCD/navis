@@ -1,107 +1,82 @@
-// These will start late regardless.
-// ignore_for_file: avoid-late-keyword
-import 'package:black_hole_flutter/black_hole_flutter.dart';
+import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:intl/intl.dart';
-import 'package:navis/codex/bloc/search_bloc.dart';
-import 'package:navis/codex/utils/result_filters.dart';
+import 'package:navis/codex/codex.dart';
+import 'package:navis/codex/utils/debouncer.dart';
+import 'package:navis/l10n/l10n.dart';
+import 'package:warframestat_client/warframestat_client.dart';
+import 'package:worldstate_repository/worldstate_repository.dart';
 
-class CodexTextEditior extends StatefulWidget {
-  const CodexTextEditior({super.key});
+class CodexSearchBar extends StatefulWidget {
+  const CodexSearchBar({super.key});
 
   @override
-  _CodexTextEditiorState createState() => _CodexTextEditiorState();
+  State<CodexSearchBar> createState() => _CodexSearchBarState();
 }
 
-class _CodexTextEditiorState extends State<CodexTextEditior> {
-  bool _active = false;
+class _CodexSearchBarState extends State<CodexSearchBar> {
+  String? _currentQuery;
+  Iterable<Widget> _lastOptions = <Widget>[];
 
-  late SearchBloc _searchBloc;
-  late TextEditingController _textEditingController;
+  late final Debounceable<List<MinimalItem>?, String> _debounceSearch;
+
+  Future<List<MinimalItem>?> _search(String query) async {
+    _currentQuery = query;
+
+    final api = RepositoryProvider.of<WorldstateRepository>(context);
+    final options = await api.searchItems(query);
+
+    if (_currentQuery != query) return null;
+    _currentQuery = null;
+
+    return options;
+  }
+
+  Future<Iterable<Widget>> _suggestionsBuilder(
+    BuildContext context,
+    SearchController controller,
+  ) async {
+    final query = controller.text;
+    final options = (await _debounceSearch(query))?.toList();
+
+    if (options == null) return _lastOptions;
+
+    return _lastOptions = options.map((e) {
+      return OpenContainer(
+        closedColor: Theme.of(context).colorScheme.background,
+        openColor: Theme.of(context).colorScheme.background,
+        closedBuilder: (_, onTap) => CodexResult(item: e, onTap: onTap),
+        openBuilder: (_, __) => EntryView(item: e),
+      );
+    });
+  }
+
+  void _onSubmitted(String query) {
+    BlocProvider.of<SearchBloc>(context).add(SearchCodex(query));
+    Navigator.pop(context);
+  }
 
   @override
   void initState() {
     super.initState();
-    _textEditingController = TextEditingController()
-      ..addListener(_clearListener);
-
-    _searchBloc = BlocProvider.of<SearchBloc>(context);
-  }
-
-  void _clearListener() {
-    final searching = _textEditingController.text.isNotEmpty;
-
-    if (mounted && _active != searching) {
-      setState(() => _active = searching);
-    }
-  }
-
-  void _dispatch(String text) {
-    _searchBloc.add(SearchCodex(text));
-  }
-
-  void _onClear() {
-    _textEditingController.clear();
-    FocusScope.of(context).requestFocus();
-    _searchBloc.add(const SearchCodex(''));
-  }
-
-  List<PopupMenuEntry<WarframeItemCategory>> _itemBuilder() {
-    return WarframeItemCategory.values
-        .map(
-          (e) => PopupMenuItem<WarframeItemCategory>(
-            value: e,
-            child: Text(toBeginningOfSentenceCase(e.name, 'en')!),
-          ),
-        )
-        .toList();
+    _debounceSearch = debounce(_search);
   }
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<SearchBloc, SearchState>(
-      builder: (context, state) {
-        return Row(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                child: TextField(
-                  controller: _textEditingController,
-                  autocorrect: false,
-                  onChanged: _dispatch,
-                  // We actually want the same thing to happen on change and on
-                  // submission.
-                  // ignore: no-equal-arguments
-                  onSubmitted: _dispatch,
-                  style: context.textTheme.titleMedium,
+    final l10n = context.l10n;
 
-                  textCapitalization: TextCapitalization.words,
-                  decoration: InputDecoration(
-                    border: InputBorder.none,
-                    hintStyle: context.textTheme.titleSmall,
-                    hintText: 'Search here...',
-                  ),
-                ),
-              ),
-            ),
-            if (state is CodexSuccessfulSearch)
-              PopupMenuButton<WarframeItemCategory>(
-                icon: const Icon(Icons.filter_list),
-                itemBuilder: (_) => _itemBuilder(),
-                onSelected: (s) =>
-                    BlocProvider.of<SearchBloc>(context).add(FilterResults(s)),
-              ),
-            if (_active)
-              IconButton(
-                icon: const Icon(Icons.clear),
-                onPressed: _onClear,
-              ),
-          ],
-        );
-      },
+    return Padding(
+      padding: const EdgeInsets.all(8),
+      child: SearchAnchor.bar(
+        barLeading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () => Navigator.pop(context),
+        ),
+        barHintText: l10n.codexHint,
+        onSubmitted: _onSubmitted,
+        suggestionsBuilder: _suggestionsBuilder,
+      ),
     );
   }
 }

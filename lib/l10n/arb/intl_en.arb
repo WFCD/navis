@@ -256,6 +256,12 @@
     "type": "text",
     "placeholders": {}
   },
+  "codexDescription": "Search all warframe items",
+  "@codexDescription": {
+    "description": "Codex description",
+    "type": "text",
+    "placeholders": {}
+  },
   "helpfulLinksTitle": "Helpful Links",
   "@helpfulLinksTitle": {
     "description": "Helpful Links title",
@@ -932,7 +938,7 @@
       "rank": {}
     }
   },
-  "codexHint": "Type what you're looking for into the search bar above!",
+  "codexHint": "Search here...",
   "@codexHint": {
     "description": "Codex description when a user enters the codex or when the search bar is empty",
     "type": "text",
@@ -1059,6 +1065,30 @@
   "duviriFear": "Duviri Fear",
   "@duviriFear": {
     "description": "Duviri Fear state. If Duviri doesn't have a translatetion then only joy can be translated.",
+    "type": "text",
+    "placeholder": {}
+  },
+  "mapTitle": "Maps",
+  "@mapTitle": {
+    "description": "Map title",
+    "type": "text",
+    "placeholder": {}
+  },
+  "mapDescription": "See region maps",
+  "@mapDescription": {
+    "description": "Map card description",
+    "type": "text",
+    "placeholder": {}
+  },
+  "fishTitle": "Fish",
+  "@fishTitle": {
+    "description": "Fish title",
+    "type": "text",
+    "placeholder": {}
+  },
+  "fishDescription": "See fish information by region",
+  "@fishDescription": {
+    "description": "fish card description",
     "type": "text",
     "placeholder": {}
   }

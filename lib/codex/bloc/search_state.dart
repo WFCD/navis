@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:warframestat_client/warframestat_client.dart';
 
-abstract class SearchState extends Equatable {
+sealed class SearchState extends Equatable {
   const SearchState();
 }
 

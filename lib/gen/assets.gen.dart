@@ -9,11 +9,28 @@
 
 import 'package:flutter/widgets.dart';
 
+class $AssetsFishGen {
+  const $AssetsFishGen();
+
+  /// File path: assets/fish/deimos.json
+  String get deimos => 'assets/fish/deimos.json';
+
+  /// File path: assets/fish/poe.json
+  String get poe => 'assets/fish/poe.json';
+
+  /// File path: assets/fish/vallis.json
+  String get vallis => 'assets/fish/vallis.json';
+
+  /// List of all assets
+  List<String> get values => [deimos, poe, vallis];
+}
+
 class Assets {
   Assets._();
 
   static const AssetGenImage baroBanner =
       AssetGenImage('assets/baro_banner.webp');
+  static const $AssetsFishGen fish = $AssetsFishGen();
 
   /// List of all assets
   static List<AssetGenImage> get values => [baroBanner];

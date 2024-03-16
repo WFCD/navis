@@ -5,9 +5,16 @@ import 'package:navis_ui/navis_ui.dart';
 import 'package:warframestat_client/warframestat_client.dart';
 
 class CodexResult extends StatelessWidget {
-  const CodexResult({super.key, required this.item});
+  const CodexResult({
+    super.key,
+    required this.item,
+    required this.onTap,
+    this.showDescription = false,
+  });
 
   final Item item;
+  final bool showDescription;
+  final void Function() onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -27,27 +34,27 @@ class CodexResult extends StatelessWidget {
       }
     }
 
-    return AppCard(
-      padding: EdgeInsets.zero,
-      child: ListTile(
-        leading: Hero(
-          tag: item.uniqueName,
-          child: CircleAvatar(
-            backgroundImage: item.imageName != null
-                ? CachedNetworkImageProvider(item.imageUrl)
-                : null,
-            backgroundColor: Theme.of(context).canvasColor,
-          ),
+    return ListTile(
+      leading: Hero(
+        tag: item.uniqueName,
+        child: CircleAvatar(
+          backgroundImage: item.imageName != null
+              ? CachedNetworkImageProvider(item.imageUrl)
+              : null,
+          backgroundColor: Theme.of(context).canvasColor,
         ),
-        title: Text(item.name.parseHtmlString()),
-        subtitle: Text(
-          description?.trim() ?? item.description?.parseHtmlString() ?? '',
-          maxLines: 2,
-          overflow: TextOverflow.ellipsis,
-        ),
-        isThreeLine: true,
-        dense: true,
       ),
+      title: Text(item.name.parseHtmlString()),
+      subtitle: showDescription
+          ? Text(
+              description?.trim() ?? item.description?.parseHtmlString() ?? '',
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+            )
+          : null,
+      isThreeLine: showDescription,
+      dense: showDescription,
+      onTap: onTap,
     );
   }
 }

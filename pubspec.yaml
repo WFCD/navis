@@ -50,7 +50,9 @@ dependency_overrides:
   web: 0.3.0
 
 dev_dependencies:
-  bloc_test: ^9.1.7
+  bloc_test: ^9.1.6
+  build_runner: ^2.4.8
+  flutter_gen_runner: ^5.4.0
   flutter_launcher_icons: ^0.13.1
   flutter_native_splash: ^2.4.0
   flutter_test:
@@ -58,6 +60,7 @@ dev_dependencies:
   mocktail: ^1.0.3
   path: ^1.8.3
   sentry_dart_plugin: ^1.7.1
+  test: ^1.24.9
   very_good_analysis: ^5.1.0
 
 flutter:
@@ -65,6 +68,7 @@ flutter:
   uses-material-design: true
   assets:
     - assets/baro_banner.webp
+    - assets/fish/
 
 sentry:
   upload_debug_symbols: true
