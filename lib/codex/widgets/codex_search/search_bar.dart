@@ -1,6 +1,7 @@
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 import 'package:navis/codex/codex.dart';
 import 'package:navis/codex/utils/debouncer.dart';
 import 'package:navis/l10n/l10n.dart';
@@ -59,6 +60,15 @@ class _CodexSearchBarState extends State<CodexSearchBar> {
     if (_controller.isOpen) Navigator.pop(context);
   }
 
+  List<PopupMenuEntry<WarframeItemCategory>> _itemBuilder() {
+    return WarframeItemCategory.values.map((e) {
+      return PopupMenuItem<WarframeItemCategory>(
+        value: e,
+        child: Text(toBeginningOfSentenceCase(e.name, 'en')!),
+      );
+    }).toList();
+  }
+
   @override
   void initState() {
     super.initState();
@@ -72,15 +82,28 @@ class _CodexSearchBarState extends State<CodexSearchBar> {
 
     return Padding(
       padding: const EdgeInsets.all(8),
-      child: SearchAnchor.bar(
-        searchController: _controller,
-        barLeading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () => Navigator.pop(context),
-        ),
-        barHintText: l10n.codexHint,
-        onSubmitted: _onSubmitted,
-        suggestionsBuilder: _suggestionsBuilder,
+      child: BlocBuilder<SearchBloc, SearchState>(
+        builder: (context, state) {
+          return SearchAnchor.bar(
+            searchController: _controller,
+            barLeading: IconButton(
+              icon: const Icon(Icons.arrow_back),
+              onPressed: () => Navigator.pop(context),
+            ),
+            barHintText: l10n.codexHint,
+            onSubmitted: _onSubmitted,
+            suggestionsBuilder: _suggestionsBuilder,
+            barTrailing: [
+              if (state is CodexSuccessfulSearch)
+                PopupMenuButton<WarframeItemCategory>(
+                  icon: const Icon(Icons.filter_list),
+                  itemBuilder: (_) => _itemBuilder(),
+                  onSelected: (s) => BlocProvider.of<SearchBloc>(context)
+                      .add(FilterResults(s)),
+                ),
+            ],
+          );
+        },
       ),
     );
   }
