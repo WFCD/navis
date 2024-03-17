@@ -15,6 +15,8 @@ class CodexSearchBar extends StatefulWidget {
 }
 
 class _CodexSearchBarState extends State<CodexSearchBar> {
+  late final SearchController _controller;
+
   String? _currentQuery;
   Iterable<Widget> _lastOptions = <Widget>[];
 
@@ -43,8 +45,8 @@ class _CodexSearchBarState extends State<CodexSearchBar> {
 
     return _lastOptions = options.map((e) {
       return OpenContainer(
-        closedColor: Theme.of(context).colorScheme.background,
-        openColor: Theme.of(context).colorScheme.background,
+        closedColor: Colors.transparent,
+        openColor: Colors.transparent,
         closedBuilder: (_, onTap) => CodexResult(item: e, onTap: onTap),
         openBuilder: (_, __) => EntryView(item: e),
       );
@@ -53,12 +55,13 @@ class _CodexSearchBarState extends State<CodexSearchBar> {
 
   void _onSubmitted(String query) {
     BlocProvider.of<SearchBloc>(context).add(SearchCodex(query));
-    Navigator.pop(context);
+    if (_controller.isOpen) Navigator.pop(context);
   }
 
   @override
   void initState() {
     super.initState();
+    _controller = SearchController();
     _debounceSearch = debounce(_search);
   }
 
@@ -69,6 +72,7 @@ class _CodexSearchBarState extends State<CodexSearchBar> {
     return Padding(
       padding: const EdgeInsets.all(8),
       child: SearchAnchor.bar(
+        searchController: _controller,
         barLeading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () => Navigator.pop(context),
@@ -78,5 +82,11 @@ class _CodexSearchBarState extends State<CodexSearchBar> {
         suggestionsBuilder: _suggestionsBuilder,
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _controller.dispose();
   }
 }
