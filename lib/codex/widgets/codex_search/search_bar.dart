@@ -44,8 +44,9 @@ class _CodexSearchBarState extends State<CodexSearchBar> {
 
     if (options == null) return _lastOptions;
 
-    return _lastOptions =
-        options.where((e) => e.name.toLowerCase() == controller.text).map((e) {
+    return _lastOptions = options
+        .where((e) => e.name.toLowerCase() == controller.text.toLowerCase())
+        .map((e) {
       return OpenContainer(
         closedColor: Colors.transparent,
         openColor: Colors.transparent,
