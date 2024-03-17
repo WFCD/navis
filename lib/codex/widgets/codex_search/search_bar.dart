@@ -34,11 +34,8 @@ class _CodexSearchBarState extends State<CodexSearchBar> {
     return options;
   }
 
-  Future<Iterable<Widget>> _suggestionsBuilder(
-    BuildContext context,
-    SearchController controller,
-  ) async {
-    final query = controller.text;
+  Future<Iterable<Widget>> _suggestionsBuilder() async {
+    final query = _controller.text;
     final options = (await _debounceSearch(query))?.toList();
 
     if (options == null) return _lastOptions;
@@ -53,8 +50,10 @@ class _CodexSearchBarState extends State<CodexSearchBar> {
     });
   }
 
-  void _onSubmitted(String query) {
+  void _onSubmitted() {
+    final query = _controller.text;
     BlocProvider.of<SearchBloc>(context).add(SearchCodex(query));
+
     if (_controller.isOpen) Navigator.pop(context);
   }
 
@@ -78,8 +77,8 @@ class _CodexSearchBarState extends State<CodexSearchBar> {
           onPressed: () => Navigator.pop(context),
         ),
         barHintText: l10n.codexHint,
-        onSubmitted: _onSubmitted,
-        suggestionsBuilder: _suggestionsBuilder,
+        onSubmitted: (_) => _onSubmitted(),
+        suggestionsBuilder: (_, __) => _suggestionsBuilder(),
       ),
     );
   }
