@@ -447,10 +447,10 @@ packages:
     dependency: "direct main"
     description:
       name: flutter_settings_ui
-      sha256: aa371acae2f99b3348bf4e1a155f715dc146ac4cd410834f5bc44c3c12955a10
+      sha256: dcc506fab724192594e5c232b6214a941abd6e7b5151626635b89258fadbc17c
       url: "https://pub.dev"
     source: hosted
-    version: "3.0.0"
+    version: "3.0.1"
   flutter_svg:
     dependency: "direct main"
     description:
