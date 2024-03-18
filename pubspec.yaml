@@ -22,7 +22,7 @@ dependencies:
   flutter_bloc: ^8.1.4
   flutter_localizations:
     sdk: flutter
-  flutter_settings_ui: ^3.0.0
+  flutter_settings_ui: ^3.0.1
   flutter_svg: ^2.0.10+1
   hive: ^2.2.3
   hive_flutter: ^1.1.0
