@@ -52,7 +52,7 @@ dependency_overrides:
 dev_dependencies:
   bloc_test: ^9.1.6
   flutter_launcher_icons: ^0.13.1
-  flutter_native_splash: ^2.3.10
+  flutter_native_splash: ^2.4.0
   flutter_test:
     sdk: flutter
   mocktail: ^1.0.3
