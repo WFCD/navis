@@ -1,10 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:navis/codex/codex.dart';
 import 'package:navis/utils/item_extensions.dart';
+import 'package:navis/utils/utils.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:warframestat_client/warframestat_client.dart';
 
-class CodexResult extends StatelessWidget {
+class CodexResult extends StatefulWidget {
   const CodexResult({
     super.key,
     required this.item,
@@ -17,11 +19,38 @@ class CodexResult extends StatelessWidget {
   final void Function() onTap;
 
   @override
+  State<CodexResult> createState() => _CodexResultState();
+}
+
+class _CodexResultState extends State<CodexResult> {
+  late String _image;
+
+  @override
+  void initState() {
+    super.initState();
+    _image = widget.item.imageUrl;
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+
+    precacheImage(
+      CachedNetworkImageProvider(_image),
+      context,
+      onError: (e, s) {
+        _image = defaultImage;
+        setState(() {});
+      },
+    );
+  }
+
+  @override
   Widget build(BuildContext context) {
     String? description;
 
-    if (item is Mod) {
-      final levelStats = (item as Mod).levelStats;
+    if (widget.item is Mod) {
+      final levelStats = (widget.item as Mod).levelStats;
 
       if (levelStats != null) {
         description = levelStats.last.stats.fold('', (p, e) {
@@ -36,25 +65,27 @@ class CodexResult extends StatelessWidget {
 
     return ListTile(
       leading: Hero(
-        tag: item.uniqueName,
+        tag: widget.item.uniqueName,
         child: CircleAvatar(
-          backgroundImage: item.imageName != null
-              ? CachedNetworkImageProvider(item.imageUrl)
+          foregroundImage: widget.item.imageName != null
+              ? CachedNetworkImageProvider(_image)
               : null,
           backgroundColor: Theme.of(context).canvasColor,
         ),
       ),
-      title: Text(item.name.parseHtmlString()),
-      subtitle: showDescription
+      title: Text(widget.item.name.parseHtmlString()),
+      subtitle: widget.showDescription
           ? Text(
-              description?.trim() ?? item.description?.parseHtmlString() ?? '',
+              description?.trim() ??
+                  widget.item.description?.parseHtmlString() ??
+                  '',
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
             )
           : null,
-      isThreeLine: showDescription,
-      dense: showDescription,
-      onTap: onTap,
+      isThreeLine: widget.showDescription,
+      dense: widget.showDescription,
+      onTap: widget.onTap,
     );
   }
 }
