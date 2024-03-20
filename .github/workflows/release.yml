@@ -19,7 +19,7 @@ jobs:
 
       - name: Semantic Release
         id: semantic
-        uses: cycjimmy/semantic-release-action@v4.0.0
+        uses: cycjimmy/semantic-release-action@v4.1.0
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
         with:
