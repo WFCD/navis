@@ -33,6 +33,7 @@ class ExploreView extends StatelessWidget {
             leading: const Icon(WarframeSymbols.menu_FishLarge, size: iconSize),
             title: Text(l10n.fishTitle),
             subtitle: Text(l10n.fishDescription),
+            onTap: () => Navigator.of(context).pushNamed('/fish'),
           ),
         ),
         AppCard(

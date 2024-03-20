@@ -17,6 +17,8 @@ dependencies:
   equatable: ^2.0.5
   feedback_sentry: ^3.0.0
   firebase_core: ^2.27.0
+  fish_repository:
+    path: packages/fish_repository
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.5
@@ -68,15 +70,11 @@ flutter:
   uses-material-design: true
   assets:
     - assets/baro_banner.webp
-    - assets/fish/
 
 sentry:
   upload_debug_symbols: true
   upload_sources: true
   wait_for_processing: true
-  # Temporarily enable
-  ignore_missing: true
-
 
 flutter_launcher_icons:
   image_path: 'assets/ic_launch.png'

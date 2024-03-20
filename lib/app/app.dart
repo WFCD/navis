@@ -5,6 +5,7 @@ import 'package:feedback_sentry/feedback_sentry.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/codex/codex.dart';
+import 'package:navis/explore/views/fish_view.dart';
 import 'package:navis/home/home.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis/settings/settings.dart';
@@ -175,6 +176,7 @@ class _NavisAppState extends State<NavisApp> with WidgetsBindingObserver {
               BaroInventory.route: (_) => const BaroInventory(),
               SynthTargetsView.route: (_) => const SynthTargetsView(),
               '/codex': (_) => const CodexSearchPage(),
+              '/fish': (_) => const FishPage(),
             },
             supportedLocales: NavisLocalizations.supportedLocales,
             locale: language,
