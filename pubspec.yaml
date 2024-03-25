@@ -26,7 +26,7 @@ dependencies:
   flutter_svg: ^2.0.10+1
   hive: ^2.2.3
   hive_flutter: ^1.1.0
-  hydrated_bloc: ^9.1.4
+  hydrated_bloc: ^9.1.5
   intl: 0.18.1
   logging: ^1.2.0
   matomo_tracker: ^4.1.1
