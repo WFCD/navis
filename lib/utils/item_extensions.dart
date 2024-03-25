@@ -1,20 +1,15 @@
+import 'package:navis/utils/string_extensions.dart';
 import 'package:warframestat_client/warframestat_client.dart';
 
-const _baseUrl = 'https://cdn.warframestat.us';
-const _opts = 'o_webp,progressive_false';
+const defaultImage =
+    'https://raw.githubusercontent.com/WFCD/genesis-assets/master/img/menu/LotusEmblem.png';
 
 extension ItemX on Item {
   String get imageUrl {
-    final uriEncoded = Uri.encodeFull('$_baseUrl/img/$imageName');
+    if (imageName == null) {
+      return defaultImage.proxyImage().toString();
+    }
 
-    return '$_baseUrl/$_opts/$uriEncoded';
-  }
-}
-
-extension PatchlogX on Patchlog {
-  String get imageUrl {
-    final uriEncoded = Uri.encodeFull(imgUrl ?? '');
-
-    return '$_baseUrl/$_opts/$uriEncoded';
+    return imageName!.genesisCdn().toString().proxyImage().toString();
   }
 }

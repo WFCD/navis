@@ -1,6 +1,7 @@
 import 'package:black_hole_flutter/black_hole_flutter.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:navis/codex/codex.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:responsive_builder/responsive_builder.dart';
@@ -94,7 +95,7 @@ class BasicItemInfo extends SliverPersistentHeaderDelegate {
   }
 }
 
-class _EntryInfoContent extends StatelessWidget {
+class _EntryInfoContent extends StatefulWidget {
   const _EntryInfoContent({
     required this.height,
     required this.shrinkOffset,
@@ -112,6 +113,33 @@ class _EntryInfoContent extends StatelessWidget {
   final String description;
 
   @override
+  State<_EntryInfoContent> createState() => _EntryInfoContentState();
+}
+
+class _EntryInfoContentState extends State<_EntryInfoContent> {
+  late String _image;
+
+  @override
+  void initState() {
+    super.initState();
+    _image = widget.imageUrl;
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+
+    precacheImage(
+      CachedNetworkImageProvider(_image),
+      context,
+      onError: (e, s) {
+        _image = defaultImage;
+        setState(() {});
+      },
+    );
+  }
+
+  @override
   Widget build(BuildContext context) {
     const textAlign = TextAlign.center;
     final textTheme = Theme.of(context).textTheme;
@@ -122,11 +150,11 @@ class _EntryInfoContent extends StatelessWidget {
 
     final animatedContainerWidth = (mediaQuerySize.width / 100) * 95;
     final animatedContainerHeight =
-        shrinkOffset > 0.0 ? 0.0 : (height / 100) * 90;
+        widget.shrinkOffset > 0.0 ? 0.0 : (widget.height / 100) * 90;
 
     return AnimatedOpacity(
       duration: kThemeAnimationDuration,
-      opacity: 1 - (shrinkOffset / height),
+      opacity: 1 - (widget.shrinkOffset / widget.height),
       child: AnimatedContainer(
         duration: kThemeAnimationDuration,
         width: animatedContainerWidth,
@@ -141,23 +169,23 @@ class _EntryInfoContent extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(bottom: 6),
                     child: Hero(
-                      tag: uniqueName,
+                      tag: widget.uniqueName,
                       child: CircleAvatar(
-                        backgroundImage: CachedNetworkImageProvider(imageUrl),
+                        backgroundImage: CachedNetworkImageProvider(_image),
                         backgroundColor: Colors.grey,
                         radius: imageContainerRadius,
                       ),
                     ),
                   ),
                   Text(
-                    name,
+                    widget.name,
                     style: textTheme.titleMedium,
                     textAlign: textAlign,
                   ),
                   SizedBox(
                     width: descriptionBoxWidth,
                     child: Text(
-                      description,
+                      widget.description,
                       style: textTheme.bodySmall,
                       textAlign: textAlign,
                     ),
@@ -170,15 +198,16 @@ class _EntryInfoContent extends StatelessWidget {
                 width: descriptionBoxWidth,
                 child: ListTile(
                   leading: Hero(
-                    tag: uniqueName,
+                    tag: widget.uniqueName,
                     child: CircleAvatar(
-                      backgroundImage: CachedNetworkImageProvider(imageUrl),
+                      backgroundImage:
+                          CachedNetworkImageProvider(widget.imageUrl),
                       backgroundColor: Colors.grey,
                       radius: imageContainerRadius,
                     ),
                   ),
-                  title: Text(name),
-                  subtitle: Text(description),
+                  title: Text(widget.name),
+                  subtitle: Text(widget.description),
                 ),
               );
             },
