@@ -50,7 +50,7 @@ dependency_overrides:
   web: 0.3.0
 
 dev_dependencies:
-  bloc_test: ^9.1.6
+  bloc_test: ^9.1.7
   flutter_launcher_icons: ^0.13.1
   flutter_native_splash: ^2.4.0
   flutter_test:
