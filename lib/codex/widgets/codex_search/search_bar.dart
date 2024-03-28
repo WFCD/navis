@@ -58,7 +58,7 @@ class _CodexSearchBarState extends State<CodexSearchBar> {
 
   void _onSubmitted(String query) {
     BlocProvider.of<SearchBloc>(context).add(SearchCodex(query));
-    if (_controller.isOpen) Navigator.pop(context);
+    if (_controller.isOpen) _controller.closeView(_controller.text);
   }
 
   List<PopupMenuEntry<WarframeItemCategory>> _itemBuilder() {
@@ -87,6 +87,8 @@ class _CodexSearchBarState extends State<CodexSearchBar> {
         builder: (context, state) {
           return SearchAnchor.bar(
             searchController: _controller,
+            textInputAction: TextInputAction.search,
+            textCapitalization: TextCapitalization.words,
             barLeading: IconButton(
               icon: const Icon(Icons.arrow_back),
               onPressed: () => Navigator.pop(context),
