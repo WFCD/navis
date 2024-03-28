@@ -7,9 +7,9 @@ const defaultImage =
 extension ItemX on Item {
   String get imageUrl {
     if (imageName == null) {
-      return defaultImage.proxyImage().toString();
+      return defaultImage.optimize();
     }
 
-    return imageName!.genesisCdn().toString().proxyImage().toString();
+    return imageName!.warframeItemsCdn().optimize();
   }
 }

@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 class RowItem extends StatelessWidget {
   const RowItem({
@@ -49,10 +51,10 @@ class RowItem extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.baseline,
         textBaseline: TextBaseline.alphabetic,
         children: <Widget>[
-          ..._icons,
+          if (_icons.isNotEmpty) ..._icons,
           text,
           const Spacer(),
-          Flexible(flex: 2, child: child)
+          Flexible(flex: 3, child: child)
         ],
       ),
     );

@@ -2,8 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:navis_ui/navis_ui.dart';
 
 class Stats extends StatelessWidget {
-  const Stats({super.key, required this.stats});
+  const Stats({
+    super.key,
+    this.padding = const EdgeInsets.only(bottom: 16),
+    required this.stats,
+  });
 
+  final EdgeInsets padding;
   final List<RowItem> stats;
 
   @override
@@ -18,7 +23,7 @@ class Stats extends StatelessWidget {
       } else {
         children.add(
           Padding(
-            padding: const EdgeInsets.only(bottom: 16),
+            padding: padding,
             child: stat,
           ),
         );

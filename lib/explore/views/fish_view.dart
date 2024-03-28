@@ -19,7 +19,7 @@ class FishView extends StatelessWidget {
     const tabs = [
       {'name': 'Deimos', 'region': FishingRegion.deimos},
       {'name': 'Plains of Eidolon', 'region': FishingRegion.poe},
-      {'name': 'Orb Vallis', 'region': FishingRegion.vallis}
+      {'name': 'Orb Vallis', 'region': FishingRegion.vallis},
     ];
 
     return DefaultTabController(
@@ -48,7 +48,6 @@ class FishView extends StatelessWidget {
           children: tabs.map((r) {
             return SafeArea(
               top: false,
-              bottom: false,
               child: Builder(
                 builder: (BuildContext context) {
                   // ignore: strict_raw_type
@@ -66,21 +65,17 @@ class FishView extends StatelessWidget {
                         key: PageStorageKey<String>(r['name']! as String),
                         slivers: <Widget>[
                           SliverOverlapInjector(
-                            // This is the flip side of the SliverOverlapAbsorber
-                            // above.
                             handle:
                                 NestedScrollView.sliverOverlapAbsorberHandleFor(
-                                    context),
+                              context,
+                            ),
                           ),
-                          SliverPadding(
-                            padding: const EdgeInsets.all(8),
-                            sliver: SliverList(
-                              delegate: SliverChildBuilderDelegate(
-                                (BuildContext context, int index) {
-                                  return FishCard(fish: data[index]);
-                                },
-                                childCount: data!.length,
-                              ),
+                          SliverList(
+                            delegate: SliverChildBuilderDelegate(
+                              (BuildContext context, int index) {
+                                return FishCard(fish: data[index]);
+                              },
+                              childCount: data!.length,
                             ),
                           ),
                         ],
