@@ -211,6 +211,7 @@ class _BuildSpearRequirement extends StatelessWidget {
 
   final SpearRequirements requirements;
 
+  @override
   Widget build(BuildContext context) {
     if (requirements is DeimosRequirements) {
       final requirements = this.requirements as DeimosRequirements;
