@@ -97,12 +97,7 @@ class CodexSearchView extends StatelessWidget {
         }
 
         if (state is CodexSearchEmpty) {
-          return Center(
-            child: Text(
-              l10n.codexHint,
-              textAlign: TextAlign.center,
-            ),
-          );
+          return const SizedBox.shrink();
         }
 
         if (state is CodexSearchError) {
