@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:navis/l10n/l10n.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:warframestat_client/warframestat_client.dart';
 
@@ -43,7 +44,7 @@ class _DropEntry extends StatelessWidget {
 
     return ListTile(
       title: Text(location),
-      subtitle: Text('Drop chance $dropChance%'),
+      subtitle: Text(context.l10n.dropChance(dropChance)),
     );
   }
 }

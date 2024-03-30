@@ -9,65 +9,6 @@
       "max": {}
     }
   },
-  "activeAcolyte": "{agentType} | level: {rank}",
-  "@activeAcolyte": {
-    "description": "acolyte title with level",
-    "type": "text",
-    "placeholders": {
-      "agentType": {},
-      "rank": {}
-    }
-  },
-  "locating": "Locating...",
-  "@locating": {
-    "description": "Shows up when an acolyte's current location is unknown, may be used in other parts of the app",
-    "type": "text",
-    "placeholders": {}
-  },
-  "acolyteCurrentLocation": "Current location",
-  "@acolyteCurrentLocation": {
-    "description": "Acolyte's current location",
-    "type": "text",
-    "placeholders": {}
-  },
-  "acolytePassLocation": "Last seen location",
-  "@acolytePassLocation": {
-    "description": "Acolyte's pass location",
-    "type": "text",
-    "placeholders": {}
-  },
-  "acolyteFound": "Found",
-  "@acolyteFound": {
-    "description": "The elapsed time after an acolyte was found",
-    "type": "text",
-    "placeholders": {}
-  },
-  "acolyteLastSeen": "Last seen",
-  "@acolyteLastSeen": {
-    "description": "The elapsed time since the acolyte was last seen",
-    "type": "text",
-    "placeholders": {}
-  },
-  "acolyteHealth": "Health",
-  "@acolyteHealth": {
-    "description": "Acolytes remaining health",
-    "type": "text",
-    "placeholders": {}
-  },
-  "acolyteRank": "Acolyte Level",
-  "@acolyteRank": {
-    "description": "An acolyte's current level",
-    "type": "text",
-    "placeholders": {}
-  },
-  "acolyteElapsedTime": "{lastSeenTime} minutes ago",
-  "@acolyteElapsedTime": {
-    "description": "Time since acolyte has either been found or last seen",
-    "type": "text",
-    "placeholders": {
-      "lastSeenTime": {}
-    }
-  },
   "tapForMoreDetails": "Tap for more details",
   "@tapForMoreDetails": {
     "description": "General description to tell the user that this object takes you to a different page",
@@ -146,9 +87,9 @@
     "type": "text",
     "placeholders": {}
   },
-  "baroLocation": "Location",
-  "@baroLocation": {
-    "description": "shows Baro ki'Teer's current location",
+  "location": "Location",
+  "@location": {
+    "description": "Reuseable string for location",
     "type": "text",
     "placeholders": {}
   },
@@ -406,18 +347,6 @@
     "type": "text",
     "placeholders": {}
   },
-  "acolytesNotificationTitle": "Acolytes",
-  "@acolytesNotificationTitle": {
-    "description": "Main title for acolyte notifications",
-    "type": "text",
-    "placeholders": {}
-  },
-  "acolytesNotificationDescription": "Notifies when an acolyte is found.",
-  "@acolytesNotificationDescription": {
-    "description": "Main description for acolyte notifications",
-    "type": "text",
-    "placeholders": {}
-  },
   "earthDayOption": "Earth Day",
   "@earthDayOption": {
     "description": "Earth cycle option",
@@ -483,14 +412,6 @@
     "description": "Warframe news option",
     "type": "text",
     "placeholders": {}
-  },
-  "updateDropTableDescription": "Last updated {date}",
-  "@updateDropTableDescription": {
-    "description": "Description for updating drop table with date of the last update",
-    "type": "text",
-    "placeholders": {
-      "date": {}
-    }
   },
   "reportBugsTitle": "Report Bugs",
   "@reportBugsTitle": {
@@ -612,48 +533,6 @@
     "type": "text",
     "placeholders": {}
   },
-  "plainsofEidolonMapTitle": "Plains of Eidolon map",
-  "@plainsofEidolonMapTitle": {
-    "description": "Plains of Eidolon Map link title",
-    "type": "text",
-    "placholders": {}
-  },
-  "orbVallisMapTitle": "Orb Vallis map",
-  "@orbVallisMapTitle": {
-    "description": "Orb Vallis Map link title",
-    "type": "text",
-    "placholders": {}
-  },
-  "plainsofEidolonFishingDataTitle": "PoE: Fishing Data",
-  "@plainsofEidolonFishingDataTitle": {
-    "description": "Plains of Eidolon fishing data link title",
-    "type": "text",
-    "placholders": {}
-  },
-  "orbVallisFishingDataTitle": "Vallis: Fishing Data",
-  "@orbVallisFishingDataTitle": {
-    "description": "Orb Vallis fishing data link title",
-    "type": "text",
-    "placholders": {}
-  },
-  "howToFishTitle": "How to fish",
-  "@howToFishTitle": {
-    "description": "How to fish link title",
-    "type": "text",
-    "placholders": {}
-  },
-  "recentNewsCategoryTitle": "Most Recent News",
-  "@recentNewsCategoryTitle": {
-    "description": "Title for recent news title",
-    "type": "text",
-    "placeholders": {}
-  },
-  "pastNewsCategoryTitle": "Past News",
-  "@pastNewsCategoryTitle": {
-    "description": "Title for past Warframe news",
-    "type": "text",
-    "placeholders": {}
-  },
   "warframePassiveTitle": "Passive",
   "@warframePassiveTitle": {
     "description": "Warframes passive title",
@@ -711,12 +590,6 @@
   "componentsTitle": "Components",
   "@componentsTitle": {
     "description": "Title for item components",
-    "typ": "text",
-    "placeholders": {}
-  },
-  "fullPatchNotesTitle": "FULL PATCH NOTES",
-  "@fullPatchNotesTitle": {
-    "description": "Full Patch Notes Title",
     "typ": "text",
     "placeholders": {}
   },
@@ -1089,6 +962,116 @@
   "fishDescription": "See fish information by region",
   "@fishDescription": {
     "description": "fish card description",
+    "type": "text",
+    "placeholder": {}
+  },
+  "fishName": "Name",
+  "@fishName": {
+    "description": "Display a fish name along side it",
+    "type": "text",
+    "placeholder": {}
+  },
+  "fishTime": "Time",
+  "@fishTime": {
+    "description": "Display time a day a fish can be caught in",
+    "type": "text",
+    "placeholder": {}
+  },
+  "fishSpear": "Spear",
+  "@fishSpear": {
+    "description": "Display the type of spear used to catch fish",
+    "type": "text",
+    "placeholder": {}
+  },
+  "fishRarity": "Rarity",
+  "@fishRarity": {
+    "description": "Display rarity of a given fish",
+    "type": "text",
+    "placeholder": {}
+  },
+  "fishBait": "Bait",
+  "@fishBait": {
+    "description": "Display type of bait needed to catch fish",
+    "type": "text",
+    "placeholder": {}
+  },
+  "fishStanding": "Standing",
+  "@fishStanding": {
+    "description": "Display standing earned with fish",
+    "type": "text",
+    "placeholder": {}
+  },
+  "fishUnique": "Unique",
+  "@fishUnique": {
+    "description": "Display a unique resources earned by given fish",
+    "type": "text",
+    "placeholder": {}
+  },
+  "fishBladder": "Bladders",
+  "@fishBladder": {
+    "description": "Displays how many bladders can be earned with the given fish size",
+    "type": "text",
+    "placeholder": {}
+  },
+  "fishGills": "Gills",
+  "@fishGills": {
+    "description": "Displays how many gills can be earned with the given fish size",
+    "type": "text",
+    "placeholder": {}
+  },
+  "fishTumors": "Tumors",
+  "@fishTumors": {
+    "description": "Displays how many tumors can be earned with the given fish size",
+    "type": "text",
+    "placeholder": {}
+  },
+  "fishMeat": "Meats",
+  "@fishMeat": {
+    "description": "Displays how many meat can be earned with the given fish size",
+    "type": "text",
+    "placeholder": {}
+  },
+  "fishOil": "Oils",
+  "@fishOil": {
+    "description": "Displays how many oils can be earned with the given fish size",
+    "type": "text",
+    "placeholder": {}
+  },
+  "fishScales": "Scales",
+  "@fishScales": {
+    "description": "Displays how many scales can be earned with the given fish size",
+    "type": "text",
+    "placeholder": {}
+  },
+  "fishScrap": "Scraps",
+  "@fishScrap": {
+    "description": "Displays how many scraps can be earned with the given fish size",
+    "type": "text",
+    "placeholder": {}
+  },
+  "fishAny": "Any",
+  "@fishAny": {
+    "description": "Displayed when a fish can be caught by any spear",
+    "type": "text",
+    "placeholder": {}
+  },
+  "dropChance": "Drop chance {chance}%",
+  "@dropChance": {
+    "description": "Drop chance percentage",
+    "type": "text",
+    "placeholder": {
+      "chance": {}
+    }
+  },
+  "statsTitle": "Stats",
+  "@statsTitle": {
+    "description": "Codex stat title",
+    "type": "text",
+    "placeholder": {}
+  },
+  "patchlogsTitle": "Patchlogs",
+  "@patchlogsTitle": {
+    "description": "Codex patchlogs title",
     "type": "text",
     "placeholder": {}
   }

@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:fish_repository/fish_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:navis/codex/codex.dart';
+import 'package:navis/l10n/l10n.dart';
 import 'package:navis/utils/string_extensions.dart';
 import 'package:navis_ui/navis_ui.dart';
 
@@ -13,6 +14,8 @@ class FishCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
+
     return AppCard(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
       child: AnimatedContainer(
@@ -36,35 +39,35 @@ class FishCard extends StatelessWidget {
                 padding: const EdgeInsets.only(bottom: 4),
                 stats: [
                   RowItem(
-                    text: const Text('Name'),
+                    text: Text(l10n.fishName),
                     child: Text(fish.name),
                   ),
                   RowItem(
-                    text: const Text('Time'),
+                    text: Text(l10n.fishTime),
                     child: Text(fish.time.string),
                   ),
                   RowItem(
-                    text: const Text('Location'),
+                    text: Text(l10n.location),
                     child: Text(fish.location),
                   ),
                   RowItem(
-                    text: const Text('Spear'),
+                    text: Text(l10n.fishSpear),
                     child: _BuildSpearRequirement(
                       requirements: fish.spearRequirments,
                     ),
                   ),
                   RowItem(
-                    text: const Text('Rarity'),
+                    text: Text(l10n.fishRarity),
                     child: Text(fish.rarity),
                   ),
                   if (fish.bait.recommended)
                     RowItem(
-                      text: const Text('Bait'),
+                      text: Text(l10n.fishBait),
                       child: Text(fish.bait.name),
                     ),
                   if (fish.small.standing != null)
                     RowItem(
-                      text: const Text('Standing'),
+                      text: Text(l10n.fishStanding),
                       child: Text(
                         '${fish.small.standing}'
                         '/${fish.medium.standing}'
@@ -73,7 +76,7 @@ class FishCard extends StatelessWidget {
                     ),
                   if (!fish.name.contains('Boot'))
                     RowItem(
-                      text: const Text('Unique'),
+                      text: Text(l10n.fishUnique),
                       child: _BuildUniqueResources(
                         uniqueResources: fish.uniqueResources,
                       ),
@@ -139,6 +142,7 @@ class _BuildResources extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     List<RowItem> widgets;
 
     // Check small and assume the reset are all from the same region.
@@ -150,17 +154,17 @@ class _BuildResources extends StatelessWidget {
       widgets = [
         if (small.bladder > 1)
           RowItem(
-            text: const Text('Bladder'),
+            text: Text(l10n.fishBladder),
             child: Text('${small.bladder}/${medium.bladder}/${large.bladder}'),
           ),
         if (small.gills > 1)
           RowItem(
-            text: const Text('Gills'),
+            text: Text(l10n.fishGills),
             child: Text('${small.gills}/${medium.gills}/${large.gills}'),
           ),
         if (small.tumor > 1)
           RowItem(
-            text: const Text('Tumor'),
+            text: Text(l10n.fishTumors),
             child: Text('${small.tumor}/${medium.tumor}/${large.tumor}'),
           ),
       ];
@@ -172,17 +176,17 @@ class _BuildResources extends StatelessWidget {
       widgets = [
         if (small.meat > 1)
           RowItem(
-            text: const Text('Meat'),
+            text: Text(l10n.fishMeat),
             child: Text('${small.meat}/${medium.meat}/${large.meat}'),
           ),
         if (small.oil > 1)
           RowItem(
-            text: const Text('Oil'),
+            text: Text(l10n.fishOil),
             child: Text('${small.oil}/${medium.oil}/${large.oil}'),
           ),
         if (small.scales > 1)
           RowItem(
-            text: const Text('Scales'),
+            text: Text(l10n.fishScales),
             child: Text('${small.scales}/${medium.scales}/${large.scales}'),
           ),
       ];
@@ -193,7 +197,7 @@ class _BuildResources extends StatelessWidget {
 
       widgets = [
         RowItem(
-          text: const Text('Scrap'),
+          text: Text(l10n.fishScrap),
           child: Text('${small.scrap}/${medium.scrap}/${large.scrap}'),
         ),
       ];
@@ -239,6 +243,6 @@ class _BuildSpearRequirement extends StatelessWidget {
       return const Text('Shockprod/Stunna');
     }
 
-    return const Text('Any');
+    return Text(context.l10n.fishAny);
   }
 }

@@ -20,7 +20,10 @@ class FrameStats extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        const CategoryTitle(title: 'Stats', contentPadding: EdgeInsets.zero),
+        CategoryTitle(
+          title: context.l10n.statsTitle,
+          contentPadding: EdgeInsets.zero,
+        ),
         Stats(
           stats: <RowItem>[
             if (powerSuit is Warframe && (powerSuit as Warframe).aura != null)
