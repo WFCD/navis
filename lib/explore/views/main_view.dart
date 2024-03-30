@@ -21,13 +21,13 @@ class ExploreView extends StatelessWidget {
 
     return Column(
       children: [
-        AppCard(
-          child: ListTile(
-            leading: const Icon(Icons.map, size: iconSize),
-            title: Text(l10n.mapTitle),
-            subtitle: Text(l10n.mapDescription),
-          ),
-        ),
+        // AppCard(
+        //   child: ListTile(
+        //     leading: const Icon(Icons.map, size: iconSize),
+        //     title: Text(l10n.mapTitle),
+        //     subtitle: Text(l10n.mapDescription),
+        //   ),
+        // ),
         AppCard(
           child: ListTile(
             leading: const Icon(WarframeSymbols.menu_FishLarge, size: iconSize),
