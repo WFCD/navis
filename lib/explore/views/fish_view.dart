@@ -1,6 +1,6 @@
 import 'package:fish_repository/fish_repository.dart';
 import 'package:flutter/material.dart';
-import 'package:navis/explore/widgets/fish_card.dart';
+import 'package:navis/explore/explore.dart';
 
 class FishPage extends StatelessWidget {
   const FishPage({super.key});
@@ -46,45 +46,7 @@ class FishView extends StatelessWidget {
         body: TabBarView(
           // These are the contents of the tab views, below the tabs.
           children: tabs.map((r) {
-            return SafeArea(
-              top: false,
-              child: Builder(
-                builder: (BuildContext context) {
-                  // ignore: strict_raw_type
-                  return FutureBuilder<List<Fish>>(
-                    // ignore: inference_failure_on_function_invocation
-                    future: loadFishResources(r['region']! as FishingRegion),
-                    builder: (context, snapshot) {
-                      if (!snapshot.hasData) {
-                        return const Center(child: CircularProgressIndicator());
-                      }
-
-                      final data = snapshot.data;
-
-                      return CustomScrollView(
-                        key: PageStorageKey<String>(r['name']! as String),
-                        slivers: <Widget>[
-                          SliverOverlapInjector(
-                            handle:
-                                NestedScrollView.sliverOverlapAbsorberHandleFor(
-                              context,
-                            ),
-                          ),
-                          SliverList(
-                            delegate: SliverChildBuilderDelegate(
-                              (BuildContext context, int index) {
-                                return FishCard(fish: data[index]);
-                              },
-                              childCount: data!.length,
-                            ),
-                          ),
-                        ],
-                      );
-                    },
-                  );
-                },
-              ),
-            );
+            return FishDataView(region: r['region']! as FishingRegion);
           }).toList(),
         ),
       ),
