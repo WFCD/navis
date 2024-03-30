@@ -9,65 +9,6 @@
       "max": {}
     }
   },
-  "activeAcolyte": "{agentType} | livello: {rank}",
-  "@activeAcolyte": {
-    "description": "acolyte title with level",
-    "type": "text",
-    "placeholders": {
-      "agentType": {},
-      "rank": {}
-    }
-  },
-  "locating": "Localizzando...",
-  "@locating": {
-    "description": "Shows up when an acolyte's current location is unknown, may be used in other parts of the app",
-    "type": "text",
-    "placeholders": {}
-  },
-  "acolyteCurrentLocation": "Posizione attuale",
-  "@acolyteCurrentLocation": {
-    "description": "Acolyte's current location",
-    "type": "text",
-    "placeholders": {}
-  },
-  "acolytePassLocation": "Ultima posizione nota",
-  "@acolytePassLocation": {
-    "description": "Acolyte's pass location",
-    "type": "text",
-    "placeholders": {}
-  },
-  "acolyteFound": "Trovato",
-  "@acolyteFound": {
-    "description": "The elapsed time after an acolyte was found",
-    "type": "text",
-    "placeholders": {}
-  },
-  "acolyteLastSeen": "Ultimo avvistamento",
-  "@acolyteLastSeen": {
-    "description": "The elapsed time since the acolyte was last seen",
-    "type": "text",
-    "placeholders": {}
-  },
-  "acolyteHealth": "Salute",
-  "@acolyteHealth": {
-    "description": "Acolytes remaining health",
-    "type": "text",
-    "placeholders": {}
-  },
-  "acolyteRank": "Livello accolito",
-  "@acolyteRank": {
-    "description": "An acolyte's current level",
-    "type": "text",
-    "placeholders": {}
-  },
-  "acolyteElapsedTime": "{lastSeenTime} minuti fa",
-  "@acolyteElapsedTime": {
-    "description": "Time since acolyte has either been found or last seen",
-    "type": "text",
-    "placeholders": {
-      "lastSeenTime": {}
-    }
-  },
   "tapForMoreDetails": "Tocca per maggiori dettagli",
   "@tapForMoreDetails": {
     "description": "General description to tell the user that this object takes you to a different page",
@@ -146,7 +87,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "location": "Posizione",
+  "location": "Location",
   "@location": {
     "description": "Reuseable string for location",
     "type": "text",
@@ -253,6 +194,12 @@
   "codexTitle": "Codex",
   "@codexTitle": {
     "description": "Codex title",
+    "type": "text",
+    "placeholders": {}
+  },
+  "codexDescription": "Search all warframe items",
+  "@codexDescription": {
+    "description": "Codex description",
     "type": "text",
     "placeholders": {}
   },
@@ -400,18 +347,6 @@
     "type": "text",
     "placeholders": {}
   },
-  "acolytesNotificationTitle": "Accoliti",
-  "@acolytesNotificationTitle": {
-    "description": "Main title for acolyte notifications",
-    "type": "text",
-    "placeholders": {}
-  },
-  "acolytesNotificationDescription": "Notifica quando viene trovato un accolito.",
-  "@acolytesNotificationDescription": {
-    "description": "Main description for acolyte notifications",
-    "type": "text",
-    "placeholders": {}
-  },
   "earthDayOption": "Terra giorno",
   "@earthDayOption": {
     "description": "Earth cycle option",
@@ -477,14 +412,6 @@
     "description": "Warframe news option",
     "type": "text",
     "placeholders": {}
-  },
-  "updateDropTableDescription": "Ultimo aggiornamento {date}",
-  "@updateDropTableDescription": {
-    "description": "Description for updating drop table with date of the last update",
-    "type": "text",
-    "placeholders": {
-      "date": {}
-    }
   },
   "reportBugsTitle": "Segnala bug",
   "@reportBugsTitle": {
@@ -606,48 +533,6 @@
     "type": "text",
     "placeholders": {}
   },
-  "plainsofEidolonMapTitle": "Mappa delle Piane di Eidolon",
-  "@plainsofEidolonMapTitle": {
-    "description": "Plains of Eidolon Map link title",
-    "type": "text",
-    "placholders": {}
-  },
-  "orbVallisMapTitle": "Mappa di Orb Vallis",
-  "@orbVallisMapTitle": {
-    "description": "Orb Vallis Map link title",
-    "type": "text",
-    "placholders": {}
-  },
-  "plainsofEidolonFishingDataTitle": "Eidolon: dati pesca",
-  "@plainsofEidolonFishingDataTitle": {
-    "description": "Plains of Eidolon fishing data link title",
-    "type": "text",
-    "placholders": {}
-  },
-  "orbVallisFishingDataTitle": "PoE: Fishing Data",
-  "@orbVallisFishingDataTitle": {
-    "description": "Orb Vallis fishing data link title",
-    "type": "text",
-    "placholders": {}
-  },
-  "howToFishTitle": "Come pescare",
-  "@howToFishTitle": {
-    "description": "How to fish link title",
-    "type": "text",
-    "placholders": {}
-  },
-  "recentNewsCategoryTitle": "Notizie recenti",
-  "@recentNewsCategoryTitle": {
-    "description": "Title for recent news title",
-    "type": "text",
-    "placeholders": {}
-  },
-  "pastNewsCategoryTitle": "Notizie passate",
-  "@pastNewsCategoryTitle": {
-    "description": "Title for past Warframe news",
-    "type": "text",
-    "placeholders": {}
-  },
   "warframePassiveTitle": "Passiva",
   "@warframePassiveTitle": {
     "description": "Warframes passive title",
@@ -705,12 +590,6 @@
   "componentsTitle": "Componenti",
   "@componentsTitle": {
     "description": "Title for item components",
-    "typ": "text",
-    "placeholders": {}
-  },
-  "fullPatchNotesTitle": "NOTE DELLE PATCH",
-  "@fullPatchNotesTitle": {
-    "description": "Full Patch Notes Title",
     "typ": "text",
     "placeholders": {}
   },
@@ -932,7 +811,7 @@
       "rank": {}
     }
   },
-  "codexHint": "Digita cosa vuoi cercare nella barra di ricerca sopra!",
+  "codexHint": "Search here...",
   "@codexHint": {
     "description": "Codex description when a user enters the codex or when the search bar is empty",
     "type": "text",
@@ -1059,6 +938,140 @@
   "duviriFear": "Duviri Fear",
   "@duviriFear": {
     "description": "Duviri Fear state. If Duviri doesn't have a translatetion then only joy can be translated.",
+    "type": "text",
+    "placeholder": {}
+  },
+  "mapTitle": "Maps",
+  "@mapTitle": {
+    "description": "Map title",
+    "type": "text",
+    "placeholder": {}
+  },
+  "mapDescription": "See region maps",
+  "@mapDescription": {
+    "description": "Map card description",
+    "type": "text",
+    "placeholder": {}
+  },
+  "fishTitle": "Fish",
+  "@fishTitle": {
+    "description": "Fish title",
+    "type": "text",
+    "placeholder": {}
+  },
+  "fishDescription": "See fish information by region",
+  "@fishDescription": {
+    "description": "fish card description",
+    "type": "text",
+    "placeholder": {}
+  },
+  "fishName": "Name",
+  "@fishName": {
+    "description": "Display a fish name along side it",
+    "type": "text",
+    "placeholder": {}
+  },
+  "fishTime": "Time",
+  "@fishTime": {
+    "description": "Display time a day a fish can be caught in",
+    "type": "text",
+    "placeholder": {}
+  },
+  "fishSpear": "Spear",
+  "@fishSpear": {
+    "description": "Display the type of spear used to catch fish",
+    "type": "text",
+    "placeholder": {}
+  },
+  "fishRarity": "Rarity",
+  "@fishRarity": {
+    "description": "Display rarity of a given fish",
+    "type": "text",
+    "placeholder": {}
+  },
+  "fishBait": "Bait",
+  "@fishBait": {
+    "description": "Display type of bait needed to catch fish",
+    "type": "text",
+    "placeholder": {}
+  },
+  "fishStanding": "Standing",
+  "@fishStanding": {
+    "description": "Display standing earned with fish",
+    "type": "text",
+    "placeholder": {}
+  },
+  "fishUnique": "Unique",
+  "@fishUnique": {
+    "description": "Display a unique resources earned by given fish",
+    "type": "text",
+    "placeholder": {}
+  },
+  "fishBladder": "Bladders",
+  "@fishBladder": {
+    "description": "Displays how many bladders can be earned with the given fish size",
+    "type": "text",
+    "placeholder": {}
+  },
+  "fishGills": "Gills",
+  "@fishGills": {
+    "description": "Displays how many gills can be earned with the given fish size",
+    "type": "text",
+    "placeholder": {}
+  },
+  "fishTumors": "Tumors",
+  "@fishTumors": {
+    "description": "Displays how many tumors can be earned with the given fish size",
+    "type": "text",
+    "placeholder": {}
+  },
+  "fishMeat": "Meats",
+  "@fishMeat": {
+    "description": "Displays how many meat can be earned with the given fish size",
+    "type": "text",
+    "placeholder": {}
+  },
+  "fishOil": "Oils",
+  "@fishOil": {
+    "description": "Displays how many oils can be earned with the given fish size",
+    "type": "text",
+    "placeholder": {}
+  },
+  "fishScales": "Scales",
+  "@fishScales": {
+    "description": "Displays how many scales can be earned with the given fish size",
+    "type": "text",
+    "placeholder": {}
+  },
+  "fishScrap": "Scraps",
+  "@fishScrap": {
+    "description": "Displays how many scraps can be earned with the given fish size",
+    "type": "text",
+    "placeholder": {}
+  },
+  "fishAny": "Any",
+  "@fishAny": {
+    "description": "Displayed when a fish can be caught by any spear",
+    "type": "text",
+    "placeholder": {}
+  },
+  "dropChance": "Drop chance {chance}%",
+  "@dropChance": {
+    "description": "Drop chance percentage",
+    "type": "text",
+    "placeholder": {
+      "chance": {}
+    }
+  },
+  "statsTitle": "Stats",
+  "@statsTitle": {
+    "description": "Codex stat title",
+    "type": "text",
+    "placeholder": {}
+  },
+  "patchlogsTitle": "Patchlogs",
+  "@patchlogsTitle": {
+    "description": "Codex patchlogs title",
     "type": "text",
     "placeholder": {}
   }
