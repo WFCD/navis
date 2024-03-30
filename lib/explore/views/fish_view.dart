@@ -22,32 +22,36 @@ class FishView extends StatelessWidget {
       {'name': 'Orb Vallis', 'region': FishingRegion.vallis},
     ];
 
-    return DefaultTabController(
-      length: tabs.length,
-      child: NestedScrollView(
-        floatHeaderSlivers: true,
-        headerSliverBuilder: (context, innerBoxIsScrolled) {
-          // These are the slivers that show up in the "outer" scroll view.
-          return <Widget>[
-            SliverOverlapAbsorber(
-              handle: NestedScrollView.sliverOverlapAbsorberHandleFor(context),
-              sliver: SliverAppBar(
-                title: const Text('Fishing data'),
-                floating: true,
-                forceElevated: innerBoxIsScrolled,
-                bottom: TabBar(
-                  tabs:
-                      tabs.map((r) => Tab(text: r['name']! as String)).toList(),
+    return SafeArea(
+      child: DefaultTabController(
+        length: tabs.length,
+        child: NestedScrollView(
+          floatHeaderSlivers: true,
+          headerSliverBuilder: (context, innerBoxIsScrolled) {
+            // These are the slivers that show up in the "outer" scroll view.
+            return <Widget>[
+              SliverOverlapAbsorber(
+                handle:
+                    NestedScrollView.sliverOverlapAbsorberHandleFor(context),
+                sliver: SliverAppBar(
+                  title: const Text('Fishing data'),
+                  floating: true,
+                  forceElevated: innerBoxIsScrolled,
+                  bottom: TabBar(
+                    tabs: tabs
+                        .map((r) => Tab(text: r['name']! as String))
+                        .toList(),
+                  ),
                 ),
               ),
-            ),
-          ];
-        },
-        body: TabBarView(
-          // These are the contents of the tab views, below the tabs.
-          children: tabs.map((r) {
-            return FishDataView(region: r['region']! as FishingRegion);
-          }).toList(),
+            ];
+          },
+          body: TabBarView(
+            // These are the contents of the tab views, below the tabs.
+            children: tabs.map((r) {
+              return FishDataView(region: r['region']! as FishingRegion);
+            }).toList(),
+          ),
         ),
       ),
     );
