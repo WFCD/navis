@@ -21,8 +21,8 @@ class MeleeStats extends StatelessWidget {
 
     return Column(
       children: [
-        const CategoryTitle(
-          title: 'Stats',
+        CategoryTitle(
+          title: context.l10n.statsTitle,
           contentPadding: EdgeInsets.zero,
         ),
         Stats(

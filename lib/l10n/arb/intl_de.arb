@@ -146,9 +146,9 @@
     "type": "text",
     "placeholders": {}
   },
-  "baroLocation": "Ort",
-  "@baroLocation": {
-    "description": "shows Baro ki'Teer's current location",
+  "location": "Ort",
+  "@location": {
+    "description": "Reuseable string for location",
     "type": "text",
     "placeholders": {}
   },

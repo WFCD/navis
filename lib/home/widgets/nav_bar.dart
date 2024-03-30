@@ -13,7 +13,6 @@ class CustomNavigationBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return NavigationBar(
-      height: kBottomNavigationBarHeight,
       onDestinationSelected: (i) => _onTap(context, NavigationEvent.values[i]),
       selectedIndex: NavigationCubit.navigationMap.values
           .toList()
@@ -28,8 +27,8 @@ class CustomNavigationBar extends StatelessWidget {
           label: context.l10n.warframeNewsTitle,
         ),
         NavigationDestination(
-          icon: const Icon(Icons.search_rounded),
-          label: context.l10n.codexTitle,
+          icon: const Icon(Icons.explore),
+          label: context.l10n.exploreTitle,
         ),
       ],
     );

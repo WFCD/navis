@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:navis/l10n/l10n.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:warframestat_client/warframestat_client.dart';
 
@@ -18,7 +19,7 @@ class PatchlogCard extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const CategoryTitle(title: 'Patchlogs'),
+          CategoryTitle(title: context.l10n.patchlogsTitle),
           ...patchlogs.map(
             (e) => _PatchlogEntry(patchlog: e),
           ),
