@@ -7,6 +7,7 @@ environment:
   sdk: ">=3.2.0 <4.0.0"
 
 dependencies:
+  animated_glitch: ^2.0.0+2
   black_hole_flutter: ^1.0.1
   cached_network_image: ^3.3.0
   flutter:
@@ -27,6 +28,8 @@ flutter:
         - asset: lib/fonts/Warframe-symbols.ttf
   assets:
     - assets/Derelict.webp
+  shaders:
+    - 'packages/animated_glitch/shader/glitch.frag'
 
 flutter_gen:
   assets:

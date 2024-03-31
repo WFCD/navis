@@ -1,3 +1,6 @@
+import 'dart:async';
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis_ui/navis_ui.dart';
@@ -30,22 +33,23 @@ class FissureWidget extends StatelessWidget {
     const opacity = .30;
 
     final icon = () {
-      switch (fissure.tier) {
-        case 'Lith':
+      switch (fissure.tierNum) {
+        case 1:
           return WarframeSymbols.fissures_lith;
-        case 'Meso':
+        case 2:
           return WarframeSymbols.fissures_meso;
-        case 'Neo':
+        case 3:
           return WarframeSymbols.fissures_neo;
-        case 'Axi':
+        case 4:
           return WarframeSymbols.fissures_axi;
-        default:
+        case 5:
           return WarframeSymbols.fissures_requiem;
       }
     }();
 
     return SkyboxCard(
       node: fissure.node,
+      enableGlitch: fissure.tierNum == 6,
       padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 16),
       child: Stack(
         children: [
@@ -67,7 +71,9 @@ class FissureWidget extends StatelessWidget {
             children: <Widget>[
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8),
-                child: Icon(icon, size: 40),
+                child: fissure.tierNum == 6
+                    ? const OmniaFissureWidget()
+                    : Icon(icon, size: 40),
               ),
               Expanded(
                 child: _FissureInfo(
@@ -119,5 +125,51 @@ class _FissureInfo extends StatelessWidget {
         ],
       ),
     );
+  }
+}
+
+class OmniaFissureWidget extends StatefulWidget {
+  const OmniaFissureWidget({super.key});
+
+  @override
+  State<OmniaFissureWidget> createState() => _OmniaFissureWidgetState();
+}
+
+class _OmniaFissureWidgetState extends State<OmniaFissureWidget> {
+  static const _icons = [
+    WarframeSymbols.fissures_lith,
+    WarframeSymbols.fissures_meso,
+    WarframeSymbols.fissures_neo,
+    WarframeSymbols.fissures_axi,
+    WarframeSymbols.fissures_requiem,
+  ];
+
+  late final Timer timer;
+  late final Random rand;
+
+  @override
+  void initState() {
+    super.initState();
+
+    rand = Random();
+    timer = Timer.periodic(const Duration(seconds: 5), (timer) {
+      if (mounted) setState(() {});
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedSwitcher(
+      duration: const Duration(milliseconds: 1500),
+      switchInCurve: Curves.easeInOut,
+      switchOutCurve: Curves.easeInOut,
+      child: Icon(_icons[rand.nextInt(5)], size: 40),
+    );
+  }
+
+  @override
+  void dispose() {
+    timer.cancel();
+    super.dispose();
   }
 }
