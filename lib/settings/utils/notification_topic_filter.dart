@@ -48,17 +48,17 @@ class NotificationTopics {
       MultiTopic(
         title: l10n.warframeNewsNotificationTitle,
         description: l10n.warframeNewsNotificationDescription,
-        filters: warframeNews,
+        filters: [...warframeNews]..sort((a, b) => a.title.compareTo(b.title)),
       ),
       MultiTopic(
         title: l10n.planetCyclesNotificationTitle,
         description: l10n.planetCyclesNotificationDescription,
-        filters: planetCycles,
+        filters: [...planetCycles]..sort((a, b) => a.title.compareTo(b.title)),
       ),
       MultiTopic(
         title: l10n.resourcesNotificationTitle,
         description: l10n.resourcesNotificationDescription,
-        filters: resources,
+        filters: [...resources]..sort((a, b) => a.title.compareTo(b.title)),
       ),
       MultiTopic(
         title: l10n.fissuresNotificationTitle,

@@ -34,9 +34,6 @@ class FilterDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final options = List<SimpleTopics>.from(this.options)
-      ..sort((a, b) => a.title.compareTo(b.title));
-
     return NavisDialog(
       title: const Text('Options'),
       content: SingleChildScrollView(
