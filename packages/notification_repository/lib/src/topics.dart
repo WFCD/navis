@@ -103,7 +103,7 @@ abstract class Topics {
   static const Topic strunStock = Topic('strun_stock');
 
   static Iterable<Topic> generateFissureTopics() sync* {
-    const tiers = <String>['Lith', 'Meso', 'Neo', 'Axi', 'Requiem'];
+    const tiers = <String>['Lith', 'Meso', 'Neo', 'Axi', 'Requiem', 'Omnia'];
     const missionTypes = <String>[
       'capture',
       'defense',
