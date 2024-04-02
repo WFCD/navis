@@ -47,49 +47,58 @@ class FissureWidget extends StatelessWidget {
       }
     }();
 
+    final child = Stack(
+      children: [
+        if (fissure.isStorm)
+          const Center(
+            child: Opacity(
+              opacity: opacity,
+              child: AppIcon(WarframeSymbols.archwing, size: iconSize),
+            ),
+          ),
+        if (fissure.isHard)
+          const Center(
+            child: Opacity(
+              opacity: opacity,
+              child: AppIcon(WarframeSymbols.sp_logo, size: iconSize),
+            ),
+          ),
+        Row(
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8),
+              child: fissure.tierNum == 6
+                  ? const OmniaFissureWidget()
+                  : Icon(icon, size: 40),
+            ),
+            Expanded(
+              child: _FissureInfo(
+                fissure: fissure,
+                nodeStyle: _nodeStyle,
+                missionTypeStyle: _missionTypeStyle,
+              ),
+            ),
+            CountdownTimer(
+              tooltip: context.l10n.countdownTooltip(fissure.expiry),
+              expiry: fissure.expiry,
+            ),
+          ],
+        ),
+      ],
+    );
+
+    if (fissure.tierNum == 6) {
+      return GlitchySkyCard(
+        node: fissure.node,
+        padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 16),
+        child: child,
+      );
+    }
+
     return SkyboxCard(
       node: fissure.node,
-      enableGlitch: fissure.tierNum == 6,
       padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 16),
-      child: Stack(
-        children: [
-          if (fissure.isStorm)
-            const Center(
-              child: Opacity(
-                opacity: opacity,
-                child: AppIcon(WarframeSymbols.archwing, size: iconSize),
-              ),
-            ),
-          if (fissure.isHard)
-            const Center(
-              child: Opacity(
-                opacity: opacity,
-                child: AppIcon(WarframeSymbols.sp_logo, size: iconSize),
-              ),
-            ),
-          Row(
-            children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8),
-                child: fissure.tierNum == 6
-                    ? const OmniaFissureWidget()
-                    : Icon(icon, size: 40),
-              ),
-              Expanded(
-                child: _FissureInfo(
-                  fissure: fissure,
-                  nodeStyle: _nodeStyle,
-                  missionTypeStyle: _missionTypeStyle,
-                ),
-              ),
-              CountdownTimer(
-                tooltip: context.l10n.countdownTooltip(fissure.expiry),
-                expiry: fissure.expiry,
-              ),
-            ],
-          ),
-        ],
-      ),
+      child: child,
     );
   }
 }
@@ -118,7 +127,7 @@ class _FissureInfo extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(top: 4),
             child: Text(
-              '${fissure.missionType} | ${fissure.tier}',
+              '${fissure.tier} | ${fissure.missionType}',
               style: _missionTypeStyle,
             ),
           ),
