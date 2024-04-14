@@ -87,7 +87,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "location": "Location",
+  "location": "生成地點",
   "@location": {
     "description": "Reuseable string for location",
     "type": "text",
@@ -197,7 +197,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "codexDescription": "Search all warframe items",
+  "codexDescription": "搜尋全部 Warframe 物品",
   "@codexDescription": {
     "description": "Codex description",
     "type": "text",
@@ -811,7 +811,7 @@
       "rank": {}
     }
   },
-  "codexHint": "Search here...",
+  "codexHint": "在此搜尋..",
   "@codexHint": {
     "description": "Codex description when a user enters the codex or when the search bar is empty",
     "type": "text",
@@ -941,55 +941,55 @@
     "type": "text",
     "placeholder": {}
   },
-  "mapTitle": "Maps",
+  "mapTitle": "地圖",
   "@mapTitle": {
     "description": "Map title",
     "type": "text",
     "placeholder": {}
   },
-  "mapDescription": "See region maps",
+  "mapDescription": "查看地區地圖",
   "@mapDescription": {
     "description": "Map card description",
     "type": "text",
     "placeholder": {}
   },
-  "fishTitle": "Fish",
+  "fishTitle": "魚",
   "@fishTitle": {
     "description": "Fish title",
     "type": "text",
     "placeholder": {}
   },
-  "fishDescription": "See fish information by region",
+  "fishDescription": "按区域查看鱼类信息",
   "@fishDescription": {
     "description": "fish card description",
     "type": "text",
     "placeholder": {}
   },
-  "fishName": "Name",
+  "fishName": "名稱",
   "@fishName": {
     "description": "Display a fish name along side it",
     "type": "text",
     "placeholder": {}
   },
-  "fishTime": "Time",
+  "fishTime": "時間",
   "@fishTime": {
     "description": "Display time a day a fish can be caught in",
     "type": "text",
     "placeholder": {}
   },
-  "fishSpear": "Spear",
+  "fishSpear": "種類",
   "@fishSpear": {
     "description": "Display the type of spear used to catch fish",
     "type": "text",
     "placeholder": {}
   },
-  "fishRarity": "Rarity",
+  "fishRarity": "稀有度",
   "@fishRarity": {
     "description": "Display rarity of a given fish",
     "type": "text",
     "placeholder": {}
   },
-  "fishBait": "Bait",
+  "fishBait": "要求的魚餌",
   "@fishBait": {
     "description": "Display type of bait needed to catch fish",
     "type": "text",
@@ -1001,7 +1001,7 @@
     "type": "text",
     "placeholder": {}
   },
-  "fishUnique": "Unique",
+  "fishUnique": "獨一無二",
   "@fishUnique": {
     "description": "Display a unique resources earned by given fish",
     "type": "text",
@@ -1013,7 +1013,7 @@
     "type": "text",
     "placeholder": {}
   },
-  "fishGills": "Gills",
+  "fishGills": "鱼鳃",
   "@fishGills": {
     "description": "Displays how many gills can be earned with the given fish size",
     "type": "text",
@@ -1025,19 +1025,19 @@
     "type": "text",
     "placeholder": {}
   },
-  "fishMeat": "Meats",
+  "fishMeat": "肉类",
   "@fishMeat": {
     "description": "Displays how many meat can be earned with the given fish size",
     "type": "text",
     "placeholder": {}
   },
-  "fishOil": "Oils",
+  "fishOil": "油",
   "@fishOil": {
     "description": "Displays how many oils can be earned with the given fish size",
     "type": "text",
     "placeholder": {}
   },
-  "fishScales": "Scales",
+  "fishScales": "大小",
   "@fishScales": {
     "description": "Displays how many scales can be earned with the given fish size",
     "type": "text",
@@ -1049,13 +1049,13 @@
     "type": "text",
     "placeholder": {}
   },
-  "fishAny": "Any",
+  "fishAny": "任何",
   "@fishAny": {
     "description": "Displayed when a fish can be caught by any spear",
     "type": "text",
     "placeholder": {}
   },
-  "dropChance": "Drop chance {chance}%",
+  "dropChance": "掉落機率: {chance}%",
   "@dropChance": {
     "description": "Drop chance percentage",
     "type": "text",
@@ -1063,13 +1063,13 @@
       "chance": {}
     }
   },
-  "statsTitle": "Stats",
+  "statsTitle": "属性",
   "@statsTitle": {
     "description": "Codex stat title",
     "type": "text",
     "placeholder": {}
   },
-  "patchlogsTitle": "Patchlogs",
+  "patchlogsTitle": "补丁日志",
   "@patchlogsTitle": {
     "description": "Codex patchlogs title",
     "type": "text",
