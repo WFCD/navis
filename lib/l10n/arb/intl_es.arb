@@ -87,7 +87,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "location": "Location",
+  "location": "Ubicación",
   "@location": {
     "description": "Reuseable string for location",
     "type": "text",
@@ -161,7 +161,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "zarimanCycleTitle": "Zariman Cycle",
+  "zarimanCycleTitle": "Ciclo de Zariman",
   "@zarimanCycleTitle": {
     "description": "Zariman Cycle title",
     "type": "text",
@@ -197,7 +197,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "codexDescription": "Search all warframe items",
+  "codexDescription": "Buscar todos los objetos de warframe",
   "@codexDescription": {
     "description": "Codex description",
     "type": "text",
@@ -287,7 +287,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "sentientOutpostNotificationDescription": "Notifications for new sentient threats.",
+  "sentientOutpostNotificationDescription": "Notificaciones para nuevas amenazas sentient.",
   "@sentientOutpostNotificationDescription": {
     "description": "Notification description for sentient outpost option",
     "type": "text",
@@ -419,7 +419,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "reportBugsDescription": "Report bugs or request a feature.",
+  "reportBugsDescription": "Reportar errores o solicitar nuevas características.",
   "@reportBugsDescription": {
     "description": "Description for bug report link",
     "type": "text",
@@ -431,19 +431,19 @@
     "type": "text",
     "placeholders": {}
   },
-  "aboutAppTitle": "About app",
+  "aboutAppTitle": "Acerca de la app",
   "@aboutAppTitle": {
     "description": "Title for the about app dialog",
     "type": "text",
     "placeholders": {}
   },
-  "contributeTranslationsTitle": "Contribute Translations",
+  "contributeTranslationsTitle": "Contribuir con la traducción",
   "@contributeTranslationsTitle": {
     "description": "Title for contribute translations link",
     "type": "text",
     "placeholders": {}
   },
-  "contributeTranslationsDescription": "Volunteer to contribute translations",
+  "contributeTranslationsDescription": "Voluntario para contribuir con las traducciones",
   "@contributeTranslationsDescription": {
     "description": "Description for contribute translations link",
     "type": "text",
@@ -473,7 +473,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "homePageTitle": "Home",
+  "homePageTitle": "Inicio",
   "@homePageTitle": {
     "description": "Displayes a link to Navis's homepage",
     "type": "text",
