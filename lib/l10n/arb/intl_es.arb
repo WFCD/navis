@@ -21,7 +21,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "seeWikia": "Ver Wikia",
+  "seeWikia": "Ver Wiki",
   "@seeWikia": {
     "description": "General button to wikia of given item",
     "type": "text",
@@ -995,7 +995,7 @@
     "type": "text",
     "placeholder": {}
   },
-  "fishStanding": "De pie",
+  "fishStanding": "Reputación",
   "@fishStanding": {
     "description": "Display standing earned with fish",
     "type": "text",
