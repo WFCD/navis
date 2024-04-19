@@ -197,7 +197,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "codexDescription": "Buscar todos los objetos del juego",
+  "codexDescription": "Buscar en todos los objetos del juego",
   "@codexDescription": {
     "description": "Codex description",
     "type": "text",
@@ -269,7 +269,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "sortieNotificationTitle": "Incursion",
+  "sortieNotificationTitle": "Incursión",
   "@sortieNotificationTitle": {
     "description": "Notification title for sorties",
     "type": "text",
@@ -539,7 +539,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "auraTitle": "Polaridad aural",
+  "auraTitle": "Polaridad de Aura",
   "@auraTitle": {
     "description": "Aura polarity title for items",
     "type": "text",
@@ -695,7 +695,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "followThroughTitle": "Seguir a través",
+  "followThroughTitle": "Continuidad de Ataque",
   "@followThroughTitle": {
     "description": "Melee follow through title",
     "type": "text",
@@ -707,55 +707,55 @@
     "type": "text",
     "placeholders": {}
   },
-  "slamAttackTitle": "Slam Attack",
+  "slamAttackTitle": "Golpe contra el suelo",
   "@slamAttackTitle": {
     "description": "Melee's slam attack",
     "type": "text",
     "placeholders": {}
   },
-  "slamRadialDamageTitle": "Slam Radial Damage",
+  "slamRadialDamageTitle": "Alcance de golpe contra el suelo",
   "@slamRadialDamageTitle": {
     "description": "Melee's Slam Radial Damage",
     "type": "text",
     "placeholders": {}
   },
-  "slamRadiusTitle": "Slam Radius",
+  "slamRadiusTitle": "Radio de golpe contra el suelo",
   "@slamRadiusTitle": {
     "description": "Slam Radius title",
     "type": "text",
     "placeholders": {}
   },
-  "slideAttackTitle": "Slide Attack",
+  "slideAttackTitle": "Ataque Deslizante",
   "@slideAttackTitle": {
     "description": "Melee's slide attack",
     "type": "text",
     "placeholders": {}
   },
-  "heavyAttackTitle": "Heavy Attack",
+  "heavyAttackTitle": "Ataque Cargado",
   "@heavyAttackTitle": {
     "description": "Heavy attack title",
     "type": "text",
     "placeholders": {}
   },
-  "heavySlamAttackTitle": "Heavy Slam Attack",
+  "heavySlamAttackTitle": "Ataque de golpe pesado contra el suelo",
   "@heavySlamAttackTitle": {
     "description": "Heavy Slam attack title",
     "type": "text",
     "placeholders": {}
   },
-  "heavySlamRadialDamageTitle": "Heavy Slam Radial Damage",
+  "heavySlamRadialDamageTitle": "Daño radial de golpe pesado contra el suelo",
   "@heavySlamRadialDamageTitle": {
     "description": "Heavy Slam attack title",
     "type": "text",
     "placeholders": {}
   },
-  "heavySlamRadiusTitle": "Heavy Slam Radius",
+  "heavySlamRadiusTitle": "Radio de golpe pesado contra el suelo",
   "@heavySlamRadiusTitle": {
     "description": "Heavy Slam attack title",
     "type": "text",
     "placeholders": {}
   },
-  "windUpTitle": "Wind Up",
+  "windUpTitle": "Lanzamiento",
   "@windUpTitle": {
     "description": "melee's heavy wind up time title",
     "type": "text",
@@ -779,13 +779,13 @@
     "type": "text",
     "placeholders": {}
   },
-  "optOutOfAnalyticsTitle": "Opt out of analytics",
+  "optOutOfAnalyticsTitle": "Análisis de datos",
   "@optOutOfAnalyticsTitle": {
     "description": "Title opting out of analytics",
     "type": "text",
     "placeholders": {}
   },
-  "optOutOfAnalyticsDescription": "Disable analytics.",
+  "optOutOfAnalyticsDescription": "Deshabilitar análisis de datos.",
   "@optOutOfAnalyticsDescription": {
     "description": "Description of the analytics opting buttong",
     "type": "text",
@@ -797,13 +797,13 @@
     "type": "text",
     "placeholders": {}
   },
-  "appLangDescription": "Override default behavior for language detection.",
+  "appLangDescription": "Sobreescribir la configuración predeterminada para la detección del idioma.",
   "@appLangDescription": {
     "description": "Description for language options",
     "type": "text",
     "placeholders": {}
   },
-  "modLevelLabel": "Rango {rank}",
+  "modLevelLabel": "Nivel {rank}",
   "@modLevelLabel": {
     "description": "The label shown to users as they slide the mod slider",
     "type": "text",
@@ -1037,25 +1037,25 @@
     "type": "text",
     "placeholder": {}
   },
-  "fishScales": "Scales",
+  "fishScales": "Escamas",
   "@fishScales": {
     "description": "Displays how many scales can be earned with the given fish size",
     "type": "text",
     "placeholder": {}
   },
-  "fishScrap": "Scraps",
+  "fishScrap": "Chatarra",
   "@fishScrap": {
     "description": "Displays how many scraps can be earned with the given fish size",
     "type": "text",
     "placeholder": {}
   },
-  "fishAny": "Any",
+  "fishAny": "Cualquiera",
   "@fishAny": {
     "description": "Displayed when a fish can be caught by any spear",
     "type": "text",
     "placeholder": {}
   },
-  "dropChance": "Drop chance {chance}%",
+  "dropChance": "Probabilidad de obtención: {chance}%",
   "@dropChance": {
     "description": "Drop chance percentage",
     "type": "text",
@@ -1063,13 +1063,13 @@
       "chance": {}
     }
   },
-  "statsTitle": "Stats",
+  "statsTitle": "Estadísticas",
   "@statsTitle": {
     "description": "Codex stat title",
     "type": "text",
     "placeholder": {}
   },
-  "patchlogsTitle": "Patchlogs",
+  "patchlogsTitle": "Nota de cambios",
   "@patchlogsTitle": {
     "description": "Codex patchlogs title",
     "type": "text",
