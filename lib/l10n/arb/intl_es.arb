@@ -305,7 +305,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "warframeNewsNotificationDescription": "Notificaciones de noticias de acceso prime, directos y actualizaciones.",
+  "warframeNewsNotificationDescription": "Notificaciones de noticias del Prime Access, directos y actualizaciones.",
   "@warframeNewsNotificationDescription": {
     "description": "Main description for Warframe news notifications",
     "type": "text",
@@ -371,13 +371,13 @@
     "type": "text",
     "placeholders": {}
   },
-  "vallisWarmOption": "Valle de las orbes calido",
+  "vallisWarmOption": "Valles del orbe calido",
   "@vallisWarmOption": {
     "description": "Orb vallis cycle option",
     "type": "text",
     "placeholders": {}
   },
-  "vallisColdOption": "Valle de las orbes frio",
+  "vallisColdOption": "Valles del orbe frío",
   "@vallisColdOption": {
     "description": "Orb vallis cycle option",
     "type": "text",
@@ -395,7 +395,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "primeAccessNewsOption": "Acceso Prime",
+  "primeAccessNewsOption": "Prime Access",
   "@primeAccessNewsOption": {
     "description": "Warframe news option",
     "type": "text",
@@ -611,13 +611,13 @@
     "type": "text",
     "placeholders": {}
   },
-  "criticalChanceTitle": "Probabilidad crítica",
+  "criticalChanceTitle": "Probabilidad Crítica",
   "@criticalChanceTitle": {
     "description": "Weapon crictical chance",
     "type": "text",
     "placeholders": {}
   },
-  "cricticalMultiplierTitle": "Multiplicador Critcial",
+  "cricticalMultiplierTitle": "Multiplicador Crítico",
   "@cricticalMultiplierTitle": {
     "description": "Weapon critical multiplier",
     "type": "text",
