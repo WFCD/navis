@@ -40,8 +40,9 @@ class _CodexSearchBarState extends State<CodexSearchBar> {
     SearchController controller,
   ) async {
     final query = controller.text;
-    final options = (await _debounceSearch(query))?.toList();
+    if (query.isEmpty) return <Widget>[];
 
+    final options = (await _debounceSearch(query))?.toList();
     if (options == null) return _lastOptions;
 
     return _lastOptions = options
