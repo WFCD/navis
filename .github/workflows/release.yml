@@ -1,12 +1,7 @@
 name: Release
-concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
 on:
-  push:
-    branches:
-      - master
-      - beta
+  workflow_call:
+
 jobs:
   semantic-release:
     runs-on: ubuntu-latest
@@ -16,7 +11,6 @@ jobs:
         with:
           fetch-tags: true
           token: ${{ secrets.GH_TOKEN }}
-
       - name: Semantic Release
         id: semantic
         uses: cycjimmy/semantic-release-action@v4.1.0

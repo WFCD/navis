@@ -16,22 +16,19 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v4
-
       - name: Installing Flutter SDK
         uses: subosito/flutter-action@v2.16.0
         with:
           channel: stable
-
       - name: Install app dependencies
         run: flutter pub get
-
       - name: Unit Test app
         run: flutter test --coverage
-
-      # - name: Uploade coverage to Coveralls
-      #   uses: coverallsapp/github-action@master
-      #   with:
-      #     github-token: ${{ secrets.GITHUB_TOKEN }}
+  build_test:
+    needs: [test]
+    uses: ./.github/workflows/build_test.yml
+  release:
+    needs: [test, build_test]
+    uses: ./.github/workflows/release.yml
