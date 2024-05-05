@@ -28,7 +28,9 @@ jobs:
         run: flutter test --coverage
   build_test:
     needs: [test]
+    secrets: inherit
     uses: ./.github/workflows/build_test.yml
   release:
     needs: [test, build_test]
+    secrets: inherit
     uses: ./.github/workflows/release.yml
