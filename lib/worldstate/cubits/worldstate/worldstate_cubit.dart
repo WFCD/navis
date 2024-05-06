@@ -27,7 +27,7 @@ class WorldstateCubit extends HydratedCubit<SolsystemState> {
     try {
       Worldstate state;
 
-      if (await hasInternetConnection) {
+      if (await ConnectionManager.hasInternetConnection) {
         state = await repository.getWorldstate(
           language: Language.values.firstWhere(
             (e) => e.name == locale.languageCode,
@@ -40,7 +40,7 @@ class WorldstateCubit extends HydratedCubit<SolsystemState> {
         emit(WorldstateSuccess(state));
       }
 
-      state = await onReconnect(
+      state = await ConnectionManager.onReconnect(
         () async => repository.getWorldstate(
           language: Language.values.firstWhere(
             (e) => e.name == locale.languageCode,

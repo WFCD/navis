@@ -37,12 +37,13 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
 
       try {
         CodexSuccessfulSearch state;
-        if (await hasInternetConnection) {
+        if (await ConnectionManager.hasInternetConnection) {
           state = await _emitResults(text);
           emit(state);
         }
 
-        state = await onReconnect(() async => _emitResults(text));
+        state =
+            await ConnectionManager.onReconnect(() async => _emitResults(text));
         emit(state);
       } catch (error, stackTrace) {
         await Sentry.captureException(

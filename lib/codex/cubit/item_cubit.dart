@@ -15,11 +15,13 @@ class ItemCubit extends Cubit<ItemState> {
   Future<void> fetchItem(String uniqueName) async {
     try {
       Item item;
-      if (await hasInternetConnection) {
+      if (await ConnectionManager.hasInternetConnection) {
         item = await repo.fetchItem(uniqueName);
       }
 
-      item = await onReconnect(() async => repo.fetchItem(uniqueName));
+      item = await ConnectionManager.onReconnect(
+        () async => repo.fetchItem(uniqueName),
+      );
 
       emit(ItemFetchSucess(item));
     } catch (e, s) {

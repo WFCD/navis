@@ -17,11 +17,11 @@ class DarvodealCubit extends HydratedCubit<DarvodealState> {
 
     try {
       Item? info;
-      if (await hasInternetConnection) {
+      if (await ConnectionManager.hasInternetConnection) {
         info = await repository.getDealInfo(uniqueName, name);
       }
 
-      info = await onReconnect(
+      info = await ConnectionManager.onReconnect(
         () async => repository.getDealInfo(uniqueName, name),
       );
 
