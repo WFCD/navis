@@ -5,9 +5,12 @@
 [![Supported by the Warframe Community Developers][wfcd_badge]][wfcd_link]
 [![Discord][discord_shield]][discord_invite]
 
-[![Google Play Badge][google_play_badge]][google_play_link] [![App Store Badge](assets/app-store-badge.svg)](https://apps.apple.com/us/app/cephalon-navis/id1516388397)
+<a href='https://play.google.com/store/apps/details?id=com.cephalon.navis&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src='assets/google-play-badge.svg' height=100/></a>
+<a href='https://apps.apple.com/us/app/cephalon-navis/id1516388397'><img alt='Get it on the App Store' src='assets/app-store-badge.svg' height=100/></a>
 
 Cephalon Navis is an Android app inspired by [Warframe Hub](https://hub.warframestat.us/). Navis for short uses the [WarframeStat.us API](https://docs.warframestat.us/) to display as much useful and necessary information to help you as you travel the solar system without leaving your game.
+
+<a href="https://www.buymeacoffee.com/HydroNav" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/arial-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
 
 ### Features:
 
