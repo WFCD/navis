@@ -15,7 +15,7 @@ dependencies:
   flutter_custom_tabs: ^2.0.0+1
   html: ^0.15.2
   intl: ^0.18.0
-  warframestat_client: ^3.6.10
+  warframestat_client: ^3.7.0
 
 dependency_overrides: 
   web: 0.3.0
