@@ -49,14 +49,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.18.0"
-  compute:
-    dependency: transitive
-    description:
-      name: compute
-      sha256: b70190d59352a267a9765a77b97d0f619874c84d30c5193ae71050ee22ab2ef7
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.0.2"
   crypto:
     dependency: transitive
     description:
@@ -329,10 +321,10 @@ packages:
     dependency: "direct main"
     description:
       name: warframestat_client
-      sha256: ba5ab56c2bc4117d6742323b0b55b4dee0a21308db59ff12a8e20e0a8e5f183c
+      sha256: "5d3f348fcf7663f37eaaf7aa14a8f7f52788dd925ec8e02a92ee28a81f869746"
       url: "https://pub.dev"
     source: hosted
-    version: "3.6.10"
+    version: "3.7.0"
   web:
     dependency: "direct overridden"
     description:
