@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_settings_ui/flutter_settings_ui.dart';
@@ -92,7 +94,7 @@ class AboutApp extends AbstractSettingsTile {
             ),
             SizedBoxSpacer.spacerHeight12,
             Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 IconButton(
                   icon: const Icon(
@@ -112,14 +114,23 @@ class AboutApp extends AbstractSettingsTile {
                   splashColor: Colors.transparent,
                   onPressed: () => projectPage.launchLink(context),
                 ),
-                SizedBoxSpacer.spacerWidth8,
                 IconButton(
-                  icon:
-                      const Icon(SimpleIcons.discord, color: Color(0xFF7289DA)),
+                  icon: const Icon(
+                    SimpleIcons.discord,
+                    color: Color(0xFF7289DA),
+                  ),
                   iconSize: iconSize,
                   splashColor: Colors.transparent,
                   onPressed: () => discordInvite.launchLink(context),
                 ),
+                if (!Platform.isIOS)
+                  IconButton(
+                    onPressed: () => buyMeCoffee.launchLink(context),
+                    icon: const Icon(
+                      SimpleIcons.buymeacoffee,
+                      color: Color(0xFFFFDD00),
+                    ),
+                  )
               ],
             ),
           ],
