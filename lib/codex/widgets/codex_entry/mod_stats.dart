@@ -36,9 +36,9 @@ class ModStats extends StatelessWidget {
       modSet: mod.modSet,
       maxRank: mod.fusionLimit,
       rank: rank,
-      drain: mod.baseDrain + rank,
+      drain: mod.baseDrain != null ? mod.baseDrain! + rank : null,
       polarity: mod.polarity,
-      rarity: mod.rarity!.name,
+      rarity: mod.rarity ?? Rarity.legendary,
     );
   }
 
@@ -49,14 +49,12 @@ class ModStats extends StatelessWidget {
 
     final levelStats = mod.levelStats;
 
-    // Already being checked for null.
-    // ignore: avoid-non-null-assertion
     if (mod.levelStats != null && levelStats!.length >= statsLimit) {
       return Padding(
         padding: padding,
         child: _ModWithStats(
           levels: levelStats.length,
-          maxRank: mod.fusionLimit.toDouble(),
+          maxRank: mod.fusionLimit,
           builder: (_, rank) => _buildRankedMod(rank),
         ),
       );
@@ -70,11 +68,11 @@ class ModStats extends StatelessWidget {
         stats: _modDescription(),
         maxRank: mod.fusionLimit,
         rank: 0,
-        drain: (mod.baseDrain.isNegative) ? mod.fusionLimit : mod.baseDrain,
+        drain: mod.baseDrain,
         polarity: mod.polarity,
         compatName: mod.compatName,
         modSet: mod.modSet,
-        rarity: mod.rarity!.name,
+        rarity: mod.rarity ?? Rarity.legendary,
       ),
     );
   }
@@ -90,7 +88,7 @@ class _ModWithStats extends StatefulWidget {
   });
 
   final int levels;
-  final double maxRank;
+  final int? maxRank;
   final BuildRankedMod builder;
 
   @override
@@ -118,13 +116,14 @@ class __ModWithStatsState extends State<_ModWithStats> {
       builder: (context, snapshot) {
         return Column(
           children: [
-            Slider(
-              label: context.l10n.modLevelLabel(snapshot.data ?? 0),
-              value: snapshot.data?.toDouble() ?? 0.0,
-              max: widget.maxRank,
-              divisions: widget.levels - 1,
-              onChanged: onChanged,
-            ),
+            if (widget.maxRank != null)
+              Slider(
+                label: context.l10n.modLevelLabel(snapshot.data ?? 0),
+                value: snapshot.data?.toDouble() ?? 0.0,
+                max: widget.maxRank!.toDouble(),
+                divisions: widget.levels - 1,
+                onChanged: onChanged,
+              ),
             widget.builder(context, snapshot.data ?? 0),
           ],
         );
@@ -159,16 +158,16 @@ class _ModBuilder extends StatelessWidget {
   final String stats;
   final String? compatName;
   final String? modSet;
-  final int maxRank;
+  final int? maxRank;
   final int rank;
   final int? drain;
   final String? polarity;
-  final String rarity;
+  final Rarity rarity;
 
   @override
   Widget build(BuildContext context) {
     switch (rarity) {
-      case 'Rare':
+      case Rarity.rare:
         return ModFrame.rare(
           image: imageUrl,
           name: name,
@@ -181,7 +180,7 @@ class _ModBuilder extends StatelessWidget {
           polarity: polarity,
           rarity: rarity,
         );
-      case 'Uncommon':
+      case Rarity.uncommon:
         return ModFrame.uncommon(
           image: imageUrl,
           name: name,
@@ -194,7 +193,7 @@ class _ModBuilder extends StatelessWidget {
           polarity: polarity,
           rarity: rarity,
         );
-      case 'Legendary':
+      case Rarity.legendary:
         return ModFrame.primed(
           image: imageUrl,
           name: name,
@@ -207,7 +206,7 @@ class _ModBuilder extends StatelessWidget {
           polarity: polarity,
           rarity: rarity,
         );
-      default:
+      case Rarity.common:
         return ModFrame.common(
           image: imageUrl,
           name: name,

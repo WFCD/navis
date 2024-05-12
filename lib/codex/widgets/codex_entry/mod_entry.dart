@@ -11,6 +11,7 @@ import 'package:navis/codex/utils/mod_polarity.dart';
 import 'package:navis/codex/widgets/codex_entry/polarity.dart';
 import 'package:navis/resources/resources.dart';
 import 'package:navis_ui/navis_ui.dart';
+import 'package:warframestat_client/warframestat_client.dart';
 
 class ModFrame extends StatelessWidget {
   const ModFrame._({
@@ -39,11 +40,11 @@ class ModFrame extends StatelessWidget {
     required String name,
     required String stats,
     required String compatName,
-    required int maxRank,
+    required int? maxRank,
     required int rank,
     required int? baseDrain,
     required String? polarity,
-    required String rarity,
+    required Rarity rarity,
     String? modSet,
     String? wikiaUrl,
   }) {
@@ -74,11 +75,11 @@ class ModFrame extends StatelessWidget {
     required String name,
     required String stats,
     required String compatName,
-    required int maxRank,
+    required int? maxRank,
     required int rank,
     required int? baseDrain,
     required String? polarity,
-    required String rarity,
+    required Rarity rarity,
     String? modSet,
     String? wikiaUrl,
   }) {
@@ -109,11 +110,11 @@ class ModFrame extends StatelessWidget {
     required String name,
     required String stats,
     required String compatName,
-    required int maxRank,
+    required int? maxRank,
     required int rank,
     required int? baseDrain,
     required String? polarity,
-    required String rarity,
+    required Rarity rarity,
     String? modSet,
     String? wikiaUrl,
   }) {
@@ -144,11 +145,11 @@ class ModFrame extends StatelessWidget {
     required String name,
     required String stats,
     required String compatName,
-    required int maxRank,
+    required int? maxRank,
     required int rank,
     required int? baseDrain,
     required String? polarity,
-    required String rarity,
+    required Rarity rarity,
     String? modSet,
     String? wikiaUrl,
   }) {
@@ -184,13 +185,13 @@ class ModFrame extends StatelessWidget {
 
   final String? polarity;
 
-  final String rarity;
+  final Rarity rarity;
 
   final String? modSet;
 
   final String? wikiaUrl;
 
-  final int maxRank;
+  final int? maxRank;
 
   final int rank;
 
@@ -268,12 +269,12 @@ class ModFrame extends StatelessWidget {
                       Colors.transparent,
                       () {
                         switch (rarity) {
-                          case 'Common':
+                          case Rarity.common:
                             return const Color(0xFFCA9A87);
-                          case 'Rare':
-                            return const Color(0xFFFEEBC1);
-                          default:
+                          case Rarity.uncommon || Rarity.legendary:
                             return Colors.white;
+                          case Rarity.rare:
+                            return const Color(0xFFFEEBC1);
                         }
                       }(),
                     ],
@@ -317,20 +318,22 @@ class ModFrame extends StatelessWidget {
               bottom: -40,
               child: frameBottom,
             ),
-            Positioned(
-              bottom: rarity != 'Legendary' ? -12.5 : -26,
-              child: _rankCompleteLine,
-            ),
-            Positioned(
-              bottom: rarity != 'Legendary' ? -14 : -26,
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  for (int i = 0; i < maxRank; i++)
-                    if (i < rank) _rankSlotActive else _rankSlotEmpty,
-                ],
+            if (rank == maxRank && maxRank != 0)
+              Positioned(
+                bottom: rarity != Rarity.legendary ? -12.5 : -26,
+                child: _rankCompleteLine,
               ),
-            ),
+            if (maxRank != null)
+              Positioned(
+                bottom: rarity != Rarity.legendary ? -14 : -26,
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    for (int i = 0; i < maxRank!; i++)
+                      if (i < rank) _rankSlotActive else _rankSlotEmpty,
+                  ],
+                ),
+              ),
             Positioned(
               bottom: -10,
               right: -3,
@@ -375,7 +378,7 @@ class ModFrame extends StatelessWidget {
                 right: 9,
                 child: Polarity(
                   polarity: polarity!,
-                  rarity: rarity.fromString(),
+                  rarity: rarity,
                 ),
               ),
             Positioned(
@@ -390,7 +393,7 @@ class ModFrame extends StatelessWidget {
               ),
             ),
             Positioned(
-              bottom: 10,
+              bottom: 5,
               child: Text(
                 compatName,
                 textAlign: TextAlign.center,
@@ -444,14 +447,14 @@ class _ModHeader extends StatelessWidget {
   }
 }
 
-Color _textColor(String rarity) {
+Color _textColor(Rarity rarity) {
   switch (rarity) {
-    case 'Common':
+    case Rarity.common:
       return const Color(0xFFF5DEB3);
-    case 'Rare':
-      return const Color(0xFFFEEBC1);
-    default:
+    case Rarity.uncommon || Rarity.legendary:
       return Colors.white;
+    case Rarity.rare:
+      return const Color(0xFFFEEBC1);
   }
 }
 
@@ -464,7 +467,7 @@ class _ModDrescription extends StatelessWidget {
 
   final String name;
   final String stats;
-  final String rarity;
+  final Rarity rarity;
 
   @override
   Widget build(BuildContext context) {

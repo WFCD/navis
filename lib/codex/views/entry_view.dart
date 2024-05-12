@@ -31,8 +31,7 @@ class _Overview extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isMod =
-        item.type == ItemType.mods || item.type == ItemType.necramechMod;
+    final isMod = item.type.name.contains('Mod');
     final patchlogs = item.patchlogs;
     final heightRatio = context.mediaQuery.size.height / 100;
     final height = isMod ? kToolbarHeight : heightRatio * 25;

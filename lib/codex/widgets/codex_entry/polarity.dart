@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:navis/codex/utils/mod_polarity.dart';
-
-enum Rarity { common, uncommon, rare, legendary }
+import 'package:warframestat_client/warframestat_client.dart';
 
 extension StringX on String {
   Rarity fromString() {
