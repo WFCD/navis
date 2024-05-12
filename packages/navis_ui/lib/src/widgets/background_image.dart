@@ -7,11 +7,13 @@ class BackgroundImage extends StatelessWidget {
     Key? key,
     this.imageUrl,
     this.padding = EdgeInsets.zero,
+    this.height = 150,
     required this.child,
   }) : super(key: key);
 
   final String? imageUrl;
   final EdgeInsetsGeometry padding;
+  final double height;
   final Widget child;
 
   @override
@@ -26,7 +28,7 @@ class BackgroundImage extends StatelessWidget {
 
     return CachedNetworkImage(
       imageUrl: imageUrl!,
-      height: 350,
+      height: height,
       width: 150,
       imageBuilder: (context, imageProvider) {
         return ImageContainer(
