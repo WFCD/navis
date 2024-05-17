@@ -70,8 +70,8 @@ class CodexSearchView extends StatelessWidget {
                 itemCount: state.results.length,
                 itemBuilder: (BuildContext context, int index) {
                   return OpenContainer(
-                    closedColor: Theme.of(context).colorScheme.background,
-                    openColor: Theme.of(context).colorScheme.background,
+                    closedColor: Theme.of(context).colorScheme.surface,
+                    openColor: Theme.of(context).colorScheme.surface,
                     openBuilder: (_, __) {
                       return EntryView(item: state.results[index]);
                     },

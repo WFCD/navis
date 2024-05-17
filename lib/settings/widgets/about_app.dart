@@ -130,7 +130,7 @@ class AboutApp extends AbstractSettingsTile {
                       SimpleIcons.buymeacoffee,
                       color: Color(0xFFFFDD00),
                     ),
-                  )
+                  ),
               ],
             ),
           ],

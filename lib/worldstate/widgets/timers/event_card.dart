@@ -44,7 +44,7 @@ class EventCard extends StatelessWidget {
                       event.tooltip != null ? Text(event.tooltip ?? '') : null,
                   trailing: TextButton(
                     style: ButtonStyle(
-                      foregroundColor: MaterialStateProperty.all(
+                      foregroundColor: WidgetStateProperty.all(
                         Theme.of(context).textTheme.labelLarge?.color,
                       ),
                     ),

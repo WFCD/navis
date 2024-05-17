@@ -46,7 +46,7 @@ class BasicItemInfo extends SliverPersistentHeaderDelegate {
                 if (isVaulted ?? false)
                   TextButton(
                     style: ButtonStyle(
-                      foregroundColor: MaterialStateProperty.all(
+                      foregroundColor: WidgetStateProperty.all(
                         context.theme.colorScheme.error,
                       ),
                     ),
@@ -56,7 +56,7 @@ class BasicItemInfo extends SliverPersistentHeaderDelegate {
                 if (wikiaUrl != null)
                   TextButton(
                     style: ButtonStyle(
-                      foregroundColor: MaterialStateProperty.all(
+                      foregroundColor: WidgetStateProperty.all(
                         context.theme.textTheme.labelLarge?.color,
                       ),
                     ),
