@@ -1,7 +1,7 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/codex/codex.dart';
+import 'package:navis/codex/cubit/rank_slider_cubit.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:warframestat_client/warframestat_client.dart';
 
@@ -10,38 +10,33 @@ class ModStats extends StatelessWidget {
 
   final Mod mod;
 
-  Widget _buildRankedMod(int rank) {
-    return _ModBuilder(mod: mod, rank: rank);
-  }
-
   @override
   Widget build(BuildContext context) {
     const padding = EdgeInsets.only(top: 16);
     const statsLimit = 3;
 
     final levelStats = mod.levelStats;
-
-    if (mod.levelStats != null && levelStats!.length >= statsLimit) {
-      return Padding(
-        padding: padding,
-        child: _ModWithStats(
-          levels: levelStats.length,
-          maxRank: mod.fusionLimit,
-          builder: (_, rank) => _buildRankedMod(rank),
-        ),
-      );
-    }
+    final hasRanks = mod.levelStats != null && levelStats!.length >= statsLimit;
 
     return Padding(
       padding: padding,
-      child: _ModBuilder(mod: mod),
+      child: !hasRanks
+          ? _ModBuilder(mod: mod)
+          : BlocProvider(
+              create: (context) => RankSliderCubit(),
+              child: _ModWithStats(
+                levels: levelStats.length,
+                maxRank: mod.fusionLimit,
+                builder: (_, rank) => _ModBuilder(mod: mod, rank: rank),
+              ),
+            ),
     );
   }
 }
 
 typedef BuildRankedMod = Widget Function(BuildContext, int);
 
-class _ModWithStats extends StatefulWidget {
+class _ModWithStats extends StatelessWidget {
   const _ModWithStats({
     required this.levels,
     required this.maxRank,
@@ -53,50 +48,24 @@ class _ModWithStats extends StatefulWidget {
   final BuildRankedMod builder;
 
   @override
-  __ModWithStatsState createState() => __ModWithStatsState();
-}
-
-class __ModWithStatsState extends State<_ModWithStats> {
-  StreamController<int>? _controller;
-
-  @override
-  void initState() {
-    super.initState();
-    _controller = StreamController<int>();
-  }
-
-  void onChanged(double value) {
-    _controller?.sink.add(value.toInt());
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return StreamBuilder<int>(
-      initialData: 0,
-      stream: _controller?.stream,
-      builder: (context, snapshot) {
+    return BlocBuilder<RankSliderCubit, int>(
+      builder: (context, state) {
         return Column(
           children: [
-            if (widget.maxRank != null)
+            if (maxRank != null)
               Slider(
-                label: context.l10n.modLevelLabel(snapshot.data ?? 0),
-                value: snapshot.data?.toDouble() ?? 0.0,
-                max: widget.maxRank!.toDouble(),
-                divisions: widget.levels - 1,
-                onChanged: onChanged,
+                label: context.l10n.modLevelLabel(state),
+                value: state.toDouble(),
+                max: maxRank!.toDouble(),
+                divisions: levels - 1,
+                onChanged: BlocProvider.of<RankSliderCubit>(context).update,
               ),
-            widget.builder(context, snapshot.data ?? 0),
+            builder(context, state),
           ],
         );
       },
     );
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    _controller?.close();
-    _controller = null;
   }
 }
 
@@ -132,16 +101,20 @@ class _ModBuilder extends StatelessWidget {
             );
           }
 
-          final painter = switch (rarity) {
-            Rarity.common ||
-            Rarity.uncommon ||
-            Rarity.rare =>
-              CommonModPainter(assets: data!, mod: mod, rank: rank),
-            Rarity.legendary =>
-              LegendaryModPainter(assets: data!, mod: mod, rank: rank)
-          };
+          return BlocBuilder<RankSliderCubit, int>(
+            builder: (context, state) {
+              final painter = switch (rarity) {
+                Rarity.common ||
+                Rarity.uncommon ||
+                Rarity.rare =>
+                  CommonModPainter(assets: data!, mod: mod, rank: rank),
+                Rarity.legendary =>
+                  LegendaryModPainter(assets: data!, mod: mod, rank: rank)
+              };
 
-          return CustomPaint(painter: painter, size: const Size(256, 512));
+              return CustomPaint(painter: painter, size: const Size(256, 512));
+            },
+          );
         },
       ),
     );
