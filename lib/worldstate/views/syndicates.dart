@@ -190,7 +190,7 @@ class _SyndicatePageTabletState extends State<_SyndicatePageTablet> {
               stream: _controller?.stream,
               builder: (_, snapshot) {
                 return AnimatedSwitcher(
-                  duration: kAnimationShort,
+                  duration: kThemeAnimationDuration,
                   switchInCurve: Curves.easeInCubic,
                   switchOutCurve: Curves.easeOutCubic,
                   child: snapshot.data,

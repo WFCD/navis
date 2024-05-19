@@ -22,14 +22,10 @@ class InvasionProgress extends StatelessWidget {
     return Tooltip(
       message: '$attackingFaction vs $defendingFaction',
       child: Material(
-        // It's what worked for the style.
-        // ignore: no-magic-number
         elevation: 4,
         color: Colors.transparent,
         child: AnimatedContainer(
-          duration: kAnimationLong,
-          // It's what worked for the style.
-          // ignore: no-magic-number
+          duration: kThemeAnimationDuration,
           height: 20,
           decoration: BoxDecoration(
             borderRadius: const BorderRadius.all(Radius.circular(4)),

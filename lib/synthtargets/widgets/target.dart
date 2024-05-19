@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:navis_ui/navis_ui.dart';
 import 'package:warframestat_client/warframestat_client.dart';
 
 class TargetInfo extends StatelessWidget {
@@ -10,8 +9,9 @@ class TargetInfo extends StatelessWidget {
   void _onExpansionChanged(BuildContext context, {bool isExpanded = false}) {
     if (isExpanded) {
       Future<void>.delayed(
-        kAnimationShort,
-        () => Scrollable.ensureVisible(context, duration: kAnimationShort),
+        kThemeAnimationDuration,
+        () => Scrollable.ensureVisible(context,
+            duration: kThemeAnimationDuration),
       );
     }
   }

@@ -1,11 +1,11 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:flutter/material.dart';
 import 'package:navis/codex/bloc/search_event.dart';
 import 'package:navis/codex/bloc/search_state.dart';
 import 'package:navis/codex/utils/result_filters.dart';
 import 'package:navis/utils/utils.dart';
-import 'package:navis_ui/navis_ui.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:warframestat_client/warframestat_client.dart';
@@ -82,7 +82,10 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
 
   EventTransformer<SearchCodex> _waitForUser() {
     return (event, mapper) {
-      return event.debounceTime(kAnimationLong).distinct().flatMap(mapper);
+      return event
+          .debounceTime(kThemeAnimationDuration)
+          .distinct()
+          .flatMap(mapper);
     };
   }
 }

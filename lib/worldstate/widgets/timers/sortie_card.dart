@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis/worldstate/cubits/worldstate_cubit.dart';
 import 'package:navis_ui/navis_ui.dart';
-import 'package:warframestat_client/warframestat_client.dart' show Variant;
+import 'package:warframestat_client/warframestat_client.dart';
 
 class SortieCard extends StatelessWidget {
   const SortieCard({super.key});
@@ -22,6 +22,14 @@ class SortieCard extends StatelessWidget {
     return previousSortie?.expiry != nextSortie?.expiry;
   }
 
+  SortieMission toSortieMission(Variant mission) {
+    return SortieMission(
+      node: mission.node,
+      objective: mission.missionType,
+      modifier: mission.modifier,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<WorldstateCubit, SolsystemState>(
@@ -32,12 +40,13 @@ class SortieCard extends StatelessWidget {
           _ => null,
         };
 
+        final missions = sortie?.variants ?? [];
         final expiry = sortie?.expiry ?? DateTime.now();
 
-        return Sortie(
+        return SortieWidget(
           faction: sortie?.factionKey ?? sortie?.faction ?? '',
           boss: sortie?.boss ?? '',
-          variants: sortie?.variants ?? <Variant>[],
+          missions: missions.map(toSortieMission).toList(),
           timer: CountdownTimer(
             tooltip: context.l10n.countdownTooltip(expiry),
             expiry: expiry,

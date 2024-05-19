@@ -17,7 +17,7 @@ class ArbitrationCard extends StatelessWidget {
             _ => null
           };
 
-          final expiry = arbitration?.expiry ?? DateTime.now().add(kDelayLong);
+          final expiry = arbitration?.expiry ?? DateTime.now().add(expiryWait);
 
           return ListTile(
             leading: const AppIcon(WarframeSymbols.arbitrations, size: 50),

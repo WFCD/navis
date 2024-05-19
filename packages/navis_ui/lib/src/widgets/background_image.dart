@@ -70,24 +70,30 @@ class ImageContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return AnimatedContainer(
+      duration: kThemeAnimationDuration,
       decoration: BoxDecoration(
         image: DecorationImage(
           image: imageProvider,
           fit: BoxFit.cover,
         ),
       ),
-      child: Container(
+      child: Align(
         alignment: Alignment.bottomCenter,
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.bottomCenter,
-            end: Alignment.topCenter,
-            stops: const <double>[0.3, 1],
-            colors: <Color>[Colors.black.withOpacity(0.7), Colors.transparent],
+        child: DecoratedBox(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.bottomCenter,
+              end: Alignment.topCenter,
+              stops: const <double>[0.3, 1],
+              colors: <Color>[
+                Colors.black.withOpacity(0.7),
+                Colors.transparent
+              ],
+            ),
           ),
+          child: Padding(padding: padding, child: child),
         ),
-        child: Padding(padding: padding, child: child),
       ),
     );
   }

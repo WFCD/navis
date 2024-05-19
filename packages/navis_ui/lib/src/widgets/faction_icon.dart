@@ -16,13 +16,10 @@ class FactionIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Factions faction;
-
-    try {
-      faction = Factions.values.byName(name.toLowerCase());
-    } catch (e) {
-      faction = Factions.unknown;
-    }
+    final faction = Factions.values.firstWhere(
+      (f) => f == name.toLowerCase(),
+      orElse: () => Factions.unknown,
+    );
 
     return AppIcon(
       faction.factionIcon,
