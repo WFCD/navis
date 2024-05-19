@@ -26,7 +26,7 @@ class ModStats extends StatelessWidget {
               create: (context) => RankSliderCubit(),
               child: _ModWithStats(
                 levels: levelStats.length,
-                maxRank: mod.fusionLimit,
+                maxRank: mod.fusionLimit ?? 0,
                 builder: (_, rank) => _ModBuilder(mod: mod, rank: rank),
               ),
             ),
@@ -44,7 +44,7 @@ class _ModWithStats extends StatelessWidget {
   });
 
   final int levels;
-  final int? maxRank;
+  final int maxRank;
   final BuildRankedMod builder;
 
   @override
@@ -53,11 +53,11 @@ class _ModWithStats extends StatelessWidget {
       builder: (context, state) {
         return Column(
           children: [
-            if (maxRank != null)
+            if (maxRank == 0)
               Slider(
                 label: context.l10n.modLevelLabel(state),
                 value: state.toDouble(),
-                max: maxRank!.toDouble(),
+                max: maxRank.toDouble(),
                 divisions: levels - 1,
                 onChanged: BlocProvider.of<RankSliderCubit>(context).update,
               ),
