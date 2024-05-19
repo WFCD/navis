@@ -12,7 +12,8 @@ abstract class ConnectionManager {
   static Future<bool> get hasInternetConnection =>
       _connectionChecker.isConnected;
 
-  static Future<T> onReconnect<T>(FutureOr<T> Function() todo) async {
+  static Future<T> call<T>(FutureOr<T> Function() todo) async {
+    if (await hasInternetConnection) return await todo();
     await _connectionChecker.untilConnects();
 
     return await todo();

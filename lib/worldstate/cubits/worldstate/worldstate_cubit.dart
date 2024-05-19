@@ -25,22 +25,7 @@ class WorldstateCubit extends HydratedCubit<SolsystemState> {
     bool forceUpdate = false,
   }) async {
     try {
-      Worldstate state;
-
-      if (await ConnectionManager.hasInternetConnection) {
-        state = await repository.getWorldstate(
-          language: Language.values.firstWhere(
-            (e) => e.name == locale.languageCode,
-            orElse: () => Language.en,
-          ),
-          forceUpdate: forceUpdate,
-        )
-          ..clean();
-
-        emit(WorldstateSuccess(state));
-      }
-
-      state = await ConnectionManager.onReconnect(
+      final state = await ConnectionManager.call(
         () async => repository.getWorldstate(
           language: Language.values.firstWhere(
             (e) => e.name == locale.languageCode,
@@ -48,9 +33,9 @@ class WorldstateCubit extends HydratedCubit<SolsystemState> {
           ),
           forceUpdate: forceUpdate,
         ),
-      )
-        ..clean();
+      );
 
+      state.clean();
       emit(WorldstateSuccess(state));
     } catch (e, s) {
       final current = state;

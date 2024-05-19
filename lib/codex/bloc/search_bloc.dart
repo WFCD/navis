@@ -22,7 +22,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
 
   final WorldstateRepository repository;
 
-  List<MinimalItem> _results = [];
+  List<MinimalItem> _originalResults = [];
 
   Future<void> _searchCodex(
     SearchCodex event,
@@ -36,15 +36,12 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
       emit(CodexSearching());
 
       try {
-        CodexSuccessfulSearch state;
-        if (await ConnectionManager.hasInternetConnection) {
-          state = await _emitResults(text);
-          emit(state);
-        }
+        final results = await ConnectionManager.call(
+          () async => repository.searchItems(text),
+        );
 
-        state =
-            await ConnectionManager.onReconnect(() async => _emitResults(text));
-        emit(state);
+        _originalResults = results;
+        emit(CodexSuccessfulSearch(results));
       } catch (error, stackTrace) {
         await Sentry.captureException(
           error,
@@ -57,19 +54,13 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
     }
   }
 
-  Future<CodexSuccessfulSearch> _emitResults(String query) async {
-    _results = await repository.searchItems(query);
-
-    return CodexSuccessfulSearch(_results);
-  }
-
   Future<void> _filterResults(
     FilterResults event,
     Emitter<SearchState> emit,
   ) async {
     emit(CodexSearching());
 
-    final originalResults = List<MinimalItem>.from(_results);
+    final originalResults = List<MinimalItem>.from(_originalResults);
     if (event.category == WarframeItemCategory.all) {
       return emit(CodexSuccessfulSearch(originalResults));
     } else {
