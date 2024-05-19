@@ -1070,10 +1070,10 @@ packages:
     dependency: "direct main"
     description:
       name: sentry_hive
-      sha256: "06d662860d0c9077db06c2d018e7d21d1f8859f985d46280f6b0b2e2bb956e6a"
+      sha256: fe9942aee20eea493f789b2c1d1e839e059ff93528ad68f829dd06faf738019e
       url: "https://pub.dev"
     source: hosted
-    version: "8.1.0"
+    version: "8.2.0"
   sentry_logging:
     dependency: "direct main"
     description:
@@ -1411,10 +1411,10 @@ packages:
     dependency: "direct main"
     description:
       name: warframestat_client
-      sha256: "5d3f348fcf7663f37eaaf7aa14a8f7f52788dd925ec8e02a92ee28a81f869746"
+      sha256: "1bca0d46e32fd0021780f1603ac9adcafedb40e8f06fb2c6596e07de55a65a2b"
       url: "https://pub.dev"
     source: hosted
-    version: "3.7.0"
+    version: "3.8.0"
   watcher:
     dependency: transitive
     description:
@@ -1503,5 +1503,5 @@ packages:
     source: hosted
     version: "3.1.2"
 sdks:
-  dart: ">=3.3.0 <4.0.0"
+  dart: ">=3.4.0 <4.0.0"
   flutter: ">=3.19.0"
