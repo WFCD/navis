@@ -27,15 +27,18 @@ class _RivenDot extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final color = Theme.of(context).colorScheme.secondary;
+    const size = Size.square(12);
 
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 4),
-      child: Container(
-        constraints: const BoxConstraints.expand(width: 15, height: 15),
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          border: Border.all(color: color),
-          color: enable ? color : Colors.transparent,
+      padding: const EdgeInsets.symmetric(horizontal: 2),
+      child: SizedBox.fromSize(
+        size: size,
+        child: DecoratedBox(
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            border: Border.all(color: color),
+            color: enable ? color : Colors.transparent,
+          ),
         ),
       ),
     );
