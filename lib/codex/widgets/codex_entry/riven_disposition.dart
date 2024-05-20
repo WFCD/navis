@@ -13,23 +13,21 @@ class RivenDisposition extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
         for (int i = 0; i < maxDisposition; i++)
-          _RivenDot(
-            color: Theme.of(context).colorScheme.secondary,
-            enable: i < disposition,
-          ),
+          _RivenDot(enable: i < disposition),
       ],
     );
   }
 }
 
 class _RivenDot extends StatelessWidget {
-  const _RivenDot({required this.color, required this.enable});
+  const _RivenDot({required this.enable});
 
-  final Color color;
   final bool enable;
 
   @override
   Widget build(BuildContext context) {
+    final color = Theme.of(context).colorScheme.secondary;
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 4),
       child: Container(

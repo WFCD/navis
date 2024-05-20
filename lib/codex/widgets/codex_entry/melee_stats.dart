@@ -82,10 +82,11 @@ class MeleeStats extends StatelessWidget {
               text: Text(l10n.slideAttackTitle),
               child: Text('${melee.slideAttack}'),
             ),
-            RowItem(
-              text: Text(l10n.rivenDispositionTitle),
-              child: RivenDisposition(disposition: melee.disposition),
-            ),
+            if (melee.disposition != null)
+              RowItem(
+                text: Text(l10n.rivenDispositionTitle),
+                child: RivenDisposition(disposition: melee.disposition!),
+              ),
             RowItem(
               text: Text(l10n.statusChanceTitle),
               child: Text('${(melee.procChance * 100).roundToDouble()}%'),

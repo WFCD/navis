@@ -77,12 +77,13 @@ class GunStats extends StatelessWidget {
                 text: Text(l10n.reloadTitle),
                 child: Text(gun.reloadTime!.toStringAsFixed(2)),
               ),
-            RowItem(
-              text: Text(l10n.rivenDispositionTitle),
-              child: RivenDisposition(
-                disposition: gun.disposition,
+            if (gun.disposition != null)
+              RowItem(
+                text: Text(l10n.rivenDispositionTitle),
+                child: RivenDisposition(
+                  disposition: gun.disposition!,
+                ),
               ),
-            ),
             RowItem(
               text: Text(l10n.statusChanceTitle),
               child: Text(
