@@ -6,24 +6,24 @@ class FactionIcon extends StatelessWidget {
   const FactionIcon({
     Key? key,
     required this.name,
-    this.iconSize,
+    this.size,
     this.useFactionColor = true,
   }) : super(key: key);
 
   final String name;
-  final double? iconSize;
+  final double? size;
   final bool useFactionColor;
 
   @override
   Widget build(BuildContext context) {
     final faction = Factions.values.firstWhere(
-      (f) => f == name.toLowerCase(),
+      (f) => f.name == name.toLowerCase(),
       orElse: () => Factions.unknown,
     );
 
     return AppIcon(
       faction.factionIcon,
-      size: iconSize,
+      size: size,
       color: useFactionColor ? faction.iconColor : Colors.white,
     );
   }
