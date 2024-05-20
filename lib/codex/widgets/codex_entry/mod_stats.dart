@@ -53,7 +53,7 @@ class _ModWithStats extends StatelessWidget {
       builder: (context, state) {
         return Column(
           children: [
-            if (maxRank == 0)
+            if (maxRank != 0)
               Slider(
                 label: context.l10n.modLevelLabel(state),
                 value: state.toDouble(),
