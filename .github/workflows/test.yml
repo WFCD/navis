@@ -31,6 +31,7 @@ jobs:
     secrets: inherit
     uses: ./.github/workflows/build_test.yml
   release:
+    if: github.event_name != 'pull_request'
     needs: [test, build_test]
     secrets: inherit
     uses: ./.github/workflows/release.yml
