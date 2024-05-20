@@ -29,7 +29,7 @@ class SortieWidget extends StatelessWidget {
           ListTile(
             leading: FactionIcon(
               name: faction,
-              iconSize: iconSize,
+              size: iconSize,
             ),
             title: Text(boss, style: bossTextStlye),
             trailing: timer,

@@ -44,7 +44,7 @@ class ArchonHuntCard extends StatelessWidget {
         final expiry = archonHunt?.expiry ?? DateTime.now();
 
         return SortieWidget(
-          faction: archonHunt?.factionKey ?? archonHunt?.faction ?? '',
+          faction: archonHunt?.factionKey ?? '',
           boss: archonHunt?.boss ?? '',
           missions: missions.map(toSortieMission).toList(),
           timer: CountdownTimer(
