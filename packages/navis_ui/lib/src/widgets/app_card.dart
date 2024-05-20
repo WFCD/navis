@@ -21,6 +21,7 @@ class AppCard extends StatelessWidget {
     return Card(
       color: color,
       margin: margin,
+      elevation: 4,
       child: Padding(
         padding: padding,
         child: title != null
