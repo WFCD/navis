@@ -54,25 +54,23 @@ class _BuildComponent extends StatelessWidget {
   final Component component;
 
   void _onTap(BuildContext context) {
-    final drops = component.drops;
-
-    if (drops != null && drops.isNotEmpty) {
-      Navigator.of(context).push(
-        MaterialPageRoute<void>(
-          builder: (context) => ComponentDrops(drops: drops),
-        ),
-      );
-    }
+    Navigator.of(context).push(
+      MaterialPageRoute<void>(
+        builder: (context) => ComponentDrops(drops: component.drops!),
+      ),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     const imageBoxSize = 60.0;
+    final drops = component.drops;
+    final hasDrops = drops != null && drops.isNotEmpty;
 
     return Tooltip(
       message: component.name,
       child: InkWell(
-        onTap: () => _onTap(context),
+        onTap: hasDrops ? () => _onTap(context) : null,
         child: SizedBox.square(
           dimension: imageBoxSize,
           child: Stack(
@@ -106,21 +104,22 @@ class _BuildBlueprint extends StatelessWidget {
   final List<Drop>? drops;
 
   void _onTap(BuildContext context) {
-    if (drops != null && (drops?.isNotEmpty ?? false)) {
-      Navigator.of(context).push(
-        MaterialPageRoute<void>(
-          builder: (context) => ComponentDrops(drops: drops!),
-        ),
-      );
-    }
+    Navigator.of(context).push(
+      MaterialPageRoute<void>(
+        builder: (context) => ComponentDrops(drops: drops!),
+      ),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
+    final hasDrops = drops != null && (drops?.isNotEmpty ?? false);
+
     return InkWell(
-      onTap: () => _onTap(context),
+      onTap: hasDrops ? () => _onTap(context) : null,
       child: CircleAvatar(
         radius: 25,
+        // backgroundImage: CachedNetworkImageProvider(blueprintImage),
         foregroundImage: CachedNetworkImageProvider(componentImage),
       ),
     );
