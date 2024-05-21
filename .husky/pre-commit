@@ -1,4 +1,6 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
+dart format --line-length 80 --set-exit-if-changed lib test
+flutter analyze
 flutter test
