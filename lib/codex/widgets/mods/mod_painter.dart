@@ -92,7 +92,7 @@ abstract class ModPainter extends CustomPainter {
           textDirection: TextDirection.ltr,
         )
           ..layout()
-          ..paint(canvas, const Offset(232, 102));
+          ..paint(canvas, const Offset(218, 102));
       } else {
         TextPainter(
           text: TextSpan(
@@ -103,20 +103,18 @@ abstract class ModPainter extends CustomPainter {
           textDirection: TextDirection.ltr,
         )
           ..layout()
-          ..paint(canvas, const Offset(232, 101));
+          ..paint(canvas, const Offset(218, 101));
       }
     }
 
     final polarity = assets.polarity;
+    const polarityPosition = Offset(228, 100);
     if (polarity != null && drain != null) {
       if (drain! < 0) {
-        final rect = const Offset(214, 100) & const Size(17, 17);
-        paintPolarity(canvas, rect);
-      } else if (drain! >= 10) {
-        final rect = const Offset(214, 100) & const Size(18, 18);
+        final rect = polarityPosition & const Size(17, 17);
         paintPolarity(canvas, rect);
       } else {
-        final rect = const Offset(214, 100) & const Size(18, 18);
+        final rect = polarityPosition & const Size(18, 18);
         paintPolarity(canvas, rect);
       }
     }
