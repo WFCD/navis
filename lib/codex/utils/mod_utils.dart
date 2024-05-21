@@ -5,7 +5,8 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:warframestat_client/warframestat_client.dart';
 
-const framPath = 'https://cdn.warframestat.us/genesis/modFrames';
+const imgHost = 'https://cdn.warframestat.us/genesis';
+const imgHostPath = {'polarities': 'img/polarities', 'frames': 'modFrames'};
 
 typedef ModBackground = ({
   ui.Image background,
@@ -61,10 +62,9 @@ Future<ui.Image> fetchImage(String part) async {
 }
 
 String polarityUrl(String polarity) {
-  const polarityPath = 'https://cdn.warframestat.us/genesis/img/polarities';
-  final polarityUrl = Uri.parse('$polarityPath/${polarity.toLowerCase()}.png');
-
-  return polarityUrl.toString();
+  return Uri.parse(
+    '$imgHost/${imgHostPath['polarities']}/${polarity.toLowerCase()}.png',
+  ).toString();
 }
 
 class ModParts {
@@ -79,11 +79,13 @@ class ModParts {
   final Rarity rarity;
 
   String _partUrl(String part) {
-    return Uri.parse('$framPath/${rarity.toUniqueName()}$part.png').toString();
+    return Uri.parse(
+      '$imgHost/${imgHostPath['frames']}/${rarity.toUniqueName()}$part.png',
+    ).toString();
   }
 
   String _assetUrl(String asset) {
-    return Uri.parse('$framPath/$asset.png').toString();
+    return Uri.parse('$imgHost/${imgHostPath['frames']}/$asset.png').toString();
   }
 
   Future<ModBackground> fetchBackground() async {

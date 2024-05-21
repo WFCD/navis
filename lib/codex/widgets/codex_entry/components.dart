@@ -119,7 +119,7 @@ class _BuildBlueprint extends StatelessWidget {
       onTap: hasDrops ? () => _onTap(context) : null,
       child: CircleAvatar(
         radius: 25,
-        // backgroundImage: CachedNetworkImageProvider(blueprintImage),
+        backgroundImage: CachedNetworkImageProvider(blueprintImage),
         foregroundImage: CachedNetworkImageProvider(componentImage),
       ),
     );
