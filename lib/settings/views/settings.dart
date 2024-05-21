@@ -61,12 +61,17 @@ class _SettingsView extends StatelessWidget {
       _ => <String, bool>{}
     };
 
+    final theme = SettingsThemeData(
+      titleTextColor: context.theme.colorScheme.primary,
+      settingsListBackground: context.theme.scaffoldBackgroundColor,
+    );
+
     return SettingsList(
-      platform: DevicePlatform.android,
+      lightTheme: theme,
+      darkTheme: theme,
       sections: [
-        // const SettingsSection(tiles: [PlatformSelect()]),
         SettingsSection(
-          title: const Text('Behavior'),
+          title: Text(l10n.behaviorTitle),
           tiles: [
             SettingsTile.navigation(
               title: Text(l10n.appLangTitle),
@@ -93,7 +98,7 @@ class _SettingsView extends StatelessWidget {
           ],
         ),
         SettingsSection(
-          title: const Text('Notifications'),
+          title: Text(l10n.notificationsTitle),
           tiles: [
             for (final topic in filters.simpleFilters)
               SettingsTile.switchTile(
