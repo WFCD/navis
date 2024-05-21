@@ -1074,5 +1074,125 @@
     "description": "Codex patchlogs title",
     "type": "text",
     "placeholder": {}
+  },
+  "impactDamageTitle": "Impact",
+  "@impactDamageTitle": {
+    "description": "Codex Weapon damage type title",
+    "type": "text",
+    "placeholder": {}
+  },
+  "punctureDamageTitle": "Puncture",
+  "@punctureDamageTitle": {
+    "description": "Codex Weapon damage type title",
+    "type": "text",
+    "placeholder": {}
+  },
+  "slashDamageTitle": "Slash",
+  "@slashDamageTitle": {
+    "description": "Codex Weapon damage type title",
+    "type": "text",
+    "placeholder": {}
+  },
+  "heatDamageTitle": "Heat",
+  "@heatDamageTitle": {
+    "description": "Codex Weapon damage type title",
+    "type": "text",
+    "placeholder": {}
+  },
+  "coldDamageTitle": "Cold",
+  "@coldDamageTitle": {
+    "description": "Codex Weapon damage type title",
+    "type": "text",
+    "placeholder": {}
+  },
+  "electricityDamageTitle": "Electricity",
+  "@electricityDamageTitle": {
+    "description": "Codex Weapon damage type title",
+    "type": "text",
+    "placeholder": {}
+  },
+  "toxinDamageTitle": "Toxin",
+  "@toxinDamageTitle": {
+    "description": "Codex Weapon damage type title",
+    "type": "text",
+    "placeholder": {}
+  },
+  "blastDamageTitle": "Blast",
+  "@blastDamageTitle": {
+    "description": "Codex Weapon damage type title",
+    "type": "text",
+    "placeholder": {}
+  },
+  "radiationDamageTitle": "Radiation",
+  "@radiationDamageTitle": {
+    "description": "Codex Weapon damage type title",
+    "type": "text",
+    "placeholder": {}
+  },
+  "gasDamageTitle": "Gas",
+  "@gasDamageTitle": {
+    "description": "Codex Weapon damage type title",
+    "type": "text",
+    "placeholder": {}
+  },
+  "magneticDamageTitle": "Magnetic",
+  "@magneticDamageTitle": {
+    "description": "Codex Weapon damage type title",
+    "type": "text",
+    "placeholder": {}
+  },
+  "viralDamageTitle": "Viral",
+  "@viralDamageTitle": {
+    "description": "Codex Weapon damage type title",
+    "type": "text",
+    "placeholder": {}
+  },
+  "corrosiveDamageTitle": "Corrosive",
+  "@corrosiveDamageTitle": {
+    "description": "Codex Weapon damage type title",
+    "type": "text",
+    "placeholder": {}
+  },
+  "voidDamageTitle": "Void",
+  "@voidDamageTitle": {
+    "description": "Codex Weapon damage type title",
+    "type": "text",
+    "placeholder": {}
+  },
+  "tauDamageTitle": "Tau",
+  "@tauDamageTitle": {
+    "description": "Codex Weapon damage type title",
+    "type": "text",
+    "placeholder": {}
+  },
+  "cinematicDamageTitle": "Cinematic",
+  "@cinematicDamageTitle": {
+    "description": "Codex Weapon damage type title",
+    "type": "text",
+    "placeholder": {}
+  },
+  "shieldDrainDamageTitle": "Shield Drain",
+  "@shieldDrainDamageTitle": {
+    "description": "Codex Weapon damage type title",
+    "type": "text",
+    "placeholder": {}
+  },
+  "healthDrainDamageTitle": "Health Drain",
+  "@healthDrainDamageTitle": {
+    "description": "Codex Weapon damage type title",
+    "type": "text",
+    "placeholder": {}
+  },
+  "energyDrainDamageTitle": "Energy Drain",
+  "@energyDrainDamageTitle": {
+    "description": "Codex Weapon damage type title",
+    "type": "text",
+    "placeholder": {}
+  },
+  "physicalDamageTitle": "Physical",
+  "@physicalDamageTitle": {
+    "description": "Codex Weapon damage type title",
+    "type": "text",
+    "placeholder": {}
   }
 }
