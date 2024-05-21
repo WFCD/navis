@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:navis/codex/utils/stats.dart';
+import 'package:navis/codex/widgets/codex_entry/damage.dart';
 import 'package:navis/codex/widgets/codex_entry/polarity.dart';
 import 'package:navis/codex/widgets/codex_entry/preinstalled_polarities.dart';
 import 'package:navis/codex/widgets/codex_entry/riven_disposition.dart';
@@ -16,8 +16,6 @@ class MeleeStats extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
-    final textStyle = Theme.of(context).textTheme.titleMedium;
-    final totalDamage = statRoundDouble(melee.totalDamage.toDouble(), 1);
 
     return Column(
       children: [
@@ -127,16 +125,7 @@ class MeleeStats extends StatelessWidget {
           title: l10n.damageTitle,
           contentPadding: EdgeInsets.zero,
         ),
-        RowItem(
-          text: Text(
-            l10n.totalDamageTitle,
-            style: textStyle,
-          ),
-          child: Text(
-            '$totalDamage',
-            style: textStyle,
-          ),
-        ),
+        if (melee.damage != null) DamageSection(damage: melee.damage!),
       ],
     );
   }
