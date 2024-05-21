@@ -125,7 +125,7 @@ abstract class ModPainter extends CustomPainter {
 
     final painter = TextPainter(
       text: TextSpan(
-        text: mod.compatName ?? '',
+        text: mod.compatName?.trim() ?? '',
         style: TextStyle(color: _rarity?.toColor()),
       ),
       textAlign: TextAlign.center,
