@@ -2,6 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:navis/codex/codex.dart';
 import 'package:warframestat_client/warframestat_client.dart';
 
+// The offsets are all based on the CustomPainter size of the mod background
+// image (256x512). So Offset.dx is horizantal and Offset.dy is vertical.
+//
+// Offset.dx higher numbers go right
+// Offset.dy higher numbers go down
+//
+// If you add a number that's not with the box size it will be cut off and not
+// drawn in the frame
+
 class CommonModPainter extends ModPainter {
   const CommonModPainter({
     required super.mod,
