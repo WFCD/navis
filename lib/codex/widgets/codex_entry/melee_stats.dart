@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:navis/codex/utils/stats.dart';
+import 'package:navis/codex/widgets/codex_entry/damage.dart';
 import 'package:navis/codex/widgets/codex_entry/polarity.dart';
 import 'package:navis/codex/widgets/codex_entry/preinstalled_polarities.dart';
 import 'package:navis/codex/widgets/codex_entry/riven_disposition.dart';
 import 'package:navis/codex/widgets/codex_entry/stats.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis_ui/navis_ui.dart';
-import 'package:warframestat_client/warframestat_client.dart';
+import 'package:warframestat_client/warframestat_client.dart' hide Polarity;
 
 class MeleeStats extends StatelessWidget {
   const MeleeStats({super.key, required this.melee});
@@ -16,8 +16,6 @@ class MeleeStats extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
-    final textStyle = Theme.of(context).textTheme.titleMedium;
-    final totalDamage = statRoundDouble(melee.totalDamage.toDouble(), 1);
 
     return Column(
       children: [
@@ -82,10 +80,11 @@ class MeleeStats extends StatelessWidget {
               text: Text(l10n.slideAttackTitle),
               child: Text('${melee.slideAttack}'),
             ),
-            RowItem(
-              text: Text(l10n.rivenDispositionTitle),
-              child: RivenDisposition(disposition: melee.disposition),
-            ),
+            if (melee.disposition != null)
+              RowItem(
+                text: Text(l10n.rivenDispositionTitle),
+                child: RivenDisposition(disposition: melee.disposition!),
+              ),
             RowItem(
               text: Text(l10n.statusChanceTitle),
               child: Text('${(melee.procChance * 100).roundToDouble()}%'),
@@ -126,16 +125,7 @@ class MeleeStats extends StatelessWidget {
           title: l10n.damageTitle,
           contentPadding: EdgeInsets.zero,
         ),
-        RowItem(
-          text: Text(
-            l10n.totalDamageTitle,
-            style: textStyle,
-          ),
-          child: Text(
-            '$totalDamage',
-            style: textStyle,
-          ),
-        ),
+        if (melee.damage != null) DamageSection(damage: melee.damage!),
       ],
     );
   }

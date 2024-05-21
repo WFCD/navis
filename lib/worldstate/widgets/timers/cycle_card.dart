@@ -100,7 +100,7 @@ class CycleCard extends StatelessWidget {
               _CycleRow(
                 currentState: FactionIcon(
                   name: zarimanCycle?.state.name ?? ZarimanState.corpus.name,
-                  iconSize: _iconSize,
+                  size: _iconSize,
                 ),
                 name: locale.zarimanCycleTitle,
                 expiry: zarimanCycle?.expiry,

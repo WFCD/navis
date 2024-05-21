@@ -13,31 +13,32 @@ class RivenDisposition extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
         for (int i = 0; i < maxDisposition; i++)
-          _RivenDot(
-            color: Theme.of(context).colorScheme.secondary,
-            enable: i < disposition,
-          ),
+          _RivenDot(enable: i < disposition),
       ],
     );
   }
 }
 
 class _RivenDot extends StatelessWidget {
-  const _RivenDot({required this.color, required this.enable});
+  const _RivenDot({required this.enable});
 
-  final Color color;
   final bool enable;
 
   @override
   Widget build(BuildContext context) {
+    final color = Theme.of(context).colorScheme.secondary;
+    const size = Size.square(12);
+
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 4),
-      child: Container(
-        constraints: const BoxConstraints.expand(width: 15, height: 15),
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          border: Border.all(color: color),
-          color: enable ? color : Colors.transparent,
+      padding: const EdgeInsets.symmetric(horizontal: 2),
+      child: SizedBox.fromSize(
+        size: size,
+        child: DecoratedBox(
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            border: Border.all(color: color),
+            color: enable ? color : Colors.transparent,
+          ),
         ),
       ),
     );

@@ -1,9 +1,8 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
-import 'package:navis/codex/widgets/codex_entry/mod_entry.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:navis/codex/codex.dart';
+import 'package:navis/codex/cubit/rank_slider_cubit.dart';
 import 'package:navis/l10n/l10n.dart';
-import 'package:navis/utils/item_extensions.dart';
 import 'package:warframestat_client/warframestat_client.dart';
 
 class ModStats extends StatelessWidget {
@@ -11,76 +10,33 @@ class ModStats extends StatelessWidget {
 
   final Mod mod;
 
-  String _modDescription([int rank = 0]) {
-    if (mod.description != null && mod.description!.isNotEmpty) {
-      return mod.description!;
-    }
-
-    final description = StringBuffer();
-
-    if (mod.levelStats != null) {
-      for (final stat in mod.levelStats![rank].stats) {
-        description.write('$stat\n');
-      }
-    }
-
-    return description.toString();
-  }
-
-  Widget _buildRankedMod(int rank) {
-    return _ModBuilder(
-      imageUrl: mod.imageUrl,
-      name: mod.name,
-      stats: _modDescription(rank),
-      compatName: mod.compatName,
-      modSet: mod.modSet,
-      maxRank: mod.fusionLimit,
-      rank: rank,
-      drain: mod.baseDrain != null ? mod.baseDrain! + rank : null,
-      polarity: mod.polarity,
-      rarity: mod.rarity ?? Rarity.legendary,
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     const padding = EdgeInsets.only(top: 16);
     const statsLimit = 3;
 
     final levelStats = mod.levelStats;
-
-    if (mod.levelStats != null && levelStats!.length >= statsLimit) {
-      return Padding(
-        padding: padding,
-        child: _ModWithStats(
-          levels: levelStats.length,
-          maxRank: mod.fusionLimit,
-          builder: (_, rank) => _buildRankedMod(rank),
-        ),
-      );
-    }
+    final hasRanks = mod.levelStats != null && levelStats!.length >= statsLimit;
 
     return Padding(
       padding: padding,
-      child: _ModBuilder(
-        imageUrl: mod.imageUrl,
-        name: mod.name,
-        stats: _modDescription(),
-        maxRank: mod.fusionLimit,
-        rank: 0,
-        drain: mod.baseDrain,
-        polarity: mod.polarity,
-        compatName: mod.compatName,
-        modSet: mod.modSet,
-        rarity: mod.rarity ?? Rarity.legendary,
-      ),
+      child: !hasRanks
+          ? _ModBuilder(mod: mod)
+          : BlocProvider(
+              create: (context) => RankSliderCubit(),
+              child: _ModWithStats(
+                levels: levelStats.length,
+                maxRank: mod.fusionLimit ?? 0,
+                builder: (_, rank) => _ModBuilder(mod: mod, rank: rank),
+              ),
+            ),
     );
   }
 }
 
 typedef BuildRankedMod = Widget Function(BuildContext, int);
 
-class _ModWithStats extends StatefulWidget {
+class _ModWithStats extends StatelessWidget {
   const _ModWithStats({
     required this.levels,
     required this.maxRank,
@@ -88,137 +44,79 @@ class _ModWithStats extends StatefulWidget {
   });
 
   final int levels;
-  final int? maxRank;
+  final int maxRank;
   final BuildRankedMod builder;
 
   @override
-  __ModWithStatsState createState() => __ModWithStatsState();
-}
-
-class __ModWithStatsState extends State<_ModWithStats> {
-  StreamController<int>? _controller;
-
-  @override
-  void initState() {
-    super.initState();
-    _controller = StreamController<int>();
-  }
-
-  void onChanged(double value) {
-    _controller?.sink.add(value.toInt());
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return StreamBuilder<int>(
-      initialData: 0,
-      stream: _controller?.stream,
-      builder: (context, snapshot) {
+    return BlocBuilder<RankSliderCubit, int>(
+      builder: (context, state) {
         return Column(
           children: [
-            if (widget.maxRank != null)
+            if (maxRank != 0)
               Slider(
-                label: context.l10n.modLevelLabel(snapshot.data ?? 0),
-                value: snapshot.data?.toDouble() ?? 0.0,
-                max: widget.maxRank!.toDouble(),
-                divisions: widget.levels - 1,
-                onChanged: onChanged,
+                label: context.l10n.modLevelLabel(state),
+                value: state.toDouble(),
+                max: maxRank.toDouble(),
+                divisions: levels - 1,
+                onChanged: BlocProvider.of<RankSliderCubit>(context).update,
               ),
-            widget.builder(context, snapshot.data ?? 0),
+            builder(context, state),
           ],
         );
       },
     );
   }
-
-  @override
-  void dispose() {
-    super.dispose();
-    _controller?.close();
-    _controller = null;
-  }
 }
 
 class _ModBuilder extends StatelessWidget {
-  const _ModBuilder({
-    required this.imageUrl,
-    required this.name,
-    required this.stats,
-    this.compatName,
-    this.modSet,
-    required this.maxRank,
-    required this.rank,
-    required this.drain,
-    required this.polarity,
-    required this.rarity,
-  });
+  const _ModBuilder({required this.mod, this.rank = 0});
 
-  final String imageUrl;
-  final String name;
-  final String stats;
-  final String? compatName;
-  final String? modSet;
-  final int? maxRank;
+  final Mod mod;
   final int rank;
-  final int? drain;
-  final String? polarity;
-  final Rarity rarity;
 
   @override
   Widget build(BuildContext context) {
-    switch (rarity) {
-      case Rarity.rare:
-        return ModFrame.rare(
-          image: imageUrl,
-          name: name,
-          stats: stats,
-          compatName: compatName ?? '',
-          modSet: modSet,
-          maxRank: maxRank,
-          rank: rank,
-          baseDrain: drain,
-          polarity: polarity,
-          rarity: rarity,
-        );
-      case Rarity.uncommon:
-        return ModFrame.uncommon(
-          image: imageUrl,
-          name: name,
-          stats: stats,
-          compatName: compatName ?? '',
-          modSet: modSet,
-          maxRank: maxRank,
-          rank: rank,
-          baseDrain: drain,
-          polarity: polarity,
-          rarity: rarity,
-        );
-      case Rarity.legendary:
-        return ModFrame.primed(
-          image: imageUrl,
-          name: name,
-          stats: stats,
-          compatName: compatName ?? '',
-          modSet: modSet,
-          maxRank: maxRank,
-          rank: rank,
-          baseDrain: drain,
-          polarity: polarity,
-          rarity: rarity,
-        );
-      case Rarity.common:
-        return ModFrame.common(
-          image: imageUrl,
-          name: name,
-          stats: stats,
-          compatName: compatName ?? '',
-          modSet: modSet,
-          maxRank: maxRank,
-          rank: rank,
-          baseDrain: drain,
-          polarity: polarity,
-          rarity: rarity,
-        );
-    }
+    final rarity = mod.rarity ?? Rarity.common;
+    final modParts = ModParts(
+      thumbnail: mod.imageUrl,
+      polarity: mod.polarity,
+      rarity: rarity,
+    );
+
+    return SizedBox(
+      width: 256,
+      height: 512,
+      child: FutureBuilder(
+        future: modParts.fetchAllImages(),
+        builder: (_, snapshot) {
+          final hasData = snapshot.hasData;
+          final data = snapshot.data;
+
+          if (!hasData) return const Center(child: CircularProgressIndicator());
+
+          if (hasData && data == null) {
+            return const Center(
+              child: Text('Failed to load one or more assets'),
+            );
+          }
+
+          return BlocBuilder<RankSliderCubit, int>(
+            builder: (context, state) {
+              final painter = switch (rarity) {
+                Rarity.common ||
+                Rarity.uncommon ||
+                Rarity.rare =>
+                  CommonModPainter(assets: data!, mod: mod, rank: rank),
+                Rarity.legendary =>
+                  LegendaryModPainter(assets: data!, mod: mod, rank: rank)
+              };
+
+              return CustomPaint(painter: painter, size: const Size(256, 512));
+            },
+          );
+        },
+      ),
+    );
   }
 }

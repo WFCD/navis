@@ -1,11 +1,11 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:flutter/material.dart';
 import 'package:navis/codex/bloc/search_event.dart';
 import 'package:navis/codex/bloc/search_state.dart';
 import 'package:navis/codex/utils/result_filters.dart';
 import 'package:navis/utils/utils.dart';
-import 'package:navis_ui/navis_ui.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:warframestat_client/warframestat_client.dart';
@@ -22,7 +22,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
 
   final WorldstateRepository repository;
 
-  List<MinimalItem> _results = [];
+  List<MinimalItem> _originalResults = [];
 
   Future<void> _searchCodex(
     SearchCodex event,
@@ -36,15 +36,12 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
       emit(CodexSearching());
 
       try {
-        CodexSuccessfulSearch state;
-        if (await ConnectionManager.hasInternetConnection) {
-          state = await _emitResults(text);
-          emit(state);
-        }
+        final results = await ConnectionManager.call(
+          () async => repository.searchItems(text),
+        );
 
-        state =
-            await ConnectionManager.onReconnect(() async => _emitResults(text));
-        emit(state);
+        _originalResults = results;
+        emit(CodexSuccessfulSearch(results));
       } catch (error, stackTrace) {
         await Sentry.captureException(
           error,
@@ -57,19 +54,13 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
     }
   }
 
-  Future<CodexSuccessfulSearch> _emitResults(String query) async {
-    _results = await repository.searchItems(query);
-
-    return CodexSuccessfulSearch(_results);
-  }
-
   Future<void> _filterResults(
     FilterResults event,
     Emitter<SearchState> emit,
   ) async {
     emit(CodexSearching());
 
-    final originalResults = List<MinimalItem>.from(_results);
+    final originalResults = List<MinimalItem>.from(_originalResults);
     if (event.category == WarframeItemCategory.all) {
       return emit(CodexSuccessfulSearch(originalResults));
     } else {
@@ -82,7 +73,10 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
 
   EventTransformer<SearchCodex> _waitForUser() {
     return (event, mapper) {
-      return event.debounceTime(kAnimationLong).distinct().flatMap(mapper);
+      return event
+          .debounceTime(kThemeAnimationDuration)
+          .distinct()
+          .flatMap(mapper);
     };
   }
 }

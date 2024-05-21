@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis/worldstate/worldstate.dart';
 import 'package:navis_ui/navis_ui.dart';
+import 'package:warframestat_client/warframestat_client.dart' hide Sortie;
 
 class ArchonHuntCard extends StatelessWidget {
   const ArchonHuntCard({super.key});
@@ -21,6 +22,14 @@ class ArchonHuntCard extends StatelessWidget {
     return previousArchonHunt?.expiry != nextArchonHunt?.expiry;
   }
 
+  SortieMission toSortieMission(Mission mission) {
+    return SortieMission(
+      node: mission.node,
+      objective: mission.type,
+      modifier: mission.exclusiveWeapon,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<WorldstateCubit, SolsystemState>(
@@ -31,12 +40,13 @@ class ArchonHuntCard extends StatelessWidget {
           _ => null,
         };
 
+        final missions = archonHunt?.missions ?? [];
         final expiry = archonHunt?.expiry ?? DateTime.now();
 
-        return Sortie(
-          faction: archonHunt?.factionKey ?? archonHunt?.faction ?? '',
+        return SortieWidget(
+          faction: archonHunt?.factionKey ?? '',
           boss: archonHunt?.boss ?? '',
-          missions: archonHunt?.missions,
+          missions: missions.map(toSortieMission).toList(),
           timer: CountdownTimer(
             tooltip: context.l10n.countdownTooltip(expiry),
             expiry: expiry,

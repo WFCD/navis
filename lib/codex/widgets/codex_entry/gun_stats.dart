@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:navis/codex/codex.dart';
+import 'package:navis/codex/widgets/codex_entry/damage.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:warframestat_client/warframestat_client.dart';
@@ -12,7 +13,6 @@ class GunStats extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
-    final textStyle = Theme.of(context).textTheme.titleMedium;
 
     return Column(
       children: [
@@ -77,12 +77,13 @@ class GunStats extends StatelessWidget {
                 text: Text(l10n.reloadTitle),
                 child: Text(gun.reloadTime!.toStringAsFixed(2)),
               ),
-            RowItem(
-              text: Text(l10n.rivenDispositionTitle),
-              child: RivenDisposition(
-                disposition: gun.disposition,
+            if (gun.disposition != null)
+              RowItem(
+                text: Text(l10n.rivenDispositionTitle),
+                child: RivenDisposition(
+                  disposition: gun.disposition!,
+                ),
               ),
-            ),
             RowItem(
               text: Text(l10n.statusChanceTitle),
               child: Text(
@@ -101,16 +102,7 @@ class GunStats extends StatelessWidget {
           title: l10n.damageTitle,
           contentPadding: EdgeInsets.zero,
         ),
-        RowItem(
-          text: Text(
-            l10n.totalDamageTitle,
-            style: textStyle,
-          ),
-          child: Text(
-            '${statRoundDouble(gun.totalDamage.toDouble(), 1)}',
-            style: textStyle,
-          ),
-        ),
+        if (gun.damage != null) DamageSection(damage: gun.damage!),
         SizedBoxSpacer.spacerHeight16,
       ],
     );

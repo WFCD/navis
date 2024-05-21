@@ -1,8 +1,8 @@
 import 'dart:async';
-import 'dart:io';
 
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:navis/synthtargets/cubit/synthtargets_state.dart';
+import 'package:navis/utils/utils.dart';
 import 'package:warframestat_client/warframestat_client.dart';
 import 'package:worldstate_repository/worldstate_repository.dart';
 
@@ -17,15 +17,11 @@ class SynthtargetsCubit extends HydratedCubit<SynthtargetsState> {
 
   Future<void> fetchSynthtargets() async {
     try {
-      final targets = await repository.getSynthTargets();
-
-      if (isClosed) return;
+      final targets = await ConnectionManager.call(repository.getSynthTargets);
 
       emit(TargetsLocated(targets));
     } catch (e) {
-      if (e is SocketException) return;
-
-      rethrow;
+      emit(TargetsNotFound());
     }
   }
 

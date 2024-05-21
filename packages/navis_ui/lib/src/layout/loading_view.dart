@@ -9,10 +9,12 @@ class ViewLoading extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final fadeState =
+        isLoading ? CrossFadeState.showFirst : CrossFadeState.showSecond;
+
     return AnimatedCrossFade(
       duration: kThemeAnimationDuration,
-      crossFadeState:
-          isLoading ? CrossFadeState.showFirst : CrossFadeState.showSecond,
+      crossFadeState: fadeState,
       firstChild: const Center(child: CircularProgressIndicator.adaptive()),
       secondChild: child,
     );

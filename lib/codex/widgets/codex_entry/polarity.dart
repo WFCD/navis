@@ -1,47 +1,24 @@
+import 'package:black_hole_flutter/black_hole_flutter.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:navis/codex/utils/mod_polarity.dart';
-import 'package:warframestat_client/warframestat_client.dart';
-
-extension StringX on String {
-  Rarity fromString() {
-    return Rarity.values.byName(toLowerCase());
-  }
-}
+import 'package:navis/codex/codex.dart';
 
 class Polarity extends StatelessWidget {
-  const Polarity({super.key, required this.polarity, this.rarity});
+  const Polarity({super.key, required this.polarity});
 
   final String polarity;
-  final Rarity? rarity;
 
   @override
   Widget build(BuildContext context) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
-
-    var color = isDark ? Colors.white : null;
-
-    if (rarity != null) {
-      color = () {
-        // Already being checked for null.
-        // ignore: avoid-non-null-assertion
-        switch (rarity!) {
-          case Rarity.common:
-            return const Color(0xFFCA9A87);
-          case Rarity.rare:
-            return const Color(0xFFFEEBC1);
-          case Rarity.legendary:
-            return Colors.white;
-          case Rarity.uncommon:
-            return Colors.white;
-        }
-      }();
-    }
+    final color = context.theme.isDark ? Colors.white : null;
 
     return SizedBox(
-      // This is what just worked for the style.
-      // ignore: no-magic-number
       width: 20,
-      child: getPolarity(polarity, color: color),
+      child: Image(
+        color: color,
+        colorBlendMode: BlendMode.srcIn,
+        image: CachedNetworkImageProvider(polarityUrl(polarity)),
+      ),
     );
   }
 }

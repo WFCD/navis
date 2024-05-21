@@ -19,7 +19,7 @@ class ItemCubit extends Cubit<ItemState> {
         item = await repo.fetchItem(uniqueName);
       }
 
-      item = await ConnectionManager.onReconnect(
+      item = await ConnectionManager.call(
         () async => repo.fetchItem(uniqueName),
       );
 
