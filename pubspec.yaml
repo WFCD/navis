@@ -55,11 +55,13 @@ dependency_overrides:
 dev_dependencies:
   bloc_test: ^9.1.6
   build_runner: ^2.4.9
+  commitlint_cli: ^0.7.1
   flutter_gen_runner: ^5.4.0
   flutter_launcher_icons: ^0.13.1
   flutter_native_splash: ^2.4.0
   flutter_test:
     sdk: flutter
+  husky: ^0.1.7
   mocktail: ^1.0.3
   path: ^1.8.3
   sentry_dart_plugin: ^2.0.0
