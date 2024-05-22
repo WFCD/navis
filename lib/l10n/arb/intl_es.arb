@@ -1074,5 +1074,125 @@
     "description": "Codex patchlogs title",
     "type": "text",
     "placeholder": {}
+  },
+  "impactDamageTitle": "Impacto",
+  "@impactDamageTitle": {
+    "description": "Codex Weapon damage type title",
+    "type": "text",
+    "placeholder": {}
+  },
+  "punctureDamageTitle": "Perforación",
+  "@punctureDamageTitle": {
+    "description": "Codex Weapon damage type title",
+    "type": "text",
+    "placeholder": {}
+  },
+  "slashDamageTitle": "Cortante",
+  "@slashDamageTitle": {
+    "description": "Codex Weapon damage type title",
+    "type": "text",
+    "placeholder": {}
+  },
+  "heatDamageTitle": "Calor",
+  "@heatDamageTitle": {
+    "description": "Codex Weapon damage type title",
+    "type": "text",
+    "placeholder": {}
+  },
+  "coldDamageTitle": "Frio",
+  "@coldDamageTitle": {
+    "description": "Codex Weapon damage type title",
+    "type": "text",
+    "placeholder": {}
+  },
+  "electricityDamageTitle": "Eléctrico",
+  "@electricityDamageTitle": {
+    "description": "Codex Weapon damage type title",
+    "type": "text",
+    "placeholder": {}
+  },
+  "toxinDamageTitle": "Toxina",
+  "@toxinDamageTitle": {
+    "description": "Codex Weapon damage type title",
+    "type": "text",
+    "placeholder": {}
+  },
+  "blastDamageTitle": "Explosivo",
+  "@blastDamageTitle": {
+    "description": "Codex Weapon damage type title",
+    "type": "text",
+    "placeholder": {}
+  },
+  "radiationDamageTitle": "Radiación",
+  "@radiationDamageTitle": {
+    "description": "Codex Weapon damage type title",
+    "type": "text",
+    "placeholder": {}
+  },
+  "gasDamageTitle": "Gas",
+  "@gasDamageTitle": {
+    "description": "Codex Weapon damage type title",
+    "type": "text",
+    "placeholder": {}
+  },
+  "magneticDamageTitle": "Magnético",
+  "@magneticDamageTitle": {
+    "description": "Codex Weapon damage type title",
+    "type": "text",
+    "placeholder": {}
+  },
+  "viralDamageTitle": "Viral",
+  "@viralDamageTitle": {
+    "description": "Codex Weapon damage type title",
+    "type": "text",
+    "placeholder": {}
+  },
+  "corrosiveDamageTitle": "Corrosivo",
+  "@corrosiveDamageTitle": {
+    "description": "Codex Weapon damage type title",
+    "type": "text",
+    "placeholder": {}
+  },
+  "voidDamageTitle": "Vacío",
+  "@voidDamageTitle": {
+    "description": "Codex Weapon damage type title",
+    "type": "text",
+    "placeholder": {}
+  },
+  "tauDamageTitle": "Tau",
+  "@tauDamageTitle": {
+    "description": "Codex Weapon damage type title",
+    "type": "text",
+    "placeholder": {}
+  },
+  "cinematicDamageTitle": "Cinematic",
+  "@cinematicDamageTitle": {
+    "description": "Codex Weapon damage type title",
+    "type": "text",
+    "placeholder": {}
+  },
+  "shieldDrainDamageTitle": "Drenaje de Escudo",
+  "@shieldDrainDamageTitle": {
+    "description": "Codex Weapon damage type title",
+    "type": "text",
+    "placeholder": {}
+  },
+  "healthDrainDamageTitle": "Drenaje de Salud",
+  "@healthDrainDamageTitle": {
+    "description": "Codex Weapon damage type title",
+    "type": "text",
+    "placeholder": {}
+  },
+  "energyDrainDamageTitle": "Drenaje de Energía",
+  "@energyDrainDamageTitle": {
+    "description": "Codex Weapon damage type title",
+    "type": "text",
+    "placeholder": {}
+  },
+  "physicalDamageTitle": "Físico",
+  "@physicalDamageTitle": {
+    "description": "Codex Weapon damage type title",
+    "type": "text",
+    "placeholder": {}
   }
 }
