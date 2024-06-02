@@ -44,9 +44,9 @@ dependencies:
   sentry_hive: ^8.1.0
   sentry_logging: ^8.1.0
   simple_icons: ^10.1.3
-  warframestat_client: ^3.8.1
-  worldstate_repository:
-    path: packages/worldstate_repository
+  warframestat_client: ^3.8.8
+  warframestat_repository:
+    path: packages/warframestat_repository
 
 dependency_overrides:
   sentry: 8.1.0
@@ -80,17 +80,17 @@ sentry:
   wait_for_processing: true
 
 flutter_launcher_icons:
-  image_path: 'assets/ic_launch.png'
+  image_path: "assets/ic_launch.png"
   android: true
   ios: true
   remove_alpha_ios: true
-  background_color_ios: '#FFFFFF'
-  adaptive_icon_foreground: 'assets/android12splash.png'
-  adaptive_icon_background: '#FFFFFF'
+  background_color_ios: "#FFFFFF"
+  adaptive_icon_foreground: "assets/android12splash.png"
+  adaptive_icon_background: "#FFFFFF"
 
 flutter_native_splash:
   image: assets/ic_launch.png
-  color: '#FFFFFF'
+  color: "#FFFFFF"
   color_dark: "#121212"
   android_12:
     image: assets/android12splash.png

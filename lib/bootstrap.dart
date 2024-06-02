@@ -12,7 +12,7 @@ import 'package:navis/firebase_options.dart';
 import 'package:navis/settings/settings.dart';
 import 'package:navis/utils/utils.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:worldstate_repository/worldstate_repository.dart';
+import 'package:sentry_hive/sentry_hive.dart';
 
 Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -20,18 +20,20 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
   await Hive.initFlutter();
 
   final appDir = await getApplicationDocumentsDirectory();
+  final temp = await getTemporaryDirectory();
+
   final settings = await UserSettings.initSettings(appDir.path);
-  final warframestateCache = await WarframestatCache.initCache(appDir.path);
+  final cache = await SentryHive.openBox<Map<dynamic, dynamic>>('cache');
 
   Bloc.observer = AppBlocObserver();
   HydratedBloc.storage = await SentryHydratedStorage.build(
-    storageDirectory: await getTemporaryDirectory(),
+    storageDirectory: temp,
   );
 
   runApp(
     RepositoryBootstrap(
       settings: settings,
-      warframestatCache: warframestateCache,
+      cache: cache,
       child: BlocBootstrap(child: await builder()),
     ),
   );

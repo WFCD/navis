@@ -6,7 +6,7 @@ import 'package:navis/codex/codex.dart';
 import 'package:navis/codex/utils/debouncer.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:warframestat_client/warframestat_client.dart';
-import 'package:worldstate_repository/worldstate_repository.dart';
+import 'package:warframestat_repository/warframestat_repository.dart';
 
 class CodexSearchBar extends StatefulWidget {
   const CodexSearchBar({super.key});
@@ -26,7 +26,7 @@ class _CodexSearchBarState extends State<CodexSearchBar> {
   Future<List<MinimalItem>?> _search(String query) async {
     _currentQuery = query;
 
-    final api = RepositoryProvider.of<WorldstateRepository>(context);
+    final api = RepositoryProvider.of<WarframestatRepository>(context);
     final options = await api.searchItems(query);
 
     if (_currentQuery != query) return null;

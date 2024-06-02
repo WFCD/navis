@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/settings/settings.dart';
 import 'package:navis/worldstate/worldstate.dart';
-import 'package:worldstate_repository/worldstate_repository.dart';
+import 'package:warframestat_repository/warframestat_repository.dart';
 
 class BlocBootstrap extends StatelessWidget {
   const BlocBootstrap({super.key, required this.child});
@@ -11,7 +11,8 @@ class BlocBootstrap extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final worldstateRepo = RepositoryProvider.of<WorldstateRepository>(context);
+    final worldstateRepo =
+        RepositoryProvider.of<WarframestatRepository>(context);
     final usersettings = RepositoryProvider.of<UserSettings>(context);
 
     return MultiBlocProvider(

@@ -7,7 +7,7 @@ import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:navis/utils/utils.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:warframestat_client/warframestat_client.dart';
-import 'package:worldstate_repository/worldstate_repository.dart';
+import 'package:warframestat_repository/warframestat_repository.dart';
 
 part 'worldstate_state.dart';
 
@@ -18,22 +18,14 @@ const String unknownException = r'Something happened ¯\_(ツ)_/¯';
 class WorldstateCubit extends HydratedCubit<SolsystemState> {
   WorldstateCubit(this.repository) : super(SolsystemInitial());
 
-  final WorldstateRepository repository;
+  final WarframestatRepository repository;
 
   Future<void> fetchWorldstate(
     Locale locale, {
     bool forceUpdate = false,
   }) async {
     try {
-      final state = await ConnectionManager.call(
-        () async => repository.getWorldstate(
-          language: Language.values.firstWhere(
-            (e) => e.name == locale.languageCode,
-            orElse: () => Language.en,
-          ),
-          forceUpdate: forceUpdate,
-        ),
-      );
+      final state = await ConnectionManager.call(repository.fetchWorldstate);
 
       state.clean();
       emit(WorldstateSuccess(state));

@@ -4,14 +4,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:matomo_tracker/matomo_tracker.dart';
 import 'package:navis/codex/codex.dart';
 import 'package:navis/l10n/l10n.dart';
-import 'package:worldstate_repository/worldstate_repository.dart';
+import 'package:warframestat_repository/warframestat_repository.dart';
 
 class CodexSearchPage extends StatelessWidget {
   const CodexSearchPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final repo = RepositoryProvider.of<WorldstateRepository>(context);
+    final repo = RepositoryProvider.of<WarframestatRepository>(context);
 
     return TraceableWidget(
       child: Scaffold(

@@ -4,7 +4,7 @@ import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:navis/synthtargets/cubit/synthtargets_state.dart';
 import 'package:navis/utils/utils.dart';
 import 'package:warframestat_client/warframestat_client.dart';
-import 'package:worldstate_repository/worldstate_repository.dart';
+import 'package:warframestat_repository/warframestat_repository.dart';
 
 export 'synthtargets_state.dart';
 
@@ -13,11 +13,11 @@ enum SynthtargetsEvent { update }
 class SynthtargetsCubit extends HydratedCubit<SynthtargetsState> {
   SynthtargetsCubit(this.repository) : super(SynthtargetsInitial());
 
-  final WorldstateRepository repository;
+  final WarframestatRepository repository;
 
   Future<void> fetchSynthtargets() async {
     try {
-      final targets = await ConnectionManager.call(repository.getSynthTargets);
+      final targets = await ConnectionManager.call(repository.fetchTargets);
 
       emit(TargetsLocated(targets));
     } catch (e) {

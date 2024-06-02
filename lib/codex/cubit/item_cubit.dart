@@ -3,14 +3,14 @@ import 'package:equatable/equatable.dart';
 import 'package:navis/utils/utils.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:warframestat_client/warframestat_client.dart';
-import 'package:worldstate_repository/worldstate_repository.dart';
+import 'package:warframestat_repository/warframestat_repository.dart';
 
 part 'item_state.dart';
 
 class ItemCubit extends Cubit<ItemState> {
   ItemCubit(this.repo) : super(ItemInitial());
 
-  final WorldstateRepository repo;
+  final WarframestatRepository repo;
 
   Future<void> fetchItem(String uniqueName) async {
     try {
