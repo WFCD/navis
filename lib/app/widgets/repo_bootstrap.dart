@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive/hive.dart';
@@ -34,6 +36,11 @@ class _RepositoryBootstrapState extends State<RepositoryBootstrap> {
     _warframestatRepository = WarframestatRepository(
       client: SentryHttpClient(),
       cache: widget.cache,
+    );
+
+    Timer.periodic(
+      const Duration(minutes: 30),
+      (_) => widget.cache.cleanupCache(),
     );
   }
 

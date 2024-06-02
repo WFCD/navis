@@ -61,14 +61,9 @@ class WarframestatRepository {
   /// Fetch the [MinimalItem] info for whatever item Darvo is currently selling.
   /// Will catch the item until the end of the day (UTC)
   Future<MinimalItem?> fetchDealInfo(String uniqueName, String name) async {
-    const cacheTime = Duration(hours: 12);
+    const cacheTime = Duration(minutes: 30);
     final client = WarframeItemsClient(
-      client: CacheClient(
-        key: 'deal_${language.name}',
-        cacheTime: cacheTime,
-        cache: cache,
-        client: _client,
-      ),
+      client: _cacheClient('deal_${language.name}_$uniqueName', cacheTime),
       ua: userAgent,
       language: language,
     );
@@ -88,8 +83,9 @@ class WarframestatRepository {
 
   /// Search warframe-items
   Future<List<MinimalItem>> searchItems(String query) {
+    const cacheTime = Duration(minutes: 5);
     final client = WarframeItemsClient(
-      client: _client,
+      client: _cacheClient('search_${language.name}_$query', cacheTime),
       ua: userAgent,
       language: language,
     );
@@ -99,24 +95,13 @@ class WarframestatRepository {
 
   /// Get one item based on unique name
   Future<Item> fetchItem(String uniqueName) {
+    const cacheTime = Duration(minutes: 5);
     final client = WarframeItemsClient(
-      client: _client,
+      client: _cacheClient('item_${language.name}_$uniqueName', cacheTime),
       ua: userAgent,
       language: language,
     );
 
     return client.fetchItem(uniqueName);
-  }
-
-  /// Fetch Player profile
-  Future<Profile> fetchProfile(String username) {
-    const cacheTime = Duration(minutes: 60);
-    final client = ProfileClient(
-      username: username,
-      language: language,
-      client: _cacheClient('xpInfo_${language.name}', cacheTime),
-    );
-
-    return client.fetchProfile();
   }
 }

@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:typed_data';
 
 import 'package:hive/hive.dart';
@@ -58,5 +59,23 @@ extension on StreamedResponse {
       persistentConnection: persistentConnection,
       reasonPhrase: reasonPhrase,
     );
+  }
+}
+
+/// extensions to clean up [CacheClient] box
+extension CacheBox on Box<Map<dynamic, dynamic>> {
+  /// Cleans up stale cached keys
+  Future<void> cleanupCache() async {
+    const staleTime = Duration(minutes: 30);
+
+    for (final key in keys) {
+      final cached = this.get(key)!;
+      final expiry = cached['expiry'] as DateTime;
+      final elapsedTime = DateTime.timestamp().difference(expiry).abs();
+
+      if (elapsedTime >= staleTime) await this.delete(key);
+    }
+
+    await compact();
   }
 }
