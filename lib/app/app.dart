@@ -12,7 +12,6 @@ import 'package:navis/settings/settings.dart';
 import 'package:navis/synthtargets/views/targets.dart';
 import 'package:navis/worldstate/worldstate.dart';
 import 'package:navis_ui/navis_ui.dart';
-import 'package:notification_repository/notification_repository.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
 class NavisApp extends StatefulWidget {
@@ -30,35 +29,19 @@ class _NavisAppState extends State<NavisApp> with WidgetsBindingObserver {
     super.initState();
     WidgetsBinding.instance.addObserver(this);
 
-    context.read<NotificationRepository>().configure();
-
-    final settings = context.read<UserSettingsCubit>().state;
-    final language = switch (settings) {
-      UserSettingsSuccess() => settings.language,
-      _ => const Locale('en')
-    };
-
     _timer = Timer.periodic(
       const Duration(seconds: 60),
-      (_) => BlocProvider.of<WorldstateCubit>(context)
-          .fetchWorldstate(language, forceUpdate: true),
+      (_) => BlocProvider.of<WorldstateCubit>(context).fetchWorldstate(),
     );
   }
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
-    final settings = context.read<UserSettingsCubit>().state;
-    final language = switch (settings) {
-      UserSettingsSuccess() => settings.language,
-      _ => const Locale('en')
-    };
-
     switch (state) {
       case AppLifecycleState.resumed:
         _timer = Timer.periodic(
           const Duration(seconds: 60),
-          (_) => BlocProvider.of<WorldstateCubit>(context)
-              .fetchWorldstate(language, forceUpdate: true),
+          (_) => BlocProvider.of<WorldstateCubit>(context).fetchWorldstate(),
         );
 
       case AppLifecycleState.inactive ||
@@ -124,14 +107,7 @@ class _NavisAppState extends State<NavisApp> with WidgetsBindingObserver {
   void didChangeDependencies() {
     super.didChangeDependencies();
 
-    final settings = context.read<UserSettingsCubit>().state;
-    final language = switch (settings) {
-      UserSettingsSuccess() => settings.language,
-      _ => const Locale('en')
-    };
-
-    BlocProvider.of<WorldstateCubit>(context)
-        .fetchWorldstate(language, forceUpdate: true);
+    BlocProvider.of<WorldstateCubit>(context).fetchWorldstate();
   }
 
   @override

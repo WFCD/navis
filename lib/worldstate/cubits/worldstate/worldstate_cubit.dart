@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:equatable/equatable.dart';
-import 'package:flutter/material.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:navis/utils/utils.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
@@ -20,10 +19,7 @@ class WorldstateCubit extends HydratedCubit<SolsystemState> {
 
   final WarframestatRepository repository;
 
-  Future<void> fetchWorldstate(
-    Locale locale, {
-    bool forceUpdate = false,
-  }) async {
+  Future<void> fetchWorldstate() async {
     try {
       final state = await ConnectionManager.call(repository.fetchWorldstate);
 

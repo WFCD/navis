@@ -31,9 +31,9 @@ class CacheClient extends BaseClient {
   Future<StreamedResponse> send(BaseRequest request) async {
     final now = DateTime.timestamp();
     final cached = cache.get(key)?.cast<String, dynamic>() ?? {};
-    final expiry = cached['expiry'] as DateTime? ?? now;
+    final expiry = cached['expiry'] as DateTime?;
 
-    if (now.isBefore(expiry)) {
+    if (expiry != null && now.isBefore(expiry)) {
       final body = cached['data'] as Uint8List;
       return StreamedResponse(Stream.value(body), 200);
     }
@@ -68,6 +68,7 @@ extension CacheBox on Box<Map<dynamic, dynamic>> {
   Future<void> cleanupCache() async {
     const staleTime = Duration(minutes: 30);
 
+    if (keys.length < 5) return;
     for (final key in keys) {
       final cached = this.get(key)!;
       final expiry = cached['expiry'] as DateTime;

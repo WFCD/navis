@@ -38,6 +38,8 @@ class _RepositoryBootstrapState extends State<RepositoryBootstrap> {
       cache: widget.cache,
     );
 
+    _notifications.configure();
+
     Timer.periodic(
       const Duration(minutes: 30),
       (_) => widget.cache.cleanupCache(),

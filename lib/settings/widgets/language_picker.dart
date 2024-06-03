@@ -29,8 +29,7 @@ class LanguagePicker extends StatelessWidget {
 
   void _onPressed(BuildContext context) {
     Navigator.of(context).pop();
-    BlocProvider.of<WorldstateCubit>(context)
-        .fetchWorldstate(context.locale, forceUpdate: true);
+    BlocProvider.of<WorldstateCubit>(context).fetchWorldstate();
   }
 
   @override
