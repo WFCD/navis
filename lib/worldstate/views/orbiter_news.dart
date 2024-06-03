@@ -1,4 +1,3 @@
-import 'package:black_hole_flutter/black_hole_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:matomo_tracker/matomo_tracker.dart';
@@ -20,8 +19,8 @@ class OrbiterNewsPage extends StatelessWidget {
       child: ViewLoading(
         isLoading: state is! WorldstateSuccess,
         child: RefreshIndicator(
-          onRefresh: () => BlocProvider.of<WorldstateCubit>(context)
-              .fetchWorldstate(context.locale, forceUpdate: true),
+          onRefresh: () =>
+              BlocProvider.of<WorldstateCubit>(context).fetchWorldstate(),
           child: state is! WorldstateSuccess
               ? const SizedBox.shrink()
               : ListView.builder(

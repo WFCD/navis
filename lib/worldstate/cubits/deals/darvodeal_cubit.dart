@@ -5,12 +5,12 @@ import 'package:navis/utils/utils.dart';
 import 'package:navis/worldstate/cubits/deals/darvodeal_state.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:warframestat_client/warframestat_client.dart';
-import 'package:worldstate_repository/worldstate_repository.dart';
+import 'package:warframestat_repository/warframestat_repository.dart';
 
 class DarvodealCubit extends HydratedCubit<DarvodealState> {
   DarvodealCubit(this.repository) : super(DarvodealInitial());
 
-  final WorldstateRepository repository;
+  final WarframestatRepository repository;
 
   Future<void> fetchDeal(String uniqueName, String name) async {
     emit(DarvodealLoading());
@@ -18,11 +18,11 @@ class DarvodealCubit extends HydratedCubit<DarvodealState> {
     try {
       Item? info;
       if (await ConnectionManager.hasInternetConnection) {
-        info = await repository.getDealInfo(uniqueName, name);
+        info = await repository.fetchDealInfo(uniqueName, name);
       }
 
       info = await ConnectionManager.call(
-        () async => repository.getDealInfo(uniqueName, name),
+        () async => repository.fetchDealInfo(uniqueName, name),
       );
 
       if (info != null) {

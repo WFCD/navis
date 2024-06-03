@@ -1,4 +1,3 @@
-import 'package:black_hole_flutter/black_hole_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/l10n/l10n.dart';
@@ -98,8 +97,8 @@ class _TabView extends StatelessWidget {
             ),
             SliverFillRemaining(
               child: RefreshIndicator(
-                onRefresh: () => BlocProvider.of<WorldstateCubit>(context)
-                    .fetchWorldstate(context.locale, forceUpdate: true),
+                onRefresh: () =>
+                    BlocProvider.of<WorldstateCubit>(context).fetchWorldstate(),
                 child: () {
                   switch (tab) {
                     case Tabs.timers:

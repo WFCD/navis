@@ -29,6 +29,7 @@ class SteelPathCard extends StatelessWidget {
           final expiry = steelPath?.expiry ?? DateTime.now();
 
           return ListTile(
+            leading: const AppIcon(WarframeSymbols.sp_logo, size: 30),
             title: Text(context.l10n.steelPathTitle),
             subtitle: Text(steelPath?.currentReward.name ?? ''),
             trailing: CountdownTimer(

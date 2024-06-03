@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/codex/codex.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:warframestat_client/warframestat_client.dart';
-import 'package:worldstate_repository/worldstate_repository.dart';
+import 'package:warframestat_repository/warframestat_repository.dart';
 
 class ComponentDrops extends StatelessWidget {
   const ComponentDrops({super.key, required this.drops});
@@ -23,7 +23,7 @@ class ComponentDrops extends StatelessWidget {
         builder: (BuildContext context) {
           return BlocProvider(
             create: (context) => SearchBloc(
-              RepositoryProvider.of<WorldstateRepository>(context),
+              RepositoryProvider.of<WarframestatRepository>(context),
             ),
             child: Scaffold(
               body: Builder(

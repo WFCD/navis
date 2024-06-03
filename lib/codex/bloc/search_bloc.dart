@@ -9,7 +9,7 @@ import 'package:navis/utils/utils.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:warframestat_client/warframestat_client.dart';
-import 'package:worldstate_repository/worldstate_repository.dart';
+import 'package:warframestat_repository/warframestat_repository.dart';
 
 export 'search_event.dart';
 export 'search_state.dart';
@@ -20,7 +20,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
     on<FilterResults>(_filterResults);
   }
 
-  final WorldstateRepository repository;
+  final WarframestatRepository repository;
 
   List<MinimalItem> _originalResults = [];
 

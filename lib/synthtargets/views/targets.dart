@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:matomo_tracker/matomo_tracker.dart';
 import 'package:navis/synthtargets/cubit/synthtargets_cubit.dart';
 import 'package:navis/synthtargets/widgets/target.dart';
-import 'package:worldstate_repository/worldstate_repository.dart';
+import 'package:warframestat_repository/warframestat_repository.dart';
 
 class SynthTargetsView extends StatelessWidget {
   const SynthTargetsView({super.key});
@@ -17,7 +17,7 @@ class SynthTargetsView extends StatelessWidget {
         appBar: AppBar(),
         body: BlocProvider(
           create: (_) => SynthtargetsCubit(
-            RepositoryProvider.of<WorldstateRepository>(context),
+            RepositoryProvider.of<WarframestatRepository>(context),
           )..fetchSynthtargets(),
           child: const _SynthTargetsPage(),
         ),

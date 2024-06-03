@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/codex/codex.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:warframestat_client/warframestat_client.dart';
-import 'package:worldstate_repository/worldstate_repository.dart';
+import 'package:warframestat_repository/warframestat_repository.dart';
 
 class EntryView extends StatelessWidget {
   const EntryView({super.key, required this.item});
@@ -15,7 +15,7 @@ class EntryView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final repo = RepositoryProvider.of<WorldstateRepository>(context);
+    final repo = RepositoryProvider.of<WarframestatRepository>(context);
 
     return BlocProvider(
       create: (context) => ItemCubit(repo)..fetchItem(item.uniqueName),
