@@ -85,7 +85,7 @@ class _BuildSyndicates extends StatelessWidget {
         ),
         ...syndicates.map<SyndicateCard>(
           (syn) => SyndicateCard(
-            syndicateId: syn.id,
+            syndicate: SyndicateFactions.fromString(syn.syndicateKey),
             onTap: () => onTap(syn),
           ),
         ),
@@ -122,8 +122,7 @@ class _SyndicatePageMobile extends StatelessWidget {
         ),
         const Divider(),
         SyndicateCard(
-          syndicateId: 'simaris',
-          caption: 'Tap to see targets',
+          syndicate: SyndicateFactions.simaris,
           onTap: () {
             Navigator.of(context).pushNamed(SynthTargetsView.route);
           },

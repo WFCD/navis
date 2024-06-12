@@ -41,7 +41,7 @@ class ConstructionProgressCard extends StatelessWidget {
                       AppIcon(
                         WarframeSymbols.factions_grineer,
                         size: iconSize,
-                        color: Factions.grineer.primaryColor,
+                        color: EnemyFactions.grineer.colorScheme.iconColor,
                       ),
                       SizedBoxSpacer.spacerWidth12,
                       Text(
@@ -64,7 +64,7 @@ class ConstructionProgressCard extends StatelessWidget {
                       AppIcon(
                         WarframeSymbols.factions_corpus,
                         size: iconSize,
-                        color: Factions.corpus.primaryColor,
+                        color: EnemyFactions.corpus.colorScheme.iconColor,
                       ),
                     ],
                   ),

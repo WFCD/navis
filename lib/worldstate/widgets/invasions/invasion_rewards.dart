@@ -1,3 +1,4 @@
+import 'package:black_hole_flutter/black_hole_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:warframestat_client/warframestat_client.dart';
@@ -16,8 +17,13 @@ class InvasionReward extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final a = Factions.values.byName(attacker.factionKey.toLowerCase());
-    final d = Factions.values.byName(defender.factionKey.toLowerCase());
+    final a = EnemyFactions.fromString(attacker.factionKey);
+    final d = EnemyFactions.fromString(defender.factionKey);
+
+    final defaultScheme = DefaultColorScheme(
+      iconColor: context.theme.colorScheme.primary,
+      backgroundColor: context.theme.colorScheme.secondary,
+    );
 
     return Row(
       mainAxisSize: MainAxisSize.min,
@@ -29,7 +35,8 @@ class InvasionReward extends StatelessWidget {
             elevation: 4,
             color: Colors.transparent,
             child: ColoredContainer.text(
-              color: a.primaryColor,
+              color: a?.colorScheme.backgroundColor ??
+                  defaultScheme.backgroundColor,
               text: attacker.reward!.itemString,
             ),
           ),
@@ -40,7 +47,8 @@ class InvasionReward extends StatelessWidget {
           elevation: 4,
           color: Colors.transparent,
           child: ColoredContainer.text(
-            color: d.primaryColor,
+            color:
+                d?.colorScheme.backgroundColor ?? defaultScheme.backgroundColor,
             text: defender.reward!.itemString,
           ),
         ),

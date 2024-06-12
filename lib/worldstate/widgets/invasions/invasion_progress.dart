@@ -16,8 +16,10 @@ class InvasionProgress extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const decimalPoint = 100;
-    final attacker = Factions.values.byName(attackingFaction.toLowerCase());
-    final defending = Factions.values.byName(defendingFaction.toLowerCase());
+    final attacker =
+        EnemyFactions.values.byName(attackingFaction.toLowerCase());
+    final defending =
+        EnemyFactions.values.byName(defendingFaction.toLowerCase());
 
     return Tooltip(
       message: '$attackingFaction vs $defendingFaction',
@@ -30,7 +32,10 @@ class InvasionProgress extends StatelessWidget {
           decoration: BoxDecoration(
             borderRadius: const BorderRadius.all(Radius.circular(4)),
             gradient: LinearGradient(
-              colors: <Color>[attacker.primaryColor, defending.primaryColor],
+              colors: <Color>[
+                attacker.colorScheme.backgroundColor,
+                defending.colorScheme.backgroundColor
+              ],
               stops: <double>[progress, progress / decimalPoint],
               begin: AlignmentDirectional.centerStart,
               end: AlignmentDirectional.centerEnd,

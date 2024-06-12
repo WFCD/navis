@@ -4,14 +4,9 @@ import 'package:navis_ui/navis_ui.dart';
 import 'package:warframestat_client/warframestat_client.dart';
 
 class SyndicateBountyTile extends StatelessWidget {
-  const SyndicateBountyTile({
-    super.key,
-    required this.job,
-    required this.faction,
-  });
+  const SyndicateBountyTile({super.key, required this.job});
 
   final SyndicateJob job;
-  final Syndicates faction;
 
   @override
   Widget build(BuildContext context) {

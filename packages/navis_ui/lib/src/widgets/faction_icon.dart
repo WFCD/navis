@@ -1,6 +1,6 @@
+import 'package:black_hole_flutter/black_hole_flutter.dart';
 import 'package:flutter/material.dart';
-import 'package:navis_ui/src/helpers/faction_helper.dart';
-import 'package:navis_ui/src/widgets/app_icon.dart';
+import 'package:navis_ui/navis_ui.dart';
 
 class FactionIcon extends StatelessWidget {
   const FactionIcon({
@@ -16,15 +16,14 @@ class FactionIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final faction = Factions.values.firstWhere(
-      (f) => f.name == name.toLowerCase(),
-      orElse: () => Factions.unknown,
-    );
+    final faction = EnemyFactions.fromString(name);
+    final iconColor =
+        faction?.colorScheme.iconColor ?? context.theme.colorScheme.primary;
 
     return AppIcon(
-      faction.factionIcon,
+      faction?.icon ?? WarframeSymbols.menu_LotusEmblem,
       size: size,
-      color: useFactionColor ? faction.iconColor : Colors.white,
+      color: useFactionColor ? iconColor : Colors.white,
     );
   }
 }

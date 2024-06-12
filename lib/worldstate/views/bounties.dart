@@ -1,3 +1,4 @@
+import 'package:black_hole_flutter/black_hole_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:matomo_tracker/matomo_tracker.dart';
 import 'package:navis/worldstate/widgets/syndicates/syndicate_bounties.dart';
@@ -16,14 +17,18 @@ class BountiesPage extends StatelessWidget {
         // ignore: cast_nullable_to_non_nullable
         ModalRoute.of(context)?.settings.arguments as SyndicateMission;
 
-    final backgroundColor = syndicateStringToEnum(syndicate.id).secondryColor;
+    final faction = SyndicateFactions.fromString(syndicate.id)?.colorScheme ??
+        DefaultColorScheme(
+          iconColor: context.theme.colorScheme.secondary,
+          backgroundColor: context.theme.colorScheme.primary,
+        );
 
     return TraceableWidget(
       child: Scaffold(
         appBar: AppBar(
           title: Text(syndicate.syndicate.replaceFirst('Syndicate', '')),
           titleSpacing: 0,
-          backgroundColor: backgroundColor,
+          backgroundColor: faction.backgroundColor,
         ),
         body: SyndicateBounties(syndicate: syndicate),
       ),

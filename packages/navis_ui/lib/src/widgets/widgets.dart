@@ -11,4 +11,4 @@ export 'row_item.dart';
 export 'skybox_card.dart';
 export 'sliver_top_bar.dart';
 export 'sortie.dart';
-export 'syndicate_icon.dart';
+export 'syndicate_card.dart';
