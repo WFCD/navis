@@ -34,7 +34,7 @@ class InvasionProgress extends StatelessWidget {
             gradient: LinearGradient(
               colors: <Color>[
                 attacker.colorScheme.backgroundColor,
-                defending.colorScheme.backgroundColor
+                defending.colorScheme.backgroundColor,
               ],
               stops: <double>[progress, progress / decimalPoint],
               begin: AlignmentDirectional.centerStart,

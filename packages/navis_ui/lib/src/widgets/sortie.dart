@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:navis_ui/src/widgets/widgets.dart';
 
 class SortieWidget extends StatelessWidget {
-  const SortieWidget({
+  const SortieWidget({super.key, 
     required this.faction,
     required this.boss,
     required this.missions,
@@ -64,7 +64,7 @@ class SortieMission extends StatelessWidget {
         modifier != null ? Text(modifier!, style: modifierTextStyle) : null;
 
     return ListTile(
-      title: Text('${objective} - ${node}', style: missionTextStyle),
+      title: Text('$objective - $node', style: missionTextStyle),
       subtitle: subtitle,
     );
   }

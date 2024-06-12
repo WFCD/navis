@@ -30,6 +30,10 @@ class CustomNavigationBar extends StatelessWidget {
           icon: const Icon(Icons.explore),
           label: context.l10n.exploreTitle,
         ),
+        const NavigationDestination(
+          icon: Icon(Icons.person_outline),
+          label: 'Profile',
+        ),
       ],
     );
   }

@@ -1,8 +1,12 @@
+import 'dart:convert';
+import 'dart:isolate';
+
 import 'package:collection/collection.dart';
 import 'package:hive/hive.dart';
 import 'package:http/http.dart';
 import 'package:warframestat_client/warframestat_client.dart';
 import 'package:warframestat_repository/src/cache_client.dart';
+import 'package:warframestat_repository/src/models/node_mastery.dart';
 
 ///
 const userAgent = 'navis';
@@ -103,5 +107,38 @@ class WarframestatRepository {
     );
 
     return client.fetchItem(uniqueName);
+  }
+
+  /// Fetch player profile
+  Future<Profile> fetchProfile(String username) {
+    const cacheTime = Duration(minutes: 60);
+    final client = ProfileClient(
+      client: _cacheClient('profile_${language.name}_$username', cacheTime),
+      language: language,
+      username: username,
+    );
+
+    return client.fetchProfile();
+  }
+
+  Future<List<NodeMastery>> fetchNodeMastery() async {
+    final client = CacheClient(
+      key: 'node_mastery',
+      cacheTime: const Duration(days: 30),
+      cache: cache,
+    );
+
+    final uri = Uri.parse('https://cdn.truemaster.app/regions.json');
+    final response = await client.get(uri);
+
+    return Isolate.run(() => _parseNodeMastery(response.body));
+  }
+
+  static List<NodeMastery> _parseNodeMastery(String body) {
+    final json = jsonDecode(body) as Map<String, dynamic>;
+
+    return List<Map<String, dynamic>>.from(json['nodes'] as List<dynamic>)
+        .map(NodeMastery.fromJson)
+        .toList();
   }
 }

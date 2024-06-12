@@ -6,7 +6,7 @@ sealed class FactionColorScheme {
 
   IconData get icon;
   Color get iconColor;
-  Color get backgroundColor => Color(0xFFFFFFFF);
+  Color get backgroundColor => const Color(0xFFFFFFFF);
 }
 
 final class DefaultColorScheme implements FactionColorScheme {
@@ -59,7 +59,7 @@ final class InfestedColorScheme extends FactionColorScheme {
   const InfestedColorScheme();
 
   @override
-  Color get backgroundColor => Color(0xFF228B22);
+  Color get backgroundColor => const Color(0xFF228B22);
 
   @override
   Color get iconColor => const Color(0xFF2a3c2e);
@@ -126,7 +126,7 @@ final class OstronColorScheme extends SyndicateColorScheme {
       WarframeSymbols.sigils_Ostron_OstronLevel2,
       WarframeSymbols.sigils_Ostron_OstronLevel3,
       WarframeSymbols.sigils_Ostron_OstronLevel4,
-      WarframeSymbols.sigils_Ostron_OstronLevel5
+      WarframeSymbols.sigils_Ostron_OstronLevel5,
     ];
   }
 }
@@ -150,7 +150,7 @@ final class SolariesColorScheme extends SyndicateColorScheme {
       WarframeSymbols.sigils_Solaris_United_SolarisLevel2,
       WarframeSymbols.sigils_Solaris_United_SolarisLevel3,
       WarframeSymbols.sigils_Solaris_United_SolarisLevel4,
-      WarframeSymbols.sigils_Solaris_United_SolarisLevel5
+      WarframeSymbols.sigils_Solaris_United_SolarisLevel5,
     ];
   }
 }

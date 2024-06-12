@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:navis_ui/navis_ui.dart';
 
 enum SyndicateFactions {
-  ostron('Ostrons', WarframeSymbols.ostron, const OstronColorScheme()),
+  ostron('Ostrons', WarframeSymbols.ostron, OstronColorScheme()),
   solaris(
-      'Solaris United', WarframeSymbols.solaris, const SolariesColorScheme()),
-  entrati('Entrati', WarframeSymbols.entrati, const EntratiColorScheme()),
+      'Solaris United', WarframeSymbols.solaris, SolariesColorScheme(),),
+  entrati('Entrati', WarframeSymbols.entrati, EntratiColorScheme()),
   nightwave(
-      'Nightwave', WarframeSymbols.nightwave, const NightwaveColorScheme()),
+      'Nightwave', WarframeSymbols.nightwave, NightwaveColorScheme(),),
   simaris(
-      'Cephalon Simaris', WarframeSymbols.simaris, const SimarisColorScheme());
+      'Cephalon Simaris', WarframeSymbols.simaris, SimarisColorScheme(),);
 
   const SyndicateFactions(this.name, this.icon, this.colorScheme);
 
@@ -26,24 +26,24 @@ enum SyndicateFactions {
 }
 
 enum EnemyFactions {
-  grineer('Grineer', WarframeSymbols.menu_Grineer, const GrineerColorScheme()),
-  corpus('Corpus', WarframeSymbols.menu_Corpus, const CorpusColorScheme()),
+  grineer('Grineer', WarframeSymbols.menu_Grineer, GrineerColorScheme()),
+  corpus('Corpus', WarframeSymbols.menu_Corpus, CorpusColorScheme()),
   corrupted(
     'Corrupted',
     WarframeSymbols.factions_corrupted,
-    const CorruptedColorScheme(),
+    CorruptedColorScheme(),
   ),
   infestation(
     'Infested',
     WarframeSymbols.menu_Infested,
-    const InfestedColorScheme(),
+    InfestedColorScheme(),
   ),
   infested(
     'Infested',
     WarframeSymbols.menu_Infested,
-    const InfestedColorScheme(),
+    InfestedColorScheme(),
   ),
-  narmer('Narmer', WarframeSymbols.factions_narmer, const NarmerColorScheme());
+  narmer('Narmer', WarframeSymbols.factions_narmer, NarmerColorScheme());
 
   const EnemyFactions(this.name, this.icon, this.colorScheme);
 

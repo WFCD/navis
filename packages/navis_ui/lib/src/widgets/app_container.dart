@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 class ColoredContainer extends StatelessWidget {
   const ColoredContainer({
-    Key? key,
+    super.key,
     required this.tooltip,
     this.padding = const EdgeInsets.all(4),
     this.margin = const EdgeInsets.all(3),
@@ -11,12 +11,11 @@ class ColoredContainer extends StatelessWidget {
     this.width,
     this.color,
     required this.child,
-  }) : super(key: key);
+  });
 
   factory ColoredContainer.text({
     required String text,
     Color? color,
-    double? fontSize,
     TextStyle? style,
     EdgeInsetsGeometry padding = const EdgeInsets.all(6),
     EdgeInsetsGeometry margin = const EdgeInsets.all(3),

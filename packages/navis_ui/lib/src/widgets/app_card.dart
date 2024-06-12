@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 
 class AppCard extends StatelessWidget {
   const AppCard({
-    Key? key,
+    super.key,
     this.title,
     this.color,
     this.margin,
     this.padding = const EdgeInsets.all(4),
     required this.child,
-  }) : super(key: key);
+  });
 
   final String? title;
   final Color? color;
@@ -41,9 +41,8 @@ class AppCard extends StatelessWidget {
 
 class _BuildTitle extends StatelessWidget {
   const _BuildTitle({
-    Key? key,
     required this.title,
-  }) : super(key: key);
+  });
 
   final String? title;
 

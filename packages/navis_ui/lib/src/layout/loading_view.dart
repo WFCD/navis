@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 
 class ViewLoading extends StatelessWidget {
-  const ViewLoading({Key? key, required this.isLoading, required this.child})
-      : super(key: key);
+  const ViewLoading({super.key, required this.isLoading, required this.child});
 
   final bool isLoading;
   final Widget child;

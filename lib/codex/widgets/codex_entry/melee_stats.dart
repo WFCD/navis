@@ -16,6 +16,7 @@ class MeleeStats extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
+    final isBuildable = melee is BuildableItem;
 
     return Column(
       children: [
@@ -25,10 +26,10 @@ class MeleeStats extends StatelessWidget {
         ),
         Stats(
           stats: <RowItem>[
-            if (melee.masteryReq != null)
+            if (isBuildable && (melee as BuildableItem).masteryReq != null)
               RowItem(
                 text: Text(l10n.masteryRequirementTitle),
-                child: Text('${melee.masteryReq}'),
+                child: Text('${(melee as BuildableItem).masteryReq}'),
               ),
             RowItem(
               text: Text(l10n.weaponTypeTitle),

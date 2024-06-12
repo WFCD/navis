@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'colors/colors.dart';
+import 'package:navis_ui/src/colors/colors.dart';
 
 abstract class NavisThemes {
   static ThemeData get light =>

@@ -3,14 +3,15 @@ import 'package:navis_ui/src/layout/spacers.dart';
 
 class NavisErrorWidget extends StatelessWidget {
   const NavisErrorWidget({
-    Key? key,
+    super.key,
     required this.title,
     required this.description,
     this.details,
     this.showStacktrace = true,
-  }) : super(key: key);
+  });
 
-  final String title, description;
+  final String title;
+  final String description;
   final FlutterErrorDetails? details;
   final bool showStacktrace;
 
@@ -40,12 +41,12 @@ class NavisErrorWidget extends StatelessWidget {
 
 class _NavisErrorPage extends StatelessWidget {
   const _NavisErrorPage({
-    Key? key,
     required this.title,
     required this.description,
-  }) : super(key: key);
+  });
 
-  final String title, description;
+  final String title;
+  final String description;
 
   @override
   Widget build(BuildContext context) {
@@ -76,12 +77,12 @@ class _NavisErrorPage extends StatelessWidget {
 
 class _NavisErrorWidget extends StatelessWidget {
   const _NavisErrorWidget({
-    Key? key,
     required this.title,
     required this.description,
-  }) : super(key: key);
+  });
 
-  final String title, description;
+  final String title;
+  final String description;
 
   @override
   Widget build(BuildContext context) {

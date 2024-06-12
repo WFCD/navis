@@ -4,11 +4,11 @@ import 'package:navis_ui/navis_ui.dart';
 
 class FactionIcon extends StatelessWidget {
   const FactionIcon({
-    Key? key,
+    super.key,
     required this.name,
     this.size,
     this.useFactionColor = true,
-  }) : super(key: key);
+  });
 
   final String name;
   final double? size;

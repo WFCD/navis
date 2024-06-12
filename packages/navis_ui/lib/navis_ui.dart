@@ -1,4 +1,3 @@
-library navis_ui;
 
 export 'src/colors/colors.dart';
 export 'src/constants/constants.dart';

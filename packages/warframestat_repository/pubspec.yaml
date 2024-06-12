@@ -8,11 +8,15 @@ environment:
 
 dependencies:
   collection: ^1.18.0
+  equatable: ^2.0.5
   hive: ^2.2.3
   http: ^1.2.1
+  json_annotation: ^4.9.0
   warframestat_client: ^3.8.8
 
 dev_dependencies:
+  build_runner: ^2.4.10
+  json_serializable: ^6.8.0
   mocktail: ^1.0.3
   path: ^1.9.0
   test: ^1.25.2

@@ -5,6 +5,8 @@
 //    - family: Warframe-symbols
 //      fonts:
 //       - asset: fonts/Warframe-symbols.ttf
+// ignore_for_file: constant_identifier_names
+
 import 'package:flutter/widgets.dart';
 import 'package:navis_ui/gen/fonts.gen.dart';
 

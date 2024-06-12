@@ -13,6 +13,7 @@ class GunStats extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
+    final isBuildable = gun is BuildableItem;
 
     return Column(
       children: [
@@ -23,10 +24,10 @@ class GunStats extends StatelessWidget {
         SizedBoxSpacer.spacerHeight8,
         Stats(
           stats: <RowItem>[
-            if (gun.masteryReq != null)
+            if (isBuildable && (gun as BuildableItem).masteryReq != null)
               RowItem(
                 text: Text(l10n.masteryRequirementTitle),
-                child: Text('${gun.masteryReq}'),
+                child: Text('${(gun as BuildableItem).masteryReq}'),
               ),
             RowItem(
               text: Text(l10n.weaponTypeTitle),
