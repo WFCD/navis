@@ -1,6 +1,6 @@
 {
   "@@last_modified": "2020-03-03T16:56:42.387837",
-  "levelInfo": "Level: {min} - {max}",
+  "levelInfo": "Nível: {min} - {max}",
   "@levelInfo": {
     "description": "The information of the current enemy levels",
     "type": "text",
@@ -9,73 +9,73 @@
       "max": {}
     }
   },
-  "tapForMoreDetails": "Tap for more details",
+  "tapForMoreDetails": "Toque para mais detalhes",
   "@tapForMoreDetails": {
     "description": "General description to tell the user that this object takes you to a different page",
     "type": "text",
     "placeholders": {}
   },
-  "seeDetails": "See details",
+  "seeDetails": "Ver detalhes",
   "@seeDetails": {
     "description": "General button to see more details of given object",
     "type": "text",
     "placeholders": {}
   },
-  "seeWikia": "See Wikia",
+  "seeWikia": "Ver Wikia",
   "@seeWikia": {
     "description": "General button to wikia of given item",
     "type": "text",
     "placeholders": {}
   },
-  "eventDescription": "Description",
+  "eventDescription": "Descrição",
   "@eventDescription": {
     "description": "Event description category title",
     "type": "text",
     "placeholders": {}
   },
-  "eventStatus": "Event Status",
+  "eventStatus": "Status do Evento",
   "@eventStatus": {
     "description": "Event status category title",
     "type": "text",
     "placeholders": {}
   },
-  "eventStatusNode": "Node",
+  "eventStatusNode": "Nó",
   "@eventStatusNode": {
     "description": "The node that the event is taking place in",
     "type": "text",
     "placeholders": {}
   },
-  "eventStatusProgress": "Progress",
+  "eventStatusProgress": "Progresso",
   "@eventStatusProgress": {
     "description": "The progress of the current event from 0 to 100 %",
     "type": "text",
     "placeholders": {}
   },
-  "eventStatusEta": "Time left (ETA)",
+  "eventStatusEta": "Tempo restante (ETA)",
   "@eventStatusEta": {
     "description": "Current events remaining estimated time",
     "type": "text",
     "placeholders": {}
   },
-  "eventRewards": "Rewards",
+  "eventRewards": "Recompensas",
   "@eventRewards": {
     "description": "Event reward title",
     "type": "text",
     "placeholders": {}
   },
-  "bountyTitle": "Bounties",
+  "bountyTitle": "Contratos",
   "@bountyTitle": {
     "description": "Bounty card title.",
     "type": "text",
     "placeholders": {}
   },
-  "errorTitle": "An application error has occurred",
+  "errorTitle": "Ocorreu um erro na aplicação",
   "@errorTitle": {
     "description": "error title",
     "type": "text",
     "placeholders": {}
   },
-  "errorDescription": "There was unexpected error in core system.\nReporting error to system admin...",
+  "errorDescription": "Houve um erro inesperado no sistema central.\nReportando erro ao administrador do sistema...",
   "@errorDescription": {
     "description": "error description",
     "type": "text",
@@ -87,31 +87,31 @@
     "type": "text",
     "placeholders": {}
   },
-  "location": "Location",
+  "location": "Local",
   "@location": {
     "description": "Reuseable string for location",
     "type": "text",
     "placeholders": {}
   },
-  "baroLeavesOn": "Leaves on",
+  "baroLeavesOn": "Partindo em",
   "@baroLeavesOn": {
     "description": "shows when Baro Ki'Teer is leaving",
     "type": "text",
     "placeholders": {}
   },
-  "baroArrivesOn": "Arrives on",
+  "baroArrivesOn": "Chegando em",
   "@baroArrivesOn": {
     "description": "shows at when Baro Ki'Teer will arrive",
     "type": "text",
     "placeholders": {}
   },
-  "baroInventory": "Baro Ki'Teeer Inventory",
+  "baroInventory": "Baro Ki'Teeer Inventário",
   "@baroInventory": {
     "description": "Baro Ki'Teer Inventory button label",
     "type": "text",
     "placeholders": {}
   },
-  "countdownTooltip": "Ends on {date}",
+  "countdownTooltip": "Termina em {date}",
   "@countdownTooltip": {
     "description": "Countdown tooltip with end date of the current running timer",
     "type": "text",
@@ -119,7 +119,7 @@
       "date": {}
     }
   },
-  "kuvaBanner": "Kuva will refresh in",
+  "kuvaBanner": "O Kuva será atualizado em",
   "@kuvaBanner": {
     "description": "Kuva refresh countdown title",
     "type": "text",
@@ -137,19 +137,19 @@
     "type": "text",
     "placeholders": {}
   },
-  "earthCycleTitle": "Earth Cycle",
+  "earthCycleTitle": "Ciclo da Terra",
   "@earthCycleTitle": {
     "description": "Earth cycle title",
     "type": "text",
     "placeholders": {}
   },
-  "cetusCycleTitle": "Cetus Cycle",
+  "cetusCycleTitle": "Ciclo de Cetus",
   "@cetusCycleTitle": {
     "description": "Cetus cycle title",
     "type": "text",
     "placeholders": {}
   },
-  "vallisCycleTitle": "Vallis Cycle",
+  "vallisCycleTitle": "Ciclo de Vallis",
   "@vallisCycleTitle": {
     "description": "Vallis cycle title",
     "type": "text",
@@ -161,31 +161,31 @@
     "type": "text",
     "placeholders": {}
   },
-  "zarimanCycleTitle": "Zariman Cycle",
+  "zarimanCycleTitle": "Ciclo Zariman",
   "@zarimanCycleTitle": {
     "description": "Zariman Cycle title",
     "type": "text",
     "placeholder": {}
   },
-  "timersTitle": "Timers",
+  "timersTitle": "Cronômetros",
   "@timersTitle": {
     "description": "Times title",
     "type": "text",
     "placeholders": {}
   },
-  "fissuresTitle": "Fissures",
+  "fissuresTitle": "Fendas",
   "@fissuresTitle": {
     "description": "Fissures title",
     "type": "text",
     "placeholders": {}
   },
-  "invasionsTitle": "Invasions",
+  "invasionsTitle": "Invasões",
   "@invasionsTitle": {
     "description": "Invasions title",
     "type": "text",
     "placeholders": {}
   },
-  "syndicatesTitle": "Syndicates",
+  "syndicatesTitle": "Sindicatos",
   "@syndicatesTitle": {
     "description": "Syndicates title",
     "type": "text",
@@ -197,43 +197,43 @@
     "type": "text",
     "placeholders": {}
   },
-  "codexDescription": "Search all warframe items",
+  "codexDescription": "Procurar todos os itens de warframe",
   "@codexDescription": {
     "description": "Codex description",
     "type": "text",
     "placeholders": {}
   },
-  "helpfulLinksTitle": "Helpful Links",
+  "helpfulLinksTitle": "Links úteis",
   "@helpfulLinksTitle": {
     "description": "Helpful Links title",
     "type": "text",
     "placeholders": {}
   },
-  "behaviorTitle": "Behavior",
+  "behaviorTitle": "Comportamento",
   "@behaviorTitle": {
     "description": "Behavior category title",
     "type": "text",
     "placeholders": {}
   },
-  "themeTitle": "Theme",
+  "themeTitle": "Tema",
   "@themeTitle": {
     "description": "Theme title",
     "type": "text",
     "placeholders": {}
   },
-  "themeDescription": "Choose app theme.",
+  "themeDescription": "Escolha o tema do aplicativo.",
   "@themeDescription": {
     "description": "Theme option description",
     "typ": "text",
     "placeholders": {}
   },
-  "notificationsTitle": "Notifications",
+  "notificationsTitle": "Notificações",
   "@notificationsTitle": {
     "description": "Notifications category title",
     "type": "text",
     "placeholders": {}
   },
-  "rareAlertsNotificationTitle": "Rare Alerts",
+  "rareAlertsNotificationTitle": "Alerta Raros",
   "@rareAlertsNotificationTitle": {
     "description": "Rare Alerts title",
     "type": "text",
@@ -485,7 +485,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "issueTrackerDescription": "Report issues or feature request for this project's",
+  "issueTrackerDescription": "Relate problemas ou solicite funcionalidades para este projeto",
   "@issueTrackerDescription": {
     "description": "Description for Navis's issue tracker",
     "type": "text",
