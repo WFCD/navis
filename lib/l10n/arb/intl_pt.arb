@@ -755,55 +755,55 @@
     "type": "text",
     "placeholders": {}
   },
-  "windUpTitle": "Wind Up",
+  "windUpTitle": "Conclusão",
   "@windUpTitle": {
     "description": "melee's heavy wind up time title",
     "type": "text",
     "placeholders": {}
   },
-  "discordSupportTitle": "Support",
+  "discordSupportTitle": "Suporte",
   "@discordSupportTitle": {
     "description": "Discord support title",
     "type": "text",
     "placeholders": {}
   },
-  "steelPathTitle": "Steel Path",
+  "steelPathTitle": "Percurso de Aço",
   "@steelPathTitle": {
     "description": "Steel path card title",
     "type": "text",
     "placeholers": {}
   },
-  "syndicateDualScreenTitle": "Select Syndicate",
+  "syndicateDualScreenTitle": "Selecione o Sindicato",
   "@syndicateDualScreenTitle": {
     "description": "User hint when under syndicate tabs using a tablet",
     "type": "text",
     "placeholders": {}
   },
-  "optOutOfAnalyticsTitle": "Opt out of analytics",
+  "optOutOfAnalyticsTitle": "Optar por não analisar",
   "@optOutOfAnalyticsTitle": {
     "description": "Title opting out of analytics",
     "type": "text",
     "placeholders": {}
   },
-  "optOutOfAnalyticsDescription": "Disable analytics.",
+  "optOutOfAnalyticsDescription": "Desativar o Analytics.",
   "@optOutOfAnalyticsDescription": {
     "description": "Description of the analytics opting buttong",
     "type": "text",
     "placeholders": {}
   },
-  "appLangTitle": "Language",
+  "appLangTitle": "Idioma",
   "@appLangTitle": {
     "description": "Title for app language options",
     "type": "text",
     "placeholders": {}
   },
-  "appLangDescription": "Override default behavior for language detection.",
+  "appLangDescription": "Sobrescrever o comportamento padrão para detecção de idioma.",
   "@appLangDescription": {
     "description": "Description for language options",
     "type": "text",
     "placeholders": {}
   },
-  "modLevelLabel": "Level {rank}",
+  "modLevelLabel": "Nível {rank}",
   "@modLevelLabel": {
     "description": "The label shown to users as they slide the mod slider",
     "type": "text",
@@ -811,85 +811,85 @@
       "rank": {}
     }
   },
-  "codexHint": "Search here...",
+  "codexHint": "Pesquisar aqui...",
   "@codexHint": {
     "description": "Codex description when a user enters the codex or when the search bar is empty",
     "type": "text",
     "placeholder": {}
   },
-  "codexNoResults": "No results",
+  "codexNoResults": "Nenhum resultado",
   "@codexNoResults": {
     "description": "Displayed when a search result in codex returns empty",
     "type": "text",
     "placeholder": {}
   },
-  "codexVaultedLabel": "Vaulted",
+  "codexVaultedLabel": "No Vault",
   "@codexVaultedLabel": {
     "description": "A label shown in codex items to detenote items that are vaulted",
     "type": "text",
     "placeholder": {}
   },
-  "exploreTitle": "Explore",
+  "exploreTitle": "Explorar",
   "@exploreTitle": {
     "description": "Title for explore page",
     "type": "text",
     "placeholder": {}
   },
-  "constructionProgressTitle": "Construction Progress",
+  "constructionProgressTitle": "Progresso da Construção",
   "@constructionProgressTitle": {
     "description": "Title for invasion constrcution progress",
     "type": "text",
     "placeholder": {}
   },
-  "synthTargetTitle": "SynthTargets",
+  "synthTargetTitle": "Alvo de Sintetize",
   "@synthTargetTitle": {
     "description": "Title for synthtargets.",
     "type": "text",
     "placeholder": {}
   },
-  "archonHuntTitle": "Archon Hunt",
+  "archonHuntTitle": "Caçada Archon",
   "@archonHuntTitle": {
     "description": "Title for archon hunt notification toggle.",
     "type": "text",
     "placeholder": {}
   },
-  "archonHuntDescription": "Archon hunt reset notification.",
+  "archonHuntDescription": "Notificação de reinício de caçada de Archon.",
   "@archonHuntDescription": {
     "description": "Description for archon hunt notification toggle.",
     "type": "text",
     "placeholder": {}
   },
-  "allFissuresButton": "All",
+  "allFissuresButton": "Todos",
   "@allFissuresButton": {
     "description": "Button label for all fissures",
     "type": "text",
     "placeholder": {}
   },
-  "voidStormFissuresButton": "Void Storms",
+  "voidStormFissuresButton": "Tempestades do Void",
   "@voidStormFissuresButton": {
     "description": "Button label for void storm fissures",
     "type": "text",
     "placeholder": {}
   },
-  "saleEndsTitle": "SALE ENDS",
+  "saleEndsTitle": "OFERTA TERMINA EM",
   "@saleEndsTitle": {
     "description": "Sale ends title for countdown timer",
     "type": "text",
     "placeholder": {}
   },
-  "salePriceTitle": "Sale price",
+  "salePriceTitle": "Preço em oferta",
   "@salePriceTitle": {
     "description": "Displays the item's sale price for darvo sales",
     "type": "text",
     "placeholder": {}
   },
-  "originalPriceTitle": "Original Price",
+  "originalPriceTitle": "Preço Original",
   "@originalPriceTitle": {
     "description": "Displays the item's original price for darvo sales",
     "type": "text",
     "placeholder": {}
   },
-  "discountTitle": "{discount}% OFF!",
+  "discountTitle": "{discount}% DESCONTO!",
   "@discountTitle": {
     "description": "Displays the discount applied for a given darvo sale",
     "type": "text",
@@ -897,7 +897,7 @@
       "discount": {}
     }
   },
-  "inStockInformation": "Only {stock} left",
+  "inStockInformation": "Somente {stock} restantes",
   "@inStockInformation": {
     "description": "Displays the stock information for a darvo deal",
     "type": "text",
@@ -905,157 +905,157 @@
       "stock": {}
     }
   },
-  "outOfStockTitle": "OUT OF STOCK",
+  "outOfStockTitle": "FORA DE ESTOQUE",
   "@outOfStockTitle": {
     "description": "Tells the user when darvo is out of stock for the current sale",
     "type": "text",
     "placeholder": {}
   },
-  "duviriJoy": "Duviri Joy",
+  "duviriJoy": "Duviri Alegria",
   "@duviriJoy": {
     "description": "Duviri joy state. If Duviri doesn't have a translatetion then only joy can be translated.",
     "type": "text",
     "placeholder": {}
   },
-  "duviriAnger": "Duviri Anger",
+  "duviriAnger": "Duviri Raiva",
   "@duviriAnger": {
     "description": "Duviri anger state. If Duviri doesn't have a translatetion then only joy can be translated.",
     "type": "text",
     "placeholder": {}
   },
-  "duviriEnvy": "Duviri Envy",
+  "duviriEnvy": "Duviri Inveja",
   "@duviriEnvy": {
     "description": "Duviri envy state. If Duviri doesn't have a translatetion then only joy can be translated.",
     "type": "text",
     "placeholder": {}
   },
-  "duviriSorrow": "Duviri Sorrow",
+  "duviriSorrow": "Duviri Tristeza",
   "@duviriSorrow": {
     "description": "Duviri sorrow state. If Duviri doesn't have a translatetion then only joy can be translated.",
     "type": "text",
     "placeholder": {}
   },
-  "duviriFear": "Duviri Fear",
+  "duviriFear": "Duviri Medo",
   "@duviriFear": {
     "description": "Duviri Fear state. If Duviri doesn't have a translatetion then only joy can be translated.",
     "type": "text",
     "placeholder": {}
   },
-  "mapTitle": "Maps",
+  "mapTitle": "Mapas",
   "@mapTitle": {
     "description": "Map title",
     "type": "text",
     "placeholder": {}
   },
-  "mapDescription": "See region maps",
+  "mapDescription": "Ver mapas regionais",
   "@mapDescription": {
     "description": "Map card description",
     "type": "text",
     "placeholder": {}
   },
-  "fishTitle": "Fish",
+  "fishTitle": "Peixe",
   "@fishTitle": {
     "description": "Fish title",
     "type": "text",
     "placeholder": {}
   },
-  "fishDescription": "See fish information by region",
+  "fishDescription": "Ver informações de peixe por região",
   "@fishDescription": {
     "description": "fish card description",
     "type": "text",
     "placeholder": {}
   },
-  "fishName": "Name",
+  "fishName": "Nome",
   "@fishName": {
     "description": "Display a fish name along side it",
     "type": "text",
     "placeholder": {}
   },
-  "fishTime": "Time",
+  "fishTime": "Tempo",
   "@fishTime": {
     "description": "Display time a day a fish can be caught in",
     "type": "text",
     "placeholder": {}
   },
-  "fishSpear": "Spear",
+  "fishSpear": "Lança",
   "@fishSpear": {
     "description": "Display the type of spear used to catch fish",
     "type": "text",
     "placeholder": {}
   },
-  "fishRarity": "Rarity",
+  "fishRarity": "Raridade",
   "@fishRarity": {
     "description": "Display rarity of a given fish",
     "type": "text",
     "placeholder": {}
   },
-  "fishBait": "Bait",
+  "fishBait": "Isca",
   "@fishBait": {
     "description": "Display type of bait needed to catch fish",
     "type": "text",
     "placeholder": {}
   },
-  "fishStanding": "Standing",
+  "fishStanding": "Reputação",
   "@fishStanding": {
     "description": "Display standing earned with fish",
     "type": "text",
     "placeholder": {}
   },
-  "fishUnique": "Unique",
+  "fishUnique": "Único",
   "@fishUnique": {
     "description": "Display a unique resources earned by given fish",
     "type": "text",
     "placeholder": {}
   },
-  "fishBladder": "Bladders",
+  "fishBladder": "Bexigas",
   "@fishBladder": {
     "description": "Displays how many bladders can be earned with the given fish size",
     "type": "text",
     "placeholder": {}
   },
-  "fishGills": "Gills",
+  "fishGills": "Guelras",
   "@fishGills": {
     "description": "Displays how many gills can be earned with the given fish size",
     "type": "text",
     "placeholder": {}
   },
-  "fishTumors": "Tumors",
+  "fishTumors": "Tumores",
   "@fishTumors": {
     "description": "Displays how many tumors can be earned with the given fish size",
     "type": "text",
     "placeholder": {}
   },
-  "fishMeat": "Meats",
+  "fishMeat": "Carnes",
   "@fishMeat": {
     "description": "Displays how many meat can be earned with the given fish size",
     "type": "text",
     "placeholder": {}
   },
-  "fishOil": "Oils",
+  "fishOil": "Óleos",
   "@fishOil": {
     "description": "Displays how many oils can be earned with the given fish size",
     "type": "text",
     "placeholder": {}
   },
-  "fishScales": "Scales",
+  "fishScales": "Escamas",
   "@fishScales": {
     "description": "Displays how many scales can be earned with the given fish size",
     "type": "text",
     "placeholder": {}
   },
-  "fishScrap": "Scraps",
+  "fishScrap": "Sucatas",
   "@fishScrap": {
     "description": "Displays how many scraps can be earned with the given fish size",
     "type": "text",
     "placeholder": {}
   },
-  "fishAny": "Any",
+  "fishAny": "Qualquer",
   "@fishAny": {
     "description": "Displayed when a fish can be caught by any spear",
     "type": "text",
     "placeholder": {}
   },
-  "dropChance": "Drop chance {chance}%",
+  "dropChance": "Chance de drop {chance}%",
   "@dropChance": {
     "description": "Drop chance percentage",
     "type": "text",
@@ -1063,79 +1063,79 @@
       "chance": {}
     }
   },
-  "statsTitle": "Stats",
+  "statsTitle": "Estatísticas",
   "@statsTitle": {
     "description": "Codex stat title",
     "type": "text",
     "placeholder": {}
   },
-  "patchlogsTitle": "Patchlogs",
+  "patchlogsTitle": "Registros",
   "@patchlogsTitle": {
     "description": "Codex patchlogs title",
     "type": "text",
     "placeholder": {}
   },
-  "impactDamageTitle": "Impact",
+  "impactDamageTitle": "Impacto",
   "@impactDamageTitle": {
     "description": "Codex Weapon damage type title",
     "type": "text",
     "placeholder": {}
   },
-  "punctureDamageTitle": "Puncture",
+  "punctureDamageTitle": "Perfuração",
   "@punctureDamageTitle": {
     "description": "Codex Weapon damage type title",
     "type": "text",
     "placeholder": {}
   },
-  "slashDamageTitle": "Slash",
+  "slashDamageTitle": "Cortante",
   "@slashDamageTitle": {
     "description": "Codex Weapon damage type title",
     "type": "text",
     "placeholder": {}
   },
-  "heatDamageTitle": "Heat",
+  "heatDamageTitle": "Ígneo",
   "@heatDamageTitle": {
     "description": "Codex Weapon damage type title",
     "type": "text",
     "placeholder": {}
   },
-  "coldDamageTitle": "Cold",
+  "coldDamageTitle": "Glacial",
   "@coldDamageTitle": {
     "description": "Codex Weapon damage type title",
     "type": "text",
     "placeholder": {}
   },
-  "electricityDamageTitle": "Electricity",
+  "electricityDamageTitle": "Elétrico",
   "@electricityDamageTitle": {
     "description": "Codex Weapon damage type title",
     "type": "text",
     "placeholder": {}
   },
-  "toxinDamageTitle": "Toxin",
+  "toxinDamageTitle": "Tóxico",
   "@toxinDamageTitle": {
     "description": "Codex Weapon damage type title",
     "type": "text",
     "placeholder": {}
   },
-  "blastDamageTitle": "Blast",
+  "blastDamageTitle": "Colisivo",
   "@blastDamageTitle": {
     "description": "Codex Weapon damage type title",
     "type": "text",
     "placeholder": {}
   },
-  "radiationDamageTitle": "Radiation",
+  "radiationDamageTitle": "Radiação",
   "@radiationDamageTitle": {
     "description": "Codex Weapon damage type title",
     "type": "text",
     "placeholder": {}
   },
-  "gasDamageTitle": "Gas",
+  "gasDamageTitle": "Gasoso",
   "@gasDamageTitle": {
     "description": "Codex Weapon damage type title",
     "type": "text",
     "placeholder": {}
   },
-  "magneticDamageTitle": "Magnetic",
+  "magneticDamageTitle": "Magnético",
   "@magneticDamageTitle": {
     "description": "Codex Weapon damage type title",
     "type": "text",
@@ -1147,7 +1147,7 @@
     "type": "text",
     "placeholder": {}
   },
-  "corrosiveDamageTitle": "Corrosive",
+  "corrosiveDamageTitle": "Corrosivo",
   "@corrosiveDamageTitle": {
     "description": "Codex Weapon damage type title",
     "type": "text",
@@ -1165,31 +1165,31 @@
     "type": "text",
     "placeholder": {}
   },
-  "cinematicDamageTitle": "Cinematic",
+  "cinematicDamageTitle": "Cinemática",
   "@cinematicDamageTitle": {
     "description": "Codex Weapon damage type title",
     "type": "text",
     "placeholder": {}
   },
-  "shieldDrainDamageTitle": "Shield Drain",
+  "shieldDrainDamageTitle": "Dreno de Escudo",
   "@shieldDrainDamageTitle": {
     "description": "Codex Weapon damage type title",
     "type": "text",
     "placeholder": {}
   },
-  "healthDrainDamageTitle": "Health Drain",
+  "healthDrainDamageTitle": "Dreno de Saúde",
   "@healthDrainDamageTitle": {
     "description": "Codex Weapon damage type title",
     "type": "text",
     "placeholder": {}
   },
-  "energyDrainDamageTitle": "Energy Drain",
+  "energyDrainDamageTitle": "Dreno de Energia",
   "@energyDrainDamageTitle": {
     "description": "Codex Weapon damage type title",
     "type": "text",
     "placeholder": {}
   },
-  "physicalDamageTitle": "Physical",
+  "physicalDamageTitle": "Físico",
   "@physicalDamageTitle": {
     "description": "Codex Weapon damage type title",
     "type": "text",
