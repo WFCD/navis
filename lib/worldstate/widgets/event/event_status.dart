@@ -11,6 +11,7 @@ class EventStatus extends StatelessWidget {
     this.tooltip,
     required this.node,
     required this.health,
+    required this.scoreLocTag,
     required this.expiry,
     required this.rewards,
   });
@@ -19,6 +20,7 @@ class EventStatus extends StatelessWidget {
   final String node;
   final String? tooltip;
   final double? health;
+  final String? scoreLocTag;
   final DateTime expiry;
   final List<Reward> rewards;
 
@@ -35,6 +37,7 @@ class EventStatus extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(8),
         child: Column(
+          mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             if (tooltip != null) ...{
@@ -57,14 +60,6 @@ class EventStatus extends StatelessWidget {
               child: ColoredContainer.text(text: node),
             ),
             SizedBoxSpacer.spacerHeight8,
-            if (health != null && !health!.isNaN && !health!.isInfinite)
-              RowItem(
-                text: Text(l10n.eventStatusProgress, style: tooltipStyle),
-                child: ColoredContainer.text(
-                  text: '${health!.toStringAsFixed(fixedString)} %',
-                ),
-              ),
-            SizedBoxSpacer.spacerHeight8,
             RowItem(
               text: Text(l10n.eventStatusEta, style: tooltipStyle),
               child: CountdownTimer(
@@ -72,6 +67,21 @@ class EventStatus extends StatelessWidget {
                 expiry: expiry,
               ),
             ),
+            SizedBoxSpacer.spacerHeight24,
+            if (health != null && !health!.isNaN && !health!.isInfinite)
+              Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  if (scoreLocTag != null)
+                    Text(
+                      '$scoreLocTag: ${health!.toStringAsFixed(fixedString)}%',
+                      style: tooltipStyle,
+                    ),
+                  SizedBoxSpacer.spacerHeight4,
+                  LinearProgressIndicator(value: health! / 100),
+                ],
+              ),
             if (rewards.isNotEmpty) ...{
               SizedBoxSpacer.spacerHeight20,
               CategoryTitle(

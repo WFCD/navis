@@ -20,10 +20,7 @@ class EventInformation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // There are checks in othere places that ensure this is a non null
-    // Event type.
-    // ignore: cast_nullable_to_non_nullable
-    final event = ModalRoute.of(context)?.settings.arguments as WorldEvent;
+    final event = ModalRoute.of(context)!.settings.arguments! as WorldEvent;
 
     return TraceableWidget(
       child: Scaffold(
@@ -31,8 +28,6 @@ class EventInformation extends StatelessWidget {
           slivers: <Widget>[
             SliverAppBar(
               pinned: true,
-              // It's just what works for the style.
-              // ignore: no-magic-number
               expandedHeight: (MediaQuery.of(context).size.height / 100) * 25,
               backgroundColor: Theme.of(context).primaryColor,
               flexibleSpace: FlexibleSpaceBar(
@@ -52,6 +47,7 @@ class EventInformation extends StatelessWidget {
                   tooltip: event.tooltip ?? '',
                   node: event.victimNode ?? event.node ?? '',
                   health: event.eventHealth(),
+                  scoreLocTag: event.scoreLocTag,
                   expiry: event.expiry,
                   rewards: eventRewards(event.rewards, event.interimSteps),
                 ),

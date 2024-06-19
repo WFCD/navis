@@ -40,8 +40,11 @@ class EventCard extends StatelessWidget {
               for (final event in events)
                 ListTile(
                   title: Text(event.description),
-                  subtitle:
-                      event.tooltip != null ? Text(event.tooltip ?? '') : null,
+                  subtitle: Text(
+                    event.tooltip ?? '',
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
                   trailing: TextButton(
                     style: ButtonStyle(
                       foregroundColor: WidgetStateProperty.all(
