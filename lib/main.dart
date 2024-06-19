@@ -24,7 +24,7 @@ Future<void> main() async {
     appRunner: () async {
       if (!kDebugMode || !kProfileMode) {
         await MatomoTracker.instance.initialize(
-          siteId: siteId,
+          siteId: siteId.toString(),
           url: const String.fromEnvironment('MATOMO_URL'),
         );
       }
