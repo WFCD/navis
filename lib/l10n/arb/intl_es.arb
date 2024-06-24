@@ -1165,7 +1165,7 @@
     "type": "text",
     "placeholder": {}
   },
-  "cinematicDamageTitle": "Cinematic",
+  "cinematicDamageTitle": "Cinemática",
   "@cinematicDamageTitle": {
     "description": "Codex Weapon damage type title",
     "type": "text",
