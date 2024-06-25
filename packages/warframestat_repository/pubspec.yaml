@@ -10,7 +10,7 @@ dependencies:
   collection: ^1.18.0
   hive: ^2.2.3
   http: ^1.2.1
-  warframestat_client: ^3.8.8
+  warframestat_client: ^3.8.11
 
 dev_dependencies:
   mocktail: ^1.0.3
