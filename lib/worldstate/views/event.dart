@@ -28,7 +28,7 @@ class EventInformation extends StatelessWidget {
           slivers: <Widget>[
             SliverAppBar(
               pinned: true,
-              expandedHeight: (MediaQuery.of(context).size.height / 100) * 25,
+              expandedHeight: (MediaQuery.sizeOf(context).height / 100) * 20,
               backgroundColor: Theme.of(context).primaryColor,
               flexibleSpace: FlexibleSpaceBar(
                 title: Text(event.description),
@@ -53,7 +53,8 @@ class EventInformation extends StatelessWidget {
                 ),
                 // Already being checked for null.
                 // ignore: avoid-non-null-assertion
-                if (event.jobs != null) EventBounties(jobs: event.jobs!),
+                if (event.jobs != null)
+                  SafeArea(child: EventBounties(jobs: event.jobs!)),
               ]),
             ),
           ],

@@ -73,11 +73,11 @@ class EventStatus extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  if (scoreLocTag != null)
-                    Text(
-                      '$scoreLocTag: ${health!.toStringAsFixed(fixedString)}%',
-                      style: tooltipStyle,
-                    ),
+                  Text(
+                    '${scoreLocTag ?? 'Progress'}: '
+                    '${health!.toStringAsFixed(fixedString)}%',
+                    style: tooltipStyle,
+                  ),
                   SizedBoxSpacer.spacerHeight4,
                   LinearProgressIndicator(value: health! / 100),
                 ],
