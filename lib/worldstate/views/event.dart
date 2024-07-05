@@ -18,6 +18,14 @@ class EventInformation extends StatelessWidget {
       ..removeWhere((r) => r.itemString.isEmpty);
   }
 
+  static const _eventBanner = <String, String>{
+    'Thermia Fractures': 'https://www-static.warframe.com/uploads/thumbnails/'
+        '59f071afbbd6d21fda59bc2bd611200_1600x900.png',
+    'Operation: Belly of the Beast':
+        'https://www-static.warframe.com/uploads/thumbnails'
+            '/92a16137ab4635c0d3e222957739eec9_1600x900.png',
+  };
+
   @override
   Widget build(BuildContext context) {
     final event = ModalRoute.of(context)!.settings.arguments! as WorldEvent;
@@ -28,15 +36,16 @@ class EventInformation extends StatelessWidget {
           slivers: <Widget>[
             SliverAppBar(
               pinned: true,
-              expandedHeight: (MediaQuery.sizeOf(context).height / 100) * 20,
+              expandedHeight: (MediaQuery.sizeOf(context).height / 100) * 25,
               backgroundColor: Theme.of(context).primaryColor,
               flexibleSpace: FlexibleSpaceBar(
                 title: Text(event.description),
                 background: CachedNetworkImage(
-                  imageUrl: 'https://i.imgur.com/CNrsc7V.png',
+                  imageUrl: _eventBanner[event.description] ??
+                      'https://i.imgur.com/CNrsc7V.png',
                   fit: BoxFit.cover,
-                  color: const Color.fromRGBO(34, 34, 34, 0.4),
-                  colorBlendMode: BlendMode.darken,
+                  color: Colors.grey[350],
+                  colorBlendMode: BlendMode.modulate,
                 ),
               ),
             ),
@@ -46,14 +55,14 @@ class EventInformation extends StatelessWidget {
                   description: event.description,
                   tooltip: event.tooltip ?? '',
                   node: event.victimNode ?? event.node ?? '',
-                  health: event.eventHealth(),
+                  health: event.health?.toDouble(),
+                  currentScore: event.currentScore,
+                  maxScore: event.maximumScore,
                   scoreLocTag: event.scoreLocTag,
                   expiry: event.expiry,
                   rewards: eventRewards(event.rewards, event.interimSteps),
                 ),
-                // Already being checked for null.
-                // ignore: avoid-non-null-assertion
-                if (event.jobs != null)
+                if (event.jobs != null && event.jobs!.isNotEmpty)
                   SafeArea(child: EventBounties(jobs: event.jobs!)),
               ]),
             ),

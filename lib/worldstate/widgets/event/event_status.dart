@@ -11,6 +11,8 @@ class EventStatus extends StatelessWidget {
     this.tooltip,
     required this.node,
     required this.health,
+    this.currentScore,
+    this.maxScore,
     required this.scoreLocTag,
     required this.expiry,
     required this.rewards,
@@ -20,13 +22,14 @@ class EventStatus extends StatelessWidget {
   final String node;
   final String? tooltip;
   final double? health;
+  final int? currentScore;
+  final int? maxScore;
   final String? scoreLocTag;
   final DateTime expiry;
   final List<Reward> rewards;
 
   @override
   Widget build(BuildContext context) {
-    const fixedString = 2;
     final l10n = context.l10n;
     final category = context.textTheme.titleMedium
         ?.copyWith(color: context.theme.colorScheme.secondary);
@@ -40,16 +43,7 @@ class EventStatus extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            if (tooltip != null) ...{
-              CategoryTitle(
-                title: l10n.eventDescription,
-                style: category,
-                contentPadding: EdgeInsets.zero,
-              ),
-              SizedBoxSpacer.spacerHeight2,
-              Text(tooltip ?? '', style: tooltipStyle),
-              SizedBoxSpacer.spacerHeight20,
-            },
+            if (tooltip != null) _EventTooltip(tooltip: tooltip!),
             CategoryTitle(
               title: l10n.eventStatus,
               style: category,
@@ -59,7 +53,6 @@ class EventStatus extends StatelessWidget {
               text: Text(l10n.eventStatusNode, style: tooltipStyle),
               child: ColoredContainer.text(text: node),
             ),
-            SizedBoxSpacer.spacerHeight8,
             RowItem(
               text: Text(l10n.eventStatusEta, style: tooltipStyle),
               child: CountdownTimer(
@@ -67,21 +60,12 @@ class EventStatus extends StatelessWidget {
                 expiry: expiry,
               ),
             ),
-            SizedBoxSpacer.spacerHeight24,
-            if (health != null && !health!.isNaN && !health!.isInfinite)
-              Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    '${scoreLocTag ?? 'Progress'}: '
-                    '${health!.toStringAsFixed(fixedString)}%',
-                    style: tooltipStyle,
-                  ),
-                  SizedBoxSpacer.spacerHeight4,
-                  LinearProgressIndicator(value: health! / 100),
-                ],
-              ),
+            _EventProgress(
+              scoreLocTag: scoreLocTag,
+              health: health,
+              currentScore: currentScore,
+              maxScore: maxScore,
+            ),
             if (rewards.isNotEmpty) ...{
               SizedBoxSpacer.spacerHeight20,
               CategoryTitle(
@@ -94,6 +78,80 @@ class EventStatus extends StatelessWidget {
             },
           ],
         ),
+      ),
+    );
+  }
+}
+
+class _EventTooltip extends StatelessWidget {
+  const _EventTooltip({required this.tooltip});
+
+  final String tooltip;
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = context.l10n;
+    final tooltipStyle =
+        context.theme.textTheme.titleSmall?.copyWith(fontSize: 15);
+    final category = context.textTheme.titleMedium
+        ?.copyWith(color: context.theme.colorScheme.secondary);
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        CategoryTitle(
+          title: l10n.eventDescription,
+          style: category,
+          contentPadding: EdgeInsets.zero,
+        ),
+        Padding(
+          padding: const EdgeInsets.only(top: 2, bottom: 20),
+          child: Text(tooltip, style: tooltipStyle),
+        ),
+      ],
+    );
+  }
+}
+
+class _EventProgress extends StatelessWidget {
+  const _EventProgress({
+    this.scoreLocTag,
+    this.health,
+    this.currentScore,
+    this.maxScore,
+  });
+
+  final String? scoreLocTag;
+  final double? health;
+  final int? currentScore;
+  final int? maxScore;
+
+  @override
+  Widget build(BuildContext context) {
+    final tooltipStyle =
+        context.theme.textTheme.titleSmall?.copyWith(fontSize: 15);
+
+    if (maxScore != null && maxScore != 0) {
+      return RowItem(
+        text: Text(scoreLocTag ?? 'Progress', style: tooltipStyle),
+        child: ColoredContainer.text(text: '$currentScore/$maxScore'),
+      );
+    }
+
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 10),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            '${scoreLocTag ?? 'Progress'}: '
+            '${health!.toStringAsFixed(2)}%',
+            style: tooltipStyle,
+          ),
+          SizedBoxSpacer.spacerHeight4,
+          LinearProgressIndicator(value: health! / 100),
+        ],
       ),
     );
   }
