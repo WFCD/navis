@@ -437,7 +437,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "contributeTranslationsTitle": "Contribute Translations",
+  "contributeTranslationsTitle": "Contribuer à la traduction",
   "@contributeTranslationsTitle": {
     "description": "Title for contribute translations link",
     "type": "text",
