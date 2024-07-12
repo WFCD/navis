@@ -33,13 +33,13 @@
     "type": "text",
     "placeholders": {}
   },
-  "eventStatus": "Statut de l'évènement",
+  "eventStatus": "Statut de l'événement",
   "@eventStatus": {
     "description": "Event status category title",
     "type": "text",
     "placeholders": {}
   },
-  "eventStatusNode": "Noeud",
+  "eventStatusNode": "Nœud",
   "@eventStatusNode": {
     "description": "The node that the event is taking place in",
     "type": "text",
@@ -51,7 +51,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "eventStatusEta": "Temps restant (ETA)",
+  "eventStatusEta": "Temps restant (estimé)",
   "@eventStatusEta": {
     "description": "Current events remaining estimated time",
     "type": "text",
@@ -87,7 +87,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "location": "Location",
+  "location": "Traduction",
   "@location": {
     "description": "Reuseable string for location",
     "type": "text",
@@ -125,13 +125,13 @@
     "type": "text",
     "placeholders": {}
   },
-  "formorianTitle": "Formorian",
+  "formorianTitle": "Fomorien",
   "@formorianTitle": {
     "description": "Fomorian progress title",
     "type": "text",
     "placeholders": {}
   },
-  "razorbackTitle": "Razerback",
+  "razorbackTitle": "Razorback",
   "@razorbackTitle": {
     "description": "Razorback progress title",
     "type": "text",
@@ -197,7 +197,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "codexDescription": "Search all warframe items",
+  "codexDescription": "Chercher parmi tous les Objets",
   "@codexDescription": {
     "description": "Codex description",
     "type": "text",
@@ -305,7 +305,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "warframeNewsNotificationDescription": "Nouvelles notifications pour l'accès Prime, les directs et les mises à jour.",
+  "warframeNewsNotificationDescription": "Nouvelles notifications pour le Prime Access, les directs et les mises à jour.",
   "@warframeNewsNotificationDescription": {
     "description": "Main description for Warframe news notifications",
     "type": "text",
@@ -359,55 +359,55 @@
     "type": "text",
     "placeholders": {}
   },
-  "cetusDayOption": "Cetus Jour",
+  "cetusDayOption": "Cetus - Jour",
   "@cetusDayOption": {
     "description": "Cetus cycle option",
     "type": "text",
     "placeholders": {}
   },
-  "cetusNightOption": "Cetus Nuit",
+  "cetusNightOption": "Cetus - Nuit",
   "@cetusNightOption": {
     "description": "Cetus cycle option",
     "type": "text",
     "placeholders": {}
   },
-  "vallisWarmOption": "Vallée d'Orbis Chaud",
+  "vallisWarmOption": "Vallée Orbis - Chaud",
   "@vallisWarmOption": {
     "description": "Orb vallis cycle option",
     "type": "text",
     "placeholders": {}
   },
-  "vallisColdOption": "Vallée d'Orbis Froid",
+  "vallisColdOption": "Vallée Orbis - Froid",
   "@vallisColdOption": {
     "description": "Orb vallis cycle option",
     "type": "text",
     "placeholders": {}
   },
-  "cambionFassOption": "Cambion Fass",
+  "cambionFassOption": "Cambion - Fass",
   "@cambionFassOption": {
     "description": "Cambion Fass cycle option",
     "type": "text",
     "placeholders": {}
   },
-  "cambionVomeOption": "Cambion Vome",
+  "cambionVomeOption": "Cambion - Vome",
   "@cambionVomeOption": {
     "description": "Cambion Fass cycle option",
     "type": "text",
     "placeholders": {}
   },
-  "primeAccessNewsOption": "Accès Prime",
+  "primeAccessNewsOption": "Prime Access",
   "@primeAccessNewsOption": {
     "description": "Warframe news option",
     "type": "text",
     "placeholders": {}
   },
-  "streamNewsOption": "Annonces de live",
+  "streamNewsOption": "Annonces de Diff. en direct",
   "@streamNewsOption": {
     "description": "Warframe news option",
     "type": "text",
     "placeholders": {}
   },
-  "updateNewsOption": "Actualités des MàJ Warframe",
+  "updateNewsOption": "Actualités des MAJ de Warframe",
   "@updateNewsOption": {
     "description": "Warframe news option",
     "type": "text",
@@ -431,19 +431,19 @@
     "type": "text",
     "placeholders": {}
   },
-  "aboutAppTitle": "About app",
+  "aboutAppTitle": "A propos de l'application",
   "@aboutAppTitle": {
     "description": "Title for the about app dialog",
     "type": "text",
     "placeholders": {}
   },
-  "contributeTranslationsTitle": "Contribute Translations",
+  "contributeTranslationsTitle": "Contribuer à la traduction",
   "@contributeTranslationsTitle": {
     "description": "Title for contribute translations link",
     "type": "text",
     "placeholders": {}
   },
-  "contributeTranslationsDescription": "Volunteer to contribute translations",
+  "contributeTranslationsDescription": "Soumettre sa candidature pour traduction",
   "@contributeTranslationsDescription": {
     "description": "Description for contribute translations link",
     "type": "text",
@@ -461,13 +461,13 @@
     "type": "text",
     "placeholders": {}
   },
-  "systemThemeTitle": "Système",
+  "systemThemeTitle": "Automatique",
   "@systemThemeTitle": {
     "description": "Title for system theme",
     "type": "text",
     "placeholders": {}
   },
-  "legalese": "Warframe et le logo Warframe sont des marques déposées de Digital Extremes Ltd. Cephalon Navis et WFCD ne sont pas affiliés avec Digital Extremes Ltd.",
+  "legalese": "Warframe et le logo Warframe sont des marques déposées de Digital Extremes Ltd. Cephalon Navis et WFCD ne sont en aucune façon affiliés à Digital Extremes Ltd.",
   "@legalese": {
     "description": "Cephalon Navis legalese",
     "type": "text",
@@ -479,31 +479,31 @@
     "type": "text",
     "placeholders": {}
   },
-  "sourceCode": "Source code",
+  "sourceCode": "Code source",
   "@sourceCode": {
     "description": "Displayes a link to Navis's source code",
     "type": "text",
     "placeholders": {}
   },
-  "issueTrackerDescription": "Report issues or feature request for this project's",
+  "issueTrackerDescription": "Signaler un bug ou proposer une fonctionnalité",
   "@issueTrackerDescription": {
     "description": "Description for Navis's issue tracker",
     "type": "text",
     "placeholders": {}
   },
-  "issueTrackerTitle": "suivi des problèmes",
+  "issueTrackerTitle": "Suivi des incidents",
   "@issueTrackerTitle": {
     "description": "Display link to Navis's issue tracker",
     "type": "text",
     "placeholders": {}
   },
-  "warframeLinkTitle": "Plus d'informations Warframe peuvent être trouvées sur leur site officiel",
+  "warframeLinkTitle": "Plus d'informations sur le jeu Warframe peuvent être trouvées sur leur site officiel",
   "@warframeLinkTitle": {
     "description": "Description for Warframe's main site link",
     "type": "text",
     "placeholders": {}
   },
-  "settingsTitle": "Parramètres",
+  "settingsTitle": "Paramètres",
   "@settingsTitle": {
     "description": "Settings title",
     "type": "text",
@@ -593,7 +593,7 @@
     "typ": "text",
     "placeholders": {}
   },
-  "masteryRequirementTitle": "Condition de niveau de maîtrise",
+  "masteryRequirementTitle": "Prérequis de niveau de maîtrise",
   "@masteryRequirementTitle": {
     "description": "Mastery requirement for item",
     "type": "text",
@@ -617,7 +617,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "cricticalMultiplierTitle": "Multiplieur de critique",
+  "cricticalMultiplierTitle": "Multiplicateur de dégâts critiques",
   "@cricticalMultiplierTitle": {
     "description": "Weapon critical multiplier",
     "type": "text",
@@ -707,25 +707,25 @@
     "type": "text",
     "placeholders": {}
   },
-  "slamAttackTitle": "Attaque piquée",
+  "slamAttackTitle": "Frappe au Sol",
   "@slamAttackTitle": {
     "description": "Melee's slam attack",
     "type": "text",
     "placeholders": {}
   },
-  "slamRadialDamageTitle": "Dégâts radiaux de l'attaque piquée",
+  "slamRadialDamageTitle": "Dégâts radiaux de la Frappe au Sol",
   "@slamRadialDamageTitle": {
     "description": "Melee's Slam Radial Damage",
     "type": "text",
     "placeholders": {}
   },
-  "slamRadiusTitle": "Rayon de l'attaque piquée",
+  "slamRadiusTitle": "Rayon de la Frappe au Sol",
   "@slamRadiusTitle": {
     "description": "Slam Radius title",
     "type": "text",
     "placeholders": {}
   },
-  "slideAttackTitle": "Attaque glissée",
+  "slideAttackTitle": "Attaque Glissée",
   "@slideAttackTitle": {
     "description": "Melee's slide attack",
     "type": "text",
@@ -737,25 +737,25 @@
     "type": "text",
     "placeholders": {}
   },
-  "heavySlamAttackTitle": "Attaque piquée lourde",
+  "heavySlamAttackTitle": "Frappe au Sol Lourde",
   "@heavySlamAttackTitle": {
     "description": "Heavy Slam attack title",
     "type": "text",
     "placeholders": {}
   },
-  "heavySlamRadialDamageTitle": "Dégâts radiaux de l'attaque piquée lourde",
+  "heavySlamRadialDamageTitle": "Dégâts radiaux de la Frappe au Sol Lourde",
   "@heavySlamRadialDamageTitle": {
     "description": "Heavy Slam attack title",
     "type": "text",
     "placeholders": {}
   },
-  "heavySlamRadiusTitle": "Rayon de l'attaque piquée lourde",
+  "heavySlamRadiusTitle": "Rayon de la Frappe au Sol Lourde",
   "@heavySlamRadiusTitle": {
     "description": "Heavy Slam attack title",
     "type": "text",
     "placeholders": {}
   },
-  "windUpTitle": "Attaque chargée",
+  "windUpTitle": "Attaque Chargée",
   "@windUpTitle": {
     "description": "melee's heavy wind up time title",
     "type": "text",
@@ -779,13 +779,13 @@
     "type": "text",
     "placeholders": {}
   },
-  "optOutOfAnalyticsTitle": "Désactiver les analyses",
+  "optOutOfAnalyticsTitle": "Désactiver les traceurs d'analyse",
   "@optOutOfAnalyticsTitle": {
     "description": "Title opting out of analytics",
     "type": "text",
     "placeholders": {}
   },
-  "optOutOfAnalyticsDescription": "Désactiver les analytiques.",
+  "optOutOfAnalyticsDescription": "Désactiver les traceurs d'analyse.",
   "@optOutOfAnalyticsDescription": {
     "description": "Description of the analytics opting buttong",
     "type": "text",
@@ -811,7 +811,7 @@
       "rank": {}
     }
   },
-  "codexHint": "Search here...",
+  "codexHint": "Rechercher...",
   "@codexHint": {
     "description": "Codex description when a user enters the codex or when the search bar is empty",
     "type": "text",
@@ -823,7 +823,7 @@
     "type": "text",
     "placeholder": {}
   },
-  "codexVaultedLabel": "Vaulted",
+  "codexVaultedLabel": "Vaulté",
   "@codexVaultedLabel": {
     "description": "A label shown in codex items to detenote items that are vaulted",
     "type": "text",
@@ -871,25 +871,25 @@
     "type": "text",
     "placeholder": {}
   },
-  "saleEndsTitle": "SALE ENDS",
+  "saleEndsTitle": "Fin des Soldes",
   "@saleEndsTitle": {
     "description": "Sale ends title for countdown timer",
     "type": "text",
     "placeholder": {}
   },
-  "salePriceTitle": "Sale price",
+  "salePriceTitle": "Prix soldé",
   "@salePriceTitle": {
     "description": "Displays the item's sale price for darvo sales",
     "type": "text",
     "placeholder": {}
   },
-  "originalPriceTitle": "Original Price",
+  "originalPriceTitle": "Prix de départ",
   "@originalPriceTitle": {
     "description": "Displays the item's original price for darvo sales",
     "type": "text",
     "placeholder": {}
   },
-  "discountTitle": "{discount}% OFF!",
+  "discountTitle": "{discount}% DE REDUCTION !",
   "@discountTitle": {
     "description": "Displays the discount applied for a given darvo sale",
     "type": "text",
@@ -897,7 +897,7 @@
       "discount": {}
     }
   },
-  "inStockInformation": "Only {stock} left",
+  "inStockInformation": "Plus que {stock} en stock !",
   "@inStockInformation": {
     "description": "Displays the stock information for a darvo deal",
     "type": "text",
@@ -905,157 +905,157 @@
       "stock": {}
     }
   },
-  "outOfStockTitle": "OUT OF STOCK",
+  "outOfStockTitle": "EPUISÉ",
   "@outOfStockTitle": {
     "description": "Tells the user when darvo is out of stock for the current sale",
     "type": "text",
     "placeholder": {}
   },
-  "duviriJoy": "Duviri Joy",
+  "duviriJoy": "Duviri - Joie",
   "@duviriJoy": {
     "description": "Duviri joy state. If Duviri doesn't have a translatetion then only joy can be translated.",
     "type": "text",
     "placeholder": {}
   },
-  "duviriAnger": "Duviri Anger",
+  "duviriAnger": "Duviri - Colère",
   "@duviriAnger": {
     "description": "Duviri anger state. If Duviri doesn't have a translatetion then only joy can be translated.",
     "type": "text",
     "placeholder": {}
   },
-  "duviriEnvy": "Duviri Envy",
+  "duviriEnvy": "Duviri - Envie",
   "@duviriEnvy": {
     "description": "Duviri envy state. If Duviri doesn't have a translatetion then only joy can be translated.",
     "type": "text",
     "placeholder": {}
   },
-  "duviriSorrow": "Duviri Sorrow",
+  "duviriSorrow": "Duviri - Chagrin",
   "@duviriSorrow": {
     "description": "Duviri sorrow state. If Duviri doesn't have a translatetion then only joy can be translated.",
     "type": "text",
     "placeholder": {}
   },
-  "duviriFear": "Duviri Fear",
+  "duviriFear": "Duviri - Peur",
   "@duviriFear": {
     "description": "Duviri Fear state. If Duviri doesn't have a translatetion then only joy can be translated.",
     "type": "text",
     "placeholder": {}
   },
-  "mapTitle": "Maps",
+  "mapTitle": "Cartes",
   "@mapTitle": {
     "description": "Map title",
     "type": "text",
     "placeholder": {}
   },
-  "mapDescription": "See region maps",
+  "mapDescription": "Voir la Carte des Régions",
   "@mapDescription": {
     "description": "Map card description",
     "type": "text",
     "placeholder": {}
   },
-  "fishTitle": "Fish",
+  "fishTitle": "Poisson",
   "@fishTitle": {
     "description": "Fish title",
     "type": "text",
     "placeholder": {}
   },
-  "fishDescription": "See fish information by region",
+  "fishDescription": "Voir les informations des poissons par région",
   "@fishDescription": {
     "description": "fish card description",
     "type": "text",
     "placeholder": {}
   },
-  "fishName": "Name",
+  "fishName": "Nom",
   "@fishName": {
     "description": "Display a fish name along side it",
     "type": "text",
     "placeholder": {}
   },
-  "fishTime": "Time",
+  "fishTime": "Fen. de Capture",
   "@fishTime": {
     "description": "Display time a day a fish can be caught in",
     "type": "text",
     "placeholder": {}
   },
-  "fishSpear": "Spear",
+  "fishSpear": "Lance",
   "@fishSpear": {
     "description": "Display the type of spear used to catch fish",
     "type": "text",
     "placeholder": {}
   },
-  "fishRarity": "Rarity",
+  "fishRarity": "Rareté",
   "@fishRarity": {
     "description": "Display rarity of a given fish",
     "type": "text",
     "placeholder": {}
   },
-  "fishBait": "Bait",
+  "fishBait": "Appât",
   "@fishBait": {
     "description": "Display type of bait needed to catch fish",
     "type": "text",
     "placeholder": {}
   },
-  "fishStanding": "Standing",
+  "fishStanding": "Gain de Standing",
   "@fishStanding": {
     "description": "Display standing earned with fish",
     "type": "text",
     "placeholder": {}
   },
-  "fishUnique": "Unique",
+  "fishUnique": "Ress. Unique",
   "@fishUnique": {
     "description": "Display a unique resources earned by given fish",
     "type": "text",
     "placeholder": {}
   },
-  "fishBladder": "Bladders",
+  "fishBladder": "Vessie de Fermentation",
   "@fishBladder": {
     "description": "Displays how many bladders can be earned with the given fish size",
     "type": "text",
     "placeholder": {}
   },
-  "fishGills": "Gills",
+  "fishGills": "Branchies",
   "@fishGills": {
     "description": "Displays how many gills can be earned with the given fish size",
     "type": "text",
     "placeholder": {}
   },
-  "fishTumors": "Tumors",
+  "fishTumors": "Tumeur Bénigne Infestée",
   "@fishTumors": {
     "description": "Displays how many tumors can be earned with the given fish size",
     "type": "text",
     "placeholder": {}
   },
-  "fishMeat": "Meats",
+  "fishMeat": "Viande de Poisson",
   "@fishMeat": {
     "description": "Displays how many meat can be earned with the given fish size",
     "type": "text",
     "placeholder": {}
   },
-  "fishOil": "Oils",
+  "fishOil": "Huile de Poisson",
   "@fishOil": {
     "description": "Displays how many oils can be earned with the given fish size",
     "type": "text",
     "placeholder": {}
   },
-  "fishScales": "Scales",
+  "fishScales": "Écailles",
   "@fishScales": {
     "description": "Displays how many scales can be earned with the given fish size",
     "type": "text",
     "placeholder": {}
   },
-  "fishScrap": "Scraps",
+  "fishScrap": "Ferraille",
   "@fishScrap": {
     "description": "Displays how many scraps can be earned with the given fish size",
     "type": "text",
     "placeholder": {}
   },
-  "fishAny": "Any",
+  "fishAny": "Peu importe",
   "@fishAny": {
     "description": "Displayed when a fish can be caught by any spear",
     "type": "text",
     "placeholder": {}
   },
-  "dropChance": "Drop chance {chance}%",
+  "dropChance": "{chance}% de chance de drop",
   "@dropChance": {
     "description": "Drop chance percentage",
     "type": "text",
@@ -1069,7 +1069,7 @@
     "type": "text",
     "placeholder": {}
   },
-  "patchlogsTitle": "Patchlogs",
+  "patchlogsTitle": "Notes de Patch",
   "@patchlogsTitle": {
     "description": "Codex patchlogs title",
     "type": "text",
@@ -1081,43 +1081,43 @@
     "type": "text",
     "placeholder": {}
   },
-  "punctureDamageTitle": "Puncture",
+  "punctureDamageTitle": "Perforation",
   "@punctureDamageTitle": {
     "description": "Codex Weapon damage type title",
     "type": "text",
     "placeholder": {}
   },
-  "slashDamageTitle": "Slash",
+  "slashDamageTitle": "Tranchant",
   "@slashDamageTitle": {
     "description": "Codex Weapon damage type title",
     "type": "text",
     "placeholder": {}
   },
-  "heatDamageTitle": "Heat",
+  "heatDamageTitle": "Feu",
   "@heatDamageTitle": {
     "description": "Codex Weapon damage type title",
     "type": "text",
     "placeholder": {}
   },
-  "coldDamageTitle": "Cold",
+  "coldDamageTitle": "Glace",
   "@coldDamageTitle": {
     "description": "Codex Weapon damage type title",
     "type": "text",
     "placeholder": {}
   },
-  "electricityDamageTitle": "Electricity",
+  "electricityDamageTitle": "Electricité",
   "@electricityDamageTitle": {
     "description": "Codex Weapon damage type title",
     "type": "text",
     "placeholder": {}
   },
-  "toxinDamageTitle": "Toxin",
+  "toxinDamageTitle": "Poison",
   "@toxinDamageTitle": {
     "description": "Codex Weapon damage type title",
     "type": "text",
     "placeholder": {}
   },
-  "blastDamageTitle": "Blast",
+  "blastDamageTitle": "Explosif",
   "@blastDamageTitle": {
     "description": "Codex Weapon damage type title",
     "type": "text",
@@ -1129,13 +1129,13 @@
     "type": "text",
     "placeholder": {}
   },
-  "gasDamageTitle": "Gas",
+  "gasDamageTitle": "Gaz",
   "@gasDamageTitle": {
     "description": "Codex Weapon damage type title",
     "type": "text",
     "placeholder": {}
   },
-  "magneticDamageTitle": "Magnetic",
+  "magneticDamageTitle": "Magnétique",
   "@magneticDamageTitle": {
     "description": "Codex Weapon damage type title",
     "type": "text",
@@ -1147,13 +1147,13 @@
     "type": "text",
     "placeholder": {}
   },
-  "corrosiveDamageTitle": "Corrosive",
+  "corrosiveDamageTitle": "Corrosif",
   "@corrosiveDamageTitle": {
     "description": "Codex Weapon damage type title",
     "type": "text",
     "placeholder": {}
   },
-  "voidDamageTitle": "Void",
+  "voidDamageTitle": "Néant",
   "@voidDamageTitle": {
     "description": "Codex Weapon damage type title",
     "type": "text",
@@ -1165,31 +1165,31 @@
     "type": "text",
     "placeholder": {}
   },
-  "cinematicDamageTitle": "Cinematic",
+  "cinematicDamageTitle": "Brut",
   "@cinematicDamageTitle": {
     "description": "Codex Weapon damage type title",
     "type": "text",
     "placeholder": {}
   },
-  "shieldDrainDamageTitle": "Shield Drain",
+  "shieldDrainDamageTitle": "Drain de Bouclier",
   "@shieldDrainDamageTitle": {
     "description": "Codex Weapon damage type title",
     "type": "text",
     "placeholder": {}
   },
-  "healthDrainDamageTitle": "Health Drain",
+  "healthDrainDamageTitle": "Drain de Vie",
   "@healthDrainDamageTitle": {
     "description": "Codex Weapon damage type title",
     "type": "text",
     "placeholder": {}
   },
-  "energyDrainDamageTitle": "Energy Drain",
+  "energyDrainDamageTitle": "Drain d'Énergie",
   "@energyDrainDamageTitle": {
     "description": "Codex Weapon damage type title",
     "type": "text",
     "placeholder": {}
   },
-  "physicalDamageTitle": "Physical",
+  "physicalDamageTitle": "Dégâts de Mêlée",
   "@physicalDamageTitle": {
     "description": "Codex Weapon damage type title",
     "type": "text",
