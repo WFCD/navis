@@ -87,7 +87,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "location": "Traduction",
+  "location": "Localisation",
   "@location": {
     "description": "Reuseable string for location",
     "type": "text",
