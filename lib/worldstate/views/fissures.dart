@@ -145,6 +145,7 @@ class _FissureFilter extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    const showCheckmark = false;
     final l10n = context.l10n;
 
     return BlocListener<WorldstateCubit, SolsystemState>(
@@ -163,24 +164,28 @@ class _FissureFilter extends StatelessWidget {
                 label: Text(l10n.allFissuresButton),
                 tooltip: l10n.allFissuresButton,
                 selected: state is Unfiltred,
+                showCheckmark: showCheckmark,
                 onSelected: (_) => onSelected(context, FissureFilter.all),
               ),
               ChoiceChip(
                 label: Text(l10n.fissuresTitle),
                 tooltip: l10n.fissuresTitle,
                 selected: state is Fissures,
+                showCheckmark: showCheckmark,
                 onSelected: (_) => onSelected(context, FissureFilter.fissures),
               ),
               ChoiceChip(
                 label: Text(l10n.voidStormFissuresButton),
                 tooltip: l10n.voidStormFissuresButton,
                 selected: state is VoidStorms,
+                showCheckmark: showCheckmark,
                 onSelected: (_) => onSelected(context, FissureFilter.voidStorm),
               ),
               ChoiceChip(
                 label: Text(l10n.steelPathTitle),
                 tooltip: l10n.steelPathTitle,
                 selected: state is SteelPathFissures,
+                showCheckmark: showCheckmark,
                 onSelected: (_) => onSelected(context, FissureFilter.steelPath),
               ),
             ],
