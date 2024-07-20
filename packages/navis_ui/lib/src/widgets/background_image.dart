@@ -28,8 +28,6 @@ class BackgroundImage extends StatelessWidget {
 
     return CachedNetworkImage(
       imageUrl: imageUrl!,
-      height: height,
-      width: 150,
       imageBuilder: (context, imageProvider) {
         return ImageContainer(
           imageProvider: imageProvider,
@@ -64,17 +62,18 @@ class ImageContainer extends StatelessWidget {
   }) : super(key: key);
 
   final ImageProvider imageProvider;
-
   final EdgeInsetsGeometry padding;
   final Widget child;
 
   @override
   Widget build(BuildContext context) {
+    final cacheHeight = 250 * MediaQuery.of(context).devicePixelRatio.toInt();
+
     return AnimatedContainer(
       duration: kThemeAnimationDuration,
       decoration: BoxDecoration(
         image: DecorationImage(
-          image: imageProvider,
+          image: ResizeImage(imageProvider, height: cacheHeight),
           fit: BoxFit.cover,
         ),
       ),

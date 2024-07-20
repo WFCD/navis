@@ -1,3 +1,4 @@
+import 'package:black_hole_flutter/black_hole_flutter.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:matomo_tracker/matomo_tracker.dart';
@@ -29,6 +30,7 @@ class EventInformation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final event = ModalRoute.of(context)!.settings.arguments! as WorldEvent;
+    final height = (context.mediaQuery.size.height / 100) * 25;
 
     return TraceableWidget(
       child: Scaffold(
@@ -36,7 +38,7 @@ class EventInformation extends StatelessWidget {
           slivers: <Widget>[
             SliverAppBar(
               pinned: true,
-              expandedHeight: (MediaQuery.sizeOf(context).height / 100) * 25,
+              expandedHeight: height,
               backgroundColor: Theme.of(context).primaryColor,
               flexibleSpace: FlexibleSpaceBar(
                 title: Text(event.description),
@@ -46,6 +48,8 @@ class EventInformation extends StatelessWidget {
                   fit: BoxFit.cover,
                   color: Colors.grey[350],
                   colorBlendMode: BlendMode.modulate,
+                  memCacheHeight:
+                      (height * context.mediaQuery.devicePixelRatio).toInt(),
                 ),
               ),
             ),
