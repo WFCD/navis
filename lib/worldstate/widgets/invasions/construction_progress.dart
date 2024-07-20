@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/l10n/l10n.dart';
@@ -6,6 +8,10 @@ import 'package:navis_ui/navis_ui.dart';
 
 class ConstructionProgressCard extends StatelessWidget {
   const ConstructionProgressCard({super.key});
+
+  String _parseProgress(String? progress) {
+    return min(double.parse(progress ?? '0'), 100).toStringAsFixed(2);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -22,11 +28,9 @@ class ConstructionProgressCard extends StatelessWidget {
           };
 
           final razorbackProgress =
-              double.parse(constructionProgress?.razorbackProgress ?? '0')
-                  .toStringAsFixed(2);
+              _parseProgress(constructionProgress?.razorbackProgress);
           final fomorianProgress =
-              double.parse(constructionProgress?.fomorianProgress ?? '0')
-                  .toStringAsFixed(2);
+              _parseProgress(constructionProgress?.fomorianProgress);
 
           return Padding(
             padding: const EdgeInsets.only(bottom: 8),

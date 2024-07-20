@@ -15,7 +15,6 @@ class InvasionProgress extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const decimalPoint = 100;
     final attacker = Factions.values.byName(attackingFaction.toLowerCase());
     final defending = Factions.values.byName(defendingFaction.toLowerCase());
 
@@ -24,18 +23,12 @@ class InvasionProgress extends StatelessWidget {
       child: Material(
         elevation: 4,
         color: Colors.transparent,
-        child: AnimatedContainer(
-          duration: kThemeAnimationDuration,
-          height: 20,
-          decoration: BoxDecoration(
-            borderRadius: const BorderRadius.all(Radius.circular(4)),
-            gradient: LinearGradient(
-              colors: <Color>[attacker.primaryColor, defending.primaryColor],
-              stops: <double>[progress, progress / decimalPoint],
-              begin: AlignmentDirectional.centerStart,
-              end: AlignmentDirectional.centerEnd,
-            ),
-          ),
+        child: LinearProgressIndicator(
+          minHeight: 16,
+          value: progress,
+          borderRadius: BorderRadius.circular(6),
+          color: attacker.primaryColor,
+          backgroundColor: defending.primaryColor,
         ),
       ),
     );

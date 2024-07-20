@@ -27,6 +27,7 @@ class SkyboxCard extends StatelessWidget {
         child: BackgroundImage(
           imageUrl: getSkybox(node),
           padding: padding,
+          height: height,
           child: this.child,
         ),
       ),

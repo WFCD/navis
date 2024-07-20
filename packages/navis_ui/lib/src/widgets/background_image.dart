@@ -32,6 +32,7 @@ class BackgroundImage extends StatelessWidget {
         return ImageContainer(
           imageProvider: imageProvider,
           padding: padding,
+          height: height,
           child: child,
         );
       },
@@ -39,6 +40,7 @@ class BackgroundImage extends StatelessWidget {
         return ImageContainer(
           imageProvider: Assets.derelict.provider(),
           padding: padding,
+          height: height,
           child: child,
         );
       },
@@ -46,6 +48,7 @@ class BackgroundImage extends StatelessWidget {
         return ImageContainer(
           imageProvider: Assets.derelict.provider(),
           padding: padding,
+          height: height,
           child: child,
         );
       },
@@ -58,11 +61,13 @@ class ImageContainer extends StatelessWidget {
     Key? key,
     required this.imageProvider,
     required this.padding,
+    this.height,
     required this.child,
   }) : super(key: key);
 
   final ImageProvider imageProvider;
   final EdgeInsetsGeometry padding;
+  final double? height;
   final Widget child;
 
   @override
@@ -70,6 +75,7 @@ class ImageContainer extends StatelessWidget {
     final cacheHeight = 250 * MediaQuery.of(context).devicePixelRatio.toInt();
 
     return AnimatedContainer(
+      height: height,
       duration: kThemeAnimationDuration,
       decoration: BoxDecoration(
         image: DecorationImage(

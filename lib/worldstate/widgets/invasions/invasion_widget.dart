@@ -19,13 +19,14 @@ class InvasionWidget extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          const Spacer(),
-          _InvasionDetails(
-            node: invasion.node,
-            description: invasion.desc,
-            eta: invasion.eta,
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 18),
+            child: _InvasionDetails(
+              node: invasion.node,
+              description: invasion.desc,
+              eta: invasion.eta,
+            ),
           ),
-          const Spacer(),
           InvasionReward(
             attacker: invasion.attacker,
             defender: invasion.defender,
