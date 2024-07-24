@@ -29,37 +29,30 @@ class TraderCard extends StatelessWidget {
         final title = '${l10n.baroTitle} '
             '${isActive ? '| ${trader?.location ?? ''}' : ''}';
 
-        return Theme(
-          data: NavisThemes.dark,
-          child: Card(
-            clipBehavior: Clip.antiAlias,
-            color: const Color(0xFF82598b),
-            child: InkWell(
-              onTap: isActive
-                  ? () => Navigator.of(context).pushNamed(
-                        BaroInventory.route,
-                        arguments: trader?.inventory,
-                      )
-                  : null,
-              child: SizedBox(
-                height: 150,
-                child: ImageContainer(
-                  imageProvider: Assets.baroBanner.provider(),
-                  padding: EdgeInsets.zero,
-                  child: ListTile(
-                    title: Text(title),
-                    subtitle: Text(
-                      '$status $date',
-                    ),
-                    trailing: CountdownTimer(
-                      tooltip: l10n.countdownTooltip(date),
-                      color: const Color(0xFF82598b),
-                      // Will default to DateTime.now() under the hood.
-                      // ignore: avoid-non-null-assertion
-                      expiry:
-                          (isActive ? trader?.expiry : trader?.activation) ??
-                              now,
-                    ),
+        return Card(
+          clipBehavior: Clip.antiAlias,
+          color: const Color(0xFF82598b),
+          child: InkWell(
+            onTap: isActive
+                ? () => Navigator.of(context).pushNamed(
+                      BaroInventory.route,
+                      arguments: trader?.inventory,
+                    )
+                : null,
+            child: SizedBox(
+              height: 150,
+              child: ImageContainer(
+                imageProvider: Assets.baroBanner.provider(),
+                padding: EdgeInsets.zero,
+                child: ListTile(
+                  title: Text(title),
+                  subtitle: Text('$status $date'),
+                  textColor: Colors.white,
+                  trailing: CountdownTimer(
+                    tooltip: l10n.countdownTooltip(date),
+                    color: const Color(0xFF82598b),
+                    expiry:
+                        (isActive ? trader?.expiry : trader?.activation) ?? now,
                   ),
                 ),
               ),
