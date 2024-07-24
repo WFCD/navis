@@ -33,6 +33,8 @@ extension StringNx on String {
         ),
       );
     } catch (e) {
+      if (!context.mounted) return;
+
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           duration: Duration(seconds: 5),

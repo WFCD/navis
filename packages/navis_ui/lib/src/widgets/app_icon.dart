@@ -22,12 +22,12 @@ class AppIcon extends StatelessWidget {
   /// by the current [IconTheme].
   const AppIcon(
     this.icon, {
-    Key? key,
+    super.key,
     this.size,
     this.color,
     this.semanticLabel,
     this.textDirection,
-  }) : super(key: key);
+  });
 
   /// The icon to display. The available icons are described in
   final IconData icon;
@@ -113,7 +113,6 @@ class AppIcon extends StatelessWidget {
             transformHitTests: false,
             child: iconWidget,
           );
-          break;
         case TextDirection.ltr:
           break;
       }

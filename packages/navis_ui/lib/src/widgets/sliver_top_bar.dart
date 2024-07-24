@@ -6,7 +6,7 @@ import 'package:flutter/rendering.dart';
 
 class SliverTopbar extends StatefulWidget {
   const SliverTopbar({
-    Key? key,
+    super.key,
     this.pinned = false,
     this.snap = false,
     this.floating = false,
@@ -14,8 +14,7 @@ class SliverTopbar extends StatefulWidget {
   })  : assert(
           floating || !snap,
           'The "snap" argument only makes sense for floating app bars.',
-        ),
-        super(key: key);
+        );
 
   final bool snap;
   final bool pinned;
@@ -87,7 +86,7 @@ class SliverTopbarState extends State<SliverTopbar>
 }
 
 class _FloatingAppBar extends StatefulWidget {
-  const _FloatingAppBar({Key? key, required this.child}) : super(key: key);
+  const _FloatingAppBar({required this.child});
 
   final Widget child;
 

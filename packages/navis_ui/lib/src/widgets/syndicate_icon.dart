@@ -4,11 +4,11 @@ import 'package:navis_ui/src/widgets/widgets.dart';
 
 class SyndicateIcon extends StatelessWidget {
   const SyndicateIcon({
-    Key? key,
+    super.key,
     required this.syndicate,
     this.iconSize,
     this.useSyndicateColor = true,
-  }) : super(key: key);
+  });
 
   final Syndicates syndicate;
   final double? iconSize;

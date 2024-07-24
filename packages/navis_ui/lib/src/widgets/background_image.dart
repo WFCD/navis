@@ -4,12 +4,12 @@ import 'package:navis_ui/gen/assets.gen.dart';
 
 class BackgroundImage extends StatelessWidget {
   const BackgroundImage({
-    Key? key,
+    super.key,
     this.imageUrl,
     this.padding = EdgeInsets.zero,
     this.height = 150,
     required this.child,
-  }) : super(key: key);
+  });
 
   final String? imageUrl;
   final EdgeInsetsGeometry padding;
@@ -58,12 +58,12 @@ class BackgroundImage extends StatelessWidget {
 
 class ImageContainer extends StatelessWidget {
   const ImageContainer({
-    Key? key,
+    super.key,
     required this.imageProvider,
     required this.padding,
     this.height,
     required this.child,
-  }) : super(key: key);
+  });
 
   final ImageProvider imageProvider;
   final EdgeInsetsGeometry padding;
@@ -93,7 +93,7 @@ class ImageContainer extends StatelessWidget {
               stops: const <double>[0.3, 1],
               colors: <Color>[
                 Colors.black.withOpacity(0.7),
-                Colors.transparent
+                Colors.transparent,
               ],
             ),
           ),

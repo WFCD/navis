@@ -4,16 +4,17 @@ import 'package:navis_ui/navis_ui.dart';
 
 class SkyboxCard extends StatelessWidget {
   const SkyboxCard({
-    Key? key,
+    super.key,
     required this.node,
     this.margin = const EdgeInsets.symmetric(vertical: 3, horizontal: 3),
     this.padding = const EdgeInsets.symmetric(vertical: 3, horizontal: 3),
     this.height = 100,
     required this.child,
-  }) : super(key: key);
+  });
 
   final String node;
-  final EdgeInsetsGeometry margin, padding;
+  final EdgeInsetsGeometry margin;
+  final EdgeInsetsGeometry padding;
   final double height;
   final Widget child;
 
@@ -28,7 +29,7 @@ class SkyboxCard extends StatelessWidget {
           imageUrl: getSkybox(node),
           padding: padding,
           height: height,
-          child: this.child,
+          child: child,
         ),
       ),
     );
@@ -63,7 +64,7 @@ class _GlitchySkyCardState extends State<GlitchySkyCard> {
     super.initState();
     _controller = AnimatedGlitchController(
       frequency: const Duration(milliseconds: 900),
-      distortionShift: DistortionShift(count: 3),
+      distortionShift: const DistortionShift(count: 3),
     );
   }
 

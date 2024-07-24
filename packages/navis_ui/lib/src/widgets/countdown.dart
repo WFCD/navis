@@ -4,7 +4,7 @@ import 'package:navis_ui/navis_ui.dart';
 
 class CountdownTimer extends StatefulWidget {
   const CountdownTimer({
-    Key? key,
+    super.key,
     required this.tooltip,
     required this.expiry,
     this.color,
@@ -12,7 +12,7 @@ class CountdownTimer extends StatefulWidget {
     this.style,
     this.padding = const EdgeInsets.all(4),
     this.margin = const EdgeInsets.all(3),
-  }) : super(key: key);
+  });
 
   final String tooltip;
   final DateTime? expiry;
@@ -39,14 +39,15 @@ class CountdownTimerState extends State<CountdownTimer>
     final expirationDate = widget.expiry?.toLocal();
     final now = DateTime.now();
 
-    _remainingTime = expirationDate?.difference(now) ?? Duration(seconds: 60);
+    _remainingTime =
+        expirationDate?.difference(now) ?? const Duration(seconds: 60);
     if (_remainingTime <= Duration.zero) {
-      _remainingTime = Duration(seconds: 60);
+      _remainingTime = const Duration(seconds: 60);
       _isExpired = true;
     }
 
     _controller = AnimationController(duration: _remainingTime, vsync: this);
-    _animation = Tween<double>(begin: 1.0, end: 0.0).animate(_controller);
+    _animation = Tween<double>(begin: 1, end: 0).animate(_controller);
 
     if (widget.color == null) {
       _controller.addListener(_detectWarningLevel);
@@ -119,7 +120,7 @@ class CountdownTimerState extends State<CountdownTimer>
   @override
   Widget build(BuildContext context) {
     final theme = context.theme;
-    Color color = _warningLevel;
+    var color = _warningLevel;
 
     if (widget.color != null) color = widget.color!;
     if (_isExpired) {

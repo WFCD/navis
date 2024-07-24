@@ -4,12 +4,12 @@ import 'package:flutter/widgets.dart';
 
 class RowItem extends StatelessWidget {
   const RowItem({
-    Key? key,
+    super.key,
     this.icons = const <Widget>[],
     required this.text,
     required this.child,
     this.padding,
-  }) : super(key: key);
+  });
 
   factory RowItem.richText({
     required String title,
@@ -37,7 +37,7 @@ class RowItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _icons = icons.map((icon) {
+    final icons = this.icons.map((icon) {
       return Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8),
         child: icon,
@@ -51,10 +51,10 @@ class RowItem extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.baseline,
         textBaseline: TextBaseline.alphabetic,
         children: <Widget>[
-          if (_icons.isNotEmpty) ..._icons,
+          if (icons.isNotEmpty) ...icons,
           text,
           const Spacer(),
-          Flexible(flex: 3, child: child)
+          Flexible(flex: 3, child: child),
         ],
       ),
     );
