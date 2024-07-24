@@ -55,16 +55,18 @@ class EventInformation extends StatelessWidget {
             ),
             SliverList(
               delegate: SliverChildListDelegate.fixed(<Widget>[
-                EventStatus(
-                  description: event.description,
-                  tooltip: event.tooltip ?? '',
-                  node: event.victimNode ?? event.node ?? '',
-                  health: event.health?.toDouble(),
-                  currentScore: event.currentScore,
-                  maxScore: event.maximumScore,
-                  scoreLocTag: event.scoreLocTag,
-                  expiry: event.expiry,
-                  rewards: eventRewards(event.rewards, event.interimSteps),
+                SafeArea(
+                  child: EventStatus(
+                    description: event.description,
+                    tooltip: event.tooltip ?? '',
+                    node: event.victimNode ?? event.node ?? '',
+                    health: event.health?.toDouble(),
+                    currentScore: event.currentScore,
+                    maxScore: event.maximumScore,
+                    scoreLocTag: event.scoreLocTag,
+                    expiry: event.expiry,
+                    rewards: eventRewards(event.rewards, event.interimSteps),
+                  ),
                 ),
                 if (event.jobs != null && event.jobs!.isNotEmpty)
                   SafeArea(child: EventBounties(jobs: event.jobs!)),

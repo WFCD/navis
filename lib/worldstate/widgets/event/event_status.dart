@@ -60,12 +60,13 @@ class EventStatus extends StatelessWidget {
                 expiry: expiry,
               ),
             ),
-            _EventProgress(
-              scoreLocTag: scoreLocTag,
-              health: health,
-              currentScore: currentScore,
-              maxScore: maxScore,
-            ),
+            if (health != null || maxScore != null && maxScore != 0)
+              _EventProgress(
+                scoreLocTag: scoreLocTag,
+                health: health,
+                currentScore: currentScore,
+                maxScore: maxScore,
+              ),
             if (rewards.isNotEmpty) ...{
               SizedBoxSpacer.spacerHeight20,
               CategoryTitle(
