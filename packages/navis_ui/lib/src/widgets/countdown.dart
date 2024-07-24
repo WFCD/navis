@@ -1,4 +1,3 @@
-import 'package:black_hole_flutter/black_hole_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:navis_ui/navis_ui.dart';
 
@@ -8,7 +7,6 @@ class CountdownTimer extends StatefulWidget {
     required this.tooltip,
     required this.expiry,
     this.color,
-    this.size,
     this.style,
     this.padding = const EdgeInsets.all(4),
     this.margin = const EdgeInsets.all(3),
@@ -17,7 +15,6 @@ class CountdownTimer extends StatefulWidget {
   final String tooltip;
   final DateTime? expiry;
   final Color? color;
-  final double? size;
   final TextStyle? style;
   final EdgeInsetsGeometry padding;
   final EdgeInsetsGeometry margin;
@@ -63,18 +60,14 @@ class CountdownTimerState extends State<CountdownTimer>
     const minimum = Duration(minutes: 10);
     final remainingTime = _remainingTime * _animation.value;
 
-    Color newLevel;
-    if (remainingTime > max) {
-      newLevel = Colors.green;
-    } else if (remainingTime < max && remainingTime > minimum) {
-      newLevel = Colors.orange[700]!;
-    } else {
-      newLevel = Colors.red;
-    }
-
     if (context.mounted) {
       setState(() {
-        _warningLevel = newLevel;
+        _warningLevel = switch (remainingTime) {
+          > max => Colors.green,
+          < max && > minimum => Colors.orange[700]!,
+          < minimum when !_isExpired => Colors.red,
+          _ => Theme.of(context).colorScheme.secondaryContainer
+        };
       });
     }
   }
@@ -113,28 +106,12 @@ class CountdownTimerState extends State<CountdownTimer>
 
     final is24hrs = duration < const Duration(days: 1);
 
-    return '${_isExpired ? 'Expired:' : ''}'
-        '${!is24hrs ? '${days}d' : ''} $hours:$minutes:$seconds';
+    return '${!is24hrs ? '${days}d' : ''} $hours:$minutes:$seconds';
   }
 
   @override
   Widget build(BuildContext context) {
-    final theme = context.theme;
-    var color = _warningLevel;
-
-    if (widget.color != null) color = widget.color!;
-    if (_isExpired) {
-      color = theme.isLight
-          ? theme.colorScheme.primary
-          : theme.colorScheme.primaryContainer;
-    }
-
-    TextStyle? style;
-    if (widget.color == Colors.transparent) {
-      style = widget.style;
-    } else {
-      style = widget.style?.copyWith(color: Colors.white);
-    }
+    final color = widget.color ?? _warningLevel;
 
     return ColoredContainer(
       tooltip: widget.tooltip,
@@ -148,8 +125,8 @@ class CountdownTimerState extends State<CountdownTimer>
 
           return Text(
             _formatDuration(remainingTime),
-            style:
-                style ?? TextStyle(fontSize: widget.size, color: Colors.white),
+            style: (widget.style ?? Theme.of(context).textTheme.labelLarge)
+                ?.copyWith(color: Colors.white),
           );
         },
       ),
