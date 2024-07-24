@@ -31,8 +31,11 @@ class CycleCard extends StatelessWidget {
   }
 
   // Keep the function in case there's ever an icon for Fass and Vome.
-  Widget _cambionStateIcon(CambionState state) {
-    return ColoredContainer.text(text: toBeginningOfSentenceCase(state.name)!);
+  Widget _stateText(BuildContext context, String state) {
+    return ColoredContainer.text(
+      text: toBeginningOfSentenceCase(state)!,
+      style: Theme.of(context).textTheme.labelMedium,
+    );
   }
 
   bool _buildWhen(SolsystemState previous, SolsystemState next) {
@@ -92,8 +95,10 @@ class CycleCard extends StatelessWidget {
                 expiry: vallisCycle?.expiry,
               ),
               _CycleRow(
-                currentState:
-                    _cambionStateIcon(cambionCycle?.state ?? CambionState.fass),
+                currentState: _stateText(
+                  context,
+                  cambionCycle?.state.name ?? CambionState.fass.name,
+                ),
                 name: locale.cambionCycleTitle,
                 expiry: cambionCycle?.expiry,
               ),
@@ -106,10 +111,9 @@ class CycleCard extends StatelessWidget {
                 expiry: zarimanCycle?.expiry,
               ),
               _CycleRow(
-                currentState: ColoredContainer.text(
-                  text: toBeginningOfSentenceCase(
-                    duviriCycle?.state.name ?? DuviriState.anger.name,
-                  )!,
+                currentState: _stateText(
+                  context,
+                  duviriCycle?.state.name ?? DuviriState.anger.name,
                 ),
                 name: 'Duviri Cycle',
                 expiry: duviriCycle?.expiry,
