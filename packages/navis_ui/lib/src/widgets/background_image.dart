@@ -7,12 +7,14 @@ class BackgroundImage extends StatelessWidget {
     super.key,
     this.imageUrl,
     this.padding = EdgeInsets.zero,
+    this.alignment = Alignment.bottomCenter,
     this.height = 150,
     required this.child,
   });
 
   final String? imageUrl;
   final EdgeInsetsGeometry padding;
+  final Alignment alignment;
   final double height;
   final Widget child;
 
@@ -33,6 +35,7 @@ class BackgroundImage extends StatelessWidget {
           imageProvider: imageProvider,
           padding: padding,
           height: height,
+          alignment: alignment,
           child: child,
         );
       },
@@ -41,6 +44,7 @@ class BackgroundImage extends StatelessWidget {
           imageProvider: Assets.derelict.provider(),
           padding: padding,
           height: height,
+          alignment: alignment,
           child: child,
         );
       },
@@ -48,6 +52,7 @@ class BackgroundImage extends StatelessWidget {
         return ImageContainer(
           imageProvider: Assets.derelict.provider(),
           padding: padding,
+          alignment: alignment,
           height: height,
           child: child,
         );
@@ -61,12 +66,14 @@ class ImageContainer extends StatelessWidget {
     super.key,
     required this.imageProvider,
     required this.padding,
+    this.alignment = Alignment.bottomCenter,
     this.height,
     required this.child,
   });
 
   final ImageProvider imageProvider;
   final EdgeInsetsGeometry padding;
+  final Alignment alignment;
   final double? height;
   final Widget child;
 
@@ -77,29 +84,14 @@ class ImageContainer extends StatelessWidget {
     return AnimatedContainer(
       height: height,
       duration: kThemeAnimationDuration,
+      alignment: alignment,
       decoration: BoxDecoration(
         image: DecorationImage(
           image: ResizeImage(imageProvider, height: cacheHeight),
           fit: BoxFit.cover,
         ),
       ),
-      child: Align(
-        alignment: Alignment.bottomCenter,
-        child: DecoratedBox(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.bottomCenter,
-              end: Alignment.topCenter,
-              stops: const <double>[0.3, 1],
-              colors: <Color>[
-                Colors.black.withOpacity(0.7),
-                Colors.transparent,
-              ],
-            ),
-          ),
-          child: Padding(padding: padding, child: child),
-        ),
-      ),
+      child: Padding(padding: padding, child: child),
     );
   }
 }

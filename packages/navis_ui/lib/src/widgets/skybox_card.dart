@@ -1,4 +1,5 @@
 import 'package:animated_glitch/animated_glitch.dart';
+import 'package:black_hole_flutter/black_hole_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:navis_ui/navis_ui.dart';
 
@@ -8,7 +9,7 @@ class SkyboxCard extends StatelessWidget {
     required this.node,
     this.margin = const EdgeInsets.symmetric(vertical: 3, horizontal: 3),
     this.padding = const EdgeInsets.symmetric(vertical: 3, horizontal: 3),
-    this.height = 100,
+    this.height = 150,
     required this.child,
   });
 
@@ -20,16 +21,24 @@ class SkyboxCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Theme(
-      data: NavisThemes.dark,
-      child: Card(
-        clipBehavior: Clip.antiAlias,
-        margin: margin,
+    return Card(
+      clipBehavior: Clip.antiAlias,
+      child: Theme(
+        data: context.theme.copyWith(
+          textTheme: Typography.whiteMountainView,
+          iconTheme: context.theme.iconTheme.copyWith(color: Colors.white),
+        ),
         child: BackgroundImage(
           imageUrl: getSkybox(node),
-          padding: padding,
+          alignment: Alignment.center,
           height: height,
-          child: child,
+          child: Material(
+            color: Theme.of(context).colorScheme.shadow.withOpacity(.5),
+            child: SizedBox(
+              height: height,
+              child: Padding(padding: padding, child: child),
+            ),
+          ),
         ),
       ),
     );
@@ -42,7 +51,7 @@ class GlitchySkyCard extends StatefulWidget {
     required this.node,
     this.margin = const EdgeInsets.symmetric(vertical: 3, horizontal: 3),
     this.padding = const EdgeInsets.symmetric(vertical: 3, horizontal: 3),
-    this.height = 100,
+    this.height = 150,
     required this.child,
   });
 
@@ -63,7 +72,7 @@ class _GlitchySkyCardState extends State<GlitchySkyCard> {
   void initState() {
     super.initState();
     _controller = AnimatedGlitchController(
-      frequency: const Duration(milliseconds: 900),
+      frequency: const Duration(milliseconds: 1500),
       distortionShift: const DistortionShift(count: 3),
     );
   }

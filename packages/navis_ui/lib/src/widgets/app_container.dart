@@ -53,13 +53,10 @@ class ColoredContainer extends StatelessWidget {
         margin: margin,
         curve: Curves.easeInOut,
         decoration: BoxDecoration(
-          color: color ?? context.theme.colorScheme.inversePrimary,
-          borderRadius: const BorderRadius.all(Radius.circular(3)),
+          color: color ?? context.theme.colorScheme.secondaryContainer,
+          borderRadius: const BorderRadius.all(Radius.circular(4)),
         ),
-        child: DefaultTextStyle.merge(
-          style: color == null ? null : const TextStyle(color: Colors.white),
-          child: child,
-        ),
+        child: child,
       ),
     );
   }

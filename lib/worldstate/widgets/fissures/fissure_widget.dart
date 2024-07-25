@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:math';
 
+import 'package:black_hole_flutter/black_hole_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis_ui/navis_ui.dart';
@@ -10,22 +11,6 @@ class FissureWidget extends StatelessWidget {
   const FissureWidget({super.key, required this.fissure});
 
   final Fissure fissure;
-
-  static const shadow = Shadow(offset: Offset(1, 0), blurRadius: 3);
-
-  static const _nodeStyle = TextStyle(
-    fontWeight: FontWeight.bold,
-    fontStyle: FontStyle.normal,
-    fontSize: 18,
-    shadows: <Shadow>[shadow],
-  );
-
-  static const _missionTypeStyle = TextStyle(
-    fontWeight: FontWeight.w500,
-    fontStyle: FontStyle.normal,
-    fontSize: 14,
-    shadows: <Shadow>[shadow],
-  );
 
   @override
   Widget build(BuildContext context) {
@@ -48,6 +33,7 @@ class FissureWidget extends StatelessWidget {
     }();
 
     final child = Stack(
+      alignment: AlignmentDirectional.center,
       children: [
         if (fissure.isStorm)
           const Center(
@@ -72,11 +58,7 @@ class FissureWidget extends StatelessWidget {
                   : Icon(icon, size: 40),
             ),
             Expanded(
-              child: _FissureInfo(
-                fissure: fissure,
-                nodeStyle: _nodeStyle,
-                missionTypeStyle: _missionTypeStyle,
-              ),
+              child: _FissureInfo(fissure: fissure),
             ),
             CountdownTimer(
               tooltip: context.l10n.countdownTooltip(fissure.expiry),
@@ -90,30 +72,21 @@ class FissureWidget extends StatelessWidget {
     if (fissure.tierNum == 6) {
       return GlitchySkyCard(
         node: fissure.node,
-        padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 16),
         child: child,
       );
     }
 
     return SkyboxCard(
       node: fissure.node,
-      padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 16),
       child: child,
     );
   }
 }
 
 class _FissureInfo extends StatelessWidget {
-  const _FissureInfo({
-    required this.fissure,
-    required TextStyle nodeStyle,
-    required TextStyle missionTypeStyle,
-  })  : _nodeStyle = nodeStyle,
-        _missionTypeStyle = missionTypeStyle;
+  const _FissureInfo({required this.fissure});
 
   final Fissure fissure;
-  final TextStyle _nodeStyle;
-  final TextStyle _missionTypeStyle;
 
   @override
   Widget build(BuildContext context) {
@@ -123,12 +96,13 @@ class _FissureInfo extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(fissure.node, style: _nodeStyle),
+          Text(fissure.node, style: context.theme.textTheme.titleMedium),
           Padding(
             padding: const EdgeInsets.only(top: 4),
             child: Text(
               '${fissure.tier} | ${fissure.missionType}',
-              style: _missionTypeStyle,
+              style: context.theme.textTheme.bodyMedium
+                  ?.copyWith(color: context.theme.textTheme.bodySmall!.color),
             ),
           ),
         ],

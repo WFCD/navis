@@ -11,27 +11,30 @@ class OrbiterNewsWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final currentLocale = Localizations.localeOf(context).languageCode;
+    final colorScheme = Theme.of(context).colorScheme;
 
     return Card(
       clipBehavior: Clip.antiAlias,
       child: InkWell(
         onTap: () => news.link.launchLink(context),
-        child: SizedBox(
+        child: BackgroundImage(
+          imageUrl: news.imageLink,
           height: 200,
-          child: BackgroundImage(
-            imageUrl: news.imageLink,
+          child: Material(
+            color: colorScheme.secondaryContainer.withOpacity(.7),
             child: ListTile(
               title: Text(
                 news.translations[currentLocale] ?? news.message,
                 overflow: TextOverflow.ellipsis,
                 style: context.theme.textTheme.titleMedium
-                    ?.copyWith(color: Colors.white),
+                    ?.copyWith(color: colorScheme.onSecondaryContainer),
               ),
               subtitle: Text(
                 MaterialLocalizations.of(context)
                     .formatFullDate(news.date.toLocal()),
-                style: context.theme.textTheme.bodyMedium
-                    ?.copyWith(color: Colors.white70),
+                style: context.theme.textTheme.bodyMedium?.copyWith(
+                  color: colorScheme.onSecondaryContainer.withOpacity(.7),
+                ),
               ),
             ),
           ),

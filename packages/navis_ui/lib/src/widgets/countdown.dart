@@ -63,10 +63,10 @@ class CountdownTimerState extends State<CountdownTimer>
     if (context.mounted) {
       setState(() {
         _warningLevel = switch (remainingTime) {
-          > max => Colors.green,
-          < max && > minimum => Colors.orange[700]!,
+          >= max => Colors.green,
+          < max && >= minimum => Colors.orange[700]!,
           < minimum when !_isExpired => Colors.red,
-          _ => Theme.of(context).colorScheme.secondaryContainer
+          _ => Theme.of(context).colorScheme.secondary
         };
       });
     }
