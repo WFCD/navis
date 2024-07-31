@@ -164,10 +164,10 @@ packages:
     dependency: transitive
     description:
       name: json_annotation
-      sha256: b10a7b2ff83d83c777edba3c6a0f97045ddadd56c944e1a23a3fdf43a1bf4467
+      sha256: "1ce844379ca14835a50d2f019a3099f419082cfdd231cd86a142af94dd5c6bb1"
       url: "https://pub.dev"
     source: hosted
-    version: "4.8.1"
+    version: "4.9.0"
   leak_tracker:
     dependency: transitive
     description:
@@ -321,10 +321,10 @@ packages:
     dependency: "direct main"
     description:
       name: warframestat_client
-      sha256: "567858948160abcdfb9155db9372bd015796b6010fe3ed2661a8e738970ad6e4"
+      sha256: c270166ec3184145498a8789bc9163a83193bbaeca97653fdaa243110960f69b
       url: "https://pub.dev"
     source: hosted
-    version: "3.8.11"
+    version: "3.9.0"
   web:
     dependency: "direct overridden"
     description:
