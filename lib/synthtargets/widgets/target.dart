@@ -10,10 +10,14 @@ class TargetInfo extends StatelessWidget {
     if (isExpanded) {
       Future<void>.delayed(
         kThemeAnimationDuration,
-        () => Scrollable.ensureVisible(
-          context,
-          duration: kThemeAnimationDuration,
-        ),
+        () {
+          if (!context.mounted) return;
+
+          Scrollable.ensureVisible(
+            context,
+            duration: kThemeAnimationDuration,
+          );
+        },
       );
     }
   }
