@@ -68,7 +68,7 @@ class ThemePicker extends StatelessWidget {
           activeColor: accentColor,
           onChanged: (b) => _onChanged(context, b),
         ),
-        ButtonBar(
+        OverflowBar(
           children: [
             TextButton(
               onPressed: () => Navigator.of(context).pop(),

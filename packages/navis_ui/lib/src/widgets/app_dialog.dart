@@ -51,7 +51,7 @@ class NavisDialog extends StatelessWidget {
           if (this.title != null) title,
           content,
           if (actions != null)
-            ButtonBar(children: <Widget>[if (actions != null) ...actions!]),
+            OverflowBar(children: <Widget>[if (actions != null) ...actions!]),
         ],
       ),
     );
