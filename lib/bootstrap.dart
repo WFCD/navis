@@ -13,6 +13,7 @@ import 'package:navis/settings/settings.dart';
 import 'package:navis/utils/utils.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sentry_hive/sentry_hive.dart';
+import 'package:warframestat_repository/warframestat_repository.dart';
 
 Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -23,7 +24,7 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
   final temp = await getTemporaryDirectory();
 
   final settings = await UserSettings.initSettings(appDir.path);
-  final cache = await SentryHive.openBox<Map<dynamic, dynamic>>('cache');
+  final cache = await SentryHive.openBox<CachedItem>('cache');
 
   Bloc.observer = AppBlocObserver();
   HydratedBloc.storage = await SentryHydratedStorage.build(

@@ -14,14 +14,11 @@ class MockClient extends Mock implements Client {}
 
 class MockBaseRequest extends Mock implements BaseRequest {}
 
-class MockBox extends Mock implements Box<Map<dynamic, dynamic>> {}
-
 StreamedResponse fakeResponse(String data) =>
     StreamedResponse(Stream.value(utf8.encode(data)), 200);
 
 void main() {
   late Client client;
-  late Box<Map<dynamic, dynamic>> testBox;
   late WarframestatRepository repository;
 
   setUpAll(() async {
@@ -32,13 +29,11 @@ void main() {
 
   setUp(() async {
     client = MockClient();
-    testBox = MockBox();
-    repository = WarframestatRepository(cache: testBox, client: client);
+    repository = WarframestatRepository(client: client);
   });
 
   tearDown(() async {
     reset(client);
-    reset(testBox);
   });
 
   group('Language', () {
@@ -54,26 +49,22 @@ void main() {
   group('Worldstate', () {
     final fixture = Fixtures.worldstateFixture;
     final json = jsonEncode(fixture);
-    final bytes = utf8.encode(json);
 
-    test('fetch() => get worldstate and cache', () async {
+    test('fetch() => get worldstate', () async {
       when(() => client.send(any()))
           .thenAnswer((_) async => fakeResponse(json));
-      when(() => testBox.put('worldstate_en', any())).thenAnswer((_) async {});
 
       final state = await repository.fetchWorldstate();
 
       expect(state.timestamp.toIso8601String(), '2024-05-25T18:53:37.000Z');
-      verify(() => testBox.put('worldstate_en', any()));
     });
 
-    test('fetch() => from cache', () async {
-      when(() => testBox.get('worldstate_en')).thenAnswer(
-        (_) => {
-          'expiry': DateTime.timestamp().add(const Duration(minutes: 3)),
-          'data': bytes,
-        },
-      );
+    test('fetch() => get worldstate from cache', () async {
+      when(() => client.send(any()))
+          .thenAnswer((_) async => fakeResponse(json));
+
+      await repository.fetchWorldstate();
+      clearInteractions(client);
 
       final state = await repository.fetchWorldstate();
 
@@ -85,12 +76,10 @@ void main() {
   group('Deal info', () {
     final fixture = Fixtures.itemsFixture;
     final json = jsonEncode(fixture);
-    final bytes = utf8.encode(json);
 
-    test('fetch() => get item and cache', () async {
+    test('fetch() => get item', () async {
       when(() => client.send(any()))
           .thenAnswer((_) async => fakeResponse(json));
-      when(() => testBox.put('deal_en', any())).thenAnswer((_) async {});
 
       final deal = await repository.fetchDealInfo(
         '/Lotus/Powersuits/Dragon/ChromaPrime',
@@ -100,16 +89,19 @@ void main() {
       expect(deal, isNotNull);
       expect(deal!.uniqueName, '/Lotus/Powersuits/Dragon/ChromaPrime');
       expect(deal.name, 'Chroma Prime');
-      verify(() => testBox.put('deal_en', any()));
+      verify(() => client.send(any()));
     });
 
-    test('fetch() => from cache', () async {
-      when(() => testBox.get('deal_en')).thenAnswer(
-        (_) => {
-          'expiry': DateTime.timestamp().add(const Duration(hours: 24)),
-          'data': bytes,
-        },
+    test('fetch() => get item from cache', () async {
+      when(() => client.send(any()))
+          .thenAnswer((_) async => fakeResponse(json));
+
+      await repository.fetchDealInfo(
+        '/Lotus/Powersuits/Dragon/ChromaPrime',
+        'Chroma Prime',
       );
+
+      clearInteractions(client);
 
       final deal = await repository.fetchDealInfo(
         '/Lotus/Powersuits/Dragon/ChromaPrime',
@@ -137,37 +129,21 @@ void main() {
     }
 
     test('fetch() => search item', () async {
-      when(() => client.get(any(), headers: any(named: 'headers'))).thenAnswer(
-        (_) async => Response(
-          search(name),
-          200,
-          headers: {
-            HttpHeaders.contentTypeHeader: 'application/json; charset=utf-8',
-          },
-        ),
-      );
+      when(() => client.send(any()))
+          .thenAnswer((_) async => fakeResponse(search(name)));
 
       final items = await repository.searchItems(name);
 
       expect(items.isNotEmpty, true);
-      verifyNever(() => testBox.put(any<String>(), any()));
     });
 
     test('fetch() => get item', () async {
-      when(() => client.get(any(), headers: any(named: 'headers'))).thenAnswer(
-        (_) async => Response(
-          jsonEncode(chroma),
-          200,
-          headers: {
-            HttpHeaders.contentTypeHeader: 'application/json; charset=utf-8',
-          },
-        ),
-      );
+      when(() => client.send(any()))
+          .thenAnswer((_) async => fakeResponse(jsonEncode(chroma)));
 
       final item = await repository.fetchItem(uniqueName);
 
       expect(item.name, name);
-      verifyNever(() => testBox.put(any<String>(), any()));
     });
   });
 }

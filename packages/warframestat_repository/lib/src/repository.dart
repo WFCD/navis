@@ -1,5 +1,4 @@
 import 'package:collection/collection.dart';
-import 'package:hive/hive.dart';
 import 'package:http/http.dart';
 import 'package:warframestat_client/warframestat_client.dart';
 import 'package:warframestat_repository/src/cache_client.dart';
@@ -12,30 +11,30 @@ const userAgent = 'navis';
 /// {@endtemplate}
 class WarframestatRepository {
   /// {@macro warframestat_repository}
-  WarframestatRepository({required this.cache, Client? client})
-      : _client = client ?? Client();
+  WarframestatRepository({Client? client}) : _client = client ?? Client();
 
-  /// The [Box] used for caching
-  final Box<Map<dynamic, dynamic>> cache;
   final Client _client;
 
   /// The locale request will be made for
   Language language = Language.en;
 
-  CacheClient _cacheClient(String key, Duration cacheTime) {
-    return CacheClient(
-      key: key,
+  final _cacheClients = <Duration, CacheClient>{};
+  CacheClient _cacheClient(Duration cacheTime) {
+    if (_cacheClients.containsKey(cacheTime)) return _cacheClients[cacheTime]!;
+
+    _cacheClients[cacheTime] = CacheClient(
       cacheTime: cacheTime,
-      cache: cache,
       client: _client,
     );
+
+    return _cacheClients[cacheTime]!;
   }
 
   /// Get the current worldstate
   Future<Worldstate> fetchWorldstate() {
     const cacheTime = Duration(seconds: 60);
     final client = WorldstateClient(
-      client: _cacheClient('worldstate_${language.name}', cacheTime),
+      client: _cacheClient(cacheTime),
       ua: userAgent,
       language: language,
     );
@@ -50,7 +49,7 @@ class WarframestatRepository {
   Future<List<SynthTarget>> fetchTargets() {
     const cacheTime = Duration(days: 30);
     final client = SynthTaretClient(
-      client: _cacheClient('targets_${language.name}', cacheTime),
+      client: _cacheClient(cacheTime),
       ua: userAgent,
       language: language,
     );
@@ -63,7 +62,7 @@ class WarframestatRepository {
   Future<MinimalItem?> fetchDealInfo(String uniqueName, String name) async {
     const cacheTime = Duration(minutes: 30);
     final client = WarframeItemsClient(
-      client: _cacheClient('deal_${language.name}_$uniqueName', cacheTime),
+      client: _cacheClient(cacheTime),
       ua: userAgent,
       language: language,
     );
@@ -85,7 +84,7 @@ class WarframestatRepository {
   Future<List<MinimalItem>> searchItems(String query) {
     const cacheTime = Duration(minutes: 5);
     final client = WarframeItemsClient(
-      client: _cacheClient('search_${language.name}_$query', cacheTime),
+      client: _cacheClient(cacheTime),
       ua: userAgent,
       language: language,
     );
@@ -97,7 +96,7 @@ class WarframestatRepository {
   Future<Item> fetchItem(String uniqueName) {
     const cacheTime = Duration(minutes: 5);
     final client = WarframeItemsClient(
-      client: _cacheClient('item_${language.name}_$uniqueName', cacheTime),
+      client: _cacheClient(cacheTime),
       ua: userAgent,
       language: language,
     );

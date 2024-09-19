@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive/hive.dart';
@@ -17,7 +15,7 @@ class RepositoryBootstrap extends StatefulWidget {
   });
 
   final UserSettings settings;
-  final Box<Map<dynamic, dynamic>> cache;
+  final Box<CachedItem> cache;
   final Widget child;
 
   @override
@@ -33,17 +31,10 @@ class _RepositoryBootstrapState extends State<RepositoryBootstrap> {
     super.initState();
 
     _notifications = NotificationRepository();
-    _warframestatRepository = WarframestatRepository(
-      client: SentryHttpClient(),
-      cache: widget.cache,
-    );
+    _warframestatRepository =
+        WarframestatRepository(client: SentryHttpClient());
 
     _notifications.configure();
-
-    Timer.periodic(
-      const Duration(minutes: 30),
-      (_) => widget.cache.cleanupCache(),
-    );
   }
 
   @override
