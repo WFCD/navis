@@ -9,7 +9,7 @@ environment:
 dependencies:
   animated_glitch: ^2.0.0+2
   black_hole_flutter: ^1.0.1
-  cached_network_image: ^3.4.0
+  cached_network_image: ^3.4.1
   flutter:
     sdk: flutter
   flutter_custom_tabs: ^2.1.0
