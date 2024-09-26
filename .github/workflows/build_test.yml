@@ -25,9 +25,13 @@ jobs:
 
       - name: Install keystore and Firebase keys
         env:
-          KEYSTORE: ${{ secrets.KEYSTORE }}
+          ANDROID_KEYSTORE_PATH: "../keystore.jks"
+          ANDROID_KEYSTORE_ALIAS: ${{ secrets.ANDROID_KEYSTORE_ALIAS }}
+          ANDROID_KEYSTORE_PRIVATE_KEY_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PRIVATE_KEY_PASSWORD }}
+          ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
           FIREBASE_OPTIONS: ${{ secrets.FIREBASE_OPTIONS }}
           FIREBASE_ANDROID: ${{ secrets.FIREBASE_ANDROID }}
+          KEYSTORE: ${{ secrets.KEYSTORE }}
         run: |
           echo $KEYSTORE | base64 -di > android/keystore.jks
           echo $FIREBASE_OPTIONS | base64 --decode > lib/firebase_options.dart
