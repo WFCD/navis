@@ -15,16 +15,16 @@ Cephalon Navis is an Android app inspired by [Warframe Hub](https://hub.warframe
 ### Features:
 
 - Warframe news
-- in-game events
+- In-game events
 - Darvo daily deal of the day
 - Baro Ki'Teer timer and inventory
-- Sorties
-- Void Fissures and Void storms
-- invasions and construction progress
-- Open world cycle timers
-- Open world syndicate bounties
+- Sorties & Archon hunts
+- Void Fissures (both regular and steel path) and Void storms
+- Invasions
+- Cycle timers
+- Syndicate bounties
 - Nightwaves
-- Notifications (mostly done)
+- Filtered notifications
 
 ### Credits:
 
@@ -46,19 +46,33 @@ On Windows
 keytool -genkey -v -keystore c:/Users/USER_NAME/key.jks -keyalg RSA -keysize 2048 -validity 10000 -alias key
 ```
 
-If you change your keystore alies make sure to to replace KeyAlia, under android/app/build.gradle, with your own custom alias.
+## Using keystore
 
-## Use Keystore
+In `android\key.properties`
 
-Once your Keystore has been generated store your keystore.jks under the android folder. Then set an environment variable `TENNO_CIPHER` as the password for your generated keystore.jks
+```
+storePassword=store password
+keyPassword= key password
+keyAlias=key alias
+storeFile=path to keystore
+```
+
+or you can create the following system enviroment variables
+
+```
+ANDROID_KEYSTORE_PATH
+ANDROID_KEYSTORE_ALIAS
+ANDROID_KEYSTORE_PRIVATE_KEY_PASSWORD
+ANDROID_KEYSTORE_PASSWORD
+```
 
 # iOS setup
 
 iOS apps require a certifcate from Apple in order to be signed and installed on a physical device.
 
-# Generate Firebase service JSON
+# Setup Firebase notifications
 
-Best to let Google teach you this one https://firebase.google.com/docs/flutter/setup#configure_an_android_app
+Setup and use [FlutterFire](https://firebase.google.com/docs/flutter/setup)
 
 # Build Instructions
 
@@ -66,7 +80,7 @@ To build Navis need to install [Flutter](https://flutter.dev/docs/get-started/in
 
 ```
 flutter pub get
-flutter build apk/ios/ipa
+flutter build apk/ios/ipa --flavor production
 flutter install
 ```
 
@@ -78,9 +92,9 @@ Make sure that you follow all the instructions and everything should run smoothl
 
 ## Working with Translations 🌐
 
-This project relies on [flutter_localizations][flutter_localizations_link] and follows the [official internationalization guide for Flutter][internationalization_link].
+The translations themselves are done on [Crowdin](https://navis.t.warframestat.us/). 
 
-The translations themselves are done on [Crowdin](https://navis.t.warframestat.us/).
+This project relies on [flutter_localizations][flutter_localizations_link] and follows the [official internationalization guide for Flutter][internationalization_link].
 
 ### Adding Strings
 
