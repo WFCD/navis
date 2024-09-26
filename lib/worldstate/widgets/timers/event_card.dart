@@ -2,8 +2,8 @@ import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/l10n/l10n.dart';
+import 'package:navis/router/routes.dart';
 import 'package:navis/worldstate/cubits/worldstate_cubit.dart';
-import 'package:navis/worldstate/views/event.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:warframestat_client/warframestat_client.dart';
 
@@ -51,8 +51,8 @@ class EventCard extends StatelessWidget {
                         Theme.of(context).textTheme.labelLarge?.color,
                       ),
                     ),
-                    onPressed: () => Navigator.of(context)
-                        .pushNamed(EventInformation.route, arguments: event),
+                    onPressed: () =>
+                        WorldEventPageRoute(event).push<void>(context),
                     child: Text(context.l10n.seeDetails),
                   ),
                 ),

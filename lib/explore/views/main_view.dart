@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:navis/l10n/l10n.dart';
+import 'package:navis/router/routes.dart';
 import 'package:navis_ui/navis_ui.dart';
 
 class ExplorePage extends StatelessWidget {
@@ -33,7 +34,7 @@ class ExploreView extends StatelessWidget {
             leading: const Icon(WarframeSymbols.menu_FishLarge, size: iconSize),
             title: Text(l10n.fishTitle),
             subtitle: Text(l10n.fishDescription),
-            onTap: () => Navigator.of(context).pushNamed('/fish'),
+            onTap: () => const FishPageRoute().push<void>(context),
           ),
         ),
         AppCard(
@@ -41,7 +42,7 @@ class ExploreView extends StatelessWidget {
             leading: const Icon(Icons.search, size: iconSize),
             title: Text(l10n.codexTitle),
             subtitle: Text(l10n.codexDescription),
-            onTap: () => Navigator.of(context).pushNamed('/codex'),
+            onTap: () => const CodexPageRoute().push<void>(context),
           ),
         ),
       ],

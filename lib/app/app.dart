@@ -4,18 +4,16 @@ import 'package:dynamic_color/dynamic_color.dart';
 import 'package:feedback_sentry/feedback_sentry.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:navis/codex/codex.dart';
-import 'package:navis/explore/views/fish_view.dart';
-import 'package:navis/home/home.dart';
 import 'package:navis/l10n/l10n.dart';
+import 'package:navis/router/app_router.dart';
 import 'package:navis/settings/settings.dart';
-import 'package:navis/synthtargets/views/targets.dart';
 import 'package:navis/worldstate/worldstate.dart';
 import 'package:navis_ui/navis_ui.dart';
-import 'package:sentry_flutter/sentry_flutter.dart';
 
 class NavisApp extends StatefulWidget {
-  const NavisApp({super.key});
+  const NavisApp({super.key, required this.navigatorKey});
+
+  final GlobalKey<NavigatorState> navigatorKey;
 
   @override
   _NavisAppState createState() => _NavisAppState();
@@ -129,7 +127,8 @@ class _NavisAppState extends State<NavisApp> with WidgetsBindingObserver {
         return BetterFeedback(
           pixelRatio: 1,
           localizationsDelegates: NavisLocalizations.localizationsDelegates,
-          child: MaterialApp(
+          child: MaterialApp.router(
+            routerConfig: AppRouter(navigatorKey: widget.navigatorKey).routes,
             title: 'Navis',
             color: Colors.grey[900],
             themeMode: themeMode,
@@ -141,19 +140,7 @@ class _NavisAppState extends State<NavisApp> with WidgetsBindingObserver {
               useMaterial3: true,
               colorScheme: darkDynamic ?? darkColorScheme,
             ),
-            home: const HomeView(),
             builder: _builder,
-            navigatorObservers: [SentryNavigatorObserver()],
-            routes: <String, WidgetBuilder>{
-              EventInformation.route: (_) => const EventInformation(),
-              SettingsPage.route: (_) => const SettingsPage(),
-              NightwavesPage.route: (_) => const NightwavesPage(),
-              BountiesPage.route: (_) => const BountiesPage(),
-              BaroInventory.route: (_) => const BaroInventory(),
-              SynthTargetsView.route: (_) => const SynthTargetsView(),
-              '/codex': (_) => const CodexSearchPage(),
-              '/fish': (_) => const FishPage(),
-            },
             supportedLocales: NavisLocalizations.supportedLocales,
             locale: language,
             localizationsDelegates: NavisLocalizations.localizationsDelegates,

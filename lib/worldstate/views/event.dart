@@ -7,9 +7,9 @@ import 'package:navis/worldstate/widgets/event/event_status.dart';
 import 'package:warframestat_client/warframestat_client.dart';
 
 class EventInformation extends StatelessWidget {
-  const EventInformation({super.key});
+  const EventInformation({required this.event, super.key});
 
-  static const route = 'event_information';
+  final WorldEvent event;
 
   List<Reward> eventRewards(List<Reward> rewards, List<InterimStep>? steps) {
     final r = List<Reward>.from(rewards);
@@ -29,7 +29,6 @@ class EventInformation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final event = ModalRoute.of(context)!.settings.arguments! as WorldEvent;
     final height = (context.mediaQuery.size.height / 100) * 25;
 
     return TraceableWidget(

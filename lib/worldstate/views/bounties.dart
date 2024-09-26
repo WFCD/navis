@@ -5,17 +5,12 @@ import 'package:navis_ui/navis_ui.dart';
 import 'package:warframestat_client/warframestat_client.dart';
 
 class BountiesPage extends StatelessWidget {
-  const BountiesPage({super.key});
+  const BountiesPage({required this.syndicate, super.key});
 
-  static const String route = '/bounties';
+  final SyndicateMission syndicate;
 
   @override
   Widget build(BuildContext context) {
-    // We have checks in other places to make sre this is never null.
-    final syndicate =
-        // ignore: cast_nullable_to_non_nullable
-        ModalRoute.of(context)?.settings.arguments as SyndicateMission;
-
     final backgroundColor = syndicateStringToEnum(syndicate.id).secondryColor;
 
     return TraceableWidget(

@@ -32,7 +32,7 @@ Future<void> main() async {
       await bootstrap(
         () => DefaultAssetBundle(
           bundle: SentryAssetBundle(),
-          child: const NavisApp(),
+          child: NavisApp(navigatorKey: GlobalKey<NavigatorState>()),
         ),
       );
     },

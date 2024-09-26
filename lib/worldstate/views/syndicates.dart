@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:matomo_tracker/matomo_tracker.dart';
 import 'package:navis/l10n/l10n.dart';
-import 'package:navis/synthtargets/synthtargets.dart';
+import 'package:navis/router/routes.dart';
 import 'package:navis/worldstate/worldstate.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:responsive_builder/responsive_builder.dart';
@@ -108,25 +108,18 @@ class _SyndicatePageMobile extends StatelessWidget {
         if (nightwave != null)
           NightwaveCard(
             nightwave: nightwave!,
-            onTap: () {
-              Navigator.of(context)
-                  .pushNamed(NightwavesPage.route, arguments: nightwave);
-            },
+            onTap: () => NightwavePageRoute(nightwave).push<void>(context),
           ),
         SizedBoxSpacer.spacerHeight4,
         _BuildSyndicates(
           syndicates: syndicates,
-          onTap: (s) {
-            Navigator.of(context).pushNamed(BountiesPage.route, arguments: s);
-          },
+          onTap: (s) => SyndicatePageRoute(s).push<void>(context),
         ),
         const Divider(),
         SyndicateCard(
           syndicateId: 'simaris',
           caption: 'Tap to see targets',
-          onTap: () {
-            Navigator.of(context).pushNamed(SynthTargetsView.route);
-          },
+          onTap: () => const SynthTargetsPageRoute().push<void>(context),
         ),
       ],
     );

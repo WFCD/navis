@@ -1,36 +1,43 @@
+import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:navis/home/cubit/navigation_cubit.dart';
-import 'package:navis/home/widgets/nav_bar.dart';
+import 'package:go_router/go_router.dart';
+import 'package:navis/l10n/l10n.dart';
+import 'package:navis/router/routes.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:simple_icons/simple_icons.dart';
 
-class HomeView extends StatelessWidget {
-  const HomeView({super.key});
+class HomePage extends StatelessWidget {
+  const HomePage({
+    required this.navigationShell,
+    required this.children,
+    super.key,
+  });
+
+  final StatefulNavigationShell navigationShell;
+  final List<Widget> children;
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (_) => NavigationCubit(),
-      child: const _Home(),
-    );
+    return HomeView(navigationShell: navigationShell, children: children);
   }
 }
 
-class _Home extends StatefulWidget {
-  const _Home();
+class HomeView extends StatelessWidget {
+  const HomeView({
+    required this.navigationShell,
+    required this.children,
+    super.key,
+  });
 
-  @override
-  _HomeState createState() => _HomeState();
-}
-
-class _HomeState extends State<_Home> {
-  final GlobalKey<ScaffoldState> scaffold = GlobalKey<ScaffoldState>();
+  final StatefulNavigationShell navigationShell;
+  final List<Widget> children;
 
   @override
   Widget build(BuildContext context) {
+    final currentIndex = navigationShell.currentIndex;
+
     return Scaffold(
-      key: scaffold,
+      key: GlobalKey<ScaffoldState>(),
       appBar: AppBar(
         toolbarHeight: kTextTabBarHeight,
         actions: [
@@ -39,20 +46,45 @@ class _HomeState extends State<_Home> {
             icon: const AppIcon(SimpleIcons.discord),
           ),
           IconButton(
-            onPressed: () => Navigator.of(context).pushNamed('/settings'),
+            onPressed: () => const SettingsPageRoute().push<void>(context),
             icon: const Icon(Icons.settings_rounded),
           ),
         ],
       ),
-      body: BlocBuilder<NavigationCubit, Widget>(
-        builder: (BuildContext context, Widget state) {
-          return AnimatedSwitcher(
-            duration: kThemeAnimationDuration,
-            child: state,
+      body: PageTransitionSwitcher(
+        transitionBuilder: (
+          Widget child,
+          Animation<double> animation,
+          Animation<double> secondaryAnimation,
+        ) {
+          return FadeThroughTransition(
+            animation: animation,
+            secondaryAnimation: secondaryAnimation,
+            child: child,
           );
         },
+        child: children[currentIndex],
       ),
-      bottomNavigationBar: const CustomNavigationBar(),
+      bottomNavigationBar: NavigationBar(
+        onDestinationSelected: (i) {
+          navigationShell.goBranch(i, initialLocation: i == currentIndex);
+        },
+        selectedIndex: currentIndex,
+        destinations: [
+          NavigationDestination(
+            icon: const Icon(Icons.home_rounded),
+            label: context.l10n.homePageTitle,
+          ),
+          NavigationDestination(
+            icon: const Icon(Icons.web_rounded),
+            label: context.l10n.warframeNewsTitle,
+          ),
+          NavigationDestination(
+            icon: const Icon(Icons.explore),
+            label: context.l10n.exploreTitle,
+          ),
+        ],
+      ),
     );
   }
 }

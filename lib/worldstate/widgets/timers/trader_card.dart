@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/gen/assets.gen.dart';
 import 'package:navis/l10n/l10n.dart';
+import 'package:navis/router/routes.dart';
 import 'package:navis/worldstate/worldstate.dart';
 import 'package:navis_ui/navis_ui.dart';
 
@@ -34,10 +35,7 @@ class TraderCard extends StatelessWidget {
           color: const Color(0xFF82598b),
           child: InkWell(
             onTap: isActive
-                ? () => Navigator.of(context).pushNamed(
-                      BaroInventory.route,
-                      arguments: trader?.inventory,
-                    )
+                ? () => TraderPageRoute(trader?.inventory).push<void>(context)
                 : null,
             child: SizedBox(
               height: 150,

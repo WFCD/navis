@@ -5,15 +5,12 @@ import 'package:navis/worldstate/worldstate.dart';
 import 'package:warframestat_client/warframestat_client.dart';
 
 class BaroInventory extends StatelessWidget {
-  const BaroInventory({super.key});
+  const BaroInventory({required this.inventory, super.key});
 
-  static const route = '/baro_inventory';
+  final List<TraderItem>? inventory;
 
   @override
   Widget build(BuildContext context) {
-    final inventory =
-        ModalRoute.of(context)?.settings.arguments as List<TraderItem>?;
-
     return TraceableWidget(
       child: Scaffold(
         appBar: AppBar(title: Text(context.l10n.baroInventory)),

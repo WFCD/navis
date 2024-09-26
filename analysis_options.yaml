@@ -3,6 +3,7 @@ include: package:very_good_analysis/analysis_options.yaml
 analyzer:
   exclude:
     - lib/firebase_options.dart
+    - lib/router/routes.g.dart
     - packages/navis_ui/lib/src/icons/warframe_symbols.dart
 
 linter:
