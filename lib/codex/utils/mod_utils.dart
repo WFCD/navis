@@ -32,9 +32,9 @@ typedef ModAssets = ({
 
 String formatDescription(
   String? description,
-  List<LevelStat>? levelStats, {
-  int rank = 0,
-}) {
+  List<LevelStat>? levelStats,
+  int rank,
+) {
   if (description != null && description.isNotEmpty) return description;
 
   final buffer = StringBuffer();

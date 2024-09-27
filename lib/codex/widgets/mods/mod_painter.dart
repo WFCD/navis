@@ -145,11 +145,12 @@ abstract class ModPainter extends CustomPainter {
   }
 
   void paintDescription(Canvas canvas, Size size) {
-    final description = formatDescription(mod.description, mod.levelStats);
+    final description =
+        formatDescription(mod.description, mod.levelStats, rank);
 
     final span = TextSpan(
       text: description,
-      style: TextStyle(color: mod.rarity?.toColor()),
+      style: TextStyle(color: mod.rarity?.toColor(), fontSize: 12),
     );
 
     final painter = TextPainter(
