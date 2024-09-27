@@ -11,9 +11,9 @@ import 'package:navis/worldstate/worldstate.dart';
 import 'package:navis_ui/navis_ui.dart';
 
 class NavisApp extends StatefulWidget {
-  const NavisApp({super.key, required this.navigatorKey});
+  const NavisApp({super.key, required this.router});
 
-  final GlobalKey<NavigatorState> navigatorKey;
+  final AppRouter router;
 
   @override
   _NavisAppState createState() => _NavisAppState();
@@ -128,7 +128,7 @@ class _NavisAppState extends State<NavisApp> with WidgetsBindingObserver {
           pixelRatio: 1,
           localizationsDelegates: NavisLocalizations.localizationsDelegates,
           child: MaterialApp.router(
-            routerConfig: AppRouter(navigatorKey: widget.navigatorKey).routes,
+            routerConfig: widget.router.routes,
             title: 'Navis',
             color: Colors.grey[900],
             themeMode: themeMode,

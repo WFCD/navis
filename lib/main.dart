@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:matomo_tracker/matomo_tracker.dart';
 import 'package:navis/app/app.dart';
 import 'package:navis/bootstrap.dart';
+import 'package:navis/router/app_router.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:sentry_logging/sentry_logging.dart';
 
@@ -32,7 +33,9 @@ Future<void> main() async {
       await bootstrap(
         () => DefaultAssetBundle(
           bundle: SentryAssetBundle(),
-          child: NavisApp(navigatorKey: GlobalKey<NavigatorState>()),
+          child: NavisApp(
+            router: AppRouter(navigatorKey: GlobalKey<NavigatorState>()),
+          ),
         ),
       );
     },
