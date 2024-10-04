@@ -122,7 +122,22 @@ abstract class Topics {
       'volatile',
     ];
 
+    const omniaMissionTypes = <String>[
+      'alchemy',
+      'void_cascade',
+      'void_flood',
+      'survival',
+    ];
+
     for (final tier in tiers) {
+      if (tier == 'Omnia') {
+        for (final objective in omniaMissionTypes) {
+          yield Topic('$tier.$objective');
+        }
+
+        break;
+      }
+
       for (final objective in missionTypes) {
         yield Topic('$tier.$objective');
       }
