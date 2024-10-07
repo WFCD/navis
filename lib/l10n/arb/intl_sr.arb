@@ -1194,5 +1194,11 @@
     "description": "Codex Weapon damage type title",
     "type": "text",
     "placeholder": {}
+  },
+  "circuitResetTitle": "The Circuit resets in",
+  "@circuitResetTitle": {
+    "description": "Text displayed next to the weekly reset time for the circuit",
+    "type": "text",
+    "placeholder": {}
   }
 }
