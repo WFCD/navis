@@ -25,6 +25,8 @@ class EventInformation extends StatelessWidget {
     'Operation: Belly of the Beast':
         'https://www-static.warframe.com/uploads/thumbnails'
             '/92a16137ab4635c0d3e222957739eec9_1600x900.png',
+    'Nights of Naberus': 'https://www-static.warframe.com/uploads/thumbnails/'
+        '3831ab38bfcba03794b4fe418cabc240_1600x900.png',
   };
 
   @override
@@ -54,18 +56,16 @@ class EventInformation extends StatelessWidget {
             ),
             SliverList(
               delegate: SliverChildListDelegate.fixed(<Widget>[
-                SafeArea(
-                  child: EventStatus(
-                    description: event.description,
-                    tooltip: event.tooltip ?? '',
-                    node: event.victimNode ?? event.node ?? '',
-                    health: event.health?.toDouble(),
-                    currentScore: event.currentScore,
-                    maxScore: event.maximumScore,
-                    scoreLocTag: event.scoreLocTag,
-                    expiry: event.expiry,
-                    rewards: eventRewards(event.rewards, event.interimSteps),
-                  ),
+                EventStatus(
+                  description: event.description,
+                  tooltip: event.tooltip ?? '',
+                  node: event.victimNode ?? event.node ?? '',
+                  health: event.health?.toDouble(),
+                  currentScore: event.currentScore,
+                  maxScore: event.maximumScore,
+                  scoreLocTag: event.scoreLocTag,
+                  expiry: event.expiry,
+                  rewards: eventRewards(event.rewards, event.interimSteps),
                 ),
                 if (event.jobs != null && event.jobs!.isNotEmpty)
                   SafeArea(child: EventBounties(jobs: event.jobs!)),
