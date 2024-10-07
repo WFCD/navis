@@ -66,7 +66,7 @@ class CountdownTimerState extends State<CountdownTimer>
           >= max => Colors.green,
           < max && >= minimum => Colors.orange[700]!,
           < minimum when !_isExpired => Colors.red,
-          _ => Theme.of(context).colorScheme.secondary
+          _ => Theme.of(context).colorScheme.secondaryContainer
         };
       });
     }
