@@ -9,11 +9,23 @@ import 'package:navis_ui/navis_ui.dart';
 class TraderCard extends StatelessWidget {
   const TraderCard({super.key});
 
+  bool _buildWhen(SolsystemState previous, SolsystemState current) {
+    if (previous is! WorldstateSuccess || current is! WorldstateSuccess) {
+      return false;
+    }
+
+    final previousTrader = previous.worldstate.voidTraders.first;
+    final currentTrader = current.worldstate.voidTraders.first;
+
+    return previousTrader.id != currentTrader.id;
+  }
+
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
 
     return BlocBuilder<WorldstateCubit, SolsystemState>(
+      buildWhen: _buildWhen,
       builder: (context, state) {
         final now = DateTime.now();
         final trader = switch (state) {
