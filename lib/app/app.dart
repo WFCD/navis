@@ -55,8 +55,8 @@ class _NavisAppState extends State<NavisApp> with WidgetsBindingObserver {
 
     ErrorWidget.builder = (FlutterErrorDetails error) {
       Widget errorWidget = NavisErrorWidget(
-        title: l10n?.errorTitle ?? 'An application error has occurred',
-        description: l10n?.errorDescription ?? 'There was unexpected error.',
+        title: l10n.errorTitle,
+        description: l10n.errorDescription,
         details: error,
       );
 

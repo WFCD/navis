@@ -7,8 +7,7 @@ extension AppLocalizationsX on BuildContext {
   NavisLocalizations get l10n {
     // Truthfully this should never be null when it's being put into the context
     // as the start of the app.
-    // ignore: avoid-non-null-assertion
-    return NavisLocalizations.of(this)!;
+    return NavisLocalizations.of(this);
   }
 }
 
