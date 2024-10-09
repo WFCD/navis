@@ -42,7 +42,7 @@ jobs:
         run: flutter build apk --flavor dev --split-per-abi
 
       - name: Uploade artifacts
-        uses: actions/upload-artifact@v4.4.1
+        uses: actions/upload-artifact@v4.4.2
         with:
           name: android-test-artifacts
           path: "build/app/outputs/flutter-apk/app-*-dev-release.apk"
@@ -98,7 +98,7 @@ jobs:
         run: flutter build ipa --export-options-plist=ios/ExportOptions.plist
 
       - name: Uploade artifacts
-        uses: actions/upload-artifact@v4.4.1
+        uses: actions/upload-artifact@v4.4.2
         with:
           name: ios-test-artifact
           path: "build/ios/ipa/*.ipa"
