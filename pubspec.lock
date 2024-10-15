@@ -342,6 +342,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.0"
+  dart_mappable:
+    dependency: transitive
+    description:
+      name: dart_mappable
+      sha256: "47269caf2060533c29b823ff7fa9706502355ffcb61e7f2a374e3a0fb2f2c3f0"
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.2.2"
   dart_style:
     dependency: transitive
     description:
@@ -874,7 +882,7 @@ packages:
     source: hosted
     version: "5.1.0"
   meta:
-    dependency: transitive
+    dependency: "direct overridden"
     description:
       name: meta
       sha256: bdb68674043280c3428e9ec998512fb681678676b3c54e773629ffe74419f8c7
@@ -1420,6 +1428,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.1"
+  type_plus:
+    dependency: transitive
+    description:
+      name: type_plus
+      sha256: d5d1019471f0d38b91603adb9b5fd4ce7ab903c879d2fbf1a3f80a630a03fcc9
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.1.1"
   typed_data:
     dependency: transitive
     description:
@@ -1520,10 +1536,10 @@ packages:
     dependency: "direct main"
     description:
       name: warframestat_client
-      sha256: c270166ec3184145498a8789bc9163a83193bbaeca97653fdaa243110960f69b
+      sha256: "38a13f2868067abe52cb9a283196d84e9ff85da8d9408246cca28df060d65944"
       url: "https://pub.dev"
     source: hosted
-    version: "3.9.0"
+    version: "3.10.0"
   warframestat_repository:
     dependency: "direct main"
     description:
@@ -1567,10 +1583,10 @@ packages:
     dependency: transitive
     description:
       name: web_socket_client
-      sha256: "9797739cd0334eaf758b22d77976cb14ed29072efe9f3ea4838d9c0de8d18d48"
+      sha256: "0ec5230852349191188c013112e4d2be03e3fc83dbe80139ead9bf3a136e53b5"
       url: "https://pub.dev"
     source: hosted
-    version: "0.1.4"
+    version: "0.1.5"
   webkit_inspection_protocol:
     dependency: transitive
     description:

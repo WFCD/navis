@@ -18,6 +18,7 @@ export 'timers/arbitration_card.dart';
 export 'timers/archon_card.dart';
 export 'timers/cycle_card.dart';
 export 'timers/darvo_deal_card.dart';
+export 'timers/deep_archimedea.dart';
 export 'timers/duviri_cycle.dart';
 export 'timers/event_card.dart';
 export 'timers/outpost_card.dart';
