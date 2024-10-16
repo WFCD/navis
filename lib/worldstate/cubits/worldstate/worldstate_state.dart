@@ -31,6 +31,8 @@ class WorldstateSuccess extends SolsystemState {
 
   bool get outpostDetected => worldstate.sentientOutposts != null;
 
+  bool get deepArchimedeaActive => worldstate.deepArchimedea != null;
+
   @override
   List<Object> get props => [worldstate];
 
