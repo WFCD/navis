@@ -1,6 +1,10 @@
+import 'dart:io';
+
 import 'package:collection/collection.dart';
+import 'package:hive_ce/hive.dart';
 import 'package:http/http.dart';
 import 'package:warframestat_client/warframestat_client.dart';
+import 'package:warframestat_repository/hive_registrar.g.dart';
 import 'package:warframestat_repository/src/cache_client.dart';
 
 ///
@@ -11,7 +15,9 @@ const userAgent = 'navis';
 /// {@endtemplate}
 class WarframestatRepository {
   /// {@macro warframestat_repository}
-  WarframestatRepository({Client? client}) : _client = client ?? Client();
+  WarframestatRepository({Client? client}) : _client = client ?? Client() {
+    Hive.registerAdapters();
+  }
 
   final Client _client;
 
@@ -19,22 +25,29 @@ class WarframestatRepository {
   Language language = Language.en;
 
   final _cacheClients = <Duration, CacheClient>{};
-  CacheClient _cacheClient(Duration cacheTime) {
+  Future<CacheClient> _cacheClient(Duration cacheTime) async {
+    Hive.init(Directory.systemTemp.absolute.path);
+
+    // Hive will return the same box if it's already opened
+    final cache =
+        await Hive.openBox<HiveCacheItem>('warframestat_repository_cache');
+
     if (_cacheClients.containsKey(cacheTime)) return _cacheClients[cacheTime]!;
 
     _cacheClients[cacheTime] = CacheClient(
       cacheTime: cacheTime,
       client: _client,
+      cacheBox: cache,
     );
 
     return _cacheClients[cacheTime]!;
   }
 
   /// Get the current worldstate
-  Future<Worldstate> fetchWorldstate() {
+  Future<Worldstate> fetchWorldstate() async {
     const cacheTime = Duration(seconds: 60);
     final client = WorldstateClient(
-      client: _cacheClient(cacheTime),
+      client: await _cacheClient(cacheTime),
       ua: userAgent,
       language: language,
     );
@@ -46,10 +59,10 @@ class WarframestatRepository {
   ///
   /// I doubt the list will be updated since DE doesn't really add much on their
   /// end so caching for even a year is perfectly fine
-  Future<List<SynthTarget>> fetchTargets() {
+  Future<List<SynthTarget>> fetchTargets() async {
     const cacheTime = Duration(days: 30);
     final client = SynthTaretClient(
-      client: _cacheClient(cacheTime),
+      client: await _cacheClient(cacheTime),
       ua: userAgent,
       language: language,
     );
@@ -62,7 +75,7 @@ class WarframestatRepository {
   Future<MinimalItem?> fetchDealInfo(String uniqueName, String name) async {
     const cacheTime = Duration(minutes: 30);
     final client = WarframeItemsClient(
-      client: _cacheClient(cacheTime),
+      client: await _cacheClient(cacheTime),
       ua: userAgent,
       language: language,
     );
@@ -81,10 +94,10 @@ class WarframestatRepository {
   }
 
   /// Search warframe-items
-  Future<List<MinimalItem>> searchItems(String query) {
+  Future<List<MinimalItem>> searchItems(String query) async {
     const cacheTime = Duration(minutes: 5);
     final client = WarframeItemsClient(
-      client: _cacheClient(cacheTime),
+      client: await _cacheClient(cacheTime),
       ua: userAgent,
       language: language,
     );
@@ -93,10 +106,10 @@ class WarframestatRepository {
   }
 
   /// Get one item based on unique name
-  Future<Item> fetchItem(String uniqueName) {
+  Future<Item> fetchItem(String uniqueName) async {
     const cacheTime = Duration(minutes: 5);
     final client = WarframeItemsClient(
-      client: _cacheClient(cacheTime),
+      client: await _cacheClient(cacheTime),
       ua: userAgent,
       language: language,
     );

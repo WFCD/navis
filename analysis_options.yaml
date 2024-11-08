@@ -5,6 +5,8 @@ analyzer:
     - lib/firebase_options.dart
     - lib/router/routes.g.dart
     - packages/navis_ui/lib/src/icons/warframe_symbols.dart
+    - packages/warframestat_repository/lib/hive_registrar.g.dart
+    - packages/warframestat_repository/lib/src/cache_client.g.dart
 
 linter:
   rules:
