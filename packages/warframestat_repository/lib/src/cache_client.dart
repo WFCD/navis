@@ -31,7 +31,7 @@ class CacheClient extends BaseClient {
     final now = DateTime.timestamp();
     final cached = cacheBox.get(request.url.toString());
 
-    if (cached != null && cached.isExpired) {
+    if (cached != null && !cached.isExpired) {
       return StreamedResponse(Stream.value(cached.data), 200);
     }
 
