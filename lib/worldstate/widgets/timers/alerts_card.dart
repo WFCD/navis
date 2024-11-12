@@ -123,7 +123,11 @@ class _AlertReward extends StatelessWidget {
             ),
           ),
           subtitle: item?.description != null
-              ? Text(item!.description!, maxLines: 2)
+              ? Text(
+                  item!.description!,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                )
               : null,
           trailing: item != null
               ? CachedNetworkImage(
