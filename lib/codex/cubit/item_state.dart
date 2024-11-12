@@ -26,3 +26,7 @@ final class ItemFetchFailure extends ItemState {
   @override
   List<Object> get props => [message];
 }
+
+final class NoItemFound extends ItemState {
+  const NoItemFound();
+}

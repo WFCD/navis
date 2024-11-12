@@ -1,28 +1,44 @@
+import 'package:animations/animations.dart';
+import 'package:black_hole_flutter/black_hole_flutter.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
+import 'package:navis/codex/codex.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis/worldstate/cubits/worldstate_cubit.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:warframestat_client/warframestat_client.dart';
+import 'package:warframestat_repository/warframestat_repository.dart';
 
 class AlertsCard extends StatelessWidget {
   const AlertsCard({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return AppCard(
-      child: BlocBuilder<WorldstateCubit, SolsystemState>(
-        builder: (context, state) {
-          final alerts = switch (state) {
-            WorldstateSuccess() => state.worldstate.alerts,
-            _ => <Alert>[],
-          };
+    final wsRepo = RepositoryProvider.of<WarframestatRepository>(context);
 
-          return Column(
-            children: alerts.map((a) => _AlertWidget(alert: a)).toList(),
-          );
-        },
-      ),
+    return BlocBuilder<WorldstateCubit, SolsystemState>(
+      builder: (context, state) {
+        final alerts = switch (state) {
+          WorldstateSuccess() => state.worldstate.alerts,
+          _ => <Alert>[],
+        };
+
+        return Column(
+          children: alerts.map((a) {
+            return AppCard(
+              child: BlocProvider(
+                create: (_) => ItemCubit(
+                  a.mission.reward!.countedItems[0].type,
+                  wsRepo,
+                )..fetchByName(),
+                child: _AlertWidget(alert: a),
+              ),
+            );
+          }).toList(),
+        );
+      },
     );
   }
 }
@@ -34,12 +50,13 @@ class _AlertWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final textTheme = Theme.of(context).textTheme;
     final mission = alert.mission;
 
     final node = mission.node;
     final type = mission.type;
     final faction = mission.faction;
+    final reward = mission.reward;
+
     final enemyLvlRange = context.l10n
         .levelInfo(mission.minEnemyLevel ?? 0, mission.maxEnemyLevel ?? 0);
 
@@ -48,37 +65,90 @@ class _AlertWidget extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          RowItem(
-            icons: <Widget>[
-              // Since nightmare alerts aren't visible in the worldstate there
-              // is no need for a nightmare icon for alerts.
-              if (mission.archwingRequired ?? false)
-                const Icon(
-                  WarframeSymbols.archwing,
-                  color: Colors.blue,
-                  size: 25,
-                ),
-            ],
-            text: Text(node),
-            child:
-                ColoredContainer.text(text: mission.reward?.itemString ?? ''),
-          ),
-          RowItem(
-            text: Text(
-              '$type ($faction) | $enemyLvlRange',
-              style: textTheme.bodySmall,
+          ListTile(
+            title: Row(
+              children: [
+                Text(node),
+                if (mission.archwingRequired ?? false) ...{
+                  SizedBoxSpacer.spacerWidth8,
+                  const Icon(
+                    WarframeSymbols.archwing,
+                    color: Colors.blue,
+                    size: 25,
+                  ),
+                },
+              ],
             ),
-            child: CountdownTimer(
-              // Will default to DateTime.now() under the hood.
-              // ignore: avoid-non-null-assertion
+            subtitle: Text('$type ($faction) | $enemyLvlRange'),
+            trailing: CountdownTimer(
               tooltip: context.l10n.countdownTooltip(alert.expiry),
-              // Will default to DateTime.now() under the hood.
-              // ignore: avoid-non-null-assertion
               expiry: alert.expiry,
             ),
+            dense: true,
           ),
+          _AlertReward(reward: reward),
         ],
       ),
+    );
+  }
+}
+
+class _AlertReward extends StatelessWidget {
+  const _AlertReward({required this.reward});
+
+  final Reward? reward;
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<ItemCubit, ItemState>(
+      builder: (context, state) {
+        final item =
+            switch (state) { ItemFetchSucess() => state.item, _ => null };
+
+        final credits = NumberFormat().format(reward?.credits ?? 0);
+
+        final child = ListTile(
+          title: RichText(
+            text: TextSpan(
+              text: reward?.itemString,
+              children: [
+                if (reward?.credits != null)
+                  TextSpan(
+                    text: ' + $credits credits',
+                    style: context.textTheme.bodySmall?.copyWith(
+                      color: context.theme.colorScheme.onSurfaceVariant,
+                    ),
+                  ),
+              ],
+            ),
+          ),
+          subtitle: item?.description != null
+              ? Text(item!.description!, maxLines: 2)
+              : null,
+          trailing: item != null
+              ? CachedNetworkImage(
+                  imageUrl: item.imageUrl,
+                  height: 100,
+                  width: 60,
+                )
+              : null,
+          isThreeLine: item != null,
+          dense: true,
+        );
+
+        if (item == null) return child;
+
+        return OpenContainer(
+          closedColor: Theme.of(context).colorScheme.surface,
+          openColor: Theme.of(context).colorScheme.surface,
+          openBuilder: (_, __) {
+            return EntryView(item: item as MinimalItem);
+          },
+          closedBuilder: (context, onTap) {
+            return child;
+          },
+        );
+      },
     );
   }
 }

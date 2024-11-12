@@ -18,7 +18,7 @@ class EntryView extends StatelessWidget {
     final repo = RepositoryProvider.of<WarframestatRepository>(context);
 
     return BlocProvider(
-      create: (context) => ItemCubit(repo)..fetchItem(item.uniqueName),
+      create: (context) => ItemCubit(item.uniqueName, repo)..fetchItem(),
       child: Scaffold(body: SafeArea(child: _Overview(item: item))),
     );
   }
