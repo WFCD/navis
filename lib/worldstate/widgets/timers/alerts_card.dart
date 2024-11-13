@@ -102,7 +102,7 @@ class _AlertReward extends StatelessWidget {
     return BlocBuilder<ItemCubit, ItemState>(
       builder: (context, state) {
         final item =
-            switch (state) { ItemFetchSucess() => state.item, _ => null };
+            switch (state) { ItemFetchSuccess() => state.item, _ => null };
 
         final credits = NumberFormat().format(reward?.credits ?? 0);
 
