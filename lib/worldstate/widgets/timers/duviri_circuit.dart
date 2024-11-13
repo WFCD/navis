@@ -140,7 +140,7 @@ class _CircuitPathTile extends StatelessWidget {
 
         final icon = item != null
             ? CircleAvatar(
-                backgroundImage: CachedNetworkImageProvider(item.imageUrl),
+                foregroundImage: CachedNetworkImageProvider(item.imageUrl),
                 radius: 20,
               )
             : null;

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:collection/collection.dart';
 import 'package:equatable/equatable.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
@@ -15,71 +17,52 @@ class ItemCubit extends HydratedCubit<ItemState> {
   final WarframestatRepository repo;
 
   Future<void> fetchItem() async {
-    try {
-      final item = await ConnectionManager.call(
-        () async => repo.fetchItem(name),
-      );
+    final item = await _handleItemFetch(() async => repo.fetchItem(name));
 
-      emit(ItemFetchSuccess(item));
-    } catch (e, s) {
-      await Sentry.captureException(
-        e,
-        stackTrace: s,
-        hint: Hint.withMap({'uniqueName': name}),
-      );
-
-      emit(const ItemFetchFailure('Failed to parse item'));
-    }
+    emit(ItemFetchSuccess(item));
   }
 
   Future<void> fetchByName() async {
-    try {
-      final items = await ConnectionManager.call(
-        () async => repo.searchItems(name),
-      );
+    final items = await _handleItemFetch(() async => repo.searchItems(name));
 
-      final item = items
-          .where((item) => item.imageName != null)
-          .firstWhereOrNull((item) => name == item.name);
+    final item = items
+        .where((item) => item.imageName != null)
+        .firstWhereOrNull((item) => name == item.name);
 
-      if (item == null) return emit(const NoItemFound());
+    if (item == null) return emit(const NoItemFound());
 
-      emit(ItemFetchSuccess(item));
-    } catch (e, s) {
-      await Sentry.captureException(
-        e,
-        stackTrace: s,
-        hint: Hint.withMap({'name': name}),
-      );
-
-      emit(const ItemFetchFailure('Failed to parse item'));
-    }
+    emit(ItemFetchSuccess(item));
   }
 
   Future<void> fetchIncarnonGenesis() async {
+    final items = await _handleItemFetch(
+      () async => repo.searchItems('Incarnon'),
+    );
+
+    final item = items.where((item) => item.imageName != null).firstWhereOrNull(
+      (item) {
+        return name.replaceAll(' ', '') == item.name.replaceAll(' ', '');
+      },
+    );
+
+    if (item == null) return emit(const NoItemFound());
+
+    emit(ItemFetchSuccess(item));
+  }
+
+  Future<T> _handleItemFetch<T>(FutureOr<T> Function() compute) async {
     try {
-      final items = await ConnectionManager.call(
-        () async => repo.searchItems('Incarnon'),
-      );
-
-      final item =
-          items.where((item) => item.imageName != null).firstWhereOrNull(
-        (item) {
-          return name.replaceAll(' ', '') == item.name.replaceAll(' ', '');
-        },
-      );
-
-      if (item == null) return emit(const NoItemFound());
-
-      emit(ItemFetchSuccess(item));
+      return ConnectionManager.call(compute);
     } catch (e, s) {
       await Sentry.captureException(
         e,
         stackTrace: s,
-        hint: Hint.withMap({'name': name}),
+        hint: Hint.withMap({'query': name}),
       );
 
       emit(const ItemFetchFailure('Failed to parse item'));
+
+      rethrow;
     }
   }
 
