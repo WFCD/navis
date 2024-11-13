@@ -20,7 +20,7 @@ class ItemCubit extends HydratedCubit<ItemState> {
         () async => repo.fetchItem(name),
       );
 
-      emit(ItemFetchSucess(item));
+      emit(ItemFetchSuccess(item));
     } catch (e, s) {
       await Sentry.captureException(
         e,
@@ -44,7 +44,7 @@ class ItemCubit extends HydratedCubit<ItemState> {
 
       if (item == null) return emit(const NoItemFound());
 
-      emit(ItemFetchSucess(item));
+      emit(ItemFetchSuccess(item));
     } catch (e, s) {
       await Sentry.captureException(
         e,
@@ -61,14 +61,14 @@ class ItemCubit extends HydratedCubit<ItemState> {
 
   @override
   ItemState? fromJson(Map<String, dynamic> json) {
-    final item = toItem(json);
+    final item = MinimalItem.fromJson(json);
 
-    return ItemFetchSucess(item);
+    return ItemFetchSuccess(item);
   }
 
   @override
   Map<String, dynamic>? toJson(ItemState state) {
-    if (state is! ItemFetchSucess) return null;
+    if (state is! ItemFetchSuccess) return null;
 
     return state.item.toJson();
   }

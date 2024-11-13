@@ -9,8 +9,8 @@ sealed class ItemState extends Equatable {
 
 final class ItemInitial extends ItemState {}
 
-final class ItemFetchSucess extends ItemState {
-  const ItemFetchSucess(this.item);
+final class ItemFetchSuccess extends ItemState {
+  const ItemFetchSuccess(this.item);
 
   final Item item;
 
