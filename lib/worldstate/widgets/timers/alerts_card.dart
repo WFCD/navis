@@ -1,4 +1,3 @@
-import 'package:animations/animations.dart';
 import 'package:black_hole_flutter/black_hole_flutter.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -142,15 +141,9 @@ class _AlertReward extends StatelessWidget {
 
         if (item == null) return child;
 
-        return OpenContainer(
-          closedColor: Theme.of(context).colorScheme.surface,
-          openColor: Theme.of(context).colorScheme.surface,
-          openBuilder: (_, __) {
-            return EntryView(item: item as MinimalItem);
-          },
-          closedBuilder: (context, onTap) {
-            return child;
-          },
+        return EntryViewOpenContainer(
+          item: item as MinimalItem,
+          builder: (_, __) => child,
         );
       },
     );

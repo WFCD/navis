@@ -1,4 +1,3 @@
-import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:matomo_tracker/matomo_tracker.dart';
@@ -69,13 +68,9 @@ class CodexSearchView extends StatelessWidget {
               SliverList.builder(
                 itemCount: state.results.length,
                 itemBuilder: (BuildContext context, int index) {
-                  return OpenContainer(
-                    closedColor: Theme.of(context).colorScheme.surface,
-                    openColor: Theme.of(context).colorScheme.surface,
-                    openBuilder: (_, __) {
-                      return EntryView(item: state.results[index]);
-                    },
-                    closedBuilder: (_, onTap) {
+                  return EntryViewOpenContainer(
+                    item: state.results[index],
+                    builder: (_, onTap) {
                       return Padding(
                         padding: const EdgeInsets.symmetric(vertical: 8),
                         child: CodexResult(
