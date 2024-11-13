@@ -1,4 +1,3 @@
-export 'cubits/darvodeal_cubit.dart';
 export 'cubits/fissure_filter.dart';
 export 'cubits/worldstate_cubit.dart';
 export 'views/bounties.dart';

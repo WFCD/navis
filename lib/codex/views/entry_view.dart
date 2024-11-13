@@ -1,3 +1,4 @@
+import 'package:animations/animations.dart';
 import 'package:black_hole_flutter/black_hole_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -6,19 +7,38 @@ import 'package:navis_ui/navis_ui.dart';
 import 'package:warframestat_client/warframestat_client.dart';
 import 'package:warframestat_repository/warframestat_repository.dart';
 
+class EntryViewOpenContainer extends StatelessWidget {
+  const EntryViewOpenContainer({
+    super.key,
+    required this.item,
+    required this.builder,
+  });
+
+  final MinimalItem item;
+  final Widget Function(BuildContext, void Function()) builder;
+
+  @override
+  Widget build(BuildContext context) {
+    return OpenContainer(
+      closedColor: Theme.of(context).colorScheme.surface,
+      openColor: Theme.of(context).colorScheme.surface,
+      openBuilder: (_, __) => EntryView(item: item),
+      closedBuilder: builder,
+    );
+  }
+}
+
 class EntryView extends StatelessWidget {
   const EntryView({super.key, required this.item});
 
   final MinimalItem item;
-
-  static const route = '/codexEntry';
 
   @override
   Widget build(BuildContext context) {
     final repo = RepositoryProvider.of<WarframestatRepository>(context);
 
     return BlocProvider(
-      create: (context) => ItemCubit(repo)..fetchItem(item.uniqueName),
+      create: (context) => ItemCubit(item.uniqueName, repo)..fetchItem(),
       child: Scaffold(body: SafeArea(child: _Overview(item: item))),
     );
   }
@@ -66,7 +86,7 @@ class _Overview extends StatelessWidget {
                 return Center(child: Text(state.message));
               }
 
-              if (state is! ItemFetchSucess) {
+              if (state is! ItemFetchSuccess) {
                 return const Center(
                   child: CircularProgressIndicator.adaptive(),
                 );

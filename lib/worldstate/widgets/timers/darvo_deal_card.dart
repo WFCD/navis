@@ -5,10 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/codex/codex.dart';
 import 'package:navis/l10n/l10n.dart';
-import 'package:navis/worldstate/cubits/darvodeal_cubit.dart';
 import 'package:navis/worldstate/cubits/worldstate_cubit.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:warframestat_client/warframestat_client.dart';
+import 'package:warframestat_repository/warframestat_repository.dart';
 
 class DarvoDealCard extends StatelessWidget {
   const DarvoDealCard({super.key});
@@ -29,6 +29,8 @@ class DarvoDealCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final repo = RepositoryProvider.of<WarframestatRepository>(context);
+
     return BlocBuilder<WorldstateCubit, SolsystemState>(
       buildWhen: _buildWhen,
       builder: (context, state) {
@@ -37,13 +39,7 @@ class DarvoDealCard extends StatelessWidget {
           _ => null,
         };
 
-        final int stock;
-        if (deal != null) {
-          stock = deal.total - deal.sold;
-        } else {
-          stock = 0;
-        }
-
+        final stock = deal != null ? deal.total - deal.sold : 0;
         final inStock = stock != 0;
         final expiry = deal?.expiry ?? DateTime.now();
 
@@ -77,7 +73,11 @@ class DarvoDealCard extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(horizontal: 4),
                     margin: const EdgeInsets.only(top: 10),
                   ),
-                  if (deal != null) _DealWidget(deal: deal),
+                  if (deal != null)
+                    BlocProvider(
+                      create: (_) => ItemCubit(deal.item, repo)..fetchByName(),
+                      child: _DealWidget(deal: deal),
+                    ),
                 ],
               ),
             ),
@@ -88,53 +88,21 @@ class DarvoDealCard extends StatelessWidget {
   }
 }
 
-class _DealWidget extends StatefulWidget {
+class _DealWidget extends StatelessWidget {
   const _DealWidget({required this.deal});
 
   final DailyDeal deal;
 
   @override
-  State<_DealWidget> createState() => _DealWidgetState();
-}
-
-class _DealWidgetState extends State<_DealWidget> {
-  bool _buildWhen(DarvodealState previous, DarvodealState current) {
-    if (previous is! DarvoDealLoaded || current is! DarvoDealLoaded) {
-      // Return true so the UI knows it doesn't have any info.
-      return true;
-    }
-
-    return previous.item.uniqueName != current.item.uniqueName;
-  }
-
-  @override
-  void initState() {
-    super.initState();
-
-    BlocProvider.of<DarvodealCubit>(context)
-        .fetchDeal(widget.deal.uniqueName, widget.deal.item);
-  }
-
-  @override
-  void didUpdateWidget(covariant _DealWidget oldWidget) {
-    super.didUpdateWidget(oldWidget);
-
-    if (oldWidget.deal.uniqueName != widget.deal.uniqueName) {
-      BlocProvider.of<DarvodealCubit>(context)
-          .fetchDeal(widget.deal.uniqueName, widget.deal.item);
-    }
-  }
-
-  @override
   Widget build(BuildContext context) {
-    final deal = widget.deal;
-
-    return BlocBuilder<DarvodealCubit, DarvodealState>(
-      buildWhen: _buildWhen,
+    return BlocBuilder<ItemCubit, ItemState>(
       builder: (context, state) {
-        final item = state is DarvoDealLoaded ? state.item : null;
+        final item = switch (state) {
+          ItemFetchSuccess() => state.item,
+          _ => null,
+        };
 
-        return Row(
+        final row = Row(
           children: [
             if (item != null)
               Padding(
@@ -165,6 +133,13 @@ class _DealWidgetState extends State<_DealWidget> {
               ),
             ),
           ],
+        );
+
+        if (item == null) return row;
+
+        return EntryViewOpenContainer(
+          item: item as MinimalItem,
+          builder: (_, __) => row,
         );
       },
     );
