@@ -1,13 +1,16 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
+import 'package:navis/codex/codex.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis/worldstate/cubits/worldstate/worldstate_cubit.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:warframestat_client/warframestat_client.dart';
+import 'package:warframestat_repository/warframestat_repository.dart';
 
-class DuviriCycle extends StatelessWidget {
-  const DuviriCycle({super.key});
+class DuviriCircuit extends StatelessWidget {
+  const DuviriCircuit({super.key});
 
   bool _buildWhen(SolsystemState previous, SolsystemState current) {
     if (previous is! WorldstateSuccess || current is! WorldstateSuccess) {
@@ -32,12 +35,12 @@ class DuviriCycle extends StatelessWidget {
           };
 
           final choices =
-              cycle?.choices.map((c) => DuviriChoiceTile(choice: c));
+              cycle?.choices.map((c) => CircuitChoiceTile(choice: c));
 
           return Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              DuviriResetTimer(expiry: cycle?.expiry ?? DateTime.now()),
+              CircuitResetTimer(expiry: cycle?.expiry ?? DateTime.now()),
               ...?choices,
             ],
           );
@@ -47,8 +50,8 @@ class DuviriCycle extends StatelessWidget {
   }
 }
 
-class DuviriResetTimer extends StatelessWidget {
-  const DuviriResetTimer({super.key, required this.expiry});
+class CircuitResetTimer extends StatelessWidget {
+  const CircuitResetTimer({super.key, required this.expiry});
 
   final DateTime expiry;
 
@@ -78,17 +81,18 @@ class DuviriResetTimer extends StatelessWidget {
   }
 }
 
-class DuviriChoiceTile extends StatelessWidget {
-  const DuviriChoiceTile({super.key, required this.choice});
+class CircuitChoiceTile extends StatelessWidget {
+  const CircuitChoiceTile({super.key, required this.choice});
 
   final Choice choice;
 
   @override
   Widget build(BuildContext context) {
-    final secondaryContainer = Theme.of(context).colorScheme.secondaryContainer;
+    final repo = RepositoryProvider.of<WarframestatRepository>(context);
+    final isSteelPatch = choice.category == 'hard';
 
     var category = toBeginningOfSentenceCase(choice.category);
-    if (category == 'Hard') category = context.l10n.steelPathTitle;
+    if (isSteelPatch) category = context.l10n.steelPathTitle;
 
     return Padding(
       padding: const EdgeInsets.all(8),
@@ -98,21 +102,56 @@ class DuviriChoiceTile extends StatelessWidget {
             padding: const EdgeInsets.symmetric(vertical: 4),
             child: Text(category),
           ),
-          Wrap(
-            spacing: 8,
-            alignment: WrapAlignment.center,
-            children: choice.choices
-                .map(
-                  (c) => Chip(
-                    label: Text(c),
-                    side: BorderSide(color: secondaryContainer),
-                    backgroundColor: secondaryContainer,
-                  ),
-                )
-                .toList(),
-          ),
+          ...choice.choices.map((c) {
+            final name = isSteelPatch ? '$c Incarnon Genesis' : c;
+
+            return BlocProvider(
+              create: (_) => ItemCubit(name, repo)..fetchByName(),
+              child: _CircuitPathTile(name: name),
+            );
+          }),
         ],
       ),
+    );
+  }
+}
+
+class _CircuitPathTile extends StatelessWidget {
+  const _CircuitPathTile({required this.name});
+
+  final String name;
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<ItemCubit, ItemState>(
+      builder: (context, state) {
+        final item = switch (state) {
+          ItemFetchSuccess() => state.item as MinimalItem,
+          _ => null,
+        };
+
+        final icon = item != null
+            ? CircleAvatar(
+                backgroundImage: CachedNetworkImageProvider(item.imageUrl),
+                radius: 20,
+              )
+            : null;
+
+        final tile = ListTile(
+          trailing: icon,
+          title: Text(item?.name ?? name),
+          // subtitle: Text(item?.description ?? '', maxLines: 2),
+          // isThreeLine: true,
+          dense: true,
+        );
+
+        if (item == null) return tile;
+
+        return EntryViewOpenContainer(
+          item: item,
+          builder: (_, __) => tile,
+        );
+      },
     );
   }
 }
