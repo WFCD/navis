@@ -1,10 +1,12 @@
 // ignore_for_file: prefer-moving-to-variable
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:navis/codex/utils/stats.dart';
 import 'package:navis/codex/widgets/codex_entry/polarity.dart';
 import 'package:navis/codex/widgets/codex_entry/preinstalled_polarities.dart';
 import 'package:navis/codex/widgets/codex_entry/stats.dart';
 import 'package:navis/l10n/l10n.dart';
+import 'package:navis/utils/utils.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:warframestat_client/warframestat_client.dart' hide Polarity;
 
@@ -77,6 +79,11 @@ class FrameStats extends StatelessWidget {
           ),
         for (final ability in powerSuit.abilities)
           ListTile(
+            leading: CachedNetworkImage(
+              imageUrl: ability.imageUrl,
+              height: 100,
+              width: 50,
+            ),
             title: Text(ability.name),
             subtitle: Text(ability.description),
             dense: true,
