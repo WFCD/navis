@@ -66,7 +66,7 @@ platform :ios do
 
       upload_to_testflight(
         distribute_external: true,
-        groups: ["Zariman Ten Zero"],
+        groups: ["Beta"],
         changelog: changelog,
         ipa: '../build/ios/ipa/Navis.ipa'
       )
