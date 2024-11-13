@@ -146,10 +146,16 @@ class _CircuitPathTile extends StatelessWidget {
             : null;
 
         final tile = ListTile(
-          trailing: icon,
+          contentPadding:
+              const EdgeInsets.symmetric(vertical: 4, horizontal: 4),
+          leading: icon,
           title: Text(item?.name ?? name),
-          // subtitle: Text(item?.description ?? '', maxLines: 2),
-          // isThreeLine: true,
+          subtitle: Text(
+            item?.description ?? '',
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+          ),
+          isThreeLine: true,
           dense: true,
         );
 
