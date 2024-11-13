@@ -56,6 +56,33 @@ class ItemCubit extends HydratedCubit<ItemState> {
     }
   }
 
+  Future<void> fetchIncarnonGenesis() async {
+    try {
+      final items = await ConnectionManager.call(
+        () async => repo.searchItems('Incarnon'),
+      );
+
+      final item =
+          items.where((item) => item.imageName != null).firstWhereOrNull(
+        (item) {
+          return name.replaceAll(' ', '') == item.name.replaceAll(' ', '');
+        },
+      );
+
+      if (item == null) return emit(const NoItemFound());
+
+      emit(ItemFetchSuccess(item));
+    } catch (e, s) {
+      await Sentry.captureException(
+        e,
+        stackTrace: s,
+        hint: Hint.withMap({'name': name}),
+      );
+
+      emit(const ItemFetchFailure('Failed to parse item'));
+    }
+  }
+
   @override
   String get id => name;
 

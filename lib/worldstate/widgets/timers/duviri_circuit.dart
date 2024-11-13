@@ -106,7 +106,15 @@ class CircuitChoiceTile extends StatelessWidget {
             final name = isSteelPatch ? '$c Incarnon Genesis' : c;
 
             return BlocProvider(
-              create: (_) => ItemCubit(name, repo)..fetchByName(),
+              create: (_) {
+                final cubit = ItemCubit(name, repo);
+
+                isSteelPatch
+                    ? cubit.fetchIncarnonGenesis()
+                    : cubit.fetchByName();
+
+                return cubit;
+              },
               child: _CircuitPathTile(name: name),
             );
           }),
