@@ -44,7 +44,7 @@ class _MobileTimers extends StatelessWidget {
               const SteelPathCard(),
               if (worldstate?.activeAlerts ?? false) const AlertsCard(),
               const CycleCard(),
-              const DuviriCycle(),
+              const DuviriCircuit(),
               if (worldstate?.activeSales ?? false) const DarvoDealCard(),
               if (worldstate?.deepArchimedeaActive ?? false)
                 const DeepArchimedeaCard(),
