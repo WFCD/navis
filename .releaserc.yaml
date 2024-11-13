@@ -5,13 +5,6 @@ plugins:
           release: patch
   - - "@semantic-release/release-notes-generator"
     - presets: conventionalcommits
-  - "@semantic-release/github"
-  - - "semantic-release-pub"
-    - publishPub: false
-      updateBuildNumber: true
-  - - "@semantic-release/git"
-    - assets: ["pubspec.yaml"]
-      message: "chore(release): ${nextRelease.version}"
 branches:
   - name: master
   - name: beta

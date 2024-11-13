@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:collection/collection.dart';
 import 'package:hive_ce/hive.dart';
 import 'package:http/http.dart';
 import 'package:warframestat_client/warframestat_client.dart';
@@ -70,32 +69,9 @@ class WarframestatRepository {
     return client.fetchTargets();
   }
 
-  /// Fetch the [MinimalItem] info for whatever item Darvo is currently selling.
-  /// Will catch the item until the end of the day (UTC)
-  Future<MinimalItem?> fetchDealInfo(String uniqueName, String name) async {
-    const cacheTime = Duration(minutes: 30);
-    final client = WarframeItemsClient(
-      client: await _cacheClient(cacheTime),
-      ua: userAgent,
-      language: language,
-    );
-
-    final results = await client.search(name);
-
-    var item = results.firstWhereOrNull((i) => i.uniqueName == uniqueName);
-    if (item == null) {
-      final internalName = uniqueName.split('/').last;
-      item = results.firstWhereOrNull(
-        (i) => i.uniqueName.contains(internalName),
-      );
-    }
-
-    return item;
-  }
-
   /// Search warframe-items
   Future<List<MinimalItem>> searchItems(String query) async {
-    const cacheTime = Duration(minutes: 5);
+    const cacheTime = Duration(days: 7);
     final client = WarframeItemsClient(
       client: await _cacheClient(cacheTime),
       ua: userAgent,

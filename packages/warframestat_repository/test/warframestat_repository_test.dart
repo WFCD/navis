@@ -73,48 +73,6 @@ void main() {
     });
   });
 
-  group('Deal info', () {
-    final fixture = Fixtures.itemsFixture;
-    final json = jsonEncode(fixture);
-
-    test('fetch() => get item', () async {
-      when(() => client.send(any()))
-          .thenAnswer((_) async => fakeResponse(json));
-
-      final deal = await repository.fetchDealInfo(
-        '/Lotus/Powersuits/Dragon/ChromaPrime',
-        'Chroma Prime',
-      );
-
-      expect(deal, isNotNull);
-      expect(deal!.uniqueName, '/Lotus/Powersuits/Dragon/ChromaPrime');
-      expect(deal.name, 'Chroma Prime');
-      verify(() => client.send(any()));
-    });
-
-    test('fetch() => get item from cache', () async {
-      when(() => client.send(any()))
-          .thenAnswer((_) async => fakeResponse(json));
-
-      await repository.fetchDealInfo(
-        '/Lotus/Powersuits/Dragon/ChromaPrime',
-        'Chroma Prime',
-      );
-
-      clearInteractions(client);
-
-      final deal = await repository.fetchDealInfo(
-        '/Lotus/Powersuits/Dragon/ChromaPrime',
-        'Chroma Prime',
-      );
-
-      expect(deal, isNotNull);
-      expect(deal!.uniqueName, '/Lotus/Powersuits/Dragon/ChromaPrime');
-      expect(deal.name, 'Chroma Prime');
-      verifyNever(() => client.send(any()));
-    });
-  });
-
   group('Item search', () {
     final fixture = Fixtures.itemsFixture;
     final items = toItems(fixture);

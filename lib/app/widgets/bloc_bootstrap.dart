@@ -15,7 +15,6 @@ class BlocBootstrap extends StatefulWidget {
 
 class _BlocBootstrapState extends State<BlocBootstrap> {
   late WorldstateCubit _worldstateCubit;
-  late DarvodealCubit _darvodealCubit;
   late UserSettingsCubit _userSettingsCubit;
 
   @override
@@ -27,7 +26,6 @@ class _BlocBootstrapState extends State<BlocBootstrap> {
     final usersettings = RepositoryProvider.of<UserSettings>(context);
 
     _worldstateCubit = WorldstateCubit(worldstateRepo);
-    _darvodealCubit = DarvodealCubit(worldstateRepo);
     _userSettingsCubit = UserSettingsCubit(usersettings);
   }
 
@@ -36,7 +34,6 @@ class _BlocBootstrapState extends State<BlocBootstrap> {
     return MultiBlocProvider(
       providers: [
         BlocProvider.value(value: _worldstateCubit),
-        BlocProvider.value(value: _darvodealCubit),
         BlocProvider.value(value: _userSettingsCubit),
       ],
       child: widget.child,
