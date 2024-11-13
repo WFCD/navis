@@ -86,7 +86,7 @@ class _Overview extends StatelessWidget {
                 return Center(child: Text(state.message));
               }
 
-              if (state is! ItemFetchSucess) {
+              if (state is! ItemFetchSuccess) {
                 return const Center(
                   child: CircularProgressIndicator.adaptive(),
                 );
