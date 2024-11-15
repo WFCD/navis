@@ -66,8 +66,7 @@ class BasicItemInfo extends SliverPersistentHeaderDelegate {
               ],
             ),
             if (!disableInfo)
-              Align(
-                alignment: Alignment.bottomCenter,
+              Center(
                 child: _EntryInfoContent(
                   height: expandedHeight,
                   shrinkOffset: shrinkOffset,
@@ -142,6 +141,8 @@ class _EntryInfoContentState extends State<_EntryInfoContent> {
   @override
   Widget build(BuildContext context) {
     const textAlign = TextAlign.center;
+    const curve = Curves.easeOut;
+
     final textTheme = Theme.of(context).textTheme;
     final mediaQuerySize = MediaQuery.of(context).size;
 
@@ -154,9 +155,11 @@ class _EntryInfoContentState extends State<_EntryInfoContent> {
 
     return AnimatedOpacity(
       duration: kThemeAnimationDuration,
+      curve: curve,
       opacity: 1 - (widget.shrinkOffset / widget.height),
       child: AnimatedContainer(
         duration: kThemeAnimationDuration,
+        curve: curve,
         width: animatedContainerWidth,
         height: animatedContainerHeight,
         child: FittedBox(
