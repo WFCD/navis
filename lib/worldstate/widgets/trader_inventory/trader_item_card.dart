@@ -45,13 +45,13 @@ class _TraderItemTrailing extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           _TrailingColumn(
-            header: 'Credits',
-            value: credits,
+            header: 'Ducats',
+            value: ducats,
           ),
           const SizedBox(width: 25),
           _TrailingColumn(
-            header: 'Ducats',
-            value: ducats,
+            header: 'Credits',
+            value: credits,
           ),
         ],
       ),
