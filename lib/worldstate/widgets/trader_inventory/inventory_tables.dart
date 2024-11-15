@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:navis/worldstate/widgets/trader_inventory/inventory.dart';
+import 'package:navis/worldstate/widgets/trader_inventory/trader_item_card.dart';
 import 'package:navis/worldstate/worldstate.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:warframestat_client/warframestat_client.dart';
@@ -53,7 +53,7 @@ class _MobileInventoryDataTable extends StatelessWidget {
     return ListView.builder(
       itemCount: inventory.length,
       itemBuilder: (context, index) {
-        return TraderItemView(traderItem: inventory[index]);
+        return TraderItemCard(item: inventory[index]);
       },
     );
   }
