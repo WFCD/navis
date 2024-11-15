@@ -67,7 +67,6 @@ class _TrailingColumn extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final format = NumberFormat();
     final textTheme = context.textTheme;
     final headerStyle = textTheme.bodySmall?.copyWith(
       color: context.theme.colorScheme.onSurfaceVariant,
@@ -83,7 +82,7 @@ class _TrailingColumn extends StatelessWidget {
       children: [
         Text(header, style: headerStyle),
         SizedBoxSpacer.spacerHeight6,
-        Text(format.format(value), style: valueStyle),
+        Text(NumberFormat().format(value), style: valueStyle),
       ],
     );
   }
