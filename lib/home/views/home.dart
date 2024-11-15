@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis/router/routes.dart';
-import 'package:navis_ui/navis_ui.dart';
-import 'package:simple_icons/simple_icons.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({
@@ -41,10 +39,10 @@ class HomeView extends StatelessWidget {
       appBar: AppBar(
         toolbarHeight: kTextTabBarHeight,
         actions: [
-          IconButton(
-            onPressed: () => discordInvite.launchLink(context),
-            icon: const AppIcon(SimpleIcons.discord),
-          ),
+          // IconButton(
+          //   onPressed: () => discordInvite.launchLink(context),
+          //   icon: const AppIcon(SimpleIcons.discord),
+          // ),
           IconButton(
             onPressed: () => const SettingsPageRoute().push<void>(context),
             icon: const Icon(Icons.settings_rounded),
