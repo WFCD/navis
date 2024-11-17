@@ -36,7 +36,7 @@ jobs:
       - name: Commit and push changes
         if: steps.semantic.outputs.new_release_published == 'true'
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }} 
           RELEASE_NOTES: ${{ steps.semantic.outputs.new_release_notes}}
           NEW_RELEASE: ${{ steps.semantic.outputs.new_release_version }}
         run: |
@@ -49,7 +49,7 @@ jobs:
       - name: Create Release
         if: steps.semantic.outputs.new_release_published == 'true'
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }} 
           RELEASE_NOTES: ${{ steps.semantic.outputs.new_release_notes }}
           NEW_RELEASE: ${{ steps.semantic.outputs.new_release_version }}
           PRERELEASE: ${{ contains(steps.semantic.outputs.new_release_channel, 'beta') }}
