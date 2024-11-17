@@ -40,8 +40,8 @@ jobs:
           RELEASE_NOTES: ${{ steps.semantic.outputs.new_release_notes}}
           NEW_RELEASE: ${{ steps.semantic.outputs.new_release_version }}
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git config user.name "${{ secrets.GIT_COMITTER_NAME }}"
+          git config user.email "${{ secrets.GIT_COMITTER_EMAIL }}"
           git add pubspec.yaml
           git commit -m "chore(release): $NEW_RELEASE [skip ci]" -m "$RELEASE_NOTES" --no-verify
           git push
