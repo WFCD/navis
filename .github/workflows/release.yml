@@ -33,25 +33,27 @@ jobs:
           sed -i "s/^version: .*/version: ${new_version}/" pubspec.yaml
 
         
-      - name: Commit and push changes
+      - name: Create Release
         if: steps.semantic.outputs.new_release_published == 'true'
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }} 
           RELEASE_NOTES: ${{ steps.semantic.outputs.new_release_notes}}
           NEW_RELEASE: ${{ steps.semantic.outputs.new_release_version }}
+          PRERELEASE: ${{ contains(steps.semantic.outputs.new_release_channel, 'beta') }}
         run: |
           git config user.name "${{ secrets.GIT_COMITTER_NAME }}"
           git config user.email "${{ secrets.GIT_COMITTER_EMAIL }}"
           git add pubspec.yaml
-          git commit -m "chore(release): $NEW_RELEASE [skip ci]" -m "$RELEASE_NOTES" --no-verify
+
+          MESSAGE="chore(release): $NEW_RELEASE [skip ci]\n\n$RELEASE_NOTES"
+          git commit -m "$MESSAGE" --no-verify
+          COMMIT_SHA=$(git rev-parse HEAD)
+          git tag -a "v$NEW_RELEASE" -m "$MESSAGE"
           git push
+          git push origin "refs/tags/v$NEW_RELEASE"
+
+          gh release create "v$NEW_RELEASE" --title "v$NEW_RELEASE" --notes "$RELEASE_NOTES" \
+          --target "$COMMIT_SHA" $([ "$PRERELEASE" = "true" ] && echo "--prerelease")
+
+
     
-      - name: Create Release
-        if: steps.semantic.outputs.new_release_published == 'true'
-        env:
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }} 
-          RELEASE_NOTES: ${{ steps.semantic.outputs.new_release_notes }}
-          NEW_RELEASE: ${{ steps.semantic.outputs.new_release_version }}
-          PRERELEASE: ${{ contains(steps.semantic.outputs.new_release_channel, 'beta') }}
-        run: gh release create v$NEW_RELEASE --title "v$NEW_RELEASE" --notes "$RELEASE_NOTES" --target ${{ github.sha }} $([ "$PRERELEASE" = "true" ] && echo "--prerelease")
-            
