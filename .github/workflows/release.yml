@@ -53,5 +53,5 @@ jobs:
           RELEASE_NOTES: ${{ steps.semantic.outputs.new_release_notes }}
           NEW_RELEASE: ${{ steps.semantic.outputs.new_release_version }}
           PRERELEASE: ${{ contains(steps.semantic.outputs.new_release_channel, 'beta') }}
-        run: gh release create v$NEW_RELEASE --notes "$RELEASE_NOTES" --target ${{ github.sha }} $([ "$PRERELEASE" = "true" ] && echo "--prerelease")
+        run: gh release create v$NEW_RELEASE --title "v$NEW_RELEASE" --notes "$RELEASE_NOTES" --target ${{ github.sha }} $([ "$PRERELEASE" = "true" ] && echo "--prerelease")
             
