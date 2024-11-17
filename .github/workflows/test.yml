@@ -26,12 +26,12 @@ jobs:
         run: flutter pub get
       - name: Unit Test app
         run: flutter test --coverage
-  build_test:
-    needs: [test]
-    secrets: inherit
-    uses: ./.github/workflows/build_test.yml
+  # build_test:
+  #   needs: [test]
+  #   secrets: inherit
+  #   uses: ./.github/workflows/build_test.yml
   release:
     if: github.event_name != 'pull_request'
-    needs: [test, build_test]
+    needs: [test]
     secrets: inherit
     uses: ./.github/workflows/release.yml

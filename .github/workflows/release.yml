@@ -11,12 +11,47 @@ jobs:
         with:
           fetch-tags: true
           token: ${{ secrets.GH_TOKEN }}
+
       - name: Semantic Release
         id: semantic
         uses: cycjimmy/semantic-release-action@v4.1.1
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
         with:
-          extra_plugins: |
-            @semantic-release/git
-            semantic-release-pub
+          semantic_version: 24.2.0
+
+      - name: Bump version
+        if: steps.semantic.outputs.new_release_published == 'true'
+        env:
+          NEW_RELEASE: ${{ steps.semantic.outputs.new_release_version }}
+        run: |
+          version=$(grep '^version:' pubspec.yaml | awk '{print $2}')
+          version_code=$(echo $version | sed 's/.*+//')
+
+          new_version="${NEW_RELEASE}+$((version_code + 1))"
+
+          sed -i "s/^version: .*/version: ${new_version}/" pubspec.yaml
+
+        
+      - name: Commit and push changes
+        if: steps.semantic.outputs.new_release_published == 'true'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+          RELEASE_NOTES: ${{ steps.semantic.outputs.new_release_notes}}
+          NEW_RELEASE: ${{ steps.semantic.outputs.new_release_version }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add pubspec.yaml
+          git commit -m "chore(release): $NEW_RELEASE [skip ci]" -m "$RELEASE_NOTES" --no-verify
+          git push
+    
+      - name: Create Release
+        if: steps.semantic.outputs.new_release_published == 'true'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+          RELEASE_NOTES: ${{ steps.semantic.outputs.new_release_notes }}
+          NEW_RELEASE: ${{ steps.semantic.outputs.new_release_version }}
+          PRERELEASE: ${{ contains(steps.semantic.outputs.new_release_channel, 'beta') }}
+        run: gh release create v$NEW_RELEASE --notes "$RELEASE_NOTES" --target ${{ github.sha }} $([ "$PRERELEASE" = "true" ] && echo "--prerelease")
+            
