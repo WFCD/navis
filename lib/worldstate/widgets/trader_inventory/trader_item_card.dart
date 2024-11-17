@@ -4,31 +4,23 @@ import 'package:intl/intl.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:warframestat_client/warframestat_client.dart';
 
-class TraderItemView extends StatelessWidget {
-  const TraderItemView({super.key, required this.traderItem});
+class TraderItemCard extends StatelessWidget {
+  const TraderItemCard({super.key, required this.item});
 
-  final TraderItem traderItem;
+  final TraderItem item;
 
   @override
   Widget build(BuildContext context) {
     return Card(
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 8),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              traderItem.item,
-              style: context.theme.textTheme.titleMedium,
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 8, right: 16),
-              child: _TraderItemTrailing(
-                credits: traderItem.credits ?? 0,
-                ducats: traderItem.ducats ?? 0,
-              ),
-            ),
-          ],
+        child: ListTile(
+          dense: true,
+          title: Text(item.item),
+          trailing: _TraderItemTrailing(
+            credits: item.credits ?? 0,
+            ducats: item.ducats ?? 0,
+          ),
         ),
       ),
     );
@@ -50,15 +42,16 @@ class _TraderItemTrailing extends StatelessWidget {
       height: 65,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisSize: MainAxisSize.min,
         children: [
-          _TrailingColumn(
-            header: 'Credits',
-            value: credits,
-          ),
-          const SizedBox(width: 25),
           _TrailingColumn(
             header: 'Ducats',
             value: ducats,
+          ),
+          const SizedBox(width: 25),
+          _TrailingColumn(
+            header: 'Credits',
+            value: credits,
           ),
         ],
       ),
@@ -74,12 +67,14 @@ class _TrailingColumn extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final format = NumberFormat();
     final textTheme = context.textTheme;
-    final headerStyle =
-        textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w500);
-    final valueStyle =
-        textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.w800);
+    final headerStyle = textTheme.bodySmall?.copyWith(
+      color: context.theme.colorScheme.onSurfaceVariant,
+    );
+
+    final valueStyle = textTheme.bodyMedium?.copyWith(
+      fontWeight: FontWeight.w800,
+    );
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -87,7 +82,7 @@ class _TrailingColumn extends StatelessWidget {
       children: [
         Text(header, style: headerStyle),
         SizedBoxSpacer.spacerHeight6,
-        Text(format.format(value), style: valueStyle),
+        Text(NumberFormat().format(value), style: valueStyle),
       ],
     );
   }
