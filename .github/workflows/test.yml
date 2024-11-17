@@ -27,21 +27,8 @@ jobs:
   #     - name: Unit Test app
   #       run: flutter test --coverage
   test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Installing Flutter SDK
-        uses: subosito/flutter-action@v2.17.0
-        with:
-          channel: stable
-      - name: Install app dependencies
-        run: flutter pub get
-      - name: Unit Test app
-        run: flutter test --coverage
-  # build_test:
-  #   needs: [test]
-  #   secrets: inherit
-  #   uses: ./.github/workflows/build_test.yml
+    secrets: inherit
+    uses: ./.github/workflows/build_test.yml
   release:
     if: github.event_name != 'pull_request'
     needs: [test]
