@@ -36,12 +36,12 @@ jobs:
       - name: Commit and push changes
         if: steps.semantic.outputs.new_release_published == 'true'
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }} 
           RELEASE_NOTES: ${{ steps.semantic.outputs.new_release_notes}}
           NEW_RELEASE: ${{ steps.semantic.outputs.new_release_version }}
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git config user.name "${{ secrets.GIT_COMITTER_NAME }}"
+          git config user.email "${{ secrets.GIT_COMITTER_EMAIL }}"
           git add pubspec.yaml
           git commit -m "chore(release): $NEW_RELEASE [skip ci]" -m "$RELEASE_NOTES" --no-verify
           git push
@@ -49,9 +49,9 @@ jobs:
       - name: Create Release
         if: steps.semantic.outputs.new_release_published == 'true'
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }} 
           RELEASE_NOTES: ${{ steps.semantic.outputs.new_release_notes }}
           NEW_RELEASE: ${{ steps.semantic.outputs.new_release_version }}
           PRERELEASE: ${{ contains(steps.semantic.outputs.new_release_channel, 'beta') }}
-        run: gh release create v$NEW_RELEASE --notes "$RELEASE_NOTES" --target ${{ github.sha }} $([ "$PRERELEASE" = "true" ] && echo "--prerelease")
+        run: gh release create v$NEW_RELEASE --title "v$NEW_RELEASE" --notes "$RELEASE_NOTES" --target ${{ github.sha }} $([ "$PRERELEASE" = "true" ] && echo "--prerelease")
             
