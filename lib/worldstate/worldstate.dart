@@ -1,9 +1,9 @@
 export 'cubits/fissure_filter.dart';
 export 'cubits/worldstate_cubit.dart';
+export 'views/activities.dart';
 export 'views/bounties.dart';
 export 'views/event.dart';
 export 'views/fissures.dart';
-export 'views/home.dart';
 export 'views/invasions.dart';
 export 'views/nightwaves.dart';
 export 'views/orbiter_news.dart';

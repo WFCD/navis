@@ -1,9 +1,9 @@
 import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
+import 'package:navis/app/app.dart';
 import 'package:navis/codex/views/codex_search_view.dart';
 import 'package:navis/explore/views/fish_view.dart';
 import 'package:navis/explore/views/main_view.dart';
-import 'package:navis/home/home.dart';
 import 'package:navis/settings/views/settings.dart';
 import 'package:navis/synthtargets/synthtargets.dart';
 import 'package:navis/worldstate/worldstate.dart';
@@ -11,11 +11,11 @@ import 'package:warframestat_client/warframestat_client.dart';
 
 part 'routes.g.dart';
 
-@TypedStatefulShellRoute<HomeScreenRouteDate>(
+@TypedStatefulShellRoute<AppShell>(
   branches: [
-    TypedStatefulShellBranch<OverviewPageBranchData>(
+    TypedStatefulShellBranch<ActivitiesPageBranchData>(
       routes: [
-        TypedGoRoute<OverviewPageRouteData>(
+        TypedGoRoute<ActivitesPageRouteData>(
           name: 'overview',
           path: '/overview',
         ),
@@ -37,11 +37,19 @@ part 'routes.g.dart';
         ),
       ],
     ),
+    TypedStatefulShellBranch<SettingsPageBranchData>(
+      routes: [
+        TypedGoRoute<SettingsPageRouteData>(
+          name: 'settings',
+          path: '/settings',
+        ),
+      ],
+    ),
   ],
 )
 @immutable
-class HomeScreenRouteDate extends StatefulShellRouteData {
-  const HomeScreenRouteDate();
+class AppShell extends StatefulShellRouteData {
+  const AppShell();
 
   @override
   Widget builder(
@@ -56,22 +64,22 @@ class HomeScreenRouteDate extends StatefulShellRouteData {
     StatefulNavigationShell navigationShell,
     List<Widget> children,
   ) {
-    return HomePage(navigationShell: navigationShell, children: children);
+    return AppView(navigationShell: navigationShell, children: children);
   }
 }
 
 @immutable
-class OverviewPageBranchData extends StatefulShellBranchData {
-  const OverviewPageBranchData();
+class ActivitiesPageBranchData extends StatefulShellBranchData {
+  const ActivitiesPageBranchData();
 }
 
 @immutable
-class OverviewPageRouteData extends GoRouteData {
-  const OverviewPageRouteData();
+class ActivitesPageRouteData extends GoRouteData {
+  const ActivitesPageRouteData();
 
   @override
   Widget build(BuildContext context, GoRouterState state) {
-    return const FeedView();
+    return const ActivitiesView();
   }
 }
 
@@ -106,9 +114,13 @@ class ExplorePageRouteData extends GoRouteData {
 }
 
 @immutable
-@TypedGoRoute<SettingsPageRoute>(name: 'settings', path: '/settings')
-class SettingsPageRoute extends GoRouteData {
-  const SettingsPageRoute();
+class SettingsPageBranchData extends StatefulShellBranchData {
+  const SettingsPageBranchData();
+}
+
+@immutable
+class SettingsPageRouteData extends GoRouteData {
+  const SettingsPageRouteData();
 
   @override
   Widget build(BuildContext context, GoRouterState state) {
