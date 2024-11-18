@@ -47,12 +47,11 @@ jobs:
 
           MESSAGE="chore(release): $NEW_RELEASE [skip ci]\n\n$RELEASE_NOTES"
           git commit -m "$MESSAGE" --no-verify
-          COMMIT_SHA=$(git rev-parse HEAD)
           git push
 
           # Github CLI will auto create the tag with --target
           gh release create "v$NEW_RELEASE" --title "v$NEW_RELEASE" --notes "$RELEASE_NOTES" \
-          --target "$COMMIT_SHA" $([ "$PRERELEASE" = "true" ] && echo "--prerelease")
+          --target "$(git rev-parse HEAD)" $([ "$PRERELEASE" = "true" ] && echo "--prerelease")
 
 
     
