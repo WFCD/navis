@@ -44,8 +44,8 @@ class AppView extends StatelessWidget {
             label: context.l10n.homePageTitle,
           ),
           NavigationDestination(
-            icon: const Icon(Icons.web_rounded),
-            label: context.l10n.warframeNewsTitle,
+            icon: const Icon(Icons.error_rounded),
+            label: context.l10n.activitiesTitle,
           ),
           NavigationDestination(
             icon: const Icon(Icons.explore_rounded),

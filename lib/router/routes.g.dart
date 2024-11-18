@@ -26,16 +26,16 @@ RouteBase get $appShell => StatefulShellRouteData.$route(
             GoRouteData.$route(
               path: '/overview',
               name: 'overview',
-              factory: $ActivitesPageRouteDataExtension._fromState,
+              factory: $OverviewPageRouteDataExtension._fromState,
             ),
           ],
         ),
         StatefulShellBranchData.$branch(
           routes: [
             GoRouteData.$route(
-              path: '/orbiter',
-              name: 'orbiter',
-              factory: $OrbiterPageRouteDataExtension._fromState,
+              path: '/activities',
+              name: 'activities',
+              factory: $ActivitesPageRouteDataExtension._fromState,
             ),
           ],
         ),
@@ -64,9 +64,9 @@ extension $AppShellExtension on AppShell {
   static AppShell _fromState(GoRouterState state) => const AppShell();
 }
 
-extension $ActivitesPageRouteDataExtension on ActivitesPageRouteData {
-  static ActivitesPageRouteData _fromState(GoRouterState state) =>
-      const ActivitesPageRouteData();
+extension $OverviewPageRouteDataExtension on OverviewPageRouteData {
+  static OverviewPageRouteData _fromState(GoRouterState state) =>
+      const OverviewPageRouteData();
 
   String get location => GoRouteData.$location(
         '/overview',
@@ -82,12 +82,12 @@ extension $ActivitesPageRouteDataExtension on ActivitesPageRouteData {
   void replace(BuildContext context) => context.replace(location);
 }
 
-extension $OrbiterPageRouteDataExtension on OrbiterPageRouteData {
-  static OrbiterPageRouteData _fromState(GoRouterState state) =>
-      const OrbiterPageRouteData();
+extension $ActivitesPageRouteDataExtension on ActivitesPageRouteData {
+  static ActivitesPageRouteData _fromState(GoRouterState state) =>
+      const ActivitesPageRouteData();
 
   String get location => GoRouteData.$location(
-        '/orbiter',
+        '/activities',
       );
 
   void go(BuildContext context) => context.go(location);

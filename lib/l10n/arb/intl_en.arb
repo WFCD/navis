@@ -1242,5 +1242,11 @@
     "description": "Warning text displayed under Deep Archimedea warning title",
     "type": "text",
     "placeholder": {}
+  },
+  "activitiesTitle": "Activities",
+  "@activitiesTitle": {
+    "description": "Activities title",
+    "type": "text",
+    "placeholder": {}
   }
 }

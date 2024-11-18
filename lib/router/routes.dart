@@ -13,19 +13,19 @@ part 'routes.g.dart';
 
 @TypedStatefulShellRoute<AppShell>(
   branches: [
-    TypedStatefulShellBranch<ActivitiesPageBranchData>(
+    TypedStatefulShellBranch<OverviewPageBranchData>(
       routes: [
-        TypedGoRoute<ActivitesPageRouteData>(
+        TypedGoRoute<OverviewPageRouteData>(
           name: 'overview',
           path: '/overview',
         ),
       ],
     ),
-    TypedStatefulShellBranch<OrbiterPageBranchData>(
+    TypedStatefulShellBranch<ActivitiesPageBranchData>(
       routes: [
-        TypedGoRoute<OrbiterPageRouteData>(
-          name: 'orbiter',
-          path: '/orbiter',
+        TypedGoRoute<ActivitesPageRouteData>(
+          name: 'activities',
+          path: '/activities',
         ),
       ],
     ),
@@ -84,13 +84,13 @@ class ActivitesPageRouteData extends GoRouteData {
 }
 
 @immutable
-class OrbiterPageBranchData extends StatefulShellBranchData {
-  const OrbiterPageBranchData();
+class OverviewPageBranchData extends StatefulShellBranchData {
+  const OverviewPageBranchData();
 }
 
 @immutable
-class OrbiterPageRouteData extends GoRouteData {
-  const OrbiterPageRouteData();
+class OverviewPageRouteData extends GoRouteData {
+  const OverviewPageRouteData();
 
   @override
   Widget build(BuildContext context, GoRouterState state) {
