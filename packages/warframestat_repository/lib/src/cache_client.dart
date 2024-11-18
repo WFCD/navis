@@ -28,7 +28,6 @@ class CacheClient extends BaseClient {
   Future<StreamedResponse> send(BaseRequest request) async {
     if (request.method != 'GET') return _inner.send(request);
 
-    final now = DateTime.timestamp();
     final cached = cacheBox.get(request.url.toString());
 
     if (cached != null && !cached.isExpired) {
@@ -40,7 +39,7 @@ class CacheClient extends BaseClient {
 
     await cacheBox.put(
       request.url.toString(),
-      HiveCacheItem(body, now.add(cacheTime)),
+      HiveCacheItem(body, DateTime.timestamp().add(cacheTime)),
     );
 
     return response.copy(Stream.value(body));
@@ -72,5 +71,5 @@ class HiveCacheItem extends HiveObject {
   @HiveField(1)
   final DateTime expiry;
 
-  bool get isExpired => expiry.isAfter(DateTime.timestamp());
+  bool get isExpired => DateTime.timestamp().isAfter(expiry);
 }
