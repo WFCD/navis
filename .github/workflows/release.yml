@@ -48,11 +48,13 @@ jobs:
 
           git push
 
-          git tag "v$NEW_RELEASE"
+          # semantic-release creates a tag with the commit that triggerd the action so it needs to be moved
+          git push origin :refs/tags/"v$NEW_RELEASE"
+          git tag -f "v$NEW_RELEASE" "$(git rev-parse HEAD)"
           git push --tags
           
-          gh release create "v$NEW_RELEASE" --title "$NEW_RELEASE" --notes "$RELEASE_NOTES" \
-          --target "${{ github.ref_name }}" $([ "$PRERELEASE" = "true" ] && echo "--prerelease")
+          gh release create "v$NEW_RELEASE" --title "$NEW_RELEASE" \
+          --notes "$RELEASE_NOTES" $([ "$PRERELEASE" = "true" ] && echo "--prerelease")
 
 
     
