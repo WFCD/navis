@@ -34,6 +34,7 @@ class _ExpandableAppCardState extends State<ExpandableAppCard> {
         },
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             widget.header,
             AnimatedCrossFade(
@@ -43,6 +44,13 @@ class _ExpandableAppCardState extends State<ExpandableAppCard> {
                   ? CrossFadeState.showSecond
                   : CrossFadeState.showFirst,
               duration: Durations.medium1,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 4),
+              child: Icon(
+                Icons.expand_more,
+                color: Theme.of(context).colorScheme.onSurface,
+              ),
             ),
           ],
         ),
