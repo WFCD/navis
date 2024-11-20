@@ -47,9 +47,14 @@ class _ExpandableAppCardState extends State<ExpandableAppCard> {
                   : CrossFadeState.showFirst,
               duration: Durations.medium1,
             ),
-            const Padding(
-              padding: EdgeInsets.symmetric(vertical: 6),
-              child: Icon(Icons.expand_more),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 6),
+              child: AnimatedRotation(
+                turns: _isExpanded ? 0.5 : 0,
+                duration: Durations.medium1,
+                curve: Curves.easeInOut,
+                child: const Icon(Icons.expand_more),
+              ),
             ),
           ],
         ),

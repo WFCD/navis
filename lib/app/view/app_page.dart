@@ -1,6 +1,7 @@
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:navis/app/widgets/widgets.dart';
 import 'package:navis/l10n/l10n.dart';
 
 class AppView extends StatelessWidget {
@@ -16,10 +17,6 @@ class AppView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final currentIndex = navigationShell.currentIndex;
-
-    Icon icon(Icon enabled, Icon disabled, int index) {
-      return currentIndex == index ? enabled : disabled;
-    }
 
     return Scaffold(
       key: GlobalKey<ScaffoldState>(),
@@ -44,34 +41,34 @@ class AppView extends StatelessWidget {
         selectedIndex: currentIndex,
         destinations: [
           NavigationDestination(
-            icon: icon(
-              const Icon(Icons.home),
-              const Icon(Icons.home_outlined),
-              0,
+            icon: NavigationIcon(
+              activeIcon: const Icon(Icons.home),
+              inactiveIcon: const Icon(Icons.home_outlined),
+              isActive: currentIndex == 0,
             ),
             label: context.l10n.homePageTitle,
           ),
           NavigationDestination(
-            icon: icon(
-              const Icon(Icons.error),
-              const Icon(Icons.error_outline),
-              1,
+            icon: NavigationIcon(
+              activeIcon: const Icon(Icons.error),
+              inactiveIcon: const Icon(Icons.error_outline),
+              isActive: currentIndex == 1,
             ),
             label: context.l10n.activitiesTitle,
           ),
           NavigationDestination(
-            icon: icon(
-              const Icon(Icons.explore),
-              const Icon(Icons.explore_outlined),
-              2,
+            icon: NavigationIcon(
+              activeIcon: const Icon(Icons.explore),
+              inactiveIcon: const Icon(Icons.explore_outlined),
+              isActive: currentIndex == 2,
             ),
             label: context.l10n.exploreTitle,
           ),
           NavigationDestination(
-            icon: icon(
-              const Icon(Icons.settings),
-              const Icon(Icons.settings_outlined),
-              3,
+            icon: NavigationIcon(
+              activeIcon: const Icon(Icons.settings),
+              inactiveIcon: const Icon(Icons.settings_outlined),
+              isActive: currentIndex == 3,
             ),
             label: context.l10n.settingsTitle,
           ),
