@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:navis_ui/src/widgets/widgets.dart';
 
 class SortieWidget extends StatelessWidget {
-  const SortieWidget({super.key, 
+  const SortieWidget({
+    super.key,
     required this.faction,
     required this.boss,
     required this.missions,
@@ -21,22 +22,30 @@ class SortieWidget extends StatelessWidget {
     final textTheme = Theme.of(context).textTheme;
     final bossTextStlye = textTheme.titleLarge;
 
-    return AppCard(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        textBaseline: TextBaseline.alphabetic,
-        children: <Widget>[
-          ListTile(
-            leading: FactionIcon(
-              name: faction,
-              size: iconSize,
-            ),
-            title: Text(boss, style: bossTextStlye),
-            trailing: timer,
-          ),
-          ...missions,
-        ],
+    return ExpandableAppCard(
+      key: PageStorageKey(boss),
+      header: ListTile(
+        leading: FactionIcon(
+          name: faction,
+          size: iconSize,
+        ),
+        title: Text(boss, style: bossTextStlye),
+        trailing: timer,
       ),
+      content: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        children: missions,
+      ),
+      onTap: (isExpanded) {
+        if (isExpanded) {
+          Future.delayed(Durations.medium1, () {
+            if (context.mounted) {
+              Scrollable.ensureVisible(context, duration: Durations.short4);
+            }
+          });
+        }
+      },
     );
   }
 }

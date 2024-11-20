@@ -44,6 +44,7 @@ class SortieCard extends StatelessWidget {
         final expiry = sortie?.expiry ?? DateTime.now();
 
         return SortieWidget(
+          key: GlobalKey(),
           faction: sortie?.factionKey ?? sortie?.faction ?? '',
           boss: sortie?.boss ?? '',
           missions: missions.map(toSortieMission).toList(),
