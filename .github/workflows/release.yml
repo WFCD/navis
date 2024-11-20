@@ -44,14 +44,14 @@ jobs:
           git config user.name "${{ secrets.GIT_COMITTER_NAME }}"
           git config user.email "${{ secrets.GIT_COMITTER_EMAIL }}"
           git add pubspec.yaml
+          git commit -m "chore(release): $NEW_RELEASE [skip ci]" -m "$RELEASE_NOTES" --no-verify
 
-          MESSAGE="chore(release): $NEW_RELEASE [skip ci]\n\n$RELEASE_NOTES"
-          git commit -m "$MESSAGE" --no-verify
           git push
-          git push origin "refs/tags/v$NEW_RELEASE"
+          git fetch origin
 
-          gh release create "v$NEW_RELEASE" --title "v$NEW_RELEASE" --notes "$RELEASE_NOTES" \
-          --target "$(git rev-parse HEAD)" $([ "$PRERELEASE" = "true" ] && echo "--prerelease")
+          NEW_RELEASE="v$NEW_RELEASE"
+          gh release create "$NEW_RELEASE" --title "$NEW_RELEASE" --notes "$RELEASE_NOTES" \
+          --target "${{ github.ref_name }}" $([ "$PRERELEASE" = "true" ] && echo "--prerelease")
 
 
     
