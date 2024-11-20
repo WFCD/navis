@@ -15,7 +15,7 @@ dependencies:
   connecteo: ^3.0.0
   dynamic_color: ^1.7.0
   equatable: ^2.0.5
-  feedback_sentry: ^3.0.1
+  feedback_sentry: ^3.1.0
   firebase_core: ^3.1.0
   fish_repository:
     path: packages/fish_repository
@@ -25,24 +25,24 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   flutter_settings_ui: ^3.0.1
-  flutter_svg: ^2.0.10+1
-  go_router: ^14.2.7
+  flutter_svg: ^2.0.14
+  go_router: ^14.6.0
   hive: ^2.2.3
   hive_flutter: ^1.1.0
   hydrated_bloc: ^9.1.5
   intl: ^0.19.0
-  logging: ^1.2.0
+  logging: ^1.3.0
   matomo_tracker: ^5.1.0
   navis_ui:
     path: packages/navis_ui
   notification_repository:
     path: packages/notification_repository
-  package_info_plus: ^8.0.0
-  path_provider: ^2.1.3
+  package_info_plus: ^8.1.1
+  path_provider: ^2.1.5
   responsive_builder: ^0.7.0
   rxdart: ^0.28.0
-  sentry_flutter: ^8.9.0
-  sentry_hive: ^8.9.0
+  sentry_flutter: ^8.10.1
+  sentry_hive: ^8.10.1
   sentry_logging: ^8.9.0
   simple_icons: ^10.1.3
   warframestat_client: ^3.11.0
@@ -56,12 +56,12 @@ dependency_overrides:
 
 dev_dependencies:
   bloc_test: ^9.1.6
-  build_runner: ^2.4.11
+  build_runner: ^2.4.13
   build_verify: ^3.1.0
-  commitlint_cli: ^0.7.1
-  flutter_gen_runner: ^5.7.0
-  flutter_launcher_icons: ^0.14.0
-  flutter_native_splash: ^2.4.0
+  commitlint_cli: ^0.8.1
+  flutter_gen_runner: ^5.8.0
+  flutter_launcher_icons: ^0.14.1
+  flutter_native_splash: ^2.4.3
   flutter_test:
     sdk: flutter
   go_router_builder: ^2.7.1

@@ -7,8 +7,7 @@ part of 'routes.dart';
 // **************************************************************************
 
 List<RouteBase> get $appRoutes => [
-      $homeScreenRouteDate,
-      $settingsPageRoute,
+      $appShell,
       $worldEventPageRoute,
       $syndicatePageRoute,
       $nightwavePageRoute,
@@ -18,9 +17,9 @@ List<RouteBase> get $appRoutes => [
       $codexPageRoute,
     ];
 
-RouteBase get $homeScreenRouteDate => StatefulShellRouteData.$route(
-      navigatorContainerBuilder: HomeScreenRouteDate.$navigatorContainerBuilder,
-      factory: $HomeScreenRouteDateExtension._fromState,
+RouteBase get $appShell => StatefulShellRouteData.$route(
+      navigatorContainerBuilder: AppShell.$navigatorContainerBuilder,
+      factory: $AppShellExtension._fromState,
       branches: [
         StatefulShellBranchData.$branch(
           routes: [
@@ -34,9 +33,9 @@ RouteBase get $homeScreenRouteDate => StatefulShellRouteData.$route(
         StatefulShellBranchData.$branch(
           routes: [
             GoRouteData.$route(
-              path: '/orbiter',
-              name: 'orbiter',
-              factory: $OrbiterPageRouteDataExtension._fromState,
+              path: '/activities',
+              name: 'activities',
+              factory: $ActivitesPageRouteDataExtension._fromState,
             ),
           ],
         ),
@@ -49,12 +48,20 @@ RouteBase get $homeScreenRouteDate => StatefulShellRouteData.$route(
             ),
           ],
         ),
+        StatefulShellBranchData.$branch(
+          routes: [
+            GoRouteData.$route(
+              path: '/settings',
+              name: 'settings',
+              factory: $SettingsPageRouteDataExtension._fromState,
+            ),
+          ],
+        ),
       ],
     );
 
-extension $HomeScreenRouteDateExtension on HomeScreenRouteDate {
-  static HomeScreenRouteDate _fromState(GoRouterState state) =>
-      const HomeScreenRouteDate();
+extension $AppShellExtension on AppShell {
+  static AppShell _fromState(GoRouterState state) => const AppShell();
 }
 
 extension $OverviewPageRouteDataExtension on OverviewPageRouteData {
@@ -75,12 +82,12 @@ extension $OverviewPageRouteDataExtension on OverviewPageRouteData {
   void replace(BuildContext context) => context.replace(location);
 }
 
-extension $OrbiterPageRouteDataExtension on OrbiterPageRouteData {
-  static OrbiterPageRouteData _fromState(GoRouterState state) =>
-      const OrbiterPageRouteData();
+extension $ActivitesPageRouteDataExtension on ActivitesPageRouteData {
+  static ActivitesPageRouteData _fromState(GoRouterState state) =>
+      const ActivitesPageRouteData();
 
   String get location => GoRouteData.$location(
-        '/orbiter',
+        '/activities',
       );
 
   void go(BuildContext context) => context.go(location);
@@ -111,15 +118,9 @@ extension $ExplorePageRouteDataExtension on ExplorePageRouteData {
   void replace(BuildContext context) => context.replace(location);
 }
 
-RouteBase get $settingsPageRoute => GoRouteData.$route(
-      path: '/settings',
-      name: 'settings',
-      factory: $SettingsPageRouteExtension._fromState,
-    );
-
-extension $SettingsPageRouteExtension on SettingsPageRoute {
-  static SettingsPageRoute _fromState(GoRouterState state) =>
-      const SettingsPageRoute();
+extension $SettingsPageRouteDataExtension on SettingsPageRouteData {
+  static SettingsPageRouteData _fromState(GoRouterState state) =>
+      const SettingsPageRouteData();
 
   String get location => GoRouteData.$location(
         '/settings',

@@ -10,8 +10,8 @@ import 'package:navis_ui/navis_ui.dart';
 
 enum Tabs { timers, fissures, invasions, syndicates }
 
-class FeedView extends StatelessWidget {
-  const FeedView({super.key});
+class ActivitiesView extends StatelessWidget {
+  const ActivitiesView({super.key});
 
   String _getTabLocale(BuildContext context, Tabs name) {
     final l10n = context.l10n;

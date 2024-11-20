@@ -19,7 +19,10 @@ class EntryViewOpenContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    const elevation = 0.0;
+
     return OpenContainer(
+      closedElevation: elevation,
       useRootNavigator: context.rootNavigator.mounted,
       closedColor: Theme.of(context).colorScheme.surface,
       openColor: Theme.of(context).colorScheme.surface,

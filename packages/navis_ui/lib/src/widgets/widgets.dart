@@ -5,6 +5,7 @@ export 'app_icon.dart';
 export 'background_image.dart';
 export 'category_title.dart';
 export 'countdown.dart';
+export 'expandable_app_card.dart';
 export 'faction_icon.dart';
 export 'navis_error_view.dart';
 export 'row_item.dart';

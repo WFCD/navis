@@ -25,27 +25,31 @@ class DuviriCircuit extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppCard(
-      child: BlocBuilder<WorldstateCubit, SolsystemState>(
-        buildWhen: _buildWhen,
-        builder: (context, state) {
-          final cycle = switch (state) {
-            WorldstateSuccess() => state.worldstate.duviriCycle,
-            _ => null
-          };
+    return BlocBuilder<WorldstateCubit, SolsystemState>(
+      buildWhen: _buildWhen,
+      builder: (context, state) {
+        final cycle = switch (state) {
+          WorldstateSuccess() => state.worldstate.duviriCycle,
+          _ => null
+        };
 
-          final choices =
-              cycle?.choices.map((c) => CircuitChoiceTile(choice: c));
+        final choices = cycle?.choices.map((c) => CircuitChoiceTile(choice: c));
 
-          return Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              CircuitResetTimer(expiry: cycle?.expiry ?? DateTime.now()),
-              ...?choices,
-            ],
-          );
-        },
-      ),
+        return ExpandableAppCard(
+          header: CircuitResetTimer(expiry: cycle?.expiry ?? DateTime.now()),
+          content: Column(children: choices?.toList() ?? []),
+          onTap: (isExpanded) {
+            Future.delayed(Durations.short4, () {
+              if (context.mounted) {
+                Scrollable.ensureVisible(
+                  context,
+                  duration: Durations.medium1,
+                );
+              }
+            });
+          },
+        );
+      },
     );
   }
 }
