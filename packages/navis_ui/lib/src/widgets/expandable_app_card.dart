@@ -22,16 +22,18 @@ class ExpandableAppCard extends StatefulWidget {
 class _ExpandableAppCardState extends State<ExpandableAppCard> {
   bool _isExpanded = false;
 
+  void _onTap() {
+    if (mounted) {
+      setState(() => _isExpanded = !_isExpanded);
+      if (_isExpanded && widget.onTap != null) widget.onTap!(_isExpanded);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    return AppCard(
-      child: GestureDetector(
-        onTap: () {
-          if (mounted) {
-            setState(() => _isExpanded = !_isExpanded);
-            if (_isExpanded && widget.onTap != null) widget.onTap!(_isExpanded);
-          }
-        },
+    return GestureDetector(
+      onTap: _onTap,
+      child: AppCard(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           mainAxisAlignment: MainAxisAlignment.center,
@@ -45,12 +47,9 @@ class _ExpandableAppCardState extends State<ExpandableAppCard> {
                   : CrossFadeState.showFirst,
               duration: Durations.medium1,
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 4),
-              child: Icon(
-                Icons.expand_more,
-                color: Theme.of(context).colorScheme.onSurface,
-              ),
+            const Padding(
+              padding: EdgeInsets.symmetric(vertical: 6),
+              child: Icon(Icons.expand_more),
             ),
           ],
         ),
