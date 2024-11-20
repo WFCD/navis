@@ -47,10 +47,11 @@ jobs:
           git commit -m "chore(release): $NEW_RELEASE [skip ci]" -m "$RELEASE_NOTES" --no-verify
 
           git push
-          git fetch origin
 
-          NEW_RELEASE="v$NEW_RELEASE"
-          gh release create "$NEW_RELEASE" --title "$NEW_RELEASE" --notes "$RELEASE_NOTES" \
+          git tag "v$NEW_RELEASE"
+          git push --tags
+          
+          gh release create "v$NEW_RELEASE" --title "$NEW_RELEASE" --notes "$RELEASE_NOTES" \
           --target "${{ github.ref_name }}" $([ "$PRERELEASE" = "true" ] && echo "--prerelease")
 
 
