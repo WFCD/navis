@@ -53,7 +53,7 @@ jobs:
           git tag -f "v$NEW_RELEASE" "$(git rev-parse HEAD)"
           git push --tags
           
-          gh release create "v$NEW_RELEASE" --title "$NEW_RELEASE" \
+          gh release create "v$NEW_RELEASE" --title "v$NEW_RELEASE" \
           --notes "$RELEASE_NOTES" $([ "$PRERELEASE" = "true" ] && echo "--prerelease")
 
 
