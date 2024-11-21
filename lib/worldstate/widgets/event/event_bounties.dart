@@ -22,7 +22,7 @@ class EventBounties extends StatelessWidget {
             title: context.l10n.bountyTitle,
             style: category,
           ),
-          SizedBoxSpacer.spacerHeight2,
+          Gaps.gap2,
           _BuildBounties(jobs: jobs),
         ],
       ),

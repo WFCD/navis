@@ -110,7 +110,7 @@ class _SyndicatePageMobile extends StatelessWidget {
             nightwave: nightwave!,
             onTap: () => NightwavePageRoute(nightwave).push<void>(context),
           ),
-        SizedBoxSpacer.spacerHeight4,
+        Gaps.gap4,
         _BuildSyndicates(
           syndicates: syndicates,
           onTap: (s) => SyndicatePageRoute(s).push<void>(context),

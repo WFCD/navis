@@ -69,7 +69,7 @@ class _AlertWidget extends StatelessWidget {
               children: [
                 Text(node),
                 if (mission.archwingRequired ?? false) ...{
-                  SizedBoxSpacer.spacerWidth8,
+                  Gaps.gap8,
                   const Icon(
                     WarframeSymbols.archwing,
                     color: Colors.blue,

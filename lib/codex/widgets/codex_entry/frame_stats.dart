@@ -63,7 +63,7 @@ class FrameStats extends StatelessWidget {
               ),
           ],
         ),
-        SizedBoxSpacer.spacerHeight16,
+        Gaps.gap16,
         CategoryTitle(
           title: l10n.abilitiesTitle,
           contentPadding: EdgeInsets.zero,

@@ -21,7 +21,7 @@ class GunStats extends StatelessWidget {
           title: context.l10n.statsTitle,
           contentPadding: EdgeInsets.zero,
         ),
-        SizedBoxSpacer.spacerHeight8,
+        Gaps.gap8,
         Stats(
           stats: <RowItem>[
             if (isBuildable && (gun as BuildableItem).masteryReq != null)
@@ -98,13 +98,13 @@ class GunStats extends StatelessWidget {
               ),
           ],
         ),
-        SizedBoxSpacer.spacerHeight16,
+        Gaps.gap16,
         CategoryTitle(
           title: l10n.damageTitle,
           contentPadding: EdgeInsets.zero,
         ),
         if (gun.damage != null) DamageSection(damage: gun.damage!),
-        SizedBoxSpacer.spacerHeight16,
+        Gaps.gap16,
       ],
     );
   }
