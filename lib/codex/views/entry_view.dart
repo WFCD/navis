@@ -91,9 +91,7 @@ class _Overview extends StatelessWidget {
               }
 
               if (state is! ItemFetchSuccess) {
-                return const Center(
-                  child: CircularProgressIndicator.adaptive(),
-                );
+                return const Center(child: WarframeSpinner());
               }
 
               final item = state.item;

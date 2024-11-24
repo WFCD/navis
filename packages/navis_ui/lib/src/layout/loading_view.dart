@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:navis_ui/navis_ui.dart';
 
 class ViewLoading extends StatelessWidget {
   const ViewLoading({super.key, required this.isLoading, required this.child});
@@ -14,7 +15,7 @@ class ViewLoading extends StatelessWidget {
     return AnimatedCrossFade(
       duration: kThemeAnimationDuration,
       crossFadeState: fadeState,
-      firstChild: const Center(child: CircularProgressIndicator.adaptive()),
+      firstChild: const Center(child: WarframeSpinner()),
       secondChild: child,
     );
   }
