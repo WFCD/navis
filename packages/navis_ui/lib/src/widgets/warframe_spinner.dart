@@ -3,7 +3,9 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 
 class WarframeSpinner extends StatefulWidget {
-  const WarframeSpinner({super.key});
+  const WarframeSpinner({super.key, this.size});
+
+  final double? size;
 
   @override
   State<WarframeSpinner> createState() => _WarframeSpinnerState();
@@ -86,11 +88,14 @@ class _WarframeSpinnerState extends State<WarframeSpinner>
     final primary = theme.colorScheme.primary;
     final background = theme.colorScheme.secondaryContainer;
 
+    final mediaSize = MediaQuery.sizeOf(context);
+    final size = Size.square(widget.size ?? mediaSize.width / 3);
+
     return AnimatedBuilder(
       animation: _controller,
       builder: (context, child) {
         return CustomPaint(
-          size: Size.square(MediaQuery.sizeOf(context).width / 3),
+          size: size,
           painter: _WarframeSpinnerPainter(
             primary: primary,
             background: background,
