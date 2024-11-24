@@ -20,7 +20,7 @@ class _WarframeSpinnerState extends State<WarframeSpinner>
 
     _controller = AnimationController(
       vsync: this,
-      duration: Durations.extralong4 * 1.5,
+      duration: Durations.extralong4 * 1.8,
     );
 
     final curve = CurvedAnimation(
@@ -28,25 +28,30 @@ class _WarframeSpinnerState extends State<WarframeSpinner>
       curve: Curves.easeInOut,
     );
 
-    for (var i = 1; i <= 3; i++) {
-      const ratio = _ThrobberCustomPainter.ratio;
-      final maxSize = ratio * i;
+    const start = .2;
+    var maxSize = 0.0;
+    for (var i = 0; i < 3; i++) {
+      maxSize += start;
 
       final size = TweenSequence<double>([
         TweenSequenceItem(
-          tween: Tween(begin: ratio, end: maxSize),
-          weight: 10,
+          tween: ConstantTween(start),
+          weight: 5,
         ),
         TweenSequenceItem(
-          tween: ConstantTween(maxSize),
-          weight: 80,
-        ),
-        TweenSequenceItem(
-          tween: Tween(begin: maxSize, end: ratio),
+          tween: Tween(begin: start, end: maxSize),
           weight: 15,
         ),
         TweenSequenceItem(
-          tween: ConstantTween(ratio),
+          tween: ConstantTween(maxSize),
+          weight: 60,
+        ),
+        TweenSequenceItem(
+          tween: Tween(begin: maxSize, end: start),
+          weight: 15,
+        ),
+        TweenSequenceItem(
+          tween: ConstantTween(start),
           weight: 5,
         ),
       ]).animate(curve);
@@ -66,7 +71,7 @@ class _WarframeSpinnerState extends State<WarframeSpinner>
         ),
       ]).animate(curve);
 
-      _rings.add((layer: i, size: size, rotation: rotation));
+      _rings.add((size: size, rotation: rotation));
     }
 
     _controller.repeat();
@@ -100,11 +105,7 @@ class _WarframeSpinnerState extends State<WarframeSpinner>
   }
 }
 
-typedef Ring = ({
-  int layer,
-  Animation<double> size,
-  Animation<double> rotation,
-});
+typedef Ring = ({Animation<double> size, Animation<double> rotation});
 
 class _ThrobberCustomPainter extends CustomPainter {
   const _ThrobberCustomPainter({
@@ -116,8 +117,6 @@ class _ThrobberCustomPainter extends CustomPainter {
   final Color primary;
   final Color background;
   final List<Ring> rings;
-
-  static const ratio = .2;
 
   void _drawDiamond(Canvas canvas, Size size, Paint paint) {
     final path = Path()
@@ -162,16 +161,20 @@ class _ThrobberCustomPainter extends CustomPainter {
 
     _drawDiamond(canvas, size, backgroundPaint);
 
+    var currentWidth = 1.5;
+    var currentOpacity = .2;
     for (final ring in rings) {
       final innerSize = Size(
         size.width * ring.size.value,
         size.height * ring.size.value,
       );
 
+      currentWidth += .5;
+      currentOpacity += .2;
       final outerPaint = Paint()
-        ..color = primary.withOpacity(ring.layer * .3)
+        ..color = primary.withOpacity(currentOpacity)
         ..style = PaintingStyle.stroke
-        ..strokeWidth = 1.0 * ring.layer;
+        ..strokeWidth = currentWidth;
 
       _drawInnerDiamond(
         canvas,
