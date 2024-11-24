@@ -9,10 +9,12 @@ class WarframeSpinner extends StatefulWidget {
   State<WarframeSpinner> createState() => _WarframeSpinnerState();
 }
 
+typedef RingAnimation = ({Animation<double> size, Animation<double> rotation});
+
 class _WarframeSpinnerState extends State<WarframeSpinner>
-    with SingleTickerProviderStateMixin {
+    with TickerProviderStateMixin {
   late final AnimationController _controller;
-  late final List<Ring> _rings = [];
+  late final List<RingAnimation> _rings = [];
 
   @override
   void initState() {
@@ -56,17 +58,18 @@ class _WarframeSpinnerState extends State<WarframeSpinner>
         ),
       ]).animate(curve);
 
+      const radians = pi / 2;
       final rotation = TweenSequence<double>([
         TweenSequenceItem(
           tween: ConstantTween(0),
           weight: 10 + (i * 10),
         ),
         TweenSequenceItem(
-          tween: Tween(begin: 0, end: pi / 2),
+          tween: Tween(begin: 0, end: radians),
           weight: 10,
         ),
         TweenSequenceItem(
-          tween: ConstantTween(pi / 2),
+          tween: ConstantTween(radians),
           weight: 20,
         ),
       ]).animate(curve);
@@ -81,17 +84,19 @@ class _WarframeSpinnerState extends State<WarframeSpinner>
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final primary = theme.colorScheme.primary;
-    final background = theme.colorScheme.primaryContainer;
+    final background = theme.colorScheme.secondaryContainer;
 
     return AnimatedBuilder(
       animation: _controller,
       builder: (context, child) {
         return CustomPaint(
-          size: Size.square(MediaQuery.sizeOf(context).width / 2),
-          painter: _ThrobberCustomPainter(
+          size: Size.square(MediaQuery.sizeOf(context).width / 3),
+          painter: _WarframeSpinnerPainter(
             primary: primary,
             background: background,
-            rings: _rings,
+            rings: _rings
+                .map((ra) => (size: ra.size.value, rotation: ra.rotation.value))
+                .toList(),
           ),
         );
       },
@@ -105,10 +110,10 @@ class _WarframeSpinnerState extends State<WarframeSpinner>
   }
 }
 
-typedef Ring = ({Animation<double> size, Animation<double> rotation});
+typedef Ring = ({double size, double rotation});
 
-class _ThrobberCustomPainter extends CustomPainter {
-  const _ThrobberCustomPainter({
+class _WarframeSpinnerPainter extends CustomPainter {
+  const _WarframeSpinnerPainter({
     required this.primary,
     required this.background,
     required this.rings,
@@ -161,18 +166,18 @@ class _ThrobberCustomPainter extends CustomPainter {
 
     _drawDiamond(canvas, size, backgroundPaint);
 
-    var currentWidth = 1.5;
+    var currentWidth = 1.0;
     var currentOpacity = .2;
     for (final ring in rings) {
       final innerSize = Size(
-        size.width * ring.size.value,
-        size.height * ring.size.value,
+        size.width * ring.size,
+        size.height * ring.size,
       );
 
       currentWidth += .5;
-      currentOpacity += .2;
+      currentOpacity += .3;
       final outerPaint = Paint()
-        ..color = primary.withOpacity(currentOpacity)
+        ..color = primary.withOpacity(min(currentOpacity, 1))
         ..style = PaintingStyle.stroke
         ..strokeWidth = currentWidth;
 
@@ -181,11 +186,15 @@ class _ThrobberCustomPainter extends CustomPainter {
         size,
         innerSize,
         outerPaint,
-        ring.rotation.value,
+        ring.rotation,
       );
     }
   }
 
   @override
-  bool shouldRepaint(_ThrobberCustomPainter oldDelegate) => true;
+  bool shouldRepaint(_WarframeSpinnerPainter oldDelegate) {
+    return oldDelegate.primary != primary ||
+        oldDelegate.background != background ||
+        oldDelegate.rings != rings;
+  }
 }
