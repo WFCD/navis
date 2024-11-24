@@ -13,7 +13,10 @@ class ViewLoading extends StatelessWidget {
         isLoading ? CrossFadeState.showFirst : CrossFadeState.showSecond;
 
     return AnimatedCrossFade(
-      duration: kThemeAnimationDuration,
+      firstCurve: Curves.easeInOut,
+      secondCurve: Curves.easeInOut,
+      sizeCurve: Curves.easeInOut,
+      duration: Durations.medium1,
       crossFadeState: fadeState,
       firstChild: const Center(child: WarframeSpinner()),
       secondChild: child,
