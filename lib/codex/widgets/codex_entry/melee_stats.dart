@@ -92,7 +92,7 @@ class MeleeStats extends StatelessWidget {
             ),
           ],
         ),
-        SizedBoxSpacer.spacerHeight16,
+        Gaps.gap16,
         CategoryTitle(
           title: l10n.heavyAttackTitle,
           contentPadding: EdgeInsets.zero,
@@ -121,7 +121,7 @@ class MeleeStats extends StatelessWidget {
             ),
           ],
         ),
-        SizedBoxSpacer.spacerHeight16,
+        Gaps.gap16,
         CategoryTitle(
           title: l10n.damageTitle,
           contentPadding: EdgeInsets.zero,

@@ -40,7 +40,7 @@ class AboutApp extends AbstractSettingsTile {
           applicationName: 'Cephalon Navis',
           applicationVersion: info?.version ?? '',
           children: <Widget>[
-            SizedBoxSpacer.spacerHeight12,
+            Gaps.gap12,
             RichText(
               text: TextSpan(
                 children: <TextSpan>[
@@ -92,7 +92,7 @@ class AboutApp extends AbstractSettingsTile {
                 ],
               ),
             ),
-            SizedBoxSpacer.spacerHeight12,
+            Gaps.gap12,
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[

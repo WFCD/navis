@@ -47,7 +47,7 @@ class ConstructionProgressCard extends StatelessWidget {
                         size: iconSize,
                         color: Factions.grineer.primaryColor,
                       ),
-                      SizedBoxSpacer.spacerWidth12,
+                      Gaps.gap12,
                       Text(
                         '$fomorianProgress%',
                         style: textTheme.titleLarge,
@@ -64,7 +64,7 @@ class ConstructionProgressCard extends StatelessWidget {
                         '$razorbackProgress%',
                         style: textTheme.titleLarge,
                       ),
-                      SizedBoxSpacer.spacerWidth12,
+                      Gaps.gap12,
                       AppIcon(
                         WarframeSymbols.factions_corpus,
                         size: iconSize,

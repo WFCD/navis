@@ -81,7 +81,7 @@ class _TrailingColumn extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         Text(header, style: headerStyle),
-        SizedBoxSpacer.spacerHeight6,
+        Gaps.gap6,
         Text(NumberFormat().format(value), style: valueStyle),
       ],
     );

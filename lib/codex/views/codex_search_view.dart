@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:matomo_tracker/matomo_tracker.dart';
 import 'package:navis/codex/codex.dart';
 import 'package:navis/l10n/l10n.dart';
+import 'package:navis_ui/navis_ui.dart';
 import 'package:warframestat_repository/warframestat_repository.dart';
 
 class CodexSearchPage extends StatelessWidget {
@@ -99,7 +100,7 @@ class CodexSearchView extends StatelessWidget {
           return Center(child: Text(state.message));
         }
 
-        return const Center(child: CircularProgressIndicator());
+        return const Center(child: WarframeSpinner());
       },
     );
   }

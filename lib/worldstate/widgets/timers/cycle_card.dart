@@ -151,7 +151,7 @@ class _CycleRow extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           currentState,
-          SizedBoxSpacer.spacerWidth6,
+          Gaps.gap6,
           CountdownTimer(
             tooltip: context.l10n.countdownTooltip(expiry),
             expiry: expiry,

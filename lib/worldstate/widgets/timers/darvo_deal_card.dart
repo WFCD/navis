@@ -55,7 +55,7 @@ class DarvoDealCard extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text('${context.l10n.saleEndsTitle}:'),
-                      SizedBoxSpacer.spacerWidth16,
+                      Gaps.gap16,
                       CountdownTimer(
                         tooltip: context.materialLocalizations
                             .formatFullDate(expiry),
@@ -200,7 +200,7 @@ class _DarvoPlatColumn extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(header, style: headerStyle),
-        SizedBoxSpacer.spacerHeight6,
+        Gaps.gap6,
         Text('$value'.padLeft(stringPadding, '0'), style: valueStyle),
       ],
     );

@@ -59,13 +59,13 @@ class _NavisErrorPage extends StatelessWidget {
           color: Theme.of(context).colorScheme.error,
           size: 40,
         ),
-        SizedBoxSpacer.spacerHeight8,
+        Gaps.gap8,
         Text(
           title,
           style: Theme.of(context).textTheme.titleLarge,
           textAlign: TextAlign.center,
         ),
-        SizedBoxSpacer.spacerHeight12,
+        Gaps.gap12,
         Text(
           description,
           textAlign: TextAlign.center,

@@ -91,9 +91,7 @@ class _Overview extends StatelessWidget {
               }
 
               if (state is! ItemFetchSuccess) {
-                return const Center(
-                  child: CircularProgressIndicator.adaptive(),
-                );
+                return const Center(child: WarframeSpinner());
               }
 
               final item = state.item;
@@ -137,7 +135,7 @@ class _Overview extends StatelessWidget {
                     ),
                   if (isMod) ...{
                     ModStats(mod: item),
-                    SizedBoxSpacer.spacerHeight24,
+                    Gaps.gap24,
                   },
                   if (drops != null) DropLocations(drops: drops),
                   if (patchlogs != null) PatchlogCard(patchlogs: patchlogs),
