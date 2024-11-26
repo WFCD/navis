@@ -11,7 +11,6 @@ class OrbiterNewsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const itemExtent = 200.0;
     final state = context.watch<WorldstateCubit>().state;
     final orbitNews =
         state is WorldstateSuccess ? state.worldstate.news : <News>[];
@@ -28,7 +27,6 @@ class OrbiterNewsPage extends StatelessWidget {
               }
 
               return ListView.builder(
-                itemExtent: itemExtent,
                 itemCount: orbitNews.length,
                 itemBuilder: (context, index) {
                   return OrbiterNewsWidget(news: orbitNews[index]);
