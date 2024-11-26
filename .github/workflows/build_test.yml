@@ -15,7 +15,7 @@ jobs:
           distribution: microsoft
           java-version: 17
 
-      - uses: subosito/flutter-action@v2.16.0
+      - uses: subosito/flutter-action@v2.17.0
         with:
           channel: stable
           cache: true
@@ -71,7 +71,7 @@ jobs:
           bundle exec fastlane run setup_ci
           bundle exec fastlane match appstore --readonly true -s "fastlane_tmp_keychain"
 
-      - uses: subosito/flutter-action@v2.16.0
+      - uses: subosito/flutter-action@v2.17.0
         with:
           channel: stable
           cache: true
