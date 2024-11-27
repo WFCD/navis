@@ -28,35 +28,38 @@ class BackgroundImage extends StatelessWidget {
       );
     }
 
-    return CachedNetworkImage(
-      imageUrl: imageUrl!,
-      imageBuilder: (context, imageProvider) {
-        return ImageContainer(
-          imageProvider: imageProvider,
-          padding: padding,
-          height: height,
-          alignment: alignment,
-          child: child,
-        );
-      },
-      placeholder: (context, url) {
-        return ImageContainer(
-          imageProvider: Assets.derelict.provider(),
-          padding: padding,
-          height: height,
-          alignment: alignment,
-          child: child,
-        );
-      },
-      errorWidget: (context, url, dynamic error) {
-        return ImageContainer(
-          imageProvider: Assets.derelict.provider(),
-          padding: padding,
-          alignment: alignment,
-          height: height,
-          child: child,
-        );
-      },
+    return SizedBox(
+      height: height,
+      child: CachedNetworkImage(
+        imageUrl: imageUrl!,
+        imageBuilder: (context, imageProvider) {
+          return ImageContainer(
+            imageProvider: imageProvider,
+            padding: padding,
+            height: height,
+            alignment: alignment,
+            child: child,
+          );
+        },
+        placeholder: (context, url) {
+          return ImageContainer(
+            imageProvider: Assets.derelict.provider(),
+            padding: padding,
+            height: height,
+            alignment: alignment,
+            child: child,
+          );
+        },
+        errorWidget: (context, url, dynamic error) {
+          return ImageContainer(
+            imageProvider: Assets.derelict.provider(),
+            padding: padding,
+            alignment: alignment,
+            height: height,
+            child: child,
+          );
+        },
+      ),
     );
   }
 }
@@ -79,19 +82,24 @@ class ImageContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final cacheHeight = 250 * MediaQuery.of(context).devicePixelRatio.toInt();
-
-    return AnimatedContainer(
-      height: height,
-      duration: kThemeAnimationDuration,
-      alignment: alignment,
-      decoration: BoxDecoration(
-        image: DecorationImage(
-          image: ResizeImage(imageProvider, height: cacheHeight),
-          fit: BoxFit.cover,
-        ),
-      ),
-      child: Padding(padding: padding, child: child),
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        return AnimatedContainer(
+          height: height,
+          duration: kThemeAnimationDuration,
+          alignment: alignment,
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: ResizeImage(
+                imageProvider,
+                height: constraints.maxHeight.toInt(),
+              ),
+              fit: BoxFit.cover,
+            ),
+          ),
+          child: Padding(padding: padding, child: child),
+        );
+      },
     );
   }
 }
