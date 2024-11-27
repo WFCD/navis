@@ -72,6 +72,8 @@ class DarvoDealCard extends StatelessWidget {
                     color: inStock ? Colors.green : Colors.red,
                     padding: const EdgeInsets.symmetric(horizontal: 4),
                     margin: const EdgeInsets.only(top: 10),
+                    style: context.textTheme.bodyMedium
+                        ?.copyWith(color: Colors.white),
                   ),
                   if (deal != null)
                     BlocProvider(

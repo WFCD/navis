@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:navis/home/widgets/widgets.dart';
+import 'package:navis_ui/navis_ui.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -14,6 +16,8 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView();
+    return ListView(
+      children: const [NewsSection(), Gaps.gap16, ActivitiesSection()],
+    );
   }
 }

@@ -110,6 +110,7 @@ class _AlertReward extends StatelessWidget {
           title: RichText(
             text: TextSpan(
               text: reward?.itemString,
+              style: context.theme.textTheme.titleMedium,
               children: [
                 if (reward?.credits != null)
                   TextSpan(

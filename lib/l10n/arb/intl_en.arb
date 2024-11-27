@@ -21,6 +21,12 @@
     "type": "text",
     "placeholders": {}
   },
+  "seeMore": "See More",
+  "@seeMore": {
+    "description": "General button to see more of a overview object",
+    "type": "text",
+    "placeholders": {}
+  },
   "seeWikia": "See Wikia",
   "@seeWikia": {
     "description": "General button to wikia of given item",
