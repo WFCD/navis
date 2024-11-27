@@ -34,7 +34,7 @@ class CycleCard extends StatelessWidget {
   Widget _stateText(BuildContext context, String state) {
     return ColoredContainer.text(
       text: toBeginningOfSentenceCase(state)!,
-      style: Theme.of(context).textTheme.labelMedium,
+      style: Theme.of(context).textTheme.labelLarge,
     );
   }
 
