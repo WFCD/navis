@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:black_hole_flutter/black_hole_flutter.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/home/widgets/section.dart';
@@ -9,7 +8,6 @@ import 'package:navis/l10n/l10n.dart';
 import 'package:navis/router/routes.dart';
 import 'package:navis/worldstate/worldstate.dart';
 import 'package:navis_ui/navis_ui.dart';
-import 'package:warframestat_client/warframestat_client.dart';
 
 class NewsSection extends StatelessWidget {
   const NewsSection({super.key});
@@ -35,7 +33,7 @@ class _NewsCarouselView extends StatefulWidget {
 
 class __NewsCarouselViewState extends State<_NewsCarouselView> {
   static const _maxItems = 5;
-  static const _autoScrollDuration = Duration(seconds: 10);
+  static const _autoScrollDuration = Duration(seconds: 20);
 
   late final CarouselController _controller;
 
@@ -86,8 +84,9 @@ class __NewsCarouselViewState extends State<_NewsCarouselView> {
         final itemExtent = MediaQuery.sizeOf(context).width * .9;
 
         return SizedBox(
-          height: 88,
+          height: 200,
           child: GestureDetector(
+            onTapDown: (_) => _timer?.cancel(),
             onHorizontalDragStart: (_) => _timer?.cancel(),
             onHorizontalDragEnd: (_) {
               final position = _controller.position.pixels;
@@ -102,11 +101,20 @@ class __NewsCarouselViewState extends State<_NewsCarouselView> {
               controller: _controller,
               itemSnapping: true,
               itemExtent: itemExtent,
+              shrinkExtent: itemExtent / 2,
               onTap: (i) => news[i].link.launchLink(context),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(6),
               ),
-              children: news.map((n) => _OrbiterNewsContent(news: n)).toList(),
+              children: news
+                  .map(
+                    (n) => AppCard(
+                      padding: EdgeInsets.zero,
+                      color: context.theme.colorScheme.secondaryContainer,
+                      child: OrbiterNewsContent(news: n),
+                    ),
+                  )
+                  .toList(),
             ),
           ),
         );
@@ -119,53 +127,5 @@ class __NewsCarouselViewState extends State<_NewsCarouselView> {
     _timer?.cancel();
     _controller.dispose();
     super.dispose();
-  }
-}
-
-class _OrbiterNewsContent extends StatelessWidget {
-  const _OrbiterNewsContent({required this.news});
-
-  final News news;
-
-  @override
-  Widget build(BuildContext context) {
-    final cacheWidth = 250 * MediaQuery.of(context).devicePixelRatio.toInt();
-    final currentLocale = Localizations.localeOf(context).languageCode;
-
-    return DecoratedBox(
-      decoration: BoxDecoration(
-        image: DecorationImage(
-          image: ResizeImage(
-            CachedNetworkImageProvider(news.imageLink),
-            width: cacheWidth,
-          ),
-          fit: BoxFit.cover,
-          colorFilter:
-              ColorFilter.mode(Colors.black.withOpacity(.3), BlendMode.darken),
-        ),
-      ),
-      child: DecoratedBox(
-        decoration: BoxDecoration(
-          color: context.theme.colorScheme.secondaryContainer.withOpacity(.7),
-        ),
-        child: ListTile(
-          title: Text(
-            news.translations[currentLocale] ?? news.message,
-            overflow: TextOverflow.ellipsis,
-            style: context.theme.textTheme.titleMedium?.copyWith(
-              color: context.theme.colorScheme.onSecondaryContainer,
-            ),
-          ),
-          subtitle: Text(
-            MaterialLocalizations.of(context)
-                .formatFullDate(news.date.toLocal()),
-            style: context.theme.textTheme.bodyMedium?.copyWith(
-              color: context.theme.colorScheme.onSecondaryContainer
-                  .withOpacity(.7),
-            ),
-          ),
-        ),
-      ),
-    );
   }
 }

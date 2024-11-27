@@ -27,9 +27,10 @@ class OrbiterNewsPage extends StatelessWidget {
               }
 
               return ListView.builder(
+                itemExtent: 200,
                 itemCount: orbitNews.length,
                 itemBuilder: (context, index) {
-                  return OrbiterNewsWidget(news: orbitNews[index]);
+                  return OrbiterNewsCard(news: orbitNews[index]);
                 },
               );
             },
