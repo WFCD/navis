@@ -135,8 +135,8 @@ class _OmniaFissureWidgetState extends State<OmniaFissureWidget> {
     super.initState();
 
     rand = Random();
-    timer = Timer.periodic(const Duration(seconds: 5), (timer) {
-      if (mounted) setState(() {});
+    timer = Timer.periodic(const Duration(seconds: 2), (timer) {
+      if (mounted && rand.nextBool()) setState(() {});
     });
   }
 
