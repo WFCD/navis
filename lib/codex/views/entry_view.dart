@@ -112,7 +112,6 @@ class _Overview extends StatelessWidget {
               }
 
               return ListView(
-                padding: const EdgeInsets.symmetric(horizontal: 8),
                 children: [
                   if (isFoundryItem)
                     ItemComponents(
@@ -128,7 +127,10 @@ class _Overview extends StatelessWidget {
                 ]
                     .map(
                       (w) => Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 8),
+                        padding: const EdgeInsets.symmetric(
+                          vertical: 8,
+                          horizontal: 10,
+                        ),
                         child: w,
                       ),
                     )

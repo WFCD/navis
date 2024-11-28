@@ -1,4 +1,3 @@
-// ignore_for_file: prefer-moving-to-variable
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:navis/codex/utils/stats.dart';
@@ -69,24 +68,78 @@ class FrameStats extends StatelessWidget {
           ListTile(
             title: Text(context.l10n.warframePassiveTitle),
             subtitle: Text((powerSuit as Warframe).passiveDescription!),
-            dense: true,
             isThreeLine: true,
             contentPadding: EdgeInsets.zero,
           ),
-        for (final ability in powerSuit.abilities)
-          ListTile(
-            leading: CachedNetworkImage(
-              imageUrl: ability.imageUrl,
-              height: 100,
-              width: 50,
-            ),
-            title: Text(ability.name),
-            subtitle: Text(ability.description),
-            dense: true,
-            isThreeLine: true,
-            contentPadding: EdgeInsets.zero,
-          ),
+        _Abilities(abilities: powerSuit.abilities),
       ],
+    );
+  }
+}
+
+class _Abilities extends StatefulWidget {
+  const _Abilities({required this.abilities});
+
+  final List<Ability> abilities;
+
+  @override
+  State<_Abilities> createState() => _AbilitiesState();
+}
+
+class _AbilitiesState extends State<_Abilities> {
+  Ability? _ability;
+
+  void _onTap(Ability a) {
+    if (!mounted) return;
+    setState(() {
+      if (a == _ability) {
+        _ability = null;
+        return;
+      }
+
+      _ability = a;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 8),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: widget.abilities
+                .map((a) => _AbilityIcon(ability: a, onTap: () => _onTap(a)))
+                .toList(),
+          ),
+        ),
+        AnimatedContainer(
+          duration: Durations.extralong4,
+          curve: Curves.easeInOut,
+          child: _ability != null
+              ? ListTile(
+                  title: Text(_ability!.name),
+                  subtitle: Text(_ability!.description),
+                )
+              : null,
+        ),
+      ],
+    );
+  }
+}
+
+class _AbilityIcon extends StatelessWidget {
+  const _AbilityIcon({required this.ability, required this.onTap});
+
+  final Ability ability;
+  final void Function() onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+      onPressed: onTap,
+      icon: CachedNetworkImage(imageUrl: ability.imageUrl, width: 60),
     );
   }
 }
