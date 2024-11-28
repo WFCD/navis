@@ -42,10 +42,6 @@ class DuviriCircuit extends StatelessWidget {
             onTap: () {
               showBottomSheet(
                 context: context,
-                showDragHandle: true,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8),
-                ),
                 builder: (context) {
                   return Column(
                     mainAxisSize: MainAxisSize.min,

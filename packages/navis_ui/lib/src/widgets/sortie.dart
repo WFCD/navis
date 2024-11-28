@@ -33,10 +33,6 @@ class SortieWidget extends StatelessWidget {
         onTap: () {
           showModalBottomSheet<void>(
             context: context,
-            showDragHandle: true,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(8),
-            ),
             builder: (context) {
               return _SortieSheetContent(
                 faction: faction,
