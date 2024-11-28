@@ -64,10 +64,6 @@ class FrameStats extends StatelessWidget {
           ],
         ),
         Gaps.gap16,
-        CategoryTitle(
-          title: l10n.abilitiesTitle,
-          contentPadding: EdgeInsets.zero,
-        ),
         if (powerSuit is Warframe &&
             (powerSuit as Warframe).passiveDescription != null)
           ListTile(

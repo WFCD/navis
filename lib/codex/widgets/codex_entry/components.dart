@@ -24,26 +24,27 @@ class ItemComponents extends StatelessWidget {
 
     final parts = components.where((c) => !c.name.contains('Blueprint'));
 
-    return AppCard(
-      padding: const EdgeInsets.symmetric(vertical: 10),
-      child: Column(
-        children: [
-          CategoryTitle(title: context.l10n.componentsTitle),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              if (blueprint != null)
-                _BuildBlueprint(
-                  blueprintImage: blueprint.imageUrl,
-                  componentImage: itemImageUrl,
-                  drops: blueprint.drops,
-                ),
-              for (final component in parts)
-                _BuildComponent(component: component),
-            ],
-          ),
-        ],
-      ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        CategoryTitle(
+          title: context.l10n.componentsTitle,
+          contentPadding: EdgeInsets.zero,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            if (blueprint != null)
+              _BuildBlueprint(
+                blueprintImage: blueprint.imageUrl,
+                componentImage: itemImageUrl,
+                drops: blueprint.drops,
+              ),
+            for (final component in parts)
+              _BuildComponent(component: component),
+          ],
+        ),
+      ],
     );
   }
 }

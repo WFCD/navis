@@ -112,34 +112,27 @@ class _Overview extends StatelessWidget {
               }
 
               return ListView(
+                padding: const EdgeInsets.symmetric(horizontal: 8),
                 children: [
                   if (isFoundryItem)
                     ItemComponents(
                       itemImageUrl: item.imageUrl,
                       components: (item as BuildableItem).components!,
                     ),
-                  if (isPowerSuit)
-                    AppCard(
-                      padding: const EdgeInsets.symmetric(horizontal: 10),
-                      child: FrameStats(powerSuit: item),
-                    ),
-                  if (isGun)
-                    AppCard(
-                      padding: const EdgeInsets.symmetric(horizontal: 10),
-                      child: GunStats(gun: item),
-                    ),
-                  if (isMelee)
-                    AppCard(
-                      padding: const EdgeInsets.symmetric(horizontal: 10),
-                      child: MeleeStats(melee: item),
-                    ),
-                  if (isMod) ...{
-                    ModStats(mod: item),
-                    Gaps.gap24,
-                  },
+                  if (isPowerSuit) FrameStats(powerSuit: item),
+                  if (isGun) GunStats(gun: item),
+                  if (isMelee) MeleeStats(melee: item),
+                  if (isMod) ModStats(mod: item),
                   if (drops != null) DropLocations(drops: drops),
-                  if (patchlogs != null) PatchlogCard(patchlogs: patchlogs),
-                ],
+                  if (patchlogs != null) PatchlogSection(patchlogs: patchlogs),
+                ]
+                    .map(
+                      (w) => Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 8),
+                        child: w,
+                      ),
+                    )
+                    .toList(),
               );
             },
           ),
