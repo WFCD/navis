@@ -1,3 +1,4 @@
+import 'package:black_hole_flutter/black_hole_flutter.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -35,19 +36,25 @@ class DuviriCircuit extends StatelessWidget {
 
         final choices = cycle?.choices.map((c) => CircuitChoiceTile(choice: c));
 
-        return ExpandableAppCard(
-          header: CircuitResetTimer(expiry: cycle?.expiry ?? DateTime.now()),
-          content: Column(children: choices?.toList() ?? []),
-          onTap: (isExpanded) {
-            Future.delayed(Durations.short4, () {
-              if (context.mounted) {
-                Scrollable.ensureVisible(
-                  context,
-                  duration: Durations.medium1,
-                );
-              }
-            });
-          },
+        return AppCard(
+          child: CircuitResetTimer(
+            expiry: cycle?.expiry ?? DateTime.now(),
+            onTap: () {
+              showBottomSheet(
+                context: context,
+                showDragHandle: true,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                builder: (context) {
+                  return Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: choices?.toList() ?? [],
+                  );
+                },
+              );
+            },
+          ),
         );
       },
     );
@@ -55,9 +62,14 @@ class DuviriCircuit extends StatelessWidget {
 }
 
 class CircuitResetTimer extends StatelessWidget {
-  const CircuitResetTimer({super.key, required this.expiry});
+  const CircuitResetTimer({
+    super.key,
+    required this.expiry,
+    required this.onTap,
+  });
 
   final DateTime expiry;
+  final void Function() onTap;
 
   DateTime _getNextMonday() {
     final now = DateTime.timestamp();
@@ -81,6 +93,7 @@ class CircuitResetTimer extends StatelessWidget {
     return ListTile(
       title: Text(context.l10n.circuitResetTitle),
       trailing: CountdownTimer(tooltip: date, expiry: _getNextMonday()),
+      onTap: onTap,
     );
   }
 }
@@ -104,7 +117,11 @@ class CircuitChoiceTile extends StatelessWidget {
         children: [
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 4),
-            child: Text(category),
+            child: Text(
+              category,
+              style: context.textTheme.titleMedium
+                  ?.copyWith(color: context.theme.colorScheme.secondary),
+            ),
           ),
           ...choice.choices.map((c) {
             final name = isSteelPatch ? '$c Incarnon Genesis' : c;
