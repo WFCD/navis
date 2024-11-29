@@ -21,6 +21,23 @@ class EntryViewOpenContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     const elevation = 0.0;
 
+    if (item.type == ItemType.misc) {
+      return InkWell(
+        child: builder(context, () {}),
+        onTap: () {
+          showBottomSheet(
+            context: context,
+            builder: (context) => EntryContent(
+              uniqueName: item.uniqueName,
+              name: item.name,
+              description: item.description ?? '',
+              imageUrl: item.imageUrl,
+            ),
+          );
+        },
+      );
+    }
+
     return OpenContainer(
       closedElevation: elevation,
       useRootNavigator: context.rootNavigator.mounted,
