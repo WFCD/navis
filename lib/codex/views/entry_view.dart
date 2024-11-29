@@ -116,6 +116,7 @@ class _Overview extends StatelessWidget {
               final isGun = item is Gun;
               final isMelee = item is Melee;
               final isMod = item is Mod;
+              final isRelic = item is Relic;
 
               var isFoundryItem = item is BuildableItem;
               if (isFoundryItem) {
@@ -139,6 +140,7 @@ class _Overview extends StatelessWidget {
                   if (isGun) GunStats(gun: item),
                   if (isMelee) MeleeStats(melee: item),
                   if (isMod) ModStats(mod: item),
+                  if (isRelic) RelicRewardWidget(relic: item),
                   if (drops != null) DropLocations(drops: drops),
                   if (patchlogs != null) PatchlogSection(patchlogs: patchlogs),
                 ]

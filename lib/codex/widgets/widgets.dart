@@ -7,6 +7,7 @@ export 'codex_entry/melee_stats.dart';
 export 'codex_entry/mod_stats.dart';
 export 'codex_entry/patchlogs.dart';
 export 'codex_entry/preinstalled_polarities.dart';
+export 'codex_entry/relic_reward.dart';
 export 'codex_entry/riven_disposition.dart';
 export 'codex_entry/stats.dart';
 export 'codex_search/codex_result.dart';
