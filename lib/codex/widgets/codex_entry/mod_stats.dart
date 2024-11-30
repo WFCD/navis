@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:navis/codex/codex.dart';
-import 'package:navis/l10n/l10n.dart';
 import 'package:warframestat_client/warframestat_client.dart';
 
 class ModStats extends StatelessWidget {
@@ -10,65 +9,17 @@ class ModStats extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const minRank = 3;
-    final hasRanks = (mod.fusionLimit ?? 0) >= minRank;
-
     return Padding(
       padding: const EdgeInsets.only(top: 16),
-      child: !hasRanks
-          ? _ModBuilder(mod: mod)
-          : _ModWithStats(
-              maxRank: mod.fusionLimit ?? 0,
-              builder: (_, rank) => _ModBuilder(mod: mod, rank: rank),
-            ),
-    );
-  }
-}
-
-typedef BuildRankedMod = Widget Function(BuildContext, int);
-
-class _ModWithStats extends StatefulWidget {
-  const _ModWithStats({required this.maxRank, required this.builder});
-
-  final int maxRank;
-  final BuildRankedMod builder;
-
-  @override
-  State<_ModWithStats> createState() => _ModWithStatsState();
-}
-
-class _ModWithStatsState extends State<_ModWithStats> {
-  int _value = 0;
-
-  void _slide(double value) {
-    if (context.mounted && value != _value) {
-      setState(() => _value = value.toInt());
-    }
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        if (widget.maxRank != 0)
-          Slider(
-            label: context.l10n.modLevelLabel(_value),
-            value: _value.toDouble(),
-            max: widget.maxRank.toDouble(),
-            divisions: widget.maxRank,
-            onChanged: _slide,
-          ),
-        widget.builder(context, _value),
-      ],
+      child: _ModBuilder(mod: mod),
     );
   }
 }
 
 class _ModBuilder extends StatelessWidget {
-  const _ModBuilder({required this.mod, this.rank = 0});
+  const _ModBuilder({required this.mod});
 
   final Mod mod;
-  final int rank;
 
   @override
   Widget build(BuildContext context) {
@@ -80,6 +31,8 @@ class _ModBuilder extends StatelessWidget {
       polarity: mod.polarity,
       rarity: rarity,
     );
+
+    final fusionLimit = mod.fusionLimit ?? 0;
 
     return Center(
       child: ConstrainedBox(
@@ -101,9 +54,9 @@ class _ModBuilder extends StatelessWidget {
               Rarity.common ||
               Rarity.uncommon ||
               Rarity.rare =>
-                CommonModPainter(assets: data!, mod: mod, rank: rank),
+                CommonModPainter(assets: data!, mod: mod, rank: fusionLimit),
               Rarity.legendary =>
-                LegendaryModPainter(assets: data!, mod: mod, rank: rank)
+                LegendaryModPainter(assets: data!, mod: mod, rank: fusionLimit)
             };
 
             return CustomPaint(painter: painter, size: size);

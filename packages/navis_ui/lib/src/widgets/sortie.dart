@@ -1,6 +1,7 @@
-import 'package:black_hole_flutter/black_hole_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:navis_ui/src/widgets/widgets.dart';
+
+const _iconSize = 30.0;
 
 class SortieWidget extends StatelessWidget {
   const SortieWidget({
@@ -18,34 +19,31 @@ class SortieWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const iconSize = 35.0;
     final textTheme = Theme.of(context).textTheme;
     final bossTextStlye = textTheme.titleLarge;
 
-    return ExpandableAppCard(
-      key: PageStorageKey(boss),
-      header: ListTile(
+    return AppCard(
+      child: ListTile(
         leading: FactionIcon(
           name: faction,
-          size: iconSize,
+          size: _iconSize,
         ),
         title: Text(boss, style: bossTextStlye),
         trailing: timer,
+        onTap: () {
+          showModalBottomSheet<void>(
+            context: context,
+            builder: (context) {
+              return _SortieSheetContent(
+                faction: faction,
+                boss: boss,
+                missions: missions,
+                timer: timer,
+              );
+            },
+          );
+        },
       ),
-      content: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
-        children: missions,
-      ),
-      onTap: (isExpanded) {
-        if (isExpanded) {
-          Future.delayed(Durations.medium1, () {
-            if (context.mounted) {
-              Scrollable.ensureVisible(context, duration: Durations.short4);
-            }
-          });
-        }
-      },
     );
   }
 }
@@ -64,17 +62,42 @@ class SortieMission extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final missionTextStyle =
-        context.textTheme.titleMedium?.copyWith(fontSize: 15);
-    final modifierTextStyle =
-        context.textTheme.bodySmall?.copyWith(fontSize: 13);
-
-    final subtitle =
-        modifier != null ? Text(modifier!, style: modifierTextStyle) : null;
-
     return ListTile(
-      title: Text('$objective - $node', style: missionTextStyle),
-      subtitle: subtitle,
+      title: Text('$objective - $node'),
+      subtitle: modifier != null ? Text(modifier!) : null,
+    );
+  }
+}
+
+class _SortieSheetContent extends StatelessWidget {
+  const _SortieSheetContent({
+    required this.faction,
+    required this.boss,
+    required this.missions,
+    required this.timer,
+  });
+
+  final String faction;
+  final String boss;
+  final List<SortieMission> missions;
+  final CountdownTimer timer;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        ListTile(
+          leading: FactionIcon(
+            name: faction,
+            size: _iconSize,
+          ),
+          title: Text(boss),
+          trailing: timer,
+        ),
+        ...missions,
+      ],
     );
   }
 }

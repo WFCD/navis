@@ -69,14 +69,16 @@ class CodexSearchView extends StatelessWidget {
               SliverList.builder(
                 itemCount: state.results.length,
                 itemBuilder: (BuildContext context, int index) {
+                  final item = state.results[index];
+
                   return EntryViewOpenContainer(
-                    item: state.results[index],
+                    item: item,
                     builder: (_, onTap) {
                       return Padding(
                         padding: const EdgeInsets.symmetric(vertical: 8),
                         child: CodexResult(
                           item: state.results[index],
-                          showDescription: true,
+                          showDescription: item.description != null,
                           onTap: onTap,
                         ),
                       );

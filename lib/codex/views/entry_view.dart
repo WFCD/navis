@@ -21,6 +21,23 @@ class EntryViewOpenContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     const elevation = 0.0;
 
+    if (item.type == ItemType.misc) {
+      return InkWell(
+        child: builder(context, () {}),
+        onTap: () {
+          showBottomSheet(
+            context: context,
+            builder: (context) => EntryContent(
+              uniqueName: item.uniqueName,
+              name: item.name,
+              description: item.description ?? '',
+              imageUrl: item.imageUrl,
+            ),
+          );
+        },
+      );
+    }
+
     return OpenContainer(
       closedElevation: elevation,
       useRootNavigator: context.rootNavigator.mounted,
@@ -99,6 +116,7 @@ class _Overview extends StatelessWidget {
               final isGun = item is Gun;
               final isMelee = item is Melee;
               final isMod = item is Mod;
+              final isRelic = item is Relic;
 
               var isFoundryItem = item is BuildableItem;
               if (isFoundryItem) {
@@ -118,28 +136,24 @@ class _Overview extends StatelessWidget {
                       itemImageUrl: item.imageUrl,
                       components: (item as BuildableItem).components!,
                     ),
-                  if (isPowerSuit)
-                    AppCard(
-                      padding: const EdgeInsets.symmetric(horizontal: 10),
-                      child: FrameStats(powerSuit: item),
-                    ),
-                  if (isGun)
-                    AppCard(
-                      padding: const EdgeInsets.symmetric(horizontal: 10),
-                      child: GunStats(gun: item),
-                    ),
-                  if (isMelee)
-                    AppCard(
-                      padding: const EdgeInsets.symmetric(horizontal: 10),
-                      child: MeleeStats(melee: item),
-                    ),
-                  if (isMod) ...{
-                    ModStats(mod: item),
-                    Gaps.gap24,
-                  },
+                  if (isPowerSuit) FrameStats(powerSuit: item),
+                  if (isGun) GunStats(gun: item),
+                  if (isMelee) MeleeStats(melee: item),
+                  if (isMod) ModStats(mod: item),
+                  if (isRelic) RelicRewardWidget(relic: item),
                   if (drops != null) DropLocations(drops: drops),
-                  if (patchlogs != null) PatchlogCard(patchlogs: patchlogs),
-                ],
+                  if (patchlogs != null) PatchlogSection(patchlogs: patchlogs),
+                ]
+                    .map(
+                      (w) => Padding(
+                        padding: const EdgeInsets.symmetric(
+                          vertical: 8,
+                          horizontal: 10,
+                        ),
+                        child: w,
+                      ),
+                    )
+                    .toList(),
               );
             },
           ),

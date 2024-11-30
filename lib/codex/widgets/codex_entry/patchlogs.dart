@@ -3,8 +3,8 @@ import 'package:navis/l10n/l10n.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:warframestat_client/warframestat_client.dart';
 
-class PatchlogCard extends StatelessWidget {
-  const PatchlogCard({super.key, required this.patchlogs});
+class PatchlogSection extends StatelessWidget {
+  const PatchlogSection({super.key, required this.patchlogs});
 
   final List<Patchlog> patchlogs;
 
@@ -13,18 +13,15 @@ class PatchlogCard extends StatelessWidget {
     final maxRange = this.patchlogs.length > 4 ? 4 : this.patchlogs.length;
     final patchlogs = List.of(this.patchlogs.getRange(0, maxRange));
 
-    return AppCard(
-      padding: EdgeInsets.zero,
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          CategoryTitle(title: context.l10n.patchlogsTitle),
-          ...patchlogs.map(
-            (e) => _PatchlogEntry(patchlog: e),
-          ),
-        ],
-      ),
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        CategoryTitle(title: context.l10n.patchlogsTitle),
+        ...patchlogs.map(
+          (e) => _PatchlogEntry(patchlog: e),
+        ),
+      ],
     );
   }
 }

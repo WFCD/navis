@@ -5,7 +5,6 @@ class AppCard extends StatelessWidget {
     super.key,
     this.title,
     this.color,
-    this.margin,
     this.padding = const EdgeInsets.all(4),
     this.clipBehavior,
     required this.child,
@@ -14,7 +13,6 @@ class AppCard extends StatelessWidget {
   final String? title;
   final Color? color;
   final EdgeInsetsGeometry padding;
-  final EdgeInsetsGeometry? margin;
   final Clip? clipBehavior;
   final Widget child;
 
@@ -22,8 +20,6 @@ class AppCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       color: color,
-      margin: margin,
-      elevation: 4,
       clipBehavior: clipBehavior,
       child: Padding(
         padding: padding,
