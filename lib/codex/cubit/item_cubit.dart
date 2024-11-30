@@ -27,7 +27,7 @@ class ItemCubit extends HydratedCubit<ItemState> {
 
     final item = items
         .where((item) => item.imageName != null)
-        .firstWhereOrNull((item) => name == item.name);
+        .firstWhereOrNull((item) => item.name == name);
 
     if (item == null) return emit(const NoItemFound());
 
