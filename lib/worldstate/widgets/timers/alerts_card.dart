@@ -26,12 +26,13 @@ class AlertsCard extends StatelessWidget {
 
         return Column(
           children: alerts.map((a) {
+            final reward = a.mission.reward!.items.first
+                .replaceAll('Blueprint', '')
+                .trim();
+
             return AppCard(
               child: BlocProvider(
-                create: (_) => ItemCubit(
-                  a.mission.reward!.countedItems[0].type,
-                  wsRepo,
-                )..fetchByName(),
+                create: (_) => ItemCubit(reward, wsRepo)..fetchByName(),
                 child: _AlertWidget(alert: a),
               ),
             );
@@ -107,6 +108,13 @@ class _AlertReward extends StatelessWidget {
         final credits = NumberFormat().format(reward?.credits ?? 0);
 
         final child = ListTile(
+          leading: item != null
+              ? CachedNetworkImage(
+                  imageUrl: item.imageUrl,
+                  height: 100,
+                  width: 60,
+                )
+              : null,
           title: RichText(
             text: TextSpan(
               text: reward?.itemString,
@@ -114,7 +122,7 @@ class _AlertReward extends StatelessWidget {
               children: [
                 if (reward?.credits != null)
                   TextSpan(
-                    text: ' + $credits credits',
+                    text: ' + ${credits}cr',
                     style: context.textTheme.bodySmall?.copyWith(
                       color: context.theme.colorScheme.onSurfaceVariant,
                     ),
@@ -127,13 +135,6 @@ class _AlertReward extends StatelessWidget {
                   item!.description!,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
-                )
-              : null,
-          trailing: item != null
-              ? CachedNetworkImage(
-                  imageUrl: item.imageUrl,
-                  height: 100,
-                  width: 60,
                 )
               : null,
           isThreeLine: item != null,
