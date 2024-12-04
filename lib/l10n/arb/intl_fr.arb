@@ -1195,13 +1195,13 @@
     "type": "text",
     "placeholder": {}
   },
-  "circuitResetTitle": "The Circuit resets in",
+  "circuitResetTitle": "Le circuit se réinitialise dans",
   "@circuitResetTitle": {
     "description": "Text displayed next to the weekly reset time for the circuit",
     "type": "text",
     "placeholder": {}
   },
-  "archimedeaTitle": "Deep Archimedea ends",
+  "archimedeaTitle": "Fin de l'Archimédée profonde",
   "@archimedeaTitle": {
     "description": "Text displayed next to the weekly reset time for the Deep Archimedea",
     "type": "text",
@@ -1231,13 +1231,13 @@
     "type": "text",
     "placeholder": {}
   },
-  "archimedeaWarningTitle": "Warning",
+  "archimedeaWarningTitle": "Attention",
   "@archimedeaWarningTitle": {
     "description": "Warning title displayed under Deep Archimedea timer",
     "type": "text",
     "placeholder": {}
   },
-  "archimedeaWarningSubtitle": "DE doesn't always update Deep Archimedea data after a weekly reset so consider this unstable.\nWarning will be removed when data rotation is more consistent",
+  "archimedeaWarningSubtitle": "DE ne mets pas toujours à jour les données de l'Archimédée Profonde après un reset hebdomadaire donc à considérer comme non fiable.\nL'avertissement sera retiré quand les données des rotations seront plus fiables",
   "@archimedeaWarningSubtitle": {
     "description": "Warning text displayed under Deep Archimedea warning title",
     "type": "text",
