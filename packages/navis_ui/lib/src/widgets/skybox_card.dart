@@ -33,7 +33,7 @@ class SkyboxCard extends StatelessWidget {
           alignment: Alignment.center,
           height: height,
           child: Material(
-            color: Theme.of(context).colorScheme.shadow.withOpacity(.5),
+            color: Theme.of(context).colorScheme.shadow.withValues(alpha: .5),
             child: SizedBox(
               height: height,
               child: Padding(padding: padding, child: child),
