@@ -85,7 +85,7 @@ class AppIcon extends StatelessWidget {
     var iconColor = color ?? iconTheme.color;
     if (iconOpacity != 1.0) {
       iconColor =
-          iconColor?.withOpacity(iconColor.opacity * (iconOpacity ?? 0.0));
+          iconColor?.withValues(alpha: iconColor.a * (iconOpacity ?? 0.0));
     }
 
     Widget iconWidget = RichText(

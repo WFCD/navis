@@ -49,7 +49,7 @@ class OrbiterNewsContent extends StatelessWidget {
             MaterialLocalizations.of(context)
                 .formatFullDate(news.date.toLocal()),
             style: context.theme.textTheme.bodyMedium?.copyWith(
-              color: colorScheme.onSecondaryContainer.withOpacity(.7),
+              color: colorScheme.onSecondaryContainer.withValues(alpha: .7),
             ),
           ),
           dense: true,

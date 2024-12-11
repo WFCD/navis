@@ -182,7 +182,7 @@ class _WarframeSpinnerPainter extends CustomPainter {
       currentWidth += .5;
       currentOpacity += .3;
       final outerPaint = Paint()
-        ..color = primary.withOpacity(min(currentOpacity, 1))
+        ..color = primary.withValues(alpha: min(currentOpacity, 1))
         ..style = PaintingStyle.stroke
         ..strokeWidth = currentWidth;
 
