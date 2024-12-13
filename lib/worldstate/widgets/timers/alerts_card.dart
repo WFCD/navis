@@ -13,6 +13,18 @@ import 'package:warframestat_repository/warframestat_repository.dart';
 class AlertsCard extends StatelessWidget {
   const AlertsCard({super.key});
 
+  Widget _buildAlerts(Alert a, WarframestatRepository r) {
+    final reward =
+        a.mission.reward!.items.firstOrNull?.replaceAll('Blueprint', '').trim();
+
+    if (reward == null) return _AlertWidget(alert: a, isParent: false);
+
+    return BlocProvider(
+      create: (_) => ItemCubit(reward, r)..fetchByName(),
+      child: _AlertWidget(alert: a),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final wsRepo = RepositoryProvider.of<WarframestatRepository>(context);
@@ -25,18 +37,10 @@ class AlertsCard extends StatelessWidget {
         };
 
         return Column(
-          children: alerts.map((a) {
-            final reward = a.mission.reward!.items.first
-                .replaceAll('Blueprint', '')
-                .trim();
-
-            return AppCard(
-              child: BlocProvider(
-                create: (_) => ItemCubit(reward, wsRepo)..fetchByName(),
-                child: _AlertWidget(alert: a),
-              ),
-            );
-          }).toList(),
+          children: alerts
+              .map((a) => _buildAlerts(a, wsRepo))
+              .map((i) => AppCard(child: i))
+              .toList(),
         );
       },
     );
@@ -44,9 +48,10 @@ class AlertsCard extends StatelessWidget {
 }
 
 class _AlertWidget extends StatelessWidget {
-  const _AlertWidget({required this.alert});
+  const _AlertWidget({required this.alert, this.isParent = true});
 
   final Alert alert;
+  final bool isParent;
 
   @override
   Widget build(BuildContext context) {
@@ -86,7 +91,10 @@ class _AlertWidget extends StatelessWidget {
             ),
             dense: true,
           ),
-          _AlertReward(reward: reward),
+          if (isParent)
+            _AlertItemReward(reward: reward)
+          else
+            _AlertReward(reward: reward),
         ],
       ),
     );
@@ -94,7 +102,53 @@ class _AlertWidget extends StatelessWidget {
 }
 
 class _AlertReward extends StatelessWidget {
-  const _AlertReward({required this.reward});
+  const _AlertReward({required this.reward, this.item});
+
+  final Reward? reward;
+  final Item? item;
+
+  @override
+  Widget build(BuildContext context) {
+    final credits = NumberFormat().format(reward?.credits ?? 0);
+
+    return ListTile(
+      leading: item != null
+          ? CachedNetworkImage(
+              imageUrl: item!.imageUrl,
+              height: 100,
+              width: 60,
+            )
+          : null,
+      title: RichText(
+        text: TextSpan(
+          text: reward?.itemString,
+          style: context.theme.textTheme.titleMedium,
+          children: [
+            if (reward?.credits != null)
+              TextSpan(
+                text: ' + ${credits}cr',
+                style: context.textTheme.bodySmall?.copyWith(
+                  color: context.theme.colorScheme.onSurfaceVariant,
+                ),
+              ),
+          ],
+        ),
+      ),
+      subtitle: item?.description != null
+          ? Text(
+              item!.description!,
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+            )
+          : null,
+      isThreeLine: item != null,
+      dense: true,
+    );
+  }
+}
+
+class _AlertItemReward extends StatelessWidget {
+  const _AlertItemReward({required this.reward});
 
   final Reward? reward;
 
@@ -105,47 +159,11 @@ class _AlertReward extends StatelessWidget {
         final item =
             switch (state) { ItemFetchSuccess() => state.item, _ => null };
 
-        final credits = NumberFormat().format(reward?.credits ?? 0);
-
-        final child = ListTile(
-          leading: item != null
-              ? CachedNetworkImage(
-                  imageUrl: item.imageUrl,
-                  height: 100,
-                  width: 60,
-                )
-              : null,
-          title: RichText(
-            text: TextSpan(
-              text: reward?.itemString,
-              style: context.theme.textTheme.titleMedium,
-              children: [
-                if (reward?.credits != null)
-                  TextSpan(
-                    text: ' + ${credits}cr',
-                    style: context.textTheme.bodySmall?.copyWith(
-                      color: context.theme.colorScheme.onSurfaceVariant,
-                    ),
-                  ),
-              ],
-            ),
-          ),
-          subtitle: item?.description != null
-              ? Text(
-                  item!.description!,
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                )
-              : null,
-          isThreeLine: item != null,
-          dense: true,
-        );
-
-        if (item == null) return child;
+        if (item == null) return _AlertReward(reward: reward);
 
         return EntryViewOpenContainer(
           item: item as MinimalItem,
-          builder: (_, __) => child,
+          builder: (_, __) => _AlertReward(reward: reward, item: item),
         );
       },
     );
