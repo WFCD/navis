@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_settings_ui/flutter_settings_ui.dart';
 import 'package:intl/intl.dart';
+import 'package:navis/arsenal/cubit/arsenal_cubit.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis/settings/settings.dart';
 import 'package:navis_ui/navis_ui.dart';
@@ -12,11 +13,9 @@ import 'package:notification_repository/notification_repository.dart';
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});
 
-  static const route = '/settings';
-
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(body: SafeArea(child: _SettingsView()));
+    return const _SettingsView();
   }
 }
 
@@ -44,11 +43,31 @@ class _SettingsView extends StatelessWidget {
     FilterDialog.showFilters(context, filters);
   }
 
+  Future<void> _forceUpdateManifest(
+    BuildContext context,
+    String? username,
+  ) async {
+    if (!context.mounted) return;
+    if (username == null) return;
+
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text(context.l10n.updatingManifestText)),
+    );
+
+    await BlocProvider.of<ArsenalCubit>(context)
+        .updateArsenal(username, update: true);
+  }
+
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
     final filters = NotificationTopics(context.l10n);
     final settings = context.watch<UserSettingsCubit>().state;
+
+    final username = switch (settings) {
+      UserSettingsSuccess() => settings.username,
+      _ => null
+    };
 
     final themeMode = switch (settings) {
       UserSettingsSuccess() => settings.themeMode,
@@ -74,6 +93,22 @@ class _SettingsView extends StatelessWidget {
       lightTheme: theme,
       darkTheme: theme,
       sections: [
+        SettingsSection(
+          title: Text(l10n.masteryTrackingCategoryTitle),
+          tiles: [
+            SettingsTile(
+              title: Text(username ?? l10n.enterUsernameHintText),
+              // TODO(Orn): find a way to show mastery progress
+              onPressed: UsernameInput.show,
+            ),
+            SettingsTile(
+              title: Text(l10n.updateManifestTitle),
+              description: Text(l10n.updateManifestSubtitle),
+              enabled: username != null,
+              onPressed: (context) => _forceUpdateManifest(context, username),
+            ),
+          ],
+        ),
         SettingsSection(
           title: Text(l10n.behaviorTitle),
           tiles: [

@@ -32,7 +32,7 @@ class AppView extends StatelessWidget {
             child: child,
           );
         },
-        child: SafeArea(child: children[currentIndex]),
+        child: children[currentIndex],
       ),
       bottomNavigationBar: NavigationBar(
         onDestinationSelected: (i) {
