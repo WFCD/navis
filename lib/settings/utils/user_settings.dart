@@ -1,4 +1,4 @@
-import 'dart:developer';
+import 'dart:developer' as developer;
 
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
@@ -21,11 +21,17 @@ class UserSettings {
   ///
   /// You must call [Hive.init(path)] before calling this function
   static Future<UserSettings> initSettings(String path) async {
-    log('Initializing Usersettings Hive');
+    developer.log('initializing user settings');
     final box = await SentryHive.openBox<dynamic>('user_settings', path: path);
 
     return _instance ??= UserSettings._(box);
   }
+
+  String? get username =>
+      _userSettingsBox.get(SettingsKeys.username) as String?;
+
+  set username(String? username) =>
+      _userSettingsBox.put(SettingsKeys.username, username);
 
   /// Returns the stored language as a locale.
   Locale get language {
@@ -41,7 +47,6 @@ class UserSettings {
   /// Updates the stored [UserSettings.language].
   set language(Locale? value) {
     if (value != null) {
-      log('setting new lang ${value.languageCode}');
       _userSettingsBox.put(SettingsKeys.userLanguage, value.languageCode);
     }
   }

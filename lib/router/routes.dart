@@ -80,7 +80,7 @@ class ActivitesPageRouteData extends GoRouteData {
 
   @override
   Widget build(BuildContext context, GoRouterState state) {
-    return const ActivitiesView();
+    return const SafeArea(child: ActivitiesView());
   }
 }
 
@@ -95,7 +95,7 @@ class OverviewPageRouteData extends GoRouteData {
 
   @override
   Widget build(BuildContext context, GoRouterState state) {
-    return const HomePage();
+    return const SafeArea(child: HomePage());
   }
 }
 
@@ -110,7 +110,7 @@ class ExplorePageRouteData extends GoRouteData {
 
   @override
   Widget build(BuildContext context, GoRouterState state) {
-    return const ExplorePage();
+    return const SafeArea(child: ExplorePage());
   }
 }
 
@@ -125,7 +125,7 @@ class SettingsPageRouteData extends GoRouteData {
 
   @override
   Widget build(BuildContext context, GoRouterState state) {
-    return const SettingsPage();
+    return const SafeArea(child: SettingsPage());
   }
 }
 

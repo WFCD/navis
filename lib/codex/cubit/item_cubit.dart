@@ -18,6 +18,10 @@ class ItemCubit extends HydratedCubit<ItemState> {
 
   Future<void> fetchItem() async {
     final item = await _handleItemFetch(() async => repo.fetchItem(name));
+    if (item == null) {
+      emit(const ItemFetchFailure('Item does not exist'));
+      return;
+    }
 
     emit(ItemFetchSuccess(item));
   }

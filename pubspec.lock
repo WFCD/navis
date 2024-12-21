@@ -342,14 +342,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.2"
-  dart_mappable:
-    dependency: transitive
-    description:
-      name: dart_mappable
-      sha256: f69a961ae8589724ebb542e588f228ae844c5f78028899cbe2cc718977c1b382
-      url: "https://pub.dev"
-    source: hosted
-    version: "4.3.0"
   dart_style:
     dependency: transitive
     description:
@@ -398,6 +390,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.4.1"
+  drift:
+    dependency: transitive
+    description:
+      name: drift
+      sha256: c2d073d35ad441730812f4ea05b5dd031fb81c5f9786a4f5fb77ecd6307b6f74
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.22.1"
+  drift_flutter:
+    dependency: "direct main"
+    description:
+      name: drift_flutter
+      sha256: "69091c499a1550a84f153bafa3423f4297d26bfef3710323b141336ffe155dff"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.2.2"
   dynamic_color:
     dependency: "direct main"
     description:
@@ -1372,6 +1380,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.4.0"
+  sqlite3:
+    dependency: transitive
+    description:
+      name: sqlite3
+      sha256: cb7f4e9dc1b52b1fa350f7b3d41c662e75fc3d399555fa4e5efcf267e9a4fbb5
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.5.0"
+  sqlite3_flutter_libs:
+    dependency: transitive
+    description:
+      name: sqlite3_flutter_libs
+      sha256: "636b0fe8a2de894e5455572f6cbbc458f4ffecfe9f860b79439e27041ea4f0b9"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.5.27"
   stack_trace:
     dependency: transitive
     description:
@@ -1468,14 +1492,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.1"
-  type_plus:
-    dependency: transitive
-    description:
-      name: type_plus
-      sha256: d5d1019471f0d38b91603adb9b5fd4ce7ab903c879d2fbf1a3f80a630a03fcc9
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.1.1"
   typed_data:
     dependency: transitive
     description:
@@ -1576,10 +1592,10 @@ packages:
     dependency: "direct main"
     description:
       name: warframestat_client
-      sha256: "2cdf016c7e6b98a4dd757b8d2778a6bad466e9ab7218dda9e333a33e1d70f9f7"
+      sha256: "7e4daf24aeda89009e5573f5a12c95d2e1d31ca9c59255fecf13437efda7e425"
       url: "https://pub.dev"
     source: hosted
-    version: "3.11.0"
+    version: "3.15.3"
   warframestat_repository:
     dependency: "direct main"
     description:
@@ -1676,5 +1692,5 @@ packages:
     source: hosted
     version: "3.1.2"
 sdks:
-  dart: ">=3.5.0 <4.0.0"
+  dart: ">=3.6.0 <4.0.0"
   flutter: ">=3.24.0"
