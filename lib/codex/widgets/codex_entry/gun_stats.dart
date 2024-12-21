@@ -31,7 +31,7 @@ class GunStats extends StatelessWidget {
               ),
             RowItem(
               text: Text(l10n.weaponTypeTitle),
-              child: Text(gun.type.category),
+              child: Text(gun.type.type),
             ),
             if (gun.polarities?.isNotEmpty ?? false)
               RowItem(
