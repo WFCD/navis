@@ -33,8 +33,6 @@ class _RepositoryBootstrapState extends State<RepositoryBootstrap> {
     _notifications = NotificationRepository();
     _warframestatRepository =
         WarframestatRepository(client: SentryHttpClient());
-
-    _notifications.configure();
   }
 
   @override

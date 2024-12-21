@@ -18,14 +18,28 @@ class NotificationRepository {
 
   final FirebaseMessaging _messaging = FirebaseMessaging.instance;
 
-  /// Request persmission on iOS
+  /// Prompts the user for notification permissions
   ///
   /// Has a platform check inside the lib itself.
-  void configure() => _messaging.requestPermission(provisional: Platform.isIOS);
+  Future<void> requestPermission() {
+    return _messaging.requestPermission(provisional: Platform.isIOS);
+  }
+
+  Future<bool> hasPermission() async {
+    final settings = await _messaging.getNotificationSettings();
+    final authorization = settings.authorizationStatus;
+
+    if (authorization == AuthorizationStatus.authorized ||
+        authorization == AuthorizationStatus.provisional) {
+      return true;
+    }
+
+    return false;
+  }
 
   // IOS requires and APNS check, if the first time fails we can wait the
   // 5 seconds. But if it's not availble the second time we can assume that
-  // they've been configured in correctly or just taking awhile, an app refresh
+  // they've been configured incorrectly or just taking awhile, an app refresh
   // should take care of it.
   Future<void> _iosAPNSCheck() async {
     if (!Platform.isIOS) return;
@@ -41,21 +55,16 @@ class NotificationRepository {
     throw Exception('Failed to get APNS');
   }
 
-  /// Subscribes to any [Topic] found in [Topics]
-  Future<void> subscribeToNotification(Topic topic) async {
-    await _iosAPNSCheck();
-    await _messaging.subscribeToTopic(topic.name);
-    _log('subscribed to ${topic.name}');
-  }
+  /// Subscribes or unsubscribes from the given topic
+  Future<void> updateTopic(Topic topic, {required bool value}) async {
+    if (!(await hasPermission())) return;
 
-  /// Unsubscribes to any [Topic] found in [Topics]
-  Future<void> unsubscribeFromNotification(Topic topic) async {
     await _iosAPNSCheck();
-    await _messaging.unsubscribeFromTopic(topic.name);
-    _log('unsubscribed to ${topic.name}');
-  }
 
-  void _log(String message) {
-    log(message, name: 'NotificationService');
+    value
+        ? await _messaging.subscribeToTopic(topic.name)
+        : await _messaging.unsubscribeFromTopic(topic.name);
+
+    log('${value ? 'subscribed' : 'unsubscribed'} to ${topic.name}');
   }
 }

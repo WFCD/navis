@@ -26,13 +26,20 @@ class SettingsPage extends StatelessWidget {
 class _SettingsView extends StatelessWidget {
   const _SettingsView();
 
-  void _onNotificationChanged(BuildContext context, Topic topic, bool value) {
+  Future<void> _onNotificationChanged(
+    BuildContext context,
+    Topic topic,
+    bool value,
+  ) async {
+    final repo = context.read<NotificationRepository>();
     context.read<UserSettingsCubit>().updateToggle(topic.name, value: value);
 
-    if (value) {
-      context.read<NotificationRepository>().subscribeToNotification(topic);
-    } else {
-      context.read<NotificationRepository>().unsubscribeFromNotification(topic);
+    await repo.requestPermission();
+    await repo.updateTopic(topic, value: value);
+
+    final hasPermission = await repo.hasPermission();
+    if (!hasPermission && context.mounted) {
+      context.read<UserSettingsCubit>().updateToggle(topic.name, value: false);
     }
   }
 
