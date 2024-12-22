@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:navis/arsenal/cubit/arsenal_cubit.dart';
 import 'package:navis/settings/settings.dart';
 import 'package:navis/worldstate/worldstate.dart';
 import 'package:warframestat_repository/warframestat_repository.dart';
@@ -16,17 +17,18 @@ class BlocBootstrap extends StatefulWidget {
 class _BlocBootstrapState extends State<BlocBootstrap> {
   late WorldstateCubit _worldstateCubit;
   late UserSettingsCubit _userSettingsCubit;
+  late ArsenalCubit _arsenalCubit;
 
   @override
   void initState() {
     super.initState();
 
-    final worldstateRepo =
-        RepositoryProvider.of<WarframestatRepository>(context);
-    final usersettings = RepositoryProvider.of<UserSettings>(context);
+    final wsRepo = RepositoryProvider.of<WarframestatRepository>(context);
+    final settings = RepositoryProvider.of<UserSettings>(context);
 
-    _worldstateCubit = WorldstateCubit(worldstateRepo);
-    _userSettingsCubit = UserSettingsCubit(usersettings);
+    _worldstateCubit = WorldstateCubit(wsRepo);
+    _userSettingsCubit = UserSettingsCubit(settings);
+    _arsenalCubit = ArsenalCubit(wsRepo);
   }
 
   @override
@@ -35,6 +37,7 @@ class _BlocBootstrapState extends State<BlocBootstrap> {
       providers: [
         BlocProvider.value(value: _worldstateCubit),
         BlocProvider.value(value: _userSettingsCubit),
+        BlocProvider.value(value: _arsenalCubit),
       ],
       child: widget.child,
     );

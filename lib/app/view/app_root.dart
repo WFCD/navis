@@ -4,6 +4,7 @@ import 'package:dynamic_color/dynamic_color.dart';
 import 'package:feedback_sentry/feedback_sentry.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:navis/arsenal/arsenal.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis/router/app_router.dart';
 import 'package:navis/settings/settings.dart';
@@ -106,6 +107,16 @@ class _NavisAppState extends State<NavisApp> with WidgetsBindingObserver {
     super.didChangeDependencies();
 
     BlocProvider.of<WorldstateCubit>(context).fetchWorldstate();
+
+    final settings = context.read<UserSettingsCubit>().state;
+    final username = switch (settings) {
+      UserSettingsSuccess() => settings.username,
+      _ => null,
+    };
+
+    if (username != null) {
+      BlocProvider.of<ArsenalCubit>(context).updateArsenal(username);
+    }
   }
 
   @override
