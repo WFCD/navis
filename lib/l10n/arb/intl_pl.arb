@@ -1,6 +1,6 @@
 {
   "@@last_modified": "2020-03-03T16:56:42.387837",
-  "levelInfo": "Level: {min} - {max}",
+  "levelInfo": "",
   "@levelInfo": {
     "description": "The information of the current enemy levels",
     "type": "text",
@@ -9,7 +9,7 @@
       "max": {}
     }
   },
-  "tapForMoreDetails": "Tap for more details",
+  "tapForMoreDetails": "Super 👍👍  grafika Relacje  🤛🤜👏👏👏👏🥂 Najlepszego  w Nowym roku  nalepszego2025 dużo pomysuw  🕊️🕊️🕊️🕊️🕊️🕊️🕊️🕊️ Duh święty  delopezy majom talent  🤜🤛",
   "@tapForMoreDetails": {
     "description": "General description to tell the user that this object takes you to a different page",
     "type": "text",
