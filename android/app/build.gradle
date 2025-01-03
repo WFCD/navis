@@ -30,16 +30,26 @@ if (keystorePropertiesFile.exists()) {
 }
 
 android {
-    compileSdk 34
+    namespace "com.cephalon.navis"
+    compileSdkVersion flutter.compileSdkVersion
+    ndkVersion flutter.ndkVersion
 
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8
+    }
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
     }
 
     defaultConfig {
         applicationId "com.cephalon.navis"
-        minSdkVersion 21
-        targetSdkVersion 34
+        minSdkVersion flutter.minSdkVersion
+        targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
         multiDexEnabled true
@@ -84,7 +94,6 @@ android {
 
         release {
             signingConfig signingConfigs.release
-
             minifyEnabled true
             shrinkResources true
 

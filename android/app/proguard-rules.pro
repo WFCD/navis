@@ -8,3 +8,4 @@
 -keep class com.dexterous.** { *; }
 -dontwarn io.flutter.embedding.**
 -dontwarn android.**
+-dontwarn com.google.android.play.core.splitcompat.SplitCompatApplication
