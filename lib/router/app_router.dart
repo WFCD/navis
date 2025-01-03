@@ -24,7 +24,7 @@ class AppRouter {
   ) {
     return GoRouter(
       navigatorKey: navigatorKey,
-      initialLocation: const ActivitesPageRouteData().location,
+      initialLocation: const OverviewPageRouteData().location,
       observers: [SentryNavigatorObserver()],
       debugLogDiagnostics: debugLogDiagnostics,
       routes: $appRoutes,

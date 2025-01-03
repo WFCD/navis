@@ -5,47 +5,38 @@ import 'package:navis/l10n/l10n.dart';
 import 'package:navis/router/routes.dart';
 import 'package:navis/worldstate/worldstate.dart';
 import 'package:navis_ui/navis_ui.dart';
+import 'package:warframestat_client/warframestat_client.dart';
 
 class TraderCard extends StatelessWidget {
   const TraderCard({super.key});
 
-  bool _buildWhen(SolsystemState previous, SolsystemState current) {
-    if (previous is! WorldstateSuccess || current is! WorldstateSuccess) {
-      return false;
-    }
-
-    final previousTrader = previous.worldstate.voidTraders.first;
-    final currentTrader = current.worldstate.voidTraders.first;
-
-    return previousTrader.id != currentTrader.id;
-  }
-
   @override
   Widget build(BuildContext context) {
+    const baroPurple = Color(0xFF82598b);
     final l10n = context.l10n;
 
-    return BlocBuilder<WorldstateCubit, SolsystemState>(
-      buildWhen: _buildWhen,
-      builder: (context, state) {
-        final now = DateTime.now();
-        final trader = switch (state) {
-          WorldstateSuccess() => state.worldstate.voidTraders.first,
+    return Card(
+      clipBehavior: Clip.antiAlias,
+      color: baroPurple,
+      child: BlocSelector<WorldstateCubit, SolsystemState, List<Trader>?>(
+        selector: (s) => switch (s) {
+          WorldstateSuccess() => s.worldstate.voidTraders,
           _ => null,
-        };
+        },
+        builder: (context, traders) {
+          final now = DateTime.timestamp();
+          final trader = traders?.first;
+          final isActive = trader?.active ?? false;
 
-        final isActive = trader?.active ?? false;
-        final date = MaterialLocalizations.of(context).formatFullDate(
-          isActive ? trader?.expiry ?? now : trader?.activation ?? now,
-        );
+          final expiry = isActive ? trader?.expiry : trader?.activation;
+          final date =
+              MaterialLocalizations.of(context).formatFullDate(expiry ?? now);
 
-        final status = isActive ? l10n.baroLeavesOn : l10n.baroArrivesOn;
-        final title = '${l10n.baroTitle} '
-            '${isActive ? '| ${trader?.location ?? ''}' : ''}';
+          final status = isActive ? l10n.baroLeavesOn : l10n.baroArrivesOn;
+          final title = '${l10n.baroTitle} '
+              '${isActive ? '| ${trader?.location ?? ''}' : ''}';
 
-        return Card(
-          clipBehavior: Clip.antiAlias,
-          color: const Color(0xFF82598b),
-          child: InkWell(
+          return InkWell(
             onTap: isActive
                 ? () => TraderPageRoute(trader?.inventory).push<void>(context)
                 : null,
@@ -60,16 +51,15 @@ class TraderCard extends StatelessWidget {
                   textColor: Colors.white,
                   trailing: CountdownTimer(
                     tooltip: l10n.countdownTooltip(date),
-                    color: const Color(0xFF82598b),
-                    expiry:
-                        (isActive ? trader?.expiry : trader?.activation) ?? now,
+                    color: baroPurple,
+                    expiry: expiry ?? now,
                   ),
                 ),
               ),
             ),
-          ),
-        );
-      },
+          );
+        },
+      ),
     );
   }
 }

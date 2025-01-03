@@ -11,11 +11,19 @@ class ArsenalItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    const leadingSize = 50.0;
+
     return AppCard(
       child: ListTile(
         leading: CachedNetworkImage(
           imageUrl: arsenalItem.item.imageUrl,
-          width: 50,
+          width: leadingSize,
+          errorWidget: (context, url, error) {
+            return const Icon(
+              WarframeSymbols.menu_LotusEmblem,
+              size: leadingSize,
+            );
+          },
         ),
         title: Text(arsenalItem.item.name),
         subtitle: Column(

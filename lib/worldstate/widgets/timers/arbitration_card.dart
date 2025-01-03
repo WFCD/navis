@@ -3,25 +3,36 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis/worldstate/cubits/worldstate_cubit.dart';
 import 'package:navis_ui/navis_ui.dart';
+import 'package:warframestat_client/warframestat_client.dart';
 
 class ArbitrationCard extends StatelessWidget {
   const ArbitrationCard({super.key});
 
   @override
   Widget build(BuildContext context) {
+    const gracePeriod = Duration(seconds: 1);
+    const oneYear = Duration(days: 365);
+    const archwingIcon = Padding(
+      padding: EdgeInsets.only(left: 6),
+      child: Icon(
+        WarframeSymbols.archwing,
+        color: Colors.blue,
+        size: 25,
+      ),
+    );
+
     return AppCard(
-      child: BlocBuilder<WorldstateCubit, SolsystemState>(
-        builder: (context, state) {
-          final arbitration = switch (state) {
-            WorldstateSuccess() => state.worldstate.arbitration,
-            _ => null
-          };
-
+      child: BlocSelector<WorldstateCubit, SolsystemState, Arbitration?>(
+        selector: (s) => switch (s) {
+          WorldstateSuccess() => s.worldstate.arbitration,
+          _ => null
+        },
+        builder: (context, arbitration) {
           final now = DateTime.timestamp();
-          var expiry = arbitration?.expiry ?? DateTime.now().add(expiryWait);
 
-          if (expiry.difference(now) > const Duration(days: 365)) {
-            expiry = DateTime.now().add(expiryWait);
+          var expiry = arbitration?.expiry ?? now.add(gracePeriod);
+          if (expiry.difference(now) > oneYear) {
+            expiry = now.add(gracePeriod);
           }
 
           return ListTile(
@@ -29,15 +40,7 @@ class ArbitrationCard extends StatelessWidget {
             title: Row(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
-                if (arbitration?.archwing ?? false)
-                  const Padding(
-                    padding: EdgeInsets.only(left: 6),
-                    child: Icon(
-                      WarframeSymbols.archwing,
-                      color: Colors.blue,
-                      size: 25,
-                    ),
-                  ),
+                if (arbitration?.archwing ?? false) archwingIcon,
                 Text(arbitration?.node ?? ''),
               ],
             ),
