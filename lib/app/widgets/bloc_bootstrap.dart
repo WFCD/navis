@@ -32,6 +32,23 @@ class _BlocBootstrapState extends State<BlocBootstrap> {
   }
 
   @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+
+    _worldstateCubit.fetchWorldstate();
+
+    final state = _userSettingsCubit.state;
+    final username = switch (state) {
+      UserSettingsSuccess() => state.username,
+      _ => null,
+    };
+
+    if (username != null) {
+      _arsenalCubit.updateArsenal(username);
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [

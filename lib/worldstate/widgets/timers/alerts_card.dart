@@ -13,7 +13,7 @@ import 'package:warframestat_repository/warframestat_repository.dart';
 class AlertsCard extends StatelessWidget {
   const AlertsCard({super.key});
 
-  Widget _buildAlerts(Alert a, WarframestatRepository r) {
+  Widget _buildAlert(Alert a, WarframestatRepository r) {
     final reward =
         a.mission.reward!.items.firstOrNull?.replaceAll('Blueprint', '').trim();
 
@@ -29,16 +29,15 @@ class AlertsCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final wsRepo = RepositoryProvider.of<WarframestatRepository>(context);
 
-    return BlocBuilder<WorldstateCubit, SolsystemState>(
-      builder: (context, state) {
-        final alerts = switch (state) {
-          WorldstateSuccess() => state.worldstate.alerts,
-          _ => <Alert>[],
-        };
-
+    return BlocSelector<WorldstateCubit, SolsystemState, List<Alert>>(
+      selector: (s) => switch (s) {
+        WorldstateSuccess() => s.worldstate.alerts,
+        _ => <Alert>[],
+      },
+      builder: (context, alerts) {
         return Column(
           children: alerts
-              .map((a) => _buildAlerts(a, wsRepo))
+              .map((a) => _buildAlert(a, wsRepo))
               .map((i) => AppCard(child: i))
               .toList(),
         );
