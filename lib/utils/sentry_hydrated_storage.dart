@@ -1,3 +1,6 @@
+// I copied this from hydrated_bloc and switched up hive for sentry_hive
+// ignore_for_file: avoid_catches_without_on_clauses
+
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';

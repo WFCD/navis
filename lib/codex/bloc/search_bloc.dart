@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
@@ -42,14 +43,18 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
 
         _originalResults = results;
         emit(CodexSuccessfulSearch(results));
-      } catch (error, stackTrace) {
+      } on SocketException {
+        emit(const CodexSearchError('A network error has occurred'));
+      } on FormatException {
+        emit(const CodexSearchError('Failed to parse server response'));
+      } on Exception catch (error, stackTrace) {
         await Sentry.captureException(
           error,
           stackTrace: stackTrace,
           hint: Hint.withMap({'query': event.text}),
         );
 
-        emit(const CodexSearchError('Unknown Error occuroed'));
+        emit(const CodexSearchError('Unknown Error occurred'));
       }
     }
   }

@@ -1,5 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
+// ignore_for_file: require_trailing_commas, document_ignores
+
 part of 'fish_size.dart';
 
 // **************************************************************************
@@ -9,7 +11,7 @@ part of 'fish_size.dart';
 FishSize<T> _$FishSizeFromJson<T extends RegionResources>(
         Map<String, dynamic> json) =>
     FishSize<T>(
-      standing: json['standing'] as int?,
+      standing: (json['standing'] as num?)?.toInt(),
       resources: RegionResourcesConverter<T>()
           .fromJson(json['resources'] as Map<String, dynamic>),
     );

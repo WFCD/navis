@@ -101,7 +101,7 @@ void main() {
 
       final item = await repository.fetchItem(uniqueName);
 
-      expect(item.name, name);
+      expect(item?.name, name);
     });
   });
 }

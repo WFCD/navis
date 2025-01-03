@@ -1,5 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
+// ignore_for_file: require_trailing_commas, document_ignores, unused_import
+
 part of 'cache_client.dart';
 
 // **************************************************************************

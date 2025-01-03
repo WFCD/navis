@@ -25,7 +25,7 @@ class WorldstateCubit extends HydratedCubit<SolsystemState> {
 
       state.clean();
       emit(WorldstateSuccess(state));
-    } catch (e, s) {
+    } on Exception catch (e, s) {
       final current = state;
       await _exceptionHandle(e, s);
       emit(current);
@@ -34,9 +34,9 @@ class WorldstateCubit extends HydratedCubit<SolsystemState> {
 
   Future<void> _exceptionHandle(Object exception, [StackTrace? s]) async {
     switch (exception) {
-      case SocketException:
+      case SocketException _:
         emit(const WorldstateFailure(serverException));
-      case FormatException:
+      case FormatException _:
         emit(const WorldstateFailure(formatException));
       default:
         await Sentry.captureException(exception, stackTrace: s);
@@ -52,7 +52,7 @@ class WorldstateCubit extends HydratedCubit<SolsystemState> {
 
     try {
       return WorldstateSuccess(Worldstate.fromJson(json));
-    } catch (e) {
+    } on Exception {
       return null;
     }
   }

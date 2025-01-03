@@ -1,5 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
+// ignore_for_file: require_trailing_commas, document_ignores
+
 part of 'region_resource.dart';
 
 // **************************************************************************
@@ -9,9 +11,9 @@ part of 'region_resource.dart';
 DeimosRegionResources _$DeimosRegionResourcesFromJson(
         Map<String, dynamic> json) =>
     DeimosRegionResources(
-      tumor: json['tumor'] as int? ?? 0,
-      bladder: json['bladder'] as int? ?? 0,
-      gills: json['gills'] as int? ?? 0,
+      tumor: (json['tumor'] as num?)?.toInt() ?? 0,
+      bladder: (json['bladder'] as num?)?.toInt() ?? 0,
+      gills: (json['gills'] as num?)?.toInt() ?? 0,
     );
 
 Map<String, dynamic> _$DeimosRegionResourcesToJson(
@@ -24,9 +26,9 @@ Map<String, dynamic> _$DeimosRegionResourcesToJson(
 
 PoeRegionResources _$PoeRegionResourcesFromJson(Map<String, dynamic> json) =>
     PoeRegionResources(
-      meat: json['meat'] as int? ?? 0,
-      scales: json['scales'] as int? ?? 0,
-      oil: json['oil'] as int? ?? 0,
+      meat: (json['meat'] as num?)?.toInt() ?? 0,
+      scales: (json['scales'] as num?)?.toInt() ?? 0,
+      oil: (json['oil'] as num?)?.toInt() ?? 0,
     );
 
 Map<String, dynamic> _$PoeRegionResourcesToJson(PoeRegionResources instance) =>
@@ -39,7 +41,7 @@ Map<String, dynamic> _$PoeRegionResourcesToJson(PoeRegionResources instance) =>
 VallisRegionResources _$VallisRegionResourcesFromJson(
         Map<String, dynamic> json) =>
     VallisRegionResources(
-      scrap: json['scrap'] as int,
+      scrap: (json['scrap'] as num).toInt(),
     );
 
 Map<String, dynamic> _$VallisRegionResourcesToJson(

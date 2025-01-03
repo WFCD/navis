@@ -8,8 +8,12 @@ T fixture<T>(String name) {
 
   try {
     fixture = _file(p.join('test', 'fixtures', name));
-  } catch (err) {
-    fixture = _file(p.join('fixtures', name));
+  } on FileSystemException catch (e) {
+    if (e.osError?.errorCode == 2) {
+      fixture = _file(p.join('fixtures', name));
+    } else {
+      rethrow;
+    }
   }
 
   return json.decode(fixture) as T;

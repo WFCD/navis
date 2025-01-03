@@ -1,3 +1,4 @@
+// Don't worry about it
 // ignore_for_file: inference_failure_on_function_invocation
 
 import 'package:fish_repository/fish_repository.dart';

@@ -20,7 +20,7 @@ class SynthtargetsCubit extends HydratedCubit<SynthtargetsState> {
       final targets = await ConnectionManager.call(repository.fetchTargets);
 
       emit(TargetsLocated(targets));
-    } catch (e) {
+    } on Exception catch (_) {
       emit(TargetsNotFound());
     }
   }

@@ -9,9 +9,9 @@ class FishDataView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // See FishCard widget
     // ignore: strict_raw_type
     return FutureBuilder<List<Fish>>(
-      // ignore: inference_failure_on_function_invocation
       future: loadFishResources(region),
       builder: (context, snapshot) {
         if (!snapshot.hasData) {

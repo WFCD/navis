@@ -27,6 +27,6 @@ final class ItemFetchFailure extends ItemState {
   List<Object> get props => [message];
 }
 
-final class NoItemFound extends ItemState {
-  const NoItemFound();
+final class ItemNotFound extends ItemState {
+  const ItemNotFound();
 }

@@ -18,6 +18,10 @@ class ItemCubit extends HydratedCubit<ItemState> {
 
   Future<void> fetchItem() async {
     final item = await _handleItemFetch(() async => repo.fetchItem(name));
+    if (item == null) {
+      emit(const ItemNotFound());
+      return;
+    }
 
     emit(ItemFetchSuccess(item));
   }
@@ -29,7 +33,7 @@ class ItemCubit extends HydratedCubit<ItemState> {
         .where((item) => item.imageName != null)
         .firstWhereOrNull((item) => item.name == name);
 
-    if (item == null) return emit(const NoItemFound());
+    if (item == null) return emit(const ItemNotFound());
 
     emit(ItemFetchSuccess(item));
   }
@@ -45,7 +49,7 @@ class ItemCubit extends HydratedCubit<ItemState> {
       },
     );
 
-    if (item == null) return emit(const NoItemFound());
+    if (item == null) return emit(const ItemNotFound());
 
     emit(ItemFetchSuccess(item));
   }

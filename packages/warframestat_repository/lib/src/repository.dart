@@ -82,7 +82,7 @@ class WarframestatRepository {
   }
 
   /// Get one item based on unique name
-  Future<Item> fetchItem(String uniqueName) async {
+  Future<Item?> fetchItem(String uniqueName) async {
     const cacheTime = Duration(minutes: 5);
     final client = WarframeItemsClient(
       client: await _cacheClient(cacheTime),

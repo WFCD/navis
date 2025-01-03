@@ -32,6 +32,9 @@ extension StringNx on String {
           dismissButtonStyle: SafariViewControllerDismissButtonStyle.close,
         ),
       );
+
+      // Only need a general error here
+      // ignore: avoid_catches_without_on_clauses
     } catch (e) {
       if (!context.mounted) return;
 
