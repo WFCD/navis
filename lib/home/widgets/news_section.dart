@@ -8,6 +8,7 @@ import 'package:navis/l10n/l10n.dart';
 import 'package:navis/router/routes.dart';
 import 'package:navis/worldstate/worldstate.dart';
 import 'package:navis_ui/navis_ui.dart';
+import 'package:warframestat_client/warframestat_client.dart';
 
 class NewsSection extends StatelessWidget {
   const NewsSection({super.key});
@@ -43,6 +44,15 @@ class __NewsCarouselViewState extends State<_NewsCarouselView> {
   void _autoScroll() {
     if (!mounted) return;
 
+    final news = context.select<SolsystemState, List<News>?>(
+      (s) => switch (s) {
+        WorldstateSuccess() => s.worldstate.news,
+        _ => null,
+      },
+    );
+
+    if (news == null) return;
+
     final pageSize = MediaQuery.sizeOf(context).width * .9;
     var nextPage = (_currentPage + 1) % _maxItems;
     if (nextPage > _maxItems) nextPage = 0;
@@ -74,30 +84,33 @@ class __NewsCarouselViewState extends State<_NewsCarouselView> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<WorldstateCubit, SolsystemState>(
-      builder: (context, state) {
-        if (state is! WorldstateSuccess) {
-          return const Center(child: WarframeSpinner());
-        }
+    final itemExtent = MediaQuery.sizeOf(context).width * .9;
 
-        final news = state.worldstate.news.take(_maxItems).toList();
-        final itemExtent = MediaQuery.sizeOf(context).width * .9;
+    return SizedBox(
+      height: 200,
+      child: GestureDetector(
+        onTapDown: (_) => _timer?.cancel(),
+        onHorizontalDragStart: (_) => _timer?.cancel(),
+        onHorizontalDragEnd: (_) {
+          final position = _controller.position.pixels;
+          _currentPage = (position / itemExtent).round();
 
-        return SizedBox(
-          height: 200,
-          child: GestureDetector(
-            onTapDown: (_) => _timer?.cancel(),
-            onHorizontalDragStart: (_) => _timer?.cancel(),
-            onHorizontalDragEnd: (_) {
-              final position = _controller.position.pixels;
-              _currentPage = (position / itemExtent).round();
+          _timer = Timer.periodic(
+            _autoScrollDuration,
+            (_) => _autoScroll(),
+          );
+        },
+        child: BlocSelector<WorldstateCubit, SolsystemState, List<News>?>(
+          selector: (state) {
+            return switch (state) {
+              WorldstateSuccess() => state.worldstate.news,
+              _ => null,
+            };
+          },
+          builder: (context, news) {
+            if (news == null) return const Center(child: WarframeSpinner());
 
-              _timer = Timer.periodic(
-                _autoScrollDuration,
-                (_) => _autoScroll(),
-              );
-            },
-            child: CarouselView(
+            return CarouselView(
               controller: _controller,
               itemSnapping: true,
               itemExtent: itemExtent,
@@ -107,6 +120,7 @@ class __NewsCarouselViewState extends State<_NewsCarouselView> {
                 borderRadius: BorderRadius.circular(6),
               ),
               children: news
+                  .take(_maxItems)
                   .map(
                     (n) => AppCard(
                       padding: EdgeInsets.zero,
@@ -115,10 +129,10 @@ class __NewsCarouselViewState extends State<_NewsCarouselView> {
                     ),
                   )
                   .toList(),
-            ),
-          ),
-        );
-      },
+            );
+          },
+        ),
+      ),
     );
   }
 

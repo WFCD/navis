@@ -9,13 +9,31 @@ part 'user_settings_state.dart';
 class UserSettingsCubit extends Cubit<UserSettingsState> {
   UserSettingsCubit(UserSettings settings)
       : _settings = settings,
-        super(UserSettingsInitial()) {
-    _initSettings();
-  }
+        super(
+          UserSettingsSuccess(
+            username: settings.username,
+            language: settings.language,
+            themeMode: settings.theme,
+            isOptOut: settings.isOptOut,
+            isFirstTime: settings.isFirstTime,
+            toggles: <String, bool>{
+              for (final topic in Topics.topics) ...{
+                topic.name: settings.getToggle(topic.name),
+              },
+            },
+          ),
+        );
 
   final UserSettings _settings;
 
+  void updateUsername(String? username) {
+    _settings.username = username;
+    emit((state as UserSettingsSuccess).copyWith(username: _settings.username));
+  }
+
   void updateLanguage(Locale language) {
+    if (_settings.language == language) return;
+
     _settings.language = language;
     emit((state as UserSettingsSuccess).copyWith(language: _settings.language));
   }
@@ -38,21 +56,5 @@ class UserSettingsCubit extends Cubit<UserSettingsState> {
     toggles[key] = _settings.getToggle(key);
 
     emit(settings.copyWith(toggles: toggles));
-  }
-
-  void _initSettings() {
-    final settings = UserSettingsSuccess(
-      language: _settings.language,
-      themeMode: _settings.theme,
-      isOptOut: _settings.isOptOut,
-      isFirstTime: _settings.isFirstTime,
-      toggles: <String, bool>{
-        for (final topic in Topics.topics) ...{
-          topic.name: _settings.getToggle(topic.name),
-        },
-      },
-    );
-
-    emit(settings);
   }
 }

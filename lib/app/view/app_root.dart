@@ -76,36 +76,16 @@ class _NavisAppState extends State<NavisApp> with WidgetsBindingObserver {
     Locale? locale,
     Iterable<Locale> supportedLocales,
   ) {
-    const defaultLocale = Locale('en');
-    Locale? newLocale;
-
+    var newLocale = const Locale('en');
     for (final supportedLocale in supportedLocales) {
       if (locale?.languageCode == supportedLocale.languageCode) {
         newLocale = supportedLocale;
       }
     }
 
-    newLocale ??= defaultLocale;
-
-    final userSettingsCubit = context.read<UserSettingsCubit>();
-    final settings = userSettingsCubit.state;
-    final language = switch (settings) {
-      UserSettingsSuccess() => settings.language,
-      _ => defaultLocale
-    };
-
-    if (language != newLocale) {
-      userSettingsCubit.updateLanguage(newLocale);
-    }
+    context.read<UserSettingsCubit>().updateLanguage(newLocale);
 
     return newLocale;
-  }
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-
-    BlocProvider.of<WorldstateCubit>(context).fetchWorldstate();
   }
 
   @override

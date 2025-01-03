@@ -10,4 +10,7 @@ class SettingsKeys {
 
   /// The key where the user's set ThemeMode is stored as a String.
   static const String theme = 'theme';
+
+  /// Username key
+  static const String username = 'username';
 }
