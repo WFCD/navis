@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:developer' as developer;
 import 'dart:io';
 
@@ -7,11 +8,14 @@ import 'package:warframestat_client/warframestat_client.dart';
 import 'package:warframestat_repository/hive_registrar.g.dart';
 import 'package:warframestat_repository/src/arsenal_database.dart';
 import 'package:warframestat_repository/src/cache_client.dart';
+import 'package:warframestat_repository/src/models/regions.dart';
 import 'package:warframestat_repository/src/utils/utils.dart';
 
 ///
 const userAgent = 'navis';
 const _name = 'WarframestatRepository';
+
+typedef CraigRegion = ({List<CraigNode> nodes, List<CraigJunction> junctions});
 
 /// {@template warframestat_repository}
 /// Entry point for Warframestatus endpoints used in Cephalon Navis
@@ -115,11 +119,13 @@ class WarframestatRepository {
   }
 
   Future<void> updateArsenalItems({bool update = false}) async {
-    final lastUpdate = await _database.lastUpdate();
-    final needsUpdate = lastUpdate == null ||
-        lastUpdate.difference(DateTime.timestamp()) > const Duration(days: 7) ||
-        update;
+    const stallTime = Duration(days: 7);
 
+    final lastUpdate = await _database.lastUpdate();
+    final lastUpdateElapsed =
+        lastUpdate?.difference(DateTime.timestamp()) ?? stallTime;
+
+    final needsUpdate = lastUpdateElapsed >= stallTime || update;
     if (!needsUpdate) return;
 
     final client = WarframeItemsClient(
@@ -138,17 +144,32 @@ class WarframestatRepository {
   }
 
   Future<List<MasteryProgress>> syncXpInfo(String username) async {
-    final profileClient = ProfileClient(
-      username: username,
-      client: _client,
-      // ua: userAgent,
-      language: language,
-    );
-
     developer.log('syncing xp info', name: _name);
-    final xpInfo = await profileClient.fetchXpInfo();
+
+    // Share the same catch as profile, XP info doesn't change often and this
+    // keeps the profile hydrated
+    final xpInfo = (await fetchProfile(username)).loadout.xpInfo;
     await _database.updateXp(xpInfo);
 
     return _database.fetchArsenal();
+  }
+
+  Future<CraigRegion> fetchRegions() async {
+    final client = await _cacheClient(const Duration(days: 30));
+    final res =
+        await client.get(Uri.parse('https://cdn.truemaster.app/regions.json'));
+
+    final json = jsonDecode(res.body) as Map<String, dynamic>;
+    final nodes = _jsonMapList(json['nodes'] as List<dynamic>);
+    final junctions = _jsonMapList(json['junctions'] as List<dynamic>);
+
+    return (
+      nodes: nodes.map(CraigNode.fromJson).toList(),
+      junctions: junctions.map(CraigJunction.fromJson).toList()
+    );
+  }
+
+  List<Map<String, dynamic>> _jsonMapList(List<dynamic> list) {
+    return List<Map<String, dynamic>>.from(list);
   }
 }

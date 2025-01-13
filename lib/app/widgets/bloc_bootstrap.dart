@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:navis/arsenal/cubit/arsenal_cubit.dart';
+import 'package:navis/profile/cubit/arsenal_cubit.dart';
 import 'package:navis/settings/settings.dart';
 import 'package:navis/worldstate/worldstate.dart';
 import 'package:warframestat_repository/warframestat_repository.dart';

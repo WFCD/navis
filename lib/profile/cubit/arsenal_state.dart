@@ -16,17 +16,6 @@ final class ArsenalSuccess extends ArsenalState {
 
   final List<MasteryProgress> xpInfo;
 
-  List<MasteryProgress> get inProgress {
-    return xpInfo.where((i) => i.rank < i.maxRank).toList()
-      ..sort((a, b) {
-        if (a.rank == 0 && b.rank == 0) return 0;
-        if (a.rank == 0) return 1;
-        if (b.rank == 0) return -1;
-
-        return a.rank.compareTo(b.rank);
-      });
-  }
-
   List<MasteryProgress> get warframes =>
       xpInfo.whereNot((i) => i.item.type.isWeapon).toList();
 

@@ -77,11 +77,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
   }
 
   EventTransformer<SearchCodex> _waitForUser() {
-    return (event, mapper) {
-      return event
-          .debounceTime(kThemeAnimationDuration)
-          .distinct()
-          .flatMap(mapper);
-    };
+    return (event, mapper) =>
+        event.debounceTime(kThemeAnimationDuration).distinct().flatMap(mapper);
   }
 }

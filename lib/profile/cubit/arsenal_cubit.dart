@@ -1,6 +1,5 @@
 import 'package:collection/collection.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter/material.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:warframestat_client/warframestat_client.dart';
@@ -22,9 +21,19 @@ class ArsenalCubit extends HydratedCubit<ArsenalState> {
 
       _xpInfo = await repository.syncXpInfo(username);
 
+      _xpInfo.sort((a, b) {
+        if (a.rank == 0 && b.rank == 0) return 0;
+        if (a.rank == 0) return 1;
+        if (b.rank == 0) return -1;
+
+        return a.rank.compareTo(b.rank);
+      });
+
       emit(ArsenalSuccess(_xpInfo));
+
+      // Capture all exceptions and pass them to sentry
+      // ignore: avoid_catches_without_on_clauses
     } catch (e, stack) {
-      debugPrint(e.toString());
       emit(ArsenalFailure());
 
       await Sentry.captureException(e, stackTrace: stack);
@@ -33,8 +42,8 @@ class ArsenalCubit extends HydratedCubit<ArsenalState> {
 
   @override
   ArsenalState? fromJson(Map<String, dynamic> json) {
-    final inProgess =
-        List<Map<String, dynamic>>.from(json['inProgress'] as List).map(
+    final progressList = json['inProgress'] as List;
+    final inProgess = List<Map<String, dynamic>>.from(progressList).map(
       (m) => MasteryProgress(
         item: MinimalItem.fromJson(m['item'] as Map<String, dynamic>),
         xp: m['xp'] as int,
@@ -50,7 +59,7 @@ class ArsenalCubit extends HydratedCubit<ArsenalState> {
     if (state is! ArsenalSuccess) return null;
 
     return {
-      'inProgress': state.inProgress
+      'inProgress': state.xpInfo
           .map(
             (p) => {
               'item': p.item.toJson(),

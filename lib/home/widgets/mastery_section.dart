@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:navis/arsenal/arsenal.dart';
 import 'package:navis/home/widgets/section.dart';
+import 'package:navis/profile/profile.dart';
 import 'package:navis_ui/navis_ui.dart';
 
 class MasteryInProgressSection extends StatelessWidget {
@@ -14,13 +14,6 @@ class MasteryInProgressSection extends StatelessWidget {
       content: BlocBuilder<ArsenalCubit, ArsenalState>(
         builder: (context, state) {
           const padding = EdgeInsets.symmetric(vertical: 16);
-
-          if (state is ArsenalUpdating) {
-            return const Padding(
-              padding: padding,
-              child: Text('Updating XP info'),
-            );
-          }
 
           if (state is ArsenalFailure) {
             return const Padding(
@@ -38,7 +31,7 @@ class MasteryInProgressSection extends StatelessWidget {
 
           return Column(
             children: [
-              for (final i in state.inProgress.take(5))
+              for (final i in state.xpInfo.take(5))
                 ArsenalItemWidget(arsenalItem: i),
             ],
           );
