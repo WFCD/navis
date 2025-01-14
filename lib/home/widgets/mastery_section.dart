@@ -2,10 +2,32 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/home/widgets/section.dart';
 import 'package:navis/profile/profile.dart';
+import 'package:navis/settings/cubit/user_settings_cubit.dart';
 import 'package:navis_ui/navis_ui.dart';
 
 class MasteryInProgressSection extends StatelessWidget {
   const MasteryInProgressSection({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocSelector<UserSettingsCubit, UserSettingsState, String?>(
+      selector: (state) {
+        return switch (state) {
+          UserSettingsSuccess() => state.username,
+          _ => null
+        };
+      },
+      builder: (context, username) {
+        if (username == null) return const SizedBox.shrink();
+
+        return const MasteryInProgressContent();
+      },
+    );
+  }
+}
+
+class MasteryInProgressContent extends StatelessWidget {
+  const MasteryInProgressContent({super.key});
 
   @override
   Widget build(BuildContext context) {

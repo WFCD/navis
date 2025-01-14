@@ -7,7 +7,9 @@ import 'package:navis_ui/navis_ui.dart';
 import 'package:warframestat_repository/warframestat_repository.dart';
 
 class CodexSearchPage extends StatelessWidget {
-  const CodexSearchPage({super.key});
+  const CodexSearchPage({super.key, required this.query});
+
+  final String query;
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +19,7 @@ class CodexSearchPage extends StatelessWidget {
       child: Scaffold(
         body: SafeArea(
           child: BlocProvider(
-            create: (_) => SearchBloc(repo),
+            create: (_) => SearchBloc(repo)..add(SearchCodex(query)),
             child: NestedScrollView(
               floatHeaderSlivers: true,
               headerSliverBuilder: (context, innerBoxIsScrolled) {
@@ -35,7 +37,7 @@ class CodexSearchPage extends StatelessWidget {
                       shape: const StadiumBorder(),
                       backgroundColor: Colors.transparent,
                       forceElevated: innerBoxIsScrolled,
-                      title: const CodexSearchBar(),
+                      title: CodexSearchBar(hintText: query),
                     ),
                   ),
                 ];

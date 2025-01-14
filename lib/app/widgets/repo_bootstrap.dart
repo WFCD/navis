@@ -12,11 +12,13 @@ class RepositoryBootstrap extends StatefulWidget {
     super.key,
     required this.settings,
     required this.cache,
+    required this.routeObserver,
     required this.child,
   });
 
   final UserSettings settings;
   final Box<CachedItem> cache;
+  final RouteObserver<ModalRoute<void>> routeObserver;
   final Widget child;
 
   @override
@@ -45,6 +47,7 @@ class _RepositoryBootstrapState extends State<RepositoryBootstrap> {
         RepositoryProvider.value(value: widget.settings),
         RepositoryProvider.value(value: _warframestatRepository),
         RepositoryProvider.value(value: _notifications),
+        RepositoryProvider.value(value: widget.routeObserver),
       ],
       child: widget.child,
     );

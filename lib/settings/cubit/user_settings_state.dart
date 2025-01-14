@@ -35,7 +35,7 @@ final class UserSettingsSuccess extends UserSettingsState {
     Map<String, bool>? toggles,
   }) {
     return UserSettingsSuccess(
-      username: username,
+      username: username ?? this.username,
       language: language ?? this.language,
       themeMode: themeMode ?? this.themeMode,
       isOptOut: isOptOut ?? this.isOptOut,

@@ -6,10 +6,12 @@ import 'package:sentry_flutter/sentry_flutter.dart';
 class AppRouter {
   AppRouter({
     required GlobalKey<NavigatorState> navigatorKey,
+    required RouteObserver<ModalRoute<void>> observer,
     bool debugLogDiagnostics = false,
   }) {
     _goRouter = _routes(
       navigatorKey,
+      observer,
       debugLogDiagnostics,
     );
   }
@@ -20,12 +22,13 @@ class AppRouter {
 
   GoRouter _routes(
     GlobalKey<NavigatorState> navigatorKey,
+    RouteObserver<ModalRoute<void>> observer,
     bool debugLogDiagnostics,
   ) {
     return GoRouter(
       navigatorKey: navigatorKey,
       initialLocation: const OverviewPageRouteData().location,
-      observers: [SentryNavigatorObserver()],
+      observers: [observer, SentryNavigatorObserver()],
       debugLogDiagnostics: debugLogDiagnostics,
       routes: $appRoutes,
     );

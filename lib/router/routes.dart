@@ -95,7 +95,7 @@ class OverviewPageRouteData extends GoRouteData {
 
   @override
   Widget build(BuildContext context, GoRouterState state) {
-    return const SafeArea(child: HomePage());
+    return const HomePage();
   }
 }
 
@@ -206,11 +206,13 @@ class FishPageRoute extends GoRouteData {
 @immutable
 @TypedGoRoute<CodexPageRoute>(name: 'codex', path: '/codex')
 class CodexPageRoute extends GoRouteData {
-  const CodexPageRoute();
+  const CodexPageRoute(this.$extra);
+
+  final String $extra;
 
   @override
   Widget build(BuildContext context, GoRouterState state) {
-    return const CodexSearchPage();
+    return CodexSearchPage(query: $extra);
   }
 }
 
