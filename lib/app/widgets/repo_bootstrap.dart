@@ -37,7 +37,7 @@ class _RepositoryBootstrapState extends State<RepositoryBootstrap> {
     _warframestatRepository = WarframestatRepository(
       client: SentryHttpClient(),
       database: ArsenalDatabase(driftDatabase(name: 'arsenal')),
-    );
+    )..updateArsenalItems();
   }
 
   @override
