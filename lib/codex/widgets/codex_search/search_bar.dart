@@ -124,8 +124,6 @@ class _CodexSearchBarState extends State<CodexSearchBar> {
               return SearchBar(
                 focusNode: _focusNode,
                 controller: controller,
-                onChanged: _search,
-                onSubmitted: _onSubmitted,
                 onTap: _controller.openView,
                 onTapOutside: (_) => _focusNode.unfocus(),
                 hintText: widget.hintText ?? l10n.codexHint,
@@ -134,7 +132,7 @@ class _CodexSearchBarState extends State<CodexSearchBar> {
                         icon: const Icon(Icons.arrow_back),
                         onPressed: () => Navigator.pop(context),
                       )
-                    : null,
+                    : const Icon(Icons.search_rounded),
                 trailing: Navigator.of(context).canPop()
                     ? [
                         if (state is CodexSuccessfulSearch)
@@ -157,7 +155,7 @@ class _CodexSearchBarState extends State<CodexSearchBar> {
 
   @override
   void dispose() {
-    // let the parent widget dispose of resources
+    // Let the parent widget dispose of resources if they are provided
     if (widget.focusNode == null) _focusNode.dispose();
     if (widget.controller == null) _controller.dispose();
     super.dispose();
