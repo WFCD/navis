@@ -51,7 +51,7 @@ class _UsernameInputState extends State<UsernameInput> {
     ScaffoldMessenger.of(context)
         .showSnackBar(SnackBar(content: Text(context.l10n.syncingInfoText)));
 
-    BlocProvider.of<ArsenalCubit>(context).updateArsenal(username);
+    BlocProvider.of<ArsenalCubit>(context).syncXpInfo(username);
     Navigator.pop(context);
   }
 

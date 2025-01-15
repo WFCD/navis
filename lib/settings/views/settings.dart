@@ -5,7 +5,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_settings_ui/flutter_settings_ui.dart';
 import 'package:intl/intl.dart';
 import 'package:navis/l10n/l10n.dart';
-import 'package:navis/profile/cubit/arsenal_cubit.dart';
 import 'package:navis/settings/settings.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:notification_repository/notification_repository.dart';
@@ -41,21 +40,6 @@ class _SettingsView extends StatelessWidget {
 
   void _openDialog(BuildContext context, List<SimpleTopics> filters) {
     FilterDialog.showFilters(context, filters);
-  }
-
-  Future<void> _forceUpdateManifest(
-    BuildContext context,
-    String? username,
-  ) async {
-    if (!context.mounted) return;
-    if (username == null) return;
-
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text(context.l10n.updatingManifestText)),
-    );
-
-    await BlocProvider.of<ArsenalCubit>(context)
-        .updateArsenal(username, update: true);
   }
 
   @override
@@ -100,12 +84,6 @@ class _SettingsView extends StatelessWidget {
               title: Text(username ?? l10n.enterUsernameHintText),
               // TODO(Orn): find a way to show mastery progress
               onPressed: UsernameInput.show,
-            ),
-            SettingsTile(
-              title: Text(l10n.updateManifestTitle),
-              description: Text(l10n.updateManifestSubtitle),
-              enabled: username != null,
-              onPressed: (context) => _forceUpdateManifest(context, username),
             ),
           ],
         ),

@@ -44,7 +44,7 @@ class _BlocBootstrapState extends State<BlocBootstrap> {
     };
 
     if (username != null) {
-      _arsenalCubit.updateArsenal(username);
+      _arsenalCubit.syncXpInfo(username);
     }
   }
 
