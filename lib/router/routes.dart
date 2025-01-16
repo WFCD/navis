@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
+import 'package:matomo_tracker/matomo_tracker.dart';
 import 'package:navis/app/app.dart';
 import 'package:navis/codex/views/codex_search_view.dart';
 import 'package:navis/explore/views/fish_view.dart';
@@ -66,7 +67,10 @@ class AppShell extends StatefulShellRouteData {
     StatefulNavigationShell navigationShell,
     List<Widget> children,
   ) {
-    return AppView(navigationShell: navigationShell, children: children);
+    return AppView(
+      navigationShell: navigationShell,
+      children: children.map((c) => TraceableWidget(child: c)).toList(),
+    );
   }
 }
 
@@ -139,7 +143,7 @@ class WorldEventPageRoute extends GoRouteData {
 
   @override
   Widget build(BuildContext context, GoRouterState state) {
-    return EventInformation(event: $extra);
+    return TraceableWidget(child: EventInformation(event: $extra));
   }
 }
 
@@ -152,7 +156,7 @@ class SyndicatePageRoute extends GoRouteData {
 
   @override
   Widget build(BuildContext context, GoRouterState state) {
-    return BountiesPage(syndicate: $extra);
+    return TraceableWidget(child: BountiesPage(syndicate: $extra));
   }
 }
 
@@ -165,7 +169,7 @@ class NightwavePageRoute extends GoRouteData {
 
   @override
   Widget build(BuildContext context, GoRouterState state) {
-    return NightwavesPage(nightwave: $extra);
+    return TraceableWidget(child: NightwavesPage(nightwave: $extra));
   }
 }
 
@@ -176,7 +180,7 @@ class SynthTargetsPageRoute extends GoRouteData {
 
   @override
   Widget build(BuildContext context, GoRouterState state) {
-    return const SynthTargetsView();
+    return const TraceableWidget(child: SynthTargetsView());
   }
 }
 
@@ -189,7 +193,7 @@ class TraderPageRoute extends GoRouteData {
 
   @override
   Widget build(BuildContext context, GoRouterState state) {
-    return BaroInventory(inventory: $extra);
+    return TraceableWidget(child: BaroInventory(inventory: $extra));
   }
 }
 
@@ -200,7 +204,7 @@ class FishPageRoute extends GoRouteData {
 
   @override
   Widget build(BuildContext context, GoRouterState state) {
-    return const FishPage();
+    return const TraceableWidget(child: FishPage());
   }
 }
 
@@ -213,7 +217,7 @@ class CodexPageRoute extends GoRouteData {
 
   @override
   Widget build(BuildContext context, GoRouterState state) {
-    return CodexSearchPage(query: $extra);
+    return TraceableWidget(child: CodexSearchPage(query: $extra));
   }
 }
 
@@ -224,7 +228,7 @@ class NewsPageRoute extends GoRouteData {
 
   @override
   Widget build(BuildContext context, GoRouterState state) {
-    return const OrbiterNewsPage();
+    return const TraceableWidget(child: OrbiterNewsPage());
   }
 }
 
@@ -235,6 +239,6 @@ class MasteryPageRoute extends GoRouteData {
 
   @override
   Widget build(BuildContext context, GoRouterState state) {
-    return const MasteryPage();
+    return const TraceableWidget(child: MasteryPage());
   }
 }

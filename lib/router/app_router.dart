@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:matomo_tracker/matomo_tracker.dart';
 import 'package:navis/router/routes.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
@@ -28,7 +29,7 @@ class AppRouter {
     return GoRouter(
       navigatorKey: navigatorKey,
       initialLocation: const OverviewPageRouteData().location,
-      observers: [observer, SentryNavigatorObserver()],
+      observers: [observer, SentryNavigatorObserver(), matomoObserver],
       debugLogDiagnostics: debugLogDiagnostics,
       routes: $appRoutes,
     );
