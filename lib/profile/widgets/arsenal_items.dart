@@ -11,8 +11,7 @@ class ArsenalItems extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView.builder(
       itemCount: items.length,
-      itemBuilder: (context, index) =>
-          ArsenalItemWidget(arsenalItem: items[index]),
+      itemBuilder: (context, index) => ArsenalItemWidget(item: items[index]),
     );
   }
 }
