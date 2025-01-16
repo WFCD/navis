@@ -17,7 +17,7 @@ final class ArsenalSuccess extends ArsenalState {
   final List<MasteryProgress> xpInfo;
 
   List<MasteryProgress> get warframes =>
-      xpInfo.whereNot((i) => i.item.type == ItemType.warframes).toList();
+      xpInfo.where((i) => i.item.type == ItemType.warframes).toList();
 
   List<MasteryProgress> get weapons =>
       xpInfo.where((i) => i.item.type.isWeapon).toList();
