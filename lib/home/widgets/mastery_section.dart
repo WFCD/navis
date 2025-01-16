@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/home/widgets/section.dart';
 import 'package:navis/profile/profile.dart';
+import 'package:navis/router/routes.dart';
 import 'package:navis/settings/cubit/user_settings_cubit.dart';
 import 'package:navis_ui/navis_ui.dart';
 
@@ -32,6 +33,7 @@ class MasteryInProgressContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Section(
+      onTap: () => const MasteryPageRoute().push<void>(context),
       title: const Text('Mastery in progress'),
       content: BlocBuilder<ArsenalCubit, ArsenalState>(
         builder: (context, state) {

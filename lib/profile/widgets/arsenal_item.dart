@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:navis/l10n/l10n.dart';
 import 'package:navis/utils/item_extensions.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:warframestat_repository/warframestat_repository.dart';
@@ -18,18 +19,16 @@ class ArsenalItemWidget extends StatelessWidget {
         leading: CachedNetworkImage(
           imageUrl: arsenalItem.item.imageUrl,
           width: leadingSize,
-          errorWidget: (context, url, error) {
-            return const Icon(
-              WarframeSymbols.menu_LotusEmblem,
-              size: leadingSize,
-            );
-          },
+          errorWidget: (context, url, error) => const Icon(
+            WarframeSymbols.menu_LotusEmblem,
+            size: leadingSize,
+          ),
         ),
         title: Text(arsenalItem.item.name),
         subtitle: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Rank ${arsenalItem.rank}'),
+            Text(context.l10n.itemRankSubtitle(arsenalItem.rank)),
             LinearProgressIndicator(
               value: arsenalItem.rank / arsenalItem.maxRank,
             ),

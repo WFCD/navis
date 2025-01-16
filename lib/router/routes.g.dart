@@ -16,6 +16,7 @@ List<RouteBase> get $appRoutes => [
       $fishPageRoute,
       $codexPageRoute,
       $newsPageRoute,
+      $masteryPageRoute,
     ];
 
 RouteBase get $appShell => StatefulShellRouteData.$route(
@@ -333,6 +334,30 @@ extension $NewsPageRouteExtension on NewsPageRoute {
 
   String get location => GoRouteData.$location(
         '/news',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $masteryPageRoute => GoRouteData.$route(
+      path: '/mastery',
+      name: 'mastery',
+      factory: $MasteryPageRouteExtension._fromState,
+    );
+
+extension $MasteryPageRouteExtension on MasteryPageRoute {
+  static MasteryPageRoute _fromState(GoRouterState state) =>
+      const MasteryPageRoute();
+
+  String get location => GoRouteData.$location(
+        '/mastery',
       );
 
   void go(BuildContext context) => context.go(location);

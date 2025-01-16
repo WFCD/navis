@@ -5,6 +5,7 @@ import 'package:navis/codex/views/codex_search_view.dart';
 import 'package:navis/explore/views/fish_view.dart';
 import 'package:navis/explore/views/main_view.dart';
 import 'package:navis/home/home.dart';
+import 'package:navis/profile/views/mastery_page.dart';
 import 'package:navis/settings/views/settings.dart';
 import 'package:navis/synthtargets/synthtargets.dart';
 import 'package:navis/worldstate/worldstate.dart';
@@ -224,5 +225,16 @@ class NewsPageRoute extends GoRouteData {
   @override
   Widget build(BuildContext context, GoRouterState state) {
     return const OrbiterNewsPage();
+  }
+}
+
+@immutable
+@TypedGoRoute<MasteryPageRoute>(name: 'mastery', path: '/mastery')
+class MasteryPageRoute extends GoRouteData {
+  const MasteryPageRoute();
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) {
+    return const MasteryPage();
   }
 }
