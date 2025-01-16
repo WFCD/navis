@@ -31,7 +31,7 @@ class ArsenalItemWidget extends StatelessWidget {
         subtitle: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(context.l10n.itemRankSubtitle(item.rank)),
+            if (item.rank != 0) Text(context.l10n.itemRankSubtitle(item.rank)),
             if (item.rank != item.maxRank && item.rank != 0)
               LinearProgressIndicator(value: item.rank / item.maxRank),
           ],
