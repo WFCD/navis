@@ -6,32 +6,34 @@ import 'package:navis_ui/navis_ui.dart';
 import 'package:warframestat_repository/warframestat_repository.dart';
 
 class ArsenalItemWidget extends StatelessWidget {
-  const ArsenalItemWidget({super.key, required this.arsenalItem});
+  const ArsenalItemWidget({super.key, required this.item});
 
-  final MasteryProgress arsenalItem;
+  final MasteryProgress item;
 
   @override
   Widget build(BuildContext context) {
     const leadingSize = 50.0;
 
     return AppCard(
+      color: item.rank == item.maxRank
+          ? Theme.of(context).colorScheme.secondaryContainer
+          : null,
       child: ListTile(
         leading: CachedNetworkImage(
-          imageUrl: arsenalItem.item.imageUrl,
+          imageUrl: item.item.imageUrl,
           width: leadingSize,
           errorWidget: (context, url, error) => const Icon(
             WarframeSymbols.menu_LotusEmblem,
             size: leadingSize,
           ),
         ),
-        title: Text(arsenalItem.item.name),
+        title: Text(item.item.name),
         subtitle: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(context.l10n.itemRankSubtitle(arsenalItem.rank)),
-            LinearProgressIndicator(
-              value: arsenalItem.rank / arsenalItem.maxRank,
-            ),
+            Text(context.l10n.itemRankSubtitle(item.rank)),
+            if (item.rank != item.maxRank && item.rank != 0)
+              LinearProgressIndicator(value: item.rank / item.maxRank),
           ],
         ),
       ),
