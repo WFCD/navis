@@ -14,8 +14,11 @@ class ArsenalCubit extends HydratedCubit<ArsenalState> {
   late List<MasteryProgress> _xpInfo;
 
   Future<void> syncXpInfo(String username) async {
+    // Only update the state when it's not already loaded so the current stays
+    // in view until the new one is loaded
+    if (state is! ArsenalSuccess) emit(ArsenalUpdating());
+
     try {
-      emit(ArsenalUpdating());
       _xpInfo = await repository.syncXpInfo(username);
 
       _xpInfo.sort((a, b) {
