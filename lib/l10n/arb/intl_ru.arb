@@ -1037,25 +1037,25 @@
     "type": "text",
     "placeholder": {}
   },
-  "fishScales": "Scales",
+  "fishScales": "Рыбья чешуя",
   "@fishScales": {
     "description": "Displays how many scales can be earned with the given fish size",
     "type": "text",
     "placeholder": {}
   },
-  "fishScrap": "Scraps",
+  "fishScrap": "Хлам",
   "@fishScrap": {
     "description": "Displays how many scraps can be earned with the given fish size",
     "type": "text",
     "placeholder": {}
   },
-  "fishAny": "Any",
+  "fishAny": "Любая",
   "@fishAny": {
     "description": "Displayed when a fish can be caught by any spear",
     "type": "text",
     "placeholder": {}
   },
-  "dropChance": "Drop chance {chance}%",
+  "dropChance": "Шанс выпадения {chance}%",
   "@dropChance": {
     "description": "Drop chance percentage",
     "type": "text",
@@ -1075,43 +1075,43 @@
     "type": "text",
     "placeholder": {}
   },
-  "impactDamageTitle": "Impact",
+  "impactDamageTitle": "Удар",
   "@impactDamageTitle": {
     "description": "Codex Weapon damage type title",
     "type": "text",
     "placeholder": {}
   },
-  "punctureDamageTitle": "Puncture",
+  "punctureDamageTitle": "Пронзание",
   "@punctureDamageTitle": {
     "description": "Codex Weapon damage type title",
     "type": "text",
     "placeholder": {}
   },
-  "slashDamageTitle": "Slash",
+  "slashDamageTitle": "Разрез",
   "@slashDamageTitle": {
     "description": "Codex Weapon damage type title",
     "type": "text",
     "placeholder": {}
   },
-  "heatDamageTitle": "Heat",
+  "heatDamageTitle": "Огонь",
   "@heatDamageTitle": {
     "description": "Codex Weapon damage type title",
     "type": "text",
     "placeholder": {}
   },
-  "coldDamageTitle": "Cold",
+  "coldDamageTitle": "Холод",
   "@coldDamageTitle": {
     "description": "Codex Weapon damage type title",
     "type": "text",
     "placeholder": {}
   },
-  "electricityDamageTitle": "Electricity",
+  "electricityDamageTitle": "Электричество",
   "@electricityDamageTitle": {
     "description": "Codex Weapon damage type title",
     "type": "text",
     "placeholder": {}
   },
-  "toxinDamageTitle": "Toxin",
+  "toxinDamageTitle": "Токсин",
   "@toxinDamageTitle": {
     "description": "Codex Weapon damage type title",
     "type": "text",
@@ -1123,19 +1123,19 @@
     "type": "text",
     "placeholder": {}
   },
-  "radiationDamageTitle": "Radiation",
+  "radiationDamageTitle": "Радиация",
   "@radiationDamageTitle": {
     "description": "Codex Weapon damage type title",
     "type": "text",
     "placeholder": {}
   },
-  "gasDamageTitle": "Gas",
+  "gasDamageTitle": "Газ",
   "@gasDamageTitle": {
     "description": "Codex Weapon damage type title",
     "type": "text",
     "placeholder": {}
   },
-  "magneticDamageTitle": "Magnetic",
+  "magneticDamageTitle": "Магнит",
   "@magneticDamageTitle": {
     "description": "Codex Weapon damage type title",
     "type": "text",
@@ -1147,7 +1147,7 @@
     "type": "text",
     "placeholder": {}
   },
-  "corrosiveDamageTitle": "Corrosive",
+  "corrosiveDamageTitle": "Коррозия",
   "@corrosiveDamageTitle": {
     "description": "Codex Weapon damage type title",
     "type": "text",
@@ -1159,7 +1159,7 @@
     "type": "text",
     "placeholder": {}
   },
-  "tauDamageTitle": "Tau",
+  "tauDamageTitle": "Тау",
   "@tauDamageTitle": {
     "description": "Codex Weapon damage type title",
     "type": "text",
