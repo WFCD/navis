@@ -437,7 +437,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "contributeTranslationsTitle": "Contribute Translations",
+  "contributeTranslationsTitle": "Внести вклад в перевод",
   "@contributeTranslationsTitle": {
     "description": "Title for contribute translations link",
     "type": "text",
@@ -811,7 +811,7 @@
       "rank": {}
     }
   },
-  "codexHint": "Search here...",
+  "codexHint": "Поиск здесь...",
   "@codexHint": {
     "description": "Codex description when a user enters the codex or when the search bar is empty",
     "type": "text",
