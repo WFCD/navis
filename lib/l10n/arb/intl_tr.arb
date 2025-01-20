@@ -269,13 +269,13 @@
     "type": "text",
     "placeholders": {}
   },
-  "sortieNotificationTitle": "Sortie",
+  "sortieNotificationTitle": "Sorti",
   "@sortieNotificationTitle": {
     "description": "Notification title for sorties",
     "type": "text",
     "placeholders": {}
   },
-  "sortieNotificationDescription": "Notifications for new sorties.",
+  "sortieNotificationDescription": "Yeni sorti bildirimleri.",
   "@sortieNotificationDescription": {
     "description": "description for sortie notification option",
     "type": "text",
@@ -823,19 +823,19 @@
     "type": "text",
     "placeholder": {}
   },
-  "codexVaultedLabel": "Vaulted",
+  "codexVaultedLabel": "Depolanan",
   "@codexVaultedLabel": {
     "description": "A label shown in codex items to detenote items that are vaulted",
     "type": "text",
     "placeholder": {}
   },
-  "exploreTitle": "Explore",
+  "exploreTitle": "Keşfet",
   "@exploreTitle": {
     "description": "Title for explore page",
     "type": "text",
     "placeholder": {}
   },
-  "constructionProgressTitle": "Construction Progress",
+  "constructionProgressTitle": "İnşaat Devam ediyor",
   "@constructionProgressTitle": {
     "description": "Title for invasion constrcution progress",
     "type": "text",
@@ -847,49 +847,49 @@
     "type": "text",
     "placeholder": {}
   },
-  "archonHuntTitle": "Archon Hunt",
+  "archonHuntTitle": "Archon Avı",
   "@archonHuntTitle": {
     "description": "Title for archon hunt notification toggle.",
     "type": "text",
     "placeholder": {}
   },
-  "archonHuntDescription": "Archon hunt reset notification.",
+  "archonHuntDescription": "Archon avı sıfırlanma bildirimi.",
   "@archonHuntDescription": {
     "description": "Description for archon hunt notification toggle.",
     "type": "text",
     "placeholder": {}
   },
-  "allFissuresButton": "All",
+  "allFissuresButton": "Tümü",
   "@allFissuresButton": {
     "description": "Button label for all fissures",
     "type": "text",
     "placeholder": {}
   },
-  "voidStormFissuresButton": "Void Storms",
+  "voidStormFissuresButton": "Void Fırtınaları",
   "@voidStormFissuresButton": {
     "description": "Button label for void storm fissures",
     "type": "text",
     "placeholder": {}
   },
-  "saleEndsTitle": "SALE ENDS",
+  "saleEndsTitle": "SATIŞ BİTER",
   "@saleEndsTitle": {
     "description": "Sale ends title for countdown timer",
     "type": "text",
     "placeholder": {}
   },
-  "salePriceTitle": "Sale price",
+  "salePriceTitle": "Satış fiyatı",
   "@salePriceTitle": {
     "description": "Displays the item's sale price for darvo sales",
     "type": "text",
     "placeholder": {}
   },
-  "originalPriceTitle": "Original Price",
+  "originalPriceTitle": "Orjinal Fiyat",
   "@originalPriceTitle": {
     "description": "Displays the item's original price for darvo sales",
     "type": "text",
     "placeholder": {}
   },
-  "discountTitle": "{discount}% OFF!",
+  "discountTitle": "% {discount} İNDİRİM!",
   "@discountTitle": {
     "description": "Displays the discount applied for a given darvo sale",
     "type": "text",
@@ -897,7 +897,7 @@
       "discount": {}
     }
   },
-  "inStockInformation": "Only {stock} left",
+  "inStockInformation": "Sadece {stock} adet kaldı",
   "@inStockInformation": {
     "description": "Displays the stock information for a darvo deal",
     "type": "text",
@@ -905,157 +905,157 @@
       "stock": {}
     }
   },
-  "outOfStockTitle": "OUT OF STOCK",
+  "outOfStockTitle": "STOKLAR TÜKENDİ",
   "@outOfStockTitle": {
     "description": "Tells the user when darvo is out of stock for the current sale",
     "type": "text",
     "placeholder": {}
   },
-  "duviriJoy": "Duviri Joy",
+  "duviriJoy": "Duviri Neşesi",
   "@duviriJoy": {
     "description": "Duviri joy state. If Duviri doesn't have a translatetion then only joy can be translated.",
     "type": "text",
     "placeholder": {}
   },
-  "duviriAnger": "Duviri Anger",
+  "duviriAnger": "Duviri Öfkesi",
   "@duviriAnger": {
     "description": "Duviri anger state. If Duviri doesn't have a translatetion then only joy can be translated.",
     "type": "text",
     "placeholder": {}
   },
-  "duviriEnvy": "Duviri Envy",
+  "duviriEnvy": "Duviri Kıskanması",
   "@duviriEnvy": {
     "description": "Duviri envy state. If Duviri doesn't have a translatetion then only joy can be translated.",
     "type": "text",
     "placeholder": {}
   },
-  "duviriSorrow": "Duviri Sorrow",
+  "duviriSorrow": "Duviri Üzüntüsü",
   "@duviriSorrow": {
     "description": "Duviri sorrow state. If Duviri doesn't have a translatetion then only joy can be translated.",
     "type": "text",
     "placeholder": {}
   },
-  "duviriFear": "Duviri Fear",
+  "duviriFear": "Duviri Korkusu",
   "@duviriFear": {
     "description": "Duviri Fear state. If Duviri doesn't have a translatetion then only joy can be translated.",
     "type": "text",
     "placeholder": {}
   },
-  "mapTitle": "Maps",
+  "mapTitle": "Haritalar",
   "@mapTitle": {
     "description": "Map title",
     "type": "text",
     "placeholder": {}
   },
-  "mapDescription": "See region maps",
+  "mapDescription": "Bölge haritalarını gör",
   "@mapDescription": {
     "description": "Map card description",
     "type": "text",
     "placeholder": {}
   },
-  "fishTitle": "Fish",
+  "fishTitle": "Balık",
   "@fishTitle": {
     "description": "Fish title",
     "type": "text",
     "placeholder": {}
   },
-  "fishDescription": "See fish information by region",
+  "fishDescription": "Bölgeye göre balık bilgilerini gör",
   "@fishDescription": {
     "description": "fish card description",
     "type": "text",
     "placeholder": {}
   },
-  "fishName": "Name",
+  "fishName": "Ad",
   "@fishName": {
     "description": "Display a fish name along side it",
     "type": "text",
     "placeholder": {}
   },
-  "fishTime": "Time",
+  "fishTime": "Zaman",
   "@fishTime": {
     "description": "Display time a day a fish can be caught in",
     "type": "text",
     "placeholder": {}
   },
-  "fishSpear": "Spear",
+  "fishSpear": "Mızrak",
   "@fishSpear": {
     "description": "Display the type of spear used to catch fish",
     "type": "text",
     "placeholder": {}
   },
-  "fishRarity": "Rarity",
+  "fishRarity": "Nadirlik",
   "@fishRarity": {
     "description": "Display rarity of a given fish",
     "type": "text",
     "placeholder": {}
   },
-  "fishBait": "Bait",
+  "fishBait": "Yem",
   "@fishBait": {
     "description": "Display type of bait needed to catch fish",
     "type": "text",
     "placeholder": {}
   },
-  "fishStanding": "Standing",
+  "fishStanding": "Durum",
   "@fishStanding": {
     "description": "Display standing earned with fish",
     "type": "text",
     "placeholder": {}
   },
-  "fishUnique": "Unique",
+  "fishUnique": "Eşsiz",
   "@fishUnique": {
     "description": "Display a unique resources earned by given fish",
     "type": "text",
     "placeholder": {}
   },
-  "fishBladder": "Bladders",
+  "fishBladder": "Mesaneler",
   "@fishBladder": {
     "description": "Displays how many bladders can be earned with the given fish size",
     "type": "text",
     "placeholder": {}
   },
-  "fishGills": "Gills",
+  "fishGills": "Solungaçlar",
   "@fishGills": {
     "description": "Displays how many gills can be earned with the given fish size",
     "type": "text",
     "placeholder": {}
   },
-  "fishTumors": "Tumors",
+  "fishTumors": "Tümörler",
   "@fishTumors": {
     "description": "Displays how many tumors can be earned with the given fish size",
     "type": "text",
     "placeholder": {}
   },
-  "fishMeat": "Meats",
+  "fishMeat": "Etler",
   "@fishMeat": {
     "description": "Displays how many meat can be earned with the given fish size",
     "type": "text",
     "placeholder": {}
   },
-  "fishOil": "Oils",
+  "fishOil": "Yağlar",
   "@fishOil": {
     "description": "Displays how many oils can be earned with the given fish size",
     "type": "text",
     "placeholder": {}
   },
-  "fishScales": "Scales",
+  "fishScales": "Pullar",
   "@fishScales": {
     "description": "Displays how many scales can be earned with the given fish size",
     "type": "text",
     "placeholder": {}
   },
-  "fishScrap": "Scraps",
+  "fishScrap": "Hurdalar",
   "@fishScrap": {
     "description": "Displays how many scraps can be earned with the given fish size",
     "type": "text",
     "placeholder": {}
   },
-  "fishAny": "Any",
+  "fishAny": "Herhangi",
   "@fishAny": {
     "description": "Displayed when a fish can be caught by any spear",
     "type": "text",
     "placeholder": {}
   },
-  "dropChance": "Drop chance {chance}%",
+  "dropChance": "Düşüş şansı % {chance}",
   "@dropChance": {
     "description": "Drop chance percentage",
     "type": "text",
@@ -1063,25 +1063,25 @@
       "chance": {}
     }
   },
-  "statsTitle": "Stats",
+  "statsTitle": "İstatistikler",
   "@statsTitle": {
     "description": "Codex stat title",
     "type": "text",
     "placeholder": {}
   },
-  "patchlogsTitle": "Patchlogs",
+  "patchlogsTitle": "Yama notları",
   "@patchlogsTitle": {
     "description": "Codex patchlogs title",
     "type": "text",
     "placeholder": {}
   },
-  "impactDamageTitle": "Impact",
+  "impactDamageTitle": "Darbe",
   "@impactDamageTitle": {
     "description": "Codex Weapon damage type title",
     "type": "text",
     "placeholder": {}
   },
-  "punctureDamageTitle": "Puncture",
+  "punctureDamageTitle": "Delici",
   "@punctureDamageTitle": {
     "description": "Codex Weapon damage type title",
     "type": "text",
@@ -1153,7 +1153,7 @@
     "type": "text",
     "placeholder": {}
   },
-  "voidDamageTitle": "Boşluk",
+  "voidDamageTitle": "Void",
   "@voidDamageTitle": {
     "description": "Codex Weapon damage type title",
     "type": "text",
