@@ -105,7 +105,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "baroInventory": "Baro Ki'Teeer Inventory",
+  "baroInventory": "Baro Ki'Teer Envanteri",
   "@baroInventory": {
     "description": "Baro Ki'Teer Inventory button label",
     "type": "text",
@@ -485,7 +485,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "issueTrackerDescription": "Report issues or feature request for this project's",
+  "issueTrackerDescription": "Bu proje için sorun bildirme veya özellik talepleri",
   "@issueTrackerDescription": {
     "description": "Description for Navis's issue tracker",
     "type": "text",
