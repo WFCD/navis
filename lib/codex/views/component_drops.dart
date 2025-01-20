@@ -1,9 +1,9 @@
-import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/codex/codex.dart';
 import 'package:navis/l10n/l10n.dart';
-import 'package:warframestat_client/warframestat_client.dart';
+import 'package:navis_ui/navis_ui.dart';
+import 'package:warframestat_client/warframestat_client.dart' hide ItemNotFound;
 import 'package:warframestat_repository/warframestat_repository.dart';
 
 class ComponentDrops extends StatelessWidget {
@@ -12,39 +12,32 @@ class ComponentDrops extends StatelessWidget {
   final List<Drop> drops;
 
   void _loadRelic(BuildContext context, String itemName) {
-    final teirReg = RegExp(r'\(([^)]*)\)');
-
-    final tier = teirReg.firstMatch(itemName)?.group(1);
-    final relic =
-        '${itemName.replaceAll(teirReg, '').trim()} ${tier ?? 'Intact'}';
-
     Navigator.of(context).push(
       MaterialPageRoute<void>(
         builder: (BuildContext context) {
           return BlocProvider(
-            create: (context) => SearchBloc(
+            create: (context) => ItemCubit(
+              itemName,
               RepositoryProvider.of<WarframestatRepository>(context),
-            ),
+            )..fetchItem(),
             child: Scaffold(
               body: Builder(
                 builder: (context) {
-                  final l10n = context.l10n;
+                  return BlocBuilder<ItemCubit, ItemState>(
+                    builder: (context, state) {
+                      final l10n = context.l10n;
 
-                  context.watch<SearchBloc>().add(SearchCodex(relic));
-                  final state = context.watch<SearchBloc>().state;
+                      if (state is! ItemFetchSuccess) {
+                        return const Center(child: WarframeSpinner());
+                      }
 
-                  if (state is! CodexSuccessfulSearch) {
-                    return const Center(child: CircularProgressIndicator());
-                  }
+                      if (state is ItemNotFound) {
+                        return Center(child: Text(l10n.codexNoResults));
+                      }
 
-                  final item = state.results
-                      .firstWhereOrNull((e) => e.name.contains(relic));
-
-                  if (item == null) {
-                    return Center(child: Text(l10n.codexNoResults));
-                  }
-
-                  return EntryView(item: item);
+                      return EntryView(item: state.item);
+                    },
+                  );
                 },
               ),
             ),
@@ -70,19 +63,15 @@ class ComponentDrops extends StatelessWidget {
         cacheExtent: cacheExtent,
         itemCount: drops.length,
         itemBuilder: (context, index) {
-          final dropName = drops[index].location;
-          final percentage =
-              ((drops[index].chance ?? 0) * 100).toStringAsFixed(2);
+          final drop = drops[index];
+          final percentage = ((drop.chance ?? 0) * 100).toStringAsFixed(2);
 
           return ListTile(
-            title: Text(dropName),
+            title: Text(drop.location),
             subtitle: Text('$percentage% drop chance'),
-            onTap: !dropName.contains('Relic')
-                ? null
-                : () => _loadRelic(
-                      context,
-                      dropName.replaceFirst('Relic', '').trim(),
-                    ),
+            onTap: drop.uniqueName != null
+                ? () => _loadRelic(context, drop.uniqueName!)
+                : null,
             dense: drops.length > densityThreshold,
           );
         },

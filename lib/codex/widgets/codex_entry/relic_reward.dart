@@ -17,13 +17,19 @@ class RelicRewardWidget extends StatelessWidget {
           final color = r.rarity.toColor();
 
           return ListTile(
-            title: Text(r.item.name),
+            textColor: color,
+            title: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(r.item.name),
+                Text('${r.chance}%'),
+              ],
+            ),
             subtitle: LinearProgressIndicator(
-              value: r.chance / 100,
               color: color,
               borderRadius: BorderRadius.circular(4),
+              value: r.chance / 100,
             ),
-            textColor: color,
           );
         },
       ).toList(),
