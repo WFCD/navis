@@ -27,12 +27,8 @@ class ArsenalCubit extends HydratedCubit<ArsenalState> {
       });
 
       emit(ArsenalSuccess(_xpInfo));
-
-      // Capture all exceptions and pass them to sentry
-      // ignore: avoid_catches_without_on_clauses
-    } catch (e, stack) {
+    } on Exception catch (e, stack) {
       emit(ArsenalFailure());
-
       await Sentry.captureException(e, stackTrace: stack);
     }
   }

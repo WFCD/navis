@@ -38,7 +38,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
 
       try {
         final results = await ConnectionManager.call(
-          () async => repository.searchItems(text),
+          () => repository.searchItems(text),
         );
 
         _originalResults = results;
@@ -48,13 +48,12 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
       } on FormatException {
         emit(const CodexSearchError('Failed to parse server response'));
       } on Exception catch (error, stackTrace) {
+        emit(const CodexSearchError('Unknown Error occurred'));
         await Sentry.captureException(
           error,
           stackTrace: stackTrace,
           hint: Hint.withMap({'query': event.text}),
         );
-
-        emit(const CodexSearchError('Unknown Error occurred'));
       }
     }
   }
