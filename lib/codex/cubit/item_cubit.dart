@@ -17,17 +17,14 @@ class ItemCubit extends HydratedCubit<ItemState> {
   final WarframestatRepository repo;
 
   Future<void> fetchItem() async {
-    final item = await _handleItemFetch(() async => repo.fetchItem(name));
-    if (item == null) {
-      emit(const ItemNotFound());
-      return;
-    }
+    final item = await _handleItemFetch(() => repo.fetchItem(name));
+    if (item == null) return emit(const ItemNotFound());
 
     emit(ItemFetchSuccess(item));
   }
 
   Future<void> fetchByName() async {
-    final items = await _handleItemFetch(() async => repo.searchItems(name));
+    final items = await _handleItemFetch(() => repo.searchItems(name));
 
     final item = items.where((item) => item.imageName != null).firstWhereOrNull((item) => item.name == name);
 

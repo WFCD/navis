@@ -33,6 +33,7 @@ class BasicItemInfo extends SliverPersistentHeaderDelegate {
       child: SizedBox(
         height: expandedHeight,
         child: Stack(
+          fit: StackFit.expand,
           children: <Widget>[
             AppBar(
               elevation: 0,

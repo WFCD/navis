@@ -24,10 +24,10 @@ class SentryHydratedStorage implements Storage {
       Box<dynamic> box;
 
       if (storageDirectory == webStorageDirectory) {
-        box = await SentryHive.openBox<dynamic>('hydrated_box', encryptionCipher: encryptionCipher);
+        box = await SentryHive.openBox<dynamic>('hydrated_box', encryptionCipher: encryptionCipher as HiveCipher?);
       } else {
         SentryHive.init(storageDirectory.path);
-        box = await SentryHive.openBox<dynamic>('hydrated_box', encryptionCipher: encryptionCipher);
+        box = await SentryHive.openBox<dynamic>('hydrated_box', encryptionCipher: encryptionCipher as HiveCipher?);
         await _migrate(storageDirectory, box);
       }
 

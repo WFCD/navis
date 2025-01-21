@@ -35,6 +35,12 @@ Future<void> bootstrap(BootstrapBuilder builder) async {
   final observer = RouteObserver<ModalRoute<void>>();
   final router = AppRouter(navigatorKey: GlobalKey<NavigatorState>(), observer: observer);
 
+  final observer = RouteObserver<ModalRoute<void>>();
+  final router = AppRouter(
+    navigatorKey: GlobalKey<NavigatorState>(),
+    observer: observer,
+  );
+
   runApp(
     RepositoryBootstrap(
       settings: settings,

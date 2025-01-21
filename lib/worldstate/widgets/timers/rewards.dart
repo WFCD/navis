@@ -6,9 +6,9 @@ class DailyReward extends StatelessWidget {
   const DailyReward({super.key});
 
   DateTime get endOfDay {
-    final now = DateTime.now().toUtc();
+    final now = DateTime.timestamp();
 
-    return DateTime.utc(now.year, now.month, now.day, 23, 59, 59, 999).add(expiryWait);
+    return DateTime.utc(now.year, now.month, now.day, 23, 59, 59, 999).add(const Duration(seconds: 60));
   }
 
   @override

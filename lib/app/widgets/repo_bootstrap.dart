@@ -1,3 +1,4 @@
+import 'package:drift_flutter/drift_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive/hive.dart';
@@ -33,7 +34,10 @@ class _RepositoryBootstrapState extends State<RepositoryBootstrap> {
     super.initState();
 
     _notifications = NotificationRepository();
-    _warframestatRepository = WarframestatRepository(client: SentryHttpClient());
+    _warframestatRepository = WarframestatRepository(
+      client: SentryHttpClient(),
+      database: ArsenalDatabase(driftDatabase(name: 'arsenal')),
+    )..updateArsenalItems();
   }
 
   @override

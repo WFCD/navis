@@ -9,6 +9,13 @@ class ArbitrationCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    const gracePeriod = Duration(seconds: 1);
+    const oneYear = Duration(days: 365);
+    const archwingIcon = Padding(
+      padding: EdgeInsets.only(left: 6),
+      child: Icon(WarframeSymbols.archwing, color: Colors.blue, size: 25),
+    );
+
     return AppCard(
       child: BlocBuilder<WorldstateCubit, SolsystemState>(
         builder: (context, state) {
@@ -18,10 +25,10 @@ class ArbitrationCard extends StatelessWidget {
           };
 
           final now = DateTime.timestamp();
-          var expiry = arbitration?.expiry ?? DateTime.now().add(expiryWait);
 
-          if (expiry.difference(now) > const Duration(days: 365)) {
-            expiry = DateTime.now().add(expiryWait);
+          var expiry = arbitration?.expiry ?? now.add(gracePeriod);
+          if (expiry.difference(now) > oneYear) {
+            expiry = now.add(gracePeriod);
           }
 
           return ListTile(

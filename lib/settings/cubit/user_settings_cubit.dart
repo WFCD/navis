@@ -13,7 +13,14 @@ class UserSettingsCubit extends Cubit<UserSettingsState> {
 
   final UserSettings _settings;
 
+  void updateUsername(String? username) {
+    _settings.username = username;
+    emit((state as UserSettingsSuccess).copyWith(username: _settings.username));
+  }
+
   void updateLanguage(Locale language) {
+    if (_settings.language == language) return;
+
     _settings.language = language;
     emit((state as UserSettingsSuccess).copyWith(language: _settings.language));
   }
@@ -47,6 +54,7 @@ class UserSettingsCubit extends Cubit<UserSettingsState> {
       toggles: <String, bool>{
         for (final topic in Topics.topics) ...{topic.name: _settings.getToggle(topic.name)},
       },
+      username: _settings.username,
     );
 
     emit(settings);

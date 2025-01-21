@@ -4,17 +4,17 @@ sealed class SolsystemState extends Equatable {
   const SolsystemState();
 }
 
-class SolsystemInitial extends SolsystemState {
+final class SolsystemInitial extends SolsystemState {
   @override
   List<Object> get props => [];
 }
 
-class LoadingWorldstate extends SolsystemState {
+final class LoadingWorldstate extends SolsystemState {
   @override
   List<Object> get props => [];
 }
 
-class WorldstateSuccess extends SolsystemState {
+final class WorldstateSuccess extends SolsystemState {
   const WorldstateSuccess(this.worldstate);
 
   final Worldstate worldstate;
@@ -42,7 +42,7 @@ class WorldstateSuccess extends SolsystemState {
   }
 }
 
-class WorldstateFailure extends SolsystemState {
+final class WorldstateFailure extends SolsystemState {
   const WorldstateFailure(this.message);
 
   final String message;

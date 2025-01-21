@@ -70,7 +70,7 @@ class OverviewPageRouteData extends GoRouteData {
 
   @override
   Widget build(BuildContext context, GoRouterState state) {
-    return const HomePage();
+    return const TraceableWidget(actionName: 'HomePage', child: HomePage());
   }
 }
 
@@ -100,7 +100,7 @@ class SettingsPageRouteData extends GoRouteData {
 
   @override
   Widget build(BuildContext context, GoRouterState state) {
-    return const SettingsPage();
+    return const TraceableWidget(actionName: 'SettingsPage', child: SafeArea(child: SettingsPage()));
   }
 }
 
@@ -126,7 +126,7 @@ class SyndicatePageRoute extends GoRouteData {
 
   @override
   Widget build(BuildContext context, GoRouterState state) {
-    return BountiesPage(syndicate: $extra);
+    return TraceableWidget(actionName: 'BountiesPage(${$extra.syndicate})', child: BountiesPage(syndicate: $extra));
   }
 }
 
@@ -139,7 +139,7 @@ class NightwavePageRoute extends GoRouteData {
 
   @override
   Widget build(BuildContext context, GoRouterState state) {
-    return NightwavesPage(nightwave: $extra);
+    return TraceableWidget(actionName: 'NightwavePage', child: NightwavesPage(nightwave: $extra));
   }
 }
 
@@ -150,7 +150,7 @@ class SynthTargetsPageRoute extends GoRouteData {
 
   @override
   Widget build(BuildContext context, GoRouterState state) {
-    return const SynthTargetsView();
+    return const TraceableWidget(actionName: 'SynthTargetsPage', child: SynthTargetsView());
   }
 }
 
@@ -163,7 +163,7 @@ class TraderPageRoute extends GoRouteData {
 
   @override
   Widget build(BuildContext context, GoRouterState state) {
-    return BaroInventory(inventory: $extra);
+    return TraceableWidget(actionName: 'BaroInventoryPage', child: BaroInventory(inventory: $extra));
   }
 }
 
@@ -174,7 +174,7 @@ class FishPageRoute extends GoRouteData {
 
   @override
   Widget build(BuildContext context, GoRouterState state) {
-    return const FishPage();
+    return const TraceableWidget(actionName: 'FishPage', child: FishPage());
   }
 }
 
@@ -198,7 +198,18 @@ class NewsPageRoute extends GoRouteData {
 
   @override
   Widget build(BuildContext context, GoRouterState state) {
-    return const OrbiterNewsPage();
+    return const TraceableWidget(actionName: 'OrbiterPage', child: OrbiterNewsPage());
+  }
+}
+
+@immutable
+@TypedGoRoute<MasteryPageRoute>(name: 'mastery', path: '/mastery')
+class MasteryPageRoute extends GoRouteData {
+  const MasteryPageRoute();
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) {
+    return const TraceableWidget(actionName: 'MasteryPage', child: MasteryPage());
   }
 }
 
