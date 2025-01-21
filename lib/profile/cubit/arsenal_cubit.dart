@@ -21,13 +21,19 @@ class ArsenalCubit extends HydratedCubit<ArsenalState> {
     try {
       _xpInfo = await repository.syncXpInfo(username);
 
-      _xpInfo.sort((a, b) {
-        if (a.rank == 0 && b.rank == 0) return 0;
-        if (a.rank == 0) return 1;
-        if (b.rank == 0) return -1;
+      _xpInfo
+        ..removeWhere((i) {
+          // Remove Excalibur prime because it is not obtainable so if doesn't
+          // exist in xp info it shouldn't display for the user
+          return i.item.name.contains('Excalibur Prime') && i.rank == 0;
+        })
+        ..sort((a, b) {
+          if (a.rank == 0 && b.rank == 0) return 0;
+          if (a.rank == 0) return 1;
+          if (b.rank == 0) return -1;
 
-        return a.rank.compareTo(b.rank);
-      });
+          return a.rank.compareTo(b.rank);
+        });
 
       emit(ArsenalSuccess(_xpInfo));
     } on Exception catch (e, stack) {

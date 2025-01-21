@@ -135,9 +135,9 @@ class WarframestatRepository {
     );
 
     developer.log('updating arsenal manifest', name: _name);
-    final items =
-        List<MinimalItem>.from(await client.fetchAllItems(minimal: true))
-          ..removeWhere((i) => i.masterable != true);
+    final items = List<MinimalItem>.from(
+      await client.fetchAllItems(minimal: true),
+    )..removeWhere((i) => i.masterable != true || i.name.contains('Helminth'));
 
     await _database.updateItems(items);
     await _database.updateTimeStamp();
