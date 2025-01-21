@@ -1,4 +1,3 @@
-import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/l10n/l10n.dart';
@@ -10,31 +9,15 @@ import 'package:warframestat_client/warframestat_client.dart';
 class EventCard extends StatelessWidget {
   const EventCard({super.key});
 
-  bool _buildWhen(SolsystemState previous, SolsystemState next) {
-    final previousWorldEvents = switch (previous) {
-      WorldstateSuccess() => previous.worldstate.events,
-      _ => <WorldEvent>[],
-    };
-
-    final nextWorldEvents = switch (next) {
-      WorldstateSuccess() => next.worldstate.events,
-      _ => <WorldEvent>[],
-    };
-
-    return !previousWorldEvents.equals(nextWorldEvents);
-  }
-
   @override
   Widget build(BuildContext context) {
     return AppCard(
-      child: BlocBuilder<WorldstateCubit, SolsystemState>(
-        buildWhen: _buildWhen,
-        builder: (context, state) {
-          final events = switch (state) {
-            WorldstateSuccess() => state.worldstate.events,
-            _ => <WorldEvent>[],
-          };
-
+      child: BlocSelector<WorldstateCubit, SolsystemState, List<WorldEvent>>(
+        selector: (s) => switch (s) {
+          WorldstateSuccess() => s.worldstate.events,
+          _ => <WorldEvent>[],
+        },
+        builder: (context, events) {
           return Column(
             children: <Widget>[
               for (final event in events)

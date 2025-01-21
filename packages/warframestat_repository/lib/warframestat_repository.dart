@@ -3,4 +3,4 @@ library;
 
 export 'src/cache_client.dart';
 export 'src/repository.dart';
-export 'src/utils/prioritize_results.dart';
+export 'src/utils/utils.dart';

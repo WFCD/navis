@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:matomo_tracker/matomo_tracker.dart';
 import 'package:navis/worldstate/worldstate.dart';
 import 'package:navis_ui/navis_ui.dart';
+import 'package:warframestat_client/warframestat_client.dart';
+import 'package:warframestat_repository/warframestat_repository.dart';
 
 class Timers extends StatelessWidget {
   const Timers({super.key});
@@ -20,13 +22,12 @@ class _MobileTimers extends StatelessWidget {
   Widget build(BuildContext context) {
     const cacheExtent = 500.0;
 
-    return BlocBuilder<WorldstateCubit, SolsystemState>(
-      builder: (_, state) {
-        final worldstate = switch (state) {
-          WorldstateSuccess() => state,
-          _ => null,
-        };
-
+    return BlocSelector<WorldstateCubit, SolsystemState, Worldstate?>(
+      selector: (state) => switch (state) {
+        WorldstateSuccess() => state.worldstate,
+        _ => null,
+      },
+      builder: (_, worldstate) {
         return ViewLoading(
           isLoading: worldstate == null,
           child: ListView(

@@ -1406,6 +1406,42 @@ abstract class NavisLocalizations {
   /// In en, this message translates to:
   /// **'Item'**
   String get traderCreditsHeaderTitle;
+
+  /// Subtitle showing the item's rank
+  ///
+  /// In en, this message translates to:
+  /// **'Rank {rank}'**
+  String itemRankSubtitle(Object rank);
+
+  /// Text displayed when xp info is being synced
+  ///
+  /// In en, this message translates to:
+  /// **'Syncing XP info'**
+  String get syncingInfoText;
+
+  /// Hint Text use as a placeholder in username input
+  ///
+  /// In en, this message translates to:
+  /// **'Setup Inventoria'**
+  String get enterUsernameHintText;
+
+  /// Label text for clear username button
+  ///
+  /// In en, this message translates to:
+  /// **'Clear username'**
+  String get clearUsernameButtonLabel;
+
+  /// Text to display for cancel buttons
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get cancelText;
+
+  /// Steps to setup Inventoria
+  ///
+  /// In en, this message translates to:
+  /// **'Cephalon Navis can use your read-only profile data to help track your arsenal XP and mastery points.\n\n1. Go to {url} on a computer\n\n2. Upload your EE.log or account ID from cookies\n\n3. Tap next and scan the generated QR code'**
+  String inventoriaSteps(String url);
 }
 
 class _NavisLocalizationsDelegate extends LocalizationsDelegate<NavisLocalizations> {

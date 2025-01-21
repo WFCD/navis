@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:hive_ce/hive.dart';
@@ -5,16 +6,21 @@ import 'package:http/http.dart';
 import 'package:warframestat_client/warframestat_client.dart';
 import 'package:warframestat_repository/hive_registrar.g.dart';
 import 'package:warframestat_repository/src/cache_client.dart';
+import 'package:warframestat_repository/src/models/regions.dart';
 
 ///
 const userAgent = 'navis';
+
+typedef CraigRegion = ({List<CraigNode> nodes, List<CraigJunction> junctions});
 
 /// {@template warframestat_repository}
 /// Entry point for Warframestatus endpoints used in Cephalon Navis
 /// {@endtemplate}
 class WarframestatRepository {
   /// {@macro warframestat_repository}
-  WarframestatRepository({Client? client}) : _client = client ?? Client() {
+  WarframestatRepository({
+    required Client client,
+  }) : _client = client {
     Hive.registerAdapters();
   }
 
@@ -28,8 +34,7 @@ class WarframestatRepository {
     Hive.init(Directory.systemTemp.absolute.path);
 
     // Hive will return the same box if it's already opened
-    final cache =
-        await Hive.openBox<HiveCacheItem>('warframestat_repository_cache');
+    final cache = await Hive.openBox<HiveCacheItem>('warframestat_repository_cache');
 
     if (_cacheClients.containsKey(cacheTime)) return _cacheClients[cacheTime]!;
 
@@ -60,7 +65,7 @@ class WarframestatRepository {
   /// end so caching for even a year is perfectly fine
   Future<List<SynthTarget>> fetchTargets() async {
     const cacheTime = Duration(days: 30);
-    final client = SynthTaretClient(
+    final client = SynthTargetClient(
       client: await _cacheClient(cacheTime),
       ua: userAgent,
       language: language,
@@ -91,5 +96,32 @@ class WarframestatRepository {
     );
 
     return client.fetchItem(uniqueName);
+  }
+
+  Future<Profile> fetchProfile(String playerId) async {
+    const cacheTime = Duration(minutes: 60);
+    final client = ProfileClient(
+      playerId: playerId,
+      client: await _cacheClient(cacheTime),
+      ua: userAgent,
+      language: language,
+    );
+
+    return client.fetchProfile();
+  }
+
+  Future<CraigRegion> fetchRegions() async {
+    final client = await _cacheClient(const Duration(days: 30));
+    final res = await client.get(Uri.parse('https://cdn.truemaster.app/regions.json'));
+
+    final json = jsonDecode(res.body) as Map<String, dynamic>;
+    final nodes = _jsonMapList(json['nodes'] as List<dynamic>);
+    final junctions = _jsonMapList(json['junctions'] as List<dynamic>);
+
+    return (nodes: nodes.map(CraigNode.fromJson).toList(), junctions: junctions.map(CraigJunction.fromJson).toList());
+  }
+
+  List<Map<String, dynamic>> _jsonMapList(List<dynamic> list) {
+    return List<Map<String, dynamic>>.from(list);
   }
 }

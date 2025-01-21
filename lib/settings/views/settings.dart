@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_settings_ui/flutter_settings_ui.dart';
 import 'package:intl/intl.dart';
+import 'package:inventoria/inventoria.dart';
 import 'package:navis/l10n/l10n.dart';
+import 'package:navis/profile/cubit/profile_cubit.dart';
 import 'package:navis/settings/settings.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:notification_repository/notification_repository.dart';
@@ -12,11 +14,9 @@ import 'package:notification_repository/notification_repository.dart';
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});
 
-  static const route = '/settings';
-
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(body: SafeArea(child: _SettingsView()));
+    return const _SettingsView();
   }
 }
 
@@ -43,34 +43,44 @@ class _SettingsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
-    final filters = NotificationTopics(context.l10n);
-    final settings = context.watch<UserSettingsCubit>().state;
-
-    final themeMode = switch (settings) {
-      UserSettingsSuccess() => settings.themeMode,
-      _ => ThemeMode.system,
-    };
-
-    final isOptOut = switch (settings) {
-      UserSettingsSuccess() => settings.isOptOut,
-      _ => false,
-    };
-
-    final toggles = switch (settings) {
-      UserSettingsSuccess() => settings.toggles,
-      _ => <String, bool>{},
-    };
-
     final theme = SettingsThemeData(
       titleTextColor: context.theme.colorScheme.primary,
       settingsListBackground: context.theme.scaffoldBackgroundColor,
     );
+
+    final filters = NotificationTopics(context.l10n);
+
+    final settings = context.select<UserSettingsCubit, UserSettingsSuccess?>(
+      (cubit) => cubit.state is UserSettingsSuccess ? cubit.state as UserSettingsSuccess : null,
+    );
+
+    final profile = context.select<ProfileCubit, DriftProfileData?>(
+      (cubit) => cubit.state is ProfileSuccessful ? (cubit.state as ProfileSuccessful).profile : null,
+    );
+
+    final toggles = settings?.toggles ?? <String, bool>{};
 
     return SettingsList(
       platform: DevicePlatform.android,
       lightTheme: theme,
       darkTheme: theme,
       sections: [
+        SettingsSection(
+          title: const Text('Inventoria'),
+          tiles: [
+            SettingsTile(
+              title:
+                  profile?.username != null ? UserTitle(username: profile!.username) : Text(l10n.enterUsernameHintText),
+              // TODO(Orn): find a way to show mastery progress
+              onPressed: profile?.username != null ? null : ProfileWizard.show,
+            ),
+            if (profile?.username != null)
+              SettingsTile(
+                title: Text('Clear User', style: TextStyle(color: context.theme.colorScheme.error)),
+                onPressed: (_) => BlocProvider.of<ProfileCubit>(context).reset(),
+              ),
+          ],
+        ),
         SettingsSection(
           title: Text(l10n.behaviorTitle),
           tiles: [
@@ -83,13 +93,13 @@ class _SettingsView extends StatelessWidget {
             SettingsTile.navigation(
               title: Text(l10n.themeTitle),
               description: Text(l10n.themeDescription),
-              value: Text(toBeginningOfSentenceCase(themeMode.name) ?? ''),
+              value: Text(toBeginningOfSentenceCase((settings?.themeMode ?? ThemeMode.system).name) ?? ''),
               onPressed: ThemePicker.showModes,
             ),
             SettingsTile.switchTile(
               title: Text(l10n.optOutOfAnalyticsTitle),
               description: Text(l10n.optOutOfAnalyticsDescription),
-              initialValue: isOptOut,
+              initialValue: settings?.isOptOut ?? false,
               onToggle: (b) => context.read<UserSettingsCubit>().updateAnalyticsOpt(isOptOut: b),
             ),
           ],

@@ -14,6 +14,8 @@ class UserSettingsCubit extends Cubit<UserSettingsState> {
   final UserSettings _settings;
 
   void updateLanguage(Locale language) {
+    if (_settings.language == language) return;
+
     _settings.language = language;
     emit((state as UserSettingsSuccess).copyWith(language: _settings.language));
   }

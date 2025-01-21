@@ -4,7 +4,7 @@ sealed class UserSettingsState extends Equatable {
   const UserSettingsState();
 
   @override
-  List<Object> get props => [];
+  List<Object?> get props => [];
 }
 
 final class UserSettingsInitial extends UserSettingsState {}
@@ -25,6 +25,7 @@ final class UserSettingsSuccess extends UserSettingsState {
   final Map<String, bool> toggles;
 
   UserSettingsSuccess copyWith({
+    String? username,
     Locale? language,
     ThemeMode? themeMode,
     bool? isOptOut,
@@ -41,7 +42,7 @@ final class UserSettingsSuccess extends UserSettingsState {
   }
 
   @override
-  List<Object> get props => [language, themeMode, isOptOut, isFirstTime, toggles];
+  List<Object?> get props => [language, themeMode, isOptOut, isFirstTime, toggles];
 }
 
 final class UserSettingsFailure extends UserSettingsState {}

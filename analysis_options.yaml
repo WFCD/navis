@@ -8,10 +8,11 @@ analyzer:
     - lib/firebase_options.dart
     - lib/router/routes.g.dart
     - packages/navis_ui/lib/src/icons/warframe_symbols.dart
+    - packages/inventoria/lib/src/*.g.dart
+    - packages/inventoria/test/drift/inventoria/**
 
 linter:
   rules:
     public_member_api_docs: false
-    library_private_types_in_public_api: false
     always_put_required_named_parameters_first: false
     lines_longer_than_80_chars: false
