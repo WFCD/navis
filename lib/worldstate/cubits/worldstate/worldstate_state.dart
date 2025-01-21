@@ -4,36 +4,20 @@ sealed class SolsystemState extends Equatable {
   const SolsystemState();
 }
 
-class SolsystemInitial extends SolsystemState {
+final class SolsystemInitial extends SolsystemState {
   @override
   List<Object> get props => [];
 }
 
-class LoadingWorldstate extends SolsystemState {
+final class LoadingWorldstate extends SolsystemState {
   @override
   List<Object> get props => [];
 }
 
-class WorldstateSuccess extends SolsystemState {
+final class WorldstateSuccess extends SolsystemState {
   const WorldstateSuccess(this.worldstate);
 
   final Worldstate worldstate;
-
-  // bool get activeAcolytes => worldstate.enemyActive;
-
-  bool get activeAlerts => worldstate.alerts.isNotEmpty;
-
-  bool get activeSales => worldstate.flashSales.isNotEmpty;
-
-  bool get arbitrationActive =>
-      worldstate.arbitration != null &&
-      !worldstate.arbitration!.node.contains('000');
-
-  bool get eventsActive => worldstate.events.isNotEmpty;
-
-  bool get outpostDetected => worldstate.sentientOutposts != null;
-
-  bool get deepArchimedeaActive => worldstate.deepArchimedea != null;
 
   @override
   List<Object> get props => [worldstate];
@@ -44,7 +28,7 @@ class WorldstateSuccess extends SolsystemState {
   }
 }
 
-class WorldstateFailure extends SolsystemState {
+final class WorldstateFailure extends SolsystemState {
   const WorldstateFailure(this.message);
 
   final String message;

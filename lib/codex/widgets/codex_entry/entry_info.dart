@@ -37,6 +37,7 @@ class BasicItemInfo extends SliverPersistentHeaderDelegate {
       child: SizedBox(
         height: expandedHeight,
         child: Stack(
+          fit: StackFit.expand,
           children: <Widget>[
             AppBar(
               elevation: 0,
@@ -88,9 +89,7 @@ class BasicItemInfo extends SliverPersistentHeaderDelegate {
   double get minExtent => kToolbarHeight;
 
   @override
-  bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) {
-    return false;
-  }
+  bool shouldRebuild(BasicItemInfo oldDelegate) => false;
 }
 
 class _EntryInfoContent extends StatelessWidget {

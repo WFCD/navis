@@ -37,14 +37,6 @@ class ExploreView extends StatelessWidget {
             onTap: () => const FishPageRoute().push<void>(context),
           ),
         ),
-        AppCard(
-          child: ListTile(
-            leading: const Icon(Icons.search, size: iconSize),
-            title: Text(l10n.codexTitle),
-            subtitle: Text(l10n.codexDescription),
-            onTap: () => const CodexPageRoute().push<void>(context),
-          ),
-        ),
       ],
     );
   }

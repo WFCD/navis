@@ -4,9 +4,6 @@ import 'dart:io';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:notification_repository/src/topics.dart';
 
-// TODO(SlayerOrnstein): We might need to use other services that also provide
-//  ADM for amazon devices
-
 /// {@template notification_repository}
 /// Main entry to start push notifications via firebase.
 ///

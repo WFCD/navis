@@ -1,7 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-// ignore_for_file: require_trailing_commas
-
 part of 'routes.dart';
 
 // **************************************************************************
@@ -18,6 +16,7 @@ List<RouteBase> get $appRoutes => [
       $fishPageRoute,
       $codexPageRoute,
       $newsPageRoute,
+      $masteryPageRoute,
     ];
 
 RouteBase get $appShell => StatefulShellRouteData.$route(
@@ -304,21 +303,24 @@ RouteBase get $codexPageRoute => GoRouteData.$route(
     );
 
 extension $CodexPageRouteExtension on CodexPageRoute {
-  static CodexPageRoute _fromState(GoRouterState state) =>
-      const CodexPageRoute();
+  static CodexPageRoute _fromState(GoRouterState state) => CodexPageRoute(
+        state.extra as String,
+      );
 
   String get location => GoRouteData.$location(
         '/codex',
       );
 
-  void go(BuildContext context) => context.go(location);
+  void go(BuildContext context) => context.go(location, extra: $extra);
 
-  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+  Future<T?> push<T>(BuildContext context) =>
+      context.push<T>(location, extra: $extra);
 
   void pushReplacement(BuildContext context) =>
-      context.pushReplacement(location);
+      context.pushReplacement(location, extra: $extra);
 
-  void replace(BuildContext context) => context.replace(location);
+  void replace(BuildContext context) =>
+      context.replace(location, extra: $extra);
 }
 
 RouteBase get $newsPageRoute => GoRouteData.$route(
@@ -332,6 +334,30 @@ extension $NewsPageRouteExtension on NewsPageRoute {
 
   String get location => GoRouteData.$location(
         '/news',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $masteryPageRoute => GoRouteData.$route(
+      path: '/mastery',
+      name: 'mastery',
+      factory: $MasteryPageRouteExtension._fromState,
+    );
+
+extension $MasteryPageRouteExtension on MasteryPageRoute {
+  static MasteryPageRoute _fromState(GoRouterState state) =>
+      const MasteryPageRoute();
+
+  String get location => GoRouteData.$location(
+        '/mastery',
       );
 
   void go(BuildContext context) => context.go(location);

@@ -52,15 +52,22 @@ class EntryViewOpenContainer extends StatelessWidget {
 class EntryView extends StatelessWidget {
   const EntryView({super.key, required this.item});
 
-  final MinimalItem item;
+  final Item item;
 
   @override
   Widget build(BuildContext context) {
     final repo = RepositoryProvider.of<WarframestatRepository>(context);
 
-    return BlocProvider(
-      create: (context) => ItemCubit(item.uniqueName, repo)..fetchItem(),
-      child: Scaffold(body: SafeArea(child: _Overview(item: item))),
+    return Scaffold(
+      body: SafeArea(
+        child: item is MinimalItem
+            ? BlocProvider(
+                create: (context) =>
+                    ItemCubit(item.uniqueName, repo)..fetchItem(),
+                child: _Overview(item: item),
+              )
+            : _Overview(item: item),
+      ),
     );
   }
 }
@@ -68,7 +75,15 @@ class EntryView extends StatelessWidget {
 class _Overview extends StatelessWidget {
   const _Overview({required this.item});
 
-  final MinimalItem item;
+  final Item item;
+
+  bool? _isVaulted() {
+    return switch (item) {
+      Relic() => (item as Relic).vaulted,
+      BuildableItem() => (item as BuildableItem).vaulted,
+      _ => false,
+    };
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -96,7 +111,7 @@ class _Overview extends StatelessWidget {
                     imageUrl: item.imageUrl,
                     expandedHeight: height,
                     disableInfo: isMod,
-                    isVaulted: item.vaulted,
+                    isVaulted: _isVaulted(),
                   ),
                 ),
             ];

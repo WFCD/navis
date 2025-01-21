@@ -14,11 +14,14 @@ class MockClient extends Mock implements Client {}
 
 class MockBaseRequest extends Mock implements BaseRequest {}
 
+class MockArsenalDatabase extends Mock implements ArsenalDatabase {}
+
 StreamedResponse fakeResponse(String data) =>
     StreamedResponse(Stream.value(utf8.encode(data)), 200);
 
 void main() {
   late Client client;
+  late ArsenalDatabase database;
   late WarframestatRepository repository;
 
   setUpAll(() async {
@@ -29,7 +32,8 @@ void main() {
 
   setUp(() async {
     client = MockClient();
-    repository = WarframestatRepository(client: client);
+    database = MockArsenalDatabase();
+    repository = WarframestatRepository(client: client, database: database);
   });
 
   tearDown(() async {

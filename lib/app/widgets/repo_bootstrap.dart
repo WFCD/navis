@@ -1,3 +1,4 @@
+import 'package:drift_flutter/drift_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive/hive.dart';
@@ -11,11 +12,13 @@ class RepositoryBootstrap extends StatefulWidget {
     super.key,
     required this.settings,
     required this.cache,
+    required this.routeObserver,
     required this.child,
   });
 
   final UserSettings settings;
   final Box<CachedItem> cache;
+  final RouteObserver<ModalRoute<void>> routeObserver;
   final Widget child;
 
   @override
@@ -31,8 +34,10 @@ class _RepositoryBootstrapState extends State<RepositoryBootstrap> {
     super.initState();
 
     _notifications = NotificationRepository();
-    _warframestatRepository =
-        WarframestatRepository(client: SentryHttpClient());
+    _warframestatRepository = WarframestatRepository(
+      client: SentryHttpClient(),
+      database: ArsenalDatabase(driftDatabase(name: 'arsenal')),
+    )..updateArsenalItems();
   }
 
   @override
@@ -42,6 +47,7 @@ class _RepositoryBootstrapState extends State<RepositoryBootstrap> {
         RepositoryProvider.value(value: widget.settings),
         RepositoryProvider.value(value: _warframestatRepository),
         RepositoryProvider.value(value: _notifications),
+        RepositoryProvider.value(value: widget.routeObserver),
       ],
       child: widget.child,
     );

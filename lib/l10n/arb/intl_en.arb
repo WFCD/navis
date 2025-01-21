@@ -1254,5 +1254,61 @@
     "description": "Activities title",
     "type": "text",
     "placeholder": {}
+  },
+  "cancelText": "Cancel",
+  "@cancelText": {
+    "description": "Text to display for cancel buttons",
+    "type": "text",
+    "placeholder": {}
+  },
+  "syncingInfoText": "Syncing XP info",
+  "@syncingInfoText": {
+    "description": "Text displayed when xp info is being synced",
+    "type": "text",
+    "placeholder": {}
+  },
+  "updateManifestTitle": "Update manifest",
+  "@updateManifestTitle": {
+    "description": "Text displayed under settings",
+    "type": "text",
+    "placeholder": {}
+  },
+  "updateManifestSubtitle": "Update internal manifest of masterable items",
+  "@updateManifestSubtitle": {
+    "description": "Text displayed under updateManifestTitle",
+    "type": "text",
+    "placeholder": {}
+  },
+  "updatingManifestText": "Updating manifest",
+  "@updatinManifest": {
+    "description": "Text displayed when the manifest is updating",
+    "type": "text",
+    "placeholder": {}
+  },
+  "masteryTrackingCategoryTitle": "Mastery tracking",
+  "@masteryTrackingCategoryTitle": {
+    "description": "Text displayed for mastery related settings",
+    "type": "text",
+    "placeholder": {}
+  },
+  "enterUsernameHintText": "Enter username",
+  "@enterUsernameHintText": {
+    "description": "Hint Text use as a placeholder in username input",
+    "type": "text",
+    "placeholder": {}
+  },
+  "clearUsernameButtonLabel": "Clear username",
+  "@clearUsernameButtonLabel": {
+    "description": "Label text for clear username button",
+    "type": "text",
+    "placeholder": {}
+  },
+  "itemRankSubtitle": "Rank {rank}",
+  "@itemRankSubtitle": {
+    "description": "Subtitle showing the item's rank",
+    "type": "text",
+    "placeholder": {
+      "rank": {}
+    }
   }
 }
