@@ -431,7 +431,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "aboutAppTitle": "About app",
+  "aboutAppTitle": "О приложении",
   "@aboutAppTitle": {
     "description": "Title for the about app dialog",
     "type": "text",
@@ -443,7 +443,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "contributeTranslationsDescription": "Volunteer to contribute translations",
+  "contributeTranslationsDescription": "Помочь с переводом",
   "@contributeTranslationsDescription": {
     "description": "Description for contribute translations link",
     "type": "text",
@@ -941,7 +941,7 @@
     "type": "text",
     "placeholder": {}
   },
-  "mapTitle": "Maps",
+  "mapTitle": "Карта",
   "@mapTitle": {
     "description": "Map title",
     "type": "text",
