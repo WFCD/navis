@@ -1237,7 +1237,7 @@
     "type": "text",
     "placeholder": {}
   },
-  "archimedeaWarningSubtitle": "DE doesn't always update Deep Archimedea data after a weekly reset so consider this unstable.\nWarning will be removed when data rotation is more consistent",
+  "archimedeaWarningSubtitle": "DE не всегда обновляет данные Deep Archimedea после еженедельного сброса, поэтому считайте это нестабильным.\nПредупреждение будет удалено, когда ротация данных станет более последовательной",
   "@archimedeaWarningSubtitle": {
     "description": "Warning text displayed under Deep Archimedea warning title",
     "type": "text",
