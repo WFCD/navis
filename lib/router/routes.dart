@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
+import 'package:matomo_tracker/matomo_tracker.dart';
 import 'package:navis/app/app.dart';
 import 'package:navis/codex/views/codex_search_view.dart';
 import 'package:navis/explore/views/fish_view.dart';
@@ -80,7 +81,7 @@ class ActivitesPageRouteData extends GoRouteData {
 
   @override
   Widget build(BuildContext context, GoRouterState state) {
-    return const ActivitiesView();
+    return const SafeArea(child: ActivitiesView());
   }
 }
 
@@ -110,7 +111,7 @@ class ExplorePageRouteData extends GoRouteData {
 
   @override
   Widget build(BuildContext context, GoRouterState state) {
-    return const ExplorePage();
+    return const SafeArea(child: ExplorePage());
   }
 }
 
@@ -206,11 +207,16 @@ class FishPageRoute extends GoRouteData {
 @immutable
 @TypedGoRoute<CodexPageRoute>(name: 'codex', path: '/codex')
 class CodexPageRoute extends GoRouteData {
-  const CodexPageRoute();
+  const CodexPageRoute(this.$extra);
+
+  final String $extra;
 
   @override
   Widget build(BuildContext context, GoRouterState state) {
-    return const CodexSearchPage();
+    return TraceableWidget(
+      actionName: 'CodexSearchPage',
+      child: CodexSearchPage(query: $extra),
+    );
   }
 }
 

@@ -1,6 +1,7 @@
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:matomo_tracker/matomo_tracker.dart';
 import 'package:navis/app/widgets/widgets.dart';
 import 'package:navis/l10n/l10n.dart';
 
@@ -32,7 +33,10 @@ class AppView extends StatelessWidget {
             child: child,
           );
         },
-        child: SafeArea(child: children[currentIndex]),
+        child: TraceableWidget(
+          actionName: children[currentIndex].toStringShort(),
+          child: children[currentIndex],
+        ),
       ),
       bottomNavigationBar: NavigationBar(
         onDestinationSelected: (i) {

@@ -1,6 +1,6 @@
 import 'dart:async';
 
-typedef Debounceable<S, T> = Future<S?> Function(T parameter);
+typedef Debounceable<S, T> = FutureOr<S?> Function(T parameter);
 
 /// Returns a new function that is a debounced version of the given function.
 ///

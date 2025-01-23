@@ -9,13 +9,16 @@ import 'package:navis/app/app_observer.dart';
 import 'package:navis/app/widgets/bloc_bootstrap.dart';
 import 'package:navis/app/widgets/repo_bootstrap.dart';
 import 'package:navis/firebase_options.dart';
+import 'package:navis/router/app_router.dart';
 import 'package:navis/settings/settings.dart';
 import 'package:navis/utils/utils.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sentry_hive/sentry_hive.dart';
 import 'package:warframestat_repository/warframestat_repository.dart';
 
-Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
+typedef BootstrapBuilder = FutureOr<Widget> Function(AppRouter);
+
+Future<void> bootstrap(BootstrapBuilder builder) async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await Hive.initFlutter();
@@ -31,11 +34,18 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
     storageDirectory: temp,
   );
 
+  final observer = RouteObserver<ModalRoute<void>>();
+  final router = AppRouter(
+    navigatorKey: GlobalKey<NavigatorState>(),
+    observer: observer,
+  );
+
   runApp(
     RepositoryBootstrap(
       settings: settings,
       cache: cache,
-      child: BlocBootstrap(child: await builder()),
+      routeObserver: observer,
+      child: BlocBootstrap(child: await builder(router)),
     ),
   );
 }
