@@ -431,7 +431,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "aboutAppTitle": "About app",
+  "aboutAppTitle": "О приложении",
   "@aboutAppTitle": {
     "description": "Title for the about app dialog",
     "type": "text",
@@ -443,7 +443,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "contributeTranslationsDescription": "Volunteer to contribute translations",
+  "contributeTranslationsDescription": "Помочь с переводом",
   "@contributeTranslationsDescription": {
     "description": "Description for contribute translations link",
     "type": "text",
@@ -941,19 +941,19 @@
     "type": "text",
     "placeholder": {}
   },
-  "mapTitle": "Maps",
+  "mapTitle": "Карта",
   "@mapTitle": {
     "description": "Map title",
     "type": "text",
     "placeholder": {}
   },
-  "mapDescription": "See region maps",
+  "mapDescription": "Посмотреть карты регионов",
   "@mapDescription": {
     "description": "Map card description",
     "type": "text",
     "placeholder": {}
   },
-  "fishTitle": "Fish",
+  "fishTitle": "Название рыбы",
   "@fishTitle": {
     "description": "Fish title",
     "type": "text",
@@ -1007,7 +1007,7 @@
     "type": "text",
     "placeholder": {}
   },
-  "fishBladder": "Bladders",
+  "fishBladder": "Ферментный пузырь",
   "@fishBladder": {
     "description": "Displays how many bladders can be earned with the given fish size",
     "type": "text",
@@ -1019,7 +1019,7 @@
     "type": "text",
     "placeholder": {}
   },
-  "fishTumors": "Tumors",
+  "fishTumors": "Доброкачественная Заражённая Опухоль",
   "@fishTumors": {
     "description": "Displays how many tumors can be earned with the given fish size",
     "type": "text",
@@ -1117,7 +1117,7 @@
     "type": "text",
     "placeholder": {}
   },
-  "blastDamageTitle": "Blast",
+  "blastDamageTitle": "Взрыв",
   "@blastDamageTitle": {
     "description": "Codex Weapon damage type title",
     "type": "text",
@@ -1141,7 +1141,7 @@
     "type": "text",
     "placeholder": {}
   },
-  "viralDamageTitle": "Viral",
+  "viralDamageTitle": "Вирус",
   "@viralDamageTitle": {
     "description": "Codex Weapon damage type title",
     "type": "text",
@@ -1153,7 +1153,7 @@
     "type": "text",
     "placeholder": {}
   },
-  "voidDamageTitle": "Void",
+  "voidDamageTitle": "Урон Бездны",
   "@voidDamageTitle": {
     "description": "Codex Weapon damage type title",
     "type": "text",
@@ -1237,7 +1237,7 @@
     "type": "text",
     "placeholder": {}
   },
-  "archimedeaWarningSubtitle": "DE doesn't always update Deep Archimedea data after a weekly reset so consider this unstable.\nWarning will be removed when data rotation is more consistent",
+  "archimedeaWarningSubtitle": "DE не всегда обновляет данные Deep Archimedea после еженедельного сброса, поэтому считайте это нестабильным.\nПредупреждение будет удалено, когда ротация данных станет более последовательной",
   "@archimedeaWarningSubtitle": {
     "description": "Warning text displayed under Deep Archimedea warning title",
     "type": "text",
