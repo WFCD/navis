@@ -30,9 +30,9 @@ class _CodexSearchBarState extends State<CodexSearchBar> {
   late final SearchController _controller;
 
   String? _currentQuery;
-  Iterable<Widget> _lastOptions = <Widget>[];
+  Iterable<MinimalItem> _lastOptions = <MinimalItem>[];
 
-  late final Debounceable<List<MinimalItem>?, String> _debounceSearch;
+  late final Debounceable<Iterable<MinimalItem>?, String> _debounceSearch;
 
   Future<List<MinimalItem>?> _search(String query) async {
     _currentQuery = query;
@@ -54,18 +54,20 @@ class _CodexSearchBarState extends State<CodexSearchBar> {
     if (query.isEmpty) return <Widget>[];
 
     final options = (await _debounceSearch(query))?.toList();
-    if (options == null) return _lastOptions;
 
-    return _lastOptions = options
-        .where((e) => e.name.toLowerCase() == controller.text.toLowerCase())
-        .map((e) {
+    Widget container(MinimalItem item) {
       return OpenContainer(
         closedColor: Colors.transparent,
         openColor: Colors.transparent,
-        closedBuilder: (_, onTap) => CodexResult(item: e, onTap: onTap),
-        openBuilder: (_, __) => EntryView(item: e),
+        closedBuilder: (_, onTap) => CodexResult(item: item, onTap: onTap),
+        openBuilder: (_, __) => EntryView(item: item),
       );
-    });
+    }
+
+    if (options == null) return _lastOptions.map(container);
+
+    _lastOptions = options;
+    return _lastOptions.map(container);
   }
 
   void _onSubmitted(String query) {
@@ -118,7 +120,6 @@ class _CodexSearchBarState extends State<CodexSearchBar> {
                 }
               },
             ),
-            viewOnChanged: _search,
             viewOnSubmitted: _onSubmitted,
             builder: (context, controller) {
               return SearchBar(

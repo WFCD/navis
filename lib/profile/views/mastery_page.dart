@@ -1,7 +1,7 @@
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/profile/profile.dart';
-import 'package:navis/profile/widgets/arsenal_items.dart';
 import 'package:navis_ui/navis_ui.dart';
 
 class MasteryPage extends StatelessWidget {
@@ -19,6 +19,7 @@ class MasteryView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const tabs = [
+      Tab(text: 'In Progress'),
       Tab(text: 'Warframes'),
       Tab(text: 'Primary'),
       Tab(text: 'Secondary'),
@@ -38,10 +39,15 @@ class MasteryView extends StatelessWidget {
           return [
             SliverOverlapAbsorber(
               handle: NestedScrollView.sliverOverlapAbsorberHandleFor(context),
-              sliver: const SliverAppBar(
+              sliver: SliverAppBar(
                 floating: true,
                 snap: true,
-                bottom: TabBar(isScrollable: true, tabs: tabs),
+                clipBehavior: Clip.hardEdge,
+                automaticallyImplyLeading: false,
+                title: MasteryItemSearchBar(
+                  onPressed: () => Navigator.pop(context),
+                ),
+                bottom: const TabBar(isScrollable: true, tabs: tabs),
               ),
             ),
           ];
@@ -54,6 +60,11 @@ class MasteryView extends StatelessWidget {
 
             return TabBarView(
               children: [
+                ArsenalItems(
+                  items: state.xpInfo
+                      .whereNot((i) => i.rank == i.maxRank || i.rank == 0)
+                      .toList(),
+                ),
                 ArsenalItems(items: state.warframes),
                 ArsenalItems(items: state.primaries),
                 ArsenalItems(items: state.secondary),
