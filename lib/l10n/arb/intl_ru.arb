@@ -1171,7 +1171,7 @@
     "type": "text",
     "placeholder": {}
   },
-  "shieldDrainDamageTitle": "Shield Drain",
+  "shieldDrainDamageTitle": "Истощение щита",
   "@shieldDrainDamageTitle": {
     "description": "Codex Weapon damage type title",
     "type": "text",
@@ -1183,13 +1183,13 @@
     "type": "text",
     "placeholder": {}
   },
-  "energyDrainDamageTitle": "Energy Drain",
+  "energyDrainDamageTitle": "Истощение энергии",
   "@energyDrainDamageTitle": {
     "description": "Codex Weapon damage type title",
     "type": "text",
     "placeholder": {}
   },
-  "physicalDamageTitle": "Physical",
+  "physicalDamageTitle": "Физический урон",
   "@physicalDamageTitle": {
     "description": "Codex Weapon damage type title",
     "type": "text",
