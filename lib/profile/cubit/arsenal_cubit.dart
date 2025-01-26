@@ -21,19 +21,13 @@ class ArsenalCubit extends HydratedCubit<ArsenalState> {
     try {
       _xpInfo = await repository.syncXpInfo(username);
 
+      // Remove Excalibur prime because it is not obtainable so if doesn't
+      // exist in xp info it shouldn't display for the user
       _xpInfo
-        ..removeWhere((i) {
-          // Remove Excalibur prime because it is not obtainable so if doesn't
-          // exist in xp info it shouldn't display for the user
-          return i.item.name.contains('Excalibur Prime') && i.rank == 0;
-        })
-        ..sort((a, b) {
-          if (a.rank == 0 && b.rank == 0) return 0;
-          if (a.rank == 0) return 1;
-          if (b.rank == 0) return -1;
-
-          return a.rank.compareTo(b.rank);
-        });
+        ..removeWhere(
+          (i) => i.item.name.contains('Excalibur Prime') && i.rank == 0,
+        )
+        ..sort((a, b) => a.xp.compareTo(b.xp));
 
       emit(ArsenalSuccess(_xpInfo));
     } on Exception catch (e, stack) {
@@ -60,16 +54,15 @@ class ArsenalCubit extends HydratedCubit<ArsenalState> {
   Map<String, dynamic>? toJson(ArsenalState state) {
     if (state is! ArsenalSuccess) return null;
 
+    // Only save enough for home screen and only the non-missing one
     return {
-      'inProgress': state.xpInfo
-          .map(
-            (p) => {
-              'item': p.item.toJson(),
-              'xp': p.xp,
-              'missing': p.missing,
-            },
-          )
-          .toList(),
+      'inProgress': state.xpInfo.where((i) => !i.missing).take(5).map((p) {
+        return {
+          'item': p.item.toJson(),
+          'xp': p.xp,
+          'missing': p.missing,
+        };
+      }).toList(),
     };
   }
 }
