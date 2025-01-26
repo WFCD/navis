@@ -13,7 +13,8 @@ class MasteryProgress {
   final int xp;
   final bool missing;
 
-  int get rank => min(sqrt(xp / 1000).floor(), maxRank);
+  int get rank =>
+      min(sqrt(xp / (item.type.isWeapon ? 500 : 1000)).floor(), maxRank);
 
   int get masteryPoints {
     const basePoints = 3000;
@@ -30,13 +31,14 @@ class MasteryProgress {
   }
 
   int get maxRank {
-    const maxRank = 30;
-    const overlevel = maxRank + 10;
+    const max = 30;
 
     final lichWeaponsRegEx = RegExp('Kuva|Tenet|Paracesis');
-    if (lichWeaponsRegEx.hasMatch(item.name)) return overlevel;
-    if (item.productCategory == 'MechSuits') return overlevel;
+    if (lichWeaponsRegEx.hasMatch(item.name) ||
+        item.productCategory == 'MechSuits') {
+      return max + 10;
+    }
 
-    return maxRank;
+    return max;
   }
 }
