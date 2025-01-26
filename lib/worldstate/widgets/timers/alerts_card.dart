@@ -140,7 +140,6 @@ class _AlertReward extends StatelessWidget {
               overflow: TextOverflow.ellipsis,
             )
           : null,
-      isThreeLine: item != null,
       dense: true,
     );
   }
