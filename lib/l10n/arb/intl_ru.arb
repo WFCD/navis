@@ -1063,13 +1063,13 @@
       "chance": {}
     }
   },
-  "statsTitle": "Stats",
+  "statsTitle": "Статистика",
   "@statsTitle": {
     "description": "Codex stat title",
     "type": "text",
     "placeholder": {}
   },
-  "patchlogsTitle": "Patchlogs",
+  "patchlogsTitle": "Журнал исправлений",
   "@patchlogsTitle": {
     "description": "Codex patchlogs title",
     "type": "text",
@@ -1177,7 +1177,7 @@
     "type": "text",
     "placeholder": {}
   },
-  "healthDrainDamageTitle": "Health Drain",
+  "healthDrainDamageTitle": "Истощение здоровья",
   "@healthDrainDamageTitle": {
     "description": "Codex Weapon damage type title",
     "type": "text",
@@ -1195,7 +1195,7 @@
     "type": "text",
     "placeholder": {}
   },
-  "circuitResetTitle": "The Circuit resets in",
+  "circuitResetTitle": "Смена наград через",
   "@circuitResetTitle": {
     "description": "Text displayed next to the weekly reset time for the circuit",
     "type": "text",
