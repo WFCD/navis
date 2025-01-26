@@ -6,8 +6,9 @@ import 'package:navis/settings/settings.dart';
 import 'package:warframestat_repository/warframestat_repository.dart';
 
 class ArsenalItems extends StatelessWidget {
-  const ArsenalItems({super.key, required this.items});
+  const ArsenalItems({super.key, this.controller, required this.items});
 
+  final ScrollController? controller;
   final List<MasteryProgress> items;
 
   @override
@@ -24,6 +25,7 @@ class ArsenalItems extends StatelessWidget {
         await BlocProvider.of<ArsenalCubit>(context).syncXpInfo(username);
       },
       child: ListView.builder(
+        controller: controller,
         itemCount: items.length,
         itemBuilder: (context, index) => ArsenalItemWidget(item: items[index]),
       ),
