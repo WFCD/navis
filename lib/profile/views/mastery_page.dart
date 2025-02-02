@@ -28,7 +28,7 @@ class _MasteryViewState extends State<MasteryView> {
     {
       'name': 'In Progress',
       'items': (ArsenalSuccess state) => state.xpInfo
-          .whereNot((i) => i.rank == i.maxRank || i.rank == 0)
+          .whereNot((i) => i.rank == i.maxRank || i.missing)
           .toList(),
     },
     {

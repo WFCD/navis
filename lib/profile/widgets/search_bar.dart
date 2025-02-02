@@ -49,11 +49,11 @@ class _MasteryItemSearchBarState extends State<MasteryItemSearchBar> {
 
     final options = await _debounceSearch(query);
     if (options == null) {
-      return _lastOptions.map((i) => ArsenalItemWidget(item: i));
+      return _lastOptions.map((i) => ArsenalItemWidget(progress: i));
     }
 
     _lastOptions = options;
-    return _lastOptions.map((i) => ArsenalItemWidget(item: i));
+    return _lastOptions.map((i) => ArsenalItemWidget(progress: i));
   }
 
   @override

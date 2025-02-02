@@ -27,7 +27,8 @@ class ArsenalItems extends StatelessWidget {
       child: ListView.builder(
         controller: controller,
         itemCount: items.length,
-        itemBuilder: (context, index) => ArsenalItemWidget(item: items[index]),
+        itemBuilder: (context, index) =>
+            ArsenalItemWidget(progress: items[index]),
       ),
     );
   }
