@@ -56,7 +56,7 @@ class MasteryInProgressContent extends StatelessWidget {
           return Column(
             children: [
               for (final i in state.xpInfo.where((i) => !i.missing).take(5))
-                ArsenalItemWidget(item: i),
+                ArsenalItemWidget(progress: i),
             ],
           );
         },
