@@ -2,7 +2,7 @@ import 'package:black_hole_flutter/black_hole_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/l10n/l10n.dart';
-import 'package:navis/profile/profile.dart';
+import 'package:navis/profile/cubit/profile_cubit.dart';
 import 'package:navis/settings/settings.dart';
 import 'package:navis_ui/navis_ui.dart';
 
@@ -51,7 +51,7 @@ class _UsernameInputState extends State<UsernameInput> {
     ScaffoldMessenger.of(context)
         .showSnackBar(SnackBar(content: Text(context.l10n.syncingInfoText)));
 
-    BlocProvider.of<ArsenalCubit>(context).syncXpInfo(username);
+    BlocProvider.of<ProfileCubit>(context).update(username);
     Navigator.pop(context);
   }
 

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/profile/cubit/arsenal_cubit.dart';
-import 'package:navis/profile/widgets/arsenal_item.dart';
+import 'package:navis/profile/cubit/profile_cubit.dart';
+import 'package:navis/profile/widgets/widgets.dart';
 import 'package:navis/settings/settings.dart';
 import 'package:warframestat_repository/warframestat_repository.dart';
 
@@ -22,13 +23,25 @@ class ArsenalItems extends StatelessWidget {
         };
 
         if (username == null) return;
-        await BlocProvider.of<ArsenalCubit>(context).syncXpInfo(username);
+        await BlocProvider.of<ProfileCubit>(context).update(username);
       },
-      child: ListView.builder(
-        controller: controller,
-        itemCount: items.length,
-        itemBuilder: (context, index) =>
-            ArsenalItemWidget(progress: items[index]),
+      child: BlocListener<ProfileCubit, ProfileState>(
+        listener: (context, state) {
+          final profile = switch (state) {
+            ProfileSuccessful() => state.profile,
+            _ => null,
+          };
+
+          if (profile == null) return;
+          BlocProvider.of<ArsenalCubit>(context)
+              .syncXpInfo(profile.loadout.xpInfo);
+        },
+        child: ListView.builder(
+          controller: controller,
+          itemCount: items.length,
+          itemBuilder: (context, index) =>
+              ArsenalItemWidget(progress: items[index]),
+        ),
       ),
     );
   }

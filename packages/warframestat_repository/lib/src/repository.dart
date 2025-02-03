@@ -111,7 +111,7 @@ class WarframestatRepository {
     final client = ProfileClient(
       username: username,
       client: await _cacheClient(cacheTime),
-      // ua: userAgent,
+      ua: userAgent,
       language: language,
     );
 
@@ -143,15 +143,19 @@ class WarframestatRepository {
     await _database.updateTimeStamp();
   }
 
-  Future<List<MasteryProgress>> syncXpInfo(String username) async {
+  Future<List<MasteryProgress>> syncXpInfo(List<XpItem> xpInfo) async {
     developer.log('syncing xp info', name: _name);
-
-    // Share the same catch as profile, XP info doesn't change often and this
-    // keeps the profile hydrated
-    final xpInfo = (await fetchProfile(username)).loadout.xpInfo;
     await _database.updateXp(xpInfo);
 
-    return _database.fetchArsenal();
+    final progress = await _database.fetchArsenal();
+
+    // Remove Excalibur prime because it is not obtainable so if doesn't
+    // exist in xp info it shouldn't display for the user
+    return progress
+      ..removeWhere(
+        (i) => i.item.name.contains('Excalibur Prime') && i.rank == 0,
+      )
+      ..sort((a, b) => a.xp.compareTo(b.xp));
   }
 
   Future<CraigRegion> fetchRegions() async {
