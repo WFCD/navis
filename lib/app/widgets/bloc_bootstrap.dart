@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:navis/profile/cubit/arsenal_cubit.dart';
+import 'package:navis/profile/cubit/profile_cubit.dart';
 import 'package:navis/settings/settings.dart';
 import 'package:navis/worldstate/worldstate.dart';
 import 'package:warframestat_repository/warframestat_repository.dart';
@@ -17,7 +17,7 @@ class BlocBootstrap extends StatefulWidget {
 class _BlocBootstrapState extends State<BlocBootstrap> {
   late WorldstateCubit _worldstateCubit;
   late UserSettingsCubit _userSettingsCubit;
-  late ArsenalCubit _arsenalCubit;
+  late ProfileCubit _profileCubit;
 
   @override
   void initState() {
@@ -28,7 +28,7 @@ class _BlocBootstrapState extends State<BlocBootstrap> {
 
     _worldstateCubit = WorldstateCubit(wsRepo);
     _userSettingsCubit = UserSettingsCubit(settings);
-    _arsenalCubit = ArsenalCubit(wsRepo);
+    _profileCubit = ProfileCubit(wsRepo);
   }
 
   @override
@@ -44,7 +44,7 @@ class _BlocBootstrapState extends State<BlocBootstrap> {
     };
 
     if (username != null) {
-      _arsenalCubit.syncXpInfo(username);
+      _profileCubit.update(username);
     }
   }
 
@@ -54,7 +54,7 @@ class _BlocBootstrapState extends State<BlocBootstrap> {
       providers: [
         BlocProvider.value(value: _worldstateCubit),
         BlocProvider.value(value: _userSettingsCubit),
-        BlocProvider.value(value: _arsenalCubit),
+        BlocProvider.value(value: _profileCubit),
       ],
       child: widget.child,
     );

@@ -10,7 +10,16 @@ class MasteryPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(body: SafeArea(child: MasteryView()));
+    final repository = RepositoryProvider.of<WarframestatRepository>(context);
+
+    return Scaffold(
+      body: SafeArea(
+        child: BlocProvider(
+          create: (_) => ArsenalCubit(repository),
+          child: const MasteryView(),
+        ),
+      ),
+    );
   }
 }
 
