@@ -143,10 +143,12 @@ class WarframestatRepository {
     await _database.updateTimeStamp();
   }
 
-  Future<List<MasteryProgress>> syncXpInfo(List<XpItem> xpInfo) async {
+  Future<void> syncXpInfo(List<XpItem> xpInfo) async {
     developer.log('syncing xp info', name: _name);
     await _database.updateXp(xpInfo);
+  }
 
+  Future<List<MasteryProgress>> fetchXpInfo() async {
     final progress = await _database.fetchArsenal();
 
     // Remove Excalibur prime because it is not obtainable so if doesn't

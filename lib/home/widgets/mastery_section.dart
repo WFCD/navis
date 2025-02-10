@@ -27,7 +27,7 @@ class MasteryInProgressSection extends StatelessWidget {
             RepositoryProvider.of<WarframestatRepository>(context);
 
         return BlocProvider(
-          create: (context) => ArsenalCubit(repository),
+          create: (context) => ArsenalCubit(repository)..fetchXpInfo(),
           child: const MasteryInProgressContent(),
         );
       },
@@ -51,8 +51,7 @@ class MasteryInProgressContent extends StatelessWidget {
           };
 
           if (profile == null) return;
-          BlocProvider.of<ArsenalCubit>(context)
-              .syncXpInfo(profile.loadout.xpInfo);
+          BlocProvider.of<ArsenalCubit>(context).fetchXpInfo();
         },
         child: BlocBuilder<ArsenalCubit, ArsenalState>(
           builder: (context, state) {
