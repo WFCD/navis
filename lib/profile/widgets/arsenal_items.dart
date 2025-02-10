@@ -33,8 +33,7 @@ class ArsenalItems extends StatelessWidget {
           };
 
           if (profile == null) return;
-          BlocProvider.of<ArsenalCubit>(context)
-              .syncXpInfo(profile.loadout.xpInfo);
+          BlocProvider.of<ArsenalCubit>(context).fetchXpInfo();
         },
         child: ListView.builder(
           controller: controller,

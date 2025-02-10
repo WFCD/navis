@@ -48,10 +48,10 @@ class _SettingsView extends StatelessWidget {
     final filters = NotificationTopics(context.l10n);
     final settings = context.watch<UserSettingsCubit>().state;
 
-    final username = switch (settings) {
-      UserSettingsSuccess() => settings.username,
-      _ => null
-    };
+    // final username = switch (settings) {
+    //   UserSettingsSuccess() => settings.username,
+    //   _ => null
+    // };
 
     final themeMode = switch (settings) {
       UserSettingsSuccess() => settings.themeMode,
@@ -77,16 +77,16 @@ class _SettingsView extends StatelessWidget {
       lightTheme: theme,
       darkTheme: theme,
       sections: [
-        SettingsSection(
-          title: Text(l10n.masteryTrackingCategoryTitle),
-          tiles: [
-            SettingsTile(
-              title: Text(username ?? l10n.enterUsernameHintText),
-              // TODO(Orn): find a way to show mastery progress
-              onPressed: UsernameInput.show,
-            ),
-          ],
-        ),
+        // SettingsSection(
+        //   title: Text(l10n.masteryTrackingCategoryTitle),
+        //   tiles: [
+        //     SettingsTile(
+        //       title: Text(username ?? l10n.enterUsernameHintText),
+        //       // TODO(Orn): find a way to show mastery progress
+        //       onPressed: UsernameInput.show,
+        //     ),
+        //   ],
+        // ),
         SettingsSection(
           title: Text(l10n.behaviorTitle),
           tiles: [

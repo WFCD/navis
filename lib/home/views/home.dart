@@ -65,7 +65,7 @@ class _HomeViewState extends State<HomeView> with RouteAware {
     final children = [
       const NewsSection(),
       const ActivitiesSection(),
-      const MasteryInProgressSection(),
+      // const MasteryInProgressSection(),
     ];
 
     return CustomScrollView(

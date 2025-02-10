@@ -15,6 +15,7 @@ class ProfileCubit extends Cubit<ProfileState> {
 
     try {
       final profile = await repository.fetchProfile(username);
+      await repository.syncXpInfo(profile.loadout.xpInfo);
 
       emit(ProfileSuccessful(profile));
     } on Exception {
