@@ -21,6 +21,12 @@
     "type": "text",
     "placeholders": {}
   },
+  "seeMore": "See More",
+  "@seeMore": {
+    "description": "General button to see more of a overview object",
+    "type": "text",
+    "placeholders": {}
+  },
   "seeWikia": "Voir Wikia",
   "@seeWikia": {
     "description": "General button to wikia of given item",
@@ -241,6 +247,18 @@
   },
   "rareAlertsNotificationDescription": "Notifications d'alertes rares, principalement des cadeaux du Lotus.",
   "@rareAlertsNotificationDescription": {
+    "description": "Description for rare alerts option",
+    "type": "text",
+    "placeholders": {}
+  },
+  "operationAlertsNotificationTitle": "Operation Alerts",
+  "@operationAlertsNotificationTitle": {
+    "description": "Rare Alerts title",
+    "type": "text",
+    "placeholders": {}
+  },
+  "operationAlertsNotificationDescription": "Alert notifications for operations",
+  "@operationAlertsNotificationDescription": {
     "description": "Description for rare alerts option",
     "type": "text",
     "placeholders": {}
@@ -1240,6 +1258,12 @@
   "archimedeaWarningSubtitle": "DE ne mets pas toujours à jour les données de l'Archimédée Profonde après un reset hebdomadaire donc à considérer comme non fiable.\nL'avertissement sera retiré quand les données des rotations seront plus fiables",
   "@archimedeaWarningSubtitle": {
     "description": "Warning text displayed under Deep Archimedea warning title",
+    "type": "text",
+    "placeholder": {}
+  },
+  "activitiesTitle": "Activities",
+  "@activitiesTitle": {
+    "description": "Activities title",
     "type": "text",
     "placeholder": {}
   }
