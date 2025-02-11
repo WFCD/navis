@@ -21,6 +21,12 @@
     "type": "text",
     "placeholders": {}
   },
+  "seeMore": "See More",
+  "@seeMore": {
+    "description": "General button to see more of a overview object",
+    "type": "text",
+    "placeholders": {}
+  },
   "seeWikia": "Открыть на Fandom'е",
   "@seeWikia": {
     "description": "General button to wikia of given item",
@@ -241,6 +247,18 @@
   },
   "rareAlertsNotificationDescription": "Оповещение о редких Тревогах, в основном Дары Лотус.",
   "@rareAlertsNotificationDescription": {
+    "description": "Description for rare alerts option",
+    "type": "text",
+    "placeholders": {}
+  },
+  "operationAlertsNotificationTitle": "Operation Alerts",
+  "@operationAlertsNotificationTitle": {
+    "description": "Rare Alerts title",
+    "type": "text",
+    "placeholders": {}
+  },
+  "operationAlertsNotificationDescription": "Alert notifications for operations",
+  "@operationAlertsNotificationDescription": {
     "description": "Description for rare alerts option",
     "type": "text",
     "placeholders": {}
@@ -1240,6 +1258,12 @@
   "archimedeaWarningSubtitle": "DE не всегда обновляет данные Deep Archimedea после еженедельного сброса, поэтому считайте это нестабильным.\nПредупреждение будет удалено, когда ротация данных станет более последовательной",
   "@archimedeaWarningSubtitle": {
     "description": "Warning text displayed under Deep Archimedea warning title",
+    "type": "text",
+    "placeholder": {}
+  },
+  "activitiesTitle": "Activities",
+  "@activitiesTitle": {
+    "description": "Activities title",
     "type": "text",
     "placeholder": {}
   }
