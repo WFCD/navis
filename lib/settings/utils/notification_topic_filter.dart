@@ -16,6 +16,11 @@ class NotificationTopics {
         topic: Topics.alertsKey,
       ),
       SimpleTopics(
+        title: l10n.operationAlertsNotificationTitle,
+        description: l10n.operationAlertsNotificationDescription,
+        topic: Topics.operationAlertsKey,
+      ),
+      SimpleTopics(
         title: l10n.baroNotificationTitle,
         description: l10n.baroNotificationDescription,
         topic: Topics.baroKey,

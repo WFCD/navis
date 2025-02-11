@@ -36,6 +36,7 @@ abstract class Topics {
   static const Topic fearKey = Topic('duviri_fear');
 
   static const Topic alertsKey = Topic('rare_alerts');
+  static const Topic operationAlertsKey = Topic('operation_alerts');
   static const Topic baroKey = Topic('baro');
   static const Topic darvoKey = Topic('darvo');
   static const Topic sortiesKey = Topic('sorties');

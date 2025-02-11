@@ -251,6 +251,18 @@
     "type": "text",
     "placeholders": {}
   },
+  "operationAlertsNotificationTitle": "Operation Alerts",
+  "@operationAlertsNotificationTitle": {
+    "description": "Rare Alerts title",
+    "type": "text",
+    "placeholders": {}
+  },
+  "operationAlertsNotificationDescription": "Alert notifications for operations",
+  "@operationAlertsNotificationDescription": {
+    "description": "Description for rare alerts option",
+    "type": "text",
+    "placeholders": {}
+  },
   "baroNotificationTitle": "Baro Ki'Teer",
   "@baroNotificationTitle": {
     "description": "Baro's notification title",
