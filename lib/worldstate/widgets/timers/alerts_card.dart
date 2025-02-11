@@ -74,14 +74,15 @@ class _AlertWidget extends StatelessWidget {
             title: Row(
               children: [
                 Text(node),
-                if (mission.archwingRequired ?? false) ...{
-                  Gaps.gap8,
-                  const Icon(
-                    WarframeSymbols.archwing,
-                    color: Colors.blue,
-                    size: 25,
+                if (mission.archwingRequired ?? false)
+                  const Padding(
+                    padding: EdgeInsets.only(left: 8),
+                    child: Icon(
+                      WarframeSymbols.archwing,
+                      color: Colors.blue,
+                      size: 25,
+                    ),
                   ),
-                },
               ],
             ),
             subtitle: Text('$type ($faction) | $enemyLvlRange'),
