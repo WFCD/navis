@@ -21,6 +21,12 @@
     "type": "text",
     "placeholders": {}
   },
+  "seeMore": "See More",
+  "@seeMore": {
+    "description": "General button to see more of a overview object",
+    "type": "text",
+    "placeholders": {}
+  },
   "seeWikia": "Siehe Wiki",
   "@seeWikia": {
     "description": "General button to wikia of given item",
@@ -241,6 +247,18 @@
   },
   "rareAlertsNotificationDescription": "Seltene Alarmierungsbeanachrichtigung, meist Geschenke von Lotus.",
   "@rareAlertsNotificationDescription": {
+    "description": "Description for rare alerts option",
+    "type": "text",
+    "placeholders": {}
+  },
+  "operationAlertsNotificationTitle": "Operation Alerts",
+  "@operationAlertsNotificationTitle": {
+    "description": "Rare Alerts title",
+    "type": "text",
+    "placeholders": {}
+  },
+  "operationAlertsNotificationDescription": "Alert notifications for operations",
+  "@operationAlertsNotificationDescription": {
     "description": "Description for rare alerts option",
     "type": "text",
     "placeholders": {}
@@ -1240,6 +1258,12 @@
   "archimedeaWarningSubtitle": "DE doesn't always update Deep Archimedea data after a weekly reset so consider this unstable.\nWarning will be removed when data rotation is more consistent",
   "@archimedeaWarningSubtitle": {
     "description": "Warning text displayed under Deep Archimedea warning title",
+    "type": "text",
+    "placeholder": {}
+  },
+  "activitiesTitle": "Activities",
+  "@activitiesTitle": {
+    "description": "Activities title",
     "type": "text",
     "placeholder": {}
   }
