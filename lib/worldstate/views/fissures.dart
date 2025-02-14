@@ -30,15 +30,12 @@ class _FissuresView extends StatefulWidget {
 }
 
 class _FissuresViewState extends State<_FissuresView> {
-  final _allFocus = FocusNode();
   final _fissuresFocus = FocusNode();
   final _stormFocus = FocusNode();
   final _steelFocus = FocusNode();
 
   void _updateFocus(FissureFilter filter) {
     switch (filter) {
-      case FissureFilter.all:
-        _allFocus.requestFocus();
       case FissureFilter.fissures:
         _fissuresFocus.requestFocus();
       case FissureFilter.voidStorm:
@@ -66,10 +63,11 @@ class _FissuresViewState extends State<_FissuresView> {
 
   @override
   Widget build(BuildContext context) {
-    final fissures = context.watch<FissureFilterCubit>().state.filter();
+    final fissures = context.watch<FissureFilterCubit>().state.fissures;
 
     return Column(
       children: [
+        Gaps.gap8,
         const _FissureFilter(),
         Expanded(
           child: ViewLoading(
@@ -143,10 +141,31 @@ class _FissureFilter extends StatelessWidget {
     context.read<FissureFilterCubit>().filterFissures(filter, fissures);
   }
 
+  Widget _toggleButton(NavisLocalizations l10n, FissureFilter filter) {
+    final text = switch (filter) {
+      FissureFilter.fissures => l10n.fissuresTitle,
+      FissureFilter.voidStorm => l10n.voidStormFissuresButton,
+      FissureFilter.steelPath => l10n.steelPathTitle,
+    };
+
+    final icon = switch (filter) {
+      FissureFilter.fissures => WarframeSymbols.fissures_requiem,
+      FissureFilter.voidStorm => WarframeSymbols.archwing,
+      FissureFilter.steelPath => WarframeSymbols.sp_logo,
+    };
+
+    return Tooltip(
+      message: text,
+      child: Row(
+        children: [Icon(icon), Gaps.gap8, Text(text)],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    const showCheckmark = false;
     final l10n = context.l10n;
+    final screen = MediaQuery.sizeOf(context);
 
     return BlocListener<WorldstateCubit, SolsystemState>(
       listener: (context, state) {
@@ -157,38 +176,19 @@ class _FissureFilter extends StatelessWidget {
       },
       child: BlocBuilder<FissureFilterCubit, FissureFilterState>(
         builder: (_, state) {
-          return Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              ChoiceChip(
-                label: Text(l10n.allFissuresButton),
-                tooltip: l10n.allFissuresButton,
-                selected: state is Unfiltred,
-                showCheckmark: showCheckmark,
-                onSelected: (_) => onSelected(context, FissureFilter.all),
-              ),
-              ChoiceChip(
-                label: Text(l10n.fissuresTitle),
-                tooltip: l10n.fissuresTitle,
-                selected: state is Fissures,
-                showCheckmark: showCheckmark,
-                onSelected: (_) => onSelected(context, FissureFilter.fissures),
-              ),
-              ChoiceChip(
-                label: Text(l10n.voidStormFissuresButton),
-                tooltip: l10n.voidStormFissuresButton,
-                selected: state is VoidStorms,
-                showCheckmark: showCheckmark,
-                onSelected: (_) => onSelected(context, FissureFilter.voidStorm),
-              ),
-              ChoiceChip(
-                label: Text(l10n.steelPathTitle),
-                tooltip: l10n.steelPathTitle,
-                selected: state is SteelPathFissures,
-                showCheckmark: showCheckmark,
-                onSelected: (_) => onSelected(context, FissureFilter.steelPath),
-              ),
-            ],
+          return ToggleButtons(
+            constraints: BoxConstraints(
+              minHeight: screen.height * .05,
+              minWidth: screen.width * .32,
+            ),
+            borderRadius: BorderRadius.circular(8),
+            isSelected:
+                FissureFilter.values.map((i) => state.type == i).toList(),
+            onPressed: (index) =>
+                onSelected(context, FissureFilter.values[index]),
+            children: FissureFilter.values
+                .map((i) => _toggleButton(l10n, i))
+                .toList(),
           );
         },
       ),

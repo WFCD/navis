@@ -12,7 +12,7 @@ abstract class NavisThemes {
 
     return ThemeData(
       useMaterial3: true,
-      colorScheme: defaultScheme,
+      colorScheme: scheme,
       brightness: brightness,
       cardTheme: const CardTheme(elevation: 4),
       // Need this set to false to use 2024 version

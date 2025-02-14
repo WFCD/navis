@@ -1,29 +1,36 @@
+import 'package:collection/collection.dart';
 import 'package:equatable/equatable.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:warframestat_client/warframestat_client.dart';
 
 part 'fissure_filter_state.dart';
 
-enum FissureFilter { all, fissures, voidStorm, steelPath }
+enum FissureFilter { fissures, voidStorm, steelPath }
 
 class FissureFilterCubit extends HydratedCubit<FissureFilterState> {
   FissureFilterCubit(List<Fissure> fissures)
-      : super(Unfiltred(fissures: fissures));
+      : super(Fissures(fissures: fissures));
 
-  FissureFilter _filter = FissureFilter.all;
+  FissureFilter _filter = FissureFilter.fissures;
 
   void filterFissures(FissureFilter filter, List<Fissure> fissures) {
     _filter = filter;
 
     switch (filter) {
-      case FissureFilter.all:
-        emit(Unfiltred(fissures: fissures));
       case FissureFilter.fissures:
-        emit(Fissures(fissures: fissures));
+        emit(
+          Fissures(
+            fissures: fissures.whereNot((i) => i.isHard || i.isStorm).toList(),
+          ),
+        );
       case FissureFilter.voidStorm:
-        emit(VoidStorms(fissures: fissures));
+        emit(VoidStorms(fissures: fissures.where((i) => i.isStorm).toList()));
       case FissureFilter.steelPath:
-        emit(SteelPathFissures(fissures: fissures));
+        emit(
+          SteelPathFissures(
+            fissures: fissures.where((i) => i.isHard).toList(),
+          ),
+        );
     }
   }
 
@@ -39,8 +46,6 @@ class FissureFilterCubit extends HydratedCubit<FissureFilterState> {
         .toList();
 
     switch (type) {
-      case FissureFilter.all:
-        return Unfiltred(fissures: fissures);
       case FissureFilter.fissures:
         return Fissures(fissures: fissures);
       case FissureFilter.voidStorm:
