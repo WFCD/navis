@@ -10,11 +10,7 @@ class AppRouter {
     required RouteObserver<ModalRoute<void>> observer,
     bool debugLogDiagnostics = false,
   }) {
-    _goRouter = _routes(
-      navigatorKey,
-      observer,
-      debugLogDiagnostics,
-    );
+    _goRouter = _routes(navigatorKey, observer, debugLogDiagnostics);
   }
 
   late final GoRouter _goRouter;
@@ -28,7 +24,7 @@ class AppRouter {
   ) {
     return GoRouter(
       navigatorKey: navigatorKey,
-      initialLocation: const ActivitesPageRouteData().location,
+      initialLocation: const OverviewPageRouteData().location,
       observers: [observer, matomoObserver, SentryNavigatorObserver()],
       debugLogDiagnostics: debugLogDiagnostics,
       routes: $appRoutes,
