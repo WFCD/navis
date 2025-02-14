@@ -1,12 +1,14 @@
-import 'package:black_hole_flutter/black_hole_flutter.dart';
 import 'package:flutter/material.dart';
-import 'package:navis_ui/src/colors/colors.dart';
 
 abstract class NavisThemes {
   static ThemeData theme(Brightness brightness, ColorScheme? colorScheme) {
     const radius = Radius.circular(8);
-    final scheme =
-        colorScheme ?? (brightness.isDark ? darkColorScheme : lightColorScheme);
+    final defaultScheme = ColorScheme.fromSeed(
+      seedColor: const Color(0xFF3F51B5),
+      brightness: brightness,
+    );
+
+    final scheme = colorScheme ?? defaultScheme;
 
     return ThemeData(
       useMaterial3: true,
