@@ -5,8 +5,12 @@
     "description": "The information of the current enemy levels",
     "type": "text",
     "placeholders": {
-      "min": {},
-      "max": {}
+      "min": {
+        "type": "int"
+      },
+      "max": {
+        "type": "int"
+      }
     }
   },
   "tapForMoreDetails": "Для получения более подробной информации",
@@ -18,6 +22,12 @@
   "seeDetails": "Подробнее",
   "@seeDetails": {
     "description": "General button to see more details of given object",
+    "type": "text",
+    "placeholders": {}
+  },
+  "seeMore": "See More",
+  "@seeMore": {
+    "description": "General button to see more of a overview object",
     "type": "text",
     "placeholders": {}
   },
@@ -116,7 +126,10 @@
     "description": "Countdown tooltip with end date of the current running timer",
     "type": "text",
     "placeholders": {
-      "date": {}
+      "date": {
+        "type": "DateTime",
+        "format": "jms yMd"
+      }
     }
   },
   "kuvaBanner": "Кува обновится через",
@@ -241,6 +254,18 @@
   },
   "rareAlertsNotificationDescription": "Оповещение о редких Тревогах, в основном Дары Лотус.",
   "@rareAlertsNotificationDescription": {
+    "description": "Description for rare alerts option",
+    "type": "text",
+    "placeholders": {}
+  },
+  "operationAlertsNotificationTitle": "Operation Alerts",
+  "@operationAlertsNotificationTitle": {
+    "description": "Rare Alerts title",
+    "type": "text",
+    "placeholders": {}
+  },
+  "operationAlertsNotificationDescription": "Alert notifications for operations",
+  "@operationAlertsNotificationDescription": {
     "description": "Description for rare alerts option",
     "type": "text",
     "placeholders": {}
@@ -808,7 +833,9 @@
     "description": "The label shown to users as they slide the mod slider",
     "type": "text",
     "placeholders": {
-      "rank": {}
+      "rank": {
+        "type": "int"
+      }
     }
   },
   "codexHint": "Поиск здесь...",
@@ -1240,6 +1267,12 @@
   "archimedeaWarningSubtitle": "DE не всегда обновляет данные Deep Archimedea после еженедельного сброса, поэтому считайте это нестабильным.\nПредупреждение будет удалено, когда ротация данных станет более последовательной",
   "@archimedeaWarningSubtitle": {
     "description": "Warning text displayed under Deep Archimedea warning title",
+    "type": "text",
+    "placeholder": {}
+  },
+  "activitiesTitle": "Activities",
+  "@activitiesTitle": {
+    "description": "Activities title",
     "type": "text",
     "placeholder": {}
   }

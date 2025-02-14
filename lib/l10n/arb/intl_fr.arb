@@ -5,8 +5,12 @@
     "description": "The information of the current enemy levels",
     "type": "text",
     "placeholders": {
-      "min": {},
-      "max": {}
+      "min": {
+        "type": "int"
+      },
+      "max": {
+        "type": "int"
+      }
     }
   },
   "tapForMoreDetails": "Appuyez pour plus de détails",
@@ -18,6 +22,12 @@
   "seeDetails": "Voir les détails",
   "@seeDetails": {
     "description": "General button to see more details of given object",
+    "type": "text",
+    "placeholders": {}
+  },
+  "seeMore": "See More",
+  "@seeMore": {
+    "description": "General button to see more of a overview object",
     "type": "text",
     "placeholders": {}
   },
@@ -116,7 +126,10 @@
     "description": "Countdown tooltip with end date of the current running timer",
     "type": "text",
     "placeholders": {
-      "date": {}
+      "date": {
+        "type": "DateTime",
+        "format": "jms yMd"
+      }
     }
   },
   "kuvaBanner": "Kuva va s'actualiser dans",
@@ -241,6 +254,18 @@
   },
   "rareAlertsNotificationDescription": "Notifications d'alertes rares, principalement des cadeaux du Lotus.",
   "@rareAlertsNotificationDescription": {
+    "description": "Description for rare alerts option",
+    "type": "text",
+    "placeholders": {}
+  },
+  "operationAlertsNotificationTitle": "Operation Alerts",
+  "@operationAlertsNotificationTitle": {
+    "description": "Rare Alerts title",
+    "type": "text",
+    "placeholders": {}
+  },
+  "operationAlertsNotificationDescription": "Alert notifications for operations",
+  "@operationAlertsNotificationDescription": {
     "description": "Description for rare alerts option",
     "type": "text",
     "placeholders": {}
@@ -808,7 +833,9 @@
     "description": "The label shown to users as they slide the mod slider",
     "type": "text",
     "placeholders": {
-      "rank": {}
+      "rank": {
+        "type": "int"
+      }
     }
   },
   "codexHint": "Rechercher...",
@@ -1240,6 +1267,12 @@
   "archimedeaWarningSubtitle": "DE ne mets pas toujours à jour les données de l'Archimédée Profonde après un reset hebdomadaire donc à considérer comme non fiable.\nL'avertissement sera retiré quand les données des rotations seront plus fiables",
   "@archimedeaWarningSubtitle": {
     "description": "Warning text displayed under Deep Archimedea warning title",
+    "type": "text",
+    "placeholder": {}
+  },
+  "activitiesTitle": "Activities",
+  "@activitiesTitle": {
+    "description": "Activities title",
     "type": "text",
     "placeholder": {}
   }
