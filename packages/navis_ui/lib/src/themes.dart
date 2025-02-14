@@ -12,9 +12,12 @@ abstract class NavisThemes {
 
     return ThemeData(
       useMaterial3: true,
-      colorScheme: scheme,
+      colorScheme: defaultScheme,
       brightness: brightness,
       cardTheme: const CardTheme(elevation: 4),
+      // Need this set to false to use 2024 version
+      // ignore: deprecated_member_use
+      progressIndicatorTheme: const ProgressIndicatorThemeData(year2023: false),
       navigationBarTheme: NavigationBarThemeData(
         iconTheme: WidgetStateProperty.resolveWith((state) {
           final isSelected = state.contains(WidgetState.selected);

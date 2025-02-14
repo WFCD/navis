@@ -10,10 +10,14 @@ import 'package:warframestat_repository/warframestat_repository.dart';
 class EntryViewOpenContainer extends StatelessWidget {
   const EntryViewOpenContainer({
     super.key,
+    this.openColor,
+    this.closedColor,
     required this.item,
     required this.builder,
   });
 
+  final Color? openColor;
+  final Color? closedColor;
   final MinimalItem item;
   final Widget Function(BuildContext, void Function()) builder;
 
@@ -41,8 +45,8 @@ class EntryViewOpenContainer extends StatelessWidget {
     return OpenContainer(
       closedElevation: elevation,
       useRootNavigator: context.rootNavigator.mounted,
-      closedColor: Theme.of(context).colorScheme.surface,
-      openColor: Theme.of(context).colorScheme.surface,
+      openColor: openColor ?? Theme.of(context).colorScheme.surfaceContainer,
+      closedColor: closedColor ?? Colors.transparent,
       openBuilder: (_, __) => EntryView(item: item),
       closedBuilder: builder,
     );

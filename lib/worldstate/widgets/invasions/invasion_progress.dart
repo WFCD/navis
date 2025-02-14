@@ -24,9 +24,10 @@ class InvasionProgress extends StatelessWidget {
         elevation: 4,
         color: Colors.transparent,
         child: LinearProgressIndicator(
-          minHeight: 16,
+          minHeight: 6,
           value: progress,
-          borderRadius: BorderRadius.circular(6),
+          borderRadius: BorderRadius.circular(8),
+          stopIndicatorColor: Colors.transparent,
           color: attacker.primaryColor,
           backgroundColor: defending.primaryColor,
         ),

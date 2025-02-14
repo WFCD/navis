@@ -57,8 +57,8 @@ class _CodexSearchBarState extends State<CodexSearchBar> {
 
     Widget container(MinimalItem item) {
       return OpenContainer(
-        closedColor: Colors.transparent,
-        openColor: Colors.transparent,
+        closedColor: Theme.of(context).colorScheme.surface,
+        openColor: Theme.of(context).colorScheme.surface,
         closedBuilder: (_, onTap) => CodexResult(item: item, onTap: onTap),
         openBuilder: (_, __) => EntryView(item: item),
       );
