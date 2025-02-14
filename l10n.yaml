@@ -1,5 +1,6 @@
 arb-dir: lib/l10n/arb
+output-dir: lib/l10n/generated
 template-arb-file: intl_en.arb
-output-localization-file: navis_localizations.dart
 output-class: NavisLocalizations
 nullable-getter: false
+synthetic-package: false

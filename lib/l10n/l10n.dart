@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
-import 'package:flutter_gen/gen_l10n/navis_localizations.dart';
+import 'package:navis/l10n/generated/app_localizations.dart';
 
-export 'package:flutter_gen/gen_l10n/navis_localizations.dart';
+export 'package:navis/l10n/generated/app_localizations.dart';
 
 extension AppLocalizationsX on BuildContext {
   NavisLocalizations get l10n {
