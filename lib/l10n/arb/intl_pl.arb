@@ -5,8 +5,12 @@
     "description": "The information of the current enemy levels",
     "type": "text",
     "placeholders": {
-      "min": {},
-      "max": {}
+      "min": {
+        "type": "int"
+      },
+      "max": {
+        "type": "int"
+      }
     }
   },
   "tapForMoreDetails": "Dotknij, aby uzyskać więcej informacji",
@@ -122,7 +126,10 @@
     "description": "Countdown tooltip with end date of the current running timer",
     "type": "text",
     "placeholders": {
-      "date": {}
+      "date": {
+        "type": "DateTime",
+        "format": "jms yMd"
+      }
     }
   },
   "kuvaBanner": "Kuva will refresh in",
@@ -826,7 +833,9 @@
     "description": "The label shown to users as they slide the mod slider",
     "type": "text",
     "placeholders": {
-      "rank": {}
+      "rank": {
+        "type": "int"
+      }
     }
   },
   "codexHint": "Search here...",
