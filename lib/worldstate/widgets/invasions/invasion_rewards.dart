@@ -16,21 +16,23 @@ class InvasionReward extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final a = Factions.values.byName(attacker.factionKey.toLowerCase());
-    final d = Factions.values.byName(defender.factionKey.toLowerCase());
+    final attacker =
+        Factions.values.byName(this.attacker.factionKey.toLowerCase());
+    final defender =
+        Factions.values.byName(this.defender.factionKey.toLowerCase());
 
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         if (!vsInfestation)
           _InvasionRewardBox(
-            color: a.primaryColor,
-            reward: attacker.reward!.itemString,
+            color: attacker.primaryColor,
+            reward: this.attacker.reward!.itemString,
           ),
         const Spacer(),
         _InvasionRewardBox(
-          color: d.primaryColor,
-          reward: defender.reward!.itemString,
+          color: defender.primaryColor,
+          reward: this.defender.reward!.itemString,
         ),
       ],
     );
@@ -46,18 +48,6 @@ class _InvasionRewardBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.sizeOf(context).width / 3;
-
-    // return SizedBox(
-    //   width: width,
-    //   child: Material(
-    //     elevation: 4,
-    //     color: Colors.transparent,
-    //     child: ColoredContainer.text(
-    //       color: color,
-    //       text: reward,
-    //     ),
-    //   ),
-    // );
 
     return Tooltip(
       message: reward,

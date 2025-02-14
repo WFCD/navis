@@ -12,34 +12,52 @@ class InvasionWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const decimalPoint = 100;
+    const height = 170.0;
+
+    final attacker =
+        Factions.values.byName(invasion.attacker.factionKey.toLowerCase());
+    final defender =
+        Factions.values.byName(invasion.defender.factionKey.toLowerCase());
 
     return SkyboxCard(
       node: invasion.node,
-      height: 170,
+      height: height,
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: <Widget>[
+      child: Stack(
+        children: [
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 18),
-            child: _InvasionDetails(
-              node: invasion.node,
-              description: invasion.desc,
-              eta: invasion.eta,
+            padding: const EdgeInsets.only(top: 20),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Icon(attacker.factionIcon, size: height * .4),
+                Icon(defender.factionIcon, size: height * .4),
+              ],
             ),
           ),
-          InvasionReward(
-            attacker: invasion.attacker,
-            defender: invasion.defender,
-            vsInfestation: invasion.vsInfestation,
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 8),
-            child: InvasionProgress(
-              progress: invasion.completion / decimalPoint,
-              attackingFaction: invasion.attacker.factionKey,
-              defendingFaction: invasion.defender.factionKey,
-            ),
+          Column(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: <Widget>[
+              Expanded(
+                child: _InvasionDetails(
+                  node: invasion.node,
+                  description: invasion.desc,
+                  eta: invasion.eta,
+                ),
+              ),
+              InvasionReward(
+                attacker: invasion.attacker,
+                defender: invasion.defender,
+                vsInfestation: invasion.vsInfestation,
+              ),
+              Gaps.gap4,
+              InvasionProgress(
+                progress: invasion.completion / decimalPoint,
+                attackingFaction: invasion.attacker.factionKey,
+                defendingFaction: invasion.defender.factionKey,
+              ),
+            ],
           ),
         ],
       ),
