@@ -128,7 +128,8 @@
     "placeholders": {
       "date": {
         "type": "DateTime",
-        "format": "jms yMd"
+        "format": "HH:mm:ss yyyy-MM-dd",
+        "isCustomDateFormat": true
       }
     }
   },
