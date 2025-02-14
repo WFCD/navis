@@ -20,13 +20,16 @@ class EventInformation extends StatelessWidget {
   }
 
   static const _eventBanner = <String, String>{
-    'Thermia Fractures': 'https://www-static.warframe.com/uploads/thumbnails/'
+    'Thermia Fractures':
+        'https://www-static.warframe.com/uploads/thumbnails/'
         '59f071afbbd6d21fda59bc2bd611200_1600x900.png',
     'Operation: Belly of the Beast':
         'https://www-static.warframe.com/uploads/thumbnails'
-            '/92a16137ab4635c0d3e222957739eec9_1600x900.png',
-    'Nights of Naberus': 'https://www-static.warframe.com/uploads/thumbnails/'
+        '/92a16137ab4635c0d3e222957739eec9_1600x900.png',
+    'Nights of Naberus':
+        'https://www-static.warframe.com/uploads/thumbnails/'
         '3831ab38bfcba03794b4fe418cabc240_1600x900.png',
+    'Star Days': 'https://www-static.warframe.com/uploads/thumbnails/b919db679cbf7ceade10d849e4d94983_1600x900.png',
   };
 
   @override
@@ -44,13 +47,11 @@ class EventInformation extends StatelessWidget {
               flexibleSpace: FlexibleSpaceBar(
                 title: Text(event.description),
                 background: CachedNetworkImage(
-                  imageUrl: _eventBanner[event.description] ??
-                      'https://i.imgur.com/CNrsc7V.png',
+                  imageUrl: _eventBanner[event.description] ?? 'https://i.imgur.com/CNrsc7V.png',
                   fit: BoxFit.cover,
-                  color: Colors.grey[350],
-                  colorBlendMode: BlendMode.modulate,
-                  memCacheHeight:
-                      (height * context.mediaQuery.devicePixelRatio).toInt(),
+                  color: Theme.of(context).colorScheme.shadow.withValues(alpha: .5),
+                  colorBlendMode: BlendMode.darken,
+                  memCacheHeight: (height * context.mediaQuery.devicePixelRatio).toInt(),
                 ),
               ),
             ),
@@ -67,8 +68,7 @@ class EventInformation extends StatelessWidget {
                   expiry: event.expiry,
                   rewards: eventRewards(event.rewards, event.interimSteps),
                 ),
-                if (event.jobs != null && event.jobs!.isNotEmpty)
-                  SafeArea(child: EventBounties(jobs: event.jobs!)),
+                if (event.jobs != null && event.jobs!.isNotEmpty) SafeArea(child: EventBounties(jobs: event.jobs!)),
               ]),
             ),
           ],
