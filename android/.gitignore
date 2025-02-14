@@ -14,3 +14,5 @@ key.properties
 
 fastlane/report.xml
 fastlane/metadata/**/**/**/*.txt
+
+.cxx
