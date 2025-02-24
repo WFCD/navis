@@ -839,7 +839,7 @@
       }
     }
   },
-  "codexHint": "Burada ara...",
+  "codexHint": "Search the codex here...",
   "@codexHint": {
     "description": "Codex description when a user enters the codex or when the search bar is empty",
     "type": "text",
