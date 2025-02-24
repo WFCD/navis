@@ -1,4 +1,5 @@
 import 'package:animations/animations.dart';
+import 'package:black_hole_flutter/black_hole_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
@@ -117,10 +118,11 @@ class _CodexSearchBarState extends State<CodexSearchBar> {
                 onTap: _controller.openView,
                 onTapOutside: (_) => _focusNode.unfocus(),
                 hintText: widget.hintText ?? l10n.codexHint,
+                backgroundColor: WidgetStatePropertyAll(context.theme.colorScheme.secondaryContainer),
                 leading:
                     Navigator.of(context).canPop()
                         ? IconButton(icon: const Icon(Icons.arrow_back), onPressed: () => Navigator.pop(context))
-                        : const Icon(Icons.search_rounded),
+                        : null,
                 trailing:
                     Navigator.of(context).canPop()
                         ? [

@@ -50,8 +50,7 @@ class NavisLocalizationsTr extends NavisLocalizations {
   String get errorTitle => 'Bir uygulama hatası meydana geldi';
 
   @override
-  String get errorDescription =>
-      'Çekirdek sistemde beklenmeyen bir hata oluştu.\nHata, sistem yöneticisine bildiriliyor...';
+  String get errorDescription => 'Çekirdek sistemde beklenmeyen bir hata oluştu.\nHata, sistem yöneticisine bildiriliyor...';
 
   @override
   String get baroTitle => 'Baro Ki\'Teer';
@@ -257,8 +256,7 @@ class NavisLocalizationsTr extends NavisLocalizations {
   String get systemThemeTitle => 'Sistem';
 
   @override
-  String get legalese =>
-      'Warframe ve Warframe logosu, Digital Extremes Ltd.\'nin tescilli ticari markalarıdır. Cephalon Navis ve WFCD, Digital Extremes Ltd. ile herhangi bir şekilde ilişkili değildir.';
+  String get legalese => 'Warframe ve Warframe logosu, Digital Extremes Ltd.\'nin tescilli ticari markalarıdır. Cephalon Navis ve WFCD, Digital Extremes Ltd. ile herhangi bir şekilde ilişkili değildir.';
 
   @override
   String get homePageTitle => 'Ana Sayfa';
@@ -647,8 +645,7 @@ class NavisLocalizationsTr extends NavisLocalizations {
   String get archimedeaWarningTitle => 'Uyarı';
 
   @override
-  String get archimedeaWarningSubtitle =>
-      'DE, her haftalık sıfırlamanın ardından Deep Archimedea verilerini her zaman güncellemiyor, bu yüzden bunu kararsız kabul edin. \nUyarı, veri rotasyonu daha tutarlı hale geldiğinde kaldırılacaktır';
+  String get archimedeaWarningSubtitle => 'DE, her haftalık sıfırlamanın ardından Deep Archimedea verilerini her zaman güncellemiyor, bu yüzden bunu kararsız kabul edin. \nUyarı, veri rotasyonu daha tutarlı hale geldiğinde kaldırılacaktır';
 
   @override
   String get activitiesTitle => 'Activities';

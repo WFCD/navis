@@ -256,8 +256,7 @@ class NavisLocalizationsZh extends NavisLocalizations {
   String get systemThemeTitle => '跟隨系統';
 
   @override
-  String get legalese =>
-      'Warframe 和 Warframe 標誌為 Digital Extremes Ltd. 的註冊商標。Cephalon Navis 和 WFCD 均不以任何方式隸屬於 Digital Extremes Ltd.。';
+  String get legalese => 'Warframe 和 Warframe 標誌為 Digital Extremes Ltd. 的註冊商標。Cephalon Navis 和 WFCD 均不以任何方式隸屬於 Digital Extremes Ltd.。';
 
   @override
   String get homePageTitle => '主頁';
@@ -646,8 +645,7 @@ class NavisLocalizationsZh extends NavisLocalizations {
   String get archimedeaWarningTitle => 'Warning';
 
   @override
-  String get archimedeaWarningSubtitle =>
-      'DE doesn\'t always update Deep Archimedea data after a weekly reset so consider this unstable.\nWarning will be removed when data rotation is more consistent';
+  String get archimedeaWarningSubtitle => 'DE doesn\'t always update Deep Archimedea data after a weekly reset so consider this unstable.\nWarning will be removed when data rotation is more consistent';
 
   @override
   String get activitiesTitle => 'Activities';

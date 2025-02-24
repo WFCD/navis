@@ -50,8 +50,7 @@ class NavisLocalizationsPt extends NavisLocalizations {
   String get errorTitle => 'Ocorreu um erro na aplicação';
 
   @override
-  String get errorDescription =>
-      'Houve um erro inesperado no sistema central.\nReportando erro ao administrador do sistema...';
+  String get errorDescription => 'Houve um erro inesperado no sistema central.\nReportando erro ao administrador do sistema...';
 
   @override
   String get baroTitle => 'Baro Ki\'Teer';
@@ -176,8 +175,7 @@ class NavisLocalizationsPt extends NavisLocalizations {
   String get warframeNewsNotificationTitle => 'Novidades';
 
   @override
-  String get warframeNewsNotificationDescription =>
-      'Notificações de notícias para Prime Access, Streams e Atualizações.';
+  String get warframeNewsNotificationDescription => 'Notificações de notícias para Prime Access, Streams e Atualizações.';
 
   @override
   String get planetCyclesNotificationTitle => 'Ciclos do Mundo Aberto';
@@ -258,8 +256,7 @@ class NavisLocalizationsPt extends NavisLocalizations {
   String get systemThemeTitle => 'Sistema';
 
   @override
-  String get legalese =>
-      'Warframe e o logotipo do Warframe são marcas registradas da Digital Extremes Ltd. Cephalon Navis ou WFCD não têm afiliação com a Digital Extremes Ltd. de nenhuma forma.';
+  String get legalese => 'Warframe e o logotipo do Warframe são marcas registradas da Digital Extremes Ltd. Cephalon Navis ou WFCD não têm afiliação com a Digital Extremes Ltd. de nenhuma forma.';
 
   @override
   String get homePageTitle => 'Início';
@@ -648,8 +645,7 @@ class NavisLocalizationsPt extends NavisLocalizations {
   String get archimedeaWarningTitle => 'Warning';
 
   @override
-  String get archimedeaWarningSubtitle =>
-      'DE doesn\'t always update Deep Archimedea data after a weekly reset so consider this unstable.\nWarning will be removed when data rotation is more consistent';
+  String get archimedeaWarningSubtitle => 'DE doesn\'t always update Deep Archimedea data after a weekly reset so consider this unstable.\nWarning will be removed when data rotation is more consistent';
 
   @override
   String get activitiesTitle => 'Activities';

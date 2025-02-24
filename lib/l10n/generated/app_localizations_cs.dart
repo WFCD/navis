@@ -256,8 +256,7 @@ class NavisLocalizationsCs extends NavisLocalizations {
   String get systemThemeTitle => 'Systémové téma';
 
   @override
-  String get legalese =>
-      'Warframe a logo Warframe jsou registrované ochranné známky Digital Extremes Ltd. Cephalon Navis nor WFCD jsou přidruženy k Digital Extremes Ltd. v jakémkoli smyslu.';
+  String get legalese => 'Warframe a logo Warframe jsou registrované ochranné známky Digital Extremes Ltd. Cephalon Navis nor WFCD jsou přidruženy k Digital Extremes Ltd. v jakémkoli smyslu.';
 
   @override
   String get homePageTitle => 'Home';
@@ -646,8 +645,7 @@ class NavisLocalizationsCs extends NavisLocalizations {
   String get archimedeaWarningTitle => 'Warning';
 
   @override
-  String get archimedeaWarningSubtitle =>
-      'DE doesn\'t always update Deep Archimedea data after a weekly reset so consider this unstable.\nWarning will be removed when data rotation is more consistent';
+  String get archimedeaWarningSubtitle => 'DE doesn\'t always update Deep Archimedea data after a weekly reset so consider this unstable.\nWarning will be removed when data rotation is more consistent';
 
   @override
   String get activitiesTitle => 'Activities';
