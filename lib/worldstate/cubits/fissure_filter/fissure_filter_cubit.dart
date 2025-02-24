@@ -8,8 +8,7 @@ part 'fissure_filter_state.dart';
 enum FissureFilter { fissures, voidStorm, steelPath }
 
 class FissureFilterCubit extends HydratedCubit<FissureFilterState> {
-  FissureFilterCubit(List<Fissure> fissures)
-      : super(Fissures(fissures: fissures));
+  FissureFilterCubit(List<Fissure> fissures) : super(Fissures(fissures: fissures));
 
   FissureFilter _filter = FissureFilter.fissures;
 
@@ -18,19 +17,11 @@ class FissureFilterCubit extends HydratedCubit<FissureFilterState> {
 
     switch (filter) {
       case FissureFilter.fissures:
-        emit(
-          Fissures(
-            fissures: fissures.whereNot((i) => i.isHard || i.isStorm).toList(),
-          ),
-        );
+        emit(Fissures(fissures: fissures.whereNot((i) => i.isHard || i.isStorm).toList()));
       case FissureFilter.voidStorm:
         emit(VoidStorms(fissures: fissures.where((i) => i.isStorm).toList()));
       case FissureFilter.steelPath:
-        emit(
-          SteelPathFissures(
-            fissures: fissures.where((i) => i.isHard).toList(),
-          ),
-        );
+        emit(SteelPathFissures(fissures: fissures.where((i) => i.isHard).toList()));
     }
   }
 
@@ -41,9 +32,8 @@ class FissureFilterCubit extends HydratedCubit<FissureFilterState> {
   @override
   FissureFilterState? fromJson(Map<String, dynamic> json) {
     final type = FissureFilter.values.byName(json['filter'] as String);
-    final fissures = (json['fissures'] as List<dynamic>)
-        .map((e) => Fissure.fromJson(e as Map<String, dynamic>))
-        .toList();
+    final fissures =
+        (json['fissures'] as List<dynamic>).map((e) => Fissure.fromJson(e as Map<String, dynamic>)).toList();
 
     switch (type) {
       case FissureFilter.fissures:

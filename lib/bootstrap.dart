@@ -30,15 +30,10 @@ Future<void> bootstrap(BootstrapBuilder builder) async {
   final cache = await SentryHive.openBox<CachedItem>('cache');
 
   Bloc.observer = AppBlocObserver();
-  HydratedBloc.storage = await SentryHydratedStorage.build(
-    storageDirectory: temp,
-  );
+  HydratedBloc.storage = await SentryHydratedStorage.build(storageDirectory: temp);
 
   final observer = RouteObserver<ModalRoute<void>>();
-  final router = AppRouter(
-    navigatorKey: GlobalKey<NavigatorState>(),
-    observer: observer,
-  );
+  final router = AppRouter(navigatorKey: GlobalKey<NavigatorState>(), observer: observer);
 
   runApp(
     RepositoryBootstrap(

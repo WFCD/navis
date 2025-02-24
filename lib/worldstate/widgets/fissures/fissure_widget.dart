@@ -36,50 +36,27 @@ class FissureWidget extends StatelessWidget {
       alignment: AlignmentDirectional.center,
       children: [
         if (fissure.isStorm)
-          const Center(
-            child: Opacity(
-              opacity: opacity,
-              child: AppIcon(WarframeSymbols.archwing, size: iconSize),
-            ),
-          ),
+          const Center(child: Opacity(opacity: opacity, child: AppIcon(WarframeSymbols.archwing, size: iconSize))),
         if (fissure.isHard)
-          const Center(
-            child: Opacity(
-              opacity: opacity,
-              child: AppIcon(WarframeSymbols.sp_logo, size: iconSize),
-            ),
-          ),
+          const Center(child: Opacity(opacity: opacity, child: AppIcon(WarframeSymbols.sp_logo, size: iconSize))),
         Row(
           children: <Widget>[
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8),
-              child: fissure.tierNum == 6
-                  ? const OmniaFissureWidget()
-                  : Icon(icon, size: 40),
+              child: fissure.tierNum == 6 ? const OmniaFissureWidget() : Icon(icon, size: 40),
             ),
-            Expanded(
-              child: _FissureInfo(fissure: fissure),
-            ),
-            CountdownTimer(
-              tooltip: context.l10n.countdownTooltip(fissure.expiry),
-              expiry: fissure.expiry,
-            ),
+            Expanded(child: _FissureInfo(fissure: fissure)),
+            CountdownTimer(tooltip: context.l10n.countdownTooltip(fissure.expiry), expiry: fissure.expiry),
           ],
         ),
       ],
     );
 
     if (fissure.tierNum == 6) {
-      return GlitchySkyCard(
-        node: fissure.node,
-        child: child,
-      );
+      return GlitchySkyCard(node: fissure.node, child: child);
     }
 
-    return SkyboxCard(
-      node: fissure.node,
-      child: child,
-    );
+    return SkyboxCard(node: fissure.node, child: child);
   }
 }
 
@@ -101,8 +78,7 @@ class _FissureInfo extends StatelessWidget {
             padding: const EdgeInsets.only(top: 4),
             child: Text(
               '${fissure.tier} | ${fissure.missionType}',
-              style: context.theme.textTheme.bodyMedium
-                  ?.copyWith(color: context.theme.textTheme.bodySmall!.color),
+              style: context.theme.textTheme.bodyMedium?.copyWith(color: context.theme.textTheme.bodySmall!.color),
             ),
           ),
         ],

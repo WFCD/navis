@@ -29,11 +29,7 @@ class SynthtargetsCubit extends HydratedCubit<SynthtargetsState> {
   SynthtargetsState fromJson(Map<String, dynamic> json) {
     final targets = json['state'] as List<dynamic>;
 
-    return TargetsLocated(
-      targets
-          .map((e) => SynthTarget.fromJson(e as Map<String, dynamic>))
-          .toList(),
-    );
+    return TargetsLocated(targets.map((e) => SynthTarget.fromJson(e as Map<String, dynamic>)).toList());
   }
 
   @override

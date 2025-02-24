@@ -14,10 +14,8 @@ class InvasionWidget extends StatelessWidget {
     const decimalPoint = 100;
     const height = 170.0;
 
-    final attacker =
-        Factions.values.byName(invasion.attacker.factionKey.toLowerCase());
-    final defender =
-        Factions.values.byName(invasion.defender.factionKey.toLowerCase());
+    final attacker = Factions.values.byName(invasion.attacker.factionKey.toLowerCase());
+    final defender = Factions.values.byName(invasion.defender.factionKey.toLowerCase());
 
     return SkyboxCard(
       node: invasion.node,
@@ -29,23 +27,14 @@ class InvasionWidget extends StatelessWidget {
             padding: const EdgeInsets.only(top: 20),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Icon(attacker.factionIcon, size: height * .4),
-                Icon(defender.factionIcon, size: height * .4),
-              ],
+              children: [Icon(attacker.factionIcon, size: height * .4), Icon(defender.factionIcon, size: height * .4)],
             ),
           ),
           Column(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.end,
             children: <Widget>[
-              Expanded(
-                child: _InvasionDetails(
-                  node: invasion.node,
-                  description: invasion.desc,
-                  eta: invasion.eta,
-                ),
-              ),
+              Expanded(child: _InvasionDetails(node: invasion.node, description: invasion.desc, eta: invasion.eta)),
               InvasionReward(
                 attacker: invasion.attacker,
                 defender: invasion.defender,
@@ -66,11 +55,7 @@ class InvasionWidget extends StatelessWidget {
 }
 
 class _InvasionDetails extends StatelessWidget {
-  const _InvasionDetails({
-    required this.node,
-    required this.description,
-    required this.eta,
-  });
+  const _InvasionDetails({required this.node, required this.description, required this.eta});
 
   final String node;
   final String description;
@@ -83,10 +68,7 @@ class _InvasionDetails extends StatelessWidget {
 
     return Column(
       mainAxisSize: MainAxisSize.min,
-      children: <Widget>[
-        Text(node, style: nodeStyle),
-        Text('$description ($eta)', style: infoStyle),
-      ],
+      children: <Widget>[Text(node, style: nodeStyle), Text('$description ($eta)', style: infoStyle)],
     );
   }
 }

@@ -12,10 +12,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final repo = RepositoryProvider.of<WarframestatRepository>(context);
 
-    return BlocProvider(
-      create: (_) => SearchBloc(repo),
-      child: const HomeView(),
-    );
+    return BlocProvider(create: (_) => SearchBloc(repo), child: const HomeView());
   }
 }
 
@@ -45,9 +42,8 @@ class _HomeViewState extends State<HomeView> with RouteAware {
   void didChangeDependencies() {
     super.didChangeDependencies();
 
-    _observer ??=
-        RepositoryProvider.of<RouteObserver<ModalRoute<void>>>(context)
-          ..subscribe(this, ModalRoute.of(context)!);
+    _observer ??= RepositoryProvider.of<RouteObserver<ModalRoute<void>>>(context)
+      ..subscribe(this, ModalRoute.of(context)!);
   }
 
   void _handleRouteChange() {
@@ -77,10 +73,7 @@ class _HomeViewState extends State<HomeView> with RouteAware {
           surfaceTintColor: Colors.transparent,
           titleSpacing: 0,
           clipBehavior: Clip.none,
-          title: CodexSearchBar(
-            focusNode: _focusNode,
-            controller: _controller,
-          ),
+          title: CodexSearchBar(focusNode: _focusNode, controller: _controller),
         ),
         SliverList.list(children: children),
       ],

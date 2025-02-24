@@ -8,33 +8,21 @@ import 'package:warframestat_client/warframestat_client.dart';
 const imgHost = 'https://cdn.warframestat.us/genesis';
 const imgHostPath = {'polarities': 'img/polarities', 'frames': 'modFrames'};
 
-typedef ModBackground = ({
-  ui.Image background,
-  ui.Image backer,
-  ui.Image lowerTab
-});
+typedef ModBackground = ({ui.Image background, ui.Image backer, ui.Image lowerTab});
 
-typedef ModFrame = ({
-  ui.Image top,
-  ui.Image sideLights,
-  ui.Image cornerLights,
-  ui.Image bottom,
-});
+typedef ModFrame = ({ui.Image top, ui.Image sideLights, ui.Image cornerLights, ui.Image bottom});
 
-typedef ModAssets = ({
-  ui.Image thumbnail,
-  ui.Image? polarity,
-  ui.Image rankSlotActive,
-  ui.Image rankSlotEmpty,
-  ModBackground surface,
-  ModFrame frame,
-});
+typedef ModAssets =
+    ({
+      ui.Image thumbnail,
+      ui.Image? polarity,
+      ui.Image rankSlotActive,
+      ui.Image rankSlotEmpty,
+      ModBackground surface,
+      ModFrame frame,
+    });
 
-String formatDescription(
-  String? description,
-  List<LevelStat>? levelStats,
-  int rank,
-) {
+String formatDescription(String? description, List<LevelStat>? levelStats, int rank) {
   if (description != null && description.isNotEmpty) return description;
 
   final buffer = StringBuffer();
@@ -62,26 +50,18 @@ Future<ui.Image> fetchImage(String part) async {
 }
 
 String polarityUrl(String polarity) {
-  return Uri.parse(
-    '$imgHost/${imgHostPath['polarities']}/${polarity.toLowerCase()}.png',
-  ).toString();
+  return Uri.parse('$imgHost/${imgHostPath['polarities']}/${polarity.toLowerCase()}.png').toString();
 }
 
 class ModParts {
-  const ModParts({
-    required this.thumbnail,
-    required this.polarity,
-    required this.rarity,
-  });
+  const ModParts({required this.thumbnail, required this.polarity, required this.rarity});
 
   final String thumbnail;
   final String? polarity;
   final Rarity rarity;
 
   String _partUrl(String part) {
-    return Uri.parse(
-      '$imgHost/${imgHostPath['frames']}/${rarity.toUniqueName()}$part.png',
-    ).toString();
+    return Uri.parse('$imgHost/${imgHostPath['frames']}/${rarity.toUniqueName()}$part.png').toString();
   }
 
   String _assetUrl(String asset) {

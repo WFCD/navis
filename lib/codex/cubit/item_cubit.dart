@@ -29,9 +29,7 @@ class ItemCubit extends HydratedCubit<ItemState> {
   Future<void> fetchByName() async {
     final items = await _handleItemFetch(() async => repo.searchItems(name));
 
-    final item = items
-        .where((item) => item.imageName != null)
-        .firstWhereOrNull((item) => item.name == name);
+    final item = items.where((item) => item.imageName != null).firstWhereOrNull((item) => item.name == name);
 
     if (item == null) return emit(const ItemNotFound());
 
@@ -39,15 +37,11 @@ class ItemCubit extends HydratedCubit<ItemState> {
   }
 
   Future<void> fetchIncarnonGenesis() async {
-    final items = await _handleItemFetch(
-      () async => repo.searchItems('Incarnon'),
-    );
+    final items = await _handleItemFetch(() async => repo.searchItems('Incarnon'));
 
-    final item = items.where((item) => item.imageName != null).firstWhereOrNull(
-      (item) {
-        return name.replaceAll(' ', '') == item.name.replaceAll(' ', '');
-      },
-    );
+    final item = items.where((item) => item.imageName != null).firstWhereOrNull((item) {
+      return name.replaceAll(' ', '') == item.name.replaceAll(' ', '');
+    });
 
     if (item == null) return emit(const ItemNotFound());
 
@@ -58,11 +52,7 @@ class ItemCubit extends HydratedCubit<ItemState> {
     try {
       return ConnectionManager.call(compute);
     } catch (e, s) {
-      await Sentry.captureException(
-        e,
-        stackTrace: s,
-        hint: Hint.withMap({'query': name}),
-      );
+      await Sentry.captureException(e, stackTrace: s, hint: Hint.withMap({'query': name}));
 
       emit(const ItemFetchFailure('Failed to parse item'));
 

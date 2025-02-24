@@ -7,12 +7,7 @@ import 'package:navis_ui/navis_ui.dart';
 import 'package:warframestat_client/warframestat_client.dart';
 
 class CodexResult extends StatefulWidget {
-  const CodexResult({
-    super.key,
-    required this.item,
-    required this.onTap,
-    this.showDescription = false,
-  });
+  const CodexResult({super.key, required this.item, required this.onTap, this.showDescription = false});
 
   final Item item;
   final bool showDescription;
@@ -67,22 +62,19 @@ class _CodexResultState extends State<CodexResult> {
       leading: Hero(
         tag: widget.item.uniqueName,
         child: CircleAvatar(
-          foregroundImage: widget.item.imageName != null
-              ? CachedNetworkImageProvider(_image)
-              : null,
+          foregroundImage: widget.item.imageName != null ? CachedNetworkImageProvider(_image) : null,
           backgroundColor: Theme.of(context).canvasColor,
         ),
       ),
       title: Text(widget.item.name.parseHtmlString()),
-      subtitle: widget.showDescription
-          ? Text(
-              description?.trim() ??
-                  widget.item.description?.parseHtmlString() ??
-                  '',
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
-            )
-          : null,
+      subtitle:
+          widget.showDescription
+              ? Text(
+                description?.trim() ?? widget.item.description?.parseHtmlString() ?? '',
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+              )
+              : null,
       isThreeLine: widget.showDescription,
       dense: widget.showDescription,
       onTap: widget.onTap,

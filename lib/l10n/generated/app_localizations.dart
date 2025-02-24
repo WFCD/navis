@@ -114,7 +114,7 @@ abstract class NavisLocalizations {
     Locale('ru'),
     Locale('sr'),
     Locale('tr'),
-    Locale('zh')
+    Locale('zh'),
   ];
 
   /// The information of the current enemy levels
@@ -1381,36 +1381,61 @@ class _NavisLocalizationsDelegate extends LocalizationsDelegate<NavisLocalizatio
   }
 
   @override
-  bool isSupported(Locale locale) => <String>['cs', 'de', 'en', 'es', 'fr', 'it', 'ko', 'pl', 'pt', 'ru', 'sr', 'tr', 'zh'].contains(locale.languageCode);
+  bool isSupported(Locale locale) => <String>[
+    'cs',
+    'de',
+    'en',
+    'es',
+    'fr',
+    'it',
+    'ko',
+    'pl',
+    'pt',
+    'ru',
+    'sr',
+    'tr',
+    'zh',
+  ].contains(locale.languageCode);
 
   @override
   bool shouldReload(_NavisLocalizationsDelegate old) => false;
 }
 
 NavisLocalizations lookupNavisLocalizations(Locale locale) {
-
-
   // Lookup logic when only language code is specified.
   switch (locale.languageCode) {
-    case 'cs': return NavisLocalizationsCs();
-    case 'de': return NavisLocalizationsDe();
-    case 'en': return NavisLocalizationsEn();
-    case 'es': return NavisLocalizationsEs();
-    case 'fr': return NavisLocalizationsFr();
-    case 'it': return NavisLocalizationsIt();
-    case 'ko': return NavisLocalizationsKo();
-    case 'pl': return NavisLocalizationsPl();
-    case 'pt': return NavisLocalizationsPt();
-    case 'ru': return NavisLocalizationsRu();
-    case 'sr': return NavisLocalizationsSr();
-    case 'tr': return NavisLocalizationsTr();
-    case 'zh': return NavisLocalizationsZh();
+    case 'cs':
+      return NavisLocalizationsCs();
+    case 'de':
+      return NavisLocalizationsDe();
+    case 'en':
+      return NavisLocalizationsEn();
+    case 'es':
+      return NavisLocalizationsEs();
+    case 'fr':
+      return NavisLocalizationsFr();
+    case 'it':
+      return NavisLocalizationsIt();
+    case 'ko':
+      return NavisLocalizationsKo();
+    case 'pl':
+      return NavisLocalizationsPl();
+    case 'pt':
+      return NavisLocalizationsPt();
+    case 'ru':
+      return NavisLocalizationsRu();
+    case 'sr':
+      return NavisLocalizationsSr();
+    case 'tr':
+      return NavisLocalizationsTr();
+    case 'zh':
+      return NavisLocalizationsZh();
   }
 
   throw FlutterError(
     'NavisLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
     'an issue with the localizations generation tool. Please file an issue '
     'on GitHub with a reproducible sample app and the gen-l10n configuration '
-    'that was used.'
+    'that was used.',
   );
 }

@@ -21,50 +21,29 @@ class FrameStats extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        CategoryTitle(
-          title: context.l10n.statsTitle,
-          contentPadding: EdgeInsets.zero,
-        ),
+        CategoryTitle(title: context.l10n.statsTitle, contentPadding: EdgeInsets.zero),
         Stats(
           stats: <RowItem>[
             if (powerSuit is Warframe && (powerSuit as Warframe).aura != null)
-              RowItem(
-                text: Text(l10n.auraTitle),
-                child: Polarity(polarity: (powerSuit as Warframe).aura!),
-              ),
+              RowItem(text: Text(l10n.auraTitle), child: Polarity(polarity: (powerSuit as Warframe).aura!)),
             if (powerSuit.polarities?.isNotEmpty ?? false)
               RowItem(
                 text: Text(l10n.preinstalledPolarities),
                 child: PreinstalledPolarties(polarities: powerSuit.polarities!),
               ),
-            RowItem(
-              text: Text(l10n.shieldTitle),
-              child: Text('${powerSuit.shield}'),
-            ),
-            RowItem(
-              text: Text(l10n.armorTitle),
-              child: Text('${powerSuit.armor}'),
-            ),
-            RowItem(
-              text: Text(l10n.healthTitle),
-              child: Text('${powerSuit.health}'),
-            ),
-            RowItem(
-              text: Text(l10n.powerTitle),
-              child: Text('${powerSuit.power}'),
-            ),
+            RowItem(text: Text(l10n.shieldTitle), child: Text('${powerSuit.shield}')),
+            RowItem(text: Text(l10n.armorTitle), child: Text('${powerSuit.armor}')),
+            RowItem(text: Text(l10n.healthTitle), child: Text('${powerSuit.health}')),
+            RowItem(text: Text(l10n.powerTitle), child: Text('${powerSuit.power}')),
             if (powerSuit is Warframe)
               RowItem(
                 text: Text(l10n.sprintSpeedTitle),
-                child: Text(
-                  '${statRoundDouble((powerSuit as Warframe).sprintSpeed, 2)}',
-                ),
+                child: Text('${statRoundDouble((powerSuit as Warframe).sprintSpeed, 2)}'),
               ),
           ],
         ),
         Gaps.gap16,
-        if (powerSuit is Warframe &&
-            (powerSuit as Warframe).passiveDescription != null)
+        if (powerSuit is Warframe && (powerSuit as Warframe).passiveDescription != null)
           ListTile(
             title: Text(context.l10n.warframePassiveTitle),
             subtitle: Text((powerSuit as Warframe).passiveDescription!),
@@ -109,20 +88,13 @@ class _AbilitiesState extends State<_Abilities> {
           padding: const EdgeInsets.symmetric(vertical: 8),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: widget.abilities
-                .map((a) => _AbilityIcon(ability: a, onTap: () => _onTap(a)))
-                .toList(),
+            children: widget.abilities.map((a) => _AbilityIcon(ability: a, onTap: () => _onTap(a))).toList(),
           ),
         ),
         AnimatedContainer(
           duration: Durations.extralong4,
           curve: Curves.easeInOut,
-          child: _ability != null
-              ? ListTile(
-                  title: Text(_ability!.name),
-                  subtitle: Text(_ability!.description),
-                )
-              : null,
+          child: _ability != null ? ListTile(title: Text(_ability!.name), subtitle: Text(_ability!.description)) : null,
         ),
       ],
     );
@@ -137,9 +109,6 @@ class _AbilityIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return IconButton(
-      onPressed: onTap,
-      icon: CachedNetworkImage(imageUrl: ability.imageUrl, width: 60),
-    );
+    return IconButton(onPressed: onTap, icon: CachedNetworkImage(imageUrl: ability.imageUrl, width: 60));
   }
 }

@@ -12,11 +12,7 @@ import 'package:warframestat_client/warframestat_client.dart';
 // drawn in the frame
 
 class CommonModPainter extends ModPainter {
-  const CommonModPainter({
-    required super.mod,
-    required super.rank,
-    required super.assets,
-  });
+  const CommonModPainter({required super.mod, required super.rank, required super.assets});
 
   @override
   double get effectsY => 375;
@@ -26,11 +22,7 @@ class CommonModPainter extends ModPainter {
 }
 
 class LegendaryModPainter extends ModPainter {
-  const LegendaryModPainter({
-    required super.mod,
-    required super.rank,
-    required super.assets,
-  });
+  const LegendaryModPainter({required super.mod, required super.rank, required super.assets});
 
   @override
   double get effectsY => 380;
@@ -40,11 +32,7 @@ class LegendaryModPainter extends ModPainter {
 }
 
 abstract class ModPainter extends CustomPainter {
-  const ModPainter({
-    required this.mod,
-    required this.rank,
-    required this.assets,
-  });
+  const ModPainter({required this.mod, required this.rank, required this.assets});
 
   final Mod mod;
   final int rank;
@@ -60,12 +48,7 @@ abstract class ModPainter extends CustomPainter {
     canvas.drawImage(frame.cornerLights, Offset(195, effectsY), paint);
 
     final cornerLightsLeft = Offset(-5, effectsY) & const Size(64, 64);
-    paintImage(
-      canvas: canvas,
-      rect: cornerLightsLeft,
-      image: frame.cornerLights,
-      flipHorizontally: true,
-    );
+    paintImage(canvas: canvas, rect: cornerLightsLeft, image: frame.cornerLights, flipHorizontally: true);
   }
 
   void drawRanks(Canvas canvas, Size size) {
@@ -93,24 +76,18 @@ abstract class ModPainter extends CustomPainter {
 
       if (drain! < 0) {
         TextPainter(
-          text: TextSpan(
-            text: '^${drain!.abs()}',
-            style: TextStyle(color: _rarity?.toColor()),
-          ),
-          textAlign: TextAlign.center,
-          textDirection: TextDirection.ltr,
-        )
+            text: TextSpan(text: '^${drain!.abs()}', style: TextStyle(color: _rarity?.toColor())),
+            textAlign: TextAlign.center,
+            textDirection: TextDirection.ltr,
+          )
           ..layout()
           ..paint(canvas, const Offset(218, 102));
       } else {
         TextPainter(
-          text: TextSpan(
-            text: '${drain!.abs()}',
-            style: TextStyle(color: _rarity?.toColor()),
-          ),
-          textAlign: TextAlign.center,
-          textDirection: TextDirection.ltr,
-        )
+            text: TextSpan(text: '${drain!.abs()}', style: TextStyle(color: _rarity?.toColor())),
+            textAlign: TextAlign.center,
+            textDirection: TextDirection.ltr,
+          )
           ..layout()
           ..paint(canvas, const Offset(218, 101));
       }
@@ -133,10 +110,7 @@ abstract class ModPainter extends CustomPainter {
     canvas.drawImage(assets.surface.lowerTab, const Offset(23, 386), Paint());
 
     final painter = TextPainter(
-      text: TextSpan(
-        text: mod.compatName?.trim() ?? '',
-        style: TextStyle(color: _rarity?.toColor()),
-      ),
+      text: TextSpan(text: mod.compatName?.trim() ?? '', style: TextStyle(color: _rarity?.toColor())),
       textAlign: TextAlign.center,
       textDirection: TextDirection.ltr,
     )..layout();
@@ -145,19 +119,12 @@ abstract class ModPainter extends CustomPainter {
   }
 
   void paintDescription(Canvas canvas, Size size) {
-    final description =
-        formatDescription(mod.description, mod.levelStats, rank);
+    final description = formatDescription(mod.description, mod.levelStats, rank);
 
-    final span = TextSpan(
-      text: description,
-      style: TextStyle(color: mod.rarity?.toColor(), fontSize: 12),
-    );
+    final span = TextSpan(text: description, style: TextStyle(color: mod.rarity?.toColor(), fontSize: 12));
 
-    final painter = TextPainter(
-      text: span,
-      textAlign: TextAlign.center,
-      textDirection: TextDirection.ltr,
-    )..layout(maxWidth: 200);
+    final painter = TextPainter(text: span, textAlign: TextAlign.center, textDirection: TextDirection.ltr)
+      ..layout(maxWidth: 200);
 
     final offset = Offset(
       (size.width - painter.width) * 0.5,
@@ -175,10 +142,7 @@ abstract class ModPainter extends CustomPainter {
       rect: rect,
       // Assuming you check before calling this function
       image: assets.polarity!,
-      colorFilter: ColorFilter.mode(
-        _rarity?.toColor() ?? Colors.white,
-        BlendMode.srcIn,
-      ),
+      colorFilter: ColorFilter.mode(_rarity?.toColor() ?? Colors.white, BlendMode.srcIn),
     );
   }
 
@@ -201,12 +165,7 @@ abstract class ModPainter extends CustomPainter {
       ..drawImage(frame.sideLights, const Offset(240, 120), paint);
 
     final sideLightLeft = const Offset(0, 120) & const Size(16, 256);
-    paintImage(
-      canvas: canvas,
-      rect: sideLightLeft,
-      image: frame.sideLights,
-      flipHorizontally: true,
-    );
+    paintImage(canvas: canvas, rect: sideLightLeft, image: frame.sideLights, flipHorizontally: true);
   }
 
   @override

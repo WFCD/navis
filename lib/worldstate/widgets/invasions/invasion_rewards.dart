@@ -3,12 +3,7 @@ import 'package:navis_ui/navis_ui.dart';
 import 'package:warframestat_client/warframestat_client.dart';
 
 class InvasionReward extends StatelessWidget {
-  const InvasionReward({
-    super.key,
-    required this.attacker,
-    required this.defender,
-    this.vsInfestation = false,
-  });
+  const InvasionReward({super.key, required this.attacker, required this.defender, this.vsInfestation = false});
 
   final InvasionFaction attacker;
   final InvasionFaction defender;
@@ -16,24 +11,15 @@ class InvasionReward extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final attacker =
-        Factions.values.byName(this.attacker.factionKey.toLowerCase());
-    final defender =
-        Factions.values.byName(this.defender.factionKey.toLowerCase());
+    final attacker = Factions.values.byName(this.attacker.factionKey.toLowerCase());
+    final defender = Factions.values.byName(this.defender.factionKey.toLowerCase());
 
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
-        if (!vsInfestation)
-          _InvasionRewardBox(
-            color: attacker.primaryColor,
-            reward: this.attacker.reward!.itemString,
-          ),
+        if (!vsInfestation) _InvasionRewardBox(color: attacker.primaryColor, reward: this.attacker.reward!.itemString),
         const Spacer(),
-        _InvasionRewardBox(
-          color: defender.primaryColor,
-          reward: this.defender.reward!.itemString,
-        ),
+        _InvasionRewardBox(color: defender.primaryColor, reward: this.defender.reward!.itemString),
       ],
     );
   }
@@ -58,13 +44,7 @@ class _InvasionRewardBox extends StatelessWidget {
           width: width,
           child: Padding(
             padding: const EdgeInsets.all(6),
-            child: Center(
-              child: Text(
-                reward,
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-              ),
-            ),
+            child: Center(child: Text(reward, maxLines: 1, overflow: TextOverflow.ellipsis)),
           ),
         ),
       ),

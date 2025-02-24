@@ -30,18 +30,15 @@ class ActivitiesView extends StatelessWidget {
 
   void listener(BuildContext context, SolsystemState state) {
     if (state is WorldstateFailure) {
-      ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text(state.message)));
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(state.message)));
     } else if (state is WorldstateSuccess) {
       final now = DateTime.now();
       final timestamp = state.worldstate.timestamp;
 
       if (timestamp.difference(now) >= const Duration(minutes: 30)) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('Worldstate is out of date by more then 30 mins'),
-          ),
-        );
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(const SnackBar(content: Text('Worldstate is out of date by more then 30 mins')));
       }
     }
   }
@@ -52,11 +49,7 @@ class ActivitiesView extends StatelessWidget {
         handle: NestedScrollView.sliverOverlapAbsorberHandleFor(context),
         sliver: SliverTopbar(
           pinned: true,
-          child: TabBar(
-            tabs: Tabs.values
-                .map((t) => Tab(text: _getTabLocale(context, t)))
-                .toList(),
-          ),
+          child: TabBar(tabs: Tabs.values.map((t) => Tab(text: _getTabLocale(context, t))).toList()),
         ),
       ),
     ];
@@ -70,9 +63,7 @@ class ActivitiesView extends StatelessWidget {
         length: Tabs.values.length,
         child: NestedScrollView(
           headerSliverBuilder: (context, _) => _headerSliverBuilder(context),
-          body: TabBarView(
-            children: Tabs.values.map((e) => _TabView(tab: e)).toList(),
-          ),
+          body: TabBarView(children: Tabs.values.map((e) => _TabView(tab: e)).toList()),
         ),
       ),
     );
@@ -97,8 +88,7 @@ class _TabView extends StatelessWidget {
             ),
             SliverFillRemaining(
               child: RefreshIndicator(
-                onRefresh: () =>
-                    BlocProvider.of<WorldstateCubit>(context).fetchWorldstate(),
+                onRefresh: () => BlocProvider.of<WorldstateCubit>(context).fetchWorldstate(),
                 child: () {
                   switch (tab) {
                     case Tabs.timers:

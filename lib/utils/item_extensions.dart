@@ -1,8 +1,7 @@
 import 'package:navis/utils/string_extensions.dart';
 import 'package:warframestat_client/warframestat_client.dart';
 
-const defaultImage =
-    'https://raw.githubusercontent.com/WFCD/genesis-assets/master/img/menu/LotusEmblem.png';
+const defaultImage = 'https://raw.githubusercontent.com/WFCD/genesis-assets/master/img/menu/LotusEmblem.png';
 
 String _imageUrl(String? imageName) {
   if (imageName == null) {

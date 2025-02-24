@@ -18,10 +18,7 @@ class BountiesPage extends StatelessWidget {
         appBar: AppBar(
           title: Text(syndicate.syndicate.replaceFirst('Syndicate', '')),
           titleSpacing: 0,
-          titleTextStyle: Theme.of(context)
-              .textTheme
-              .titleLarge
-              ?.copyWith(color: Colors.white),
+          titleTextStyle: Theme.of(context).textTheme.titleLarge?.copyWith(color: Colors.white),
           iconTheme: Theme.of(context).iconTheme.copyWith(color: Colors.white),
           backgroundColor: backgroundColor,
         ),

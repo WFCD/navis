@@ -17,26 +17,17 @@ class SentryHydratedStorage implements Storage {
 
   static final webStorageDirectory = Directory('');
 
-  static Future<SentryHydratedStorage> build({
-    required Directory storageDirectory,
-    HydratedCipher? encryptionCipher,
-  }) {
+  static Future<SentryHydratedStorage> build({required Directory storageDirectory, HydratedCipher? encryptionCipher}) {
     return _lock.synchronized(() async {
       if (_instance != null) return _instance!;
 
       Box<dynamic> box;
 
       if (storageDirectory == webStorageDirectory) {
-        box = await SentryHive.openBox<dynamic>(
-          'hydrated_box',
-          encryptionCipher: encryptionCipher,
-        );
+        box = await SentryHive.openBox<dynamic>('hydrated_box', encryptionCipher: encryptionCipher);
       } else {
         SentryHive.init(storageDirectory.path);
-        box = await SentryHive.openBox<dynamic>(
-          'hydrated_box',
-          encryptionCipher: encryptionCipher,
-        );
+        box = await SentryHive.openBox<dynamic>('hydrated_box', encryptionCipher: encryptionCipher);
         await _migrate(storageDirectory, box);
       }
 

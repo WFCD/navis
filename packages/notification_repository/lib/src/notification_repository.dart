@@ -26,8 +26,7 @@ class NotificationRepository {
     final settings = await _messaging.getNotificationSettings();
     final authorization = settings.authorizationStatus;
 
-    if (authorization == AuthorizationStatus.authorized ||
-        authorization == AuthorizationStatus.provisional) {
+    if (authorization == AuthorizationStatus.authorized || authorization == AuthorizationStatus.provisional) {
       return true;
     }
 
@@ -58,9 +57,7 @@ class NotificationRepository {
 
     await _iosAPNSCheck();
 
-    value
-        ? await _messaging.subscribeToTopic(topic.name)
-        : await _messaging.unsubscribeFromTopic(topic.name);
+    value ? await _messaging.subscribeToTopic(topic.name) : await _messaging.unsubscribeFromTopic(topic.name);
 
     log('${value ? 'subscribed' : 'unsubscribed'} to ${topic.name}');
   }

@@ -30,9 +30,7 @@ class FishCard extends StatelessWidget {
               child: CachedNetworkImage(
                 width: 150,
                 height: 100,
-                imageUrl: 'webp/fish/${fish.thumbnail}.webp'
-                    .genesisGitCdn()
-                    .optimize(),
+                imageUrl: 'webp/fish/${fish.thumbnail}.webp'.genesisGitCdn().optimize(),
               ),
             ),
             Padding(
@@ -40,33 +38,15 @@ class FishCard extends StatelessWidget {
               child: Stats(
                 padding: const EdgeInsets.only(bottom: 4),
                 stats: [
-                  RowItem(
-                    text: Text(l10n.fishName),
-                    child: Text(fish.name),
-                  ),
-                  RowItem(
-                    text: Text(l10n.fishTime),
-                    child: Text(fish.time.string),
-                  ),
-                  RowItem(
-                    text: Text(l10n.location),
-                    child: Text(fish.location),
-                  ),
+                  RowItem(text: Text(l10n.fishName), child: Text(fish.name)),
+                  RowItem(text: Text(l10n.fishTime), child: Text(fish.time.string)),
+                  RowItem(text: Text(l10n.location), child: Text(fish.location)),
                   RowItem(
                     text: Text(l10n.fishSpear),
-                    child: _BuildSpearRequirement(
-                      requirements: fish.spearRequirments,
-                    ),
+                    child: _BuildSpearRequirement(requirements: fish.spearRequirments),
                   ),
-                  RowItem(
-                    text: Text(l10n.fishRarity),
-                    child: Text(fish.rarity),
-                  ),
-                  if (fish.bait.recommended)
-                    RowItem(
-                      text: Text(l10n.fishBait),
-                      child: Text(fish.bait.name),
-                    ),
+                  RowItem(text: Text(l10n.fishRarity), child: Text(fish.rarity)),
+                  if (fish.bait.recommended) RowItem(text: Text(l10n.fishBait), child: Text(fish.bait.name)),
                   if (fish.small.standing != null)
                     RowItem(
                       text: Text(l10n.fishStanding),
@@ -79,19 +59,13 @@ class FishCard extends StatelessWidget {
                   if (!fish.name.contains('Boot'))
                     RowItem(
                       text: Text(l10n.fishUnique),
-                      child: _BuildUniqueResources(
-                        uniqueResources: fish.uniqueResources,
-                      ),
+                      child: _BuildUniqueResources(uniqueResources: fish.uniqueResources),
                     ),
                 ],
               ),
             ),
             if (!fish.name.contains('Boot')) ...{
-              _BuildResources(
-                small: fish.small.resources,
-                medium: fish.medium.resources,
-                large: fish.large.resources,
-              ),
+              _BuildResources(small: fish.small.resources, medium: fish.medium.resources, large: fish.large.resources),
               // RowItem(text: text, child: child),
             },
           ],
@@ -112,16 +86,10 @@ class _BuildUniqueResources<T> extends StatelessWidget {
     if (uniqueResources is List<UniqueResource>) {
       resources = Column(
         crossAxisAlignment: CrossAxisAlignment.end,
-        children: (uniqueResources as List<UniqueResource>)
-            .map(
-              (r) => Text(
-                r.name,
-                textAlign: TextAlign.end,
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-              ),
-            )
-            .toList(),
+        children:
+            (uniqueResources as List<UniqueResource>)
+                .map((r) => Text(r.name, textAlign: TextAlign.end, maxLines: 1, overflow: TextOverflow.ellipsis))
+                .toList(),
       );
     } else {
       resources = Text((uniqueResources as UniqueResource).name);
@@ -132,11 +100,7 @@ class _BuildUniqueResources<T> extends StatelessWidget {
 }
 
 class _BuildResources extends StatelessWidget {
-  const _BuildResources({
-    required this.small,
-    required this.medium,
-    required this.large,
-  });
+  const _BuildResources({required this.small, required this.medium, required this.large});
 
   final RegionResources small;
   final RegionResources medium;
@@ -155,20 +119,11 @@ class _BuildResources extends StatelessWidget {
 
       widgets = [
         if (small.bladder > 1)
-          RowItem(
-            text: Text(l10n.fishBladder),
-            child: Text('${small.bladder}/${medium.bladder}/${large.bladder}'),
-          ),
+          RowItem(text: Text(l10n.fishBladder), child: Text('${small.bladder}/${medium.bladder}/${large.bladder}')),
         if (small.gills > 1)
-          RowItem(
-            text: Text(l10n.fishGills),
-            child: Text('${small.gills}/${medium.gills}/${large.gills}'),
-          ),
+          RowItem(text: Text(l10n.fishGills), child: Text('${small.gills}/${medium.gills}/${large.gills}')),
         if (small.tumor > 1)
-          RowItem(
-            text: Text(l10n.fishTumors),
-            child: Text('${small.tumor}/${medium.tumor}/${large.tumor}'),
-          ),
+          RowItem(text: Text(l10n.fishTumors), child: Text('${small.tumor}/${medium.tumor}/${large.tumor}')),
       ];
     } else if (small is PoeRegionResources) {
       final small = this.small as PoeRegionResources;
@@ -177,38 +132,20 @@ class _BuildResources extends StatelessWidget {
 
       widgets = [
         if (small.meat > 1)
-          RowItem(
-            text: Text(l10n.fishMeat),
-            child: Text('${small.meat}/${medium.meat}/${large.meat}'),
-          ),
-        if (small.oil > 1)
-          RowItem(
-            text: Text(l10n.fishOil),
-            child: Text('${small.oil}/${medium.oil}/${large.oil}'),
-          ),
+          RowItem(text: Text(l10n.fishMeat), child: Text('${small.meat}/${medium.meat}/${large.meat}')),
+        if (small.oil > 1) RowItem(text: Text(l10n.fishOil), child: Text('${small.oil}/${medium.oil}/${large.oil}')),
         if (small.scales > 1)
-          RowItem(
-            text: Text(l10n.fishScales),
-            child: Text('${small.scales}/${medium.scales}/${large.scales}'),
-          ),
+          RowItem(text: Text(l10n.fishScales), child: Text('${small.scales}/${medium.scales}/${large.scales}')),
       ];
     } else {
       final small = this.small as VallisRegionResources;
       final medium = this.medium as VallisRegionResources;
       final large = this.large as VallisRegionResources;
 
-      widgets = [
-        RowItem(
-          text: Text(l10n.fishScrap),
-          child: Text('${small.scrap}/${medium.scrap}/${large.scrap}'),
-        ),
-      ];
+      widgets = [RowItem(text: Text(l10n.fishScrap), child: Text('${small.scrap}/${medium.scrap}/${large.scrap}'))];
     }
 
-    return Stats(
-      padding: const EdgeInsets.only(bottom: 4),
-      stats: widgets,
-    );
+    return Stats(padding: const EdgeInsets.only(bottom: 4), stats: widgets);
   }
 }
 
@@ -221,8 +158,7 @@ class _BuildSpearRequirement extends StatelessWidget {
   Widget build(BuildContext context) {
     if (requirements is DeimosRequirements) {
       final requirements = this.requirements as DeimosRequirements;
-      final requiresAny =
-          requirements.requiresEbisu && requirements.requiresSpari;
+      final requiresAny = requirements.requiresEbisu && requirements.requiresSpari;
 
       if (requiresAny) return const Text('Ebisu/Spari');
       if (requirements.requiresEbisu) return const Text('Ebisu');
@@ -231,9 +167,7 @@ class _BuildSpearRequirement extends StatelessWidget {
 
     if (requirements is PoeRequirements) {
       final requirements = this.requirements as PoeRequirements;
-      final requiresAny = requirements.requiresLanzo &&
-          requirements.requiresPeram &&
-          requirements.requiresTulok;
+      final requiresAny = requirements.requiresLanzo && requirements.requiresPeram && requirements.requiresTulok;
 
       if (requiresAny) return const Text('Lanzo/Peram/Tulok');
       if (requirements.requiresLanzo) return const Text('Lanzo');

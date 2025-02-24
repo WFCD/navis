@@ -16,36 +16,16 @@ part 'routes.g.dart';
 @TypedStatefulShellRoute<AppShell>(
   branches: [
     TypedStatefulShellBranch<OverviewPageBranchData>(
-      routes: [
-        TypedGoRoute<OverviewPageRouteData>(
-          name: 'overview',
-          path: '/overview',
-        ),
-      ],
+      routes: [TypedGoRoute<OverviewPageRouteData>(name: 'overview', path: '/overview')],
     ),
     TypedStatefulShellBranch<ActivitiesPageBranchData>(
-      routes: [
-        TypedGoRoute<ActivitesPageRouteData>(
-          name: 'activities',
-          path: '/activities',
-        ),
-      ],
+      routes: [TypedGoRoute<ActivitesPageRouteData>(name: 'activities', path: '/activities')],
     ),
     TypedStatefulShellBranch<ExplorePageBranchData>(
-      routes: [
-        TypedGoRoute<ExplorePageRouteData>(
-          name: 'explore',
-          path: '/explore',
-        ),
-      ],
+      routes: [TypedGoRoute<ExplorePageRouteData>(name: 'explore', path: '/explore')],
     ),
     TypedStatefulShellBranch<SettingsPageBranchData>(
-      routes: [
-        TypedGoRoute<SettingsPageRouteData>(
-          name: 'settings',
-          path: '/settings',
-        ),
-      ],
+      routes: [TypedGoRoute<SettingsPageRouteData>(name: 'settings', path: '/settings')],
     ),
   ],
 )
@@ -54,12 +34,7 @@ class AppShell extends StatefulShellRouteData {
   const AppShell();
 
   @override
-  Widget builder(
-    BuildContext context,
-    GoRouterState state,
-    StatefulNavigationShell navigationShell,
-  ) =>
-      navigationShell;
+  Widget builder(BuildContext context, GoRouterState state, StatefulNavigationShell navigationShell) => navigationShell;
 
   static Widget $navigatorContainerBuilder(
     BuildContext context,
@@ -213,10 +188,7 @@ class CodexPageRoute extends GoRouteData {
 
   @override
   Widget build(BuildContext context, GoRouterState state) {
-    return TraceableWidget(
-      actionName: 'CodexSearchPage',
-      child: CodexSearchPage(query: $extra),
-    );
+    return TraceableWidget(actionName: 'CodexSearchPage', child: CodexSearchPage(query: $extra));
   }
 }
 

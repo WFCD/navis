@@ -35,11 +35,7 @@ class NotificationTopics {
         description: l10n.sortieNotificationDescription,
         topic: Topics.sortiesKey,
       ),
-      SimpleTopics(
-        title: l10n.archonHuntTitle,
-        description: l10n.archonHuntDescription,
-        topic: Topics.archonHuntKey,
-      ),
+      SimpleTopics(title: l10n.archonHuntTitle, description: l10n.archonHuntDescription, topic: Topics.archonHuntKey),
       // SimpleTopics(
       //   title: l10n.sentientOutpostNotificationTitle,
       //   description: l10n.sentientOutpostNotificationDescription,
@@ -98,18 +94,9 @@ class NotificationTopics {
 
   List<SimpleTopics> get warframeNews {
     return [
-      SimpleTopics(
-        title: l10n.primeAccessNewsOption,
-        topic: Topics.newsPrimeKey,
-      ),
-      SimpleTopics(
-        title: l10n.streamNewsOption,
-        topic: Topics.newsStreamKey,
-      ),
-      SimpleTopics(
-        title: l10n.updateNewsOption,
-        topic: Topics.newsUpdateKey,
-      ),
+      SimpleTopics(title: l10n.primeAccessNewsOption, topic: Topics.newsPrimeKey),
+      SimpleTopics(title: l10n.streamNewsOption, topic: Topics.newsStreamKey),
+      SimpleTopics(title: l10n.updateNewsOption, topic: Topics.newsUpdateKey),
     ];
   }
 
@@ -127,146 +114,41 @@ class NotificationTopics {
   // ignore: long-method
   List<SimpleTopics> get resources {
     return const [
-      SimpleTopics(
-        title: 'Snipetron Vandal Blueprint',
-        topic: Topics.sniptronVandalBP,
-      ),
-      SimpleTopics(
-        title: 'Snipetron Vandal Barrel',
-        topic: Topics.sniptronVandalBarrel,
-      ),
-      SimpleTopics(
-        title: 'Snipetron Vandal Receiver',
-        topic: Topics.sniptronVandalReceiver,
-      ),
-      SimpleTopics(
-        title: 'Snipetron Vandal Stock',
-        topic: Topics.sniptronVandalStock,
-      ),
-      SimpleTopics(
-        title: 'Sheev Blade',
-        topic: Topics.sheevBlade,
-      ),
-      SimpleTopics(
-        title: 'Sheev Heatsink',
-        topic: Topics.sheevHeatsink,
-      ),
-      SimpleTopics(
-        title: 'Sheev Hilt',
-        topic: Topics.sheevHilt,
-      ),
-      SimpleTopics(
-        title: 'Dera Vandal Blueprint',
-        topic: Topics.deraVandalBP,
-      ),
-      SimpleTopics(
-        title: 'Dera Vandal Barrel',
-        topic: Topics.deraVandalBarrel,
-      ),
-      SimpleTopics(
-        title: 'Dera Vandal Receiver',
-        topic: Topics.deraVandalReceiver,
-      ),
-      SimpleTopics(
-        title: 'Dera Vandal Stock',
-        topic: Topics.deraVandalStock,
-      ),
-      SimpleTopics(
-        title: 'Wraith Twin Vipers Blueprint',
-        topic: Topics.wraithTwinVipersBP,
-      ),
-      SimpleTopics(
-        title: 'Wraith Twin Vipers Barrel',
-        topic: Topics.wraithTwinVipersBarrels,
-      ),
-      SimpleTopics(
-        title: 'Wraith Twin Vipers Receiver',
-        topic: Topics.wraithTwinVipersReceivers,
-      ),
-      SimpleTopics(
-        title: 'Wraith Twin Vipers Link',
-        topic: Topics.wraithTwinVipersLink,
-      ),
-      SimpleTopics(
-        title: 'Latron Wraith Blueprint',
-        topic: Topics.latronWraithBP,
-      ),
-      SimpleTopics(
-        title: 'Latron Wraith Barrel',
-        topic: Topics.latronWraithBarrel,
-      ),
-      SimpleTopics(
-        title: 'Latron Wraith Receiver',
-        topic: Topics.latronWraithReceiver,
-      ),
-      SimpleTopics(
-        title: 'Latron Wraith Stock',
-        topic: Topics.latronWraithStock,
-      ),
-      SimpleTopics(
-        title: 'Fieldron',
-        topic: Topics.fieldron,
-      ),
-      SimpleTopics(
-        title: 'Detonite Injector',
-        topic: Topics.detoniteInjector,
-      ),
-      SimpleTopics(
-        title: 'Mutalist Alad V Nav Coordinate',
-        topic: Topics.aladNavCoordinate,
-      ),
-      SimpleTopics(
-        title: 'Mutagen Mass',
-        topic: Topics.mutagenMass,
-      ),
-      SimpleTopics(
-        title: 'Orokin Catalyst',
-        topic: Topics.orokinCatalyst,
-      ),
-      SimpleTopics(
-        title: 'Orokin Reactor',
-        topic: Topics.orokinReactor,
-      ),
-      SimpleTopics(
-        title: 'Forma',
-        topic: Topics.forma,
-      ),
-      SimpleTopics(
-        title: 'Exilus Adapter',
-        topic: Topics.exilusAdapter,
-      ),
-      SimpleTopics(
-        title: 'Karak Wraith Blueprint',
-        topic: Topics.karakWraithBP,
-      ),
-      SimpleTopics(
-        title: 'Karak Wraith Barrel',
-        topic: Topics.karakWraithBarrel,
-      ),
-      SimpleTopics(
-        title: 'Karak Wraith Receiver',
-        topic: Topics.karakWraithReceiver,
-      ),
-      SimpleTopics(
-        title: 'Karak Wraith Stock',
-        topic: Topics.karakWraithStock,
-      ),
-      SimpleTopics(
-        title: 'Strun Wraith Blueprint',
-        topic: Topics.strunBP,
-      ),
-      SimpleTopics(
-        title: 'Strun Wraith Barrel',
-        topic: Topics.strunBarrel,
-      ),
-      SimpleTopics(
-        title: 'Strun Wraith Reciever',
-        topic: Topics.strunReciever,
-      ),
-      SimpleTopics(
-        title: 'Strun Wraith Stock',
-        topic: Topics.strunStock,
-      ),
+      SimpleTopics(title: 'Snipetron Vandal Blueprint', topic: Topics.sniptronVandalBP),
+      SimpleTopics(title: 'Snipetron Vandal Barrel', topic: Topics.sniptronVandalBarrel),
+      SimpleTopics(title: 'Snipetron Vandal Receiver', topic: Topics.sniptronVandalReceiver),
+      SimpleTopics(title: 'Snipetron Vandal Stock', topic: Topics.sniptronVandalStock),
+      SimpleTopics(title: 'Sheev Blade', topic: Topics.sheevBlade),
+      SimpleTopics(title: 'Sheev Heatsink', topic: Topics.sheevHeatsink),
+      SimpleTopics(title: 'Sheev Hilt', topic: Topics.sheevHilt),
+      SimpleTopics(title: 'Dera Vandal Blueprint', topic: Topics.deraVandalBP),
+      SimpleTopics(title: 'Dera Vandal Barrel', topic: Topics.deraVandalBarrel),
+      SimpleTopics(title: 'Dera Vandal Receiver', topic: Topics.deraVandalReceiver),
+      SimpleTopics(title: 'Dera Vandal Stock', topic: Topics.deraVandalStock),
+      SimpleTopics(title: 'Wraith Twin Vipers Blueprint', topic: Topics.wraithTwinVipersBP),
+      SimpleTopics(title: 'Wraith Twin Vipers Barrel', topic: Topics.wraithTwinVipersBarrels),
+      SimpleTopics(title: 'Wraith Twin Vipers Receiver', topic: Topics.wraithTwinVipersReceivers),
+      SimpleTopics(title: 'Wraith Twin Vipers Link', topic: Topics.wraithTwinVipersLink),
+      SimpleTopics(title: 'Latron Wraith Blueprint', topic: Topics.latronWraithBP),
+      SimpleTopics(title: 'Latron Wraith Barrel', topic: Topics.latronWraithBarrel),
+      SimpleTopics(title: 'Latron Wraith Receiver', topic: Topics.latronWraithReceiver),
+      SimpleTopics(title: 'Latron Wraith Stock', topic: Topics.latronWraithStock),
+      SimpleTopics(title: 'Fieldron', topic: Topics.fieldron),
+      SimpleTopics(title: 'Detonite Injector', topic: Topics.detoniteInjector),
+      SimpleTopics(title: 'Mutalist Alad V Nav Coordinate', topic: Topics.aladNavCoordinate),
+      SimpleTopics(title: 'Mutagen Mass', topic: Topics.mutagenMass),
+      SimpleTopics(title: 'Orokin Catalyst', topic: Topics.orokinCatalyst),
+      SimpleTopics(title: 'Orokin Reactor', topic: Topics.orokinReactor),
+      SimpleTopics(title: 'Forma', topic: Topics.forma),
+      SimpleTopics(title: 'Exilus Adapter', topic: Topics.exilusAdapter),
+      SimpleTopics(title: 'Karak Wraith Blueprint', topic: Topics.karakWraithBP),
+      SimpleTopics(title: 'Karak Wraith Barrel', topic: Topics.karakWraithBarrel),
+      SimpleTopics(title: 'Karak Wraith Receiver', topic: Topics.karakWraithReceiver),
+      SimpleTopics(title: 'Karak Wraith Stock', topic: Topics.karakWraithStock),
+      SimpleTopics(title: 'Strun Wraith Blueprint', topic: Topics.strunBP),
+      SimpleTopics(title: 'Strun Wraith Barrel', topic: Topics.strunBarrel),
+      SimpleTopics(title: 'Strun Wraith Reciever', topic: Topics.strunReciever),
+      SimpleTopics(title: 'Strun Wraith Stock', topic: Topics.strunStock),
     ];
   }
 
@@ -276,20 +158,13 @@ class NotificationTopics {
       final tier = topicd.first;
       final mission = topicd.last.replaceAll('_', ' ');
 
-      yield SimpleTopics(
-        title: '$tier ${toBeginningOfSentenceCase(mission)}',
-        topic: topic,
-      );
+      yield SimpleTopics(title: '$tier ${toBeginningOfSentenceCase(mission)}', topic: topic);
     }
   }
 }
 
 class SimpleTopics extends Equatable {
-  const SimpleTopics({
-    required this.title,
-    this.description,
-    required this.topic,
-  });
+  const SimpleTopics({required this.title, this.description, required this.topic});
 
   final String title;
   final String? description;
@@ -300,11 +175,7 @@ class SimpleTopics extends Equatable {
 }
 
 class MultiTopic extends Equatable {
-  const MultiTopic({
-    required this.title,
-    required this.description,
-    required this.filters,
-  });
+  const MultiTopic({required this.title, required this.description, required this.filters});
 
   final String title;
   final String description;

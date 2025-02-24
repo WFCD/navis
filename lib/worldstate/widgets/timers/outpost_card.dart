@@ -38,12 +38,8 @@ class SentientOutpostCard extends StatelessWidget {
           return ListTile(
             leading: const Icon(WarframeSymbols.factions_sentient, size: 40),
             title: Text(mission?.node ?? ''),
-            subtitle:
-                Text('${mission?.faction ?? ''} | ${mission?.type ?? ''}'),
-            trailing: CountdownTimer(
-              tooltip: context.l10n.countdownTooltip(expiry),
-              expiry: expiry,
-            ),
+            subtitle: Text('${mission?.faction ?? ''} | ${mission?.type ?? ''}'),
+            trailing: CountdownTimer(tooltip: context.l10n.countdownTooltip(expiry), expiry: expiry),
           );
         },
       ),

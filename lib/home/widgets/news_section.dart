@@ -49,11 +49,7 @@ class __NewsCarouselViewState extends State<_NewsCarouselView> {
 
     final position = nextPage * pageSize;
 
-    _controller.animateTo(
-      position,
-      duration: Durations.short4,
-      curve: Curves.easeInOut,
-    );
+    _controller.animateTo(position, duration: Durations.short4, curve: Curves.easeInOut);
 
     _currentPage = nextPage;
   }
@@ -92,10 +88,7 @@ class __NewsCarouselViewState extends State<_NewsCarouselView> {
               final position = _controller.position.pixels;
               _currentPage = (position / itemExtent).round();
 
-              _timer = Timer.periodic(
-                _autoScrollDuration,
-                (_) => _autoScroll(),
-              );
+              _timer = Timer.periodic(_autoScrollDuration, (_) => _autoScroll());
             },
             child: CarouselView(
               controller: _controller,
@@ -103,18 +96,17 @@ class __NewsCarouselViewState extends State<_NewsCarouselView> {
               itemExtent: itemExtent,
               shrinkExtent: itemExtent / 2,
               onTap: (i) => news[i].link.launchLink(context),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(6),
-              ),
-              children: news
-                  .map(
-                    (n) => AppCard(
-                      padding: EdgeInsets.zero,
-                      color: context.theme.colorScheme.secondaryContainer,
-                      child: OrbiterNewsContent(news: n),
-                    ),
-                  )
-                  .toList(),
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
+              children:
+                  news
+                      .map(
+                        (n) => AppCard(
+                          padding: EdgeInsets.zero,
+                          color: context.theme.colorScheme.secondaryContainer,
+                          child: OrbiterNewsContent(news: n),
+                        ),
+                      )
+                      .toList(),
             ),
           ),
         );

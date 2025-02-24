@@ -31,10 +31,8 @@ class EventStatus extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
-    final category = context.textTheme.titleMedium
-        ?.copyWith(color: context.theme.colorScheme.secondary);
-    final tooltipStyle =
-        context.theme.textTheme.titleSmall?.copyWith(fontSize: 15);
+    final category = context.textTheme.titleMedium?.copyWith(color: context.theme.colorScheme.secondary);
+    final tooltipStyle = context.theme.textTheme.titleSmall?.copyWith(fontSize: 15);
 
     return AppCard(
       child: Padding(
@@ -44,36 +42,17 @@ class EventStatus extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             if (tooltip != null) _EventTooltip(tooltip: tooltip!),
-            CategoryTitle(
-              title: l10n.eventStatus,
-              style: category,
-              contentPadding: EdgeInsets.zero,
-            ),
-            RowItem(
-              text: Text(l10n.eventStatusNode, style: tooltipStyle),
-              child: ColoredContainer.text(text: node),
-            ),
+            CategoryTitle(title: l10n.eventStatus, style: category, contentPadding: EdgeInsets.zero),
+            RowItem(text: Text(l10n.eventStatusNode, style: tooltipStyle), child: ColoredContainer.text(text: node)),
             RowItem(
               text: Text(l10n.eventStatusEta, style: tooltipStyle),
-              child: CountdownTimer(
-                tooltip: l10n.countdownTooltip(expiry),
-                expiry: expiry,
-              ),
+              child: CountdownTimer(tooltip: l10n.countdownTooltip(expiry), expiry: expiry),
             ),
             if (health != null || maxScore != null && maxScore != 0)
-              _EventProgress(
-                scoreLocTag: scoreLocTag,
-                health: health,
-                currentScore: currentScore,
-                maxScore: maxScore,
-              ),
+              _EventProgress(scoreLocTag: scoreLocTag, health: health, currentScore: currentScore, maxScore: maxScore),
             if (rewards.isNotEmpty) ...{
               Gaps.gap20,
-              CategoryTitle(
-                title: l10n.eventRewards,
-                style: category,
-                contentPadding: EdgeInsets.zero,
-              ),
+              CategoryTitle(title: l10n.eventRewards, style: category, contentPadding: EdgeInsets.zero),
               Gaps.gap2,
               _RewardChips(rewards: rewards),
             },
@@ -92,35 +71,21 @@ class _EventTooltip extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
-    final tooltipStyle =
-        context.theme.textTheme.titleSmall?.copyWith(fontSize: 15);
-    final category = context.textTheme.titleMedium
-        ?.copyWith(color: context.theme.colorScheme.secondary);
+    final tooltipStyle = context.theme.textTheme.titleSmall?.copyWith(fontSize: 15);
+    final category = context.textTheme.titleMedium?.copyWith(color: context.theme.colorScheme.secondary);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        CategoryTitle(
-          title: l10n.eventDescription,
-          style: category,
-          contentPadding: EdgeInsets.zero,
-        ),
-        Padding(
-          padding: const EdgeInsets.only(top: 2, bottom: 20),
-          child: Text(tooltip, style: tooltipStyle),
-        ),
+        CategoryTitle(title: l10n.eventDescription, style: category, contentPadding: EdgeInsets.zero),
+        Padding(padding: const EdgeInsets.only(top: 2, bottom: 20), child: Text(tooltip, style: tooltipStyle)),
       ],
     );
   }
 }
 
 class _EventProgress extends StatelessWidget {
-  const _EventProgress({
-    this.scoreLocTag,
-    this.health,
-    this.currentScore,
-    this.maxScore,
-  });
+  const _EventProgress({this.scoreLocTag, this.health, this.currentScore, this.maxScore});
 
   final String? scoreLocTag;
   final double? health;
@@ -129,8 +94,7 @@ class _EventProgress extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final tooltipStyle =
-        context.theme.textTheme.titleSmall?.copyWith(fontSize: 15);
+    final tooltipStyle = context.theme.textTheme.titleSmall?.copyWith(fontSize: 15);
 
     if (maxScore != null && maxScore != 0) {
       return RowItem(
@@ -171,10 +135,7 @@ class _RewardChips extends StatelessWidget {
       if (reward.itemString.contains('+')) {
         final r = reward.itemString.split('+');
 
-        rewards.addAll([
-          Chip(label: Text(r.first.trim())),
-          Chip(label: Text(r.last.trim())),
-        ]);
+        rewards.addAll([Chip(label: Text(r.first.trim())), Chip(label: Text(r.last.trim()))]);
       } else {
         rewards.add(Chip(label: Text(reward.itemString)));
       }

@@ -33,7 +33,7 @@ class DeepArchimedeaCard extends StatelessWidget {
         builder: (context, state) {
           final archimedea = switch (state) {
             WorldstateSuccess() => state.worldstate.deepArchimedea,
-            _ => null
+            _ => null,
           };
 
           return Column(
@@ -42,8 +42,7 @@ class DeepArchimedeaCard extends StatelessWidget {
               ListTile(
                 title: Text(context.l10n.archimedeaTitle),
                 trailing: CountdownTimer(
-                  tooltip: MaterialLocalizations.of(context)
-                      .formatFullDate(archimedea?.expiry ?? placeholder()),
+                  tooltip: MaterialLocalizations.of(context).formatFullDate(archimedea?.expiry ?? placeholder()),
                   expiry: archimedea?.expiry ?? placeholder(),
                 ),
               ),
@@ -53,9 +52,7 @@ class DeepArchimedeaCard extends StatelessWidget {
                 textColor: context.theme.colorScheme.onErrorContainer,
               ),
               MissionsCategory(missions: archimedea?.missions ?? []),
-              PersonalModifierCategory(
-                personalModifiers: archimedea?.personalModifiers ?? [],
-              ),
+              PersonalModifierCategory(personalModifiers: archimedea?.personalModifiers ?? []),
             ],
           );
         },
@@ -84,17 +81,12 @@ class MissionsCategory extends StatelessWidget {
               children: [
                 Tooltip(
                   message: pm.deviation.description,
-                  child: Text(
-                    '${l10n.archimedeaDeviationTitle}: ${pm.deviation.name}',
-                  ),
+                  child: Text('${l10n.archimedeaDeviationTitle}: ${pm.deviation.name}'),
                 ),
                 ...pm.riskVariables.map(
                   (rv) => Padding(
                     padding: const EdgeInsets.only(top: 4),
-                    child: Tooltip(
-                      message: rv.description,
-                      child: Text('${l10n.archimedeaRiskTitle}: ${rv.name}'),
-                    ),
+                    child: Tooltip(message: rv.description, child: Text('${l10n.archimedeaRiskTitle}: ${rv.name}')),
                   ),
                 ),
               ],
@@ -119,12 +111,7 @@ class PersonalModifierCategory extends StatelessWidget {
       children: [
         CategoryTitle(title: context.l10n.archimedeaPersonalModifierTitle),
         ...personalModifiers.map(
-          (pm) => ListTile(
-            title: Text(pm.name),
-            subtitle: Text(pm.description),
-            isThreeLine: true,
-            dense: true,
-          ),
+          (pm) => ListTile(title: Text(pm.name), subtitle: Text(pm.description), isThreeLine: true, dense: true),
         ),
       ],
     );

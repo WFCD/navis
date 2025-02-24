@@ -11,7 +11,7 @@ class SliverTopbar extends StatefulWidget {
     this.snap = false,
     this.floating = false,
     required this.child,
-  })  : assert(
+  }) : assert(
           floating || !snap,
           'The "snap" argument only makes sense for floating app bars.',
         );

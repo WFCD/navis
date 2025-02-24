@@ -40,19 +40,12 @@ class EventCard extends StatelessWidget {
               for (final event in events)
                 ListTile(
                   title: Text(event.description),
-                  subtitle: Text(
-                    event.tooltip ?? '',
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                  ),
+                  subtitle: Text(event.tooltip ?? '', maxLines: 1, overflow: TextOverflow.ellipsis),
                   trailing: TextButton(
                     style: ButtonStyle(
-                      foregroundColor: WidgetStateProperty.all(
-                        Theme.of(context).textTheme.labelLarge?.color,
-                      ),
+                      foregroundColor: WidgetStateProperty.all(Theme.of(context).textTheme.labelLarge?.color),
                     ),
-                    onPressed: () =>
-                        WorldEventPageRoute(event).push<void>(context),
+                    onPressed: () => WorldEventPageRoute(event).push<void>(context),
                     child: Text(context.l10n.seeDetails),
                   ),
                 ),

@@ -8,24 +8,9 @@ List<DataColumn> _buildDataColumn(BuildContext context) {
   final textTheme = Theme.of(context).textTheme;
 
   return <DataColumn>[
-    DataColumn(
-      label: Text(
-        'Item',
-        style: textTheme.bodyMedium,
-      ),
-    ),
-    DataColumn(
-      label: Text(
-        'Ducats',
-        style: textTheme.bodyMedium,
-      ),
-    ),
-    DataColumn(
-      label: Text(
-        'Credits',
-        style: textTheme.bodyMedium,
-      ),
-    ),
+    DataColumn(label: Text('Item', style: textTheme.bodyMedium)),
+    DataColumn(label: Text('Ducats', style: textTheme.bodyMedium)),
+    DataColumn(label: Text('Credits', style: textTheme.bodyMedium)),
   ];
 }
 

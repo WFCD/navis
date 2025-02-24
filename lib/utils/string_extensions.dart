@@ -1,6 +1,5 @@
 const _baseUrl = 'https://cdn.warframestat.us';
-const _gitAssets =
-    'https://raw.githubusercontent.com/WFCD/genesis-assets/master';
+const _gitAssets = 'https://raw.githubusercontent.com/WFCD/genesis-assets/master';
 const _opts = 'o_webp,progressive_true';
 
 extension StringX on String {

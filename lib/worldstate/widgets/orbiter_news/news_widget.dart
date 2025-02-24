@@ -16,10 +16,7 @@ class OrbiterNewsCard extends StatelessWidget {
       padding: EdgeInsets.zero,
       clipBehavior: Clip.antiAlias,
       color: context.theme.colorScheme.secondaryContainer,
-      child: InkWell(
-        onTap: () => news.link.launchLink(context),
-        child: OrbiterNewsContent(news: news),
-      ),
+      child: InkWell(onTap: () => news.link.launchLink(context), child: OrbiterNewsContent(news: news)),
     );
   }
 }
@@ -42,12 +39,10 @@ class OrbiterNewsContent extends StatelessWidget {
           title: Text(
             news.translations[currentLocale] ?? news.message,
             overflow: TextOverflow.ellipsis,
-            style: context.theme.textTheme.titleMedium
-                ?.copyWith(color: colorScheme.onSecondaryContainer),
+            style: context.theme.textTheme.titleMedium?.copyWith(color: colorScheme.onSecondaryContainer),
           ),
           subtitle: Text(
-            MaterialLocalizations.of(context)
-                .formatFullDate(news.date.toLocal()),
+            MaterialLocalizations.of(context).formatFullDate(news.date.toLocal()),
             style: context.theme.textTheme.bodyMedium?.copyWith(
               color: colorScheme.onSecondaryContainer.withValues(alpha: .7),
             ),
@@ -66,11 +61,7 @@ class _NewsImage extends StatelessWidget {
 
   Image _placeholder(double width, double height) {
     return Image(
-      image: ResizeImage(
-        Assets.derelict.provider(),
-        width: width.toInt(),
-        height: height.toInt(),
-      ),
+      image: ResizeImage(Assets.derelict.provider(), width: width.toInt(), height: height.toInt()),
       fit: BoxFit.cover,
     );
   }
@@ -90,8 +81,7 @@ class _NewsImage extends StatelessWidget {
             width: width,
             fit: BoxFit.cover,
             placeholder: (context, url) => _placeholder(width, height),
-            errorWidget: (context, url, dynamic error) =>
-                _placeholder(width, height),
+            errorWidget: (context, url, dynamic error) => _placeholder(width, height),
           ),
         );
       },

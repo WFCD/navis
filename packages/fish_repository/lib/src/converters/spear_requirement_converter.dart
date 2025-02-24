@@ -4,8 +4,7 @@ import 'package:json_annotation/json_annotation.dart';
 /// {@template region_time_converter}
 /// Converts a json into the appropriate region time.
 /// {@endtemplate}
-class SpearRequirementConverter<T extends SpearRequirements>
-    extends JsonConverter<T, Map<String, dynamic>> {
+class SpearRequirementConverter<T extends SpearRequirements> extends JsonConverter<T, Map<String, dynamic>> {
   /// {@macro region_time_converter}
   const SpearRequirementConverter();
 

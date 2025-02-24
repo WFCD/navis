@@ -95,8 +95,7 @@ class VallisRequirements extends SpearRequirements {
   /// Just a dummy factory that returns a constant instance
   /// of [VallisRequirements]
   // ignore: avoid_unused_constructor_parameters
-  factory VallisRequirements.fromJson(Map<String, dynamic>? json) =>
-      const VallisRequirements();
+  factory VallisRequirements.fromJson(Map<String, dynamic>? json) => const VallisRequirements();
 
   /// See [VallisRequirements]
   bool get requiresShockprod => true;

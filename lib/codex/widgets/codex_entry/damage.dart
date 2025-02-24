@@ -23,100 +23,39 @@ class DamageSection extends StatelessWidget {
         Stats(
           stats: [
             if (damage.impact > 0)
-              RowItem(
-                text: Text(l10n.impactDamageTitle),
-                child: Text(_statRoundDouble(damage.impact)),
-              ),
+              RowItem(text: Text(l10n.impactDamageTitle), child: Text(_statRoundDouble(damage.impact))),
             if (damage.puncture > 0)
-              RowItem(
-                text: Text(l10n.punctureDamageTitle),
-                child: Text(_statRoundDouble(damage.puncture)),
-              ),
+              RowItem(text: Text(l10n.punctureDamageTitle), child: Text(_statRoundDouble(damage.puncture))),
             if (damage.slash > 0)
-              RowItem(
-                text: Text(l10n.slashDamageTitle),
-                child: Text(_statRoundDouble(damage.slash)),
-              ),
-            if (damage.heat > 0)
-              RowItem(
-                text: Text(l10n.heatDamageTitle),
-                child: Text(_statRoundDouble(damage.heat)),
-              ),
-            if (damage.cold > 0)
-              RowItem(
-                text: Text(l10n.coldDamageTitle),
-                child: Text(_statRoundDouble(damage.cold)),
-              ),
+              RowItem(text: Text(l10n.slashDamageTitle), child: Text(_statRoundDouble(damage.slash))),
+            if (damage.heat > 0) RowItem(text: Text(l10n.heatDamageTitle), child: Text(_statRoundDouble(damage.heat))),
+            if (damage.cold > 0) RowItem(text: Text(l10n.coldDamageTitle), child: Text(_statRoundDouble(damage.cold))),
             if (damage.electricity > 0)
-              RowItem(
-                text: Text(l10n.electricityDamageTitle),
-                child: Text(_statRoundDouble(damage.electricity)),
-              ),
+              RowItem(text: Text(l10n.electricityDamageTitle), child: Text(_statRoundDouble(damage.electricity))),
             if (damage.toxin > 0)
-              RowItem(
-                text: Text(l10n.toxinDamageTitle),
-                child: Text(_statRoundDouble(damage.toxin)),
-              ),
+              RowItem(text: Text(l10n.toxinDamageTitle), child: Text(_statRoundDouble(damage.toxin))),
             if (damage.blast > 0)
-              RowItem(
-                text: Text(l10n.blastDamageTitle),
-                child: Text(_statRoundDouble(damage.blast)),
-              ),
+              RowItem(text: Text(l10n.blastDamageTitle), child: Text(_statRoundDouble(damage.blast))),
             if (damage.radiation > 0)
-              RowItem(
-                text: Text(l10n.radiationDamageTitle),
-                child: Text(_statRoundDouble(damage.radiation)),
-              ),
-            if (damage.gas > 0)
-              RowItem(
-                text: Text(l10n.gasDamageTitle),
-                child: Text(_statRoundDouble(damage.gas)),
-              ),
+              RowItem(text: Text(l10n.radiationDamageTitle), child: Text(_statRoundDouble(damage.radiation))),
+            if (damage.gas > 0) RowItem(text: Text(l10n.gasDamageTitle), child: Text(_statRoundDouble(damage.gas))),
             if (damage.magnetic > 0)
-              RowItem(
-                text: Text(l10n.magneticDamageTitle),
-                child: Text(_statRoundDouble(damage.magnetic)),
-              ),
+              RowItem(text: Text(l10n.magneticDamageTitle), child: Text(_statRoundDouble(damage.magnetic))),
             if (damage.viral > 0)
-              RowItem(
-                text: Text(l10n.viralDamageTitle),
-                child: Text(_statRoundDouble(damage.viral)),
-              ),
+              RowItem(text: Text(l10n.viralDamageTitle), child: Text(_statRoundDouble(damage.viral))),
             if (damage.corrosive > 0)
-              RowItem(
-                text: Text(l10n.corrosiveDamageTitle),
-                child: Text(_statRoundDouble(damage.corrosive)),
-              ),
+              RowItem(text: Text(l10n.corrosiveDamageTitle), child: Text(_statRoundDouble(damage.corrosive))),
             if (damage.voidDamage > 0)
-              RowItem(
-                text: Text(l10n.voidDamageTitle),
-                child: Text(_statRoundDouble(damage.voidDamage)),
-              ),
-            if (damage.tau > 0)
-              RowItem(
-                text: Text(l10n.tauDamageTitle),
-                child: Text(_statRoundDouble(damage.tau)),
-              ),
+              RowItem(text: Text(l10n.voidDamageTitle), child: Text(_statRoundDouble(damage.voidDamage))),
+            if (damage.tau > 0) RowItem(text: Text(l10n.tauDamageTitle), child: Text(_statRoundDouble(damage.tau))),
             if (damage.cinematic > 0)
-              RowItem(
-                text: Text(l10n.cinematicDamageTitle),
-                child: Text(_statRoundDouble(damage.cinematic)),
-              ),
+              RowItem(text: Text(l10n.cinematicDamageTitle), child: Text(_statRoundDouble(damage.cinematic))),
             if (damage.shieldDrain > 0)
-              RowItem(
-                text: Text(l10n.shieldDrainDamageTitle),
-                child: Text(_statRoundDouble(damage.shieldDrain)),
-              ),
+              RowItem(text: Text(l10n.shieldDrainDamageTitle), child: Text(_statRoundDouble(damage.shieldDrain))),
             if (damage.healthDrain > 0)
-              RowItem(
-                text: Text(l10n.healthDrainDamageTitle),
-                child: Text(_statRoundDouble(damage.healthDrain)),
-              ),
+              RowItem(text: Text(l10n.healthDrainDamageTitle), child: Text(_statRoundDouble(damage.healthDrain))),
             if (damage.trueDamage > 0)
-              RowItem(
-                text: Text(l10n.physicalDamageTitle),
-                child: Text(_statRoundDouble(damage.trueDamage)),
-              ),
+              RowItem(text: Text(l10n.physicalDamageTitle), child: Text(_statRoundDouble(damage.trueDamage))),
           ],
         ),
         Padding(

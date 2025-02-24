@@ -12,8 +12,7 @@ class OrbiterNewsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final state = context.watch<WorldstateCubit>().state;
-    final orbitNews =
-        state is WorldstateSuccess ? state.worldstate.news : <News>[];
+    final orbitNews = state is WorldstateSuccess ? state.worldstate.news : <News>[];
 
     return Scaffold(
       appBar: AppBar(title: Text(context.l10n.warframeNewsTitle)),

@@ -25,9 +25,7 @@ class WorldstateSuccess extends SolsystemState {
 
   bool get activeSales => worldstate.flashSales.isNotEmpty;
 
-  bool get arbitrationActive =>
-      worldstate.arbitration != null &&
-      !worldstate.arbitration!.node.contains('000');
+  bool get arbitrationActive => worldstate.arbitration != null && !worldstate.arbitration!.node.contains('000');
 
   bool get eventsActive => worldstate.events.isNotEmpty;
 

@@ -14,7 +14,7 @@ class ArbitrationCard extends StatelessWidget {
         builder: (context, state) {
           final arbitration = switch (state) {
             WorldstateSuccess() => state.worldstate.arbitration,
-            _ => null
+            _ => null,
           };
 
           final now = DateTime.timestamp();
@@ -32,20 +32,13 @@ class ArbitrationCard extends StatelessWidget {
                 if (arbitration?.archwing ?? false)
                   const Padding(
                     padding: EdgeInsets.only(left: 6),
-                    child: Icon(
-                      WarframeSymbols.archwing,
-                      color: Colors.blue,
-                      size: 25,
-                    ),
+                    child: Icon(WarframeSymbols.archwing, color: Colors.blue, size: 25),
                   ),
                 Text(arbitration?.node ?? ''),
               ],
             ),
             subtitle: Text('${arbitration?.enemy} | ${arbitration?.type}'),
-            trailing: CountdownTimer(
-              tooltip: context.l10n.countdownTooltip(expiry),
-              expiry: expiry,
-            ),
+            trailing: CountdownTimer(tooltip: context.l10n.countdownTooltip(expiry), expiry: expiry),
           );
         },
       ),

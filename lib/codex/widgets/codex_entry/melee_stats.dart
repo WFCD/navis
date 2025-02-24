@@ -20,112 +20,51 @@ class MeleeStats extends StatelessWidget {
 
     return Column(
       children: [
-        CategoryTitle(
-          title: context.l10n.statsTitle,
-          contentPadding: EdgeInsets.zero,
-        ),
+        CategoryTitle(title: context.l10n.statsTitle, contentPadding: EdgeInsets.zero),
         Stats(
           stats: <RowItem>[
             if (isBuildable && (melee as BuildableItem).masteryReq != null)
-              RowItem(
-                text: Text(l10n.masteryRequirementTitle),
-                child: Text('${(melee as BuildableItem).masteryReq}'),
-              ),
-            RowItem(
-              text: Text(l10n.weaponTypeTitle),
-              child: Text(melee.type.type),
-            ),
+              RowItem(text: Text(l10n.masteryRequirementTitle), child: Text('${(melee as BuildableItem).masteryReq}')),
+            RowItem(text: Text(l10n.weaponTypeTitle), child: Text(melee.type.type)),
             if (melee.stancePolarity != null)
-              RowItem(
-                text: Text(l10n.stancePolarityTitle),
-                child: Polarity(polarity: melee.stancePolarity!),
-              ),
+              RowItem(text: Text(l10n.stancePolarityTitle), child: Polarity(polarity: melee.stancePolarity!)),
             if (melee.polarities?.isNotEmpty ?? false)
               RowItem(
                 text: Text(l10n.preinstalledPolarities),
-                child: PreinstalledPolarties(
-                  polarities: melee.polarities!,
-                ),
+                child: PreinstalledPolarties(polarities: melee.polarities!),
               ),
             RowItem(
               text: Text(l10n.criticalChanceTitle),
-              child: Text(
-                '${(melee.criticalChance * 100).roundToDouble()}%',
-              ),
+              child: Text('${(melee.criticalChance * 100).roundToDouble()}%'),
             ),
-            RowItem(
-              text: Text(l10n.cricticalMultiplierTitle),
-              child: Text('${melee.criticalMultiplier}x'),
-            ),
+            RowItem(text: Text(l10n.cricticalMultiplierTitle), child: Text('${melee.criticalMultiplier}x')),
             RowItem(
               text: Text(l10n.followThroughTitle),
               child: Text('${melee.followThrough?.toStringAsFixed(2) ?? 0}'),
             ),
-            RowItem(
-              text: Text(l10n.rangeTitle),
-              child: Text('${melee.range?.toStringAsFixed(2) ?? 0}'),
-            ),
-            RowItem(
-              text: Text(l10n.slamAttackTitle),
-              child: Text('${melee.slamAttack}'),
-            ),
-            RowItem(
-              text: Text(l10n.slamRadialDamageTitle),
-              child: Text('${melee.slamRadialDamage}'),
-            ),
-            RowItem(
-              text: Text(l10n.slamRadiusTitle),
-              child: Text('${melee.slamRadius?.toStringAsFixed(2) ?? 0}'),
-            ),
-            RowItem(
-              text: Text(l10n.slideAttackTitle),
-              child: Text('${melee.slideAttack}'),
-            ),
+            RowItem(text: Text(l10n.rangeTitle), child: Text('${melee.range?.toStringAsFixed(2) ?? 0}')),
+            RowItem(text: Text(l10n.slamAttackTitle), child: Text('${melee.slamAttack}')),
+            RowItem(text: Text(l10n.slamRadialDamageTitle), child: Text('${melee.slamRadialDamage}')),
+            RowItem(text: Text(l10n.slamRadiusTitle), child: Text('${melee.slamRadius?.toStringAsFixed(2) ?? 0}')),
+            RowItem(text: Text(l10n.slideAttackTitle), child: Text('${melee.slideAttack}')),
             if (melee.disposition != null)
-              RowItem(
-                text: Text(l10n.rivenDispositionTitle),
-                child: RivenDisposition(disposition: melee.disposition!),
-              ),
-            RowItem(
-              text: Text(l10n.statusChanceTitle),
-              child: Text('${(melee.procChance * 100).roundToDouble()}%'),
-            ),
+              RowItem(text: Text(l10n.rivenDispositionTitle), child: RivenDisposition(disposition: melee.disposition!)),
+            RowItem(text: Text(l10n.statusChanceTitle), child: Text('${(melee.procChance * 100).roundToDouble()}%')),
           ],
         ),
         Gaps.gap16,
-        CategoryTitle(
-          title: l10n.heavyAttackTitle,
-          contentPadding: EdgeInsets.zero,
-        ),
+        CategoryTitle(title: l10n.heavyAttackTitle, contentPadding: EdgeInsets.zero),
         Stats(
           stats: [
-            RowItem(
-              text: Text(l10n.damageTitle),
-              child: Text('${melee.heavyAttackDamage}'),
-            ),
-            RowItem(
-              text: Text(l10n.heavySlamAttackTitle),
-              child: Text('${melee.heavySlamAttack}'),
-            ),
-            RowItem(
-              text: Text(l10n.heavySlamRadialDamageTitle),
-              child: Text('${melee.heavySlamRadialDamage}'),
-            ),
-            RowItem(
-              text: Text(l10n.heavySlamRadiusTitle),
-              child: Text('${melee.heavySlamRadius?.toDouble() ?? 0}'),
-            ),
-            RowItem(
-              text: Text(l10n.windUpTitle),
-              child: Text('${melee.windUp?.toStringAsFixed(2) ?? 0}'),
-            ),
+            RowItem(text: Text(l10n.damageTitle), child: Text('${melee.heavyAttackDamage}')),
+            RowItem(text: Text(l10n.heavySlamAttackTitle), child: Text('${melee.heavySlamAttack}')),
+            RowItem(text: Text(l10n.heavySlamRadialDamageTitle), child: Text('${melee.heavySlamRadialDamage}')),
+            RowItem(text: Text(l10n.heavySlamRadiusTitle), child: Text('${melee.heavySlamRadius?.toDouble() ?? 0}')),
+            RowItem(text: Text(l10n.windUpTitle), child: Text('${melee.windUp?.toStringAsFixed(2) ?? 0}')),
           ],
         ),
         Gaps.gap16,
-        CategoryTitle(
-          title: l10n.damageTitle,
-          contentPadding: EdgeInsets.zero,
-        ),
+        CategoryTitle(title: l10n.damageTitle, contentPadding: EdgeInsets.zero),
         if (melee.damage != null) DamageSection(damage: melee.damage!),
       ],
     );

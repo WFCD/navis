@@ -11,10 +11,7 @@ class RivenDisposition extends StatelessWidget {
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.end,
-      children: [
-        for (int i = 0; i < maxDisposition; i++)
-          _RivenDot(enable: i < disposition),
-      ],
+      children: [for (int i = 0; i < maxDisposition; i++) _RivenDot(enable: i < disposition)],
     );
   }
 }

@@ -28,14 +28,11 @@ class SyndicatePage extends StatelessWidget {
     if (previous == null || next == null) return true;
 
     if (previous.nightwave != null || next.nightwave != null) {
-      return previous.syndicateMissions.first.expiry !=
-              next.syndicateMissions.first.expiry ||
-          previous.nightwave!.activeChallenges
-              .equals(next.nightwave!.activeChallenges);
+      return previous.syndicateMissions.first.expiry != next.syndicateMissions.first.expiry ||
+          previous.nightwave!.activeChallenges.equals(next.nightwave!.activeChallenges);
     }
 
-    return previous.syndicateMissions.first.expiry !=
-        next.syndicateMissions.first.expiry;
+    return previous.syndicateMissions.first.expiry != next.syndicateMissions.first.expiry;
   }
 
   @override
@@ -43,24 +40,16 @@ class SyndicatePage extends StatelessWidget {
     return BlocBuilder<WorldstateCubit, SolsystemState>(
       buildWhen: _buildWhen,
       builder: (context, state) {
-        final syndicateMissions = state is WorldstateSuccess
-            ? state.worldstate.syndicateMissions
-            : <SyndicateMission>[];
-        final nightwave =
-            state is WorldstateSuccess ? state.worldstate.nightwave : null;
+        final syndicateMissions =
+            state is WorldstateSuccess ? state.worldstate.syndicateMissions : <SyndicateMission>[];
+        final nightwave = state is WorldstateSuccess ? state.worldstate.nightwave : null;
 
         return TraceableWidget(
           child: ViewLoading(
             isLoading: state is! WorldstateSuccess,
             child: ScreenTypeLayout.builder(
-              mobile: (_) => _SyndicatePageMobile(
-                syndicates: syndicateMissions,
-                nightwave: nightwave,
-              ),
-              tablet: (_) => _SyndicatePageTablet(
-                syndicates: syndicateMissions,
-                nightwave: nightwave,
-              ),
+              mobile: (_) => _SyndicatePageMobile(syndicates: syndicateMissions, nightwave: nightwave),
+              tablet: (_) => _SyndicatePageTablet(syndicates: syndicateMissions, nightwave: nightwave),
             ),
           ),
         );
@@ -79,16 +68,8 @@ class _BuildSyndicates extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        CountdownBanner(
-          message: 'Bounties expire in:',
-          time: syndicates.first.expiry,
-        ),
-        ...syndicates.map<SyndicateCard>(
-          (syn) => SyndicateCard(
-            syndicateId: syn.id,
-            onTap: () => onTap(syn),
-          ),
-        ),
+        CountdownBanner(message: 'Bounties expire in:', time: syndicates.first.expiry),
+        ...syndicates.map<SyndicateCard>((syn) => SyndicateCard(syndicateId: syn.id, onTap: () => onTap(syn))),
       ],
     );
   }
@@ -106,15 +87,9 @@ class _SyndicatePageMobile extends StatelessWidget {
       padding: const EdgeInsets.only(top: 4),
       children: <Widget>[
         if (nightwave != null)
-          NightwaveCard(
-            nightwave: nightwave!,
-            onTap: () => NightwavePageRoute(nightwave).push<void>(context),
-          ),
+          NightwaveCard(nightwave: nightwave!, onTap: () => NightwavePageRoute(nightwave).push<void>(context)),
         Gaps.gap4,
-        _BuildSyndicates(
-          syndicates: syndicates,
-          onTap: (s) => SyndicatePageRoute(s).push<void>(context),
-        ),
+        _BuildSyndicates(syndicates: syndicates, onTap: (s) => SyndicatePageRoute(s).push<void>(context)),
         const Divider(),
         SyndicateCard(
           syndicateId: 'simaris',
@@ -161,9 +136,7 @@ class _SyndicatePageTabletState extends State<_SyndicatePageTablet> {
                   NightwaveCard(
                     nightwave: widget.nightwave!,
                     onTap: () {
-                      _controller?.sink.add(
-                        NightwaveChalleneges(nightwave: widget.nightwave!),
-                      );
+                      _controller?.sink.add(NightwaveChalleneges(nightwave: widget.nightwave!));
                     },
                   ),
                 _BuildSyndicates(

@@ -23,11 +23,7 @@ class SortieCard extends StatelessWidget {
   }
 
   SortieMission toSortieMission(Variant mission) {
-    return SortieMission(
-      node: mission.node,
-      objective: mission.missionType,
-      modifier: mission.modifier,
-    );
+    return SortieMission(node: mission.node, objective: mission.missionType, modifier: mission.modifier);
   }
 
   @override
@@ -48,10 +44,7 @@ class SortieCard extends StatelessWidget {
           faction: sortie?.factionKey ?? sortie?.faction ?? '',
           boss: sortie?.boss ?? '',
           missions: missions.map(toSortieMission).toList(),
-          timer: CountdownTimer(
-            tooltip: context.l10n.countdownTooltip(expiry),
-            expiry: expiry,
-          ),
+          timer: CountdownTimer(tooltip: context.l10n.countdownTooltip(expiry), expiry: expiry),
         );
       },
     );

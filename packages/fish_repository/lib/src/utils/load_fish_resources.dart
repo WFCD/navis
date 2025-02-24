@@ -16,11 +16,10 @@ enum FishingRegion {
 }
 
 /// Loads the correct fishing data depending on [FishingRegion]
-Future<List<Fish<T, S, R, U>>> loadFishResources<
-    T extends RegionTime,
-    S extends SpearRequirements,
-    R extends RegionResources,
-    U>(FishingRegion region) async {
+Future<List<Fish<T, S, R, U>>>
+    loadFishResources<T extends RegionTime, S extends SpearRequirements, R extends RegionResources, U>(
+  FishingRegion region,
+) async {
   final resourcesJson = switch (region) {
     FishingRegion.deimos => await rootBundle.loadString(Assets.fish.deimos),
     FishingRegion.poe => await rootBundle.loadString(Assets.fish.poe),

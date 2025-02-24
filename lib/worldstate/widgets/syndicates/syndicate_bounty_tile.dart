@@ -4,11 +4,7 @@ import 'package:navis_ui/navis_ui.dart';
 import 'package:warframestat_client/warframestat_client.dart';
 
 class SyndicateBountyTile extends StatelessWidget {
-  const SyndicateBountyTile({
-    super.key,
-    required this.job,
-    required this.faction,
-  });
+  const SyndicateBountyTile({super.key, required this.job, required this.faction});
 
   final SyndicateJob job;
   final Syndicates faction;
@@ -18,9 +14,7 @@ class SyndicateBountyTile extends StatelessWidget {
     return ExpansionTile(
       key: PageStorageKey<int>(job.hashCode),
       title: Text(job.type ?? ''),
-      subtitle: Text(
-        context.l10n.levelInfo(job.enemyLevels.first, job.enemyLevels.last),
-      ),
+      subtitle: Text(context.l10n.levelInfo(job.enemyLevels.first, job.enemyLevels.last)),
       trailing: _Standing(standingStages: job.standingStages),
       onExpansionChanged: (b) => context.scrollToSelectedContent(),
       children: job.rewardPool.map((e) => ListTile(title: Text(e))).toList(),

@@ -57,8 +57,7 @@ class DarvoDealCard extends StatelessWidget {
                       Text('${context.l10n.saleEndsTitle}:'),
                       Gaps.gap16,
                       CountdownTimer(
-                        tooltip: context.materialLocalizations
-                            .formatFullDate(expiry),
+                        tooltip: context.materialLocalizations.formatFullDate(expiry),
                         expiry: expiry,
                         padding: const EdgeInsets.symmetric(horizontal: 4),
                         margin: EdgeInsets.zero,
@@ -66,14 +65,11 @@ class DarvoDealCard extends StatelessWidget {
                     ],
                   ),
                   ColoredContainer.text(
-                    text: inStock
-                        ? context.l10n.inStockInformation(stock)
-                        : context.l10n.outOfStockTitle,
+                    text: inStock ? context.l10n.inStockInformation(stock) : context.l10n.outOfStockTitle,
                     color: inStock ? Colors.green : Colors.red,
                     padding: const EdgeInsets.symmetric(horizontal: 4),
                     margin: const EdgeInsets.only(top: 10),
-                    style: context.textTheme.bodyMedium
-                        ?.copyWith(color: Colors.white),
+                    style: context.textTheme.bodyMedium?.copyWith(color: Colors.white),
                   ),
                   if (deal != null)
                     BlocProvider(
@@ -117,42 +113,27 @@ class _DealWidget extends StatelessWidget {
               ),
             Expanded(
               child: Padding(
-                padding: const EdgeInsets.symmetric(
-                  vertical: 4,
-                  horizontal: 8,
-                ),
-                child: ListTile(
-                  title: Text(item?.name ?? deal.item),
-                  contentPadding: EdgeInsets.zero,
-                ),
+                padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
+                child: ListTile(title: Text(item?.name ?? deal.item), contentPadding: EdgeInsets.zero),
               ),
             ),
             Padding(
               padding: const EdgeInsets.only(top: 8, right: 8),
-              child: _DarvoPlatTrailing(
-                salePrice: deal.salePrice,
-                originalPrice: deal.originalPrice,
-              ),
+              child: _DarvoPlatTrailing(salePrice: deal.salePrice, originalPrice: deal.originalPrice),
             ),
           ],
         );
 
         if (item == null) return row;
 
-        return EntryViewOpenContainer(
-          item: item as MinimalItem,
-          builder: (_, __) => row,
-        );
+        return EntryViewOpenContainer(item: item as MinimalItem, builder: (_, __) => row);
       },
     );
   }
 }
 
 class _DarvoPlatTrailing extends StatelessWidget {
-  const _DarvoPlatTrailing({
-    required this.salePrice,
-    required this.originalPrice,
-  });
+  const _DarvoPlatTrailing({required this.salePrice, required this.originalPrice});
 
   final int salePrice;
   final int originalPrice;
@@ -163,20 +144,14 @@ class _DarvoPlatTrailing extends StatelessWidget {
       height: 65,
       child: Row(
         children: [
-          _DarvoPlatColumn(
-            header: context.l10n.salePriceTitle,
-            value: salePrice,
-          ),
+          _DarvoPlatColumn(header: context.l10n.salePriceTitle, value: salePrice),
           Container(
             width: 10,
             height: 2,
             margin: const EdgeInsets.only(left: 8, top: 18, right: 8),
             color: context.theme.textTheme.bodyMedium?.color,
           ),
-          _DarvoPlatColumn(
-            header: context.l10n.originalPriceTitle,
-            value: originalPrice,
-          ),
+          _DarvoPlatColumn(header: context.l10n.originalPriceTitle, value: originalPrice),
         ],
       ),
     );
@@ -193,10 +168,8 @@ class _DarvoPlatColumn extends StatelessWidget {
   Widget build(BuildContext context) {
     const stringPadding = 2;
     final textTheme = context.textTheme;
-    final headerStyle =
-        textTheme.labelSmall?.copyWith(fontWeight: FontWeight.w500);
-    final valueStyle =
-        textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.w800);
+    final headerStyle = textTheme.labelSmall?.copyWith(fontWeight: FontWeight.w500);
+    final valueStyle = textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.w800);
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,

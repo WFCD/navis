@@ -17,9 +17,7 @@ class SynthTargetsView extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(),
         body: BlocProvider(
-          create: (_) => SynthtargetsCubit(
-            RepositoryProvider.of<WarframestatRepository>(context),
-          )..fetchSynthtargets(),
+          create: (_) => SynthtargetsCubit(RepositoryProvider.of<WarframestatRepository>(context))..fetchSynthtargets(),
           child: const _SynthTargetsPage(),
         ),
       ),

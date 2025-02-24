@@ -23,11 +23,7 @@ class ArchonHuntCard extends StatelessWidget {
   }
 
   SortieMission toSortieMission(Mission mission) {
-    return SortieMission(
-      node: mission.node,
-      objective: mission.type,
-      modifier: mission.exclusiveWeapon,
-    );
+    return SortieMission(node: mission.node, objective: mission.type, modifier: mission.exclusiveWeapon);
   }
 
   @override
@@ -47,10 +43,7 @@ class ArchonHuntCard extends StatelessWidget {
           faction: archonHunt?.factionKey ?? '',
           boss: archonHunt?.boss ?? '',
           missions: missions.map(toSortieMission).toList(),
-          timer: CountdownTimer(
-            tooltip: context.l10n.countdownTooltip(expiry),
-            expiry: expiry,
-          ),
+          timer: CountdownTimer(tooltip: context.l10n.countdownTooltip(expiry), expiry: expiry),
         );
       },
     );

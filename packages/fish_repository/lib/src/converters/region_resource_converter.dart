@@ -4,8 +4,7 @@ import 'package:json_annotation/json_annotation.dart';
 /// {@template region_resources_converter}
 /// Converts a resources key into the appropriate region resources.
 /// {@endtemplate}
-class RegionResourcesConverter<T extends RegionResources>
-    extends JsonConverter<T, Map<String, dynamic>> {
+class RegionResourcesConverter<T extends RegionResources> extends JsonConverter<T, Map<String, dynamic>> {
   /// {@macro region_resources_converter}
   const RegionResourcesConverter();
 

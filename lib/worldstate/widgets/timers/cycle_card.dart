@@ -14,19 +14,15 @@ class CycleCard extends StatelessWidget {
 
   Widget _earthStateIcon(EarthState state) {
     return switch (state) {
-      EarthState.day =>
-        const Icon(Icons.brightness_7, color: Colors.amber, size: _iconSize),
-      EarthState.night =>
-        const Icon(Icons.brightness_3, color: Colors.blue, size: _iconSize),
+      EarthState.day => const Icon(Icons.brightness_7, color: Colors.amber, size: _iconSize),
+      EarthState.night => const Icon(Icons.brightness_3, color: Colors.blue, size: _iconSize),
     };
   }
 
   Widget _vallisStateIcon(VallisState state) {
     return switch (state) {
-      VallisState.cold =>
-        const Icon(Icons.ac_unit, color: Colors.blue, size: _iconSize),
-      VallisState.warm =>
-        const Icon(Icons.sunny, color: Colors.red, size: _iconSize),
+      VallisState.cold => const Icon(Icons.ac_unit, color: Colors.blue, size: _iconSize),
+      VallisState.warm => const Icon(Icons.sunny, color: Colors.red, size: _iconSize),
     };
   }
 
@@ -77,44 +73,32 @@ class CycleCard extends StatelessWidget {
           child: Column(
             children: <Widget>[
               _CycleRow(
-                currentState:
-                    _earthStateIcon(earthCycle?.state ?? EarthState.day),
+                currentState: _earthStateIcon(earthCycle?.state ?? EarthState.day),
                 name: locale.earthCycleTitle,
                 expiry: earthCycle?.expiry,
               ),
               _CycleRow(
-                currentState:
-                    _earthStateIcon(cetusCycle?.state ?? EarthState.day),
+                currentState: _earthStateIcon(cetusCycle?.state ?? EarthState.day),
                 name: locale.cetusCycleTitle,
                 expiry: cetusCycle?.expiry,
               ),
               _CycleRow(
-                currentState:
-                    _vallisStateIcon(vallisCycle?.state ?? VallisState.warm),
+                currentState: _vallisStateIcon(vallisCycle?.state ?? VallisState.warm),
                 name: locale.vallisCycleTitle,
                 expiry: vallisCycle?.expiry,
               ),
               _CycleRow(
-                currentState: _stateText(
-                  context,
-                  cambionCycle?.state.name ?? CambionState.fass.name,
-                ),
+                currentState: _stateText(context, cambionCycle?.state.name ?? CambionState.fass.name),
                 name: locale.cambionCycleTitle,
                 expiry: cambionCycle?.expiry,
               ),
               _CycleRow(
-                currentState: FactionIcon(
-                  name: zarimanCycle?.state.name ?? ZarimanState.corpus.name,
-                  size: _iconSize,
-                ),
+                currentState: FactionIcon(name: zarimanCycle?.state.name ?? ZarimanState.corpus.name, size: _iconSize),
                 name: locale.zarimanCycleTitle,
                 expiry: zarimanCycle?.expiry,
               ),
               _CycleRow(
-                currentState: _stateText(
-                  context,
-                  duviriCycle?.state.name ?? DuviriState.anger.name,
-                ),
+                currentState: _stateText(context, duviriCycle?.state.name ?? DuviriState.anger.name),
                 name: 'Duviri Cycle',
                 expiry: duviriCycle?.expiry,
               ),
@@ -127,11 +111,7 @@ class CycleCard extends StatelessWidget {
 }
 
 class _CycleRow extends StatelessWidget {
-  const _CycleRow({
-    required this.currentState,
-    required this.name,
-    required this.expiry,
-  });
+  const _CycleRow({required this.currentState, required this.name, required this.expiry});
 
   final Widget currentState;
   final String name;
@@ -142,20 +122,13 @@ class _CycleRow extends StatelessWidget {
     final expiry = this.expiry ?? DateTime.now();
 
     return ListTile(
-      title: Text(
-        name,
-        style: context.textTheme.titleMedium
-            ?.copyWith(fontWeight: FontWeight.w600),
-      ),
+      title: Text(name, style: context.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w600)),
       trailing: Row(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           currentState,
           Gaps.gap6,
-          CountdownTimer(
-            tooltip: context.l10n.countdownTooltip(expiry),
-            expiry: expiry,
-          ),
+          CountdownTimer(tooltip: context.l10n.countdownTooltip(expiry), expiry: expiry),
         ],
       ),
     );

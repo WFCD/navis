@@ -24,14 +24,8 @@ class CountdownBanner extends StatelessWidget {
       margin: margin,
       color: color,
       child: RowItem(
-        text: Text(
-          message,
-          style: Theme.of(context).textTheme.titleMedium,
-        ),
-        child: CountdownTimer(
-          tooltip: l10n.countdownTooltip(time ?? DateTime.now()),
-          expiry: time,
-        ),
+        text: Text(message, style: Theme.of(context).textTheme.titleMedium),
+        child: CountdownTimer(tooltip: l10n.countdownTooltip(time ?? DateTime.now()), expiry: time),
       ),
     );
   }

@@ -7,11 +7,7 @@ import 'package:warframestat_client/warframestat_client.dart';
 typedef OnTap = void Function();
 
 class NightwaveCard extends StatelessWidget {
-  const NightwaveCard({
-    super.key,
-    required this.nightwave,
-    required this.onTap,
-  });
+  const NightwaveCard({super.key, required this.nightwave, required this.onTap});
 
   final Nightwave nightwave;
   final OnTap onTap;

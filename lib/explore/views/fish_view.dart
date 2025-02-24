@@ -31,26 +31,22 @@ class FishView extends StatelessWidget {
             // These are the slivers that show up in the "outer" scroll view.
             return <Widget>[
               SliverOverlapAbsorber(
-                handle:
-                    NestedScrollView.sliverOverlapAbsorberHandleFor(context),
+                handle: NestedScrollView.sliverOverlapAbsorberHandleFor(context),
                 sliver: SliverAppBar(
                   title: const Text('Fishing data'),
                   floating: true,
                   forceElevated: innerBoxIsScrolled,
-                  bottom: TabBar(
-                    tabs: tabs
-                        .map((r) => Tab(text: r['name']! as String))
-                        .toList(),
-                  ),
+                  bottom: TabBar(tabs: tabs.map((r) => Tab(text: r['name']! as String)).toList()),
                 ),
               ),
             ];
           },
           body: TabBarView(
             // These are the contents of the tab views, below the tabs.
-            children: tabs.map((r) {
-              return FishDataView(region: r['region']! as FishingRegion);
-            }).toList(),
+            children:
+                tabs.map((r) {
+                  return FishDataView(region: r['region']! as FishingRegion);
+                }).toList(),
           ),
         ),
       ),

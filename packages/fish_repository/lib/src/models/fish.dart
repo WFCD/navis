@@ -7,8 +7,7 @@ part 'fish.g.dart';
 /// {@template fish}
 /// Holds data and region information of a fish.
 /// {@endtemplate}
-sealed class Fish<T extends RegionTime, S extends SpearRequirements,
-    R extends RegionResources, U> extends Equatable {
+sealed class Fish<T extends RegionTime, S extends SpearRequirements, R extends RegionResources, U> extends Equatable {
   /// {@macro fish}
   const Fish({
     required this.name,
@@ -95,8 +94,7 @@ sealed class Fish<T extends RegionTime, S extends SpearRequirements,
 /// Creates and instance of a Deimos region fish.
 /// {@endtemplate}
 @JsonSerializable()
-class DeimosFish extends Fish<DeimosRegionTime, DeimosRequirements,
-    DeimosRegionResources, List<UniqueResource>> {
+class DeimosFish extends Fish<DeimosRegionTime, DeimosRequirements, DeimosRegionResources, List<UniqueResource>> {
   /// {@macro deimos_fish}
   const DeimosFish({
     required super.name,
@@ -127,8 +125,7 @@ class DeimosFish extends Fish<DeimosRegionTime, DeimosRequirements,
 /// Creates a fish instance for fish in PLains of Eidolon.
 /// {@endtemplate}
 @JsonSerializable()
-class PoeFish extends Fish<PoeRegionTime, PoeRequirements, PoeRegionResources,
-    UniqueResource> {
+class PoeFish extends Fish<PoeRegionTime, PoeRequirements, PoeRegionResources, UniqueResource> {
   /// {@macro poe_fish}
   const PoeFish({
     required super.name,
@@ -159,8 +156,7 @@ class PoeFish extends Fish<PoeRegionTime, PoeRequirements, PoeRegionResources,
 /// Creates a fish instance for fish in Vallis.
 /// {@endtemplate}
 @JsonSerializable()
-class VallisFish extends Fish<VallisRegionTime, VallisRequirements,
-    VallisRegionResources, UniqueResource> {
+class VallisFish extends Fish<VallisRegionTime, VallisRequirements, VallisRegionResources, UniqueResource> {
   /// {@macro vallis_fish}
   const VallisFish({
     required super.name,

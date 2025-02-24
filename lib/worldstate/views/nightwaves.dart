@@ -15,16 +15,14 @@ class NightwavesPage extends StatelessWidget {
         appBar: AppBar(
           title: const Text('Nightwave'),
           titleSpacing: 0,
-          titleTextStyle: Theme.of(context)
-              .textTheme
-              .titleLarge
-              ?.copyWith(color: Colors.white),
+          titleTextStyle: Theme.of(context).textTheme.titleLarge?.copyWith(color: Colors.white),
           iconTheme: Theme.of(context).iconTheme.copyWith(color: Colors.white),
           backgroundColor: const Color(0xFF6C1822),
         ),
-        body: nightwave != null
-            ? NightwaveChalleneges(nightwave: nightwave!)
-            : const Center(child: Text('No active Nightwave')),
+        body:
+            nightwave != null
+                ? NightwaveChalleneges(nightwave: nightwave!)
+                : const Center(child: Text('No active Nightwave')),
       ),
     );
   }

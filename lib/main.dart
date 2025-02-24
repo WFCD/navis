@@ -13,9 +13,7 @@ Future<void> main() async {
   await SentryFlutter.init(
     (option) {
       option
-        ..dsn = kDebugMode || kProfileMode
-            ? ''
-            : const String.fromEnvironment('SENTRY_DSN')
+        ..dsn = kDebugMode || kProfileMode ? '' : const String.fromEnvironment('SENTRY_DSN')
         ..enableDeduplication = true
         ..tracesSampleRate = tracesSampleRate
         ..enableBreadcrumbTrackingForCurrentPlatform()
@@ -29,12 +27,7 @@ Future<void> main() async {
         );
       }
 
-      await bootstrap(
-        (router) => DefaultAssetBundle(
-          bundle: SentryAssetBundle(),
-          child: NavisApp(router: router),
-        ),
-      );
+      await bootstrap((router) => DefaultAssetBundle(bundle: SentryAssetBundle(), child: NavisApp(router: router)));
     },
   );
 }

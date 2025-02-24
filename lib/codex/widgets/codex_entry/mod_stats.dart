@@ -9,10 +9,7 @@ class ModStats extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 16),
-      child: _ModBuilder(mod: mod),
-    );
+    return Padding(padding: const EdgeInsets.only(top: 16), child: _ModBuilder(mod: mod));
   }
 }
 
@@ -26,18 +23,13 @@ class _ModBuilder extends StatelessWidget {
     const size = Size(256, 512);
 
     final rarity = mod.rarity ?? Rarity.common;
-    final modParts = ModParts(
-      thumbnail: mod.imageUrl,
-      polarity: mod.polarity,
-      rarity: rarity,
-    );
+    final modParts = ModParts(thumbnail: mod.imageUrl, polarity: mod.polarity, rarity: rarity);
 
     final fusionLimit = mod.fusionLimit ?? 0;
 
     return Center(
       child: ConstrainedBox(
-        constraints:
-            BoxConstraints(maxWidth: size.width, maxHeight: size.height),
+        constraints: BoxConstraints(maxWidth: size.width, maxHeight: size.height),
         child: FutureBuilder(
           future: modParts.fetchAllImages(),
           builder: (_, snapshot) {
@@ -53,10 +45,8 @@ class _ModBuilder extends StatelessWidget {
             final painter = switch (rarity) {
               Rarity.common ||
               Rarity.uncommon ||
-              Rarity.rare =>
-                CommonModPainter(assets: data!, mod: mod, rank: fusionLimit),
-              Rarity.legendary =>
-                LegendaryModPainter(assets: data!, mod: mod, rank: fusionLimit)
+              Rarity.rare => CommonModPainter(assets: data!, mod: mod, rank: fusionLimit),
+              Rarity.legendary => LegendaryModPainter(assets: data!, mod: mod, rank: fusionLimit),
             };
 
             return CustomPaint(painter: painter, size: size);

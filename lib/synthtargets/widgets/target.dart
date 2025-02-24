@@ -8,17 +8,11 @@ class TargetInfo extends StatelessWidget {
 
   void _onExpansionChanged(BuildContext context, {bool isExpanded = false}) {
     if (isExpanded) {
-      Future<void>.delayed(
-        kThemeAnimationDuration,
-        () {
-          if (!context.mounted) return;
+      Future<void>.delayed(kThemeAnimationDuration, () {
+        if (!context.mounted) return;
 
-          Scrollable.ensureVisible(
-            context,
-            duration: kThemeAnimationDuration,
-          );
-        },
-      );
+        Scrollable.ensureVisible(context, duration: kThemeAnimationDuration);
+      });
     }
   }
 
@@ -33,12 +27,13 @@ class TargetInfo extends StatelessWidget {
         // textColor: NavisColors.secondary,
         // iconColor: NavisColors.secondary,
         onExpansionChanged: (b) => _onExpansionChanged(context, isExpanded: b),
-        children: target.locations.map<Widget>((l) {
-          return ListTile(
-            title: Text('${l.planet} (${l.mission})'),
-            subtitle: Text('${l.type} | ${l.faction} | ${l.spawnRate}'),
-          );
-        }).toList(),
+        children:
+            target.locations.map<Widget>((l) {
+              return ListTile(
+                title: Text('${l.planet} (${l.mission})'),
+                subtitle: Text('${l.type} | ${l.faction} | ${l.spawnRate}'),
+              );
+            }).toList(),
       ),
     );
   }

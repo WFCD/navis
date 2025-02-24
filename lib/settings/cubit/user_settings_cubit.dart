@@ -7,9 +7,7 @@ import 'package:notification_repository/notification_repository.dart';
 part 'user_settings_state.dart';
 
 class UserSettingsCubit extends Cubit<UserSettingsState> {
-  UserSettingsCubit(UserSettings settings)
-      : _settings = settings,
-        super(UserSettingsInitial()) {
+  UserSettingsCubit(UserSettings settings) : _settings = settings, super(UserSettingsInitial()) {
     _initSettings();
   }
 
@@ -47,9 +45,7 @@ class UserSettingsCubit extends Cubit<UserSettingsState> {
       isOptOut: _settings.isOptOut,
       isFirstTime: _settings.isFirstTime,
       toggles: <String, bool>{
-        for (final topic in Topics.topics) ...{
-          topic.name: _settings.getToggle(topic.name),
-        },
+        for (final topic in Topics.topics) ...{topic.name: _settings.getToggle(topic.name)},
       },
     );
 

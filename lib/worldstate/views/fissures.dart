@@ -12,13 +12,9 @@ class FissuresPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final state = context.watch<WorldstateCubit>().state;
-    final fissures =
-        state is WorldstateSuccess ? state.worldstate.fissures : <Fissure>[];
+    final fissures = state is WorldstateSuccess ? state.worldstate.fissures : <Fissure>[];
 
-    return BlocProvider(
-      create: (_) => FissureFilterCubit(fissures),
-      child: const _FissuresView(),
-    );
+    return BlocProvider(create: (_) => FissureFilterCubit(fissures), child: const _FissuresView());
   }
 }
 
@@ -55,8 +51,7 @@ class _FissuresViewState extends State<_FissuresView> {
     // Need to make sure that fissures are updated from worldstate.
     // Otherwise fissures stored in the filter cubit will be out of sync.
     final state = context.read<WorldstateCubit>().state;
-    final fissures =
-        state is WorldstateSuccess ? state.worldstate.fissures : <Fissure>[];
+    final fissures = state is WorldstateSuccess ? state.worldstate.fissures : <Fissure>[];
 
     ff.filterFissures(ff.state.type, fissures);
   }
@@ -99,10 +94,7 @@ class _MobileFissures extends StatelessWidget {
       itemCount: fissures.length,
       shrinkWrap: true,
       itemBuilder: (BuildContext context, int index) {
-        return FissureWidget(
-          key: ValueKey(fissures[index].id),
-          fissure: fissures[index],
-        );
+        return FissureWidget(key: ValueKey(fissures[index].id), fissure: fissures[index]);
       },
     );
   }
@@ -135,8 +127,7 @@ class _FissureFilter extends StatelessWidget {
 
   void onSelected(BuildContext context, FissureFilter filter) {
     final state = context.read<WorldstateCubit>().state;
-    final fissures =
-        state is WorldstateSuccess ? state.worldstate.fissures : <Fissure>[];
+    final fissures = state is WorldstateSuccess ? state.worldstate.fissures : <Fissure>[];
 
     context.read<FissureFilterCubit>().filterFissures(filter, fissures);
   }
@@ -154,12 +145,7 @@ class _FissureFilter extends StatelessWidget {
       FissureFilter.steelPath => WarframeSymbols.sp_logo,
     };
 
-    return Tooltip(
-      message: text,
-      child: Row(
-        children: [Icon(icon), Gaps.gap8, Text(text)],
-      ),
-    );
+    return Tooltip(message: text, child: Row(children: [Icon(icon), Gaps.gap8, Text(text)]));
   }
 
   @override
@@ -170,25 +156,17 @@ class _FissureFilter extends StatelessWidget {
     return BlocListener<WorldstateCubit, SolsystemState>(
       listener: (context, state) {
         if (state is WorldstateSuccess) {
-          BlocProvider.of<FissureFilterCubit>(context)
-              .updateFissues(state.worldstate.fissures);
+          BlocProvider.of<FissureFilterCubit>(context).updateFissues(state.worldstate.fissures);
         }
       },
       child: BlocBuilder<FissureFilterCubit, FissureFilterState>(
         builder: (_, state) {
           return ToggleButtons(
-            constraints: BoxConstraints(
-              minHeight: screen.height * .05,
-              minWidth: screen.width * .32,
-            ),
+            constraints: BoxConstraints(minHeight: screen.height * .05, minWidth: screen.width * .32),
             borderRadius: BorderRadius.circular(8),
-            isSelected:
-                FissureFilter.values.map((i) => state.type == i).toList(),
-            onPressed: (index) =>
-                onSelected(context, FissureFilter.values[index]),
-            children: FissureFilter.values
-                .map((i) => _toggleButton(l10n, i))
-                .toList(),
+            isSelected: FissureFilter.values.map((i) => state.type == i).toList(),
+            onPressed: (index) => onSelected(context, FissureFilter.values[index]),
+            children: FissureFilter.values.map((i) => _toggleButton(l10n, i)).toList(),
           );
         },
       ),

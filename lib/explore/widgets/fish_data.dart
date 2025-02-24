@@ -23,18 +23,13 @@ class FishDataView extends StatelessWidget {
         return CustomScrollView(
           key: PageStorageKey<String>(region.name),
           slivers: <Widget>[
-            SliverOverlapInjector(
-              handle: NestedScrollView.sliverOverlapAbsorberHandleFor(
-                context,
-              ),
-            ),
+            SliverOverlapInjector(handle: NestedScrollView.sliverOverlapAbsorberHandleFor(context)),
             SliverList(
-              delegate: SliverChildBuilderDelegate(
-                (BuildContext context, int index) {
-                  return FishCard(fish: data[index]);
-                },
-                childCount: data!.length,
-              ),
+              delegate: SliverChildBuilderDelegate((BuildContext context, int index) {
+                return FishCard(fish: data[index]);
+                // format doesn't know whether it needs it or not
+                // ignore: require_trailing_commas
+              }, childCount: data!.length),
             ),
           ],
         );

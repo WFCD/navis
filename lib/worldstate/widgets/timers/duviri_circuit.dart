@@ -31,7 +31,7 @@ class DuviriCircuit extends StatelessWidget {
       builder: (context, state) {
         final cycle = switch (state) {
           WorldstateSuccess() => state.worldstate.duviriCycle,
-          _ => null
+          _ => null,
         };
 
         final choices = cycle?.choices.map((c) => CircuitChoiceTile(choice: c));
@@ -43,10 +43,7 @@ class DuviriCircuit extends StatelessWidget {
               showBottomSheet(
                 context: context,
                 builder: (context) {
-                  return Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: choices?.toList() ?? [],
-                  );
+                  return Column(mainAxisSize: MainAxisSize.min, children: choices?.toList() ?? []);
                 },
               );
             },
@@ -58,11 +55,7 @@ class DuviriCircuit extends StatelessWidget {
 }
 
 class CircuitResetTimer extends StatelessWidget {
-  const CircuitResetTimer({
-    super.key,
-    required this.expiry,
-    required this.onTap,
-  });
+  const CircuitResetTimer({super.key, required this.expiry, required this.onTap});
 
   final DateTime expiry;
   final void Function() onTap;
@@ -73,11 +66,7 @@ class CircuitResetTimer extends StatelessWidget {
     var daysUntilNextMonday = (DateTime.monday - now.weekday + 7) % 7;
     daysUntilNextMonday = daysUntilNextMonday == 0 ? 7 : daysUntilNextMonday;
 
-    final nextMondayMidnight = DateTime.utc(
-      now.year,
-      now.month,
-      now.day + daysUntilNextMonday,
-    );
+    final nextMondayMidnight = DateTime.utc(now.year, now.month, now.day + daysUntilNextMonday);
 
     return nextMondayMidnight;
   }
@@ -115,8 +104,7 @@ class CircuitChoiceTile extends StatelessWidget {
             padding: const EdgeInsets.symmetric(vertical: 4),
             child: Text(
               category,
-              style: context.textTheme.titleMedium
-                  ?.copyWith(color: context.theme.colorScheme.secondary),
+              style: context.textTheme.titleMedium?.copyWith(color: context.theme.colorScheme.secondary),
             ),
           ),
           ...choice.choices.map((c) {
@@ -126,9 +114,7 @@ class CircuitChoiceTile extends StatelessWidget {
               create: (_) {
                 final cubit = ItemCubit(name, repo);
 
-                isSteelPatch
-                    ? cubit.fetchIncarnonGenesis()
-                    : cubit.fetchByName();
+                isSteelPatch ? cubit.fetchIncarnonGenesis() : cubit.fetchByName();
 
                 return cubit;
               },
@@ -155,33 +141,21 @@ class _CircuitPathTile extends StatelessWidget {
           _ => null,
         };
 
-        final icon = item != null
-            ? CircleAvatar(
-                foregroundImage: CachedNetworkImageProvider(item.imageUrl),
-                radius: 20,
-              )
-            : null;
+        final icon =
+            item != null ? CircleAvatar(foregroundImage: CachedNetworkImageProvider(item.imageUrl), radius: 20) : null;
 
         final tile = ListTile(
-          contentPadding:
-              const EdgeInsets.symmetric(vertical: 4, horizontal: 4),
+          contentPadding: const EdgeInsets.symmetric(vertical: 4, horizontal: 4),
           leading: icon,
           title: Text(item?.name ?? name),
-          subtitle: Text(
-            item?.description ?? '',
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
-          ),
+          subtitle: Text(item?.description ?? '', maxLines: 1, overflow: TextOverflow.ellipsis),
           isThreeLine: true,
           dense: true,
         );
 
         if (item == null) return tile;
 
-        return EntryViewOpenContainer(
-          item: item,
-          builder: (_, __) => tile,
-        );
+        return EntryViewOpenContainer(item: item, builder: (_, __) => tile);
       },
     );
   }

@@ -27,11 +27,7 @@ class BasicItemInfo extends SliverPersistentHeaderDelegate {
   final bool disableInfo;
 
   @override
-  Widget build(
-    BuildContext context,
-    double shrinkOffset,
-    bool overlapsContent,
-  ) {
+  Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
     return Material(
       elevation: 4,
       child: SizedBox(
@@ -44,20 +40,14 @@ class BasicItemInfo extends SliverPersistentHeaderDelegate {
               actions: [
                 if (isVaulted ?? false)
                   TextButton(
-                    style: ButtonStyle(
-                      foregroundColor: WidgetStateProperty.all(
-                        context.theme.colorScheme.error,
-                      ),
-                    ),
+                    style: ButtonStyle(foregroundColor: WidgetStateProperty.all(context.theme.colorScheme.error)),
                     onPressed: null,
                     child: Text(context.l10n.codexVaultedLabel),
                   ),
                 if (wikiaUrl != null)
                   TextButton(
                     style: ButtonStyle(
-                      foregroundColor: WidgetStateProperty.all(
-                        context.theme.textTheme.labelLarge?.color,
-                      ),
+                      foregroundColor: WidgetStateProperty.all(context.theme.textTheme.labelLarge?.color),
                     ),
                     onPressed: () => wikiaUrl?.launchLink(context),
                     child: Text(context.l10n.seeWikia),
@@ -117,8 +107,7 @@ class _EntryInfoContent extends StatelessWidget {
     final mediaQuerySize = MediaQuery.of(context).size;
 
     final animatedContainerWidth = (mediaQuerySize.width / 100) * 95;
-    final animatedContainerHeight =
-        shrinkOffset > 0.0 ? 0.0 : (height / 100) * 90;
+    final animatedContainerHeight = shrinkOffset > 0.0 ? 0.0 : (height / 100) * 90;
 
     return AnimatedOpacity(
       duration: kThemeAnimationDuration,
@@ -131,12 +120,7 @@ class _EntryInfoContent extends StatelessWidget {
         height: animatedContainerHeight,
         child: FittedBox(
           clipBehavior: Clip.hardEdge,
-          child: EntryContent(
-            uniqueName: uniqueName,
-            name: name,
-            description: description,
-            imageUrl: imageUrl,
-          ),
+          child: EntryContent(uniqueName: uniqueName, name: name, description: description, imageUrl: imageUrl),
         ),
       ),
     );
@@ -183,18 +167,10 @@ class EntryContent extends StatelessWidget {
                 ),
               ),
             ),
-            Text(
-              name,
-              style: textTheme.titleMedium,
-              textAlign: textAlign,
-            ),
+            Text(name, style: textTheme.titleMedium, textAlign: textAlign),
             SizedBox(
               width: descriptionBoxWidth,
-              child: Text(
-                description,
-                style: textTheme.bodySmall,
-                textAlign: textAlign,
-              ),
+              child: Text(description, style: textTheme.bodySmall, textAlign: textAlign),
             ),
           ],
         );

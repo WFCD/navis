@@ -23,11 +23,7 @@ class SettingsPage extends StatelessWidget {
 class _SettingsView extends StatelessWidget {
   const _SettingsView();
 
-  Future<void> _onNotificationChanged(
-    BuildContext context,
-    Topic topic,
-    bool value,
-  ) async {
+  Future<void> _onNotificationChanged(BuildContext context, Topic topic, bool value) async {
     final repo = context.read<NotificationRepository>();
     context.read<UserSettingsCubit>().updateToggle(topic.name, value: value);
 
@@ -52,17 +48,17 @@ class _SettingsView extends StatelessWidget {
 
     final themeMode = switch (settings) {
       UserSettingsSuccess() => settings.themeMode,
-      _ => ThemeMode.system
+      _ => ThemeMode.system,
     };
 
     final isOptOut = switch (settings) {
       UserSettingsSuccess() => settings.isOptOut,
-      _ => false
+      _ => false,
     };
 
     final toggles = switch (settings) {
       UserSettingsSuccess() => settings.toggles,
-      _ => <String, bool>{}
+      _ => <String, bool>{},
     };
 
     final theme = SettingsThemeData(
@@ -87,18 +83,14 @@ class _SettingsView extends StatelessWidget {
             SettingsTile.navigation(
               title: Text(l10n.themeTitle),
               description: Text(l10n.themeDescription),
-              value: Text(
-                toBeginningOfSentenceCase(themeMode.name) ?? '',
-              ),
+              value: Text(toBeginningOfSentenceCase(themeMode.name) ?? ''),
               onPressed: ThemePicker.showModes,
             ),
             SettingsTile.switchTile(
               title: Text(l10n.optOutOfAnalyticsTitle),
               description: Text(l10n.optOutOfAnalyticsDescription),
               initialValue: isOptOut,
-              onToggle: (b) => context
-                  .read<UserSettingsCubit>()
-                  .updateAnalyticsOpt(isOptOut: b),
+              onToggle: (b) => context.read<UserSettingsCubit>().updateAnalyticsOpt(isOptOut: b),
             ),
           ],
         ),
@@ -110,8 +102,7 @@ class _SettingsView extends StatelessWidget {
                 title: Text(topic.title),
                 description: Text(topic.description ?? ''),
                 initialValue: toggles[topic.topic.name],
-                onToggle: (b) =>
-                    _onNotificationChanged(context, topic.topic, b),
+                onToggle: (b) => _onNotificationChanged(context, topic.topic, b),
               ),
             for (final mt in filters.filtered)
               SettingsTile.navigation(
@@ -127,22 +118,21 @@ class _SettingsView extends StatelessWidget {
             SettingsTile.navigation(
               title: Text(l10n.reportBugsTitle),
               description: Text(l10n.reportBugsDescription),
-              onPressed: (context) =>
-                  BetterFeedback.of(context).showAndUploadToSentry(),
+              onPressed: (context) => BetterFeedback.of(context).showAndUploadToSentry(),
             ),
             SettingsTile.navigation(
               title: Text(l10n.contributeTranslationsTitle),
               description: Text(l10n.contributeTranslationsDescription),
-              onPressed: (context) =>
-                  contributeTranslations.launchLink(context),
+              onPressed: (context) => contributeTranslations.launchLink(context),
             ),
             SettingsTile.navigation(
               title: Text(l10n.aboutAppTitle),
-              onPressed: (context) => showDialog<void>(
-                context: context,
-                useRootNavigator: false,
-                builder: (context) => AboutApp(l10n: l10n),
-              ),
+              onPressed:
+                  (context) => showDialog<void>(
+                    context: context,
+                    useRootNavigator: false,
+                    builder: (context) => AboutApp(l10n: l10n),
+                  ),
             ),
           ],
         ),

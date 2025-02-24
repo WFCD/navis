@@ -21,8 +21,7 @@ class _BlocBootstrapState extends State<BlocBootstrap> {
   void initState() {
     super.initState();
 
-    final worldstateRepo =
-        RepositoryProvider.of<WarframestatRepository>(context);
+    final worldstateRepo = RepositoryProvider.of<WarframestatRepository>(context);
     final usersettings = RepositoryProvider.of<UserSettings>(context);
 
     _worldstateCubit = WorldstateCubit(worldstateRepo);
@@ -32,10 +31,7 @@ class _BlocBootstrapState extends State<BlocBootstrap> {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-      providers: [
-        BlocProvider.value(value: _worldstateCubit),
-        BlocProvider.value(value: _userSettingsCubit),
-      ],
+      providers: [BlocProvider.value(value: _worldstateCubit), BlocProvider.value(value: _userSettingsCubit)],
       child: widget.child,
     );
   }

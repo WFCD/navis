@@ -10,12 +10,7 @@ import 'package:warframestat_client/warframestat_client.dart';
 import 'package:warframestat_repository/warframestat_repository.dart';
 
 class CodexSearchBar extends StatefulWidget {
-  const CodexSearchBar({
-    super.key,
-    this.focusNode,
-    this.controller,
-    this.hintText,
-  });
+  const CodexSearchBar({super.key, this.focusNode, this.controller, this.hintText});
 
   final FocusNode? focusNode;
   final SearchController? controller;
@@ -46,10 +41,7 @@ class _CodexSearchBarState extends State<CodexSearchBar> {
     return options;
   }
 
-  Future<Iterable<Widget>> _suggestionsBuilder(
-    BuildContext context,
-    SearchController controller,
-  ) async {
+  Future<Iterable<Widget>> _suggestionsBuilder(BuildContext context, SearchController controller) async {
     final query = controller.text;
     if (query.isEmpty) return <Widget>[];
 
@@ -81,10 +73,7 @@ class _CodexSearchBarState extends State<CodexSearchBar> {
 
   List<PopupMenuEntry<WarframeItemCategory>> _itemBuilder() {
     return WarframeItemCategory.values.map((e) {
-      return PopupMenuItem<WarframeItemCategory>(
-        value: e,
-        child: Text(toBeginningOfSentenceCase(e.name, 'en')!),
-      );
+      return PopupMenuItem<WarframeItemCategory>(value: e, child: Text(toBeginningOfSentenceCase(e.name, 'en')!));
     }).toList();
   }
 
@@ -128,24 +117,21 @@ class _CodexSearchBarState extends State<CodexSearchBar> {
                 onTap: _controller.openView,
                 onTapOutside: (_) => _focusNode.unfocus(),
                 hintText: widget.hintText ?? l10n.codexHint,
-                leading: Navigator.of(context).canPop()
-                    ? IconButton(
-                        icon: const Icon(Icons.arrow_back),
-                        onPressed: () => Navigator.pop(context),
-                      )
-                    : const Icon(Icons.search_rounded),
-                trailing: Navigator.of(context).canPop()
-                    ? [
-                        if (state is CodexSuccessfulSearch)
-                          PopupMenuButton<WarframeItemCategory>(
-                            icon: const Icon(Icons.filter_list),
-                            itemBuilder: (_) => _itemBuilder(),
-                            onSelected: (s) =>
-                                BlocProvider.of<SearchBloc>(context)
-                                    .add(FilterResults(s)),
-                          ),
-                      ]
-                    : null,
+                leading:
+                    Navigator.of(context).canPop()
+                        ? IconButton(icon: const Icon(Icons.arrow_back), onPressed: () => Navigator.pop(context))
+                        : const Icon(Icons.search_rounded),
+                trailing:
+                    Navigator.of(context).canPop()
+                        ? [
+                          if (state is CodexSuccessfulSearch)
+                            PopupMenuButton<WarframeItemCategory>(
+                              icon: const Icon(Icons.filter_list),
+                              itemBuilder: (_) => _itemBuilder(),
+                              onSelected: (s) => BlocProvider.of<SearchBloc>(context).add(FilterResults(s)),
+                            ),
+                        ]
+                        : null,
               );
             },
           );

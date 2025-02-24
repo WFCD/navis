@@ -22,10 +22,7 @@ class DropLocations extends StatelessWidget {
 
     return AppCard(
       child: Column(
-        children: drops
-            .getRange(0, maxRange)
-            .map((e) => _DropEntry(location: e.location, chance: e.chance!))
-            .toList(),
+        children: drops.getRange(0, maxRange).map((e) => _DropEntry(location: e.location, chance: e.chance!)).toList(),
       ),
     );
   }
@@ -42,9 +39,6 @@ class _DropEntry extends StatelessWidget {
     const decimalPoint = 100;
     final dropChance = (chance * decimalPoint).toStringAsFixed(2);
 
-    return ListTile(
-      title: Text(location),
-      subtitle: Text(context.l10n.dropChance(dropChance)),
-    );
+    return ListTile(title: Text(location), subtitle: Text(context.l10n.dropChance(dropChance)));
   }
 }

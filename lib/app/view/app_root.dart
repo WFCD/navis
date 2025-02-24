@@ -43,9 +43,9 @@ class _NavisAppState extends State<NavisApp> with WidgetsBindingObserver {
         );
 
       case AppLifecycleState.inactive ||
-            AppLifecycleState.paused ||
-            AppLifecycleState.detached ||
-            AppLifecycleState.hidden:
+          AppLifecycleState.paused ||
+          AppLifecycleState.detached ||
+          AppLifecycleState.hidden:
         _timer.cancel();
     }
   }
@@ -54,11 +54,7 @@ class _NavisAppState extends State<NavisApp> with WidgetsBindingObserver {
     final l10n = NavisLocalizations.of(context);
 
     ErrorWidget.builder = (FlutterErrorDetails error) {
-      Widget errorWidget = NavisErrorWidget(
-        title: l10n.errorTitle,
-        description: l10n.errorDescription,
-        details: error,
-      );
+      Widget errorWidget = NavisErrorWidget(title: l10n.errorTitle, description: l10n.errorDescription, details: error);
 
       if (widget is Scaffold || widget is Navigator) {
         errorWidget = Scaffold(body: Center(child: errorWidget));
@@ -72,10 +68,7 @@ class _NavisAppState extends State<NavisApp> with WidgetsBindingObserver {
     throw Exception('Widget is null');
   }
 
-  Locale localeResolutionCallback(
-    Locale? locale,
-    Iterable<Locale> supportedLocales,
-  ) {
+  Locale localeResolutionCallback(Locale? locale, Iterable<Locale> supportedLocales) {
     const defaultLocale = Locale('en');
     Locale? newLocale;
 
@@ -91,7 +84,7 @@ class _NavisAppState extends State<NavisApp> with WidgetsBindingObserver {
     final settings = userSettingsCubit.state;
     final language = switch (settings) {
       UserSettingsSuccess() => settings.language,
-      _ => defaultLocale
+      _ => defaultLocale,
     };
 
     if (language != newLocale) {
@@ -114,12 +107,12 @@ class _NavisAppState extends State<NavisApp> with WidgetsBindingObserver {
 
     final themeMode = switch (settings) {
       UserSettingsSuccess() => settings.themeMode,
-      _ => ThemeMode.system
+      _ => ThemeMode.system,
     };
 
     final language = switch (settings) {
       UserSettingsSuccess() => settings.language,
-      _ => const Locale('en')
+      _ => const Locale('en'),
     };
 
     return DynamicColorBuilder(

@@ -9,9 +9,7 @@ class Timers extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const TraceableWidget(
-      child: _MobileTimers(),
-    );
+    return const TraceableWidget(child: _MobileTimers());
   }
 }
 
@@ -38,16 +36,14 @@ class _MobileTimers extends StatelessWidget {
               const DailyReward(),
               const TraderCard(),
               if (worldstate?.eventsActive ?? false) const EventCard(),
-              if (worldstate?.arbitrationActive ?? false)
-                const ArbitrationCard(),
+              if (worldstate?.arbitrationActive ?? false) const ArbitrationCard(),
               // if (state.outpostDetected) const SentientOutpostCard(),
               const SteelPathCard(),
               if (worldstate?.activeAlerts ?? false) const AlertsCard(),
               const CycleCard(),
               const DuviriCircuit(),
               if (worldstate?.activeSales ?? false) const DarvoDealCard(),
-              if (worldstate?.deepArchimedeaActive ?? false)
-                const DeepArchimedeaCard(),
+              if (worldstate?.deepArchimedeaActive ?? false) const DeepArchimedeaCard(),
               const ArchonHuntCard(),
               const SortieCard(),
             ],

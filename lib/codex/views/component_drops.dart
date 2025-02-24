@@ -15,16 +15,13 @@ class ComponentDrops extends StatelessWidget {
     final teirReg = RegExp(r'\(([^)]*)\)');
 
     final tier = teirReg.firstMatch(itemName)?.group(1);
-    final relic =
-        '${itemName.replaceAll(teirReg, '').trim()} ${tier ?? 'Intact'}';
+    final relic = '${itemName.replaceAll(teirReg, '').trim()} ${tier ?? 'Intact'}';
 
     Navigator.of(context).push(
       MaterialPageRoute<void>(
         builder: (BuildContext context) {
           return BlocProvider(
-            create: (context) => SearchBloc(
-              RepositoryProvider.of<WarframestatRepository>(context),
-            ),
+            create: (context) => SearchBloc(RepositoryProvider.of<WarframestatRepository>(context)),
             child: Scaffold(
               body: Builder(
                 builder: (context) {
@@ -37,8 +34,7 @@ class ComponentDrops extends StatelessWidget {
                     return const Center(child: CircularProgressIndicator());
                   }
 
-                  final item = state.results
-                      .firstWhereOrNull((e) => e.name.contains(relic));
+                  final item = state.results.firstWhereOrNull((e) => e.name.contains(relic));
 
                   if (item == null) {
                     return Center(child: Text(l10n.codexNoResults));
@@ -59,10 +55,9 @@ class ComponentDrops extends StatelessWidget {
     const cacheExtent = 150.0;
     const densityThreshold = 10;
 
-    final drops = List<Drop>.from(this.drops)
-      ..sort((a, b) {
-        return ((b.chance ?? 0) * 100).compareTo((a.chance ?? 0) * 100);
-      });
+    final drops = List<Drop>.from(this.drops)..sort((a, b) {
+      return ((b.chance ?? 0) * 100).compareTo((a.chance ?? 0) * 100);
+    });
 
     return Scaffold(
       appBar: AppBar(),
@@ -71,18 +66,15 @@ class ComponentDrops extends StatelessWidget {
         itemCount: drops.length,
         itemBuilder: (context, index) {
           final dropName = drops[index].location;
-          final percentage =
-              ((drops[index].chance ?? 0) * 100).toStringAsFixed(2);
+          final percentage = ((drops[index].chance ?? 0) * 100).toStringAsFixed(2);
 
           return ListTile(
             title: Text(dropName),
             subtitle: Text('$percentage% drop chance'),
-            onTap: !dropName.contains('Relic')
-                ? null
-                : () => _loadRelic(
-                      context,
-                      dropName.replaceFirst('Relic', '').trim(),
-                    ),
+            onTap:
+                !dropName.contains('Relic')
+                    ? null
+                    : () => _loadRelic(context, dropName.replaceFirst('Relic', '').trim()),
             dense: drops.length > densityThreshold,
           );
         },

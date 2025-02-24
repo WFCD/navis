@@ -8,8 +8,7 @@ class DailyReward extends StatelessWidget {
   DateTime get endOfDay {
     final now = DateTime.now().toUtc();
 
-    return DateTime.utc(now.year, now.month, now.day, 23, 59, 59, 999)
-        .add(expiryWait);
+    return DateTime.utc(now.year, now.month, now.day, 23, 59, 59, 999).add(expiryWait);
   }
 
   @override
@@ -17,10 +16,7 @@ class DailyReward extends StatelessWidget {
     return AppCard(
       child: ListTile(
         title: Text(context.l10n.dailyRewardTitle),
-        trailing: CountdownTimer(
-          tooltip: context.l10n.countdownTooltip(endOfDay),
-          expiry: endOfDay,
-        ),
+        trailing: CountdownTimer(tooltip: context.l10n.countdownTooltip(endOfDay), expiry: endOfDay),
       ),
     );
   }

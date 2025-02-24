@@ -6,11 +6,7 @@ import 'package:navis/app/widgets/widgets.dart';
 import 'package:navis/l10n/l10n.dart';
 
 class AppView extends StatelessWidget {
-  const AppView({
-    required this.navigationShell,
-    required this.children,
-    super.key,
-  });
+  const AppView({required this.navigationShell, required this.children, super.key});
 
   final StatefulNavigationShell navigationShell;
   final List<Widget> children;
@@ -22,21 +18,10 @@ class AppView extends StatelessWidget {
     return Scaffold(
       key: GlobalKey<ScaffoldState>(),
       body: PageTransitionSwitcher(
-        transitionBuilder: (
-          Widget child,
-          Animation<double> animation,
-          Animation<double> secondaryAnimation,
-        ) {
-          return FadeThroughTransition(
-            animation: animation,
-            secondaryAnimation: secondaryAnimation,
-            child: child,
-          );
+        transitionBuilder: (Widget child, Animation<double> animation, Animation<double> secondaryAnimation) {
+          return FadeThroughTransition(animation: animation, secondaryAnimation: secondaryAnimation, child: child);
         },
-        child: TraceableWidget(
-          actionName: children[currentIndex].toStringShort(),
-          child: children[currentIndex],
-        ),
+        child: TraceableWidget(actionName: children[currentIndex].toStringShort(), child: children[currentIndex]),
       ),
       bottomNavigationBar: NavigationBar(
         onDestinationSelected: (i) {

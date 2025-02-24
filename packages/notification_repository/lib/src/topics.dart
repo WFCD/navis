@@ -69,10 +69,8 @@ abstract class Topics {
   static const Topic deraVandalStock = Topic('dera_vandal_stock');
 
   static const Topic wraithTwinVipersBP = Topic('wraith_twin_vipers_bp');
-  static const Topic wraithTwinVipersBarrels =
-      Topic('wraith_twin_vipers_barrels');
-  static const Topic wraithTwinVipersReceivers =
-      Topic('wraith_twin_vipers_receivers');
+  static const Topic wraithTwinVipersBarrels = Topic('wraith_twin_vipers_barrels');
+  static const Topic wraithTwinVipersReceivers = Topic('wraith_twin_vipers_receivers');
   static const Topic wraithTwinVipersLink = Topic('wraith_twin_vipers_link');
 
   static const Topic latronWraithReceiver = Topic('latron_wraith_receiver');

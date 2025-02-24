@@ -25,9 +25,7 @@ class CodexSearchPage extends StatelessWidget {
               headerSliverBuilder: (context, innerBoxIsScrolled) {
                 return <Widget>[
                   SliverOverlapAbsorber(
-                    handle: NestedScrollView.sliverOverlapAbsorberHandleFor(
-                      context,
-                    ),
+                    handle: NestedScrollView.sliverOverlapAbsorberHandleFor(context),
                     sliver: SliverAppBar(
                       titleSpacing: 0,
                       floating: true,
@@ -64,10 +62,7 @@ class CodexSearchView extends StatelessWidget {
           return CustomScrollView(
             key: const PageStorageKey<String>('codex_search'),
             slivers: [
-              SliverOverlapInjector(
-                handle:
-                    NestedScrollView.sliverOverlapAbsorberHandleFor(context),
-              ),
+              SliverOverlapInjector(handle: NestedScrollView.sliverOverlapAbsorberHandleFor(context)),
               SliverList.builder(
                 itemCount: state.results.length,
                 itemBuilder: (BuildContext context, int index) {

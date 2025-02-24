@@ -25,10 +25,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
 
   List<MinimalItem> _originalResults = [];
 
-  Future<void> _searchCodex(
-    SearchCodex event,
-    Emitter<SearchState> emit,
-  ) async {
+  Future<void> _searchCodex(SearchCodex event, Emitter<SearchState> emit) async {
     final text = event.text;
 
     if (text.isEmpty) {
@@ -37,9 +34,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
       emit(CodexSearching());
 
       try {
-        final results = await ConnectionManager.call(
-          () async => repository.searchItems(text),
-        );
+        final results = await ConnectionManager.call(() async => repository.searchItems(text));
 
         _originalResults = results;
         emit(CodexSuccessfulSearch(results));
@@ -48,21 +43,14 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
       } on FormatException {
         emit(const CodexSearchError('Failed to parse server response'));
       } on Exception catch (error, stackTrace) {
-        await Sentry.captureException(
-          error,
-          stackTrace: stackTrace,
-          hint: Hint.withMap({'query': event.text}),
-        );
+        await Sentry.captureException(error, stackTrace: stackTrace, hint: Hint.withMap({'query': event.text}));
 
         emit(const CodexSearchError('Unknown Error occurred'));
       }
     }
   }
 
-  Future<void> _filterResults(
-    FilterResults event,
-    Emitter<SearchState> emit,
-  ) async {
+  Future<void> _filterResults(FilterResults event, Emitter<SearchState> emit) async {
     emit(CodexSearching());
 
     final originalResults = List<MinimalItem>.from(_originalResults);
@@ -78,10 +66,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
 
   EventTransformer<SearchCodex> _waitForUser() {
     return (event, mapper) {
-      return event
-          .debounceTime(kThemeAnimationDuration)
-          .distinct()
-          .flatMap(mapper);
+      return event.debounceTime(kThemeAnimationDuration).distinct().flatMap(mapper);
     };
   }
 }

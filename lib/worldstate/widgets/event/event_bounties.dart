@@ -12,16 +12,12 @@ class EventBounties extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final category = theme.textTheme.titleMedium
-        ?.copyWith(color: theme.colorScheme.secondary);
+    final category = theme.textTheme.titleMedium?.copyWith(color: theme.colorScheme.secondary);
 
     return AppCard(
       child: Column(
         children: <Widget>[
-          CategoryTitle(
-            title: context.l10n.bountyTitle,
-            style: category,
-          ),
+          CategoryTitle(title: context.l10n.bountyTitle, style: category),
           Gaps.gap2,
           _BuildBounties(jobs: jobs),
         ],
@@ -39,12 +35,10 @@ class _BuildBounties extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       mainAxisSize: MainAxisSize.min,
-      children: jobs.map<Widget>((j) {
-        return SyndicateBountyTile(
-          faction: Syndicates.cetus,
-          job: j,
-        );
-      }).toList(),
+      children:
+          jobs.map<Widget>((j) {
+            return SyndicateBountyTile(faction: Syndicates.cetus, job: j);
+          }).toList(),
     );
   }
 }

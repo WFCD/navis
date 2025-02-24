@@ -17,10 +17,7 @@ class LanguagePicker extends StatelessWidget {
         final us = BlocProvider.of<UserSettingsCubit>(context);
 
         return MultiBlocProvider(
-          providers: [
-            BlocProvider.value(value: ws),
-            BlocProvider.value(value: us),
-          ],
+          providers: [BlocProvider.value(value: ws), BlocProvider.value(value: us)],
           child: const LanguagePicker(),
         );
       },
@@ -42,7 +39,7 @@ class LanguagePicker extends StatelessWidget {
     final settings = context.watch<UserSettingsCubit>().state;
     final language = switch (settings) {
       UserSettingsSuccess() => settings.language,
-      _ => context.locale
+      _ => context.locale,
     };
 
     return NavisDialog(
@@ -64,14 +61,8 @@ class LanguagePicker extends StatelessWidget {
         },
       ),
       actions: [
-        TextButton(
-          onPressed: () => Navigator.of(context).pop(),
-          child: Text(materialLocalizations.cancelButtonLabel),
-        ),
-        TextButton(
-          onPressed: () => _onPressed(context),
-          child: Text(materialLocalizations.okButtonLabel),
-        ),
+        TextButton(onPressed: () => Navigator.of(context).pop(), child: Text(materialLocalizations.cancelButtonLabel)),
+        TextButton(onPressed: () => _onPressed(context), child: Text(materialLocalizations.okButtonLabel)),
       ],
     );
   }

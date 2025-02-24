@@ -24,13 +24,11 @@ class ConstructionProgressCard extends StatelessWidget {
 
           final constructionProgress = switch (state) {
             WorldstateSuccess() => state.worldstate.constructionProgress,
-            _ => null
+            _ => null,
           };
 
-          final razorbackProgress =
-              _parseProgress(constructionProgress?.razorbackProgress);
-          final fomorianProgress =
-              _parseProgress(constructionProgress?.fomorianProgress);
+          final razorbackProgress = _parseProgress(constructionProgress?.razorbackProgress);
+          final fomorianProgress = _parseProgress(constructionProgress?.fomorianProgress);
 
           return Padding(
             padding: const EdgeInsets.only(bottom: 8),
@@ -42,16 +40,9 @@ class ConstructionProgressCard extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(horizontal: 12),
                   child: Row(
                     children: [
-                      AppIcon(
-                        WarframeSymbols.factions_grineer,
-                        size: iconSize,
-                        color: Factions.grineer.primaryColor,
-                      ),
+                      AppIcon(WarframeSymbols.factions_grineer, size: iconSize, color: Factions.grineer.primaryColor),
                       Gaps.gap12,
-                      Text(
-                        '$fomorianProgress%',
-                        style: textTheme.titleLarge,
-                      ),
+                      Text('$fomorianProgress%', style: textTheme.titleLarge),
                     ],
                   ),
                 ),
@@ -60,16 +51,9 @@ class ConstructionProgressCard extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(horizontal: 12),
                   child: Row(
                     children: [
-                      Text(
-                        '$razorbackProgress%',
-                        style: textTheme.titleLarge,
-                      ),
+                      Text('$razorbackProgress%', style: textTheme.titleLarge),
                       Gaps.gap12,
-                      AppIcon(
-                        WarframeSymbols.factions_corpus,
-                        size: iconSize,
-                        color: Factions.corpus.primaryColor,
-                      ),
+                      AppIcon(WarframeSymbols.factions_corpus, size: iconSize, color: Factions.corpus.primaryColor),
                     ],
                   ),
                 ),

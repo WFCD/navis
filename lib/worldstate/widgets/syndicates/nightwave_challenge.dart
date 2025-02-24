@@ -14,23 +14,17 @@ class NightwaveChallenge extends StatelessWidget {
     final l10n = context.l10n;
 
     final title = textTheme.titleMedium;
-    final desscription = textTheme.bodyMedium
-        ?.copyWith(fontSize: 14, color: textTheme.bodySmall?.color);
+    final desscription = textTheme.bodyMedium?.copyWith(fontSize: 14, color: textTheme.bodySmall?.color);
 
     return Card(
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.all(Radius.circular(8)),
-      ),
+      shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(8))),
       child: Container(
         margin: const EdgeInsets.all(8),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             ListTile(
-              leading: _NightwaveIcon(
-                isElite: challenge.isElite,
-                isDaily: challenge.isDaily,
-              ),
+              leading: _NightwaveIcon(isElite: challenge.isElite, isDaily: challenge.isDaily),
               title: Text(challenge.title, style: title),
               subtitle: Text(challenge.desc, style: desscription),
             ),
@@ -91,20 +85,11 @@ class _NightwaveIcon extends StatelessWidget {
     Widget icon;
 
     if (isElite) {
-      icon = const AppIcon(
-        WarframeSymbols.nightwaves_elite,
-        size: kIconSize,
-      );
+      icon = const AppIcon(WarframeSymbols.nightwaves_elite, size: kIconSize);
     } else if (isDaily) {
-      icon = const AppIcon(
-        WarframeSymbols.nightwaves_daily,
-        size: kIconSize,
-      );
+      icon = const AppIcon(WarframeSymbols.nightwaves_daily, size: kIconSize);
     } else {
-      icon = const AppIcon(
-        WarframeSymbols.nightwaves_weekly,
-        size: kIconSize,
-      );
+      icon = const AppIcon(WarframeSymbols.nightwaves_weekly, size: kIconSize);
     }
 
     return icon;

@@ -31,12 +31,13 @@ class EntryViewOpenContainer extends StatelessWidget {
         onTap: () {
           showBottomSheet(
             context: context,
-            builder: (context) => EntryContent(
-              uniqueName: item.uniqueName,
-              name: item.name,
-              description: item.description ?? '',
-              imageUrl: item.imageUrl,
-            ),
+            builder:
+                (context) => EntryContent(
+                  uniqueName: item.uniqueName,
+                  name: item.name,
+                  description: item.description ?? '',
+                  imageUrl: item.imageUrl,
+                ),
           );
         },
       );
@@ -134,30 +135,23 @@ class _Overview extends StatelessWidget {
               }
 
               return ListView(
-                children: [
-                  if (isFoundryItem)
-                    ItemComponents(
-                      itemImageUrl: item.imageUrl,
-                      components: (item as BuildableItem).components!,
-                    ),
-                  if (isPowerSuit) FrameStats(powerSuit: item),
-                  if (isGun) GunStats(gun: item),
-                  if (isMelee) MeleeStats(melee: item),
-                  if (isMod) ModStats(mod: item),
-                  if (isRelic) RelicRewardWidget(relic: item),
-                  if (drops != null) DropLocations(drops: drops),
-                  if (patchlogs != null) PatchlogSection(patchlogs: patchlogs),
-                ]
-                    .map(
-                      (w) => Padding(
-                        padding: const EdgeInsets.symmetric(
-                          vertical: 8,
-                          horizontal: 10,
-                        ),
-                        child: w,
-                      ),
-                    )
-                    .toList(),
+                children:
+                    [
+                          if (isFoundryItem)
+                            ItemComponents(
+                              itemImageUrl: item.imageUrl,
+                              components: (item as BuildableItem).components!,
+                            ),
+                          if (isPowerSuit) FrameStats(powerSuit: item),
+                          if (isGun) GunStats(gun: item),
+                          if (isMelee) MeleeStats(melee: item),
+                          if (isMod) ModStats(mod: item),
+                          if (isRelic) RelicRewardWidget(relic: item),
+                          if (drops != null) DropLocations(drops: drops),
+                          if (patchlogs != null) PatchlogSection(patchlogs: patchlogs),
+                        ]
+                        .map((w) => Padding(padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 10), child: w))
+                        .toList(),
               );
             },
           ),

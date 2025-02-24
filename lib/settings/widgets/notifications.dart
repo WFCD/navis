@@ -9,24 +9,17 @@ class FilterDialog extends StatelessWidget {
 
   final List<SimpleTopics> options;
 
-  static Future<void> showFilters(
-    BuildContext context,
-    List<SimpleTopics> options,
-  ) {
+  static Future<void> showFilters(BuildContext context, List<SimpleTopics> options) {
     return showDialog<void>(
       context: context,
       useRootNavigator: false,
       builder: (_) {
-        final notifications =
-            RepositoryProvider.of<NotificationRepository>(context);
+        final notifications = RepositoryProvider.of<NotificationRepository>(context);
         final usersettings = BlocProvider.of<UserSettingsCubit>(context);
 
         return RepositoryProvider.value(
           value: notifications,
-          child: BlocProvider.value(
-            value: usersettings,
-            child: FilterDialog(options: options),
-          ),
+          child: BlocProvider.value(value: usersettings, child: FilterDialog(options: options)),
         );
       },
     );
@@ -39,10 +32,7 @@ class FilterDialog extends StatelessWidget {
       content: SingleChildScrollView(
         child: Column(
           mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            for (final t in options)
-              _NotificationCheckBox(title: t.title, topic: t.topic),
-          ],
+          children: <Widget>[for (final t in options) _NotificationCheckBox(title: t.title, topic: t.topic)],
         ),
       ),
       actions: [
@@ -79,7 +69,7 @@ class _NotificationCheckBox extends StatelessWidget {
     final settings = context.watch<UserSettingsCubit>().state;
     final toggles = switch (settings) {
       UserSettingsSuccess() => settings.toggles,
-      _ => <String, bool>{}
+      _ => <String, bool>{},
     };
 
     return CheckboxListTile(

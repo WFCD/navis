@@ -23,8 +23,7 @@ class AboutApp extends AbstractSettingsTile {
     final isDark = theme.brightness != Brightness.light;
 
     final aboutTextStyle = textTheme.bodyLarge;
-    final linkStyle =
-        textTheme.bodyLarge?.copyWith(color: theme.colorScheme.secondary);
+    final linkStyle = textTheme.bodyLarge?.copyWith(color: theme.colorScheme.secondary);
 
     return FutureBuilder(
       future: PackageInfo.fromPlatform(),
@@ -32,11 +31,7 @@ class AboutApp extends AbstractSettingsTile {
         final info = snapshot.data;
 
         return AboutDialog(
-          applicationIcon: const Icon(
-            WarframeSymbols.nightmare,
-            size: 50,
-            color: Color(0xFF1565C0),
-          ),
+          applicationIcon: const Icon(WarframeSymbols.nightmare, size: 50, color: Color(0xFF1565C0)),
           applicationName: 'Cephalon Navis',
           applicationVersion: info?.version ?? '',
           children: <Widget>[
@@ -44,50 +39,30 @@ class AboutApp extends AbstractSettingsTile {
             RichText(
               text: TextSpan(
                 children: <TextSpan>[
-                  TextSpan(
-                    style: aboutTextStyle,
-                    text: '${l10n.sourceCode} \n',
-                  ),
+                  TextSpan(style: aboutTextStyle, text: '${l10n.sourceCode} \n'),
                   TextSpan(
                     text: projectPage,
                     style: linkStyle,
-                    recognizer: TapGestureRecognizer()
-                      ..onTap = () => projectPage.launchLink(context),
+                    recognizer: TapGestureRecognizer()..onTap = () => projectPage.launchLink(context),
                   ),
-                  TextSpan(
-                    style: aboutTextStyle,
-                    text: '\n\n${l10n.issueTrackerDescription} ',
-                  ),
+                  TextSpan(style: aboutTextStyle, text: '\n\n${l10n.issueTrackerDescription} '),
                   TextSpan(
                     text: '${l10n.issueTrackerTitle}\n\n',
                     style: linkStyle,
-                    recognizer: TapGestureRecognizer()
-                      ..onTap = () => issuePage.launchLink(context),
+                    recognizer: TapGestureRecognizer()..onTap = () => issuePage.launchLink(context),
                   ),
-                  TextSpan(
-                    text: 'Contribute translations\n',
-                    style: aboutTextStyle,
-                  ),
+                  TextSpan(text: 'Contribute translations\n', style: aboutTextStyle),
                   TextSpan(
                     text: contributeTranslations,
                     style: linkStyle,
-                    recognizer: TapGestureRecognizer()
-                      ..onTap =
-                          () => contributeTranslations.launchLink(context),
+                    recognizer: TapGestureRecognizer()..onTap = () => contributeTranslations.launchLink(context),
                   ),
-                  TextSpan(
-                    style: textTheme.bodySmall,
-                    text: '\n\n${l10n.legalese}\n\n',
-                  ),
-                  TextSpan(
-                    style: textTheme.bodySmall,
-                    text: '${l10n.warframeLinkTitle}. \n',
-                  ),
+                  TextSpan(style: textTheme.bodySmall, text: '\n\n${l10n.legalese}\n\n'),
+                  TextSpan(style: textTheme.bodySmall, text: '${l10n.warframeLinkTitle}. \n'),
                   TextSpan(
                     text: warframePage,
                     style: linkStyle,
-                    recognizer: TapGestureRecognizer()
-                      ..onTap = () => warframePage.launchLink(context),
+                    recognizer: TapGestureRecognizer()..onTap = () => warframePage.launchLink(context),
                   ),
                 ],
               ),
@@ -97,28 +72,19 @@ class AboutApp extends AbstractSettingsTile {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 IconButton(
-                  icon: const Icon(
-                    WarframeSymbols.wfcd,
-                    color: Color(0xFF2e96ef),
-                  ),
+                  icon: const Icon(WarframeSymbols.wfcd, color: Color(0xFF2e96ef)),
                   iconSize: iconSize,
                   splashColor: Colors.transparent,
                   onPressed: () => communityPage.launchLink(context),
                 ),
                 IconButton(
-                  icon: Icon(
-                    SimpleIcons.github,
-                    color: isDark ? Colors.white : const Color(0xFF181717),
-                  ),
+                  icon: Icon(SimpleIcons.github, color: isDark ? Colors.white : const Color(0xFF181717)),
                   iconSize: iconSize,
                   splashColor: Colors.transparent,
                   onPressed: () => projectPage.launchLink(context),
                 ),
                 IconButton(
-                  icon: const Icon(
-                    SimpleIcons.discord,
-                    color: Color(0xFF7289DA),
-                  ),
+                  icon: const Icon(SimpleIcons.discord, color: Color(0xFF7289DA)),
                   iconSize: iconSize,
                   splashColor: Colors.transparent,
                   onPressed: () => discordInvite.launchLink(context),
@@ -126,10 +92,7 @@ class AboutApp extends AbstractSettingsTile {
                 if (!Platform.isIOS)
                   IconButton(
                     onPressed: () => buyMeCoffee.launchLink(context),
-                    icon: const Icon(
-                      SimpleIcons.buymeacoffee,
-                      color: Color(0xFFFFDD00),
-                    ),
+                    icon: const Icon(SimpleIcons.buymeacoffee, color: Color(0xFFFFDD00)),
                   ),
               ],
             ),
