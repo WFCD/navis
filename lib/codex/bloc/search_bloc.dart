@@ -35,6 +35,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
 
       try {
         final results = await ConnectionManager.call(() async => repository.searchItems(text));
+        results.sort(_sort);
 
         _originalResults = results;
         emit(CodexSuccessfulSearch(results));
@@ -68,5 +69,23 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
     return (event, mapper) {
       return event.debounceTime(kThemeAnimationDuration).distinct().flatMap(mapper);
     };
+  }
+
+  int _sort(MinimalItem a, MinimalItem b) {
+    final hasPriority =
+        a.type.isWeapon ||
+        b.type.isWeapon ||
+        a.type == ItemType.warframes ||
+        b.type == ItemType.warframes ||
+        a.type == ItemType.sentinels ||
+        b.type == ItemType.sentinels ||
+        a.type == ItemType.pets ||
+        b.type == ItemType.pets ||
+        a.type == ItemType.petResource ||
+        b.type == ItemType.petResource;
+
+    if (hasPriority) return -1;
+
+    return a.name.compareTo(b.name);
   }
 }
