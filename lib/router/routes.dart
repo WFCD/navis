@@ -2,11 +2,10 @@ import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matomo_tracker/matomo_tracker.dart';
 import 'package:navis/app/app.dart';
-import 'package:navis/codex/views/codex_search_view.dart';
-import 'package:navis/explore/views/fish_view.dart';
-import 'package:navis/explore/views/main_view.dart';
+import 'package:navis/codex/codex.dart';
+import 'package:navis/explore/explore.dart';
 import 'package:navis/home/home.dart';
-import 'package:navis/settings/views/settings.dart';
+import 'package:navis/settings/settings.dart';
 import 'package:navis/synthtargets/synthtargets.dart';
 import 'package:navis/worldstate/worldstate.dart';
 import 'package:warframestat_client/warframestat_client.dart';
@@ -200,5 +199,19 @@ class NewsPageRoute extends GoRouteData {
   @override
   Widget build(BuildContext context, GoRouterState state) {
     return const OrbiterNewsPage();
+  }
+}
+
+@immutable
+@TypedGoRoute<Calendar1999PageRoute>(name: 'calendar', path: '/calendar')
+class Calendar1999PageRoute extends GoRouteData {
+  const Calendar1999PageRoute(this.season, this.$extra);
+
+  final String season;
+  final List<CalendarDay> $extra;
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) {
+    return TraceableWidget(actionName: 'calendar', child: CalendarPage(season: season, days: $extra));
   }
 }

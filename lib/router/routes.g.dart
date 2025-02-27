@@ -16,6 +16,7 @@ List<RouteBase> get $appRoutes => [
   $fishPageRoute,
   $codexPageRoute,
   $newsPageRoute,
+  $calendar1999PageRoute,
 ];
 
 RouteBase get $appShell => StatefulShellRouteData.$route(
@@ -243,4 +244,22 @@ extension $NewsPageRouteExtension on NewsPageRoute {
   void pushReplacement(BuildContext context) => context.pushReplacement(location);
 
   void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $calendar1999PageRoute =>
+    GoRouteData.$route(path: '/calendar', name: 'calendar', factory: $Calendar1999PageRouteExtension._fromState);
+
+extension $Calendar1999PageRouteExtension on Calendar1999PageRoute {
+  static Calendar1999PageRoute _fromState(GoRouterState state) =>
+      Calendar1999PageRoute(state.uri.queryParameters['season']!, state.extra as List<CalendarDay>);
+
+  String get location => GoRouteData.$location('/calendar', queryParams: {'season': season});
+
+  void go(BuildContext context) => context.go(location, extra: $extra);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location, extra: $extra);
+
+  void pushReplacement(BuildContext context) => context.pushReplacement(location, extra: $extra);
+
+  void replace(BuildContext context) => context.replace(location, extra: $extra);
 }

@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:matomo_tracker/matomo_tracker.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis/router/routes.dart';
+import 'package:navis/worldstate/widgets/syndicates/hex_card.dart';
 import 'package:navis/worldstate/worldstate.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:responsive_builder/responsive_builder.dart';
@@ -86,6 +87,7 @@ class _SyndicatePageMobile extends StatelessWidget {
     return ListView(
       padding: const EdgeInsets.only(top: 4),
       children: <Widget>[
+        const HexCard(),
         if (nightwave != null)
           NightwaveCard(nightwave: nightwave!, onTap: () => NightwavePageRoute(nightwave).push<void>(context)),
         Gaps.gap4,
