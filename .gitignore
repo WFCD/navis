@@ -13,6 +13,7 @@ flutter_*.png
 flutter_*.mp4
 .flutter-plugins-dependencies
 .fvm/
+firebase.json
 
 # IntelliJ related
 *.iml

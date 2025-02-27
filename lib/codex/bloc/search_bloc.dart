@@ -35,7 +35,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
 
       try {
         final results = await ConnectionManager.call(() async => repository.searchItems(text));
-        results.sort(_sort);
+        results.sort(_itemComparator);
 
         _originalResults = results;
         emit(CodexSuccessfulSearch(results));
@@ -71,7 +71,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
     };
   }
 
-  int _sort(MinimalItem a, MinimalItem b) {
+  int _itemComparator(MinimalItem a, MinimalItem b) {
     final hasPriority =
         a.type.isWeapon ||
         b.type.isWeapon ||
