@@ -23,7 +23,7 @@ class NavisLocalizationsCs extends NavisLocalizations {
   String get seeMore => 'See More';
 
   @override
-  String get seeWikia => 'Viz Wiki';
+  String get seeWiki => 'See Wiki';
 
   @override
   String get eventDescription => 'Popis';

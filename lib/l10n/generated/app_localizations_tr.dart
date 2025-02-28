@@ -23,7 +23,7 @@ class NavisLocalizationsTr extends NavisLocalizations {
   String get seeMore => 'See More';
 
   @override
-  String get seeWikia => 'Wiki de gör';
+  String get seeWiki => 'See Wiki';
 
   @override
   String get eventDescription => 'Açıklama';

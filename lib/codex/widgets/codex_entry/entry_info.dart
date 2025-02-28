@@ -13,7 +13,7 @@ class BasicItemInfo extends SliverPersistentHeaderDelegate {
     required this.imageUrl,
     required this.expandedHeight,
     this.disableInfo = false,
-    this.wikiaUrl,
+    this.wikiUrl,
     this.isVaulted,
   });
 
@@ -21,7 +21,7 @@ class BasicItemInfo extends SliverPersistentHeaderDelegate {
   final String name;
   final String description;
   final String imageUrl;
-  final String? wikiaUrl;
+  final String? wikiUrl;
   final double expandedHeight;
   final bool? isVaulted;
   final bool disableInfo;
@@ -44,13 +44,13 @@ class BasicItemInfo extends SliverPersistentHeaderDelegate {
                     onPressed: null,
                     child: Text(context.l10n.codexVaultedLabel),
                   ),
-                if (wikiaUrl != null)
+                if (wikiUrl != null)
                   TextButton(
                     style: ButtonStyle(
                       foregroundColor: WidgetStateProperty.all(context.theme.textTheme.labelLarge?.color),
                     ),
-                    onPressed: () => wikiaUrl?.launchLink(context),
-                    child: Text(context.l10n.seeWikia),
+                    onPressed: () => wikiUrl!.launchLink(context),
+                    child: Text(context.l10n.seeWiki),
                   ),
               ],
             ),
@@ -78,8 +78,15 @@ class BasicItemInfo extends SliverPersistentHeaderDelegate {
   double get minExtent => kToolbarHeight;
 
   @override
-  bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) {
-    return false;
+  bool shouldRebuild(BasicItemInfo oldDelegate) {
+    return oldDelegate.expandedHeight != expandedHeight ||
+        oldDelegate.uniqueName != uniqueName ||
+        oldDelegate.name != name ||
+        oldDelegate.description != description ||
+        oldDelegate.imageUrl != imageUrl ||
+        oldDelegate.wikiUrl != wikiUrl ||
+        oldDelegate.isVaulted != isVaulted ||
+        oldDelegate.disableInfo != disableInfo;
   }
 }
 

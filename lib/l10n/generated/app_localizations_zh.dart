@@ -23,7 +23,7 @@ class NavisLocalizationsZh extends NavisLocalizations {
   String get seeMore => 'See More';
 
   @override
-  String get seeWikia => '查看維基百科';
+  String get seeWiki => 'See Wiki';
 
   @override
   String get eventDescription => '介紹';

@@ -23,7 +23,7 @@ class NavisLocalizationsRu extends NavisLocalizations {
   String get seeMore => 'See More';
 
   @override
-  String get seeWikia => 'Открыть на Fandom\'е';
+  String get seeWiki => 'See Wiki';
 
   @override
   String get eventDescription => 'Описание';

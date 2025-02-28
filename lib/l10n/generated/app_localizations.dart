@@ -141,11 +141,11 @@ abstract class NavisLocalizations {
   /// **'See More'**
   String get seeMore;
 
-  /// General button to wikia of given item
+  /// General button to wiki of given item
   ///
   /// In en, this message translates to:
-  /// **'See Wikia'**
-  String get seeWikia;
+  /// **'See Wiki'**
+  String get seeWiki;
 
   /// Event description category title
   ///
