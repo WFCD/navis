@@ -31,9 +31,9 @@
     "type": "text",
     "placeholders": {}
   },
-  "seeWikia": "Ver Wikia",
-  "@seeWikia": {
-    "description": "General button to wikia of given item",
+  "seeWiki": "See Wiki",
+  "@seeWiki": {
+    "description": "General button to wiki of given item",
     "type": "text",
     "placeholders": {}
   },
