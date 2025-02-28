@@ -58,7 +58,7 @@ class CalendarView extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
                   child: Text(
-                    MaterialLocalizations.of(context).formatShortDate(days[index].date),
+                    MaterialLocalizations.of(context).formatMediumDate(days[index].date),
                     style: Theme.of(context).textTheme.labelLarge,
                   ),
                 ),

@@ -24,6 +24,7 @@ class HexCard extends StatelessWidget {
       },
       builder: (context, state) {
         final seasonColor = SeasonColors.color(state?.season.toLowerCase() ?? 'winter')!;
+        final colorScheme = ColorScheme.fromSeed(seedColor: seasonColor);
         final expiry = state?.expiry ?? DateTime.timestamp().add(const Duration(minutes: 1));
 
         return InkWell(
@@ -32,16 +33,20 @@ class HexCard extends StatelessWidget {
                   Calendar1999PageRoute(state?.season ?? 'winter', state?.days ?? <CalendarDay>[]).push<void>(context),
           customBorder: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(4))),
           child: Theme(
-            data: ThemeData.light(),
+            data: Theme.of(context).copyWith(colorScheme: colorScheme),
             child: AppCard(
               color: seasonColor,
               child: Padding(
                 padding: EdgeInsets.symmetric(vertical: (size.longestSide / 100) * 1.5),
                 child: ListTile(
-                  leading: const Icon(WarframeSymbols.the_hex, size: 60),
+                  leading: Icon(WarframeSymbols.the_hex, size: 60, color: colorScheme.secondary),
                   title: const Text('1999 Calendar'),
                   subtitle: Text(state?.season ?? 'Rebooting'),
-                  trailing: CountdownTimer(tooltip: context.l10n.countdownTooltip(expiry), expiry: expiry),
+                  trailing: CountdownTimer(
+                    color: colorScheme.secondary,
+                    tooltip: context.l10n.countdownTooltip(expiry),
+                    expiry: expiry,
+                  ),
                 ),
               ),
             ),

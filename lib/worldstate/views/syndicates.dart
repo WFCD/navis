@@ -87,9 +87,9 @@ class _SyndicatePageMobile extends StatelessWidget {
     return ListView(
       padding: const EdgeInsets.only(top: 4),
       children: <Widget>[
-        const HexCard(),
         if (nightwave != null)
           NightwaveCard(nightwave: nightwave!, onTap: () => NightwavePageRoute(nightwave).push<void>(context)),
+        const HexCard(),
         Gaps.gap4,
         _BuildSyndicates(syndicates: syndicates, onTap: (s) => SyndicatePageRoute(s).push<void>(context)),
         const Divider(),
