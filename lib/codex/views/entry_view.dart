@@ -130,9 +130,7 @@ class _Overview extends StatelessWidget {
               }
 
               List<Drop>? drops;
-              if (item is DroppableItem) {
-                drops = item.drops;
-              }
+              if (item is DroppableItem) drops = item.drops;
 
               return ListView(
                 children:

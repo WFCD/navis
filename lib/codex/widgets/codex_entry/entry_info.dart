@@ -40,18 +40,12 @@ class BasicItemInfo extends SliverPersistentHeaderDelegate {
               actions: [
                 if (isVaulted ?? false)
                   TextButton(
-                    style: ButtonStyle(foregroundColor: WidgetStateProperty.all(context.theme.colorScheme.error)),
                     onPressed: null,
+                    style: ButtonStyle(foregroundColor: WidgetStateProperty.all(context.theme.colorScheme.error)),
                     child: Text(context.l10n.codexVaultedLabel),
                   ),
                 if (wikiUrl != null)
-                  TextButton(
-                    style: ButtonStyle(
-                      foregroundColor: WidgetStateProperty.all(context.theme.textTheme.labelLarge?.color),
-                    ),
-                    onPressed: () => wikiUrl!.launchLink(context),
-                    child: Text(context.l10n.seeWiki),
-                  ),
+                  TextButton(onPressed: () => wikiUrl!.launchLink(context), child: Text(context.l10n.seeWiki)),
               ],
             ),
             if (!disableInfo)

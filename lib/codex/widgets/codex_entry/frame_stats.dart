@@ -109,6 +109,9 @@ class _AbilityIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return IconButton(onPressed: onTap, icon: CachedNetworkImage(imageUrl: ability.imageUrl, width: 60));
+    return IconButton(
+      onPressed: onTap,
+      icon: CachedNetworkImage(imageUrl: ability.imageUrl, width: 60, color: Theme.of(context).colorScheme.onSurface),
+    );
   }
 }
