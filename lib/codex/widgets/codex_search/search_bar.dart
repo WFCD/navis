@@ -25,21 +25,15 @@ class _CodexSearchBarState extends State<CodexSearchBar> {
   late final FocusNode _focusNode;
   late final SearchController _controller;
 
-  String? _currentQuery;
   Iterable<MinimalItem> _lastOptions = <MinimalItem>[];
 
   late final Debounceable<Iterable<MinimalItem>?, String> _debounceSearch;
 
   Future<List<MinimalItem>?> _search(String query) async {
-    _currentQuery = query;
-
     final api = RepositoryProvider.of<WarframestatRepository>(context);
     final options = await api.searchItems(query);
 
-    if (_currentQuery != query) return null;
-    _currentQuery = null;
-
-    return options;
+    return options..prioritizeResults();
   }
 
   Future<Iterable<Widget>> _suggestionsBuilder(BuildContext context, SearchController controller) async {

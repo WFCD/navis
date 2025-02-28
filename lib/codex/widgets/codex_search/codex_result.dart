@@ -6,7 +6,7 @@ import 'package:navis/utils/utils.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:warframestat_client/warframestat_client.dart';
 
-class CodexResult extends StatefulWidget {
+class CodexResult extends StatelessWidget {
   const CodexResult({super.key, required this.item, required this.onTap, this.showDescription = false});
 
   final Item item;
@@ -14,38 +14,11 @@ class CodexResult extends StatefulWidget {
   final void Function() onTap;
 
   @override
-  State<CodexResult> createState() => _CodexResultState();
-}
-
-class _CodexResultState extends State<CodexResult> {
-  late String _image;
-
-  @override
-  void initState() {
-    super.initState();
-    _image = widget.item.imageUrl;
-  }
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-
-    precacheImage(
-      CachedNetworkImageProvider(_image),
-      context,
-      onError: (e, s) {
-        _image = defaultImage;
-        setState(() {});
-      },
-    );
-  }
-
-  @override
   Widget build(BuildContext context) {
     String? description;
 
-    if (widget.item is Mod) {
-      final levelStats = (widget.item as Mod).levelStats;
+    if (item is Mod) {
+      final levelStats = (item as Mod).levelStats;
 
       if (levelStats != null) {
         description = levelStats.last.stats.fold('', (p, e) {
@@ -60,24 +33,24 @@ class _CodexResultState extends State<CodexResult> {
 
     return ListTile(
       leading: Hero(
-        tag: widget.item.uniqueName,
+        tag: item.uniqueName,
         child: CircleAvatar(
-          foregroundImage: widget.item.imageName != null ? CachedNetworkImageProvider(_image) : null,
+          foregroundImage: item.imageName != null ? CachedNetworkImageProvider(item.imageUrl) : null,
           backgroundColor: Theme.of(context).canvasColor,
         ),
       ),
-      title: Text(widget.item.name.parseHtmlString()),
+      title: Text(item.name.parseHtmlString()),
       subtitle:
-          widget.showDescription
+          showDescription
               ? Text(
-                description?.trim() ?? widget.item.description?.parseHtmlString() ?? '',
+                description?.trim() ?? item.description?.parseHtmlString() ?? '',
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
               )
               : null,
-      isThreeLine: widget.showDescription,
-      dense: widget.showDescription,
-      onTap: widget.onTap,
+      isThreeLine: showDescription,
+      dense: showDescription,
+      onTap: onTap,
     );
   }
 }
