@@ -111,10 +111,10 @@ extension RarityX on Rarity {
 
   Color toColor() {
     return switch (this) {
-      Rarity.common => const Color(0xFFCA9A87),
-      Rarity.uncommon => Colors.white,
-      Rarity.rare => const Color(0xFFFEEBC1),
-      Rarity.legendary => Colors.white,
+      Rarity.common => const Color(0xFFbd9177),
+      Rarity.uncommon => const Color(0xFFd1d0d1),
+      Rarity.rare => const Color(0xFFece175),
+      Rarity.legendary => const Color(0xFFb996db),
     };
   }
 }

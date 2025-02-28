@@ -17,7 +17,7 @@ class RelicRewardWidget extends StatelessWidget {
             final color = r.rarity.toColor();
 
             return ListTile(
-              title: Text(r.item.name),
+              title: Text('${r.item.name} - ${r.chance}%'),
               subtitle: LinearProgressIndicator(
                 value: r.chance / 100,
                 color: color,
