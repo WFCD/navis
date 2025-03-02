@@ -10,14 +10,9 @@ class CalendarPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final seasonColor = SeasonColors.color(season.toLowerCase())!;
+    // final seasonColor = SeasonColors.color(season.toLowerCase())!;
 
-    return Theme(
-      data: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: seasonColor, brightness: Theme.of(context).brightness),
-      ),
-      child: Scaffold(appBar: AppBar(title: Text('1999 Calendar - $season')), body: CalendarView(days: days)),
-    );
+    return Scaffold(appBar: AppBar(title: Text('1999 Calendar - $season')), body: CalendarView(days: days));
   }
 }
 
@@ -25,24 +20,6 @@ class CalendarView extends StatelessWidget {
   const CalendarView({super.key, required this.days});
 
   final List<CalendarDay> days;
-
-  Widget _eventContent(CalendarEvent event) {
-    return switch (event) {
-      CalendarChallenge() => ListTile(
-        title: Text(event.type),
-        subtitle: Text('${event.challenge.title}\n${event.challenge.description}'),
-      ),
-      CalendarUpgrade() => ListTile(
-        title: Text(event.type),
-        subtitle: Text('${event.upgrade.title}\n${event.upgrade.description}'),
-      ),
-      CalendarReward() => ListTile(title: Text(event.type), subtitle: Text(event.reward)),
-      CalendarBirthday() => ListTile(
-        title: const Text('Birthday'),
-        subtitle: Text(event.conversation.replaceFirst('BirthdayConvo', "'s Birthday")),
-      ),
-    };
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +29,10 @@ class CalendarView extends StatelessWidget {
         return AppCard(
           child: Column(
             children: [
-              for (final day in days[index].events) _eventContent(day),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 8),
+                child: EventContent(events: days[index].events),
+              ),
               Align(
                 alignment: Alignment.bottomRight,
                 child: Padding(
@@ -67,6 +47,42 @@ class CalendarView extends StatelessWidget {
           ),
         );
       },
+    );
+  }
+}
+
+class EventContent extends StatelessWidget {
+  const EventContent({super.key, required this.events});
+
+  final List<CalendarEvent> events;
+
+  @override
+  Widget build(BuildContext context) {
+    IconData icon(String type) => switch (type.toLowerCase()) {
+      'to do' => Icons.task_alt_rounded,
+      'override' => Icons.settings_suggest_rounded,
+      'big prize!' => Icons.card_giftcard_rounded,
+      'birthday' => Icons.cake_rounded,
+      _ => WarframeSymbols.menu_LotusEmblem,
+    };
+
+    Widget content(CalendarEvent event) => switch (event) {
+      CalendarChallenge() => ListTile(title: Text(event.challenge.title), subtitle: Text(event.challenge.description)),
+      CalendarUpgrade() => ListTile(title: Text(event.upgrade.title), subtitle: Text(event.upgrade.description)),
+      CalendarReward() => ListTile(title: Text(event.reward)),
+      CalendarBirthday() => ListTile(title: Text(event.conversation.replaceFirst('BirthdayConvo', "'s Birthday"))),
+    };
+
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        ListTile(
+          leading: Icon(icon(events.first.type)),
+          title: Text(events.first.type, style: Theme.of(context).textTheme.titleMedium),
+        ),
+        ...events.map(content),
+      ],
     );
   }
 }

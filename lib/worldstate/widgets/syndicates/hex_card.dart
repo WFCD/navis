@@ -1,3 +1,4 @@
+import 'package:black_hole_flutter/black_hole_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/l10n/l10n.dart';
@@ -14,6 +15,8 @@ class HexCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.sizeOf(context);
+    final titleStyle = context.textTheme.titleMedium?.copyWith(color: Typography.whiteMountainView.titleMedium?.color);
+    final captionStyle = context.textTheme.bodySmall?.copyWith(color: Typography.whiteMountainView.bodySmall?.color);
 
     return BlocSelector<WorldstateCubit, SolsystemState, Calendar?>(
       selector: (state) {
@@ -23,8 +26,7 @@ class HexCard extends StatelessWidget {
         };
       },
       builder: (context, state) {
-        final seasonColor = SeasonColors.color(state?.season.toLowerCase() ?? 'winter')!;
-        final colorScheme = ColorScheme.fromSeed(seedColor: seasonColor);
+        // final seasonColor = SeasonColors.color(state?.season.toLowerCase() ?? 'winter')!;
         final expiry = state?.expiry ?? DateTime.timestamp().add(const Duration(minutes: 1));
 
         return InkWell(
@@ -32,21 +34,18 @@ class HexCard extends StatelessWidget {
               () =>
                   Calendar1999PageRoute(state?.season ?? 'winter', state?.days ?? <CalendarDay>[]).push<void>(context),
           customBorder: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(4))),
-          child: Theme(
-            data: Theme.of(context).copyWith(colorScheme: colorScheme),
-            child: AppCard(
-              color: seasonColor,
-              child: Padding(
-                padding: EdgeInsets.symmetric(vertical: (size.longestSide / 100) * 1.5),
-                child: ListTile(
-                  leading: Icon(WarframeSymbols.the_hex, size: 60, color: colorScheme.secondary),
-                  title: const Text('1999 Calendar'),
-                  subtitle: Text(state?.season ?? 'Rebooting'),
-                  trailing: CountdownTimer(
-                    color: colorScheme.secondary,
-                    tooltip: context.l10n.countdownTooltip(expiry),
-                    expiry: expiry,
-                  ),
+          child: AppCard(
+            color: SyndicateColors.theHexBackgroundColor,
+            child: Padding(
+              padding: EdgeInsets.symmetric(vertical: (size.longestSide / 100) * 1.5),
+              child: ListTile(
+                leading: const Icon(WarframeSymbols.the_hex, size: 60, color: SyndicateColors.theHexIconColor),
+                title: Text('1999 Calendar', style: titleStyle),
+                subtitle: Text(state?.season ?? 'Rebooting', style: captionStyle),
+                trailing: CountdownTimer(
+                  color: SyndicateColors.theHexIconColor.hsl.withLightness(.4).toColor(),
+                  tooltip: context.l10n.countdownTooltip(expiry),
+                  expiry: expiry,
                 ),
               ),
             ),
