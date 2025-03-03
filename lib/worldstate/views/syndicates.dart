@@ -70,7 +70,9 @@ class _BuildSyndicates extends StatelessWidget {
     return Column(
       children: <Widget>[
         CountdownBanner(message: 'Bounties expire in:', time: syndicates.first.expiry),
-        ...syndicates.map<SyndicateCard>((syn) => SyndicateCard(syndicateId: syn.id, onTap: () => onTap(syn))),
+        ...syndicates.map<SyndicateCard>(
+          (syn) => SyndicateCard(syndicate: Syndicates.syndicateStringToEnum(syn.syndicate), onTap: () => onTap(syn)),
+        ),
       ],
     );
   }
@@ -94,7 +96,7 @@ class _SyndicatePageMobile extends StatelessWidget {
         _BuildSyndicates(syndicates: syndicates, onTap: (s) => SyndicatePageRoute(s).push<void>(context)),
         const Divider(),
         SyndicateCard(
-          syndicateId: 'simaris',
+          syndicate: Syndicates.simaris,
           caption: 'Tap to see targets',
           onTap: () => const SynthTargetsPageRoute().push<void>(context),
         ),

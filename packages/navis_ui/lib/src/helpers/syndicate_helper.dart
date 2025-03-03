@@ -2,13 +2,25 @@ import 'package:flutter/material.dart';
 import 'package:navis_ui/src/colors/colors.dart';
 import 'package:navis_ui/src/icons/icons.dart';
 
-enum Syndicates { cetus, solaris, entrati, nightwave, simaris, hex, unknown }
+enum Syndicates {
+  cetus('Ostrons'),
+  solaris('Solaris United'),
+  entrati('Entrati'),
+  nightwave('Nightwave'),
+  simaris('Cephalon Simaris'),
+  hex('The Hex'),
+  unknown('');
 
-Syndicates syndicateStringToEnum(String faction) {
-  return Syndicates.values.firstWhere(
-    (e) => faction.toLowerCase().contains(e.name),
-    orElse: () => Syndicates.unknown,
-  );
+  const Syndicates(this.fullName);
+
+  final String fullName;
+
+  static Syndicates syndicateStringToEnum(String name) {
+    return Syndicates.values.firstWhere(
+      (e) => name.toLowerCase() == e.fullName.toLowerCase(),
+      orElse: () => Syndicates.unknown,
+    );
+  }
 }
 
 extension SyndicatesX on Syndicates {
@@ -27,7 +39,7 @@ extension SyndicatesX on Syndicates {
       case Syndicates.hex:
         return WarframeSymbols.the_hex;
       case Syndicates.unknown:
-        return WarframeSymbols.hexis;
+        return WarframeSymbols.menu_LotusEmblem;
     }
   }
 
@@ -69,7 +81,7 @@ extension SyndicatesX on Syndicates {
       case Syndicates.hex:
         return SyndicateColors.theHexBackgroundColor;
       case Syndicates.unknown:
-        return Colors.white;
+        return Colors.black;
     }
   }
 }

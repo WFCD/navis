@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:warframestat_client/warframestat_client.dart';
@@ -33,14 +34,7 @@ class NightwaveChallenge extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.end,
               children: <Widget>[
                 _StandingBadge(challenge: challenge),
-                CountdownTimer(
-                  // Will default to DateTime.now() under the hood.
-                  // ignore: avoid-non-null-assertion
-                  tooltip: l10n.countdownTooltip(challenge.expiry!),
-                  // Will default to DateTime.now() under the hood.
-                  // ignore: avoid-non-null-assertion
-                  expiry: challenge.expiry,
-                ),
+                CountdownTimer(tooltip: l10n.countdownTooltip(challenge.expiry!), expiry: challenge.expiry),
               ],
             ),
           ],
@@ -57,16 +51,14 @@ class _StandingBadge extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final rep = '${challenge.reputation}';
-
     return ColoredContainer(
-      tooltip: rep,
+      tooltip: '${challenge.reputation}',
       color: Colors.red,
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           const Icon(WarframeSymbols.standing, size: 20, color: Colors.white),
-          Text(rep, style: const TextStyle(color: Colors.white)),
+          Text(NumberFormat().format(challenge.reputation), style: const TextStyle(color: Colors.white)),
         ],
       ),
     );

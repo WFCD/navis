@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:warframestat_client/warframestat_client.dart';
@@ -32,8 +33,8 @@ class _Standing extends StatelessWidget {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
+        Text(NumberFormat().format(standingStages.reduce((v, e) => v + e))),
         const Icon(WarframeSymbols.standing, size: 20),
-        Text(standingStages.reduce((v, e) => v + e).toString()),
       ],
     );
   }

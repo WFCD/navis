@@ -11,7 +11,7 @@ class BountiesPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final backgroundColor = syndicateStringToEnum(syndicate.id).secondryColor;
+    final backgroundColor = Syndicates.syndicateStringToEnum(syndicate.syndicate).secondryColor;
 
     return TraceableWidget(
       child: Scaffold(
