@@ -40,8 +40,8 @@ class HexCard extends StatelessWidget {
               padding: EdgeInsets.symmetric(vertical: (size.longestSide / 100) * 1.5),
               child: ListTile(
                 leading: const Icon(WarframeSymbols.the_hex, size: 60, color: SyndicateColors.theHexIconColor),
-                title: Text('1999 Calendar', style: titleStyle),
-                subtitle: Text(state?.season ?? 'Rebooting', style: captionStyle),
+                title: Text(context.l10n.calendar1999Title, style: titleStyle),
+                subtitle: Text(state?.season ?? '', style: captionStyle),
                 trailing: CountdownTimer(
                   color: SyndicateColors.theHexIconColor.hsl.withLightness(.4).toColor(),
                   tooltip: context.l10n.countdownTooltip(expiry),

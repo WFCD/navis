@@ -40,8 +40,9 @@ class DuviriCircuit extends StatelessWidget {
           child: CircuitResetTimer(
             expiry: cycle?.expiry ?? DateTime.now(),
             onTap: () {
-              showBottomSheet(
+              showModalBottomSheet<void>(
                 context: context,
+                isScrollControlled: true,
                 builder: (context) {
                   return Column(mainAxisSize: MainAxisSize.min, children: choices?.toList() ?? []);
                 },
@@ -77,6 +78,7 @@ class CircuitResetTimer extends StatelessWidget {
 
     return ListTile(
       title: Text(context.l10n.circuitResetTitle),
+      subtitle: Text(context.l10n.circuitResetSubtitle),
       trailing: CountdownTimer(tooltip: date, expiry: _getNextMonday()),
       onTap: onTap,
     );

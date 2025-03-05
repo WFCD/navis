@@ -1323,6 +1323,12 @@ abstract class NavisLocalizations {
   /// **'The Circuit resets in'**
   String get circuitResetTitle;
 
+  /// Text displayed under circuitResetTitle
+  ///
+  /// In en, this message translates to:
+  /// **'Tap to see current offerings'**
+  String get circuitResetSubtitle;
+
   /// Text displayed next to the weekly reset time for the Deep Archimedea
   ///
   /// In en, this message translates to:
@@ -1370,6 +1376,36 @@ abstract class NavisLocalizations {
   /// In en, this message translates to:
   /// **'Activities'**
   String get activitiesTitle;
+
+  /// Current nightwave season number
+  ///
+  /// In en, this message translates to:
+  /// **'Season {season}'**
+  String nightwaveSeasonSubtitle(Object season);
+
+  /// Title text for 1999 calendar card
+  ///
+  /// In en, this message translates to:
+  /// **'1999 Calendar'**
+  String get calendar1999Title;
+
+  /// Trader inventory header text
+  ///
+  /// In en, this message translates to:
+  /// **'Item'**
+  String get traderItemHeaderTitle;
+
+  /// Trader inventory header text
+  ///
+  /// In en, this message translates to:
+  /// **'Item'**
+  String get traderDucatsHeaderTitle;
+
+  /// Trader inventory header text
+  ///
+  /// In en, this message translates to:
+  /// **'Item'**
+  String get traderCreditsHeaderTitle;
 }
 
 class _NavisLocalizationsDelegate extends LocalizationsDelegate<NavisLocalizations> {

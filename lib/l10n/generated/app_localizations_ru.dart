@@ -627,6 +627,9 @@ class NavisLocalizationsRu extends NavisLocalizations {
   String get circuitResetTitle => 'Смена наград через';
 
   @override
+  String get circuitResetSubtitle => 'Tap to see current offerings';
+
+  @override
   String get archimedeaTitle => 'Deep Archimedea ends';
 
   @override
@@ -649,4 +652,21 @@ class NavisLocalizationsRu extends NavisLocalizations {
 
   @override
   String get activitiesTitle => 'Activities';
+
+  @override
+  String nightwaveSeasonSubtitle(Object season) {
+    return 'Season $season';
+  }
+
+  @override
+  String get calendar1999Title => '1999 Calendar';
+
+  @override
+  String get traderItemHeaderTitle => 'Item';
+
+  @override
+  String get traderDucatsHeaderTitle => 'Item';
+
+  @override
+  String get traderCreditsHeaderTitle => 'Item';
 }

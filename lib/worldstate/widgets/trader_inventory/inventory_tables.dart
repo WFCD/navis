@@ -1,18 +1,10 @@
+import 'package:black_hole_flutter/black_hole_flutter.dart';
 import 'package:flutter/material.dart';
+import 'package:navis/l10n/l10n.dart';
 import 'package:navis/worldstate/widgets/trader_inventory/trader_item_card.dart';
 import 'package:navis/worldstate/worldstate.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:warframestat_client/warframestat_client.dart';
-
-List<DataColumn> _buildDataColumn(BuildContext context) {
-  final textTheme = Theme.of(context).textTheme;
-
-  return <DataColumn>[
-    DataColumn(label: Text('Item', style: textTheme.bodyMedium)),
-    DataColumn(label: Text('Ducats', style: textTheme.bodyMedium)),
-    DataColumn(label: Text('Credits', style: textTheme.bodyMedium)),
-  ];
-}
 
 class InventoryDataTable extends StatelessWidget {
   const InventoryDataTable({super.key, required this.inventory});
@@ -53,9 +45,13 @@ class _TabletInventoryDataTable extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: PaginatedDataTable(
-        header: const Text('Inventory'),
+        header: Text(context.l10n.baroInventory),
         onSelectAll: (selected) {},
-        columns: _buildDataColumn(context),
+        columns: <DataColumn>[
+          DataColumn(label: Text(context.l10n.traderItemHeaderTitle, style: context.textTheme.bodyMedium)),
+          DataColumn(label: Text(context.l10n.traderDucatsHeaderTitle, style: context.textTheme.bodyMedium)),
+          DataColumn(label: Text(context.l10n.traderCreditsHeaderTitle, style: context.textTheme.bodyMedium)),
+        ],
         source: InventoryDataSource(inventory: inventory),
       ),
     );
