@@ -16,110 +16,92 @@
   "tapForMoreDetails": "Toque para mais detalhes",
   "@tapForMoreDetails": {
     "description": "General description to tell the user that this object takes you to a different page",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "seeDetails": "Ver detalhes",
   "@seeDetails": {
     "description": "General button to see more details of given object",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "seeMore": "See More",
   "@seeMore": {
     "description": "General button to see more of a overview object",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
-  "seeWikia": "Ver Wikia",
-  "@seeWikia": {
-    "description": "General button to wikia of given item",
-    "type": "text",
-    "placeholders": {}
+  "seeWiki": "See Wiki",
+  "@seeWiki": {
+    "description": "General button to wiki of given item",
+    "type": "text"
   },
   "eventDescription": "Descrição",
   "@eventDescription": {
     "description": "Event description category title",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "eventStatus": "Status do Evento",
   "@eventStatus": {
     "description": "Event status category title",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "eventStatusNode": "Nó",
   "@eventStatusNode": {
     "description": "The node that the event is taking place in",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "eventStatusProgress": "Progresso",
   "@eventStatusProgress": {
     "description": "The progress of the current event from 0 to 100 %",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "eventStatusEta": "Tempo restante (ETA)",
   "@eventStatusEta": {
     "description": "Current events remaining estimated time",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "eventRewards": "Recompensas",
   "@eventRewards": {
     "description": "Event reward title",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "bountyTitle": "Contratos",
   "@bountyTitle": {
     "description": "Bounty card title.",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "errorTitle": "Ocorreu um erro na aplicação",
   "@errorTitle": {
     "description": "error title",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "errorDescription": "Houve um erro inesperado no sistema central.\nReportando erro ao administrador do sistema...",
   "@errorDescription": {
     "description": "error description",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "baroTitle": "Baro Ki'Teer",
   "@baroTitle": {
     "description": "Title for Baro Ki'Teer card",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "location": "Local",
   "@location": {
     "description": "Reuseable string for location",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "baroLeavesOn": "Partindo em",
   "@baroLeavesOn": {
     "description": "shows when Baro Ki'Teer is leaving",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "baroArrivesOn": "Chegando em",
   "@baroArrivesOn": {
     "description": "shows at when Baro Ki'Teer will arrive",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "baroInventory": "Baro Ki'Teeer Inventário",
   "@baroInventory": {
     "description": "Baro Ki'Teer Inventory button label",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "countdownTooltip": "Termina em {date}",
   "@countdownTooltip": {
@@ -136,698 +118,582 @@
   "kuvaBanner": "O Kuva será atualizado em",
   "@kuvaBanner": {
     "description": "Kuva refresh countdown title",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "formorianTitle": "Fomorian",
   "@formorianTitle": {
     "description": "Fomorian progress title",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "razorbackTitle": "Razorback",
   "@razorbackTitle": {
     "description": "Razorback progress title",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "earthCycleTitle": "Ciclo da Terra",
   "@earthCycleTitle": {
     "description": "Earth cycle title",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "cetusCycleTitle": "Ciclo de Cetus",
   "@cetusCycleTitle": {
     "description": "Cetus cycle title",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "vallisCycleTitle": "Ciclo de Vallis",
   "@vallisCycleTitle": {
     "description": "Vallis cycle title",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "cambionCycleTitle": "Cambion Cycle",
   "@cambionCycleTitle": {
     "description": "Cambion Cycle title",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "zarimanCycleTitle": "Ciclo Zariman",
   "@zarimanCycleTitle": {
     "description": "Zariman Cycle title",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "timersTitle": "Cronômetros",
   "@timersTitle": {
     "description": "Times title",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "fissuresTitle": "Fendas",
   "@fissuresTitle": {
     "description": "Fissures title",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "invasionsTitle": "Invasões",
   "@invasionsTitle": {
     "description": "Invasions title",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "syndicatesTitle": "Sindicatos",
   "@syndicatesTitle": {
     "description": "Syndicates title",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "codexTitle": "Codex",
   "@codexTitle": {
     "description": "Codex title",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "codexDescription": "Procurar todos os itens de warframe",
   "@codexDescription": {
     "description": "Codex description",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "helpfulLinksTitle": "Links úteis",
   "@helpfulLinksTitle": {
     "description": "Helpful Links title",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "behaviorTitle": "Comportamento",
   "@behaviorTitle": {
     "description": "Behavior category title",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "themeTitle": "Tema",
   "@themeTitle": {
     "description": "Theme title",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "themeDescription": "Escolha o tema do aplicativo.",
   "@themeDescription": {
     "description": "Theme option description",
-    "typ": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "notificationsTitle": "Notificações",
   "@notificationsTitle": {
     "description": "Notifications category title",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "rareAlertsNotificationTitle": "Alerta Raros",
   "@rareAlertsNotificationTitle": {
     "description": "Rare Alerts title",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "rareAlertsNotificationDescription": "Notificações de alertas raros, principalmente as doações de Lótus.",
   "@rareAlertsNotificationDescription": {
     "description": "Description for rare alerts option",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "operationAlertsNotificationTitle": "Operation Alerts",
   "@operationAlertsNotificationTitle": {
     "description": "Rare Alerts title",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "operationAlertsNotificationDescription": "Alert notifications for operations",
   "@operationAlertsNotificationDescription": {
     "description": "Description for rare alerts option",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "baroNotificationTitle": "Baro Ki'Teer",
   "@baroNotificationTitle": {
     "description": "Baro's notification title",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "baroNotificationDescription": "Notificações tanto da chegada quanto da partida do Baro.",
   "@baroNotificationDescription": {
     "description": "Notification description for both Baro's arrivial and departure.",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "darvoNotificationTitle": "Ofertas Diárias de Darvo",
   "@darvoNotificationTitle": {
     "description": "Notification title for darvo's daily deals",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "darvoNotificationDescription": "A nova achada de Darvo do dia.",
   "@darvoNotificationDescription": {
     "description": "Notification description for Darvo's Daily Deal",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "sortieNotificationTitle": "Incursão",
   "@sortieNotificationTitle": {
     "description": "Notification title for sorties",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "sortieNotificationDescription": "Notificações para novas incursões.",
   "@sortieNotificationDescription": {
     "description": "description for sortie notification option",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "sentientOutpostNotificationTitle": "Posto Avançado Sentient",
   "@sentientOutpostNotificationTitle": {
     "description": "Notification title for sentient outpost",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "sentientOutpostNotificationDescription": "Notificações de novas ameaças Sentients.",
   "@sentientOutpostNotificationDescription": {
     "description": "Notification description for sentient outpost option",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "warframeNewsTitle": "Notícias",
   "@warframeNewsTitle": {
     "description": "Main Title for Warframe news page",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "warframeNewsNotificationTitle": "Novidades",
   "@warframeNewsNotificationTitle": {
     "description": "Main Title for Warframe news notifications",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "warframeNewsNotificationDescription": "Notificações de notícias para Prime Access, Streams e Atualizações.",
   "@warframeNewsNotificationDescription": {
     "description": "Main description for Warframe news notifications",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "planetCyclesNotificationTitle": "Ciclos do Mundo Aberto",
   "@planetCyclesNotificationTitle": {
     "description": "Main title for open world notifications",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "planetCyclesNotificationDescription": "Notificações do mundo aberto para seus ciclos determinados.",
   "@planetCyclesNotificationDescription": {
     "description": "Main description for open world notifications",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "resourcesNotificationTitle": "Recursos",
   "@resourcesNotificationTitle": {
     "description": "Main title for resource notifications",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "resourcesNotificationDescription": "Recursos encontrados principalmente em invasões.",
   "@resourcesNotificationDescription": {
     "description": "Main description for resource notifications",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "fissuresNotificationTitle": "Missões de Fendas",
   "@fissuresNotificationTitle": {
     "description": "Main title for fisssures notifications",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "fissuresNotificationDescription": "Filtrar notificações de fendas por tipo de missão preferida.",
   "@fissuresNotificationDescription": {
     "description": "Main description for fissures notifications",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "earthDayOption": "Dia da Terra",
   "@earthDayOption": {
     "description": "Earth cycle option",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "earthNightOption": "Noite da Terra",
   "@earthNightOption": {
     "description": "Earth cycle option",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "cetusDayOption": "Dia de Cetus",
   "@cetusDayOption": {
     "description": "Cetus cycle option",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "cetusNightOption": "Noite de Cetus",
   "@cetusNightOption": {
     "description": "Cetus cycle option",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "vallisWarmOption": "Aquecimento de Orb Vallis",
   "@vallisWarmOption": {
     "description": "Orb vallis cycle option",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "vallisColdOption": "Resfriamento Orb Vallis",
   "@vallisColdOption": {
     "description": "Orb vallis cycle option",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "cambionFassOption": "Cambion Fass",
   "@cambionFassOption": {
     "description": "Cambion Fass cycle option",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "cambionVomeOption": "Cambion Vome",
   "@cambionVomeOption": {
     "description": "Cambion Fass cycle option",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "primeAccessNewsOption": "Prime Access",
   "@primeAccessNewsOption": {
     "description": "Warframe news option",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "streamNewsOption": "Anúncios de transmissão",
   "@streamNewsOption": {
     "description": "Warframe news option",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "updateNewsOption": "Notícias de Atualização Warframe",
   "@updateNewsOption": {
     "description": "Warframe news option",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "reportBugsTitle": "Reportar Erros",
   "@reportBugsTitle": {
     "desciption": "Title for bug report link",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "reportBugsDescription": "Relatar falhas ou solicitar recursos.",
   "@reportBugsDescription": {
     "description": "Description for bug report link",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "aboutCategoryTitle": "Sobre",
   "@aboutCategoryTitle": {
     "description": "Title for the about category of the settings page",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "aboutAppTitle": "Sobre o Aplicativo",
   "@aboutAppTitle": {
     "description": "Title for the about app dialog",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "contributeTranslationsTitle": "Contribuir para a tradução",
   "@contributeTranslationsTitle": {
     "description": "Title for contribute translations link",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "contributeTranslationsDescription": "Voluntário para contribuir com traduções",
   "@contributeTranslationsDescription": {
     "description": "Description for contribute translations link",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "lightThemeTitle": "Claro",
   "@lightThemeTitle": {
     "description": "Title for light theme",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "darkThemeTitle": "Escuro",
   "@darkThemeTitle": {
     "description": "Title for dark theme",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "systemThemeTitle": "Sistema",
   "@systemThemeTitle": {
     "description": "Title for system theme",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "legalese": "Warframe e o logotipo do Warframe são marcas registradas da Digital Extremes Ltd. Cephalon Navis ou WFCD não têm afiliação com a Digital Extremes Ltd. de nenhuma forma.",
   "@legalese": {
     "description": "Cephalon Navis legalese",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "homePageTitle": "Início",
   "@homePageTitle": {
     "description": "Displayes a link to Navis's homepage",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "sourceCode": "Código-fonte",
   "@sourceCode": {
     "description": "Displayes a link to Navis's source code",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "issueTrackerDescription": "Relate problemas ou solicite funcionalidades para este projeto",
   "@issueTrackerDescription": {
     "description": "Description for Navis's issue tracker",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "issueTrackerTitle": "rastreador de problemas",
   "@issueTrackerTitle": {
     "description": "Display link to Navis's issue tracker",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "warframeLinkTitle": "Mais informações sobre Warframe podem ser encontradas em seu site oficial",
   "@warframeLinkTitle": {
     "description": "Description for Warframe's main site link",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "settingsTitle": "Configurações",
   "@settingsTitle": {
     "description": "Settings title",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "dailyRewardTitle": "Tempo para redefinir recompensas diárias",
   "@dailyRewardTitle": {
     "description": "Title for daily reward timer",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "eliteBadgeTitle": "Elite",
   "@eliteBadgeTitle": {
     "description": "Nightwave Elite badge title",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "dailyNightwaveTitle": "Diário",
   "@dailyNightwaveTitle": {
     "description": "Nightwave daily title",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "weeklyNightwaveTitle": "Semanal",
   "@weeklyNightwaveTitle": {
     "description": "Nightwave weekly title",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "warframePassiveTitle": "Passivo",
   "@warframePassiveTitle": {
     "description": "Warframes passive title",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "auraTitle": "Polaridade de Aura",
   "@auraTitle": {
     "description": "Aura polarity title for items",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "preinstalledPolarities": "Polaridades pré-instaladas",
   "@preinstalledPolarities": {
     "description": "Preinstalled polarites title for items",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "shieldTitle": "Escudo",
   "@shieldTitle": {
     "description": "Title for shield value",
-    "typ": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "armorTitle": "Armadura",
   "@armorTitle": {
     "description": "Title for armor value",
-    "typ": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "healthTitle": "Vida",
   "@healthTitle": {
     "description": "Title for health value",
-    "typ": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "powerTitle": "Energia",
   "@powerTitle": {
     "description": "Title for power value",
-    "typ": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "sprintSpeedTitle": "Velocidade de corrida",
   "@sprintSpeedTitle": {
     "description": "Title for sprint speed value",
-    "typ": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "abilitiesTitle": "Habilidades",
   "@abilitiesTitle": {
     "description": "Title for warframe, archwings, and Necromech abilites",
-    "typ": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "componentsTitle": "Componentes",
   "@componentsTitle": {
     "description": "Title for item components",
-    "typ": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "masteryRequirementTitle": "Requisito de Maestria",
   "@masteryRequirementTitle": {
     "description": "Mastery requirement for item",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "weaponTypeTitle": "Tipo de Arma",
   "@weaponTypeTitle": {
     "description": "Weapon item type",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "accuracyTitle": "Precisão",
   "@accuracyTitle": {
     "description": "Weapon accuracy title",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "criticalChanceTitle": "Chance Crítica",
   "@criticalChanceTitle": {
     "description": "Weapon crictical chance",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "cricticalMultiplierTitle": "Multiplicador de Crítico",
   "@cricticalMultiplierTitle": {
     "description": "Weapon critical multiplier",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "fireRateTitle": "Cadência de Tiro",
   "@fireRateTitle": {
     "description": "Weapon fire rate",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "magazineTitle": "Carregador",
   "@magazineTitle": {
     "description": "Weapon magazine size title",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "multishotTitle": "Tiro Múltiplo",
   "@multishotTitle": {
     "description": "Weapon multishot",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "noiseTitle": "Ruído",
   "@noiseTitle": {
     "description": "Weapon noise type",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "reloadTitle": "Recarregar",
   "@reloadTitle": {
     "description": "Weapon item type",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "rivenDispositionTitle": "Disposição do Riven",
   "@rivenDispositionTitle": {
     "description": "Weapon's riven disposition",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "statusChanceTitle": "Chance de Status",
   "@statusChanceTitle": {
     "description": "Weapon's status chance",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "triggerTitle": "Gatilho",
   "@triggerTitle": {
     "description": "Weapon item type",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "damageTitle": "Dano",
   "@damageTitle": {
     "description": "Weapon's damage category",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "totalDamageTitle": "Dano Total",
   "@totalDamageTitle": {
     "description": "Weapon's total damage'",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "stancePolarityTitle": "Polaridade da Estação",
   "@stancePolarityTitle": {
     "description": "Melee stance polarity title",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "attackSpeedTitle": "Velocidade de Ataque",
   "@attackSpeedTitle": {
     "description": "melee attack speed",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "followThroughTitle": "Acompanhamento",
   "@followThroughTitle": {
     "description": "Melee follow through title",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "rangeTitle": "Alcance",
   "@rangeTitle": {
     "description": "Melee's range title",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "slamAttackTitle": "Ataque de Impacto",
   "@slamAttackTitle": {
     "description": "Melee's slam attack",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "slamRadialDamageTitle": "Dano Radial de Impacto",
   "@slamRadialDamageTitle": {
     "description": "Melee's Slam Radial Damage",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "slamRadiusTitle": "Raio de Impacto",
   "@slamRadiusTitle": {
     "description": "Slam Radius title",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "slideAttackTitle": "Ataque Deslizante",
   "@slideAttackTitle": {
     "description": "Melee's slide attack",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "heavyAttackTitle": "Ataque Pesado",
   "@heavyAttackTitle": {
     "description": "Heavy attack title",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "heavySlamAttackTitle": "Impacto do Ataque Pesado",
   "@heavySlamAttackTitle": {
     "description": "Heavy Slam attack title",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "heavySlamRadialDamageTitle": "Dano Radial de Impacto Pesado",
   "@heavySlamRadialDamageTitle": {
     "description": "Heavy Slam attack title",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "heavySlamRadiusTitle": "Raio de Impacto Pesado",
   "@heavySlamRadiusTitle": {
     "description": "Heavy Slam attack title",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "windUpTitle": "Conclusão",
   "@windUpTitle": {
     "description": "melee's heavy wind up time title",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "discordSupportTitle": "Suporte",
   "@discordSupportTitle": {
     "description": "Discord support title",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "steelPathTitle": "Percurso de Aço",
   "@steelPathTitle": {
     "description": "Steel path card title",
-    "type": "text",
-    "placeholers": {}
+    "type": "text"
   },
   "syndicateDualScreenTitle": "Selecione o Sindicato",
   "@syndicateDualScreenTitle": {
     "description": "User hint when under syndicate tabs using a tablet",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "optOutOfAnalyticsTitle": "Optar por não analisar",
   "@optOutOfAnalyticsTitle": {
     "description": "Title opting out of analytics",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "optOutOfAnalyticsDescription": "Desativar o Analytics.",
   "@optOutOfAnalyticsDescription": {
     "description": "Description of the analytics opting buttong",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "appLangTitle": "Idioma",
   "@appLangTitle": {
     "description": "Title for app language options",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "appLangDescription": "Sobrescrever o comportamento padrão para detecção de idioma.",
   "@appLangDescription": {
     "description": "Description for language options",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "modLevelLabel": "Nível {rank}",
   "@modLevelLabel": {
@@ -839,83 +705,70 @@
       }
     }
   },
-  "codexHint": "Pesquisar aqui...",
+  "codexHint": "Search the codex here...",
   "@codexHint": {
     "description": "Codex description when a user enters the codex or when the search bar is empty",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "codexNoResults": "Nenhum resultado",
   "@codexNoResults": {
     "description": "Displayed when a search result in codex returns empty",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "codexVaultedLabel": "No Vault",
   "@codexVaultedLabel": {
     "description": "A label shown in codex items to detenote items that are vaulted",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "exploreTitle": "Explorar",
   "@exploreTitle": {
     "description": "Title for explore page",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "constructionProgressTitle": "Progresso da Construção",
   "@constructionProgressTitle": {
     "description": "Title for invasion constrcution progress",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "synthTargetTitle": "Alvo de Sintetize",
   "@synthTargetTitle": {
     "description": "Title for synthtargets.",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "archonHuntTitle": "Caçada Archon",
   "@archonHuntTitle": {
     "description": "Title for archon hunt notification toggle.",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "archonHuntDescription": "Notificação de reinício de caçada de Archon.",
   "@archonHuntDescription": {
     "description": "Description for archon hunt notification toggle.",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "allFissuresButton": "Todos",
   "@allFissuresButton": {
     "description": "Button label for all fissures",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "voidStormFissuresButton": "Tempestades do Void",
   "@voidStormFissuresButton": {
     "description": "Button label for void storm fissures",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "saleEndsTitle": "OFERTA TERMINA EM",
   "@saleEndsTitle": {
     "description": "Sale ends title for countdown timer",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "salePriceTitle": "Preço em oferta",
   "@salePriceTitle": {
     "description": "Displays the item's sale price for darvo sales",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "originalPriceTitle": "Preço Original",
   "@originalPriceTitle": {
     "description": "Displays the item's original price for darvo sales",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "discountTitle": "{discount}% DESCONTO!",
   "@discountTitle": {
@@ -936,152 +789,127 @@
   "outOfStockTitle": "FORA DE ESTOQUE",
   "@outOfStockTitle": {
     "description": "Tells the user when darvo is out of stock for the current sale",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "duviriJoy": "Duviri Alegria",
   "@duviriJoy": {
     "description": "Duviri joy state. If Duviri doesn't have a translatetion then only joy can be translated.",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "duviriAnger": "Duviri Raiva",
   "@duviriAnger": {
     "description": "Duviri anger state. If Duviri doesn't have a translatetion then only joy can be translated.",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "duviriEnvy": "Duviri Inveja",
   "@duviriEnvy": {
     "description": "Duviri envy state. If Duviri doesn't have a translatetion then only joy can be translated.",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "duviriSorrow": "Duviri Tristeza",
   "@duviriSorrow": {
     "description": "Duviri sorrow state. If Duviri doesn't have a translatetion then only joy can be translated.",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "duviriFear": "Duviri Medo",
   "@duviriFear": {
     "description": "Duviri Fear state. If Duviri doesn't have a translatetion then only joy can be translated.",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "mapTitle": "Mapas",
   "@mapTitle": {
     "description": "Map title",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "mapDescription": "Ver mapas regionais",
   "@mapDescription": {
     "description": "Map card description",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "fishTitle": "Peixe",
   "@fishTitle": {
     "description": "Fish title",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "fishDescription": "Ver informações de peixe por região",
   "@fishDescription": {
     "description": "fish card description",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "fishName": "Nome",
   "@fishName": {
     "description": "Display a fish name along side it",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "fishTime": "Tempo",
   "@fishTime": {
     "description": "Display time a day a fish can be caught in",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "fishSpear": "Lança",
   "@fishSpear": {
     "description": "Display the type of spear used to catch fish",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "fishRarity": "Raridade",
   "@fishRarity": {
     "description": "Display rarity of a given fish",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "fishBait": "Isca",
   "@fishBait": {
     "description": "Display type of bait needed to catch fish",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "fishStanding": "Reputação",
   "@fishStanding": {
     "description": "Display standing earned with fish",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "fishUnique": "Único",
   "@fishUnique": {
     "description": "Display a unique resources earned by given fish",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "fishBladder": "Bexigas",
   "@fishBladder": {
     "description": "Displays how many bladders can be earned with the given fish size",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "fishGills": "Guelras",
   "@fishGills": {
     "description": "Displays how many gills can be earned with the given fish size",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "fishTumors": "Tumores",
   "@fishTumors": {
     "description": "Displays how many tumors can be earned with the given fish size",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "fishMeat": "Carnes",
   "@fishMeat": {
     "description": "Displays how many meat can be earned with the given fish size",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "fishOil": "Óleos",
   "@fishOil": {
     "description": "Displays how many oils can be earned with the given fish size",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "fishScales": "Escamas",
   "@fishScales": {
     "description": "Displays how many scales can be earned with the given fish size",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "fishScrap": "Sucatas",
   "@fishScrap": {
     "description": "Displays how many scraps can be earned with the given fish size",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "fishAny": "Qualquer",
   "@fishAny": {
     "description": "Displayed when a fish can be caught by any spear",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "dropChance": "Chance de drop {chance}%",
   "@dropChance": {
@@ -1094,187 +922,191 @@
   "statsTitle": "Estatísticas",
   "@statsTitle": {
     "description": "Codex stat title",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "patchlogsTitle": "Registros",
   "@patchlogsTitle": {
     "description": "Codex patchlogs title",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "impactDamageTitle": "Impacto",
   "@impactDamageTitle": {
     "description": "Codex Weapon damage type title",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "punctureDamageTitle": "Perfuração",
   "@punctureDamageTitle": {
     "description": "Codex Weapon damage type title",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "slashDamageTitle": "Cortante",
   "@slashDamageTitle": {
     "description": "Codex Weapon damage type title",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "heatDamageTitle": "Ígneo",
   "@heatDamageTitle": {
     "description": "Codex Weapon damage type title",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "coldDamageTitle": "Glacial",
   "@coldDamageTitle": {
     "description": "Codex Weapon damage type title",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "electricityDamageTitle": "Elétrico",
   "@electricityDamageTitle": {
     "description": "Codex Weapon damage type title",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "toxinDamageTitle": "Tóxico",
   "@toxinDamageTitle": {
     "description": "Codex Weapon damage type title",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "blastDamageTitle": "Colisivo",
   "@blastDamageTitle": {
     "description": "Codex Weapon damage type title",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "radiationDamageTitle": "Radiação",
   "@radiationDamageTitle": {
     "description": "Codex Weapon damage type title",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "gasDamageTitle": "Gasoso",
   "@gasDamageTitle": {
     "description": "Codex Weapon damage type title",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "magneticDamageTitle": "Magnético",
   "@magneticDamageTitle": {
     "description": "Codex Weapon damage type title",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "viralDamageTitle": "Viral",
   "@viralDamageTitle": {
     "description": "Codex Weapon damage type title",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "corrosiveDamageTitle": "Corrosivo",
   "@corrosiveDamageTitle": {
     "description": "Codex Weapon damage type title",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "voidDamageTitle": "Void",
   "@voidDamageTitle": {
     "description": "Codex Weapon damage type title",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "tauDamageTitle": "Tau",
   "@tauDamageTitle": {
     "description": "Codex Weapon damage type title",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "cinematicDamageTitle": "Cinemática",
   "@cinematicDamageTitle": {
     "description": "Codex Weapon damage type title",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "shieldDrainDamageTitle": "Dreno de Escudo",
   "@shieldDrainDamageTitle": {
     "description": "Codex Weapon damage type title",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "healthDrainDamageTitle": "Dreno de Saúde",
   "@healthDrainDamageTitle": {
     "description": "Codex Weapon damage type title",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "energyDrainDamageTitle": "Dreno de Energia",
   "@energyDrainDamageTitle": {
     "description": "Codex Weapon damage type title",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "physicalDamageTitle": "Físico",
   "@physicalDamageTitle": {
     "description": "Codex Weapon damage type title",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "circuitResetTitle": "The Circuit resets in",
   "@circuitResetTitle": {
     "description": "Text displayed next to the weekly reset time for the circuit",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
+  },
+  "circuitResetSubtitle": "Tap to see current offerings",
+  "@circuitResetSubtitle": {
+    "description": "Text displayed under circuitResetTitle",
+    "type": "text"
   },
   "archimedeaTitle": "Deep Archimedea ends",
   "@archimedeaTitle": {
     "description": "Text displayed next to the weekly reset time for the Deep Archimedea",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "archimedeaDeviationTitle": "Deviation",
   "@archimedeaDeviationTitle": {
     "description": "Text displayed next to Deep Archimedea deviation name",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "archimedeaRiskTitle": "Risk Variable",
   "@archimedeaRiskTitle": {
     "description": "Text displayed next to Deep Archimedea risk variable name",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "missionsCategoryTitle": "Missions",
   "@missionsCategoryTitle": {
     "description": "Text displayed where a missions category is needed",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "archimedeaPersonalModifierTitle": "Personal Modifiers",
   "@archimedeaPersonalModifierTitle": {
     "description": "Text displayed above to Deep Archimedea personal modifiers",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "archimedeaWarningTitle": "Warning",
   "@archimedeaWarningTitle": {
     "description": "Warning title displayed under Deep Archimedea timer",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "archimedeaWarningSubtitle": "DE doesn't always update Deep Archimedea data after a weekly reset so consider this unstable.\nWarning will be removed when data rotation is more consistent",
   "@archimedeaWarningSubtitle": {
     "description": "Warning text displayed under Deep Archimedea warning title",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "activitiesTitle": "Activities",
   "@activitiesTitle": {
     "description": "Activities title",
+    "type": "text"
+  },
+  "nightwaveSeasonSubtitle": "Season {season}",
+  "@nightwaveSeasonSubtitle": {
+    "description": "Current nightwave season number",
     "type": "text",
-    "placeholder": {}
+    "placeholder": {
+      "season": {
+        "type": "int"
+      }
+    }
+  },
+  "calendar1999Title": "1999 Calendar",
+  "@calendar1999Title": {
+    "description": "Title text for 1999 calendar card",
+    "type": "text"
+  },
+  "traderItemHeaderTitle": "Item",
+  "@traderItemHeaderTitle": {
+    "description": "Trader inventory header text",
+    "type": "text"
+  },
+  "traderDucatsHeaderTitle": "Item",
+  "@traderDucatsHeaderTitle": {
+    "description": "Trader inventory header text",
+    "type": "text"
+  },
+  "traderCreditsHeaderTitle": "Item",
+  "@traderCreditsHeaderTitle": {
+    "description": "Trader inventory header text",
+    "type": "text"
   }
 }

@@ -16,110 +16,92 @@
   "tapForMoreDetails": "Klepnutím zde zobrazíte další podrobnosti",
   "@tapForMoreDetails": {
     "description": "General description to tell the user that this object takes you to a different page",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "seeDetails": "Zobrazit podrobnosti",
   "@seeDetails": {
     "description": "General button to see more details of given object",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "seeMore": "See More",
   "@seeMore": {
     "description": "General button to see more of a overview object",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
-  "seeWikia": "Viz Wiki",
-  "@seeWikia": {
-    "description": "General button to wikia of given item",
-    "type": "text",
-    "placeholders": {}
+  "seeWiki": "See Wiki",
+  "@seeWiki": {
+    "description": "General button to wiki of given item",
+    "type": "text"
   },
   "eventDescription": "Popis",
   "@eventDescription": {
     "description": "Event description category title",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "eventStatus": "Stav události",
   "@eventStatus": {
     "description": "Event status category title",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "eventStatusNode": "Uzel",
   "@eventStatusNode": {
     "description": "The node that the event is taking place in",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "eventStatusProgress": "Postup",
   "@eventStatusProgress": {
     "description": "The progress of the current event from 0 to 100 %",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "eventStatusEta": "Zbývající čas (ETA)",
   "@eventStatusEta": {
     "description": "Current events remaining estimated time",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "eventRewards": "Odměny",
   "@eventRewards": {
     "description": "Event reward title",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "bountyTitle": "Bounty",
   "@bountyTitle": {
     "description": "Bounty card title.",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "errorTitle": "Došlo k chybě aplikace",
   "@errorTitle": {
     "description": "error title",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "errorDescription": "V systému došlo k neočekávané chybě.\nNahlašuji chybu správci systému...",
   "@errorDescription": {
     "description": "error description",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "baroTitle": "Baro Ki'Teer",
   "@baroTitle": {
     "description": "Title for Baro Ki'Teer card",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "location": "Location",
   "@location": {
     "description": "Reuseable string for location",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "baroLeavesOn": "Ochází za",
   "@baroLeavesOn": {
     "description": "shows when Baro Ki'Teer is leaving",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "baroArrivesOn": "Objeví za",
   "@baroArrivesOn": {
     "description": "shows at when Baro Ki'Teer will arrive",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "baroInventory": "Inventář Baro Ki'Teeera",
   "@baroInventory": {
     "description": "Baro Ki'Teer Inventory button label",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "countdownTooltip": "Končí {date}",
   "@countdownTooltip": {
@@ -136,698 +118,582 @@
   "kuvaBanner": "Kuva se obnoví za",
   "@kuvaBanner": {
     "description": "Kuva refresh countdown title",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "formorianTitle": "Fomorian",
   "@formorianTitle": {
     "description": "Fomorian progress title",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "razorbackTitle": "Razorback",
   "@razorbackTitle": {
     "description": "Razorback progress title",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "earthCycleTitle": "Cyklus Země",
   "@earthCycleTitle": {
     "description": "Earth cycle title",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "cetusCycleTitle": "Cyklus Cetusu",
   "@cetusCycleTitle": {
     "description": "Cetus cycle title",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "vallisCycleTitle": "Cyklus Vallis",
   "@vallisCycleTitle": {
     "description": "Vallis cycle title",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "cambionCycleTitle": "Cyklus Cambionu",
   "@cambionCycleTitle": {
     "description": "Cambion Cycle title",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "zarimanCycleTitle": "Zariman Cycle",
   "@zarimanCycleTitle": {
     "description": "Zariman Cycle title",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "timersTitle": "Časovače",
   "@timersTitle": {
     "description": "Times title",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "fissuresTitle": "Fissures",
   "@fissuresTitle": {
     "description": "Fissures title",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "invasionsTitle": "Invaze",
   "@invasionsTitle": {
     "description": "Invasions title",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "syndicatesTitle": "Syndikáty",
   "@syndicatesTitle": {
     "description": "Syndicates title",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "codexTitle": "Codex",
   "@codexTitle": {
     "description": "Codex title",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "codexDescription": "Search all warframe items",
   "@codexDescription": {
     "description": "Codex description",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "helpfulLinksTitle": "Užitečné odkazy",
   "@helpfulLinksTitle": {
     "description": "Helpful Links title",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "behaviorTitle": "Chování",
   "@behaviorTitle": {
     "description": "Behavior category title",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "themeTitle": "Téma",
   "@themeTitle": {
     "description": "Theme title",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "themeDescription": "Vybrat vzhled applikace.",
   "@themeDescription": {
     "description": "Theme option description",
-    "typ": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "notificationsTitle": "Oznámení",
   "@notificationsTitle": {
     "description": "Notifications category title",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "rareAlertsNotificationTitle": "Vzácná upozornění",
   "@rareAlertsNotificationTitle": {
     "description": "Rare Alerts title",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "rareAlertsNotificationDescription": "Vzácná upozornění, zejména dary lotusu.",
   "@rareAlertsNotificationDescription": {
     "description": "Description for rare alerts option",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "operationAlertsNotificationTitle": "Operation Alerts",
   "@operationAlertsNotificationTitle": {
     "description": "Rare Alerts title",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "operationAlertsNotificationDescription": "Alert notifications for operations",
   "@operationAlertsNotificationDescription": {
     "description": "Description for rare alerts option",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "baroNotificationTitle": "Baro Ki'Teer",
   "@baroNotificationTitle": {
     "description": "Baro's notification title",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "baroNotificationDescription": "Oznámení jak o příjezdu Baro'a, tak o odletu.",
   "@baroNotificationDescription": {
     "description": "Notification description for both Baro's arrivial and departure.",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "darvoNotificationTitle": "Darvovy Denní Nabídky",
   "@darvoNotificationTitle": {
     "description": "Notification title for darvo's daily deals",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "darvoNotificationDescription": "Darvo nový nález dne.",
   "@darvoNotificationDescription": {
     "description": "Notification description for Darvo's Daily Deal",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "sortieNotificationTitle": "Sortie",
   "@sortieNotificationTitle": {
     "description": "Notification title for sorties",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "sortieNotificationDescription": "Oznámení pro nové Sortie.",
   "@sortieNotificationDescription": {
     "description": "description for sortie notification option",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "sentientOutpostNotificationTitle": "Základna Sentientů",
   "@sentientOutpostNotificationTitle": {
     "description": "Notification title for sentient outpost",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "sentientOutpostNotificationDescription": "Notifications for new sentient threats.",
   "@sentientOutpostNotificationDescription": {
     "description": "Notification description for sentient outpost option",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "warframeNewsTitle": "News",
   "@warframeNewsTitle": {
     "description": "Main Title for Warframe news page",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "warframeNewsNotificationTitle": "Novinky",
   "@warframeNewsNotificationTitle": {
     "description": "Main Title for Warframe news notifications",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "warframeNewsNotificationDescription": "Oznámení novinek o Prime Přístupu, Steamech a Aktualizacích.",
   "@warframeNewsNotificationDescription": {
     "description": "Main description for Warframe news notifications",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "planetCyclesNotificationTitle": "Otevřít cykly světů",
   "@planetCyclesNotificationTitle": {
     "description": "Main title for open world notifications",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "planetCyclesNotificationDescription": "Oznámení otevřeného světa pro dané cykly.",
   "@planetCyclesNotificationDescription": {
     "description": "Main description for open world notifications",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "resourcesNotificationTitle": "Suroviny",
   "@resourcesNotificationTitle": {
     "description": "Main title for resource notifications",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "resourcesNotificationDescription": "Suroviny nalezené většinou v invazích.",
   "@resourcesNotificationDescription": {
     "description": "Main description for resource notifications",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "fissuresNotificationTitle": "Fissure Mise",
   "@fissuresNotificationTitle": {
     "description": "Main title for fisssures notifications",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "fissuresNotificationDescription": "Filter fissure notifications by prefered mission type.",
   "@fissuresNotificationDescription": {
     "description": "Main description for fissures notifications",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "earthDayOption": "Země Den",
   "@earthDayOption": {
     "description": "Earth cycle option",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "earthNightOption": "Země Noc",
   "@earthNightOption": {
     "description": "Earth cycle option",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "cetusDayOption": "Cetus Den",
   "@cetusDayOption": {
     "description": "Cetus cycle option",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "cetusNightOption": "Cetus Noc",
   "@cetusNightOption": {
     "description": "Cetus cycle option",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "vallisWarmOption": "Orb Vallis Teplo",
   "@vallisWarmOption": {
     "description": "Orb vallis cycle option",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "vallisColdOption": "Orb Vallis Zima",
   "@vallisColdOption": {
     "description": "Orb vallis cycle option",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "cambionFassOption": "Cambion Fass",
   "@cambionFassOption": {
     "description": "Cambion Fass cycle option",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "cambionVomeOption": "Cambion Vome",
   "@cambionVomeOption": {
     "description": "Cambion Fass cycle option",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "primeAccessNewsOption": "Prime Přístup",
   "@primeAccessNewsOption": {
     "description": "Warframe news option",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "streamNewsOption": "Oznámení o Streamech",
   "@streamNewsOption": {
     "description": "Warframe news option",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "updateNewsOption": "Warframe Novinky o Aktualizacích",
   "@updateNewsOption": {
     "description": "Warframe news option",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "reportBugsTitle": "Nahlásit chyby",
   "@reportBugsTitle": {
     "desciption": "Title for bug report link",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "reportBugsDescription": "Report bugs or request a feature.",
   "@reportBugsDescription": {
     "description": "Description for bug report link",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "aboutCategoryTitle": "Informace",
   "@aboutCategoryTitle": {
     "description": "Title for the about category of the settings page",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "aboutAppTitle": "About app",
   "@aboutAppTitle": {
     "description": "Title for the about app dialog",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "contributeTranslationsTitle": "Contribute Translations",
   "@contributeTranslationsTitle": {
     "description": "Title for contribute translations link",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "contributeTranslationsDescription": "Volunteer to contribute translations",
   "@contributeTranslationsDescription": {
     "description": "Description for contribute translations link",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "lightThemeTitle": "Světlé téma",
   "@lightThemeTitle": {
     "description": "Title for light theme",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "darkThemeTitle": "Tmavé téma",
   "@darkThemeTitle": {
     "description": "Title for dark theme",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "systemThemeTitle": "Systémové téma",
   "@systemThemeTitle": {
     "description": "Title for system theme",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "legalese": "Warframe a logo Warframe jsou registrované ochranné známky Digital Extremes Ltd. Cephalon Navis nor WFCD jsou přidruženy k Digital Extremes Ltd. v jakémkoli smyslu.",
   "@legalese": {
     "description": "Cephalon Navis legalese",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "homePageTitle": "Home",
   "@homePageTitle": {
     "description": "Displayes a link to Navis's homepage",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "sourceCode": "Source code",
   "@sourceCode": {
     "description": "Displayes a link to Navis's source code",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "issueTrackerDescription": "Nahlásit problémy nebo podat žádost o novou funkci pro tento projekt",
   "@issueTrackerDescription": {
     "description": "Description for Navis's issue tracker",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "issueTrackerTitle": "sledování problémů",
   "@issueTrackerTitle": {
     "description": "Display link to Navis's issue tracker",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "warframeLinkTitle": "Více informací o hře Warframe lze nalézt na oficiálních stránkách",
   "@warframeLinkTitle": {
     "description": "Description for Warframe's main site link",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "settingsTitle": "Nastavení",
   "@settingsTitle": {
     "description": "Settings title",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "dailyRewardTitle": "Denní Odměny Obnovení Časovače",
   "@dailyRewardTitle": {
     "description": "Title for daily reward timer",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "eliteBadgeTitle": "Elita",
   "@eliteBadgeTitle": {
     "description": "Nightwave Elite badge title",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "dailyNightwaveTitle": "Denní",
   "@dailyNightwaveTitle": {
     "description": "Nightwave daily title",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "weeklyNightwaveTitle": "Týdenní",
   "@weeklyNightwaveTitle": {
     "description": "Nightwave weekly title",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "warframePassiveTitle": "Pasivní",
   "@warframePassiveTitle": {
     "description": "Warframes passive title",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "auraTitle": "Polarita Aury",
   "@auraTitle": {
     "description": "Aura polarity title for items",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "preinstalledPolarities": "Předinstalované polarity",
   "@preinstalledPolarities": {
     "description": "Preinstalled polarites title for items",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "shieldTitle": "Štít",
   "@shieldTitle": {
     "description": "Title for shield value",
-    "typ": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "armorTitle": "Brnění",
   "@armorTitle": {
     "description": "Title for armor value",
-    "typ": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "healthTitle": "Zdraví",
   "@healthTitle": {
     "description": "Title for health value",
-    "typ": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "powerTitle": "Síla",
   "@powerTitle": {
     "description": "Title for power value",
-    "typ": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "sprintSpeedTitle": "Rychlost sprintu",
   "@sprintSpeedTitle": {
     "description": "Title for sprint speed value",
-    "typ": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "abilitiesTitle": "Schopnosti",
   "@abilitiesTitle": {
     "description": "Title for warframe, archwings, and Necromech abilites",
-    "typ": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "componentsTitle": "Součástky",
   "@componentsTitle": {
     "description": "Title for item components",
-    "typ": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "masteryRequirementTitle": "Požadavek Mastery",
   "@masteryRequirementTitle": {
     "description": "Mastery requirement for item",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "weaponTypeTitle": "Typ zbraně",
   "@weaponTypeTitle": {
     "description": "Weapon item type",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "accuracyTitle": "Přesnost",
   "@accuracyTitle": {
     "description": "Weapon accuracy title",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "criticalChanceTitle": "Critical Chance",
   "@criticalChanceTitle": {
     "description": "Weapon crictical chance",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "cricticalMultiplierTitle": "Multiplikátor Kritéria",
   "@cricticalMultiplierTitle": {
     "description": "Weapon critical multiplier",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "fireRateTitle": "Rychlost Střelby",
   "@fireRateTitle": {
     "description": "Weapon fire rate",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "magazineTitle": "Zásobník",
   "@magazineTitle": {
     "description": "Weapon magazine size title",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "multishotTitle": "Multishot",
   "@multishotTitle": {
     "description": "Weapon multishot",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "noiseTitle": "Hluk",
   "@noiseTitle": {
     "description": "Weapon noise type",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "reloadTitle": "Přebít",
   "@reloadTitle": {
     "description": "Weapon item type",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "rivenDispositionTitle": "Dispozice Rivenu",
   "@rivenDispositionTitle": {
     "description": "Weapon's riven disposition",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "statusChanceTitle": "Šance Stavu",
   "@statusChanceTitle": {
     "description": "Weapon's status chance",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "triggerTitle": "Spoušť",
   "@triggerTitle": {
     "description": "Weapon item type",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "damageTitle": "Poškození",
   "@damageTitle": {
     "description": "Weapon's damage category",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "totalDamageTitle": "Celkové Poškození",
   "@totalDamageTitle": {
     "description": "Weapon's total damage'",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "stancePolarityTitle": "Postavení Polarity",
   "@stancePolarityTitle": {
     "description": "Melee stance polarity title",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "attackSpeedTitle": "Rychlost Útoku",
   "@attackSpeedTitle": {
     "description": "melee attack speed",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "followThroughTitle": "Follow Through",
   "@followThroughTitle": {
     "description": "Melee follow through title",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "rangeTitle": "Dosah",
   "@rangeTitle": {
     "description": "Melee's range title",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "slamAttackTitle": "Útok Bouchnutí",
   "@slamAttackTitle": {
     "description": "Melee's slam attack",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "slamRadialDamageTitle": "Radiální Poškození Bouchnutí",
   "@slamRadialDamageTitle": {
     "description": "Melee's Slam Radial Damage",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "slamRadiusTitle": "Radius Bouchnutí",
   "@slamRadiusTitle": {
     "description": "Slam Radius title",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "slideAttackTitle": "Útok Sklouznutí",
   "@slideAttackTitle": {
     "description": "Melee's slide attack",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "heavyAttackTitle": "Těžký Útok",
   "@heavyAttackTitle": {
     "description": "Heavy attack title",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "heavySlamAttackTitle": "Těžký Útok Bouchnutí",
   "@heavySlamAttackTitle": {
     "description": "Heavy Slam attack title",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "heavySlamRadialDamageTitle": "Radiální Poškození Bouchnutí",
   "@heavySlamRadialDamageTitle": {
     "description": "Heavy Slam attack title",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "heavySlamRadiusTitle": "Těžký Radius Bouchnutí",
   "@heavySlamRadiusTitle": {
     "description": "Heavy Slam attack title",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "windUpTitle": "Vítr Nahoru",
   "@windUpTitle": {
     "description": "melee's heavy wind up time title",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "discordSupportTitle": "Podpora",
   "@discordSupportTitle": {
     "description": "Discord support title",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "steelPathTitle": "Steel Path",
   "@steelPathTitle": {
     "description": "Steel path card title",
-    "type": "text",
-    "placeholers": {}
+    "type": "text"
   },
   "syndicateDualScreenTitle": "Vybrat Syndikát",
   "@syndicateDualScreenTitle": {
     "description": "User hint when under syndicate tabs using a tablet",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "optOutOfAnalyticsTitle": "Opt out of analytics",
   "@optOutOfAnalyticsTitle": {
     "description": "Title opting out of analytics",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "optOutOfAnalyticsDescription": "Disable analytics.",
   "@optOutOfAnalyticsDescription": {
     "description": "Description of the analytics opting buttong",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "appLangTitle": "Language",
   "@appLangTitle": {
     "description": "Title for app language options",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "appLangDescription": "Override default behavior for language detection.",
   "@appLangDescription": {
     "description": "Description for language options",
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "modLevelLabel": "Level {rank}",
   "@modLevelLabel": {
@@ -839,83 +705,70 @@
       }
     }
   },
-  "codexHint": "Search here...",
+  "codexHint": "Search the codex here...",
   "@codexHint": {
     "description": "Codex description when a user enters the codex or when the search bar is empty",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "codexNoResults": "No results",
   "@codexNoResults": {
     "description": "Displayed when a search result in codex returns empty",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "codexVaultedLabel": "Vaulted",
   "@codexVaultedLabel": {
     "description": "A label shown in codex items to detenote items that are vaulted",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "exploreTitle": "Explore",
   "@exploreTitle": {
     "description": "Title for explore page",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "constructionProgressTitle": "Construction Progress",
   "@constructionProgressTitle": {
     "description": "Title for invasion constrcution progress",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "synthTargetTitle": "SynthTargets",
   "@synthTargetTitle": {
     "description": "Title for synthtargets.",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "archonHuntTitle": "Archon Hunt",
   "@archonHuntTitle": {
     "description": "Title for archon hunt notification toggle.",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "archonHuntDescription": "Archon hunt reset notification.",
   "@archonHuntDescription": {
     "description": "Description for archon hunt notification toggle.",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "allFissuresButton": "All",
   "@allFissuresButton": {
     "description": "Button label for all fissures",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "voidStormFissuresButton": "Void Storms",
   "@voidStormFissuresButton": {
     "description": "Button label for void storm fissures",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "saleEndsTitle": "SALE ENDS",
   "@saleEndsTitle": {
     "description": "Sale ends title for countdown timer",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "salePriceTitle": "Sale price",
   "@salePriceTitle": {
     "description": "Displays the item's sale price for darvo sales",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "originalPriceTitle": "Original Price",
   "@originalPriceTitle": {
     "description": "Displays the item's original price for darvo sales",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "discountTitle": "{discount}% OFF!",
   "@discountTitle": {
@@ -936,152 +789,127 @@
   "outOfStockTitle": "OUT OF STOCK",
   "@outOfStockTitle": {
     "description": "Tells the user when darvo is out of stock for the current sale",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "duviriJoy": "Duviri Joy",
   "@duviriJoy": {
     "description": "Duviri joy state. If Duviri doesn't have a translatetion then only joy can be translated.",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "duviriAnger": "Duviri Anger",
   "@duviriAnger": {
     "description": "Duviri anger state. If Duviri doesn't have a translatetion then only joy can be translated.",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "duviriEnvy": "Duviri Envy",
   "@duviriEnvy": {
     "description": "Duviri envy state. If Duviri doesn't have a translatetion then only joy can be translated.",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "duviriSorrow": "Duviri Sorrow",
   "@duviriSorrow": {
     "description": "Duviri sorrow state. If Duviri doesn't have a translatetion then only joy can be translated.",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "duviriFear": "Duviri Fear",
   "@duviriFear": {
     "description": "Duviri Fear state. If Duviri doesn't have a translatetion then only joy can be translated.",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "mapTitle": "Maps",
   "@mapTitle": {
     "description": "Map title",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "mapDescription": "See region maps",
   "@mapDescription": {
     "description": "Map card description",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "fishTitle": "Fish",
   "@fishTitle": {
     "description": "Fish title",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "fishDescription": "See fish information by region",
   "@fishDescription": {
     "description": "fish card description",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "fishName": "Name",
   "@fishName": {
     "description": "Display a fish name along side it",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "fishTime": "Time",
   "@fishTime": {
     "description": "Display time a day a fish can be caught in",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "fishSpear": "Spear",
   "@fishSpear": {
     "description": "Display the type of spear used to catch fish",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "fishRarity": "Rarity",
   "@fishRarity": {
     "description": "Display rarity of a given fish",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "fishBait": "Bait",
   "@fishBait": {
     "description": "Display type of bait needed to catch fish",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "fishStanding": "Standing",
   "@fishStanding": {
     "description": "Display standing earned with fish",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "fishUnique": "Unique",
   "@fishUnique": {
     "description": "Display a unique resources earned by given fish",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "fishBladder": "Bladders",
   "@fishBladder": {
     "description": "Displays how many bladders can be earned with the given fish size",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "fishGills": "Gills",
   "@fishGills": {
     "description": "Displays how many gills can be earned with the given fish size",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "fishTumors": "Tumors",
   "@fishTumors": {
     "description": "Displays how many tumors can be earned with the given fish size",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "fishMeat": "Meats",
   "@fishMeat": {
     "description": "Displays how many meat can be earned with the given fish size",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "fishOil": "Oils",
   "@fishOil": {
     "description": "Displays how many oils can be earned with the given fish size",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "fishScales": "Scales",
   "@fishScales": {
     "description": "Displays how many scales can be earned with the given fish size",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "fishScrap": "Scraps",
   "@fishScrap": {
     "description": "Displays how many scraps can be earned with the given fish size",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "fishAny": "Any",
   "@fishAny": {
     "description": "Displayed when a fish can be caught by any spear",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "dropChance": "Drop chance {chance}%",
   "@dropChance": {
@@ -1094,187 +922,191 @@
   "statsTitle": "Stats",
   "@statsTitle": {
     "description": "Codex stat title",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "patchlogsTitle": "Patchlogs",
   "@patchlogsTitle": {
     "description": "Codex patchlogs title",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "impactDamageTitle": "Impact",
   "@impactDamageTitle": {
     "description": "Codex Weapon damage type title",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "punctureDamageTitle": "Puncture",
   "@punctureDamageTitle": {
     "description": "Codex Weapon damage type title",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "slashDamageTitle": "Slash",
   "@slashDamageTitle": {
     "description": "Codex Weapon damage type title",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "heatDamageTitle": "Heat",
   "@heatDamageTitle": {
     "description": "Codex Weapon damage type title",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "coldDamageTitle": "Cold",
   "@coldDamageTitle": {
     "description": "Codex Weapon damage type title",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "electricityDamageTitle": "Electricity",
   "@electricityDamageTitle": {
     "description": "Codex Weapon damage type title",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "toxinDamageTitle": "Toxin",
   "@toxinDamageTitle": {
     "description": "Codex Weapon damage type title",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "blastDamageTitle": "Blast",
   "@blastDamageTitle": {
     "description": "Codex Weapon damage type title",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "radiationDamageTitle": "Radiation",
   "@radiationDamageTitle": {
     "description": "Codex Weapon damage type title",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "gasDamageTitle": "Gas",
   "@gasDamageTitle": {
     "description": "Codex Weapon damage type title",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "magneticDamageTitle": "Magnetic",
   "@magneticDamageTitle": {
     "description": "Codex Weapon damage type title",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "viralDamageTitle": "Viral",
   "@viralDamageTitle": {
     "description": "Codex Weapon damage type title",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "corrosiveDamageTitle": "Corrosive",
   "@corrosiveDamageTitle": {
     "description": "Codex Weapon damage type title",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "voidDamageTitle": "Void",
   "@voidDamageTitle": {
     "description": "Codex Weapon damage type title",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "tauDamageTitle": "Tau",
   "@tauDamageTitle": {
     "description": "Codex Weapon damage type title",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "cinematicDamageTitle": "Cinematic",
   "@cinematicDamageTitle": {
     "description": "Codex Weapon damage type title",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "shieldDrainDamageTitle": "Shield Drain",
   "@shieldDrainDamageTitle": {
     "description": "Codex Weapon damage type title",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "healthDrainDamageTitle": "Health Drain",
   "@healthDrainDamageTitle": {
     "description": "Codex Weapon damage type title",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "energyDrainDamageTitle": "Energy Drain",
   "@energyDrainDamageTitle": {
     "description": "Codex Weapon damage type title",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "physicalDamageTitle": "Physical",
   "@physicalDamageTitle": {
     "description": "Codex Weapon damage type title",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "circuitResetTitle": "The Circuit resets in",
   "@circuitResetTitle": {
     "description": "Text displayed next to the weekly reset time for the circuit",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
+  },
+  "circuitResetSubtitle": "Tap to see current offerings",
+  "@circuitResetSubtitle": {
+    "description": "Text displayed under circuitResetTitle",
+    "type": "text"
   },
   "archimedeaTitle": "Deep Archimedea ends",
   "@archimedeaTitle": {
     "description": "Text displayed next to the weekly reset time for the Deep Archimedea",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "archimedeaDeviationTitle": "Deviation",
   "@archimedeaDeviationTitle": {
     "description": "Text displayed next to Deep Archimedea deviation name",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "archimedeaRiskTitle": "Risk Variable",
   "@archimedeaRiskTitle": {
     "description": "Text displayed next to Deep Archimedea risk variable name",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "missionsCategoryTitle": "Missions",
   "@missionsCategoryTitle": {
     "description": "Text displayed where a missions category is needed",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "archimedeaPersonalModifierTitle": "Personal Modifiers",
   "@archimedeaPersonalModifierTitle": {
     "description": "Text displayed above to Deep Archimedea personal modifiers",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "archimedeaWarningTitle": "Warning",
   "@archimedeaWarningTitle": {
     "description": "Warning title displayed under Deep Archimedea timer",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "archimedeaWarningSubtitle": "DE doesn't always update Deep Archimedea data after a weekly reset so consider this unstable.\nWarning will be removed when data rotation is more consistent",
   "@archimedeaWarningSubtitle": {
     "description": "Warning text displayed under Deep Archimedea warning title",
-    "type": "text",
-    "placeholder": {}
+    "type": "text"
   },
   "activitiesTitle": "Activities",
   "@activitiesTitle": {
     "description": "Activities title",
+    "type": "text"
+  },
+  "nightwaveSeasonSubtitle": "Season {season}",
+  "@nightwaveSeasonSubtitle": {
+    "description": "Current nightwave season number",
     "type": "text",
-    "placeholder": {}
+    "placeholder": {
+      "season": {
+        "type": "int"
+      }
+    }
+  },
+  "calendar1999Title": "1999 Calendar",
+  "@calendar1999Title": {
+    "description": "Title text for 1999 calendar card",
+    "type": "text"
+  },
+  "traderItemHeaderTitle": "Item",
+  "@traderItemHeaderTitle": {
+    "description": "Trader inventory header text",
+    "type": "text"
+  },
+  "traderDucatsHeaderTitle": "Item",
+  "@traderDucatsHeaderTitle": {
+    "description": "Trader inventory header text",
+    "type": "text"
+  },
+  "traderCreditsHeaderTitle": "Item",
+  "@traderCreditsHeaderTitle": {
+    "description": "Trader inventory header text",
+    "type": "text"
   }
 }
