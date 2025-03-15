@@ -225,7 +225,7 @@
     "description": "Rare Alerts title",
     "type": "text"
   },
-  "operationAlertsNotificationDescription": "Alert notifications for operations",
+  "operationAlertsNotificationDescription": "Уведомления об операциях",
   "@operationAlertsNotificationDescription": {
     "description": "Description for rare alerts option",
     "type": "text"
