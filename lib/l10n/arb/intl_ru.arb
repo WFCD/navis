@@ -23,12 +23,12 @@
     "description": "General button to see more details of given object",
     "type": "text"
   },
-  "seeMore": "See More",
+  "seeMore": "Подробнее",
   "@seeMore": {
     "description": "General button to see more of a overview object",
     "type": "text"
   },
-  "seeWiki": "See Wiki",
+  "seeWiki": "Смотреть в Wiki",
   "@seeWiki": {
     "description": "General button to wiki of given item",
     "type": "text"
@@ -220,7 +220,7 @@
     "description": "Description for rare alerts option",
     "type": "text"
   },
-  "operationAlertsNotificationTitle": "Operation Alerts",
+  "operationAlertsNotificationTitle": "Сигналы тревоги",
   "@operationAlertsNotificationTitle": {
     "description": "Rare Alerts title",
     "type": "text"
