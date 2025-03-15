@@ -705,7 +705,7 @@
       }
     }
   },
-  "codexHint": "Search the codex here...",
+  "codexHint": "Искать по кодексу...",
   "@codexHint": {
     "description": "Codex description when a user enters the codex or when the search bar is empty",
     "type": "text"
@@ -1034,12 +1034,12 @@
     "description": "Text displayed next to the weekly reset time for the circuit",
     "type": "text"
   },
-  "circuitResetSubtitle": "Tap to see current offerings",
+  "circuitResetSubtitle": "Посмотреть текущие предложения",
   "@circuitResetSubtitle": {
     "description": "Text displayed under circuitResetTitle",
     "type": "text"
   },
-  "archimedeaTitle": "Deep Archimedea ends",
+  "archimedeaTitle": "Завершение Глубинной Архимедии",
   "@archimedeaTitle": {
     "description": "Text displayed next to the weekly reset time for the Deep Archimedea",
     "type": "text"
