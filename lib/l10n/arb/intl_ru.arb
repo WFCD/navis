@@ -1049,12 +1049,12 @@
     "description": "Text displayed next to Deep Archimedea deviation name",
     "type": "text"
   },
-  "archimedeaRiskTitle": "Risk Variable",
+  "archimedeaRiskTitle": "Уровень риска",
   "@archimedeaRiskTitle": {
     "description": "Text displayed next to Deep Archimedea risk variable name",
     "type": "text"
   },
-  "missionsCategoryTitle": "Missions",
+  "missionsCategoryTitle": "Миссии",
   "@missionsCategoryTitle": {
     "description": "Text displayed where a missions category is needed",
     "type": "text"
@@ -1064,7 +1064,7 @@
     "description": "Text displayed above to Deep Archimedea personal modifiers",
     "type": "text"
   },
-  "archimedeaWarningTitle": "Warning",
+  "archimedeaWarningTitle": "Предупреждение",
   "@archimedeaWarningTitle": {
     "description": "Warning title displayed under Deep Archimedea timer",
     "type": "text"
@@ -1074,12 +1074,12 @@
     "description": "Warning text displayed under Deep Archimedea warning title",
     "type": "text"
   },
-  "activitiesTitle": "Activities",
+  "activitiesTitle": "Действия",
   "@activitiesTitle": {
     "description": "Activities title",
     "type": "text"
   },
-  "nightwaveSeasonSubtitle": "Season {season}",
+  "nightwaveSeasonSubtitle": "Сезон (В игре называется - Ночная волна Микс Норы Диск Nr...)",
   "@nightwaveSeasonSubtitle": {
     "description": "Current nightwave season number",
     "type": "text",
@@ -1089,17 +1089,17 @@
       }
     }
   },
-  "calendar1999Title": "1999 Calendar",
+  "calendar1999Title": "Календарь 1999\n1999 Календарь",
   "@calendar1999Title": {
     "description": "Title text for 1999 calendar card",
     "type": "text"
   },
-  "traderItemHeaderTitle": "Item",
+  "traderItemHeaderTitle": "Товар",
   "@traderItemHeaderTitle": {
     "description": "Trader inventory header text",
     "type": "text"
   },
-  "traderDucatsHeaderTitle": "Item",
+  "traderDucatsHeaderTitle": "Товар",
   "@traderDucatsHeaderTitle": {
     "description": "Trader inventory header text",
     "type": "text"
