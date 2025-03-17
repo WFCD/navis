@@ -429,7 +429,7 @@ class NavisLocalizationsZh extends NavisLocalizations {
   }
 
   @override
-  String get codexHint => '在此搜尋..';
+  String get codexHint => 'Search the codex here...';
 
   @override
   String get codexNoResults => '未能找到結果';

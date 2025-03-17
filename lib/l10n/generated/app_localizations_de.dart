@@ -429,7 +429,7 @@ class NavisLocalizationsDe extends NavisLocalizations {
   }
 
   @override
-  String get codexHint => 'Search here...';
+  String get codexHint => 'Search the codex here...';
 
   @override
   String get codexNoResults => 'Keine Treffer';

@@ -429,7 +429,7 @@ class NavisLocalizationsTr extends NavisLocalizations {
   }
 
   @override
-  String get codexHint => 'Burada ara...';
+  String get codexHint => 'Search the codex here...';
 
   @override
   String get codexNoResults => 'Sonuç bulunamadı';

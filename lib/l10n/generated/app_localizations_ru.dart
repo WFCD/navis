@@ -20,10 +20,10 @@ class NavisLocalizationsRu extends NavisLocalizations {
   String get seeDetails => 'Подробнее';
 
   @override
-  String get seeMore => 'See More';
+  String get seeMore => 'Подробнее';
 
   @override
-  String get seeWiki => 'See Wiki';
+  String get seeWiki => 'Смотреть в Wiki';
 
   @override
   String get eventDescription => 'Описание';
@@ -139,7 +139,7 @@ class NavisLocalizationsRu extends NavisLocalizations {
   String get rareAlertsNotificationDescription => 'Оповещение о редких Тревогах, в основном Дары Лотус.';
 
   @override
-  String get operationAlertsNotificationTitle => 'Operation Alerts';
+  String get operationAlertsNotificationTitle => 'Сигналы тревоги';
 
   @override
   String get operationAlertsNotificationDescription => 'Alert notifications for operations';
@@ -429,7 +429,7 @@ class NavisLocalizationsRu extends NavisLocalizations {
   }
 
   @override
-  String get codexHint => 'Поиск здесь...';
+  String get codexHint => 'Search the codex here...';
 
   @override
   String get codexNoResults => 'Ничего не найдено';
