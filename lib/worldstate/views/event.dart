@@ -59,7 +59,7 @@ class EventInformation extends StatelessWidget {
               delegate: SliverChildListDelegate.fixed(<Widget>[
                 EventStatus(
                   description: event.description,
-                  tooltip: event.tooltip ?? '',
+                  tooltip: event.tooltip,
                   node: event.victimNode ?? event.node ?? '',
                   health: event.health?.toDouble(),
                   currentScore: event.currentScore,
