@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:matomo_tracker/matomo_tracker.dart';
@@ -12,46 +11,37 @@ import 'package:navis_ui/navis_ui.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:warframestat_client/warframestat_client.dart';
 
+typedef SyndicateData = ({List<SyndicateMission> jobs, Nightwave? nightwave, Calendar calendar});
+
 class SyndicatePage extends StatelessWidget {
   const SyndicatePage({super.key});
 
-  bool _buildWhen(SolsystemState p, SolsystemState n) {
-    final previous = switch (p) {
-      WorldstateSuccess() => p.worldstate,
-      _ => null,
-    };
-
-    final next = switch (n) {
-      WorldstateSuccess() => n.worldstate,
-      _ => null,
-    };
-
-    if (previous == null || next == null) return true;
-
-    if (previous.nightwave != null || next.nightwave != null) {
-      return previous.syndicateMissions.first.expiry != next.syndicateMissions.first.expiry ||
-          previous.nightwave!.activeChallenges.equals(next.nightwave!.activeChallenges);
-    }
-
-    return previous.syndicateMissions.first.expiry != next.syndicateMissions.first.expiry;
-  }
-
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<WorldstateCubit, SolsystemState>(
-      buildWhen: _buildWhen,
-      builder: (context, state) {
-        final syndicateMissions =
-            state is WorldstateSuccess ? state.worldstate.syndicateMissions : <SyndicateMission>[];
-        final nightwave = state is WorldstateSuccess ? state.worldstate.nightwave : null;
+    return BlocSelector<WorldstateCubit, SolsystemState, SyndicateData?>(
+      selector: (state) {
+        if (state is! WorldstateSuccess) return null;
 
+        final worldstate = state.worldstate;
+
+        return (
+          calendar: worldstate.calendar.first,
+          nightwave: worldstate.nightwave,
+          jobs: worldstate.syndicateMissions,
+        );
+      },
+      builder: (context, state) {
         return TraceableWidget(
-          child: ViewLoading(
-            isLoading: state is! WorldstateSuccess,
-            child: ScreenTypeLayout.builder(
-              mobile: (_) => _SyndicatePageMobile(syndicates: syndicateMissions, nightwave: nightwave),
-              tablet: (_) => _SyndicatePageTablet(syndicates: syndicateMissions, nightwave: nightwave),
-            ),
+          actionName: 'SyndicatePage()',
+          child: ResponsiveBuilder(
+            builder: (context, info) {
+              return _SyndicatePageTablet(
+                syndicates: state!.jobs,
+                nightwave: state.nightwave,
+                calendar: state.calendar,
+                isMobile: info.refinedSize == RefinedSize.normal,
+              );
+            },
           ),
         );
       },
@@ -78,38 +68,13 @@ class _BuildSyndicates extends StatelessWidget {
   }
 }
 
-class _SyndicatePageMobile extends StatelessWidget {
-  const _SyndicatePageMobile({required this.syndicates, this.nightwave});
-
-  final List<SyndicateMission> syndicates;
-  final Nightwave? nightwave;
-
-  @override
-  Widget build(BuildContext context) {
-    return ListView(
-      padding: const EdgeInsets.only(top: 4),
-      children: <Widget>[
-        if (nightwave != null)
-          NightwaveCard(nightwave: nightwave!, onTap: () => NightwavePageRoute(nightwave).push<void>(context)),
-        const HexCard(),
-        Gaps.gap4,
-        _BuildSyndicates(syndicates: syndicates, onTap: (s) => SyndicatePageRoute(s).push<void>(context)),
-        const Divider(),
-        SyndicateCard(
-          syndicate: Syndicates.simaris,
-          caption: 'Tap to see targets',
-          onTap: () => const SynthTargetsPageRoute().push<void>(context),
-        ),
-      ],
-    );
-  }
-}
-
 class _SyndicatePageTablet extends StatefulWidget {
-  const _SyndicatePageTablet({required this.syndicates, this.nightwave});
+  const _SyndicatePageTablet({required this.syndicates, this.nightwave, required this.calendar, this.isMobile = true});
 
   final List<SyndicateMission> syndicates;
   final Nightwave? nightwave;
+  final Calendar calendar;
+  final bool isMobile;
 
   @override
   _SyndicatePageTabletState createState() => _SyndicatePageTabletState();
@@ -118,10 +83,12 @@ class _SyndicatePageTablet extends StatefulWidget {
 class _SyndicatePageTabletState extends State<_SyndicatePageTablet> {
   StreamController<Widget>? _controller;
 
+  void _changePane(Widget widget) => _controller?.sink.add(widget);
+
   @override
   void initState() {
     super.initState();
-    _controller = StreamController<Widget>();
+    if (widget.isMobile) _controller = StreamController<Widget>();
   }
 
   @override
@@ -131,44 +98,56 @@ class _SyndicatePageTabletState extends State<_SyndicatePageTablet> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Expanded(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 4),
-            child: ListView(
-              padding: const EdgeInsets.only(top: 8),
-              children: <Widget>[
-                if (widget.nightwave != null)
-                  NightwaveCard(
-                    nightwave: widget.nightwave!,
-                    onTap: () {
-                      _controller?.sink.add(NightwaveChalleneges(nightwave: widget.nightwave!));
-                    },
-                  ),
-                _BuildSyndicates(
-                  syndicates: widget.syndicates,
-                  onTap: (s) {
-                    _controller?.sink.add(SyndicateBounties(syndicate: s));
+          child: ListView(
+            padding: const EdgeInsets.only(top: 4),
+            children: <Widget>[
+              if (widget.nightwave != null)
+                NightwaveCard(
+                  nightwave: widget.nightwave!,
+                  onTap: () {
+                    widget.isMobile
+                        ? NightwavePageRoute(widget.nightwave).push<void>(context)
+                        : _changePane(NightwaveChalleneges(nightwave: widget.nightwave!));
                   },
                 ),
-              ],
-            ),
+              HexCard(
+                calendar: widget.calendar,
+                onTap: () {
+                  widget.isMobile
+                      ? Calendar1999PageRoute(widget.calendar.season, widget.calendar.days).push<void>(context)
+                      : _changePane(CalendarView(days: widget.calendar.days));
+                },
+              ),
+              _BuildSyndicates(
+                syndicates: widget.syndicates,
+                onTap: (s) {
+                  widget.isMobile
+                      ? SyndicatePageRoute(s).push<void>(context)
+                      : _changePane(SyndicateBounties(syndicate: s));
+                },
+              ),
+            ],
           ),
         ),
-        Expanded(
-          child: Center(
-            child: StreamBuilder<Widget>(
-              initialData: Text(context.l10n.syndicateDualScreenTitle),
-              stream: _controller?.stream,
-              builder: (_, snapshot) {
-                return AnimatedSwitcher(
-                  duration: kThemeAnimationDuration,
-                  switchInCurve: Curves.easeInCubic,
-                  switchOutCurve: Curves.easeOutCubic,
-                  child: snapshot.data,
-                );
-              },
+        if (!widget.isMobile) ...{
+          const VerticalDivider(indent: 16, endIndent: 16),
+          Expanded(
+            child: Center(
+              child: StreamBuilder<Widget>(
+                initialData: Text(context.l10n.syndicateDualScreenTitle),
+                stream: _controller?.stream,
+                builder: (_, snapshot) {
+                  return AnimatedSwitcher(
+                    duration: kThemeAnimationDuration,
+                    switchInCurve: Curves.easeInCubic,
+                    switchOutCurve: Curves.easeOutCubic,
+                    child: snapshot.data,
+                  );
+                },
+              ),
             ),
           ),
-        ),
+        },
       ],
     );
   }

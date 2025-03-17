@@ -4,10 +4,18 @@ import 'package:navis/l10n/l10n.dart';
 import 'package:navis_ui/navis_ui.dart';
 
 class SyndicateCard extends StatelessWidget {
-  const SyndicateCard({super.key, required this.syndicate, this.caption, this.trailing, required this.onTap});
+  const SyndicateCard({
+    super.key,
+    required this.syndicate,
+    this.title,
+    this.subtitle,
+    this.trailing,
+    required this.onTap,
+  });
 
   final Syndicates syndicate;
-  final String? caption;
+  final String? title;
+  final String? subtitle;
   final Widget? trailing;
   final void Function()? onTap;
 
@@ -27,8 +35,8 @@ class SyndicateCard extends StatelessWidget {
           padding: EdgeInsets.symmetric(vertical: (size.longestSide / 100) * 1.5),
           child: ListTile(
             leading: SyndicateIcon(syndicate: syndicate, iconSize: 50),
-            title: Text(toBeginningOfSentenceCase(syndicate.fullName) ?? syndicate.name, style: titleStyle),
-            subtitle: Text(caption ?? context.l10n.tapForMoreDetails, style: captionStyle),
+            title: Text(title ?? toBeginningOfSentenceCase(syndicate.fullName) ?? syndicate.name, style: titleStyle),
+            subtitle: Text(subtitle ?? context.l10n.tapForMoreDetails, style: captionStyle),
             trailing: trailing,
           ),
         ),
