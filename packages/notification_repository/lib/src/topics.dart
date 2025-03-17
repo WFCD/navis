@@ -213,6 +213,7 @@ abstract class Topics {
       strunBarrel,
       strunReciever,
       strunStock,
+      operationAlertsKey,
       ...generateFissureTopics(),
     ];
   }
