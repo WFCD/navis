@@ -8,6 +8,7 @@ extension WorldstateX on Worldstate {
 
     syndicateMissions
       ..retainWhere((s) => s.jobs.isNotEmpty)
+      ..retainWhere((s) => s.active)
       ..sort((a, b) => a.syndicate.compareTo(b.syndicate));
 
     fissures
