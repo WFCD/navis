@@ -22,10 +22,10 @@ class CategoryTitle extends StatelessWidget {
         );
 
     return ListTile(
-      title: Text(title, style: style ?? this.style),
+      title: Text(title),
+      titleTextStyle: this.style ?? style,
       subtitle: subtitle != null ? Text(subtitle!) : null,
       contentPadding: contentPadding,
-      dense: true,
     );
   }
 }

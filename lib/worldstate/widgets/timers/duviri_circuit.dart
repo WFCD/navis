@@ -77,6 +77,7 @@ class CircuitResetTimer extends StatelessWidget {
     final date = MaterialLocalizations.of(context).formatFullDate(expiry);
 
     return ListTile(
+      hoverColor: Colors.transparent,
       title: Text(context.l10n.circuitResetTitle),
       subtitle: Text(context.l10n.circuitResetSubtitle),
       trailing: CountdownTimer(tooltip: date, expiry: _getNextMonday()),

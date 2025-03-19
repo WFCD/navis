@@ -113,7 +113,7 @@ class WorldEventPageRoute extends GoRouteData {
 
   @override
   Widget build(BuildContext context, GoRouterState state) {
-    return EventInformation(event: $extra);
+    return TraceableWidget(actionName: 'worldEvent', child: EventInformation(event: $extra));
   }
 }
 
@@ -213,5 +213,18 @@ class Calendar1999PageRoute extends GoRouteData {
   @override
   Widget build(BuildContext context, GoRouterState state) {
     return TraceableWidget(actionName: 'calendar', child: CalendarPage(season: season, days: $extra));
+  }
+}
+
+@immutable
+@TypedGoRoute<DeepArchimedeaPageRoute>(name: 'deepArchimedea', path: '/deepArchimedea')
+class DeepArchimedeaPageRoute extends GoRouteData {
+  const DeepArchimedeaPageRoute(this.$extra);
+
+  final DeepArchimedea $extra;
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) {
+    return TraceableWidget(actionName: 'deepArchimedea', child: ArchimedeaPage(archimedea: $extra));
   }
 }

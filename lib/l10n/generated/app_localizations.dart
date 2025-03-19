@@ -1332,7 +1332,7 @@ abstract class NavisLocalizations {
   /// Text displayed next to the weekly reset time for the Deep Archimedea
   ///
   /// In en, this message translates to:
-  /// **'Deep Archimedea ends'**
+  /// **'Deep Archimedea resets in'**
   String get archimedeaTitle;
 
   /// Text displayed next to Deep Archimedea deviation name

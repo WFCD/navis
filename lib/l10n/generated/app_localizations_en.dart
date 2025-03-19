@@ -630,7 +630,7 @@ class NavisLocalizationsEn extends NavisLocalizations {
   String get circuitResetSubtitle => 'Tap to see current offerings';
 
   @override
-  String get archimedeaTitle => 'Deep Archimedea ends';
+  String get archimedeaTitle => 'Deep Archimedea resets in';
 
   @override
   String get archimedeaDeviationTitle => 'Deviation';
