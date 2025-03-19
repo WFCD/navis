@@ -1039,7 +1039,7 @@
     "description": "Text displayed under circuitResetTitle",
     "type": "text"
   },
-  "archimedeaTitle": "Завершение Глубинной Архимедии",
+  "archimedeaTitle": "Deep Archimedea resets in",
   "@archimedeaTitle": {
     "description": "Text displayed next to the weekly reset time for the Deep Archimedea",
     "type": "text"
