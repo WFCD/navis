@@ -34,15 +34,18 @@ class SyndicatePage extends StatelessWidget {
       builder: (context, state) {
         return TraceableWidget(
           actionName: 'SyndicatePage()',
-          child: ResponsiveBuilder(
-            builder: (context, info) {
-              return _SyndicatePageTablet(
-                syndicates: state!.jobs,
-                nightwave: state.nightwave,
-                calendar: state.calendar,
-                isMobile: info.refinedSize == RefinedSize.normal,
-              );
-            },
+          child: ViewLoading(
+            isLoading: state == null,
+            child: ResponsiveBuilder(
+              builder: (context, info) {
+                return _SyndicateView(
+                  syndicates: state!.jobs,
+                  nightwave: state.nightwave,
+                  calendar: state.calendar,
+                  isMobile: info.refinedSize == RefinedSize.normal,
+                );
+              },
+            ),
           ),
         );
       },
@@ -69,8 +72,8 @@ class _BuildSyndicates extends StatelessWidget {
   }
 }
 
-class _SyndicatePageTablet extends StatefulWidget {
-  const _SyndicatePageTablet({required this.syndicates, this.nightwave, required this.calendar, this.isMobile = true});
+class _SyndicateView extends StatefulWidget {
+  const _SyndicateView({required this.syndicates, this.nightwave, required this.calendar, this.isMobile = true});
 
   final List<SyndicateMission> syndicates;
   final Nightwave? nightwave;
@@ -78,10 +81,10 @@ class _SyndicatePageTablet extends StatefulWidget {
   final bool isMobile;
 
   @override
-  _SyndicatePageTabletState createState() => _SyndicatePageTabletState();
+  _SyndicateViewState createState() => _SyndicateViewState();
 }
 
-class _SyndicatePageTabletState extends State<_SyndicatePageTablet> {
+class _SyndicateViewState extends State<_SyndicateView> {
   StreamController<Widget>? _controller;
 
   void _changePane(Widget widget) => _controller?.sink.add(widget);
