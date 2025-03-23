@@ -669,4 +669,21 @@ class NavisLocalizationsEn extends NavisLocalizations {
 
   @override
   String get traderCreditsHeaderTitle => 'Item';
+
+  @override
+  String itemRankSubtitle(Object rank) {
+    return 'Rank $rank';
+  }
+
+  @override
+  String get syncingInfoText => 'Syncing XP info';
+
+  @override
+  String get enterUsernameHintText => 'Enter username';
+
+  @override
+  String get clearUsernameButtonLabel => 'Clear username';
+
+  @override
+  String get cancelText => 'Cancel';
 }

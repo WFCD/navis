@@ -1406,6 +1406,36 @@ abstract class NavisLocalizations {
   /// In en, this message translates to:
   /// **'Item'**
   String get traderCreditsHeaderTitle;
+
+  /// Subtitle showing the item's rank
+  ///
+  /// In en, this message translates to:
+  /// **'Rank {rank}'**
+  String itemRankSubtitle(Object rank);
+
+  /// Text displayed when xp info is being synced
+  ///
+  /// In en, this message translates to:
+  /// **'Syncing XP info'**
+  String get syncingInfoText;
+
+  /// Hint Text use as a placeholder in username input
+  ///
+  /// In en, this message translates to:
+  /// **'Enter username'**
+  String get enterUsernameHintText;
+
+  /// Label text for clear username button
+  ///
+  /// In en, this message translates to:
+  /// **'Clear username'**
+  String get clearUsernameButtonLabel;
+
+  /// Text to display for cancel buttons
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get cancelText;
 }
 
 class _NavisLocalizationsDelegate extends LocalizationsDelegate<NavisLocalizations> {

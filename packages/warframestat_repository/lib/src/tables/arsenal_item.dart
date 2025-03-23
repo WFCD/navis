@@ -17,6 +17,8 @@ class ArsenalItem extends Table {
   BoolColumn get vaulted => boolean().nullable()();
   TextColumn get wikiaUrl => text().nullable()();
   BoolColumn get masterable => boolean().nullable()();
+  TextColumn get releaseDate => text().nullable()();
+  TextColumn get wikiaThumbnail => text().nullable()();
 
   @override
   Set<Column<Object>>? get primaryKey => {uniqueName};

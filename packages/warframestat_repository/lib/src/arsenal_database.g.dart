@@ -34,7 +34,6 @@ class $ArsenalItemTable extends ArsenalItem
   late final GeneratedColumn<String> imageName = GeneratedColumn<String>(
       'image_name', aliasedName, true,
       type: DriftSqlType.string, requiredDuringInsert: false);
-  static const VerificationMeta _typeMeta = const VerificationMeta('type');
   @override
   late final GeneratedColumnWithTypeConverter<ItemType, String> type =
       GeneratedColumn<String>('type', aliasedName, false,
@@ -100,6 +99,18 @@ class $ArsenalItemTable extends ArsenalItem
       requiredDuringInsert: false,
       defaultConstraints:
           GeneratedColumn.constraintIsAlways('CHECK ("masterable" IN (0, 1))'));
+  static const VerificationMeta _releaseDateMeta =
+      const VerificationMeta('releaseDate');
+  @override
+  late final GeneratedColumn<String> releaseDate = GeneratedColumn<String>(
+      'release_date', aliasedName, true,
+      type: DriftSqlType.string, requiredDuringInsert: false);
+  static const VerificationMeta _wikiaThumbnailMeta =
+      const VerificationMeta('wikiaThumbnail');
+  @override
+  late final GeneratedColumn<String> wikiaThumbnail = GeneratedColumn<String>(
+      'wikia_thumbnail', aliasedName, true,
+      type: DriftSqlType.string, requiredDuringInsert: false);
   @override
   List<GeneratedColumn> get $columns => [
         uniqueName,
@@ -114,7 +125,9 @@ class $ArsenalItemTable extends ArsenalItem
         vaultDate,
         vaulted,
         wikiaUrl,
-        masterable
+        masterable,
+        releaseDate,
+        wikiaThumbnail
       ];
   @override
   String get aliasedName => _alias ?? actualTableName;
@@ -150,7 +163,6 @@ class $ArsenalItemTable extends ArsenalItem
       context.handle(_imageNameMeta,
           imageName.isAcceptableOrUnknown(data['image_name']!, _imageNameMeta));
     }
-    context.handle(_typeMeta, const VerificationResult.success());
     if (data.containsKey('product_category')) {
       context.handle(
           _productCategoryMeta,
@@ -193,6 +205,18 @@ class $ArsenalItemTable extends ArsenalItem
           masterable.isAcceptableOrUnknown(
               data['masterable']!, _masterableMeta));
     }
+    if (data.containsKey('release_date')) {
+      context.handle(
+          _releaseDateMeta,
+          releaseDate.isAcceptableOrUnknown(
+              data['release_date']!, _releaseDateMeta));
+    }
+    if (data.containsKey('wikia_thumbnail')) {
+      context.handle(
+          _wikiaThumbnailMeta,
+          wikiaThumbnail.isAcceptableOrUnknown(
+              data['wikia_thumbnail']!, _wikiaThumbnailMeta));
+    }
     return context;
   }
 
@@ -221,6 +245,10 @@ class $ArsenalItemTable extends ArsenalItem
           .read(DriftSqlType.bool, data['${effectivePrefix}tradable'])!,
       excludeFromCodex: attachedDatabase.typeMapping.read(
           DriftSqlType.bool, data['${effectivePrefix}exclude_from_codex']),
+      releaseDate: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}release_date']),
+      wikiaThumbnail: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}wikia_thumbnail']),
       wikiaUrl: attachedDatabase.typeMapping
           .read(DriftSqlType.string, data['${effectivePrefix}wikia_url']),
       vaultDate: attachedDatabase.typeMapping
@@ -255,6 +283,8 @@ class ArsenalItemCompanion extends UpdateCompanion<MinimalItem> {
   final Value<bool?> vaulted;
   final Value<String?> wikiaUrl;
   final Value<bool?> masterable;
+  final Value<String?> releaseDate;
+  final Value<String?> wikiaThumbnail;
   final Value<int> rowid;
   const ArsenalItemCompanion({
     this.uniqueName = const Value.absent(),
@@ -270,6 +300,8 @@ class ArsenalItemCompanion extends UpdateCompanion<MinimalItem> {
     this.vaulted = const Value.absent(),
     this.wikiaUrl = const Value.absent(),
     this.masterable = const Value.absent(),
+    this.releaseDate = const Value.absent(),
+    this.wikiaThumbnail = const Value.absent(),
     this.rowid = const Value.absent(),
   });
   ArsenalItemCompanion.insert({
@@ -286,6 +318,8 @@ class ArsenalItemCompanion extends UpdateCompanion<MinimalItem> {
     this.vaulted = const Value.absent(),
     this.wikiaUrl = const Value.absent(),
     this.masterable = const Value.absent(),
+    this.releaseDate = const Value.absent(),
+    this.wikiaThumbnail = const Value.absent(),
     this.rowid = const Value.absent(),
   })  : uniqueName = Value(uniqueName),
         name = Value(name),
@@ -306,6 +340,8 @@ class ArsenalItemCompanion extends UpdateCompanion<MinimalItem> {
     Expression<bool>? vaulted,
     Expression<String>? wikiaUrl,
     Expression<bool>? masterable,
+    Expression<String>? releaseDate,
+    Expression<String>? wikiaThumbnail,
     Expression<int>? rowid,
   }) {
     return RawValuesInsertable({
@@ -322,6 +358,8 @@ class ArsenalItemCompanion extends UpdateCompanion<MinimalItem> {
       if (vaulted != null) 'vaulted': vaulted,
       if (wikiaUrl != null) 'wikia_url': wikiaUrl,
       if (masterable != null) 'masterable': masterable,
+      if (releaseDate != null) 'release_date': releaseDate,
+      if (wikiaThumbnail != null) 'wikia_thumbnail': wikiaThumbnail,
       if (rowid != null) 'rowid': rowid,
     });
   }
@@ -340,6 +378,8 @@ class ArsenalItemCompanion extends UpdateCompanion<MinimalItem> {
       Value<bool?>? vaulted,
       Value<String?>? wikiaUrl,
       Value<bool?>? masterable,
+      Value<String?>? releaseDate,
+      Value<String?>? wikiaThumbnail,
       Value<int>? rowid}) {
     return ArsenalItemCompanion(
       uniqueName: uniqueName ?? this.uniqueName,
@@ -355,6 +395,8 @@ class ArsenalItemCompanion extends UpdateCompanion<MinimalItem> {
       vaulted: vaulted ?? this.vaulted,
       wikiaUrl: wikiaUrl ?? this.wikiaUrl,
       masterable: masterable ?? this.masterable,
+      releaseDate: releaseDate ?? this.releaseDate,
+      wikiaThumbnail: wikiaThumbnail ?? this.wikiaThumbnail,
       rowid: rowid ?? this.rowid,
     );
   }
@@ -402,6 +444,12 @@ class ArsenalItemCompanion extends UpdateCompanion<MinimalItem> {
     if (masterable.present) {
       map['masterable'] = Variable<bool>(masterable.value);
     }
+    if (releaseDate.present) {
+      map['release_date'] = Variable<String>(releaseDate.value);
+    }
+    if (wikiaThumbnail.present) {
+      map['wikia_thumbnail'] = Variable<String>(wikiaThumbnail.value);
+    }
     if (rowid.present) {
       map['rowid'] = Variable<int>(rowid.value);
     }
@@ -424,6 +472,8 @@ class ArsenalItemCompanion extends UpdateCompanion<MinimalItem> {
           ..write('vaulted: $vaulted, ')
           ..write('wikiaUrl: $wikiaUrl, ')
           ..write('masterable: $masterable, ')
+          ..write('releaseDate: $releaseDate, ')
+          ..write('wikiaThumbnail: $wikiaThumbnail, ')
           ..write('rowid: $rowid')
           ..write(')'))
         .toString();
@@ -773,6 +823,8 @@ typedef $$ArsenalItemTableCreateCompanionBuilder = ArsenalItemCompanion
   Value<bool?> vaulted,
   Value<String?> wikiaUrl,
   Value<bool?> masterable,
+  Value<String?> releaseDate,
+  Value<String?> wikiaThumbnail,
   Value<int> rowid,
 });
 typedef $$ArsenalItemTableUpdateCompanionBuilder = ArsenalItemCompanion
@@ -790,6 +842,8 @@ typedef $$ArsenalItemTableUpdateCompanionBuilder = ArsenalItemCompanion
   Value<bool?> vaulted,
   Value<String?> wikiaUrl,
   Value<bool?> masterable,
+  Value<String?> releaseDate,
+  Value<String?> wikiaThumbnail,
   Value<int> rowid,
 });
 
@@ -844,6 +898,13 @@ class $$ArsenalItemTableFilterComposer
 
   ColumnFilters<bool> get masterable => $composableBuilder(
       column: $table.masterable, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<String> get releaseDate => $composableBuilder(
+      column: $table.releaseDate, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<String> get wikiaThumbnail => $composableBuilder(
+      column: $table.wikiaThumbnail,
+      builder: (column) => ColumnFilters(column));
 }
 
 class $$ArsenalItemTableOrderingComposer
@@ -895,6 +956,13 @@ class $$ArsenalItemTableOrderingComposer
 
   ColumnOrderings<bool> get masterable => $composableBuilder(
       column: $table.masterable, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<String> get releaseDate => $composableBuilder(
+      column: $table.releaseDate, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<String> get wikiaThumbnail => $composableBuilder(
+      column: $table.wikiaThumbnail,
+      builder: (column) => ColumnOrderings(column));
 }
 
 class $$ArsenalItemTableAnnotationComposer
@@ -944,6 +1012,12 @@ class $$ArsenalItemTableAnnotationComposer
 
   GeneratedColumn<bool> get masterable => $composableBuilder(
       column: $table.masterable, builder: (column) => column);
+
+  GeneratedColumn<String> get releaseDate => $composableBuilder(
+      column: $table.releaseDate, builder: (column) => column);
+
+  GeneratedColumn<String> get wikiaThumbnail => $composableBuilder(
+      column: $table.wikiaThumbnail, builder: (column) => column);
 }
 
 class $$ArsenalItemTableTableManager extends RootTableManager<
@@ -985,6 +1059,8 @@ class $$ArsenalItemTableTableManager extends RootTableManager<
             Value<bool?> vaulted = const Value.absent(),
             Value<String?> wikiaUrl = const Value.absent(),
             Value<bool?> masterable = const Value.absent(),
+            Value<String?> releaseDate = const Value.absent(),
+            Value<String?> wikiaThumbnail = const Value.absent(),
             Value<int> rowid = const Value.absent(),
           }) =>
               ArsenalItemCompanion(
@@ -1001,6 +1077,8 @@ class $$ArsenalItemTableTableManager extends RootTableManager<
             vaulted: vaulted,
             wikiaUrl: wikiaUrl,
             masterable: masterable,
+            releaseDate: releaseDate,
+            wikiaThumbnail: wikiaThumbnail,
             rowid: rowid,
           ),
           createCompanionCallback: ({
@@ -1017,6 +1095,8 @@ class $$ArsenalItemTableTableManager extends RootTableManager<
             Value<bool?> vaulted = const Value.absent(),
             Value<String?> wikiaUrl = const Value.absent(),
             Value<bool?> masterable = const Value.absent(),
+            Value<String?> releaseDate = const Value.absent(),
+            Value<String?> wikiaThumbnail = const Value.absent(),
             Value<int> rowid = const Value.absent(),
           }) =>
               ArsenalItemCompanion.insert(
@@ -1033,6 +1113,8 @@ class $$ArsenalItemTableTableManager extends RootTableManager<
             vaulted: vaulted,
             wikiaUrl: wikiaUrl,
             masterable: masterable,
+            releaseDate: releaseDate,
+            wikiaThumbnail: wikiaThumbnail,
             rowid: rowid,
           ),
           withReferenceMapper: (p0) => p0

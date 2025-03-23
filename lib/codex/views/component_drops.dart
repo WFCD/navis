@@ -12,11 +12,7 @@ class ComponentDrops extends StatelessWidget {
   final List<Drop> drops;
 
   void _loadRelic(BuildContext context, String itemName) {
-    final teirReg = RegExp(r'\(([^)]*)\)');
     final repo = RepositoryProvider.of<WarframestatRepository>(context);
-
-    final tier = teirReg.firstMatch(itemName)?.group(1);
-    final relic = '${itemName.replaceAll(teirReg, '').trim()} ${tier ?? 'Intact'}';
 
     Navigator.of(context).push(
       MaterialPageRoute<void>(

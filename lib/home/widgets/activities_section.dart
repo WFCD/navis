@@ -6,8 +6,6 @@ import 'package:navis/l10n/l10n.dart';
 import 'package:navis/router/routes.dart';
 import 'package:navis/worldstate/worldstate.dart';
 import 'package:navis_ui/navis_ui.dart';
-import 'package:warframestat_client/warframestat_client.dart';
-import 'package:warframestat_repository/warframestat_repository.dart';
 
 class ActivitiesSection extends StatelessWidget {
   const ActivitiesSection({super.key});
@@ -27,14 +25,15 @@ class _ActivitiesContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocSelector<WorldstateCubit, SolsystemState, Worldstate?>(
-      selector: (state) => switch (state) {
-        WorldstateSuccess() => state.worldstate,
-        _ => null,
-      },
-      builder: (context, worldstate) {
+    return BlocBuilder<WorldstateCubit, SolsystemState>(
+      builder: (context, state) {
+        final worldstate = switch (state) {
+          WorldstateSuccess() => state,
+          _ => null,
+        };
+
         return ViewLoading(
-          isLoading: worldstate == null,
+          isLoading: state is! WorldstateSuccess,
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [

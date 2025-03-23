@@ -5,6 +5,7 @@ import 'package:navis/app/app.dart';
 import 'package:navis/codex/codex.dart';
 import 'package:navis/explore/explore.dart';
 import 'package:navis/home/home.dart';
+import 'package:navis/profile/profile.dart';
 import 'package:navis/settings/settings.dart';
 import 'package:navis/synthtargets/synthtargets.dart';
 import 'package:navis/worldstate/worldstate.dart';

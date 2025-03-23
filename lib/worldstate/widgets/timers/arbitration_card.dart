@@ -11,10 +11,6 @@ class ArbitrationCard extends StatelessWidget {
   Widget build(BuildContext context) {
     const gracePeriod = Duration(seconds: 1);
     const oneYear = Duration(days: 365);
-    const archwingIcon = Padding(
-      padding: EdgeInsets.only(left: 6),
-      child: Icon(WarframeSymbols.archwing, color: Colors.blue, size: 25),
-    );
 
     return AppCard(
       child: BlocBuilder<WorldstateCubit, SolsystemState>(
