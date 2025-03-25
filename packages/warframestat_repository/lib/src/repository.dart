@@ -41,8 +41,7 @@ class WarframestatRepository {
     Hive.init(Directory.systemTemp.absolute.path);
 
     // Hive will return the same box if it's already opened
-    final cache =
-        await Hive.openBox<HiveCacheItem>('warframestat_repository_cache');
+    final cache = await Hive.openBox<HiveCacheItem>('warframestat_repository_cache');
 
     if (_cacheClients.containsKey(cacheTime)) return _cacheClients[cacheTime]!;
 
@@ -73,7 +72,7 @@ class WarframestatRepository {
   /// end so caching for even a year is perfectly fine
   Future<List<SynthTarget>> fetchTargets() async {
     const cacheTime = Duration(days: 30);
-    final client = SynthTaretClient(
+    final client = SynthTargetClient(
       client: await _cacheClient(cacheTime),
       ua: userAgent,
       language: language,
@@ -106,10 +105,10 @@ class WarframestatRepository {
     return client.fetchItem(uniqueName);
   }
 
-  Future<Profile> fetchProfile(String username) async {
+  Future<Profile> fetchProfile(String playerId) async {
     const cacheTime = Duration(minutes: 60);
     final client = ProfileClient(
-      username: username,
+      playerId: playerId,
       client: await _cacheClient(cacheTime),
       ua: userAgent,
       language: language,
@@ -122,8 +121,7 @@ class WarframestatRepository {
     const stallTime = Duration(days: 7);
 
     final lastUpdate = await _database.lastUpdate();
-    final lastUpdateElapsed =
-        lastUpdate?.difference(DateTime.timestamp()) ?? stallTime;
+    final lastUpdateElapsed = lastUpdate?.difference(DateTime.timestamp()) ?? stallTime;
 
     final needsUpdate = lastUpdateElapsed >= stallTime || update;
     if (!needsUpdate) return;
@@ -155,24 +153,20 @@ class WarframestatRepository {
     // exist in xp info it shouldn't display for the user
     return progress
       ..removeWhere(
-        (i) => i.item.name.contains('Excalibur Prime') && i.rank == 0,
+        (i) => i.item.name == 'Excalibur Prime' && i.rank == 0,
       )
       ..sort((a, b) => a.xp.compareTo(b.xp));
   }
 
   Future<CraigRegion> fetchRegions() async {
     final client = await _cacheClient(const Duration(days: 30));
-    final res =
-        await client.get(Uri.parse('https://cdn.truemaster.app/regions.json'));
+    final res = await client.get(Uri.parse('https://cdn.truemaster.app/regions.json'));
 
     final json = jsonDecode(res.body) as Map<String, dynamic>;
     final nodes = _jsonMapList(json['nodes'] as List<dynamic>);
     final junctions = _jsonMapList(json['junctions'] as List<dynamic>);
 
-    return (
-      nodes: nodes.map(CraigNode.fromJson).toList(),
-      junctions: junctions.map(CraigJunction.fromJson).toList()
-    );
+    return (nodes: nodes.map(CraigNode.fromJson).toList(), junctions: junctions.map(CraigJunction.fromJson).toList());
   }
 
   List<Map<String, dynamic>> _jsonMapList(List<dynamic> list) {

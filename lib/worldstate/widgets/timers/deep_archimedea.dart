@@ -4,7 +4,7 @@ import 'package:navis/l10n/l10n.dart';
 import 'package:navis/router/routes.dart';
 import 'package:navis/worldstate/cubits/worldstate_cubit.dart';
 import 'package:navis_ui/navis_ui.dart';
-import 'package:warframestat_client/warframestat_client.dart' as ws;
+import 'package:warframestat_client/warframestat_client.dart';
 
 class DeepArchimedeaCard extends StatelessWidget {
   const DeepArchimedeaCard({super.key});
@@ -14,7 +14,7 @@ class DeepArchimedeaCard extends StatelessWidget {
     DateTime placeholder() => DateTime.timestamp().add(const Duration(days: 7));
 
     return AppCard(
-      child: BlocSelector<WorldstateCubit, SolsystemState, ws.DeepArchimedea?>(
+      child: BlocSelector<WorldstateCubit, SolsystemState, Archimedea?>(
         selector:
             (state) => switch (state) {
               WorldstateSuccess() => state.worldstate.deepArchimedea,
@@ -29,7 +29,7 @@ class DeepArchimedeaCard extends StatelessWidget {
               tooltip: MaterialLocalizations.of(context).formatFullDate(archimedea?.expiry ?? placeholder()),
               expiry: archimedea?.expiry ?? placeholder(),
             ),
-            onTap: () => DeepArchimedeaPageRoute(archimedea!).push<void>(context),
+            onTap: () => ArchimedeaPageRoute(archimedea!).push<void>(context),
           );
         },
       ),

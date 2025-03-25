@@ -58,11 +58,7 @@ class _HomeViewState extends State<HomeView> with RouteAware {
 
   @override
   Widget build(BuildContext context) {
-    final children = [
-      const NewsSection(),
-      const ActivitiesSection(),
-      // const MasteryInProgressSection(),
-    ];
+    final children = [const NewsSection(), const ActivitiesSection(), const MasteryInProgressSection()];
 
     return CustomScrollView(
       slivers: [

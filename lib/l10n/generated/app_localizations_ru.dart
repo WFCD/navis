@@ -679,7 +679,7 @@ class NavisLocalizationsRu extends NavisLocalizations {
   String get syncingInfoText => 'Syncing XP info';
 
   @override
-  String get enterUsernameHintText => 'Enter username';
+  String get enterUsernameHintText => 'Setup Arsenal';
 
   @override
   String get clearUsernameButtonLabel => 'Clear username';

@@ -1123,7 +1123,7 @@
     "type": "text",
     "placeholder": {}
   },
-  "enterUsernameHintText": "Enter username",
+  "enterUsernameHintText": "Setup Arsenal",
   "@enterUsernameHintText": {
     "description": "Hint Text use as a placeholder in username input",
     "type": "text",

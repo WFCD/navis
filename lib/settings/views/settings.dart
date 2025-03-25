@@ -5,9 +5,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_settings_ui/flutter_settings_ui.dart';
 import 'package:intl/intl.dart';
 import 'package:navis/l10n/l10n.dart';
+import 'package:navis/profile/cubit/profile_cubit.dart';
 import 'package:navis/settings/settings.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:notification_repository/notification_repository.dart';
+import 'package:warframestat_client/warframestat_client.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});
@@ -42,48 +44,37 @@ class _SettingsView extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
     final filters = NotificationTopics(context.l10n);
-    final settings = context.watch<UserSettingsCubit>().state;
 
-    // final username = switch (settings) {
-    //   UserSettingsSuccess() => settings.username,
-    //   _ => null
-    // };
+    final settings = context.select<UserSettingsCubit, UserSettingsSuccess?>(
+      (cubit) => cubit.state is UserSettingsSuccess ? cubit.state as UserSettingsSuccess : null,
+    );
 
-    final themeMode = switch (settings) {
-      UserSettingsSuccess() => settings.themeMode,
-      _ => ThemeMode.system,
-    };
-
-    final isOptOut = switch (settings) {
-      UserSettingsSuccess() => settings.isOptOut,
-      _ => false,
-    };
-
-    final toggles = switch (settings) {
-      UserSettingsSuccess() => settings.toggles,
-      _ => <String, bool>{},
-    };
+    final profile = context.select<ProfileCubit, Profile?>(
+      (cubit) => cubit.state is ProfileSuccessful ? (cubit.state as ProfileSuccessful).profile : null,
+    );
 
     final theme = SettingsThemeData(
       titleTextColor: context.theme.colorScheme.primary,
       settingsListBackground: context.theme.scaffoldBackgroundColor,
     );
 
+    final toggles = settings?.toggles ?? <String, bool>{};
+
     return SettingsList(
       platform: DevicePlatform.android,
       lightTheme: theme,
       darkTheme: theme,
       sections: [
-        // SettingsSection(
-        //   title: Text(l10n.masteryTrackingCategoryTitle),
-        //   tiles: [
-        //     SettingsTile(
-        //       title: Text(username ?? l10n.enterUsernameHintText),
-        //       // TODO(Orn): find a way to show mastery progress
-        //       onPressed: UsernameInput.show,
-        //     ),
-        //   ],
-        // ),
+        SettingsSection(
+          title: const Text('Arsenal [PH]'),
+          tiles: [
+            SettingsTile(
+              title: Text(profile?.username ?? l10n.enterUsernameHintText),
+              // TODO(Orn): find a way to show mastery progress
+              onPressed: ProfileWizard.show,
+            ),
+          ],
+        ),
         SettingsSection(
           title: Text(l10n.behaviorTitle),
           tiles: [
@@ -96,13 +87,13 @@ class _SettingsView extends StatelessWidget {
             SettingsTile.navigation(
               title: Text(l10n.themeTitle),
               description: Text(l10n.themeDescription),
-              value: Text(toBeginningOfSentenceCase(themeMode.name) ?? ''),
+              value: Text(toBeginningOfSentenceCase((settings?.themeMode ?? ThemeMode.system).name) ?? ''),
               onPressed: ThemePicker.showModes,
             ),
             SettingsTile.switchTile(
               title: Text(l10n.optOutOfAnalyticsTitle),
               description: Text(l10n.optOutOfAnalyticsDescription),
-              initialValue: isOptOut,
+              initialValue: settings?.isOptOut ?? false,
               onToggle: (b) => context.read<UserSettingsCubit>().updateAnalyticsOpt(isOptOut: b),
             ),
           ],

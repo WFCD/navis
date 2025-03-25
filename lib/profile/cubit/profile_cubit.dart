@@ -10,11 +10,11 @@ class ProfileCubit extends Cubit<ProfileState> {
 
   final WarframestatRepository repository;
 
-  Future<void> update(String username) async {
+  Future<void> update(String accountId) async {
     emit(ProfileUpdating());
 
     try {
-      final profile = await repository.fetchProfile(username);
+      final profile = await repository.fetchProfile(accountId);
       await repository.syncXpInfo(profile.loadout.xpInfo);
 
       emit(ProfileSuccessful(profile));

@@ -48,8 +48,7 @@ class _UsernameInputState extends State<UsernameInput> {
     final username = value ?? _controller.text;
 
     BlocProvider.of<UserSettingsCubit>(context).updateUsername(username);
-    ScaffoldMessenger.of(context)
-        .showSnackBar(SnackBar(content: Text(context.l10n.syncingInfoText)));
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(context.l10n.syncingInfoText)));
 
     BlocProvider.of<ProfileCubit>(context).update(username);
     Navigator.pop(context);
@@ -57,6 +56,7 @@ class _UsernameInputState extends State<UsernameInput> {
 
   void _onClear() {
     BlocProvider.of<UserSettingsCubit>(context).updateUsername(null);
+    Navigator.pop(context);
   }
 
   @override
@@ -82,10 +82,7 @@ class _UsernameInputState extends State<UsernameInput> {
               filled: true,
               hintText: widget.username ?? context.l10n.enterUsernameHintText,
               fillColor: context.theme.colorScheme.onSecondary,
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(16),
-                borderSide: BorderSide.none,
-              ),
+              border: OutlineInputBorder(borderRadius: BorderRadius.circular(16), borderSide: BorderSide.none),
             ),
           ),
           Gaps.gap12,
@@ -104,14 +101,8 @@ class _UsernameInputState extends State<UsernameInput> {
                   child: Text(context.l10n.clearUsernameButtonLabel),
                 ),
                 const Spacer(),
-                OutlinedButton(
-                  onPressed: () => Navigator.of(context).pop(),
-                  child: Text(context.l10n.cancelText),
-                ),
-                FilledButton(
-                  onPressed: _isValid ? _onSubmit : null,
-                  child: Text(ml10n.saveButtonLabel),
-                ),
+                OutlinedButton(onPressed: () => Navigator.of(context).pop(), child: Text(context.l10n.cancelText)),
+                FilledButton(onPressed: _isValid ? _onSubmit : null, child: Text(ml10n.saveButtonLabel)),
               ],
             ),
           ),

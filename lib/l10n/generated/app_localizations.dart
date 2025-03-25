@@ -1422,7 +1422,7 @@ abstract class NavisLocalizations {
   /// Hint Text use as a placeholder in username input
   ///
   /// In en, this message translates to:
-  /// **'Enter username'**
+  /// **'Setup Arsenal'**
   String get enterUsernameHintText;
 
   /// Label text for clear username button

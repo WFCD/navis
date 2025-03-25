@@ -229,14 +229,14 @@ class Calendar1999PageRoute extends GoRouteData {
 }
 
 @immutable
-@TypedGoRoute<DeepArchimedeaPageRoute>(name: 'deepArchimedea', path: '/deepArchimedea')
-class DeepArchimedeaPageRoute extends GoRouteData {
-  const DeepArchimedeaPageRoute(this.$extra);
+@TypedGoRoute<ArchimedeaPageRoute>(name: 'archimedea', path: '/archimedea')
+class ArchimedeaPageRoute extends GoRouteData {
+  const ArchimedeaPageRoute(this.$extra);
 
-  final DeepArchimedea $extra;
+  final Archimedea $extra;
 
   @override
   Widget build(BuildContext context, GoRouterState state) {
-    return TraceableWidget(actionName: 'deepArchimedea', child: ArchimedeaPage(archimedea: $extra));
+    return TraceableWidget(actionName: 'archimedea', child: ArchimedeaPage(archimedea: $extra));
   }
 }

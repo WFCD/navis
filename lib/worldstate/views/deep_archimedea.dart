@@ -7,7 +7,7 @@ import 'package:warframestat_client/warframestat_client.dart';
 class ArchimedeaPage extends StatelessWidget {
   const ArchimedeaPage({super.key, required this.archimedea});
 
-  final DeepArchimedea archimedea;
+  final Archimedea archimedea;
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +41,7 @@ class ArchimedeaPage extends StatelessWidget {
 class _ArchimedeaMissionsCategory extends StatelessWidget {
   const _ArchimedeaMissionsCategory({required this.missions});
 
-  final List<DeepArchimedeaMission> missions;
+  final List<ArchimedeaMission> missions;
 
   @override
   Widget build(BuildContext context) {
