@@ -91,8 +91,8 @@ class _InstructionsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final introStyle = context.textTheme.bodyLarge;
-    final stepsStyle = context.textTheme.bodyMedium;
+    final introStyle = context.textTheme.titleMedium;
+    final stepsStyle = context.textTheme.bodyLarge;
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 12),
@@ -103,19 +103,19 @@ class _InstructionsPage extends StatelessWidget {
               'Cephalon Navis can use your read-only profile data to help track your arsenal XP and mastery points.\n\n',
           children: [
             TextSpan(
-              text: 'Step 1. Go to ',
+              text: '1. Go to ',
               style: stepsStyle,
               children: [
                 TextSpan(
-                  text: 'https://navisqr.minilabs.dev/\n',
+                  text: 'https://navisqr.minilabs.dev/',
                   style: stepsStyle?.copyWith(color: context.theme.colorScheme.secondary),
                   recognizer: TapGestureRecognizer()..onTap = () => 'https://navisqr.minilabs.dev/'.launchLink(context),
                 ),
+                const TextSpan(text: ' on a computer\n\n'),
               ],
             ),
-            TextSpan(text: 'Step 2. Upload your EE.log or account ID from cookies\n', style: stepsStyle),
-            TextSpan(text: 'Step 3. Tap next and scan the generated QR code\n', style: stepsStyle),
-            TextSpan(text: 'Step 4. Profit\n', style: stepsStyle),
+            TextSpan(text: '2. Upload your EE.log or account ID from cookies\n\n', style: stepsStyle),
+            TextSpan(text: '3. Tap next and scan the generated QR code', style: stepsStyle),
           ],
         ),
       ),
