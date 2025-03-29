@@ -11,7 +11,6 @@ final class UserSettingsInitial extends UserSettingsState {}
 
 final class UserSettingsSuccess extends UserSettingsState {
   const UserSettingsSuccess({
-    required this.username,
     required this.language,
     required this.themeMode,
     required this.isOptOut,
@@ -19,7 +18,6 @@ final class UserSettingsSuccess extends UserSettingsState {
     required this.toggles,
   });
 
-  final String? username;
   final Locale language;
   final ThemeMode themeMode;
   final bool isOptOut;
@@ -35,7 +33,6 @@ final class UserSettingsSuccess extends UserSettingsState {
     Map<String, bool>? toggles,
   }) {
     return UserSettingsSuccess(
-      username: username ?? this.username,
       language: language ?? this.language,
       themeMode: themeMode ?? this.themeMode,
       isOptOut: isOptOut ?? this.isOptOut,
@@ -45,7 +42,7 @@ final class UserSettingsSuccess extends UserSettingsState {
   }
 
   @override
-  List<Object?> get props => [language, themeMode, isOptOut, isFirstTime, toggles, username];
+  List<Object?> get props => [language, themeMode, isOptOut, isFirstTime, toggles];
 }
 
 final class UserSettingsFailure extends UserSettingsState {}

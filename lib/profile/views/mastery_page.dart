@@ -1,22 +1,29 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:inventoria/inventoria.dart';
+import 'package:navis/profile/cubit/profile_cubit.dart';
 import 'package:navis/profile/profile.dart';
+import 'package:navis/profile/utils/extensions.dart';
 import 'package:navis_ui/navis_ui.dart';
-import 'package:warframestat_repository/warframestat_repository.dart';
 
 class MasteryPage extends StatelessWidget {
   const MasteryPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final repository = RepositoryProvider.of<WarframestatRepository>(context);
+    final inventoria = RepositoryProvider.of<Inventoria>(context);
 
     return Scaffold(
       body: SafeArea(
-        child: BlocProvider(
-          create: (_) => ArsenalCubit(repository),
-          child: const MasteryView(),
+        child: BlocBuilder<ProfileCubit, ProfileState>(
+          builder: (context, state) {
+            return switch (state) {
+              ProfileSuccessful() => BlocProvider(create: (_) => ArsenalCubit(inventoria), child: const MasteryView()),
+              ProfileFailure() => const Center(child: Text('There is currently no user ID saved')),
+              _ => const Center(child: WarframeSpinner()),
+            };
+          },
         ),
       ),
     );
@@ -36,46 +43,17 @@ class _MasteryViewState extends State<MasteryView> {
   final _tabs = <Map<String, dynamic>>[
     {
       'name': 'In Progress',
-      'items': (ArsenalSuccess state) => state.xpInfo
-          .whereNot((i) => i.rank == i.maxRank || i.missing)
-          .toList(),
+      'items': (List<InventoryItemData> items) => items.whereNot((i) => i.rank == i.maxRank || i.isMissing).toList(),
     },
-    {
-      'name': 'Warframes',
-      'items': (ArsenalSuccess state) => state.warframes,
-    },
-    {
-      'name': 'Primary',
-      'items': (ArsenalSuccess state) => state.primaries,
-    },
-    {
-      'name': 'Secondary',
-      'items': (ArsenalSuccess state) => state.secondary,
-    },
-    {
-      'name': 'Melee',
-      'items': (ArsenalSuccess state) => state.melee,
-    },
-    {
-      'name': 'Companions',
-      'items': (ArsenalSuccess state) => state.companions,
-    },
-    {
-      'name': 'K-Drive',
-      'items': (ArsenalSuccess state) => state.kDrives,
-    },
-    {
-      'name': 'Archwing',
-      'items': (ArsenalSuccess state) => state.archwing,
-    },
-    {
-      'name': 'Arch-Gun',
-      'items': (ArsenalSuccess state) => state.archGun,
-    },
-    {
-      'name': 'Arch-Melee',
-      'items': (ArsenalSuccess state) => state.archMelee,
-    },
+    {'name': 'Warframes', 'items': (List<InventoryItemData> items) => items.warframes},
+    {'name': 'Primary', 'items': (List<InventoryItemData> items) => items.primaries},
+    {'name': 'Secondary', 'items': (List<InventoryItemData> items) => items.secondary},
+    {'name': 'Melee', 'items': (List<InventoryItemData> items) => items.melee},
+    {'name': 'Companions', 'items': (List<InventoryItemData> items) => items.companions},
+    {'name': 'K-Drive', 'items': (List<InventoryItemData> items) => items.kDrives},
+    {'name': 'Archwing', 'items': (List<InventoryItemData> items) => items.archwing},
+    {'name': 'Arch-Gun', 'items': (List<InventoryItemData> items) => items.archGun},
+    {'name': 'Arch-Melee', 'items': (List<InventoryItemData> items) => items.archMelee},
   ];
 
   void _onTap(int index) {
@@ -91,9 +69,7 @@ class _MasteryViewState extends State<MasteryView> {
   @override
   void initState() {
     super.initState();
-    _controllers = _tabs
-        .map((i) => ScrollController(debugLabel: i['name'] as String))
-        .toList();
+    _controllers = _tabs.map((i) => ScrollController(debugLabel: i['name'] as String)).toList();
   }
 
   @override
@@ -111,13 +87,10 @@ class _MasteryViewState extends State<MasteryView> {
                 snap: true,
                 clipBehavior: Clip.hardEdge,
                 automaticallyImplyLeading: false,
-                title: MasteryItemSearchBar(
-                  onPressed: () => Navigator.pop(context),
-                ),
+                title: MasteryItemSearchBar(onPressed: () => Navigator.pop(context)),
                 bottom: TabBar(
                   isScrollable: true,
-                  tabs:
-                      _tabs.map((i) => Tab(text: i['name'] as String)).toList(),
+                  tabs: _tabs.map((i) => Tab(text: i['name'] as String)).toList(),
                   onTap: _onTap,
                 ),
               ),
@@ -131,22 +104,22 @@ class _MasteryViewState extends State<MasteryView> {
             }
 
             return TabBarView(
-              children: _tabs
-                  .asMap()
-                  .map(
-                    (index, tab) {
-                      return MapEntry(
-                        index,
-                        ArsenalItems(
-                          controller: _controllers[index],
-                          items: (tab['items'] as List<MasteryProgress>
-                              Function(ArsenalSuccess))(state),
-                        ),
-                      );
-                    },
-                  )
-                  .values
-                  .toList(),
+              children:
+                  _tabs
+                      .asMap()
+                      .map((index, tab) {
+                        return MapEntry(
+                          index,
+                          ArsenalItems(
+                            controller: _controllers[index],
+                            items: (tab['items'] as List<InventoryItemData> Function(List<InventoryItemData>))(
+                              state.items,
+                            ),
+                          ),
+                        );
+                      })
+                      .values
+                      .toList(),
             );
           },
         ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:inventoria/inventoria.dart';
 import 'package:navis/profile/cubit/profile_cubit.dart';
 import 'package:navis/settings/settings.dart';
 import 'package:navis/worldstate/worldstate.dart';
@@ -25,10 +26,11 @@ class _BlocBootstrapState extends State<BlocBootstrap> {
 
     final wsRepo = RepositoryProvider.of<WarframestatRepository>(context);
     final settings = RepositoryProvider.of<UserSettings>(context);
+    final inventoria = RepositoryProvider.of<Inventoria>(context);
 
     _worldstateCubit = WorldstateCubit(wsRepo);
     _userSettingsCubit = UserSettingsCubit(settings);
-    _profileCubit = ProfileCubit(wsRepo);
+    _profileCubit = ProfileCubit(inventoria);
   }
 
   @override
@@ -36,16 +38,7 @@ class _BlocBootstrapState extends State<BlocBootstrap> {
     super.didChangeDependencies();
 
     _worldstateCubit.fetchWorldstate();
-
-    final state = _userSettingsCubit.state;
-    final username = switch (state) {
-      UserSettingsSuccess() => state.username,
-      _ => null,
-    };
-
-    if (username != null) {
-      _profileCubit.update(username);
-    }
+    _profileCubit.update();
   }
 
   @override

@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_settings_ui/flutter_settings_ui.dart';
 import 'package:intl/intl.dart';
+import 'package:inventoria/inventoria.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis/profile/cubit/profile_cubit.dart';
 import 'package:navis/settings/settings.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:notification_repository/notification_repository.dart';
-import 'package:warframestat_client/warframestat_client.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});
@@ -43,19 +43,19 @@ class _SettingsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
+    final theme = SettingsThemeData(
+      titleTextColor: context.theme.colorScheme.primary,
+      settingsListBackground: context.theme.scaffoldBackgroundColor,
+    );
+
     final filters = NotificationTopics(context.l10n);
 
     final settings = context.select<UserSettingsCubit, UserSettingsSuccess?>(
       (cubit) => cubit.state is UserSettingsSuccess ? cubit.state as UserSettingsSuccess : null,
     );
 
-    final profile = context.select<ProfileCubit, Profile?>(
+    final profile = context.select<ProfileCubit, DriftProfileData?>(
       (cubit) => cubit.state is ProfileSuccessful ? (cubit.state as ProfileSuccessful).profile : null,
-    );
-
-    final theme = SettingsThemeData(
-      titleTextColor: context.theme.colorScheme.primary,
-      settingsListBackground: context.theme.scaffoldBackgroundColor,
     );
 
     final toggles = settings?.toggles ?? <String, bool>{};
@@ -66,13 +66,19 @@ class _SettingsView extends StatelessWidget {
       darkTheme: theme,
       sections: [
         SettingsSection(
-          title: const Text('Arsenal [PH]'),
+          title: const Text('Inventoria'),
           tiles: [
             SettingsTile(
-              title: Text(profile?.username ?? l10n.enterUsernameHintText),
+              title:
+                  profile?.username != null ? UserTitle(username: profile!.username) : Text(l10n.enterUsernameHintText),
               // TODO(Orn): find a way to show mastery progress
-              onPressed: ProfileWizard.show,
+              onPressed: profile?.username != null ? null : ProfileWizard.show,
             ),
+            if (profile?.username != null)
+              SettingsTile(
+                title: Text('Clear User', style: TextStyle(color: context.theme.colorScheme.error)),
+                onPressed: (_) => BlocProvider.of<ProfileCubit>(context).reset(),
+              ),
           ],
         ),
         SettingsSection(

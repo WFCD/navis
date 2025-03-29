@@ -4,10 +4,10 @@ import 'package:black_hole_flutter/black_hole_flutter.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:inventoria/inventoria.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis/profile/cubit/profile_cubit.dart';
-import 'package:navis/settings/settings.dart';
 import 'package:navis_ui/navis_ui.dart';
 
 class ProfileWizard extends StatefulWidget {
@@ -28,12 +28,19 @@ class _ProfileWizardState extends State<ProfileWizard> {
 
   void _onDetect(BarcodeCapture codes) {
     final accoundId = codes.barcodes.first.displayValue!;
+    final profile = context.read<ProfileCubit>().state;
+    final current = switch (profile) {
+      ProfileSuccessful(profile: final p) => p.id,
+      _ => null,
+    };
 
-    BlocProvider.of<UserSettingsCubit>(context).updateUsername(accoundId);
+    if (current == accoundId) return;
+
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(context.l10n.syncingInfoText)));
-
-    BlocProvider.of<ProfileCubit>(context).update(accoundId);
     Navigator.pop(context);
+
+    BlocProvider.of<ProfileCubit>(context).loadProfile(accoundId);
+    RepositoryProvider.of<Inventoria>(context).updateInventory();
   }
 
   @override
@@ -156,7 +163,14 @@ class _QrScannerState extends State<_QrScanner> {
       padding: const EdgeInsets.symmetric(horizontal: 86, vertical: 40),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(8),
-        child: MobileScanner(controller: _controller, onDetect: widget.onDetect),
+        child: MobileScanner(
+          controller: _controller,
+          onDetect: (b) {
+            // When recording the screen I found that popping the screen while it's still detecting softlocks the app
+            _controller.stop();
+            widget.onDetect(b);
+          },
+        ),
       ),
     );
   }

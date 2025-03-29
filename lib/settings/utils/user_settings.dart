@@ -27,12 +27,6 @@ class UserSettings {
     return _instance ??= UserSettings._(box);
   }
 
-  String? get username =>
-      _userSettingsBox.get(SettingsKeys.username) as String?;
-
-  set username(String? username) =>
-      _userSettingsBox.put(SettingsKeys.username, username);
-
   /// Returns the stored language as a locale.
   Locale get language {
     final value = _userSettingsBox.get(SettingsKeys.userLanguage) as String?;

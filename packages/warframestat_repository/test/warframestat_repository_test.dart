@@ -14,14 +14,10 @@ class MockClient extends Mock implements Client {}
 
 class MockBaseRequest extends Mock implements BaseRequest {}
 
-class MockArsenalDatabase extends Mock implements ArsenalDatabase {}
-
-StreamedResponse fakeResponse(String data) =>
-    StreamedResponse(Stream.value(utf8.encode(data)), 200);
+StreamedResponse fakeResponse(String data) => StreamedResponse(Stream.value(utf8.encode(data)), 200);
 
 void main() {
   late Client client;
-  late ArsenalDatabase database;
   late WarframestatRepository repository;
 
   setUpAll(() async {
@@ -32,8 +28,7 @@ void main() {
 
   setUp(() async {
     client = MockClient();
-    database = MockArsenalDatabase();
-    repository = WarframestatRepository(client: client, database: database);
+    repository = WarframestatRepository(client: client);
   });
 
   tearDown(() async {
@@ -55,8 +50,7 @@ void main() {
     final json = jsonEncode(fixture);
 
     test('fetch() => get worldstate', () async {
-      when(() => client.send(any()))
-          .thenAnswer((_) async => fakeResponse(json));
+      when(() => client.send(any())).thenAnswer((_) async => fakeResponse(json));
 
       final state = await repository.fetchWorldstate();
 
@@ -64,8 +58,7 @@ void main() {
     });
 
     test('fetch() => get worldstate from cache', () async {
-      when(() => client.send(any()))
-          .thenAnswer((_) async => fakeResponse(json));
+      when(() => client.send(any())).thenAnswer((_) async => fakeResponse(json));
 
       await repository.fetchWorldstate();
       clearInteractions(client);
@@ -80,8 +73,7 @@ void main() {
   group('Item search', () {
     final fixture = Fixtures.itemsFixture;
     final items = toItems(fixture);
-    final (uniqueName, name) =
-        ('/Lotus/Powersuits/Dragon/ChromaPrime', 'Chroma Prime');
+    final (uniqueName, name) = ('/Lotus/Powersuits/Dragon/ChromaPrime', 'Chroma Prime');
 
     final chroma = items.firstWhere((i) => i.uniqueName == uniqueName).toJson();
 
@@ -91,8 +83,7 @@ void main() {
     }
 
     test('fetch() => search item', () async {
-      when(() => client.send(any()))
-          .thenAnswer((_) async => fakeResponse(search(name)));
+      when(() => client.send(any())).thenAnswer((_) async => fakeResponse(search(name)));
 
       final items = await repository.searchItems(name);
 
@@ -100,8 +91,7 @@ void main() {
     });
 
     test('fetch() => get item', () async {
-      when(() => client.send(any()))
-          .thenAnswer((_) async => fakeResponse(jsonEncode(chroma)));
+      when(() => client.send(any())).thenAnswer((_) async => fakeResponse(jsonEncode(chroma)));
 
       final item = await repository.fetchItem(uniqueName);
 

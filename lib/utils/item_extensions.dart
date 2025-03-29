@@ -3,7 +3,7 @@ import 'package:warframestat_client/warframestat_client.dart';
 
 const defaultImage = 'https://raw.githubusercontent.com/WFCD/genesis-assets/master/img/menu/LotusEmblem.png';
 
-String _imageUrl(String? imageName) {
+String imageUri(String? imageName) {
   if (imageName == null) {
     return defaultImage.optimize();
   }
@@ -12,9 +12,9 @@ String _imageUrl(String? imageName) {
 }
 
 extension ItemX on Item {
-  String get imageUrl => _imageUrl(imageName);
+  String get imageUrl => imageUri(imageName);
 }
 
 extension AbilityX on Ability {
-  String get imageUrl => _imageUrl(imageName);
+  String get imageUrl => imageUri(imageName);
 }

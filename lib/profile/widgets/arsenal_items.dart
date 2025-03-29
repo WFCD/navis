@@ -1,30 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:inventoria/inventoria.dart';
 import 'package:navis/profile/cubit/arsenal_cubit.dart';
 import 'package:navis/profile/cubit/profile_cubit.dart';
 import 'package:navis/profile/widgets/widgets.dart';
-import 'package:navis/settings/settings.dart';
-import 'package:warframestat_repository/warframestat_repository.dart';
 
 class ArsenalItems extends StatelessWidget {
   const ArsenalItems({super.key, this.controller, required this.items});
 
   final ScrollController? controller;
-  final List<MasteryProgress> items;
+  final List<InventoryItemData> items;
 
   @override
   Widget build(BuildContext context) {
     return RefreshIndicator(
-      onRefresh: () async {
-        final settings = BlocProvider.of<UserSettingsCubit>(context).state;
-        final username = switch (settings) {
-          UserSettingsSuccess() => settings.username,
-          _ => null
-        };
-
-        if (username == null) return;
-        await BlocProvider.of<ProfileCubit>(context).update(username);
-      },
+      onRefresh: () => BlocProvider.of<ProfileCubit>(context).update(),
       child: BlocListener<ProfileCubit, ProfileState>(
         listener: (context, state) {
           final profile = switch (state) {
@@ -38,8 +28,7 @@ class ArsenalItems extends StatelessWidget {
         child: ListView.builder(
           controller: controller,
           itemCount: items.length,
-          itemBuilder: (context, index) =>
-              ArsenalItemWidget(progress: items[index]),
+          itemBuilder: (context, index) => ArsenalItemWidget(item: items[index]),
         ),
       ),
     );

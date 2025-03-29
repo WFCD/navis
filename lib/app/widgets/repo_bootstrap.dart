@@ -1,7 +1,7 @@
-import 'package:drift_flutter/drift_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive/hive.dart';
+import 'package:inventoria/inventoria.dart';
 import 'package:navis/settings/settings.dart';
 import 'package:notification_repository/notification_repository.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
@@ -26,18 +26,19 @@ class RepositoryBootstrap extends StatefulWidget {
 }
 
 class _RepositoryBootstrapState extends State<RepositoryBootstrap> {
-  late NotificationRepository _notifications;
-  late WarframestatRepository _warframestatRepository;
+  late final NotificationRepository _notifications;
+  late final WarframestatRepository _warframestatRepository;
+  late final Inventoria _inventoria;
 
   @override
   void initState() {
     super.initState();
 
+    final sentry = SentryHttpClient();
+
     _notifications = NotificationRepository();
-    _warframestatRepository = WarframestatRepository(
-      client: SentryHttpClient(),
-      database: ArsenalDatabase(driftDatabase(name: 'arsenal')),
-    )..updateArsenalItems();
+    _warframestatRepository = WarframestatRepository(client: sentry);
+    _inventoria = Inventoria(sentry);
   }
 
   @override
@@ -48,6 +49,7 @@ class _RepositoryBootstrapState extends State<RepositoryBootstrap> {
         RepositoryProvider.value(value: _warframestatRepository),
         RepositoryProvider.value(value: _notifications),
         RepositoryProvider.value(value: widget.routeObserver),
+        RepositoryProvider.value(value: _inventoria),
       ],
       child: widget.child,
     );
