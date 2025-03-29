@@ -34,25 +34,21 @@ class TraderCard extends StatelessWidget {
           final status = isActive ? l10n.baroLeavesOn : l10n.baroArrivesOn;
           final title = '${l10n.baroTitle} ${isActive ? '| ${trader?.location ?? ''}' : ''}';
 
-          return Card(
-            clipBehavior: Clip.antiAlias,
-            color: const Color(0xFF82598b),
-            child: InkWell(
-              onTap: isActive ? () => TraderPageRoute(trader?.inventory).push<void>(context) : null,
-              child: SizedBox(
-                height: 150,
-                child: ImageContainer(
-                  imageProvider: Assets.baroBanner.provider(),
-                  padding: EdgeInsets.zero,
-                  child: ListTile(
-                    title: Text(title),
-                    subtitle: Text('$status $dateFormatted'),
-                    textColor: Colors.white,
-                    trailing: CountdownTimer(
-                      tooltip: l10n.countdownTooltip(date),
-                      color: const Color(0xFF82598b),
-                      expiry: (isActive ? trader?.expiry : trader?.activation) ?? now,
-                    ),
+          return InkWell(
+            onTap: isActive ? () => TraderPageRoute(trader?.inventory).push<void>(context) : null,
+            child: SizedBox(
+              height: 150,
+              child: ImageContainer(
+                imageProvider: Assets.baroBanner.provider(),
+                padding: EdgeInsets.zero,
+                child: ListTile(
+                  title: Text(title),
+                  subtitle: Text('$status $dateFormatted'),
+                  textColor: Colors.white,
+                  trailing: CountdownTimer(
+                    tooltip: l10n.countdownTooltip(date),
+                    color: const Color(0xFF82598b),
+                    expiry: (isActive ? trader?.expiry : trader?.activation) ?? now,
                   ),
                 ),
               ),
