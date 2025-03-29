@@ -1,6 +1,8 @@
 import 'dart:async';
+import 'dart:convert';
 import 'dart:typed_data';
 
+import 'package:crypto/crypto.dart';
 import 'package:hive_ce/hive.dart';
 import 'package:http/http.dart';
 
@@ -14,8 +16,7 @@ typedef CachedItem = ({DateTime timestamp, Uint8List data});
 /// {@endtemplate}
 class CacheClient extends BaseClient {
   /// {@macro cache_client}
-  CacheClient({required this.cacheTime, required this.cacheBox, Client? client})
-      : _inner = client ?? Client();
+  CacheClient({required this.cacheTime, required this.cacheBox, Client? client}) : _inner = client ?? Client();
 
   /// When the response should be considered invalid
   final Duration cacheTime;
@@ -28,7 +29,8 @@ class CacheClient extends BaseClient {
   Future<StreamedResponse> send(BaseRequest request) async {
     if (request.method != 'GET') return _inner.send(request);
 
-    final cached = cacheBox.get(request.url.toString());
+    final hash = md5.convert(utf8.encode(request.url.toString())).toString();
+    final cached = cacheBox.get(hash);
 
     if (cached != null && !cached.isExpired) {
       return StreamedResponse(Stream.value(cached.data), 200);
@@ -38,7 +40,7 @@ class CacheClient extends BaseClient {
     final body = await response.stream.toBytes();
 
     await cacheBox.put(
-      request.url.toString(),
+      hash,
       HiveCacheItem(body, DateTime.timestamp().add(cacheTime)),
     );
 
