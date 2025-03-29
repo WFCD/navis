@@ -8,6 +8,7 @@ environment:
 
 dependencies:
   collection: ^1.18.0
+  crypto: ^3.0.6
   drift: ^2.22.1
   equatable: ^2.0.7
   hive_ce: ^2.7.0+1
