@@ -1422,7 +1422,7 @@ abstract class NavisLocalizations {
   /// Hint Text use as a placeholder in username input
   ///
   /// In en, this message translates to:
-  /// **'Setup Arsenal'**
+  /// **'Setup Inventoria'**
   String get enterUsernameHintText;
 
   /// Label text for clear username button
@@ -1436,6 +1436,12 @@ abstract class NavisLocalizations {
   /// In en, this message translates to:
   /// **'Cancel'**
   String get cancelText;
+
+  /// Steps to setup Inventoria
+  ///
+  /// In en, this message translates to:
+  /// **'Cephalon Navis can use your read-only profile data to help track your arsenal XP and mastery points.\n\n1. Go to {url} on a computer\n\n2. Upload your EE.log or account ID from cookies\n\n3. Tap next and scan the generated QR code'**
+  String inventoriaSteps(String url);
 }
 
 class _NavisLocalizationsDelegate extends LocalizationsDelegate<NavisLocalizations> {

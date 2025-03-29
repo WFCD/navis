@@ -679,11 +679,16 @@ class NavisLocalizationsCs extends NavisLocalizations {
   String get syncingInfoText => 'Syncing XP info';
 
   @override
-  String get enterUsernameHintText => 'Setup Arsenal';
+  String get enterUsernameHintText => 'Setup Inventoria';
 
   @override
   String get clearUsernameButtonLabel => 'Clear username';
 
   @override
   String get cancelText => 'Cancel';
+
+  @override
+  String inventoriaSteps(String url) {
+    return 'Cephalon Navis can use your read-only profile data to help track your arsenal XP and mastery points.\n\n1. Go to $url on a computer\n\n2. Upload your EE.log or account ID from cookies\n\n3. Tap next and scan the generated QR code';
+  }
 }

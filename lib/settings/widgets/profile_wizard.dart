@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:black_hole_flutter/black_hole_flutter.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -89,33 +91,40 @@ class _ProfileWizardState extends State<ProfileWizard> {
 class _InstructionsPage extends StatelessWidget {
   const _InstructionsPage();
 
+  List<String> _splitLocale(String str) {
+    return const LineSplitter().convert(str).where((s) => s.isNotEmpty).toList();
+  }
+
   @override
   Widget build(BuildContext context) {
     final introStyle = context.textTheme.titleMedium;
     final stepsStyle = context.textTheme.bodyLarge;
+    // Flutter didn't have an easy way to localize RitchText sooo... temporary fix?
+    final steps = _splitLocale(NavisLocalizations.of(context).inventoriaSteps(homepage));
+    final step1 = steps[1].split(homepage);
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 12),
+      // child: Container(),
       child: RichText(
         text: TextSpan(
           style: introStyle,
-          text:
-              'Cephalon Navis can use your read-only profile data to help track your arsenal XP and mastery points.\n\n',
+          text: '${steps[0]}\n\n',
           children: [
             TextSpan(
-              text: '1. Go to ',
+              text: step1[0],
               style: stepsStyle,
               children: [
                 TextSpan(
-                  text: 'https://navisqr.minilabs.dev/',
+                  text: homepage,
                   style: stepsStyle?.copyWith(color: context.theme.colorScheme.secondary),
-                  recognizer: TapGestureRecognizer()..onTap = () => 'https://navisqr.minilabs.dev/'.launchLink(context),
+                  recognizer: TapGestureRecognizer()..onTap = () => homepage.launchLink(context),
                 ),
-                const TextSpan(text: ' on a computer\n\n'),
+                TextSpan(text: '${step1[1]}\n\n'),
               ],
             ),
-            TextSpan(text: '2. Upload your EE.log or account ID from cookies\n\n', style: stepsStyle),
-            TextSpan(text: '3. Tap next and scan the generated QR code', style: stepsStyle),
+            TextSpan(text: '${steps[2]}\n\n', style: stepsStyle),
+            TextSpan(text: steps[3], style: stepsStyle),
           ],
         ),
       ),

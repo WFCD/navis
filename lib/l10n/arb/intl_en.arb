@@ -1123,7 +1123,7 @@
     "type": "text",
     "placeholder": {}
   },
-  "enterUsernameHintText": "Setup Arsenal",
+  "enterUsernameHintText": "Setup Inventoria",
   "@enterUsernameHintText": {
     "description": "Hint Text use as a placeholder in username input",
     "type": "text",
@@ -1140,5 +1140,15 @@
     "description": "Text to display for cancel buttons",
     "type": "text",
     "placeholder": {}
+  },
+  "inventoriaSteps": "Cephalon Navis can use your read-only profile data to help track your arsenal XP and mastery points.\n\n1. Go to {url} on a computer\n\n2. Upload your EE.log or account ID from cookies\n\n3. Tap next and scan the generated QR code",
+  "@inventoriaSteps": {
+    "description": "Steps to setup Inventoria",
+    "type": "text",
+    "placeholders": {
+      "url": {
+        "type": "String"
+      }
+    }
   }
 }
