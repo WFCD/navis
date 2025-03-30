@@ -12,7 +12,7 @@ dependencies:
   cached_network_image: ^3.4.1
   flutter:
     sdk: flutter
-  flutter_custom_tabs: ^2.1.0
+  flutter_custom_tabs: ^2.2.1
   gap: ^3.0.1
   html: ^0.15.5
   intl: ^0.19.0
