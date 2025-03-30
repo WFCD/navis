@@ -41,7 +41,7 @@ class __NewsCarouselViewState extends State<_NewsCarouselView> {
   int _currentPage = 0;
 
   void _autoScroll() {
-    if (!mounted) return;
+    if (!mounted || !_controller.hasClients || !_controller.position.hasViewportDimension) return;
 
     final pageSize = MediaQuery.sizeOf(context).width * .9;
     var nextPage = (_currentPage + 1) % _maxItems;
