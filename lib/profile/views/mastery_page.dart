@@ -15,7 +15,7 @@ class MasteryPage extends StatelessWidget {
 
     return Scaffold(
       body: SafeArea(
-        child: BlocProvider(create: (_) => ArsenalCubit(inventoria)..fetchXpInfo(), child: const MasteryView()),
+        child: BlocProvider(create: (_) => ArsenalCubit(inventoria)..syncXpInfo(), child: const MasteryView()),
       ),
     );
   }
