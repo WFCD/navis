@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:logging/logging.dart';
 import 'package:navis/codex/bloc/search_event.dart';
 import 'package:navis/codex/bloc/search_state.dart';
 import 'package:navis/codex/utils/result_filters.dart';
@@ -25,6 +26,8 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
 
   List<MinimalItem> _originalResults = [];
 
+  static final _logger = Logger('SearchBloc');
+
   Future<void> _searchCodex(SearchCodex event, Emitter<SearchState> emit) async {
     final text = event.text;
 
@@ -41,10 +44,13 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
         emit(CodexSuccessfulSearch(results));
       } on SocketException {
         emit(const CodexSearchError('A network error has occurred'));
-      } on FormatException {
+      } on FormatException catch (e, stack) {
+        _logger.severe('Failed to parse out item', e, stack);
+        await Sentry.captureException(e, stackTrace: stack, hint: Hint.withMap({'query': event.text}));
+
         emit(const CodexSearchError('Failed to parse server response'));
-      } on Exception catch (error, stackTrace) {
-        await Sentry.captureException(error, stackTrace: stackTrace, hint: Hint.withMap({'query': event.text}));
+      } on Exception catch (e, stack) {
+        _logger.severe('Some extra weird shit is going on', e, stack);
 
         emit(const CodexSearchError('Unknown Error occurred'));
       }

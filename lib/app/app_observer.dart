@@ -1,64 +1,38 @@
 import 'package:bloc/bloc.dart';
-import 'package:sentry_flutter/sentry_flutter.dart';
+import 'package:logging/logging.dart';
 
-const _breadcrumbType = 'bloc';
-
-// Got it from here https://gist.github.com/ueman/e002523741b496270dcabef2683e136e
 class AppBlocObserver extends BlocObserver {
-  AppBlocObserver({Hub? hub}) : _hub = hub ?? HubAdapter();
+  AppBlocObserver();
 
-  final Hub _hub;
+  static final _logger = Logger('AppBlocObserver');
 
   @override
   void onEvent(Bloc<dynamic, dynamic> bloc, Object? event) {
+    _logger.info('onEvent(${bloc.runtimeType}, $event)');
     super.onEvent(bloc, event);
-    final message = 'onEvent(${bloc.runtimeType}, $event)';
-
-    _hub.addBreadcrumb(
-      Breadcrumb(type: _breadcrumbType, category: 'onEvent', message: message, data: {'bloc': bloc.runtimeType}),
-    );
   }
 
   @override
   void onChange(BlocBase<dynamic> bloc, Change<dynamic> change) {
+    _logger.info('onChange(${bloc.runtimeType}), ${change.runtimeType}');
     super.onChange(bloc, change);
-    final message = 'onChange(${bloc.runtimeType}), ${change.runtimeType}';
-
-    _hub.addBreadcrumb(
-      Breadcrumb(type: _breadcrumbType, category: 'onChange', message: message, data: {'bloc': bloc.runtimeType}),
-    );
   }
 
   @override
   void onTransition(Bloc<dynamic, dynamic> bloc, Transition<dynamic, dynamic> transition) {
+    _logger.info('onTransition(${bloc.runtimeType}), $transition');
     super.onTransition(bloc, transition);
-    _hub.addBreadcrumb(
-      Breadcrumb(
-        type: _breadcrumbType,
-        category: 'onTransition',
-        message: transition.toString(),
-        data: {'bloc': bloc.runtimeType},
-      ),
-    );
   }
 
   @override
   void onClose(BlocBase<dynamic> bloc) {
+    _logger.warning('onClose(${bloc.runtimeType})');
     super.onClose(bloc);
-
-    _hub.addBreadcrumb(Breadcrumb(type: _breadcrumbType, category: 'onClose', data: {'bloc': bloc.runtimeType}));
   }
 
   @override
   void onError(BlocBase<dynamic> bloc, Object error, StackTrace stackTrace) {
+    _logger.shout('onError(${bloc.runtimeType})', error, stackTrace);
     super.onError(bloc, error, stackTrace);
-
-    final mechanism = Mechanism(type: 'BlocObserver.onError', handled: false);
-
-    final throwableMechanism = ThrowableMechanism(mechanism, error);
-
-    final event = SentryEvent(throwable: throwableMechanism, level: SentryLevel.fatal);
-
-    _hub.captureEvent(event, stackTrace: stackTrace);
   }
 }

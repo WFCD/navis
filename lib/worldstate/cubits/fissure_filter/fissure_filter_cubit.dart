@@ -1,6 +1,7 @@
 import 'package:collection/collection.dart';
 import 'package:equatable/equatable.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
+import 'package:logging/logging.dart';
 import 'package:warframestat_client/warframestat_client.dart';
 
 part 'fissure_filter_state.dart';
@@ -9,6 +10,8 @@ enum FissureFilter { fissures, voidStorm, steelPath }
 
 class FissureFilterCubit extends HydratedCubit<FissureFilterState> {
   FissureFilterCubit(List<Fissure> fissures) : super(Fissures(fissures: fissures));
+
+  static final _logger = Logger('FissureFilterCubit');
 
   FissureFilter _filter = FissureFilter.fissures;
 
@@ -31,6 +34,7 @@ class FissureFilterCubit extends HydratedCubit<FissureFilterState> {
 
   @override
   FissureFilterState? fromJson(Map<String, dynamic> json) {
+    _logger.info('Hydrating filtered fissures');
     final type = FissureFilter.values.byName(json['filter'] as String);
     final fissures =
         (json['fissures'] as List<dynamic>).map((e) => Fissure.fromJson(e as Map<String, dynamic>)).toList();
@@ -47,6 +51,7 @@ class FissureFilterCubit extends HydratedCubit<FissureFilterState> {
 
   @override
   Map<String, dynamic>? toJson(FissureFilterState state) {
+    _logger.info('Caching current state');
     return {
       'filter': state.type.toString().split('.').last,
       'fissures': state.fissures.map((e) => e.toJson()).toList(),

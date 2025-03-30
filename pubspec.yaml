@@ -43,6 +43,7 @@ dependencies:
     path: packages/notification_repository
   package_info_plus: ^8.1.2
   path_provider: ^2.1.5
+  replay_bloc: ^0.3.0
   responsive_builder: ^0.7.0
   rxdart: ^0.27.7
   sentry_flutter: ^8.12.0

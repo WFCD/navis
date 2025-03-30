@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:logging/logging.dart';
+
 typedef Debounceable<S, T> = FutureOr<S?> Function(T parameter);
 
 /// Returns a new function that is a debounced version of the given function.
@@ -32,18 +34,24 @@ class _Debouncer {
     _timer = Timer(Duration(milliseconds: milliseconds), _onComplete);
   }
 
+  static final _logger = Logger('_Debouncer');
+
   late final Timer _timer;
   final int milliseconds;
 
   final _completer = Completer<void>();
 
-  void _onComplete() => _completer.complete();
+  void _onComplete() {
+    _logger.fine('Completing callback');
+    return _completer.complete();
+  }
 
   Future<void> get future => _completer.future;
 
   bool get isCompleted => _completer.isCompleted;
 
   void cancel() {
+    _logger.finer('canceling timer');
     _timer.cancel();
     _completer.completeError(const _CancelException());
   }

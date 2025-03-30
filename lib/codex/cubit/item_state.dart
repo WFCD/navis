@@ -19,12 +19,7 @@ final class ItemFetchSuccess extends ItemState {
 }
 
 final class ItemFetchFailure extends ItemState {
-  const ItemFetchFailure(this.message);
-
-  final String message;
-
-  @override
-  List<Object> get props => [message];
+  const ItemFetchFailure();
 }
 
 final class ItemNotFound extends ItemState {

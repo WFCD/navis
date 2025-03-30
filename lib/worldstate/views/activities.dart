@@ -30,7 +30,8 @@ class ActivitiesView extends StatelessWidget {
 
   void listener(BuildContext context, SolsystemState state) {
     if (state is WorldstateFailure) {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(state.message)));
+      // TODO(SlayerOrnstein): Add localizations here too
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text(':(')));
     } else if (state is WorldstateSuccess) {
       final now = DateTime.now();
       final timestamp = state.worldstate.timestamp;

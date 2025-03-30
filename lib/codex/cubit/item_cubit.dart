@@ -3,8 +3,8 @@ import 'dart:async';
 import 'package:collection/collection.dart';
 import 'package:equatable/equatable.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
+import 'package:logging/logging.dart';
 import 'package:navis/utils/utils.dart';
-import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:warframestat_client/warframestat_client.dart';
 import 'package:warframestat_repository/warframestat_repository.dart';
 
@@ -15,6 +15,8 @@ class ItemCubit extends HydratedCubit<ItemState> {
 
   final String name;
   final WarframestatRepository repo;
+
+  static final _logger = Logger('ItemCubit');
 
   Future<void> fetchItem() async {
     final item = await _handleItemFetch(() => repo.fetchItem(name));
@@ -48,10 +50,9 @@ class ItemCubit extends HydratedCubit<ItemState> {
   Future<T> _handleItemFetch<T>(FutureOr<T> Function() compute) async {
     try {
       return ConnectionManager.call(compute);
-    } catch (e, s) {
-      await Sentry.captureException(e, stackTrace: s, hint: Hint.withMap({'query': name}));
-
-      emit(const ItemFetchFailure('Failed to parse item'));
+    } catch (e, stack) {
+      _logger.shout('Failed to parse $name', e, stack);
+      emit(const ItemFetchFailure());
 
       rethrow;
     }

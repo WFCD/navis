@@ -3,66 +3,54 @@ import 'dart:io';
 
 import 'package:equatable/equatable.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
+import 'package:logging/logging.dart';
 import 'package:navis/utils/utils.dart';
-import 'package:sentry_flutter/sentry_flutter.dart';
+import 'package:replay_bloc/replay_bloc.dart';
 import 'package:warframestat_client/warframestat_client.dart';
 import 'package:warframestat_repository/warframestat_repository.dart';
 
 part 'worldstate_state.dart';
 
-const String serverException = 'Failed to contact server';
-const String formatException = 'Server returned a malformed response';
-const String unknownException = r'Something happened ¯\_(ツ)_/¯';
-
-class WorldstateCubit extends HydratedCubit<SolsystemState> {
+class WorldstateCubit extends HydratedCubit<SolsystemState> with ReplayCubitMixin {
   WorldstateCubit(this.repository) : super(SolsystemInitial());
 
   final WarframestatRepository repository;
 
+  static final _logger = Logger('WorldstateCubit');
+
   Future<void> fetchWorldstate() async {
     try {
+      _logger.info('Updating Worldstate');
       final state = await ConnectionManager.call(repository.fetchWorldstate);
 
       state.clean();
       emit(WorldstateSuccess(state));
-    } on Exception catch (e, s) {
-      final current = state;
-      await _exceptionHandle(e, s);
-      emit(current);
-    }
-  }
+    } on SocketException {
+      emit(WorldstateFailure());
+    } on FormatException {
+      emit(WorldstateFailure());
+    } on Exception catch (e, stack) {
+      _logger.shout('Weird exception happened', e, stack);
 
-  Future<void> _exceptionHandle(Object exception, [StackTrace? s]) async {
-    switch (exception) {
-      case SocketException _:
-        emit(const WorldstateFailure(serverException));
-      case FormatException _:
-        emit(const WorldstateFailure(formatException));
-      default:
-        await Sentry.captureException(exception, stackTrace: s);
-        emit(const WorldstateFailure(unknownException));
+      // I want to tigger listeners then retore previous state
+      emit(WorldstateFailure());
+      undo();
     }
   }
 
   @override
   SolsystemState? fromJson(Map<String, dynamic>? json) {
-    Sentry.addBreadcrumb(Breadcrumb(message: 'WorldstateCubit.fromJson'));
-
+    _logger.info('Hydrating Worldstate');
     if (json == null) return null;
 
-    try {
-      return WorldstateSuccess(Worldstate.fromJson(json));
-    } on Exception {
-      return null;
-    }
+    return WorldstateSuccess(Worldstate.fromJson(json));
   }
 
   @override
   Map<String, dynamic>? toJson(SolsystemState state) {
-    if (state is WorldstateSuccess) {
-      return state.worldstate.toJson();
-    }
+    _logger.info('Caching current state');
+    if (state is! WorldstateSuccess) return null;
 
-    return null;
+    return state.worldstate.toJson();
   }
 }

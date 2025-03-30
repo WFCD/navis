@@ -1,7 +1,6 @@
-import 'dart:developer' as developer;
-
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
+import 'package:logging/logging.dart';
 import 'package:matomo_tracker/matomo_tracker.dart';
 import 'package:navis/settings/settings.dart';
 import 'package:sentry_hive/sentry_hive.dart';
@@ -17,11 +16,13 @@ class UserSettings {
 
   static UserSettings? _instance;
 
+  static final _logger = Logger('UserSettings');
+
   /// Initializes an instance of [UserSettings] within [path].
   ///
   /// You must call [Hive.init(path)] before calling this function
   static Future<UserSettings> initSettings(String path) async {
-    developer.log('initializing user settings');
+    _logger.info('initializing user settings');
     final box = await SentryHive.openBox<dynamic>('user_settings', path: path);
 
     return _instance ??= UserSettings._(box);
@@ -97,5 +98,8 @@ class UserSettings {
   /// Use only for test and must not be accessed anywhere in Navis as we want to
   /// always keep the box open.
   @visibleForTesting
-  Future<void> close() => _userSettingsBox.close();
+  Future<void> close() async {
+    _logger.warning('closing hive box');
+    await _userSettingsBox.close();
+  }
 }

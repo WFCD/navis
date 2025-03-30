@@ -65,13 +65,13 @@ class EntryView extends StatelessWidget {
 
     return Scaffold(
       body: SafeArea(
-        child: item is MinimalItem
-            ? BlocProvider(
-                create: (context) =>
-                    ItemCubit(item.uniqueName, repo)..fetchItem(),
-                child: _Overview(item: item),
-              )
-            : _Overview(item: item),
+        child:
+            item is MinimalItem
+                ? BlocProvider(
+                  create: (context) => ItemCubit(item.uniqueName, repo)..fetchItem(),
+                  child: _Overview(item: item),
+                )
+                : _Overview(item: item),
       ),
     );
   }
@@ -124,7 +124,8 @@ class _Overview extends StatelessWidget {
           body: BlocBuilder<ItemCubit, ItemState>(
             builder: (context, state) {
               if (state is ItemFetchFailure) {
-                return Center(child: Text(state.message));
+                // TODO(SlayerOrnstein): Gotta localize the message here
+                return const Center(child: Text(':('));
               }
 
               if (state is! ItemFetchSuccess) {
