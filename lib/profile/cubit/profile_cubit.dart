@@ -1,16 +1,19 @@
-import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:inventoria/inventoria.dart';
+import 'package:logging/logging.dart';
 
 part 'profile_state.dart';
 
-class ProfileCubit extends Cubit<ProfileState> {
+class ProfileCubit extends HydratedCubit<ProfileState> {
   ProfileCubit(this.inventoria) : super(ProfileInitial());
 
   final Inventoria inventoria;
 
+  final _logger = Logger('ProfileCubit');
+
   Future<void> loadProfile(String id) async {
-    emit(ProfileUpdating());
+    if (state is! ProfileSuccessful) emit(ProfileUpdating());
 
     try {
       final profile = await inventoria.fetchProfile();
@@ -28,7 +31,7 @@ class ProfileCubit extends Cubit<ProfileState> {
   }
 
   Future<void> update() async {
-    emit(ProfileUpdating());
+    if (state is! ProfileSuccessful) emit(ProfileUpdating());
 
     try {
       final profile = await inventoria.fetchProfile();
@@ -40,5 +43,21 @@ class ProfileCubit extends Cubit<ProfileState> {
     } on Exception {
       emit(ProfileFailure());
     }
+  }
+
+  @override
+  ProfileState? fromJson(Map<String, dynamic> json) {
+    final profile = DriftProfileData.fromJson(json);
+
+    _logger.info('Hydrating ProfileState');
+    return ProfileSuccessful(profile);
+  }
+
+  @override
+  Map<String, dynamic>? toJson(ProfileState state) {
+    if (state is! ProfileSuccessful) return null;
+
+    _logger.info('Caching profile');
+    return state.profile.toJson();
   }
 }

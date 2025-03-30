@@ -14,6 +14,7 @@ import 'package:navis/router/app_router.dart';
 import 'package:navis/settings/settings.dart';
 import 'package:navis/utils/utils.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 
 typedef BootstrapBuilder = FutureOr<Widget> Function(AppRouter);
 
@@ -40,6 +41,7 @@ Future<void> bootstrap(BootstrapBuilder builder) async {
     RepositoryBootstrap(
       settings: settings,
       routeObserver: observer,
+      client: SentryHttpClient(),
       child: BlocBootstrap(child: await builder(router)),
     ),
   );

@@ -1,49 +1,38 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:http/http.dart';
 import 'package:inventoria/inventoria.dart';
 import 'package:navis/settings/settings.dart';
 import 'package:notification_repository/notification_repository.dart';
-import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:warframestat_repository/warframestat_repository.dart';
 
-class RepositoryBootstrap extends StatefulWidget {
-  const RepositoryBootstrap({super.key, required this.settings, required this.routeObserver, required this.child});
+class RepositoryBootstrap extends StatelessWidget {
+  const RepositoryBootstrap({
+    super.key,
+    required UserSettings settings,
+    required RouteObserver<ModalRoute<void>> routeObserver,
+    required Client client,
+    required this.child,
+  }) : _settings = settings,
+       _routeObserver = routeObserver,
+       _client = client;
 
-  final UserSettings settings;
-  final RouteObserver<ModalRoute<void>> routeObserver;
+  final UserSettings _settings;
+  final RouteObserver<ModalRoute<void>> _routeObserver;
+  final Client _client;
   final Widget child;
-
-  @override
-  State<RepositoryBootstrap> createState() => _RepositoryBootstrapState();
-}
-
-class _RepositoryBootstrapState extends State<RepositoryBootstrap> {
-  late final NotificationRepository _notifications;
-  late final WarframestatRepository _warframestatRepository;
-  late final Inventoria _inventoria;
-
-  @override
-  void initState() {
-    super.initState();
-
-    final sentry = SentryHttpClient();
-
-    _notifications = NotificationRepository();
-    _warframestatRepository = WarframestatRepository(client: sentry);
-    _inventoria = Inventoria(sentry);
-  }
 
   @override
   Widget build(BuildContext context) {
     return MultiRepositoryProvider(
       providers: [
-        RepositoryProvider.value(value: widget.settings),
-        RepositoryProvider.value(value: _warframestatRepository),
-        RepositoryProvider.value(value: _notifications),
-        RepositoryProvider.value(value: widget.routeObserver),
-        RepositoryProvider.value(value: _inventoria),
+        RepositoryProvider.value(value: _settings),
+        RepositoryProvider(create: (_) => WarframestatRepository(client: _client)),
+        RepositoryProvider(create: (_) => NotificationRepository()),
+        RepositoryProvider(create: (_) => _routeObserver),
+        RepositoryProvider(create: (_) => Inventoria(_client)),
       ],
-      child: widget.child,
+      child: child,
     );
   }
 }
