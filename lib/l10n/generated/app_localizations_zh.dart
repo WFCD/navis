@@ -85,9 +85,6 @@ class NavisLocalizationsZh extends NavisLocalizations {
   String get razorbackTitle => '利刃豺狼';
 
   @override
-  String get earthCycleTitle => '地球循環';
-
-  @override
   String get cetusCycleTitle => '希圖斯循環';
 
   @override

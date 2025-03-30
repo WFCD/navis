@@ -85,9 +85,6 @@ class NavisLocalizationsRu extends NavisLocalizations {
   String get razorbackTitle => 'Армада Секачей';
 
   @override
-  String get earthCycleTitle => 'Земля';
-
-  @override
   String get cetusCycleTitle => 'Цетус';
 
   @override

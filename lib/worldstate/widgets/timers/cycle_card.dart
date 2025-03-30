@@ -62,7 +62,6 @@ class CycleCard extends StatelessWidget {
           _ => null,
         };
 
-        final earthCycle = worldstate?.earthCycle;
         final cetusCycle = worldstate?.cetusCycle;
         final vallisCycle = worldstate?.vallisCycle;
         final cambionCycle = worldstate?.cambionCycle;
@@ -72,11 +71,6 @@ class CycleCard extends StatelessWidget {
         return AppCard(
           child: Column(
             children: <Widget>[
-              _CycleRow(
-                currentState: _earthStateIcon(earthCycle?.state ?? EarthState.day),
-                name: locale.earthCycleTitle,
-                expiry: earthCycle?.expiry,
-              ),
               _CycleRow(
                 currentState: _earthStateIcon(cetusCycle?.state ?? EarthState.day),
                 name: locale.cetusCycleTitle,

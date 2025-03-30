@@ -85,9 +85,6 @@ class NavisLocalizationsKo extends NavisLocalizations {
   String get razorbackTitle => 'Razerback';
 
   @override
-  String get earthCycleTitle => '지구 주기';
-
-  @override
   String get cetusCycleTitle => '시터스 주기';
 
   @override

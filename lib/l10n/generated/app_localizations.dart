@@ -255,16 +255,10 @@ abstract class NavisLocalizations {
   /// **'Razorback'**
   String get razorbackTitle;
 
-  /// Earth cycle title
+  /// Earth and Cetus cycle title
   ///
   /// In en, this message translates to:
-  /// **'Earth Cycle'**
-  String get earthCycleTitle;
-
-  /// Cetus cycle title
-  ///
-  /// In en, this message translates to:
-  /// **'Cetus Cycle'**
+  /// **'Earth/Plains of Eidolon'**
   String get cetusCycleTitle;
 
   /// Vallis cycle title

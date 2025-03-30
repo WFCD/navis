@@ -85,9 +85,6 @@ class NavisLocalizationsFr extends NavisLocalizations {
   String get razorbackTitle => 'Razorback';
 
   @override
-  String get earthCycleTitle => 'Cycle Terrestre';
-
-  @override
   String get cetusCycleTitle => 'Cycle de Cetus';
 
   @override
