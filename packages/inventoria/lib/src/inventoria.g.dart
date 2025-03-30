@@ -820,11 +820,266 @@ class DriftProfileCompanion extends UpdateCompanion<DriftProfileData> {
   }
 }
 
+class $InventoriaManifestTable extends InventoriaManifest
+    with TableInfo<$InventoriaManifestTable, InventoriaManifestData> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $InventoriaManifestTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<int> id = GeneratedColumn<int>(
+    'id',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _hashMeta = const VerificationMeta('hash');
+  @override
+  late final GeneratedColumn<String> hash = GeneratedColumn<String>(
+    'hash',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _timestampMeta = const VerificationMeta(
+    'timestamp',
+  );
+  @override
+  late final GeneratedColumn<DateTime> timestamp = GeneratedColumn<DateTime>(
+    'timestamp',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: true,
+  );
+  @override
+  List<GeneratedColumn> get $columns => [id, hash, timestamp];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'inventoria_manifest';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<InventoriaManifestData> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    }
+    if (data.containsKey('hash')) {
+      context.handle(
+        _hashMeta,
+        hash.isAcceptableOrUnknown(data['hash']!, _hashMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_hashMeta);
+    }
+    if (data.containsKey('timestamp')) {
+      context.handle(
+        _timestampMeta,
+        timestamp.isAcceptableOrUnknown(data['timestamp']!, _timestampMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_timestampMeta);
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  InventoriaManifestData map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return InventoriaManifestData(
+      id:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.int,
+            data['${effectivePrefix}id'],
+          )!,
+      hash:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.string,
+            data['${effectivePrefix}hash'],
+          )!,
+      timestamp:
+          attachedDatabase.typeMapping.read(
+            DriftSqlType.dateTime,
+            data['${effectivePrefix}timestamp'],
+          )!,
+    );
+  }
+
+  @override
+  $InventoriaManifestTable createAlias(String alias) {
+    return $InventoriaManifestTable(attachedDatabase, alias);
+  }
+}
+
+class InventoriaManifestData extends DataClass
+    implements Insertable<InventoriaManifestData> {
+  final int id;
+  final String hash;
+  final DateTime timestamp;
+  const InventoriaManifestData({
+    required this.id,
+    required this.hash,
+    required this.timestamp,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['id'] = Variable<int>(id);
+    map['hash'] = Variable<String>(hash);
+    map['timestamp'] = Variable<DateTime>(timestamp);
+    return map;
+  }
+
+  InventoriaManifestCompanion toCompanion(bool nullToAbsent) {
+    return InventoriaManifestCompanion(
+      id: Value(id),
+      hash: Value(hash),
+      timestamp: Value(timestamp),
+    );
+  }
+
+  factory InventoriaManifestData.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return InventoriaManifestData(
+      id: serializer.fromJson<int>(json['id']),
+      hash: serializer.fromJson<String>(json['hash']),
+      timestamp: serializer.fromJson<DateTime>(json['timestamp']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'id': serializer.toJson<int>(id),
+      'hash': serializer.toJson<String>(hash),
+      'timestamp': serializer.toJson<DateTime>(timestamp),
+    };
+  }
+
+  InventoriaManifestData copyWith({
+    int? id,
+    String? hash,
+    DateTime? timestamp,
+  }) => InventoriaManifestData(
+    id: id ?? this.id,
+    hash: hash ?? this.hash,
+    timestamp: timestamp ?? this.timestamp,
+  );
+  InventoriaManifestData copyWithCompanion(InventoriaManifestCompanion data) {
+    return InventoriaManifestData(
+      id: data.id.present ? data.id.value : this.id,
+      hash: data.hash.present ? data.hash.value : this.hash,
+      timestamp: data.timestamp.present ? data.timestamp.value : this.timestamp,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('InventoriaManifestData(')
+          ..write('id: $id, ')
+          ..write('hash: $hash, ')
+          ..write('timestamp: $timestamp')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(id, hash, timestamp);
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is InventoriaManifestData &&
+          other.id == this.id &&
+          other.hash == this.hash &&
+          other.timestamp == this.timestamp);
+}
+
+class InventoriaManifestCompanion
+    extends UpdateCompanion<InventoriaManifestData> {
+  final Value<int> id;
+  final Value<String> hash;
+  final Value<DateTime> timestamp;
+  const InventoriaManifestCompanion({
+    this.id = const Value.absent(),
+    this.hash = const Value.absent(),
+    this.timestamp = const Value.absent(),
+  });
+  InventoriaManifestCompanion.insert({
+    this.id = const Value.absent(),
+    required String hash,
+    required DateTime timestamp,
+  }) : hash = Value(hash),
+       timestamp = Value(timestamp);
+  static Insertable<InventoriaManifestData> custom({
+    Expression<int>? id,
+    Expression<String>? hash,
+    Expression<DateTime>? timestamp,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (hash != null) 'hash': hash,
+      if (timestamp != null) 'timestamp': timestamp,
+    });
+  }
+
+  InventoriaManifestCompanion copyWith({
+    Value<int>? id,
+    Value<String>? hash,
+    Value<DateTime>? timestamp,
+  }) {
+    return InventoriaManifestCompanion(
+      id: id ?? this.id,
+      hash: hash ?? this.hash,
+      timestamp: timestamp ?? this.timestamp,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<int>(id.value);
+    }
+    if (hash.present) {
+      map['hash'] = Variable<String>(hash.value);
+    }
+    if (timestamp.present) {
+      map['timestamp'] = Variable<DateTime>(timestamp.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('InventoriaManifestCompanion(')
+          ..write('id: $id, ')
+          ..write('hash: $hash, ')
+          ..write('timestamp: $timestamp')
+          ..write(')'))
+        .toString();
+  }
+}
+
 abstract class _$InventoriaDatabase extends GeneratedDatabase {
   _$InventoriaDatabase(QueryExecutor e) : super(e);
   $InventoriaDatabaseManager get managers => $InventoriaDatabaseManager(this);
   late final $InventoryItemTable inventoryItem = $InventoryItemTable(this);
   late final $DriftProfileTable driftProfile = $DriftProfileTable(this);
+  late final $InventoriaManifestTable inventoriaManifest =
+      $InventoriaManifestTable(this);
   @override
   Iterable<TableInfo<Table, Object?>> get allTables =>
       allSchemaEntities.whereType<TableInfo<Table, Object?>>();
@@ -832,6 +1087,7 @@ abstract class _$InventoriaDatabase extends GeneratedDatabase {
   List<DatabaseSchemaEntity> get allSchemaEntities => [
     inventoryItem,
     driftProfile,
+    inventoriaManifest,
   ];
 }
 
@@ -1306,6 +1562,188 @@ typedef $$DriftProfileTableProcessedTableManager =
       DriftProfileData,
       PrefetchHooks Function()
     >;
+typedef $$InventoriaManifestTableCreateCompanionBuilder =
+    InventoriaManifestCompanion Function({
+      Value<int> id,
+      required String hash,
+      required DateTime timestamp,
+    });
+typedef $$InventoriaManifestTableUpdateCompanionBuilder =
+    InventoriaManifestCompanion Function({
+      Value<int> id,
+      Value<String> hash,
+      Value<DateTime> timestamp,
+    });
+
+class $$InventoriaManifestTableFilterComposer
+    extends Composer<_$InventoriaDatabase, $InventoriaManifestTable> {
+  $$InventoriaManifestTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<int> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get hash => $composableBuilder(
+    column: $table.hash,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get timestamp => $composableBuilder(
+    column: $table.timestamp,
+    builder: (column) => ColumnFilters(column),
+  );
+}
+
+class $$InventoriaManifestTableOrderingComposer
+    extends Composer<_$InventoriaDatabase, $InventoriaManifestTable> {
+  $$InventoriaManifestTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<int> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get hash => $composableBuilder(
+    column: $table.hash,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get timestamp => $composableBuilder(
+    column: $table.timestamp,
+    builder: (column) => ColumnOrderings(column),
+  );
+}
+
+class $$InventoriaManifestTableAnnotationComposer
+    extends Composer<_$InventoriaDatabase, $InventoriaManifestTable> {
+  $$InventoriaManifestTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<int> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<String> get hash =>
+      $composableBuilder(column: $table.hash, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get timestamp =>
+      $composableBuilder(column: $table.timestamp, builder: (column) => column);
+}
+
+class $$InventoriaManifestTableTableManager
+    extends
+        RootTableManager<
+          _$InventoriaDatabase,
+          $InventoriaManifestTable,
+          InventoriaManifestData,
+          $$InventoriaManifestTableFilterComposer,
+          $$InventoriaManifestTableOrderingComposer,
+          $$InventoriaManifestTableAnnotationComposer,
+          $$InventoriaManifestTableCreateCompanionBuilder,
+          $$InventoriaManifestTableUpdateCompanionBuilder,
+          (
+            InventoriaManifestData,
+            BaseReferences<
+              _$InventoriaDatabase,
+              $InventoriaManifestTable,
+              InventoriaManifestData
+            >,
+          ),
+          InventoriaManifestData,
+          PrefetchHooks Function()
+        > {
+  $$InventoriaManifestTableTableManager(
+    _$InventoriaDatabase db,
+    $InventoriaManifestTable table,
+  ) : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer:
+              () => $$InventoriaManifestTableFilterComposer(
+                $db: db,
+                $table: table,
+              ),
+          createOrderingComposer:
+              () => $$InventoriaManifestTableOrderingComposer(
+                $db: db,
+                $table: table,
+              ),
+          createComputedFieldComposer:
+              () => $$InventoriaManifestTableAnnotationComposer(
+                $db: db,
+                $table: table,
+              ),
+          updateCompanionCallback:
+              ({
+                Value<int> id = const Value.absent(),
+                Value<String> hash = const Value.absent(),
+                Value<DateTime> timestamp = const Value.absent(),
+              }) => InventoriaManifestCompanion(
+                id: id,
+                hash: hash,
+                timestamp: timestamp,
+              ),
+          createCompanionCallback:
+              ({
+                Value<int> id = const Value.absent(),
+                required String hash,
+                required DateTime timestamp,
+              }) => InventoriaManifestCompanion.insert(
+                id: id,
+                hash: hash,
+                timestamp: timestamp,
+              ),
+          withReferenceMapper:
+              (p0) =>
+                  p0
+                      .map(
+                        (e) => (
+                          e.readTable(table),
+                          BaseReferences(db, table, e),
+                        ),
+                      )
+                      .toList(),
+          prefetchHooksCallback: null,
+        ),
+      );
+}
+
+typedef $$InventoriaManifestTableProcessedTableManager =
+    ProcessedTableManager<
+      _$InventoriaDatabase,
+      $InventoriaManifestTable,
+      InventoriaManifestData,
+      $$InventoriaManifestTableFilterComposer,
+      $$InventoriaManifestTableOrderingComposer,
+      $$InventoriaManifestTableAnnotationComposer,
+      $$InventoriaManifestTableCreateCompanionBuilder,
+      $$InventoriaManifestTableUpdateCompanionBuilder,
+      (
+        InventoriaManifestData,
+        BaseReferences<
+          _$InventoriaDatabase,
+          $InventoriaManifestTable,
+          InventoriaManifestData
+        >,
+      ),
+      InventoriaManifestData,
+      PrefetchHooks Function()
+    >;
 
 class $InventoriaDatabaseManager {
   final _$InventoriaDatabase _db;
@@ -1314,4 +1752,6 @@ class $InventoriaDatabaseManager {
       $$InventoryItemTableTableManager(_db, _db.inventoryItem);
   $$DriftProfileTableTableManager get driftProfile =>
       $$DriftProfileTableTableManager(_db, _db.driftProfile);
+  $$InventoriaManifestTableTableManager get inventoriaManifest =>
+      $$InventoriaManifestTableTableManager(_db, _db.inventoriaManifest);
 }
