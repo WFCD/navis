@@ -16,7 +16,6 @@ class ArsenalItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const leadingSize = 50.0;
     final repo = RepositoryProvider.of<WarframestatRepository>(context);
 
     return OpenContainer(
@@ -43,24 +42,36 @@ class ArsenalItemWidget extends StatelessWidget {
       closedBuilder: (context, onTap) {
         return AppCard(
           color: item.rank == item.maxRank ? Theme.of(context).colorScheme.secondaryContainer : null,
-          child: ListTile(
-            leading: CachedNetworkImage(
-              imageUrl: imageUri(item.image),
-              width: leadingSize,
-              errorWidget: (context, url, error) => const Icon(WarframeSymbols.menu_LotusEmblem, size: leadingSize),
-            ),
-            title: Text(item.name),
-            subtitle: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                if (item.rank != 0) Text(context.l10n.itemRankSubtitle(item.rank)),
-                if (item.rank != item.maxRank && item.rank != 0)
-                  LinearProgressIndicator(value: item.rank / item.maxRank),
-              ],
-            ),
-          ),
+          child: ArsenalItemTitle(item: item),
         );
       },
+    );
+  }
+}
+
+class ArsenalItemTitle extends StatelessWidget {
+  const ArsenalItemTitle({super.key, required this.item});
+
+  final InventoryItemData item;
+
+  @override
+  Widget build(BuildContext context) {
+    const leadingSize = 50.0;
+
+    return ListTile(
+      leading: CachedNetworkImage(
+        imageUrl: imageUri(item.image),
+        width: leadingSize,
+        errorWidget: (context, url, error) => const Icon(WarframeSymbols.menu_LotusEmblem, size: leadingSize),
+      ),
+      title: Text(item.name),
+      subtitle: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          if (item.rank != 0) Text(context.l10n.itemRankSubtitle(item.rank)),
+          if (item.rank != item.maxRank && item.rank != 0) LinearProgressIndicator(value: item.rank / item.maxRank),
+        ],
+      ),
     );
   }
 }

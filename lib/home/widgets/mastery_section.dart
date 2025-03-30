@@ -53,7 +53,7 @@ class MasteryInProgressContent extends StatelessWidget {
           }
 
           return Column(
-            children: [for (final i in state.items.where((i) => !i.isMissing).take(5)) ArsenalItemWidget(item: i)],
+            children: [for (final i in state.items.where((i) => !i.isMissing).take(5)) ArsenalItemTitle(item: i)],
           );
         },
       ),
