@@ -10,8 +10,9 @@ class UserTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final name = username.substring(0, username.length - 1);
-    final platform = username.substring(username.length - 1);
+    final regex = RegExp(r'[\ue000-\ue008]', unicode: true);
+    final name = username.replaceAll(regex, '');
+    final platform = regex.stringMatch(username)!;
 
     return Row(mainAxisSize: MainAxisSize.min, spacing: 16, children: [Text(name), _PlatformIcon(platform: platform)]);
   }
@@ -24,11 +25,11 @@ class _PlatformIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // 0x0 - pc
-    // 0x1 - xbox
-    // 0x2 - ps
-    // 0x3 - switch
-    // 0x4 - ios
+    // \ue000 - pc
+    // \ue001 - xbox
+    // \ue002 - ps
+    // \ue003 - switch
+    // \ue004 - ios
 
     const pc = 'PC';
     const psn = 'Sony PlayStation';
