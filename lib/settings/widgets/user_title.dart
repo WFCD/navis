@@ -12,9 +12,13 @@ class UserTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     final regex = RegExp(r'[\ue000-\ue008]', unicode: true);
     final name = username.replaceAll(regex, '');
-    final platform = regex.stringMatch(username)!;
+    final platform = regex.stringMatch(username);
 
-    return Row(mainAxisSize: MainAxisSize.min, spacing: 16, children: [Text(name), _PlatformIcon(platform: platform)]);
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      spacing: 16,
+      children: [Text(name), if (platform != null) _PlatformIcon(platform: platform)],
+    );
   }
 }
 
