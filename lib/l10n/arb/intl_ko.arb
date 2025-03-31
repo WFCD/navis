@@ -130,14 +130,9 @@
     "description": "Razorback progress title",
     "type": "text"
   },
-  "earthCycleTitle": "지구 주기",
-  "@earthCycleTitle": {
-    "description": "Earth cycle title",
-    "type": "text"
-  },
-  "cetusCycleTitle": "시터스 주기",
+  "cetusCycleTitle": "Earth/Plains of Eidolon",
   "@cetusCycleTitle": {
-    "description": "Cetus cycle title",
+    "description": "Earth and Cetus cycle title",
     "type": "text"
   },
   "vallisCycleTitle": "협곡 주기",
