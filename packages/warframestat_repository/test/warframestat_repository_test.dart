@@ -1,7 +1,6 @@
 import 'dart:convert' hide json;
 import 'dart:io';
 
-import 'package:cache_client/cache_client.dart';
 import 'package:hive_ce/hive.dart';
 import 'package:http/http.dart';
 import 'package:mocktail/mocktail.dart';
@@ -24,13 +23,12 @@ void main() {
   setUpAll(() async {
     registerFallbackValue(MockBaseRequest());
     registerFallbackValue(Uri());
-    CacheClient.registerAdapters();
     Hive.init(Directory.systemTemp.path);
   });
 
   setUp(() async {
     client = MockClient();
-    repository = WarframestatRepository(cache: await Hive.openBox<CachedItem>('test'), client: client);
+    repository = WarframestatRepository(client: client);
   });
 
   tearDown(() async {

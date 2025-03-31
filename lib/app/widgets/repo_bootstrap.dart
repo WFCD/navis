@@ -1,7 +1,5 @@
-import 'package:cache_client/cache_client.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hive_ce/hive.dart';
 import 'package:http/http.dart';
 import 'package:inventoria/inventoria.dart';
 import 'package:navis/settings/settings.dart';
@@ -11,18 +9,15 @@ import 'package:warframestat_repository/warframestat_repository.dart';
 class RepositoryBootstrap extends StatelessWidget {
   const RepositoryBootstrap({
     super.key,
-    required Box<CachedItem> cache,
     required UserSettings settings,
     required RouteObserver<ModalRoute<void>> routeObserver,
     required Client client,
     required this.child,
-  }) : _cache = cache,
-       _settings = settings,
+  }) : _settings = settings,
        _routeObserver = routeObserver,
        _client = client;
 
   final UserSettings _settings;
-  final Box<CachedItem> _cache;
   final RouteObserver<ModalRoute<void>> _routeObserver;
   final Client _client;
   final Widget child;
@@ -32,10 +27,10 @@ class RepositoryBootstrap extends StatelessWidget {
     return MultiRepositoryProvider(
       providers: [
         RepositoryProvider.value(value: _settings),
-        RepositoryProvider(create: (_) => WarframestatRepository(client: _client, cache: _cache)),
+        RepositoryProvider(create: (_) => WarframestatRepository(client: _client)),
         RepositoryProvider(create: (_) => NotificationRepository()),
         RepositoryProvider(create: (_) => _routeObserver),
-        RepositoryProvider(create: (_) => Inventoria(client: _client, cache: _cache)),
+        RepositoryProvider(create: (_) => Inventoria(client: _client)),
       ],
       child: child,
     );

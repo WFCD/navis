@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:cache_client/src/cached_item.dart';
 import 'package:cache_client/src/hive/hive_registrar.g.dart';
 import 'package:crypto/crypto.dart';
-import 'package:hive_ce/hive.dart';
+import 'package:hive_ce_flutter/adapters.dart';
 import 'package:http/http.dart';
 
 class CacheClient extends BaseClient {
@@ -17,7 +17,12 @@ class CacheClient extends BaseClient {
 
   final Client _inner;
 
-  static void registerAdapters() => Hive.registerAdapters();
+  static Future<CacheClient> initCacheClient({Duration ttl = const Duration(seconds: 60), Client? client}) async {
+    if (!Hive.isAdapterRegistered(0)) Hive.registerAdapters();
+    final box = await Hive.openBox<CachedItem>('cache_client.tmp');
+
+    return CacheClient(cache: box, ttl: ttl, client: client);
+  }
 
   @override
   Future<StreamedResponse> send(BaseRequest request) async {

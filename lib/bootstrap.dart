@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:cache_client/cache_client.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -26,7 +25,6 @@ Future<void> bootstrap(BootstrapBuilder builder) async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await Hive.initFlutter(temp.path);
-  CacheClient.registerAdapters();
 
   final settings = await UserSettings.initSettings(appDir.path);
 
@@ -39,7 +37,6 @@ Future<void> bootstrap(BootstrapBuilder builder) async {
   logger.info('Booting up Navis');
   runApp(
     RepositoryBootstrap(
-      cache: await Hive.openBox<CachedItem>('navis_cache.tmp'),
       settings: settings,
       routeObserver: observer,
       client: SentryHttpClient(),

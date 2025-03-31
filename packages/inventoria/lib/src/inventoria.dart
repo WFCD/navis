@@ -5,7 +5,6 @@ import 'package:crypto/crypto.dart';
 import 'package:drift/drift.dart';
 import 'package:drift/isolate.dart';
 import 'package:drift_flutter/drift_flutter.dart';
-import 'package:hive_ce/hive.dart';
 import 'package:http/http.dart';
 import 'package:inventoria/src/inventoria.steps.dart';
 import 'package:inventoria/src/models/models.dart';
@@ -21,12 +20,8 @@ part 'inventoria.g.dart';
 /// {@endtemplate}
 class Inventoria {
   /// {@macro inventoria}
-  Inventoria({required Box<CachedItem> cache, Client? client})
-    : _cache = cache,
-      _client = client ?? Client(),
-      _database = InventoriaDatabase();
+  Inventoria({Client? client}) : _client = client ?? Client(), _database = InventoriaDatabase();
 
-  final Box<CachedItem> _cache;
   final Client _client;
   final InventoriaDatabase _database;
 
@@ -54,7 +49,7 @@ class Inventoria {
   Future<void> updateProfile(String id) async {
     _logger.info('Updating profile');
     final client = ProfileClient(
-      client: CacheClient(cache: _cache, client: _client, ttl: const Duration(minutes: 60)),
+      client: await CacheClient.initCacheClient(client: _client, ttl: const Duration(minutes: 60)),
       playerId: id,
     );
     final profile = await client.fetchProfile();
