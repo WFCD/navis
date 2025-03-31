@@ -130,14 +130,9 @@
     "description": "Razorback progress title",
     "type": "text"
   },
-  "earthCycleTitle": "Ciclo da Terra",
-  "@earthCycleTitle": {
-    "description": "Earth cycle title",
-    "type": "text"
-  },
-  "cetusCycleTitle": "Ciclo de Cetus",
+  "cetusCycleTitle": "Earth/Plains of Eidolon",
   "@cetusCycleTitle": {
-    "description": "Cetus cycle title",
+    "description": "Earth and Cetus cycle title",
     "type": "text"
   },
   "vallisCycleTitle": "Ciclo de Vallis",
