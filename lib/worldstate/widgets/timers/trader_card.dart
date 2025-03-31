@@ -15,46 +15,45 @@ class TraderCard extends StatelessWidget {
     const baroPurple = Color(0xFF82598b);
     final l10n = context.l10n;
 
-    return Card(
+    return AppCard(
       clipBehavior: Clip.antiAlias,
       color: baroPurple,
-      child: BlocSelector<WorldstateCubit, SolsystemState, List<Trader>?>(
-        selector:
-            (s) => switch (s) {
-              WorldstateSuccess() => s.worldstate.voidTraders,
-              _ => null,
-            },
-        builder: (context, traders) {
-          final now = DateTime.timestamp();
-          final trader = traders?.first;
-          final isActive = trader?.active ?? false;
+      padding: EdgeInsets.zero,
+      child: ImageContainer(
+        height: 100,
+        imageProvider: Assets.baroBanner.provider(),
+        padding: EdgeInsets.zero,
+        child: BlocSelector<WorldstateCubit, SolsystemState, List<Trader>?>(
+          selector:
+              (s) => switch (s) {
+                WorldstateSuccess() => s.worldstate.voidTraders,
+                _ => null,
+              },
+          builder: (context, traders) {
+            final now = DateTime.timestamp();
+            final trader = traders?.first;
+            final isActive = trader?.active ?? false;
 
-          final date = isActive ? trader?.expiry ?? now : trader?.activation ?? now;
-          final dateFormatted = MaterialLocalizations.of(context).formatFullDate(date);
-          final status = isActive ? l10n.baroLeavesOn : l10n.baroArrivesOn;
-          final title = '${l10n.baroTitle} ${isActive ? '| ${trader?.location ?? ''}' : ''}';
+            final date = isActive ? trader?.expiry ?? now : trader?.activation ?? now;
+            final dateFormatted = MaterialLocalizations.of(context).formatFullDate(date);
+            final status = isActive ? l10n.baroLeavesOn : l10n.baroArrivesOn;
+            final title = '${l10n.baroTitle} ${isActive ? '| ${trader?.location ?? ''}' : ''}';
 
-          return InkWell(
-            onTap: isActive ? () => TraderPageRoute(trader?.inventory).push<void>(context) : null,
-            child: SizedBox(
-              height: 150,
-              child: ImageContainer(
-                imageProvider: Assets.baroBanner.provider(),
-                padding: EdgeInsets.zero,
-                child: ListTile(
-                  title: Text(title),
-                  subtitle: Text('$status $dateFormatted'),
-                  textColor: Colors.white,
-                  trailing: CountdownTimer(
-                    tooltip: l10n.countdownTooltip(date),
-                    color: const Color(0xFF82598b),
-                    expiry: (isActive ? trader?.expiry : trader?.activation) ?? now,
-                  ),
+            return InkWell(
+              onTap: isActive ? () => TraderPageRoute(trader?.inventory).push<void>(context) : null,
+              child: ListTile(
+                title: Text(title),
+                subtitle: Text('$status $dateFormatted'),
+                textColor: Colors.white,
+                trailing: CountdownTimer(
+                  tooltip: l10n.countdownTooltip(date),
+                  color: const Color(0xFF82598b),
+                  expiry: (isActive ? trader?.expiry : trader?.activation) ?? now,
                 ),
               ),
-            ),
-          );
-        },
+            );
+          },
+        ),
       ),
     );
   }

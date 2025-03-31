@@ -1,5 +1,6 @@
 import 'package:black_hole_flutter/black_hole_flutter.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
@@ -21,11 +22,18 @@ class AlertsCard extends StatelessWidget {
     return BlocProvider(create: (_) => ItemCubit(reward, r)..fetchByName(), child: _AlertWidget(alert: a));
   }
 
+  bool _buildWhen(SolsystemState previous, SolsystemState next) {
+    if (previous is! WorldstateSuccess || next is! WorldstateSuccess) return false;
+
+    return const DeepCollectionEquality().equals(previous.worldstate.alerts, next.worldstate.alerts);
+  }
+
   @override
   Widget build(BuildContext context) {
     final wsRepo = RepositoryProvider.of<WarframestatRepository>(context);
 
     return BlocBuilder<WorldstateCubit, SolsystemState>(
+      buildWhen: _buildWhen,
       builder: (context, state) {
         final alerts = switch (state) {
           WorldstateSuccess() => state.worldstate.alerts,

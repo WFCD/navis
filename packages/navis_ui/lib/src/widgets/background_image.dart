@@ -90,10 +90,7 @@ class ImageContainer extends StatelessWidget {
           alignment: alignment,
           decoration: BoxDecoration(
             image: DecorationImage(
-              image: ResizeImage(
-                imageProvider,
-                height: constraints.maxHeight.toInt(),
-              ),
+              image: ResizeImage(imageProvider, width: constraints.maxWidth.toInt()),
               fit: BoxFit.cover,
             ),
           ),

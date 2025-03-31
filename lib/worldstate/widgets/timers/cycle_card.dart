@@ -53,23 +53,23 @@ class CycleCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<WorldstateCubit, SolsystemState>(
-      buildWhen: _buildWhen,
-      builder: (context, state) {
-        final locale = context.l10n;
-        final worldstate = switch (state) {
-          WorldstateSuccess() => state.worldstate,
-          _ => null,
-        };
+    return AppCard(
+      child: BlocBuilder<WorldstateCubit, SolsystemState>(
+        buildWhen: _buildWhen,
+        builder: (context, state) {
+          final locale = context.l10n;
+          final worldstate = switch (state) {
+            WorldstateSuccess() => state.worldstate,
+            _ => null,
+          };
 
-        final cetusCycle = worldstate?.cetusCycle;
-        final vallisCycle = worldstate?.vallisCycle;
-        final cambionCycle = worldstate?.cambionCycle;
-        final zarimanCycle = worldstate?.zarimanCycle;
-        final duviriCycle = worldstate?.duviriCycle;
+          final cetusCycle = worldstate?.cetusCycle;
+          final vallisCycle = worldstate?.vallisCycle;
+          final cambionCycle = worldstate?.cambionCycle;
+          final zarimanCycle = worldstate?.zarimanCycle;
+          final duviriCycle = worldstate?.duviriCycle;
 
-        return AppCard(
-          child: Column(
+          return Column(
             children: <Widget>[
               _CycleRow(
                 currentState: _earthStateIcon(cetusCycle?.state ?? EarthState.day),
@@ -104,9 +104,9 @@ class CycleCard extends StatelessWidget {
                 }),
               ),
             ],
-          ),
-        );
-      },
+          );
+        },
+      ),
     );
   }
 }
