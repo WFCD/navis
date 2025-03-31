@@ -97,6 +97,9 @@ class NavisLocalizationsTr extends NavisLocalizations {
   String get zarimanCycleTitle => 'Zariman Döngüsü';
 
   @override
+  String get duviriCycleTitle => 'Duviri';
+
+  @override
   String get timersTitle => 'Zamanlayıcılar';
 
   @override

@@ -97,6 +97,9 @@ class NavisLocalizationsKo extends NavisLocalizations {
   String get zarimanCycleTitle => '자리만 주기';
 
   @override
+  String get duviriCycleTitle => 'Duviri';
+
+  @override
   String get timersTitle => '타이머';
 
   @override

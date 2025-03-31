@@ -97,6 +97,9 @@ class NavisLocalizationsZh extends NavisLocalizations {
   String get zarimanCycleTitle => '扎日曼號循環';
 
   @override
+  String get duviriCycleTitle => 'Duviri';
+
+  @override
   String get timersTitle => '計時器';
 
   @override

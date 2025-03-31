@@ -97,6 +97,9 @@ class NavisLocalizationsFr extends NavisLocalizations {
   String get zarimanCycleTitle => 'Cycle du Zariman';
 
   @override
+  String get duviriCycleTitle => 'Duviri';
+
+  @override
   String get timersTitle => 'Minuteurs';
 
   @override

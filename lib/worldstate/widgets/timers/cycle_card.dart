@@ -92,9 +92,16 @@ class CycleCard extends StatelessWidget {
                 expiry: zarimanCycle?.expiry,
               ),
               _CycleRow(
-                currentState: _stateText(context, duviriCycle?.state.name ?? DuviriState.anger.name),
-                name: 'Duviri Cycle',
+                name: locale.duviriCycleTitle,
                 expiry: duviriCycle?.expiry,
+                currentState: _stateText(context, switch (duviriCycle?.state ?? DuviriState.envy) {
+                  DuviriState.joy => locale.duviriJoy,
+                  DuviriState.anger => locale.duviriAnger,
+                  DuviriState.envy => locale.duviriEnvy,
+                  DuviriState.sorrow => locale.duviriSorrow,
+                  DuviriState.fear => locale.duviriFear,
+                  // ignore: require_trailing_commas The Formatter keeps removing it lol
+                }),
               ),
             ],
           ),

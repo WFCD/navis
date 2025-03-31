@@ -97,6 +97,9 @@ class NavisLocalizationsPl extends NavisLocalizations {
   String get zarimanCycleTitle => 'Zariman Cycle';
 
   @override
+  String get duviriCycleTitle => 'Duviri';
+
+  @override
   String get timersTitle => 'Timers';
 
   @override

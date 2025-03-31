@@ -97,6 +97,9 @@ class NavisLocalizationsRu extends NavisLocalizations {
   String get zarimanCycleTitle => 'Цикл на Заримане';
 
   @override
+  String get duviriCycleTitle => 'Duviri';
+
+  @override
   String get timersTitle => 'Таймеры';
 
   @override

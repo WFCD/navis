@@ -264,20 +264,26 @@ abstract class NavisLocalizations {
   /// Vallis cycle title
   ///
   /// In en, this message translates to:
-  /// **'Vallis Cycle'**
+  /// **'Orb Vallis'**
   String get vallisCycleTitle;
 
   /// Cambion Cycle title
   ///
   /// In en, this message translates to:
-  /// **'Cambion Cycle'**
+  /// **'Cambion Drift'**
   String get cambionCycleTitle;
 
   /// Zariman Cycle title
   ///
   /// In en, this message translates to:
-  /// **'Zariman Cycle'**
+  /// **'Zariman'**
   String get zarimanCycleTitle;
+
+  /// Duviri Cycle title
+  ///
+  /// In en, this message translates to:
+  /// **'Duviri'**
+  String get duviriCycleTitle;
 
   /// Times title
   ///
@@ -1029,34 +1035,34 @@ abstract class NavisLocalizations {
   /// **'OUT OF STOCK'**
   String get outOfStockTitle;
 
-  /// Duviri joy state. If Duviri doesn't have a translatetion then only joy can be translated.
+  /// Duviri joy state.
   ///
   /// In en, this message translates to:
-  /// **'Duviri Joy'**
+  /// **'Joy'**
   String get duviriJoy;
 
-  /// Duviri anger state. If Duviri doesn't have a translatetion then only joy can be translated.
+  /// Duviri anger state.
   ///
   /// In en, this message translates to:
-  /// **'Duviri Anger'**
+  /// **'Anger'**
   String get duviriAnger;
 
-  /// Duviri envy state. If Duviri doesn't have a translatetion then only joy can be translated.
+  /// Duviri envy state.
   ///
   /// In en, this message translates to:
-  /// **'Duviri Envy'**
+  /// **'Envy'**
   String get duviriEnvy;
 
-  /// Duviri sorrow state. If Duviri doesn't have a translatetion then only joy can be translated.
+  /// sorrow Duviri state
   ///
   /// In en, this message translates to:
-  /// **'Duviri Sorrow'**
+  /// **'Sorrow'**
   String get duviriSorrow;
 
-  /// Duviri Fear state. If Duviri doesn't have a translatetion then only joy can be translated.
+  /// Fear Duviri state
   ///
   /// In en, this message translates to:
-  /// **'Duviri Fear'**
+  /// **'Fear'**
   String get duviriFear;
 
   /// Map title
