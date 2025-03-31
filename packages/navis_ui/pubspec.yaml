@@ -16,7 +16,7 @@ dependencies:
   gap: ^3.0.1
   html: ^0.15.5
   intl: ^0.19.0
-  warframestat_client: ^4.2.3
+  warframestat_client: ^4.2.4
 
 dependency_overrides:
   meta: 1.15.0
