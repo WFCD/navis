@@ -19,11 +19,11 @@ class SyndicatePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocSelector<WorldstateCubit, SolsystemState, SyndicateData?>(
+    return BlocSelector<WorldstateBloc, WorldState, SyndicateData?>(
       selector: (state) {
         if (state is! WorldstateSuccess) return null;
 
-        final worldstate = state.worldstate;
+        final worldstate = state.seed;
 
         return (
           calendar: worldstate.calendar.first,
@@ -39,9 +39,9 @@ class SyndicatePage extends StatelessWidget {
             child: ResponsiveBuilder(
               builder: (context, info) {
                 return _SyndicateView(
-                  syndicates: state!.jobs,
-                  nightwave: state.nightwave,
-                  calendar: state.calendar,
+                  syndicates: state?.jobs ?? [],
+                  nightwave: state?.nightwave,
+                  calendar: state?.calendar,
                   isMobile: info.refinedSize == RefinedSize.normal,
                 );
               },
@@ -77,7 +77,7 @@ class _SyndicateView extends StatefulWidget {
 
   final List<SyndicateMission> syndicates;
   final Nightwave? nightwave;
-  final Calendar calendar;
+  final Calendar? calendar;
   final bool isMobile;
 
   @override
@@ -97,6 +97,9 @@ class _SyndicateViewState extends State<_SyndicateView> {
 
   @override
   Widget build(BuildContext context) {
+    final nightwave = widget.nightwave;
+    final calendar = widget.calendar;
+
     return Row(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -105,23 +108,24 @@ class _SyndicateViewState extends State<_SyndicateView> {
           child: ListView(
             padding: const EdgeInsets.only(top: 4),
             children: <Widget>[
-              if (widget.nightwave != null)
+              if (nightwave != null)
                 NightwaveCard(
-                  nightwave: widget.nightwave!,
+                  nightwave: nightwave,
                   onTap: () {
                     widget.isMobile
-                        ? NightwavePageRoute(widget.nightwave).push<void>(context)
+                        ? NightwavePageRoute(nightwave).push<void>(context)
                         : _changePane(NightwaveChalleneges(nightwave: widget.nightwave!));
                   },
                 ),
-              HexCard(
-                calendar: widget.calendar,
-                onTap: () {
-                  widget.isMobile
-                      ? Calendar1999PageRoute(widget.calendar.season, widget.calendar.days).push<void>(context)
-                      : _changePane(CalendarView(days: widget.calendar.days));
-                },
-              ),
+              if (calendar != null)
+                HexCard(
+                  calendar: calendar,
+                  onTap: () {
+                    widget.isMobile
+                        ? Calendar1999PageRoute(calendar.season, calendar.days).push<void>(context)
+                        : _changePane(CalendarView(days: calendar.days));
+                  },
+                ),
               _BuildSyndicates(
                 syndicates: widget.syndicates,
                 onTap: (s) {
