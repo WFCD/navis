@@ -130,14 +130,9 @@
     "description": "Razorback progress title",
     "type": "text"
   },
-  "earthCycleTitle": "地球循環",
-  "@earthCycleTitle": {
-    "description": "Earth cycle title",
-    "type": "text"
-  },
-  "cetusCycleTitle": "希圖斯循環",
+  "cetusCycleTitle": "Earth/Plains of Eidolon",
   "@cetusCycleTitle": {
-    "description": "Cetus cycle title",
+    "description": "Earth and Cetus cycle title",
     "type": "text"
   },
   "vallisCycleTitle": "奥布山谷循環",
