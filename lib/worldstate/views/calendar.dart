@@ -23,22 +23,24 @@ class CalendarView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final filtered = days.where((d) => d.events.isNotEmpty).toList();
+
     return ListView.builder(
-      itemCount: days.length,
+      itemCount: filtered.length,
       itemBuilder: (context, index) {
         return AppCard(
           child: Column(
             children: [
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 8),
-                child: EventContent(events: days[index].events),
+                child: EventContent(events: filtered[index].events),
               ),
               Align(
                 alignment: Alignment.bottomRight,
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
                   child: Text(
-                    MaterialLocalizations.of(context).formatMediumDate(days[index].date),
+                    MaterialLocalizations.of(context).formatMediumDate(filtered[index].date),
                     style: Theme.of(context).textTheme.labelLarge,
                   ),
                 ),
