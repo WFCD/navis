@@ -130,14 +130,9 @@
     "description": "Razorback progress title",
     "type": "text"
   },
-  "earthCycleTitle": "Земля",
-  "@earthCycleTitle": {
-    "description": "Earth cycle title",
-    "type": "text"
-  },
-  "cetusCycleTitle": "Цетус",
+  "cetusCycleTitle": "Earth/Plains of Eidolon",
   "@cetusCycleTitle": {
-    "description": "Cetus cycle title",
+    "description": "Earth and Cetus cycle title",
     "type": "text"
   },
   "vallisCycleTitle": "Долина Сфер",
