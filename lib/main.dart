@@ -16,7 +16,11 @@ Future<void> main() async {
   if (kDebugMode) {
     Logger.root.level = Level.ALL; // defaults to Level.INFO
     Logger.root.onRecord.listen((record) {
-      dev.log('${record.level.name}: ${record.time}: ${record.loggerName}: ${record.message}');
+      var message = '${record.level.name}: ${record.time}: ${record.loggerName}: ${record.message} ';
+      if (record.error != null) message += '${record.error}';
+      if (record.stackTrace != null) message += '${record.stackTrace}';
+
+      dev.log(message);
     });
   }
 

@@ -1,31 +1,29 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-// ignore_for_file: require_trailing_commas, document_ignores, unused_import
-
-part of 'cache_client.dart';
+part of 'hive_adapters.dart';
 
 // **************************************************************************
-// TypeAdapterGenerator
+// AdaptersGenerator
 // **************************************************************************
 
-class HiveCacheItemAdapter extends TypeAdapter<HiveCacheItem> {
+class CachedItemAdapter extends TypeAdapter<CachedItem> {
   @override
   final int typeId = 0;
 
   @override
-  HiveCacheItem read(BinaryReader reader) {
+  CachedItem read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return HiveCacheItem(
+    return CachedItem(
       fields[0] as Uint8List,
       fields[1] as DateTime,
     );
   }
 
   @override
-  void write(BinaryWriter writer, HiveCacheItem obj) {
+  void write(BinaryWriter writer, CachedItem obj) {
     writer
       ..writeByte(2)
       ..writeByte(0)
@@ -40,7 +38,7 @@ class HiveCacheItemAdapter extends TypeAdapter<HiveCacheItem> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is HiveCacheItemAdapter &&
+      other is CachedItemAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }

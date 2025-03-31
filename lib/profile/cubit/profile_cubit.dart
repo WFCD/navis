@@ -40,7 +40,8 @@ class ProfileCubit extends HydratedCubit<ProfileState> {
       await inventoria.updateProfile(profile.id);
 
       emit(ProfileSuccessful((await inventoria.fetchProfile())!));
-    } on Exception {
+    } on Exception catch (e, stack) {
+      _logger.severe('Failed to set profile', e, stack);
       emit(ProfileFailure());
     }
   }

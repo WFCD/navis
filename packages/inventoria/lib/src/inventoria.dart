@@ -1,9 +1,11 @@
 import 'dart:convert';
 
+import 'package:cache_client/cache_client.dart';
 import 'package:crypto/crypto.dart';
 import 'package:drift/drift.dart';
 import 'package:drift/isolate.dart';
 import 'package:drift_flutter/drift_flutter.dart';
+import 'package:hive_ce/hive.dart';
 import 'package:http/http.dart';
 import 'package:inventoria/src/inventoria.steps.dart';
 import 'package:inventoria/src/models/models.dart';
@@ -19,8 +21,12 @@ part 'inventoria.g.dart';
 /// {@endtemplate}
 class Inventoria {
   /// {@macro inventoria}
-  Inventoria([Client? client]) : _client = client ?? Client(), _database = InventoriaDatabase();
+  Inventoria({required Box<CachedItem> cache, Client? client})
+    : _cache = cache,
+      _client = client ?? Client(),
+      _database = InventoriaDatabase();
 
+  final Box<CachedItem> _cache;
   final Client _client;
   final InventoriaDatabase _database;
 
@@ -47,12 +53,15 @@ class Inventoria {
   /// Update offline copy of profile and xp items
   Future<void> updateProfile(String id) async {
     _logger.info('Updating profile');
-    final client = ProfileClient(client: _client, playerId: id);
+    final client = ProfileClient(
+      client: CacheClient(cache: _cache, client: _client, ttl: const Duration(minutes: 60)),
+      playerId: id,
+    );
     final profile = await client.fetchProfile();
 
     await _database
         .into(_database.driftProfile)
-        .insert(
+        .insertOnConflictUpdate(
           DriftProfileCompanion.insert(id: profile.accountId, username: profile.username, rank: profile.masteryRank),
         );
 

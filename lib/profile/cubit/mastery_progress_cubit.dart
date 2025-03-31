@@ -16,7 +16,9 @@ class MasteryProgressCubit extends HydratedCubit<MasteryProgressState> {
       final profile = await inventoria.fetchProfile();
       if (profile == null) return;
 
-      final inventory = (await inventoria.fetchInventory()).where((i) => i.rank < i.maxRank && !i.isMissing);
+      final inventory =
+          (await inventoria.fetchInventory()).where((i) => i.rank < i.maxRank && !i.isMissing).toList()
+            ..sort((a, b) => a.xp.compareTo(b.xp));
 
       emit(MasteryProgressSuccess(List.unmodifiable(inventory)));
     } on Exception catch (e, stack) {

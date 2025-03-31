@@ -2,11 +2,11 @@
 // Do not modify
 // Check in to version control
 
+import 'package:cache_client/src/hive/hive_adapters.dart';
 import 'package:hive_ce/hive.dart';
-import 'package:warframestat_repository/src/cache_client.dart';
 
 extension HiveRegistrar on HiveInterface {
   void registerAdapters() {
-    registerAdapter(HiveCacheItemAdapter());
+    registerAdapter(CachedItemAdapter());
   }
 }

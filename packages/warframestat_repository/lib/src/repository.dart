@@ -1,11 +1,9 @@
 import 'dart:convert';
-import 'dart:io';
 
+import 'package:cache_client/cache_client.dart';
 import 'package:hive_ce/hive.dart';
 import 'package:http/http.dart';
 import 'package:warframestat_client/warframestat_client.dart';
-import 'package:warframestat_repository/hive_registrar.g.dart';
-import 'package:warframestat_repository/src/cache_client.dart';
 import 'package:warframestat_repository/src/models/regions.dart';
 
 ///
@@ -19,39 +17,21 @@ typedef CraigRegion = ({List<CraigNode> nodes, List<CraigJunction> junctions});
 class WarframestatRepository {
   /// {@macro warframestat_repository}
   WarframestatRepository({
+    required Box<CachedItem> cache,
     required Client client,
-  }) : _client = client {
-    Hive.registerAdapters();
-  }
+  })  : _cache = cache,
+        _client = client;
 
+  final Box<CachedItem> _cache;
   final Client _client;
 
   /// The locale request will be made for
   Language language = Language.en;
 
-  final _cacheClients = <Duration, CacheClient>{};
-  Future<CacheClient> _cacheClient(Duration cacheTime) async {
-    Hive.init(Directory.systemTemp.absolute.path);
-
-    // Hive will return the same box if it's already opened
-    final cache = await Hive.openBox<HiveCacheItem>('warframestat_repository_cache');
-
-    if (_cacheClients.containsKey(cacheTime)) return _cacheClients[cacheTime]!;
-
-    _cacheClients[cacheTime] = CacheClient(
-      cacheTime: cacheTime,
-      client: _client,
-      cacheBox: cache,
-    );
-
-    return _cacheClients[cacheTime]!;
-  }
-
   /// Get the current worldstate
   Future<Worldstate> fetchWorldstate() async {
-    const cacheTime = Duration(seconds: 60);
     final client = WorldstateClient(
-      client: await _cacheClient(cacheTime),
+      client: CacheClient(cache: _cache, client: _client),
       ua: userAgent,
       language: language,
     );
@@ -64,9 +44,8 @@ class WarframestatRepository {
   /// I doubt the list will be updated since DE doesn't really add much on their
   /// end so caching for even a year is perfectly fine
   Future<List<SynthTarget>> fetchTargets() async {
-    const cacheTime = Duration(days: 30);
     final client = SynthTargetClient(
-      client: await _cacheClient(cacheTime),
+      client: CacheClient(cache: _cache, ttl: const Duration(days: 30), client: _client),
       ua: userAgent,
       language: language,
     );
@@ -76,9 +55,8 @@ class WarframestatRepository {
 
   /// Search warframe-items
   Future<List<MinimalItem>> searchItems(String query) async {
-    const cacheTime = Duration(days: 7);
     final client = WarframeItemsClient(
-      client: await _cacheClient(cacheTime),
+      client: CacheClient(cache: _cache, ttl: const Duration(days: 1), client: _client),
       ua: userAgent,
       language: language,
     );
@@ -88,9 +66,8 @@ class WarframestatRepository {
 
   /// Get one item based on unique name
   Future<Item?> fetchItem(String uniqueName) async {
-    const cacheTime = Duration(minutes: 5);
     final client = WarframeItemsClient(
-      client: await _cacheClient(cacheTime),
+      client: CacheClient(cache: _cache, ttl: const Duration(minutes: 30), client: _client),
       ua: userAgent,
       language: language,
     );
@@ -98,20 +75,8 @@ class WarframestatRepository {
     return client.fetchItem(uniqueName);
   }
 
-  Future<Profile> fetchProfile(String playerId) async {
-    const cacheTime = Duration(minutes: 60);
-    final client = ProfileClient(
-      playerId: playerId,
-      client: await _cacheClient(cacheTime),
-      ua: userAgent,
-      language: language,
-    );
-
-    return client.fetchProfile();
-  }
-
   Future<CraigRegion> fetchRegions() async {
-    final client = await _cacheClient(const Duration(days: 30));
+    final client = CacheClient(cache: _cache, ttl: const Duration(days: 30), client: _client);
     final res = await client.get(Uri.parse('https://cdn.truemaster.app/regions.json'));
 
     final json = jsonDecode(res.body) as Map<String, dynamic>;
