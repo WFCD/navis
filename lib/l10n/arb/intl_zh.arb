@@ -135,19 +135,24 @@
     "description": "Earth and Cetus cycle title",
     "type": "text"
   },
-  "vallisCycleTitle": "奥布山谷循環",
+  "vallisCycleTitle": "Orb Vallis",
   "@vallisCycleTitle": {
     "description": "Vallis cycle title",
     "type": "text"
   },
-  "cambionCycleTitle": "魔胎之境循環",
+  "cambionCycleTitle": "Cambion Drift",
   "@cambionCycleTitle": {
     "description": "Cambion Cycle title",
     "type": "text"
   },
-  "zarimanCycleTitle": "扎日曼號循環",
+  "zarimanCycleTitle": "Zariman",
   "@zarimanCycleTitle": {
     "description": "Zariman Cycle title",
+    "type": "text"
+  },
+  "duviriCycleTitle": "Duviri",
+  "@duviriCycleTitle": {
+    "description": "Duviri Cycle title",
     "type": "text"
   },
   "timersTitle": "計時器",
@@ -786,29 +791,29 @@
     "description": "Tells the user when darvo is out of stock for the current sale",
     "type": "text"
   },
-  "duviriJoy": "雙衍王境: 喜",
+  "duviriJoy": "Joy",
   "@duviriJoy": {
-    "description": "Duviri joy state. If Duviri doesn't have a translatetion then only joy can be translated.",
+    "description": "Duviri joy state. ",
     "type": "text"
   },
-  "duviriAnger": "雙衍王境: 怒",
+  "duviriAnger": "Anger",
   "@duviriAnger": {
-    "description": "Duviri anger state. If Duviri doesn't have a translatetion then only joy can be translated.",
+    "description": "Duviri anger state.",
     "type": "text"
   },
-  "duviriEnvy": "雙衍王境: 妒",
+  "duviriEnvy": "Envy",
   "@duviriEnvy": {
-    "description": "Duviri envy state. If Duviri doesn't have a translatetion then only joy can be translated.",
+    "description": "Duviri envy state.",
     "type": "text"
   },
-  "duviriSorrow": "雙衍王境: 哀",
+  "duviriSorrow": "Sorrow",
   "@duviriSorrow": {
-    "description": "Duviri sorrow state. If Duviri doesn't have a translatetion then only joy can be translated.",
+    "description": "sorrow Duviri state",
     "type": "text"
   },
-  "duviriFear": "雙衍王境: 懼",
+  "duviriFear": "Fear",
   "@duviriFear": {
-    "description": "Duviri Fear state. If Duviri doesn't have a translatetion then only joy can be translated.",
+    "description": "Fear Duviri state",
     "type": "text"
   },
   "mapTitle": "地圖",
