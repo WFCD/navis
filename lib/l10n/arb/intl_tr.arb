@@ -135,19 +135,24 @@
     "description": "Earth and Cetus cycle title",
     "type": "text"
   },
-  "vallisCycleTitle": "Vallis Döngüsü",
+  "vallisCycleTitle": "Orb Vallis",
   "@vallisCycleTitle": {
     "description": "Vallis cycle title",
     "type": "text"
   },
-  "cambionCycleTitle": "Cambion Döngüsü",
+  "cambionCycleTitle": "Cambion Drift",
   "@cambionCycleTitle": {
     "description": "Cambion Cycle title",
     "type": "text"
   },
-  "zarimanCycleTitle": "Zariman Döngüsü",
+  "zarimanCycleTitle": "Zariman",
   "@zarimanCycleTitle": {
     "description": "Zariman Cycle title",
+    "type": "text"
+  },
+  "duviriCycleTitle": "Duviri",
+  "@duviriCycleTitle": {
+    "description": "Duviri Cycle title",
     "type": "text"
   },
   "timersTitle": "Zamanlayıcılar",
@@ -786,29 +791,29 @@
     "description": "Tells the user when darvo is out of stock for the current sale",
     "type": "text"
   },
-  "duviriJoy": "Duviri Neşesi",
+  "duviriJoy": "Joy",
   "@duviriJoy": {
-    "description": "Duviri joy state. If Duviri doesn't have a translatetion then only joy can be translated.",
+    "description": "Duviri joy state. ",
     "type": "text"
   },
-  "duviriAnger": "Duviri Öfkesi",
+  "duviriAnger": "Anger",
   "@duviriAnger": {
-    "description": "Duviri anger state. If Duviri doesn't have a translatetion then only joy can be translated.",
+    "description": "Duviri anger state.",
     "type": "text"
   },
-  "duviriEnvy": "Duviri Kıskanması",
+  "duviriEnvy": "Envy",
   "@duviriEnvy": {
-    "description": "Duviri envy state. If Duviri doesn't have a translatetion then only joy can be translated.",
+    "description": "Duviri envy state.",
     "type": "text"
   },
-  "duviriSorrow": "Duviri Üzüntüsü",
+  "duviriSorrow": "Sorrow",
   "@duviriSorrow": {
-    "description": "Duviri sorrow state. If Duviri doesn't have a translatetion then only joy can be translated.",
+    "description": "sorrow Duviri state",
     "type": "text"
   },
-  "duviriFear": "Duviri Korkusu",
+  "duviriFear": "Fear",
   "@duviriFear": {
-    "description": "Duviri Fear state. If Duviri doesn't have a translatetion then only joy can be translated.",
+    "description": "Fear Duviri state",
     "type": "text"
   },
   "mapTitle": "Haritalar",
