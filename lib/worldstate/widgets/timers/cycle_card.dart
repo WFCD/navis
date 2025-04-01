@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:navis/l10n/l10n.dart';
-import 'package:navis/worldstate/cubits/worldstate_cubit.dart';
+import 'package:navis/worldstate/bloc/worldstate_bloc.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:warframestat_client/warframestat_client.dart';
 
@@ -34,14 +34,14 @@ class CycleCard extends StatelessWidget {
     );
   }
 
-  bool _buildWhen(SolsystemState previous, SolsystemState next) {
+  bool _buildWhen(WorldState previous, WorldState next) {
     if (previous is WorldstateSuccess && next is WorldstateSuccess) {
       final p = previous;
       final n = next;
 
-      return p.worldstate.earthCycle.expiry != n.worldstate.earthCycle.expiry ||
-          p.worldstate.cetusCycle.expiry != n.worldstate.cetusCycle.expiry ||
-          p.worldstate.vallisCycle.expiry != n.worldstate.vallisCycle.expiry;
+      return p.seed.earthCycle.expiry != n.seed.earthCycle.expiry ||
+          p.seed.cetusCycle.expiry != n.seed.cetusCycle.expiry ||
+          p.seed.vallisCycle.expiry != n.seed.vallisCycle.expiry;
     }
 
     if (next is WorldstateFailure) {
@@ -54,12 +54,12 @@ class CycleCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppCard(
-      child: BlocBuilder<WorldstateCubit, SolsystemState>(
+      child: BlocBuilder<WorldstateBloc, WorldState>(
         buildWhen: _buildWhen,
         builder: (context, state) {
           final locale = context.l10n;
           final worldstate = switch (state) {
-            WorldstateSuccess() => state.worldstate,
+            WorldstateSuccess() => state.seed,
             _ => null,
           };
 

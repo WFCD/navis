@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/l10n/l10n.dart';
-import 'package:navis/worldstate/cubits/worldstate_cubit.dart';
+import 'package:navis/worldstate/bloc/worldstate_bloc.dart';
 import 'package:navis_ui/navis_ui.dart';
 
 class ArbitrationCard extends StatelessWidget {
@@ -13,10 +13,10 @@ class ArbitrationCard extends StatelessWidget {
     const oneYear = Duration(days: 365);
 
     return AppCard(
-      child: BlocBuilder<WorldstateCubit, SolsystemState>(
+      child: BlocBuilder<WorldstateBloc, WorldState>(
         builder: (context, state) {
           final arbitration = switch (state) {
-            WorldstateSuccess() => state.worldstate.arbitration,
+            WorldstateSuccess() => state.seed.arbitration,
             _ => null,
           };
 

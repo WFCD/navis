@@ -6,15 +6,18 @@ import 'package:navis/l10n/l10n.dart';
 import 'package:navis/router/routes.dart';
 import 'package:navis/worldstate/worldstate.dart';
 import 'package:navis_ui/navis_ui.dart';
+import 'package:warframestat_repository/warframestat_repository.dart';
 
 class ActivitiesSection extends StatelessWidget {
   const ActivitiesSection({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final wsRepo = RepositoryProvider.of<WarframestatRepository>(context);
+
     return Section(
       title: Text(context.l10n.activitiesTitle),
-      content: const _ActivitiesContent(),
+      content: BlocProvider(create: (_) => WorldstateBloc(wsRepo), child: const _ActivitiesContent()),
       onTap: () => context.go(const ActivitesPageRouteData().location),
     );
   }
@@ -25,10 +28,10 @@ class _ActivitiesContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<WorldstateCubit, SolsystemState>(
+    return BlocBuilder<WorldstateBloc, WorldState>(
       builder: (context, state) {
         final worldstate = switch (state) {
-          WorldstateSuccess() => state,
+          WorldstateSuccess(seed: final seed) => seed,
           _ => null,
         };
 

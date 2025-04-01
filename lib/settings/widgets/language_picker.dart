@@ -3,30 +3,23 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis/settings/settings.dart';
-import 'package:navis/worldstate/worldstate.dart';
-import 'package:navis_ui/navis_ui.dart';
+import 'package:warframestat_client/warframestat_client.dart';
+import 'package:warframestat_repository/warframestat_repository.dart';
 
 class LanguagePicker extends StatelessWidget {
   const LanguagePicker({super.key});
 
-  static Future<void> showOptions(BuildContext context) {
-    return showDialog<void>(
+  static Future<void> showOptions(BuildContext context) async {
+    final locale = await showModalBottomSheet<Locale>(
       context: context,
-      builder: (_) {
-        final ws = BlocProvider.of<WorldstateCubit>(context);
-        final us = BlocProvider.of<UserSettingsCubit>(context);
-
-        return MultiBlocProvider(
-          providers: [BlocProvider.value(value: ws), BlocProvider.value(value: us)],
-          child: const LanguagePicker(),
-        );
-      },
+      useSafeArea: true,
+      isScrollControlled: true,
+      builder:
+          (_) => BlocProvider.value(value: BlocProvider.of<UserSettingsCubit>(context), child: const LanguagePicker()),
     );
-  }
 
-  void _onPressed(BuildContext context) {
-    Navigator.of(context).pop();
-    BlocProvider.of<WorldstateCubit>(context).fetchWorldstate();
+    if (locale != null || !context.mounted) return;
+    context.read<WarframestatRepository>().language = Language.values.byName(locale!.languageCode);
   }
 
   @override
@@ -42,28 +35,52 @@ class LanguagePicker extends StatelessWidget {
       _ => context.locale,
     };
 
-    return NavisDialog(
-      content: ListView.builder(
-        itemCount: supportedLocales.length,
-        itemBuilder: (context, index) {
-          final l = supportedLocales[index];
+    return DraggableScrollableSheet(
+      expand: false,
+      builder: (context, controller) {
+        return Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Flexible(
+              child: ListView.builder(
+                controller: controller,
+                itemCount: supportedLocales.length,
+                itemBuilder: (context, index) {
+                  final l = supportedLocales[index];
 
-          return RadioListTile<Locale>(
-            title: Text(l.fullName),
-            value: l,
-            groupValue: language,
-            activeColor: accentColor,
-            onChanged: (l) {
-              if (l == null) return;
-              context.read<UserSettingsCubit>().updateLanguage(l);
-            },
-          );
-        },
-      ),
-      actions: [
-        TextButton(onPressed: () => Navigator.of(context).pop(), child: Text(materialLocalizations.cancelButtonLabel)),
-        TextButton(onPressed: () => _onPressed(context), child: Text(materialLocalizations.okButtonLabel)),
-      ],
+                  return RadioListTile<Locale>(
+                    title: Text(l.fullName),
+                    value: l,
+                    groupValue: language,
+                    activeColor: accentColor,
+                    onChanged: (l) {
+                      if (l == null) return;
+                      context.read<UserSettingsCubit>().updateLanguage(l);
+                    },
+                  );
+                },
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: OverflowBar(
+                spacing: 16,
+                alignment: MainAxisAlignment.end,
+                children: [
+                  OutlinedButton(
+                    onPressed: () => Navigator.of(context).pop(),
+                    child: Text(materialLocalizations.cancelButtonLabel),
+                  ),
+                  FilledButton(
+                    onPressed: () => Navigator.of(context).pop(language),
+                    child: Text(materialLocalizations.okButtonLabel),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        );
+      },
     );
   }
 }

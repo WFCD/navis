@@ -23,10 +23,10 @@ class TraderCard extends StatelessWidget {
         height: 100,
         imageProvider: Assets.baroBanner.provider(),
         padding: EdgeInsets.zero,
-        child: BlocSelector<WorldstateCubit, SolsystemState, List<Trader>?>(
+        child: BlocSelector<WorldstateBloc, WorldState, List<Trader>?>(
           selector:
               (s) => switch (s) {
-                WorldstateSuccess() => s.worldstate.voidTraders,
+                WorldstateSuccess() => s.seed.voidTraders,
                 _ => null,
               },
           builder: (context, traders) {

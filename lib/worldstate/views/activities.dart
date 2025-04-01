@@ -1,17 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/l10n/l10n.dart';
-import 'package:navis/worldstate/cubits/worldstate_cubit.dart';
+import 'package:navis/worldstate/bloc/worldstate_bloc.dart';
 import 'package:navis/worldstate/views/fissures.dart';
 import 'package:navis/worldstate/views/invasions.dart';
 import 'package:navis/worldstate/views/syndicates.dart';
 import 'package:navis/worldstate/views/timers.dart';
 import 'package:navis_ui/navis_ui.dart';
+import 'package:warframestat_repository/warframestat_repository.dart';
 
 enum Tabs { timers, fissures, invasions, syndicates }
 
-class ActivitiesView extends StatelessWidget {
-  const ActivitiesView({super.key});
+class ActivitiesPage extends StatelessWidget {
+  const ActivitiesPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final wsRepo = RepositoryProvider.of<WarframestatRepository>(context);
+
+    return BlocProvider(create: (_) => WorldstateBloc(wsRepo), child: const _ActivitiesView());
+  }
+}
+
+class _ActivitiesView extends StatelessWidget {
+  const _ActivitiesView();
 
   String _getTabLocale(BuildContext context, Tabs name) {
     final l10n = context.l10n;
@@ -28,13 +40,13 @@ class ActivitiesView extends StatelessWidget {
     }
   }
 
-  void listener(BuildContext context, SolsystemState state) {
+  void listener(BuildContext context, WorldState state) {
     if (state is WorldstateFailure) {
       // TODO(SlayerOrnstein): Add localizations here too
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text(':(')));
     } else if (state is WorldstateSuccess) {
       final now = DateTime.now();
-      final timestamp = state.worldstate.timestamp;
+      final timestamp = state.seed.timestamp;
 
       if (timestamp.difference(now) >= const Duration(minutes: 30)) {
         ScaffoldMessenger.of(
@@ -58,7 +70,7 @@ class ActivitiesView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<WorldstateCubit, SolsystemState>(
+    return BlocListener<WorldstateBloc, WorldState>(
       listener: listener,
       child: DefaultTabController(
         length: Tabs.values.length,
@@ -88,21 +100,18 @@ class _TabView extends StatelessWidget {
               handle: NestedScrollView.sliverOverlapAbsorberHandleFor(context),
             ),
             SliverFillRemaining(
-              child: RefreshIndicator(
-                onRefresh: () => BlocProvider.of<WorldstateCubit>(context).fetchWorldstate(),
-                child: () {
-                  switch (tab) {
-                    case Tabs.timers:
-                      return const Timers();
-                    case Tabs.fissures:
-                      return const FissuresPage();
-                    case Tabs.invasions:
-                      return const InvasionsPage();
-                    case Tabs.syndicates:
-                      return const SyndicatePage();
-                  }
-                }(),
-              ),
+              child: () {
+                switch (tab) {
+                  case Tabs.timers:
+                    return const Timers();
+                  case Tabs.fissures:
+                    return const FissuresPage();
+                  case Tabs.invasions:
+                    return const InvasionsPage();
+                  case Tabs.syndicates:
+                    return const SyndicatePage();
+                }
+              }(),
             ),
           ],
         );

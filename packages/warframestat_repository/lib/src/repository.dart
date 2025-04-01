@@ -24,16 +24,7 @@ class WarframestatRepository {
   /// The locale request will be made for
   Language language = Language.en;
 
-  /// Get the current worldstate
-  Future<Worldstate> fetchWorldstate() async {
-    final client = WorldstateClient(
-      client: await CacheClient.initCacheClient(client: _client),
-      ua: userAgent,
-      language: language,
-    );
-
-    return client.fetchWorldstate();
-  }
+  Stream<Worldstate> streamWorldstate() => WarframestatWebsocket(language).worldstate();
 
   /// Get static list of synthesis targets
   ///

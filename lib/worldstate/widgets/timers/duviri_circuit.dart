@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:navis/codex/codex.dart';
 import 'package:navis/l10n/l10n.dart';
-import 'package:navis/worldstate/cubits/worldstate/worldstate_cubit.dart';
+import 'package:navis/worldstate/bloc/worldstate_bloc.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:warframestat_client/warframestat_client.dart';
 import 'package:warframestat_repository/warframestat_repository.dart';
@@ -13,24 +13,24 @@ import 'package:warframestat_repository/warframestat_repository.dart';
 class DuviriCircuit extends StatelessWidget {
   const DuviriCircuit({super.key});
 
-  bool _buildWhen(SolsystemState previous, SolsystemState current) {
+  bool _buildWhen(WorldState previous, WorldState current) {
     if (previous is! WorldstateSuccess || current is! WorldstateSuccess) {
       return false;
     }
 
-    final previousCycle = previous.worldstate.duviriCycle;
-    final nextCycle = current.worldstate.duviriCycle;
+    final previousCycle = previous.seed.duviriCycle;
+    final nextCycle = current.seed.duviriCycle;
 
     return previousCycle.id != nextCycle.id;
   }
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<WorldstateCubit, SolsystemState>(
+    return BlocBuilder<WorldstateBloc, WorldState>(
       buildWhen: _buildWhen,
       builder: (context, state) {
         final cycle = switch (state) {
-          WorldstateSuccess() => state.worldstate.duviriCycle,
+          WorldstateSuccess() => state.seed.duviriCycle,
           _ => null,
         };
 

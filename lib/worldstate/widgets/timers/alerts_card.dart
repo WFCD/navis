@@ -6,7 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:navis/codex/codex.dart';
 import 'package:navis/l10n/l10n.dart';
-import 'package:navis/worldstate/cubits/worldstate_cubit.dart';
+import 'package:navis/worldstate/bloc/worldstate_bloc.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:warframestat_client/warframestat_client.dart';
 import 'package:warframestat_repository/warframestat_repository.dart';
@@ -22,21 +22,21 @@ class AlertsCard extends StatelessWidget {
     return BlocProvider(create: (_) => ItemCubit(reward, r)..fetchByName(), child: _AlertWidget(alert: a));
   }
 
-  bool _buildWhen(SolsystemState previous, SolsystemState next) {
+  bool _buildWhen(WorldState previous, WorldState next) {
     if (previous is! WorldstateSuccess || next is! WorldstateSuccess) return false;
 
-    return const DeepCollectionEquality().equals(previous.worldstate.alerts, next.worldstate.alerts);
+    return const DeepCollectionEquality().equals(previous.seed.alerts, next.seed.alerts);
   }
 
   @override
   Widget build(BuildContext context) {
     final wsRepo = RepositoryProvider.of<WarframestatRepository>(context);
 
-    return BlocBuilder<WorldstateCubit, SolsystemState>(
+    return BlocBuilder<WorldstateBloc, WorldState>(
       buildWhen: _buildWhen,
       builder: (context, state) {
         final alerts = switch (state) {
-          WorldstateSuccess() => state.worldstate.alerts,
+          WorldstateSuccess() => state.seed.alerts,
           _ => <Alert>[],
         };
 

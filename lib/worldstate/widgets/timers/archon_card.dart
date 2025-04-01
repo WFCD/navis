@@ -8,14 +8,14 @@ import 'package:warframestat_client/warframestat_client.dart' hide Sortie;
 class ArchonHuntCard extends StatelessWidget {
   const ArchonHuntCard({super.key});
 
-  bool _buildWhen(SolsystemState previous, SolsystemState next) {
+  bool _buildWhen(WorldState previous, WorldState next) {
     final previousArchonHunt = switch (previous) {
-      WorldstateSuccess() => previous.worldstate.archonHunt,
+      WorldstateSuccess() => previous.seed.archonHunt,
       _ => null,
     };
 
     final nextArchonHunt = switch (next) {
-      WorldstateSuccess() => next.worldstate.archonHunt,
+      WorldstateSuccess() => next.seed.archonHunt,
       _ => null,
     };
 
@@ -28,11 +28,11 @@ class ArchonHuntCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<WorldstateCubit, SolsystemState>(
+    return BlocBuilder<WorldstateBloc, WorldState>(
       buildWhen: _buildWhen,
       builder: (context, state) {
         final archonHunt = switch (state) {
-          WorldstateSuccess() => state.worldstate.archonHunt,
+          WorldstateSuccess() => state.seed.archonHunt,
           _ => null,
         };
 

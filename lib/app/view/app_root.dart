@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:dynamic_color/dynamic_color.dart';
 import 'package:feedback_sentry/feedback_sentry.dart';
 import 'package:flutter/material.dart';
@@ -7,48 +5,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis/router/app_router.dart';
 import 'package:navis/settings/settings.dart';
-import 'package:navis/worldstate/worldstate.dart';
 import 'package:navis_ui/navis_ui.dart';
 
-class NavisApp extends StatefulWidget {
+class NavisApp extends StatelessWidget {
   const NavisApp({super.key, required this.router});
 
   final AppRouter router;
-
-  @override
-  NavisAppState createState() => NavisAppState();
-}
-
-class NavisAppState extends State<NavisApp> with WidgetsBindingObserver {
-  late Timer _timer;
-
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addObserver(this);
-
-    _timer = Timer.periodic(
-      const Duration(seconds: 60),
-      (_) => BlocProvider.of<WorldstateCubit>(context).fetchWorldstate(),
-    );
-  }
-
-  @override
-  void didChangeAppLifecycleState(AppLifecycleState state) {
-    switch (state) {
-      case AppLifecycleState.resumed:
-        _timer = Timer.periodic(
-          const Duration(seconds: 60),
-          (_) => BlocProvider.of<WorldstateCubit>(context).fetchWorldstate(),
-        );
-
-      case AppLifecycleState.inactive ||
-          AppLifecycleState.paused ||
-          AppLifecycleState.detached ||
-          AppLifecycleState.hidden:
-        _timer.cancel();
-    }
-  }
 
   Widget _builder(BuildContext context, Widget? widget) {
     final l10n = NavisLocalizations.of(context);
@@ -68,7 +30,7 @@ class NavisAppState extends State<NavisApp> with WidgetsBindingObserver {
     throw Exception('Widget is null');
   }
 
-  Locale localeResolutionCallback(Locale? locale, Iterable<Locale> supportedLocales) {
+  Locale localeResolutionCallback(BuildContext context, Locale? locale, Iterable<Locale> supportedLocales) {
     const defaultLocale = Locale('en');
     Locale? newLocale;
 
@@ -115,8 +77,8 @@ class NavisAppState extends State<NavisApp> with WidgetsBindingObserver {
           pixelRatio: 1,
           localizationsDelegates: NavisLocalizations.localizationsDelegates,
           child: MaterialApp.router(
-            routerConfig: widget.router.routes,
-            title: 'Navis',
+            routerConfig: router.routes,
+            title: 'Cephalon Navis',
             color: Colors.grey[900],
             themeMode: themeMode,
             debugShowCheckedModeBanner: false,
@@ -126,17 +88,11 @@ class NavisAppState extends State<NavisApp> with WidgetsBindingObserver {
             supportedLocales: NavisLocalizations.supportedLocales,
             locale: language,
             localizationsDelegates: NavisLocalizations.localizationsDelegates,
-            localeResolutionCallback: localeResolutionCallback,
+            localeResolutionCallback:
+                (locale, supportedLocales) => localeResolutionCallback(context, locale, supportedLocales),
           ),
         );
       },
     );
-  }
-
-  @override
-  void dispose() {
-    _timer.cancel();
-    WidgetsBinding.instance.removeObserver(this);
-    super.dispose();
   }
 }

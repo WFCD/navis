@@ -22,11 +22,12 @@ class _MobileTimers extends StatelessWidget {
   Widget build(BuildContext context) {
     const cacheExtent = 500.0;
 
-    return BlocSelector<WorldstateCubit, SolsystemState, Worldstate?>(
-      selector: (state) => switch (state) {
-        WorldstateSuccess() => state.worldstate,
-        _ => null,
-      },
+    return BlocSelector<WorldstateBloc, WorldState, Worldstate?>(
+      selector:
+          (state) => switch (state) {
+            WorldstateSuccess() => state.seed,
+            _ => null,
+          },
       builder: (_, worldstate) {
         return ViewLoading(
           isLoading: worldstate == null,

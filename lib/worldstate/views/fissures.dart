@@ -11,8 +11,8 @@ class FissuresPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final state = context.watch<WorldstateCubit>().state;
-    final fissures = state is WorldstateSuccess ? state.worldstate.fissures : <Fissure>[];
+    final state = context.watch<WorldstateBloc>().state;
+    final fissures = state is WorldstateSuccess ? state.seed.fissures : <Fissure>[];
 
     return BlocProvider(create: (_) => FissureFilterCubit(fissures), child: const _FissuresView());
   }
@@ -50,8 +50,8 @@ class _FissuresViewState extends State<_FissuresView> {
 
     // Need to make sure that fissures are updated from worldstate.
     // Otherwise fissures stored in the filter cubit will be out of sync.
-    final state = context.read<WorldstateCubit>().state;
-    final fissures = state is WorldstateSuccess ? state.worldstate.fissures : <Fissure>[];
+    final state = context.read<WorldstateBloc>().state;
+    final fissures = state is WorldstateSuccess ? state.seed.fissures : <Fissure>[];
 
     ff.filterFissures(ff.state.type, fissures);
   }
@@ -126,8 +126,8 @@ class _FissureFilter extends StatelessWidget {
   const _FissureFilter();
 
   void onSelected(BuildContext context, FissureFilter filter) {
-    final state = context.read<WorldstateCubit>().state;
-    final fissures = state is WorldstateSuccess ? state.worldstate.fissures : <Fissure>[];
+    final state = context.read<WorldstateBloc>().state;
+    final fissures = state is WorldstateSuccess ? state.seed.fissures : <Fissure>[];
 
     context.read<FissureFilterCubit>().filterFissures(filter, fissures);
   }
@@ -153,10 +153,10 @@ class _FissureFilter extends StatelessWidget {
     final l10n = context.l10n;
     final screen = MediaQuery.sizeOf(context);
 
-    return BlocListener<WorldstateCubit, SolsystemState>(
+    return BlocListener<WorldstateBloc, WorldState>(
       listener: (context, state) {
         if (state is WorldstateSuccess) {
-          BlocProvider.of<FissureFilterCubit>(context).updateFissues(state.worldstate.fissures);
+          BlocProvider.of<FissureFilterCubit>(context).updateFissues(state.seed.fissures);
         }
       },
       child: BlocBuilder<FissureFilterCubit, FissureFilterState>(

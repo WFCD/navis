@@ -11,8 +11,8 @@ class InvasionsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final state = context.watch<WorldstateCubit>().state;
-    final invasions = state is WorldstateSuccess ? state.worldstate.invasions : <Invasion>[];
+    final state = context.watch<WorldstateBloc>().state;
+    final invasions = state is WorldstateSuccess ? state.seed.invasions : <Invasion>[];
 
     return TraceableWidget(
       child: ViewLoading(

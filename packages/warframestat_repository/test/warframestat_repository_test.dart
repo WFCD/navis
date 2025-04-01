@@ -45,31 +45,6 @@ void main() {
     });
   });
 
-  group('Worldstate', () {
-    final fixture = Fixtures.worldstateFixture;
-    final json = jsonEncode(fixture);
-
-    test('fetch() => get worldstate', () async {
-      when(() => client.send(any())).thenAnswer((_) async => fakeResponse(json));
-
-      final state = await repository.fetchWorldstate();
-
-      expect(state.timestamp, isNotNull);
-    });
-
-    test('fetch() => get worldstate from cache', () async {
-      when(() => client.send(any())).thenAnswer((_) async => fakeResponse(json));
-
-      await repository.fetchWorldstate();
-      clearInteractions(client);
-
-      final state = await repository.fetchWorldstate();
-
-      expect(state.timestamp, isNotNull);
-      verifyNever(() => client.send(any()));
-    });
-  });
-
   group('Item search', () {
     final fixture = Fixtures.itemsFixture;
     final items = toItems(fixture);

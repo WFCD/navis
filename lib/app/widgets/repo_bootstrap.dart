@@ -4,6 +4,7 @@ import 'package:http/http.dart';
 import 'package:inventoria/inventoria.dart';
 import 'package:navis/settings/settings.dart';
 import 'package:notification_repository/notification_repository.dart';
+import 'package:warframestat_client/warframestat_client.dart';
 import 'package:warframestat_repository/warframestat_repository.dart';
 
 class RepositoryBootstrap extends StatelessWidget {
@@ -24,10 +25,12 @@ class RepositoryBootstrap extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final language = Language.values.byName(_settings.language.languageCode);
+
     return MultiRepositoryProvider(
       providers: [
         RepositoryProvider.value(value: _settings),
-        RepositoryProvider(create: (_) => WarframestatRepository(client: _client)),
+        RepositoryProvider(create: (_) => WarframestatRepository(client: _client)..language = language),
         RepositoryProvider(create: (_) => NotificationRepository()),
         RepositoryProvider(create: (_) => _routeObserver),
         RepositoryProvider(create: (_) => Inventoria(client: _client)),

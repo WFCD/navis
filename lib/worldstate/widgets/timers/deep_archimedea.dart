@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis/router/routes.dart';
-import 'package:navis/worldstate/cubits/worldstate_cubit.dart';
+import 'package:navis/worldstate/bloc/worldstate_bloc.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:warframestat_client/warframestat_client.dart';
 
@@ -14,10 +14,10 @@ class DeepArchimedeaCard extends StatelessWidget {
     DateTime placeholder() => DateTime.timestamp().add(const Duration(days: 7));
 
     return AppCard(
-      child: BlocSelector<WorldstateCubit, SolsystemState, Archimedea?>(
+      child: BlocSelector<WorldstateBloc, WorldState, Archimedea?>(
         selector:
             (state) => switch (state) {
-              WorldstateSuccess() => state.worldstate.deepArchimedea,
+              WorldstateSuccess() => state.seed.deepArchimedea,
               _ => null,
             },
         builder: (context, archimedea) {

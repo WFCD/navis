@@ -3,7 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/l10n/l10n.dart';
-import 'package:navis/worldstate/worldstate.dart';
+import 'package:navis/worldstate/bloc/worldstate_bloc.dart';
 import 'package:navis_ui/navis_ui.dart';
 
 class ConstructionProgressCard extends StatelessWidget {
@@ -17,13 +17,13 @@ class ConstructionProgressCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return AppCard(
       title: context.l10n.constructionProgressTitle,
-      child: BlocBuilder<WorldstateCubit, SolsystemState>(
+      child: BlocBuilder<WorldstateBloc, WorldState>(
         builder: (context, state) {
           const iconSize = 25.0;
           final textTheme = Theme.of(context).textTheme;
 
           final constructionProgress = switch (state) {
-            WorldstateSuccess() => state.worldstate.constructionProgress,
+            WorldstateSuccess() => state.seed.constructionProgress,
             _ => null,
           };
 

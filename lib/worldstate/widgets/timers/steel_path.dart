@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/l10n/l10n.dart';
-import 'package:navis/worldstate/cubits/worldstate_cubit.dart';
+import 'package:navis/worldstate/bloc/worldstate_bloc.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:warframestat_client/warframestat_client.dart';
 
@@ -11,11 +11,12 @@ class SteelPathCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppCard(
-      child: BlocSelector<WorldstateCubit, SolsystemState, SteelPath?>(
-        selector: (s) => switch (s) {
-          WorldstateSuccess() => s.worldstate.steelPath,
-          _ => null,
-        },
+      child: BlocSelector<WorldstateBloc, WorldState, SteelPath?>(
+        selector:
+            (s) => switch (s) {
+              WorldstateSuccess() => s.seed.steelPath,
+              _ => null,
+            },
         builder: (context, steelPath) {
           final expiry = steelPath?.expiry ?? DateTime.timestamp();
 

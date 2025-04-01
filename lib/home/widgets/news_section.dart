@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:black_hole_flutter/black_hole_flutter.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/home/widgets/section.dart';
@@ -8,6 +9,7 @@ import 'package:navis/l10n/l10n.dart';
 import 'package:navis/router/routes.dart';
 import 'package:navis/worldstate/worldstate.dart';
 import 'package:navis_ui/navis_ui.dart';
+import 'package:warframestat_repository/warframestat_repository.dart';
 
 class NewsSection extends StatelessWidget {
   const NewsSection({super.key});
@@ -15,10 +17,11 @@ class NewsSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final i10n = context.l10n;
+    final wsRepo = RepositoryProvider.of<WarframestatRepository>(context);
 
     return Section(
       title: Text(i10n.warframeNewsTitle),
-      content: const _NewsCarouselView(),
+      content: BlocProvider(create: (_) => WorldstateBloc(wsRepo), child: const _NewsCarouselView()),
       onTap: () => const NewsPageRoute().push<void>(context),
     );
   }
@@ -40,20 +43,6 @@ class __NewsCarouselViewState extends State<_NewsCarouselView> {
   Timer? _timer;
   int _currentPage = 0;
 
-  void _autoScroll() {
-    if (!mounted || !_controller.hasClients || !_controller.position.hasViewportDimension) return;
-
-    final pageSize = MediaQuery.sizeOf(context).width * .9;
-    var nextPage = (_currentPage + 1) % _maxItems;
-    if (nextPage > _maxItems) nextPage = 0;
-
-    final position = nextPage * pageSize;
-
-    _controller.animateTo(position, duration: Durations.short4, curve: Curves.easeInOut);
-
-    _currentPage = nextPage;
-  }
-
   @override
   void initState() {
     super.initState();
@@ -68,15 +57,39 @@ class __NewsCarouselViewState extends State<_NewsCarouselView> {
     _timer = Timer.periodic(_autoScrollDuration, (_) => _autoScroll());
   }
 
+  void _autoScroll() {
+    if (!mounted || !_controller.hasClients || !_controller.position.hasViewportDimension) return;
+
+    final pageSize = MediaQuery.sizeOf(context).width * .9;
+    var nextPage = (_currentPage + 1) % _maxItems;
+    if (nextPage > _maxItems) nextPage = 0;
+
+    final position = nextPage * pageSize;
+
+    _controller.animateTo(position, duration: Durations.short4, curve: Curves.easeInOut);
+
+    _currentPage = nextPage;
+  }
+
+  bool _buildWhen(WorldState previous, WorldState next) {
+    const deepEqual = DeepCollectionEquality();
+
+    if (previous is! WorldstateSuccess && next is WorldstateSuccess) return true;
+    if (previous is! WorldstateSuccess || next is! WorldstateSuccess) return false;
+
+    return deepEqual.equals(previous.seed.news, next.seed.news);
+  }
+
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<WorldstateCubit, SolsystemState>(
+    return BlocBuilder<WorldstateBloc, WorldState>(
+      buildWhen: _buildWhen,
       builder: (context, state) {
         if (state is! WorldstateSuccess) {
           return const Center(child: WarframeSpinner());
         }
 
-        final news = state.worldstate.news.take(_maxItems).toList();
+        final news = state.seed.news.take(_maxItems).toList();
         final itemExtent = MediaQuery.sizeOf(context).width * .9;
 
         return SizedBox(

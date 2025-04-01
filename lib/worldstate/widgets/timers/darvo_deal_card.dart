@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/codex/codex.dart';
 import 'package:navis/l10n/l10n.dart';
-import 'package:navis/worldstate/cubits/worldstate_cubit.dart';
+import 'package:navis/worldstate/bloc/worldstate_bloc.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:warframestat_client/warframestat_client.dart';
 import 'package:warframestat_repository/warframestat_repository.dart';
@@ -13,14 +13,14 @@ import 'package:warframestat_repository/warframestat_repository.dart';
 class DarvoDealCard extends StatelessWidget {
   const DarvoDealCard({super.key});
 
-  bool _buildWhen(SolsystemState previous, SolsystemState next) {
+  bool _buildWhen(WorldState previous, WorldState next) {
     final previousDailyDeals = switch (previous) {
-      WorldstateSuccess() => previous.worldstate.dailyDeals,
+      WorldstateSuccess() => previous.seed.dailyDeals,
       _ => <DailyDeal>[],
     };
 
     final nextDailyDeals = switch (next) {
-      WorldstateSuccess() => next.worldstate.dailyDeals,
+      WorldstateSuccess() => next.seed.dailyDeals,
       _ => <DailyDeal>[],
     };
 
@@ -31,11 +31,11 @@ class DarvoDealCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final repo = RepositoryProvider.of<WarframestatRepository>(context);
 
-    return BlocBuilder<WorldstateCubit, SolsystemState>(
+    return BlocBuilder<WorldstateBloc, WorldState>(
       buildWhen: _buildWhen,
       builder: (context, state) {
         final deal = switch (state) {
-          WorldstateSuccess() => state.worldstate.dailyDeals.first,
+          WorldstateSuccess() => state.seed.dailyDeals.first,
           _ => null,
         };
 
