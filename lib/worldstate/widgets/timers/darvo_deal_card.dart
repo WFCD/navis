@@ -5,9 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/codex/codex.dart';
 import 'package:navis/l10n/l10n.dart';
+import 'package:navis/router/routes.dart';
 import 'package:navis/worldstate/bloc/worldstate_bloc.dart';
 import 'package:navis_ui/navis_ui.dart';
-import 'package:warframestat_client/warframestat_client.dart';
+import 'package:warframestat_client/warframestat_client.dart' hide Alignment;
 import 'package:warframestat_repository/warframestat_repository.dart';
 
 class DarvoDealCard extends StatelessWidget {
@@ -31,20 +32,20 @@ class DarvoDealCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final repo = RepositoryProvider.of<WarframestatRepository>(context);
 
-    return BlocBuilder<WorldstateBloc, WorldState>(
-      buildWhen: _buildWhen,
-      builder: (context, state) {
-        final deal = switch (state) {
-          WorldstateSuccess() => state.seed.dailyDeals.first,
-          _ => null,
-        };
+    return ClipRRect(
+      child: BlocBuilder<WorldstateBloc, WorldState>(
+        buildWhen: _buildWhen,
+        builder: (context, state) {
+          final deal = switch (state) {
+            WorldstateSuccess() => state.seed.dailyDeals.first,
+            _ => null,
+          };
 
-        final stock = deal != null ? deal.total - deal.sold : 0;
-        final inStock = stock != 0;
-        final expiry = deal?.expiry ?? DateTime.now();
+          final stock = deal != null ? deal.total - deal.sold : 0;
+          final inStock = stock != 0;
+          final expiry = deal?.expiry ?? DateTime.now();
 
-        return ClipRRect(
-          child: Banner(
+          return Banner(
             message: context.l10n.discountTitle(deal?.discount ?? 0),
             location: BannerLocation.topStart,
             child: AppCard(
@@ -76,12 +77,19 @@ class DarvoDealCard extends StatelessWidget {
                       create: (_) => ItemCubit(deal.item, repo)..fetchByName(),
                       child: _DealWidget(deal: deal),
                     ),
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: TextButton(
+                      onPressed: () => FlashSalesPageRoute().push<void>(context),
+                      child: const Text('See all Sales'),
+                    ),
+                  ),
                 ],
               ),
             ),
-          ),
-        );
-      },
+          );
+        },
+      ),
     );
   }
 }

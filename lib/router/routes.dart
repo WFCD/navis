@@ -240,3 +240,12 @@ class ArchimedeaPageRoute extends GoRouteData {
     return TraceableWidget(actionName: 'Archimedea(${$extra.id})', child: ArchimedeaPage(archimedea: $extra));
   }
 }
+
+@immutable
+@TypedGoRoute<FlashSalesPageRoute>(name: 'flashSales', path: '/worldstate/flashSales')
+class FlashSalesPageRoute extends GoRouteData {
+  @override
+  Widget build(BuildContext context, GoRouterState state) {
+    return const TraceableWidget(actionName: 'flashSales', child: FlashSalesPage());
+  }
+}

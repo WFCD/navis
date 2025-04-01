@@ -10,7 +10,7 @@
 import 'package:flutter/widgets.dart';
 
 class Assets {
-  Assets._();
+  const Assets._();
 
   static const AssetGenImage baroBanner =
       AssetGenImage('assets/baro_banner.webp');
@@ -52,7 +52,7 @@ class AssetGenImage {
     bool gaplessPlayback = true,
     bool isAntiAlias = false,
     String? package,
-    FilterQuality filterQuality = FilterQuality.low,
+    FilterQuality filterQuality = FilterQuality.medium,
     int? cacheWidth,
     int? cacheHeight,
   }) {

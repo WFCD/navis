@@ -19,6 +19,7 @@ List<RouteBase> get $appRoutes => [
   $masteryPageRoute,
   $calendar1999PageRoute,
   $archimedeaPageRoute,
+  $flashSalesPageRoute,
 ];
 
 RouteBase get $appShell => StatefulShellRouteData.$route(
@@ -298,4 +299,24 @@ extension $ArchimedeaPageRouteExtension on ArchimedeaPageRoute {
   void pushReplacement(BuildContext context) => context.pushReplacement(location, extra: $extra);
 
   void replace(BuildContext context) => context.replace(location, extra: $extra);
+}
+
+RouteBase get $flashSalesPageRoute => GoRouteData.$route(
+  path: '/worldstate/flashSales',
+  name: 'flashSales',
+  factory: $FlashSalesPageRouteExtension._fromState,
+);
+
+extension $FlashSalesPageRouteExtension on FlashSalesPageRoute {
+  static FlashSalesPageRoute _fromState(GoRouterState state) => FlashSalesPageRoute();
+
+  String get location => GoRouteData.$location('/worldstate/flashSales');
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) => context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
 }

@@ -4,6 +4,7 @@ export 'calendar.dart';
 export 'deep_archimedea.dart';
 export 'event.dart';
 export 'fissures.dart';
+export 'flash_sales.dart';
 export 'invasions.dart';
 export 'nightwaves.dart';
 export 'orbiter_news.dart';
