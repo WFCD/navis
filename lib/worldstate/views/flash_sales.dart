@@ -47,6 +47,7 @@ class FlashSalesView extends StatelessWidget {
               return ListTile(
                 title: Text(sale.item),
                 subtitle: Text(
+                  // TODO(orn): after it get's fleshed out a bit more add localizations here
                   '${sale.premiumOverride} Platinum ${sale.discount > 0 ? '- ${sale.discount}% OFF' : ''}',
                 ),
                 trailing:

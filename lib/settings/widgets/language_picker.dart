@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis/settings/settings.dart';
-import 'package:warframestat_client/warframestat_client.dart';
+import 'package:warframestat_client/warframestat_client.dart' hide Alignment;
 import 'package:warframestat_repository/warframestat_repository.dart';
 
 class LanguagePicker extends StatelessWidget {
@@ -18,8 +18,8 @@ class LanguagePicker extends StatelessWidget {
           (_) => BlocProvider.value(value: BlocProvider.of<UserSettingsCubit>(context), child: const LanguagePicker()),
     );
 
-    if (locale != null || !context.mounted) return;
-    context.read<WarframestatRepository>().language = Language.values.byName(locale!.languageCode);
+    if (locale == null || !context.mounted) return;
+    context.read<WarframestatRepository>().language = Language.values.byName(locale.languageCode);
   }
 
   @override
@@ -61,21 +61,14 @@ class LanguagePicker extends StatelessWidget {
                 },
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: OverflowBar(
-                spacing: 16,
-                alignment: MainAxisAlignment.end,
-                children: [
-                  OutlinedButton(
-                    onPressed: () => Navigator.of(context).pop(),
-                    child: Text(materialLocalizations.cancelButtonLabel),
-                  ),
-                  FilledButton(
-                    onPressed: () => Navigator.of(context).pop(language),
-                    child: Text(materialLocalizations.okButtonLabel),
-                  ),
-                ],
+            Align(
+              alignment: Alignment.centerRight,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                child: FilledButton(
+                  onPressed: () => Navigator.of(context).pop(language),
+                  child: Text(materialLocalizations.okButtonLabel),
+                ),
               ),
             ),
           ],
