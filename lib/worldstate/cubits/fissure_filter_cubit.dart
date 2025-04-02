@@ -9,7 +9,8 @@ part 'fissure_filter_state.dart';
 enum FissureFilter { fissures, voidStorm, steelPath }
 
 class FissureFilterCubit extends HydratedCubit<FissureFilterState> {
-  FissureFilterCubit(List<Fissure> fissures) : super(Fissures(fissures: fissures));
+  FissureFilterCubit(List<Fissure> fissures)
+    : super(FissureFilterState(fissures: fissures, type: FissureFilter.fissures));
 
   static final _logger = Logger('FissureFilterCubit');
 
@@ -18,14 +19,18 @@ class FissureFilterCubit extends HydratedCubit<FissureFilterState> {
   void filterFissures(FissureFilter filter, List<Fissure> fissures) {
     _filter = filter;
 
+    Iterable<Fissure> filteredFissures;
     switch (filter) {
       case FissureFilter.fissures:
-        emit(Fissures(fissures: fissures.whereNot((i) => i.isHard || i.isStorm).toList()));
+        filteredFissures = fissures.whereNot((i) => i.isHard || i.isStorm);
       case FissureFilter.voidStorm:
-        emit(VoidStorms(fissures: fissures.where((i) => i.isStorm).toList()));
+        filteredFissures = fissures.where((i) => i.isStorm);
       case FissureFilter.steelPath:
-        emit(SteelPathFissures(fissures: fissures.where((i) => i.isHard).toList()));
+        filteredFissures = fissures.where((i) => i.isHard);
     }
+
+    if (isClosed) return;
+    emit(FissureFilterState(fissures: List.unmodifiable(filteredFissures.toList()), type: filter));
   }
 
   void updateFissues(List<Fissure> fissures) {
@@ -39,22 +44,12 @@ class FissureFilterCubit extends HydratedCubit<FissureFilterState> {
     final fissures =
         (json['fissures'] as List<dynamic>).map((e) => Fissure.fromJson(e as Map<String, dynamic>)).toList();
 
-    switch (type) {
-      case FissureFilter.fissures:
-        return Fissures(fissures: fissures);
-      case FissureFilter.voidStorm:
-        return VoidStorms(fissures: fissures);
-      case FissureFilter.steelPath:
-        return SteelPathFissures(fissures: fissures);
-    }
+    return FissureFilterState(fissures: fissures, type: type);
   }
 
   @override
   Map<String, dynamic>? toJson(FissureFilterState state) {
     _logger.info('Caching current state');
-    return {
-      'filter': state.type.toString().split('.').last,
-      'fissures': state.fissures.map((e) => e.toJson()).toList(),
-    };
+    return {'filter': state.type.name, 'fissures': state.fissures.map((e) => e.toJson()).toList()};
   }
 }
