@@ -8,6 +8,7 @@ import 'package:navis/codex/codex.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis/worldstate/bloc/worldstate_bloc.dart';
 import 'package:navis_ui/navis_ui.dart';
+import 'package:warframe_icons/warframe_icons.dart';
 import 'package:warframestat_client/warframestat_client.dart';
 import 'package:warframestat_repository/warframestat_repository.dart';
 
@@ -75,7 +76,7 @@ class _AlertWidget extends StatelessWidget {
                 if (mission.archwingRequired ?? false)
                   const Padding(
                     padding: EdgeInsets.only(left: 8),
-                    child: Icon(WarframeSymbols.archwing, color: Colors.blue, size: 25),
+                    child: Icon(WarframeIcons.archwing, color: Colors.blue, size: 25),
                   ),
               ],
             ),

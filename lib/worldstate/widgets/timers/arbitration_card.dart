@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis/worldstate/bloc/worldstate_bloc.dart';
 import 'package:navis_ui/navis_ui.dart';
+import 'package:warframe_icons/warframe_icons.dart';
 
 class ArbitrationCard extends StatelessWidget {
   const ArbitrationCard({super.key});
@@ -28,14 +29,14 @@ class ArbitrationCard extends StatelessWidget {
           }
 
           return ListTile(
-            leading: const AppIcon(WarframeSymbols.arbitrations, size: 50),
+            leading: const AppIcon(WarframeIcons.arbitrations, size: 50),
             title: Row(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 if (arbitration?.archwing ?? false)
                   const Padding(
                     padding: EdgeInsets.only(left: 6),
-                    child: Icon(WarframeSymbols.archwing, color: Colors.blue, size: 25),
+                    child: Icon(WarframeIcons.archwing, color: Colors.blue, size: 25),
                   ),
                 Text(arbitration?.node ?? ''),
               ],

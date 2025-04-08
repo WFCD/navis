@@ -5,6 +5,7 @@ import 'package:black_hole_flutter/black_hole_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis_ui/navis_ui.dart';
+import 'package:warframe_icons/warframe_icons.dart';
 import 'package:warframestat_client/warframestat_client.dart';
 
 class FissureWidget extends StatelessWidget {
@@ -20,15 +21,15 @@ class FissureWidget extends StatelessWidget {
     final icon = () {
       switch (fissure.tierNum) {
         case 1:
-          return WarframeSymbols.fissures_lith;
+          return WarframeIcons.fissuresLith;
         case 2:
-          return WarframeSymbols.fissures_meso;
+          return WarframeIcons.fissuresMeso;
         case 3:
-          return WarframeSymbols.fissures_neo;
+          return WarframeIcons.fissuresNeo;
         case 4:
-          return WarframeSymbols.fissures_axi;
+          return WarframeIcons.fissuresAxi;
         case 5:
-          return WarframeSymbols.fissures_requiem;
+          return WarframeIcons.fissuresRequiem;
       }
     }();
 
@@ -36,9 +37,9 @@ class FissureWidget extends StatelessWidget {
       alignment: AlignmentDirectional.center,
       children: [
         if (fissure.isStorm)
-          const Center(child: Opacity(opacity: opacity, child: AppIcon(WarframeSymbols.archwing, size: iconSize))),
+          const Center(child: Opacity(opacity: opacity, child: AppIcon(WarframeIcons.archwing, size: iconSize))),
         if (fissure.isHard)
-          const Center(child: Opacity(opacity: opacity, child: AppIcon(WarframeSymbols.sp_logo, size: iconSize))),
+          const Center(child: Opacity(opacity: opacity, child: AppIcon(WarframeIcons.spLogo, size: iconSize))),
         Row(
           children: <Widget>[
             Padding(
@@ -96,11 +97,11 @@ class OmniaFissureWidget extends StatefulWidget {
 
 class _OmniaFissureWidgetState extends State<OmniaFissureWidget> {
   static const _icons = [
-    WarframeSymbols.fissures_lith,
-    WarframeSymbols.fissures_meso,
-    WarframeSymbols.fissures_neo,
-    WarframeSymbols.fissures_axi,
-    WarframeSymbols.fissures_requiem,
+    WarframeIcons.fissuresLith,
+    WarframeIcons.fissuresMeso,
+    WarframeIcons.fissuresNeo,
+    WarframeIcons.fissuresAxi,
+    WarframeIcons.fissuresRequiem,
   ];
 
   late final Timer timer;

@@ -7,6 +7,7 @@ import 'package:navis/codex/codex.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis/profile/utils/extensions.dart';
 import 'package:navis_ui/navis_ui.dart';
+import 'package:warframe_icons/warframe_icons.dart';
 import 'package:warframestat_repository/warframestat_repository.dart';
 
 class ArsenalItemWidget extends StatelessWidget {
@@ -62,7 +63,7 @@ class ArsenalItemTitle extends StatelessWidget {
       leading: CachedNetworkImage(
         imageUrl: imageUri(item.image),
         width: leadingSize,
-        errorWidget: (context, url, error) => const Icon(WarframeSymbols.menu_LotusEmblem, size: leadingSize),
+        errorWidget: (context, url, error) => const Icon(WarframeIcons.menuLotusEmblem, size: leadingSize),
       ),
       title: Text(item.name),
       subtitle: Column(

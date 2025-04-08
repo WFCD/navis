@@ -4,6 +4,7 @@ import 'package:navis/l10n/l10n.dart';
 import 'package:navis/worldstate/worldstate.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:responsive_builder/responsive_builder.dart';
+import 'package:warframe_icons/warframe_icons.dart';
 import 'package:warframestat_client/warframestat_client.dart';
 
 class FissuresPage extends StatelessWidget {
@@ -140,9 +141,9 @@ class _FissureFilter extends StatelessWidget {
     };
 
     final icon = switch (filter) {
-      FissureFilter.fissures => WarframeSymbols.fissures_requiem,
-      FissureFilter.voidStorm => WarframeSymbols.archwing,
-      FissureFilter.steelPath => WarframeSymbols.sp_logo,
+      FissureFilter.fissures => WarframeIcons.fissuresRequiem,
+      FissureFilter.voidStorm => WarframeIcons.archwing,
+      FissureFilter.steelPath => WarframeIcons.spLogo,
     };
 
     return Tooltip(message: text, child: Row(children: [Icon(icon), Gaps.gap8, Text(text)]));

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:navis_ui/navis_ui.dart';
+import 'package:warframe_icons/warframe_icons.dart';
 import 'package:warframestat_client/warframestat_client.dart' hide Alignment;
 
 class CalendarPage extends StatelessWidget {
@@ -65,7 +66,7 @@ class EventContent extends StatelessWidget {
       'override' => Icons.settings_suggest_rounded,
       'big prize!' => Icons.card_giftcard_rounded,
       'birthday' => Icons.cake_rounded,
-      _ => WarframeSymbols.menu_LotusEmblem,
+      _ => WarframeIcons.menuLotusEmblem,
     };
 
     Widget content(CalendarEvent event) => switch (event) {

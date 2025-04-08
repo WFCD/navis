@@ -1,7 +1,7 @@
 import 'package:black_hole_flutter/black_hole_flutter.dart';
 import 'package:flutter/material.dart';
-import 'package:navis_ui/navis_ui.dart';
 import 'package:simple_icons/simple_icons.dart';
+import 'package:warframe_icons/warframe_icons.dart';
 
 class UserTitle extends StatelessWidget {
   const UserTitle({super.key, required this.username});
@@ -65,7 +65,7 @@ class _PlatformIcon extends StatelessWidget {
       3 => const Icon(SimpleIcons.nintendo, color: swiColor, semanticLabel: swi),
       // https://www.apple.com/legal/sales-support/certification/docs/logo_guidelines.pdf
       4 => Icon(SimpleIcons.apple, color: steamColor, semanticLabel: ios),
-      _ => const Icon(WarframeSymbols.nightmare),
+      _ => const Icon(WarframeIcons.nightmare),
     };
   }
 }

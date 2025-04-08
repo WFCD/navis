@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis/router/routes.dart';
 import 'package:navis_ui/navis_ui.dart';
+import 'package:warframe_icons/warframe_icons.dart';
 
 class ExplorePage extends StatelessWidget {
   const ExplorePage({super.key});
@@ -31,7 +32,7 @@ class ExploreView extends StatelessWidget {
         // ),
         AppCard(
           child: ListTile(
-            leading: const Icon(WarframeSymbols.menu_FishLarge, size: iconSize),
+            leading: const Icon(WarframeIcons.menuFishLarge, size: iconSize),
             title: Text(l10n.fishTitle),
             subtitle: Text(l10n.fishDescription),
             onTap: () => const FishPageRoute().push<void>(context),

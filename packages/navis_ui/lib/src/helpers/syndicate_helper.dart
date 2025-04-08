@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:navis_ui/src/colors/colors.dart';
-import 'package:navis_ui/src/icons/icons.dart';
+import 'package:warframe_icons/warframe_icons.dart';
 
 enum Syndicates {
   cetus('Ostrons'),
@@ -27,19 +27,19 @@ extension SyndicatesX on Syndicates {
   IconData get syndicateIcon {
     switch (this) {
       case Syndicates.cetus:
-        return WarframeSymbols.ostron;
+        return WarframeIcons.ostron;
       case Syndicates.solaris:
-        return WarframeSymbols.solaris;
+        return WarframeIcons.solaris;
       case Syndicates.entrati:
-        return WarframeSymbols.entrati;
+        return WarframeIcons.entrati;
       case Syndicates.nightwave:
-        return WarframeSymbols.nightwave;
+        return WarframeIcons.nightwave;
       case Syndicates.simaris:
-        return WarframeSymbols.simaris;
+        return WarframeIcons.simaris;
       case Syndicates.hex:
-        return WarframeSymbols.the_hex;
+        return WarframeIcons.theHex;
       case Syndicates.unknown:
-        return WarframeSymbols.menu_LotusEmblem;
+        return WarframeIcons.menuLotusEmblem;
     }
   }
 

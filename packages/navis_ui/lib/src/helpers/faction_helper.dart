@@ -1,33 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:navis_ui/navis_ui.dart';
+import 'package:warframe_icons/warframe_icons.dart';
 
-enum Factions {
-  grineer,
-  corpus,
-  corrupted,
-  infestation,
-  infested,
-  narmer,
-  unknown
-}
+enum Factions { grineer, corpus, corrupted, infestation, infested, narmer, unknown }
 
 extension FactionsX on Factions {
   IconData get factionIcon {
     switch (this) {
       case Factions.grineer:
-        return WarframeSymbols.factions_grineer;
+        return WarframeIcons.factionsGrineer;
       case Factions.corpus:
-        return WarframeSymbols.factions_corpus;
+        return WarframeIcons.factionsCorpus;
       case Factions.corrupted:
-        return WarframeSymbols.factions_corrupted;
+        return WarframeIcons.factionsCorrupted;
       case Factions.infestation:
-        return WarframeSymbols.factions_infested;
+        return WarframeIcons.factionsInfested;
       case Factions.infested:
-        return WarframeSymbols.factions_infested;
+        return WarframeIcons.factionsInfested;
       case Factions.narmer:
-        return WarframeSymbols.factions_narmer;
+        return WarframeIcons.factionsNarmer;
       case Factions.unknown:
-        return WarframeSymbols.factions_sentient;
+        return WarframeIcons.factionsSentient;
     }
   }
 

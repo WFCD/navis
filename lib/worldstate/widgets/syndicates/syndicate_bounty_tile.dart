@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis_ui/navis_ui.dart';
+import 'package:warframe_icons/warframe_icons.dart';
 import 'package:warframestat_client/warframestat_client.dart';
 
 class SyndicateBountyTile extends StatelessWidget {
@@ -34,7 +35,7 @@ class _Standing extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         Text(NumberFormat().format(standingStages.reduce((v, e) => v + e))),
-        const Icon(WarframeSymbols.standing, size: 20),
+        const Icon(WarframeIcons.standing, size: 20),
       ],
     );
   }

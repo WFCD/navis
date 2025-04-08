@@ -1610,6 +1610,15 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "14.3.1"
+  warframe_icons:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: HEAD
+      resolved-ref: a26cf44ac0e8e4354ab818e14059d85c25087cd9
+      url: "https://github.com/SlayerOrnstein/warframe_icons.git"
+    source: git
+    version: "1.0.0"
   warframestat_client:
     dependency: "direct main"
     description:

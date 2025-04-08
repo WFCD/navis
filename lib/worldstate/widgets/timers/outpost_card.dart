@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis/worldstate/bloc/worldstate_bloc.dart';
 import 'package:navis_ui/navis_ui.dart';
+import 'package:warframe_icons/warframe_icons.dart';
 
 class SentientOutpostCard extends StatelessWidget {
   const SentientOutpostCard({super.key});
@@ -36,7 +37,7 @@ class SentientOutpostCard extends StatelessWidget {
           final expiry = outpost?.expiry ?? DateTime.now();
 
           return ListTile(
-            leading: const Icon(WarframeSymbols.factions_sentient, size: 40),
+            leading: const Icon(WarframeIcons.factionsSentient, size: 40),
             title: Text(mission?.node ?? ''),
             subtitle: Text('${mission?.faction ?? ''} | ${mission?.type ?? ''}'),
             trailing: CountdownTimer(tooltip: context.l10n.countdownTooltip(expiry), expiry: expiry),

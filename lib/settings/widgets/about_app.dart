@@ -7,6 +7,7 @@ import 'package:navis/l10n/l10n.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:simple_icons/simple_icons.dart';
+import 'package:warframe_icons/warframe_icons.dart';
 
 class AboutApp extends AbstractSettingsTile {
   const AboutApp({super.key, this.l10n});
@@ -31,7 +32,7 @@ class AboutApp extends AbstractSettingsTile {
         final info = snapshot.data;
 
         return AboutDialog(
-          applicationIcon: const Icon(WarframeSymbols.nightmare, size: 50, color: Color(0xFF1565C0)),
+          applicationIcon: const Icon(WarframeIcons.nightmare, size: 50, color: Color(0xFF1565C0)),
           applicationName: 'Cephalon Navis',
           applicationVersion: info?.version ?? '',
           children: <Widget>[
@@ -72,7 +73,7 @@ class AboutApp extends AbstractSettingsTile {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 IconButton(
-                  icon: const Icon(WarframeSymbols.wfcd, color: Color(0xFF2e96ef)),
+                  icon: const Icon(WarframeIcons.wfcd, color: Color(0xFF2e96ef)),
                   iconSize: iconSize,
                   splashColor: Colors.transparent,
                   onPressed: () => communityPage.launchLink(context),

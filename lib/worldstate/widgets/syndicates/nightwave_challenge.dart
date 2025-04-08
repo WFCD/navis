@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis_ui/navis_ui.dart';
+import 'package:warframe_icons/warframe_icons.dart';
 import 'package:warframestat_client/warframestat_client.dart';
 
 class NightwaveChallenge extends StatelessWidget {
@@ -57,7 +58,7 @@ class _StandingBadge extends StatelessWidget {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          const Icon(WarframeSymbols.standing, size: 20, color: Colors.white),
+          const Icon(WarframeIcons.standing, size: 20, color: Colors.white),
           Text(NumberFormat().format(challenge.reputation), style: const TextStyle(color: Colors.white)),
         ],
       ),
@@ -77,11 +78,11 @@ class _NightwaveIcon extends StatelessWidget {
     Widget icon;
 
     if (isElite) {
-      icon = const AppIcon(WarframeSymbols.nightwaves_elite, size: kIconSize);
+      icon = const AppIcon(WarframeIcons.nightwavesElite, size: kIconSize);
     } else if (isDaily) {
-      icon = const AppIcon(WarframeSymbols.nightwaves_daily, size: kIconSize);
+      icon = const AppIcon(WarframeIcons.nightwavesDaily, size: kIconSize);
     } else {
-      icon = const AppIcon(WarframeSymbols.nightwaves_weekly, size: kIconSize);
+      icon = const AppIcon(WarframeIcons.nightwavesWeekly, size: kIconSize);
     }
 
     return icon;
