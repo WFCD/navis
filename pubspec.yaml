@@ -44,7 +44,7 @@ dependencies:
     path: packages/navis_ui
   notification_repository:
     path: packages/notification_repository
-  package_info_plus: ^8.1.2
+  package_info_plus: ^8.3.0
   path_provider: ^2.1.5
   replay_bloc: ^0.3.0
   responsive_builder: ^0.7.0
