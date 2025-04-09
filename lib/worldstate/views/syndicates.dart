@@ -63,7 +63,7 @@ class _BuildSyndicates extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        CountdownBanner(message: 'Bounties expire in:', time: syndicates.first.expiry),
+        CountdownBanner(message: 'Bounties expire in:', time: syndicates.firstOrNull?.expiry),
         ...syndicates.map<SyndicateCard>(
           (syn) => SyndicateCard(syndicate: Syndicates.syndicateStringToEnum(syn.syndicate), onTap: () => onTap(syn)),
         ),
