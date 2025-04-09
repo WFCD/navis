@@ -33,15 +33,22 @@ class _MobileInvasions extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CustomScrollView(
-      slivers: [
-        const SliverToBoxAdapter(child: ConstructionProgressCard()),
-        SliverList(
-          delegate: SliverChildBuilderDelegate(
-            (context, index) => InvasionWidget(invasion: invasions[index]),
-            childCount: invasions.length,
-          ),
-        ),
+    // return CustomScrollView(
+    //   slivers: [
+    //     const SliverToBoxAdapter(child: ConstructionProgressCard()),
+    //     SliverList(
+    //       delegate: SliverChildBuilderDelegate(
+    //         (context, index) => InvasionWidget(invasion: invasions[index]),
+    //         childCount: invasions.length,
+    //       ),
+    //     ),
+    //   ],
+    // );
+    return ListView(
+      key: const PageStorageKey('invasions_mobile'),
+      children: [
+        const ConstructionProgressCard(),
+        for (final invasion in invasions) InvasionWidget(invasion: invasion),
       ],
     );
   }

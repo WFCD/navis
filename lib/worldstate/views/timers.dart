@@ -32,6 +32,7 @@ class _MobileTimers extends StatelessWidget {
         return ViewLoading(
           isLoading: worldstate == null,
           child: ListView(
+            key: const PageStorageKey('timers'),
             shrinkWrap: true,
             cacheExtent: cacheExtent,
             children: [

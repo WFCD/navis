@@ -90,6 +90,7 @@ class _MobileFissures extends StatelessWidget {
     final height = (MediaQuery.of(context).size.height / 100) * 15;
 
     return ListView.builder(
+      key: const PageStorageKey('fissures_mobile'),
       cacheExtent: cacheExntent,
       itemExtent: height,
       itemCount: fissures.length,

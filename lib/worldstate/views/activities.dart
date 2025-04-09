@@ -40,7 +40,7 @@ class _ActivitiesView extends StatelessWidget {
     }
   }
 
-  void listener(BuildContext context, WorldState state) {
+  void _listener(BuildContext context, WorldState state) {
     if (state is WorldstateFailure) {
       // TODO(SlayerOrnstein): Add localizations here too
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text(':(')));
@@ -56,7 +56,7 @@ class _ActivitiesView extends StatelessWidget {
     }
   }
 
-  List<Widget> _headerSliverBuilder(BuildContext context) {
+  List<Widget> _headerSliverBuilder(BuildContext context, bool innerBoxIsScrolled) {
     return <Widget>[
       SliverOverlapAbsorber(
         handle: NestedScrollView.sliverOverlapAbsorberHandleFor(context),
@@ -71,12 +71,14 @@ class _ActivitiesView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocListener<WorldstateBloc, WorldState>(
-      listener: listener,
+      listener: _listener,
       child: DefaultTabController(
         length: Tabs.values.length,
-        child: NestedScrollView(
-          headerSliverBuilder: (context, _) => _headerSliverBuilder(context),
-          body: TabBarView(children: Tabs.values.map((e) => _TabView(tab: e)).toList()),
+        child: Scaffold(
+          body: NestedScrollView(
+            headerSliverBuilder: _headerSliverBuilder,
+            body: TabBarView(children: Tabs.values.map((e) => _TabView(tab: e)).toList()),
+          ),
         ),
       ),
     );
@@ -90,31 +92,13 @@ class _TabView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Builder(
-      builder: (context) {
-        return CustomScrollView(
-          key: PageStorageKey<String>(tab.toString()),
-          slivers: [
-            SliverOverlapInjector(
-              // This is the flip side of the SliverOverlapAbsorber above.
-              handle: NestedScrollView.sliverOverlapAbsorberHandleFor(context),
-            ),
-            SliverFillRemaining(
-              child: () {
-                switch (tab) {
-                  case Tabs.timers:
-                    return const Timers();
-                  case Tabs.fissures:
-                    return const FissuresPage();
-                  case Tabs.invasions:
-                    return const InvasionsPage();
-                  case Tabs.syndicates:
-                    return const SyndicatePage();
-                }
-              }(),
-            ),
-          ],
-        );
+    return Padding(
+      padding: const EdgeInsets.only(top: kTextTabBarHeight),
+      child: switch (tab) {
+        Tabs.timers => const Timers(),
+        Tabs.fissures => const FissuresPage(),
+        Tabs.invasions => const InvasionsPage(),
+        Tabs.syndicates => const SyndicatePage(),
       },
     );
   }
