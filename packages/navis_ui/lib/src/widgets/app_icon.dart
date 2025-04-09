@@ -84,14 +84,12 @@ class AppIcon extends StatelessWidget {
 
     var iconColor = color ?? iconTheme.color;
     if (iconOpacity != 1.0) {
-      iconColor =
-          iconColor?.withValues(alpha: iconColor.a * (iconOpacity ?? 0.0));
+      iconColor = iconColor?.withValues(alpha: iconColor.a * (iconOpacity ?? 0.0));
     }
 
     Widget iconWidget = RichText(
       overflow: TextOverflow.visible, // Never clip.
-      textDirection:
-          textDirection, // Since we already fetched it for the assert...
+      textDirection: textDirection, // Since we already fetched it for the assert...
       text: TextSpan(
         text: String.fromCharCode(icon.codePoint),
         style: TextStyle(

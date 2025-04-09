@@ -5,6 +5,7 @@ import 'package:intl/intl.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis/worldstate/bloc/worldstate_bloc.dart';
 import 'package:navis_ui/navis_ui.dart';
+import 'package:warframe_icons/warframe_icons.dart';
 import 'package:warframestat_client/warframestat_client.dart';
 
 const double _iconSize = 28;
@@ -24,6 +25,37 @@ class CycleCard extends StatelessWidget {
       VallisState.cold => const Icon(Icons.ac_unit, color: Colors.blue, size: _iconSize),
       VallisState.warm => const Icon(Icons.sunny, color: Colors.red, size: _iconSize),
     };
+  }
+
+  Widget _cambionStateIcon(CambionState state) {
+    const scaleUp = 15;
+    final shadows = <Shadow>[
+      Shadow(
+        color: switch (state) {
+          CambionState.vome => Colors.blueAccent,
+          CambionState.fass => Colors.redAccent,
+        },
+        blurRadius: 5,
+      ),
+    ];
+
+    return Tooltip(
+      message: toBeginningOfSentenceCase(state.name),
+      child: switch (state) {
+        CambionState.vome => Icon(
+          WarframeIcons.requiemVome,
+          color: Colors.blue,
+          size: _iconSize + scaleUp,
+          shadows: shadows,
+        ),
+        CambionState.fass => Icon(
+          WarframeIcons.requiemFass,
+          color: Colors.red,
+          size: _iconSize + scaleUp,
+          shadows: shadows,
+        ),
+      },
+    );
   }
 
   // Keep the function in case there's ever an icon for Fass and Vome.
@@ -82,7 +114,7 @@ class CycleCard extends StatelessWidget {
                 expiry: vallisCycle?.expiry,
               ),
               _CycleRow(
-                currentState: _stateText(context, cambionCycle?.state.name ?? CambionState.fass.name),
+                currentState: _cambionStateIcon(cambionCycle?.state ?? CambionState.fass),
                 name: locale.cambionCycleTitle,
                 expiry: cambionCycle?.expiry,
               ),
