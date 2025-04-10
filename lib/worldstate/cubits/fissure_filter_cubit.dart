@@ -40,7 +40,9 @@ class FissureFilterCubit extends HydratedCubit<FissureFilterState> {
   @override
   FissureFilterState? fromJson(Map<String, dynamic> json) {
     _logger.info('Hydrating filtered fissures');
-    final type = FissureFilter.values.byName(json['filter'] as String);
+    final type =
+        json['filter'] == 'all' ? FissureFilter.fissures : FissureFilter.values.byName(json['filter'] as String);
+
     final fissures =
         (json['fissures'] as List<dynamic>).map((e) => Fissure.fromJson(e as Map<String, dynamic>)).toList();
 
