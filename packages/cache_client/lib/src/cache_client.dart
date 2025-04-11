@@ -18,7 +18,7 @@ class CacheClient extends BaseClient {
   final Client _inner;
 
   static Future<CacheClient> initCacheClient({Duration ttl = const Duration(seconds: 60), Client? client}) async {
-    if (!Hive.isAdapterRegistered(0)) Hive.registerAdapters();
+    Hive.registerAdapters();
     final box = await Hive.openBox<CachedItem>('cache_client.tmp');
 
     return CacheClient(cache: box, ttl: ttl, client: client);
