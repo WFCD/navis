@@ -52,7 +52,7 @@ class Inventoria {
       client: await CacheClient.initCacheClient(client: _client, ttl: const Duration(minutes: 60)),
       playerId: id,
     );
-    final profile = await client.fetchProfile();
+    final profile = await client.fetchProfile().timeout(const Duration(seconds: 120));
 
     await _database
         .into(_database.driftProfile)
