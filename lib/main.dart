@@ -33,7 +33,7 @@ Future<void> main() async {
         ..debug = kDebugMode
         ..enableDeduplication = true
         ..tracesSampleRate = tracesSampleRate
-        ..ignoreErrors = ['SocketException']
+        ..ignoreErrors = ['SocketException', 'ClientException']
         ..enableBreadcrumbTrackingForCurrentPlatform()
         ..addIntegration(LoggingIntegration());
     },
