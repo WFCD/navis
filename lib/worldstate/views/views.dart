@@ -1,7 +1,7 @@
 export 'activities.dart';
+export 'archimedea.dart';
 export 'bounties.dart';
 export 'calendar.dart';
-export 'deep_archimedea.dart';
 export 'event.dart';
 export 'fissures.dart';
 export 'flash_sales.dart';

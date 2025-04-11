@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:navis/codex/codex.dart';
 import 'package:navis/l10n/l10n.dart';
+import 'package:navis/utils/utils.dart';
 import 'package:navis/worldstate/bloc/worldstate_bloc.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:warframestat_client/warframestat_client.dart';
@@ -61,17 +62,6 @@ class CircuitResetTimer extends StatelessWidget {
   final DateTime expiry;
   final void Function() onTap;
 
-  DateTime _getNextMonday() {
-    final now = DateTime.timestamp();
-
-    var daysUntilNextMonday = (DateTime.monday - now.weekday + 7) % 7;
-    daysUntilNextMonday = daysUntilNextMonday == 0 ? 7 : daysUntilNextMonday;
-
-    final nextMondayMidnight = DateTime.utc(now.year, now.month, now.day + daysUntilNextMonday);
-
-    return nextMondayMidnight;
-  }
-
   @override
   Widget build(BuildContext context) {
     final date = MaterialLocalizations.of(context).formatFullDate(expiry);
@@ -80,7 +70,7 @@ class CircuitResetTimer extends StatelessWidget {
       hoverColor: Colors.transparent,
       title: Text(context.l10n.circuitResetTitle),
       subtitle: Text(context.l10n.circuitResetSubtitle),
-      trailing: CountdownTimer(tooltip: date, expiry: _getNextMonday()),
+      trailing: CountdownTimer(tooltip: date, expiry: weeklReset()),
       onTap: onTap,
     );
   }

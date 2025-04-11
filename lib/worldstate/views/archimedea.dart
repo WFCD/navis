@@ -1,6 +1,7 @@
 import 'package:black_hole_flutter/black_hole_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:navis/l10n/l10n.dart';
+import 'package:navis/utils/reset_timers.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:warframestat_client/warframestat_client.dart';
 
@@ -11,18 +12,15 @@ class ArchimedeaPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    DateTime placeholder() => DateTime.timestamp().add(const Duration(days: 7));
+    final reset = weeklReset();
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Deep Archimedea')),
+      appBar: AppBar(),
       body: ListView(
         children: [
           ListTile(
-            title: Text('${context.l10n.archimedeaTitle}:'),
-            trailing: CountdownTimer(
-              tooltip: MaterialLocalizations.of(context).formatFullDate(archimedea.expiry ?? placeholder()),
-              expiry: archimedea.expiry ?? placeholder(),
-            ),
+            title: Text('${context.l10n.archimedeaResetTitle}:'),
+            trailing: CountdownTimer(tooltip: MaterialLocalizations.of(context).formatFullDate(reset), expiry: reset),
           ),
           _ArchimedeaMissionsCategory(missions: archimedea.missions),
           _PersonalModifierCategory(personalModifiers: archimedea.personalModifiers),
@@ -47,6 +45,7 @@ class _ArchimedeaMissionsCategory extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
     final secondary = context.theme.colorScheme.secondary;
+    final titleStyle = context.textTheme.titleSmall;
 
     return Column(
       children: [
@@ -59,15 +58,12 @@ class _ArchimedeaMissionsCategory extends StatelessWidget {
                 child: Text(m.mission, style: Theme.of(context).textTheme.titleMedium?.copyWith(color: secondary)),
               ),
               ListTile(
-                title: Text(
-                  '${l10n.archimedeaDeviationTitle}: ${m.deviation.name}',
-                  style: Theme.of(context).textTheme.titleSmall,
-                ),
+                title: Text('${l10n.archimedeaDeviationTitle}: ${m.deviation.name}', style: titleStyle),
                 subtitle: Text(m.deviation.description),
               ),
               ...m.riskVariables.map(
                 (rv) => ListTile(
-                  title: Text('${l10n.archimedeaRiskTitle}: ${rv.name}', style: Theme.of(context).textTheme.titleSmall),
+                  title: Text('${l10n.archimedeaRiskTitle}: ${rv.name}', style: titleStyle),
                   subtitle: Text(rv.description),
                 ),
               ),
