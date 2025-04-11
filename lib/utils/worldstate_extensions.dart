@@ -22,5 +22,9 @@ extension WorldstateX on Worldstate {
     flashSales
       ..retainWhere((s) => s.isShownInMarket && s.premiumOverride > platThreshold && !s.expired)
       ..sort((a, b) => a.expiry.compareTo(b.expiry));
+
+    for (final c in calendar) {
+      c.days.removeWhere((d) => d.events.isEmpty);
+    }
   }
 }
