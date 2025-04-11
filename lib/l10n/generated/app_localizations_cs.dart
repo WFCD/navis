@@ -277,7 +277,10 @@ class NavisLocalizationsCs extends NavisLocalizations {
   String get settingsTitle => 'Nastavení';
 
   @override
-  String get dailyRewardTitle => 'Denní Odměny Obnovení Časovače';
+  String get dailyResetTitle => 'Daily Reset Timer';
+
+  @override
+  String get weeklyResetTitle => 'Weekly Reset Timer';
 
   @override
   String get eliteBadgeTitle => 'Elita';
@@ -630,7 +633,13 @@ class NavisLocalizationsCs extends NavisLocalizations {
   String get circuitResetSubtitle => 'Tap to see current offerings';
 
   @override
-  String get archimedeaTitle => 'Deep Archimedea ends';
+  String get archimedeaResetTitle => 'Resets in';
+
+  @override
+  String get deepArchimedeaTitle => 'Deep Archimedea';
+
+  @override
+  String get temporalArchimedeaTitle => 'Temporal Archimedea';
 
   @override
   String get archimedeaDeviationTitle => 'Deviation';

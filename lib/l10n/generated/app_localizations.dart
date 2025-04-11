@@ -639,11 +639,17 @@ abstract class NavisLocalizations {
   /// **'Settings'**
   String get settingsTitle;
 
-  /// Title for daily reward timer
+  /// Title for daily timer
   ///
   /// In en, this message translates to:
-  /// **'Daily Reward Reset Timer'**
-  String get dailyRewardTitle;
+  /// **'Daily Reset Timer'**
+  String get dailyResetTitle;
+
+  /// Title for weekly timer
+  ///
+  /// In en, this message translates to:
+  /// **'Weekly Reset Timer'**
+  String get weeklyResetTitle;
 
   /// Nightwave Elite badge title
   ///
@@ -1329,11 +1335,23 @@ abstract class NavisLocalizations {
   /// **'Tap to see current offerings'**
   String get circuitResetSubtitle;
 
-  /// Text displayed next to the weekly reset time for the Deep Archimedea
+  /// Text in Archimedea page for weekly reset time
   ///
   /// In en, this message translates to:
-  /// **'Deep Archimedea resets in'**
-  String get archimedeaTitle;
+  /// **'Resets in'**
+  String get archimedeaResetTitle;
+
+  /// Text for DA in case it needs translations
+  ///
+  /// In en, this message translates to:
+  /// **'Deep Archimedea'**
+  String get deepArchimedeaTitle;
+
+  /// Text for TA in case it needs translations
+  ///
+  /// In en, this message translates to:
+  /// **'Temporal Archimedea'**
+  String get temporalArchimedeaTitle;
 
   /// Text displayed next to Deep Archimedea deviation name
   ///
@@ -1368,7 +1386,7 @@ abstract class NavisLocalizations {
   /// Warning text displayed under Deep Archimedea warning title
   ///
   /// In en, this message translates to:
-  /// **'DE doesn\'t always update Deep Archimedea data after a weekly reset so consider this unstable.\nWarning will be removed when data rotation is more consistent'**
+  /// **'DE doesn\'t always update Deep/Temporal Archimedea data after a weekly reset so consider this unstable.\nWarning will be removed when data rotation is more consistent'**
   String get archimedeaWarningSubtitle;
 
   /// Activities title

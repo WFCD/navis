@@ -277,7 +277,10 @@ class NavisLocalizationsZh extends NavisLocalizations {
   String get settingsTitle => '設定';
 
   @override
-  String get dailyRewardTitle => '每日獻禮重置計時器:';
+  String get dailyResetTitle => 'Daily Reset Timer';
+
+  @override
+  String get weeklyResetTitle => 'Weekly Reset Timer';
 
   @override
   String get eliteBadgeTitle => '精英';
@@ -630,7 +633,13 @@ class NavisLocalizationsZh extends NavisLocalizations {
   String get circuitResetSubtitle => 'Tap to see current offerings';
 
   @override
-  String get archimedeaTitle => 'Deep Archimedea ends';
+  String get archimedeaResetTitle => 'Resets in';
+
+  @override
+  String get deepArchimedeaTitle => 'Deep Archimedea';
+
+  @override
+  String get temporalArchimedeaTitle => 'Temporal Archimedea';
 
   @override
   String get archimedeaDeviationTitle => 'Deviation';
