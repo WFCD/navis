@@ -130,29 +130,29 @@
     "description": "Razorback progress title",
     "type": "text"
   },
-  "earthCycleTitle": "Cycle Terrestre",
-  "@earthCycleTitle": {
-    "description": "Earth cycle title",
-    "type": "text"
-  },
-  "cetusCycleTitle": "Cycle de Cetus",
+  "cetusCycleTitle": "Earth/Plains of Eidolon",
   "@cetusCycleTitle": {
-    "description": "Cetus cycle title",
+    "description": "Earth and Cetus cycle title",
     "type": "text"
   },
-  "vallisCycleTitle": "Cycle de la Vallée",
+  "vallisCycleTitle": "Orb Vallis",
   "@vallisCycleTitle": {
     "description": "Vallis cycle title",
     "type": "text"
   },
-  "cambionCycleTitle": "Cycle de Cambion",
+  "cambionCycleTitle": "Cambion Drift",
   "@cambionCycleTitle": {
     "description": "Cambion Cycle title",
     "type": "text"
   },
-  "zarimanCycleTitle": "Cycle du Zariman",
+  "zarimanCycleTitle": "Zariman",
   "@zarimanCycleTitle": {
     "description": "Zariman Cycle title",
+    "type": "text"
+  },
+  "duviriCycleTitle": "Duviri",
+  "@duviriCycleTitle": {
+    "description": "Duviri Cycle title",
     "type": "text"
   },
   "timersTitle": "Minuteurs",
@@ -450,9 +450,14 @@
     "description": "Settings title",
     "type": "text"
   },
-  "dailyRewardTitle": "Délai de réinitialisation des récompenses quotidiennes",
-  "@dailyRewardTitle": {
-    "description": "Title for daily reward timer",
+  "dailyResetTitle": "Daily Reset Timer",
+  "@dailyResetTitle": {
+    "description": "Title for daily timer",
+    "type": "text"
+  },
+  "weeklyResetTitle": "Weekly Reset Timer",
+  "@weeklyResetTitle": {
+    "description": "Title for weekly timer",
     "type": "text"
   },
   "eliteBadgeTitle": "Élite",
@@ -791,29 +796,29 @@
     "description": "Tells the user when darvo is out of stock for the current sale",
     "type": "text"
   },
-  "duviriJoy": "Duviri - Joie",
+  "duviriJoy": "Joy",
   "@duviriJoy": {
-    "description": "Duviri joy state. If Duviri doesn't have a translatetion then only joy can be translated.",
+    "description": "Duviri joy state. ",
     "type": "text"
   },
-  "duviriAnger": "Duviri - Colère",
+  "duviriAnger": "Anger",
   "@duviriAnger": {
-    "description": "Duviri anger state. If Duviri doesn't have a translatetion then only joy can be translated.",
+    "description": "Duviri anger state.",
     "type": "text"
   },
-  "duviriEnvy": "Duviri - Envie",
+  "duviriEnvy": "Envy",
   "@duviriEnvy": {
-    "description": "Duviri envy state. If Duviri doesn't have a translatetion then only joy can be translated.",
+    "description": "Duviri envy state.",
     "type": "text"
   },
-  "duviriSorrow": "Duviri - Chagrin",
+  "duviriSorrow": "Sorrow",
   "@duviriSorrow": {
-    "description": "Duviri sorrow state. If Duviri doesn't have a translatetion then only joy can be translated.",
+    "description": "sorrow Duviri state",
     "type": "text"
   },
-  "duviriFear": "Duviri - Peur",
+  "duviriFear": "Fear",
   "@duviriFear": {
-    "description": "Duviri Fear state. If Duviri doesn't have a translatetion then only joy can be translated.",
+    "description": "Fear Duviri state",
     "type": "text"
   },
   "mapTitle": "Cartes",
@@ -1039,9 +1044,19 @@
     "description": "Text displayed under circuitResetTitle",
     "type": "text"
   },
-  "archimedeaTitle": "Fin de l'Archimédée profonde",
-  "@archimedeaTitle": {
-    "description": "Text displayed next to the weekly reset time for the Deep Archimedea",
+  "archimedeaResetTitle": "Resets in",
+  "@archimedeaResetTitle": {
+    "description": "Text in Archimedea page for weekly reset time",
+    "type": "text"
+  },
+  "deepArchimedeaTitle": "Deep Archimedea",
+  "@deepArchimedeaTitle": {
+    "description": "Text for DA in case it needs translations",
+    "type": "text"
+  },
+  "temporalArchimedeaTitle": "Temporal Archimedea",
+  "@temporalArchimedeaTitle": {
+    "description": "Text for TA in case it needs translations",
     "type": "text"
   },
   "archimedeaDeviationTitle": "Deviation",
@@ -1069,7 +1084,7 @@
     "description": "Warning title displayed under Deep Archimedea timer",
     "type": "text"
   },
-  "archimedeaWarningSubtitle": "DE ne mets pas toujours à jour les données de l'Archimédée Profonde après un reset hebdomadaire donc à considérer comme non fiable.\nL'avertissement sera retiré quand les données des rotations seront plus fiables",
+  "archimedeaWarningSubtitle": "DE doesn't always update Deep/Temporal Archimedea data after a weekly reset so consider this unstable.\nWarning will be removed when data rotation is more consistent",
   "@archimedeaWarningSubtitle": {
     "description": "Warning text displayed under Deep Archimedea warning title",
     "type": "text"
@@ -1108,5 +1123,47 @@
   "@traderCreditsHeaderTitle": {
     "description": "Trader inventory header text",
     "type": "text"
+  },
+  "itemRankSubtitle": "Rank {rank}",
+  "@itemRankSubtitle": {
+    "description": "Subtitle showing the item's rank",
+    "type": "text",
+    "placeholder": {
+      "rank": {}
+    }
+  },
+  "syncingInfoText": "Syncing XP info",
+  "@syncingInfoText": {
+    "description": "Text displayed when xp info is being synced",
+    "type": "text",
+    "placeholder": {}
+  },
+  "enterUsernameHintText": "Setup Inventoria",
+  "@enterUsernameHintText": {
+    "description": "Hint Text use as a placeholder in username input",
+    "type": "text",
+    "placeholder": {}
+  },
+  "clearUsernameButtonLabel": "Clear username",
+  "@clearUsernameButtonLabel": {
+    "description": "Label text for clear username button",
+    "type": "text",
+    "placeholder": {}
+  },
+  "cancelText": "Cancel",
+  "@cancelText": {
+    "description": "Text to display for cancel buttons",
+    "type": "text",
+    "placeholder": {}
+  },
+  "inventoriaSteps": "Cephalon Navis can use your read-only profile data to help track your arsenal XP and mastery points.\n\n1. Go to {url} on a computer\n\n2. Upload your EE.log or account ID from cookies\n\n3. Tap next and scan the generated QR code",
+  "@inventoriaSteps": {
+    "description": "Steps to setup Inventoria",
+    "type": "text",
+    "placeholders": {
+      "url": {
+        "type": "String"
+      }
+    }
   }
 }
