@@ -450,9 +450,14 @@
     "description": "Settings title",
     "type": "text"
   },
-  "dailyRewardTitle": "Günlük Ödül Sıfırlanma Zamanlayıcısı",
-  "@dailyRewardTitle": {
-    "description": "Title for daily reward timer",
+  "dailyResetTitle": "Daily Reset Timer",
+  "@dailyResetTitle": {
+    "description": "Title for daily timer",
+    "type": "text"
+  },
+  "weeklyResetTitle": "Weekly Reset Timer",
+  "@weeklyResetTitle": {
+    "description": "Title for weekly timer",
     "type": "text"
   },
   "eliteBadgeTitle": "Elit",
@@ -1039,9 +1044,19 @@
     "description": "Text displayed under circuitResetTitle",
     "type": "text"
   },
-  "archimedeaTitle": "Deep Archimedea resets in",
-  "@archimedeaTitle": {
-    "description": "Text displayed next to the weekly reset time for the Deep Archimedea",
+  "archimedeaResetTitle": "Resets in",
+  "@archimedeaResetTitle": {
+    "description": "Text in Archimedea page for weekly reset time",
+    "type": "text"
+  },
+  "deepArchimedeaTitle": "Deep Archimedea",
+  "@deepArchimedeaTitle": {
+    "description": "Text for DA in case it needs translations",
+    "type": "text"
+  },
+  "temporalArchimedeaTitle": "Temporal Archimedea",
+  "@temporalArchimedeaTitle": {
+    "description": "Text for TA in case it needs translations",
     "type": "text"
   },
   "archimedeaDeviationTitle": "Sapma",
@@ -1069,7 +1084,7 @@
     "description": "Warning title displayed under Deep Archimedea timer",
     "type": "text"
   },
-  "archimedeaWarningSubtitle": "DE, her haftalık sıfırlamanın ardından Deep Archimedea verilerini her zaman güncellemiyor, bu yüzden bunu kararsız kabul edin. \nUyarı, veri rotasyonu daha tutarlı hale geldiğinde kaldırılacaktır",
+  "archimedeaWarningSubtitle": "DE doesn't always update Deep/Temporal Archimedea data after a weekly reset so consider this unstable.\nWarning will be removed when data rotation is more consistent",
   "@archimedeaWarningSubtitle": {
     "description": "Warning text displayed under Deep Archimedea warning title",
     "type": "text"
