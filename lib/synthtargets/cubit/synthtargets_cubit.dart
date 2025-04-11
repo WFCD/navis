@@ -22,11 +22,13 @@ class SynthtargetsCubit extends HydratedCubit<SynthtargetsState> {
     try {
       final targets = await ConnectionManager.call(repository.fetchTargets);
 
+      if (isClosed) return;
       emit(TargetsLocated(targets));
     } on FormatException {
       _logger.shout('Failed to format targets');
     } on Exception catch (e, stack) {
       _logger.shout('Some different unexpected problem happened', e, stack);
+      if (isClosed) return;
       emit(TargetsNotFound());
     }
   }

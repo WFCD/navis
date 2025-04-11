@@ -26,8 +26,12 @@ class WorldstateBloc extends HydratedBloc<WorldstateEvent, WorldState> with Repl
     repository.language = Language.values.byName(event.locale.languageCode);
     await emit.onEach(
       repository.streamWorldstate().throttleTime(const Duration(seconds: 60)),
-      onData: (state) => add(WorldstateUpdated(state..clean())),
+      onData: (state) {
+        if (isClosed) return;
+        add(WorldstateUpdated(state..clean()));
+      },
       onError: (error, stackTrace) {
+        if (isClosed) return;
         add(WorldstateFailed());
         undo();
       },

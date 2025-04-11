@@ -2,7 +2,6 @@ import 'package:equatable/equatable.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:inventoria/inventoria.dart';
 import 'package:navis/profile/utils/extensions.dart';
-import 'package:sentry_flutter/sentry_flutter.dart';
 
 part 'mastery_progress_state.dart';
 
@@ -20,9 +19,10 @@ class MasteryProgressCubit extends HydratedCubit<MasteryProgressState> {
           (await inventoria.fetchInventory()).where((i) => i.rank < i.maxRank && !i.isMissing).toList()
             ..sort((a, b) => a.xp.compareTo(b.xp));
 
+      if (isClosed) return;
       emit(MasteryProgressSuccess(List.unmodifiable(inventory)));
-    } on Exception catch (e, stack) {
-      await Sentry.captureException(e, stackTrace: stack);
+    } on Exception {
+      if (isClosed) return;
       emit(MasteryProgressFailure());
     }
   }

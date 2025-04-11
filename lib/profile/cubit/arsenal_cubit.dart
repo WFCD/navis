@@ -3,7 +3,6 @@ import 'package:equatable/equatable.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:inventoria/inventoria.dart';
 import 'package:logging/logging.dart';
-import 'package:sentry_flutter/sentry_flutter.dart';
 
 part 'arsenal_state.dart';
 
@@ -32,11 +31,14 @@ class ArsenalCubit extends Cubit<ArsenalState> {
           (await inventoria.fetchInventory()).whereNot((i) => i.isHidden).toList()
             ..sort((a, b) => a.xp.compareTo(b.xp));
 
+      if (isClosed) return;
+
       emit(ArsenalSuccess(List.unmodifiable(inventory)));
     } on Exception catch (e, stack) {
       _logger.shout('Failed to get inventory', e, stack);
+      if (isClosed) return;
+
       emit(ArsenalFailure());
-      await Sentry.captureException(e, stackTrace: stack);
     }
   }
 }

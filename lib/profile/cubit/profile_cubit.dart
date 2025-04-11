@@ -19,8 +19,10 @@ class ProfileCubit extends HydratedCubit<ProfileState> {
       final profile = await inventoria.fetchProfile();
       if (profile?.id != id) await inventoria.updateProfile(id);
 
+      if (isClosed) return;
       emit(ProfileSuccessful((await inventoria.fetchProfile())!));
     } on Exception {
+      if (isClosed) return;
       emit(ProfileFailure());
     }
   }
@@ -39,9 +41,11 @@ class ProfileCubit extends HydratedCubit<ProfileState> {
 
       await inventoria.updateProfile(profile.id);
 
+      if (isClosed) return;
       emit(ProfileSuccessful((await inventoria.fetchProfile())!));
     } on Exception catch (e, stack) {
       _logger.severe('Failed to set profile', e, stack);
+      if (isClosed) return;
       emit(ProfileFailure());
     }
   }
