@@ -6,8 +6,8 @@ DateTime dailyReset() {
 
 DateTime weeklReset() {
   final now = DateTime.timestamp();
-  final isMonday = now.day == 0;
-  final daysUntilNextMonday = (DateTime.monday - now.weekday + 7) % 7;
+  final isMonday = now.weekday == DateTime.monday;
+  final daysUntilNextMonday = (DateTime.monday - now.weekday + DateTime.daysPerWeek) % DateTime.daysPerWeek;
 
   return DateTime.utc(now.year, now.month, now.day + (isMonday ? 7 : daysUntilNextMonday));
 }
