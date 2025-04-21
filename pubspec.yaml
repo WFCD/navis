@@ -39,7 +39,7 @@ dependencies:
     path: packages/inventoria
   logging: ^1.3.0
   matomo_tracker: ^5.1.0
-  mobile_scanner: ^6.0.7
+  mobile_scanner: ^6.0.8
   navis_ui:
     path: packages/navis_ui
   notification_repository:
