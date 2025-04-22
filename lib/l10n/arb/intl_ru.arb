@@ -130,29 +130,29 @@
     "description": "Razorback progress title",
     "type": "text"
   },
-  "earthCycleTitle": "Земля",
-  "@earthCycleTitle": {
-    "description": "Earth cycle title",
-    "type": "text"
-  },
-  "cetusCycleTitle": "Цетус",
+  "cetusCycleTitle": "Earth/Plains of Eidolon",
   "@cetusCycleTitle": {
-    "description": "Cetus cycle title",
+    "description": "Earth and Cetus cycle title",
     "type": "text"
   },
-  "vallisCycleTitle": "Долина Сфер",
+  "vallisCycleTitle": "Orb Vallis",
   "@vallisCycleTitle": {
     "description": "Vallis cycle title",
     "type": "text"
   },
-  "cambionCycleTitle": "Камбионский Дрейф",
+  "cambionCycleTitle": "Cambion Drift",
   "@cambionCycleTitle": {
     "description": "Cambion Cycle title",
     "type": "text"
   },
-  "zarimanCycleTitle": "Цикл на Заримане",
+  "zarimanCycleTitle": "Zariman",
   "@zarimanCycleTitle": {
     "description": "Zariman Cycle title",
+    "type": "text"
+  },
+  "duviriCycleTitle": "Duviri",
+  "@duviriCycleTitle": {
+    "description": "Duviri Cycle title",
     "type": "text"
   },
   "timersTitle": "Таймеры",
@@ -225,7 +225,7 @@
     "description": "Rare Alerts title",
     "type": "text"
   },
-  "operationAlertsNotificationDescription": "Alert notifications for operations",
+  "operationAlertsNotificationDescription": "Уведомления об операциях",
   "@operationAlertsNotificationDescription": {
     "description": "Description for rare alerts option",
     "type": "text"
@@ -450,9 +450,14 @@
     "description": "Settings title",
     "type": "text"
   },
-  "dailyRewardTitle": "Таймер сброса ежедневной награды",
-  "@dailyRewardTitle": {
-    "description": "Title for daily reward timer",
+  "dailyResetTitle": "Daily Reset Timer",
+  "@dailyResetTitle": {
+    "description": "Title for daily timer",
+    "type": "text"
+  },
+  "weeklyResetTitle": "Weekly Reset Timer",
+  "@weeklyResetTitle": {
+    "description": "Title for weekly timer",
     "type": "text"
   },
   "eliteBadgeTitle": "Элитное",
@@ -705,7 +710,7 @@
       }
     }
   },
-  "codexHint": "Search the codex here...",
+  "codexHint": "Искать по кодексу...",
   "@codexHint": {
     "description": "Codex description when a user enters the codex or when the search bar is empty",
     "type": "text"
@@ -791,29 +796,29 @@
     "description": "Tells the user when darvo is out of stock for the current sale",
     "type": "text"
   },
-  "duviriJoy": "Дувири Радость",
+  "duviriJoy": "Joy",
   "@duviriJoy": {
-    "description": "Duviri joy state. If Duviri doesn't have a translatetion then only joy can be translated.",
+    "description": "Duviri joy state. ",
     "type": "text"
   },
-  "duviriAnger": "Дувири Злость",
+  "duviriAnger": "Anger",
   "@duviriAnger": {
-    "description": "Duviri anger state. If Duviri doesn't have a translatetion then only joy can be translated.",
+    "description": "Duviri anger state.",
     "type": "text"
   },
-  "duviriEnvy": "Дувири Зависть",
+  "duviriEnvy": "Envy",
   "@duviriEnvy": {
-    "description": "Duviri envy state. If Duviri doesn't have a translatetion then only joy can be translated.",
+    "description": "Duviri envy state.",
     "type": "text"
   },
-  "duviriSorrow": "Дувири Печаль",
+  "duviriSorrow": "Sorrow",
   "@duviriSorrow": {
-    "description": "Duviri sorrow state. If Duviri doesn't have a translatetion then only joy can be translated.",
+    "description": "sorrow Duviri state",
     "type": "text"
   },
-  "duviriFear": "Дувири Страх",
+  "duviriFear": "Fear",
   "@duviriFear": {
-    "description": "Duviri Fear state. If Duviri doesn't have a translatetion then only joy can be translated.",
+    "description": "Fear Duviri state",
     "type": "text"
   },
   "mapTitle": "Карта",
@@ -1034,14 +1039,24 @@
     "description": "Text displayed next to the weekly reset time for the circuit",
     "type": "text"
   },
-  "circuitResetSubtitle": "Tap to see current offerings",
+  "circuitResetSubtitle": "Посмотреть текущие предложения",
   "@circuitResetSubtitle": {
     "description": "Text displayed under circuitResetTitle",
     "type": "text"
   },
-  "archimedeaTitle": "Deep Archimedea ends",
-  "@archimedeaTitle": {
-    "description": "Text displayed next to the weekly reset time for the Deep Archimedea",
+  "archimedeaResetTitle": "Resets in",
+  "@archimedeaResetTitle": {
+    "description": "Text in Archimedea page for weekly reset time",
+    "type": "text"
+  },
+  "deepArchimedeaTitle": "Deep Archimedea",
+  "@deepArchimedeaTitle": {
+    "description": "Text for DA in case it needs translations",
+    "type": "text"
+  },
+  "temporalArchimedeaTitle": "Temporal Archimedea",
+  "@temporalArchimedeaTitle": {
+    "description": "Text for TA in case it needs translations",
     "type": "text"
   },
   "archimedeaDeviationTitle": "Deviation",
@@ -1049,12 +1064,12 @@
     "description": "Text displayed next to Deep Archimedea deviation name",
     "type": "text"
   },
-  "archimedeaRiskTitle": "Risk Variable",
+  "archimedeaRiskTitle": "Уровень риска",
   "@archimedeaRiskTitle": {
     "description": "Text displayed next to Deep Archimedea risk variable name",
     "type": "text"
   },
-  "missionsCategoryTitle": "Missions",
+  "missionsCategoryTitle": "Миссии",
   "@missionsCategoryTitle": {
     "description": "Text displayed where a missions category is needed",
     "type": "text"
@@ -1064,22 +1079,22 @@
     "description": "Text displayed above to Deep Archimedea personal modifiers",
     "type": "text"
   },
-  "archimedeaWarningTitle": "Warning",
+  "archimedeaWarningTitle": "Предупреждение",
   "@archimedeaWarningTitle": {
     "description": "Warning title displayed under Deep Archimedea timer",
     "type": "text"
   },
-  "archimedeaWarningSubtitle": "DE не всегда обновляет данные Deep Archimedea после еженедельного сброса, поэтому считайте это нестабильным.\nПредупреждение будет удалено, когда ротация данных станет более последовательной",
+  "archimedeaWarningSubtitle": "DE doesn't always update Deep/Temporal Archimedea data after a weekly reset so consider this unstable.\nWarning will be removed when data rotation is more consistent",
   "@archimedeaWarningSubtitle": {
     "description": "Warning text displayed under Deep Archimedea warning title",
     "type": "text"
   },
-  "activitiesTitle": "Activities",
+  "activitiesTitle": "Действия",
   "@activitiesTitle": {
     "description": "Activities title",
     "type": "text"
   },
-  "nightwaveSeasonSubtitle": "Season {season}",
+  "nightwaveSeasonSubtitle": "Сезон (В игре называется - Ночная волна Микс Норы Диск Nr...)",
   "@nightwaveSeasonSubtitle": {
     "description": "Current nightwave season number",
     "type": "text",
@@ -1089,17 +1104,17 @@
       }
     }
   },
-  "calendar1999Title": "1999 Calendar",
+  "calendar1999Title": "Календарь 1999\n1999 Календарь",
   "@calendar1999Title": {
     "description": "Title text for 1999 calendar card",
     "type": "text"
   },
-  "traderItemHeaderTitle": "Item",
+  "traderItemHeaderTitle": "Товар",
   "@traderItemHeaderTitle": {
     "description": "Trader inventory header text",
     "type": "text"
   },
-  "traderDucatsHeaderTitle": "Item",
+  "traderDucatsHeaderTitle": "Товар",
   "@traderDucatsHeaderTitle": {
     "description": "Trader inventory header text",
     "type": "text"
@@ -1108,5 +1123,47 @@
   "@traderCreditsHeaderTitle": {
     "description": "Trader inventory header text",
     "type": "text"
+  },
+  "itemRankSubtitle": "Rank {rank}",
+  "@itemRankSubtitle": {
+    "description": "Subtitle showing the item's rank",
+    "type": "text",
+    "placeholder": {
+      "rank": {}
+    }
+  },
+  "syncingInfoText": "Syncing XP info",
+  "@syncingInfoText": {
+    "description": "Text displayed when xp info is being synced",
+    "type": "text",
+    "placeholder": {}
+  },
+  "enterUsernameHintText": "Setup Inventoria",
+  "@enterUsernameHintText": {
+    "description": "Hint Text use as a placeholder in username input",
+    "type": "text",
+    "placeholder": {}
+  },
+  "clearUsernameButtonLabel": "Clear username",
+  "@clearUsernameButtonLabel": {
+    "description": "Label text for clear username button",
+    "type": "text",
+    "placeholder": {}
+  },
+  "cancelText": "Cancel",
+  "@cancelText": {
+    "description": "Text to display for cancel buttons",
+    "type": "text",
+    "placeholder": {}
+  },
+  "inventoriaSteps": "Cephalon Navis can use your read-only profile data to help track your arsenal XP and mastery points.\n\n1. Go to {url} on a computer\n\n2. Upload your EE.log or account ID from cookies\n\n3. Tap next and scan the generated QR code",
+  "@inventoriaSteps": {
+    "description": "Steps to setup Inventoria",
+    "type": "text",
+    "placeholders": {
+      "url": {
+        "type": "String"
+      }
+    }
   }
 }
