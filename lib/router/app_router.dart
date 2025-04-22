@@ -25,7 +25,7 @@ class AppRouter {
     return GoRouter(
       navigatorKey: navigatorKey,
       initialLocation: const OverviewPageRouteData().location,
-      observers: [observer, matomoObserver, SentryNavigatorObserver()],
+      observers: [observer, matomoLocalObserver, SentryNavigatorObserver()],
       debugLogDiagnostics: debugLogDiagnostics,
       routes: $appRoutes,
     );

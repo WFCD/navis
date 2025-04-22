@@ -25,7 +25,7 @@ class WorldstateBloc extends HydratedBloc<WorldstateEvent, WorldState> with Repl
   Future<void> _start(WorldstateStarted event, Emitter<WorldState> emit) async {
     repository.language = Language.values.byName(event.locale.languageCode);
     await emit.onEach(
-      repository.streamWorldstate().throttleTime(const Duration(seconds: 60)),
+      repository.worldstate().throttleTime(const Duration(seconds: Duration.secondsPerMinute)),
       onData: (state) {
         if (isClosed) return;
         add(WorldstateUpdated(state..clean()));

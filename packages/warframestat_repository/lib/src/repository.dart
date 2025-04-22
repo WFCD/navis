@@ -2,8 +2,10 @@ import 'dart:convert';
 
 import 'package:cache_client/cache_client.dart';
 import 'package:http/http.dart';
+import 'package:logging/logging.dart';
 import 'package:warframestat_client/warframestat_client.dart';
 import 'package:warframestat_repository/src/models/regions.dart';
+import 'package:web_socket_client/web_socket_client.dart';
 
 ///
 const userAgent = 'navis';
@@ -15,16 +17,38 @@ typedef CraigRegion = ({List<CraigNode> nodes, List<CraigJunction> junctions});
 /// {@endtemplate}
 class WarframestatRepository {
   /// {@macro warframestat_repository}
-  WarframestatRepository({
-    required Client client,
-  }) : _client = client;
+  WarframestatRepository({required Client client}) : _client = client;
 
   final Client _client;
 
   /// The locale request will be made for
   Language language = Language.en;
 
-  Stream<Worldstate> streamWorldstate() => WarframestatWebsocket(language).worldstate();
+  final _logger = Logger('WarframestatRepository');
+
+  Stream<Worldstate> worldstate() async* {
+    final websocket = WarframestatWebsocket();
+    final connection = websocket.connection;
+
+    await for (final conn in connection) {
+      switch (conn) {
+        case Connecting():
+          _logger.info('Worldstate connection is being established');
+        case Connected() || Reconnected():
+          _logger.info('Worldstate connection has been established');
+          yield* websocket.worldstate;
+        case Reconnecting() || Disconnecting():
+          final buffer = StringBuffer('Worldstate connection');
+
+          if (conn is Reconnecting) buffer.write(' was ');
+          if (conn is Disconnecting) buffer.write(' is being ');
+
+          _logger.warning(buffer..write('terminated'));
+        case Disconnected():
+          _logger.shout('Websocket connection was terminated: ${conn.reason}', conn.error, conn.stackTrace);
+      }
+    }
+  }
 
   /// Get static list of synthesis targets
   ///
