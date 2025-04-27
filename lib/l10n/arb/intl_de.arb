@@ -130,7 +130,7 @@
     "description": "Razorback progress title",
     "type": "text"
   },
-  "cetusCycleTitle": "Earth/Plains of Eidolon",
+  "cetusCycleTitle": "Erde/Ebenen des Eidolons",
   "@cetusCycleTitle": {
     "description": "Earth and Cetus cycle title",
     "type": "text"
@@ -270,7 +270,7 @@
     "description": "Notification description for sentient outpost option",
     "type": "text"
   },
-  "warframeNewsTitle": "News",
+  "warframeNewsTitle": "Neuigkeiten",
   "@warframeNewsTitle": {
     "description": "Main Title for Warframe news page",
     "type": "text"
@@ -385,12 +385,12 @@
     "description": "Title for the about category of the settings page",
     "type": "text"
   },
-  "aboutAppTitle": "About app",
+  "aboutAppTitle": "Über diese App",
   "@aboutAppTitle": {
     "description": "Title for the about app dialog",
     "type": "text"
   },
-  "contributeTranslationsTitle": "Contribute Translations",
+  "contributeTranslationsTitle": "Übersetzungen beisteuern",
   "@contributeTranslationsTitle": {
     "description": "Title for contribute translations link",
     "type": "text"
