@@ -23,12 +23,12 @@
     "description": "General button to see more details of given object",
     "type": "text"
   },
-  "seeMore": "See More",
+  "seeMore": "Mehr anzeigen",
   "@seeMore": {
     "description": "General button to see more of a overview object",
     "type": "text"
   },
-  "seeWiki": "See Wiki",
+  "seeWiki": "Wiki durchsuchen",
   "@seeWiki": {
     "description": "General button to wiki of given item",
     "type": "text"
@@ -83,7 +83,7 @@
     "description": "Title for Baro Ki'Teer card",
     "type": "text"
   },
-  "location": "Location",
+  "location": "Ort",
   "@location": {
     "description": "Reuseable string for location",
     "type": "text"
@@ -155,7 +155,7 @@
     "description": "Duviri Cycle title",
     "type": "text"
   },
-  "timersTitle": "Timers",
+  "timersTitle": "Alarme",
   "@timersTitle": {
     "description": "Times title",
     "type": "text"
@@ -180,7 +180,7 @@
     "description": "Codex title",
     "type": "text"
   },
-  "codexDescription": "Search all warframe items",
+  "codexDescription": "Alle Warframe-Objekte durchsuchen",
   "@codexDescription": {
     "description": "Codex description",
     "type": "text"
@@ -420,12 +420,12 @@
     "description": "Cephalon Navis legalese",
     "type": "text"
   },
-  "homePageTitle": "Home",
+  "homePageTitle": "Startseite",
   "@homePageTitle": {
     "description": "Displayes a link to Navis's homepage",
     "type": "text"
   },
-  "sourceCode": "Source code",
+  "sourceCode": "Quellcode",
   "@sourceCode": {
     "description": "Displayes a link to Navis's source code",
     "type": "text"
@@ -720,27 +720,27 @@
     "description": "Displayed when a search result in codex returns empty",
     "type": "text"
   },
-  "codexVaultedLabel": "Vaulted",
+  "codexVaultedLabel": "Vaulted (verschlossen)",
   "@codexVaultedLabel": {
     "description": "A label shown in codex items to detenote items that are vaulted",
     "type": "text"
   },
-  "exploreTitle": "Explore",
+  "exploreTitle": "Entdecken",
   "@exploreTitle": {
     "description": "Title for explore page",
     "type": "text"
   },
-  "constructionProgressTitle": "Construction Progress",
+  "constructionProgressTitle": "Baufortschritt",
   "@constructionProgressTitle": {
     "description": "Title for invasion constrcution progress",
     "type": "text"
   },
-  "synthTargetTitle": "SynthTargets",
+  "synthTargetTitle": "Synthese-Ziele",
   "@synthTargetTitle": {
     "description": "Title for synthtargets.",
     "type": "text"
   },
-  "archonHuntTitle": "Archon Hunt",
+  "archonHuntTitle": "Archonenjagd",
   "@archonHuntTitle": {
     "description": "Title for archon hunt notification toggle.",
     "type": "text"
@@ -750,32 +750,32 @@
     "description": "Description for archon hunt notification toggle.",
     "type": "text"
   },
-  "allFissuresButton": "All",
+  "allFissuresButton": "Alle",
   "@allFissuresButton": {
     "description": "Button label for all fissures",
     "type": "text"
   },
-  "voidStormFissuresButton": "Void Storms",
+  "voidStormFissuresButton": "Void-Stürme",
   "@voidStormFissuresButton": {
     "description": "Button label for void storm fissures",
     "type": "text"
   },
-  "saleEndsTitle": "SALE ENDS",
+  "saleEndsTitle": "VERKAUF ENDET",
   "@saleEndsTitle": {
     "description": "Sale ends title for countdown timer",
     "type": "text"
   },
-  "salePriceTitle": "Sale price",
+  "salePriceTitle": "Verkaufspreis",
   "@salePriceTitle": {
     "description": "Displays the item's sale price for darvo sales",
     "type": "text"
   },
-  "originalPriceTitle": "Original Price",
+  "originalPriceTitle": "Ursprünglicher Preis",
   "@originalPriceTitle": {
     "description": "Displays the item's original price for darvo sales",
     "type": "text"
   },
-  "discountTitle": "{discount}% OFF!",
+  "discountTitle": "{discount}% Rabatt!",
   "@discountTitle": {
     "description": "Displays the discount applied for a given darvo sale",
     "type": "text",
@@ -783,7 +783,7 @@
       "discount": {}
     }
   },
-  "inStockInformation": "Only {stock} left",
+  "inStockInformation": "Nur noch {stock} übrig",
   "@inStockInformation": {
     "description": "Displays the stock information for a darvo deal",
     "type": "text",
@@ -791,12 +791,12 @@
       "stock": {}
     }
   },
-  "outOfStockTitle": "OUT OF STOCK",
+  "outOfStockTitle": "AUSVERKAUFT",
   "@outOfStockTitle": {
     "description": "Tells the user when darvo is out of stock for the current sale",
     "type": "text"
   },
-  "duviriJoy": "Joy",
+  "duviriJoy": "Freude",
   "@duviriJoy": {
     "description": "Duviri joy state. ",
     "type": "text"
@@ -806,7 +806,7 @@
     "description": "Duviri anger state.",
     "type": "text"
   },
-  "duviriEnvy": "Envy",
+  "duviriEnvy": "Neid",
   "@duviriEnvy": {
     "description": "Duviri envy state.",
     "type": "text"
@@ -821,22 +821,22 @@
     "description": "Fear Duviri state",
     "type": "text"
   },
-  "mapTitle": "Maps",
+  "mapTitle": "Karten",
   "@mapTitle": {
     "description": "Map title",
     "type": "text"
   },
-  "mapDescription": "See region maps",
+  "mapDescription": "Regionskarten ansehen",
   "@mapDescription": {
     "description": "Map card description",
     "type": "text"
   },
-  "fishTitle": "Fish",
+  "fishTitle": "Fische",
   "@fishTitle": {
     "description": "Fish title",
     "type": "text"
   },
-  "fishDescription": "See fish information by region",
+  "fishDescription": "Fischinformationen nach Region filtern",
   "@fishDescription": {
     "description": "fish card description",
     "type": "text"
@@ -846,7 +846,7 @@
     "description": "Display a fish name along side it",
     "type": "text"
   },
-  "fishTime": "Time",
+  "fishTime": "Zeitraum",
   "@fishTime": {
     "description": "Display time a day a fish can be caught in",
     "type": "text"
@@ -856,42 +856,42 @@
     "description": "Display the type of spear used to catch fish",
     "type": "text"
   },
-  "fishRarity": "Rarity",
+  "fishRarity": "Seltenheitsgrad",
   "@fishRarity": {
     "description": "Display rarity of a given fish",
     "type": "text"
   },
-  "fishBait": "Bait",
+  "fishBait": "Köder",
   "@fishBait": {
     "description": "Display type of bait needed to catch fish",
     "type": "text"
   },
-  "fishStanding": "Standing",
+  "fishStanding": "Ansehen",
   "@fishStanding": {
     "description": "Display standing earned with fish",
     "type": "text"
   },
-  "fishUnique": "Unique",
+  "fishUnique": "Ungewöhnlich",
   "@fishUnique": {
     "description": "Display a unique resources earned by given fish",
     "type": "text"
   },
-  "fishBladder": "Bladders",
+  "fishBladder": "Blase",
   "@fishBladder": {
     "description": "Displays how many bladders can be earned with the given fish size",
     "type": "text"
   },
-  "fishGills": "Gills",
+  "fishGills": "Kiemen",
   "@fishGills": {
     "description": "Displays how many gills can be earned with the given fish size",
     "type": "text"
   },
-  "fishTumors": "Tumors",
+  "fishTumors": "Tumore",
   "@fishTumors": {
     "description": "Displays how many tumors can be earned with the given fish size",
     "type": "text"
   },
-  "fishMeat": "Meats",
+  "fishMeat": "Fleisch",
   "@fishMeat": {
     "description": "Displays how many meat can be earned with the given fish size",
     "type": "text"
@@ -1069,32 +1069,32 @@
     "description": "Text displayed next to Deep Archimedea risk variable name",
     "type": "text"
   },
-  "missionsCategoryTitle": "Missions",
+  "missionsCategoryTitle": "Missionen",
   "@missionsCategoryTitle": {
     "description": "Text displayed where a missions category is needed",
     "type": "text"
   },
-  "archimedeaPersonalModifierTitle": "Personal Modifiers",
+  "archimedeaPersonalModifierTitle": "Persönliche Modifikatoren",
   "@archimedeaPersonalModifierTitle": {
     "description": "Text displayed above to Deep Archimedea personal modifiers",
     "type": "text"
   },
-  "archimedeaWarningTitle": "Warning",
+  "archimedeaWarningTitle": "Warnung",
   "@archimedeaWarningTitle": {
     "description": "Warning title displayed under Deep Archimedea timer",
     "type": "text"
   },
-  "archimedeaWarningSubtitle": "DE doesn't always update Deep/Temporal Archimedea data after a weekly reset so consider this unstable.\nWarning will be removed when data rotation is more consistent",
+  "archimedeaWarningSubtitle": "DE aktualisiert die Daten für die tiefe bzw. temporale Archimede nicht immer nach einem wöchentlichen Reset; betrachte diese Informationen unter Vorbehalt.\nWarnung wird gelöscht, wenn die Datenrotation konsistenter ist",
   "@archimedeaWarningSubtitle": {
     "description": "Warning text displayed under Deep Archimedea warning title",
     "type": "text"
   },
-  "activitiesTitle": "Activities",
+  "activitiesTitle": "Aktivitäten",
   "@activitiesTitle": {
     "description": "Activities title",
     "type": "text"
   },
-  "nightwaveSeasonSubtitle": "Season {season}",
+  "nightwaveSeasonSubtitle": "Saison {season}",
   "@nightwaveSeasonSubtitle": {
     "description": "Current nightwave season number",
     "type": "text",
@@ -1104,7 +1104,7 @@
       }
     }
   },
-  "calendar1999Title": "1999 Calendar",
+  "calendar1999Title": "1999 Kalender",
   "@calendar1999Title": {
     "description": "Title text for 1999 calendar card",
     "type": "text"
@@ -1138,25 +1138,25 @@
     "type": "text",
     "placeholder": {}
   },
-  "enterUsernameHintText": "Setup Inventoria",
+  "enterUsernameHintText": "Inventar einrichten",
   "@enterUsernameHintText": {
     "description": "Hint Text use as a placeholder in username input",
     "type": "text",
     "placeholder": {}
   },
-  "clearUsernameButtonLabel": "Clear username",
+  "clearUsernameButtonLabel": "Benutzernamen löschen",
   "@clearUsernameButtonLabel": {
     "description": "Label text for clear username button",
     "type": "text",
     "placeholder": {}
   },
-  "cancelText": "Cancel",
+  "cancelText": "Abbrechen",
   "@cancelText": {
     "description": "Text to display for cancel buttons",
     "type": "text",
     "placeholder": {}
   },
-  "inventoriaSteps": "Cephalon Navis can use your read-only profile data to help track your arsenal XP and mastery points.\n\n1. Go to {url} on a computer\n\n2. Upload your EE.log or account ID from cookies\n\n3. Tap next and scan the generated QR code",
+  "inventoriaSteps": "Cephalon Navis kann deine schreibgeschützten Profildaten verwenden, um deine Arsenal-XP und Meisterschafts-Auflistung zu verfolgen.\n\n1. Öffne {url} auf einem Computer\n\n2. Lade deine EE.log oder Konto-ID von Cookies hoch\n\n3. Tippe auf \"Weiter\" und scannen Sie den generierten QR-Code",
   "@inventoriaSteps": {
     "description": "Steps to setup Inventoria",
     "type": "text",
