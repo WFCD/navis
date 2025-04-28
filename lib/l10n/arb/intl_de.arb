@@ -215,7 +215,7 @@
     "description": "Rare Alerts title",
     "type": "text"
   },
-  "rareAlertsNotificationDescription": "Seltene Alarmierungsbeanachrichtigung, meist Geschenke von Lotus.",
+  "rareAlertsNotificationDescription": "Seltene Alarmierungsbenachrichtigung, meist Geschenke von Lotus.",
   "@rareAlertsNotificationDescription": {
     "description": "Description for rare alerts option",
     "type": "text"
