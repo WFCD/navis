@@ -1094,7 +1094,7 @@
     "description": "Activities title",
     "type": "text"
   },
-  "nightwaveSeasonSubtitle": "Сезон (В игре называется - Ночная волна Микс Норы Диск Nr...)",
+  "nightwaveSeasonSubtitle": "Сезон {season}",
   "@nightwaveSeasonSubtitle": {
     "description": "Current nightwave season number",
     "type": "text",
