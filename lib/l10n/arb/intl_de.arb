@@ -23,12 +23,12 @@
     "description": "General button to see more details of given object",
     "type": "text"
   },
-  "seeMore": "See More",
+  "seeMore": "Mehr anzeigen",
   "@seeMore": {
     "description": "General button to see more of a overview object",
     "type": "text"
   },
-  "seeWiki": "See Wiki",
+  "seeWiki": "Wiki durchsuchen",
   "@seeWiki": {
     "description": "General button to wiki of given item",
     "type": "text"
@@ -83,7 +83,7 @@
     "description": "Title for Baro Ki'Teer card",
     "type": "text"
   },
-  "location": "Location",
+  "location": "Ort",
   "@location": {
     "description": "Reuseable string for location",
     "type": "text"
@@ -130,12 +130,12 @@
     "description": "Razorback progress title",
     "type": "text"
   },
-  "cetusCycleTitle": "Earth/Plains of Eidolon",
+  "cetusCycleTitle": "Erde/Ebenen des Eidolons",
   "@cetusCycleTitle": {
     "description": "Earth and Cetus cycle title",
     "type": "text"
   },
-  "vallisCycleTitle": "Orb Vallis",
+  "vallisCycleTitle": "Orbis-Tal",
   "@vallisCycleTitle": {
     "description": "Vallis cycle title",
     "type": "text"
@@ -155,7 +155,7 @@
     "description": "Duviri Cycle title",
     "type": "text"
   },
-  "timersTitle": "Timers",
+  "timersTitle": "Alarme",
   "@timersTitle": {
     "description": "Times title",
     "type": "text"
@@ -180,7 +180,7 @@
     "description": "Codex title",
     "type": "text"
   },
-  "codexDescription": "Search all warframe items",
+  "codexDescription": "Alle Warframe-Objekte durchsuchen",
   "@codexDescription": {
     "description": "Codex description",
     "type": "text"
@@ -215,7 +215,7 @@
     "description": "Rare Alerts title",
     "type": "text"
   },
-  "rareAlertsNotificationDescription": "Seltene Alarmierungsbeanachrichtigung, meist Geschenke von Lotus.",
+  "rareAlertsNotificationDescription": "Seltene Alarmierungsbenachrichtigung, meist Geschenke von Lotus.",
   "@rareAlertsNotificationDescription": {
     "description": "Description for rare alerts option",
     "type": "text"
@@ -270,7 +270,7 @@
     "description": "Notification description for sentient outpost option",
     "type": "text"
   },
-  "warframeNewsTitle": "News",
+  "warframeNewsTitle": "Neuigkeiten",
   "@warframeNewsTitle": {
     "description": "Main Title for Warframe news page",
     "type": "text"
@@ -335,7 +335,7 @@
     "description": "Cetus cycle option",
     "type": "text"
   },
-  "vallisWarmOption": "Orb Vallis Warm",
+  "vallisWarmOption": "Orbis-Tal: Warm",
   "@vallisWarmOption": {
     "description": "Orb vallis cycle option",
     "type": "text"
@@ -385,17 +385,17 @@
     "description": "Title for the about category of the settings page",
     "type": "text"
   },
-  "aboutAppTitle": "About app",
+  "aboutAppTitle": "Über diese App",
   "@aboutAppTitle": {
     "description": "Title for the about app dialog",
     "type": "text"
   },
-  "contributeTranslationsTitle": "Contribute Translations",
+  "contributeTranslationsTitle": "Übersetzungen beisteuern",
   "@contributeTranslationsTitle": {
     "description": "Title for contribute translations link",
     "type": "text"
   },
-  "contributeTranslationsDescription": "Volunteer to contribute translations",
+  "contributeTranslationsDescription": "Trage zur Übersetzung bei",
   "@contributeTranslationsDescription": {
     "description": "Description for contribute translations link",
     "type": "text"
@@ -420,12 +420,12 @@
     "description": "Cephalon Navis legalese",
     "type": "text"
   },
-  "homePageTitle": "Home",
+  "homePageTitle": "Startseite",
   "@homePageTitle": {
     "description": "Displayes a link to Navis's homepage",
     "type": "text"
   },
-  "sourceCode": "Source code",
+  "sourceCode": "Quellcode",
   "@sourceCode": {
     "description": "Displayes a link to Navis's source code",
     "type": "text"
@@ -450,12 +450,12 @@
     "description": "Settings title",
     "type": "text"
   },
-  "dailyResetTitle": "Daily Reset Timer",
+  "dailyResetTitle": "Tägliche Aktualiseriung",
   "@dailyResetTitle": {
     "description": "Title for daily timer",
     "type": "text"
   },
-  "weeklyResetTitle": "Weekly Reset Timer",
+  "weeklyResetTitle": "Wöchentliche Aktualiseriung",
   "@weeklyResetTitle": {
     "description": "Title for weekly timer",
     "type": "text"
@@ -540,7 +540,7 @@
     "description": "Weapon accuracy title",
     "type": "text"
   },
-  "criticalChanceTitle": "Critical Chance",
+  "criticalChanceTitle": "Krit. Chance",
   "@criticalChanceTitle": {
     "description": "Weapon crictical chance",
     "type": "text"
@@ -575,7 +575,7 @@
     "description": "Weapon item type",
     "type": "text"
   },
-  "rivenDispositionTitle": "Riven Disposition",
+  "rivenDispositionTitle": "Riven-Disposition",
   "@rivenDispositionTitle": {
     "description": "Weapon's riven disposition",
     "type": "text"
@@ -630,7 +630,7 @@
     "description": "Melee's Slam Radial Damage",
     "type": "text"
   },
-  "slamRadiusTitle": "Slam Radius",
+  "slamRadiusTitle": "Schmetter-Radius",
   "@slamRadiusTitle": {
     "description": "Slam Radius title",
     "type": "text"
@@ -665,7 +665,7 @@
     "description": "melee's heavy wind up time title",
     "type": "text"
   },
-  "discordSupportTitle": "Support",
+  "discordSupportTitle": "Hilfe",
   "@discordSupportTitle": {
     "description": "Discord support title",
     "type": "text"
@@ -710,7 +710,7 @@
       }
     }
   },
-  "codexHint": "Search the codex here...",
+  "codexHint": "Durchsuche den Codex hier …",
   "@codexHint": {
     "description": "Codex description when a user enters the codex or when the search bar is empty",
     "type": "text"
@@ -720,62 +720,62 @@
     "description": "Displayed when a search result in codex returns empty",
     "type": "text"
   },
-  "codexVaultedLabel": "Vaulted",
+  "codexVaultedLabel": "Vaulted (verschlossen)",
   "@codexVaultedLabel": {
     "description": "A label shown in codex items to detenote items that are vaulted",
     "type": "text"
   },
-  "exploreTitle": "Explore",
+  "exploreTitle": "Entdecken",
   "@exploreTitle": {
     "description": "Title for explore page",
     "type": "text"
   },
-  "constructionProgressTitle": "Construction Progress",
+  "constructionProgressTitle": "Baufortschritt",
   "@constructionProgressTitle": {
     "description": "Title for invasion constrcution progress",
     "type": "text"
   },
-  "synthTargetTitle": "SynthTargets",
+  "synthTargetTitle": "Synthese-Ziele",
   "@synthTargetTitle": {
     "description": "Title for synthtargets.",
     "type": "text"
   },
-  "archonHuntTitle": "Archon Hunt",
+  "archonHuntTitle": "Archonenjagd",
   "@archonHuntTitle": {
     "description": "Title for archon hunt notification toggle.",
     "type": "text"
   },
-  "archonHuntDescription": "Archon hunt reset notification.",
+  "archonHuntDescription": "Archon Jagd Aktualisierungsbenachrichtigung.",
   "@archonHuntDescription": {
     "description": "Description for archon hunt notification toggle.",
     "type": "text"
   },
-  "allFissuresButton": "All",
+  "allFissuresButton": "Alle",
   "@allFissuresButton": {
     "description": "Button label for all fissures",
     "type": "text"
   },
-  "voidStormFissuresButton": "Void Storms",
+  "voidStormFissuresButton": "Void-Stürme",
   "@voidStormFissuresButton": {
     "description": "Button label for void storm fissures",
     "type": "text"
   },
-  "saleEndsTitle": "SALE ENDS",
+  "saleEndsTitle": "VERKAUF ENDET",
   "@saleEndsTitle": {
     "description": "Sale ends title for countdown timer",
     "type": "text"
   },
-  "salePriceTitle": "Sale price",
+  "salePriceTitle": "Verkaufspreis",
   "@salePriceTitle": {
     "description": "Displays the item's sale price for darvo sales",
     "type": "text"
   },
-  "originalPriceTitle": "Original Price",
+  "originalPriceTitle": "Ursprünglicher Preis",
   "@originalPriceTitle": {
     "description": "Displays the item's original price for darvo sales",
     "type": "text"
   },
-  "discountTitle": "{discount}% OFF!",
+  "discountTitle": "{discount}% Rabatt!",
   "@discountTitle": {
     "description": "Displays the discount applied for a given darvo sale",
     "type": "text",
@@ -783,7 +783,7 @@
       "discount": {}
     }
   },
-  "inStockInformation": "Only {stock} left",
+  "inStockInformation": "Nur noch {stock} übrig",
   "@inStockInformation": {
     "description": "Displays the stock information for a darvo deal",
     "type": "text",
@@ -791,12 +791,12 @@
       "stock": {}
     }
   },
-  "outOfStockTitle": "OUT OF STOCK",
+  "outOfStockTitle": "AUSVERKAUFT",
   "@outOfStockTitle": {
     "description": "Tells the user when darvo is out of stock for the current sale",
     "type": "text"
   },
-  "duviriJoy": "Joy",
+  "duviriJoy": "Freude",
   "@duviriJoy": {
     "description": "Duviri joy state. ",
     "type": "text"
@@ -806,37 +806,37 @@
     "description": "Duviri anger state.",
     "type": "text"
   },
-  "duviriEnvy": "Envy",
+  "duviriEnvy": "Neid",
   "@duviriEnvy": {
     "description": "Duviri envy state.",
     "type": "text"
   },
-  "duviriSorrow": "Sorrow",
+  "duviriSorrow": "Trauer",
   "@duviriSorrow": {
     "description": "sorrow Duviri state",
     "type": "text"
   },
-  "duviriFear": "Fear",
+  "duviriFear": "Angst",
   "@duviriFear": {
     "description": "Fear Duviri state",
     "type": "text"
   },
-  "mapTitle": "Maps",
+  "mapTitle": "Karten",
   "@mapTitle": {
     "description": "Map title",
     "type": "text"
   },
-  "mapDescription": "See region maps",
+  "mapDescription": "Regionskarten ansehen",
   "@mapDescription": {
     "description": "Map card description",
     "type": "text"
   },
-  "fishTitle": "Fish",
+  "fishTitle": "Fische",
   "@fishTitle": {
     "description": "Fish title",
     "type": "text"
   },
-  "fishDescription": "See fish information by region",
+  "fishDescription": "Fischinformationen nach Region filtern",
   "@fishDescription": {
     "description": "fish card description",
     "type": "text"
@@ -846,77 +846,77 @@
     "description": "Display a fish name along side it",
     "type": "text"
   },
-  "fishTime": "Time",
+  "fishTime": "Zeitraum",
   "@fishTime": {
     "description": "Display time a day a fish can be caught in",
     "type": "text"
   },
-  "fishSpear": "Spear",
+  "fishSpear": "Harpune",
   "@fishSpear": {
     "description": "Display the type of spear used to catch fish",
     "type": "text"
   },
-  "fishRarity": "Rarity",
+  "fishRarity": "Seltenheitsgrad",
   "@fishRarity": {
     "description": "Display rarity of a given fish",
     "type": "text"
   },
-  "fishBait": "Bait",
+  "fishBait": "Köder",
   "@fishBait": {
     "description": "Display type of bait needed to catch fish",
     "type": "text"
   },
-  "fishStanding": "Standing",
+  "fishStanding": "Ansehen",
   "@fishStanding": {
     "description": "Display standing earned with fish",
     "type": "text"
   },
-  "fishUnique": "Unique",
+  "fishUnique": "Besonderheit",
   "@fishUnique": {
     "description": "Display a unique resources earned by given fish",
     "type": "text"
   },
-  "fishBladder": "Bladders",
+  "fishBladder": "Blase",
   "@fishBladder": {
     "description": "Displays how many bladders can be earned with the given fish size",
     "type": "text"
   },
-  "fishGills": "Gills",
+  "fishGills": "Kiemen",
   "@fishGills": {
     "description": "Displays how many gills can be earned with the given fish size",
     "type": "text"
   },
-  "fishTumors": "Tumors",
+  "fishTumors": "Tumore",
   "@fishTumors": {
     "description": "Displays how many tumors can be earned with the given fish size",
     "type": "text"
   },
-  "fishMeat": "Meats",
+  "fishMeat": "Fleisch",
   "@fishMeat": {
     "description": "Displays how many meat can be earned with the given fish size",
     "type": "text"
   },
-  "fishOil": "Oils",
+  "fishOil": "Öl",
   "@fishOil": {
     "description": "Displays how many oils can be earned with the given fish size",
     "type": "text"
   },
-  "fishScales": "Scales",
+  "fishScales": "Schuppen",
   "@fishScales": {
     "description": "Displays how many scales can be earned with the given fish size",
     "type": "text"
   },
-  "fishScrap": "Scraps",
+  "fishScrap": "Schrott",
   "@fishScrap": {
     "description": "Displays how many scraps can be earned with the given fish size",
     "type": "text"
   },
-  "fishAny": "Any",
+  "fishAny": "Beliebig",
   "@fishAny": {
     "description": "Displayed when a fish can be caught by any spear",
     "type": "text"
   },
-  "dropChance": "Drop chance {chance}%",
+  "dropChance": "Beute-/Ressourcenchance {chance}%",
   "@dropChance": {
     "description": "Drop chance percentage",
     "type": "text",
@@ -934,47 +934,47 @@
     "description": "Codex patchlogs title",
     "type": "text"
   },
-  "impactDamageTitle": "Impact",
+  "impactDamageTitle": "Einschlag",
   "@impactDamageTitle": {
     "description": "Codex Weapon damage type title",
     "type": "text"
   },
-  "punctureDamageTitle": "Puncture",
+  "punctureDamageTitle": "Durchschlag",
   "@punctureDamageTitle": {
     "description": "Codex Weapon damage type title",
     "type": "text"
   },
-  "slashDamageTitle": "Slash",
+  "slashDamageTitle": "Schnitt",
   "@slashDamageTitle": {
     "description": "Codex Weapon damage type title",
     "type": "text"
   },
-  "heatDamageTitle": "Heat",
+  "heatDamageTitle": "Hitze",
   "@heatDamageTitle": {
     "description": "Codex Weapon damage type title",
     "type": "text"
   },
-  "coldDamageTitle": "Cold",
+  "coldDamageTitle": "Kälte",
   "@coldDamageTitle": {
     "description": "Codex Weapon damage type title",
     "type": "text"
   },
-  "electricityDamageTitle": "Electricity",
+  "electricityDamageTitle": "Elektrizität",
   "@electricityDamageTitle": {
     "description": "Codex Weapon damage type title",
     "type": "text"
   },
-  "toxinDamageTitle": "Toxin",
+  "toxinDamageTitle": "Gift",
   "@toxinDamageTitle": {
     "description": "Codex Weapon damage type title",
     "type": "text"
   },
-  "blastDamageTitle": "Blast",
+  "blastDamageTitle": "Explosion",
   "@blastDamageTitle": {
     "description": "Codex Weapon damage type title",
     "type": "text"
   },
-  "radiationDamageTitle": "Radiation",
+  "radiationDamageTitle": "Strahlung",
   "@radiationDamageTitle": {
     "description": "Codex Weapon damage type title",
     "type": "text"
@@ -984,17 +984,17 @@
     "description": "Codex Weapon damage type title",
     "type": "text"
   },
-  "magneticDamageTitle": "Magnetic",
+  "magneticDamageTitle": "Magnetismus",
   "@magneticDamageTitle": {
     "description": "Codex Weapon damage type title",
     "type": "text"
   },
-  "viralDamageTitle": "Viral",
+  "viralDamageTitle": "Virus",
   "@viralDamageTitle": {
     "description": "Codex Weapon damage type title",
     "type": "text"
   },
-  "corrosiveDamageTitle": "Corrosive",
+  "corrosiveDamageTitle": "Korrosion",
   "@corrosiveDamageTitle": {
     "description": "Codex Weapon damage type title",
     "type": "text"
@@ -1024,77 +1024,77 @@
     "description": "Codex Weapon damage type title",
     "type": "text"
   },
-  "energyDrainDamageTitle": "Energy Drain",
+  "energyDrainDamageTitle": "Energieentzug",
   "@energyDrainDamageTitle": {
     "description": "Codex Weapon damage type title",
     "type": "text"
   },
-  "physicalDamageTitle": "Physical",
+  "physicalDamageTitle": "Physisch",
   "@physicalDamageTitle": {
     "description": "Codex Weapon damage type title",
     "type": "text"
   },
-  "circuitResetTitle": "The Circuit resets in",
+  "circuitResetTitle": "Der Rundkurs aktualisiert sich in",
   "@circuitResetTitle": {
     "description": "Text displayed next to the weekly reset time for the circuit",
     "type": "text"
   },
-  "circuitResetSubtitle": "Tap to see current offerings",
+  "circuitResetSubtitle": "Tippen, um aktuelle Angebote zu sehen",
   "@circuitResetSubtitle": {
     "description": "Text displayed under circuitResetTitle",
     "type": "text"
   },
-  "archimedeaResetTitle": "Resets in",
+  "archimedeaResetTitle": "Aktualisierung in",
   "@archimedeaResetTitle": {
     "description": "Text in Archimedea page for weekly reset time",
     "type": "text"
   },
-  "deepArchimedeaTitle": "Deep Archimedea",
+  "deepArchimedeaTitle": "Tiefe Archimede",
   "@deepArchimedeaTitle": {
     "description": "Text for DA in case it needs translations",
     "type": "text"
   },
-  "temporalArchimedeaTitle": "Temporal Archimedea",
+  "temporalArchimedeaTitle": "Temporale Archimede",
   "@temporalArchimedeaTitle": {
     "description": "Text for TA in case it needs translations",
     "type": "text"
   },
-  "archimedeaDeviationTitle": "Deviation",
+  "archimedeaDeviationTitle": "Abweichung",
   "@archimedeaDeviationTitle": {
     "description": "Text displayed next to Deep Archimedea deviation name",
     "type": "text"
   },
-  "archimedeaRiskTitle": "Risk Variable",
+  "archimedeaRiskTitle": "Risikovariable",
   "@archimedeaRiskTitle": {
     "description": "Text displayed next to Deep Archimedea risk variable name",
     "type": "text"
   },
-  "missionsCategoryTitle": "Missions",
+  "missionsCategoryTitle": "Missionen",
   "@missionsCategoryTitle": {
     "description": "Text displayed where a missions category is needed",
     "type": "text"
   },
-  "archimedeaPersonalModifierTitle": "Personal Modifiers",
+  "archimedeaPersonalModifierTitle": "Persönliche Modifikatoren",
   "@archimedeaPersonalModifierTitle": {
     "description": "Text displayed above to Deep Archimedea personal modifiers",
     "type": "text"
   },
-  "archimedeaWarningTitle": "Warning",
+  "archimedeaWarningTitle": "Warnung",
   "@archimedeaWarningTitle": {
     "description": "Warning title displayed under Deep Archimedea timer",
     "type": "text"
   },
-  "archimedeaWarningSubtitle": "DE doesn't always update Deep/Temporal Archimedea data after a weekly reset so consider this unstable.\nWarning will be removed when data rotation is more consistent",
+  "archimedeaWarningSubtitle": "DE aktualisiert die Daten für die tiefe bzw. temporale Archimede nicht immer nach einem wöchentlichen Reset; betrachte diese Informationen unter Vorbehalt.\nWarnung wird gelöscht, wenn die Datenrotation konsistenter ist",
   "@archimedeaWarningSubtitle": {
     "description": "Warning text displayed under Deep Archimedea warning title",
     "type": "text"
   },
-  "activitiesTitle": "Activities",
+  "activitiesTitle": "Aktivitäten",
   "@activitiesTitle": {
     "description": "Activities title",
     "type": "text"
   },
-  "nightwaveSeasonSubtitle": "Season {season}",
+  "nightwaveSeasonSubtitle": "Saison {season}",
   "@nightwaveSeasonSubtitle": {
     "description": "Current nightwave season number",
     "type": "text",
@@ -1104,7 +1104,7 @@
       }
     }
   },
-  "calendar1999Title": "1999 Calendar",
+  "calendar1999Title": "1999 Kalender",
   "@calendar1999Title": {
     "description": "Title text for 1999 calendar card",
     "type": "text"
@@ -1124,7 +1124,7 @@
     "description": "Trader inventory header text",
     "type": "text"
   },
-  "itemRankSubtitle": "Rank {rank}",
+  "itemRankSubtitle": "Rang {rank}",
   "@itemRankSubtitle": {
     "description": "Subtitle showing the item's rank",
     "type": "text",
@@ -1132,31 +1132,31 @@
       "rank": {}
     }
   },
-  "syncingInfoText": "Syncing XP info",
+  "syncingInfoText": "Synchronisiere XP-Info",
   "@syncingInfoText": {
     "description": "Text displayed when xp info is being synced",
     "type": "text",
     "placeholder": {}
   },
-  "enterUsernameHintText": "Setup Inventoria",
+  "enterUsernameHintText": "Inventar einrichten",
   "@enterUsernameHintText": {
     "description": "Hint Text use as a placeholder in username input",
     "type": "text",
     "placeholder": {}
   },
-  "clearUsernameButtonLabel": "Clear username",
+  "clearUsernameButtonLabel": "Benutzernamen löschen",
   "@clearUsernameButtonLabel": {
     "description": "Label text for clear username button",
     "type": "text",
     "placeholder": {}
   },
-  "cancelText": "Cancel",
+  "cancelText": "Abbrechen",
   "@cancelText": {
     "description": "Text to display for cancel buttons",
     "type": "text",
     "placeholder": {}
   },
-  "inventoriaSteps": "Cephalon Navis can use your read-only profile data to help track your arsenal XP and mastery points.\n\n1. Go to {url} on a computer\n\n2. Upload your EE.log or account ID from cookies\n\n3. Tap next and scan the generated QR code",
+  "inventoriaSteps": "Cephalon Navis kann deine schreibgeschützten Profildaten verwenden, um deine Arsenal-XP und Meisterschafts-Auflistung zu verfolgen.\n\n1. Öffne {url} auf einem Computer\n\n2. Lade deine EE.log oder Konto-ID von Cookies hoch\n\n3. Tippe auf \"Weiter\" und scannen Sie den generierten QR-Code",
   "@inventoriaSteps": {
     "description": "Steps to setup Inventoria",
     "type": "text",
