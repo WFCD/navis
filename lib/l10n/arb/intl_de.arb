@@ -450,12 +450,12 @@
     "description": "Settings title",
     "type": "text"
   },
-  "dailyResetTitle": "Tägliche/r Aktualiseriung/Reset",
+  "dailyResetTitle": "Tägliche Aktualiseriung",
   "@dailyResetTitle": {
     "description": "Title for daily timer",
     "type": "text"
   },
-  "weeklyResetTitle": "Wöchentliche/r Aktualiseriung/Reset",
+  "weeklyResetTitle": "Wöchentliche Aktualiseriung",
   "@weeklyResetTitle": {
     "description": "Title for weekly timer",
     "type": "text"
@@ -745,7 +745,7 @@
     "description": "Title for archon hunt notification toggle.",
     "type": "text"
   },
-  "archonHuntDescription": "Archon Jagd Aktualisierungs-/Resetbenachrichtigung.",
+  "archonHuntDescription": "Archon Jagd Aktualisierungsbenachrichtigung.",
   "@archonHuntDescription": {
     "description": "Description for archon hunt notification toggle.",
     "type": "text"
@@ -871,7 +871,7 @@
     "description": "Display standing earned with fish",
     "type": "text"
   },
-  "fishUnique": "Ungewöhnlich",
+  "fishUnique": "Besonderheit",
   "@fishUnique": {
     "description": "Display a unique resources earned by given fish",
     "type": "text"
@@ -1024,12 +1024,12 @@
     "description": "Codex Weapon damage type title",
     "type": "text"
   },
-  "energyDrainDamageTitle": "Energy Drain",
+  "energyDrainDamageTitle": "Energieentzug",
   "@energyDrainDamageTitle": {
     "description": "Codex Weapon damage type title",
     "type": "text"
   },
-  "physicalDamageTitle": "Physical",
+  "physicalDamageTitle": "Physisch",
   "@physicalDamageTitle": {
     "description": "Codex Weapon damage type title",
     "type": "text"
@@ -1059,12 +1059,12 @@
     "description": "Text for TA in case it needs translations",
     "type": "text"
   },
-  "archimedeaDeviationTitle": "Deviation",
+  "archimedeaDeviationTitle": "Abweichung",
   "@archimedeaDeviationTitle": {
     "description": "Text displayed next to Deep Archimedea deviation name",
     "type": "text"
   },
-  "archimedeaRiskTitle": "Risk Variable",
+  "archimedeaRiskTitle": "Risikovariable",
   "@archimedeaRiskTitle": {
     "description": "Text displayed next to Deep Archimedea risk variable name",
     "type": "text"
