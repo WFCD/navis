@@ -79,6 +79,8 @@ class _NewsImage extends StatelessWidget {
             imageUrl: imageUrl,
             height: height,
             width: width,
+            memCacheHeight: (height * MediaQuery.devicePixelRatioOf(context)).floor(),
+            memCacheWidth: (width * MediaQuery.devicePixelRatioOf(context)).floor(),
             fit: BoxFit.cover,
             placeholder: (context, url) => _placeholder(width, height),
             errorWidget: (context, url, dynamic error) => _placeholder(width, height),

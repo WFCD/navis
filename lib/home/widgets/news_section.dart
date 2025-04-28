@@ -107,7 +107,7 @@ class __NewsCarouselViewState extends State<_NewsCarouselView> {
               controller: _controller,
               itemSnapping: true,
               itemExtent: itemExtent,
-              shrinkExtent: itemExtent / 2,
+              shrinkExtent: itemExtent,
               onTap: (i) => news[i].link.launchLink(context),
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
               children:
