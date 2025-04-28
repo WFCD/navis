@@ -135,7 +135,7 @@
     "description": "Earth and Cetus cycle title",
     "type": "text"
   },
-  "vallisCycleTitle": "Orb Vallis",
+  "vallisCycleTitle": "Orbis-Tal",
   "@vallisCycleTitle": {
     "description": "Vallis cycle title",
     "type": "text"
@@ -335,7 +335,7 @@
     "description": "Cetus cycle option",
     "type": "text"
   },
-  "vallisWarmOption": "Orb Vallis Warm",
+  "vallisWarmOption": "Orbis-Tal: Warm",
   "@vallisWarmOption": {
     "description": "Orb vallis cycle option",
     "type": "text"
@@ -395,7 +395,7 @@
     "description": "Title for contribute translations link",
     "type": "text"
   },
-  "contributeTranslationsDescription": "Volunteer to contribute translations",
+  "contributeTranslationsDescription": "Trage zur Übersetzung bei",
   "@contributeTranslationsDescription": {
     "description": "Description for contribute translations link",
     "type": "text"
@@ -450,12 +450,12 @@
     "description": "Settings title",
     "type": "text"
   },
-  "dailyResetTitle": "Daily Reset Timer",
+  "dailyResetTitle": "Tägliche/r Aktualiseriung/Reset",
   "@dailyResetTitle": {
     "description": "Title for daily timer",
     "type": "text"
   },
-  "weeklyResetTitle": "Weekly Reset Timer",
+  "weeklyResetTitle": "Wöchentliche/r Aktualiseriung/Reset",
   "@weeklyResetTitle": {
     "description": "Title for weekly timer",
     "type": "text"
@@ -540,7 +540,7 @@
     "description": "Weapon accuracy title",
     "type": "text"
   },
-  "criticalChanceTitle": "Critical Chance",
+  "criticalChanceTitle": "Krit. Chance",
   "@criticalChanceTitle": {
     "description": "Weapon crictical chance",
     "type": "text"
@@ -575,7 +575,7 @@
     "description": "Weapon item type",
     "type": "text"
   },
-  "rivenDispositionTitle": "Riven Disposition",
+  "rivenDispositionTitle": "Riven-Disposition",
   "@rivenDispositionTitle": {
     "description": "Weapon's riven disposition",
     "type": "text"
@@ -630,7 +630,7 @@
     "description": "Melee's Slam Radial Damage",
     "type": "text"
   },
-  "slamRadiusTitle": "Slam Radius",
+  "slamRadiusTitle": "Schmetter-Radius",
   "@slamRadiusTitle": {
     "description": "Slam Radius title",
     "type": "text"
@@ -665,7 +665,7 @@
     "description": "melee's heavy wind up time title",
     "type": "text"
   },
-  "discordSupportTitle": "Support",
+  "discordSupportTitle": "Hilfe",
   "@discordSupportTitle": {
     "description": "Discord support title",
     "type": "text"
@@ -710,7 +710,7 @@
       }
     }
   },
-  "codexHint": "Search the codex here...",
+  "codexHint": "Durchsuche den Codex hier …",
   "@codexHint": {
     "description": "Codex description when a user enters the codex or when the search bar is empty",
     "type": "text"
@@ -745,7 +745,7 @@
     "description": "Title for archon hunt notification toggle.",
     "type": "text"
   },
-  "archonHuntDescription": "Archon hunt reset notification.",
+  "archonHuntDescription": "Archon Jagd Aktualisierungs-/Resetbenachrichtigung.",
   "@archonHuntDescription": {
     "description": "Description for archon hunt notification toggle.",
     "type": "text"
@@ -811,12 +811,12 @@
     "description": "Duviri envy state.",
     "type": "text"
   },
-  "duviriSorrow": "Sorrow",
+  "duviriSorrow": "Trauer",
   "@duviriSorrow": {
     "description": "sorrow Duviri state",
     "type": "text"
   },
-  "duviriFear": "Fear",
+  "duviriFear": "Angst",
   "@duviriFear": {
     "description": "Fear Duviri state",
     "type": "text"
@@ -851,7 +851,7 @@
     "description": "Display time a day a fish can be caught in",
     "type": "text"
   },
-  "fishSpear": "Spear",
+  "fishSpear": "Harpune",
   "@fishSpear": {
     "description": "Display the type of spear used to catch fish",
     "type": "text"
@@ -896,27 +896,27 @@
     "description": "Displays how many meat can be earned with the given fish size",
     "type": "text"
   },
-  "fishOil": "Oils",
+  "fishOil": "Öl",
   "@fishOil": {
     "description": "Displays how many oils can be earned with the given fish size",
     "type": "text"
   },
-  "fishScales": "Scales",
+  "fishScales": "Schuppen",
   "@fishScales": {
     "description": "Displays how many scales can be earned with the given fish size",
     "type": "text"
   },
-  "fishScrap": "Scraps",
+  "fishScrap": "Schrott",
   "@fishScrap": {
     "description": "Displays how many scraps can be earned with the given fish size",
     "type": "text"
   },
-  "fishAny": "Any",
+  "fishAny": "Beliebig",
   "@fishAny": {
     "description": "Displayed when a fish can be caught by any spear",
     "type": "text"
   },
-  "dropChance": "Drop chance {chance}%",
+  "dropChance": "Beute-/Ressourcenchance {chance}%",
   "@dropChance": {
     "description": "Drop chance percentage",
     "type": "text",
@@ -934,47 +934,47 @@
     "description": "Codex patchlogs title",
     "type": "text"
   },
-  "impactDamageTitle": "Impact",
+  "impactDamageTitle": "Einschlag",
   "@impactDamageTitle": {
     "description": "Codex Weapon damage type title",
     "type": "text"
   },
-  "punctureDamageTitle": "Puncture",
+  "punctureDamageTitle": "Durchschlag",
   "@punctureDamageTitle": {
     "description": "Codex Weapon damage type title",
     "type": "text"
   },
-  "slashDamageTitle": "Slash",
+  "slashDamageTitle": "Schnitt",
   "@slashDamageTitle": {
     "description": "Codex Weapon damage type title",
     "type": "text"
   },
-  "heatDamageTitle": "Heat",
+  "heatDamageTitle": "Hitze",
   "@heatDamageTitle": {
     "description": "Codex Weapon damage type title",
     "type": "text"
   },
-  "coldDamageTitle": "Cold",
+  "coldDamageTitle": "Kälte",
   "@coldDamageTitle": {
     "description": "Codex Weapon damage type title",
     "type": "text"
   },
-  "electricityDamageTitle": "Electricity",
+  "electricityDamageTitle": "Elektrizität",
   "@electricityDamageTitle": {
     "description": "Codex Weapon damage type title",
     "type": "text"
   },
-  "toxinDamageTitle": "Toxin",
+  "toxinDamageTitle": "Gift",
   "@toxinDamageTitle": {
     "description": "Codex Weapon damage type title",
     "type": "text"
   },
-  "blastDamageTitle": "Blast",
+  "blastDamageTitle": "Explosion",
   "@blastDamageTitle": {
     "description": "Codex Weapon damage type title",
     "type": "text"
   },
-  "radiationDamageTitle": "Radiation",
+  "radiationDamageTitle": "Strahlung",
   "@radiationDamageTitle": {
     "description": "Codex Weapon damage type title",
     "type": "text"
@@ -984,17 +984,17 @@
     "description": "Codex Weapon damage type title",
     "type": "text"
   },
-  "magneticDamageTitle": "Magnetic",
+  "magneticDamageTitle": "Magnetismus",
   "@magneticDamageTitle": {
     "description": "Codex Weapon damage type title",
     "type": "text"
   },
-  "viralDamageTitle": "Viral",
+  "viralDamageTitle": "Virus",
   "@viralDamageTitle": {
     "description": "Codex Weapon damage type title",
     "type": "text"
   },
-  "corrosiveDamageTitle": "Corrosive",
+  "corrosiveDamageTitle": "Korrosion",
   "@corrosiveDamageTitle": {
     "description": "Codex Weapon damage type title",
     "type": "text"
@@ -1034,27 +1034,27 @@
     "description": "Codex Weapon damage type title",
     "type": "text"
   },
-  "circuitResetTitle": "The Circuit resets in",
+  "circuitResetTitle": "Der Rundkurs aktualisiert sich in",
   "@circuitResetTitle": {
     "description": "Text displayed next to the weekly reset time for the circuit",
     "type": "text"
   },
-  "circuitResetSubtitle": "Tap to see current offerings",
+  "circuitResetSubtitle": "Tippen, um aktuelle Angebote zu sehen",
   "@circuitResetSubtitle": {
     "description": "Text displayed under circuitResetTitle",
     "type": "text"
   },
-  "archimedeaResetTitle": "Resets in",
+  "archimedeaResetTitle": "Aktualisierung in",
   "@archimedeaResetTitle": {
     "description": "Text in Archimedea page for weekly reset time",
     "type": "text"
   },
-  "deepArchimedeaTitle": "Deep Archimedea",
+  "deepArchimedeaTitle": "Tiefe Archimede",
   "@deepArchimedeaTitle": {
     "description": "Text for DA in case it needs translations",
     "type": "text"
   },
-  "temporalArchimedeaTitle": "Temporal Archimedea",
+  "temporalArchimedeaTitle": "Temporale Archimede",
   "@temporalArchimedeaTitle": {
     "description": "Text for TA in case it needs translations",
     "type": "text"
@@ -1124,7 +1124,7 @@
     "description": "Trader inventory header text",
     "type": "text"
   },
-  "itemRankSubtitle": "Rank {rank}",
+  "itemRankSubtitle": "Rang {rank}",
   "@itemRankSubtitle": {
     "description": "Subtitle showing the item's rank",
     "type": "text",
@@ -1132,7 +1132,7 @@
       "rank": {}
     }
   },
-  "syncingInfoText": "Syncing XP info",
+  "syncingInfoText": "Synchronisiere XP-Info",
   "@syncingInfoText": {
     "description": "Text displayed when xp info is being synced",
     "type": "text",
