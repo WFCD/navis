@@ -340,7 +340,7 @@
     "description": "Orb vallis cycle option",
     "type": "text"
   },
-  "vallisColdOption": "Orb Vallis Kalt",
+  "vallisColdOption": "Orbis-Tal: Kalt",
   "@vallisColdOption": {
     "description": "Orb vallis cycle option",
     "type": "text"
@@ -680,12 +680,12 @@
     "description": "User hint when under syndicate tabs using a tablet",
     "type": "text"
   },
-  "optOutOfAnalyticsTitle": "Verlassen der Statistiken",
+  "optOutOfAnalyticsTitle": "Telemetrie deaktivieren",
   "@optOutOfAnalyticsTitle": {
     "description": "Title opting out of analytics",
     "type": "text"
   },
-  "optOutOfAnalyticsDescription": "Statistiken deaktivieren.",
+  "optOutOfAnalyticsDescription": "Deaktiviert die Tracking-/Telemetriefunktion der App.",
   "@optOutOfAnalyticsDescription": {
     "description": "Description of the analytics opting buttong",
     "type": "text"
