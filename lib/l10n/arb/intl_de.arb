@@ -801,7 +801,7 @@
     "description": "Duviri joy state. ",
     "type": "text"
   },
-  "duviriAnger": "Duviri: Wut",
+  "duviriAnger": "Wut",
   "@duviriAnger": {
     "description": "Duviri anger state.",
     "type": "text"
