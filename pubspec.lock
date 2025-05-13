@@ -408,14 +408,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.2.4"
-  dynamic_color:
+  dynamic_system_colors:
     dependency: "direct main"
     description:
-      name: dynamic_color
-      sha256: eae98052fa6e2826bdac3dd2e921c6ce2903be15c6b7f8b6d8a5d49b5086298d
+      name: dynamic_system_colors
+      sha256: "43794e658fa88cbdec9f397dd1afd2eb69b6c9717e99b93b16ba37c3aa3b3a8c"
       url: "https://pub.dev"
     source: hosted
-    version: "1.7.0"
+    version: "1.8.0"
   equatable:
     dependency: "direct main"
     description:
@@ -891,13 +891,13 @@ packages:
     source: hosted
     version: "0.12.17"
   material_color_utilities:
-    dependency: transitive
+    dependency: "direct overridden"
     description:
       name: material_color_utilities
-      sha256: f7142bb1154231d7ea5f96bc7bde4bda2a0945d2806bb11670e30b850d56bdec
+      sha256: afaac3ebbf67448ab81c891b8e1f2f4d3e7bc19aa36d269c0257b54bc0d9aa79
       url: "https://pub.dev"
     source: hosted
-    version: "0.11.1"
+    version: "0.12.0"
   matomo_tracker:
     dependency: "direct main"
     description:
