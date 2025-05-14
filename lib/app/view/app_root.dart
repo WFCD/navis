@@ -74,7 +74,7 @@ class NavisApp extends StatelessWidget {
     return DynamicColorBuilder(
       builder: (lightDynamic, darkDynamic) {
         return BetterFeedback(
-          pixelRatio: 1,
+          pixelRatio: MediaQuery.devicePixelRatioOf(context),
           localizationsDelegates: NavisLocalizations.localizationsDelegates,
           child: MaterialApp.router(
             routerConfig: router.routes,

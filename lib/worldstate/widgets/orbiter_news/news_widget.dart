@@ -12,8 +12,7 @@ class OrbiterNewsCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppCard(
-      padding: EdgeInsets.zero,
+    return Card(
       clipBehavior: Clip.antiAlias,
       color: context.theme.colorScheme.secondaryContainer,
       child: InkWell(onTap: () => news.link.launchLink(context), child: OrbiterNewsContent(news: news)),
@@ -29,25 +28,15 @@ class OrbiterNewsContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final currentLocale = Localizations.localeOf(context).languageCode;
-    final colorScheme = Theme.of(context).colorScheme;
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
         Expanded(child: _NewsImage(imageUrl: news.imageLink)),
         ListTile(
-          title: Text(
-            news.translations[currentLocale] ?? news.message,
-            overflow: TextOverflow.ellipsis,
-            style: context.theme.textTheme.titleMedium?.copyWith(color: colorScheme.onSecondaryContainer),
-          ),
-          subtitle: Text(
-            MaterialLocalizations.of(context).formatFullDate(news.date.toLocal()),
-            style: context.theme.textTheme.bodyMedium?.copyWith(
-              color: colorScheme.onSecondaryContainer.withValues(alpha: .7),
-            ),
-          ),
-          dense: true,
+          title: Text(news.translations[currentLocale] ?? news.message, overflow: TextOverflow.ellipsis),
+          subtitle: Text(MaterialLocalizations.of(context).formatFullDate(news.date.toLocal())),
+          // dense: true,
         ),
       ],
     );
@@ -68,19 +57,22 @@ class _NewsImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final devicePixelRatio = MediaQuery.devicePixelRatioOf(context);
+
     return LayoutBuilder(
       builder: (context, constraints) {
+        const borderRadius = BorderRadius.only(bottomLeft: Radius.circular(12), bottomRight: Radius.circular(12));
         final width = constraints.maxWidth;
         final height = constraints.maxHeight;
 
         return ClipRRect(
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: borderRadius,
           child: CachedNetworkImage(
             imageUrl: imageUrl,
             height: height,
             width: width,
-            memCacheHeight: (height * MediaQuery.devicePixelRatioOf(context)).floor(),
-            memCacheWidth: (width * MediaQuery.devicePixelRatioOf(context)).floor(),
+            memCacheHeight: (height * devicePixelRatio).round(),
+            memCacheWidth: (width * devicePixelRatio).round(),
             fit: BoxFit.cover,
             placeholder: (context, url) => _placeholder(width, height),
             errorWidget: (context, url, dynamic error) => _placeholder(width, height),

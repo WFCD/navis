@@ -90,10 +90,11 @@ class __NewsCarouselViewState extends State<_NewsCarouselView> {
         }
 
         final news = state.seed.news.take(_maxItems).toList();
-        final itemExtent = MediaQuery.sizeOf(context).width * .9;
+        final size = MediaQuery.sizeOf(context);
+        final itemExtent = size.width * .9;
 
         return SizedBox(
-          height: 200,
+          height: size.height * .25,
           child: GestureDetector(
             onTapDown: (_) => _timer?.cancel(),
             onHorizontalDragStart: (_) => _timer?.cancel(),
@@ -113,9 +114,9 @@ class __NewsCarouselViewState extends State<_NewsCarouselView> {
               children:
                   news
                       .map(
-                        (n) => AppCard(
-                          padding: EdgeInsets.zero,
+                        (n) => Card(
                           color: context.theme.colorScheme.secondaryContainer,
+                          clipBehavior: Clip.antiAlias,
                           child: OrbiterNewsContent(news: n),
                         ),
                       )

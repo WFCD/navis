@@ -20,10 +20,10 @@ class NavisLocalizationsDe extends NavisLocalizations {
   String get seeDetails => 'Details anzeigen';
 
   @override
-  String get seeMore => 'See More';
+  String get seeMore => 'Mehr anzeigen';
 
   @override
-  String get seeWiki => 'See Wiki';
+  String get seeWiki => 'Wiki durchsuchen';
 
   @override
   String get eventDescription => 'Beschreibung';
@@ -56,7 +56,7 @@ class NavisLocalizationsDe extends NavisLocalizations {
   String get baroTitle => 'Baro Ki\'Teer';
 
   @override
-  String get location => 'Location';
+  String get location => 'Ort';
 
   @override
   String get baroLeavesOn => 'Reist ab am';
@@ -85,22 +85,22 @@ class NavisLocalizationsDe extends NavisLocalizations {
   String get razorbackTitle => 'Razerback';
 
   @override
-  String get cetusCycleTitle => 'Cetus Zyklus';
+  String get cetusCycleTitle => 'Erde/Ebenen des Eidolons';
 
   @override
-  String get vallisCycleTitle => 'Vallis Zyklus';
+  String get vallisCycleTitle => 'Orbis-Tal';
 
   @override
-  String get cambionCycleTitle => 'Cambion Zyklus';
+  String get cambionCycleTitle => 'Cambion Drift';
 
   @override
-  String get zarimanCycleTitle => 'Zariman Cycle';
+  String get zarimanCycleTitle => 'Zariman';
 
   @override
   String get duviriCycleTitle => 'Duviri';
 
   @override
-  String get timersTitle => 'Timers';
+  String get timersTitle => 'Alarme';
 
   @override
   String get fissuresTitle => 'Void-Risse';
@@ -115,7 +115,7 @@ class NavisLocalizationsDe extends NavisLocalizations {
   String get codexTitle => 'Codex';
 
   @override
-  String get codexDescription => 'Search all warframe items';
+  String get codexDescription => 'Alle Warframe-Objekte durchsuchen';
 
   @override
   String get helpfulLinksTitle => 'Hilfreiche Links';
@@ -136,7 +136,7 @@ class NavisLocalizationsDe extends NavisLocalizations {
   String get rareAlertsNotificationTitle => 'Seltene Alarmierungen';
 
   @override
-  String get rareAlertsNotificationDescription => 'Seltene Alarmierungsbeanachrichtigung, meist Geschenke von Lotus.';
+  String get rareAlertsNotificationDescription => 'Seltene Alarmierungsbenachrichtigung, meist Geschenke von Lotus.';
 
   @override
   String get operationAlertsNotificationTitle => 'Operation Alerts';
@@ -169,7 +169,7 @@ class NavisLocalizationsDe extends NavisLocalizations {
   String get sentientOutpostNotificationDescription => 'Benachrichtigungen für neue Sentient Bedrohungen.';
 
   @override
-  String get warframeNewsTitle => 'News';
+  String get warframeNewsTitle => 'Neuigkeiten';
 
   @override
   String get warframeNewsNotificationTitle => 'Neuigkeiten';
@@ -208,7 +208,7 @@ class NavisLocalizationsDe extends NavisLocalizations {
   String get cetusNightOption => 'Cetus Nacht';
 
   @override
-  String get vallisWarmOption => 'Orb Vallis Warm';
+  String get vallisWarmOption => 'Orbis-Tal: Warm';
 
   @override
   String get vallisColdOption => 'Orb Vallis Kalt';
@@ -238,13 +238,13 @@ class NavisLocalizationsDe extends NavisLocalizations {
   String get aboutCategoryTitle => 'Über uns';
 
   @override
-  String get aboutAppTitle => 'About app';
+  String get aboutAppTitle => 'Über diese App';
 
   @override
-  String get contributeTranslationsTitle => 'Contribute Translations';
+  String get contributeTranslationsTitle => 'Übersetzungen beisteuern';
 
   @override
-  String get contributeTranslationsDescription => 'Volunteer to contribute translations';
+  String get contributeTranslationsDescription => 'Trage zur Übersetzung bei';
 
   @override
   String get lightThemeTitle => 'Hell';
@@ -259,10 +259,10 @@ class NavisLocalizationsDe extends NavisLocalizations {
   String get legalese => 'Warframe und das Warframe Logo sind eingetragene Warenzeichen von Digital Extremes Ltd. Weder Cephalon Navis oder WFCD sind in irgendeiner Weise mit Digital Extremes Ltd. verbunden.';
 
   @override
-  String get homePageTitle => 'Home';
+  String get homePageTitle => 'Startseite';
 
   @override
-  String get sourceCode => 'Source code';
+  String get sourceCode => 'Quellcode';
 
   @override
   String get issueTrackerDescription => 'Melde Probleme oder stelle Anfragen für dieses Projekt';
@@ -277,10 +277,10 @@ class NavisLocalizationsDe extends NavisLocalizations {
   String get settingsTitle => 'Einstellungen';
 
   @override
-  String get dailyResetTitle => 'Daily Reset Timer';
+  String get dailyResetTitle => 'Tägliche Aktualiseriung';
 
   @override
-  String get weeklyResetTitle => 'Weekly Reset Timer';
+  String get weeklyResetTitle => 'Wöchentliche Aktualiseriung';
 
   @override
   String get eliteBadgeTitle => 'Elite';
@@ -331,7 +331,7 @@ class NavisLocalizationsDe extends NavisLocalizations {
   String get accuracyTitle => 'Genauigkeit';
 
   @override
-  String get criticalChanceTitle => 'Critical Chance';
+  String get criticalChanceTitle => 'Krit. Chance';
 
   @override
   String get cricticalMultiplierTitle => 'Krit-Multiplikator';
@@ -352,7 +352,7 @@ class NavisLocalizationsDe extends NavisLocalizations {
   String get reloadTitle => 'Nachladen';
 
   @override
-  String get rivenDispositionTitle => 'Riven Disposition';
+  String get rivenDispositionTitle => 'Riven-Disposition';
 
   @override
   String get statusChanceTitle => 'Statuschance';
@@ -385,7 +385,7 @@ class NavisLocalizationsDe extends NavisLocalizations {
   String get slamRadialDamageTitle => 'Slam Angriff Schaden';
 
   @override
-  String get slamRadiusTitle => 'Slam Radius';
+  String get slamRadiusTitle => 'Schmetter-Radius';
 
   @override
   String get slideAttackTitle => 'Slide Angriff';
@@ -406,7 +406,7 @@ class NavisLocalizationsDe extends NavisLocalizations {
   String get windUpTitle => 'Ausholen';
 
   @override
-  String get discordSupportTitle => 'Support';
+  String get discordSupportTitle => 'Hilfe';
 
   @override
   String get steelPathTitle => 'Stählerner Pfad';
@@ -432,132 +432,132 @@ class NavisLocalizationsDe extends NavisLocalizations {
   }
 
   @override
-  String get codexHint => 'Search the codex here...';
+  String get codexHint => 'Durchsuche den Codex hier …';
 
   @override
   String get codexNoResults => 'Keine Treffer';
 
   @override
-  String get codexVaultedLabel => 'Vaulted';
+  String get codexVaultedLabel => 'Vaulted (verschlossen)';
 
   @override
-  String get exploreTitle => 'Explore';
+  String get exploreTitle => 'Entdecken';
 
   @override
-  String get constructionProgressTitle => 'Construction Progress';
+  String get constructionProgressTitle => 'Baufortschritt';
 
   @override
-  String get synthTargetTitle => 'SynthTargets';
+  String get synthTargetTitle => 'Synthese-Ziele';
 
   @override
-  String get archonHuntTitle => 'Archon Hunt';
+  String get archonHuntTitle => 'Archonenjagd';
 
   @override
-  String get archonHuntDescription => 'Archon hunt reset notification.';
+  String get archonHuntDescription => 'Archon Jagd Aktualisierungsbenachrichtigung.';
 
   @override
-  String get allFissuresButton => 'All';
+  String get allFissuresButton => 'Alle';
 
   @override
-  String get voidStormFissuresButton => 'Void Storms';
+  String get voidStormFissuresButton => 'Void-Stürme';
 
   @override
-  String get saleEndsTitle => 'SALE ENDS';
+  String get saleEndsTitle => 'VERKAUF ENDET';
 
   @override
-  String get salePriceTitle => 'Sale price';
+  String get salePriceTitle => 'Verkaufspreis';
 
   @override
-  String get originalPriceTitle => 'Original Price';
+  String get originalPriceTitle => 'Ursprünglicher Preis';
 
   @override
   String discountTitle(Object discount) {
-    return '$discount% OFF!';
+    return '$discount% Rabatt!';
   }
 
   @override
   String inStockInformation(Object stock) {
-    return 'Only $stock left';
+    return 'Nur noch $stock übrig';
   }
 
   @override
-  String get outOfStockTitle => 'OUT OF STOCK';
+  String get outOfStockTitle => 'AUSVERKAUFT';
 
   @override
-  String get duviriJoy => 'Duviri Joy';
+  String get duviriJoy => 'Freude';
 
   @override
-  String get duviriAnger => 'Duviri Anger';
+  String get duviriAnger => 'Anger';
 
   @override
-  String get duviriEnvy => 'Duviri Envy';
+  String get duviriEnvy => 'Neid';
 
   @override
-  String get duviriSorrow => 'Duviri Sorrow';
+  String get duviriSorrow => 'Trauer';
 
   @override
-  String get duviriFear => 'Duviri Fear';
+  String get duviriFear => 'Angst';
 
   @override
-  String get mapTitle => 'Maps';
+  String get mapTitle => 'Karten';
 
   @override
-  String get mapDescription => 'See region maps';
+  String get mapDescription => 'Regionskarten ansehen';
 
   @override
-  String get fishTitle => 'Fish';
+  String get fishTitle => 'Fische';
 
   @override
-  String get fishDescription => 'See fish information by region';
+  String get fishDescription => 'Fischinformationen nach Region filtern';
 
   @override
   String get fishName => 'Name';
 
   @override
-  String get fishTime => 'Time';
+  String get fishTime => 'Zeitraum';
 
   @override
-  String get fishSpear => 'Spear';
+  String get fishSpear => 'Harpune';
 
   @override
-  String get fishRarity => 'Rarity';
+  String get fishRarity => 'Seltenheitsgrad';
 
   @override
-  String get fishBait => 'Bait';
+  String get fishBait => 'Köder';
 
   @override
-  String get fishStanding => 'Standing';
+  String get fishStanding => 'Ansehen';
 
   @override
-  String get fishUnique => 'Unique';
+  String get fishUnique => 'Besonderheit';
 
   @override
-  String get fishBladder => 'Bladders';
+  String get fishBladder => 'Blase';
 
   @override
-  String get fishGills => 'Gills';
+  String get fishGills => 'Kiemen';
 
   @override
-  String get fishTumors => 'Tumors';
+  String get fishTumors => 'Tumore';
 
   @override
-  String get fishMeat => 'Meats';
+  String get fishMeat => 'Fleisch';
 
   @override
-  String get fishOil => 'Oils';
+  String get fishOil => 'Öl';
 
   @override
-  String get fishScales => 'Scales';
+  String get fishScales => 'Schuppen';
 
   @override
-  String get fishScrap => 'Scraps';
+  String get fishScrap => 'Schrott';
 
   @override
-  String get fishAny => 'Any';
+  String get fishAny => 'Beliebig';
 
   @override
   String dropChance(Object chance) {
-    return 'Drop chance $chance%';
+    return 'Beute-/Ressourcenchance $chance%';
   }
 
   @override
@@ -567,43 +567,43 @@ class NavisLocalizationsDe extends NavisLocalizations {
   String get patchlogsTitle => 'Patchlogs';
 
   @override
-  String get impactDamageTitle => 'Impact';
+  String get impactDamageTitle => 'Einschlag';
 
   @override
-  String get punctureDamageTitle => 'Puncture';
+  String get punctureDamageTitle => 'Durchschlag';
 
   @override
-  String get slashDamageTitle => 'Slash';
+  String get slashDamageTitle => 'Schnitt';
 
   @override
-  String get heatDamageTitle => 'Heat';
+  String get heatDamageTitle => 'Hitze';
 
   @override
-  String get coldDamageTitle => 'Cold';
+  String get coldDamageTitle => 'Kälte';
 
   @override
-  String get electricityDamageTitle => 'Electricity';
+  String get electricityDamageTitle => 'Elektrizität';
 
   @override
-  String get toxinDamageTitle => 'Toxin';
+  String get toxinDamageTitle => 'Gift';
 
   @override
-  String get blastDamageTitle => 'Blast';
+  String get blastDamageTitle => 'Explosion';
 
   @override
-  String get radiationDamageTitle => 'Radiation';
+  String get radiationDamageTitle => 'Strahlung';
 
   @override
   String get gasDamageTitle => 'Gas';
 
   @override
-  String get magneticDamageTitle => 'Magnetic';
+  String get magneticDamageTitle => 'Magnetismus';
 
   @override
-  String get viralDamageTitle => 'Viral';
+  String get viralDamageTitle => 'Virus';
 
   @override
-  String get corrosiveDamageTitle => 'Corrosive';
+  String get corrosiveDamageTitle => 'Korrosion';
 
   @override
   String get voidDamageTitle => 'Void';
@@ -621,54 +621,54 @@ class NavisLocalizationsDe extends NavisLocalizations {
   String get healthDrainDamageTitle => 'Health Drain';
 
   @override
-  String get energyDrainDamageTitle => 'Energy Drain';
+  String get energyDrainDamageTitle => 'Energieentzug';
 
   @override
-  String get physicalDamageTitle => 'Physical';
+  String get physicalDamageTitle => 'Physisch';
 
   @override
-  String get circuitResetTitle => 'The Circuit resets in';
+  String get circuitResetTitle => 'Der Rundkurs aktualisiert sich in';
 
   @override
-  String get circuitResetSubtitle => 'Tap to see current offerings';
+  String get circuitResetSubtitle => 'Tippen, um aktuelle Angebote zu sehen';
 
   @override
-  String get archimedeaResetTitle => 'Resets in';
+  String get archimedeaResetTitle => 'Aktualisierung in';
 
   @override
-  String get deepArchimedeaTitle => 'Deep Archimedea';
+  String get deepArchimedeaTitle => 'Tiefe Archimede';
 
   @override
-  String get temporalArchimedeaTitle => 'Temporal Archimedea';
+  String get temporalArchimedeaTitle => 'Temporale Archimede';
 
   @override
-  String get archimedeaDeviationTitle => 'Deviation';
+  String get archimedeaDeviationTitle => 'Abweichung';
 
   @override
-  String get archimedeaRiskTitle => 'Risk Variable';
+  String get archimedeaRiskTitle => 'Risikovariable';
 
   @override
-  String get missionsCategoryTitle => 'Missions';
+  String get missionsCategoryTitle => 'Missionen';
 
   @override
-  String get archimedeaPersonalModifierTitle => 'Personal Modifiers';
+  String get archimedeaPersonalModifierTitle => 'Persönliche Modifikatoren';
 
   @override
-  String get archimedeaWarningTitle => 'Warning';
+  String get archimedeaWarningTitle => 'Warnung';
 
   @override
-  String get archimedeaWarningSubtitle => 'DE doesn\'t always update Deep Archimedea data after a weekly reset so consider this unstable.\nWarning will be removed when data rotation is more consistent';
+  String get archimedeaWarningSubtitle => 'DE aktualisiert die Daten für die tiefe bzw. temporale Archimede nicht immer nach einem wöchentlichen Reset; betrachte diese Informationen unter Vorbehalt.\nWarnung wird gelöscht, wenn die Datenrotation konsistenter ist';
 
   @override
-  String get activitiesTitle => 'Activities';
+  String get activitiesTitle => 'Aktivitäten';
 
   @override
   String nightwaveSeasonSubtitle(Object season) {
-    return 'Season $season';
+    return 'Saison $season';
   }
 
   @override
-  String get calendar1999Title => '1999 Calendar';
+  String get calendar1999Title => '1999 Kalender';
 
   @override
   String get traderItemHeaderTitle => 'Item';
@@ -681,23 +681,23 @@ class NavisLocalizationsDe extends NavisLocalizations {
 
   @override
   String itemRankSubtitle(Object rank) {
-    return 'Rank $rank';
+    return 'Rang $rank';
   }
 
   @override
-  String get syncingInfoText => 'Syncing XP info';
+  String get syncingInfoText => 'Synchronisiere XP-Info';
 
   @override
-  String get enterUsernameHintText => 'Setup Inventoria';
+  String get enterUsernameHintText => 'Inventar einrichten';
 
   @override
-  String get clearUsernameButtonLabel => 'Clear username';
+  String get clearUsernameButtonLabel => 'Benutzernamen löschen';
 
   @override
-  String get cancelText => 'Cancel';
+  String get cancelText => 'Abbrechen';
 
   @override
   String inventoriaSteps(String url) {
-    return 'Cephalon Navis can use your read-only profile data to help track your arsenal XP and mastery points.\n\n1. Go to $url on a computer\n\n2. Upload your EE.log or account ID from cookies\n\n3. Tap next and scan the generated QR code';
+    return 'Cephalon Navis kann deine schreibgeschützten Profildaten verwenden, um deine Arsenal-XP und Meisterschafts-Auflistung zu verfolgen.\n\n1. Öffne $url auf einem Computer\n\n2. Lade deine EE.log oder Konto-ID von Cookies hoch\n\n3. Tippe auf \"Weiter\" und scannen Sie den generierten QR-Code';
   }
 }

@@ -85,16 +85,16 @@ class NavisLocalizationsZh extends NavisLocalizations {
   String get razorbackTitle => '利刃豺狼';
 
   @override
-  String get cetusCycleTitle => '希圖斯循環';
+  String get cetusCycleTitle => 'Earth/Plains of Eidolon';
 
   @override
-  String get vallisCycleTitle => '奥布山谷循環';
+  String get vallisCycleTitle => 'Orb Vallis';
 
   @override
-  String get cambionCycleTitle => '魔胎之境循環';
+  String get cambionCycleTitle => 'Cambion Drift';
 
   @override
-  String get zarimanCycleTitle => '扎日曼號循環';
+  String get zarimanCycleTitle => 'Zariman';
 
   @override
   String get duviriCycleTitle => 'Duviri';
@@ -484,19 +484,19 @@ class NavisLocalizationsZh extends NavisLocalizations {
   String get outOfStockTitle => '售罄';
 
   @override
-  String get duviriJoy => '雙衍王境: 喜';
+  String get duviriJoy => 'Joy';
 
   @override
-  String get duviriAnger => '雙衍王境: 怒';
+  String get duviriAnger => 'Anger';
 
   @override
-  String get duviriEnvy => '雙衍王境: 妒';
+  String get duviriEnvy => 'Envy';
 
   @override
-  String get duviriSorrow => '雙衍王境: 哀';
+  String get duviriSorrow => 'Sorrow';
 
   @override
-  String get duviriFear => '雙衍王境: 懼';
+  String get duviriFear => 'Fear';
 
   @override
   String get mapTitle => '地圖';
@@ -657,7 +657,7 @@ class NavisLocalizationsZh extends NavisLocalizations {
   String get archimedeaWarningTitle => 'Warning';
 
   @override
-  String get archimedeaWarningSubtitle => 'DE doesn\'t always update Deep Archimedea data after a weekly reset so consider this unstable.\nWarning will be removed when data rotation is more consistent';
+  String get archimedeaWarningSubtitle => 'DE doesn\'t always update Deep/Temporal Archimedea data after a weekly reset so consider this unstable.\nWarning will be removed when data rotation is more consistent';
 
   @override
   String get activitiesTitle => 'Activities';

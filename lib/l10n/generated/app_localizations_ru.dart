@@ -85,16 +85,16 @@ class NavisLocalizationsRu extends NavisLocalizations {
   String get razorbackTitle => 'Армада Секачей';
 
   @override
-  String get cetusCycleTitle => 'Цетус';
+  String get cetusCycleTitle => 'Earth/Plains of Eidolon';
 
   @override
-  String get vallisCycleTitle => 'Долина Сфер';
+  String get vallisCycleTitle => 'Orb Vallis';
 
   @override
-  String get cambionCycleTitle => 'Камбионский Дрейф';
+  String get cambionCycleTitle => 'Cambion Drift';
 
   @override
-  String get zarimanCycleTitle => 'Цикл на Заримане';
+  String get zarimanCycleTitle => 'Zariman';
 
   @override
   String get duviriCycleTitle => 'Duviri';
@@ -142,7 +142,7 @@ class NavisLocalizationsRu extends NavisLocalizations {
   String get operationAlertsNotificationTitle => 'Сигналы тревоги';
 
   @override
-  String get operationAlertsNotificationDescription => 'Alert notifications for operations';
+  String get operationAlertsNotificationDescription => 'Уведомления об операциях';
 
   @override
   String get baroNotificationTitle => 'Баро Ки\'Тиир';
@@ -432,7 +432,7 @@ class NavisLocalizationsRu extends NavisLocalizations {
   }
 
   @override
-  String get codexHint => 'Search the codex here...';
+  String get codexHint => 'Искать по кодексу...';
 
   @override
   String get codexNoResults => 'Ничего не найдено';
@@ -484,19 +484,19 @@ class NavisLocalizationsRu extends NavisLocalizations {
   String get outOfStockTitle => 'НЕТ В НАЛИЧИИ';
 
   @override
-  String get duviriJoy => 'Дувири Радость';
+  String get duviriJoy => 'Joy';
 
   @override
-  String get duviriAnger => 'Дувири Злость';
+  String get duviriAnger => 'Anger';
 
   @override
-  String get duviriEnvy => 'Дувири Зависть';
+  String get duviriEnvy => 'Envy';
 
   @override
-  String get duviriSorrow => 'Дувири Печаль';
+  String get duviriSorrow => 'Sorrow';
 
   @override
-  String get duviriFear => 'Дувири Страх';
+  String get duviriFear => 'Fear';
 
   @override
   String get mapTitle => 'Карта';
@@ -630,7 +630,7 @@ class NavisLocalizationsRu extends NavisLocalizations {
   String get circuitResetTitle => 'Смена наград через';
 
   @override
-  String get circuitResetSubtitle => 'Tap to see current offerings';
+  String get circuitResetSubtitle => 'Посмотреть текущие предложения';
 
   @override
   String get archimedeaResetTitle => 'Resets in';
@@ -645,36 +645,36 @@ class NavisLocalizationsRu extends NavisLocalizations {
   String get archimedeaDeviationTitle => 'Deviation';
 
   @override
-  String get archimedeaRiskTitle => 'Risk Variable';
+  String get archimedeaRiskTitle => 'Уровень риска';
 
   @override
-  String get missionsCategoryTitle => 'Missions';
+  String get missionsCategoryTitle => 'Миссии';
 
   @override
   String get archimedeaPersonalModifierTitle => 'Personal Modifiers';
 
   @override
-  String get archimedeaWarningTitle => 'Warning';
+  String get archimedeaWarningTitle => 'Предупреждение';
 
   @override
-  String get archimedeaWarningSubtitle => 'DE не всегда обновляет данные Deep Archimedea после еженедельного сброса, поэтому считайте это нестабильным.\nПредупреждение будет удалено, когда ротация данных станет более последовательной';
+  String get archimedeaWarningSubtitle => 'DE doesn\'t always update Deep/Temporal Archimedea data after a weekly reset so consider this unstable.\nWarning will be removed when data rotation is more consistent';
 
   @override
-  String get activitiesTitle => 'Activities';
+  String get activitiesTitle => 'Действия';
 
   @override
   String nightwaveSeasonSubtitle(Object season) {
-    return 'Season $season';
+    return 'Сезон $season';
   }
 
   @override
-  String get calendar1999Title => '1999 Calendar';
+  String get calendar1999Title => 'Календарь 1999\n1999 Календарь';
 
   @override
-  String get traderItemHeaderTitle => 'Item';
+  String get traderItemHeaderTitle => 'Товар';
 
   @override
-  String get traderDucatsHeaderTitle => 'Item';
+  String get traderDucatsHeaderTitle => 'Товар';
 
   @override
   String get traderCreditsHeaderTitle => 'Item';

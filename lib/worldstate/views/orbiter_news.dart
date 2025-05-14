@@ -32,7 +32,7 @@ class _OrbiterNewsView extends StatelessWidget {
         return ViewLoading(
           isLoading: state is! WorldstateSuccess,
           child: ListView.builder(
-            itemExtent: 200,
+            itemExtent: MediaQuery.sizeOf(context).height * .30,
             itemCount: news.length,
             itemBuilder: (context, index) {
               return OrbiterNewsCard(news: news[index]);

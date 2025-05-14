@@ -85,16 +85,16 @@ class NavisLocalizationsTr extends NavisLocalizations {
   String get razorbackTitle => 'Razorback';
 
   @override
-  String get cetusCycleTitle => 'Cetus Döngüsü';
+  String get cetusCycleTitle => 'Earth/Plains of Eidolon';
 
   @override
-  String get vallisCycleTitle => 'Vallis Döngüsü';
+  String get vallisCycleTitle => 'Orb Vallis';
 
   @override
-  String get cambionCycleTitle => 'Cambion Döngüsü';
+  String get cambionCycleTitle => 'Cambion Drift';
 
   @override
-  String get zarimanCycleTitle => 'Zariman Döngüsü';
+  String get zarimanCycleTitle => 'Zariman';
 
   @override
   String get duviriCycleTitle => 'Duviri';
@@ -484,19 +484,19 @@ class NavisLocalizationsTr extends NavisLocalizations {
   String get outOfStockTitle => 'STOKLAR TÜKENDİ';
 
   @override
-  String get duviriJoy => 'Duviri Neşesi';
+  String get duviriJoy => 'Joy';
 
   @override
-  String get duviriAnger => 'Duviri Öfkesi';
+  String get duviriAnger => 'Anger';
 
   @override
-  String get duviriEnvy => 'Duviri Kıskanması';
+  String get duviriEnvy => 'Envy';
 
   @override
-  String get duviriSorrow => 'Duviri Üzüntüsü';
+  String get duviriSorrow => 'Sorrow';
 
   @override
-  String get duviriFear => 'Duviri Korkusu';
+  String get duviriFear => 'Fear';
 
   @override
   String get mapTitle => 'Haritalar';
@@ -657,7 +657,7 @@ class NavisLocalizationsTr extends NavisLocalizations {
   String get archimedeaWarningTitle => 'Uyarı';
 
   @override
-  String get archimedeaWarningSubtitle => 'DE, her haftalık sıfırlamanın ardından Deep Archimedea verilerini her zaman güncellemiyor, bu yüzden bunu kararsız kabul edin. \nUyarı, veri rotasyonu daha tutarlı hale geldiğinde kaldırılacaktır';
+  String get archimedeaWarningSubtitle => 'DE doesn\'t always update Deep/Temporal Archimedea data after a weekly reset so consider this unstable.\nWarning will be removed when data rotation is more consistent';
 
   @override
   String get activitiesTitle => 'Activities';

@@ -116,7 +116,7 @@ class _CodexSearchBarState extends State<CodexSearchBar> {
                 leading:
                     Navigator.of(context).canPop()
                         ? IconButton(icon: const Icon(Icons.arrow_back), onPressed: () => Navigator.pop(context))
-                        : null,
+                        : const Icon(Icons.search),
                 trailing:
                     Navigator.of(context).canPop()
                         ? [
