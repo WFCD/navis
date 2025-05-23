@@ -50,7 +50,8 @@ class NavisLocalizationsRu extends NavisLocalizations {
   String get errorTitle => 'Произошла ошибка приложения';
 
   @override
-  String get errorDescription => 'Произошла непредвиденная ошибка в системе ядра (операционной системы).\nОшибка при отправке системным администраторам...';
+  String get errorDescription =>
+      'Произошла непредвиденная ошибка в системе ядра (операционной системы).\nОшибка при отправке системным администраторам...';
 
   @override
   String get baroTitle => 'Баро Ки\'Тиир';
@@ -193,7 +194,8 @@ class NavisLocalizationsRu extends NavisLocalizations {
   String get fissuresNotificationTitle => 'Миссии Разрыва Бездны';
 
   @override
-  String get fissuresNotificationDescription => 'Фильтруйте уведомления о Разрывах Бездны по предпочитаемому типу миссии.';
+  String get fissuresNotificationDescription =>
+      'Фильтруйте уведомления о Разрывах Бездны по предпочитаемому типу миссии.';
 
   @override
   String get earthDayOption => 'Земля - День';
@@ -256,7 +258,8 @@ class NavisLocalizationsRu extends NavisLocalizations {
   String get systemThemeTitle => 'Системная';
 
   @override
-  String get legalese => 'Warframe и логотип Warframe являются зарегистрированными торговыми марками Digital Extremes Ltd.\nCephalon Navis и WFCD никаким образом не связаны с Digital Extremes Ltd.';
+  String get legalese =>
+      'Warframe и логотип Warframe являются зарегистрированными торговыми марками Digital Extremes Ltd.\nCephalon Navis и WFCD никаким образом не связаны с Digital Extremes Ltd.';
 
   @override
   String get homePageTitle => 'Главная';
@@ -657,7 +660,8 @@ class NavisLocalizationsRu extends NavisLocalizations {
   String get archimedeaWarningTitle => 'Предупреждение';
 
   @override
-  String get archimedeaWarningSubtitle => 'DE doesn\'t always update Deep/Temporal Archimedea data after a weekly reset so consider this unstable.\nWarning will be removed when data rotation is more consistent';
+  String get archimedeaWarningSubtitle =>
+      'DE doesn\'t always update Deep/Temporal Archimedea data after a weekly reset so consider this unstable.\nWarning will be removed when data rotation is more consistent';
 
   @override
   String get activitiesTitle => 'Действия';

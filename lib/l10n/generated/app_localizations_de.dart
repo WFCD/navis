@@ -50,7 +50,8 @@ class NavisLocalizationsDe extends NavisLocalizations {
   String get errorTitle => 'Ein Anwendungsfehler ist aufgetreten';
 
   @override
-  String get errorDescription => 'Es gab einen unerwarteten Fehler im Kernsystem.\nFehler wird an den Systemadministrator gemeldet...';
+  String get errorDescription =>
+      'Es gab einen unerwarteten Fehler im Kernsystem.\nFehler wird an den Systemadministrator gemeldet...';
 
   @override
   String get baroTitle => 'Baro Ki\'Teer';
@@ -256,7 +257,8 @@ class NavisLocalizationsDe extends NavisLocalizations {
   String get systemThemeTitle => 'System';
 
   @override
-  String get legalese => 'Warframe und das Warframe Logo sind eingetragene Warenzeichen von Digital Extremes Ltd. Weder Cephalon Navis oder WFCD sind in irgendeiner Weise mit Digital Extremes Ltd. verbunden.';
+  String get legalese =>
+      'Warframe und das Warframe Logo sind eingetragene Warenzeichen von Digital Extremes Ltd. Weder Cephalon Navis oder WFCD sind in irgendeiner Weise mit Digital Extremes Ltd. verbunden.';
 
   @override
   String get homePageTitle => 'Startseite';
@@ -657,7 +659,8 @@ class NavisLocalizationsDe extends NavisLocalizations {
   String get archimedeaWarningTitle => 'Warnung';
 
   @override
-  String get archimedeaWarningSubtitle => 'DE aktualisiert die Daten für die tiefe bzw. temporale Archimede nicht immer nach einem wöchentlichen Reset; betrachte diese Informationen unter Vorbehalt.\nWarnung wird gelöscht, wenn die Datenrotation konsistenter ist';
+  String get archimedeaWarningSubtitle =>
+      'DE aktualisiert die Daten für die tiefe bzw. temporale Archimede nicht immer nach einem wöchentlichen Reset; betrachte diese Informationen unter Vorbehalt.\nWarnung wird gelöscht, wenn die Datenrotation konsistenter ist';
 
   @override
   String get activitiesTitle => 'Aktivitäten';

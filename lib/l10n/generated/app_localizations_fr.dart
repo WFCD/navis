@@ -50,7 +50,8 @@ class NavisLocalizationsFr extends NavisLocalizations {
   String get errorTitle => 'Une erreur inattendue s’est produite';
 
   @override
-  String get errorDescription => 'Il y a eu une erreur inattendue au sein du système.\nSignalement de l\'erreur à l\'administrateur du système...';
+  String get errorDescription =>
+      'Il y a eu une erreur inattendue au sein du système.\nSignalement de l\'erreur à l\'administrateur du système...';
 
   @override
   String get baroTitle => 'Baro Ki\'Teer';
@@ -136,7 +137,8 @@ class NavisLocalizationsFr extends NavisLocalizations {
   String get rareAlertsNotificationTitle => 'Alertes Rares';
 
   @override
-  String get rareAlertsNotificationDescription => 'Notifications d\'alertes rares, principalement des cadeaux du Lotus.';
+  String get rareAlertsNotificationDescription =>
+      'Notifications d\'alertes rares, principalement des cadeaux du Lotus.';
 
   @override
   String get operationAlertsNotificationTitle => 'Operation Alerts';
@@ -175,13 +177,15 @@ class NavisLocalizationsFr extends NavisLocalizations {
   String get warframeNewsNotificationTitle => 'Actualités';
 
   @override
-  String get warframeNewsNotificationDescription => 'Nouvelles notifications pour le Prime Access, les directs et les mises à jour.';
+  String get warframeNewsNotificationDescription =>
+      'Nouvelles notifications pour le Prime Access, les directs et les mises à jour.';
 
   @override
   String get planetCyclesNotificationTitle => 'Cycles des mondes ouverts';
 
   @override
-  String get planetCyclesNotificationDescription => 'Ouvrir les notifications des mondes ouverts pour leurs cycles respectifs.';
+  String get planetCyclesNotificationDescription =>
+      'Ouvrir les notifications des mondes ouverts pour leurs cycles respectifs.';
 
   @override
   String get resourcesNotificationTitle => 'Ressources';
@@ -256,7 +260,8 @@ class NavisLocalizationsFr extends NavisLocalizations {
   String get systemThemeTitle => 'Automatique';
 
   @override
-  String get legalese => 'Warframe et le logo Warframe sont des marques déposées de Digital Extremes Ltd. Cephalon Navis et WFCD ne sont en aucune façon affiliés à Digital Extremes Ltd.';
+  String get legalese =>
+      'Warframe et le logo Warframe sont des marques déposées de Digital Extremes Ltd. Cephalon Navis et WFCD ne sont en aucune façon affiliés à Digital Extremes Ltd.';
 
   @override
   String get homePageTitle => 'Accueil';
@@ -271,7 +276,8 @@ class NavisLocalizationsFr extends NavisLocalizations {
   String get issueTrackerTitle => 'Suivi des incidents';
 
   @override
-  String get warframeLinkTitle => 'Plus d\'informations sur le jeu Warframe peuvent être trouvées sur leur site officiel';
+  String get warframeLinkTitle =>
+      'Plus d\'informations sur le jeu Warframe peuvent être trouvées sur leur site officiel';
 
   @override
   String get settingsTitle => 'Paramètres';
@@ -657,7 +663,8 @@ class NavisLocalizationsFr extends NavisLocalizations {
   String get archimedeaWarningTitle => 'Attention';
 
   @override
-  String get archimedeaWarningSubtitle => 'DE doesn\'t always update Deep/Temporal Archimedea data after a weekly reset so consider this unstable.\nWarning will be removed when data rotation is more consistent';
+  String get archimedeaWarningSubtitle =>
+      'DE doesn\'t always update Deep/Temporal Archimedea data after a weekly reset so consider this unstable.\nWarning will be removed when data rotation is more consistent';
 
   @override
   String get activitiesTitle => 'Activities';
