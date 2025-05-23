@@ -17,19 +17,22 @@ class CachedItemAdapter extends TypeAdapter<CachedItem> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return CachedItem(
-      fields[0] as Uint8List,
-      fields[1] as DateTime,
+      data: fields[0] as Uint8List,
+      timestamp: fields[1] as DateTime,
+      ttl: fields[2] == null ? const Duration(seconds: 60) : fields[2] as Duration,
     );
   }
 
   @override
   void write(BinaryWriter writer, CachedItem obj) {
     writer
-      ..writeByte(2)
+      ..writeByte(3)
       ..writeByte(0)
       ..write(obj.data)
       ..writeByte(1)
-      ..write(obj.expiry);
+      ..write(obj.timestamp)
+      ..writeByte(2)
+      ..write(obj.ttl);
   }
 
   @override
@@ -38,7 +41,5 @@ class CachedItemAdapter extends TypeAdapter<CachedItem> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is CachedItemAdapter &&
-          runtimeType == other.runtimeType &&
-          typeId == other.typeId;
+      other is CachedItemAdapter && runtimeType == other.runtimeType && typeId == other.typeId;
 }

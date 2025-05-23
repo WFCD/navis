@@ -185,13 +185,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "8.9.5"
-  cache_client:
-    dependency: "direct main"
-    description:
-      path: "packages/cache_client"
-      relative: true
-    source: path
-    version: "0.1.0+1"
   cached_network_image:
     dependency: "direct main"
     description:
@@ -336,6 +329,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.13.1"
+  cronet_http:
+    dependency: transitive
+    description:
+      name: cronet_http
+      sha256: "5ed075c59b2d4bd43af4e73d906b8082e98ecd2af9c625327370ef28361bf635"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.3.4"
   crypto:
     dependency: transitive
     description:
@@ -352,6 +353,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.2"
+  cupertino_http:
+    dependency: transitive
+    description:
+      name: cupertino_http
+      sha256: "8fb9e2c36d0732d9d96abd76683406b57e78a2514e27c962e0c603dbe6f2e3f8"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.2.0"
   dart_style:
     dependency: transitive
     description:
@@ -755,6 +764,13 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.4.0"
+  http_client:
+    dependency: "direct main"
+    description:
+      path: "packages/http_client"
+      relative: true
+    source: path
+    version: "0.1.0+1"
   http_multi_server:
     dependency: transitive
     description:
@@ -771,6 +787,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.1.2"
+  http_profile:
+    dependency: transitive
+    description:
+      name: http_profile
+      sha256: "7e679e355b09aaee2ab5010915c932cce3f2d1c11c3b2dc177891687014ffa78"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.1.0"
   husky:
     dependency: "direct dev"
     description:
@@ -842,6 +866,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.2.2"
+  jni:
+    dependency: transitive
+    description:
+      name: jni
+      sha256: "459727a9daf91bdfb39b014cf3c186cf77f0136124a274ac83c186e12262ac4e"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.12.2"
   js:
     dependency: transitive
     description:
@@ -984,6 +1016,14 @@ packages:
       relative: true
     source: path
     version: "1.0.0+1"
+  objective_c:
+    dependency: transitive
+    description:
+      name: objective_c
+      sha256: "9f034ba1eeca53ddb339bc8f4813cb07336a849cd735559b60cdc068ecce2dc7"
+      url: "https://pub.dev"
+    source: hosted
+    version: "7.1.0"
   octo_image:
     dependency: transitive
     description:

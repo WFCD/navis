@@ -1,7 +1,7 @@
 import 'dart:typed_data';
 
-import 'package:cache_client/src/cached_item.dart';
 import 'package:hive_ce/hive.dart';
+import 'package:http_client/src/models/cache_item.dart';
 
 part 'hive_adapters.g.dart';
 

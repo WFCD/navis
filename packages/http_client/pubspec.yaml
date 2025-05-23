@@ -1,4 +1,4 @@
-name: cache_client
+name: http_client
 description: A Very Good Project created by Very Good CLI.
 version: 0.1.0+1
 publish_to: none
@@ -8,12 +8,14 @@ environment:
   flutter: ^3.24.0
 
 dependencies:
+  cronet_http: ^1.3.3
   crypto: ^3.0.6
+  cupertino_http: ^2.1.1
   flutter:
     sdk: flutter
   hive_ce: ^2.10.1
-  hive_ce_flutter: ^2.2.0
   http: ^1.3.0
+  meta: ^1.16.0
   path_provider: ^2.1.5
 
 dev_dependencies:
@@ -22,3 +24,5 @@ dev_dependencies:
     sdk: flutter
   hive_ce_generator: ^1.8.2
   mocktail: ^1.0.4
+  path_provider_platform_interface: ^2.1.2
+  plugin_platform_interface: ^2.1.8

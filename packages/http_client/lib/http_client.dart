@@ -2,5 +2,4 @@
 library;
 
 export 'src/cache_client.dart';
-export 'src/cached_item.dart';
-export 'src/hive/hive_adapters.dart';
+export 'src/http_client.dart';

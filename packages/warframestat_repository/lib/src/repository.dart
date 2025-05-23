@@ -1,7 +1,7 @@
 import 'dart:convert';
 
-import 'package:cache_client/cache_client.dart';
 import 'package:http/http.dart';
+import 'package:http_client/http_client.dart';
 import 'package:logging/logging.dart';
 import 'package:warframestat_client/warframestat_client.dart';
 import 'package:warframestat_repository/src/models/regions.dart';
@@ -56,7 +56,7 @@ class WarframestatRepository {
   /// end so caching for even a year is perfectly fine
   Future<List<SynthTarget>> fetchTargets() async {
     final client = SynthTargetClient(
-      client: await CacheClient.initCacheClient(ttl: const Duration(days: 30), client: _client),
+      client: await _cacheClient(const Duration(days: 30)),
       ua: userAgent,
       language: language,
     );
@@ -67,7 +67,7 @@ class WarframestatRepository {
   /// Search warframe-items
   Future<List<MinimalItem>> searchItems(String query) async {
     final client = WarframeItemsClient(
-      client: await CacheClient.initCacheClient(ttl: const Duration(days: 1), client: _client),
+      client: await _cacheClient(const Duration(days: 1)),
       ua: userAgent,
       language: language,
     );
@@ -78,7 +78,7 @@ class WarframestatRepository {
   /// Get one item based on unique name
   Future<Item?> fetchItem(String uniqueName) async {
     final client = WarframeItemsClient(
-      client: await CacheClient.initCacheClient(ttl: const Duration(minutes: 30), client: _client),
+      client: await _cacheClient(const Duration(minutes: 30)),
       ua: userAgent,
       language: language,
     );
@@ -87,7 +87,7 @@ class WarframestatRepository {
   }
 
   Future<CraigRegion> fetchRegions() async {
-    final client = await CacheClient.initCacheClient(ttl: const Duration(days: 30), client: _client);
+    final client = await _cacheClient(const Duration(days: 30));
     final res = await client.get(Uri.parse('https://cdn.truemaster.app/regions.json'));
 
     final json = jsonDecode(res.body) as Map<String, dynamic>;
@@ -99,5 +99,12 @@ class WarframestatRepository {
 
   List<Map<String, dynamic>> _jsonMapList(List<dynamic> list) {
     return List<Map<String, dynamic>>.from(list);
+  }
+
+  Future<CacheClient> _cacheClient(Duration ttl) async {
+    final client = await CacheClient.init(_client);
+    client.ttl = ttl;
+
+    return client;
   }
 }

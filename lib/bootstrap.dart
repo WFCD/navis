@@ -4,6 +4,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:hive_ce_flutter/adapters.dart';
+import 'package:http_client/http_client.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:logging/logging.dart';
 import 'package:navis/app/app_observer.dart';
@@ -33,13 +34,14 @@ Future<void> bootstrap(BootstrapBuilder builder) async {
 
   final observer = RouteObserver<ModalRoute<void>>();
   final router = AppRouter(navigatorKey: GlobalKey<NavigatorState>(), observer: observer);
+  final client = SentryHttpClient(client: buildNativeClient());
 
   logger.info('Booting up Navis');
   runApp(
     RepositoryBootstrap(
       settings: settings,
       routeObserver: observer,
-      client: SentryHttpClient(),
+      client: client,
       child: BlocBootstrap(child: await builder(router)),
     ),
   );

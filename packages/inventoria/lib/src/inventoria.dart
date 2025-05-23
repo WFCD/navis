@@ -1,11 +1,11 @@
 import 'dart:convert';
 
-import 'package:cache_client/cache_client.dart';
 import 'package:crypto/crypto.dart';
 import 'package:drift/drift.dart';
 import 'package:drift/isolate.dart';
 import 'package:drift_flutter/drift_flutter.dart';
 import 'package:http/http.dart';
+import 'package:http_client/http_client.dart';
 import 'package:inventoria/src/inventoria.steps.dart';
 import 'package:inventoria/src/models/models.dart';
 import 'package:inventoria/src/utils/utils.dart';
@@ -48,10 +48,10 @@ class Inventoria {
   /// Update offline copy of profile and xp items
   Future<void> updateProfile(String id) async {
     _logger.info('Updating profile');
-    final client = ProfileClient(
-      client: await CacheClient.initCacheClient(client: _client, ttl: const Duration(minutes: 60)),
-      playerId: id,
-    );
+    final cache = await CacheClient.init(_client);
+    cache.ttl = const Duration(minutes: Duration.minutesPerHour);
+
+    final client = ProfileClient(client: cache, playerId: id);
     final profile = await client.fetchProfile().timeout(const Duration(seconds: 120));
 
     await _database

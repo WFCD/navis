@@ -5,9 +5,11 @@ nextTypeId: 1
 types:
   CachedItem:
     typeId: 0
-    nextIndex: 2
+    nextIndex: 3
     fields:
       data:
         index: 0
-      expiry:
+      timestamp:
         index: 1
+      ttl:
+        index: 2
