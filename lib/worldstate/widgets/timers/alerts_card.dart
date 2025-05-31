@@ -142,7 +142,7 @@ class _AlertItemReward extends StatelessWidget {
 
         return EntryViewOpenContainer(
           item: item as MinimalItem,
-          builder: (_, __) => _AlertReward(reward: reward, item: item),
+          builder: (_, _) => _AlertReward(reward: reward, item: item),
         );
       },
     );

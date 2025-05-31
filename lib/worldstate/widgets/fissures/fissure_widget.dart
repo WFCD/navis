@@ -96,7 +96,7 @@ class OmniaFissureWidget extends StatefulWidget {
 }
 
 class _OmniaFissureWidgetState extends State<OmniaFissureWidget> {
-  static const _icons = [
+  static const List<IconData> _icons = [
     WarframeIcons.fissuresLith,
     WarframeIcons.fissuresMeso,
     WarframeIcons.fissuresNeo,

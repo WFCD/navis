@@ -5,7 +5,7 @@ import 'package:cupertino_http/cupertino_http.dart';
 import 'package:http/http.dart';
 import 'package:http/io_client.dart';
 
-const cacheMaxSize = 2 * 1024 * 1024;
+const int cacheMaxSize = 2 * 1024 * 1024;
 const userAgent = 'cephalon_navis';
 
 Client buildNativeClient() {

@@ -17,6 +17,3 @@ dependencies:
 dependency_overrides:
   meta: 1.15.0
   web: 0.3.0
-
-dev_dependencies:
-  very_good_analysis: ^7.0.0

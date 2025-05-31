@@ -48,7 +48,7 @@ class EntryViewOpenContainer extends StatelessWidget {
       useRootNavigator: context.rootNavigator.mounted,
       openColor: openColor ?? Theme.of(context).colorScheme.surfaceContainer,
       closedColor: closedColor ?? Colors.transparent,
-      openBuilder: (_, __) => EntryView(item: item),
+      openBuilder: (_, _) => EntryView(item: item),
       closedBuilder: builder,
     );
   }

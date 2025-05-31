@@ -148,7 +148,7 @@ class _CircuitPathTile extends StatelessWidget {
 
         if (item == null) return tile;
 
-        return EntryViewOpenContainer(item: item, builder: (_, __) => tile);
+        return EntryViewOpenContainer(item: item, builder: (_, _) => tile);
       },
     );
   }

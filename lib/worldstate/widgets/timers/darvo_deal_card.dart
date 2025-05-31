@@ -134,7 +134,7 @@ class _DealWidget extends StatelessWidget {
 
         if (item == null) return row;
 
-        return EntryViewOpenContainer(item: item as MinimalItem, builder: (_, __) => row);
+        return EntryViewOpenContainer(item: item as MinimalItem, builder: (_, _) => row);
       },
     );
   }

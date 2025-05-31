@@ -1,9 +1,9 @@
 import 'package:drift/drift.dart';
 
 class InventoriaManifest extends Table {
-  late final id = integer()();
-  late final hash = text()();
-  late final timestamp = dateTime()();
+  late final Column<int> id = integer()();
+  late final Column<String> hash = text()();
+  late final Column<DateTime> timestamp = dateTime()();
 
   @override
   Set<Column<Object>>? get primaryKey => {id};

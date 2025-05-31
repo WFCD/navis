@@ -47,7 +47,7 @@ class _CodexSearchBarState extends State<CodexSearchBar> {
         closedColor: Theme.of(context).colorScheme.surface,
         openColor: Theme.of(context).colorScheme.surface,
         closedBuilder: (_, onTap) => CodexResult(item: item, onTap: onTap),
-        openBuilder: (_, __) => EntryView(item: item),
+        openBuilder: (_, _) => EntryView(item: item),
       );
     }
 

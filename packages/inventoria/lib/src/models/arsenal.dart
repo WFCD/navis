@@ -6,31 +6,31 @@ const hidden = ['Excalibur Prime', 'Skana Prime', 'Lato Prime', 'Helminth'];
 /// Represents an item
 class InventoryItem extends Table {
   /// Unique name provided by DE
-  late final uniqueName = text()();
+  late final Column<String> uniqueName = text()();
 
   /// Item name
-  late final name = text()();
+  late final Column<String> name = text()();
 
   /// Item description if possible
-  late final description = text().nullable()();
+  late final Column<String> description = text().nullable()();
 
   /// Image name
-  late final image = text().nullable()();
+  late final Column<String> image = text().nullable()();
 
   /// Item category according to DE
-  late final productCategory = text().nullable()();
+  late final Column<String> productCategory = text().nullable()();
 
   /// Item type
-  late final type = text()();
+  late final Column<String> type = text()();
 
   /// Affinity
-  late final xp = integer().withDefault(const Constant(0))();
+  late final Column<int> xp = integer().withDefault(const Constant(0))();
 
   /// If the item is missing based on stored xp
-  late final isMissing = boolean().generatedAs(xp.equals(0))();
+  late final Column<bool> isMissing = boolean().generatedAs(xp.equals(0))();
 
   /// If the item can be hidden from the user
-  late final isHidden = boolean().generatedAs(isMissing & name.isIn(hidden))();
+  late final Column<bool> isHidden = boolean().generatedAs(isMissing & name.isIn(hidden))();
 
   @override
   Set<Column<Object>>? get primaryKey => {uniqueName};
