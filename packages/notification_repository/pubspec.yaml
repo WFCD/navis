@@ -19,4 +19,4 @@ dependency_overrides:
   web: 0.3.0
 
 dev_dependencies:
-  very_good_analysis: ^7.0.0
+  very_good_analysis: ^8.0.0
