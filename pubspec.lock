@@ -736,10 +736,10 @@ packages:
     dependency: "direct main"
     description:
       name: hive_ce
-      sha256: "192b7334299e3672efa1f85d544fef0091c5c592be5caada61417e37723addc6"
+      sha256: "708bb39050998707c5d422752159f91944d3c81ab42d80e1bd0ee37d8e130658"
       url: "https://pub.dev"
     source: hosted
-    version: "2.11.2"
+    version: "2.11.3"
   hive_ce_flutter:
     dependency: "direct main"
     description:
@@ -1674,10 +1674,10 @@ packages:
     dependency: "direct main"
     description:
       name: warframestat_client
-      sha256: "144bc12bd78020d166bd682fc2ee42a7ffa1f693c416276c5a59e624a5dfb0b8"
+      sha256: "976c56f02b220a7db542c85d23b96aebee15a03e6884b1c67b85e3611fd93836"
       url: "https://pub.dev"
     source: hosted
-    version: "4.2.9"
+    version: "4.2.10"
   warframestat_repository:
     dependency: "direct main"
     description:
