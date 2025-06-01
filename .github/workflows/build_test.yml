@@ -24,9 +24,7 @@ jobs:
           architecture: x64 # optional, x64 or arm64
 
       - name: Flutter doctor
-        run: |
-          flutter doctor --android-licenses
-          flutter doctor -v
+        run: flutter doctor -v
       - name: Install keystore and Firebase keys
         env:
           FIREBASE_OPTIONS: ${{ secrets.FIREBASE_OPTIONS }}
