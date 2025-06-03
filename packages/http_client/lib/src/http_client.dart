@@ -6,15 +6,14 @@ import 'package:http/http.dart';
 import 'package:http/io_client.dart';
 
 const int cacheMaxSize = 2 * 1024 * 1024;
-const userAgent = 'cephalon_navis';
 
-Client buildNativeClient() {
+Future<Client> buildNativeClient() async {
   final Client httpClient;
 
   if (Platform.isIOS || Platform.isMacOS) {
     final config = URLSessionConfiguration.ephemeralSessionConfiguration()
-      ..cache = URLCache.withCapacity(memoryCapacity: cacheMaxSize)
-      ..httpAdditionalHeaders = {HttpHeaders.userAgentHeader: userAgent};
+      ..cache = URLCache.withCapacity(memoryCapacity: cacheMaxSize);
+    // ..httpAdditionalHeaders = {HttpHeaders.userAgentHeader: userAgent};
 
     httpClient = CupertinoClient.fromSessionConfiguration(config);
   } else if (Platform.isAndroid) {
@@ -22,12 +21,14 @@ Client buildNativeClient() {
       cacheMode: CacheMode.memory,
       cacheMaxSize: cacheMaxSize,
       enableBrotli: true,
-      userAgent: userAgent,
+      // userAgent: userAgent,
     );
 
     httpClient = CronetClient.fromCronetEngine(engine, closeEngine: true);
   } else {
-    httpClient = IOClient(HttpClient()..userAgent = userAgent);
+    httpClient = IOClient(HttpClient()
+        // ..userAgent = userAgent
+        );
   }
 
   return httpClient;

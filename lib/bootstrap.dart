@@ -35,7 +35,7 @@ Future<void> bootstrap(BootstrapBuilder builder) async {
   final observer = RouteObserver<ModalRoute<void>>();
   final router = AppRouter(navigatorKey: GlobalKey<NavigatorState>(), observer: observer);
   final client = SentryHttpClient(
-    client: buildNativeClient(),
+    client: await buildNativeClient(),
     // Get Default but also get what I think is cloudflare bot protection as a rough way of getting possibly affected installs
     failedRequestStatusCodes: [const SentryStatusCode.defaultRange(), SentryStatusCode(403)],
   );
