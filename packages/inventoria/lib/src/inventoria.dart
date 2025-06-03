@@ -93,8 +93,13 @@ class Inventoria {
 
   /// Updates and cleans up inventory items based on masterable items in warframe-items
   Future<void> updateInventory() async {
+    // This is about two weeks
+    const maxTime = Duration(days: Duration.hoursPerDay * 14);
     final timestamp = (await _database.managers.inventoriaManifest.getSingleOrNull())?.timestamp;
-    if (timestamp != null && timestamp.difference(DateTime.timestamp()) < const Duration(days: 7)) return;
+
+    if (timestamp != null && timestamp.difference(DateTime.timestamp()) < maxTime) {
+      return;
+    }
 
     _logger.info('Building inventory manifest');
     final items = (await WarframeItemsClient(
