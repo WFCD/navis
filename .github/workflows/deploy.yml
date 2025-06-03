@@ -62,7 +62,7 @@ jobs:
           ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
         run: |
           flutter build appbundle \
-            --dart-define=SENTRY_DSN=$SENTRY_DSN --dart-define=MATOMO_URL=$MATOMO_URL \
+            --dart-define=SENTRY_DSN=$SENTRY_DSN --dart-define=MATOMO_URL=$MATOMO_URL --dart-define=cronetHttpNoPlay=true \
             --flavor prod --split-debug-info=debug_info
 
       - name: Upload Sentry debug symbols
@@ -195,7 +195,7 @@ jobs:
           ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
         run: |
           flutter build apk \
-            --dart-define=SENTRY_DSN=$SENTRY_DSN --dart-define=MATOMO_URL=$MATOMO_URL \
+            --dart-define=SENTRY_DSN=$SENTRY_DSN --dart-define=MATOMO_URL=$MATOMO_URL --dart-define=cronetHttpNoPlay=true \
             --flavor prod --split-per-abi --split-debug-info=debug_info
 
       - name: Github Releases Deploy Beta
