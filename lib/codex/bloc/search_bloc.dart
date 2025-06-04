@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:io';
 
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +8,6 @@ import 'package:navis/codex/bloc/search_state.dart';
 import 'package:navis/codex/utils/result_filters.dart';
 import 'package:navis/utils/utils.dart';
 import 'package:rxdart/rxdart.dart';
-import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:warframestat_client/warframestat_client.dart';
 import 'package:warframestat_repository/warframestat_repository.dart';
 
@@ -18,8 +16,8 @@ export 'search_state.dart';
 
 class SearchBloc extends Bloc<SearchEvent, SearchState> {
   SearchBloc(this.repository) : super(CodexSearchEmpty()) {
-    on<SearchCodex>(_searchCodex, transformer: _waitForUser());
-    on<FilterResults>(_filterResults);
+    on<CodexTextChanged>(_searchCodex, transformer: _waitForUser());
+    on<CodexResultsFiltered>(_filterResults);
   }
 
   final WarframestatRepository repository;
@@ -28,50 +26,43 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
 
   static final _logger = Logger('SearchBloc');
 
-  Future<void> _searchCodex(SearchCodex event, Emitter<SearchState> emit) async {
+  Future<void> _searchCodex(CodexTextChanged event, Emitter<SearchState> emit) async {
     final text = event.text;
 
     if (text.isEmpty) {
       emit(CodexSearchEmpty());
     } else {
-      emit(CodexSearching());
+      emit(CodexSearchInProgress());
 
       try {
         final results = await ConnectionManager.call(() async => repository.searchItems(text));
         results.prioritizeResults();
 
         _originalResults = results;
-        emit(CodexSuccessfulSearch(results));
-      } on SocketException {
-        emit(const CodexSearchError('A network error has occurred'));
-      } on FormatException catch (e, stack) {
-        _logger.severe('Failed to parse out item', e, stack);
-        await Sentry.captureException(e, stackTrace: stack, hint: Hint.withMap({'query': event.text}));
-
-        emit(const CodexSearchError('Failed to parse server response'));
+        emit(CodexSearchSuccess(results));
       } on Exception catch (e, stack) {
         _logger.severe('Some extra weird shit is going on', e, stack);
 
-        emit(const CodexSearchError('Unknown Error occurred'));
+        emit(CodexSearchFailure(error: e, stackTrace: stack));
       }
     }
   }
 
-  Future<void> _filterResults(FilterResults event, Emitter<SearchState> emit) async {
-    emit(CodexSearching());
+  Future<void> _filterResults(CodexResultsFiltered event, Emitter<SearchState> emit) async {
+    emit(CodexSearchInProgress());
 
     final originalResults = List<MinimalItem>.from(_originalResults);
     if (event.category == WarframeItemCategory.all) {
-      return emit(CodexSuccessfulSearch(originalResults));
+      return emit(CodexSearchSuccess(originalResults));
     } else {
       final results = List<MinimalItem>.from(originalResults)
         ..retainWhere((e) => e.category.toLowerCase() == event.category.name);
 
-      emit(CodexSuccessfulSearch(results));
+      emit(CodexSearchSuccess(results));
     }
   }
 
-  EventTransformer<SearchCodex> _waitForUser() {
+  EventTransformer<CodexTextChanged> _waitForUser() {
     return (event, mapper) {
       return event.debounceTime(kThemeAnimationDuration).distinct().flatMap(mapper);
     };

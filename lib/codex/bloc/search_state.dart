@@ -5,30 +5,34 @@ sealed class SearchState extends Equatable {
   const SearchState();
 }
 
-class CodexSearchEmpty extends SearchState {
+final class CodexSearchEmpty extends SearchState {
   @override
   List<Object> get props => [];
 }
 
-class CodexSearching extends SearchState {
+final class CodexSearchInProgress extends SearchState {
   @override
   List<Object> get props => [];
 }
 
-class CodexSuccessfulSearch extends SearchState {
-  const CodexSuccessfulSearch(this.results);
+final class CodexSearchSuccess extends SearchState {
+  const CodexSearchSuccess(this.results);
 
   final List<MinimalItem> results;
 
   @override
   List<Object?> get props => [results];
-}
-
-class CodexSearchError extends SearchState {
-  const CodexSearchError(this.message);
-
-  final String message;
 
   @override
-  List<Object> get props => [message];
+  String toString() => 'CodexSearchSuccess(results: ${results.length})';
+}
+
+final class CodexSearchFailure extends SearchState {
+  const CodexSearchFailure({required this.error, required this.stackTrace});
+
+  final Exception error;
+  final StackTrace stackTrace;
+
+  @override
+  List<Object> get props => [error, stackTrace];
 }

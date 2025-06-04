@@ -19,43 +19,49 @@ class ItemCubit extends HydratedCubit<ItemState> {
   static final _logger = Logger('ItemCubit');
 
   Future<void> fetchItem() async {
+    emit(ItemFetchInProgress());
+
     final item = await _handleItemFetch(() => repo.fetchItem(name));
     if (isClosed) return;
-    if (item == null) return emit(const ItemNotFound());
+    if (item == null) return emit(ItemNotFound());
 
     emit(ItemFetchSuccess(item));
   }
 
   Future<void> fetchByName() async {
-    final items = await _handleItemFetch(() => repo.searchItems(name));
+    emit(ItemFetchInProgress());
 
+    final items = await _handleItemFetch(() => repo.searchItems(name));
     final item = items.where((item) => item.imageName != null).firstWhereOrNull((item) => item.name == name);
 
     if (isClosed) return;
-    if (item == null) return emit(const ItemNotFound());
+    if (item == null) return emit(ItemNotFound());
 
     emit(ItemFetchSuccess(item));
   }
 
   Future<void> fetchIncarnonGenesis() async {
-    final items = await _handleItemFetch(() async => repo.searchItems('Incarnon'));
+    emit(ItemFetchInProgress());
 
+    final items = await _handleItemFetch(() async => repo.searchItems('Incarnon'));
     final item = items.where((item) => item.imageName != null).firstWhereOrNull((item) {
       return name.replaceAll(' ', '') == item.name.replaceAll(' ', '');
     });
 
     if (isClosed) return;
-    if (item == null) return emit(const ItemNotFound());
+    if (item == null) return emit(ItemNotFound());
 
     emit(ItemFetchSuccess(item));
   }
 
   Future<T> _handleItemFetch<T>(FutureOr<T> Function() compute) async {
+    emit(ItemFetchInProgress());
+
     try {
       return ConnectionManager.call(compute);
-    } catch (e, stack) {
+    } on Exception catch (e, stack) {
       _logger.shout('Failed to parse $name', e, stack);
-      emit(const ItemFetchFailure());
+      emit(ItemFetchFailure(exception: e, stackTrace: stack));
 
       rethrow;
     }

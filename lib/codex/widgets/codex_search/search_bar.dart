@@ -31,9 +31,13 @@ class _CodexSearchBarState extends State<CodexSearchBar> {
 
   Future<List<MinimalItem>?> _search(String query) async {
     final api = RepositoryProvider.of<WarframestatRepository>(context);
-    final options = await api.searchItems(query);
 
-    return options..prioritizeResults();
+    try {
+      final options = await api.searchItems(query);
+      return options..prioritizeResults();
+    } on Exception {
+      return null;
+    }
   }
 
   Future<Iterable<Widget>> _suggestionsBuilder(BuildContext context, SearchController controller) async {
@@ -58,7 +62,7 @@ class _CodexSearchBarState extends State<CodexSearchBar> {
   }
 
   void _onSubmitted(String query) {
-    BlocProvider.of<SearchBloc>(context).add(SearchCodex(query));
+    BlocProvider.of<SearchBloc>(context).add(CodexTextChanged(query));
     _controller.closeView(_controller.text);
 
     if (!Navigator.of(context).canPop()) {
@@ -120,11 +124,11 @@ class _CodexSearchBarState extends State<CodexSearchBar> {
                 trailing:
                     Navigator.of(context).canPop()
                         ? [
-                          if (state is CodexSuccessfulSearch)
+                          if (state is CodexSearchSuccess)
                             PopupMenuButton<WarframeItemCategory>(
                               icon: const Icon(Icons.filter_list),
                               itemBuilder: (_) => _itemBuilder(),
-                              onSelected: (s) => BlocProvider.of<SearchBloc>(context).add(FilterResults(s)),
+                              onSelected: (s) => BlocProvider.of<SearchBloc>(context).add(CodexResultsFiltered(s)),
                             ),
                         ]
                         : null,

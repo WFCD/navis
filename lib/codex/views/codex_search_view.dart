@@ -4,6 +4,7 @@ import 'package:matomo_tracker/matomo_tracker.dart';
 import 'package:navis/codex/codex.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis_ui/navis_ui.dart';
+import 'package:warframestat_client/warframestat_client.dart';
 import 'package:warframestat_repository/warframestat_repository.dart';
 
 class CodexSearchPage extends StatelessWidget {
@@ -19,7 +20,7 @@ class CodexSearchPage extends StatelessWidget {
       child: Scaffold(
         body: SafeArea(
           child: BlocProvider(
-            create: (_) => SearchBloc(repo)..add(SearchCodex(query)),
+            create: (_) => SearchBloc(repo)..add(CodexTextChanged(query)),
             child: NestedScrollView(
               floatHeaderSlivers: true,
               headerSliverBuilder: (context, innerBoxIsScrolled) {
@@ -58,49 +59,46 @@ class CodexSearchView extends StatelessWidget {
 
     return BlocBuilder<SearchBloc, SearchState>(
       builder: (context, state) {
-        if (state is CodexSuccessfulSearch && state.results.isNotEmpty) {
-          return CustomScrollView(
-            key: const PageStorageKey<String>('codex_search'),
-            slivers: [
-              SliverOverlapInjector(handle: NestedScrollView.sliverOverlapAbsorberHandleFor(context)),
-              SliverList.builder(
-                itemCount: state.results.length,
-                itemBuilder: (BuildContext context, int index) {
-                  final item = state.results[index];
-
-                  return EntryViewOpenContainer(
-                    item: item,
-                    builder: (_, onTap) {
-                      return Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 8),
-                        child: CodexResult(
-                          item: state.results[index],
-                          showDescription: item.description != null,
-                          onTap: onTap,
-                        ),
-                      );
-                    },
-                  );
-                },
-              ),
-            ],
-          );
-        }
-
-        if (state is CodexSuccessfulSearch && state.results.isEmpty) {
-          return Center(child: Text(l10n.codexNoResults));
-        }
-
-        if (state is CodexSearchEmpty) {
-          return const SizedBox.shrink();
-        }
-
-        if (state is CodexSearchError) {
-          return Center(child: Text(state.message));
-        }
-
-        return const Center(child: WarframeSpinner());
+        return switch (state) {
+          CodexSearchEmpty() => const SizedBox.shrink(),
+          CodexSearchInProgress() => const Center(child: WarframeSpinner()),
+          CodexSearchFailure() => Center(child: Text(state.error.toString())),
+          CodexSearchSuccess(results: final r) =>
+            r.isNotEmpty ? Center(child: Text(l10n.codexNoResults)) : _CodexViewContent(results: r),
+        };
       },
+    );
+  }
+}
+
+class _CodexViewContent extends StatelessWidget {
+  const _CodexViewContent({required this.results});
+
+  final List<MinimalItem> results;
+
+  @override
+  Widget build(BuildContext context) {
+    return CustomScrollView(
+      key: const PageStorageKey<String>('codex_search'),
+      slivers: [
+        SliverOverlapInjector(handle: NestedScrollView.sliverOverlapAbsorberHandleFor(context)),
+        SliverList.builder(
+          itemCount: results.length,
+          itemBuilder: (BuildContext context, int index) {
+            final item = results[index];
+
+            return EntryViewOpenContainer(
+              item: item,
+              builder: (_, onTap) {
+                return Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 8),
+                  child: CodexResult(item: results[index], showDescription: item.description != null, onTap: onTap),
+                );
+              },
+            );
+          },
+        ),
+      ],
     );
   }
 }

@@ -5,20 +5,26 @@ abstract class SearchEvent extends Equatable {
   const SearchEvent();
 }
 
-class SearchCodex extends SearchEvent {
-  const SearchCodex(this.text);
+final class CodexTextChanged extends SearchEvent {
+  const CodexTextChanged(this.text);
 
   final String text;
 
   @override
   List<Object> get props => [text];
+
+  @override
+  String toString() => 'CodexTextChanged($text)';
 }
 
-class FilterResults extends SearchEvent {
-  const FilterResults(this.category);
+final class CodexResultsFiltered extends SearchEvent {
+  const CodexResultsFiltered(this.category);
 
   final WarframeItemCategory category;
 
   @override
   List<Object?> get props => [category];
+
+  @override
+  String toString() => 'CodexResultsFiltered($category)';
 }
