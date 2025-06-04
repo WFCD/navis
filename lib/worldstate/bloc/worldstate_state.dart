@@ -16,6 +16,9 @@ final class WorldstateSuccess extends WorldState {
 
   @override
   List<Object> get props => [seed];
+
+  @override
+  String toString() => 'WorldstateSuccess(state: ${seed.timestamp})';
 }
 
 final class WorldstateFailure extends WorldState {}

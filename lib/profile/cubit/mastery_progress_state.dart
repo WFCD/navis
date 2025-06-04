@@ -16,6 +16,9 @@ final class MasteryProgressSuccess extends MasteryProgressState {
 
   @override
   List<Object> get props => [items];
+
+  @override
+  String toString() => 'MasteryProgressSuccess(items: ${items.length})';
 }
 
 final class MasteryProgressFailure extends MasteryProgressState {}

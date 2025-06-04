@@ -18,6 +18,9 @@ final class ArsenalSuccess extends ArsenalState {
 
   @override
   List<Object> get props => [items];
+
+  @override
+  String toString() => 'ArsenalSuccess(items: ${items.length})';
 }
 
 final class ArsenalFailure extends ArsenalState {}

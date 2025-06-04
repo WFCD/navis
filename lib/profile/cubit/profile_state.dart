@@ -18,6 +18,9 @@ final class ProfileSuccessful extends ProfileState {
 
   @override
   List<Object> get props => [profile];
+
+  @override
+  String toString() => 'ProfileSuccessful(profile: ${profile.id})';
 }
 
 final class ProfileFailure extends ProfileState {}

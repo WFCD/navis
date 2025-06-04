@@ -23,6 +23,9 @@ final class WorldstateUpdated extends WorldstateEvent {
 
   @override
   List<Object> get props => [state];
+
+  @override
+  String toString() => 'WorldstateUpdated(state: ${state.timestamp})';
 }
 
 final class WorldstateFailed extends WorldstateEvent {}
