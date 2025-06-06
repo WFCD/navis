@@ -703,4 +703,7 @@ class NavisLocalizationsDe extends NavisLocalizations {
   String inventoriaSteps(String url) {
     return 'Cephalon Navis kann deine schreibgeschützten Profildaten verwenden, um deine Arsenal-XP und Meisterschafts-Auflistung zu verfolgen.\n\n1. Öffne $url auf einem Computer\n\n2. Lade deine EE.log oder Konto-ID von Cookies hoch\n\n3. Tippe auf \"Weiter\" und scannen Sie den generierten QR-Code';
   }
+
+  @override
+  String get profileSyncError => 'A problem occurred fetching your profile, you should file a bug report';
 }

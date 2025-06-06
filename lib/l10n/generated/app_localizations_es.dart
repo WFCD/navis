@@ -704,4 +704,7 @@ class NavisLocalizationsEs extends NavisLocalizations {
   String inventoriaSteps(String url) {
     return 'Cephalon Navis can use your read-only profile data to help track your arsenal XP and mastery points.\n\n1. Go to $url on a computer\n\n2. Upload your EE.log or account ID from cookies\n\n3. Tap next and scan the generated QR code';
   }
+
+  @override
+  String get profileSyncError => 'A problem occurred fetching your profile, you should file a bug report';
 }

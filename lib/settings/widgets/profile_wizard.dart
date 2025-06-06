@@ -12,8 +12,18 @@ import 'package:navis_ui/navis_ui.dart';
 class ProfileWizard extends StatefulWidget {
   const ProfileWizard({super.key});
 
-  static Future<void> show(BuildContext context) {
-    return showModalBottomSheet<void>(context: context, builder: (context) => const ProfileWizard());
+  static Future<void> startWizard(BuildContext context) async {
+    final id = await showModalBottomSheet<String>(context: context, builder: (context) => const ProfileWizard());
+    if (!context.mounted || id == null) return;
+
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(context.l10n.syncingInfoText)));
+
+    try {
+      await BlocProvider.of<ProfileCubit>(context).loadProfile(id);
+    } on Exception {
+      if (!context.mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(context.l10n.profileSyncError)));
+    }
   }
 
   @override
@@ -26,18 +36,10 @@ class _ProfileWizardState extends State<ProfileWizard> {
   int _currentPage = 0;
 
   void _onDetect(BarcodeCapture codes) {
-    final accoundId = codes.barcodes.first.displayValue!;
-    final profile = context.read<ProfileCubit>().state;
-    final current = switch (profile) {
-      ProfileSuccessful(profile: final p) => p.id,
-      _ => null,
-    };
+    final accoundId = codes.barcodes.first.displayValue;
+    if (accoundId == null) return;
 
-    if (current == accoundId) return;
-
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(context.l10n.syncingInfoText)));
-    BlocProvider.of<ProfileCubit>(context).loadProfile(accoundId);
-    Navigator.pop(context);
+    Navigator.pop(context, accoundId);
   }
 
   @override

@@ -24,6 +24,7 @@ class ProfileCubit extends HydratedCubit<ProfileState> {
     } on Exception {
       if (isClosed) return;
       emit(ProfileFailure());
+      rethrow;
     }
   }
 

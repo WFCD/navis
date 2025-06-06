@@ -1460,6 +1460,12 @@ abstract class NavisLocalizations {
   /// In en, this message translates to:
   /// **'Cephalon Navis can use your read-only profile data to help track your arsenal XP and mastery points.\n\n1. Go to {url} on a computer\n\n2. Upload your EE.log or account ID from cookies\n\n3. Tap next and scan the generated QR code'**
   String inventoriaSteps(String url);
+
+  /// Error message to show when the app isn't able to pull a profile
+  ///
+  /// In en, this message translates to:
+  /// **'A problem occurred fetching your profile, you should file a bug report'**
+  String get profileSyncError;
 }
 
 class _NavisLocalizationsDelegate extends LocalizationsDelegate<NavisLocalizations> {
