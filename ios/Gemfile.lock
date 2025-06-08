@@ -220,6 +220,7 @@ GEM
 
 PLATFORMS
   arm64-darwin-22
+  arm64-darwin-23
   x86_64-darwin-20
   x86_64-darwin-23
   x86_64-linux
@@ -230,4 +231,4 @@ DEPENDENCIES
   fastlane-plugin-semantic_release
 
 BUNDLED WITH
-   2.4.21
+   2.6.9
