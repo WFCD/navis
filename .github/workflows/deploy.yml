@@ -33,7 +33,7 @@ jobs:
           java-version: 17
 
       - name: Setup Flutter
-        uses: subosito/flutter-action@v2.19.0
+        uses: subosito/flutter-action@v2.20.0
         with:
           channel: ${{ env.FLUTTER_VERSION }}
           cache: true
@@ -120,7 +120,7 @@ jobs:
           bundle exec fastlane match appstore --readonly true -s "fastlane_tmp_keychain"
 
       - name: Install Flutter SDK
-        uses: subosito/flutter-action@v2.19.0
+        uses: subosito/flutter-action@v2.20.0
         with:
           channel: ${{ env.FLUTTER_VERSION }}
           cache: true
@@ -166,7 +166,7 @@ jobs:
           distribution: microsoft
           java-version: 17
 
-      - uses: subosito/flutter-action@v2.19.0
+      - uses: subosito/flutter-action@v2.20.0
         with:
           channel: ${{ env.FLUTTER_VERSION }}
           cache: true
@@ -244,7 +244,7 @@ jobs:
           bundle exec fastlane match appstore --readonly true -s "fastlane_tmp_keychain"
 
       - name: Install Flutter SDK
-        uses: subosito/flutter-action@v2.19.0
+        uses: subosito/flutter-action@v2.20.0
         with:
           channel: ${{ env.FLUTTER_VERSION }}
           cache: true
