@@ -11,6 +11,8 @@ import 'package:warframestat_repository/warframestat_repository.dart';
 part 'worldstate_event.dart';
 part 'worldstate_state.dart';
 
+Stream<Worldstate>? _worldstate;
+
 class WorldstateBloc extends HydratedBloc<WorldstateEvent, WorldState> with ReplayBlocMixin {
   WorldstateBloc(this.repository) : super(WorldstateInitial()) {
     on<WorldstateStarted>(_start);
@@ -23,9 +25,11 @@ class WorldstateBloc extends HydratedBloc<WorldstateEvent, WorldState> with Repl
   final _logger = Logger('WorldstateBloc');
 
   Future<void> _start(WorldstateStarted event, Emitter<WorldState> emit) async {
+    _worldstate ??= repository.worldstate().asBroadcastStream();
     repository.language = Language.values.byName(event.locale.languageCode);
+
     await emit.onEach(
-      repository.worldstate().throttleTime(const Duration(seconds: Duration.secondsPerMinute)),
+      _worldstate!.throttleTime(const Duration(seconds: Duration.secondsPerMinute)),
       onData: (state) {
         if (isClosed) return;
         add(WorldstateUpdated(state..clean()));
