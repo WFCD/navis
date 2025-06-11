@@ -64,7 +64,7 @@ class CodexSearchView extends StatelessWidget {
           CodexSearchInProgress() => const Center(child: WarframeSpinner()),
           CodexSearchFailure() => Center(child: Text(state.error.toString())),
           CodexSearchSuccess(results: final r) =>
-            r.isNotEmpty ? Center(child: Text(l10n.codexNoResults)) : _CodexViewContent(results: r),
+            r.isEmpty ? Center(child: Text(l10n.codexNoResults)) : _CodexViewContent(results: r),
         };
       },
     );
