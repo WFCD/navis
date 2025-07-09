@@ -1039,7 +1039,7 @@
     "description": "Text displayed next to the weekly reset time for the circuit",
     "type": "text"
   },
-  "circuitResetSubtitle": "Tap to see current offerings",
+  "circuitResetSubtitle": "",
   "@circuitResetSubtitle": {
     "description": "Text displayed under circuitResetTitle",
     "type": "text"
