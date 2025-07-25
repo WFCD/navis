@@ -31,7 +31,7 @@ class TraderCard extends StatelessWidget {
               },
           builder: (context, traders) {
             final now = DateTime.timestamp();
-            final trader = traders?.first;
+            final trader = traders?.firstWhere((t) => !t.location.contains('TennoCon'));
             final isActive = trader?.active ?? false;
 
             final date = isActive ? trader?.expiry ?? now : trader?.activation ?? now;
