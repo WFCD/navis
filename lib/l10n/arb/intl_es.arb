@@ -23,12 +23,12 @@
     "description": "General button to see more details of given object",
     "type": "text"
   },
-  "seeMore": "See More",
+  "seeMore": "Ver más",
   "@seeMore": {
     "description": "General button to see more of a overview object",
     "type": "text"
   },
-  "seeWiki": "See Wiki",
+  "seeWiki": "Ver Wiki",
   "@seeWiki": {
     "description": "General button to wiki of given item",
     "type": "text"
@@ -130,17 +130,17 @@
     "description": "Razorback progress title",
     "type": "text"
   },
-  "cetusCycleTitle": "Earth/Plains of Eidolon",
+  "cetusCycleTitle": "Tierra/Llanuras de Eidolon",
   "@cetusCycleTitle": {
     "description": "Earth and Cetus cycle title",
     "type": "text"
   },
-  "vallisCycleTitle": "Orb Vallis",
+  "vallisCycleTitle": "Valles del Orbe",
   "@vallisCycleTitle": {
     "description": "Vallis cycle title",
     "type": "text"
   },
-  "cambionCycleTitle": "Cambion Drift",
+  "cambionCycleTitle": "Deriva Cambion",
   "@cambionCycleTitle": {
     "description": "Cambion Cycle title",
     "type": "text"
@@ -220,7 +220,7 @@
     "description": "Description for rare alerts option",
     "type": "text"
   },
-  "operationAlertsNotificationTitle": "Operation Alerts",
+  "operationAlertsNotificationTitle": "Alertas de Operaciones",
   "@operationAlertsNotificationTitle": {
     "description": "Rare Alerts title",
     "type": "text"
@@ -450,12 +450,12 @@
     "description": "Settings title",
     "type": "text"
   },
-  "dailyResetTitle": "Daily Reset Timer",
+  "dailyResetTitle": "Reinicio del Temporizador Diario",
   "@dailyResetTitle": {
     "description": "Title for daily timer",
     "type": "text"
   },
-  "weeklyResetTitle": "Weekly Reset Timer",
+  "weeklyResetTitle": "Reinicio de Temporizador Semanal",
   "@weeklyResetTitle": {
     "description": "Title for weekly timer",
     "type": "text"
@@ -1165,5 +1165,10 @@
         "type": "String"
       }
     }
+  },
+  "profileSyncError": "A problem occurred fetching your profile, you should file a bug report",
+  "@profileSyncError": {
+    "description": "Error message to show when the app isn't able to pull a profile",
+    "type": "text"
   }
 }
