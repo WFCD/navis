@@ -23,12 +23,12 @@
     "description": "General button to see more details of given object",
     "type": "text"
   },
-  "seeMore": "See More",
+  "seeMore": "Ver más",
   "@seeMore": {
     "description": "General button to see more of a overview object",
     "type": "text"
   },
-  "seeWiki": "See Wiki",
+  "seeWiki": "Ver Wiki",
   "@seeWiki": {
     "description": "General button to wiki of given item",
     "type": "text"
@@ -130,17 +130,17 @@
     "description": "Razorback progress title",
     "type": "text"
   },
-  "cetusCycleTitle": "Earth/Plains of Eidolon",
+  "cetusCycleTitle": "Tierra/Llanuras de Eidolon",
   "@cetusCycleTitle": {
     "description": "Earth and Cetus cycle title",
     "type": "text"
   },
-  "vallisCycleTitle": "Orb Vallis",
+  "vallisCycleTitle": "Valles del Orbe",
   "@vallisCycleTitle": {
     "description": "Vallis cycle title",
     "type": "text"
   },
-  "cambionCycleTitle": "Cambion Drift",
+  "cambionCycleTitle": "Deriva Cambion",
   "@cambionCycleTitle": {
     "description": "Cambion Cycle title",
     "type": "text"
@@ -220,7 +220,7 @@
     "description": "Description for rare alerts option",
     "type": "text"
   },
-  "operationAlertsNotificationTitle": "Operation Alerts",
+  "operationAlertsNotificationTitle": "Alertas de Operaciones",
   "@operationAlertsNotificationTitle": {
     "description": "Rare Alerts title",
     "type": "text"
