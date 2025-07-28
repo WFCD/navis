@@ -450,12 +450,12 @@
     "description": "Settings title",
     "type": "text"
   },
-  "dailyResetTitle": "Daily Reset Timer",
+  "dailyResetTitle": "Reinicio del Temporizador Diario",
   "@dailyResetTitle": {
     "description": "Title for daily timer",
     "type": "text"
   },
-  "weeklyResetTitle": "Weekly Reset Timer",
+  "weeklyResetTitle": "Reinicio de Temporizador Semanal",
   "@weeklyResetTitle": {
     "description": "Title for weekly timer",
     "type": "text"
