@@ -3,67 +3,52 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:navis/l10n/l10n.dart';
+import 'package:navis/utils/reset_timers.dart';
 import 'package:navis/worldstate/bloc/worldstate_bloc.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:warframe_icons/warframe_icons.dart';
 import 'package:warframestat_client/warframestat_client.dart';
 
-const double _iconSize = 28;
-
 class CycleCard extends StatelessWidget {
   const CycleCard({super.key});
 
-  Widget _earthStateIcon(EarthState state) {
+  static const double _iconSize = 28;
+
+  Widget _stateChange<T extends Enum>(T state) {
     return switch (state) {
       EarthState.day => const Icon(Icons.brightness_7, color: Colors.amber, size: _iconSize),
       EarthState.night => const Icon(Icons.brightness_3, color: Colors.blue, size: _iconSize),
-    };
-  }
-
-  Widget _vallisStateIcon(VallisState state) {
-    return switch (state) {
       VallisState.cold => const Icon(Icons.ac_unit, color: Colors.blue, size: _iconSize),
       VallisState.warm => const Icon(Icons.sunny, color: Colors.red, size: _iconSize),
+      CambionState.vome => _shadowIcon(state.name, WarframeIcons.requiemVome, Colors.blueAccent),
+      CambionState.fass => _shadowIcon(state.name, WarframeIcons.requiemFass, Colors.red),
+      ZarimanState() => FactionIcon(name: state.name, size: _iconSize),
+      Enum() => const Icon(WarframeIcons.nightmare, color: Colors.white, size: _iconSize),
     };
   }
 
-  Widget _cambionStateIcon(CambionState state) {
+  Widget _shadowIcon(String tooltip, IconData icon, Color color) {
     const scaleUp = 15;
-    final shadows = <Shadow>[
-      Shadow(
-        color: switch (state) {
-          CambionState.vome => Colors.blueAccent,
-          CambionState.fass => Colors.redAccent,
-        },
-        blurRadius: 5,
-      ),
-    ];
+    final shadows = <Shadow>[Shadow(color: color, blurRadius: 5)];
 
     return Tooltip(
-      message: toBeginningOfSentenceCase(state.name),
-      child: switch (state) {
-        CambionState.vome => Icon(
-          WarframeIcons.requiemVome,
-          color: Colors.blue,
-          size: _iconSize + scaleUp,
-          shadows: shadows,
-        ),
-        CambionState.fass => Icon(
-          WarframeIcons.requiemFass,
-          color: Colors.red,
-          size: _iconSize + scaleUp,
-          shadows: shadows,
-        ),
-      },
+      message: toBeginningOfSentenceCase(tooltip),
+      child: Icon(icon, color: Colors.red, size: _iconSize + scaleUp, shadows: shadows),
     );
   }
 
-  // Keep the function in case there's ever an icon for Fass and Vome.
-  Widget _stateText(BuildContext context, String state) {
-    return ColoredContainer.text(
-      text: toBeginningOfSentenceCase(state)!,
-      style: Theme.of(context).textTheme.labelLarge,
-    );
+  Widget _stateText<T extends Enum>(BuildContext context, T state) {
+    final locale = context.l10n;
+    final text = switch (state) {
+      DuviriState.joy => locale.duviriJoy,
+      DuviriState.anger => locale.duviriAnger,
+      DuviriState.envy => locale.duviriEnvy,
+      DuviriState.sorrow => locale.duviriSorrow,
+      DuviriState.fear => locale.duviriFear,
+      Enum() => state.name,
+    };
+
+    return ColoredContainer.text(text: toBeginningOfSentenceCase(text)!, style: Theme.of(context).textTheme.labelLarge);
   }
 
   bool _buildWhen(WorldState previous, WorldState next) {
@@ -100,41 +85,36 @@ class CycleCard extends StatelessWidget {
           final cambionCycle = worldstate?.cambionCycle;
           final zarimanCycle = worldstate?.zarimanCycle;
           final duviriCycle = worldstate?.duviriCycle;
+          final midrathCycle = midrathExpiry();
 
           return Column(
             children: <Widget>[
               _CycleRow(
-                currentState: _earthStateIcon(cetusCycle?.state ?? EarthState.day),
+                currentState: _stateChange(cetusCycle?.state ?? EarthState.day),
                 name: locale.cetusCycleTitle,
                 expiry: cetusCycle?.expiry,
               ),
               _CycleRow(
-                currentState: _vallisStateIcon(vallisCycle?.state ?? VallisState.warm),
+                currentState: _stateChange(vallisCycle?.state ?? VallisState.warm),
                 name: locale.vallisCycleTitle,
                 expiry: vallisCycle?.expiry,
               ),
               _CycleRow(
-                currentState: _cambionStateIcon(cambionCycle?.state ?? CambionState.fass),
+                currentState: _stateChange(cambionCycle?.state ?? CambionState.fass),
                 name: locale.cambionCycleTitle,
                 expiry: cambionCycle?.expiry,
               ),
               _CycleRow(
-                currentState: FactionIcon(name: zarimanCycle?.state.name ?? ZarimanState.corpus.name, size: _iconSize),
+                currentState: _stateChange(zarimanCycle?.state ?? ZarimanState.corpus),
                 name: locale.zarimanCycleTitle,
                 expiry: zarimanCycle?.expiry,
               ),
               _CycleRow(
                 name: locale.duviriCycleTitle,
                 expiry: duviriCycle?.expiry,
-                currentState: _stateText(context, switch (duviriCycle?.state ?? DuviriState.envy) {
-                  DuviriState.joy => locale.duviriJoy,
-                  DuviriState.anger => locale.duviriAnger,
-                  DuviriState.envy => locale.duviriEnvy,
-                  DuviriState.sorrow => locale.duviriSorrow,
-                  DuviriState.fear => locale.duviriFear,
-                  // ignore: require_trailing_commas The Formatter keeps removing it lol
-                }),
+                currentState: _stateText(context, duviriCycle?.state ?? DuviriState.envy),
               ),
+              _CycleRow(currentState: _stateChange(midrathCycle.state), name: 'Midrath', expiry: midrathCycle.expiry),
             ],
           );
         },
@@ -152,7 +132,7 @@ class _CycleRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final expiry = this.expiry ?? DateTime.now();
+    final expiry = this.expiry ?? DateTime.timestamp();
 
     return ListTile(
       title: Text(name, style: context.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w600)),
