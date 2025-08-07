@@ -8,4 +8,7 @@ class FissureFilterState extends Equatable {
 
   @override
   List<Object> get props => [fissures, type];
+
+  @override
+  String toString() => 'FissureFilterState(type: ${type.name}, length: ${fissures.length})';
 }
