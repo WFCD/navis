@@ -38,13 +38,11 @@ class SyndicatePage extends StatelessWidget {
             isLoading: state == null,
             child: ResponsiveBuilder(
               builder: (context, info) {
-                final size = info.refinedSize;
-
                 return _SyndicateView(
                   syndicates: state?.jobs ?? [],
                   nightwave: state?.nightwave,
                   calendar: state?.calendar,
-                  isMobile: info.refinedSize == RefinedSize.normal || size == RefinedSize.small,
+                  isMobile: info.deviceScreenType == DeviceScreenType.mobile,
                 );
               },
             ),
