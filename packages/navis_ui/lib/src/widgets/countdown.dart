@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:navis_ui/navis_ui.dart';
 
 class CountdownTimer extends StatefulWidget {
   const CountdownTimer({
@@ -23,31 +22,28 @@ class CountdownTimer extends StatefulWidget {
   CountdownTimerState createState() => CountdownTimerState();
 }
 
-class CountdownTimerState extends State<CountdownTimer>
-    with TickerProviderStateMixin {
+class CountdownTimerState extends State<CountdownTimer> with TickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _animation;
   late Duration _remainingTime;
 
+  Animation<Color?>? _bgColor;
   bool _isExpired = false;
-  Color _warningLevel = Colors.green;
 
   void _setupCountdown() {
-    final expirationDate = widget.expiry?.toLocal();
-    final now = DateTime.now();
+    final expiry = widget.expiry;
+    final now = DateTime.timestamp();
 
-    _remainingTime =
-        expirationDate?.difference(now) ?? const Duration(seconds: 60);
-    if (_remainingTime <= Duration.zero) {
-      _remainingTime = const Duration(seconds: 60);
-      _isExpired = true;
-    }
+    _remainingTime = expiry?.difference(now) ?? const Duration(seconds: 60);
+    _isExpired = _remainingTime <= Duration.zero;
+
+    if (_isExpired) _remainingTime = const Duration(seconds: 60);
 
     _controller = AnimationController(duration: _remainingTime, vsync: this);
     _animation = Tween<double>(begin: 1, end: 0).animate(_controller);
 
     if (widget.color == null) {
-      _controller.addListener(_detectWarningLevel);
+      _bgColor = _isExpired ? null : TweenSequence(_buildSequence(_remainingTime)).animate(_controller);
     }
 
     _controller
@@ -55,21 +51,40 @@ class CountdownTimerState extends State<CountdownTimer>
       ..forward();
   }
 
-  void _detectWarningLevel() {
+  List<TweenSequenceItem<Color?>> _buildSequence(Duration remainingTime) {
     const max = Duration(minutes: 60);
     const minimum = Duration(minutes: 10);
-    final remainingTime = _remainingTime * _animation.value;
 
-    if (context.mounted) {
-      setState(() {
-        _warningLevel = switch (remainingTime) {
-          >= max => Colors.green,
-          < max && >= minimum => Colors.orange[700]!,
-          < minimum when !_isExpired => Colors.red,
-          _ => Theme.of(context).colorScheme.secondaryContainer
-        };
-      });
+    const weight = 1.0;
+    const high = Colors.green;
+    final mid = Colors.orange[700];
+    const low = Colors.red;
+
+    final sequence = <TweenSequenceItem<Color?>>[];
+
+    if (remainingTime >= max) {
+      sequence.add(
+        TweenSequenceItem(
+          weight: weight,
+          tween: ColorTween(begin: high, end: mid),
+        ),
+      );
     }
+
+    if (remainingTime < max && remainingTime >= minimum || remainingTime >= max) {
+      sequence.add(
+        TweenSequenceItem(
+          weight: weight,
+          tween: ColorTween(begin: mid, end: low),
+        ),
+      );
+    }
+
+    if (remainingTime < minimum) {
+      sequence.add(TweenSequenceItem(weight: weight, tween: ConstantTween(low)));
+    }
+
+    return sequence;
   }
 
   void _onEnd(AnimationStatus status) {
@@ -93,7 +108,6 @@ class CountdownTimerState extends State<CountdownTimer>
 
     if (oldWidget.expiry != widget.expiry) {
       _controller.dispose();
-      _isExpired = false;
       setState(_setupCountdown);
     }
   }
@@ -111,22 +125,24 @@ class CountdownTimerState extends State<CountdownTimer>
 
   @override
   Widget build(BuildContext context) {
-    final color = widget.color ?? _warningLevel;
-
-    return ColoredContainer(
-      tooltip: widget.tooltip,
-      color: color,
-      padding: widget.padding,
-      margin: widget.margin,
+    return Material(
+      clipBehavior: Clip.hardEdge,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadiusGeometry.circular(4)),
       child: AnimatedBuilder(
         animation: _controller,
         builder: (BuildContext context, Widget? child) {
           final remainingTime = _remainingTime * _animation.value;
 
-          return Text(
-            _formatDuration(remainingTime),
-            style: (widget.style ?? Theme.of(context).textTheme.labelLarge)
-                ?.copyWith(color: Colors.white),
+          return ColoredBox(
+            // _bgColor won't be null if widget.color is not present
+            color: widget.color ?? _bgColor?.value ?? Theme.of(context).colorScheme.secondaryContainer,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 2),
+              child: Text(
+                _formatDuration(remainingTime),
+                style: (widget.style ?? Theme.of(context).textTheme.labelLarge)?.copyWith(color: Colors.white),
+              ),
+            ),
           );
         },
       ),
@@ -136,8 +152,6 @@ class CountdownTimerState extends State<CountdownTimer>
   @override
   void dispose() {
     _controller.dispose();
-    _isExpired = false;
-
     super.dispose();
   }
 }
