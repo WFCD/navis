@@ -38,40 +38,44 @@ class EventInformation extends StatelessWidget {
 
     return TraceableWidget(
       child: Scaffold(
-        body: CustomScrollView(
-          slivers: <Widget>[
-            SliverAppBar(
-              pinned: true,
-              expandedHeight: height,
-              backgroundColor: Theme.of(context).primaryColor,
-              flexibleSpace: FlexibleSpaceBar(
-                title: Text(event.description),
-                background: CachedNetworkImage(
-                  imageUrl: _eventBanner[event.description] ?? 'https://i.imgur.com/CNrsc7V.png',
-                  fit: BoxFit.cover,
-                  color: Theme.of(context).colorScheme.shadow.withValues(alpha: .5),
-                  colorBlendMode: BlendMode.darken,
-                  memCacheHeight: (height * context.mediaQuery.devicePixelRatio).toInt(),
+        body: SafeArea(
+          top: false,
+          child: CustomScrollView(
+            slivers: <Widget>[
+              SliverAppBar(
+                pinned: true,
+                expandedHeight: height,
+                backgroundColor: Theme.of(context).primaryColor,
+                flexibleSpace: FlexibleSpaceBar(
+                  title: Text(event.description),
+                  background: CachedNetworkImage(
+                    imageUrl: _eventBanner[event.description] ?? 'https://i.imgur.com/CNrsc7V.png',
+                    fit: BoxFit.cover,
+                    color: Theme.of(context).colorScheme.shadow.withValues(alpha: .5),
+                    colorBlendMode: BlendMode.darken,
+                    memCacheHeight: (height * context.mediaQuery.devicePixelRatio).toInt(),
+                  ),
                 ),
               ),
-            ),
-            SliverList(
-              delegate: SliverChildListDelegate.fixed(<Widget>[
-                EventStatus(
-                  description: event.description,
-                  tooltip: event.tooltip,
-                  node: event.victimNode ?? event.node ?? '',
-                  health: event.health?.toDouble(),
-                  currentScore: event.currentScore,
-                  maxScore: event.maximumScore,
-                  scoreLocTag: event.scoreLocTag,
-                  expiry: event.expiry,
-                  rewards: eventRewards(event.rewards, event.interimSteps),
-                ),
-                if (event.jobs != null && event.jobs!.isNotEmpty) SafeArea(child: EventBounties(jobs: event.jobs!)),
-              ]),
-            ),
-          ],
+              SliverList(
+                delegate: SliverChildListDelegate.fixed(<Widget>[
+                  EventStatus(
+                    description: event.description,
+                    tooltip: event.tooltip,
+                    node: event.victimNode ?? event.node ?? '',
+                    health: event.health?.toDouble(),
+                    currentScore: event.currentScore,
+                    maxScore: event.maximumScore,
+                    scoreLocTag: event.scoreLocTag,
+                    expiry: event.expiry,
+                    interimSteps: event.interimSteps,
+                    rewards: event.rewards,
+                  ),
+                  if (event.jobs != null && event.jobs!.isNotEmpty) EventBounties(jobs: event.jobs!),
+                ]),
+              ),
+            ],
+          ),
         ),
       ),
     );

@@ -22,3 +22,4 @@ rules:
       - codex
       - timers
       - syndicates
+      - events
