@@ -106,3 +106,6 @@ ios/firebase_app_id_file.json
 android/fastlane/service_account.json
 android/app/google-services.json
 ios/Runner/GoogleService-Info.plist
+
+# Files are generated when running flutter pub get so no point in commiting them
+lib/l10n/generated/*.dart

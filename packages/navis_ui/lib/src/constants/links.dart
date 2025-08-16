@@ -4,5 +4,6 @@ const issuePage = 'https://github.com/WFCD/navis/issues';
 const warframePage = 'https://www.warframe.com/';
 const discordInvite = 'https://discord.gg/jGZxH9f';
 const contributeTranslations = 'https://navis.t.warframestat.us/';
+const tobiahkofi = 'https://ko-fi.com/tobiah';
 const buyMeCoffee = 'https://www.buymeacoffee.com/HydroNav';
 const homepage = 'https://navisqr.minilabs.dev/';

@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_settings_ui/flutter_settings_ui.dart';
@@ -10,9 +8,15 @@ import 'package:simple_icons/simple_icons.dart';
 import 'package:warframe_icons/warframe_icons.dart';
 
 class AboutApp extends AbstractSettingsTile {
-  const AboutApp({super.key, this.l10n});
+  const AboutApp({super.key});
 
-  final NavisLocalizations? l10n;
+  static Future<void> displayDialog(BuildContext context) {
+    return showDialog<void>(
+      context: context,
+      useRootNavigator: false,
+      builder: (context) => const AboutApp(),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +24,7 @@ class AboutApp extends AbstractSettingsTile {
 
     final theme = Theme.of(context);
     final textTheme = theme.textTheme;
-    final l10n = this.l10n ?? context.l10n;
+    final l10n = context.l10n;
     final isDark = theme.brightness != Brightness.light;
 
     final aboutTextStyle = textTheme.bodyLarge;
@@ -90,11 +94,14 @@ class AboutApp extends AbstractSettingsTile {
                   splashColor: Colors.transparent,
                   onPressed: () => discordInvite.launchLink(context),
                 ),
-                if (!Platform.isIOS)
-                  IconButton(
-                    onPressed: () => buyMeCoffee.launchLink(context),
-                    icon: const Icon(SimpleIcons.buymeacoffee, color: Color(0xFFFFDD00)),
-                  ),
+                IconButton(
+                  onPressed: () => buyMeCoffee.launchLink(context),
+                  icon: const Icon(SimpleIcons.buymeacoffee, color: Color(0xFFFFDD00)),
+                ),
+                IconButton(
+                  onPressed: () => tobiahkofi.launchLink(context),
+                  icon: const Icon(SimpleIcons.kofi, color: Color(0xFF72A5F2)),
+                ),
               ],
             ),
           ],

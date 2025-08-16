@@ -1,5 +1,4 @@
 import 'package:black_hole_flutter/black_hole_flutter.dart';
-import 'package:feedback_sentry/feedback_sentry.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_settings_ui/flutter_settings_ui.dart';
@@ -69,8 +68,9 @@ class _SettingsView extends StatelessWidget {
           title: const Text('Inventoria'),
           tiles: [
             SettingsTile(
-              title:
-                  profile?.username != null ? UserTitle(username: profile!.username) : Text(l10n.enterUsernameHintText),
+              title: profile?.username != null
+                  ? UserTitle(username: profile!.username)
+                  : Text(l10n.enterUsernameHintText),
               // TODO(Orn): find a way to show mastery progress
               onPressed: profile?.username != null ? null : ProfileWizard.startWizard,
             ),
@@ -126,23 +126,18 @@ class _SettingsView extends StatelessWidget {
           title: Text(l10n.aboutCategoryTitle),
           tiles: [
             SettingsTile.navigation(
-              title: Text(l10n.reportBugsTitle),
-              description: Text(l10n.reportBugsDescription),
-              onPressed: (context) => BetterFeedback.of(context).showAndUploadToSentry(),
-            ),
-            SettingsTile.navigation(
               title: Text(l10n.contributeTranslationsTitle),
               description: Text(l10n.contributeTranslationsDescription),
               onPressed: (context) => contributeTranslations.launchLink(context),
             ),
             SettingsTile.navigation(
+              title: Text(l10n.supportTitle('').trim()),
+              description: const Text('Everything from tech support to supporting app maintance'),
+              onPressed: SupportBottomSheet.showSheet,
+            ),
+            SettingsTile.navigation(
               title: Text(l10n.aboutAppTitle),
-              onPressed:
-                  (context) => showDialog<void>(
-                    context: context,
-                    useRootNavigator: false,
-                    builder: (context) => AboutApp(l10n: l10n),
-                  ),
+              onPressed: AboutApp.displayDialog,
             ),
           ],
         ),

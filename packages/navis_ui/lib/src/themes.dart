@@ -4,9 +4,9 @@ import 'package:flutter/services.dart';
 
 abstract class NavisThemes {
   static ColorScheme _defaultScheme(Brightness brightness) => ColorScheme.fromSeed(
-        seedColor: const Color(0xFF3F51B5),
-        brightness: brightness,
-      );
+    seedColor: const Color(0xFF3F51B5),
+    brightness: brightness,
+  );
 
   static ThemeData theme(Brightness brightness, ColorScheme? colorScheme) {
     const radius = Radius.circular(8);
