@@ -22,10 +22,10 @@ class SupportBottomSheet extends StatelessWidget {
     final borderRadius = BorderRadius.circular(8);
 
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 8),
       child: Column(
         mainAxisSize: MainAxisSize.min,
-        spacing: 16,
+        spacing: 8,
         children: [
           Material(
             color: const Color(0xFF5865F2),
