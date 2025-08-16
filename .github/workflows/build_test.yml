@@ -58,6 +58,10 @@ jobs:
           ruby-version: 3.3.0
           bundler-cache: true
           working-directory: ios
+      
+      - uses: maxim-lobanov/setup-xcode@v1.6.0
+        with:
+          xcode-version: latest-stable
 
       - name: Setup certs using fastlane
         working-directory: ios
