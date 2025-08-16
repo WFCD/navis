@@ -1170,5 +1170,45 @@
   "@profileSyncError": {
     "description": "Error message to show when the app isn't able to pull a profile",
     "type": "text"
+  },
+  "appSupportTitle": "App Support",
+  "@appSupportTitle": {
+    "description": "Title for app support card",
+    "type": "text",
+    "placeholders": {}
+  },
+  "appSupportSubtitle": "Need help with the app? Come on down to the discord",
+  "@appSupportSubtitle": {
+    "description": "Subtitle for app support card",
+    "type": "text",
+    "placeholders": {}
+  },
+  "supportTitle": "Support {text}",
+  "@supportTitle": {
+    "description": "Title for support cards",
+    "type": "text",
+    "placeholders": {
+      "text": {
+        "type": "String"
+      }
+    }
+  },
+  "supportSubtitle": "Everything from tech support to supporting app maintenance",
+  "@supportSubtitle": {
+    "description": "Subtitle for support section",
+    "type": "text",
+    "placeholders": {}
+  },
+  "supportSubtitleTobiah": "Help support the developer who runs the API used heavily by Navis",
+  "@supportSubtitleTobiah": {
+    "description": "Subtitle for API support card",
+    "type": "text",
+    "placeholders": {}
+  },
+  "supportSubtitleNavis": "Help support the maintenance of Cephalon Navis",
+  "@supportSubtitleNavis": {
+    "description": "Subtitle for Cephalon Navis support card",
+    "type": "text",
+    "placeholders": {}
   }
 }
