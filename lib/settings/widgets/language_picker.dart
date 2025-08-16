@@ -42,23 +42,21 @@ class LanguagePicker extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Flexible(
-              child: ListView.builder(
-                controller: controller,
-                itemCount: supportedLocales.length,
-                itemBuilder: (context, index) {
-                  final l = supportedLocales[index];
-
-                  return RadioListTile<Locale>(
-                    title: Text(l.fullName),
-                    value: l,
-                    groupValue: language,
-                    activeColor: accentColor,
-                    onChanged: (l) {
-                      if (l == null) return;
-                      context.read<UserSettingsCubit>().updateLanguage(l);
-                    },
-                  );
+              child: RadioGroup<Locale>(
+                groupValue: language,
+                onChanged: (l) {
+                  if (l == null) return;
+                  context.read<UserSettingsCubit>().updateLanguage(l);
                 },
+                child: ListView.builder(
+                  controller: controller,
+                  itemCount: supportedLocales.length,
+                  itemBuilder: (context, index) {
+                    final l = supportedLocales[index];
+
+                    return RadioListTile<Locale>(title: Text(l.fullName), value: l, activeColor: accentColor);
+                  },
+                ),
               ),
             ),
             Align(

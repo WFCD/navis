@@ -28,7 +28,12 @@ RouteBase get $appShell => StatefulShellRouteData.$route(
   branches: [
     StatefulShellBranchData.$branch(
       routes: [
-        GoRouteData.$route(path: '/overview', name: 'overview', factory: $OverviewPageRouteDataExtension._fromState),
+        GoRouteData.$route(
+          path: '/overview',
+          name: 'overview',
+
+          factory: _$OverviewPageRouteData._fromState,
+        ),
       ],
     ),
     StatefulShellBranchData.$branch(
@@ -36,18 +41,29 @@ RouteBase get $appShell => StatefulShellRouteData.$route(
         GoRouteData.$route(
           path: '/activities',
           name: 'activities',
-          factory: $ActivitesPageRouteDataExtension._fromState,
+
+          factory: _$ActivitesPageRouteData._fromState,
         ),
       ],
     ),
     StatefulShellBranchData.$branch(
       routes: [
-        GoRouteData.$route(path: '/explore', name: 'explore', factory: $ExplorePageRouteDataExtension._fromState),
+        GoRouteData.$route(
+          path: '/explore',
+          name: 'explore',
+
+          factory: _$ExplorePageRouteData._fromState,
+        ),
       ],
     ),
     StatefulShellBranchData.$branch(
       routes: [
-        GoRouteData.$route(path: '/settings', name: 'settings', factory: $SettingsPageRouteDataExtension._fromState),
+        GoRouteData.$route(
+          path: '/settings',
+          name: 'settings',
+
+          factory: _$SettingsPageRouteData._fromState,
+        ),
       ],
     ),
   ],
@@ -57,266 +73,452 @@ extension $AppShellExtension on AppShell {
   static AppShell _fromState(GoRouterState state) => const AppShell();
 }
 
-extension $OverviewPageRouteDataExtension on OverviewPageRouteData {
-  static OverviewPageRouteData _fromState(GoRouterState state) => const OverviewPageRouteData();
+mixin _$OverviewPageRouteData on GoRouteData {
+  static OverviewPageRouteData _fromState(GoRouterState state) =>
+      const OverviewPageRouteData();
 
+  @override
   String get location => GoRouteData.$location('/overview');
 
+  @override
   void go(BuildContext context) => context.go(location);
 
+  @override
   Future<T?> push<T>(BuildContext context) => context.push<T>(location);
 
-  void pushReplacement(BuildContext context) => context.pushReplacement(location);
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
 
+  @override
   void replace(BuildContext context) => context.replace(location);
 }
 
-extension $ActivitesPageRouteDataExtension on ActivitesPageRouteData {
-  static ActivitesPageRouteData _fromState(GoRouterState state) => const ActivitesPageRouteData();
+mixin _$ActivitesPageRouteData on GoRouteData {
+  static ActivitesPageRouteData _fromState(GoRouterState state) =>
+      const ActivitesPageRouteData();
 
+  @override
   String get location => GoRouteData.$location('/activities');
 
+  @override
   void go(BuildContext context) => context.go(location);
 
+  @override
   Future<T?> push<T>(BuildContext context) => context.push<T>(location);
 
-  void pushReplacement(BuildContext context) => context.pushReplacement(location);
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
 
+  @override
   void replace(BuildContext context) => context.replace(location);
 }
 
-extension $ExplorePageRouteDataExtension on ExplorePageRouteData {
-  static ExplorePageRouteData _fromState(GoRouterState state) => const ExplorePageRouteData();
+mixin _$ExplorePageRouteData on GoRouteData {
+  static ExplorePageRouteData _fromState(GoRouterState state) =>
+      const ExplorePageRouteData();
 
+  @override
   String get location => GoRouteData.$location('/explore');
 
+  @override
   void go(BuildContext context) => context.go(location);
 
+  @override
   Future<T?> push<T>(BuildContext context) => context.push<T>(location);
 
-  void pushReplacement(BuildContext context) => context.pushReplacement(location);
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
 
+  @override
   void replace(BuildContext context) => context.replace(location);
 }
 
-extension $SettingsPageRouteDataExtension on SettingsPageRouteData {
-  static SettingsPageRouteData _fromState(GoRouterState state) => const SettingsPageRouteData();
+mixin _$SettingsPageRouteData on GoRouteData {
+  static SettingsPageRouteData _fromState(GoRouterState state) =>
+      const SettingsPageRouteData();
 
+  @override
   String get location => GoRouteData.$location('/settings');
 
+  @override
   void go(BuildContext context) => context.go(location);
 
+  @override
   Future<T?> push<T>(BuildContext context) => context.push<T>(location);
 
-  void pushReplacement(BuildContext context) => context.pushReplacement(location);
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
 
+  @override
   void replace(BuildContext context) => context.replace(location);
 }
 
-RouteBase get $worldEventPageRoute =>
-    GoRouteData.$route(path: '/event', name: 'event', factory: $WorldEventPageRouteExtension._fromState);
+RouteBase get $worldEventPageRoute => GoRouteData.$route(
+  path: '/event',
+  name: 'event',
 
-extension $WorldEventPageRouteExtension on WorldEventPageRoute {
-  static WorldEventPageRoute _fromState(GoRouterState state) => WorldEventPageRoute(state.extra as WorldEvent);
+  factory: _$WorldEventPageRoute._fromState,
+);
 
+mixin _$WorldEventPageRoute on GoRouteData {
+  static WorldEventPageRoute _fromState(GoRouterState state) =>
+      WorldEventPageRoute(state.extra as WorldEvent);
+
+  WorldEventPageRoute get _self => this as WorldEventPageRoute;
+
+  @override
   String get location => GoRouteData.$location('/event');
 
-  void go(BuildContext context) => context.go(location, extra: $extra);
+  @override
+  void go(BuildContext context) => context.go(location, extra: _self.$extra);
 
-  Future<T?> push<T>(BuildContext context) => context.push<T>(location, extra: $extra);
+  @override
+  Future<T?> push<T>(BuildContext context) =>
+      context.push<T>(location, extra: _self.$extra);
 
-  void pushReplacement(BuildContext context) => context.pushReplacement(location, extra: $extra);
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location, extra: _self.$extra);
 
-  void replace(BuildContext context) => context.replace(location, extra: $extra);
+  @override
+  void replace(BuildContext context) =>
+      context.replace(location, extra: _self.$extra);
 }
 
-RouteBase get $syndicatePageRoute =>
-    GoRouteData.$route(path: '/bounties', name: 'bounties', factory: $SyndicatePageRouteExtension._fromState);
+RouteBase get $syndicatePageRoute => GoRouteData.$route(
+  path: '/bounties',
+  name: 'bounties',
 
-extension $SyndicatePageRouteExtension on SyndicatePageRoute {
-  static SyndicatePageRoute _fromState(GoRouterState state) => SyndicatePageRoute(state.extra as SyndicateMission);
+  factory: _$SyndicatePageRoute._fromState,
+);
 
+mixin _$SyndicatePageRoute on GoRouteData {
+  static SyndicatePageRoute _fromState(GoRouterState state) =>
+      SyndicatePageRoute(state.extra as SyndicateMission);
+
+  SyndicatePageRoute get _self => this as SyndicatePageRoute;
+
+  @override
   String get location => GoRouteData.$location('/bounties');
 
-  void go(BuildContext context) => context.go(location, extra: $extra);
+  @override
+  void go(BuildContext context) => context.go(location, extra: _self.$extra);
 
-  Future<T?> push<T>(BuildContext context) => context.push<T>(location, extra: $extra);
+  @override
+  Future<T?> push<T>(BuildContext context) =>
+      context.push<T>(location, extra: _self.$extra);
 
-  void pushReplacement(BuildContext context) => context.pushReplacement(location, extra: $extra);
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location, extra: _self.$extra);
 
-  void replace(BuildContext context) => context.replace(location, extra: $extra);
+  @override
+  void replace(BuildContext context) =>
+      context.replace(location, extra: _self.$extra);
 }
 
-RouteBase get $nightwavePageRoute =>
-    GoRouteData.$route(path: '/nightwave', name: 'nightwave', factory: $NightwavePageRouteExtension._fromState);
+RouteBase get $nightwavePageRoute => GoRouteData.$route(
+  path: '/nightwave',
+  name: 'nightwave',
 
-extension $NightwavePageRouteExtension on NightwavePageRoute {
-  static NightwavePageRoute _fromState(GoRouterState state) => NightwavePageRoute(state.extra as Nightwave?);
+  factory: _$NightwavePageRoute._fromState,
+);
 
+mixin _$NightwavePageRoute on GoRouteData {
+  static NightwavePageRoute _fromState(GoRouterState state) =>
+      NightwavePageRoute(state.extra as Nightwave?);
+
+  NightwavePageRoute get _self => this as NightwavePageRoute;
+
+  @override
   String get location => GoRouteData.$location('/nightwave');
 
-  void go(BuildContext context) => context.go(location, extra: $extra);
+  @override
+  void go(BuildContext context) => context.go(location, extra: _self.$extra);
 
-  Future<T?> push<T>(BuildContext context) => context.push<T>(location, extra: $extra);
+  @override
+  Future<T?> push<T>(BuildContext context) =>
+      context.push<T>(location, extra: _self.$extra);
 
-  void pushReplacement(BuildContext context) => context.pushReplacement(location, extra: $extra);
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location, extra: _self.$extra);
 
-  void replace(BuildContext context) => context.replace(location, extra: $extra);
+  @override
+  void replace(BuildContext context) =>
+      context.replace(location, extra: _self.$extra);
 }
 
-RouteBase get $synthTargetsPageRoute =>
-    GoRouteData.$route(path: '/targets', name: 'targets', factory: $SynthTargetsPageRouteExtension._fromState);
+RouteBase get $synthTargetsPageRoute => GoRouteData.$route(
+  path: '/targets',
+  name: 'targets',
 
-extension $SynthTargetsPageRouteExtension on SynthTargetsPageRoute {
-  static SynthTargetsPageRoute _fromState(GoRouterState state) => const SynthTargetsPageRoute();
+  factory: _$SynthTargetsPageRoute._fromState,
+);
 
+mixin _$SynthTargetsPageRoute on GoRouteData {
+  static SynthTargetsPageRoute _fromState(GoRouterState state) =>
+      const SynthTargetsPageRoute();
+
+  @override
   String get location => GoRouteData.$location('/targets');
 
+  @override
   void go(BuildContext context) => context.go(location);
 
+  @override
   Future<T?> push<T>(BuildContext context) => context.push<T>(location);
 
-  void pushReplacement(BuildContext context) => context.pushReplacement(location);
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
 
+  @override
   void replace(BuildContext context) => context.replace(location);
 }
 
-RouteBase get $traderPageRoute =>
-    GoRouteData.$route(path: '/trader', name: 'trader', factory: $TraderPageRouteExtension._fromState);
+RouteBase get $traderPageRoute => GoRouteData.$route(
+  path: '/trader',
+  name: 'trader',
 
-extension $TraderPageRouteExtension on TraderPageRoute {
-  static TraderPageRoute _fromState(GoRouterState state) => TraderPageRoute(state.extra as List<TraderItem>?);
+  factory: _$TraderPageRoute._fromState,
+);
 
+mixin _$TraderPageRoute on GoRouteData {
+  static TraderPageRoute _fromState(GoRouterState state) =>
+      TraderPageRoute(state.extra as List<TraderItem>?);
+
+  TraderPageRoute get _self => this as TraderPageRoute;
+
+  @override
   String get location => GoRouteData.$location('/trader');
 
-  void go(BuildContext context) => context.go(location, extra: $extra);
+  @override
+  void go(BuildContext context) => context.go(location, extra: _self.$extra);
 
-  Future<T?> push<T>(BuildContext context) => context.push<T>(location, extra: $extra);
+  @override
+  Future<T?> push<T>(BuildContext context) =>
+      context.push<T>(location, extra: _self.$extra);
 
-  void pushReplacement(BuildContext context) => context.pushReplacement(location, extra: $extra);
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location, extra: _self.$extra);
 
-  void replace(BuildContext context) => context.replace(location, extra: $extra);
+  @override
+  void replace(BuildContext context) =>
+      context.replace(location, extra: _self.$extra);
 }
 
-RouteBase get $fishPageRoute =>
-    GoRouteData.$route(path: '/fish', name: 'fish', factory: $FishPageRouteExtension._fromState);
+RouteBase get $fishPageRoute => GoRouteData.$route(
+  path: '/fish',
+  name: 'fish',
 
-extension $FishPageRouteExtension on FishPageRoute {
+  factory: _$FishPageRoute._fromState,
+);
+
+mixin _$FishPageRoute on GoRouteData {
   static FishPageRoute _fromState(GoRouterState state) => const FishPageRoute();
 
+  @override
   String get location => GoRouteData.$location('/fish');
 
+  @override
   void go(BuildContext context) => context.go(location);
 
+  @override
   Future<T?> push<T>(BuildContext context) => context.push<T>(location);
 
-  void pushReplacement(BuildContext context) => context.pushReplacement(location);
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
 
+  @override
   void replace(BuildContext context) => context.replace(location);
 }
 
-RouteBase get $codexPageRoute =>
-    GoRouteData.$route(path: '/codex', name: 'codex', factory: $CodexPageRouteExtension._fromState);
+RouteBase get $codexPageRoute => GoRouteData.$route(
+  path: '/codex',
+  name: 'codex',
 
-extension $CodexPageRouteExtension on CodexPageRoute {
-  static CodexPageRoute _fromState(GoRouterState state) => CodexPageRoute(state.extra as String);
+  factory: _$CodexPageRoute._fromState,
+);
 
+mixin _$CodexPageRoute on GoRouteData {
+  static CodexPageRoute _fromState(GoRouterState state) =>
+      CodexPageRoute(state.extra as String);
+
+  CodexPageRoute get _self => this as CodexPageRoute;
+
+  @override
   String get location => GoRouteData.$location('/codex');
 
-  void go(BuildContext context) => context.go(location, extra: $extra);
+  @override
+  void go(BuildContext context) => context.go(location, extra: _self.$extra);
 
-  Future<T?> push<T>(BuildContext context) => context.push<T>(location, extra: $extra);
+  @override
+  Future<T?> push<T>(BuildContext context) =>
+      context.push<T>(location, extra: _self.$extra);
 
-  void pushReplacement(BuildContext context) => context.pushReplacement(location, extra: $extra);
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location, extra: _self.$extra);
 
-  void replace(BuildContext context) => context.replace(location, extra: $extra);
+  @override
+  void replace(BuildContext context) =>
+      context.replace(location, extra: _self.$extra);
 }
 
-RouteBase get $newsPageRoute =>
-    GoRouteData.$route(path: '/news', name: 'news', factory: $NewsPageRouteExtension._fromState);
+RouteBase get $newsPageRoute => GoRouteData.$route(
+  path: '/news',
+  name: 'news',
 
-extension $NewsPageRouteExtension on NewsPageRoute {
+  factory: _$NewsPageRoute._fromState,
+);
+
+mixin _$NewsPageRoute on GoRouteData {
   static NewsPageRoute _fromState(GoRouterState state) => const NewsPageRoute();
 
+  @override
   String get location => GoRouteData.$location('/news');
 
+  @override
   void go(BuildContext context) => context.go(location);
 
+  @override
   Future<T?> push<T>(BuildContext context) => context.push<T>(location);
 
-  void pushReplacement(BuildContext context) => context.pushReplacement(location);
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
 
+  @override
   void replace(BuildContext context) => context.replace(location);
 }
 
-RouteBase get $masteryPageRoute =>
-    GoRouteData.$route(path: '/mastery', name: 'mastery', factory: $MasteryPageRouteExtension._fromState);
+RouteBase get $masteryPageRoute => GoRouteData.$route(
+  path: '/mastery',
+  name: 'mastery',
 
-extension $MasteryPageRouteExtension on MasteryPageRoute {
-  static MasteryPageRoute _fromState(GoRouterState state) => const MasteryPageRoute();
+  factory: _$MasteryPageRoute._fromState,
+);
 
+mixin _$MasteryPageRoute on GoRouteData {
+  static MasteryPageRoute _fromState(GoRouterState state) =>
+      const MasteryPageRoute();
+
+  @override
   String get location => GoRouteData.$location('/mastery');
 
+  @override
   void go(BuildContext context) => context.go(location);
 
+  @override
   Future<T?> push<T>(BuildContext context) => context.push<T>(location);
 
-  void pushReplacement(BuildContext context) => context.pushReplacement(location);
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
 
+  @override
   void replace(BuildContext context) => context.replace(location);
 }
 
-RouteBase get $calendar1999PageRoute =>
-    GoRouteData.$route(path: '/calendar', name: 'calendar', factory: $Calendar1999PageRouteExtension._fromState);
+RouteBase get $calendar1999PageRoute => GoRouteData.$route(
+  path: '/calendar',
+  name: 'calendar',
 
-extension $Calendar1999PageRouteExtension on Calendar1999PageRoute {
+  factory: _$Calendar1999PageRoute._fromState,
+);
+
+mixin _$Calendar1999PageRoute on GoRouteData {
   static Calendar1999PageRoute _fromState(GoRouterState state) =>
-      Calendar1999PageRoute(state.uri.queryParameters['season']!, state.extra as List<CalendarDay>);
+      Calendar1999PageRoute(
+        state.uri.queryParameters['season']!,
+        state.extra as List<CalendarDay>,
+      );
 
-  String get location => GoRouteData.$location('/calendar', queryParams: {'season': season});
+  Calendar1999PageRoute get _self => this as Calendar1999PageRoute;
 
-  void go(BuildContext context) => context.go(location, extra: $extra);
+  @override
+  String get location =>
+      GoRouteData.$location('/calendar', queryParams: {'season': _self.season});
 
-  Future<T?> push<T>(BuildContext context) => context.push<T>(location, extra: $extra);
+  @override
+  void go(BuildContext context) => context.go(location, extra: _self.$extra);
 
-  void pushReplacement(BuildContext context) => context.pushReplacement(location, extra: $extra);
+  @override
+  Future<T?> push<T>(BuildContext context) =>
+      context.push<T>(location, extra: _self.$extra);
 
-  void replace(BuildContext context) => context.replace(location, extra: $extra);
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location, extra: _self.$extra);
+
+  @override
+  void replace(BuildContext context) =>
+      context.replace(location, extra: _self.$extra);
 }
 
-RouteBase get $archimedeaPageRoute =>
-    GoRouteData.$route(path: '/archimedea', name: 'archimedea', factory: $ArchimedeaPageRouteExtension._fromState);
+RouteBase get $archimedeaPageRoute => GoRouteData.$route(
+  path: '/archimedea',
+  name: 'archimedea',
 
-extension $ArchimedeaPageRouteExtension on ArchimedeaPageRoute {
-  static ArchimedeaPageRoute _fromState(GoRouterState state) => ArchimedeaPageRoute(state.extra as Archimedea);
+  factory: _$ArchimedeaPageRoute._fromState,
+);
 
+mixin _$ArchimedeaPageRoute on GoRouteData {
+  static ArchimedeaPageRoute _fromState(GoRouterState state) =>
+      ArchimedeaPageRoute(state.extra as Archimedea);
+
+  ArchimedeaPageRoute get _self => this as ArchimedeaPageRoute;
+
+  @override
   String get location => GoRouteData.$location('/archimedea');
 
-  void go(BuildContext context) => context.go(location, extra: $extra);
+  @override
+  void go(BuildContext context) => context.go(location, extra: _self.$extra);
 
-  Future<T?> push<T>(BuildContext context) => context.push<T>(location, extra: $extra);
+  @override
+  Future<T?> push<T>(BuildContext context) =>
+      context.push<T>(location, extra: _self.$extra);
 
-  void pushReplacement(BuildContext context) => context.pushReplacement(location, extra: $extra);
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location, extra: _self.$extra);
 
-  void replace(BuildContext context) => context.replace(location, extra: $extra);
+  @override
+  void replace(BuildContext context) =>
+      context.replace(location, extra: _self.$extra);
 }
 
 RouteBase get $flashSalesPageRoute => GoRouteData.$route(
   path: '/worldstate/flashSales',
   name: 'flashSales',
-  factory: $FlashSalesPageRouteExtension._fromState,
+
+  factory: _$FlashSalesPageRoute._fromState,
 );
 
-extension $FlashSalesPageRouteExtension on FlashSalesPageRoute {
-  static FlashSalesPageRoute _fromState(GoRouterState state) => FlashSalesPageRoute();
+mixin _$FlashSalesPageRoute on GoRouteData {
+  static FlashSalesPageRoute _fromState(GoRouterState state) =>
+      FlashSalesPageRoute();
 
+  @override
   String get location => GoRouteData.$location('/worldstate/flashSales');
 
+  @override
   void go(BuildContext context) => context.go(location);
 
+  @override
   Future<T?> push<T>(BuildContext context) => context.push<T>(location);
 
-  void pushReplacement(BuildContext context) => context.pushReplacement(location);
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
 
+  @override
   void replace(BuildContext context) => context.replace(location);
 }

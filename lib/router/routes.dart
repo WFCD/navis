@@ -51,7 +51,7 @@ class ActivitiesPageBranchData extends StatefulShellBranchData {
 }
 
 @immutable
-class ActivitesPageRouteData extends GoRouteData {
+class ActivitesPageRouteData extends GoRouteData with _$ActivitesPageRouteData {
   const ActivitesPageRouteData();
 
   @override
@@ -66,7 +66,7 @@ class OverviewPageBranchData extends StatefulShellBranchData {
 }
 
 @immutable
-class OverviewPageRouteData extends GoRouteData {
+class OverviewPageRouteData extends GoRouteData with _$OverviewPageRouteData {
   const OverviewPageRouteData();
 
   @override
@@ -81,7 +81,7 @@ class ExplorePageBranchData extends StatefulShellBranchData {
 }
 
 @immutable
-class ExplorePageRouteData extends GoRouteData {
+class ExplorePageRouteData extends GoRouteData with _$ExplorePageRouteData {
   const ExplorePageRouteData();
 
   @override
@@ -96,7 +96,7 @@ class SettingsPageBranchData extends StatefulShellBranchData {
 }
 
 @immutable
-class SettingsPageRouteData extends GoRouteData {
+class SettingsPageRouteData extends GoRouteData with _$SettingsPageRouteData {
   const SettingsPageRouteData();
 
   @override
@@ -107,7 +107,7 @@ class SettingsPageRouteData extends GoRouteData {
 
 @immutable
 @TypedGoRoute<WorldEventPageRoute>(name: 'event', path: '/event')
-class WorldEventPageRoute extends GoRouteData {
+class WorldEventPageRoute extends GoRouteData with _$WorldEventPageRoute {
   const WorldEventPageRoute(this.$extra);
 
   final WorldEvent $extra;
@@ -120,7 +120,7 @@ class WorldEventPageRoute extends GoRouteData {
 
 @immutable
 @TypedGoRoute<SyndicatePageRoute>(name: 'bounties', path: '/bounties')
-class SyndicatePageRoute extends GoRouteData {
+class SyndicatePageRoute extends GoRouteData with _$SyndicatePageRoute {
   const SyndicatePageRoute(this.$extra);
 
   final SyndicateMission $extra;
@@ -133,7 +133,7 @@ class SyndicatePageRoute extends GoRouteData {
 
 @immutable
 @TypedGoRoute<NightwavePageRoute>(name: 'nightwave', path: '/nightwave')
-class NightwavePageRoute extends GoRouteData {
+class NightwavePageRoute extends GoRouteData with _$NightwavePageRoute {
   const NightwavePageRoute(this.$extra);
 
   final Nightwave? $extra;
@@ -146,7 +146,7 @@ class NightwavePageRoute extends GoRouteData {
 
 @immutable
 @TypedGoRoute<SynthTargetsPageRoute>(name: 'targets', path: '/targets')
-class SynthTargetsPageRoute extends GoRouteData {
+class SynthTargetsPageRoute extends GoRouteData with _$SynthTargetsPageRoute {
   const SynthTargetsPageRoute();
 
   @override
@@ -157,7 +157,7 @@ class SynthTargetsPageRoute extends GoRouteData {
 
 @immutable
 @TypedGoRoute<TraderPageRoute>(name: 'trader', path: '/trader')
-class TraderPageRoute extends GoRouteData {
+class TraderPageRoute extends GoRouteData with _$TraderPageRoute {
   const TraderPageRoute(this.$extra);
 
   final List<TraderItem>? $extra;
@@ -170,7 +170,7 @@ class TraderPageRoute extends GoRouteData {
 
 @immutable
 @TypedGoRoute<FishPageRoute>(name: 'fish', path: '/fish')
-class FishPageRoute extends GoRouteData {
+class FishPageRoute extends GoRouteData with _$FishPageRoute {
   const FishPageRoute();
 
   @override
@@ -181,7 +181,7 @@ class FishPageRoute extends GoRouteData {
 
 @immutable
 @TypedGoRoute<CodexPageRoute>(name: 'codex', path: '/codex')
-class CodexPageRoute extends GoRouteData {
+class CodexPageRoute extends GoRouteData with _$CodexPageRoute {
   const CodexPageRoute(this.$extra);
 
   final String $extra;
@@ -194,7 +194,7 @@ class CodexPageRoute extends GoRouteData {
 
 @immutable
 @TypedGoRoute<NewsPageRoute>(name: 'news', path: '/news')
-class NewsPageRoute extends GoRouteData {
+class NewsPageRoute extends GoRouteData with _$NewsPageRoute {
   const NewsPageRoute();
 
   @override
@@ -205,7 +205,7 @@ class NewsPageRoute extends GoRouteData {
 
 @immutable
 @TypedGoRoute<MasteryPageRoute>(name: 'mastery', path: '/mastery')
-class MasteryPageRoute extends GoRouteData {
+class MasteryPageRoute extends GoRouteData with _$MasteryPageRoute {
   const MasteryPageRoute();
 
   @override
@@ -216,7 +216,7 @@ class MasteryPageRoute extends GoRouteData {
 
 @immutable
 @TypedGoRoute<Calendar1999PageRoute>(name: 'calendar', path: '/calendar')
-class Calendar1999PageRoute extends GoRouteData {
+class Calendar1999PageRoute extends GoRouteData with _$Calendar1999PageRoute {
   const Calendar1999PageRoute(this.season, this.$extra);
 
   final String season;
@@ -230,7 +230,7 @@ class Calendar1999PageRoute extends GoRouteData {
 
 @immutable
 @TypedGoRoute<ArchimedeaPageRoute>(name: 'archimedea', path: '/archimedea')
-class ArchimedeaPageRoute extends GoRouteData {
+class ArchimedeaPageRoute extends GoRouteData with _$ArchimedeaPageRoute {
   const ArchimedeaPageRoute(this.$extra);
 
   final Archimedea $extra;
@@ -243,7 +243,7 @@ class ArchimedeaPageRoute extends GoRouteData {
 
 @immutable
 @TypedGoRoute<FlashSalesPageRoute>(name: 'flashSales', path: '/worldstate/flashSales')
-class FlashSalesPageRoute extends GoRouteData {
+class FlashSalesPageRoute extends GoRouteData with _$FlashSalesPageRoute {
   @override
   Widget build(BuildContext context, GoRouterState state) {
     return const TraceableWidget(actionName: 'flashSales', child: FlashSalesPage());

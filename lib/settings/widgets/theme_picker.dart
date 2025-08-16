@@ -39,44 +39,42 @@ class ThemePicker extends StatelessWidget {
     final accentColor = Theme.of(context).colorScheme.secondary;
     final l10n = context.l10n;
     final state = context.watch<UserSettingsCubit>().state;
-    final groupValue = switch (state) {
+    final currentTheme = switch (state) {
       UserSettingsSuccess() => state.themeMode,
       _ => ThemeMode.light,
     };
 
-    return SimpleDialog(
-      title: Text(l10n.themeTitle),
-      children: [
-        RadioListTile<ThemeMode>(
-          title: Text(l10n.lightThemeTitle),
-          value: ThemeMode.light,
-          groupValue: groupValue,
-          activeColor: accentColor,
-          onChanged: (b) => _onChanged(context, b),
-        ),
-        RadioListTile<ThemeMode>(
-          title: Text(l10n.darkThemeTitle),
-          value: ThemeMode.dark,
-          groupValue: groupValue,
-          activeColor: accentColor,
-          onChanged: (b) => _onChanged(context, b),
-        ),
-        RadioListTile<ThemeMode>(
-          title: Text(l10n.systemThemeTitle),
-          value: ThemeMode.system,
-          groupValue: groupValue,
-          activeColor: accentColor,
-          onChanged: (b) => _onChanged(context, b),
-        ),
-        OverflowBar(
-          children: [
-            TextButton(
-              onPressed: () => Navigator.of(context).pop(),
-              child: Text(MaterialLocalizations.of(context).cancelButtonLabel),
-            ),
-          ],
-        ),
-      ],
+    return RadioGroup<ThemeMode>(
+      groupValue: currentTheme,
+      onChanged: (b) => _onChanged(context, b),
+      child: SimpleDialog(
+        title: Text(l10n.themeTitle),
+        children: [
+          RadioListTile<ThemeMode>(
+            title: Text(l10n.lightThemeTitle),
+            value: ThemeMode.light,
+            activeColor: accentColor,
+          ),
+          RadioListTile<ThemeMode>(
+            title: Text(l10n.darkThemeTitle),
+            value: ThemeMode.dark,
+            activeColor: accentColor,
+          ),
+          RadioListTile<ThemeMode>(
+            title: Text(l10n.systemThemeTitle),
+            value: ThemeMode.system,
+            activeColor: accentColor,
+          ),
+          OverflowBar(
+            children: [
+              TextButton(
+                onPressed: () => Navigator.of(context).pop(),
+                child: Text(MaterialLocalizations.of(context).cancelButtonLabel),
+              ),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }
