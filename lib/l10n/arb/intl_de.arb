@@ -340,7 +340,7 @@
     "description": "Orb vallis cycle option",
     "type": "text"
   },
-  "vallisColdOption": "Orb Vallis Kalt",
+  "vallisColdOption": "Orbis-Tal: Kalt",
   "@vallisColdOption": {
     "description": "Orb vallis cycle option",
     "type": "text"
@@ -680,12 +680,12 @@
     "description": "User hint when under syndicate tabs using a tablet",
     "type": "text"
   },
-  "optOutOfAnalyticsTitle": "Verlassen der Statistiken",
+  "optOutOfAnalyticsTitle": "Telemetrie deaktivieren",
   "@optOutOfAnalyticsTitle": {
     "description": "Title opting out of analytics",
     "type": "text"
   },
-  "optOutOfAnalyticsDescription": "Statistiken deaktivieren.",
+  "optOutOfAnalyticsDescription": "Deaktiviert die Tracking-/Telemetriefunktion der App.",
   "@optOutOfAnalyticsDescription": {
     "description": "Description of the analytics opting buttong",
     "type": "text"
@@ -801,7 +801,7 @@
     "description": "Duviri joy state. ",
     "type": "text"
   },
-  "duviriAnger": "Anger",
+  "duviriAnger": "Wut",
   "@duviriAnger": {
     "description": "Duviri anger state.",
     "type": "text"
@@ -1014,12 +1014,12 @@
     "description": "Codex Weapon damage type title",
     "type": "text"
   },
-  "shieldDrainDamageTitle": "Shield Drain",
+  "shieldDrainDamageTitle": "Schildentzug",
   "@shieldDrainDamageTitle": {
     "description": "Codex Weapon damage type title",
     "type": "text"
   },
-  "healthDrainDamageTitle": "Health Drain",
+  "healthDrainDamageTitle": "Lebensentzug",
   "@healthDrainDamageTitle": {
     "description": "Codex Weapon damage type title",
     "type": "text"
@@ -1165,5 +1165,10 @@
         "type": "String"
       }
     }
+  },
+  "profileSyncError": "A problem occurred fetching your profile, you should file a bug report",
+  "@profileSyncError": {
+    "description": "Error message to show when the app isn't able to pull a profile",
+    "type": "text"
   }
 }
