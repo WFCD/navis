@@ -134,8 +134,9 @@ class _CircuitPathTile extends StatelessWidget {
           _ => null,
         };
 
-        final icon =
-            item != null ? CircleAvatar(foregroundImage: CachedNetworkImageProvider(item.imageUrl), radius: 20) : null;
+        final icon = item != null
+            ? CircleAvatar(foregroundImage: CachedNetworkImageProvider(item.imageUrl), radius: 20)
+            : null;
 
         final tile = ListTile(
           contentPadding: const EdgeInsets.symmetric(vertical: 4, horizontal: 4),
@@ -146,7 +147,7 @@ class _CircuitPathTile extends StatelessWidget {
           dense: true,
         );
 
-        if (item == null) return tile;
+        if (item == null || item.name.contains('Incarnon')) return tile;
 
         return EntryViewOpenContainer(item: item, builder: (_, _) => tile);
       },
