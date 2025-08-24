@@ -7,7 +7,6 @@ import 'package:navis/codex/codex.dart';
 import 'package:navis/codex/utils/debouncer.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis/router/routes.dart';
-import 'package:warframestat_client/warframestat_client.dart';
 import 'package:warframestat_repository/warframestat_repository.dart';
 
 class CodexSearchBar extends StatefulWidget {
@@ -25,11 +24,11 @@ class _CodexSearchBarState extends State<CodexSearchBar> {
   late final FocusNode _focusNode;
   late final SearchController _controller;
 
-  Iterable<MinimalItem> _lastOptions = <MinimalItem>[];
+  Iterable<SearchItem> _lastOptions = <SearchItem>[];
 
-  late final Debounceable<Iterable<MinimalItem>?, String> _debounceSearch;
+  late final Debounceable<Iterable<SearchItem>?, String> _debounceSearch;
 
-  Future<List<MinimalItem>?> _search(String query) async {
+  Future<List<SearchItem>?> _search(String query) async {
     final api = RepositoryProvider.of<WarframestatRepository>(context);
 
     try {
@@ -46,12 +45,21 @@ class _CodexSearchBarState extends State<CodexSearchBar> {
 
     final options = (await _debounceSearch(query))?.toList();
 
-    Widget container(MinimalItem item) {
+    Widget container(SearchItem item) {
       return OpenContainer(
         closedColor: Theme.of(context).colorScheme.surface,
         openColor: Theme.of(context).colorScheme.surface,
         closedBuilder: (_, onTap) => CodexResult(item: item, onTap: onTap),
-        openBuilder: (_, _) => EntryView(item: item),
+        openBuilder: (_, _) => EntryView(
+          uniqueName: item.uniqueName,
+          name: item.name,
+          description: item.description,
+          imageUrl: item.imageUrl,
+          type: item.type,
+          vaulted: item.vaulted,
+          wikiaUrl: item.wikiaUrl,
+          wikiaThumbnail: item.wikiaThumbnail,
+        ),
       );
     }
 
@@ -117,21 +125,19 @@ class _CodexSearchBarState extends State<CodexSearchBar> {
                 onTapOutside: (_) => _focusNode.unfocus(),
                 hintText: widget.hintText ?? l10n.codexHint,
                 backgroundColor: WidgetStatePropertyAll(context.theme.colorScheme.secondaryContainer),
-                leading:
-                    Navigator.of(context).canPop()
-                        ? IconButton(icon: const Icon(Icons.arrow_back), onPressed: () => Navigator.pop(context))
-                        : const Icon(Icons.search),
-                trailing:
-                    Navigator.of(context).canPop()
-                        ? [
-                          if (state is CodexSearchSuccess)
-                            PopupMenuButton<WarframeItemCategory>(
-                              icon: const Icon(Icons.filter_list),
-                              itemBuilder: (_) => _itemBuilder(),
-                              onSelected: (s) => BlocProvider.of<SearchBloc>(context).add(CodexResultsFiltered(s)),
-                            ),
-                        ]
-                        : null,
+                leading: Navigator.of(context).canPop()
+                    ? IconButton(icon: const Icon(Icons.arrow_back), onPressed: () => Navigator.pop(context))
+                    : const Icon(Icons.search),
+                trailing: Navigator.of(context).canPop()
+                    ? [
+                        if (state is CodexSearchSuccess)
+                          PopupMenuButton<WarframeItemCategory>(
+                            icon: const Icon(Icons.filter_list),
+                            itemBuilder: (_) => _itemBuilder(),
+                            onSelected: (s) => BlocProvider.of<SearchBloc>(context).add(CodexResultsFiltered(s)),
+                          ),
+                      ]
+                    : null,
               );
             },
           );

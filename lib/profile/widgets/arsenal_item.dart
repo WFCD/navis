@@ -31,7 +31,15 @@ class ArsenalItemWidget extends StatelessWidget {
                 builder: (context, state) {
                   return switch (state) {
                     ItemNotFound() => const Center(child: Text('Item Not Found')),
-                    ItemFetchSuccess(item: final item) => EntryView(item: item),
+                    ItemFetchSuccess(item: final item) => EntryView(
+                      uniqueName: item.uniqueName,
+                      name: item.name,
+                      description: item.description,
+                      imageUrl: item.imageUrl,
+                      type: item.type,
+                      wikiaUrl: item.wikiaUrl,
+                      wikiaThumbnail: item.wikiaThumbnail,
+                    ),
                     _ => const Center(child: WarframeSpinner()),
                   };
                 },

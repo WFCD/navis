@@ -20,7 +20,10 @@ class AlertsCard extends StatelessWidget {
 
     if (reward == null) return _AlertWidget(alert: a, isParent: false);
 
-    return BlocProvider(create: (_) => ItemCubit(reward, r)..fetchByName(), child: _AlertWidget(alert: a));
+    return BlocProvider(
+      create: (_) => ItemCubit(reward, r)..fetchByName(),
+      child: _AlertWidget(alert: a),
+    );
   }
 
   bool _buildWhen(WorldState previous, WorldState next) {
@@ -95,7 +98,7 @@ class _AlertReward extends StatelessWidget {
   const _AlertReward({required this.reward, this.item});
 
   final Reward? reward;
-  final Item? item;
+  final ItemCommon? item;
 
   @override
   Widget build(BuildContext context) {
@@ -116,8 +119,9 @@ class _AlertReward extends StatelessWidget {
           ],
         ),
       ),
-      subtitle:
-          item?.description != null ? Text(item!.description!, maxLines: 2, overflow: TextOverflow.ellipsis) : null,
+      subtitle: item?.description != null
+          ? Text(item!.description!, maxLines: 2, overflow: TextOverflow.ellipsis)
+          : null,
       isThreeLine: item != null,
       dense: true,
     );
@@ -141,7 +145,13 @@ class _AlertItemReward extends StatelessWidget {
         if (item == null) return _AlertReward(reward: reward);
 
         return EntryViewOpenContainer(
-          item: item as MinimalItem,
+          uniqueName: item.uniqueName,
+          name: item.name,
+          description: item.description,
+          imageUrl: item.imageUrl,
+          type: item.type,
+          wikiaUrl: item.wikiaUrl,
+          wikiaThumbnail: item.wikiaThumbnail,
           builder: (_, _) => _AlertReward(reward: reward, item: item),
         );
       },

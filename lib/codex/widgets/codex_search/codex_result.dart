@@ -1,15 +1,14 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:navis/codex/codex.dart';
-import 'package:navis/utils/item_extensions.dart';
-import 'package:navis/utils/utils.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:warframestat_client/warframestat_client.dart';
+import 'package:warframestat_repository/warframestat_repository.dart';
 
 class CodexResult extends StatelessWidget {
   const CodexResult({super.key, required this.item, required this.onTap, this.showDescription = false});
 
-  final Item item;
+  final SearchItem item;
   final bool showDescription;
   final void Function() onTap;
 
@@ -40,14 +39,13 @@ class CodexResult extends StatelessWidget {
         ),
       ),
       title: Text(item.name.parseHtmlString()),
-      subtitle:
-          showDescription
-              ? Text(
-                description?.trim() ?? item.description?.parseHtmlString() ?? '',
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
-              )
-              : null,
+      subtitle: showDescription
+          ? Text(
+              description?.trim() ?? item.description?.parseHtmlString() ?? '',
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+            )
+          : null,
       isThreeLine: showDescription,
       dense: showDescription,
       onTap: onTap,
