@@ -4,7 +4,6 @@ import 'package:matomo_tracker/matomo_tracker.dart';
 import 'package:navis/codex/codex.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis_ui/navis_ui.dart';
-import 'package:warframestat_client/warframestat_client.dart';
 import 'package:warframestat_repository/warframestat_repository.dart';
 
 class CodexSearchPage extends StatelessWidget {
@@ -74,7 +73,7 @@ class CodexSearchView extends StatelessWidget {
 class _CodexViewContent extends StatelessWidget {
   const _CodexViewContent({required this.results});
 
-  final List<MinimalItem> results;
+  final List<SearchItem> results;
 
   @override
   Widget build(BuildContext context) {
@@ -88,7 +87,14 @@ class _CodexViewContent extends StatelessWidget {
             final item = results[index];
 
             return EntryViewOpenContainer(
-              item: item,
+              uniqueName: item.uniqueName,
+              name: item.name,
+              description: item.description,
+              imageUrl: item.imageUrl,
+              type: item.type,
+              vaulted: item.vaulted,
+              wikiaUrl: item.wikiaUrl,
+              wikiaThumbnail: item.wikiaThumbnail,
               builder: (_, onTap) {
                 return Padding(
                   padding: const EdgeInsets.symmetric(vertical: 8),

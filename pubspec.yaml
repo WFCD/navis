@@ -18,7 +18,7 @@ dependencies:
   dynamic_system_colors: ^1.8.0
   equatable: ^2.0.5
   feedback_sentry: ^3.2.0
-  firebase_core: ^3.15.2
+  firebase_core: ^4.0.0
   fish_repository:
     path: packages/fish_repository
   flutter:
@@ -28,7 +28,7 @@ dependencies:
     sdk: flutter
   flutter_settings_ui: ^3.0.1
   flutter_svg: ^2.2.0
-  go_router: ^16.1.0
+  go_router: ^16.2.0
   hive_ce: ^2.11.3
   hive_ce_flutter: ^2.3.0
   http: ^1.5.0
@@ -56,7 +56,7 @@ dependencies:
   visibility_detector: ^0.4.0+2
   warframe_icons:
     git: https://github.com/SlayerOrnstein/warframe_icons.git
-  warframestat_client: ^4.2.10
+  warframestat_client: ^5.1.0
   warframestat_repository:
     path: packages/warframestat_repository
 
@@ -67,7 +67,7 @@ dependency_overrides:
 
 dev_dependencies:
   bloc_test: ^10.0.0
-  build_runner: ^2.6.1
+  build_runner: ^2.7.0
   build_verify: ^3.1.1
   commitlint_cli: ^0.8.1
   flutter_gen_runner: ^5.11.0
@@ -75,11 +75,11 @@ dev_dependencies:
   flutter_native_splash: ^2.4.4
   flutter_test:
     sdk: flutter
-  go_router_builder: ^3.2.0
+  go_router_builder: ^3.3.0
   husky: ^0.1.7
   mocktail: ^1.0.4
   path: ^1.8.3
-  sentry_dart_plugin: ^2.2.1
+  sentry_dart_plugin: ^3.1.1
   test: ^1.26.2
   very_good_analysis: ^9.0.0
 

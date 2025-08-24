@@ -1,10 +1,9 @@
-import 'dart:convert';
-
 import 'package:http/http.dart';
 import 'package:http_client/http_client.dart';
 import 'package:logging/logging.dart';
 import 'package:warframestat_client/warframestat_client.dart';
 import 'package:warframestat_repository/src/models/regions.dart';
+import 'package:warframestat_repository/src/models/search_item.dart';
 import 'package:web_socket_client/web_socket_client.dart';
 
 ///
@@ -65,14 +64,28 @@ class WarframestatRepository {
   }
 
   /// Search warframe-items
-  Future<List<MinimalItem>> searchItems(String query) async {
+  Future<List<SearchItem>> searchItems(String query) async {
     final client = WarframeItemsClient(
       client: await _cacheClient(const Duration(days: 1)),
       ua: userAgent,
       language: language,
     );
 
-    return client.search(query);
+    return client.search(
+      query,
+      props: [
+        ItemProps.uniqueName,
+        ItemProps.name,
+        ItemProps.description,
+        ItemProps.imageName,
+        ItemProps.type,
+        ItemProps.category,
+        ItemProps.vaulted,
+        ItemProps.wikiaUrl,
+        ItemProps.wikiaThumbnail,
+      ],
+      convert: (list) => list.map(SearchItem.fromJson).toList(),
+    );
   }
 
   /// Get one item based on unique name

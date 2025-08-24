@@ -7,7 +7,8 @@ import 'package:drift_flutter/drift_flutter.dart';
 import 'package:http/http.dart';
 import 'package:http_client/http_client.dart';
 import 'package:inventoria/src/inventoria.steps.dart';
-import 'package:inventoria/src/models/models.dart';
+import 'package:inventoria/src/models/arsenal_item.dart' as model;
+import 'package:inventoria/src/tables/tables.dart';
 import 'package:inventoria/src/utils/utils.dart';
 import 'package:logging/logging.dart';
 import 'package:meta/meta.dart';
@@ -83,8 +84,9 @@ class Inventoria {
           for (final update in updates) {
             final item = items.firstWhere((i) => i.uniqueName == update.uniqueName);
 
-            await (d.update(d.inventoryItem)
-              ..whereSamePrimaryKey(item)).write(InventoryItemCompanion(xp: Value(update.xp)));
+            await (d.update(
+              d.inventoryItem,
+            )..whereSamePrimaryKey(item)).write(InventoryItemCompanion(xp: Value(update.xp)));
           }
         });
       },
@@ -102,16 +104,27 @@ class Inventoria {
     }
 
     _logger.info('Building inventory manifest');
-    final items = (await WarframeItemsClient(
-      client: _client,
-    ).fetchAllItems(minimal: true)).where((i) => (i as MinimalItem).masterable ?? false);
+    final items = await WarframeItemsClient(client: _client).fetchAllItems(
+      props: [
+        ItemProps.uniqueName,
+        ItemProps.name,
+        ItemProps.description,
+        ItemProps.imageName,
+        ItemProps.type,
+        ItemProps.productCategory,
+        ItemProps.masterable,
+      ],
+      convert: (list) => list.map(model.ArsenalItem.fromJson).toList(),
+    );
+
+    final mastable = items.cast<model.ArsenalItem>().where((i) => i.masterable);
 
     final currentItems = await _database.managers.inventoryItem.get();
 
     final currentManifest = currentItems.map((i) => i.uniqueName);
-    final newManifest = items.map((i) => i.uniqueName);
+    final newManifest = mastable.map((i) => i.uniqueName);
 
-    final newItems = items.where((i) => !currentManifest.contains(i.uniqueName)).map((i) => i.toInsert());
+    final newItems = mastable.where((i) => !currentManifest.contains(i.uniqueName)).map((i) => i.toInsert());
     _logger.info('Adding ${newItems.length} new items');
     await _database.batch((b) => b.insertAll(_database.inventoryItem, newItems));
 

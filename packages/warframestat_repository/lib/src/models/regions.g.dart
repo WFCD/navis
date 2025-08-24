@@ -31,27 +31,27 @@ Map<String, dynamic> _$CraigJunctionToJson(CraigJunction instance) =>
     };
 
 CraigNode _$CraigNodeFromJson(Map<String, dynamic> json) => CraigNode(
-      uniqueName: json['uniqueName'] as String,
-      name: json['name'] as String,
-      systemIndex: (json['systemIndex'] as num).toInt(),
-      minEnemyLevel: (json['minEnemyLevel'] as num).toInt(),
-      maxEnemyLevel: (json['maxEnemyLevel'] as num).toInt(),
-      mastery: (json['mastery'] as num).toInt(),
-      nodeType: (json['nodeType'] as num).toInt(),
-      masteryReq: (json['masteryReq'] as num).toInt(),
-      missionIndex: (json['missionIndex'] as num).toInt(),
-      factionIndex: (json['factionIndex'] as num).toInt(),
-    );
+  uniqueName: json['uniqueName'] as String,
+  name: json['name'] as String,
+  systemIndex: (json['systemIndex'] as num).toInt(),
+  minEnemyLevel: (json['minEnemyLevel'] as num).toInt(),
+  maxEnemyLevel: (json['maxEnemyLevel'] as num).toInt(),
+  mastery: (json['mastery'] as num).toInt(),
+  nodeType: (json['nodeType'] as num).toInt(),
+  masteryReq: (json['masteryReq'] as num).toInt(),
+  missionIndex: (json['missionIndex'] as num).toInt(),
+  factionIndex: (json['factionIndex'] as num).toInt(),
+);
 
 Map<String, dynamic> _$CraigNodeToJson(CraigNode instance) => <String, dynamic>{
-      'uniqueName': instance.uniqueName,
-      'name': instance.name,
-      'systemIndex': instance.systemIndex,
-      'minEnemyLevel': instance.minEnemyLevel,
-      'maxEnemyLevel': instance.maxEnemyLevel,
-      'mastery': instance.mastery,
-      'nodeType': instance.nodeType,
-      'masteryReq': instance.masteryReq,
-      'missionIndex': instance.missionIndex,
-      'factionIndex': instance.factionIndex,
-    };
+  'uniqueName': instance.uniqueName,
+  'name': instance.name,
+  'systemIndex': instance.systemIndex,
+  'minEnemyLevel': instance.minEnemyLevel,
+  'maxEnemyLevel': instance.maxEnemyLevel,
+  'mastery': instance.mastery,
+  'nodeType': instance.nodeType,
+  'masteryReq': instance.masteryReq,
+  'missionIndex': instance.missionIndex,
+  'factionIndex': instance.factionIndex,
+};

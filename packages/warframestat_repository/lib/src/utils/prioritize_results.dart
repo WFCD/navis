@@ -1,4 +1,5 @@
 import 'package:warframestat_client/warframestat_client.dart';
+import 'package:warframestat_repository/src/models/search_item.dart';
 
 final Map<ItemType, int> _mapPriority = {
   // Warframes, weapons and companions
@@ -68,7 +69,7 @@ final Map<ItemType, int> _mapPriority = {
   ItemType.glyphs: 6,
 };
 
-extension ListItemX<T extends Item> on List<T> {
+extension ListItemX on List<SearchItem> {
   void prioritizeResults() {
     sort((a, b) {
       final aPriority = _mapPriority[a.type] ?? 100;

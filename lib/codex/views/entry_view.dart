@@ -10,34 +10,48 @@ import 'package:warframestat_repository/warframestat_repository.dart';
 class EntryViewOpenContainer extends StatelessWidget {
   const EntryViewOpenContainer({
     super.key,
+    required this.uniqueName,
+    required this.name,
+    required this.description,
+    required this.imageUrl,
+    required this.type,
+    this.vaulted,
+    this.wikiaUrl,
+    this.wikiaThumbnail,
     this.openColor,
     this.closedColor,
-    required this.item,
     required this.builder,
   });
 
+  final String uniqueName;
+  final String name;
+  final String? description;
+  final String imageUrl;
+  final ItemType type;
+  final bool? vaulted;
+  final String? wikiaUrl;
+  final String? wikiaThumbnail;
+
   final Color? openColor;
   final Color? closedColor;
-  final MinimalItem item;
   final Widget Function(BuildContext, void Function()) builder;
 
   @override
   Widget build(BuildContext context) {
     const elevation = 0.0;
 
-    if (item.type == ItemType.misc) {
+    if (type == ItemType.misc) {
       return InkWell(
         child: builder(context, () {}),
         onTap: () {
           showBottomSheet(
             context: context,
-            builder:
-                (context) => EntryContent(
-                  uniqueName: item.uniqueName,
-                  name: item.name,
-                  description: item.description ?? '',
-                  imageUrl: item.imageUrl,
-                ),
+            builder: (context) => EntryContent(
+              uniqueName: uniqueName,
+              name: name,
+              description: description ?? '',
+              imageUrl: imageUrl,
+            ),
           );
         },
       );
@@ -48,52 +62,96 @@ class EntryViewOpenContainer extends StatelessWidget {
       useRootNavigator: context.rootNavigator.mounted,
       openColor: openColor ?? Theme.of(context).colorScheme.surfaceContainer,
       closedColor: closedColor ?? Colors.transparent,
-      openBuilder: (_, _) => EntryView(item: item),
+      openBuilder: (_, _) => EntryView(
+        uniqueName: uniqueName,
+        name: name,
+        description: description,
+        imageUrl: imageUrl,
+        type: type,
+        vaulted: vaulted,
+        wikiaUrl: wikiaUrl,
+        wikiaThumbnail: wikiaThumbnail,
+      ),
       closedBuilder: builder,
     );
   }
 }
 
 class EntryView extends StatelessWidget {
-  const EntryView({super.key, required this.item});
+  const EntryView({
+    super.key,
+    required this.uniqueName,
+    required this.name,
+    required this.description,
+    required this.imageUrl,
+    required this.type,
+    this.vaulted,
+    this.wikiaUrl,
+    this.wikiaThumbnail,
+  });
 
-  final Item item;
+  final String uniqueName;
+  final String name;
+  final String? description;
+  final String imageUrl;
+  final ItemType type;
+  final bool? vaulted;
+  final String? wikiaUrl;
+  final String? wikiaThumbnail;
+
+  static final List<ItemType> _miscTypes = [ItemType.skin, ItemType.misc];
 
   @override
   Widget build(BuildContext context) {
     final repo = RepositoryProvider.of<WarframestatRepository>(context);
+    final overview = _Overview(
+      uniqueName: uniqueName,
+      name: name,
+      description: description,
+      imageUrl: imageUrl,
+      type: type,
+      vaulted: vaulted,
+      wikiaUrl: wikiaUrl,
+      wikiaThumbnail: wikiaThumbnail,
+    );
 
     return Scaffold(
       body: SafeArea(
-        child:
-            item is MinimalItem
-                ? BlocProvider(
-                  create: (context) => ItemCubit(item.uniqueName, repo)..fetchItem(),
-                  child: _Overview(item: item),
-                )
-                : _Overview(item: item),
+        child: !_miscTypes.contains(type)
+            ? BlocProvider(
+                create: (context) => ItemCubit(uniqueName, repo)..fetchItem(),
+                child: overview,
+              )
+            : overview,
       ),
     );
   }
 }
 
 class _Overview extends StatelessWidget {
-  const _Overview({required this.item});
+  const _Overview({
+    required this.uniqueName,
+    required this.name,
+    required this.description,
+    required this.imageUrl,
+    required this.type,
+    this.vaulted,
+    this.wikiaUrl,
+    this.wikiaThumbnail,
+  });
 
-  final Item item;
-
-  bool? _isVaulted() {
-    return switch (item) {
-      Relic() => (item as Relic).vaulted,
-      BuildableItem() => (item as BuildableItem).vaulted,
-      _ => false,
-    };
-  }
+  final String uniqueName;
+  final String name;
+  final String? description;
+  final String imageUrl;
+  final ItemType type;
+  final bool? vaulted;
+  final String? wikiaUrl;
+  final String? wikiaThumbnail;
 
   @override
   Widget build(BuildContext context) {
-    final isMod = item.type.name.contains('Mod');
-    final patchlogs = item.patchlogs;
+    final isMod = type.name.contains('Mod');
     final heightRatio = context.mediaQuery.size.height / 100;
     final height = isMod ? kToolbarHeight : heightRatio * 25;
 
@@ -104,19 +162,19 @@ class _Overview extends StatelessWidget {
           headerSliverBuilder: (context, innerBoxIsScrolled) {
             return [
               if (isMod)
-                SliverAppBar(title: Text(item.name))
+                SliverAppBar(title: Text(name))
               else
                 SliverPersistentHeader(
                   pinned: true,
                   delegate: BasicItemInfo(
-                    uniqueName: item.uniqueName,
-                    name: item.name,
-                    description: item.description?.parseHtmlString() ?? '',
-                    wikiUrl: item.wikiaUrl,
-                    imageUrl: item.wikiaThumbnail ?? item.imageUrl,
+                    uniqueName: uniqueName,
+                    name: name,
+                    description: description?.parseHtmlString() ?? '',
+                    wikiUrl: wikiaUrl,
+                    imageUrl: wikiaThumbnail ?? imageUrl,
                     expandedHeight: height,
                     disableInfo: isMod,
-                    isVaulted: _isVaulted(),
+                    isVaulted: vaulted,
                   ),
                 ),
             ];
@@ -162,7 +220,7 @@ class _Overview extends StatelessWidget {
                           if (isMod) ModStats(mod: item),
                           if (isRelic) RelicRewardWidget(relic: item),
                           if (drops != null) DropLocations(drops: drops),
-                          if (patchlogs != null) PatchlogSection(patchlogs: patchlogs),
+                          if (item.patchlogs != null) PatchlogSection(patchlogs: item.patchlogs!),
                         ]
                         .map((w) => Padding(padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 10), child: w))
                         .toList(),

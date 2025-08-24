@@ -14,7 +14,7 @@ final class ItemFetchInProgress extends ItemState {}
 final class ItemFetchSuccess extends ItemState {
   const ItemFetchSuccess(this.item);
 
-  final Item item;
+  final ItemCommon item;
 
   @override
   List<Object> get props => [item];

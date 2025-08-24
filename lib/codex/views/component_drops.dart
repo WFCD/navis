@@ -34,7 +34,15 @@ class ComponentDrops extends StatelessWidget {
                         return Center(child: Text(l10n.codexNoResults));
                       }
 
-                      return EntryView(item: state.item);
+                      return EntryView(
+                        uniqueName: state.item.uniqueName,
+                        name: state.item.name,
+                        description: state.item.description,
+                        imageUrl: state.item.imageUrl,
+                        type: state.item.type,
+                        wikiaUrl: state.item.wikiaUrl,
+                        wikiaThumbnail: state.item.wikiaThumbnail,
+                      );
                     },
                   );
                 },
@@ -51,9 +59,10 @@ class ComponentDrops extends StatelessWidget {
     const cacheExtent = 150.0;
     const densityThreshold = 10;
 
-    final drops = List<Drop>.from(this.drops)..sort((a, b) {
-      return ((b.chance ?? 0) * 100).compareTo((a.chance ?? 0) * 100);
-    });
+    final drops = List<Drop>.from(this.drops)
+      ..sort((a, b) {
+        return ((b.chance ?? 0) * 100).compareTo((a.chance ?? 0) * 100);
+      });
 
     return Scaffold(
       appBar: AppBar(),

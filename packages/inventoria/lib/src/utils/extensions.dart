@@ -1,9 +1,9 @@
 import 'package:drift/drift.dart';
 import 'package:inventoria/inventoria.dart';
-import 'package:warframestat_client/warframestat_client.dart';
+import 'package:inventoria/src/models/arsenal_item.dart';
 
 /// Extensions to make my life easy
-extension ItemX on Item {
+extension ItemX on ArsenalItem {
   /// Convert items to insertables
   InventoryItemCompanion toInsert() {
     return InventoryItemCompanion.insert(

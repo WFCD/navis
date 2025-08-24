@@ -130,7 +130,7 @@ class _CircuitPathTile extends StatelessWidget {
     return BlocBuilder<ItemCubit, ItemState>(
       builder: (context, state) {
         final item = switch (state) {
-          ItemFetchSuccess() => state.item as MinimalItem,
+          ItemFetchSuccess() => state.item,
           _ => null,
         };
 
@@ -149,7 +149,16 @@ class _CircuitPathTile extends StatelessWidget {
 
         if (item == null || item.name.contains('Incarnon')) return tile;
 
-        return EntryViewOpenContainer(item: item, builder: (_, _) => tile);
+        return EntryViewOpenContainer(
+          uniqueName: item.uniqueName,
+          name: item.name,
+          description: item.description,
+          imageUrl: item.imageUrl,
+          type: item.type,
+          wikiaUrl: item.wikiaUrl,
+          wikiaThumbnail: item.wikiaThumbnail,
+          builder: (_, _) => tile,
+        );
       },
     );
   }

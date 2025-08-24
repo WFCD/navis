@@ -21,7 +21,7 @@ class ItemCubit extends HydratedCubit<ItemState> {
   Future<void> fetchItem() async {
     emit(ItemFetchInProgress());
 
-    final item = await _handleItemFetch(() => repo.fetchItem(name));
+    final item = await _handleItemFetch(() => repo.fetchItem(name)) as ItemCommon?;
     if (isClosed) return;
     if (item == null) return emit(ItemNotFound());
 
@@ -37,7 +37,7 @@ class ItemCubit extends HydratedCubit<ItemState> {
     if (isClosed) return;
     if (item == null) return emit(ItemNotFound());
 
-    emit(ItemFetchSuccess(item));
+    emit(ItemFetchSuccess(item.toMisc()));
   }
 
   Future<void> fetchIncarnonGenesis() async {
@@ -51,7 +51,7 @@ class ItemCubit extends HydratedCubit<ItemState> {
     if (isClosed) return;
     if (item == null) return emit(ItemNotFound());
 
-    emit(ItemFetchSuccess(item));
+    emit(ItemFetchSuccess(item.toMisc()));
   }
 
   Future<T> _handleItemFetch<T>(FutureOr<T> Function() compute) async {
@@ -72,9 +72,9 @@ class ItemCubit extends HydratedCubit<ItemState> {
 
   @override
   ItemState? fromJson(Map<String, dynamic> json) {
-    final item = MinimalItem.fromJson(json);
+    final item = Misc.fromJson(json);
 
-    return ItemFetchSuccess(item);
+    return ItemFetchSuccess(item as ItemCommon);
   }
 
   @override

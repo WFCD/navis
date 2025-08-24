@@ -2,4 +2,4 @@
 library;
 
 export 'src/inventoria.dart';
-export 'src/models/models.dart';
+export 'src/tables/tables.dart';

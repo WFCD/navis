@@ -47,7 +47,7 @@ void main() {
 
   group('Item search', () {
     final fixture = Fixtures.itemsFixture;
-    final items = toItems(fixture);
+    final items = toItems(fixture) as List<ItemCommon>;
     final (uniqueName, name) = ('/Lotus/Powersuits/Dragon/ChromaPrime', 'Chroma Prime');
 
     final chroma = items.firstWhere((i) => i.uniqueName == uniqueName).toJson();
@@ -68,7 +68,7 @@ void main() {
     test('fetch() => get item', () async {
       when(() => client.send(any())).thenAnswer((_) async => fakeResponse(jsonEncode(chroma)));
 
-      final item = await repository.fetchItem(uniqueName);
+      final item = await repository.fetchItem(uniqueName) as ItemCommon?;
 
       expect(item?.name, name);
     });

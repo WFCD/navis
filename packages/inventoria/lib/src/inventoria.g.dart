@@ -205,16 +205,14 @@ class $InventoryItemTable extends InventoryItem
   InventoryItemData map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
     return InventoryItemData(
-      uniqueName:
-          attachedDatabase.typeMapping.read(
-            DriftSqlType.string,
-            data['${effectivePrefix}unique_name'],
-          )!,
-      name:
-          attachedDatabase.typeMapping.read(
-            DriftSqlType.string,
-            data['${effectivePrefix}name'],
-          )!,
+      uniqueName: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}unique_name'],
+      )!,
+      name: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}name'],
+      )!,
       description: attachedDatabase.typeMapping.read(
         DriftSqlType.string,
         data['${effectivePrefix}description'],
@@ -227,26 +225,22 @@ class $InventoryItemTable extends InventoryItem
         DriftSqlType.string,
         data['${effectivePrefix}product_category'],
       ),
-      type:
-          attachedDatabase.typeMapping.read(
-            DriftSqlType.string,
-            data['${effectivePrefix}type'],
-          )!,
-      xp:
-          attachedDatabase.typeMapping.read(
-            DriftSqlType.int,
-            data['${effectivePrefix}xp'],
-          )!,
-      isMissing:
-          attachedDatabase.typeMapping.read(
-            DriftSqlType.bool,
-            data['${effectivePrefix}is_missing'],
-          )!,
-      isHidden:
-          attachedDatabase.typeMapping.read(
-            DriftSqlType.bool,
-            data['${effectivePrefix}is_hidden'],
-          )!,
+      type: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}type'],
+      )!,
+      xp: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}xp'],
+      )!,
+      isMissing: attachedDatabase.typeMapping.read(
+        DriftSqlType.bool,
+        data['${effectivePrefix}is_missing'],
+      )!,
+      isHidden: attachedDatabase.typeMapping.read(
+        DriftSqlType.bool,
+        data['${effectivePrefix}is_hidden'],
+      )!,
     );
   }
 
@@ -318,16 +312,15 @@ class InventoryItemData extends DataClass
     return InventoryItemCompanion(
       uniqueName: Value(uniqueName),
       name: Value(name),
-      description:
-          description == null && nullToAbsent
-              ? const Value.absent()
-              : Value(description),
-      image:
-          image == null && nullToAbsent ? const Value.absent() : Value(image),
-      productCategory:
-          productCategory == null && nullToAbsent
-              ? const Value.absent()
-              : Value(productCategory),
+      description: description == null && nullToAbsent
+          ? const Value.absent()
+          : Value(description),
+      image: image == null && nullToAbsent
+          ? const Value.absent()
+          : Value(image),
+      productCategory: productCategory == null && nullToAbsent
+          ? const Value.absent()
+          : Value(productCategory),
       type: Value(type),
       xp: Value(xp),
     );
@@ -381,8 +374,9 @@ class InventoryItemData extends DataClass
     name: name ?? this.name,
     description: description.present ? description.value : this.description,
     image: image.present ? image.value : this.image,
-    productCategory:
-        productCategory.present ? productCategory.value : this.productCategory,
+    productCategory: productCategory.present
+        ? productCategory.value
+        : this.productCategory,
     type: type ?? this.type,
     xp: xp ?? this.xp,
     isMissing: isMissing ?? this.isMissing,
@@ -631,21 +625,18 @@ class $DriftProfileTable extends DriftProfile
   DriftProfileData map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
     return DriftProfileData(
-      id:
-          attachedDatabase.typeMapping.read(
-            DriftSqlType.string,
-            data['${effectivePrefix}id'],
-          )!,
-      username:
-          attachedDatabase.typeMapping.read(
-            DriftSqlType.string,
-            data['${effectivePrefix}username'],
-          )!,
-      rank:
-          attachedDatabase.typeMapping.read(
-            DriftSqlType.int,
-            data['${effectivePrefix}rank'],
-          )!,
+      id: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}id'],
+      )!,
+      username: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}username'],
+      )!,
+      rank: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}rank'],
+      )!,
     );
   }
 
@@ -897,21 +888,18 @@ class $InventoriaManifestTable extends InventoriaManifest
   InventoriaManifestData map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
     return InventoriaManifestData(
-      id:
-          attachedDatabase.typeMapping.read(
-            DriftSqlType.int,
-            data['${effectivePrefix}id'],
-          )!,
-      hash:
-          attachedDatabase.typeMapping.read(
-            DriftSqlType.string,
-            data['${effectivePrefix}hash'],
-          )!,
-      timestamp:
-          attachedDatabase.typeMapping.read(
-            DriftSqlType.dateTime,
-            data['${effectivePrefix}timestamp'],
-          )!,
+      id: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}id'],
+      )!,
+      hash: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}hash'],
+      )!,
+      timestamp: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}timestamp'],
+      )!,
     );
   }
 
@@ -1296,16 +1284,12 @@ class $$InventoryItemTableTableManager
         TableManagerState(
           db: db,
           table: table,
-          createFilteringComposer:
-              () => $$InventoryItemTableFilterComposer($db: db, $table: table),
-          createOrderingComposer:
-              () =>
-                  $$InventoryItemTableOrderingComposer($db: db, $table: table),
-          createComputedFieldComposer:
-              () => $$InventoryItemTableAnnotationComposer(
-                $db: db,
-                $table: table,
-              ),
+          createFilteringComposer: () =>
+              $$InventoryItemTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$InventoryItemTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$InventoryItemTableAnnotationComposer($db: db, $table: table),
           updateCompanionCallback:
               ({
                 Value<String> uniqueName = const Value.absent(),
@@ -1346,16 +1330,9 @@ class $$InventoryItemTableTableManager
                 xp: xp,
                 rowid: rowid,
               ),
-          withReferenceMapper:
-              (p0) =>
-                  p0
-                      .map(
-                        (e) => (
-                          e.readTable(table),
-                          BaseReferences(db, table, e),
-                        ),
-                      )
-                      .toList(),
+          withReferenceMapper: (p0) => p0
+              .map((e) => (e.readTable(table), BaseReferences(db, table, e)))
+              .toList(),
           prefetchHooksCallback: null,
         ),
       );
@@ -1495,13 +1472,12 @@ class $$DriftProfileTableTableManager
         TableManagerState(
           db: db,
           table: table,
-          createFilteringComposer:
-              () => $$DriftProfileTableFilterComposer($db: db, $table: table),
-          createOrderingComposer:
-              () => $$DriftProfileTableOrderingComposer($db: db, $table: table),
-          createComputedFieldComposer:
-              () =>
-                  $$DriftProfileTableAnnotationComposer($db: db, $table: table),
+          createFilteringComposer: () =>
+              $$DriftProfileTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$DriftProfileTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$DriftProfileTableAnnotationComposer($db: db, $table: table),
           updateCompanionCallback:
               ({
                 Value<String> id = const Value.absent(),
@@ -1526,16 +1502,9 @@ class $$DriftProfileTableTableManager
                 rank: rank,
                 rowid: rowid,
               ),
-          withReferenceMapper:
-              (p0) =>
-                  p0
-                      .map(
-                        (e) => (
-                          e.readTable(table),
-                          BaseReferences(db, table, e),
-                        ),
-                      )
-                      .toList(),
+          withReferenceMapper: (p0) => p0
+              .map((e) => (e.readTable(table), BaseReferences(db, table, e)))
+              .toList(),
           prefetchHooksCallback: null,
         ),
       );
@@ -1673,18 +1642,12 @@ class $$InventoriaManifestTableTableManager
         TableManagerState(
           db: db,
           table: table,
-          createFilteringComposer:
-              () => $$InventoriaManifestTableFilterComposer(
-                $db: db,
-                $table: table,
-              ),
-          createOrderingComposer:
-              () => $$InventoriaManifestTableOrderingComposer(
-                $db: db,
-                $table: table,
-              ),
-          createComputedFieldComposer:
-              () => $$InventoriaManifestTableAnnotationComposer(
+          createFilteringComposer: () =>
+              $$InventoriaManifestTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$InventoriaManifestTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$InventoriaManifestTableAnnotationComposer(
                 $db: db,
                 $table: table,
               ),
@@ -1708,16 +1671,9 @@ class $$InventoriaManifestTableTableManager
                 hash: hash,
                 timestamp: timestamp,
               ),
-          withReferenceMapper:
-              (p0) =>
-                  p0
-                      .map(
-                        (e) => (
-                          e.readTable(table),
-                          BaseReferences(db, table, e),
-                        ),
-                      )
-                      .toList(),
+          withReferenceMapper: (p0) => p0
+              .map((e) => (e.readTable(table), BaseReferences(db, table, e)))
+              .toList(),
           prefetchHooksCallback: null,
         ),
       );

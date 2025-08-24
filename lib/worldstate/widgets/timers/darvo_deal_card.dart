@@ -134,7 +134,16 @@ class _DealWidget extends StatelessWidget {
 
         if (item == null) return row;
 
-        return EntryViewOpenContainer(item: item as MinimalItem, builder: (_, _) => row);
+        return EntryViewOpenContainer(
+          uniqueName: item.uniqueName,
+          name: item.name,
+          description: item.description,
+          imageUrl: item.imageUrl,
+          type: item.type,
+          wikiaUrl: item.wikiaUrl,
+          wikiaThumbnail: item.wikiaThumbnail,
+          builder: (_, _) => row,
+        );
       },
     );
   }

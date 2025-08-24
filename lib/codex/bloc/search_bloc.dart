@@ -8,7 +8,6 @@ import 'package:navis/codex/bloc/search_state.dart';
 import 'package:navis/codex/utils/result_filters.dart';
 import 'package:navis/utils/utils.dart';
 import 'package:rxdart/rxdart.dart';
-import 'package:warframestat_client/warframestat_client.dart';
 import 'package:warframestat_repository/warframestat_repository.dart';
 
 export 'search_event.dart';
@@ -22,7 +21,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
 
   final WarframestatRepository repository;
 
-  List<MinimalItem> _originalResults = [];
+  List<SearchItem> _originalResults = [];
 
   static final _logger = Logger('SearchBloc');
 
@@ -51,11 +50,11 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
   Future<void> _filterResults(CodexResultsFiltered event, Emitter<SearchState> emit) async {
     emit(CodexSearchInProgress());
 
-    final originalResults = List<MinimalItem>.from(_originalResults);
+    final originalResults = List<SearchItem>.from(_originalResults);
     if (event.category == WarframeItemCategory.all) {
       return emit(CodexSearchSuccess(originalResults));
     } else {
-      final results = List<MinimalItem>.from(originalResults)
+      final results = List<SearchItem>.from(originalResults)
         ..retainWhere((e) => e.category.toLowerCase() == event.category.name);
 
       emit(CodexSearchSuccess(results));
@@ -64,7 +63,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
 
   EventTransformer<CodexTextChanged> _waitForUser() {
     return (event, mapper) {
-      return event.debounceTime(kThemeAnimationDuration).distinct().flatMap(mapper);
+      return event.debounceTime(Durations.medium2).distinct().flatMap(mapper);
     };
   }
 }
