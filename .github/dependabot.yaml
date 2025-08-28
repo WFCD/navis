@@ -25,6 +25,24 @@ updates:
     schedule:
       interval: "daily"
 
+  - package-ecosystem: "pub"
+    directory: "/packages/inventoria"
+    target-branch: "master"
+    schedule:
+      interval: "daily"
+
+  - package-ecosystem: "pub"
+    directory: "/packages/http_client"
+    target-branch: "master"
+    schedule:
+      interval: "daily"
+
+  - package-ecosystem: "pub"
+    directory: "/packages/fish_repository"
+    target-branch: "master"
+    schedule:
+      interval: "daily"
+
   - package-ecosystem: github-actions
     directory: "/"
     target-branch: "master"
