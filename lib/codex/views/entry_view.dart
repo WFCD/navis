@@ -3,6 +3,7 @@ import 'package:black_hole_flutter/black_hole_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/codex/codex.dart';
+import 'package:navis/l10n/l10n.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:warframestat_client/warframestat_client.dart';
 import 'package:warframestat_repository/warframestat_repository.dart';
@@ -182,8 +183,7 @@ class _Overview extends StatelessWidget {
           body: BlocBuilder<ItemCubit, ItemState>(
             builder: (context, state) {
               if (state is ItemFetchFailure) {
-                // TODO(SlayerOrnstein): Gotta localize the message here
-                return const Center(child: Text(':('));
+                return Center(child: Text(context.l10n.itemFailureErrorText));
               }
 
               if (state is! ItemFetchSuccess) {

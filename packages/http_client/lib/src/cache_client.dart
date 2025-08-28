@@ -28,7 +28,7 @@ class CacheClient extends BaseClient {
     final cache = await Hive.openBox<CachedItem>('temp_emptor.cache');
     await _cleanup(cache);
 
-    // TODO(Orn): May have to throw this into an isolate if it lags the main thread
+    // May have to throw this into an isolate if it lags the main thread
     Timer.periodic(const Duration(hours: Duration.hoursPerDay), (_) => _cleanup(cache, flush: true));
 
     return CacheClient(client, cache);

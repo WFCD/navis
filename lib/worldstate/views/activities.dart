@@ -42,8 +42,7 @@ class _ActivitiesView extends StatelessWidget {
 
   void _listener(BuildContext context, WorldState state) {
     if (state is WorldstateFailure) {
-      // TODO(SlayerOrnstein): Add localizations here too
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text(':(')));
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(context.l10n.worldstateFailureText)));
     } else if (state is WorldstateSuccess) {
       final now = DateTime.now();
       final timestamp = state.seed.timestamp;
@@ -51,7 +50,7 @@ class _ActivitiesView extends StatelessWidget {
       if (timestamp.difference(now) >= const Duration(minutes: 30)) {
         ScaffoldMessenger.of(
           context,
-        ).showSnackBar(const SnackBar(content: Text('Worldstate is out of date by more then 30 mins')));
+        ).showSnackBar(SnackBar(content: Text(context.l10n.worldstateOutdatedText)));
       }
     }
   }

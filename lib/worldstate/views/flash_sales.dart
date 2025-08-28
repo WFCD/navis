@@ -14,8 +14,7 @@ class FlashSalesPage extends StatelessWidget {
     final repo = RepositoryProvider.of<WarframestatRepository>(context);
 
     return Scaffold(
-      // TODO(Orn): Localize app bar title
-      appBar: AppBar(title: const Text('Flash Sales')),
+      appBar: AppBar(title: Text(context.l10n.flashSaleAppbarTitle)),
       body: BlocProvider(create: (_) => WorldstateBloc(repo), child: const FlashSalesView()),
     );
   }
@@ -46,14 +45,10 @@ class FlashSalesView extends StatelessWidget {
 
               return ListTile(
                 title: Text(sale.item),
-                subtitle: Text(
-                  // TODO(orn): after it get's fleshed out a bit more add localizations here
-                  '${sale.premiumOverride} Platinum ${sale.discount > 0 ? '- ${sale.discount}% OFF' : ''}',
-                ),
-                trailing:
-                    saleDuration < const Duration(days: 30)
-                        ? CountdownTimer(tooltip: context.l10n.countdownTooltip(sale.expiry), expiry: sale.expiry)
-                        : null,
+                subtitle: Text(context.l10n.flashSaleSubtitleText(sale.premiumOverride, sale.discount)),
+                trailing: saleDuration < const Duration(days: 30)
+                    ? CountdownTimer(tooltip: context.l10n.countdownTooltip(sale.expiry), expiry: sale.expiry)
+                    : null,
               );
             },
           ),
