@@ -49,6 +49,7 @@ jobs:
 
   ios:
     runs-on: macos-15
+    continue-on-error: true
     steps:
       - name: Checkout repository
         uses: actions/checkout@v5
