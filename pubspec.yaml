@@ -56,7 +56,7 @@ dependencies:
   visibility_detector: ^0.4.0+2
   warframe_icons:
     git: https://github.com/SlayerOrnstein/warframe_icons.git
-  warframestat_client: ^5.1.0
+  warframestat_client: ^5.1.2
   warframestat_repository:
     path: packages/warframestat_repository
 

@@ -26,7 +26,7 @@ class SyndicatePage extends StatelessWidget {
         final worldstate = state.seed;
 
         return (
-          calendar: worldstate.calendar.first,
+          calendar: worldstate.calendar,
           nightwave: worldstate.nightwave,
           jobs: worldstate.syndicateMissions,
         );
