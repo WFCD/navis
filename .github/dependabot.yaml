@@ -2,46 +2,17 @@ version: 2
 enable-beta-ecosystems: true
 updates:
   - package-ecosystem: "pub"
-    directory: "/"
+    directories:
+      - "/"
+      - "/packages/**"
     target-branch: "master"
     schedule:
       interval: "daily"
-
-  - package-ecosystem: "pub"
-    directory: "/packages/navis_ui"
-    target-branch: "master"
-    schedule:
-      interval: "daily"
-
-  - package-ecosystem: "pub"
-    directory: "/packages/notification_repository"
-    target-branch: "master"
-    schedule:
-      interval: "daily"
-
-  - package-ecosystem: "pub"
-    directory: "/packages/worldstate_repository"
-    target-branch: "master"
-    schedule:
-      interval: "daily"
-
-  - package-ecosystem: "pub"
-    directory: "/packages/inventoria"
-    target-branch: "master"
-    schedule:
-      interval: "daily"
-
-  - package-ecosystem: "pub"
-    directory: "/packages/http_client"
-    target-branch: "master"
-    schedule:
-      interval: "daily"
-
-  - package-ecosystem: "pub"
-    directory: "/packages/fish_repository"
-    target-branch: "master"
-    schedule:
-      interval: "daily"
+      time: "00:00"
+    groups:
+      firebase:
+        patterns:
+          - firebase_*
 
   - package-ecosystem: github-actions
     directory: "/"
@@ -50,13 +21,10 @@ updates:
       interval: "daily"
 
   - package-ecosystem: "bundler"
-    directory: "/android"
+    directories:
+      - "/android"
+      - "/ios"
     target-branch: "master"
     schedule:
       interval: "daily"
-
-  - package-ecosystem: "bundler"
-    directory: "/ios"
-    target-branch: "master"
-    schedule:
-      interval: "daily"
+      time: "00:00"
