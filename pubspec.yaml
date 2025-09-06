@@ -72,7 +72,7 @@ dev_dependencies:
   commitlint_cli: ^0.8.1
   flutter_gen_runner: ^5.11.0
   flutter_launcher_icons: ^0.14.4
-  flutter_native_splash: ^2.4.4
+  flutter_native_splash: ^2.4.6
   flutter_test:
     sdk: flutter
   go_router_builder: ^3.3.0
@@ -99,13 +99,15 @@ flutter_launcher_icons:
   android: true
   ios: true
   remove_alpha_ios: true
+  min_sdk_android: 24
   background_color_ios: "#FFFFFF"
-  adaptive_icon_foreground: "assets/android12splash.png"
+  adaptive_icon_foreground: assets/splash.png
+  adaptive_icon_foreground_inset: 5
   adaptive_icon_background: "#FFFFFF"
 
 flutter_native_splash:
-  image: assets/ic_launch.png
+  image: assets/splash.png
   color: "#FFFFFF"
   color_dark: "#121212"
   android_12:
-    image: assets/android12splash.png
+    image: assets/splash.png
