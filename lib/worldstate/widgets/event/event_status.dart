@@ -6,26 +6,6 @@ import 'package:warframestat_client/warframestat_client.dart';
 
 typedef EventReward = ({Reward reward, int requiredScore});
 
-List<EventReward> eventRewards(List<Reward> rewards, List<InterimStep>? interimSteps) {
-  final r = <EventReward>[];
-
-  if (interimSteps != null) {
-    for (final step in interimSteps) {
-      r.add((reward: step.reward, requiredScore: step.goal));
-    }
-  }
-
-  for (final reward in rewards) {
-    if (reward.itemString.isEmpty) continue;
-
-    final interimScore = r[r.length - 1].requiredScore;
-
-    r.add((reward: reward, requiredScore: interimScore == 75 ? interimScore + 25 : interimScore * 2));
-  }
-
-  return r;
-}
-
 class EventStatus extends StatelessWidget {
   const EventStatus({
     super.key,
@@ -52,6 +32,18 @@ class EventStatus extends StatelessWidget {
   final List<Reward> rewards;
   final DateTime expiry;
 
+  List<EventReward> get _eventRewards {
+    final r = <EventReward>[...?interimSteps?.map((s) => (reward: s.reward, requiredScore: s.goal))];
+
+    for (final reward in rewards) {
+      if (reward.items.isEmpty) continue;
+      final interimScore = r[r.length - 1].requiredScore;
+      r.add((reward: reward, requiredScore: interimScore == 75 ? interimScore + 25 : interimScore * 2));
+    }
+
+    return r;
+  }
+
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
@@ -70,7 +62,10 @@ class EventStatus extends StatelessWidget {
           children: <Widget>[
             if (tooltip != null) _EventTooltip(tooltip: tooltip!),
             CategoryTitle(title: l10n.eventStatus, style: category, contentPadding: EdgeInsets.zero),
-            RowItem(text: Text(l10n.eventStatusNode, style: tooltipStyle), child: ColoredContainer.text(text: node)),
+            RowItem(
+              text: Text(l10n.eventStatusNode, style: tooltipStyle),
+              child: ColoredContainer.text(text: node),
+            ),
             RowItem(
               text: Text(l10n.eventStatusEta, style: tooltipStyle),
               child: CountdownTimer(tooltip: l10n.countdownTooltip(expiry), expiry: expiry),
@@ -81,7 +76,7 @@ class EventStatus extends StatelessWidget {
               Gaps.gap20,
               CategoryTitle(title: l10n.eventRewards, style: category, contentPadding: EdgeInsets.zero),
               Gaps.gap2,
-              _RewardTiles(rewards: eventRewards(rewards, interimSteps)),
+              _RewardTiles(rewards: _eventRewards),
             },
           ],
         ),
@@ -105,7 +100,10 @@ class _EventTooltip extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         CategoryTitle(title: l10n.eventDescription, style: category, contentPadding: EdgeInsets.zero),
-        Padding(padding: const EdgeInsets.only(top: 2, bottom: 20), child: Text(tooltip, style: tooltipStyle)),
+        Padding(
+          padding: const EdgeInsets.only(top: 2, bottom: 20),
+          child: Text(tooltip, style: tooltipStyle),
+        ),
       ],
     );
   }
@@ -137,7 +135,7 @@ class _EventProgress extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            '${scoreLocTag ?? 'Progress'}: '
+            '${scoreLocTag ?? 'Progress'}: ' // TODO(Orn): localize "Progress"
             '${health!.toStringAsFixed(2)}%',
             style: tooltipStyle,
           ),
@@ -160,16 +158,11 @@ class _RewardTiles extends StatelessWidget {
     final scoreStye = context.textTheme.labelLarge;
 
     for (final reward in this.rewards) {
-      final item = reward.reward.itemString;
+      final items = reward.reward.items;
+      final title = items.first;
 
-      var title = item;
       String? subtitle;
-      if (item.contains('+')) {
-        final split = item.split('+');
-
-        title = split[0].trim();
-        subtitle = split[1].trim();
-      }
+      if (items.length > 1) subtitle = items.skip(1).join(' + ');
 
       rewards.add(
         ListTile(
@@ -180,7 +173,7 @@ class _RewardTiles extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text('Required Score', style: scoreStye),
+              Text('Required Score', style: scoreStye), // TODO(Orn): localize "Required Score"
               Text(reward.requiredScore.toString(), style: scoreStye),
             ],
           ),
