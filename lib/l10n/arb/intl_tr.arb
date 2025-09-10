@@ -1239,6 +1239,7 @@
   "flashSaleSubtitleText": "{plat} Platinum {discount, plural, =0{} other{| {discount}% OFF}}",
   "@flashSaleSubtitleText": {
     "description": "Subtitle text with platinum and discount text",
+    "type": "text",
     "placeholders": {
       "plat": {
         "type": "int"
@@ -1247,5 +1248,17 @@
         "type": "int"
       }
     }
+  },
+  "defaultScoreLocTagText": "Progress",
+  "@defaultScoreLocTagText": {
+    "description": "Default scoreLocTag text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "eventRewardRequireScoreText": "Required Score",
+  "@eventRewardRequireScoreText": {
+    "description": "Event reward required score text",
+    "type": "text",
+    "placeholders": {}
   }
 }
