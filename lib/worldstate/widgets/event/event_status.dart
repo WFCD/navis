@@ -135,8 +135,7 @@ class _EventProgress extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            '${scoreLocTag ?? 'Progress'}: ' // TODO(Orn): localize "Progress"
-            '${health!.toStringAsFixed(2)}%',
+            '${scoreLocTag ?? context.l10n.defaultScoreLocTagText}: ${health!.toStringAsFixed(2)}%',
             style: tooltipStyle,
           ),
           Gaps.gap4,
@@ -173,7 +172,7 @@ class _RewardTiles extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text('Required Score', style: scoreStye), // TODO(Orn): localize "Required Score"
+              Text(context.l10n.eventRewardRequireScoreText, style: scoreStye),
               Text(reward.requiredScore.toString(), style: scoreStye),
             ],
           ),
