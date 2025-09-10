@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:black_hole_flutter/black_hole_flutter.dart';
-import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/home/widgets/section.dart';
@@ -52,7 +51,6 @@ class __NewsCarouselViewState extends State<_NewsCarouselView> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-
     _timer?.cancel();
     _timer = Timer.periodic(_autoScrollDuration, (_) => _autoScroll());
   }
@@ -67,17 +65,14 @@ class __NewsCarouselViewState extends State<_NewsCarouselView> {
     final position = nextPage * pageSize;
 
     _controller.animateTo(position, duration: Durations.short4, curve: Curves.easeInOut);
-
     _currentPage = nextPage;
   }
 
   bool _buildWhen(WorldState previous, WorldState next) {
-    const deepEqual = DeepCollectionEquality();
-
     if (previous is! WorldstateSuccess && next is WorldstateSuccess) return true;
     if (previous is! WorldstateSuccess || next is! WorldstateSuccess) return false;
 
-    return deepEqual.equals(previous.seed.news, next.seed.news);
+    return previous.seed.news.first.id != next.seed.news.first.id;
   }
 
   @override
@@ -85,9 +80,7 @@ class __NewsCarouselViewState extends State<_NewsCarouselView> {
     return BlocBuilder<WorldstateBloc, WorldState>(
       buildWhen: _buildWhen,
       builder: (context, state) {
-        if (state is! WorldstateSuccess) {
-          return const Center(child: WarframeSpinner());
-        }
+        if (state is! WorldstateSuccess) return const Center(child: WarframeSpinner());
 
         final news = state.seed.news.take(_maxItems).toList();
         final size = MediaQuery.sizeOf(context);
@@ -100,8 +93,8 @@ class __NewsCarouselViewState extends State<_NewsCarouselView> {
             onHorizontalDragStart: (_) => _timer?.cancel(),
             onHorizontalDragEnd: (_) {
               final position = _controller.position.pixels;
-              _currentPage = (position / itemExtent).round();
 
+              _currentPage = (position / itemExtent).round();
               _timer = Timer.periodic(_autoScrollDuration, (_) => _autoScroll());
             },
             child: CarouselView(
@@ -111,16 +104,15 @@ class __NewsCarouselViewState extends State<_NewsCarouselView> {
               shrinkExtent: itemExtent,
               onTap: (i) => news[i].link.launchLink(context),
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
-              children:
-                  news
-                      .map(
-                        (n) => Card(
-                          color: context.theme.colorScheme.secondaryContainer,
-                          clipBehavior: Clip.antiAlias,
-                          child: OrbiterNewsContent(news: n),
-                        ),
-                      )
-                      .toList(),
+              children: news
+                  .map(
+                    (n) => Card(
+                      color: context.theme.colorScheme.secondaryContainer,
+                      clipBehavior: Clip.antiAlias,
+                      child: OrbiterNewsContent(news: n),
+                    ),
+                  )
+                  .toList(),
             ),
           ),
         );
