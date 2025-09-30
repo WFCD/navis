@@ -13,16 +13,17 @@ dependencies:
   cupertino_http: ^2.3.0
   flutter:
     sdk: flutter
-  hive_ce: ^2.11.3
+  flutter_ua: ^1.0.1
+  hive_ce: ^2.14.0
   http: ^1.5.0
   meta: ^1.16.0
   path_provider: ^2.1.5
 
 dev_dependencies:
-  build_runner: ^2.7.0
+  build_runner: ^2.8.0
   flutter_test:
     sdk: flutter
-  hive_ce_generator: ^1.9.3
+  hive_ce_generator: ^1.9.5
   mocktail: ^1.0.4
   path_provider_platform_interface: ^2.1.2
   plugin_platform_interface: ^2.1.8

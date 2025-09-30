@@ -17,3 +17,4 @@ linter:
     public_member_api_docs: false
     always_put_required_named_parameters_first: false
     lines_longer_than_80_chars: false
+    discarded_futures: false

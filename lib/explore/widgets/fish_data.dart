@@ -28,7 +28,6 @@ class FishDataView extends StatelessWidget {
               delegate: SliverChildBuilderDelegate((BuildContext context, int index) {
                 return FishCard(fish: data[index]);
                 // format doesn't know whether it needs it or not
-                // ignore: require_trailing_commas
               }, childCount: data!.length),
             ),
           ],
