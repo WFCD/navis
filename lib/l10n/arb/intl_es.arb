@@ -99,10 +99,15 @@
     "description": "shows at when Baro Ki'Teer will arrive",
     "type": "text"
   },
-  "baroInventory": "Inventario de Baro Ki'Teer",
-  "@baroInventory": {
-    "description": "Baro Ki'Teer Inventory button label",
-    "type": "text"
+  "characterInventory": "{character} Inventory",
+  "@characterInventory": {
+    "description": "character Inventory title",
+    "type": "text",
+    "placeholders": {
+      "character": {
+        "type": "String"
+      }
+    }
   },
   "countdownTooltip": "Termina en {date}",
   "@countdownTooltip": {
