@@ -5,16 +5,18 @@ import 'package:navis/worldstate/worldstate.dart';
 import 'package:warframestat_client/warframestat_client.dart';
 
 class BaroInventory extends StatelessWidget {
-  const BaroInventory({required this.inventory, super.key});
+  const BaroInventory({super.key, required this.character, required this.inventory, this.isVarzia = false});
 
+  final String character;
   final List<TraderItem>? inventory;
+  final bool isVarzia;
 
   @override
   Widget build(BuildContext context) {
     return TraceableWidget(
       child: Scaffold(
-        appBar: AppBar(title: Text(context.l10n.baroInventory)),
-        body: InventoryDataTable(inventory: inventory ?? []),
+        appBar: AppBar(title: Text(context.l10n.characterInventory(character))),
+        body: InventoryDataTable(inventory: inventory ?? [], isVarzia: isVarzia),
       ),
     );
   }

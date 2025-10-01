@@ -51,12 +51,15 @@ class ActivitiesPageBranchData extends StatefulShellBranchData {
 }
 
 @immutable
-class ActivitesPageRouteData extends GoRouteData with _$ActivitesPageRouteData {
+class ActivitesPageRouteData extends GoRouteData with $ActivitesPageRouteData {
   const ActivitesPageRouteData();
 
   @override
   Widget build(BuildContext context, GoRouterState state) {
-    return const TraceableWidget(actionName: 'Activites()', child: SafeArea(child: ActivitiesPage()));
+    return const TraceableWidget(
+      actionName: 'Activites()',
+      child: SafeArea(child: ActivitiesPage()),
+    );
   }
 }
 
@@ -66,7 +69,7 @@ class OverviewPageBranchData extends StatefulShellBranchData {
 }
 
 @immutable
-class OverviewPageRouteData extends GoRouteData with _$OverviewPageRouteData {
+class OverviewPageRouteData extends GoRouteData with $OverviewPageRouteData {
   const OverviewPageRouteData();
 
   @override
@@ -81,12 +84,15 @@ class ExplorePageBranchData extends StatefulShellBranchData {
 }
 
 @immutable
-class ExplorePageRouteData extends GoRouteData with _$ExplorePageRouteData {
+class ExplorePageRouteData extends GoRouteData with $ExplorePageRouteData {
   const ExplorePageRouteData();
 
   @override
   Widget build(BuildContext context, GoRouterState state) {
-    return const TraceableWidget(actionName: 'Explore()', child: SafeArea(child: ExplorePage()));
+    return const TraceableWidget(
+      actionName: 'Explore()',
+      child: SafeArea(child: ExplorePage()),
+    );
   }
 }
 
@@ -96,57 +102,69 @@ class SettingsPageBranchData extends StatefulShellBranchData {
 }
 
 @immutable
-class SettingsPageRouteData extends GoRouteData with _$SettingsPageRouteData {
+class SettingsPageRouteData extends GoRouteData with $SettingsPageRouteData {
   const SettingsPageRouteData();
 
   @override
   Widget build(BuildContext context, GoRouterState state) {
-    return const TraceableWidget(actionName: 'Settings()', child: SafeArea(child: SettingsPage()));
+    return const TraceableWidget(
+      actionName: 'Settings()',
+      child: SafeArea(child: SettingsPage()),
+    );
   }
 }
 
 @immutable
 @TypedGoRoute<WorldEventPageRoute>(name: 'event', path: '/event')
-class WorldEventPageRoute extends GoRouteData with _$WorldEventPageRoute {
+class WorldEventPageRoute extends GoRouteData with $WorldEventPageRoute {
   const WorldEventPageRoute(this.$extra);
 
   final WorldEvent $extra;
 
   @override
   Widget build(BuildContext context, GoRouterState state) {
-    return TraceableWidget(actionName: 'WorldEvent()', child: EventInformation(event: $extra));
+    return TraceableWidget(
+      actionName: 'WorldEvent()',
+      child: EventInformation(event: $extra),
+    );
   }
 }
 
 @immutable
 @TypedGoRoute<SyndicatePageRoute>(name: 'bounties', path: '/bounties')
-class SyndicatePageRoute extends GoRouteData with _$SyndicatePageRoute {
+class SyndicatePageRoute extends GoRouteData with $SyndicatePageRoute {
   const SyndicatePageRoute(this.$extra);
 
   final SyndicateMission $extra;
 
   @override
   Widget build(BuildContext context, GoRouterState state) {
-    return TraceableWidget(actionName: 'BountiesPage(${$extra.syndicate})', child: BountiesPage(syndicate: $extra));
+    return TraceableWidget(
+      actionName: 'BountiesPage(${$extra.syndicate})',
+      child: BountiesPage(syndicate: $extra),
+    );
   }
 }
 
 @immutable
 @TypedGoRoute<NightwavePageRoute>(name: 'nightwave', path: '/nightwave')
-class NightwavePageRoute extends GoRouteData with _$NightwavePageRoute {
+class NightwavePageRoute extends GoRouteData with $NightwavePageRoute {
   const NightwavePageRoute(this.$extra);
 
   final Nightwave? $extra;
 
   @override
   Widget build(BuildContext context, GoRouterState state) {
-    return TraceableWidget(actionName: 'Nightwave()', child: NightwavesPage(nightwave: $extra));
+    return TraceableWidget(
+      actionName: 'Nightwave()',
+      child: NightwavesPage(nightwave: $extra),
+    );
   }
 }
 
 @immutable
 @TypedGoRoute<SynthTargetsPageRoute>(name: 'targets', path: '/targets')
-class SynthTargetsPageRoute extends GoRouteData with _$SynthTargetsPageRoute {
+class SynthTargetsPageRoute extends GoRouteData with $SynthTargetsPageRoute {
   const SynthTargetsPageRoute();
 
   @override
@@ -157,20 +175,25 @@ class SynthTargetsPageRoute extends GoRouteData with _$SynthTargetsPageRoute {
 
 @immutable
 @TypedGoRoute<TraderPageRoute>(name: 'trader', path: '/trader')
-class TraderPageRoute extends GoRouteData with _$TraderPageRoute {
-  const TraderPageRoute(this.$extra);
+class TraderPageRoute extends GoRouteData with $TraderPageRoute {
+  const TraderPageRoute(this.character, this.$extra, {this.isVarzia = false});
 
+  final String character;
+  final bool isVarzia;
   final List<TraderItem>? $extra;
 
   @override
   Widget build(BuildContext context, GoRouterState state) {
-    return TraceableWidget(actionName: 'BaroInventory()', child: BaroInventory(inventory: $extra));
+    return TraceableWidget(
+      actionName: 'BaroInventory()',
+      child: BaroInventory(character: character, inventory: $extra, isVarzia: isVarzia),
+    );
   }
 }
 
 @immutable
 @TypedGoRoute<FishPageRoute>(name: 'fish', path: '/fish')
-class FishPageRoute extends GoRouteData with _$FishPageRoute {
+class FishPageRoute extends GoRouteData with $FishPageRoute {
   const FishPageRoute();
 
   @override
@@ -181,20 +204,23 @@ class FishPageRoute extends GoRouteData with _$FishPageRoute {
 
 @immutable
 @TypedGoRoute<CodexPageRoute>(name: 'codex', path: '/codex')
-class CodexPageRoute extends GoRouteData with _$CodexPageRoute {
+class CodexPageRoute extends GoRouteData with $CodexPageRoute {
   const CodexPageRoute(this.$extra);
 
   final String $extra;
 
   @override
   Widget build(BuildContext context, GoRouterState state) {
-    return TraceableWidget(actionName: 'CodexSearch()', child: CodexSearchPage(query: $extra));
+    return TraceableWidget(
+      actionName: 'CodexSearch()',
+      child: CodexSearchPage(query: $extra),
+    );
   }
 }
 
 @immutable
 @TypedGoRoute<NewsPageRoute>(name: 'news', path: '/news')
-class NewsPageRoute extends GoRouteData with _$NewsPageRoute {
+class NewsPageRoute extends GoRouteData with $NewsPageRoute {
   const NewsPageRoute();
 
   @override
@@ -205,7 +231,7 @@ class NewsPageRoute extends GoRouteData with _$NewsPageRoute {
 
 @immutable
 @TypedGoRoute<MasteryPageRoute>(name: 'mastery', path: '/mastery')
-class MasteryPageRoute extends GoRouteData with _$MasteryPageRoute {
+class MasteryPageRoute extends GoRouteData with $MasteryPageRoute {
   const MasteryPageRoute();
 
   @override
@@ -216,7 +242,7 @@ class MasteryPageRoute extends GoRouteData with _$MasteryPageRoute {
 
 @immutable
 @TypedGoRoute<Calendar1999PageRoute>(name: 'calendar', path: '/calendar')
-class Calendar1999PageRoute extends GoRouteData with _$Calendar1999PageRoute {
+class Calendar1999PageRoute extends GoRouteData with $Calendar1999PageRoute {
   const Calendar1999PageRoute(this.season, this.$extra);
 
   final String season;
@@ -224,26 +250,32 @@ class Calendar1999PageRoute extends GoRouteData with _$Calendar1999PageRoute {
 
   @override
   Widget build(BuildContext context, GoRouterState state) {
-    return TraceableWidget(actionName: 'Calendar()', child: CalendarPage(season: season, days: $extra));
+    return TraceableWidget(
+      actionName: 'Calendar()',
+      child: CalendarPage(season: season, days: $extra),
+    );
   }
 }
 
 @immutable
 @TypedGoRoute<ArchimedeaPageRoute>(name: 'archimedea', path: '/archimedea')
-class ArchimedeaPageRoute extends GoRouteData with _$ArchimedeaPageRoute {
+class ArchimedeaPageRoute extends GoRouteData with $ArchimedeaPageRoute {
   const ArchimedeaPageRoute(this.$extra);
 
   final Archimedea $extra;
 
   @override
   Widget build(BuildContext context, GoRouterState state) {
-    return TraceableWidget(actionName: 'Archimedea(${$extra.id})', child: ArchimedeaPage(archimedea: $extra));
+    return TraceableWidget(
+      actionName: 'Archimedea(${$extra.id})',
+      child: ArchimedeaPage(archimedea: $extra),
+    );
   }
 }
 
 @immutable
 @TypedGoRoute<FlashSalesPageRoute>(name: 'flashSales', path: '/worldstate/flashSales')
-class FlashSalesPageRoute extends GoRouteData with _$FlashSalesPageRoute {
+class FlashSalesPageRoute extends GoRouteData with $FlashSalesPageRoute {
   @override
   Widget build(BuildContext context, GoRouterState state) {
     return const TraceableWidget(actionName: 'flashSales', child: FlashSalesPage());

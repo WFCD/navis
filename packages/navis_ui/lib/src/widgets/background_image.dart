@@ -92,6 +92,7 @@ class ImageContainer extends StatelessWidget {
             image: DecorationImage(
               image: ResizeImage(imageProvider, width: constraints.maxWidth.toInt()),
               fit: BoxFit.cover,
+              colorFilter: ColorFilter.mode(Colors.black.withAlpha(80), BlendMode.darken),
             ),
           ),
           child: Padding(padding: padding, child: child),

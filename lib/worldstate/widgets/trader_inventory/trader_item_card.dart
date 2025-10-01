@@ -5,9 +5,10 @@ import 'package:navis_ui/navis_ui.dart';
 import 'package:warframestat_client/warframestat_client.dart';
 
 class TraderItemCard extends StatelessWidget {
-  const TraderItemCard({super.key, required this.item});
+  const TraderItemCard({super.key, required this.item, this.isVarzia = false});
 
   final TraderItem item;
+  final bool isVarzia;
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +18,7 @@ class TraderItemCard extends StatelessWidget {
         child: ListTile(
           dense: true,
           title: Text(item.item),
-          trailing: _TraderItemTrailing(credits: item.credits ?? 0, ducats: item.ducats ?? 0),
+          trailing: _TraderItemTrailing(credits: item.credits ?? 0, ducats: item.ducats ?? 0, isVarzia: isVarzia),
         ),
       ),
     );
@@ -25,10 +26,11 @@ class TraderItemCard extends StatelessWidget {
 }
 
 class _TraderItemTrailing extends StatelessWidget {
-  const _TraderItemTrailing({required this.credits, required this.ducats});
+  const _TraderItemTrailing({required this.ducats, required this.credits, this.isVarzia = false});
 
-  final int credits;
   final int ducats;
+  final int credits;
+  final bool isVarzia;
 
   @override
   Widget build(BuildContext context) {
@@ -38,9 +40,9 @@ class _TraderItemTrailing extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         mainAxisSize: MainAxisSize.min,
         children: [
-          _TrailingColumn(header: 'Ducats', value: ducats),
+          _TrailingColumn(header: isVarzia ? 'Regal Aya' : 'Ducats', value: ducats),
           const SizedBox(width: 25),
-          _TrailingColumn(header: 'Credits', value: credits),
+          _TrailingColumn(header: isVarzia ? 'Aya' : 'Credits', value: credits),
         ],
       ),
     );
@@ -63,7 +65,11 @@ class _TrailingColumn extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       mainAxisSize: MainAxisSize.min,
-      children: [Text(header, style: headerStyle), Gaps.gap6, Text(NumberFormat().format(value), style: valueStyle)],
+      children: [
+        Text(header, style: headerStyle),
+        Gaps.gap6,
+        Text(NumberFormat().format(value), style: valueStyle),
+      ],
     );
   }
 }

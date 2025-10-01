@@ -15,9 +15,10 @@ class Assets {
   const Assets._();
 
   static const AssetGenImage baroBanner = AssetGenImage('assets/baro_banner.webp');
+  static const AssetGenImage varziaBanner = AssetGenImage('assets/varzia_banner.gif');
 
   /// List of all assets
-  static List<AssetGenImage> get values => [baroBanner];
+  static List<AssetGenImage> get values => [baroBanner, varziaBanner];
 }
 
 class AssetGenImage {

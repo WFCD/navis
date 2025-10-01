@@ -31,8 +31,7 @@ RouteBase get $appShell => StatefulShellRouteData.$route(
         GoRouteData.$route(
           path: '/overview',
           name: 'overview',
-
-          factory: _$OverviewPageRouteData._fromState,
+          factory: $OverviewPageRouteData._fromState,
         ),
       ],
     ),
@@ -41,8 +40,7 @@ RouteBase get $appShell => StatefulShellRouteData.$route(
         GoRouteData.$route(
           path: '/activities',
           name: 'activities',
-
-          factory: _$ActivitesPageRouteData._fromState,
+          factory: $ActivitesPageRouteData._fromState,
         ),
       ],
     ),
@@ -51,8 +49,7 @@ RouteBase get $appShell => StatefulShellRouteData.$route(
         GoRouteData.$route(
           path: '/explore',
           name: 'explore',
-
-          factory: _$ExplorePageRouteData._fromState,
+          factory: $ExplorePageRouteData._fromState,
         ),
       ],
     ),
@@ -61,8 +58,7 @@ RouteBase get $appShell => StatefulShellRouteData.$route(
         GoRouteData.$route(
           path: '/settings',
           name: 'settings',
-
-          factory: _$SettingsPageRouteData._fromState,
+          factory: $SettingsPageRouteData._fromState,
         ),
       ],
     ),
@@ -73,7 +69,7 @@ extension $AppShellExtension on AppShell {
   static AppShell _fromState(GoRouterState state) => const AppShell();
 }
 
-mixin _$OverviewPageRouteData on GoRouteData {
+mixin $OverviewPageRouteData on GoRouteData {
   static OverviewPageRouteData _fromState(GoRouterState state) =>
       const OverviewPageRouteData();
 
@@ -94,7 +90,7 @@ mixin _$OverviewPageRouteData on GoRouteData {
   void replace(BuildContext context) => context.replace(location);
 }
 
-mixin _$ActivitesPageRouteData on GoRouteData {
+mixin $ActivitesPageRouteData on GoRouteData {
   static ActivitesPageRouteData _fromState(GoRouterState state) =>
       const ActivitesPageRouteData();
 
@@ -115,7 +111,7 @@ mixin _$ActivitesPageRouteData on GoRouteData {
   void replace(BuildContext context) => context.replace(location);
 }
 
-mixin _$ExplorePageRouteData on GoRouteData {
+mixin $ExplorePageRouteData on GoRouteData {
   static ExplorePageRouteData _fromState(GoRouterState state) =>
       const ExplorePageRouteData();
 
@@ -136,7 +132,7 @@ mixin _$ExplorePageRouteData on GoRouteData {
   void replace(BuildContext context) => context.replace(location);
 }
 
-mixin _$SettingsPageRouteData on GoRouteData {
+mixin $SettingsPageRouteData on GoRouteData {
   static SettingsPageRouteData _fromState(GoRouterState state) =>
       const SettingsPageRouteData();
 
@@ -160,11 +156,10 @@ mixin _$SettingsPageRouteData on GoRouteData {
 RouteBase get $worldEventPageRoute => GoRouteData.$route(
   path: '/event',
   name: 'event',
-
-  factory: _$WorldEventPageRoute._fromState,
+  factory: $WorldEventPageRoute._fromState,
 );
 
-mixin _$WorldEventPageRoute on GoRouteData {
+mixin $WorldEventPageRoute on GoRouteData {
   static WorldEventPageRoute _fromState(GoRouterState state) =>
       WorldEventPageRoute(state.extra as WorldEvent);
 
@@ -192,11 +187,10 @@ mixin _$WorldEventPageRoute on GoRouteData {
 RouteBase get $syndicatePageRoute => GoRouteData.$route(
   path: '/bounties',
   name: 'bounties',
-
-  factory: _$SyndicatePageRoute._fromState,
+  factory: $SyndicatePageRoute._fromState,
 );
 
-mixin _$SyndicatePageRoute on GoRouteData {
+mixin $SyndicatePageRoute on GoRouteData {
   static SyndicatePageRoute _fromState(GoRouterState state) =>
       SyndicatePageRoute(state.extra as SyndicateMission);
 
@@ -224,11 +218,10 @@ mixin _$SyndicatePageRoute on GoRouteData {
 RouteBase get $nightwavePageRoute => GoRouteData.$route(
   path: '/nightwave',
   name: 'nightwave',
-
-  factory: _$NightwavePageRoute._fromState,
+  factory: $NightwavePageRoute._fromState,
 );
 
-mixin _$NightwavePageRoute on GoRouteData {
+mixin $NightwavePageRoute on GoRouteData {
   static NightwavePageRoute _fromState(GoRouterState state) =>
       NightwavePageRoute(state.extra as Nightwave?);
 
@@ -256,11 +249,10 @@ mixin _$NightwavePageRoute on GoRouteData {
 RouteBase get $synthTargetsPageRoute => GoRouteData.$route(
   path: '/targets',
   name: 'targets',
-
-  factory: _$SynthTargetsPageRoute._fromState,
+  factory: $SynthTargetsPageRoute._fromState,
 );
 
-mixin _$SynthTargetsPageRoute on GoRouteData {
+mixin $SynthTargetsPageRoute on GoRouteData {
   static SynthTargetsPageRoute _fromState(GoRouterState state) =>
       const SynthTargetsPageRoute();
 
@@ -284,18 +276,32 @@ mixin _$SynthTargetsPageRoute on GoRouteData {
 RouteBase get $traderPageRoute => GoRouteData.$route(
   path: '/trader',
   name: 'trader',
-
-  factory: _$TraderPageRoute._fromState,
+  factory: $TraderPageRoute._fromState,
 );
 
-mixin _$TraderPageRoute on GoRouteData {
-  static TraderPageRoute _fromState(GoRouterState state) =>
-      TraderPageRoute(state.extra as List<TraderItem>?);
+mixin $TraderPageRoute on GoRouteData {
+  static TraderPageRoute _fromState(GoRouterState state) => TraderPageRoute(
+    state.uri.queryParameters['character']!,
+    isVarzia:
+        _$convertMapValue(
+          'is-varzia',
+          state.uri.queryParameters,
+          _$boolConverter,
+        ) ??
+        false,
+    state.extra as List<TraderItem>?,
+  );
 
   TraderPageRoute get _self => this as TraderPageRoute;
 
   @override
-  String get location => GoRouteData.$location('/trader');
+  String get location => GoRouteData.$location(
+    '/trader',
+    queryParams: {
+      'character': _self.character,
+      if (_self.isVarzia != false) 'is-varzia': _self.isVarzia.toString(),
+    },
+  );
 
   @override
   void go(BuildContext context) => context.go(location, extra: _self.$extra);
@@ -313,14 +319,33 @@ mixin _$TraderPageRoute on GoRouteData {
       context.replace(location, extra: _self.$extra);
 }
 
+T? _$convertMapValue<T>(
+  String key,
+  Map<String, String> map,
+  T? Function(String) converter,
+) {
+  final value = map[key];
+  return value == null ? null : converter(value);
+}
+
+bool _$boolConverter(String value) {
+  switch (value) {
+    case 'true':
+      return true;
+    case 'false':
+      return false;
+    default:
+      throw UnsupportedError('Cannot convert "$value" into a bool.');
+  }
+}
+
 RouteBase get $fishPageRoute => GoRouteData.$route(
   path: '/fish',
   name: 'fish',
-
-  factory: _$FishPageRoute._fromState,
+  factory: $FishPageRoute._fromState,
 );
 
-mixin _$FishPageRoute on GoRouteData {
+mixin $FishPageRoute on GoRouteData {
   static FishPageRoute _fromState(GoRouterState state) => const FishPageRoute();
 
   @override
@@ -343,11 +368,10 @@ mixin _$FishPageRoute on GoRouteData {
 RouteBase get $codexPageRoute => GoRouteData.$route(
   path: '/codex',
   name: 'codex',
-
-  factory: _$CodexPageRoute._fromState,
+  factory: $CodexPageRoute._fromState,
 );
 
-mixin _$CodexPageRoute on GoRouteData {
+mixin $CodexPageRoute on GoRouteData {
   static CodexPageRoute _fromState(GoRouterState state) =>
       CodexPageRoute(state.extra as String);
 
@@ -375,11 +399,10 @@ mixin _$CodexPageRoute on GoRouteData {
 RouteBase get $newsPageRoute => GoRouteData.$route(
   path: '/news',
   name: 'news',
-
-  factory: _$NewsPageRoute._fromState,
+  factory: $NewsPageRoute._fromState,
 );
 
-mixin _$NewsPageRoute on GoRouteData {
+mixin $NewsPageRoute on GoRouteData {
   static NewsPageRoute _fromState(GoRouterState state) => const NewsPageRoute();
 
   @override
@@ -402,11 +425,10 @@ mixin _$NewsPageRoute on GoRouteData {
 RouteBase get $masteryPageRoute => GoRouteData.$route(
   path: '/mastery',
   name: 'mastery',
-
-  factory: _$MasteryPageRoute._fromState,
+  factory: $MasteryPageRoute._fromState,
 );
 
-mixin _$MasteryPageRoute on GoRouteData {
+mixin $MasteryPageRoute on GoRouteData {
   static MasteryPageRoute _fromState(GoRouterState state) =>
       const MasteryPageRoute();
 
@@ -430,11 +452,10 @@ mixin _$MasteryPageRoute on GoRouteData {
 RouteBase get $calendar1999PageRoute => GoRouteData.$route(
   path: '/calendar',
   name: 'calendar',
-
-  factory: _$Calendar1999PageRoute._fromState,
+  factory: $Calendar1999PageRoute._fromState,
 );
 
-mixin _$Calendar1999PageRoute on GoRouteData {
+mixin $Calendar1999PageRoute on GoRouteData {
   static Calendar1999PageRoute _fromState(GoRouterState state) =>
       Calendar1999PageRoute(
         state.uri.queryParameters['season']!,
@@ -466,11 +487,10 @@ mixin _$Calendar1999PageRoute on GoRouteData {
 RouteBase get $archimedeaPageRoute => GoRouteData.$route(
   path: '/archimedea',
   name: 'archimedea',
-
-  factory: _$ArchimedeaPageRoute._fromState,
+  factory: $ArchimedeaPageRoute._fromState,
 );
 
-mixin _$ArchimedeaPageRoute on GoRouteData {
+mixin $ArchimedeaPageRoute on GoRouteData {
   static ArchimedeaPageRoute _fromState(GoRouterState state) =>
       ArchimedeaPageRoute(state.extra as Archimedea);
 
@@ -498,11 +518,10 @@ mixin _$ArchimedeaPageRoute on GoRouteData {
 RouteBase get $flashSalesPageRoute => GoRouteData.$route(
   path: '/worldstate/flashSales',
   name: 'flashSales',
-
-  factory: _$FlashSalesPageRoute._fromState,
+  factory: $FlashSalesPageRoute._fromState,
 );
 
-mixin _$FlashSalesPageRoute on GoRouteData {
+mixin $FlashSalesPageRoute on GoRouteData {
   static FlashSalesPageRoute _fromState(GoRouterState state) =>
       FlashSalesPageRoute();
 

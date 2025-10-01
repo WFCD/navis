@@ -23,11 +23,10 @@ class _MobileTimers extends StatelessWidget {
     const cacheExtent = 500.0;
 
     return BlocSelector<WorldstateBloc, WorldState, Worldstate?>(
-      selector:
-          (state) => switch (state) {
-            WorldstateSuccess() => state.seed,
-            _ => null,
-          },
+      selector: (state) => switch (state) {
+        WorldstateSuccess() => state.seed,
+        _ => null,
+      },
       builder: (_, worldstate) {
         return ViewLoading(
           isLoading: worldstate == null,
@@ -37,7 +36,8 @@ class _MobileTimers extends StatelessWidget {
             cacheExtent: cacheExtent,
             children: [
               const DailyReward(),
-              const TraderCard(),
+              const BaroKiTeerCard(),
+              const VarziaTraderCard(),
               if (worldstate?.eventsActive ?? false) const EventCard(),
               if (worldstate?.arbitrationActive ?? false) const ArbitrationCard(),
               // if (state.outpostDetected) const SentientOutpostCard(),
