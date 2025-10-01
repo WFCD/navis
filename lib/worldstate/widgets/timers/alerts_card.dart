@@ -108,7 +108,7 @@ class _AlertReward extends StatelessWidget {
       leading: item != null ? CachedNetworkImage(imageUrl: item!.imageUrl, height: 100, width: 60) : null,
       title: RichText(
         text: TextSpan(
-          text: reward?.itemString,
+          text: reward?.items.first,
           style: context.theme.textTheme.titleMedium,
           children: [
             if (reward?.credits != null)
