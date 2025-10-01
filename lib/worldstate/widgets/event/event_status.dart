@@ -1,5 +1,6 @@
 import 'package:black_hole_flutter/black_hole_flutter.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:warframestat_client/warframestat_client.dart';
@@ -37,8 +38,9 @@ class EventStatus extends StatelessWidget {
 
     for (final reward in rewards) {
       if (reward.items.isEmpty) continue;
-      final interimScore = r[r.length - 1].requiredScore;
-      r.add((reward: reward, requiredScore: interimScore == 75 ? interimScore + 25 : interimScore * 2));
+      final interimScore = r.isEmpty ? 0 : r[r.length - 1].requiredScore;
+      final score = maxScore ?? (interimScore == 75 ? interimScore + 25 : interimScore * 2);
+      r.add((reward: reward, requiredScore: score));
     }
 
     return r;
@@ -119,12 +121,13 @@ class _EventProgress extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final format = NumberFormat().format;
     final tooltipStyle = context.theme.textTheme.titleSmall?.copyWith(fontSize: 15);
 
     if (maxScore != null && maxScore != 0) {
       return RowItem(
         text: Text(scoreLocTag ?? 'Progress', style: tooltipStyle),
-        child: ColoredContainer.text(text: '$currentScore/$maxScore'),
+        child: ColoredContainer.text(text: '${format(currentScore)}/${format(maxScore)}'),
       );
     }
 
@@ -173,7 +176,7 @@ class _RewardTiles extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(context.l10n.eventRewardRequireScoreText, style: scoreStye),
-              Text(reward.requiredScore.toString(), style: scoreStye),
+              Text(NumberFormat().format(reward.requiredScore), style: scoreStye),
             ],
           ),
         ),
