@@ -26,7 +26,12 @@ class BaroKiTeerCard extends StatelessWidget {
         builder: (context, traders) {
           final trader = traders?.firstWhere((t) => !t.location.contains('TennoCon'));
 
-          return _TraderWidget(trader: trader!, background: Assets.baroBanner.provider(), color: baroPurple);
+          return _TraderWidget(
+            trader: trader!,
+            status: (isActive) => isActive ? context.l10n.baroLeavesOn : context.l10n.baroArrivesOn,
+            background: Assets.baroBanner.provider(),
+            color: baroPurple,
+          );
         },
       ),
     );
@@ -50,6 +55,7 @@ class VarziaTraderCard extends StatelessWidget {
         builder: (context, trader) {
           return _TraderWidget(
             trader: trader!,
+            status: (_) => context.l10n.primeVaultResetText,
             background: Assets.varziaBanner.provider(),
             color: Colors.blue[800],
             isVarzia: true,
@@ -61,22 +67,27 @@ class VarziaTraderCard extends StatelessWidget {
 }
 
 class _TraderWidget extends StatelessWidget {
-  const _TraderWidget({required this.trader, required this.background, this.color, this.isVarzia = false});
+  const _TraderWidget({
+    required this.trader,
+    required this.status,
+    required this.background,
+    this.color,
+    this.isVarzia = false,
+  });
 
   final Trader trader;
+  // ignore: avoid_positional_boolean_parameters doesn't work as a named prop (I think)
+  final String Function(bool isActive) status;
   final ImageProvider<Object> background;
   final Color? color;
   final bool isVarzia;
 
   @override
   Widget build(BuildContext context) {
-    final l10n = context.l10n;
     final isActive = trader.active;
     final date = isActive ? trader.expiry : trader.activation;
     final dateFormatted = MaterialLocalizations.of(context).formatFullDate(date);
-    final status = isActive ? l10n.baroLeavesOn : l10n.baroArrivesOn;
-    final character = trader.character.isNotEmpty ? trader.character : 'Varzia';
-    final title = '$character ${isActive ? '| ${trader.location}' : ''}';
+    final title = '${trader.character} ${isActive ? '| ${trader.location}' : ''}';
 
     return ImageContainer(
       height: 100,
@@ -84,14 +95,14 @@ class _TraderWidget extends StatelessWidget {
       padding: EdgeInsets.zero,
       child: InkWell(
         onTap: isActive
-            ? () => TraderPageRoute(character, trader.inventory, isVarzia: isVarzia).push<void>(context)
+            ? () => TraderPageRoute(trader.character, trader.inventory, isVarzia: isVarzia).push<void>(context)
             : null,
         child: ListTile(
           title: Text(title),
-          subtitle: Text('$status $dateFormatted'),
+          subtitle: Text('${status(isActive)} $dateFormatted'),
           textColor: Colors.white,
           trailing: CountdownTimer(
-            tooltip: l10n.countdownTooltip(date),
+            tooltip: context.l10n.countdownTooltip(date),
             color: color,
             expiry: (isActive ? trader.expiry : trader.activation),
           ),
