@@ -17,10 +17,7 @@ class SyndicateBounties extends StatelessWidget {
       itemBuilder: (context, index) {
         final job = jobs[index];
 
-        return AppCard(
-          padding: EdgeInsets.zero,
-          child: SyndicateBountyTile(faction: Syndicates.syndicateStringToEnum(syndicate.syndicate), job: job),
-        );
+        return AppCard(child: SyndicateBountyTile(job: job));
       },
     );
   }

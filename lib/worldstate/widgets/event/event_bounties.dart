@@ -35,10 +35,7 @@ class _BuildBounties extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       mainAxisSize: MainAxisSize.min,
-      children:
-          jobs.map<Widget>((j) {
-            return SyndicateBountyTile(faction: Syndicates.cetus, job: j);
-          }).toList(),
+      children: jobs.map<Widget>((j) => SyndicateBountyTile(job: j)).toList(),
     );
   }
 }
