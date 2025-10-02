@@ -45,13 +45,16 @@ class EntryViewOpenContainer extends StatelessWidget {
       return InkWell(
         child: builder(context, () {}),
         onTap: () {
-          showBottomSheet(
+          showModalBottomSheet<void>(
             context: context,
-            builder: (context) => EntryContent(
-              uniqueName: uniqueName,
-              name: name,
-              description: description ?? '',
-              imageUrl: imageUrl,
+            builder: (context) => Padding(
+              padding: const EdgeInsets.all(16),
+              child: EntryContent(
+                uniqueName: uniqueName,
+                name: name,
+                description: description ?? '',
+                imageUrl: imageUrl,
+              ),
             ),
           );
         },
