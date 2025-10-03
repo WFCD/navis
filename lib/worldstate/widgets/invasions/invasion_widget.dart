@@ -1,5 +1,6 @@
 import 'package:black_hole_flutter/black_hole_flutter.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:navis/worldstate/worldstate.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:warframestat_client/warframestat_client.dart';
@@ -27,14 +28,19 @@ class InvasionWidget extends StatelessWidget {
             padding: const EdgeInsets.only(top: 20),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [Icon(attacker.factionIcon, size: height * .4), Icon(defender.factionIcon, size: height * .4)],
+              children: [
+                Icon(attacker.factionIcon, size: height * .4),
+                Icon(defender.factionIcon, size: height * .4),
+              ],
             ),
           ),
           Column(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.end,
             children: <Widget>[
-              Expanded(child: _InvasionDetails(node: invasion.node, description: invasion.desc, eta: invasion.eta)),
+              Expanded(
+                child: _InvasionDetails(node: invasion.node, description: invasion.desc, eta: invasion.eta),
+              ),
               InvasionReward(
                 attacker: invasion.attacker,
                 defender: invasion.defender,
@@ -59,16 +65,20 @@ class _InvasionDetails extends StatelessWidget {
 
   final String node;
   final String description;
-  final String eta;
+  final DateTime eta;
 
   @override
   Widget build(BuildContext context) {
     final nodeStyle = context.theme.textTheme.titleMedium;
     final infoStyle = context.theme.textTheme.bodySmall;
+    final remainingTime = DateFormat.yMd(context.locale.languageCode).add_jm().format(eta);
 
     return Column(
       mainAxisSize: MainAxisSize.min,
-      children: <Widget>[Text(node, style: nodeStyle), Text('$description ($eta)', style: infoStyle)],
+      children: <Widget>[
+        Text(node, style: nodeStyle),
+        Text('$description ($remainingTime)', style: infoStyle),
+      ],
     );
   }
 }
