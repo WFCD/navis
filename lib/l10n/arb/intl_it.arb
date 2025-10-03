@@ -1,4 +1,5 @@
 {
+  "@@locale": "it",
   "@@last_modified": "2020-03-03T16:56:42.387837",
   "levelInfo": "Livello: {min} - {max}",
   "@levelInfo": {
@@ -98,10 +99,15 @@
     "description": "shows at when Baro Ki'Teer will arrive",
     "type": "text"
   },
-  "baroInventory": "Inventario di Baro Ki'Teer",
-  "@baroInventory": {
-    "description": "Baro Ki'Teer Inventory button label",
-    "type": "text"
+  "characterInventory": "{character} Inventory",
+  "@characterInventory": {
+    "description": "character Inventory title",
+    "type": "text",
+    "placeholders": {
+      "character": {
+        "type": "String"
+      }
+    }
   },
   "countdownTooltip": "Termina {date}",
   "@countdownTooltip": {
@@ -372,7 +378,7 @@
   },
   "reportBugsTitle": "Segnala bug",
   "@reportBugsTitle": {
-    "desciption": "Title for bug report link",
+    "description": "Title for bug report link",
     "type": "text"
   },
   "reportBugsDescription": "Segnala un bug o suggerisci nuove funzionalità.",
@@ -779,7 +785,7 @@
   "@discountTitle": {
     "description": "Displays the discount applied for a given darvo sale",
     "type": "text",
-    "placeholder": {
+    "placeholders": {
       "discount": {}
     }
   },
@@ -787,7 +793,7 @@
   "@inStockInformation": {
     "description": "Displays the stock information for a darvo deal",
     "type": "text",
-    "placeholder": {
+    "placeholders": {
       "stock": {}
     }
   },
@@ -920,7 +926,7 @@
   "@dropChance": {
     "description": "Drop chance percentage",
     "type": "text",
-    "placeholder": {
+    "placeholders": {
       "chance": {}
     }
   },
@@ -1098,7 +1104,7 @@
   "@nightwaveSeasonSubtitle": {
     "description": "Current nightwave season number",
     "type": "text",
-    "placeholder": {
+    "placeholders": {
       "season": {
         "type": "int"
       }
@@ -1128,7 +1134,7 @@
   "@itemRankSubtitle": {
     "description": "Subtitle showing the item's rank",
     "type": "text",
-    "placeholder": {
+    "placeholders": {
       "rank": {}
     }
   },
@@ -1136,25 +1142,25 @@
   "@syncingInfoText": {
     "description": "Text displayed when xp info is being synced",
     "type": "text",
-    "placeholder": {}
+    "placeholders": {}
   },
   "enterUsernameHintText": "Setup Inventoria",
   "@enterUsernameHintText": {
-    "description": "Hint Text use as a placeholder in username input",
+    "description": "Hint Text use as a placeholders in username input",
     "type": "text",
-    "placeholder": {}
+    "placeholders": {}
   },
   "clearUsernameButtonLabel": "Clear username",
   "@clearUsernameButtonLabel": {
     "description": "Label text for clear username button",
     "type": "text",
-    "placeholder": {}
+    "placeholders": {}
   },
   "cancelText": "Cancel",
   "@cancelText": {
     "description": "Text to display for cancel buttons",
     "type": "text",
-    "placeholder": {}
+    "placeholders": {}
   },
   "inventoriaSteps": "Cephalon Navis can use your read-only profile data to help track your arsenal XP and mastery points.\n\n1. Go to {url} on a computer\n\n2. Upload your EE.log or account ID from cookies\n\n3. Tap next and scan the generated QR code",
   "@inventoriaSteps": {
@@ -1210,5 +1216,59 @@
     "description": "Subtitle for Cephalon Navis support card",
     "type": "text",
     "placeholders": {}
+  },
+  "itemFailureErrorText": "Failed to load item",
+  "@itemFailureErrorText": {
+    "description": "Error message when loading a full item",
+    "type": "text",
+    "placeholders": {}
+  },
+  "worldstateFailureText": "Failed to parse Worldstate",
+  "@worldstateFailureText": {
+    "description": "Error message when loading/parsing the worldstate fails",
+    "type": "text",
+    "placeholders": {}
+  },
+  "worldstateOutdatedText": "Worldstate is out of date by more then 30 mins",
+  "@worldstateOutdatedText": {
+    "description": "Snackbar message to show when worldstate hasn't been updated due to failure or lack of internet connection",
+    "type": "text",
+    "placeholders": {}
+  },
+  "flashSaleAppbarTitle": "Flash Sales",
+  "@flashSaleAppbarTitle": {
+    "description": "AppBar Title for flash sales",
+    "type": "text",
+    "placeholders": {}
+  },
+  "flashSaleSubtitleText": "{plat} Platinum {discount, plural, =0{} other{| {discount}% OFF}}",
+  "@flashSaleSubtitleText": {
+    "description": "Subtitle text with platinum and discount text",
+    "type": "text",
+    "placeholders": {
+      "plat": {
+        "type": "int"
+      },
+      "discount": {
+        "type": "int"
+      }
+    }
+  },
+  "defaultScoreLocTagText": "Progress",
+  "@defaultScoreLocTagText": {
+    "description": "Default scoreLocTag text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "eventRewardRequireScoreText": "Required Score",
+  "@eventRewardRequireScoreText": {
+    "description": "Event reward required score text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "primeVaultResetText": "Prime Resurgence resets on: ",
+  "@primeVaultResetText": {
+    "description": "Prime vault reset text",
+    "type": "text"
   }
 }
