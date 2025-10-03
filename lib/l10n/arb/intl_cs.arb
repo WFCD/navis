@@ -1265,5 +1265,10 @@
     "description": "Event reward required score text",
     "type": "text",
     "placeholders": {}
+  },
+  "primeVaultResetText": "Prime Resurgence resets on: ",
+  "@primeVaultResetText": {
+    "description": "Prime vault reset text",
+    "type": "text"
   }
 }
