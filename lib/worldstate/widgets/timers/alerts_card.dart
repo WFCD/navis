@@ -152,7 +152,10 @@ class _AlertItemReward extends StatelessWidget {
           type: item.type,
           wikiaUrl: item.wikiaUrl,
           wikiaThumbnail: item.wikiaThumbnail,
-          builder: (_, _) => _AlertReward(reward: reward, item: item),
+          builder: (_, onTap) => InkWell(
+            onTap: onTap,
+            child: _AlertReward(reward: reward, item: item),
+          ),
         );
       },
     );

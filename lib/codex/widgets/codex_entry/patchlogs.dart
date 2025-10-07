@@ -17,7 +17,7 @@ class PatchlogSection extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        CategoryTitle(title: context.l10n.patchlogsTitle),
+        CategoryTitle(title: context.l10n.patchlogsTitle, contentPadding: EdgeInsets.zero),
         ...patchlogs.map((e) => _PatchlogEntry(patchlog: e)),
       ],
     );
@@ -32,6 +32,7 @@ class _PatchlogEntry extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
+      contentPadding: EdgeInsets.zero,
       title: Text(patchlog.name),
       subtitle: Text(MaterialLocalizations.of(context).formatFullDate(patchlog.date.toLocal())),
       onTap: () => patchlog.url.launchLink(context),

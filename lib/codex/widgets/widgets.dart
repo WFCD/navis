@@ -1,8 +1,8 @@
 export 'codex_entry/components.dart';
 export 'codex_entry/drops.dart';
-export 'codex_entry/entry_info.dart';
 export 'codex_entry/frame_stats.dart';
 export 'codex_entry/gun_stats.dart';
+export 'codex_entry/item_overview.dart';
 export 'codex_entry/melee_stats.dart';
 export 'codex_entry/mod_stats.dart';
 export 'codex_entry/patchlogs.dart';

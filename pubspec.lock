@@ -1682,10 +1682,10 @@ packages:
     dependency: "direct main"
     description:
       name: warframestat_client
-      sha256: "35b4ab1e9a453606d981f6e09cf809c5ed57a6eb5bdec40799cb43a5f75f5450"
+      sha256: a5674a01ce2dfbceeb9c7af9864381a5af882e8ff7ea8e47195813fa4e28e257
       url: "https://pub.dev"
     source: hosted
-    version: "5.3.2"
+    version: "5.3.3"
   warframestat_repository:
     dependency: "direct main"
     description:

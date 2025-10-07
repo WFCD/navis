@@ -7,8 +7,9 @@ import 'package:warframestat_client/warframestat_client.dart' hide ItemNotFound;
 import 'package:warframestat_repository/warframestat_repository.dart';
 
 class ComponentDrops extends StatelessWidget {
-  const ComponentDrops({super.key, required this.drops});
+  const ComponentDrops({super.key, required this.controller, required this.drops});
 
+  final ScrollController controller;
   final List<Drop> drops;
 
   void _loadRelic(BuildContext context, String itemName) {
@@ -59,28 +60,27 @@ class ComponentDrops extends StatelessWidget {
     const cacheExtent = 150.0;
     const densityThreshold = 10;
 
-    final drops = List<Drop>.from(this.drops)
+    final drops = this.drops
+      ..removeWhere((d) => d.location.contains(RegExp(r'\(([^)]+)\)')))
       ..sort((a, b) {
         return ((b.chance ?? 0) * 100).compareTo((a.chance ?? 0) * 100);
       });
 
-    return Scaffold(
-      appBar: AppBar(),
-      body: ListView.builder(
-        cacheExtent: cacheExtent,
-        itemCount: drops.length,
-        itemBuilder: (context, index) {
-          final drop = drops[index];
-          final percentage = ((drop.chance ?? 0) * 100).toStringAsFixed(2);
+    return ListView.builder(
+      controller: controller,
+      cacheExtent: cacheExtent,
+      itemCount: drops.length,
+      itemBuilder: (context, index) {
+        final drop = drops[index];
+        final percentage = ((drop.chance ?? 0) * 100).toStringAsFixed(2);
 
-          return ListTile(
-            title: Text(drop.location),
-            subtitle: Text('$percentage% drop chance'),
-            onTap: drop.uniqueName != null ? () => _loadRelic(context, drop.uniqueName!) : null,
-            dense: drops.length > densityThreshold,
-          );
-        },
-      ),
+        return ListTile(
+          title: Text(drop.location),
+          subtitle: Text('$percentage% drop chance'),
+          onTap: drop.uniqueName != null ? () => _loadRelic(context, drop.uniqueName!) : null,
+          dense: drops.length > densityThreshold,
+        );
+      },
     );
   }
 }
