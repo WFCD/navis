@@ -485,10 +485,10 @@ packages:
     dependency: "direct main"
     description:
       name: warframestat_client
-      sha256: a3f0f06b1af7476f4c817d26aacce469aef18b4089bbfe0745dc016c47d9732e
+      sha256: a5674a01ce2dfbceeb9c7af9864381a5af882e8ff7ea8e47195813fa4e28e257
       url: "https://pub.dev"
     source: hosted
-    version: "5.2.1"
+    version: "5.3.3"
   web:
     dependency: "direct overridden"
     description:
@@ -531,4 +531,4 @@ packages:
     version: "1.1.0"
 sdks:
   dart: ">=3.9.0 <4.0.0"
-  flutter: ">=3.35.0 <4.0.0"
+  flutter: ">=3.35.0"
