@@ -9,7 +9,10 @@ class ModStats extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(padding: const EdgeInsets.only(top: 16), child: _ModBuilder(mod: mod));
+    return Padding(
+      padding: const EdgeInsets.only(top: 16),
+      child: _ModBuilder(mod: mod),
+    );
   }
 }
 
@@ -23,7 +26,7 @@ class _ModBuilder extends StatelessWidget {
     const size = Size(256, 512);
 
     final rarity = mod.rarity ?? Rarity.common;
-    final modParts = ModParts(thumbnail: mod.imageUrl, polarity: mod.polarity, rarity: rarity);
+    final modParts = ModParts(thumbnail: imageUri(mod.imageName), polarity: mod.polarity, rarity: rarity);
 
     final fusionLimit = mod.fusionLimit ?? 0;
 

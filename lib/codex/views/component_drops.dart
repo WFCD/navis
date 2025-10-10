@@ -1,3 +1,4 @@
+import 'package:codex/codex.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/codex/codex.dart';
@@ -13,13 +14,14 @@ class ComponentDrops extends StatelessWidget {
   final List<Drop> drops;
 
   void _loadRelic(BuildContext context, String itemName) {
+    final codex = RepositoryProvider.of<Codex>(context);
     final repo = RepositoryProvider.of<WarframestatRepository>(context);
 
     Navigator.of(context).push(
       MaterialPageRoute<void>(
         builder: (BuildContext context) {
           return BlocProvider(
-            create: (context) => ItemCubit(itemName, repo)..fetchItem(),
+            create: (context) => ItemCubit(itemName, codex, repo)..fetchItem(),
             child: Scaffold(
               body: Builder(
                 builder: (context) {
@@ -39,7 +41,7 @@ class ComponentDrops extends StatelessWidget {
                         uniqueName: state.item.uniqueName,
                         name: state.item.name,
                         description: state.item.description,
-                        imageUrl: state.item.imageUrl,
+                        imageUrl: imageUri(state.item.imageName),
                         type: state.item.type,
                         wikiaUrl: state.item.wikiaUrl,
                         wikiaThumbnail: state.item.wikiaThumbnail,

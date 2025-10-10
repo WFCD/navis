@@ -18,7 +18,7 @@ class CacheClient extends BaseClient {
   final Client _inner;
 
   /// Set time to live for cache invalidation
-  Duration ttl = const Duration(seconds: 60);
+  Duration ttl = const Duration(seconds: Duration.secondsPerMinute * 5);
 
   static Future<CacheClient> init(Client client) async {
     final temp = await getTemporaryDirectory();

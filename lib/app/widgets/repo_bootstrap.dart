@@ -1,3 +1,4 @@
+import 'package:codex/codex.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:http/http.dart';
@@ -10,17 +11,20 @@ import 'package:warframestat_repository/warframestat_repository.dart';
 class RepositoryBootstrap extends StatelessWidget {
   const RepositoryBootstrap({
     super.key,
-    required UserSettings settings,
     required RouteObserver<ModalRoute<void>> routeObserver,
     required Client client,
+    required Codex codex,
+    required UserSettings settings,
     required this.child,
   }) : _settings = settings,
        _routeObserver = routeObserver,
+       _codex = codex,
        _client = client;
 
-  final UserSettings _settings;
   final RouteObserver<ModalRoute<void>> _routeObserver;
   final Client _client;
+  final UserSettings _settings;
+  final Codex _codex;
   final Widget child;
 
   @override
@@ -29,10 +33,11 @@ class RepositoryBootstrap extends StatelessWidget {
 
     return MultiRepositoryProvider(
       providers: [
+        RepositoryProvider.value(value: _codex),
         RepositoryProvider.value(value: _settings),
+        RepositoryProvider(create: (_) => _routeObserver),
         RepositoryProvider(create: (_) => WarframestatRepository(client: _client)..language = language),
         RepositoryProvider(create: (_) => NotificationRepository()),
-        RepositoryProvider(create: (_) => _routeObserver),
         RepositoryProvider(create: (_) => Inventoria(client: _client)),
       ],
       child: child,

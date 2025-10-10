@@ -1,5 +1,6 @@
 import 'package:animations/animations.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:codex/codex.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:inventoria/inventoria.dart';
@@ -17,6 +18,7 @@ class ArsenalItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final codex = RepositoryProvider.of<Codex>(context);
     final repo = RepositoryProvider.of<WarframestatRepository>(context);
 
     return OpenContainer(
@@ -24,7 +26,7 @@ class ArsenalItemWidget extends StatelessWidget {
       closedColor: Colors.transparent,
       openBuilder: (context, _) {
         return BlocProvider(
-          create: (_) => ItemCubit(item.uniqueName, repo)..fetchItem(),
+          create: (_) => ItemCubit(item.uniqueName, codex, repo)..fetchItem(),
           child: Builder(
             builder: (context) {
               return BlocBuilder<ItemCubit, ItemState>(
@@ -35,7 +37,7 @@ class ArsenalItemWidget extends StatelessWidget {
                       uniqueName: item.uniqueName,
                       name: item.name,
                       description: item.description,
-                      imageUrl: item.imageUrl,
+                      imageUrl: imageUri(item.imageName),
                       type: item.type,
                       wikiaUrl: item.wikiaUrl,
                       wikiaThumbnail: item.wikiaThumbnail,

@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:codex/codex.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -13,6 +14,7 @@ import 'package:navis/app/widgets/repo_bootstrap.dart';
 import 'package:navis/firebase_options.dart';
 import 'package:navis/router/app_router.dart';
 import 'package:navis/settings/settings.dart';
+import 'package:navis_database/navis_database.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
@@ -40,13 +42,23 @@ Future<void> bootstrap(BootstrapBuilder builder) async {
     failedRequestStatusCodes: [const SentryStatusCode.defaultRange(), SentryStatusCode(403)],
   );
 
+  final database = await NavisDatabase.open(
+    [...Codex.schemas],
+    directory: appDir.path,
+  );
+
+  final codex = Codex(database, client);
+
   logger.info('Booting up Navis');
   runApp(
     RepositoryBootstrap(
-      settings: settings,
       routeObserver: observer,
+      settings: settings,
+      codex: codex,
       client: client,
       child: BlocBootstrap(child: await builder(router)),
     ),
   );
+
+  await codex.initializeCodex();
 }

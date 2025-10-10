@@ -1,10 +1,10 @@
+import 'package:codex/codex.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:matomo_tracker/matomo_tracker.dart';
 import 'package:navis/codex/codex.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis_ui/navis_ui.dart';
-import 'package:warframestat_repository/warframestat_repository.dart';
 
 class CodexSearchPage extends StatelessWidget {
   const CodexSearchPage({super.key, required this.query});
@@ -13,7 +13,7 @@ class CodexSearchPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final repo = RepositoryProvider.of<WarframestatRepository>(context);
+    final repo = RepositoryProvider.of<Codex>(context);
 
     return TraceableWidget(
       child: Scaffold(
@@ -73,7 +73,7 @@ class CodexSearchView extends StatelessWidget {
 class _CodexViewContent extends StatelessWidget {
   const _CodexViewContent({required this.results});
 
-  final List<SearchItem> results;
+  final List<CodexItem> results;
 
   @override
   Widget build(BuildContext context) {
@@ -90,7 +90,7 @@ class _CodexViewContent extends StatelessWidget {
               uniqueName: item.uniqueName,
               name: item.name,
               description: item.description,
-              imageUrl: item.imageUrl,
+              imageUrl: imageUri(item.imageName),
               type: item.type,
               vaulted: item.vaulted,
               wikiaUrl: item.wikiaUrl,

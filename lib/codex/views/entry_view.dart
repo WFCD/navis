@@ -1,5 +1,6 @@
 import 'package:animations/animations.dart';
 import 'package:black_hole_flutter/black_hole_flutter.dart';
+import 'package:codex/codex.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/codex/codex.dart';
@@ -8,7 +9,7 @@ import 'package:navis_ui/navis_ui.dart';
 import 'package:warframestat_client/warframestat_client.dart';
 import 'package:warframestat_repository/warframestat_repository.dart';
 
-const List<ItemType> _miscTypes = [ItemType.skin, ItemType.misc, ItemType.glyphs];
+const List<ItemType> _miscTypes = [ItemType.skin, ItemType.misc, ItemType.glyph];
 
 class EntryViewOpenContainer extends StatelessWidget {
   const EntryViewOpenContainer({
@@ -108,6 +109,7 @@ class EntryView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final codex = RepositoryProvider.of<Codex>(context);
     final repo = RepositoryProvider.of<WarframestatRepository>(context);
     final overview = _Overview(
       uniqueName: uniqueName,
@@ -123,7 +125,7 @@ class EntryView extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: BlocProvider(
-          create: (context) => ItemCubit(uniqueName, repo)..fetchItem(),
+          create: (context) => ItemCubit(uniqueName, codex, repo)..fetchItem(),
           child: overview,
         ),
       ),
@@ -206,7 +208,7 @@ class _Overview extends StatelessWidget {
                   children: [
                     if (isFoundryItem)
                       ItemComponents(
-                        itemImageUrl: item!.imageUrl,
+                        itemImageUrl: imageUri(item!.imageName),
                         components: (item as BuildableItem).components!,
                       ),
                     if (isPowerSuit) FrameStats(powerSuit: item),

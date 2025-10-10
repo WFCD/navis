@@ -43,6 +43,9 @@ final class UserSettingsSuccess extends UserSettingsState {
 
   @override
   List<Object?> get props => [language, themeMode, isOptOut, isFirstTime, toggles];
+
+  @override
+  String toString() => 'UserSettingsSuccess()';
 }
 
 final class UserSettingsFailure extends UserSettingsState {}

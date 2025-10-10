@@ -1,5 +1,6 @@
 import 'package:black_hole_flutter/black_hole_flutter.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:codex/codex.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -30,6 +31,7 @@ class DarvoDealCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final codex = RepositoryProvider.of<Codex>(context);
     final repo = RepositoryProvider.of<WarframestatRepository>(context);
 
     return ClipRRect(
@@ -74,7 +76,7 @@ class DarvoDealCard extends StatelessWidget {
                   ),
                   if (deal != null)
                     BlocProvider(
-                      create: (_) => ItemCubit(deal.item, repo)..fetchByName(),
+                      create: (_) => ItemCubit(deal.item, codex, repo)..fetchByName(),
                       child: _DealWidget(deal: deal),
                     ),
                   Align(
@@ -116,7 +118,7 @@ class _DealWidget extends StatelessWidget {
                 child: CircleAvatar(
                   radius: 25,
                   backgroundColor: Colors.grey,
-                  backgroundImage: CachedNetworkImageProvider(item.imageUrl),
+                  backgroundImage: CachedNetworkImageProvider(imageUri(item.imageName)),
                 ),
               ),
             Expanded(
@@ -138,7 +140,7 @@ class _DealWidget extends StatelessWidget {
           uniqueName: item.uniqueName,
           name: item.name,
           description: item.description,
-          imageUrl: item.imageUrl,
+          imageUrl: imageUri(item.imageName),
           type: item.type,
           wikiaUrl: item.wikiaUrl,
           wikiaThumbnail: item.wikiaThumbnail,

@@ -28,7 +28,11 @@ class ItemComponents extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             if (blueprint != null)
-              _BuildBlueprint(blueprintImage: blueprint.imageUrl, componentImage: itemImageUrl, drops: blueprint.drops),
+              _BuildBlueprint(
+                blueprintImage: imageUri(blueprint.imageName),
+                componentImage: itemImageUrl,
+                drops: blueprint.drops,
+              ),
             for (final component in parts) _BuildComponent(component: component),
           ],
         ),
@@ -77,7 +81,7 @@ class _BuildComponent extends StatelessWidget {
                   alignment: Alignment.topRight,
                   child: Text('x${component.itemCount}', style: Theme.of(context).textTheme.bodySmall),
                 ),
-              CachedNetworkImage(imageUrl: component.imageUrl),
+              CachedNetworkImage(imageUrl: imageUri(component.imageName)),
             ],
           ),
         ),
