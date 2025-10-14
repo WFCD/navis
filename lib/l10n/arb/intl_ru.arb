@@ -136,7 +136,7 @@
     "description": "Razorback progress title",
     "type": "text"
   },
-  "cetusCycleTitle": "Earth/Plains of Eidolon",
+  "cetusCycleTitle": "Земля/Равнины Эйдолона",
   "@cetusCycleTitle": {
     "description": "Earth and Cetus cycle title",
     "type": "text"
