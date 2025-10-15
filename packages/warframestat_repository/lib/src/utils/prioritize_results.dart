@@ -66,7 +66,7 @@ final Map<ItemType, int> _mapPriority = {
   ItemType.skin: 5,
   ItemType.sigils: 5,
   ItemType.misc: 5,
-  ItemType.glyphs: 6,
+  ItemType.glyph: 6,
 };
 
 extension ListItemX on List<SearchItem> {
