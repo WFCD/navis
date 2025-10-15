@@ -313,10 +313,10 @@ packages:
     dependency: "direct main"
     description:
       name: warframestat_client
-      sha256: a3f0f06b1af7476f4c817d26aacce469aef18b4089bbfe0745dc016c47d9732e
+      sha256: "23714785eb0b53a769682595a0d5015a6c9054341cf724b7650c1cc324a4c0c2"
       url: "https://pub.dev"
     source: hosted
-    version: "5.2.1"
+    version: "5.3.4"
   web:
     dependency: "direct overridden"
     description:
