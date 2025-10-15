@@ -1,4 +1,5 @@
 {
+  "@@locale": "ru",
   "@@last_modified": "2020-03-03T16:56:42.387837",
   "levelInfo": "Уровни: {min} - {max}",
   "@levelInfo": {
@@ -98,10 +99,15 @@
     "description": "shows at when Baro Ki'Teer will arrive",
     "type": "text"
   },
-  "baroInventory": "Товары Баро Ки'Тиира",
-  "@baroInventory": {
-    "description": "Baro Ki'Teer Inventory button label",
-    "type": "text"
+  "characterInventory": "{character} Инвентарь",
+  "@characterInventory": {
+    "description": "character Inventory title",
+    "type": "text",
+    "placeholders": {
+      "character": {
+        "type": "String"
+      }
+    }
   },
   "countdownTooltip": "Завершится {date}",
   "@countdownTooltip": {
@@ -130,27 +136,27 @@
     "description": "Razorback progress title",
     "type": "text"
   },
-  "cetusCycleTitle": "Earth/Plains of Eidolon",
+  "cetusCycleTitle": "Равнины Эйдолона",
   "@cetusCycleTitle": {
     "description": "Earth and Cetus cycle title",
     "type": "text"
   },
-  "vallisCycleTitle": "Orb Vallis",
+  "vallisCycleTitle": "Долина Сфер",
   "@vallisCycleTitle": {
     "description": "Vallis cycle title",
     "type": "text"
   },
-  "cambionCycleTitle": "Cambion Drift",
+  "cambionCycleTitle": "Камбионский Дрейф",
   "@cambionCycleTitle": {
     "description": "Cambion Cycle title",
     "type": "text"
   },
-  "zarimanCycleTitle": "Zariman",
+  "zarimanCycleTitle": "Зариман",
   "@zarimanCycleTitle": {
     "description": "Zariman Cycle title",
     "type": "text"
   },
-  "duviriCycleTitle": "Duviri",
+  "duviriCycleTitle": "Дувири",
   "@duviriCycleTitle": {
     "description": "Duviri Cycle title",
     "type": "text"
@@ -372,7 +378,7 @@
   },
   "reportBugsTitle": "Сообщить об ошибке",
   "@reportBugsTitle": {
-    "desciption": "Title for bug report link",
+    "description": "Title for bug report link",
     "type": "text"
   },
   "reportBugsDescription": "Сообщите об ошибках или запросите функцию.",
@@ -450,12 +456,12 @@
     "description": "Settings title",
     "type": "text"
   },
-  "dailyResetTitle": "Daily Reset Timer",
+  "dailyResetTitle": "Таймер сброса ежедневной награды",
   "@dailyResetTitle": {
     "description": "Title for daily timer",
     "type": "text"
   },
-  "weeklyResetTitle": "Weekly Reset Timer",
+  "weeklyResetTitle": "Таймер сброса еженедельной награды",
   "@weeklyResetTitle": {
     "description": "Title for weekly timer",
     "type": "text"
@@ -779,7 +785,7 @@
   "@discountTitle": {
     "description": "Displays the discount applied for a given darvo sale",
     "type": "text",
-    "placeholder": {
+    "placeholders": {
       "discount": {}
     }
   },
@@ -787,7 +793,7 @@
   "@inStockInformation": {
     "description": "Displays the stock information for a darvo deal",
     "type": "text",
-    "placeholder": {
+    "placeholders": {
       "stock": {}
     }
   },
@@ -796,27 +802,27 @@
     "description": "Tells the user when darvo is out of stock for the current sale",
     "type": "text"
   },
-  "duviriJoy": "Joy",
+  "duviriJoy": "Дувири: Радость",
   "@duviriJoy": {
     "description": "Duviri joy state. ",
     "type": "text"
   },
-  "duviriAnger": "Anger",
+  "duviriAnger": "Дувири: Ярость",
   "@duviriAnger": {
     "description": "Duviri anger state.",
     "type": "text"
   },
-  "duviriEnvy": "Envy",
+  "duviriEnvy": "Дувири: Зависть",
   "@duviriEnvy": {
     "description": "Duviri envy state.",
     "type": "text"
   },
-  "duviriSorrow": "Sorrow",
+  "duviriSorrow": "Дувири: Печаль",
   "@duviriSorrow": {
     "description": "sorrow Duviri state",
     "type": "text"
   },
-  "duviriFear": "Fear",
+  "duviriFear": "Дувири: Страх",
   "@duviriFear": {
     "description": "Fear Duviri state",
     "type": "text"
@@ -920,7 +926,7 @@
   "@dropChance": {
     "description": "Drop chance percentage",
     "type": "text",
-    "placeholder": {
+    "placeholders": {
       "chance": {}
     }
   },
@@ -1009,7 +1015,7 @@
     "description": "Codex Weapon damage type title",
     "type": "text"
   },
-  "cinematicDamageTitle": "Cinematic",
+  "cinematicDamageTitle": "Синематик",
   "@cinematicDamageTitle": {
     "description": "Codex Weapon damage type title",
     "type": "text"
@@ -1074,7 +1080,7 @@
     "description": "Text displayed where a missions category is needed",
     "type": "text"
   },
-  "archimedeaPersonalModifierTitle": "Personal Modifiers",
+  "archimedeaPersonalModifierTitle": "Персональные усилители",
   "@archimedeaPersonalModifierTitle": {
     "description": "Text displayed above to Deep Archimedea personal modifiers",
     "type": "text"
@@ -1098,7 +1104,7 @@
   "@nightwaveSeasonSubtitle": {
     "description": "Current nightwave season number",
     "type": "text",
-    "placeholder": {
+    "placeholders": {
       "season": {
         "type": "int"
       }
@@ -1119,44 +1125,44 @@
     "description": "Trader inventory header text",
     "type": "text"
   },
-  "traderCreditsHeaderTitle": "Item",
+  "traderCreditsHeaderTitle": "Товар",
   "@traderCreditsHeaderTitle": {
     "description": "Trader inventory header text",
     "type": "text"
   },
-  "itemRankSubtitle": "Rank {rank}",
+  "itemRankSubtitle": "Ранг {rank}",
   "@itemRankSubtitle": {
     "description": "Subtitle showing the item's rank",
     "type": "text",
-    "placeholder": {
+    "placeholders": {
       "rank": {}
     }
   },
-  "syncingInfoText": "Syncing XP info",
+  "syncingInfoText": "Информация о синхронизации опыта",
   "@syncingInfoText": {
     "description": "Text displayed when xp info is being synced",
     "type": "text",
-    "placeholder": {}
+    "placeholders": {}
   },
   "enterUsernameHintText": "Setup Inventoria",
   "@enterUsernameHintText": {
-    "description": "Hint Text use as a placeholder in username input",
+    "description": "Hint Text use as a placeholders in username input",
     "type": "text",
-    "placeholder": {}
+    "placeholders": {}
   },
-  "clearUsernameButtonLabel": "Clear username",
+  "clearUsernameButtonLabel": "Очистить имя пользователя",
   "@clearUsernameButtonLabel": {
     "description": "Label text for clear username button",
     "type": "text",
-    "placeholder": {}
+    "placeholders": {}
   },
-  "cancelText": "Cancel",
+  "cancelText": "Отменить",
   "@cancelText": {
     "description": "Text to display for cancel buttons",
     "type": "text",
-    "placeholder": {}
+    "placeholders": {}
   },
-  "inventoriaSteps": "Cephalon Navis can use your read-only profile data to help track your arsenal XP and mastery points.\n\n1. Go to {url} on a computer\n\n2. Upload your EE.log or account ID from cookies\n\n3. Tap next and scan the generated QR code",
+  "inventoriaSteps": "Cephalon Navis может использовать данные вашего профиля, доступные только для чтения, для отслеживания опыта вашего арсенала и очков мастерства.\n\n1. Перейдите по {url} на компьютере\n\n2. Загрузите свой EE.log или идентификатор учётной записи из файлов cookie\n\n3. Нажмите «Далее» и отсканируйте сгенерированный QR-код",
   "@inventoriaSteps": {
     "description": "Steps to setup Inventoria",
     "type": "text",
@@ -1166,24 +1172,24 @@
       }
     }
   },
-  "profileSyncError": "A problem occurred fetching your profile, you should file a bug report",
+  "profileSyncError": "Возникла проблема при загрузке вашего профиля. Вам следует отправить отчет об ошибке",
   "@profileSyncError": {
     "description": "Error message to show when the app isn't able to pull a profile",
     "type": "text"
   },
-  "appSupportTitle": "App Support",
+  "appSupportTitle": "Поддержка",
   "@appSupportTitle": {
     "description": "Title for app support card",
     "type": "text",
     "placeholders": {}
   },
-  "appSupportSubtitle": "Need help with the app? Come on down to the discord",
+  "appSupportSubtitle": "Нужна помощь с приложением? Переходите в Discord",
   "@appSupportSubtitle": {
     "description": "Subtitle for app support card",
     "type": "text",
     "placeholders": {}
   },
-  "supportTitle": "Support {text}",
+  "supportTitle": "Поддержка {text}",
   "@supportTitle": {
     "description": "Title for support cards",
     "type": "text",
@@ -1193,22 +1199,76 @@
       }
     }
   },
-  "supportSubtitle": "Everything from tech support to supporting app maintenance",
+  "supportSubtitle": "Всё, от технической поддержки до обслуживания приложений",
   "@supportSubtitle": {
     "description": "Subtitle for support section",
     "type": "text",
     "placeholders": {}
   },
-  "supportSubtitleTobiah": "Help support the developer who runs the API used heavily by Navis",
+  "supportSubtitleTobiah": "Помогите поддержать разработчика, который управляет API, активно используемым Navis",
   "@supportSubtitleTobiah": {
     "description": "Subtitle for API support card",
     "type": "text",
     "placeholders": {}
   },
-  "supportSubtitleNavis": "Help support the maintenance of Cephalon Navis",
+  "supportSubtitleNavis": "Помогите поддержать обслуживание Cephalon Navis",
   "@supportSubtitleNavis": {
     "description": "Subtitle for Cephalon Navis support card",
     "type": "text",
     "placeholders": {}
+  },
+  "itemFailureErrorText": "Не удалось загрузить элемент",
+  "@itemFailureErrorText": {
+    "description": "Error message when loading a full item",
+    "type": "text",
+    "placeholders": {}
+  },
+  "worldstateFailureText": "Failed to parse Worldstate",
+  "@worldstateFailureText": {
+    "description": "Error message when loading/parsing the worldstate fails",
+    "type": "text",
+    "placeholders": {}
+  },
+  "worldstateOutdatedText": "Worldstate is out of date by more then 30 mins",
+  "@worldstateOutdatedText": {
+    "description": "Snackbar message to show when worldstate hasn't been updated due to failure or lack of internet connection",
+    "type": "text",
+    "placeholders": {}
+  },
+  "flashSaleAppbarTitle": "Flash Sales",
+  "@flashSaleAppbarTitle": {
+    "description": "AppBar Title for flash sales",
+    "type": "text",
+    "placeholders": {}
+  },
+  "flashSaleSubtitleText": "{plat} Платина {discount, plural, =0{} other{| {discount} % Скидка}}",
+  "@flashSaleSubtitleText": {
+    "description": "Subtitle text with platinum and discount text",
+    "type": "text",
+    "placeholders": {
+      "plat": {
+        "type": "int"
+      },
+      "discount": {
+        "type": "int"
+      }
+    }
+  },
+  "defaultScoreLocTagText": "Прогресс",
+  "@defaultScoreLocTagText": {
+    "description": "Default scoreLocTag text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "eventRewardRequireScoreText": "Требуемый счет",
+  "@eventRewardRequireScoreText": {
+    "description": "Event reward required score text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "primeVaultResetText": "Prime Resurgence resets on: ",
+  "@primeVaultResetText": {
+    "description": "Prime vault reset text",
+    "type": "text"
   }
 }
