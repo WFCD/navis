@@ -2,7 +2,6 @@ import 'package:codex/codex.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:http/http.dart';
-import 'package:inventoria/inventoria.dart';
 import 'package:navis/settings/settings.dart';
 import 'package:notification_repository/notification_repository.dart';
 import 'package:warframestat_client/warframestat_client.dart';
@@ -38,7 +37,6 @@ class RepositoryBootstrap extends StatelessWidget {
         RepositoryProvider(create: (_) => _routeObserver),
         RepositoryProvider(create: (_) => WarframestatRepository(client: _client)..language = language),
         RepositoryProvider(create: (_) => NotificationRepository()),
-        RepositoryProvider(create: (_) => Inventoria(client: _client)),
       ],
       child: child,
     );

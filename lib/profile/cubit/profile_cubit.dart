@@ -1,26 +1,23 @@
+import 'package:codex/codex.dart';
 import 'package:equatable/equatable.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
-import 'package:inventoria/inventoria.dart';
-import 'package:logging/logging.dart';
 
 part 'profile_state.dart';
 
-class ProfileCubit extends HydratedCubit<ProfileState> {
-  ProfileCubit(this.inventoria) : super(ProfileInitial());
+class ProfileCubit extends Cubit<ProfileState> {
+  ProfileCubit(this.codex) : super(ProfileInitial());
 
-  final Inventoria inventoria;
-
-  final _logger = Logger('ProfileCubit');
+  final Codex codex;
 
   Future<void> loadProfile(String id) async {
     if (state is! ProfileSuccessful) emit(ProfileUpdating());
 
     try {
-      final profile = await inventoria.fetchProfile();
-      if (profile?.id != id) await inventoria.updateProfile(id);
+      var profile = await codex.fetchProfile();
+      profile ??= await codex.syncProfile(id);
 
       if (isClosed) return;
-      emit(ProfileSuccessful((await inventoria.fetchProfile())!));
+      emit(ProfileSuccessful(profile));
     } on Exception {
       if (isClosed) return;
       emit(ProfileFailure());
@@ -29,41 +26,24 @@ class ProfileCubit extends HydratedCubit<ProfileState> {
   }
 
   Future<void> reset() async {
-    await inventoria.reset();
+    await codex.resetProfile();
     emit(ProfileInitial());
   }
 
-  Future<void> update() async {
+  Future<void> syncProfile() async {
     if (state is! ProfileSuccessful) emit(ProfileUpdating());
 
     try {
-      final profile = await inventoria.fetchProfile();
+      var profile = await codex.fetchProfile();
       if (profile == null) return emit(ProfileInitial());
-
-      await inventoria.updateProfile(profile.id);
+      profile = await codex.syncProfile(profile.playerId);
 
       if (isClosed) return;
-      emit(ProfileSuccessful((await inventoria.fetchProfile())!));
-    } on Exception catch (e, stack) {
-      _logger.severe('Failed to set profile', e, stack);
+      emit(ProfileSuccessful(profile));
+    } on Exception {
       if (isClosed) return;
       emit(ProfileFailure());
+      rethrow;
     }
-  }
-
-  @override
-  ProfileState? fromJson(Map<String, dynamic> json) {
-    final profile = DriftProfileData.fromJson(json);
-
-    _logger.info('Hydrating ProfileState');
-    return ProfileSuccessful(profile);
-  }
-
-  @override
-  Map<String, dynamic>? toJson(ProfileState state) {
-    if (state is! ProfileSuccessful) return null;
-
-    _logger.info('Caching profile');
-    return state.profile.toJson();
   }
 }

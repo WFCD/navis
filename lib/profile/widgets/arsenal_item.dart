@@ -3,10 +3,9 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:codex/codex.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:inventoria/inventoria.dart';
 import 'package:navis/codex/codex.dart';
 import 'package:navis/l10n/l10n.dart';
-import 'package:navis/profile/utils/extensions.dart';
+import 'package:navis/profile/utils/mastery_utils.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:warframe_icons/warframe_icons.dart';
 import 'package:warframestat_repository/warframestat_repository.dart';
@@ -14,12 +13,14 @@ import 'package:warframestat_repository/warframestat_repository.dart';
 class ArsenalItemWidget extends StatelessWidget {
   const ArsenalItemWidget({super.key, required this.item});
 
-  final InventoryItemData item;
+  final CodexItem item;
 
   @override
   Widget build(BuildContext context) {
     final codex = RepositoryProvider.of<Codex>(context);
     final repo = RepositoryProvider.of<WarframestatRepository>(context);
+
+    final rank = masteryRank(item, item.xpInfo.value!.xp);
 
     return OpenContainer(
       openColor: Theme.of(context).colorScheme.surfaceContainer,
@@ -52,8 +53,13 @@ class ArsenalItemWidget extends StatelessWidget {
       },
       closedBuilder: (context, onTap) {
         return AppCard(
-          color: item.rank == item.maxRank ? Theme.of(context).colorScheme.secondaryContainer : null,
-          child: ArsenalItemTitle(item: item),
+          color: rank == item.maxLevelCap! ? Theme.of(context).colorScheme.secondaryContainer : null,
+          child: ArsenalItemTitle(
+            name: item.name,
+            imageName: item.imageName!,
+            rank: rank,
+            maxRank: item.maxLevelCap!,
+          ),
         );
       },
     );
@@ -61,9 +67,18 @@ class ArsenalItemWidget extends StatelessWidget {
 }
 
 class ArsenalItemTitle extends StatelessWidget {
-  const ArsenalItemTitle({super.key, required this.item});
+  const ArsenalItemTitle({
+    super.key,
+    required this.name,
+    required this.imageName,
+    required this.rank,
+    required this.maxRank,
+  });
 
-  final InventoryItemData item;
+  final String name;
+  final String imageName;
+  final int rank;
+  final int maxRank;
 
   @override
   Widget build(BuildContext context) {
@@ -71,16 +86,16 @@ class ArsenalItemTitle extends StatelessWidget {
 
     return ListTile(
       leading: CachedNetworkImage(
-        imageUrl: imageUri(item.image),
+        imageUrl: imageUri(imageName),
         width: leadingSize,
         errorWidget: (context, url, error) => const Icon(WarframeIcons.menuLotusEmblem, size: leadingSize),
       ),
-      title: Text(item.name),
+      title: Text(name),
       subtitle: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          if (item.rank != 0) Text(context.l10n.itemRankSubtitle(item.rank)),
-          if (item.rank != item.maxRank && item.rank != 0) LinearProgressIndicator(value: item.rank / item.maxRank),
+          if (rank != 0) Text(context.l10n.itemRankSubtitle(rank)),
+          if (rank != maxRank) LinearProgressIndicator(value: rank / maxRank),
         ],
       ),
     );

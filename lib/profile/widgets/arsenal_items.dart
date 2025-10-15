@@ -1,20 +1,18 @@
+import 'package:codex/codex.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:inventoria/inventoria.dart';
-import 'package:navis/profile/cubit/arsenal_cubit.dart';
-import 'package:navis/profile/cubit/profile_cubit.dart';
-import 'package:navis/profile/widgets/widgets.dart';
+import 'package:navis/profile/profile.dart';
 
 class ArsenalItems extends StatelessWidget {
   const ArsenalItems({super.key, this.controller, required this.items});
 
   final ScrollController? controller;
-  final List<InventoryItemData> items;
+  final List<CodexItem> items;
 
   @override
   Widget build(BuildContext context) {
     return RefreshIndicator(
-      onRefresh: () => BlocProvider.of<ProfileCubit>(context).update(),
+      onRefresh: () => BlocProvider.of<ProfileCubit>(context).syncProfile(),
       child: BlocListener<ProfileCubit, ProfileState>(
         listener: (context, state) {
           final profile = switch (state) {
@@ -23,7 +21,7 @@ class ArsenalItems extends StatelessWidget {
           };
 
           if (profile == null) return;
-          BlocProvider.of<ArsenalCubit>(context).syncXpInfo();
+          BlocProvider.of<MasteryProgressCubit>(context).syncXpInfo();
         },
         child: ListView.builder(
           controller: controller,

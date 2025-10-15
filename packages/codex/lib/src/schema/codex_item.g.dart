@@ -38,26 +38,31 @@ const CodexItemSchema = CollectionSchema(
       name: r'masterable',
       type: IsarType.bool,
     ),
-    r'name': PropertySchema(id: 5, name: r'name', type: IsarType.string),
+    r'maxLevelCap': PropertySchema(
+      id: 5,
+      name: r'maxLevelCap',
+      type: IsarType.long,
+    ),
+    r'name': PropertySchema(id: 6, name: r'name', type: IsarType.string),
     r'type': PropertySchema(
-      id: 6,
+      id: 7,
       name: r'type',
       type: IsarType.string,
       enumMap: _CodexItemtypeEnumValueMap,
     ),
     r'uniqueName': PropertySchema(
-      id: 7,
+      id: 8,
       name: r'uniqueName',
       type: IsarType.string,
     ),
-    r'vaulted': PropertySchema(id: 8, name: r'vaulted', type: IsarType.bool),
+    r'vaulted': PropertySchema(id: 9, name: r'vaulted', type: IsarType.bool),
     r'wikiaThumbnail': PropertySchema(
-      id: 9,
+      id: 10,
       name: r'wikiaThumbnail',
       type: IsarType.string,
     ),
     r'wikiaUrl': PropertySchema(
-      id: 10,
+      id: 11,
       name: r'wikiaUrl',
       type: IsarType.string,
     ),
@@ -83,7 +88,15 @@ const CodexItemSchema = CollectionSchema(
       ],
     ),
   },
-  links: {},
+  links: {
+    r'xpInfo': LinkSchema(
+      id: -3820407482291262530,
+      name: r'xpInfo',
+      target: r'MasterableItem',
+      single: true,
+      linkName: r'item',
+    ),
+  },
   embeddedSchemas: {},
 
   getId: _codexItemGetId,
@@ -140,12 +153,13 @@ void _codexItemSerialize(
   writer.writeLong(offsets[2], object.hashCode);
   writer.writeString(offsets[3], object.imageName);
   writer.writeBool(offsets[4], object.masterable);
-  writer.writeString(offsets[5], object.name);
-  writer.writeString(offsets[6], object.type.name);
-  writer.writeString(offsets[7], object.uniqueName);
-  writer.writeBool(offsets[8], object.vaulted);
-  writer.writeString(offsets[9], object.wikiaThumbnail);
-  writer.writeString(offsets[10], object.wikiaUrl);
+  writer.writeLong(offsets[5], object.maxLevelCap);
+  writer.writeString(offsets[6], object.name);
+  writer.writeString(offsets[7], object.type.name);
+  writer.writeString(offsets[8], object.uniqueName);
+  writer.writeBool(offsets[9], object.vaulted);
+  writer.writeString(offsets[10], object.wikiaThumbnail);
+  writer.writeString(offsets[11], object.wikiaUrl);
 }
 
 CodexItem _codexItemDeserialize(
@@ -159,14 +173,15 @@ CodexItem _codexItemDeserialize(
     description: reader.readStringOrNull(offsets[1]),
     imageName: reader.readStringOrNull(offsets[3]),
     masterable: reader.readBoolOrNull(offsets[4]) ?? false,
-    name: reader.readString(offsets[5]),
+    maxLevelCap: reader.readLongOrNull(offsets[5]),
+    name: reader.readString(offsets[6]),
     type:
-        _CodexItemtypeValueEnumMap[reader.readStringOrNull(offsets[6])] ??
+        _CodexItemtypeValueEnumMap[reader.readStringOrNull(offsets[7])] ??
         ItemType.warframes,
-    uniqueName: reader.readString(offsets[7]),
-    vaulted: reader.readBoolOrNull(offsets[8]) ?? false,
-    wikiaThumbnail: reader.readStringOrNull(offsets[9]),
-    wikiaUrl: reader.readStringOrNull(offsets[10]),
+    uniqueName: reader.readString(offsets[8]),
+    vaulted: reader.readBoolOrNull(offsets[9]) ?? false,
+    wikiaThumbnail: reader.readStringOrNull(offsets[10]),
+    wikiaUrl: reader.readStringOrNull(offsets[11]),
   );
   return object;
 }
@@ -189,18 +204,20 @@ P _codexItemDeserializeProp<P>(
     case 4:
       return (reader.readBoolOrNull(offset) ?? false) as P;
     case 5:
-      return (reader.readString(offset)) as P;
+      return (reader.readLongOrNull(offset)) as P;
     case 6:
+      return (reader.readString(offset)) as P;
+    case 7:
       return (_CodexItemtypeValueEnumMap[reader.readStringOrNull(offset)] ??
               ItemType.warframes)
           as P;
-    case 7:
-      return (reader.readString(offset)) as P;
     case 8:
-      return (reader.readBoolOrNull(offset) ?? false) as P;
+      return (reader.readString(offset)) as P;
     case 9:
-      return (reader.readStringOrNull(offset)) as P;
+      return (reader.readBoolOrNull(offset) ?? false) as P;
     case 10:
+      return (reader.readStringOrNull(offset)) as P;
+    case 11:
       return (reader.readStringOrNull(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
@@ -321,10 +338,17 @@ Id _codexItemGetId(CodexItem object) {
 }
 
 List<IsarLinkBase<dynamic>> _codexItemGetLinks(CodexItem object) {
-  return [];
+  return [object.xpInfo];
 }
 
-void _codexItemAttach(IsarCollection<dynamic> col, Id id, CodexItem object) {}
+void _codexItemAttach(IsarCollection<dynamic> col, Id id, CodexItem object) {
+  object.xpInfo.attach(
+    col,
+    col.isar.collection<MasterableItem>(),
+    r'xpInfo',
+    id,
+  );
+}
 
 extension CodexItemByIndex on IsarCollection<CodexItem> {
   Future<CodexItem?> getByUniqueName(String uniqueName) {
@@ -1239,6 +1263,81 @@ extension CodexItemQueryFilter
     });
   }
 
+  QueryBuilder<CodexItem, CodexItem, QAfterFilterCondition>
+  maxLevelCapIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(
+        const FilterCondition.isNull(property: r'maxLevelCap'),
+      );
+    });
+  }
+
+  QueryBuilder<CodexItem, CodexItem, QAfterFilterCondition>
+  maxLevelCapIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(
+        const FilterCondition.isNotNull(property: r'maxLevelCap'),
+      );
+    });
+  }
+
+  QueryBuilder<CodexItem, CodexItem, QAfterFilterCondition> maxLevelCapEqualTo(
+    int? value,
+  ) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(
+        FilterCondition.equalTo(property: r'maxLevelCap', value: value),
+      );
+    });
+  }
+
+  QueryBuilder<CodexItem, CodexItem, QAfterFilterCondition>
+  maxLevelCapGreaterThan(int? value, {bool include = false}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(
+        FilterCondition.greaterThan(
+          include: include,
+          property: r'maxLevelCap',
+          value: value,
+        ),
+      );
+    });
+  }
+
+  QueryBuilder<CodexItem, CodexItem, QAfterFilterCondition> maxLevelCapLessThan(
+    int? value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(
+        FilterCondition.lessThan(
+          include: include,
+          property: r'maxLevelCap',
+          value: value,
+        ),
+      );
+    });
+  }
+
+  QueryBuilder<CodexItem, CodexItem, QAfterFilterCondition> maxLevelCapBetween(
+    int? lower,
+    int? upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(
+        FilterCondition.between(
+          property: r'maxLevelCap',
+          lower: lower,
+          includeLower: includeLower,
+          upper: upper,
+          includeUpper: includeUpper,
+        ),
+      );
+    });
+  }
+
   QueryBuilder<CodexItem, CodexItem, QAfterFilterCondition> nameEqualTo(
     String value, {
     bool caseSensitive = true,
@@ -2016,7 +2115,21 @@ extension CodexItemQueryObject
     on QueryBuilder<CodexItem, CodexItem, QFilterCondition> {}
 
 extension CodexItemQueryLinks
-    on QueryBuilder<CodexItem, CodexItem, QFilterCondition> {}
+    on QueryBuilder<CodexItem, CodexItem, QFilterCondition> {
+  QueryBuilder<CodexItem, CodexItem, QAfterFilterCondition> xpInfo(
+    FilterQuery<MasterableItem> q,
+  ) {
+    return QueryBuilder.apply(this, (query) {
+      return query.link(q, r'xpInfo');
+    });
+  }
+
+  QueryBuilder<CodexItem, CodexItem, QAfterFilterCondition> xpInfoIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.linkLength(r'xpInfo', 0, true, 0, true);
+    });
+  }
+}
 
 extension CodexItemQuerySortBy on QueryBuilder<CodexItem, CodexItem, QSortBy> {
   QueryBuilder<CodexItem, CodexItem, QAfterSortBy> sortByCategory() {
@@ -2076,6 +2189,18 @@ extension CodexItemQuerySortBy on QueryBuilder<CodexItem, CodexItem, QSortBy> {
   QueryBuilder<CodexItem, CodexItem, QAfterSortBy> sortByMasterableDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'masterable', Sort.desc);
+    });
+  }
+
+  QueryBuilder<CodexItem, CodexItem, QAfterSortBy> sortByMaxLevelCap() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'maxLevelCap', Sort.asc);
+    });
+  }
+
+  QueryBuilder<CodexItem, CodexItem, QAfterSortBy> sortByMaxLevelCapDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'maxLevelCap', Sort.desc);
     });
   }
 
@@ -2226,6 +2351,18 @@ extension CodexItemQuerySortThenBy
     });
   }
 
+  QueryBuilder<CodexItem, CodexItem, QAfterSortBy> thenByMaxLevelCap() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'maxLevelCap', Sort.asc);
+    });
+  }
+
+  QueryBuilder<CodexItem, CodexItem, QAfterSortBy> thenByMaxLevelCapDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'maxLevelCap', Sort.desc);
+    });
+  }
+
   QueryBuilder<CodexItem, CodexItem, QAfterSortBy> thenByName() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'name', Sort.asc);
@@ -2337,6 +2474,12 @@ extension CodexItemQueryWhereDistinct
     });
   }
 
+  QueryBuilder<CodexItem, CodexItem, QDistinct> distinctByMaxLevelCap() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'maxLevelCap');
+    });
+  }
+
   QueryBuilder<CodexItem, CodexItem, QDistinct> distinctByName({
     bool caseSensitive = true,
   }) {
@@ -2425,6 +2568,12 @@ extension CodexItemQueryProperty
     });
   }
 
+  QueryBuilder<CodexItem, int?, QQueryOperations> maxLevelCapProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'maxLevelCap');
+    });
+  }
+
   QueryBuilder<CodexItem, String, QQueryOperations> nameProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'name');
@@ -2475,6 +2624,7 @@ CodexItem _$CodexItemFromJson(Map<String, dynamic> json) => CodexItem(
   type: const ItemTypeConverter().fromJson(json['type'] as String),
   vaulted: json['vaulted'] as bool? ?? false,
   masterable: json['masterable'] as bool? ?? false,
+  maxLevelCap: (json['maxLevelCap'] as num?)?.toInt(),
   wikiaUrl: json['wikiaUrl'] as String?,
   wikiaThumbnail: json['wikiaThumbnail'] as String?,
 );
@@ -2487,6 +2637,7 @@ Map<String, dynamic> _$CodexItemToJson(CodexItem instance) => <String, dynamic>{
   'category': instance.category,
   'vaulted': instance.vaulted,
   'masterable': instance.masterable,
+  'maxLevelCap': instance.maxLevelCap,
   'wikiaUrl': instance.wikiaUrl,
   'wikiaThumbnail': instance.wikiaThumbnail,
   'type': const ItemTypeConverter().toJson(instance.type),

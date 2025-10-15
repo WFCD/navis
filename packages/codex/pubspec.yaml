@@ -13,8 +13,6 @@ dependencies:
   isar_community: ^3.3.0-dev.3
   json_annotation: ^4.9.0
   logging: ^1.3.0
-  navis_database:
-    path: ../navis_database
   warframestat_client: ^5.3.4
 
 dev_dependencies:

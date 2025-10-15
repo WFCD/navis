@@ -2,5 +2,5 @@
 library;
 
 export 'src/codex.dart';
-export 'src/schema/codex_item.dart';
+export 'src/schema/schema.dart';
 export 'src/utils.dart' hide fastHash;

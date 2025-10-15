@@ -1,3 +1,4 @@
+import 'package:codex/src/schema/masterable_item.dart';
 import 'package:codex/src/utils.dart';
 import 'package:isar_community/isar.dart';
 import 'package:json_annotation/json_annotation.dart';
@@ -13,6 +14,8 @@ const List<ItemProps> codexProps = [
   ItemProps.type,
   ItemProps.category,
   ItemProps.vaulted,
+  ItemProps.masterable,
+  ItemProps.maxLevelCap,
   ItemProps.wikiaUrl,
   ItemProps.wikiaThumbnail,
 ];
@@ -20,7 +23,7 @@ const List<ItemProps> codexProps = [
 @Collection(ignore: {'props', 'toJson', 'stringify'})
 @JsonSerializable()
 class CodexItem extends Item {
-  const CodexItem({
+  CodexItem({
     required this.uniqueName,
     required this.name,
     required this.description,
@@ -29,6 +32,7 @@ class CodexItem extends Item {
     required this.type,
     this.vaulted = false,
     this.masterable = false,
+    required this.maxLevelCap,
     required this.wikiaUrl,
     required this.wikiaThumbnail,
   });
@@ -50,6 +54,8 @@ class CodexItem extends Item {
 
   final bool masterable;
 
+  final int? maxLevelCap;
+
   final String? wikiaUrl;
 
   final String? wikiaThumbnail;
@@ -57,6 +63,9 @@ class CodexItem extends Item {
   @ItemTypeConverter()
   @Enumerated(EnumType.name)
   final ItemType type;
+
+  @Backlink(to: 'item')
+  final xpInfo = IsarLink<MasterableItem>();
 
   Id get isarId => fastHash(uniqueName);
 
@@ -71,6 +80,8 @@ class CodexItem extends Item {
     type,
     category,
     vaulted,
+    masterable,
+    maxLevelCap,
     wikiaUrl,
     wikiaThumbnail,
   ];

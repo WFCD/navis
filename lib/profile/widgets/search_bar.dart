@@ -1,10 +1,9 @@
+import 'package:codex/codex.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:inventoria/inventoria.dart';
 import 'package:navis/codex/utils/debouncer.dart';
-import 'package:navis/profile/cubit/arsenal_cubit.dart';
-import 'package:navis/profile/utils/extensions.dart';
-import 'package:navis/profile/widgets/widgets.dart';
+import 'package:navis/profile/profile.dart';
+import 'package:navis/profile/utils/mastery_utils.dart';
 
 class MasteryItemSearchBar extends StatefulWidget {
   const MasteryItemSearchBar({super.key, required this.onPressed});
@@ -16,10 +15,10 @@ class MasteryItemSearchBar extends StatefulWidget {
 }
 
 class _MasteryItemSearchBarState extends State<MasteryItemSearchBar> {
-  late final Debounceable<List<InventoryItemData>?, String> _debounceSearch;
+  late final Debounceable<List<CodexItem>?, String> _debounceSearch;
   late final SearchController _controller;
 
-  Iterable<InventoryItemData> _lastOptions = [];
+  Iterable<CodexItem> _lastOptions = [];
 
   @override
   void initState() {
@@ -29,11 +28,11 @@ class _MasteryItemSearchBarState extends State<MasteryItemSearchBar> {
     _debounceSearch = debounce(_search);
   }
 
-  List<InventoryItemData> _search(String query) {
-    final state = BlocProvider.of<ArsenalCubit>(context).state;
+  List<CodexItem> _search(String query) {
+    final state = BlocProvider.of<MasteryProgressCubit>(context).state;
     final items = switch (state) {
-      ArsenalSuccess() => state.items,
-      _ => <InventoryItemData>[],
+      MasteryProgressSuccess(items: final items) => items,
+      _ => <CodexItem>[],
     };
 
     return items.where((i) => i.name.toLowerCase().contains(query.toLowerCase())).toList();
@@ -54,14 +53,13 @@ class _MasteryItemSearchBarState extends State<MasteryItemSearchBar> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocSelector<ArsenalCubit, ArsenalState, List<InventoryItemData>>(
-      selector:
-          (state) => switch (state) {
-            ArsenalSuccess(items: final items) => items,
-            _ => [],
-          },
+    return BlocSelector<MasteryProgressCubit, MasteryProgressState, List<CodexItem>>(
+      selector: (state) => switch (state) {
+        MasteryProgressSuccess(items: final items) => items,
+        _ => [],
+      },
       builder: (context, items) {
-        final completed = items.where((i) => i.rank == i.maxRank);
+        final completed = items.where((i) => masteryRank(i, i.xpInfo.value!.xp) == i.maxLevelCap!);
 
         return SearchAnchor.bar(
           barLeading: IconButton(icon: const Icon(Icons.arrow_back_rounded), onPressed: widget.onPressed),

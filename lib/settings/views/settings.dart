@@ -1,9 +1,9 @@
 import 'package:black_hole_flutter/black_hole_flutter.dart';
+import 'package:codex/codex.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_settings_ui/flutter_settings_ui.dart';
 import 'package:intl/intl.dart';
-import 'package:inventoria/inventoria.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis/profile/cubit/profile_cubit.dart';
 import 'package:navis/settings/settings.dart';
@@ -53,7 +53,7 @@ class _SettingsView extends StatelessWidget {
       (cubit) => cubit.state is UserSettingsSuccess ? cubit.state as UserSettingsSuccess : null,
     );
 
-    final profile = context.select<ProfileCubit, DriftProfileData?>(
+    final profile = context.select<ProfileCubit, PlayerProfile?>(
       (cubit) => cubit.state is ProfileSuccessful ? (cubit.state as ProfileSuccessful).profile : null,
     );
 

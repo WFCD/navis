@@ -38,15 +38,11 @@ dependencies:
     path: packages/http_client
   hydrated_bloc: ^10.1.1
   intl: ^0.20.2
-  inventoria:
-    path: packages/inventoria
   isar_community: ^3.3.0-dev.3
   isar_community_flutter_libs: ^3.3.0-dev.3
   logging: ^1.3.0
   matomo_tracker: ^6.1.0
   mobile_scanner: ^7.1.2
-  navis_database:
-    path: packages/navis_database
   navis_ui:
     path: packages/navis_ui
   notification_repository:

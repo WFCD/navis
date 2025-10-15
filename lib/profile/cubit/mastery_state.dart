@@ -1,4 +1,4 @@
-part of 'mastery_progress_cubit.dart';
+part of 'mastery_cubit.dart';
 
 sealed class MasteryProgressState extends Equatable {
   const MasteryProgressState();
@@ -12,7 +12,7 @@ final class MasteryProgressInitial extends MasteryProgressState {}
 final class MasteryProgressSuccess extends MasteryProgressState {
   const MasteryProgressSuccess(this.items);
 
-  final List<InventoryItemData> items;
+  final List<CodexItem> items;
 
   @override
   List<Object> get props => [items];
