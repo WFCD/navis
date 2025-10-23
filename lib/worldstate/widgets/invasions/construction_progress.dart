@@ -10,8 +10,8 @@ import 'package:warframe_icons/warframe_icons.dart';
 class ConstructionProgressCard extends StatelessWidget {
   const ConstructionProgressCard({super.key});
 
-  String _parseProgress(String? progress) {
-    return min(double.parse(progress ?? '0'), 100).toStringAsFixed(2);
+  String _parseProgress(num? progress) {
+    return min(progress ?? 0, 100).toStringAsFixed(2);
   }
 
   @override

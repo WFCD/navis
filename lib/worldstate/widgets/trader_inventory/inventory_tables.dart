@@ -1,10 +1,10 @@
 import 'package:black_hole_flutter/black_hole_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:navis/l10n/l10n.dart';
-import 'package:navis/worldstate/widgets/trader_inventory/trader_item_card.dart';
+import 'package:navis/worldstate/widgets/widgets.dart';
 import 'package:navis/worldstate/worldstate.dart';
 import 'package:responsive_builder/responsive_builder.dart';
-import 'package:warframestat_client/warframestat_client.dart';
+import 'package:worldstate_models/worldstate_models.dart';
 
 class InventoryDataTable extends StatelessWidget {
   const InventoryDataTable({super.key, required this.inventory, this.isVarzia = false});

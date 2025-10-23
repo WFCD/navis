@@ -8,8 +8,8 @@ import 'package:navis/l10n/l10n.dart';
 import 'package:navis/router/routes.dart';
 import 'package:navis/worldstate/bloc/worldstate_bloc.dart';
 import 'package:navis_ui/navis_ui.dart';
-import 'package:warframestat_client/warframestat_client.dart' hide Alignment;
 import 'package:warframestat_repository/warframestat_repository.dart';
+import 'package:worldstate_models/worldstate_models.dart';
 
 class DarvoDealCard extends StatelessWidget {
   const DarvoDealCard({super.key});
@@ -127,7 +127,7 @@ class _DealWidget extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.only(top: 8, right: 8),
-              child: _DarvoPlatTrailing(salePrice: deal.salePrice, originalPrice: deal.originalPrice),
+              child: _DarvoPlatTrailing(salePrice: deal.salePrice, originalPrice: deal.price),
             ),
           ],
         );

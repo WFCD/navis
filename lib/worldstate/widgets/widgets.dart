@@ -28,3 +28,4 @@ export 'timers/steel_path.dart';
 export 'timers/trader_card.dart';
 export 'trader_inventory/inventory_data_source.dart';
 export 'trader_inventory/inventory_tables.dart';
+export 'trader_inventory/trader_item_card.dart';

@@ -28,4 +28,12 @@ final class WorldstateUpdated extends WorldstateEvent {
   String toString() => 'WorldstateUpdated(state: ${state.timestamp})';
 }
 
-final class WorldstateFailed extends WorldstateEvent {}
+final class WorldstateFailed extends WorldstateEvent {
+  WorldstateFailed(this.error, [this.stackTrace]);
+
+  final Object error;
+  final StackTrace? stackTrace;
+
+  @override
+  String toString() => 'WorldstateFailed($error ${stackTrace ?? ''})';
+}

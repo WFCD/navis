@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis/worldstate/worldstate.dart';
 import 'package:navis_ui/navis_ui.dart';
-import 'package:warframestat_client/warframestat_client.dart';
 import 'package:warframestat_repository/warframestat_repository.dart';
+import 'package:worldstate_models/worldstate_models.dart';
 
 class FlashSalesPage extends StatelessWidget {
   const FlashSalesPage({super.key});
@@ -45,7 +45,7 @@ class FlashSalesView extends StatelessWidget {
 
               return ListTile(
                 title: Text(sale.item),
-                subtitle: Text(context.l10n.flashSaleSubtitleText(sale.premiumOverride, sale.discount)),
+                subtitle: Text(context.l10n.flashSaleSubtitleText(sale.premiumOverride, sale.discount.ceil())),
                 trailing: saleDuration < const Duration(days: 30)
                     ? CountdownTimer(tooltip: context.l10n.countdownTooltip(sale.expiry), expiry: sale.expiry)
                     : null,

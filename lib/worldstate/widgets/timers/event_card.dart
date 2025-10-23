@@ -4,7 +4,7 @@ import 'package:navis/l10n/l10n.dart';
 import 'package:navis/router/routes.dart';
 import 'package:navis/worldstate/bloc/worldstate_bloc.dart';
 import 'package:navis_ui/navis_ui.dart';
-import 'package:warframestat_client/warframestat_client.dart';
+import 'package:worldstate_models/worldstate_models.dart';
 
 class EventCard extends StatelessWidget {
   const EventCard({super.key});
@@ -13,11 +13,10 @@ class EventCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return AppCard(
       child: BlocSelector<WorldstateBloc, WorldState, List<WorldEvent>>(
-        selector:
-            (s) => switch (s) {
-              WorldstateSuccess() => s.seed.events,
-              _ => <WorldEvent>[],
-            },
+        selector: (s) => switch (s) {
+          WorldstateSuccess() => s.seed.events,
+          _ => <WorldEvent>[],
+        },
         builder: (context, events) {
           return Column(
             children: <Widget>[

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:warframe_icons/warframe_icons.dart';
-import 'package:warframestat_client/warframestat_client.dart' hide Alignment;
+import 'package:worldstate_models/worldstate_models.dart';
 
 class CalendarPage extends StatelessWidget {
   const CalendarPage({super.key, required this.season, required this.days});
@@ -13,7 +13,10 @@ class CalendarPage extends StatelessWidget {
   Widget build(BuildContext context) {
     // final seasonColor = SeasonColors.color(season.toLowerCase())!;
 
-    return Scaffold(appBar: AppBar(title: Text('1999 Calendar - $season')), body: CalendarView(days: days));
+    return Scaffold(
+      appBar: AppBar(title: Text('1999 Calendar - $season')),
+      body: CalendarView(days: days),
+    );
   }
 }
 
@@ -39,7 +42,7 @@ class CalendarView extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
                   child: Text(
-                    MaterialLocalizations.of(context).formatMediumDate(days[index].date),
+                    MaterialLocalizations.of(context).formatMediumDate(days[index].day),
                     style: Theme.of(context).textTheme.labelLarge,
                   ),
                 ),
@@ -55,7 +58,7 @@ class CalendarView extends StatelessWidget {
 class EventContent extends StatelessWidget {
   const EventContent({super.key, required this.events});
 
-  final List<CalendarEvent> events;
+  final List<CalendarDayEvent> events;
 
   @override
   Widget build(BuildContext context) {
@@ -67,11 +70,19 @@ class EventContent extends StatelessWidget {
       _ => WarframeIcons.menuLotusEmblem,
     };
 
-    Widget content(CalendarEvent event) => switch (event) {
-      CalendarChallenge() => ListTile(title: Text(event.challenge.title), subtitle: Text(event.challenge.description)),
-      CalendarUpgrade() => ListTile(title: Text(event.upgrade.title), subtitle: Text(event.upgrade.description)),
-      CalendarReward() => ListTile(title: Text(event.reward)),
-      CalendarBirthday() => ListTile(title: Text(event.conversation.replaceFirst('BirthdayConvo', "'s Birthday"))),
+    Widget content(CalendarDayEvent event) => switch (event) {
+      CalendarDayChallenge(title: final title, description: final description) => ListTile(
+        title: Text(title),
+        subtitle: Text(description),
+      ),
+      CalendarDayUpgrade(name: final name, description: final description) => ListTile(
+        title: Text(name),
+        subtitle: Text(description),
+      ),
+      CalendarDayReward(reward: final reward) => ListTile(title: Text(reward)),
+      CalendarDayBirthday(conversation: final convo) => ListTile(
+        title: Text(convo.replaceFirst('BirthdayConvo', "'s Birthday")),
+      ),
     };
 
     return Column(

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:navis_ui/navis_ui.dart';
-import 'package:warframestat_client/warframestat_client.dart';
+import 'package:worldstate_models/worldstate_models.dart';
 
 class InvasionReward extends StatelessWidget {
   const InvasionReward({super.key, required this.attacker, required this.defender, this.vsInfestation = false});
@@ -17,9 +17,9 @@ class InvasionReward extends StatelessWidget {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
-        if (!vsInfestation) _InvasionRewardBox(color: attacker.primaryColor, reward: this.attacker.reward!.itemString),
+        if (!vsInfestation) _InvasionRewardBox(color: attacker.primaryColor, reward: this.attacker.reward!.itemString!),
         const Spacer(),
-        _InvasionRewardBox(color: defender.primaryColor, reward: this.defender.reward!.itemString),
+        _InvasionRewardBox(color: defender.primaryColor, reward: this.defender.reward!.itemString!),
       ],
     );
   }

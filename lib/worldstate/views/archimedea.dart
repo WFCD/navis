@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis/utils/reset_timers.dart';
 import 'package:navis_ui/navis_ui.dart';
-import 'package:warframestat_client/warframestat_client.dart';
+import 'package:worldstate_models/worldstate_models.dart';
 
 class ArchimedeaPage extends StatelessWidget {
   const ArchimedeaPage({super.key, required this.archimedea});
@@ -55,15 +55,15 @@ class _ArchimedeaMissionsCategory extends StatelessWidget {
             children: [
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16),
-                child: Text(m.mission, style: Theme.of(context).textTheme.titleMedium?.copyWith(color: secondary)),
+                child: Text(m.missionType, style: Theme.of(context).textTheme.titleMedium?.copyWith(color: secondary)),
               ),
               ListTile(
-                title: Text('${l10n.archimedeaDeviationTitle}: ${m.deviation.name}', style: titleStyle),
+                title: Text('${l10n.archimedeaDeviationTitle}: ${m.deviation.title}', style: titleStyle),
                 subtitle: Text(m.deviation.description),
               ),
-              ...m.riskVariables.map(
+              ...m.risks.map(
                 (rv) => ListTile(
-                  title: Text('${l10n.archimedeaRiskTitle}: ${rv.name}', style: titleStyle),
+                  title: Text('${l10n.archimedeaRiskTitle}: ${rv.title}', style: titleStyle),
                   subtitle: Text(rv.description),
                 ),
               ),
@@ -78,14 +78,14 @@ class _ArchimedeaMissionsCategory extends StatelessWidget {
 class _PersonalModifierCategory extends StatelessWidget {
   const _PersonalModifierCategory({required this.personalModifiers});
 
-  final List<Modifier> personalModifiers;
+  final List<PersonalModifiers> personalModifiers;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         CategoryTitle(title: context.l10n.archimedeaPersonalModifierTitle),
-        ...personalModifiers.map((pm) => ListTile(title: Text(pm.name), subtitle: Text(pm.description))),
+        ...personalModifiers.map((pm) => ListTile(title: Text(pm.title), subtitle: Text(pm.description))),
       ],
     );
   }

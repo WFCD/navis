@@ -2,7 +2,7 @@ import 'package:black_hole_flutter/black_hole_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:navis_ui/navis_ui.dart';
-import 'package:warframestat_client/warframestat_client.dart';
+import 'package:worldstate_models/worldstate_models.dart';
 
 class TraderItemCard extends StatelessWidget {
   const TraderItemCard({super.key, required this.item, this.isVarzia = false});
@@ -17,8 +17,8 @@ class TraderItemCard extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: 8),
         child: ListTile(
           dense: true,
-          title: Text(item.item),
-          trailing: _TraderItemTrailing(credits: item.credits ?? 0, ducats: item.ducats ?? 0, isVarzia: isVarzia),
+          title: Text(item.name),
+          trailing: _TraderItemTrailing(credits: item.regularPrice, ducats: item.primePrice, isVarzia: isVarzia),
         ),
       ),
     );

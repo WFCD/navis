@@ -3,11 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:navis/l10n/l10n.dart';
-import 'package:navis/utils/reset_timers.dart';
 import 'package:navis/worldstate/bloc/worldstate_bloc.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:warframe_icons/warframe_icons.dart';
-import 'package:warframestat_client/warframestat_client.dart';
+import 'package:worldstate_models/worldstate_models.dart';
 
 class CycleCard extends StatelessWidget {
   const CycleCard({super.key});
@@ -16,8 +15,8 @@ class CycleCard extends StatelessWidget {
 
   Widget _stateChange<T extends Enum>(T state) {
     return switch (state) {
-      EarthState.day => const Icon(Icons.brightness_7, color: Colors.amber, size: _iconSize),
-      EarthState.night => const Icon(Icons.brightness_3, color: Colors.blue, size: _iconSize),
+      CetusState.day => const Icon(Icons.brightness_7, color: Colors.amber, size: _iconSize),
+      CetusState.night => const Icon(Icons.brightness_3, color: Colors.blue, size: _iconSize),
       VallisState.cold => const Icon(Icons.ac_unit, color: Colors.blue, size: _iconSize),
       VallisState.warm => const Icon(Icons.sunny, color: Colors.red, size: _iconSize),
       CambionState.vome => _shadowIcon(state.name, WarframeIcons.requiemVome, Colors.blueAccent),
@@ -56,9 +55,9 @@ class CycleCard extends StatelessWidget {
       final p = previous;
       final n = next;
 
-      return p.seed.earthCycle.expiry != n.seed.earthCycle.expiry ||
-          p.seed.cetusCycle.expiry != n.seed.cetusCycle.expiry ||
-          p.seed.vallisCycle.expiry != n.seed.vallisCycle.expiry;
+      return p.seed.cetusCycle.expiry != n.seed.cetusCycle.expiry ||
+          p.seed.vallisCycle.expiry != n.seed.vallisCycle.expiry ||
+          n.seed.zarimanCycle != n.seed.zarimanCycle;
     }
 
     if (next is WorldstateFailure) {
@@ -85,12 +84,12 @@ class CycleCard extends StatelessWidget {
           final cambionCycle = worldstate?.cambionCycle;
           final zarimanCycle = worldstate?.zarimanCycle;
           final duviriCycle = worldstate?.duviriCycle;
-          final midrathCycle = midrathExpiry();
+          // final midrathCycle = midrathExpiry();
 
           return Column(
             children: <Widget>[
               _CycleRow(
-                currentState: _stateChange(cetusCycle?.state ?? EarthState.day),
+                currentState: _stateChange(cetusCycle?.state ?? CetusState.day),
                 name: locale.cetusCycleTitle,
                 expiry: cetusCycle?.expiry,
               ),
@@ -114,7 +113,7 @@ class CycleCard extends StatelessWidget {
                 expiry: duviriCycle?.expiry,
                 currentState: _stateText(context, duviriCycle?.state ?? DuviriState.envy),
               ),
-              _CycleRow(currentState: _stateChange(midrathCycle.state), name: 'Midrath', expiry: midrathCycle.expiry),
+              // _CycleRow(currentState: _stateChange(midrathCycle.state), name: 'Midrath', expiry: midrathCycle.expiry),
             ],
           );
         },

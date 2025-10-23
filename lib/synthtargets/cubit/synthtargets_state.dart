@@ -17,6 +17,9 @@ class TargetsLocated extends SynthtargetsState {
 
   @override
   List<Object> get props => [targets];
+
+  @override
+  String toString() => 'TargetsLocated(${targets.length})';
 }
 
 class TargetsNotFound extends SynthtargetsState {

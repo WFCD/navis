@@ -10,16 +10,16 @@ class SentientOutpostCard extends StatelessWidget {
 
   bool _buildWhen(WorldState previous, WorldState next) {
     final previousOutpost = switch (previous) {
-      WorldstateSuccess() => previous.seed.sentientOutposts,
+      WorldstateSuccess() => previous.seed.sentientOutpost,
       _ => null,
     };
 
     final nextOutpost = switch (next) {
-      WorldstateSuccess() => next.seed.sentientOutposts,
+      WorldstateSuccess() => next.seed.sentientOutpost,
       _ => null,
     };
 
-    return previousOutpost?.mission?.node != nextOutpost?.mission?.node;
+    return previousOutpost?.node != nextOutpost?.node;
   }
 
   @override
@@ -29,17 +29,17 @@ class SentientOutpostCard extends StatelessWidget {
         buildWhen: _buildWhen,
         builder: (context, state) {
           final outpost = switch (state) {
-            WorldstateSuccess() => state.seed.sentientOutposts,
+            WorldstateSuccess() => state.seed.sentientOutpost,
             _ => null,
           };
 
-          final mission = outpost?.mission;
+          final mission = outpost?.node;
           final expiry = outpost?.expiry ?? DateTime.now();
 
           return ListTile(
             leading: const Icon(WarframeIcons.factionsSentient, size: 40),
-            title: Text(mission?.node ?? ''),
-            subtitle: Text('${mission?.faction ?? ''} | ${mission?.type ?? ''}'),
+            title: Text(mission?.name ?? ''),
+            subtitle: Text('${mission?.enemy ?? ''} | ${mission?.type ?? ''}'),
             trailing: CountdownTimer(tooltip: context.l10n.countdownTooltip(expiry), expiry: expiry),
           );
         },

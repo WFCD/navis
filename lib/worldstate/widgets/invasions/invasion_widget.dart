@@ -2,7 +2,7 @@ import 'package:black_hole_flutter/black_hole_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:navis/worldstate/worldstate.dart';
 import 'package:navis_ui/navis_ui.dart';
-import 'package:warframestat_client/warframestat_client.dart';
+import 'package:worldstate_models/worldstate_models.dart';
 
 class InvasionWidget extends StatelessWidget {
   const InvasionWidget({super.key, required this.invasion});
@@ -38,7 +38,11 @@ class InvasionWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.end,
             children: <Widget>[
               Expanded(
-                child: _InvasionDetails(node: invasion.node, description: invasion.desc, eta: invasion.eta),
+                child: _InvasionDetails(
+                  node: invasion.node,
+                  description: invasion.description,
+                  eta: invasion.eta ?? '',
+                ),
               ),
               InvasionReward(
                 attacker: invasion.attacker,
@@ -64,30 +68,18 @@ class _InvasionDetails extends StatelessWidget {
 
   final String node;
   final String description;
-  final DateTime eta;
-
-  String _formatTime(Duration duration) {
-    final days = duration.inDays;
-    final hours = duration.inHours.remainder(24);
-    final minutes = duration.inMinutes.remainder(60);
-    final seconds = duration.inSeconds.remainder(60);
-
-    final is24hrs = duration < const Duration(days: 1);
-
-    return '${!is24hrs ? '${days}d' : ''} ${hours}h ${minutes}m ${seconds}s';
-  }
+  final String eta;
 
   @override
   Widget build(BuildContext context) {
     final nodeStyle = context.theme.textTheme.titleMedium;
     final infoStyle = context.theme.textTheme.bodySmall;
-    final remainingTime = _formatTime(eta.difference(DateTime.timestamp()));
 
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         Text(node, style: nodeStyle),
-        Text('$description ($remainingTime)', style: infoStyle),
+        Text('$description ($eta)', style: infoStyle),
       ],
     );
   }

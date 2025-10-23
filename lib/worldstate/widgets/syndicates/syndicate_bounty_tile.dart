@@ -4,21 +4,28 @@ import 'package:intl/intl.dart';
 import 'package:navis/codex/codex.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:warframe_icons/warframe_icons.dart';
-import 'package:warframestat_client/warframestat_client.dart';
+import 'package:warframestat_client/warframestat_client.dart' as ws;
+import 'package:worldstate_models/worldstate_models.dart';
 
 class SyndicateBountyTile extends StatelessWidget {
   const SyndicateBountyTile({super.key, required this.job});
 
-  final SyndicateJob job;
+  final SyndicateBounty job;
 
   @override
   Widget build(BuildContext context) {
-    final rewards = job.rewardPoolDrops?..sort((a, b) => a.rarity.index.compareTo(b.rarity.index));
+    final rewards = job.rewardPool
+      ..sort(
+        (a, b) => ws.Rarity.values
+            .byName(a.rarity.toLowerCase())
+            .index
+            .compareTo(ws.Rarity.values.byName(b.rarity.toLowerCase()).index),
+      );
 
     return ListTile(
       title: Text(job.type ?? ''),
-      subtitle: Text(context.l10n.levelInfo(job.enemyLevels.first, job.enemyLevels.last)),
-      trailing: _Standing(standingStages: job.standingStages),
+      subtitle: Text(context.l10n.levelInfo(job.minLevel, job.maxLevel)),
+      trailing: _Standing(standing: job.standing),
       onTap: () => showModalBottomSheet<void>(
         context: context,
         isScrollControlled: true,
@@ -31,8 +38,9 @@ class SyndicateBountyTile extends StatelessWidget {
             builder: (context, scrollController) {
               return ListView(
                 controller: scrollController,
-                children:
-                    rewards?.map((r) => BountyReward(reward: r)).toList() ?? job.rewardPool.map(Text.new).toList(),
+                children: rewards.isNotEmpty
+                    ? rewards.map((r) => BountyReward(reward: r)).toList()
+                    : job.rewards.map(Text.new).toList(),
               );
             },
           );
@@ -43,9 +51,9 @@ class SyndicateBountyTile extends StatelessWidget {
 }
 
 class _Standing extends StatelessWidget {
-  const _Standing({required this.standingStages});
+  const _Standing({required this.standing});
 
-  final List<int> standingStages;
+  final int standing;
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +61,7 @@ class _Standing extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         Text(
-          NumberFormat().format(standingStages.reduce((v, e) => v + e)),
+          NumberFormat().format(standing),
           style: context.textTheme.labelLarge,
         ),
         const Icon(WarframeIcons.standing, size: 20),
@@ -71,7 +79,7 @@ class BountyReward extends StatelessWidget {
   Widget build(BuildContext context) {
     final textTheme = context.textTheme;
     final count = reward.count;
-    final color = reward.rarity.toColor();
+    final color = ws.Rarity.values.byName(reward.rarity.toLowerCase()).toColor();
 
     return ListTile(
       title: Row(

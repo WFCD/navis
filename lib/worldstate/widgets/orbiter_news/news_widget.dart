@@ -3,7 +3,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:navis_ui/gen/assets.gen.dart';
 import 'package:navis_ui/navis_ui.dart';
-import 'package:warframestat_client/warframestat_client.dart';
+import 'package:worldstate_models/worldstate_models.dart';
 
 class OrbiterNewsCard extends StatelessWidget {
   const OrbiterNewsCard({super.key, required this.news});
@@ -15,7 +15,10 @@ class OrbiterNewsCard extends StatelessWidget {
     return Card(
       clipBehavior: Clip.antiAlias,
       color: context.theme.colorScheme.secondaryContainer,
-      child: InkWell(onTap: () => news.link.launchLink(context), child: OrbiterNewsContent(news: news)),
+      child: InkWell(
+        onTap: () => news.link.launchLink(context),
+        child: OrbiterNewsContent(news: news),
+      ),
     );
   }
 }

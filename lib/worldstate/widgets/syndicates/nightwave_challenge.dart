@@ -3,12 +3,12 @@ import 'package:intl/intl.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:warframe_icons/warframe_icons.dart';
-import 'package:warframestat_client/warframestat_client.dart';
+import 'package:worldstate_models/worldstate_models.dart' as models;
 
 class NightwaveChallenge extends StatelessWidget {
   const NightwaveChallenge({super.key, required this.challenge});
 
-  final Challenge challenge;
+  final models.NightwaveChallenge challenge;
 
   @override
   Widget build(BuildContext context) {
@@ -28,14 +28,14 @@ class NightwaveChallenge extends StatelessWidget {
             ListTile(
               leading: _NightwaveIcon(isElite: challenge.isElite, isDaily: challenge.isDaily),
               title: Text(challenge.title, style: title),
-              subtitle: Text(challenge.desc, style: desscription),
+              subtitle: Text(challenge.description, style: desscription),
             ),
             Row(
               crossAxisAlignment: CrossAxisAlignment.end,
               mainAxisAlignment: MainAxisAlignment.end,
               children: <Widget>[
-                _StandingBadge(challenge: challenge),
-                CountdownTimer(tooltip: l10n.countdownTooltip(challenge.expiry!), expiry: challenge.expiry),
+                _StandingBadge(reputation: challenge.standing),
+                CountdownTimer(tooltip: l10n.countdownTooltip(challenge.expiry), expiry: challenge.expiry),
               ],
             ),
           ],
@@ -46,20 +46,20 @@ class NightwaveChallenge extends StatelessWidget {
 }
 
 class _StandingBadge extends StatelessWidget {
-  const _StandingBadge({required this.challenge});
+  const _StandingBadge({required this.reputation});
 
-  final Challenge challenge;
+  final int reputation;
 
   @override
   Widget build(BuildContext context) {
     return ColoredContainer(
-      tooltip: '${challenge.reputation}',
+      tooltip: '$reputation',
       color: Colors.red,
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           const Icon(WarframeIcons.standing, size: 20, color: Colors.white),
-          Text(NumberFormat().format(challenge.reputation), style: const TextStyle(color: Colors.white)),
+          Text(NumberFormat().format(reputation), style: const TextStyle(color: Colors.white)),
         ],
       ),
     );

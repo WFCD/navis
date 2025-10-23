@@ -9,14 +9,15 @@ import 'package:navis/l10n/l10n.dart';
 import 'package:navis/worldstate/bloc/worldstate_bloc.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:warframe_icons/warframe_icons.dart';
-import 'package:warframestat_client/warframestat_client.dart';
+import 'package:warframestat_client/warframestat_client.dart' show ItemCommon;
 import 'package:warframestat_repository/warframestat_repository.dart';
+import 'package:worldstate_models/worldstate_models.dart';
 
 class AlertsCard extends StatelessWidget {
   const AlertsCard({super.key});
 
   Widget _buildAlerts(Alert a, WarframestatRepository r) {
-    final reward = a.mission.reward!.items.firstOrNull?.replaceAll('Blueprint', '').trim();
+    final reward = a.mission.reward.items?.firstOrNull?.replaceAll('Blueprint', '').trim();
 
     if (reward == null) return _AlertWidget(alert: a, isParent: false);
 
@@ -65,7 +66,7 @@ class _AlertWidget extends StatelessWidget {
     final faction = mission.faction;
     final reward = mission.reward;
 
-    final enemyLvlRange = context.l10n.levelInfo(mission.minEnemyLevel ?? 0, mission.maxEnemyLevel ?? 0);
+    final enemyLvlRange = context.l10n.levelInfo(mission.minEnemyLevel, mission.maxEnemyLevel);
 
     return Padding(
       padding: const EdgeInsets.all(8),
@@ -76,7 +77,7 @@ class _AlertWidget extends StatelessWidget {
             title: Row(
               children: [
                 Text(node),
-                if (mission.archwingRequired ?? false)
+                if (mission.archwingRequired)
                   const Padding(
                     padding: EdgeInsets.only(left: 8),
                     child: Icon(WarframeIcons.archwing, color: Colors.blue, size: 25),
@@ -108,7 +109,7 @@ class _AlertReward extends StatelessWidget {
       leading: item != null ? CachedNetworkImage(imageUrl: item!.imageUrl, height: 100, width: 60) : null,
       title: RichText(
         text: TextSpan(
-          text: reward?.items.first,
+          text: reward?.itemString,
           style: context.theme.textTheme.titleMedium,
           children: [
             if (reward?.credits != null)

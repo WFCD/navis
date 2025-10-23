@@ -4,19 +4,19 @@ import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:logging/logging.dart';
 import 'package:navis/utils/utils.dart';
 import 'package:replay_bloc/replay_bloc.dart';
-import 'package:rxdart/rxdart.dart';
-import 'package:warframestat_client/warframestat_client.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
+import 'package:warframestat_client/warframestat_client.dart' show Language;
 import 'package:warframestat_repository/warframestat_repository.dart';
+import 'package:worldstate_models/worldstate_models.dart';
 
 part 'worldstate_event.dart';
 part 'worldstate_state.dart';
-
-Stream<Worldstate>? _worldstate;
 
 class WorldstateBloc extends HydratedBloc<WorldstateEvent, WorldState> with ReplayBlocMixin {
   WorldstateBloc(this.repository) : super(WorldstateInitial()) {
     on<WorldstateStarted>(_start);
     on<WorldstateUpdated>((event, emit) => emit(WorldstateSuccess(event.state)));
+    on<WorldstateFailed>((event, emit) => emit(WorldstateFailure()));
     add(WorldstateStarted(Locale(repository.language.name)));
   }
 
@@ -25,18 +25,18 @@ class WorldstateBloc extends HydratedBloc<WorldstateEvent, WorldState> with Repl
   final _logger = Logger('WorldstateBloc');
 
   Future<void> _start(WorldstateStarted event, Emitter<WorldState> emit) async {
-    _worldstate ??= repository.worldstate().asBroadcastStream();
     repository.language = Language.values.byName(event.locale.languageCode);
 
-    await emit.onEach(
-      _worldstate!.throttleTime(const Duration(seconds: Duration.secondsPerMinute)),
+    await emit.onEach<Worldstate>(
+      repository.worldstate(),
       onData: (state) {
         if (isClosed) return;
-        add(WorldstateUpdated(state..clean()));
+        add(WorldstateUpdated(state..clean(repository.language)));
       },
-      onError: (error, stackTrace) {
+      onError: (error, stackTrace) async {
         if (isClosed) return;
-        add(WorldstateFailed());
+        await Sentry.captureException(error, stackTrace: stackTrace);
+        add(WorldstateFailed(error, stackTrace));
         undo();
       },
     );
@@ -45,9 +45,13 @@ class WorldstateBloc extends HydratedBloc<WorldstateEvent, WorldState> with Repl
   @override
   WorldState? fromJson(Map<String, dynamic> json) {
     _logger.info('Hydrating state');
-    final seed = Worldstate.fromJson(json);
+    try {
+      final seed = Worldstate.fromMap(json); // TODO(Orn): should expose a fromMap
 
-    return WorldstateSuccess(seed);
+      return WorldstateSuccess(seed);
+    } on Exception {
+      return null;
+    }
   }
 
   @override
@@ -55,6 +59,6 @@ class WorldstateBloc extends HydratedBloc<WorldstateEvent, WorldState> with Repl
     if (state is! WorldstateSuccess) return null;
     _logger.info('Caching state');
 
-    return state.seed.toJson();
+    return state.seed.toMap();
   }
 }

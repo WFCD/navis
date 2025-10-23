@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:warframestat_client/warframestat_client.dart';
+import 'package:worldstate_models/worldstate_models.dart';
 
 class InventoryDataSource extends DataTableSource {
   InventoryDataSource({required this.inventory});
@@ -16,9 +16,9 @@ class InventoryDataSource extends DataTableSource {
     return DataRow.byIndex(
       index: index,
       cells: <DataCell>[
-        DataCell(Text(product.item), onTap: () {}),
-        DataCell(Text('${product.ducats}'), onTap: () {}),
-        DataCell(Text('${product.credits}cr'), onTap: () {}),
+        DataCell(Text(product.name), onTap: () {}),
+        DataCell(Text('${product.primePrice}'), onTap: () {}),
+        DataCell(Text('${product.regularPrice}cr'), onTap: () {}),
       ],
     );
   }

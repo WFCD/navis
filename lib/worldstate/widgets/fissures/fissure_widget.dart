@@ -6,12 +6,12 @@ import 'package:flutter/material.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:warframe_icons/warframe_icons.dart';
-import 'package:warframestat_client/warframestat_client.dart';
+import 'package:worldstate_models/worldstate_models.dart';
 
 class FissureWidget extends StatelessWidget {
   const FissureWidget({super.key, required this.fissure});
 
-  final Fissure fissure;
+  final VoidFissure fissure;
 
   @override
   Widget build(BuildContext context) {
@@ -37,9 +37,19 @@ class FissureWidget extends StatelessWidget {
       alignment: AlignmentDirectional.center,
       children: [
         if (fissure.isStorm)
-          const Center(child: Opacity(opacity: opacity, child: AppIcon(WarframeIcons.archwing, size: iconSize))),
-        if (fissure.isHard)
-          const Center(child: Opacity(opacity: opacity, child: AppIcon(WarframeIcons.spLogo, size: iconSize))),
+          const Center(
+            child: Opacity(
+              opacity: opacity,
+              child: AppIcon(WarframeIcons.archwing, size: iconSize),
+            ),
+          ),
+        if (fissure.isSteelpath)
+          const Center(
+            child: Opacity(
+              opacity: opacity,
+              child: AppIcon(WarframeIcons.spLogo, size: iconSize),
+            ),
+          ),
         Row(
           children: <Widget>[
             Padding(
@@ -64,7 +74,7 @@ class FissureWidget extends StatelessWidget {
 class _FissureInfo extends StatelessWidget {
   const _FissureInfo({required this.fissure});
 
-  final Fissure fissure;
+  final VoidFissure fissure;
 
   @override
   Widget build(BuildContext context) {

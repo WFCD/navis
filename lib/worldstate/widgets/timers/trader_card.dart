@@ -5,7 +5,7 @@ import 'package:navis/l10n/l10n.dart';
 import 'package:navis/router/routes.dart';
 import 'package:navis/worldstate/worldstate.dart';
 import 'package:navis_ui/navis_ui.dart';
-import 'package:warframestat_client/warframestat_client.dart';
+import 'package:worldstate_models/worldstate_models.dart';
 
 class BaroKiTeerCard extends StatelessWidget {
   const BaroKiTeerCard({super.key});
@@ -24,7 +24,7 @@ class BaroKiTeerCard extends StatelessWidget {
           _ => null,
         },
         builder: (context, traders) {
-          final trader = traders?.firstWhere((t) => !t.location.contains('TennoCon'));
+          final trader = traders?.firstWhere((t) => !t.node.contains('TennoCon'));
 
           return _TraderWidget(
             trader: trader!,
@@ -84,10 +84,10 @@ class _TraderWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isActive = trader.active;
+    final isActive = trader.isActive;
     final date = isActive ? trader.expiry : trader.activation;
     final dateFormatted = MaterialLocalizations.of(context).formatFullDate(date);
-    final title = '${trader.character} ${isActive ? '| ${trader.location}' : ''}';
+    final title = '${trader.character} ${isActive ? '| ${trader.node}' : ''}';
 
     return ImageContainer(
       height: 100,

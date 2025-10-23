@@ -7,6 +7,7 @@ import 'package:navis/router/routes.dart';
 import 'package:navis/worldstate/worldstate.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:warframestat_repository/warframestat_repository.dart';
+import 'package:worldstate_models/worldstate_models.dart';
 
 class ActivitiesSection extends StatelessWidget {
   const ActivitiesSection({super.key});
@@ -23,26 +24,29 @@ class ActivitiesSection extends StatelessWidget {
   }
 }
 
+typedef _Activities = ({List<WorldEvent> events, List<Alert> alerts});
+
 class _ActivitiesContent extends StatelessWidget {
   const _ActivitiesContent();
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<WorldstateBloc, WorldState>(
-      builder: (context, state) {
-        final worldstate = switch (state) {
-          WorldstateSuccess(seed: final seed) => seed,
+    return BlocSelector<WorldstateBloc, WorldState, _Activities?>(
+      selector: (state) {
+        return switch (state) {
+          WorldstateSuccess(seed: final seed) => (events: seed.events, alerts: seed.alerts),
           _ => null,
         };
-
+      },
+      builder: (context, activities) {
         return ViewLoading(
-          isLoading: state is! WorldstateSuccess,
+          isLoading: activities == null,
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               const DailyReward(),
-              if (worldstate?.eventsActive ?? false) const EventCard(),
-              if (worldstate?.activeAlerts ?? false) const AlertsCard(),
+              if (activities?.events.isNotEmpty ?? false) const EventCard(),
+              if (activities?.alerts.isNotEmpty ?? false) const AlertsCard(),
             ],
           ),
         );

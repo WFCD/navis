@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:matomo_tracker/matomo_tracker.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis/worldstate/worldstate.dart';
-import 'package:warframestat_client/warframestat_client.dart';
+import 'package:worldstate_models/worldstate_models.dart';
 
 class BaroInventory extends StatelessWidget {
   const BaroInventory({super.key, required this.character, required this.inventory, this.isVarzia = false});

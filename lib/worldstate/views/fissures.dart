@@ -5,7 +5,7 @@ import 'package:navis/worldstate/worldstate.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:warframe_icons/warframe_icons.dart';
-import 'package:warframestat_client/warframestat_client.dart';
+import 'package:worldstate_models/worldstate_models.dart';
 
 class FissuresPage extends StatelessWidget {
   const FissuresPage({super.key});
@@ -13,7 +13,7 @@ class FissuresPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final state = context.watch<WorldstateBloc>().state;
-    final fissures = state is WorldstateSuccess ? state.seed.fissures : <Fissure>[];
+    final fissures = state is WorldstateSuccess ? state.seed.fissures : <VoidFissure>[];
 
     return BlocProvider(create: (_) => FissureFilterCubit(fissures), child: const _FissuresView());
   }
@@ -52,7 +52,7 @@ class _FissuresViewState extends State<_FissuresView> {
     // Need to make sure that fissures are updated from worldstate.
     // Otherwise fissures stored in the filter cubit will be out of sync.
     final state = context.read<WorldstateBloc>().state;
-    final fissures = state is WorldstateSuccess ? state.seed.fissures : <Fissure>[];
+    final fissures = state is WorldstateSuccess ? state.seed.fissures : <VoidFissure>[];
 
     ff.filterFissures(ff.state.type, fissures);
   }
@@ -82,7 +82,7 @@ class _FissuresViewState extends State<_FissuresView> {
 class _MobileFissures extends StatelessWidget {
   const _MobileFissures({required this.fissures});
 
-  final List<Fissure> fissures;
+  final List<VoidFissure> fissures;
 
   @override
   Widget build(BuildContext context) {
@@ -105,7 +105,7 @@ class _MobileFissures extends StatelessWidget {
 class _TabletFissures extends StatelessWidget {
   const _TabletFissures({required this.fissures});
 
-  final List<Fissure> fissures;
+  final List<VoidFissure> fissures;
 
   @override
   Widget build(BuildContext context) {
@@ -129,7 +129,7 @@ class _FissureFilter extends StatelessWidget {
 
   void onSelected(BuildContext context, FissureFilter filter) {
     final state = context.read<WorldstateBloc>().state;
-    final fissures = state is WorldstateSuccess ? state.seed.fissures : <Fissure>[];
+    final fissures = state is WorldstateSuccess ? state.seed.fissures : <VoidFissure>[];
 
     context.read<FissureFilterCubit>().filterFissures(filter, fissures);
   }
@@ -147,7 +147,10 @@ class _FissureFilter extends StatelessWidget {
       FissureFilter.steelPath => WarframeIcons.spLogo,
     };
 
-    return Tooltip(message: text, child: Row(children: [Icon(icon), Gaps.gap8, Text(text)]));
+    return Tooltip(
+      message: text,
+      child: Row(children: [Icon(icon), Gaps.gap8, Text(text)]),
+    );
   }
 
   @override

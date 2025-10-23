@@ -3,8 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:matomo_tracker/matomo_tracker.dart';
 import 'package:navis/worldstate/worldstate.dart';
 import 'package:navis_ui/navis_ui.dart';
-import 'package:warframestat_client/warframestat_client.dart';
-import 'package:warframestat_repository/warframestat_repository.dart';
+import 'package:worldstate_models/worldstate_models.dart';
 
 class Timers extends StatelessWidget {
   const Timers({super.key});
@@ -38,15 +37,15 @@ class _MobileTimers extends StatelessWidget {
               const DailyReward(),
               const BaroKiTeerCard(),
               const VarziaTraderCard(),
-              if (worldstate?.eventsActive ?? false) const EventCard(),
-              if (worldstate?.arbitrationActive ?? false) const ArbitrationCard(),
+              if (worldstate?.events.isNotEmpty ?? false) const EventCard(),
+              // if (false) const ArbitrationCard(), // TODO(Orn): add arbis in models
               // if (state.outpostDetected) const SentientOutpostCard(),
               const SteelPathCard(),
-              if (worldstate?.activeAlerts ?? false) const AlertsCard(),
+              if (worldstate?.alerts.isNotEmpty ?? false) const AlertsCard(),
               const CycleCard(),
               const DuviriCircuit(),
-              if (worldstate?.deepArchimedeaActive ?? false) const ArchimedeaCard(),
-              if (worldstate?.activeSales ?? false) const DarvoDealCard(),
+              if (worldstate?.archimedeas.isNotEmpty ?? false) const ArchimedeaCard(),
+              if (worldstate?.dailyDeals.isNotEmpty ?? false) const DarvoDealCard(),
               const ArchonHuntCard(),
               const SortieCard(),
             ],

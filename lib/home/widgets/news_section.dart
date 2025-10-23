@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:black_hole_flutter/black_hole_flutter.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/home/widgets/section.dart';
@@ -72,7 +73,7 @@ class __NewsCarouselViewState extends State<_NewsCarouselView> {
     if (previous is! WorldstateSuccess && next is WorldstateSuccess) return true;
     if (previous is! WorldstateSuccess || next is! WorldstateSuccess) return false;
 
-    return previous.seed.news.first.id != next.seed.news.first.id;
+    return const DeepCollectionEquality().equals(previous.seed.news, next.seed.news);
   }
 
   @override

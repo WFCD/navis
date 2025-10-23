@@ -2,22 +2,21 @@ import 'package:black_hole_flutter/black_hole_flutter.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:matomo_tracker/matomo_tracker.dart';
-import 'package:navis/worldstate/widgets/event/event_bounties.dart';
 import 'package:navis/worldstate/widgets/event/event_status.dart';
-import 'package:warframestat_client/warframestat_client.dart';
+import 'package:worldstate_models/worldstate_models.dart';
 
 class EventInformation extends StatelessWidget {
   const EventInformation({required this.event, super.key});
 
   final WorldEvent event;
 
-  List<Reward> eventRewards(List<Reward> rewards, List<InterimStep>? steps) {
-    final r = List<Reward>.from(rewards);
+  // List<Reward> eventRewards(List<Reward> rewards, List<InterimStep>? steps) {
+  //   final r = List<Reward>.from(rewards);
 
-    return r
-      ..addAll(steps?.map<Reward>((i) => i.reward) ?? [])
-      ..removeWhere((r) => r.itemString.isEmpty);
-  }
+  //   return r
+  //     ..addAll(steps?.map<Reward>((i) => i.reward) ?? [])
+  //     ..removeWhere((r) => r.itemString.isEmpty);
+  // }
 
   static const _eventBanner = <String, String>{
     'Thermia Fractures':
@@ -64,14 +63,14 @@ class EventInformation extends StatelessWidget {
                     tooltip: event.tooltip,
                     node: event.victimNode ?? event.node ?? '',
                     health: event.health?.toDouble(),
-                    currentScore: event.currentScore,
-                    maxScore: event.maximumScore,
+                    currentScore: event.count,
+                    maxScore: event.goal,
                     scoreLocTag: event.scoreLocTag,
                     expiry: event.expiry,
-                    interimSteps: event.interimSteps,
-                    rewards: event.rewards,
+                    // interimSteps: event.interimSteps,
+                    // rewards: event.reward,
                   ),
-                  if (event.jobs != null && event.jobs!.isNotEmpty) EventBounties(jobs: event.jobs!),
+                  // if (event.jobs != null && event.jobs!.isNotEmpty) EventBounties(jobs: event.jobs!),
                 ]),
               ),
             ],

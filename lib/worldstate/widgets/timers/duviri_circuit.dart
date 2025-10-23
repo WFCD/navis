@@ -8,8 +8,8 @@ import 'package:navis/l10n/l10n.dart';
 import 'package:navis/utils/utils.dart';
 import 'package:navis/worldstate/bloc/worldstate_bloc.dart';
 import 'package:navis_ui/navis_ui.dart';
-import 'package:warframestat_client/warframestat_client.dart';
 import 'package:warframestat_repository/warframestat_repository.dart';
+import 'package:worldstate_models/worldstate_models.dart';
 
 class DuviriCircuit extends StatelessWidget {
   const DuviriCircuit({super.key});
@@ -79,14 +79,14 @@ class CircuitResetTimer extends StatelessWidget {
 class CircuitChoiceTile extends StatelessWidget {
   const CircuitChoiceTile({super.key, required this.choice});
 
-  final Choice choice;
+  final CircuitChoice choice;
 
   @override
   Widget build(BuildContext context) {
     final repo = RepositoryProvider.of<WarframestatRepository>(context);
-    final isSteelPatch = choice.category == 'hard';
+    final isSteelPatch = choice.key == 'EXC_HARD';
 
-    var category = toBeginningOfSentenceCase(choice.category);
+    var category = toBeginningOfSentenceCase(choice.mode);
     if (isSteelPatch) category = context.l10n.steelPathTitle;
 
     return Padding(

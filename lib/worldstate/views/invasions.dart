@@ -4,7 +4,7 @@ import 'package:matomo_tracker/matomo_tracker.dart';
 import 'package:navis/worldstate/worldstate.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:responsive_builder/responsive_builder.dart';
-import 'package:warframestat_client/warframestat_client.dart';
+import 'package:worldstate_models/worldstate_models.dart';
 
 class InvasionsPage extends StatelessWidget {
   const InvasionsPage({super.key});
@@ -33,17 +33,6 @@ class _MobileInvasions extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // return CustomScrollView(
-    //   slivers: [
-    //     const SliverToBoxAdapter(child: ConstructionProgressCard()),
-    //     SliverList(
-    //       delegate: SliverChildBuilderDelegate(
-    //         (context, index) => InvasionWidget(invasion: invasions[index]),
-    //         childCount: invasions.length,
-    //       ),
-    //     ),
-    //   ],
-    // );
     return ListView(
       key: const PageStorageKey('invasions_mobile'),
       children: [

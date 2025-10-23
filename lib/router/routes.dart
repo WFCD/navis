@@ -9,7 +9,7 @@ import 'package:navis/profile/profile.dart';
 import 'package:navis/settings/settings.dart';
 import 'package:navis/synthtargets/synthtargets.dart';
 import 'package:navis/worldstate/worldstate.dart';
-import 'package:warframestat_client/warframestat_client.dart';
+import 'package:worldstate_models/worldstate_models.dart';
 
 part 'routes.g.dart';
 
@@ -140,7 +140,7 @@ class SyndicatePageRoute extends GoRouteData with $SyndicatePageRoute {
   @override
   Widget build(BuildContext context, GoRouterState state) {
     return TraceableWidget(
-      actionName: 'BountiesPage(${$extra.syndicate})',
+      actionName: 'BountiesPage(${$extra.name})',
       child: BountiesPage(syndicate: $extra),
     );
   }

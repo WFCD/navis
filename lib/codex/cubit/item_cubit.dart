@@ -45,7 +45,7 @@ class ItemCubit extends HydratedCubit<ItemState> {
 
     final items = await _handleItemFetch(() async => repo.searchItems('Incarnon'));
     final item = items.where((item) => item.imageName != null).firstWhereOrNull((item) {
-      return name.replaceAll(' ', '') == item.name.replaceAll(' ', '');
+      return name.replaceAll(RegExp('and', caseSensitive: false), '&') == item.name;
     });
 
     if (isClosed) return;

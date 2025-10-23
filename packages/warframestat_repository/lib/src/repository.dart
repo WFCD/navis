@@ -1,10 +1,11 @@
+import 'dart:isolate';
+
 import 'package:http/http.dart';
 import 'package:http_client/http_client.dart';
-import 'package:logging/logging.dart';
-import 'package:warframestat_client/warframestat_client.dart';
+import 'package:warframestat_client/warframestat_client.dart' hide Worldstate;
 import 'package:warframestat_repository/src/models/regions.dart';
 import 'package:warframestat_repository/src/models/search_item.dart';
-import 'package:web_socket_client/web_socket_client.dart';
+import 'package:worldstate_models/worldstate_models.dart';
 
 ///
 const userAgent = 'navis';
@@ -23,30 +24,24 @@ class WarframestatRepository {
   /// The locale request will be made for
   Language language = Language.en;
 
-  final _logger = Logger('WarframestatRepository');
-
   Stream<Worldstate> worldstate() async* {
-    final websocket = WarframestatWebsocket();
-    final connection = websocket.connection;
+    final delay = Duration(seconds: (Duration.secondsPerMinute * 1.5).floor());
 
-    await for (final conn in connection) {
-      switch (conn) {
-        case Connecting():
-          _logger.info('Worldstate connection is being established');
-        case Connected() || Reconnected():
-          _logger.info('Worldstate connection has been established');
-          yield* websocket.worldstate;
-        case Reconnecting() || Disconnecting():
-          final buffer = StringBuffer('Worldstate connection');
+    yield await _fetchWorldstate(_client, language.name);
+    await Future<void>.delayed(delay);
 
-          if (conn is Reconnecting) buffer.write(' was ');
-          if (conn is Disconnecting) buffer.write(' is being ');
+    yield* Stream<Future<Worldstate>>.periodic(
+      delay,
+      (_) => _fetchWorldstate(_client, language.name),
+    ).asyncMap((fw) async => fw);
+  }
 
-          _logger.warning(buffer..write('terminated'));
-        case Disconnected():
-          _logger.shout('Websocket connection was terminated: ${conn.reason}', conn.error, conn.stackTrace);
-      }
-    }
+  static Future<Worldstate> _fetchWorldstate(Client client, String locale) async {
+    final response = await client.get(Uri.parse('https://api.warframe.com/cdn/worldState.php'));
+
+    return Isolate.run(
+      () async => RawWorldstate.fromMap(await jsonDecode<Map<String, dynamic>>(response.body)).toWorldstate(locale),
+    );
   }
 
   /// Get static list of synthesis targets

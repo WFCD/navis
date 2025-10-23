@@ -10,7 +10,7 @@ import 'package:navis/worldstate/widgets/syndicates/hex_card.dart';
 import 'package:navis/worldstate/worldstate.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:responsive_builder/responsive_builder.dart';
-import 'package:warframestat_client/warframestat_client.dart';
+import 'package:worldstate_models/worldstate_models.dart';
 
 typedef SyndicateData = ({List<SyndicateMission> jobs, Nightwave? nightwave, Calendar calendar});
 
@@ -65,7 +65,7 @@ class _BuildSyndicates extends StatelessWidget {
       children: <Widget>[
         CountdownBanner(message: 'Bounties expire in:', time: syndicates.firstOrNull?.expiry),
         ...syndicates.map<SyndicateCard>(
-          (syn) => SyndicateCard(syndicate: Syndicates.syndicateStringToEnum(syn.syndicate), onTap: () => onTap(syn)),
+          (syn) => SyndicateCard(syndicate: Syndicates.syndicateStringToEnum(syn.name), onTap: () => onTap(syn)),
         ),
       ],
     );
