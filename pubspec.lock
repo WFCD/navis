@@ -1714,8 +1714,8 @@ packages:
     dependency: transitive
     description:
       path: "packages/warframe_worldstate_data"
-      ref: d1a4f4164e5c6680ddaba7d6f1832db4f53f5ba7
-      resolved-ref: d1a4f4164e5c6680ddaba7d6f1832db4f53f5ba7
+      ref: "0c9c0fdd941743100d3e9b6c7378c92b1b2660ab"
+      resolved-ref: "0c9c0fdd941743100d3e9b6c7378c92b1b2660ab"
       url: "https://github.com/SlayerOrnstein/wfcd_dart.git"
     source: git
     version: "0.1.0+1"
@@ -1803,7 +1803,7 @@ packages:
     description:
       path: "packages/worldstate_models"
       ref: HEAD
-      resolved-ref: d1a4f4164e5c6680ddaba7d6f1832db4f53f5ba7
+      resolved-ref: "0c9c0fdd941743100d3e9b6c7378c92b1b2660ab"
       url: "https://github.com/SlayerOrnstein/wfcd_dart.git"
     source: git
     version: "0.1.0+1"

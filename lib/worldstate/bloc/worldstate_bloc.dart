@@ -35,9 +35,9 @@ class WorldstateBloc extends HydratedBloc<WorldstateEvent, WorldState> with Repl
       },
       onError: (error, stackTrace) async {
         if (isClosed) return;
-        await Sentry.captureException(error, stackTrace: stackTrace);
         add(WorldstateFailed(error, stackTrace));
         undo();
+        await Sentry.captureException(error, stackTrace: stackTrace);
       },
     );
   }
