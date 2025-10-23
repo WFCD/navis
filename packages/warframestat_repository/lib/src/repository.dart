@@ -27,7 +27,8 @@ class WarframestatRepository {
   Stream<Worldstate> worldstate() async* {
     const delay = Duration(seconds: Duration.secondsPerMinute * 3);
 
-    yield await _fetchWorldstate(_client, language.name);
+    // In case the stream gets restarted
+    yield await _fetchWorldstate(await _cacheClient(delay), language.name);
     await Future<void>.delayed(delay);
 
     yield* Stream<Future<Worldstate>>.periodic(
