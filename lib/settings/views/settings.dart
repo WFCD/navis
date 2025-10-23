@@ -71,7 +71,6 @@ class _SettingsView extends StatelessWidget {
               title: profile?.username != null
                   ? UserTitle(username: profile!.username)
                   : Text(l10n.enterUsernameHintText),
-              // TODO(Orn): find a way to show mastery progress
               onPressed: profile?.username != null ? null : ProfileWizard.startWizard,
             ),
             if (profile?.username != null)

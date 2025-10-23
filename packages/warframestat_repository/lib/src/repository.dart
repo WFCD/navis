@@ -25,7 +25,7 @@ class WarframestatRepository {
   Language language = Language.en;
 
   Stream<Worldstate> worldstate() async* {
-    final delay = Duration(seconds: (Duration.secondsPerMinute * 1.5).floor());
+    const delay = Duration(seconds: Duration.secondsPerMinute * 3);
 
     yield await _fetchWorldstate(_client, language.name);
     await Future<void>.delayed(delay);

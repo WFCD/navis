@@ -46,7 +46,7 @@ class WorldstateBloc extends HydratedBloc<WorldstateEvent, WorldState> with Repl
   WorldState? fromJson(Map<String, dynamic> json) {
     _logger.info('Hydrating state');
     try {
-      final seed = Worldstate.fromMap(json); // TODO(Orn): should expose a fromMap
+      final seed = Worldstate.fromMap(json);
 
       return WorldstateSuccess(seed);
     } on Exception {
