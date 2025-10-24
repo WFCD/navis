@@ -2,12 +2,12 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:logging/logging.dart';
 import 'package:navis/codex/bloc/search_event.dart';
 import 'package:navis/codex/bloc/search_state.dart';
 import 'package:navis/codex/utils/result_filters.dart';
 import 'package:navis/utils/utils.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:warframestat_repository/warframestat_repository.dart';
 
 export 'search_event.dart';
@@ -23,8 +23,6 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
 
   List<SearchItem> _originalResults = [];
 
-  static final _logger = Logger('SearchBloc');
-
   Future<void> _searchCodex(CodexTextChanged event, Emitter<SearchState> emit) async {
     final text = event.text;
 
@@ -39,10 +37,11 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
 
         _originalResults = results;
         emit(CodexSearchSuccess(results));
+      } on FormatException catch (e, stack) {
+        return emit(CodexSearchFailure(error: e, stackTrace: stack));
       } on Exception catch (e, stack) {
-        _logger.severe('Some extra weird shit is going on', e, stack);
-
         emit(CodexSearchFailure(error: e, stackTrace: stack));
+        await Sentry.captureException(e, stackTrace: stack);
       }
     }
   }

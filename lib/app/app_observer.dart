@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:logging/logging.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 
 class AppBlocObserver extends BlocObserver {
   AppBlocObserver();
@@ -33,6 +34,7 @@ class AppBlocObserver extends BlocObserver {
   @override
   void onError(BlocBase<dynamic> bloc, Object error, StackTrace stackTrace) {
     _logger.shout('onError(${bloc.runtimeType})', error, stackTrace);
+    Sentry.captureException(error, stackTrace: stackTrace);
     super.onError(bloc, error, stackTrace);
   }
 }
