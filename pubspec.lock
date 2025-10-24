@@ -760,10 +760,10 @@ packages:
     dependency: "direct main"
     description:
       name: hive_ce
-      sha256: e3a9d2608350ca5ae1fcaa594bbc24c443cf8e67cd16b89ec258fb0bcccb0847
+      sha256: "81d39a03c4c0ba5938260a8c3547d2e71af59defecea21793d57fc3551f0d230"
       url: "https://pub.dev"
     source: hosted
-    version: "2.15.0"
+    version: "2.15.1"
   hive_ce_flutter:
     dependency: "direct main"
     description:
@@ -1701,6 +1701,15 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "15.0.2"
+  warframe_drop_data:
+    dependency: transitive
+    description:
+      path: "packages/warframe_drop_data"
+      ref: "5898be4552c6c49f2374f8666d4ce4f3f5a5b4bc"
+      resolved-ref: "5898be4552c6c49f2374f8666d4ce4f3f5a5b4bc"
+      url: "https://github.com/SlayerOrnstein/wfcd_dart.git"
+    source: git
+    version: "0.1.0+1"
   warframe_icons:
     dependency: "direct main"
     description:
@@ -1714,8 +1723,8 @@ packages:
     dependency: transitive
     description:
       path: "packages/warframe_worldstate_data"
-      ref: "0c9c0fdd941743100d3e9b6c7378c92b1b2660ab"
-      resolved-ref: "0c9c0fdd941743100d3e9b6c7378c92b1b2660ab"
+      ref: "5898be4552c6c49f2374f8666d4ce4f3f5a5b4bc"
+      resolved-ref: "5898be4552c6c49f2374f8666d4ce4f3f5a5b4bc"
       url: "https://github.com/SlayerOrnstein/wfcd_dart.git"
     source: git
     version: "0.1.0+1"
@@ -1802,8 +1811,8 @@ packages:
     dependency: "direct main"
     description:
       path: "packages/worldstate_models"
-      ref: HEAD
-      resolved-ref: "0c9c0fdd941743100d3e9b6c7378c92b1b2660ab"
+      ref: "5898be4552c6c49f2374f8666d4ce4f3f5a5b4bc"
+      resolved-ref: "5898be4552c6c49f2374f8666d4ce4f3f5a5b4bc"
       url: "https://github.com/SlayerOrnstein/wfcd_dart.git"
     source: git
     version: "0.1.0+1"

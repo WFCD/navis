@@ -14,8 +14,8 @@ class InvasionWidget extends StatelessWidget {
     const decimalPoint = 100;
     const height = 170.0;
 
-    final attacker = Factions.values.byName(invasion.attacker.factionKey.toLowerCase());
-    final defender = Factions.values.byName(invasion.defender.factionKey.toLowerCase());
+    final attacker = Factions.values.byName(invasion.attacker.faction.toLowerCase());
+    final defender = Factions.values.byName(invasion.defender.faction.toLowerCase());
 
     return SkyboxCard(
       node: invasion.node,
@@ -52,8 +52,8 @@ class InvasionWidget extends StatelessWidget {
               Gaps.gap4,
               InvasionProgress(
                 progress: invasion.completion / decimalPoint,
-                attackingFaction: invasion.attacker.factionKey,
-                defendingFaction: invasion.defender.factionKey,
+                attackingFaction: invasion.attacker.faction,
+                defendingFaction: invasion.defender.faction,
               ),
             ],
           ),

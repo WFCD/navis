@@ -12,6 +12,8 @@ import 'package:worldstate_models/worldstate_models.dart';
 part 'worldstate_event.dart';
 part 'worldstate_state.dart';
 
+late Stream<Worldstate> _worldstate;
+
 class WorldstateBloc extends HydratedBloc<WorldstateEvent, WorldState> with ReplayBlocMixin {
   WorldstateBloc(this.repository) : super(WorldstateInitial()) {
     on<WorldstateStarted>(_start);
@@ -26,9 +28,10 @@ class WorldstateBloc extends HydratedBloc<WorldstateEvent, WorldState> with Repl
 
   Future<void> _start(WorldstateStarted event, Emitter<WorldState> emit) async {
     repository.language = Language.values.byName(event.locale.languageCode);
+    _worldstate = repository.worldstate();
 
     await emit.onEach<Worldstate>(
-      repository.worldstate(),
+      _worldstate,
       onData: (state) {
         if (isClosed) return;
         add(WorldstateUpdated(state..clean(repository.language)));

@@ -11,8 +11,8 @@ class InvasionReward extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final attacker = Factions.values.byName(this.attacker.factionKey.toLowerCase());
-    final defender = Factions.values.byName(this.defender.factionKey.toLowerCase());
+    final attacker = Factions.values.byName(this.attacker.faction.toLowerCase());
+    final defender = Factions.values.byName(this.defender.faction.toLowerCase());
 
     return Row(
       mainAxisSize: MainAxisSize.min,
