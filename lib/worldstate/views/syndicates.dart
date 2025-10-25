@@ -131,7 +131,12 @@ class _SyndicateViewState extends State<_SyndicateView> {
                 onTap: (s) {
                   widget.isMobile
                       ? SyndicatePageRoute(s).push<void>(context)
-                      : _changePane(SyndicateBounties(syndicate: s));
+                      : _changePane(
+                          SyndicateBounties(
+                            syndicate: s,
+                            color: Syndicates.syndicateStringToEnum(s.name).secondryColor,
+                          ),
+                        );
                 },
               ),
               const Divider(),

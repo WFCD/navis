@@ -2,7 +2,7 @@ import 'package:black_hole_flutter/black_hole_flutter.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:matomo_tracker/matomo_tracker.dart';
-import 'package:navis/worldstate/widgets/event/event_status.dart';
+import 'package:navis/worldstate/widgets/widgets.dart';
 import 'package:worldstate_models/worldstate_models.dart';
 
 class EventInformation extends StatelessWidget {
@@ -19,16 +19,10 @@ class EventInformation extends StatelessWidget {
   // }
 
   static const _eventBanner = <String, String>{
-    'Thermia Fractures':
-        'https://www-static.warframe.com/uploads/thumbnails/'
-        '59f071afbbd6d21fda59bc2bd611200_1600x900.png',
-    'Operation: Belly of the Beast':
-        'https://www-static.warframe.com/uploads/thumbnails'
-        '/92a16137ab4635c0d3e222957739eec9_1600x900.png',
-    'Nights of Naberus':
-        'https://www-static.warframe.com/uploads/thumbnails/'
-        '3831ab38bfcba03794b4fe418cabc240_1600x900.png',
-    'Star Days': 'https://www-static.warframe.com/uploads/thumbnails/b919db679cbf7ceade10d849e4d94983_1600x900.png',
+    'Thermia Fractures': 'https://wiki.warframe.com/images/OperationBuriedDebtsSplash.png?16aec',
+    'DeimosHalloween': 'https://wiki.warframe.com/images/NightsofNaberus.png?123a3',
+    'Star Days': 'https://wiki.warframe.com/images/StarDaysPromo.jpg?3a324',
+    'GhoulEmergence': 'https://wiki.warframe.com/images/Ghoul_Purge.png?5a862',
   };
 
   @override
@@ -48,7 +42,7 @@ class EventInformation extends StatelessWidget {
                 flexibleSpace: FlexibleSpaceBar(
                   title: Text(event.description),
                   background: CachedNetworkImage(
-                    imageUrl: _eventBanner[event.description] ?? 'https://i.imgur.com/CNrsc7V.png',
+                    imageUrl: _eventBanner[event.tag] ?? 'https://i.imgur.com/CNrsc7V.png',
                     fit: BoxFit.cover,
                     color: Theme.of(context).colorScheme.shadow.withValues(alpha: .5),
                     colorBlendMode: BlendMode.darken,
@@ -70,7 +64,7 @@ class EventInformation extends StatelessWidget {
                     // interimSteps: event.interimSteps,
                     // rewards: event.reward,
                   ),
-                  // if (event.jobs != null && event.jobs!.isNotEmpty) EventBounties(jobs: event.jobs!),
+                  if (event.bounties != null) EventBounties(jobs: event.bounties!),
                 ]),
               ),
             ],

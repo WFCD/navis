@@ -11,7 +11,7 @@ class BountiesPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final backgroundColor = Syndicates.syndicateStringToEnum(syndicate.name).secondryColor;
+    final syn = Syndicates.syndicateStringToEnum(syndicate.name);
 
     return TraceableWidget(
       child: Scaffold(
@@ -20,9 +20,9 @@ class BountiesPage extends StatelessWidget {
           titleSpacing: 0,
           titleTextStyle: Theme.of(context).textTheme.titleLarge?.copyWith(color: Colors.white),
           iconTheme: Theme.of(context).iconTheme.copyWith(color: Colors.white),
-          backgroundColor: backgroundColor,
+          backgroundColor: syn.secondryColor,
         ),
-        body: SyndicateBounties(syndicate: syndicate),
+        body: SyndicateBounties(syndicate: syndicate, color: syn.primaryColor),
       ),
     );
   }

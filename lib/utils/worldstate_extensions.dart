@@ -10,7 +10,7 @@ extension WorldstateX on Worldstate {
       ..sort((a, b) => b.date.compareTo(a.date));
 
     syndicateMissions
-      ..retainWhere((s) => s.bounties?.isNotEmpty ?? false)
+      ..retainWhere((s) => s.bounties.isNotEmpty)
       ..retainWhere((s) => s.isActive)
       ..sort((a, b) => a.name.compareTo(b.name));
 
