@@ -11,12 +11,12 @@ class SyndicateBounties extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final jobs = syndicate.bounties..retainWhere((e) => e.type != null);
+    final bounties = syndicate.bounties;
 
     return ListView.builder(
-      itemCount: jobs.length,
+      itemCount: bounties.length,
       itemBuilder: (context, index) {
-        final job = jobs[index];
+        final job = bounties[index];
 
         return AppCard(
           child: SyndicateBountyTile(job: job, color: color),

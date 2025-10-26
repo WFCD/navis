@@ -19,14 +19,14 @@ dependencies:
     git:
       url: https://github.com/SlayerOrnstein/wfcd_dart.git
       path: packages/warframe_drop_data
-      ref: 6dbd4a8283e5d9a81acac08a5ecc60ba9c64b39f
+      ref: 0d4eac17b996e918ed3883330ab75069639bcfd3
   warframestat_client: ^5.3.4
   web_socket_client: ^0.2.1
   worldstate_models:
     git:
       url: https://github.com/SlayerOrnstein/wfcd_dart.git
       path: packages/worldstate_models
-      ref: 6dbd4a8283e5d9a81acac08a5ecc60ba9c64b39f
+      ref: 0d4eac17b996e918ed3883330ab75069639bcfd3
 
 dev_dependencies:
   build_runner: ^2.7.0

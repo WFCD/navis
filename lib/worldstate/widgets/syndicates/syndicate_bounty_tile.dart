@@ -18,8 +18,20 @@ class SyndicateBountyTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var title = job.type;
+    if (job.isVault ?? false) {
+      final tier = switch (job.maxLevel) {
+        40 => 1,
+        50 => 2,
+        60 => 3,
+        _ => 0,
+      };
+
+      title = context.l10n.isolationVaultText(tier);
+    }
+
     return ListTile(
-      title: Text('${job.type!}${job.isVault ?? false ? ' - Isolation Vault' : ''}'),
+      title: Text(title!),
       subtitle: Text(context.l10n.levelInfo(job.minLevel, job.maxLevel)),
       trailing: _Standing(standing: job.standing),
       onTap: () => showModalBottomSheet<void>(
@@ -102,26 +114,27 @@ class SyndicateBountyStage extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: 16),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text(
-                'Stage',
-                style: context.textTheme.titleLarge,
-              ),
-              Gaps.gap6,
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  for (int i = 0; i < maxStage; i++) _StageDimond(enable: i < stage, color: color),
-                ],
-              ),
-            ],
+        if (maxStage >= 3)
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 16),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  context.l10n.stageText,
+                  style: context.textTheme.titleLarge,
+                ),
+                Gaps.gap6,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    for (int i = 0; i < maxStage; i++) _StageDimond(enable: i < stage, color: color),
+                  ],
+                ),
+              ],
+            ),
           ),
-        ),
         ...rewards.map((r) => BountyReward(reward: r)),
       ],
     );
@@ -168,10 +181,10 @@ class _StageDimond extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final color = this.color ?? Theme.of(context).colorScheme.secondary;
-    const size = Size.square(16);
+    const size = Size.square(12);
 
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 12),
+      padding: const EdgeInsets.symmetric(horizontal: 8),
       child: Transform.rotate(
         angle: 75 * pi / 100,
         child: SizedBox.fromSize(

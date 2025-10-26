@@ -126,7 +126,7 @@ class _EventProgress extends StatelessWidget {
 
     if (maxScore != null && maxScore != 0) {
       return RowItem(
-        text: Text(scoreLocTag ?? 'Progress', style: tooltipStyle),
+        text: Text(scoreLocTag ?? context.l10n.eventStatusProgress, style: tooltipStyle),
         child: ColoredContainer.text(text: '${format(currentScore)}/${format(maxScore)}'),
       );
     }

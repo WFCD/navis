@@ -63,7 +63,7 @@ dependencies:
     git:
       url: https://github.com/SlayerOrnstein/wfcd_dart.git
       path: packages/worldstate_models
-      ref: 6dbd4a8283e5d9a81acac08a5ecc60ba9c64b39f
+      ref: 0d4eac17b996e918ed3883330ab75069639bcfd3
 
 dependency_overrides:
   material_color_utilities: 0.12.0
