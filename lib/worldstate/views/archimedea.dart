@@ -25,11 +25,11 @@ class ArchimedeaPage extends StatelessWidget {
           _ArchimedeaMissionsCategory(missions: archimedea.missions),
           _PersonalModifierCategory(personalModifiers: archimedea.personalModifiers),
           const Divider(),
-          ListTile(
-            title: Text(context.l10n.archimedeaWarningTitle),
-            subtitle: Text(context.l10n.archimedeaWarningSubtitle),
-            textColor: context.theme.colorScheme.onErrorContainer,
-          ),
+          // ListTile(
+          //   title: Text(context.l10n.archimedeaWarningTitle),
+          //   subtitle: Text(context.l10n.archimedeaWarningSubtitle),
+          //   textColor: context.theme.colorScheme.onErrorContainer,
+          // ),
         ],
       ),
     );
