@@ -7,6 +7,8 @@ environment:
   sdk: ^3.9.0
   flutter: ^3.35.0
 
+resolution: workspace
+
 dependencies:
   animated_glitch: ^2.0.0+2
   black_hole_flutter: ^1.0.1
@@ -17,13 +19,10 @@ dependencies:
   gap: ^3.0.1
   html: ^0.15.6
   intl: ^0.20.2
+  meta: 1.16.0
   visibility_detector: ^0.4.0+2
   warframe_icons:
     git: https://github.com/SlayerOrnstein/warframe_icons.git
-
-dependency_overrides:
-  meta: 1.15.0
-  web: 0.3.0
 
 flutter:
   uses-material-design: true

@@ -7,13 +7,20 @@ environment:
   sdk: ^3.9.0
   flutter: ^3.35.0
 
+workspace:
+  - packages/fish_repository
+  - packages/http_client
+  - packages/inventoria
+  - packages/navis_ui
+  - packages/notification_repository
+  - packages/warframestat_repository
+
 dependencies:
   animations: ^2.0.11
   black_hole_flutter: ^1.1.0
   bloc: ^9.0.1
   cached_network_image: ^3.3.1
   collection: ^1.19.0
-  connecteo: ^3.0.0
   drift_flutter: ^0.2.7
   dynamic_system_colors: ^1.8.0
   equatable: ^2.0.5
@@ -35,6 +42,7 @@ dependencies:
   http_client:
     path: packages/http_client
   hydrated_bloc: ^10.1.1
+  internet_connection_checker_plus: ^2.9.0
   intl: ^0.20.2
   inventoria:
     path: packages/inventoria
@@ -65,18 +73,12 @@ dependencies:
       path: packages/worldstate_models
       ref: 0d4eac17b996e918ed3883330ab75069639bcfd3
 
-dependency_overrides:
-  material_color_utilities: 0.12.0
-  meta: 1.15.0
-  rxdart: 0.28.0
-
 dev_dependencies:
   bloc_test: ^10.0.0
   build_runner: ^2.7.1
-  build_verify: ^3.1.1
   commitlint_cli: ^0.8.1
   flutter_gen_runner: ^5.12.0
-  flutter_launcher_icons: 0.13.1
+  flutter_launcher_icons: ^0.14.4
   flutter_native_splash: ^2.4.6
   flutter_test:
     sdk: flutter

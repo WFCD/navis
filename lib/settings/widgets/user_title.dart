@@ -17,7 +17,10 @@ class UserTitle extends StatelessWidget {
     return Row(
       mainAxisSize: MainAxisSize.min,
       spacing: 16,
-      children: [Text(name), if (platform != null) _PlatformIcon(platform: platform)],
+      children: [
+        Text(name),
+        if (platform != null) _PlatformIcon(platform: platform),
+      ],
     );
   }
 }
