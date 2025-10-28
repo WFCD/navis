@@ -1050,7 +1050,7 @@
     "description": "Text displayed under circuitResetTitle",
     "type": "text"
   },
-  "archimedeaResetTitle": "Resets in",
+  "archimedeaResetTitle": "Сброс через",
   "@archimedeaResetTitle": {
     "description": "Text in Archimedea page for weekly reset time",
     "type": "text"
@@ -1060,7 +1060,7 @@
     "description": "Text for DA in case it needs translations",
     "type": "text"
   },
-  "temporalArchimedeaTitle": "Temporal Archimedea",
+  "temporalArchimedeaTitle": "Временная архимеда",
   "@temporalArchimedeaTitle": {
     "description": "Text for TA in case it needs translations",
     "type": "text"
