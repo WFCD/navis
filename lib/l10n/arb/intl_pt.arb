@@ -1095,7 +1095,7 @@
     "description": "Warning text displayed under Deep Archimedea warning title",
     "type": "text"
   },
-  "activitiesTitle": "Activities",
+  "activitiesTitle": "Atividades",
   "@activitiesTitle": {
     "description": "Activities title",
     "type": "text"
