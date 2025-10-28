@@ -99,7 +99,7 @@
     "description": "shows at when Baro Ki'Teer will arrive",
     "type": "text"
   },
-  "characterInventory": "{character} Inventory",
+  "characterInventory": "{character} Inventário",
   "@characterInventory": {
     "description": "character Inventory title",
     "type": "text",
@@ -1217,31 +1217,31 @@
     "type": "text",
     "placeholders": {}
   },
-  "itemFailureErrorText": "Failed to load item",
+  "itemFailureErrorText": "Falha ao carregar o item",
   "@itemFailureErrorText": {
     "description": "Error message when loading a full item",
     "type": "text",
     "placeholders": {}
   },
-  "worldstateFailureText": "Failed to parse Worldstate",
+  "worldstateFailureText": "Falha ao analisar o Estado do Mundo",
   "@worldstateFailureText": {
     "description": "Error message when loading/parsing the worldstate fails",
     "type": "text",
     "placeholders": {}
   },
-  "worldstateOutdatedText": "Worldstate is out of date by more then 30 mins",
+  "worldstateOutdatedText": "O Estado do Mundo está desatualizado há mais de 30 minutos",
   "@worldstateOutdatedText": {
     "description": "Snackbar message to show when worldstate hasn't been updated due to failure or lack of internet connection",
     "type": "text",
     "placeholders": {}
   },
-  "flashSaleAppbarTitle": "Flash Sales",
+  "flashSaleAppbarTitle": "Ofertas Relâmpago",
   "@flashSaleAppbarTitle": {
     "description": "AppBar Title for flash sales",
     "type": "text",
     "placeholders": {}
   },
-  "flashSaleSubtitleText": "{plat} Platinum {discount, plural, =0{} other{| {discount}% OFF}}",
+  "flashSaleSubtitleText": "{plat} Platina {discount, plural, =0{} other{| {discount}% DESCONTO}}",
   "@flashSaleSubtitleText": {
     "description": "Subtitle text with platinum and discount text",
     "type": "text",
@@ -1254,29 +1254,29 @@
       }
     }
   },
-  "defaultScoreLocTagText": "Progress",
+  "defaultScoreLocTagText": "Progresso",
   "@defaultScoreLocTagText": {
     "description": "Default scoreLocTag text",
     "type": "text",
     "placeholders": {}
   },
-  "eventRewardRequireScoreText": "Required Score",
+  "eventRewardRequireScoreText": "Pontuação Obrigatória",
   "@eventRewardRequireScoreText": {
     "description": "Event reward required score text",
     "type": "text",
     "placeholders": {}
   },
-  "primeVaultResetText": "Prime Resurgence resets on: ",
+  "primeVaultResetText": "Reinício do Ressurgimento Prime em ",
   "@primeVaultResetText": {
     "description": "Prime vault reset text",
     "type": "text"
   },
-  "stageText": "Stage",
+  "stageText": "Etapa",
   "@stageText": {
     "description": "Stage text, it just says stage",
     "type": "text"
   },
-  "isolationVaultText": "Isolation Vault (Tier {tier})",
+  "isolationVaultText": "Cofre de Isolamento (Nível {tier})",
   "@isolationVaultText": {
     "description": "Isolation Vault Text with tier number",
     "type": "text",
