@@ -17,7 +17,7 @@ class BlocBootstrap extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (_) => UserSettingsCubit(settings)),
-        BlocProvider(create: (_) => ProfileCubit(inventoria)..update()),
+        BlocProvider(create: (_) => ProfileCubit(inventoria)),
       ],
       child: child,
     );

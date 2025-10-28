@@ -1,8 +1,10 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/gen/assets.gen.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis/router/routes.dart';
+import 'package:navis/utils/utils.dart';
 import 'package:navis/worldstate/worldstate.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:worldstate_models/worldstate_models.dart';
@@ -24,13 +26,21 @@ class BaroKiTeerCard extends StatelessWidget {
           _ => null,
         },
         builder: (context, traders) {
-          final trader = traders?.firstWhere((t) => !t.node.contains('TennoCon'));
+          final trader = traders!.firstWhere((t) => !t.node.contains('TennoCon'));
+          final isActive = trader.isActive;
+          final date = isActive ? trader.expiry : trader.activation;
+          final dateFormatted = MaterialLocalizations.of(context).formatFullDate(date);
+          final title = '${trader.character} ${isActive ? '| ${trader.node}' : ''}';
 
           return _TraderWidget(
-            trader: trader!,
-            status: (isActive) => isActive ? context.l10n.baroLeavesOn : context.l10n.baroArrivesOn,
+            title: Text(title),
+            subtitle: Text('${isActive ? context.l10n.baroLeavesOn : context.l10n.baroArrivesOn} $dateFormatted'),
+            onTap: () => TraderPageRoute(trader.character, trader.inventory).push<void>(context),
             background: Assets.baroBanner.provider(),
             color: baroPurple,
+            isActive: trader.isActive,
+            activation: trader.activation,
+            expiry: trader.expiry,
           );
         },
       ),
@@ -53,12 +63,20 @@ class VarziaTraderCard extends StatelessWidget {
           _ => null,
         },
         builder: (context, trader) {
+          final schedule = trader!.schedule;
+          final current = schedule?[schedule.length - 2];
+          final background = primeResurganceBackgrounds[current?.key?.split('/').last ?? ''];
+          final hasBackground = background != null;
+
           return _TraderWidget(
-            trader: trader!,
-            status: (_) => context.l10n.primeVaultResetText,
-            background: Assets.varziaBanner.provider(),
+            title: Text(trader.character),
+            subtitle: Text(current?.resurgence?.replaceAll('Dual Pack', '').trim() ?? ''),
+            background: hasBackground ? CachedNetworkImageProvider(background) : Assets.varziaBanner.provider(),
             color: Colors.blue[800],
-            isVarzia: true,
+            onTap: () => TraderPageRoute(trader.character, trader.inventory, isVarzia: true).push<void>(context),
+            isActive: trader.isActive,
+            activation: trader.activation,
+            expiry: trader.expiry,
           );
         },
       ),
@@ -68,43 +86,43 @@ class VarziaTraderCard extends StatelessWidget {
 
 class _TraderWidget extends StatelessWidget {
   const _TraderWidget({
-    required this.trader,
-    required this.status,
+    required this.title,
+    required this.subtitle,
     required this.background,
+    required this.onTap,
+    required this.activation,
+    required this.expiry,
+    this.isActive = false,
     this.color,
-    this.isVarzia = false,
   });
 
-  final Trader trader;
-  // ignore: avoid_positional_boolean_parameters doesn't work as a named prop (I think)
-  final String Function(bool isActive) status;
+  final Widget title;
+  final Widget subtitle;
   final ImageProvider<Object> background;
   final Color? color;
-  final bool isVarzia;
+  final bool isActive;
+  final void Function() onTap;
+  final DateTime activation;
+  final DateTime expiry;
 
   @override
   Widget build(BuildContext context) {
-    final isActive = trader.isActive;
-    final date = isActive ? trader.expiry : trader.activation;
-    final dateFormatted = MaterialLocalizations.of(context).formatFullDate(date);
-    final title = '${trader.character} ${isActive ? '| ${trader.node}' : ''}';
+    final date = isActive ? expiry : activation;
 
     return ImageContainer(
       height: 100,
       imageProvider: background,
       padding: EdgeInsets.zero,
       child: InkWell(
-        onTap: isActive
-            ? () => TraderPageRoute(trader.character, trader.inventory, isVarzia: isVarzia).push<void>(context)
-            : null,
+        onTap: isActive ? onTap : null,
         child: ListTile(
-          title: Text(title),
-          subtitle: Text('${status(isActive)} $dateFormatted'),
+          title: title,
+          subtitle: subtitle,
           textColor: Colors.white,
           trailing: CountdownTimer(
             tooltip: context.l10n.countdownTooltip(date),
             color: color,
-            expiry: (isActive ? trader.expiry : trader.activation),
+            expiry: (isActive ? expiry : activation),
           ),
         ),
       ),

@@ -52,7 +52,8 @@ class WorldstateBloc extends HydratedBloc<WorldstateEvent, WorldState> with Repl
       final seed = Worldstate.fromMap(json);
 
       return WorldstateSuccess(seed);
-    } on Exception {
+    } on Exception catch (e, stack) {
+      _logger.warning('Failed to load worldstate from cache', e, stack);
       return null;
     }
   }

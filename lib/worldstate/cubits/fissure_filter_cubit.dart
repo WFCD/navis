@@ -40,15 +40,20 @@ class FissureFilterCubit extends HydratedCubit<FissureFilterState> {
   @override
   FissureFilterState? fromJson(Map<String, dynamic> json) {
     _logger.info('Hydrating filtered fissures');
-    final type = json['filter'] == 'all'
-        ? FissureFilter.fissures
-        : FissureFilter.values.byName(json['filter'] as String);
+    try {
+      final type = json['filter'] == 'all'
+          ? FissureFilter.fissures
+          : FissureFilter.values.byName(json['filter'] as String);
 
-    final fissures = (json['fissures'] as List<dynamic>)
-        .map((e) => VoidFissureMapper.fromMap(e as Map<String, dynamic>))
-        .toList();
+      final fissures = (json['fissures'] as List<dynamic>)
+          .map((e) => VoidFissureMapper.fromMap(e as Map<String, dynamic>))
+          .toList();
 
-    return FissureFilterState(fissures: fissures, type: type);
+      return FissureFilterState(fissures: fissures, type: type);
+    } on Exception catch (e, stack) {
+      _logger.warning('Failed to hydrate state', e, stack);
+      return null;
+    }
   }
 
   @override
