@@ -1266,7 +1266,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "primeVaultResetText": "Reinício do Ressurgimento Prime em ",
+  "primeVaultResetText": "Reinício do Prime Resurgence em: ",
   "@primeVaultResetText": {
     "description": "Prime vault reset text",
     "type": "text"
