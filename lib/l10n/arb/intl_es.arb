@@ -1,5 +1,5 @@
 {
-  "@@locale": "es",
+  "@@locale": "es-ES",
   "@@last_modified": "2020-03-03T16:56:42.387837",
   "levelInfo": "Nivel: {min} - {max}",
   "@levelInfo": {
@@ -1270,5 +1270,20 @@
   "@primeVaultResetText": {
     "description": "Prime vault reset text",
     "type": "text"
+  },
+  "stageText": "Stage",
+  "@stageText": {
+    "description": "Stage text, it just says stage",
+    "type": "text"
+  },
+  "isolationVaultText": "Isolation Vault (Tier {tier})",
+  "@isolationVaultText": {
+    "description": "Isolation Vault Text with tier number",
+    "type": "text",
+    "placeholders": {
+      "tier": {
+        "type": "int"
+      }
+    }
   }
 }
