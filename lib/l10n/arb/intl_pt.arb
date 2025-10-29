@@ -1270,5 +1270,20 @@
   "@primeVaultResetText": {
     "description": "Prime vault reset text",
     "type": "text"
+  },
+  "stageText": "Etapa",
+  "@stageText": {
+    "description": "Stage text, it just says stage",
+    "type": "text"
+  },
+  "isolationVaultText": "Cofre de Isolamento (Nível {tier})",
+  "@isolationVaultText": {
+    "description": "Isolation Vault Text with tier number",
+    "type": "text",
+    "placeholders": {
+      "tier": {
+        "type": "int"
+      }
+    }
   }
 }
