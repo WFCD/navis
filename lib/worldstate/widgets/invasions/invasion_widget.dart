@@ -41,7 +41,6 @@ class InvasionWidget extends StatelessWidget {
                 child: _InvasionDetails(
                   node: invasion.node,
                   description: invasion.description,
-                  eta: invasion.eta ?? '',
                 ),
               ),
               InvasionReward(
@@ -64,11 +63,10 @@ class InvasionWidget extends StatelessWidget {
 }
 
 class _InvasionDetails extends StatelessWidget {
-  const _InvasionDetails({required this.node, required this.description, required this.eta});
+  const _InvasionDetails({required this.node, required this.description});
 
   final String node;
   final String description;
-  final String eta;
 
   @override
   Widget build(BuildContext context) {
@@ -79,7 +77,7 @@ class _InvasionDetails extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         Text(node, style: nodeStyle),
-        Text('$description ($eta)', style: infoStyle),
+        Text(description, style: infoStyle),
       ],
     );
   }
