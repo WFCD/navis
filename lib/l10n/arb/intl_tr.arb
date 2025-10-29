@@ -1045,7 +1045,7 @@
     "description": "Text displayed next to the weekly reset time for the circuit",
     "type": "text"
   },
-  "circuitResetSubtitle": "",
+  "circuitResetSubtitle": "Tap to see current offerings",
   "@circuitResetSubtitle": {
     "description": "Text displayed under circuitResetTitle",
     "type": "text"
@@ -1270,5 +1270,20 @@
   "@primeVaultResetText": {
     "description": "Prime vault reset text",
     "type": "text"
+  },
+  "stageText": "Stage",
+  "@stageText": {
+    "description": "Stage text, it just says stage",
+    "type": "text"
+  },
+  "isolationVaultText": "Isolation Vault (Tier {tier})",
+  "@isolationVaultText": {
+    "description": "Isolation Vault Text with tier number",
+    "type": "text",
+    "placeholders": {
+      "tier": {
+        "type": "int"
+      }
+    }
   }
 }
