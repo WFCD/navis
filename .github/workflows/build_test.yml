@@ -2,6 +2,11 @@ name: Dev builds
 on:
   workflow_call:
 
+env:
+  SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}
+  SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
+  SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+
 jobs:
   android:
     runs-on: ubuntu-latest

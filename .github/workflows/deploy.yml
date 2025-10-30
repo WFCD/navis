@@ -63,7 +63,7 @@ jobs:
         run: |
           flutter build appbundle \
             --dart-define=SENTRY_DSN=$SENTRY_DSN --dart-define=MATOMO_URL=$MATOMO_URL --dart-define=cronetHttpNoPlay=true \
-            --flavor prod --split-debug-info=debug_info
+            --flavor prod --obfuscate --split-debug-info=debug_info
 
       - name: Upload Sentry debug symbols
         run: flutter packages pub run sentry_dart_plugin
@@ -146,7 +146,7 @@ jobs:
         run: |
           flutter build ipa \
             --dart-define=SENTRY_DSN=$SENTRY_DSN --dart-define=MATOMO_URL=$MATOMO_URL \
-            --export-options-plist=ios/ExportOptions.plist
+            --export-options-plist=ios/ExportOptions.plist 
 
       - name: App Store Deploy Beta
         if: contains(github.ref_name, 'beta')

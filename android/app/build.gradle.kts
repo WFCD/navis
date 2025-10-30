@@ -4,8 +4,9 @@ import java.io.FileInputStream
 plugins {
     id("com.android.application")
     id("kotlin-android")
+    id("io.sentry.android.gradle") version "5.12.1"
     // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
-    id("dev.flutter.flutter-gradle-plugin")
+    id("dev.flutter.flutter-gradle-plugin") 
 }
 
 val keystorePropertiesFile = rootProject.file("key.properties")
@@ -85,10 +86,17 @@ android {
     }
 }
 
+
 flutter {
     source = "../.."
 }
 
 dependencies {
     implementation("com.android.support:multidex:1.0.3")
+}
+
+sentry {
+    autoInstallation {
+      enabled = false
+    }
 }
