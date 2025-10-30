@@ -1710,8 +1710,8 @@ packages:
     dependency: transitive
     description:
       path: "packages/warframe_drop_data"
-      ref: "1b9510e35f0cd32ff7edb544d3e3b517bd382204"
-      resolved-ref: "1b9510e35f0cd32ff7edb544d3e3b517bd382204"
+      ref: "2d06e3fd903de6adcb69af92d303e9498c455d49"
+      resolved-ref: "2d06e3fd903de6adcb69af92d303e9498c455d49"
       url: "https://github.com/SlayerOrnstein/wfcd_dart.git"
     source: git
     version: "0.1.0+1"
@@ -1728,8 +1728,8 @@ packages:
     dependency: transitive
     description:
       path: "packages/warframe_worldstate_data"
-      ref: "1b9510e35f0cd32ff7edb544d3e3b517bd382204"
-      resolved-ref: "1b9510e35f0cd32ff7edb544d3e3b517bd382204"
+      ref: "2d06e3fd903de6adcb69af92d303e9498c455d49"
+      resolved-ref: "2d06e3fd903de6adcb69af92d303e9498c455d49"
       url: "https://github.com/SlayerOrnstein/wfcd_dart.git"
     source: git
     version: "0.1.0+1"
@@ -1809,8 +1809,8 @@ packages:
     dependency: "direct main"
     description:
       path: "packages/worldstate_models"
-      ref: "1b9510e35f0cd32ff7edb544d3e3b517bd382204"
-      resolved-ref: "1b9510e35f0cd32ff7edb544d3e3b517bd382204"
+      ref: "2d06e3fd903de6adcb69af92d303e9498c455d49"
+      resolved-ref: "2d06e3fd903de6adcb69af92d303e9498c455d49"
       url: "https://github.com/SlayerOrnstein/wfcd_dart.git"
     source: git
     version: "0.1.0+1"

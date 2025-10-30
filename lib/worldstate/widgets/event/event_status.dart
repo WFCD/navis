@@ -5,8 +5,6 @@ import 'package:navis/l10n/l10n.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:worldstate_models/worldstate_models.dart';
 
-typedef EventReward = ({Reward reward, int requiredScore});
-
 class EventStatus extends StatelessWidget {
   const EventStatus({
     super.key,
@@ -17,8 +15,7 @@ class EventStatus extends StatelessWidget {
     this.currentScore,
     this.maxScore,
     required this.scoreLocTag,
-    // this.interimSteps,
-    // required this.rewards,
+    required this.rewards,
     required this.expiry,
   });
 
@@ -29,22 +26,8 @@ class EventStatus extends StatelessWidget {
   final int? currentScore;
   final int? maxScore;
   final String? scoreLocTag;
-  // final List<InterimStep>? interimSteps;
-  // final List<Reward> rewards;
+  final List<WorldEventReward> rewards;
   final DateTime expiry;
-
-  // List<EventReward> get _eventRewards {
-  //   final r = <EventReward>[...?interimSteps?.map((s) => (reward: s.reward, requiredScore: s.goal))];
-
-  //   for (final reward in rewards) {
-  //     if (reward.items.isEmpty) continue;
-  //     final interimScore = r.isEmpty ? 0 : r[r.length - 1].requiredScore;
-  //     final score = maxScore ?? (interimScore == 75 ? interimScore + 25 : interimScore * 2);
-  //     r.add((reward: reward, requiredScore: score));
-  //   }
-
-  //   return r;
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +36,7 @@ class EventStatus extends StatelessWidget {
     final tooltipStyle = context.theme.textTheme.titleSmall?.copyWith(fontSize: 15);
 
     final hasHealth = health != null || maxScore != null && maxScore != 0;
-    // final hasRewards = (interimSteps?.isNotEmpty ?? false) || rewards.isNotEmpty;
+    final hasRewards = rewards.isNotEmpty;
 
     return AppCard(
       child: Padding(
@@ -74,12 +57,12 @@ class EventStatus extends StatelessWidget {
             ),
             if (hasHealth)
               _EventProgress(scoreLocTag: scoreLocTag, health: health, currentScore: currentScore, maxScore: maxScore),
-            // if (hasRewards) ...{
-            //   Gaps.gap20,
-            //   CategoryTitle(title: l10n.eventRewards, style: category, contentPadding: EdgeInsets.zero),
-            //   Gaps.gap2,
-            //   _RewardTiles(rewards: _eventRewards),
-            // },
+            if (hasRewards) ...{
+              Gaps.gap20,
+              CategoryTitle(title: l10n.eventRewards, style: category, contentPadding: EdgeInsets.zero),
+              Gaps.gap2,
+              _RewardTiles(rewards: rewards),
+            },
           ],
         ),
       ),
@@ -149,11 +132,10 @@ class _EventProgress extends StatelessWidget {
   }
 }
 
-// ignore: unused_element Gonna use it later
 class _RewardTiles extends StatelessWidget {
   const _RewardTiles({required this.rewards});
 
-  final List<EventReward> rewards;
+  final List<WorldEventReward> rewards;
 
   @override
   Widget build(BuildContext context) {
@@ -164,14 +146,14 @@ class _RewardTiles extends StatelessWidget {
       final items = reward.reward.items;
       final title = items!.first;
 
-      // String? subtitle;
-      // if (items.length > 1) subtitle = items.skip(1).join(' + ');
+      String? subtitle;
+      if (items.length > 1) subtitle = items.skip(1).join(' + ');
 
       rewards.add(
         ListTile(
           contentPadding: EdgeInsets.zero,
           title: Text(title),
-          // subtitle: subtitle != null ? Text(subtitle) : null,
+          subtitle: subtitle != null ? Text(subtitle) : null,
           trailing: Column(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.center,

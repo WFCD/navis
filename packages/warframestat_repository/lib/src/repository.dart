@@ -40,12 +40,12 @@ class WarframestatRepository {
 
   static Future<Worldstate> _fetchWorldstate(Client client, Duration delay, String locale) async {
     final cacheClient = await _cacheClient(client, const Duration(days: Duration.hoursPerDay * 14));
-    final dropData = await buildDropData(cacheClient);
+    final bountyRewardTable = (await buildDropData(cacheClient)).bountyRewardTables;
 
     cacheClient.ttl = delay;
     final response = await cacheClient.get(Uri.parse('https://api.warframe.com/cdn/worldState.php'));
     return Isolate.run(() async {
-      final deps = Dependency(dropData);
+      final deps = Dependency(bountyRewardTable);
       return RawWorldstate.fromJson(response.body).toWorldstate(deps);
     });
   }

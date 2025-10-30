@@ -11,14 +11,6 @@ class EventInformation extends StatelessWidget {
 
   final WorldEvent event;
 
-  // List<Reward> eventRewards(List<Reward> rewards, List<InterimStep>? steps) {
-  //   final r = List<Reward>.from(rewards);
-
-  //   return r
-  //     ..addAll(steps?.map<Reward>((i) => i.reward) ?? [])
-  //     ..removeWhere((r) => r.itemString.isEmpty);
-  // }
-
   @override
   Widget build(BuildContext context) {
     final height = (context.mediaQuery.size.height / 100) * 25;
@@ -55,8 +47,7 @@ class EventInformation extends StatelessWidget {
                     maxScore: event.goal,
                     scoreLocTag: event.scoreLocTag,
                     expiry: event.expiry,
-                    // interimSteps: event.interimSteps,
-                    // rewards: event.reward,
+                    rewards: event.rewards ?? [],
                   ),
                   if (event.bounties != null) EventBounties(jobs: event.bounties!),
                 ]),

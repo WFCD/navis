@@ -1,6 +1,6 @@
 // Backgrounds by Event.tag
 const eventBackkgrounds = <String, String>{
-  'Thermia Fractures': 'https://wiki.warframe.com/images/OperationBuriedDebtsSplash.png?16aec',
+  'HeatFissure': 'https://wiki.warframe.com/images/OperationBuriedDebtsSplash.png?16aec',
   'DeimosHalloween': 'https://wiki.warframe.com/images/NightsofNaberus.png?123a3',
   'Star Days': 'https://wiki.warframe.com/images/StarDaysPromo.jpg?3a324',
   'GhoulEmergence': 'https://wiki.warframe.com/images/Ghoul_Purge.png?5a862',
