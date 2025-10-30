@@ -11,7 +11,7 @@ import 'package:sentry_logging/sentry_logging.dart';
 
 Future<void> main() async {
   const siteId = 2;
-  const tracesSampleRate = 1.0;
+  const sampleRate = 1.0;
 
   if (kDebugMode) {
     Logger.root.level = Level.ALL; // defaults to Level.INFO
@@ -32,8 +32,11 @@ Future<void> main() async {
         ..dsn = kDebugMode || kProfileMode ? '' : const String.fromEnvironment('SENTRY_DSN')
         ..debug = kDebugMode
         ..enableDeduplication = true
-        ..tracesSampleRate = tracesSampleRate
+        ..tracesSampleRate = sampleRate
         ..ignoreErrors = ['SocketException', 'ClientException']
+        ..replay.sessionSampleRate = sampleRate
+        ..replay.onErrorSampleRate = sampleRate
+        ..replay.quality = SentryReplayQuality.low
         ..enableBreadcrumbTrackingForCurrentPlatform()
         ..addIntegration(LoggingIntegration());
     },
@@ -47,7 +50,12 @@ Future<void> main() async {
       }
 
       logger.info('Boostraping app start up');
-      await bootstrap((router) => DefaultAssetBundle(bundle: SentryAssetBundle(), child: NavisApp(router: router)));
+      await bootstrap(
+        (router) => DefaultAssetBundle(
+          bundle: SentryAssetBundle(),
+          child: NavisApp(router: router),
+        ),
+      );
     },
   );
 }
