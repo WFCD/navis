@@ -101,6 +101,7 @@ sentry:
   upload_debug_symbols: true
   upload_sources: true
   wait_for_processing: true
+  dart_symbol_map_path: build/app/outputs/obfuscation.map.json
 
 flutter_launcher_icons:
   image_path: "assets/splash.png"
