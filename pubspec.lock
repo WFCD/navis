@@ -353,14 +353,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "6.0.0"
-  cupertino_http:
-    dependency: transitive
-    description:
-      name: cupertino_http
-      sha256: "72187f715837290a63479a5b0ae709f4fedad0ed6bd0441c275eceaa02d5abae"
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.3.0"
   dart_mappable:
     dependency: transitive
     description:
@@ -1033,10 +1025,10 @@ packages:
     dependency: transitive
     description:
       name: objective_c
-      sha256: "9f034ba1eeca53ddb339bc8f4813cb07336a849cd735559b60cdc068ecce2dc7"
+      sha256: "64e35e1e2e79da4e83f2ace3bf4e5437cef523f46c7db2eba9a1419c49573790"
       url: "https://pub.dev"
     source: hosted
-    version: "7.1.0"
+    version: "8.0.0"
   octo_image:
     dependency: transitive
     description:
@@ -1249,34 +1241,34 @@ packages:
     dependency: transitive
     description:
       name: sentry
-      sha256: d9f3dcf1ecdd600cf9ce134f622383adde5423ecfdaf0ca9b20fbc1c44849337
+      sha256: "0a3a1e6b3b3873070d4dbefc6968f0d31e698ed55b4eb8ee185b230f35733b59"
       url: "https://pub.dev"
     source: hosted
-    version: "9.6.0"
+    version: "9.7.0"
   sentry_dart_plugin:
     dependency: "direct dev"
     description:
       name: sentry_dart_plugin
-      sha256: "8c0c9fe19368890381101f5000759b2ae203a0bf6158a25584b55d197e847f53"
+      sha256: "4b25aa60b5cbb46bb23859ac9212c4de5b22e2b3bc3fecbcd611756ada8973b5"
       url: "https://pub.dev"
     source: hosted
-    version: "3.1.1"
+    version: "3.2.0"
   sentry_flutter:
     dependency: "direct main"
     description:
       name: sentry_flutter
-      sha256: "37deb4ef8837d10b5c1f527ec18591f8d2d2da9c34f19b3d97ccbbe7f84077c0"
+      sha256: "493b4adb378dfc93fb1595acca91834bbf56194a9038c400c9306588ad6a2f88"
       url: "https://pub.dev"
     source: hosted
-    version: "9.6.0"
+    version: "9.7.0"
   sentry_logging:
     dependency: "direct main"
     description:
       name: sentry_logging
-      sha256: "040046d5fe79b94b1c73069031547c066ab37bcbd18c029dc3ceeb9b5d0c67c5"
+      sha256: d6a51795c5643a40928f77424dd2bd28a9a58f7c527d3f8d5e001c54ee98c51a
       url: "https://pub.dev"
     source: hosted
-    version: "9.6.0"
+    version: "9.7.0"
   shared_preferences:
     dependency: transitive
     description:
