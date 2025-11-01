@@ -26,7 +26,8 @@ class BaroKiTeerCard extends StatelessWidget {
           _ => null,
         },
         builder: (context, traders) {
-          final trader = traders!.firstWhere((t) => !t.node.contains('TennoCon'));
+          if (traders == null) return const SizedBox.shrink();
+          final trader = traders.firstWhere((t) => !t.node.contains('TennoCon'));
           final isActive = trader.isActive;
           final date = isActive ? trader.expiry : trader.activation;
           final dateFormatted = MaterialLocalizations.of(context).formatFullDate(date);
@@ -63,7 +64,8 @@ class VarziaTraderCard extends StatelessWidget {
           _ => null,
         },
         builder: (context, trader) {
-          final schedule = trader!.schedule;
+          if (trader == null) return const SizedBox.shrink();
+          final schedule = trader.schedule;
           final current = schedule?[schedule.length - 2];
           final background = primeResurganceBackgrounds[current?.key?.split('/').last ?? ''];
           final hasBackground = background != null;
