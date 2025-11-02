@@ -18,13 +18,15 @@ class ArchimedeaPage extends StatelessWidget {
       appBar: AppBar(),
       body: ListView(
         children: [
-          ListTile(
-            title: Text('${context.l10n.archimedeaResetTitle}:'),
-            trailing: CountdownTimer(tooltip: MaterialLocalizations.of(context).formatFullDate(reset), expiry: reset),
+          AppCard(
+            child: ListTile(
+              title: Text('${context.l10n.archimedeaResetTitle}:'),
+              trailing: CountdownTimer(tooltip: MaterialLocalizations.of(context).formatFullDate(reset), expiry: reset),
+            ),
           ),
           _ArchimedeaMissionsCategory(missions: archimedea.missions),
           _PersonalModifierCategory(personalModifiers: archimedea.personalModifiers),
-          const Divider(),
+          // const Divider(),
           // ListTile(
           //   title: Text(context.l10n.archimedeaWarningTitle),
           //   subtitle: Text(context.l10n.archimedeaWarningSubtitle),
@@ -50,24 +52,32 @@ class _ArchimedeaMissionsCategory extends StatelessWidget {
     return Column(
       children: [
         ...missions.map(
-          (m) => Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                child: Text(m.missionType, style: Theme.of(context).textTheme.titleMedium?.copyWith(color: secondary)),
-              ),
-              ListTile(
-                title: Text('${l10n.archimedeaDeviationTitle}: ${m.deviation.title}', style: titleStyle),
-                subtitle: Text(m.deviation.description),
-              ),
-              ...m.risks.map(
-                (rv) => ListTile(
-                  title: Text('${l10n.archimedeaRiskTitle}: ${rv.title}', style: titleStyle),
-                  subtitle: Text(rv.description),
+          (m) => AppCard(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(left: 16, top: 12),
+                  child: Text(
+                    m.missionType,
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(color: secondary),
+                  ),
                 ),
-              ),
-            ],
+                ListTile(
+                  title: Text('${l10n.archimedeaDeviationTitle}: ${m.deviation.title}', style: titleStyle),
+                  subtitle: Text(m.deviation.description),
+                ),
+                ...m.risks.map(
+                  (rv) => ListTile(
+                    title: Text(
+                      '${l10n.archimedeaRiskTitle}: ${rv.title}',
+                      style: titleStyle,
+                    ),
+                    subtitle: Text(rv.description),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ],
@@ -82,11 +92,13 @@ class _PersonalModifierCategory extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        CategoryTitle(title: context.l10n.archimedeaPersonalModifierTitle),
-        ...personalModifiers.map((pm) => ListTile(title: Text(pm.title), subtitle: Text(pm.description))),
-      ],
+    return AppCard(
+      child: Column(
+        children: [
+          CategoryTitle(title: context.l10n.archimedeaPersonalModifierTitle),
+          ...personalModifiers.map((pm) => ListTile(title: Text(pm.title), subtitle: Text(pm.description))),
+        ],
+      ),
     );
   }
 }
