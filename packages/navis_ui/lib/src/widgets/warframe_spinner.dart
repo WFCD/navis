@@ -13,8 +13,7 @@ class WarframeSpinner extends StatefulWidget {
 
 typedef RingAnimation = ({Animation<double> size, Animation<double> rotation});
 
-class _WarframeSpinnerState extends State<WarframeSpinner>
-    with TickerProviderStateMixin {
+class _WarframeSpinnerState extends State<WarframeSpinner> with TickerProviderStateMixin {
   late final AnimationController _controller;
   late final List<RingAnimation> _rings = [];
 
@@ -85,7 +84,7 @@ class _WarframeSpinnerState extends State<WarframeSpinner>
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final primary = theme.colorScheme.primary;
+    final rings = theme.colorScheme.primary;
     final background = theme.colorScheme.secondaryContainer;
 
     final mediaSize = MediaQuery.sizeOf(context);
@@ -97,11 +96,9 @@ class _WarframeSpinnerState extends State<WarframeSpinner>
         return CustomPaint(
           size: size,
           painter: _WarframeSpinnerPainter(
-            primary: primary,
+            primary: rings,
             background: background,
-            rings: _rings
-                .map((ra) => (size: ra.size.value, rotation: ra.rotation.value))
-                .toList(),
+            rings: _rings.map((ra) => (size: ra.size.value, rotation: ra.rotation.value)).toList(),
           ),
         );
       },
@@ -198,8 +195,6 @@ class _WarframeSpinnerPainter extends CustomPainter {
 
   @override
   bool shouldRepaint(_WarframeSpinnerPainter oldDelegate) {
-    return oldDelegate.primary != primary ||
-        oldDelegate.background != background ||
-        oldDelegate.rings != rings;
+    return oldDelegate.primary != primary || oldDelegate.background != background || oldDelegate.rings != rings;
   }
 }

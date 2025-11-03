@@ -1,5 +1,6 @@
 import 'package:black_hole_flutter/black_hole_flutter.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:codex/codex.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
@@ -83,6 +84,7 @@ class CircuitChoiceTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final codex = RepositoryProvider.of<Codex>(context);
     final repo = RepositoryProvider.of<WarframestatRepository>(context);
     final isSteelPatch = choice.key == 'EXC_HARD';
 
@@ -105,7 +107,7 @@ class CircuitChoiceTile extends StatelessWidget {
 
             return BlocProvider(
               create: (_) {
-                final cubit = ItemCubit(name, repo);
+                final cubit = ItemCubit(name, codex, repo);
 
                 isSteelPatch ? cubit.fetchIncarnonGenesis() : cubit.fetchByName();
 
@@ -135,7 +137,7 @@ class _CircuitPathTile extends StatelessWidget {
         };
 
         final icon = item != null
-            ? CircleAvatar(foregroundImage: CachedNetworkImageProvider(item.imageUrl), radius: 20)
+            ? CircleAvatar(foregroundImage: CachedNetworkImageProvider(imageUri(item.imageName)), radius: 20)
             : null;
 
         final tile = ListTile(
@@ -153,7 +155,7 @@ class _CircuitPathTile extends StatelessWidget {
           uniqueName: item.uniqueName,
           name: item.name,
           description: item.description,
-          imageUrl: item.imageUrl,
+          imageUrl: imageUri(item.imageName),
           type: item.type,
           wikiaUrl: item.wikiaUrl,
           wikiaThumbnail: item.wikiaThumbnail,

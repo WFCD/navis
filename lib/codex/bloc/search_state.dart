@@ -1,5 +1,5 @@
+import 'package:codex/codex.dart';
 import 'package:equatable/equatable.dart';
-import 'package:warframestat_repository/warframestat_repository.dart';
 
 sealed class SearchState extends Equatable {
   const SearchState();
@@ -18,7 +18,7 @@ final class CodexSearchInProgress extends SearchState {
 final class CodexSearchSuccess extends SearchState {
   const CodexSearchSuccess(this.results);
 
-  final List<SearchItem> results;
+  final List<CodexItem> results;
 
   @override
   List<Object?> get props => [results];

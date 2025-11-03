@@ -1,6 +1,6 @@
+import 'package:black_hole_flutter/black_hole_flutter.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:navis/codex/utils/stats.dart';
 import 'package:navis/codex/widgets/codex_entry/polarity.dart';
 import 'package:navis/codex/widgets/codex_entry/preinstalled_polarities.dart';
 import 'package:navis/codex/widgets/codex_entry/stats.dart';
@@ -25,7 +25,10 @@ class FrameStats extends StatelessWidget {
         Stats(
           stats: <RowItem>[
             if (powerSuit is Warframe && (powerSuit as Warframe).aura != null)
-              RowItem(text: Text(l10n.auraTitle), child: Polarity(polarity: (powerSuit as Warframe).aura!)),
+              RowItem(
+                text: Text(l10n.auraTitle),
+                child: Polarity(polarity: (powerSuit as Warframe).aura!),
+              ),
             if (powerSuit.polarities?.isNotEmpty ?? false)
               RowItem(
                 text: Text(l10n.preinstalledPolarities),
@@ -38,7 +41,7 @@ class FrameStats extends StatelessWidget {
             if (powerSuit is Warframe)
               RowItem(
                 text: Text(l10n.sprintSpeedTitle),
-                child: Text('${statRoundDouble((powerSuit as Warframe).sprintSpeed, 2)}'),
+                child: Text((powerSuit as Warframe).sprintSpeed.toStringAsFixed(2)),
               ),
           ],
         ),
@@ -82,36 +85,64 @@ class _AbilitiesState extends State<_Abilities> {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = context.theme.colorScheme;
+
     return Column(
       children: [
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 8),
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: widget.abilities.map((a) => _AbilityIcon(ability: a, onTap: () => _onTap(a))).toList(),
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: widget.abilities
+                .map(
+                  (a) => _AbilityIcon(
+                    ability: a,
+                    isSelected: _ability?.name == a.name,
+                    onTap: () => _onTap(a),
+                  ),
+                )
+                .toList(),
           ),
         ),
-        AnimatedContainer(
-          duration: Durations.extralong4,
-          curve: Curves.easeInOut,
-          child: _ability != null ? ListTile(title: Text(_ability!.name), subtitle: Text(_ability!.description)) : null,
-        ),
+        if (_ability != null)
+          Card(
+            color: context.theme.colorScheme.secondaryContainer,
+            child: ListTile(
+              title: Text(_ability!.name),
+              subtitle: Text(_ability!.description),
+              titleTextStyle: context.textTheme.titleMedium?.copyWith(color: colorScheme.onSecondaryContainer),
+              subtitleTextStyle: context.textTheme.bodyMedium?.copyWith(
+                color: colorScheme.onSecondaryContainer.withAlpha(160),
+              ),
+            ),
+          ),
       ],
     );
   }
 }
 
 class _AbilityIcon extends StatelessWidget {
-  const _AbilityIcon({required this.ability, required this.onTap});
+  const _AbilityIcon({
+    required this.ability,
+    required this.isSelected,
+    required this.onTap,
+  });
 
   final Ability ability;
+  final bool isSelected;
   final void Function() onTap;
 
   @override
   Widget build(BuildContext context) {
+    const defaultIconSize = 24.0;
+
     return IconButton(
       onPressed: onTap,
-      icon: CachedNetworkImage(imageUrl: ability.imageUrl, width: 60, color: Theme.of(context).colorScheme.onSurface),
+      icon: CachedNetworkImage(
+        imageUrl: ability.imageUrl,
+        width: defaultIconSize * 2.5,
+        color: isSelected ? context.theme.colorScheme.secondary : context.theme.colorScheme.onSurface,
+      ),
     );
   }
 }

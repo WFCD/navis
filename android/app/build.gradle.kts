@@ -96,6 +96,8 @@ dependencies {
 }
 
 sentry {
+    ignoredFlavors.set(setOf("dev"))
+    
     autoInstallation {
       enabled = false
     }

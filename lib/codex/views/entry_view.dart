@@ -1,5 +1,6 @@
 import 'package:animations/animations.dart';
 import 'package:black_hole_flutter/black_hole_flutter.dart';
+import 'package:codex/codex.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/codex/codex.dart';
@@ -7,6 +8,8 @@ import 'package:navis/l10n/l10n.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:warframestat_client/warframestat_client.dart';
 import 'package:warframestat_repository/warframestat_repository.dart';
+
+const List<ItemType> _miscTypes = [ItemType.skin, ItemType.misc, ItemType.glyph];
 
 class EntryViewOpenContainer extends StatelessWidget {
   const EntryViewOpenContainer({
@@ -41,24 +44,25 @@ class EntryViewOpenContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     const elevation = 0.0;
 
-    if (type == ItemType.misc) {
-      return InkWell(
-        child: builder(context, () {}),
-        onTap: () {
-          showModalBottomSheet<void>(
-            context: context,
-            builder: (context) => Padding(
-              padding: const EdgeInsets.all(16),
-              child: EntryContent(
-                uniqueName: uniqueName,
-                name: name,
-                description: description ?? '',
-                imageUrl: imageUrl,
+    if (_miscTypes.contains(type)) {
+      return builder(context, () {
+        showModalBottomSheet<void>(
+          context: context,
+          builder: (context) {
+            return Padding(
+              padding: const EdgeInsets.only(bottom: 16, left: 8, right: 8),
+              child: SizedBox(
+                height: (MediaQuery.sizeOf(context).height / 100) * 20,
+                child: ItemOverview(
+                  name: name,
+                  description: description ?? '',
+                  image: imageUrl,
+                ),
               ),
-            ),
-          );
-        },
-      );
+            );
+          },
+        );
+      });
     }
 
     return OpenContainer(
@@ -103,10 +107,9 @@ class EntryView extends StatelessWidget {
   final String? wikiaUrl;
   final String? wikiaThumbnail;
 
-  static final List<ItemType> _miscTypes = [ItemType.skin, ItemType.misc];
-
   @override
   Widget build(BuildContext context) {
+    final codex = RepositoryProvider.of<Codex>(context);
     final repo = RepositoryProvider.of<WarframestatRepository>(context);
     final overview = _Overview(
       uniqueName: uniqueName,
@@ -121,12 +124,10 @@ class EntryView extends StatelessWidget {
 
     return Scaffold(
       body: SafeArea(
-        child: !_miscTypes.contains(type)
-            ? BlocProvider(
-                create: (context) => ItemCubit(uniqueName, repo)..fetchItem(),
-                child: overview,
-              )
-            : overview,
+        child: BlocProvider(
+          create: (context) => ItemCubit(uniqueName, codex, repo)..fetchItem(),
+          child: overview,
+        ),
       ),
     );
   }
@@ -155,82 +156,73 @@ class _Overview extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isMod = type.name.contains('Mod');
-    final heightRatio = context.mediaQuery.size.height / 100;
-    final height = isMod ? kToolbarHeight : heightRatio * 25;
-
     return Scaffold(
-      body: SafeArea(
-        child: NestedScrollView(
-          floatHeaderSlivers: true,
-          headerSliverBuilder: (context, innerBoxIsScrolled) {
-            return [
-              if (isMod)
-                SliverAppBar(title: Text(name))
-              else
-                SliverPersistentHeader(
-                  pinned: true,
-                  delegate: BasicItemInfo(
-                    uniqueName: uniqueName,
-                    name: name,
-                    description: description?.parseHtmlString() ?? '',
-                    wikiUrl: wikiaUrl,
-                    imageUrl: wikiaThumbnail ?? imageUrl,
-                    expandedHeight: height,
-                    disableInfo: isMod,
-                    isVaulted: vaulted,
-                  ),
+      body: BlocBuilder<ItemCubit, ItemState>(
+        builder: (context, state) {
+          final item = switch (state) {
+            ItemFetchSuccess() => state.item,
+            _ => null,
+          };
+
+          final isPowerSuit = item is PowerSuit;
+          final isGun = item is Gun;
+          final isMelee = item is Melee;
+          final isMod = item is Mod;
+          final isRelic = item is Relic;
+
+          var isFoundryItem = item is BuildableItem;
+          if (isFoundryItem) {
+            final components = item.components;
+            isFoundryItem = components != null && components.isNotEmpty;
+          }
+
+          List<Drop>? drops;
+          if (item is DroppableItem) drops = item.drops;
+
+          final heightRatio = context.mediaQuery.size.height / 100;
+          final height = isMod ? kToolbarHeight : heightRatio * 30;
+
+          return CustomScrollView(
+            slivers: [
+              SliverPersistentHeader(
+                pinned: true,
+                delegate: ItemOverviewAppBar(
+                  image: imageUrl,
+                  name: name,
+                  description: description,
+                  releaseDate: item?.releaseDate,
+                  isMod: isMod,
+                  isVaulted: vaulted ?? false,
+                  wikiUrl: wikiaUrl,
+                  expandedHeight: height,
                 ),
-            ];
-          },
-          body: BlocBuilder<ItemCubit, ItemState>(
-            builder: (context, state) {
-              if (state is ItemFetchFailure) {
-                return Center(child: Text(context.l10n.itemFailureErrorText));
-              }
-
-              if (state is! ItemFetchSuccess) {
-                return const Center(child: WarframeSpinner());
-              }
-
-              final item = state.item;
-              final isPowerSuit = item is PowerSuit;
-              final isGun = item is Gun;
-              final isMelee = item is Melee;
-              final isMod = item is Mod;
-              final isRelic = item is Relic;
-
-              var isFoundryItem = item is BuildableItem;
-              if (isFoundryItem) {
-                final components = item.components;
-                isFoundryItem = components != null && components.isNotEmpty;
-              }
-
-              List<Drop>? drops;
-              if (item is DroppableItem) drops = item.drops;
-
-              return ListView(
-                children:
-                    [
-                          if (isFoundryItem)
-                            ItemComponents(
-                              itemImageUrl: item.imageUrl,
-                              components: (item as BuildableItem).components!,
-                            ),
-                          if (isPowerSuit) FrameStats(powerSuit: item),
-                          if (isGun) GunStats(gun: item),
-                          if (isMelee) MeleeStats(melee: item),
-                          if (isMod) ModStats(mod: item),
-                          if (isRelic) RelicRewardWidget(relic: item),
-                          if (drops != null) DropLocations(drops: drops),
-                          if (item.patchlogs != null) PatchlogSection(patchlogs: item.patchlogs!),
-                        ]
-                        .map((w) => Padding(padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 10), child: w))
-                        .toList(),
-              );
-            },
-          ),
-        ),
+              ),
+              if (state is ItemFetchFailure)
+                SliverToBoxAdapter(
+                  child: Center(child: Text(context.l10n.itemFailureErrorText)),
+                ),
+              if (state is! ItemFetchSuccess)
+                const SliverFillRemaining(hasScrollBody: false, child: Center(child: WarframeSpinner()))
+              else
+                SliverList.list(
+                  children: [
+                    if (isFoundryItem)
+                      ItemComponents(
+                        itemImageUrl: imageUri(item!.imageName),
+                        components: (item as BuildableItem).components!,
+                      ),
+                    if (isPowerSuit) FrameStats(powerSuit: item),
+                    if (isGun) GunStats(gun: item),
+                    if (isMelee) MeleeStats(melee: item),
+                    if (isMod) ModStats(mod: item),
+                    if (isRelic) RelicRewardWidget(relic: item),
+                    if (drops != null) DropLocations(drops: drops),
+                    if (item!.patchlogs != null) PatchlogSection(patchlogs: item.patchlogs!),
+                  ].map((child) => Padding(padding: const EdgeInsets.symmetric(horizontal: 16), child: child)).toList(),
+                ),
+            ],
+          );
+        },
       ),
     );
   }

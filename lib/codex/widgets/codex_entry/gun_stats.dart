@@ -30,21 +30,24 @@ class GunStats extends StatelessWidget {
                 child: PreinstalledPolarties(polarities: gun.polarities ?? <String>[]),
               ),
             if (gun.accuracy != null)
-              RowItem(text: Text(l10n.accuracyTitle), child: Text('${statRoundDouble(gun.accuracy!, 2)}')),
+              RowItem(text: Text(l10n.accuracyTitle), child: Text(gun.accuracy!.toStringAsFixed(2))),
             RowItem(
               text: Text(l10n.criticalChanceTitle),
-              child: Text('${statRoundDouble(gun.criticalChance * 100, 2)}%'),
+              child: Text('${(gun.criticalChance * 100).toStringAsFixed(2)}%'),
             ),
             RowItem(text: Text(l10n.cricticalMultiplierTitle), child: Text('${gun.criticalMultiplier}x')),
             RowItem(text: Text(l10n.fireRateTitle), child: Text(gun.fireRate.toStringAsFixed(2))),
             RowItem(text: Text(l10n.magazineTitle), child: Text('${gun.magazineSize}')),
             if (gun.multishot != null && gun.multishot! > 1.0)
-              RowItem(text: Text(l10n.multishotTitle), child: Text('${statRoundDouble(gun.multishot!, 2)}%')),
+              RowItem(text: Text(l10n.multishotTitle), child: Text('${gun.multishot!.toStringAsFixed(2)}%')),
             if (gun.noise != null) RowItem(text: Text(l10n.noiseTitle), child: Text(gun.noise!.toUpperCase())),
             if (gun.reloadTime != null)
               RowItem(text: Text(l10n.reloadTitle), child: Text(gun.reloadTime!.toStringAsFixed(2))),
             if (gun.disposition != null)
-              RowItem(text: Text(l10n.rivenDispositionTitle), child: RivenDisposition(disposition: gun.disposition!)),
+              RowItem(
+                text: Text(l10n.rivenDispositionTitle),
+                child: RivenDisposition(disposition: gun.disposition!),
+              ),
             RowItem(text: Text(l10n.statusChanceTitle), child: Text('${(gun.procChance * 100).roundToDouble()}%')),
             if (gun.trigger != null) RowItem(text: Text(l10n.triggerTitle), child: Text(gun.trigger!)),
           ],

@@ -5,36 +5,41 @@ import 'package:logging/logging.dart';
 import 'package:navis/utils/utils.dart';
 import 'package:replay_bloc/replay_bloc.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
-import 'package:warframestat_client/warframestat_client.dart' show Language;
-import 'package:warframestat_repository/warframestat_repository.dart';
+import 'package:warframe_repository/warframe_repository.dart';
 import 'package:worldstate_models/worldstate_models.dart';
 
 part 'worldstate_event.dart';
 part 'worldstate_state.dart';
 
-late Stream<Worldstate> _worldstate;
-
 class WorldstateBloc extends HydratedBloc<WorldstateEvent, WorldState> with ReplayBlocMixin {
   WorldstateBloc(this.repository) : super(WorldstateInitial()) {
-    on<WorldstateStarted>(_start);
+    on<WorldstateStarted>(_emiteState);
     on<WorldstateUpdated>((event, emit) => emit(WorldstateSuccess(event.state)));
     on<WorldstateFailed>((event, emit) => emit(WorldstateFailure()));
-    add(WorldstateStarted(Locale(repository.language.name)));
+    add(const WorldstateStarted(Locale('en')));
   }
 
-  final WarframestatRepository repository;
+  final WarframeRepository repository;
 
   final _logger = Logger('WorldstateBloc');
 
-  Future<void> _start(WorldstateStarted event, Emitter<WorldState> emit) async {
-    repository.language = Language.values.byName(event.locale.languageCode);
-    _worldstate = repository.worldstate();
+  Future<void> _emiteState(WorldstateStarted event, Emitter<WorldState> emit) async {
+    final locale = event.locale.languageCode;
+
+    if (state is WorldstateSuccess) {
+      final current = (state as WorldstateSuccess).seed.timestamp;
+      final elapsed = DateTime.timestamp().difference(current);
+      if (elapsed >= const Duration(minutes: 3)) await _forceUpdateWorldstate(locale);
+    } else {
+      // Assume there's no cache and update the state
+      await _forceUpdateWorldstate(locale);
+    }
 
     await emit.onEach<Worldstate>(
-      _worldstate,
+      repository.worldstateEmitter(locale),
       onData: (state) {
         if (isClosed) return;
-        add(WorldstateUpdated(state..clean(repository.language)));
+        add(WorldstateUpdated(state..clean()));
       },
       onError: (error, stackTrace) async {
         if (isClosed) return;
@@ -43,6 +48,19 @@ class WorldstateBloc extends HydratedBloc<WorldstateEvent, WorldState> with Repl
         await Sentry.captureException(error, stackTrace: stackTrace);
       },
     );
+  }
+
+  Future<void> _forceUpdateWorldstate(String locale) async {
+    try {
+      final worldstate = await repository.fetchWorldstate(locale);
+      if (isClosed) return;
+      add(WorldstateUpdated(worldstate..clean()));
+    } on Exception catch (error, stackTrace) {
+      if (isClosed) return;
+      add(WorldstateFailed(error, stackTrace));
+      undo();
+      await Sentry.captureException(error, stackTrace: stackTrace);
+    }
   }
 
   @override

@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:codex/codex.dart';
 import 'package:collection/collection.dart';
 import 'package:equatable/equatable.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
@@ -12,9 +13,11 @@ import 'package:warframestat_repository/warframestat_repository.dart';
 part 'item_state.dart';
 
 class ItemCubit extends HydratedCubit<ItemState> {
-  ItemCubit(this.name, this.repo) : super(ItemInitial());
+  ItemCubit(this.name, this.codex, this.repo) : super(ItemInitial());
 
+  /// Can be Item name or Item uniqueName
   final String name;
+  final Codex codex;
   final WarframestatRepository repo;
 
   static final _logger = Logger('ItemCubit');
@@ -40,13 +43,14 @@ class ItemCubit extends HydratedCubit<ItemState> {
     emit(ItemFetchInProgress());
 
     try {
-      final items = await _handleItemFetch(() => repo.searchItems(name));
+      final items = await _handleItemFetch(() => codex.search(name));
       final item = items.where((item) => item.imageName != null).firstWhereOrNull((item) => item.name == name);
-
-      if (isClosed) return;
       if (item == null) return emit(ItemNotFound());
 
-      emit(ItemFetchSuccess(item.toMisc()));
+      final externalItem = await repo.fetchItem(item.uniqueName);
+
+      if (isClosed) return;
+      emit(ItemFetchSuccess(externalItem! as ItemCommon));
     } on FormatException {
       return emit(ItemNotFound());
     } on Exception catch (e, stack) {
@@ -59,15 +63,17 @@ class ItemCubit extends HydratedCubit<ItemState> {
     emit(ItemFetchInProgress());
 
     try {
-      final items = await _handleItemFetch(() async => repo.searchItems('Incarnon'));
+      final items = await _handleItemFetch(() async => codex.search('Incarnon'));
       final item = items.where((item) => item.imageName != null).firstWhereOrNull((item) {
         return name.replaceAll(RegExp('and', caseSensitive: false), '&') == item.name;
       });
 
-      if (isClosed) return;
       if (item == null) return emit(ItemNotFound());
 
-      emit(ItemFetchSuccess(item.toMisc()));
+      final externalItem = await repo.fetchItem(item.uniqueName);
+
+      if (isClosed) return;
+      emit(ItemFetchSuccess(externalItem! as ItemCommon));
     } on FormatException {
       return emit(ItemNotFound());
     } on Exception catch (e, stack) {

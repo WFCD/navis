@@ -1,8 +1,7 @@
-import 'package:warframestat_client/warframestat_client.dart' show Language;
 import 'package:worldstate_models/worldstate_models.dart';
 
 extension WorldstateX on Worldstate {
-  void clean(Language language) {
+  void clean() {
     alerts.retainWhere((e) => e.isActive);
 
     news

@@ -9,7 +9,6 @@ import 'package:navis/l10n/l10n.dart';
 import 'package:navis/router/routes.dart';
 import 'package:navis/worldstate/worldstate.dart';
 import 'package:navis_ui/navis_ui.dart';
-import 'package:warframestat_repository/warframestat_repository.dart';
 
 class NewsSection extends StatelessWidget {
   const NewsSection({super.key});
@@ -17,11 +16,10 @@ class NewsSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final i10n = context.l10n;
-    final wsRepo = RepositoryProvider.of<WarframestatRepository>(context);
 
     return Section(
       title: Text(i10n.warframeNewsTitle),
-      content: BlocProvider(create: (_) => WorldstateBloc(wsRepo), child: const _NewsCarouselView()),
+      content: const _NewsCarouselView(),
       onTap: () => const NewsPageRoute().push<void>(context),
     );
   }

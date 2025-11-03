@@ -28,7 +28,11 @@ class ItemComponents extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             if (blueprint != null)
-              _BuildBlueprint(blueprintImage: blueprint.imageUrl, componentImage: itemImageUrl, drops: blueprint.drops),
+              _BuildBlueprint(
+                blueprintImage: imageUri(blueprint.imageName),
+                componentImage: itemImageUrl,
+                drops: blueprint.drops,
+              ),
             for (final component in parts) _BuildComponent(component: component),
           ],
         ),
@@ -37,14 +41,26 @@ class ItemComponents extends StatelessWidget {
   }
 }
 
+void _onTap(BuildContext context, List<Drop> drops) {
+  showModalBottomSheet<void>(
+    context: context,
+    isScrollControlled: true,
+    builder: (_) => DraggableScrollableSheet(
+      initialChildSize: 0.4,
+      minChildSize: 0.2,
+      maxChildSize: 0.9,
+      expand: false,
+      builder: (BuildContext context, ScrollController scrollController) {
+        return ComponentDrops(controller: scrollController, drops: drops);
+      },
+    ),
+  );
+}
+
 class _BuildComponent extends StatelessWidget {
   const _BuildComponent({required this.component});
 
   final Component component;
-
-  void _onTap(BuildContext context) {
-    Navigator.of(context).push(MaterialPageRoute<void>(builder: (context) => ComponentDrops(drops: component.drops!)));
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +71,7 @@ class _BuildComponent extends StatelessWidget {
     return Tooltip(
       message: component.name,
       child: InkWell(
-        onTap: hasDrops ? () => _onTap(context) : null,
+        onTap: hasDrops ? () => _onTap(context, component.drops!) : null,
         child: SizedBox.square(
           dimension: imageBoxSize,
           child: Stack(
@@ -65,7 +81,7 @@ class _BuildComponent extends StatelessWidget {
                   alignment: Alignment.topRight,
                   child: Text('x${component.itemCount}', style: Theme.of(context).textTheme.bodySmall),
                 ),
-              CachedNetworkImage(imageUrl: component.imageUrl),
+              CachedNetworkImage(imageUrl: imageUri(component.imageName)),
             ],
           ),
         ),
@@ -81,16 +97,12 @@ class _BuildBlueprint extends StatelessWidget {
   final String componentImage;
   final List<Drop>? drops;
 
-  void _onTap(BuildContext context) {
-    Navigator.of(context).push(MaterialPageRoute<void>(builder: (context) => ComponentDrops(drops: drops!)));
-  }
-
   @override
   Widget build(BuildContext context) {
     final hasDrops = drops != null && (drops?.isNotEmpty ?? false);
 
     return InkWell(
-      onTap: hasDrops ? () => _onTap(context) : null,
+      onTap: hasDrops ? () => _onTap(context, drops!) : null,
       child: CircleAvatar(
         radius: 25,
         backgroundImage: CachedNetworkImageProvider(blueprintImage),

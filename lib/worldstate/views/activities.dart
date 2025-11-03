@@ -7,7 +7,7 @@ import 'package:navis/worldstate/views/invasions.dart';
 import 'package:navis/worldstate/views/syndicates.dart';
 import 'package:navis/worldstate/views/timers.dart';
 import 'package:navis_ui/navis_ui.dart';
-import 'package:warframestat_repository/warframestat_repository.dart';
+import 'package:warframe_repository/warframe_repository.dart';
 
 enum Tabs { timers, fissures, invasions, syndicates }
 
@@ -16,7 +16,7 @@ class ActivitiesPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final wsRepo = RepositoryProvider.of<WarframestatRepository>(context);
+    final wsRepo = RepositoryProvider.of<WarframeRepository>(context);
 
     return BlocProvider(create: (_) => WorldstateBloc(wsRepo), child: const _ActivitiesView());
   }

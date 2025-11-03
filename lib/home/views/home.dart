@@ -1,16 +1,16 @@
+import 'package:codex/codex.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:navis/codex/codex.dart';
 import 'package:navis/home/home.dart';
-import 'package:warframestat_repository/warframestat_repository.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final repo = RepositoryProvider.of<WarframestatRepository>(context);
+    final repo = RepositoryProvider.of<Codex>(context);
 
     return BlocProvider(create: (_) => SearchBloc(repo), child: const HomeView());
   }
@@ -58,7 +58,7 @@ class _HomeViewState extends State<HomeView> with RouteAware {
 
   @override
   Widget build(BuildContext context) {
-    final children = [const NewsSection(), const ActivitiesSection(), const MasteryInProgressSection()];
+    final children = [const WorldstateSection(), const MasteryInProgressSection()];
 
     return CustomScrollView(
       slivers: [

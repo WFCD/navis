@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hive_ce/hive.dart';
+import 'package:hive_ce_flutter/hive_flutter.dart';
 import 'package:logging/logging.dart';
 import 'package:matomo_tracker/matomo_tracker.dart';
 import 'package:navis/settings/settings.dart';
@@ -17,12 +17,11 @@ class UserSettings {
 
   static final _logger = Logger('UserSettings');
 
-  /// Initializes an instance of [UserSettings] within [path].
-  ///
-  /// You must call [Hive.init(path)] before calling this function
-  static Future<UserSettings> initSettings(String path) async {
+  /// Initializes an instance of [UserSettings] within Application Documents Directory.
+  static Future<UserSettings> initSettings() async {
     _logger.info('initializing user settings');
-    final box = await Hive.openBox<dynamic>('user_settings', path: path);
+    await Hive.initFlutter();
+    final box = await Hive.openBox<dynamic>('user_settings');
 
     return _instance ??= UserSettings._(box);
   }

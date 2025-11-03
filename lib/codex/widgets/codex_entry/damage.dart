@@ -10,7 +10,7 @@ class DamageSection extends StatelessWidget {
   final Damage damage;
 
   String _statRoundDouble(num stat) {
-    return '${statRoundDouble(stat.toDouble(), 1)}';
+    return stat.toStringAsFixed(2);
   }
 
   @override

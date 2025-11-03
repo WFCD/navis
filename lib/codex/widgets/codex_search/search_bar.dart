@@ -1,5 +1,6 @@
 import 'package:animations/animations.dart';
 import 'package:black_hole_flutter/black_hole_flutter.dart';
+import 'package:codex/codex.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
@@ -7,7 +8,6 @@ import 'package:navis/codex/codex.dart';
 import 'package:navis/codex/utils/debouncer.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis/router/routes.dart';
-import 'package:warframestat_repository/warframestat_repository.dart';
 
 class CodexSearchBar extends StatefulWidget {
   const CodexSearchBar({super.key, this.focusNode, this.controller, this.hintText});
@@ -24,15 +24,15 @@ class _CodexSearchBarState extends State<CodexSearchBar> {
   late final FocusNode _focusNode;
   late final SearchController _controller;
 
-  Iterable<SearchItem> _lastOptions = <SearchItem>[];
+  Iterable<CodexItem> _lastOptions = <CodexItem>[];
 
-  late final Debounceable<Iterable<SearchItem>?, String> _debounceSearch;
+  late final Debounceable<Iterable<CodexItem>?, String> _debounceSearch;
 
-  Future<List<SearchItem>?> _search(String query) async {
-    final api = RepositoryProvider.of<WarframestatRepository>(context);
+  Future<List<CodexItem>?> _search(String query) async {
+    final api = RepositoryProvider.of<Codex>(context);
 
     try {
-      final options = await api.searchItems(query);
+      final options = await api.search(query);
       return options..prioritizeResults();
     } on Exception {
       return null;
@@ -45,7 +45,7 @@ class _CodexSearchBarState extends State<CodexSearchBar> {
 
     final options = (await _debounceSearch(query))?.toList();
 
-    Widget container(SearchItem item) {
+    Widget container(CodexItem item) {
       return OpenContainer(
         closedColor: Theme.of(context).colorScheme.surface,
         openColor: Theme.of(context).colorScheme.surface,
@@ -54,7 +54,7 @@ class _CodexSearchBarState extends State<CodexSearchBar> {
           uniqueName: item.uniqueName,
           name: item.name,
           description: item.description,
-          imageUrl: item.imageUrl,
+          imageUrl: imageUri(item.imageName),
           type: item.type,
           vaulted: item.vaulted,
           wikiaUrl: item.wikiaUrl,

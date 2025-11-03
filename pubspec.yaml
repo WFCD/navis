@@ -8,11 +8,12 @@ environment:
   flutter: ^3.35.0
 
 workspace:
+  - packages/codex
   - packages/fish_repository
   - packages/http_client
-  - packages/inventoria
   - packages/navis_ui
   - packages/notification_repository
+  - packages/warframe_repository
   - packages/warframestat_repository
 
 dependencies:
@@ -20,6 +21,8 @@ dependencies:
   black_hole_flutter: ^1.1.0
   bloc: ^9.0.1
   cached_network_image: ^3.3.1
+  codex:
+    path: packages/codex
   collection: ^1.19.0
   drift_flutter: ^0.2.7
   dynamic_system_colors: ^1.8.0
@@ -44,8 +47,8 @@ dependencies:
   hydrated_bloc: ^10.1.1
   internet_connection_checker_plus: ^2.9.0
   intl: ^0.20.2
-  inventoria:
-    path: packages/inventoria
+  isar_community: ^3.3.0-dev.3
+  isar_community_flutter_libs: ^3.3.0-dev.3
   logging: ^1.3.0
   matomo_tracker: ^6.1.0
   mobile_scanner: ^7.1.2
@@ -64,6 +67,8 @@ dependencies:
   visibility_detector: ^0.4.0+2
   warframe_icons:
     git: https://github.com/SlayerOrnstein/warframe_icons.git
+  warframe_repository:
+    path: packages/warframe_repository
   warframestat_client: ^5.3.5
   warframestat_repository:
     path: packages/warframestat_repository
@@ -71,7 +76,7 @@ dependencies:
     git:
       url: https://github.com/SlayerOrnstein/wfcd_dart.git
       path: packages/worldstate_models
-      ref: 5351a6519e255306bd7ebf30dd77dc26d512d367
+      ref: bdadc9e381f408d1dd1cb0afbd528054fc0c02b2
 
 dev_dependencies:
   bloc_test: ^10.0.0

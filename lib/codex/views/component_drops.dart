@@ -1,3 +1,4 @@
+import 'package:codex/codex.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/codex/codex.dart';
@@ -7,18 +8,20 @@ import 'package:warframestat_client/warframestat_client.dart' hide ItemNotFound;
 import 'package:warframestat_repository/warframestat_repository.dart';
 
 class ComponentDrops extends StatelessWidget {
-  const ComponentDrops({super.key, required this.drops});
+  const ComponentDrops({super.key, required this.controller, required this.drops});
 
+  final ScrollController controller;
   final List<Drop> drops;
 
   void _loadRelic(BuildContext context, String itemName) {
+    final codex = RepositoryProvider.of<Codex>(context);
     final repo = RepositoryProvider.of<WarframestatRepository>(context);
 
     Navigator.of(context).push(
       MaterialPageRoute<void>(
         builder: (BuildContext context) {
           return BlocProvider(
-            create: (context) => ItemCubit(itemName, repo)..fetchItem(),
+            create: (context) => ItemCubit(itemName, codex, repo)..fetchItem(),
             child: Scaffold(
               body: Builder(
                 builder: (context) {
@@ -38,7 +41,7 @@ class ComponentDrops extends StatelessWidget {
                         uniqueName: state.item.uniqueName,
                         name: state.item.name,
                         description: state.item.description,
-                        imageUrl: state.item.imageUrl,
+                        imageUrl: imageUri(state.item.imageName),
                         type: state.item.type,
                         wikiaUrl: state.item.wikiaUrl,
                         wikiaThumbnail: state.item.wikiaThumbnail,
@@ -59,28 +62,27 @@ class ComponentDrops extends StatelessWidget {
     const cacheExtent = 150.0;
     const densityThreshold = 10;
 
-    final drops = List<Drop>.from(this.drops)
+    final drops = this.drops
+      ..removeWhere((d) => d.location.contains(RegExp(r'\(([^)]+)\)')))
       ..sort((a, b) {
         return ((b.chance ?? 0) * 100).compareTo((a.chance ?? 0) * 100);
       });
 
-    return Scaffold(
-      appBar: AppBar(),
-      body: ListView.builder(
-        cacheExtent: cacheExtent,
-        itemCount: drops.length,
-        itemBuilder: (context, index) {
-          final drop = drops[index];
-          final percentage = ((drop.chance ?? 0) * 100).toStringAsFixed(2);
+    return ListView.builder(
+      controller: controller,
+      cacheExtent: cacheExtent,
+      itemCount: drops.length,
+      itemBuilder: (context, index) {
+        final drop = drops[index];
+        final percentage = ((drop.chance ?? 0) * 100).toStringAsFixed(2);
 
-          return ListTile(
-            title: Text(drop.location),
-            subtitle: Text('$percentage% drop chance'),
-            onTap: drop.uniqueName != null ? () => _loadRelic(context, drop.uniqueName!) : null,
-            dense: drops.length > densityThreshold,
-          );
-        },
-      ),
+        return ListTile(
+          title: Text(drop.location),
+          subtitle: Text('$percentage% drop chance'),
+          onTap: drop.uniqueName != null ? () => _loadRelic(context, drop.uniqueName!) : null,
+          dense: drops.length > densityThreshold,
+        );
+      },
     );
   }
 }

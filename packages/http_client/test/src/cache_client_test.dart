@@ -23,7 +23,7 @@ void main() {
     PathProviderPlatform.instance = MockPathProviderPlatform();
 
     mockClient = MockClient();
-    cacheClient = await CacheClient.init(mockClient);
+    cacheClient = await CacheClient.create(mockClient, cacheDuration: const Duration(seconds: 30));
   });
 
   tearDownAll(() async {

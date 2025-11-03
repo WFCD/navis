@@ -1,5 +1,6 @@
 import 'package:black_hole_flutter/black_hole_flutter.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:codex/codex.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -16,13 +17,13 @@ import 'package:worldstate_models/worldstate_models.dart';
 class AlertsCard extends StatelessWidget {
   const AlertsCard({super.key});
 
-  Widget _buildAlerts(Alert a, WarframestatRepository r) {
+  Widget _buildAlerts(Alert a, Codex c, WarframestatRepository r) {
     final reward = a.mission.reward.items?.firstOrNull?.replaceAll('Blueprint', '').trim();
 
     if (reward == null) return _AlertWidget(alert: a, isParent: false);
 
     return BlocProvider(
-      create: (_) => ItemCubit(reward, r)..fetchByName(),
+      create: (_) => ItemCubit(reward, c, r)..fetchByName(),
       child: _AlertWidget(alert: a),
     );
   }
@@ -35,6 +36,7 @@ class AlertsCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final codex = RepositoryProvider.of<Codex>(context);
     final wsRepo = RepositoryProvider.of<WarframestatRepository>(context);
 
     return BlocBuilder<WorldstateBloc, WorldState>(
@@ -45,7 +47,9 @@ class AlertsCard extends StatelessWidget {
           _ => <Alert>[],
         };
 
-        return Column(children: alerts.map((a) => _buildAlerts(a, wsRepo)).map((i) => AppCard(child: i)).toList());
+        return Column(
+          children: alerts.map((a) => _buildAlerts(a, codex, wsRepo)).map((i) => AppCard(child: i)).toList(),
+        );
       },
     );
   }
@@ -106,7 +110,7 @@ class _AlertReward extends StatelessWidget {
     final credits = NumberFormat().format(reward?.credits ?? 0);
 
     return ListTile(
-      leading: item != null ? CachedNetworkImage(imageUrl: item!.imageUrl, height: 100, width: 60) : null,
+      leading: item != null ? CachedNetworkImage(imageUrl: imageUri(item!.imageName), height: 100, width: 60) : null,
       title: RichText(
         text: TextSpan(
           text: reward?.itemString,
@@ -149,11 +153,14 @@ class _AlertItemReward extends StatelessWidget {
           uniqueName: item.uniqueName,
           name: item.name,
           description: item.description,
-          imageUrl: item.imageUrl,
+          imageUrl: imageUri(item.imageName),
           type: item.type,
           wikiaUrl: item.wikiaUrl,
           wikiaThumbnail: item.wikiaThumbnail,
-          builder: (_, _) => _AlertReward(reward: reward, item: item),
+          builder: (_, onTap) => InkWell(
+            onTap: onTap,
+            child: _AlertReward(reward: reward, item: item),
+          ),
         );
       },
     );
