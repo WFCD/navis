@@ -17,12 +17,12 @@ dependencies:
     git:
       url: https://github.com/SlayerOrnstein/wfcd_dart.git
       path: packages/warframe_drop_data
-      ref: bdadc9e381f408d1dd1cb0afbd528054fc0c02b2
+      ref: 43f8a84e38153401d186ff5e6c5e6a0cffcedf89
   worldstate_models:
     git:
       url: https://github.com/SlayerOrnstein/wfcd_dart.git
       path: packages/worldstate_models
-      ref: bdadc9e381f408d1dd1cb0afbd528054fc0c02b2
+      ref: 43f8a84e38153401d186ff5e6c5e6a0cffcedf89
 
 dev_dependencies:
   mocktail: ^1.0.4

@@ -28,9 +28,9 @@ class WarframeRepository {
 
     return Isolate.run(() {
       final bountyTables = [
-        Syndicates.cetus,
-        Syndicates.deimos,
         Syndicates.entrati,
+        Syndicates.ostron,
+        Syndicates.solaris,
       ].map((id) => parseBountyRewardTables(dropData, id)).nonNulls.flattenedToList;
 
       return RawWorldstate.fromJson(res.body).toWorldstate(Dependency(bountyTables));
