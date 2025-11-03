@@ -38,7 +38,9 @@ Future<void> main() async {
         ..replay.onErrorSampleRate = sampleRate
         ..replay.quality = SentryReplayQuality.low
         ..enableBreadcrumbTrackingForCurrentPlatform()
-        ..addIntegration(LoggingIntegration());
+        ..addIntegration(LoggingIntegration())
+        ..feedback.isEmailRequired = false
+        ..feedback.isNameRequired = false;
     },
     appRunner: () async {
       if (!kDebugMode || !kProfileMode) {

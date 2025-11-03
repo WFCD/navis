@@ -123,13 +123,18 @@ class _SettingsView extends StatelessWidget {
           title: Text(l10n.aboutCategoryTitle),
           tiles: [
             SettingsTile.navigation(
+              title: Text(l10n.reportBugsTitle),
+              description: Text(l10n.reportBugsDescription),
+              onPressed: UserFeedback.show,
+            ),
+            SettingsTile.navigation(
               title: Text(l10n.contributeTranslationsTitle),
               description: Text(l10n.contributeTranslationsDescription),
               onPressed: (context) => contributeTranslations.launchLink(context),
             ),
             SettingsTile.navigation(
               title: Text(l10n.supportTitle('').trim()),
-              description: const Text('Everything from tech support to supporting app maintance'),
+              description: Text(l10n.donationDescriptionText),
               onPressed: SupportBottomSheet.showSheet,
             ),
             SettingsTile.navigation(
