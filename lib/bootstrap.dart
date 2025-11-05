@@ -37,8 +37,6 @@ Future<void> bootstrap(BootstrapBuilder builder) async {
   final database = await NavisDatabase.open(directory: appDir.path);
   final codex = Codex(database, client);
 
-  await codex.initializeCodex();
-
   logger.info('Booting up Navis');
   runApp(
     RepositoryBootstrap(
@@ -49,4 +47,6 @@ Future<void> bootstrap(BootstrapBuilder builder) async {
       child: BlocBootstrap(child: await builder(router)),
     ),
   );
+
+  await codex.initializeCodex();
 }

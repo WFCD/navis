@@ -46,13 +46,14 @@ class Codex {
     }
 
     _logger.info('Fetching items...');
-    final items =
-        (await client.fetchAllItems(props: codexProps, convert: (list) => list.map(CodexItem.fromJson).toList()))
-            as List<CodexItem>;
+    final items = await client.fetchAllItems(
+      props: codexProps,
+      convert: (list) => list.map(CodexItem.fromJson).toList(),
+    );
 
     _logger.info('Updating codex...');
     final conn = (dir: _database.instance.directory!, schemas: NavisDatabase.schemas, name: _database.instance.name);
-    await processCodexItems(conn, items);
+    await processCodexItems(conn, items as List<CodexItem>);
 
     _logger.info('Wrapping up...');
     final now = DateTime.now();
