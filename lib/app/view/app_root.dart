@@ -82,14 +82,15 @@ class NavisApp extends StatelessWidget {
             color: Colors.grey[900],
             themeMode: themeMode,
             debugShowCheckedModeBanner: false,
+
             theme: NavisThemes.theme(Brightness.light, lightDynamic),
             darkTheme: NavisThemes.theme(Brightness.dark, darkDynamic),
             builder: _builder,
             supportedLocales: NavisLocalizations.supportedLocales,
             locale: language,
             localizationsDelegates: NavisLocalizations.localizationsDelegates,
-            localeResolutionCallback:
-                (locale, supportedLocales) => localeResolutionCallback(context, locale, supportedLocales),
+            localeResolutionCallback: (locale, supportedLocales) =>
+                localeResolutionCallback(context, locale, supportedLocales),
           ),
         );
       },

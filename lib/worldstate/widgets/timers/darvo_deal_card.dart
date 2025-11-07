@@ -7,6 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/codex/codex.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis/router/routes.dart';
+import 'package:navis/utils/string_extensions.dart';
 import 'package:navis/worldstate/bloc/worldstate_bloc.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:warframestat_repository/warframestat_repository.dart';
@@ -118,7 +119,11 @@ class _DealWidget extends StatelessWidget {
                 child: CircleAvatar(
                   radius: 25,
                   backgroundColor: Colors.grey,
-                  backgroundImage: CachedNetworkImageProvider(imageUri(item.imageName)),
+                  backgroundImage: CachedNetworkImageProvider(
+                    item.imageName.warframeItemsCdn().optimize(
+                      pixelRatio: MediaQuery.devicePixelRatioOf(context),
+                    ),
+                  ),
                 ),
               ),
             Expanded(
@@ -140,7 +145,9 @@ class _DealWidget extends StatelessWidget {
           uniqueName: item.uniqueName,
           name: item.name,
           description: item.description,
-          imageUrl: imageUri(item.imageName),
+          imageName: item.imageName.warframeItemsCdn().optimize(
+            pixelRatio: MediaQuery.devicePixelRatioOf(context),
+          ),
           type: item.type,
           wikiaUrl: item.wikiaUrl,
           wikiaThumbnail: item.wikiaThumbnail,

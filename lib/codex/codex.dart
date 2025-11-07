@@ -1,4 +1,3 @@
-export '../utils/item_extensions.dart';
 export 'bloc/search_bloc.dart';
 export 'cubit/item_cubit.dart';
 export 'utils/mod_utils.dart';

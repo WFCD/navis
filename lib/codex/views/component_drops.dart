@@ -41,7 +41,7 @@ class ComponentDrops extends StatelessWidget {
                         uniqueName: state.item.uniqueName,
                         name: state.item.name,
                         description: state.item.description,
-                        imageUrl: imageUri(state.item.imageName),
+                        imageName: state.item.imageName,
                         type: state.item.type,
                         wikiaUrl: state.item.wikiaUrl,
                         wikiaThumbnail: state.item.wikiaThumbnail,

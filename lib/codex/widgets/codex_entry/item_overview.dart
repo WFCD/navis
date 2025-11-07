@@ -4,6 +4,7 @@ import 'package:black_hole_flutter/black_hole_flutter.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:navis/l10n/l10n.dart';
+import 'package:navis/utils/string_extensions.dart';
 import 'package:navis_ui/navis_ui.dart';
 
 // SearchBar is 56dp https://m3.material.io/components/search/specs, this adds a bit of space below
@@ -11,8 +12,8 @@ const _appBarHeight = 64.0;
 
 class ItemOverviewAppBar extends SliverPersistentHeaderDelegate {
   const ItemOverviewAppBar({
-    required this.image,
     required this.name,
+    this.imageName,
     this.description,
     this.releaseDate,
     this.wikiUrl,
@@ -21,8 +22,8 @@ class ItemOverviewAppBar extends SliverPersistentHeaderDelegate {
     required this.expandedHeight,
   });
 
-  final String image;
   final String name;
+  final String? imageName;
   final String? description;
   final String? releaseDate;
   final String? wikiUrl;
@@ -75,7 +76,7 @@ class ItemOverviewAppBar extends SliverPersistentHeaderDelegate {
                 width: MediaQuery.sizeOf(context).width - 8, // 8 is just a padding
                 height: height,
                 child: ItemOverview(
-                  image: image,
+                  imageName: imageName,
                   name: name,
                   description: description,
                   releaseDate: releaseDate,
@@ -92,21 +93,21 @@ class ItemOverviewAppBar extends SliverPersistentHeaderDelegate {
     return oldDelegate.name != name ||
         oldDelegate.description != description ||
         oldDelegate.expandedHeight != expandedHeight ||
-        oldDelegate.image != image;
+        oldDelegate.imageName != imageName;
   }
 }
 
 class ItemOverview extends StatelessWidget {
   const ItemOverview({
     super.key,
-    required this.image,
     required this.name,
+    this.imageName,
     this.description,
     this.releaseDate,
   });
 
-  final String image;
   final String name;
+  final String? imageName;
   final String? description;
   final String? releaseDate;
 
@@ -132,7 +133,12 @@ class ItemOverview extends StatelessWidget {
                   return CircleAvatar(
                     radius: constraints.maxHeight / 2,
                     backgroundColor: colorScheme.onSecondaryContainer,
-                    foregroundImage: CachedNetworkImageProvider(image, maxWidth: constraints.maxWidth ~/ 2),
+                    foregroundImage: CachedNetworkImageProvider(
+                      imageName.warframeItemsCdn().optimize(
+                        width: constraints.maxWidth ~/ 2,
+                        pixelRatio: MediaQuery.devicePixelRatioOf(context),
+                      ),
+                    ),
                   );
                 },
               ),
@@ -150,6 +156,7 @@ class ItemOverview extends StatelessWidget {
             ),
             if (release != null)
               Text(
+                // TODO(Orn): add this to ARB
                 'Release Date ${format(release)}',
                 style: context.textTheme.labelSmall?.copyWith(
                   color: colorScheme.onPrimaryContainer.withAlpha(textAlpha - 30),

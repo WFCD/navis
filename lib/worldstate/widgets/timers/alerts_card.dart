@@ -7,6 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:navis/codex/codex.dart';
 import 'package:navis/l10n/l10n.dart';
+import 'package:navis/utils/string_extensions.dart';
 import 'package:navis/worldstate/bloc/worldstate_bloc.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:warframe_icons/warframe_icons.dart';
@@ -107,10 +108,14 @@ class _AlertReward extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final credits = NumberFormat().format(reward?.credits ?? 0);
-
     return ListTile(
-      leading: item != null ? CachedNetworkImage(imageUrl: imageUri(item!.imageName), height: 100, width: 60) : null,
+      leading: item != null
+          ? CachedNetworkImage(
+              imageUrl: item!.imageName.warframeItemsCdn().optimize(
+                pixelRatio: MediaQuery.devicePixelRatioOf(context),
+              ),
+            )
+          : null,
       title: RichText(
         text: TextSpan(
           text: reward?.itemString,
@@ -118,7 +123,7 @@ class _AlertReward extends StatelessWidget {
           children: [
             if (reward?.credits != null)
               TextSpan(
-                text: ' + ${credits}cr',
+                text: ' + ${NumberFormat().format(reward?.credits ?? 0)}cr',
                 style: context.textTheme.bodySmall?.copyWith(color: context.theme.colorScheme.onSurfaceVariant),
               ),
           ],
@@ -153,7 +158,9 @@ class _AlertItemReward extends StatelessWidget {
           uniqueName: item.uniqueName,
           name: item.name,
           description: item.description,
-          imageUrl: imageUri(item.imageName),
+          imageName: item.imageName.warframeItemsCdn().optimize(
+            pixelRatio: MediaQuery.devicePixelRatioOf(context),
+          ),
           type: item.type,
           wikiaUrl: item.wikiaUrl,
           wikiaThumbnail: item.wikiaThumbnail,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:navis/codex/codex.dart';
+import 'package:navis/utils/string_extensions.dart';
 import 'package:warframestat_client/warframestat_client.dart';
 
 class ModStats extends StatelessWidget {
@@ -26,7 +27,11 @@ class _ModBuilder extends StatelessWidget {
     const size = Size(256, 512);
 
     final rarity = mod.rarity ?? Rarity.common;
-    final modParts = ModParts(thumbnail: imageUri(mod.imageName), polarity: mod.polarity, rarity: rarity);
+    final modParts = ModParts(
+      thumbnail: mod.imageName.warframeItemsCdn().optimize(pixelRatio: MediaQuery.devicePixelRatioOf(context)),
+      polarity: mod.polarity,
+      rarity: rarity,
+    );
 
     final fusionLimit = mod.fusionLimit ?? 0;
 

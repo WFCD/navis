@@ -24,6 +24,7 @@ class BackgroundImage extends StatelessWidget {
       return ImageContainer(
         imageProvider: Assets.derelict.provider(),
         padding: padding,
+        height: height,
         child: const SizedBox(),
       );
     }
@@ -69,35 +70,37 @@ class ImageContainer extends StatelessWidget {
     super.key,
     required this.imageProvider,
     required this.padding,
+    required this.height,
     this.alignment = Alignment.bottomCenter,
-    this.height,
     required this.child,
   });
 
   final ImageProvider imageProvider;
   final EdgeInsetsGeometry padding;
   final Alignment alignment;
-  final double? height;
+  final double height;
   final Widget child;
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        return AnimatedContainer(
-          height: height,
-          duration: kThemeAnimationDuration,
-          alignment: alignment,
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image: ResizeImage(imageProvider, width: constraints.maxWidth.toInt()),
-              fit: BoxFit.cover,
-              colorFilter: ColorFilter.mode(Colors.black.withAlpha(80), BlendMode.darken),
-            ),
+    final pixelRatio = MediaQuery.devicePixelRatioOf(context);
+
+    return AnimatedContainer(
+      height: height,
+      duration: kThemeAnimationDuration,
+      alignment: alignment,
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          image: ResizeImage(
+            imageProvider,
+            width: (height * pixelRatio).round(),
+            policy: ResizeImagePolicy.fit,
           ),
-          child: Padding(padding: padding, child: child),
-        );
-      },
+          fit: BoxFit.cover,
+          colorFilter: ColorFilter.mode(Colors.black.withAlpha(80), BlendMode.darken),
+        ),
+      ),
+      child: Padding(padding: padding, child: child),
     );
   }
 }

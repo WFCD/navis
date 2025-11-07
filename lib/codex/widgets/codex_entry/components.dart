@@ -2,13 +2,14 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:navis/codex/codex.dart';
 import 'package:navis/l10n/l10n.dart';
+import 'package:navis/utils/string_extensions.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:warframestat_client/warframestat_client.dart' hide Alignment;
 
 class ItemComponents extends StatelessWidget {
-  const ItemComponents({super.key, required this.itemImageUrl, required this.components});
+  const ItemComponents({super.key, required this.itemImageName, required this.components});
 
-  final String itemImageUrl;
+  final String? itemImageName;
   final List<Component> components;
 
   @override
@@ -29,8 +30,8 @@ class ItemComponents extends StatelessWidget {
           children: [
             if (blueprint != null)
               _BuildBlueprint(
-                blueprintImage: imageUri(blueprint.imageName),
-                componentImage: itemImageUrl,
+                blueprintImage: blueprint.imageName,
+                componentImage: itemImageName,
                 drops: blueprint.drops,
               ),
             for (final component in parts) _BuildComponent(component: component),
@@ -81,7 +82,11 @@ class _BuildComponent extends StatelessWidget {
                   alignment: Alignment.topRight,
                   child: Text('x${component.itemCount}', style: Theme.of(context).textTheme.bodySmall),
                 ),
-              CachedNetworkImage(imageUrl: imageUri(component.imageName)),
+              CachedNetworkImage(
+                imageUrl: component.imageName.warframeItemsCdn().optimize(
+                  pixelRatio: MediaQuery.devicePixelRatioOf(context),
+                ),
+              ),
             ],
           ),
         ),
@@ -93,20 +98,21 @@ class _BuildComponent extends StatelessWidget {
 class _BuildBlueprint extends StatelessWidget {
   const _BuildBlueprint({required this.blueprintImage, required this.componentImage, required this.drops});
 
-  final String blueprintImage;
-  final String componentImage;
+  final String? blueprintImage;
+  final String? componentImage;
   final List<Drop>? drops;
 
   @override
   Widget build(BuildContext context) {
+    final pixelRatio = MediaQuery.devicePixelRatioOf(context);
     final hasDrops = drops != null && (drops?.isNotEmpty ?? false);
 
     return InkWell(
       onTap: hasDrops ? () => _onTap(context, drops!) : null,
       child: CircleAvatar(
         radius: 25,
-        backgroundImage: CachedNetworkImageProvider(blueprintImage),
-        foregroundImage: CachedNetworkImageProvider(componentImage),
+        backgroundImage: CachedNetworkImageProvider(blueprintImage.warframeItemsCdn().optimize(pixelRatio: pixelRatio)),
+        foregroundImage: CachedNetworkImageProvider(componentImage.warframeItemsCdn().optimize(pixelRatio: pixelRatio)),
       ),
     );
   }

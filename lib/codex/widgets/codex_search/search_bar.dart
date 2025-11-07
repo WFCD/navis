@@ -8,6 +8,7 @@ import 'package:navis/codex/codex.dart';
 import 'package:navis/codex/utils/debouncer.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis/router/routes.dart';
+import 'package:navis/utils/string_extensions.dart';
 
 class CodexSearchBar extends StatefulWidget {
   const CodexSearchBar({super.key, this.focusNode, this.controller, this.hintText});
@@ -54,7 +55,7 @@ class _CodexSearchBarState extends State<CodexSearchBar> {
           uniqueName: item.uniqueName,
           name: item.name,
           description: item.description,
-          imageUrl: imageUri(item.imageName),
+          imageName: item.imageName.warframeItemsCdn().optimize(pixelRatio: MediaQuery.devicePixelRatioOf(context)),
           type: item.type,
           vaulted: item.vaulted,
           wikiaUrl: item.wikiaUrl,

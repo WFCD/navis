@@ -10,4 +10,5 @@ const eventBackkgrounds = <String, String>{
 const primeResurganceBackgrounds = {
   'MPVNezhaOctaviaPrimeDualPack':
       'https://www-static.warframe.com/images/prime-resurgence/rotations/nezha-octavia/masthead-keyart-desktop.png',
+  'MPVWispHildrynPrimeDualPack': '',
 };

@@ -90,7 +90,7 @@ class _CodexViewContent extends StatelessWidget {
               uniqueName: item.uniqueName,
               name: item.name,
               description: item.description,
-              imageUrl: imageUri(item.imageName),
+              imageName: item.imageName,
               type: item.type,
               vaulted: item.vaulted,
               wikiaUrl: item.wikiaUrl,

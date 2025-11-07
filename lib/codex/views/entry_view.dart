@@ -17,8 +17,8 @@ class EntryViewOpenContainer extends StatelessWidget {
     required this.uniqueName,
     required this.name,
     required this.description,
-    required this.imageUrl,
     required this.type,
+    this.imageName,
     this.vaulted,
     this.wikiaUrl,
     this.wikiaThumbnail,
@@ -30,7 +30,7 @@ class EntryViewOpenContainer extends StatelessWidget {
   final String uniqueName;
   final String name;
   final String? description;
-  final String imageUrl;
+  final String? imageName;
   final ItemType type;
   final bool? vaulted;
   final String? wikiaUrl;
@@ -56,7 +56,7 @@ class EntryViewOpenContainer extends StatelessWidget {
                 child: ItemOverview(
                   name: name,
                   description: description ?? '',
-                  image: imageUrl,
+                  imageName: imageName,
                 ),
               ),
             );
@@ -74,7 +74,7 @@ class EntryViewOpenContainer extends StatelessWidget {
         uniqueName: uniqueName,
         name: name,
         description: description,
-        imageUrl: imageUrl,
+        imageName: imageName,
         type: type,
         vaulted: vaulted,
         wikiaUrl: wikiaUrl,
@@ -91,8 +91,8 @@ class EntryView extends StatelessWidget {
     required this.uniqueName,
     required this.name,
     required this.description,
-    required this.imageUrl,
     required this.type,
+    this.imageName,
     this.vaulted,
     this.wikiaUrl,
     this.wikiaThumbnail,
@@ -101,7 +101,7 @@ class EntryView extends StatelessWidget {
   final String uniqueName;
   final String name;
   final String? description;
-  final String imageUrl;
+  final String? imageName;
   final ItemType type;
   final bool? vaulted;
   final String? wikiaUrl;
@@ -115,7 +115,7 @@ class EntryView extends StatelessWidget {
       uniqueName: uniqueName,
       name: name,
       description: description,
-      imageUrl: imageUrl,
+      imageName: imageName,
       type: type,
       vaulted: vaulted,
       wikiaUrl: wikiaUrl,
@@ -138,8 +138,8 @@ class _Overview extends StatelessWidget {
     required this.uniqueName,
     required this.name,
     required this.description,
-    required this.imageUrl,
     required this.type,
+    this.imageName,
     this.vaulted,
     this.wikiaUrl,
     this.wikiaThumbnail,
@@ -148,7 +148,7 @@ class _Overview extends StatelessWidget {
   final String uniqueName;
   final String name;
   final String? description;
-  final String imageUrl;
+  final String? imageName;
   final ItemType type;
   final bool? vaulted;
   final String? wikiaUrl;
@@ -187,7 +187,7 @@ class _Overview extends StatelessWidget {
               SliverPersistentHeader(
                 pinned: true,
                 delegate: ItemOverviewAppBar(
-                  image: imageUrl,
+                  imageName: imageName,
                   name: name,
                   description: description,
                   releaseDate: item?.releaseDate,
@@ -208,8 +208,8 @@ class _Overview extends StatelessWidget {
                   children: [
                     if (isFoundryItem)
                       ItemComponents(
-                        itemImageUrl: imageUri(item!.imageName),
-                        components: (item as BuildableItem).components!,
+                        itemImageName: imageName,
+                        components: (item! as BuildableItem).components!,
                       ),
                     if (isPowerSuit) FrameStats(powerSuit: item),
                     if (isGun) GunStats(gun: item),

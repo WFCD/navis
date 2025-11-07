@@ -28,9 +28,9 @@ class FishCard extends StatelessWidget {
           children: [
             Center(
               child: CachedNetworkImage(
-                width: 150,
-                height: 100,
-                imageUrl: 'webp/fish/${fish.thumbnail}.webp'.genesisGitCdn().optimize(),
+                imageUrl: 'webp/fish/${fish.thumbnail}.webp'.genesisGitCdn().optimize(
+                  pixelRatio: MediaQuery.devicePixelRatioOf(context),
+                ),
               ),
             ),
             Padding(
@@ -86,10 +86,9 @@ class _BuildUniqueResources<T> extends StatelessWidget {
     if (uniqueResources is List<UniqueResource>) {
       resources = Column(
         crossAxisAlignment: CrossAxisAlignment.end,
-        children:
-            (uniqueResources as List<UniqueResource>)
-                .map((r) => Text(r.name, textAlign: TextAlign.end, maxLines: 1, overflow: TextOverflow.ellipsis))
-                .toList(),
+        children: (uniqueResources as List<UniqueResource>)
+            .map((r) => Text(r.name, textAlign: TextAlign.end, maxLines: 1, overflow: TextOverflow.ellipsis))
+            .toList(),
       );
     } else {
       resources = Text((uniqueResources as UniqueResource).name);

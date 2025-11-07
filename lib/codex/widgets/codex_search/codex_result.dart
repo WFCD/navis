@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:codex/codex.dart';
 import 'package:flutter/material.dart';
-import 'package:navis/utils/utils.dart';
+import 'package:navis/utils/string_extensions.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:warframestat_client/warframestat_client.dart';
 
@@ -34,7 +34,11 @@ class CodexResult extends StatelessWidget {
       leading: Hero(
         tag: item.uniqueName,
         child: CircleAvatar(
-          foregroundImage: item.imageName != null ? CachedNetworkImageProvider(imageUri(item.imageName)) : null,
+          foregroundImage: item.imageName != null
+              ? CachedNetworkImageProvider(
+                  item.imageName.warframeItemsCdn().optimize(pixelRatio: MediaQuery.devicePixelRatioOf(context)),
+                )
+              : null,
           backgroundColor: Theme.of(context).canvasColor,
         ),
       ),

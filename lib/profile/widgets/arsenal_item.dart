@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/codex/codex.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis/profile/utils/mastery_utils.dart';
+import 'package:navis/utils/string_extensions.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:warframe_icons/warframe_icons.dart';
 import 'package:warframestat_repository/warframestat_repository.dart';
@@ -38,7 +39,9 @@ class ArsenalItemWidget extends StatelessWidget {
                       uniqueName: item.uniqueName,
                       name: item.name,
                       description: item.description,
-                      imageUrl: imageUri(item.imageName),
+                      imageName: item.imageName.warframeItemsCdn().optimize(
+                        pixelRatio: MediaQuery.devicePixelRatioOf(context),
+                      ),
                       type: item.type,
                       wikiaUrl: item.wikiaUrl,
                       wikiaThumbnail: item.wikiaThumbnail,
@@ -86,7 +89,9 @@ class ArsenalItemTitle extends StatelessWidget {
 
     return ListTile(
       leading: CachedNetworkImage(
-        imageUrl: imageUri(imageName),
+        imageUrl: imageName.warframeItemsCdn().optimize(
+          pixelRatio: MediaQuery.devicePixelRatioOf(context),
+        ),
         width: leadingSize,
         errorWidget: (context, url, error) => const Icon(WarframeIcons.menuLotusEmblem, size: leadingSize),
       ),

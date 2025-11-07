@@ -72,10 +72,9 @@ class _NewsImage extends StatelessWidget {
           borderRadius: borderRadius,
           child: CachedNetworkImage(
             imageUrl: imageUrl,
-            height: height,
             width: width,
-            memCacheHeight: (height * devicePixelRatio).round(),
-            memCacheWidth: (width * devicePixelRatio).round(),
+            maxHeightDiskCache: (height * devicePixelRatio).round(),
+            maxWidthDiskCache: (width * devicePixelRatio).round(),
             fit: BoxFit.cover,
             placeholder: (context, url) => _placeholder(width, height),
             errorWidget: (context, url, dynamic error) => _placeholder(width, height),

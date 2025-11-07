@@ -5,7 +5,7 @@ import 'package:navis/codex/widgets/codex_entry/polarity.dart';
 import 'package:navis/codex/widgets/codex_entry/preinstalled_polarities.dart';
 import 'package:navis/codex/widgets/codex_entry/stats.dart';
 import 'package:navis/l10n/l10n.dart';
-import 'package:navis/utils/utils.dart';
+import 'package:navis/utils/string_extensions.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:warframestat_client/warframestat_client.dart' hide Polarity;
 
@@ -139,8 +139,10 @@ class _AbilityIcon extends StatelessWidget {
     return IconButton(
       onPressed: onTap,
       icon: CachedNetworkImage(
-        imageUrl: ability.imageUrl,
-        width: defaultIconSize * 2.5,
+        imageUrl: ability.imageName.warframeItemsCdn().optimize(
+          width: (defaultIconSize * 2.5).round(),
+          pixelRatio: MediaQuery.devicePixelRatioOf(context),
+        ),
         color: isSelected ? context.theme.colorScheme.secondary : context.theme.colorScheme.onSurface,
       ),
     );

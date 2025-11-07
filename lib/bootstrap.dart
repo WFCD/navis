@@ -29,6 +29,9 @@ Future<void> bootstrap(BootstrapBuilder builder) async {
   Bloc.observer = AppBlocObserver();
   HydratedBloc.storage = await HydratedStorage.build(storageDirectory: HydratedStorageDirectory(temp.path));
 
+  PaintingBinding.instance.imageCache.maximumSize = 200;
+  PaintingBinding.instance.imageCache.maximumSizeBytes = 200 * 1024 * 1024;
+
   final settings = await UserSettings.initSettings();
   final observer = RouteObserver<ModalRoute<void>>();
   final router = AppRouter(navigatorKey: GlobalKey<NavigatorState>(), observer: observer);

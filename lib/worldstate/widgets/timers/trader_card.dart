@@ -109,10 +109,11 @@ class _TraderWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    const containerHeight = 100.0;
     final date = isActive ? expiry : activation;
 
     return ImageContainer(
-      height: 100,
+      height: containerHeight,
       imageProvider: background,
       padding: EdgeInsets.zero,
       child: InkWell(
