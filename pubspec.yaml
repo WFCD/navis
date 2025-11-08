@@ -76,7 +76,7 @@ dependencies:
     git:
       url: https://github.com/SlayerOrnstein/wfcd_dart.git
       path: packages/worldstate_models
-      ref: acbac173e92d4d999921d4b3ab8fa01ee578cc4c
+      ref: c03377a94b3ba32d9579fd3def7c12199b2f23b9
 
 dev_dependencies:
   bloc_test: ^10.0.0
