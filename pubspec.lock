@@ -1694,11 +1694,11 @@ packages:
     dependency: transitive
     description:
       path: "packages/warframe_drop_data"
-      ref: c03377a94b3ba32d9579fd3def7c12199b2f23b9
-      resolved-ref: c03377a94b3ba32d9579fd3def7c12199b2f23b9
+      ref: "warframe_drop_data-v0.1.1"
+      resolved-ref: "07cfd1f5584899afcddf6ade63e424fd1e3518ef"
       url: "https://github.com/SlayerOrnstein/wfcd_dart.git"
     source: git
-    version: "0.1.0+1"
+    version: "0.1.1"
   warframe_icons:
     dependency: "direct main"
     description:
@@ -1712,11 +1712,11 @@ packages:
     dependency: transitive
     description:
       path: "packages/warframe_worldstate_data"
-      ref: c03377a94b3ba32d9579fd3def7c12199b2f23b9
-      resolved-ref: c03377a94b3ba32d9579fd3def7c12199b2f23b9
+      ref: "warframe_worldstate_data-v0.1.0+2"
+      resolved-ref: "581b87c11a0ff476bce7b9724597aad250a06aad"
       url: "https://github.com/SlayerOrnstein/wfcd_dart.git"
     source: git
-    version: "0.1.0+1"
+    version: "0.1.0+2"
   warframestat_client:
     dependency: "direct main"
     description:
@@ -1793,11 +1793,11 @@ packages:
     dependency: "direct main"
     description:
       path: "packages/worldstate_models"
-      ref: c03377a94b3ba32d9579fd3def7c12199b2f23b9
-      resolved-ref: c03377a94b3ba32d9579fd3def7c12199b2f23b9
+      ref: "worldstate_models-v0.1.1+2"
+      resolved-ref: "581b87c11a0ff476bce7b9724597aad250a06aad"
       url: "https://github.com/SlayerOrnstein/wfcd_dart.git"
     source: git
-    version: "0.1.0+1"
+    version: "0.1.1+2"
   xdg_directories:
     dependency: transitive
     description:

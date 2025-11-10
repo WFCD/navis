@@ -17,7 +17,7 @@ extension WorldstateX on Worldstate {
       ..retainWhere((e) => e.isActive)
       ..sort((a, b) => a.tierNum.compareTo(b.tierNum));
 
-    invasions.retainWhere((e) => !e.isCompleted);
+    invasions.retainWhere((e) => !e.isComplete);
 
     // Not sure why some items cost 1 plat when in-game they don't so best to filter those out until I understand why
     const platThreshold = 1;
