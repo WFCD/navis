@@ -1286,17 +1286,17 @@
       }
     }
   },
-  "userFeedbackLabelText": "Feedback",
+  "userFeedbackLabelText": "Opinião",
   "@userFeedbackLabelText": {
     "description": "User feedback label text",
     "type": "text"
   },
-  "userFeedbackErrorText": "Please enter some text",
+  "userFeedbackErrorText": "Por favor, insira algum texto",
   "@userFeedbackErrorText": {
     "description": "User feedback error text",
     "type": "text"
   },
-  "userFeedbackSubmitButton": "Submit",
+  "userFeedbackSubmitButton": "Enviar",
   "@userFeedbackSubmitButton": {
     "description": "User feedback submit button text",
     "type": "text"
