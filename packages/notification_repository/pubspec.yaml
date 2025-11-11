@@ -4,19 +4,15 @@ version: 1.0.0+1
 publish_to: none
 
 environment:
-  sdk: ^3.9.0
-  flutter: ^3.35.0
+  sdk: ^3.10.0
+  flutter: ^3.38.0
 
 resolution: workspace
 
 dependencies:
-  firebase_core: ^4.2.0
-  firebase_messaging: ^16.0.3
+  firebase_core: ^4.2.1
+  firebase_messaging: ^16.0.4
   flutter:
     sdk: flutter
   intl: ^0.20.1
   warframestat_client: ^5.3.4
-
-dependency_overrides:
-  meta: 1.15.0
-  web: 0.3.0

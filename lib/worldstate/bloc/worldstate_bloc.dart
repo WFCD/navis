@@ -29,14 +29,14 @@ class WorldstateBloc extends HydratedBloc<WorldstateEvent, WorldState> with Repl
     if (state is WorldstateSuccess) {
       final current = (state as WorldstateSuccess).seed.timestamp;
       final elapsed = DateTime.timestamp().difference(current);
-      if (elapsed >= const Duration(minutes: 3)) await _forceUpdateWorldstate(locale);
+      if (elapsed >= worldstateRefreshTime) await _forceUpdateWorldstate(locale);
     } else {
       // Assume there's no cache and update the state
       await _forceUpdateWorldstate(locale);
     }
 
     await emit.onEach<Worldstate>(
-      repository.worldstateEmitter(locale),
+      repository.worldstateEmitter(locale: locale),
       onData: (state) {
         if (isClosed) return;
         add(WorldstateUpdated(state..clean()));
@@ -65,10 +65,8 @@ class WorldstateBloc extends HydratedBloc<WorldstateEvent, WorldState> with Repl
 
   @override
   WorldState? fromJson(Map<String, dynamic> json) {
-    _logger.info('Hydrating state');
     try {
       final seed = Worldstate.fromMap(json);
-
       return WorldstateSuccess(seed);
     } on Exception catch (e, stack) {
       _logger.warning('Failed to load worldstate from cache', e, stack);
@@ -79,8 +77,6 @@ class WorldstateBloc extends HydratedBloc<WorldstateEvent, WorldState> with Repl
   @override
   Map<String, dynamic>? toJson(WorldState state) {
     if (state is! WorldstateSuccess) return null;
-    _logger.info('Caching state');
-
     return state.seed.toMap();
   }
 }

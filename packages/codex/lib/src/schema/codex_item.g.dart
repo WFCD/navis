@@ -102,7 +102,7 @@ const CodexItemSchema = CollectionSchema(
   getId: _codexItemGetId,
   getLinks: _codexItemGetLinks,
   attach: _codexItemAttach,
-  version: '3.3.0-dev.3',
+  version: '3.3.0',
 );
 
 int _codexItemEstimateSize(

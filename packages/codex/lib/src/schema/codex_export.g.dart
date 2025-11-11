@@ -37,7 +37,7 @@ const CodexExportSchema = CollectionSchema(
   getId: _codexExportGetId,
   getLinks: _codexExportGetLinks,
   attach: _codexExportAttach,
-  version: '3.3.0-dev.3',
+  version: '3.3.0',
 );
 
 int _codexExportEstimateSize(

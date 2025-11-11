@@ -4,8 +4,8 @@ version: 1.0.0
 publish_to: none
 
 environment:
-  sdk: ^3.9.0
-  flutter: ^3.35.0
+  sdk: ^3.10.0
+  flutter: ^3.38.0
 
 resolution: workspace
 
@@ -19,7 +19,7 @@ dependencies:
   gap: ^3.0.1
   html: ^0.15.6
   intl: ^0.20.2
-  meta: 1.16.0
+  meta: ^1.17.0
   visibility_detector: ^0.4.0+2
   warframe_icons:
     git: https://github.com/SlayerOrnstein/warframe_icons.git

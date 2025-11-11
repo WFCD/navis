@@ -5,6 +5,7 @@ import 'package:cronet_http/cronet_http.dart';
 import 'package:flutter_ua/flutter_ua.dart';
 import 'package:http/http.dart';
 import 'package:http/io_client.dart';
+import 'package:http/retry.dart';
 
 const int cacheMaxSize = 2 * 1024 * 1024;
 
@@ -35,5 +36,5 @@ Future<Client> buildNativeClient() async {
     httpClient = CronetClient.fromCronetEngine(engine, closeEngine: true);
   }
 
-  return httpClient ?? IOClient(HttpClient()..userAgent = userAgent);
+  return RetryClient(httpClient ?? IOClient(HttpClient()..userAgent = userAgent));
 }

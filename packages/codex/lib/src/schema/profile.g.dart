@@ -75,7 +75,7 @@ const PlayerProfileSchema = CollectionSchema(
   getId: _playerProfileGetId,
   getLinks: _playerProfileGetLinks,
   attach: _playerProfileAttach,
-  version: '3.3.0-dev.3',
+  version: '3.3.0',
 );
 
 int _playerProfileEstimateSize(

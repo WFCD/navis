@@ -1,5 +1,4 @@
 import 'package:dynamic_system_colors/dynamic_system_colors.dart';
-import 'package:feedback_sentry/feedback_sentry.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/l10n/l10n.dart';
@@ -73,25 +72,21 @@ class NavisApp extends StatelessWidget {
 
     return DynamicColorBuilder(
       builder: (lightDynamic, darkDynamic) {
-        return BetterFeedback(
-          pixelRatio: MediaQuery.devicePixelRatioOf(context),
-          localizationsDelegates: NavisLocalizations.localizationsDelegates,
-          child: MaterialApp.router(
-            routerConfig: router.routes,
-            title: 'Cephalon Navis',
-            color: Colors.grey[900],
-            themeMode: themeMode,
-            debugShowCheckedModeBanner: false,
+        return MaterialApp.router(
+          routerConfig: router.routes,
+          title: 'Cephalon Navis',
+          color: Colors.grey[900],
+          themeMode: themeMode,
+          debugShowCheckedModeBanner: false,
 
-            theme: NavisThemes.theme(Brightness.light, lightDynamic),
-            darkTheme: NavisThemes.theme(Brightness.dark, darkDynamic),
-            builder: _builder,
-            supportedLocales: NavisLocalizations.supportedLocales,
-            locale: language,
-            localizationsDelegates: NavisLocalizations.localizationsDelegates,
-            localeResolutionCallback: (locale, supportedLocales) =>
-                localeResolutionCallback(context, locale, supportedLocales),
-          ),
+          theme: NavisThemes.theme(Brightness.light, lightDynamic),
+          darkTheme: NavisThemes.theme(Brightness.dark, darkDynamic),
+          builder: _builder,
+          supportedLocales: NavisLocalizations.supportedLocales,
+          locale: language,
+          localizationsDelegates: NavisLocalizations.localizationsDelegates,
+          localeResolutionCallback: (locale, supportedLocales) =>
+              localeResolutionCallback(context, locale, supportedLocales),
         );
       },
     );

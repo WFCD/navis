@@ -3,16 +3,16 @@
 // Check in to version control
 
 import 'package:hive_ce/hive.dart';
-import 'package:http_client/src/hive/hive_adapters.dart';
+import 'package:cache/hive/hive_adapters.dart';
 
 extension HiveRegistrar on HiveInterface {
   void registerAdapters() {
-    registerAdapter(CachedItemAdapter());
+    registerAdapter(CachedDataAdapter());
   }
 }
 
 extension IsolatedHiveRegistrar on IsolatedHiveInterface {
   void registerAdapters() {
-    registerAdapter(CachedItemAdapter());
+    registerAdapter(CachedDataAdapter());
   }
 }

@@ -1,5 +1,5 @@
+import 'package:cache/cache.dart';
 import 'package:http/http.dart';
-import 'package:http_client/http_client.dart';
 import 'package:warframestat_client/warframestat_client.dart' hide Worldstate;
 import 'package:warframestat_repository/src/models/regions.dart';
 
@@ -13,9 +13,12 @@ typedef CraigRegion = ({List<CraigNode> nodes, List<CraigJunction> junctions});
 /// {@endtemplate}
 class WarframestatRepository {
   /// {@macro warframestat_repository}
-  WarframestatRepository({required Client client}) : _client = client;
+  WarframestatRepository({required Client client, required CacheManager manager})
+    : _client = client,
+      _manager = manager;
 
   final Client _client;
+  final CacheManager _manager;
 
   /// The locale request will be made for
   Language language = Language.en;
@@ -25,10 +28,19 @@ class WarframestatRepository {
   /// I doubt the list will be updated since DE doesn't really add much on their
   /// end so caching for even a year is perfectly fine
   Future<List<SynthTarget>> fetchTargets() async {
-    final client = SynthTargetClient(
-      client: await CacheClient.create(_client, cacheDuration: const Duration(days: 30)),
-      ua: userAgent,
-      language: language,
+    const key = 'synth_targets';
+    final data = await _manager.get<List<dynamic>>(key);
+    if (data != null) {
+      final targets = List<Map<String, dynamic>>.from(data);
+      return targets.map(SynthTarget.fromJson).toList();
+    }
+
+    final client = SynthTargetClient(client: _client, ua: userAgent, language: language);
+    final targets = await client.fetchTargets();
+    await _manager.set(
+      key,
+      targets.map((t) => t.toJson()).toList(),
+      ttl: const Duration(days: DateTime.monthsPerYear * DateTime.daysPerWeek),
     );
 
     return client.fetchTargets();
@@ -36,27 +48,36 @@ class WarframestatRepository {
 
   /// Get one item based on unique name
   Future<Item?> fetchItem(String uniqueName) async {
-    final client = WarframeItemsClient(
-      client: await CacheClient.create(_client, cacheDuration: const Duration(minutes: 30)),
-      ua: userAgent,
-      language: language,
-    );
+    final data = await _manager.get<Map<String, dynamic>>(uniqueName);
+    if (data != null) return toItem(data);
 
-    return client.fetchItem(uniqueName);
+    final client = WarframeItemsClient(client: _client, ua: userAgent, language: language);
+    final item = await client.fetchItem(uniqueName);
+    if (item == null) return null;
+
+    await _manager.set(uniqueName, item.toJson(), ttl: const Duration(days: DateTime.daysPerWeek));
+
+    return item;
   }
 
   Future<CraigRegion> fetchRegions() async {
-    final client = await CacheClient.create(_client, cacheDuration: const Duration(days: 30));
-    final res = await client.get(Uri.parse('https://cdn.truemaster.app/regions.json'));
+    const key = 'regions';
+    final data = _manager.get<Map<String, dynamic>>(key);
+    if (data != null) {}
 
+    final res = await _client.get(Uri.parse('https://cdn.truemaster.app/regions.json'));
     final json = jsonDecode(res.body) as Map<String, dynamic>;
-    final nodes = _jsonMapList(json['nodes'] as List<dynamic>);
-    final junctions = _jsonMapList(json['junctions'] as List<dynamic>);
+    final regions = _decodeData(json);
 
-    return (nodes: nodes.map(CraigNode.fromJson).toList(), junctions: junctions.map(CraigJunction.fromJson).toList());
+    await _manager.set(key, json, ttl: const Duration(days: 31));
+
+    return regions;
   }
 
-  List<Map<String, dynamic>> _jsonMapList(List<dynamic> list) {
-    return List<Map<String, dynamic>>.from(list);
+  CraigRegion _decodeData(Map<String, dynamic> data) {
+    final nodes = List<Map<String, dynamic>>.from(data['nodes'] as List<dynamic>);
+    final junctions = List<Map<String, dynamic>>.from(data['junctions'] as List<dynamic>);
+
+    return (nodes: nodes.map(CraigNode.fromJson).toList(), junctions: junctions.map(CraigJunction.fromJson).toList());
   }
 }

@@ -4,8 +4,8 @@ version: 0.1.0+1
 publish_to: none
 
 environment:
-  sdk: ^3.5.0
-  flutter: ^3.24.0
+  sdk: ^3.10.0
+  flutter: ^3.38.0
 
 resolution: workspace
 
@@ -17,8 +17,8 @@ dependencies:
     sdk: flutter
   flutter_ua: ^1.0.1
   hive_ce: ^2.15.1
-  http: ^1.5.0
-  meta: 1.16.0
+  http: ^1.6.0
+  meta: ^1.17.0
   path_provider: ^2.1.5
 
 dev_dependencies:

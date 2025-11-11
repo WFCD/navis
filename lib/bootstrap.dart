@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:cache/cache.dart';
 import 'package:codex/codex.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -36,6 +37,7 @@ Future<void> bootstrap(BootstrapBuilder builder) async {
   final observer = RouteObserver<ModalRoute<void>>();
   final router = AppRouter(navigatorKey: GlobalKey<NavigatorState>(), observer: observer);
   final client = SentryHttpClient(client: await buildNativeClient(), captureFailedRequests: true);
+  final cacheManager = await CacheManager.open(temp.path);
 
   final database = await NavisDatabase.open(directory: appDir.path);
   final codex = Codex(database, client);
@@ -47,6 +49,7 @@ Future<void> bootstrap(BootstrapBuilder builder) async {
       settings: settings,
       codex: codex,
       client: client,
+      cacheManager: cacheManager,
       child: BlocBootstrap(child: await builder(router)),
     ),
   );

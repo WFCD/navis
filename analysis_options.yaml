@@ -12,6 +12,7 @@ analyzer:
     - packages/codex/lib/src/schema/*.g.dart
     - packages/inventoria/lib/src/*.g.dart
     - packages/inventoria/test/drift/inventoria/**
+    - packages/cache/lib/hive/hive_registrar.g.dart
 
 linter:
   rules:

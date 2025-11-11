@@ -58,7 +58,7 @@ const MasterableItemSchema = CollectionSchema(
   getId: _masterableItemGetId,
   getLinks: _masterableItemGetLinks,
   attach: _masterableItemAttach,
-  version: '3.3.0-dev.3',
+  version: '3.3.0',
 );
 
 int _masterableItemEstimateSize(

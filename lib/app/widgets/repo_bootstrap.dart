@@ -1,3 +1,4 @@
+import 'package:cache/cache.dart';
 import 'package:codex/codex.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -13,16 +14,19 @@ class RepositoryBootstrap extends StatelessWidget {
     super.key,
     required RouteObserver<ModalRoute<void>> routeObserver,
     required Client client,
+    required CacheManager cacheManager,
     required Codex codex,
     required UserSettings settings,
     required this.child,
   }) : _settings = settings,
        _routeObserver = routeObserver,
        _codex = codex,
-       _client = client;
+       _client = client,
+       _cacheManager = cacheManager;
 
   final RouteObserver<ModalRoute<void>> _routeObserver;
   final Client _client;
+  final CacheManager _cacheManager;
   final UserSettings _settings;
   final Codex _codex;
   final Widget child;
@@ -36,8 +40,12 @@ class RepositoryBootstrap extends StatelessWidget {
         RepositoryProvider.value(value: _codex),
         RepositoryProvider.value(value: _settings),
         RepositoryProvider(create: (_) => _routeObserver),
-        RepositoryProvider(create: (_) => WarframestatRepository(client: _client)..language = language),
-        RepositoryProvider(create: (_) => WarframeRepository(client: _client)),
+        RepositoryProvider(
+          create: (_) => WarframestatRepository(client: _client, manager: _cacheManager)..language = language,
+        ),
+        RepositoryProvider(
+          create: (_) => WarframeRepository(client: _client, manager: _cacheManager),
+        ),
         RepositoryProvider(create: (_) => NotificationRepository()),
       ],
       child: child,
