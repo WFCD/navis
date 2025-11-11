@@ -1,5 +1,5 @@
 {
-  "@@locale": "zh",
+  "@@locale": "zh-CN",
   "@@last_modified": "2020-03-03T16:56:42.387837",
   "levelInfo": "等級: {min} - {max}",
   "@levelInfo": {
@@ -1285,5 +1285,25 @@
         "type": "int"
       }
     }
+  },
+  "userFeedbackLabelText": "Feedback",
+  "@userFeedbackLabelText": {
+    "description": "User feedback label text",
+    "type": "text"
+  },
+  "userFeedbackErrorText": "Please enter some text",
+  "@userFeedbackErrorText": {
+    "description": "User feedback error text",
+    "type": "text"
+  },
+  "userFeedbackSubmitButton": "Submit",
+  "@userFeedbackSubmitButton": {
+    "description": "User feedback submit button text",
+    "type": "text"
+  },
+  "donationDescriptionText": "Everything from tech support to supporting app maintance",
+  "@donationDescriptionText": {
+    "description": "donationText",
+    "type": "text"
   }
 }
