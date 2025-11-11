@@ -1301,7 +1301,7 @@
     "description": "User feedback submit button text",
     "type": "text"
   },
-  "donationDescriptionText": "Everything from tech support to supporting app maintance",
+  "donationDescriptionText": "Tudo, desde suporte técnico até a manutenção do aplicativo",
   "@donationDescriptionText": {
     "description": "donationText",
     "type": "text"
