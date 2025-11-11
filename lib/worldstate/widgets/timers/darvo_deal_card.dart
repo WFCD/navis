@@ -145,9 +145,7 @@ class _DealWidget extends StatelessWidget {
           uniqueName: item.uniqueName,
           name: item.name,
           description: item.description,
-          imageName: item.imageName.warframeItemsCdn().optimize(
-            pixelRatio: MediaQuery.devicePixelRatioOf(context),
-          ),
+          imageName: item.imageName,
           type: item.type,
           wikiaUrl: item.wikiaUrl,
           wikiaThumbnail: item.wikiaThumbnail,
