@@ -78,7 +78,7 @@ dependencies:
     git:
       url: https://github.com/SlayerOrnstein/wfcd_dart.git
       path: packages/worldstate_models
-      ref: worldstate_models-v0.1.2+1
+      ref: worldstate_models-v0.1.3+4
 
 dev_dependencies:
   bloc_test: ^10.0.0
@@ -102,7 +102,7 @@ flutter:
   uses-material-design: true
   assets:
     - assets/baro_banner.webp
-    - assets/varzia_banner.gif
+    - assets/varzia_banner.webp
 
 sentry:
   upload_debug_symbols: true

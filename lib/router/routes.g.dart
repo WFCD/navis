@@ -289,7 +289,7 @@ mixin $TraderPageRoute on GoRouteData {
           _$boolConverter,
         ) ??
         false,
-    state.extra as List<TraderItem>?,
+    state.extra as List<({String name, int primePrice, int regularPrice})>?,
   );
 
   TraderPageRoute get _self => this as TraderPageRoute;
