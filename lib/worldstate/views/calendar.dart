@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:navis_ui/navis_ui.dart';
-import 'package:warframe_icons/warframe_icons.dart';
+import 'package:warframe_worldstate_data/warframe_worldstate_data.dart';
 import 'package:worldstate_models/worldstate_models.dart';
 
 class CalendarPage extends StatelessWidget {
@@ -62,12 +62,11 @@ class EventContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    IconData icon(String type) => switch (type.toLowerCase()) {
-      'to do' => Icons.task_alt_rounded,
-      'override' => Icons.settings_suggest_rounded,
-      'big prize!' => Icons.card_giftcard_rounded,
-      'birthday' => Icons.cake_rounded,
-      _ => WarframeIcons.menuLotusEmblem,
+    IconData icon(CalendarEvents type) => switch (type) {
+      .challenge => Icons.task_alt_rounded,
+      .upgrade => Icons.settings_suggest_rounded,
+      .reward => Icons.card_giftcard_rounded,
+      .plot => Icons.cake_rounded,
     };
 
     Widget content(CalendarDayEvent event) => switch (event) {
@@ -91,7 +90,7 @@ class EventContent extends StatelessWidget {
       children: [
         ListTile(
           leading: Icon(icon(events.first.type)),
-          title: Text(events.first.type, style: Theme.of(context).textTheme.titleMedium),
+          title: Text(events.first.type.translation, style: Theme.of(context).textTheme.titleMedium),
         ),
         ...events.map(content),
       ],

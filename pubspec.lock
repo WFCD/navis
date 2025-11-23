@@ -1685,14 +1685,14 @@ packages:
     source: git
     version: "1.0.0"
   warframe_worldstate_data:
-    dependency: transitive
+    dependency: "direct main"
     description:
       path: "packages/warframe_worldstate_data"
-      ref: "warframe_worldstate_data-v0.1.1+3"
-      resolved-ref: a50aa3cb4af77cea77ea154f175a04f18625ef30
+      ref: "warframe_worldstate_data-v0.1.3"
+      resolved-ref: f589405ea1140293ab78b360df8e2858b3f72ab7
       url: "https://github.com/SlayerOrnstein/wfcd_dart.git"
     source: git
-    version: "0.1.1+3"
+    version: "0.1.3"
   warframestat_client:
     dependency: "direct main"
     description:
@@ -1769,11 +1769,11 @@ packages:
     dependency: "direct main"
     description:
       path: "packages/worldstate_models"
-      ref: "worldstate_models-v0.1.3+4"
-      resolved-ref: "46dc370ac0da97ab062acb75f2bbb80854e8a86a"
+      ref: "worldstate_models-v0.1.5+1"
+      resolved-ref: "4ba008dc32e17ef3235e8d908d28625d6da031af"
       url: "https://github.com/SlayerOrnstein/wfcd_dart.git"
     source: git
-    version: "0.1.3+4"
+    version: "0.1.5+1"
   xdg_directories:
     dependency: transitive
     description:

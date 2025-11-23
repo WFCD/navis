@@ -71,6 +71,11 @@ dependencies:
     git: https://github.com/SlayerOrnstein/warframe_icons.git
   warframe_repository:
     path: packages/warframe_repository
+  warframe_worldstate_data:
+    git:
+      url: https://github.com/SlayerOrnstein/wfcd_dart.git
+      path: packages/warframe_worldstate_data
+      ref: warframe_worldstate_data-v0.1.3
   warframestat_client: ^5.3.5
   warframestat_repository:
     path: packages/warframestat_repository
@@ -78,7 +83,7 @@ dependencies:
     git:
       url: https://github.com/SlayerOrnstein/wfcd_dart.git
       path: packages/worldstate_models
-      ref: worldstate_models-v0.1.3+4
+      ref: worldstate_models-v0.1.5+1
 
 dev_dependencies:
   bloc_test: ^10.0.0
