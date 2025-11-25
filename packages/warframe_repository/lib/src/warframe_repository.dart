@@ -12,7 +12,7 @@ const _worldstateApi = 'https://api.warframe.com/cdn/worldState.php';
 const __dropDataRefreshTime = Duration(days: DateTime.daysPerWeek * DateTime.monthsPerYear);
 
 /// How longe before the worldstate is considered expired
-const worldstateRefreshTime = Duration(seconds: Duration.secondsPerMinute);
+const worldstateRefreshTime = Duration(seconds: Duration.secondsPerMinute * 3);
 
 /// {@template warframe_repository}
 /// Repository to interact and transform data straight from DE
@@ -35,7 +35,7 @@ class WarframeRepository {
     final syndicateBountyTables = await fetchSyndicateRewards();
     final raw = await _fetchRawWorldstate();
     final worldstate = await Isolate.run(() => raw.toWorldstate(Dependency(syndicateBountyTables)));
-    // ignore: avoid_redundant_argument_values Keep in case we need to increase the time later on
+
     await _cacheManager.set('worldstate', worldstate.toMap(), ttl: worldstateRefreshTime);
 
     return worldstate;
@@ -70,7 +70,6 @@ class WarframeRepository {
     if (data != null) return RawWorldstate.fromJson(data);
 
     final res = await _client.get(Uri.parse(_worldstateApi));
-    // ignore: avoid_redundant_argument_values Keep in case we need to increase the time later on
     await _cacheManager.set(key, res.body, ttl: worldstateRefreshTime);
 
     return RawWorldstate.fromJson(res.body);
