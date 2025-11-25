@@ -1,5 +1,5 @@
 {
-  "@@locale": "pt",
+  "@@locale": "pt-BR",
   "@@last_modified": "2020-03-03T16:56:42.387837",
   "levelInfo": "Nível: {min} - {max}",
   "@levelInfo": {
@@ -1285,5 +1285,25 @@
         "type": "int"
       }
     }
+  },
+  "userFeedbackLabelText": "Opinião",
+  "@userFeedbackLabelText": {
+    "description": "User feedback label text",
+    "type": "text"
+  },
+  "userFeedbackErrorText": "Por favor, insira algum texto",
+  "@userFeedbackErrorText": {
+    "description": "User feedback error text",
+    "type": "text"
+  },
+  "userFeedbackSubmitButton": "Enviar",
+  "@userFeedbackSubmitButton": {
+    "description": "User feedback submit button text",
+    "type": "text"
+  },
+  "donationDescriptionText": "Tudo, desde suporte técnico até a manutenção do aplicativo",
+  "@donationDescriptionText": {
+    "description": "donationText",
+    "type": "text"
   }
 }
