@@ -33,18 +33,38 @@ class FissureWidget extends StatelessWidget {
       }
     }();
 
-    final child = Stack(
+    final child = _FissureContent(fissure: fissure, opacity: opacity, iconSize: iconSize, icon: icon);
+
+    if (fissure.tierNum == 6) {
+      return GlitchySkyCard(node: fissure.node, child: child);
+    }
+
+    return SkyboxCard(node: fissure.node, child: child);
+  }
+}
+
+class _FissureContent extends StatelessWidget {
+  const _FissureContent({required this.fissure, required this.opacity, required this.iconSize, required this.icon});
+
+  final VoidFissure fissure;
+  final double opacity;
+  final double iconSize;
+  final IconData? icon;
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
       alignment: AlignmentDirectional.center,
       children: [
         if (fissure.isStorm)
-          const Center(
+          Center(
             child: Opacity(
               opacity: opacity,
               child: AppIcon(WarframeIcons.archwing, size: iconSize),
             ),
           ),
         if (fissure.isSteelpath)
-          const Center(
+          Center(
             child: Opacity(
               opacity: opacity,
               child: AppIcon(WarframeIcons.spLogo, size: iconSize),
@@ -62,12 +82,6 @@ class FissureWidget extends StatelessWidget {
         ),
       ],
     );
-
-    if (fissure.tierNum == 6) {
-      return GlitchySkyCard(node: fissure.node, child: child);
-    }
-
-    return SkyboxCard(node: fissure.node, child: child);
   }
 }
 
@@ -111,7 +125,6 @@ class _OmniaFissureWidgetState extends State<OmniaFissureWidget> {
     WarframeIcons.fissuresMeso,
     WarframeIcons.fissuresNeo,
     WarframeIcons.fissuresAxi,
-    WarframeIcons.fissuresRequiem,
   ];
 
   late final Timer timer;
@@ -122,18 +135,18 @@ class _OmniaFissureWidgetState extends State<OmniaFissureWidget> {
     super.initState();
 
     rand = Random();
-    timer = Timer.periodic(const Duration(seconds: 2), (timer) {
-      if (mounted && rand.nextBool()) setState(() {});
+    timer = Timer.periodic(glitchFrequency + const Duration(milliseconds: 3000), (timer) {
+      if (mounted) setState(() {});
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return AnimatedSwitcher(
-      duration: const Duration(milliseconds: 1500),
+      duration: Durations.short4,
       switchInCurve: Curves.easeInOut,
       switchOutCurve: Curves.easeInOut,
-      child: Icon(_icons[rand.nextInt(5)], size: 40),
+      child: Icon(_icons[rand.nextInt(_icons.length)], size: 40),
     );
   }
 

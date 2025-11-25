@@ -2,7 +2,6 @@ import 'package:animated_glitch/animated_glitch.dart';
 import 'package:black_hole_flutter/black_hole_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:navis_ui/navis_ui.dart';
-import 'package:visibility_detector/visibility_detector.dart';
 
 class SkyboxCard extends StatelessWidget {
   const SkyboxCard({
@@ -43,6 +42,8 @@ class SkyboxCard extends StatelessWidget {
   }
 }
 
+const glitchFrequency = Duration(milliseconds: 1500);
+
 class GlitchySkyCard extends StatefulWidget {
   const GlitchySkyCard({
     super.key,
@@ -69,36 +70,24 @@ class _GlitchySkyCardState extends State<GlitchySkyCard> {
   @override
   void initState() {
     super.initState();
+
     _controller = AnimatedGlitchController(
-      frequency: const Duration(milliseconds: 1500),
-      distortionShift: const DistortionShift(count: 3),
-    )..stop();
+      frequency: glitchFrequency,
+      distortionShift: const DistortionShift(count: 5),
+      // autoStart: true,
+    );
   }
 
   @override
   Widget build(BuildContext context) {
-    return VisibilityDetector(
-      key: const Key('SkyboxCard-glitched'),
-      onVisibilityChanged: (VisibilityInfo info) {
-        if (!mounted) return;
-
-        setState(() {
-          if (info.visibleFraction == 1) {
-            _controller.start();
-          } else {
-            _controller.stop();
-          }
-        });
-      },
-      child: AnimatedGlitchWithoutShader(
-        controller: _controller,
-        child: SkyboxCard(
-          node: widget.node,
-          margin: widget.margin,
-          padding: widget.padding,
-          height: widget.height,
-          child: widget.child,
-        ),
+    return AnimatedGlitchWithoutShader(
+      controller: _controller,
+      child: SkyboxCard(
+        node: widget.node,
+        margin: widget.margin,
+        padding: widget.padding,
+        height: widget.height,
+        child: widget.child,
       ),
     );
   }
