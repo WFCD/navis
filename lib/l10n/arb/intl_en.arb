@@ -396,9 +396,29 @@
     "description": "Title for the about app dialog",
     "type": "text"
   },
-  "contributeTranslationsTitle": "Contribute Translations",
-  "@contributeTranslationsTitle": {
+  "contributeAppTranslationsTitle": "App Translations",
+  "@contributeAppTranslationsTitle": {
     "description": "Title for contribute translations link",
+    "type": "text"
+  },
+  "contributeAppTranslationsDescription": "Contribute translations to the app itself",
+  "@contributeAppTranslationsDescription": {
+    "description": "Title for contribute translations link",
+    "type": "text"
+  },
+  "contributeDataTranslationsTitle": "Worldstate Translations",
+  "@contributeDataTranslationsTitle": {
+    "description": "Title for contribute translations link",
+    "type": "text"
+  },
+  "contributeDataTranslationsDescription": "Contribute translations to worldstate strings, i.e. nodes, mission types, etc",
+  "@contributeDataTranslationsDescription": {
+    "description": "Title for contribute translations link",
+    "type": "text"
+  },
+  "contributeTranslationsTitle": "Contribute translations",
+  "@contributeTranslationsTitle": {
+    "description": "Description for contribute translations link",
     "type": "text"
   },
   "contributeTranslationsDescription": "Volunteer to contribute translations",

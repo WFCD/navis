@@ -5,6 +5,7 @@ import 'package:collection/collection.dart';
 import 'package:http/http.dart';
 import 'package:meta/meta.dart';
 import 'package:warframe_drop_data/warframe_drop_data.dart';
+import 'package:warframe_worldstate_data/warframe_worldstate_data.dart';
 import 'package:worldstate_models/worldstate_models.dart';
 
 const _worldstateApi = 'https://api.warframe.com/cdn/worldState.php';
@@ -34,7 +35,8 @@ class WarframeRepository {
 
     final syndicateBountyTables = await fetchSyndicateRewards();
     final raw = await _fetchRawWorldstate();
-    final worldstate = await Isolate.run(() => raw.toWorldstate(Dependency(syndicateBountyTables)));
+    final lang = WorldstateDataLocale.values.firstWhereOrNull((v) => v.name == locale) ?? .en;
+    final worldstate = await Isolate.run(() => raw.toWorldstate(Dependency(syndicateBountyTables, lang)));
 
     await _cacheManager.set('worldstate', worldstate.toMap(), ttl: worldstateRefreshTime);
 

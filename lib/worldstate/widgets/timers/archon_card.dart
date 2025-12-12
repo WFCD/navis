@@ -23,7 +23,7 @@ class ArchonHuntCard extends StatelessWidget {
   }
 
   SortieMission toSortieMission(Variant mission) {
-    return SortieMission(node: mission.node, objective: mission.node, modifier: null);
+    return SortieMission(node: mission.node, objective: mission.node);
   }
 
   @override

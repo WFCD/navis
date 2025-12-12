@@ -58,9 +58,9 @@ class AboutApp extends AbstractSettingsTile {
                   ),
                   TextSpan(text: 'Contribute translations\n', style: aboutTextStyle),
                   TextSpan(
-                    text: contributeTranslations,
+                    text: contributeAppTranslations,
                     style: linkStyle,
-                    recognizer: TapGestureRecognizer()..onTap = () => contributeTranslations.launchLink(context),
+                    recognizer: TapGestureRecognizer()..onTap = () => contributeAppTranslations.launchLink(context),
                   ),
                   TextSpan(style: textTheme.bodySmall, text: '\n\n${l10n.legalese}\n\n'),
                   TextSpan(style: textTheme.bodySmall, text: '${l10n.warframeLinkTitle}. \n'),

@@ -95,6 +95,7 @@ jobs:
 
   ios-appstore:
     runs-on: macos-15
+    if: false
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6
@@ -226,6 +227,7 @@ jobs:
 
   ios-github:
     runs-on: macos-15
+    if: false
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6

@@ -53,7 +53,7 @@ class SortieMission extends StatelessWidget {
     super.key,
     required this.node,
     required this.objective,
-    required this.modifier,
+    this.modifier,
   });
 
   final String node;

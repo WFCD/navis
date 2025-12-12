@@ -130,7 +130,8 @@ class _SettingsView extends StatelessWidget {
             SettingsTile.navigation(
               title: Text(l10n.contributeTranslationsTitle),
               description: Text(l10n.contributeTranslationsDescription),
-              onPressed: (context) => contributeTranslations.launchLink(context),
+              onPressed: (context) =>
+                  showModalBottomSheet<void>(context: context, builder: (context) => const _TranslationsSheet()),
             ),
             SettingsTile.navigation(
               title: Text(l10n.supportTitle('').trim()),
@@ -142,6 +143,31 @@ class _SettingsView extends StatelessWidget {
               onPressed: AboutApp.displayDialog,
             ),
           ],
+        ),
+      ],
+    );
+  }
+}
+
+class _TranslationsSheet extends StatelessWidget {
+  const _TranslationsSheet();
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = context.l10n;
+
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        ListTile(
+          title: Text(l10n.contributeAppTranslationsTitle),
+          subtitle: Text(l10n.contributeAppTranslationsDescription),
+          onTap: () => contributeAppTranslations.launchLink(context),
+        ),
+        ListTile(
+          title: Text(l10n.contributeDataTranslationsTitle),
+          subtitle: Text(l10n.contributeDataTranslationsDescription),
+          onTap: () => contributeDataTranslations.launchLink(context),
         ),
       ],
     );

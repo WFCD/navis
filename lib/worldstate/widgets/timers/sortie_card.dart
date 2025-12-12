@@ -24,7 +24,11 @@ class SortieCard extends StatelessWidget {
 
   SortieMission toSortieMission(Variant mission) {
     // modifier is only null for archon hunt, safe to force for regular sorties
-    return SortieMission(node: mission.node, objective: mission.type, modifier: mission.modifier!.type);
+    return SortieMission(
+      node: mission.node,
+      objective: mission.type,
+      modifier: mission.modifier!.title,
+    );
   }
 
   @override
