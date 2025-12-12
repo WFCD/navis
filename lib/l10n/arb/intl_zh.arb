@@ -1,7 +1,7 @@
 {
   "@@locale": "zh-CN",
   "@@last_modified": "2020-03-03T16:56:42.387837",
-  "levelInfo": "等級: {min} - {max}",
+  "levelInfo": "等级: {min} - {max}",
   "@levelInfo": {
     "description": "The information of the current enemy levels",
     "type": "text",
@@ -14,12 +14,12 @@
       }
     }
   },
-  "tapForMoreDetails": "點擊以查看更多詳細信息",
+  "tapForMoreDetails": "点击以查看更多详细信息",
   "@tapForMoreDetails": {
     "description": "General description to tell the user that this object takes you to a different page",
     "type": "text"
   },
-  "seeDetails": "查看詳情",
+  "seeDetails": "查看详情",
   "@seeDetails": {
     "description": "General button to see more details of given object",
     "type": "text"
@@ -34,7 +34,7 @@
     "description": "General button to wiki of given item",
     "type": "text"
   },
-  "eventDescription": "介紹",
+  "eventDescription": "介绍",
   "@eventDescription": {
     "description": "Event description category title",
     "type": "text"
@@ -54,12 +54,12 @@
     "description": "The progress of the current event from 0 to 100 %",
     "type": "text"
   },
-  "eventStatusEta": "剩餘時間 (ETA)",
+  "eventStatusEta": "剩余时间 (ETA)",
   "@eventStatusEta": {
     "description": "Current events remaining estimated time",
     "type": "text"
   },
-  "eventRewards": "獎勵",
+  "eventRewards": "奖励",
   "@eventRewards": {
     "description": "Event reward title",
     "type": "text"
@@ -69,7 +69,7 @@
     "description": "Bounty card title.",
     "type": "text"
   },
-  "errorTitle": "發生錯誤",
+  "errorTitle": "发生错误",
   "@errorTitle": {
     "description": "error title",
     "type": "text"
@@ -79,7 +79,7 @@
     "description": "error description",
     "type": "text"
   },
-  "baroTitle": "Baro Ki'Teer",
+  "baroTitle": "奸商",
   "@baroTitle": {
     "description": "Title for Baro Ki'Teer card",
     "type": "text"
@@ -121,7 +121,7 @@
       }
     }
   },
-  "kuvaBanner": "Kuva 將會刷新在",
+  "kuvaBanner": "Kuva 将会刷新在",
   "@kuvaBanner": {
     "description": "Kuva refresh countdown title",
     "type": "text"
@@ -161,12 +161,12 @@
     "description": "Duviri Cycle title",
     "type": "text"
   },
-  "timersTitle": "計時器",
+  "timersTitle": "计时器",
   "@timersTitle": {
     "description": "Times title",
     "type": "text"
   },
-  "fissuresTitle": "虛空裂縫",
+  "fissuresTitle": "虚空裂缝",
   "@fissuresTitle": {
     "description": "Fissures title",
     "type": "text"
@@ -176,7 +176,7 @@
     "description": "Invasions title",
     "type": "text"
   },
-  "syndicatesTitle": "集團",
+  "syndicatesTitle": "集团",
   "@syndicatesTitle": {
     "description": "Syndicates title",
     "type": "text"
@@ -216,7 +216,7 @@
     "description": "Notifications category title",
     "type": "text"
   },
-  "rareAlertsNotificationTitle": "稀有警報",
+  "rareAlertsNotificationTitle": "稀有警报",
   "@rareAlertsNotificationTitle": {
     "description": "Rare Alerts title",
     "type": "text"
