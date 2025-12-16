@@ -46,10 +46,7 @@ class Codex {
     }
 
     _logger.info('Fetching items...');
-    final items = await client.fetchAllItems(
-      props: codexProps,
-      convert: (list) => list.map(CodexItem.fromJson).toList(),
-    );
+    final items = await client.fetchAllItems(props: codexProps, encoder: CodexItem.fromJson);
 
     _logger.info('Updating codex...');
     final conn = (dir: _database.instance.directory!, schemas: NavisDatabase.schemas, name: _database.instance.name);

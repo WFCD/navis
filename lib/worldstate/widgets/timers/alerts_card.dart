@@ -103,11 +103,13 @@ class _AlertWidget extends StatelessWidget {
 class _AlertReward extends StatelessWidget {
   const _AlertReward({required this.reward, this.item});
 
-  final Reward? reward;
+  final Reward reward;
   final ItemCommon? item;
 
   @override
   Widget build(BuildContext context) {
+    final rewardItem = reward.countedItems!.first;
+
     return ListTile(
       leading: item != null
           ? CachedNetworkImage(
@@ -118,12 +120,12 @@ class _AlertReward extends StatelessWidget {
           : null,
       title: RichText(
         text: TextSpan(
-          text: reward?.itemString,
+          text: '${rewardItem.count}x ${rewardItem.type}',
           style: context.theme.textTheme.titleMedium,
           children: [
-            if (reward?.credits != null)
+            if (reward.credits != null)
               TextSpan(
-                text: ' + ${NumberFormat().format(reward?.credits ?? 0)}cr',
+                text: ' + ${NumberFormat().format(reward.credits ?? 0)}cr',
                 style: context.textTheme.bodySmall?.copyWith(color: context.theme.colorScheme.onSurfaceVariant),
               ),
           ],
@@ -141,7 +143,7 @@ class _AlertReward extends StatelessWidget {
 class _AlertItemReward extends StatelessWidget {
   const _AlertItemReward({required this.reward});
 
-  final Reward? reward;
+  final Reward reward;
 
   @override
   Widget build(BuildContext context) {
