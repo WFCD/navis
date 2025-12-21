@@ -396,9 +396,29 @@
     "description": "Title for the about app dialog",
     "type": "text"
   },
-  "contributeTranslationsTitle": "Внести вклад в перевод",
-  "@contributeTranslationsTitle": {
+  "contributeAppTranslationsTitle": "App Translations",
+  "@contributeAppTranslationsTitle": {
     "description": "Title for contribute translations link",
+    "type": "text"
+  },
+  "contributeAppTranslationsDescription": "Contribute translations to the app itself",
+  "@contributeAppTranslationsDescription": {
+    "description": "Title for contribute translations link",
+    "type": "text"
+  },
+  "contributeDataTranslationsTitle": "Worldstate Translations",
+  "@contributeDataTranslationsTitle": {
+    "description": "Title for contribute translations link",
+    "type": "text"
+  },
+  "contributeDataTranslationsDescription": "Contribute translations to worldstate strings, i.e. nodes, mission types, etc",
+  "@contributeDataTranslationsDescription": {
+    "description": "Title for contribute translations link",
+    "type": "text"
+  },
+  "contributeTranslationsTitle": "Contribute translations",
+  "@contributeTranslationsTitle": {
+    "description": "Description for contribute translations link",
     "type": "text"
   },
   "contributeTranslationsDescription": "Помочь с переводом",
@@ -1285,5 +1305,25 @@
         "type": "int"
       }
     }
+  },
+  "userFeedbackLabelText": "Feedback",
+  "@userFeedbackLabelText": {
+    "description": "User feedback label text",
+    "type": "text"
+  },
+  "userFeedbackErrorText": "Please enter some text",
+  "@userFeedbackErrorText": {
+    "description": "User feedback error text",
+    "type": "text"
+  },
+  "userFeedbackSubmitButton": "Submit",
+  "@userFeedbackSubmitButton": {
+    "description": "User feedback submit button text",
+    "type": "text"
+  },
+  "donationDescriptionText": "Everything from tech support to supporting app maintance",
+  "@donationDescriptionText": {
+    "description": "donationText",
+    "type": "text"
   }
 }
