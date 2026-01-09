@@ -411,7 +411,7 @@
     "description": "Title for contribute translations link",
     "type": "text"
   },
-  "contributeDataTranslationsDescription": "Contribute translations to worldstate strings, i.e. nodes, mission types, etc",
+  "contributeDataTranslationsDescription": "Contribuir com traduções dos textos do World State, como nós, tipos de missão, etc",
   "@contributeDataTranslationsDescription": {
     "description": "Title for contribute translations link",
     "type": "text"
