@@ -42,22 +42,17 @@ class EntryViewOpenContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const elevation = 0.0;
-
     if (_miscTypes.contains(type)) {
       return builder(context, () {
         showModalBottomSheet<void>(
           context: context,
           builder: (context) {
             return Padding(
-              padding: const EdgeInsets.only(bottom: 16, left: 8, right: 8),
-              child: SizedBox(
-                height: (MediaQuery.sizeOf(context).height / 100) * 20,
-                child: ItemOverview(
-                  name: name,
-                  description: description ?? '',
-                  imageName: imageName,
-                ),
+              padding: const EdgeInsets.only(bottom: 32),
+              child: MinimalItemOverview(
+                name: name,
+                description: description,
+                imageName: imageName,
               ),
             );
           },
@@ -66,7 +61,7 @@ class EntryViewOpenContainer extends StatelessWidget {
     }
 
     return OpenContainer(
-      closedElevation: elevation,
+      closedElevation: 0,
       useRootNavigator: context.rootNavigator.mounted,
       openColor: openColor ?? Theme.of(context).colorScheme.surfaceContainer,
       closedColor: closedColor ?? Colors.transparent,

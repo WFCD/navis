@@ -1,4 +1,3 @@
-import 'package:animations/animations.dart';
 import 'package:black_hole_flutter/black_hole_flutter.dart';
 import 'package:codex/codex.dart';
 import 'package:flutter/material.dart';
@@ -8,7 +7,6 @@ import 'package:navis/codex/codex.dart';
 import 'package:navis/codex/utils/debouncer.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis/router/routes.dart';
-import 'package:navis/utils/string_extensions.dart';
 
 class CodexSearchBar extends StatefulWidget {
   const CodexSearchBar({super.key, this.focusNode, this.controller, this.hintText});
@@ -47,20 +45,21 @@ class _CodexSearchBarState extends State<CodexSearchBar> {
     final options = (await _debounceSearch(query))?.toList();
 
     Widget container(CodexItem item) {
-      return OpenContainer(
-        closedColor: Theme.of(context).colorScheme.surface,
-        openColor: Theme.of(context).colorScheme.surface,
-        closedBuilder: (_, onTap) => CodexResult(item: item, onTap: onTap),
-        openBuilder: (_, _) => EntryView(
-          uniqueName: item.uniqueName,
-          name: item.name,
-          description: item.description,
-          imageName: item.imageName.warframeItemsCdn().optimize(pixelRatio: MediaQuery.devicePixelRatioOf(context)),
-          type: item.type,
-          vaulted: item.vaulted,
-          wikiaUrl: item.wikiaUrl,
-          wikiaThumbnail: item.wikiaThumbnail,
-        ),
+      return EntryViewOpenContainer(
+        uniqueName: item.uniqueName,
+        name: item.name,
+        description: item.description,
+        imageName: item.imageName,
+        type: item.type,
+        vaulted: item.vaulted,
+        wikiaUrl: item.wikiaUrl,
+        wikiaThumbnail: item.wikiaThumbnail,
+        builder: (_, onTap) {
+          return Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8),
+            child: CodexResult(item: item, showDescription: item.description != null, onTap: onTap),
+          );
+        },
       );
     }
 

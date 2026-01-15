@@ -79,7 +79,6 @@ class ItemOverviewAppBar extends SliverPersistentHeaderDelegate {
                   imageName: imageName,
                   name: name,
                   description: description,
-                  releaseDate: releaseDate,
                 ),
               ),
             ),
@@ -103,35 +102,29 @@ class ItemOverview extends StatelessWidget {
     required this.name,
     this.imageName,
     this.description,
-    this.releaseDate,
   });
 
   final String name;
   final String? imageName;
   final String? description;
-  final String? releaseDate;
 
   @override
   Widget build(BuildContext context) {
-    const textAlpha = 160;
-    const textAlignment = TextAlign.center;
-
     final colorScheme = context.theme.colorScheme;
-    final release = releaseDate != null ? DateTime.parse(releaseDate!) : null;
-    final format = MaterialLocalizations.of(context).formatCompactDate;
 
     return Card(
       color: colorScheme.secondaryContainer,
       child: Padding(
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.symmetric(vertical: 16),
         child: Column(
           mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: .center,
           children: [
-            Expanded(
+            Flexible(
               child: LayoutBuilder(
                 builder: (context, constraints) {
                   return CircleAvatar(
-                    radius: constraints.maxHeight / 2,
+                    radius: constraints.maxHeight,
                     backgroundColor: colorScheme.onSecondaryContainer,
                     foregroundImage: CachedNetworkImageProvider(
                       imageName.warframeItemsCdn().optimize(
@@ -143,28 +136,72 @@ class ItemOverview extends StatelessWidget {
                 },
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8),
-              child: ListTile(
-                title: Text(name, textAlign: textAlignment),
-                subtitle: Text(description ?? '', textAlign: TextAlign.center),
-                titleTextStyle: context.textTheme.titleMedium?.copyWith(color: colorScheme.onPrimaryContainer),
-                subtitleTextStyle: context.textTheme.bodySmall?.copyWith(
-                  color: colorScheme.onPrimaryContainer.withAlpha(textAlpha),
-                ),
-              ),
+            Text(
+              name,
+              style: context.textTheme.titleLarge,
+              textAlign: TextAlign.center,
             ),
-            if (release != null)
-              Text(
-                // TODO(Orn): add this to ARB
-                'Release Date ${format(release)}',
-                style: context.textTheme.labelSmall?.copyWith(
-                  color: colorScheme.onPrimaryContainer.withAlpha(textAlpha - 30),
+            if (description != null)
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+                child: Text(
+                  description!,
+                  style: context.textTheme.bodyMedium,
+                  textAlign: TextAlign.center,
                 ),
               ),
           ],
         ),
       ),
+    );
+  }
+}
+
+class MinimalItemOverview extends StatelessWidget {
+  const MinimalItemOverview({super.key, required this.name, this.imageName, this.description});
+
+  final String name;
+  final String? imageName;
+  final String? description;
+
+  @override
+  Widget build(BuildContext context) {
+    final colorScheme = context.theme.colorScheme;
+
+    return Column(
+      mainAxisSize: .min,
+      mainAxisAlignment: .center,
+      children: [
+        Flexible(
+          child: LayoutBuilder(
+            builder: (context, constraints) {
+              return Padding(
+                padding: const EdgeInsets.all(8),
+                child: CircleAvatar(
+                  radius: constraints.maxHeight / 6,
+                  backgroundColor: colorScheme.onSecondaryContainer,
+                  foregroundImage: CachedNetworkImageProvider(
+                    imageName.warframeItemsCdn().optimize(
+                      width: constraints.maxWidth ~/ 2,
+                      pixelRatio: MediaQuery.devicePixelRatioOf(context),
+                    ),
+                  ),
+                ),
+              );
+            },
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 12),
+          child: Column(
+            children: [
+              Text(name, style: context.textTheme.titleLarge, textAlign: .left),
+              Gaps.gap8,
+              if (description != null) Text(description!, textAlign: .left),
+            ],
+          ),
+        ),
+      ],
     );
   }
 }

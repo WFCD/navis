@@ -7,6 +7,7 @@ import 'package:navis/codex/widgets/codex_entry/stats.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis/utils/string_extensions.dart';
 import 'package:navis_ui/navis_ui.dart';
+import 'package:warframe_icons/warframe_icons.dart';
 import 'package:warframestat_client/warframestat_client.dart' hide Polarity;
 
 class FrameStats extends StatelessWidget {
@@ -134,7 +135,8 @@ class _AbilityIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const defaultIconSize = 24.0;
+    const defaultIconSize = 10.0;
+    final color = isSelected ? context.theme.colorScheme.secondary : context.theme.colorScheme.onSurface;
 
     return IconButton(
       onPressed: onTap,
@@ -143,7 +145,8 @@ class _AbilityIcon extends StatelessWidget {
           width: (defaultIconSize * 2.5).round(),
           pixelRatio: MediaQuery.devicePixelRatioOf(context),
         ),
-        color: isSelected ? context.theme.colorScheme.secondary : context.theme.colorScheme.onSurface,
+        errorWidget: (context, str, obj) => Icon(WarframeIcons.nightmare, size: 60, color: color),
+        color: color,
       ),
     );
   }
