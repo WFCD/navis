@@ -16,7 +16,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_ua: ^1.0.1
-  hive_ce: ^2.15.1
+  hive_ce: ^2.17.0
   http: ^1.6.0
   meta: ^1.17.0
   path_provider: ^2.1.5

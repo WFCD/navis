@@ -9,7 +9,7 @@ environment:
 resolution: workspace
 
 dependencies:
-  hive_ce: ^2.15.1
+  hive_ce: ^2.17.0
   meta: ^1.17.0
 
 dev_dependencies:
