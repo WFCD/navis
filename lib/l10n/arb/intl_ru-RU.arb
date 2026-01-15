@@ -1,0 +1,1329 @@
+{
+  "@@locale": "ru",
+  "@@last_modified": "2020-03-03T16:56:42.387837",
+  "levelInfo": "Уровни: {min} - {max}",
+  "@levelInfo": {
+    "description": "The information of the current enemy levels",
+    "type": "text",
+    "placeholders": {
+      "min": {
+        "type": "int"
+      },
+      "max": {
+        "type": "int"
+      }
+    }
+  },
+  "tapForMoreDetails": "Для получения более подробной информации",
+  "@tapForMoreDetails": {
+    "description": "General description to tell the user that this object takes you to a different page",
+    "type": "text"
+  },
+  "seeDetails": "Подробнее",
+  "@seeDetails": {
+    "description": "General button to see more details of given object",
+    "type": "text"
+  },
+  "seeMore": "Подробнее",
+  "@seeMore": {
+    "description": "General button to see more of a overview object",
+    "type": "text"
+  },
+  "seeWiki": "Смотреть в Wiki",
+  "@seeWiki": {
+    "description": "General button to wiki of given item",
+    "type": "text"
+  },
+  "eventDescription": "Описание",
+  "@eventDescription": {
+    "description": "Event description category title",
+    "type": "text"
+  },
+  "eventStatus": "Статус события",
+  "@eventStatus": {
+    "description": "Event status category title",
+    "type": "text"
+  },
+  "eventStatusNode": "Узел",
+  "@eventStatusNode": {
+    "description": "The node that the event is taking place in",
+    "type": "text"
+  },
+  "eventStatusProgress": "Прогресс",
+  "@eventStatusProgress": {
+    "description": "The progress of the current event from 0 to 100 %",
+    "type": "text"
+  },
+  "eventStatusEta": "Осталось (приблизительно)",
+  "@eventStatusEta": {
+    "description": "Current events remaining estimated time",
+    "type": "text"
+  },
+  "eventRewards": "Награды",
+  "@eventRewards": {
+    "description": "Event reward title",
+    "type": "text"
+  },
+  "bountyTitle": "Заказы",
+  "@bountyTitle": {
+    "description": "Bounty card title.",
+    "type": "text"
+  },
+  "errorTitle": "Произошла ошибка приложения",
+  "@errorTitle": {
+    "description": "error title",
+    "type": "text"
+  },
+  "errorDescription": "Произошла непредвиденная ошибка в системе ядра (операционной системы).\nОшибка при отправке системным администраторам...",
+  "@errorDescription": {
+    "description": "error description",
+    "type": "text"
+  },
+  "baroTitle": "Баро Ки'Тиир",
+  "@baroTitle": {
+    "description": "Title for Baro Ki'Teer card",
+    "type": "text"
+  },
+  "location": "Расположение",
+  "@location": {
+    "description": "Reuseable string for location",
+    "type": "text"
+  },
+  "baroLeavesOn": "Отбывает в",
+  "@baroLeavesOn": {
+    "description": "shows when Baro Ki'Teer is leaving",
+    "type": "text"
+  },
+  "baroArrivesOn": "Прибывает в",
+  "@baroArrivesOn": {
+    "description": "shows at when Baro Ki'Teer will arrive",
+    "type": "text"
+  },
+  "characterInventory": "{character} Инвентарь",
+  "@characterInventory": {
+    "description": "character Inventory title",
+    "type": "text",
+    "placeholders": {
+      "character": {
+        "type": "String"
+      }
+    }
+  },
+  "countdownTooltip": "Завершится {date}",
+  "@countdownTooltip": {
+    "description": "Countdown tooltip with end date of the current running timer",
+    "type": "text",
+    "placeholders": {
+      "date": {
+        "type": "DateTime",
+        "format": "HH:mm:ss yyyy-MM-dd",
+        "isCustomDateFormat": true
+      }
+    }
+  },
+  "kuvaBanner": "Кува обновится через",
+  "@kuvaBanner": {
+    "description": "Kuva refresh countdown title",
+    "type": "text"
+  },
+  "formorianTitle": "Фоморианец",
+  "@formorianTitle": {
+    "description": "Fomorian progress title",
+    "type": "text"
+  },
+  "razorbackTitle": "Армада Секачей",
+  "@razorbackTitle": {
+    "description": "Razorback progress title",
+    "type": "text"
+  },
+  "cetusCycleTitle": "Равнины Эйдолона",
+  "@cetusCycleTitle": {
+    "description": "Earth and Cetus cycle title",
+    "type": "text"
+  },
+  "vallisCycleTitle": "Долина Сфер",
+  "@vallisCycleTitle": {
+    "description": "Vallis cycle title",
+    "type": "text"
+  },
+  "cambionCycleTitle": "Камбионский Дрейф",
+  "@cambionCycleTitle": {
+    "description": "Cambion Cycle title",
+    "type": "text"
+  },
+  "zarimanCycleTitle": "Зариман",
+  "@zarimanCycleTitle": {
+    "description": "Zariman Cycle title",
+    "type": "text"
+  },
+  "duviriCycleTitle": "Дувири",
+  "@duviriCycleTitle": {
+    "description": "Duviri Cycle title",
+    "type": "text"
+  },
+  "timersTitle": "Таймеры",
+  "@timersTitle": {
+    "description": "Times title",
+    "type": "text"
+  },
+  "fissuresTitle": "Разрывы Бездны",
+  "@fissuresTitle": {
+    "description": "Fissures title",
+    "type": "text"
+  },
+  "invasionsTitle": "Вторжения",
+  "@invasionsTitle": {
+    "description": "Invasions title",
+    "type": "text"
+  },
+  "syndicatesTitle": "Синдикаты",
+  "@syndicatesTitle": {
+    "description": "Syndicates title",
+    "type": "text"
+  },
+  "codexTitle": "Кодекс",
+  "@codexTitle": {
+    "description": "Codex title",
+    "type": "text"
+  },
+  "codexDescription": "Поиск всех предметов",
+  "@codexDescription": {
+    "description": "Codex description",
+    "type": "text"
+  },
+  "helpfulLinksTitle": "Полезные ссылки",
+  "@helpfulLinksTitle": {
+    "description": "Helpful Links title",
+    "type": "text"
+  },
+  "behaviorTitle": "Оформление",
+  "@behaviorTitle": {
+    "description": "Behavior category title",
+    "type": "text"
+  },
+  "themeTitle": "Тема",
+  "@themeTitle": {
+    "description": "Theme title",
+    "type": "text"
+  },
+  "themeDescription": "Выбрать тему оформления.",
+  "@themeDescription": {
+    "description": "Theme option description",
+    "type": "text"
+  },
+  "notificationsTitle": "Уведомления",
+  "@notificationsTitle": {
+    "description": "Notifications category title",
+    "type": "text"
+  },
+  "rareAlertsNotificationTitle": "Редкие Тревоги",
+  "@rareAlertsNotificationTitle": {
+    "description": "Rare Alerts title",
+    "type": "text"
+  },
+  "rareAlertsNotificationDescription": "Оповещение о редких Тревогах, в основном Дары Лотус.",
+  "@rareAlertsNotificationDescription": {
+    "description": "Description for rare alerts option",
+    "type": "text"
+  },
+  "operationAlertsNotificationTitle": "Сигналы тревоги",
+  "@operationAlertsNotificationTitle": {
+    "description": "Rare Alerts title",
+    "type": "text"
+  },
+  "operationAlertsNotificationDescription": "Уведомления об операциях",
+  "@operationAlertsNotificationDescription": {
+    "description": "Description for rare alerts option",
+    "type": "text"
+  },
+  "baroNotificationTitle": "Баро Ки'Тиир",
+  "@baroNotificationTitle": {
+    "description": "Baro's notification title",
+    "type": "text"
+  },
+  "baroNotificationDescription": "Оповещения о прибытии и отбытии Торговца из Бездны.",
+  "@baroNotificationDescription": {
+    "description": "Notification description for both Baro's arrivial and departure.",
+    "type": "text"
+  },
+  "darvoNotificationTitle": "Ежедневные предложения Дарво",
+  "@darvoNotificationTitle": {
+    "description": "Notification title for darvo's daily deals",
+    "type": "text"
+  },
+  "darvoNotificationDescription": "Уведомляет о ежедневном товаре Дарво.",
+  "@darvoNotificationDescription": {
+    "description": "Notification description for Darvo's Daily Deal",
+    "type": "text"
+  },
+  "sortieNotificationTitle": "Вылазка",
+  "@sortieNotificationTitle": {
+    "description": "Notification title for sorties",
+    "type": "text"
+  },
+  "sortieNotificationDescription": "Уведомляет о новой Вылазке.",
+  "@sortieNotificationDescription": {
+    "description": "description for sortie notification option",
+    "type": "text"
+  },
+  "sentientOutpostNotificationTitle": "Мюрекс",
+  "@sentientOutpostNotificationTitle": {
+    "description": "Notification title for sentient outpost",
+    "type": "text"
+  },
+  "sentientOutpostNotificationDescription": "Уведомляет о местоположении Мюрекса.",
+  "@sentientOutpostNotificationDescription": {
+    "description": "Notification description for sentient outpost option",
+    "type": "text"
+  },
+  "warframeNewsTitle": "Новости",
+  "@warframeNewsTitle": {
+    "description": "Main Title for Warframe news page",
+    "type": "text"
+  },
+  "warframeNewsNotificationTitle": "Новости",
+  "@warframeNewsNotificationTitle": {
+    "description": "Main Title for Warframe news notifications",
+    "type": "text"
+  },
+  "warframeNewsNotificationDescription": "О Прайм Доступе, Стримах, Обновлениях.",
+  "@warframeNewsNotificationDescription": {
+    "description": "Main description for Warframe news notifications",
+    "type": "text"
+  },
+  "planetCyclesNotificationTitle": "Циклы открытых локаций",
+  "@planetCyclesNotificationTitle": {
+    "description": "Main title for open world notifications",
+    "type": "text"
+  },
+  "planetCyclesNotificationDescription": "О циклах на открытых локациях.",
+  "@planetCyclesNotificationDescription": {
+    "description": "Main description for open world notifications",
+    "type": "text"
+  },
+  "resourcesNotificationTitle": "Ресурсы",
+  "@resourcesNotificationTitle": {
+    "description": "Main title for resource notifications",
+    "type": "text"
+  },
+  "resourcesNotificationDescription": "О наградах: чертежи и ресурсы.",
+  "@resourcesNotificationDescription": {
+    "description": "Main description for resource notifications",
+    "type": "text"
+  },
+  "fissuresNotificationTitle": "Миссии Разрыва Бездны",
+  "@fissuresNotificationTitle": {
+    "description": "Main title for fisssures notifications",
+    "type": "text"
+  },
+  "fissuresNotificationDescription": "Фильтруйте уведомления о Разрывах Бездны по предпочитаемому типу миссии.",
+  "@fissuresNotificationDescription": {
+    "description": "Main description for fissures notifications",
+    "type": "text"
+  },
+  "earthDayOption": "Земля - День",
+  "@earthDayOption": {
+    "description": "Earth cycle option",
+    "type": "text"
+  },
+  "earthNightOption": "Земля - Ночь",
+  "@earthNightOption": {
+    "description": "Earth cycle option",
+    "type": "text"
+  },
+  "cetusDayOption": "Цетус - День",
+  "@cetusDayOption": {
+    "description": "Cetus cycle option",
+    "type": "text"
+  },
+  "cetusNightOption": "Цетус - Ночь",
+  "@cetusNightOption": {
+    "description": "Cetus cycle option",
+    "type": "text"
+  },
+  "vallisWarmOption": "Долина Сфер - Тепло",
+  "@vallisWarmOption": {
+    "description": "Orb vallis cycle option",
+    "type": "text"
+  },
+  "vallisColdOption": "Долина Сфер - Холод",
+  "@vallisColdOption": {
+    "description": "Orb vallis cycle option",
+    "type": "text"
+  },
+  "cambionFassOption": "Цикл Фэз",
+  "@cambionFassOption": {
+    "description": "Cambion Fass cycle option",
+    "type": "text"
+  },
+  "cambionVomeOption": "Цикл Воум",
+  "@cambionVomeOption": {
+    "description": "Cambion Fass cycle option",
+    "type": "text"
+  },
+  "primeAccessNewsOption": "Прайм доступ",
+  "@primeAccessNewsOption": {
+    "description": "Warframe news option",
+    "type": "text"
+  },
+  "streamNewsOption": "Анонсы стримов",
+  "@streamNewsOption": {
+    "description": "Warframe news option",
+    "type": "text"
+  },
+  "updateNewsOption": "Новости обновления Warframe",
+  "@updateNewsOption": {
+    "description": "Warframe news option",
+    "type": "text"
+  },
+  "reportBugsTitle": "Сообщить об ошибке",
+  "@reportBugsTitle": {
+    "description": "Title for bug report link",
+    "type": "text"
+  },
+  "reportBugsDescription": "Сообщите об ошибках или запросите функцию.",
+  "@reportBugsDescription": {
+    "description": "Description for bug report link",
+    "type": "text"
+  },
+  "aboutCategoryTitle": "О приложении",
+  "@aboutCategoryTitle": {
+    "description": "Title for the about category of the settings page",
+    "type": "text"
+  },
+  "aboutAppTitle": "О приложении",
+  "@aboutAppTitle": {
+    "description": "Title for the about app dialog",
+    "type": "text"
+  },
+  "contributeAppTranslationsTitle": "App Translations",
+  "@contributeAppTranslationsTitle": {
+    "description": "Title for contribute translations link",
+    "type": "text"
+  },
+  "contributeAppTranslationsDescription": "Contribute translations to the app itself",
+  "@contributeAppTranslationsDescription": {
+    "description": "Title for contribute translations link",
+    "type": "text"
+  },
+  "contributeDataTranslationsTitle": "Worldstate Translations",
+  "@contributeDataTranslationsTitle": {
+    "description": "Title for contribute translations link",
+    "type": "text"
+  },
+  "contributeDataTranslationsDescription": "Contribute translations to worldstate strings, i.e. nodes, mission types, etc",
+  "@contributeDataTranslationsDescription": {
+    "description": "Title for contribute translations link",
+    "type": "text"
+  },
+  "contributeTranslationsTitle": "Внести вклад в перевод",
+  "@contributeTranslationsTitle": {
+    "description": "Description for contribute translations link",
+    "type": "text"
+  },
+  "contributeTranslationsDescription": "Помочь с переводом",
+  "@contributeTranslationsDescription": {
+    "description": "Description for contribute translations link",
+    "type": "text"
+  },
+  "lightThemeTitle": "Светлая",
+  "@lightThemeTitle": {
+    "description": "Title for light theme",
+    "type": "text"
+  },
+  "darkThemeTitle": "Тёмная",
+  "@darkThemeTitle": {
+    "description": "Title for dark theme",
+    "type": "text"
+  },
+  "systemThemeTitle": "Системная",
+  "@systemThemeTitle": {
+    "description": "Title for system theme",
+    "type": "text"
+  },
+  "legalese": "Warframe и логотип Warframe являются зарегистрированными торговыми марками Digital Extremes Ltd.\nCephalon Navis и WFCD никаким образом не связаны с Digital Extremes Ltd.",
+  "@legalese": {
+    "description": "Cephalon Navis legalese",
+    "type": "text"
+  },
+  "homePageTitle": "Главная",
+  "@homePageTitle": {
+    "description": "Displayes a link to Navis's homepage",
+    "type": "text"
+  },
+  "sourceCode": "Исходный код",
+  "@sourceCode": {
+    "description": "Displayes a link to Navis's source code",
+    "type": "text"
+  },
+  "issueTrackerDescription": "Сообщить об ошибке или запросить новые функции для этого проекта",
+  "@issueTrackerDescription": {
+    "description": "Description for Navis's issue tracker",
+    "type": "text"
+  },
+  "issueTrackerTitle": "Баг-трекер",
+  "@issueTrackerTitle": {
+    "description": "Display link to Navis's issue tracker",
+    "type": "text"
+  },
+  "warframeLinkTitle": "Больше информации о Warframe можно найти на их официальном сайте",
+  "@warframeLinkTitle": {
+    "description": "Description for Warframe's main site link",
+    "type": "text"
+  },
+  "settingsTitle": "Настройки",
+  "@settingsTitle": {
+    "description": "Settings title",
+    "type": "text"
+  },
+  "dailyResetTitle": "Таймер сброса ежедневной награды",
+  "@dailyResetTitle": {
+    "description": "Title for daily timer",
+    "type": "text"
+  },
+  "weeklyResetTitle": "Таймер сброса еженедельной награды",
+  "@weeklyResetTitle": {
+    "description": "Title for weekly timer",
+    "type": "text"
+  },
+  "eliteBadgeTitle": "Элитное",
+  "@eliteBadgeTitle": {
+    "description": "Nightwave Elite badge title",
+    "type": "text"
+  },
+  "dailyNightwaveTitle": "Ежедневные",
+  "@dailyNightwaveTitle": {
+    "description": "Nightwave daily title",
+    "type": "text"
+  },
+  "weeklyNightwaveTitle": "Еженедельные",
+  "@weeklyNightwaveTitle": {
+    "description": "Nightwave weekly title",
+    "type": "text"
+  },
+  "warframePassiveTitle": "Пассивка",
+  "@warframePassiveTitle": {
+    "description": "Warframes passive title",
+    "type": "text"
+  },
+  "auraTitle": "Полярность Ауры",
+  "@auraTitle": {
+    "description": "Aura polarity title for items",
+    "type": "text"
+  },
+  "preinstalledPolarities": "Предустановленные Полярности",
+  "@preinstalledPolarities": {
+    "description": "Preinstalled polarites title for items",
+    "type": "text"
+  },
+  "shieldTitle": "Щиты",
+  "@shieldTitle": {
+    "description": "Title for shield value",
+    "type": "text"
+  },
+  "armorTitle": "Броня",
+  "@armorTitle": {
+    "description": "Title for armor value",
+    "type": "text"
+  },
+  "healthTitle": "Здоровье",
+  "@healthTitle": {
+    "description": "Title for health value",
+    "type": "text"
+  },
+  "powerTitle": "Сила",
+  "@powerTitle": {
+    "description": "Title for power value",
+    "type": "text"
+  },
+  "sprintSpeedTitle": "Скорость Бега",
+  "@sprintSpeedTitle": {
+    "description": "Title for sprint speed value",
+    "type": "text"
+  },
+  "abilitiesTitle": "Способности",
+  "@abilitiesTitle": {
+    "description": "Title for warframe, archwings, and Necromech abilites",
+    "type": "text"
+  },
+  "componentsTitle": "Компоненты",
+  "@componentsTitle": {
+    "description": "Title for item components",
+    "type": "text"
+  },
+  "masteryRequirementTitle": "Требуемый Ранг Мастерства",
+  "@masteryRequirementTitle": {
+    "description": "Mastery requirement for item",
+    "type": "text"
+  },
+  "weaponTypeTitle": "Тип оружия",
+  "@weaponTypeTitle": {
+    "description": "Weapon item type",
+    "type": "text"
+  },
+  "accuracyTitle": "Точность",
+  "@accuracyTitle": {
+    "description": "Weapon accuracy title",
+    "type": "text"
+  },
+  "criticalChanceTitle": "Шанс крита",
+  "@criticalChanceTitle": {
+    "description": "Weapon crictical chance",
+    "type": "text"
+  },
+  "cricticalMultiplierTitle": "Крит. Множитель",
+  "@cricticalMultiplierTitle": {
+    "description": "Weapon critical multiplier",
+    "type": "text"
+  },
+  "fireRateTitle": "Скорострельность",
+  "@fireRateTitle": {
+    "description": "Weapon fire rate",
+    "type": "text"
+  },
+  "magazineTitle": "Магазин",
+  "@magazineTitle": {
+    "description": "Weapon magazine size title",
+    "type": "text"
+  },
+  "multishotTitle": "Мультивыстрел",
+  "@multishotTitle": {
+    "description": "Weapon multishot",
+    "type": "text"
+  },
+  "noiseTitle": "Шумность",
+  "@noiseTitle": {
+    "description": "Weapon noise type",
+    "type": "text"
+  },
+  "reloadTitle": "Перезарядка",
+  "@reloadTitle": {
+    "description": "Weapon item type",
+    "type": "text"
+  },
+  "rivenDispositionTitle": "Синергия с Разломом",
+  "@rivenDispositionTitle": {
+    "description": "Weapon's riven disposition",
+    "type": "text"
+  },
+  "statusChanceTitle": "Шанс статуса",
+  "@statusChanceTitle": {
+    "description": "Weapon's status chance",
+    "type": "text"
+  },
+  "triggerTitle": "Режим",
+  "@triggerTitle": {
+    "description": "Weapon item type",
+    "type": "text"
+  },
+  "damageTitle": "Урон",
+  "@damageTitle": {
+    "description": "Weapon's damage category",
+    "type": "text"
+  },
+  "totalDamageTitle": "Всего урона",
+  "@totalDamageTitle": {
+    "description": "Weapon's total damage'",
+    "type": "text"
+  },
+  "stancePolarityTitle": "Полярность Стойки",
+  "@stancePolarityTitle": {
+    "description": "Melee stance polarity title",
+    "type": "text"
+  },
+  "attackSpeedTitle": "Скорость Атаки",
+  "@attackSpeedTitle": {
+    "description": "melee attack speed",
+    "type": "text"
+  },
+  "followThroughTitle": "Пронзание Навылет",
+  "@followThroughTitle": {
+    "description": "Melee follow through title",
+    "type": "text"
+  },
+  "rangeTitle": "Зона Поражения",
+  "@rangeTitle": {
+    "description": "Melee's range title",
+    "type": "text"
+  },
+  "slamAttackTitle": "Удар по земле",
+  "@slamAttackTitle": {
+    "description": "Melee's slam attack",
+    "type": "text"
+  },
+  "slamRadialDamageTitle": "Радиальный урон по земле",
+  "@slamRadialDamageTitle": {
+    "description": "Melee's Slam Radial Damage",
+    "type": "text"
+  },
+  "slamRadiusTitle": "Радиус Удара по земле",
+  "@slamRadiusTitle": {
+    "description": "Slam Radius title",
+    "type": "text"
+  },
+  "slideAttackTitle": "Удар в скольжении",
+  "@slideAttackTitle": {
+    "description": "Melee's slide attack",
+    "type": "text"
+  },
+  "heavyAttackTitle": "Тяжелая атака",
+  "@heavyAttackTitle": {
+    "description": "Heavy attack title",
+    "type": "text"
+  },
+  "heavySlamAttackTitle": "Тяжелый удар по земле",
+  "@heavySlamAttackTitle": {
+    "description": "Heavy Slam attack title",
+    "type": "text"
+  },
+  "heavySlamRadialDamageTitle": "Тяжелый радиальный урон по земле",
+  "@heavySlamRadialDamageTitle": {
+    "description": "Heavy Slam attack title",
+    "type": "text"
+  },
+  "heavySlamRadiusTitle": "Радиус тяжелого удара по земле",
+  "@heavySlamRadiusTitle": {
+    "description": "Heavy Slam attack title",
+    "type": "text"
+  },
+  "windUpTitle": "Подготовка",
+  "@windUpTitle": {
+    "description": "melee's heavy wind up time title",
+    "type": "text"
+  },
+  "discordSupportTitle": "Discord",
+  "@discordSupportTitle": {
+    "description": "Discord support title",
+    "type": "text"
+  },
+  "steelPathTitle": "Стальной Путь",
+  "@steelPathTitle": {
+    "description": "Steel path card title",
+    "type": "text"
+  },
+  "syndicateDualScreenTitle": "Выбрать синдикат",
+  "@syndicateDualScreenTitle": {
+    "description": "User hint when under syndicate tabs using a tablet",
+    "type": "text"
+  },
+  "optOutOfAnalyticsTitle": "Отказ от аналитики",
+  "@optOutOfAnalyticsTitle": {
+    "description": "Title opting out of analytics",
+    "type": "text"
+  },
+  "optOutOfAnalyticsDescription": "Отключить аналитику.",
+  "@optOutOfAnalyticsDescription": {
+    "description": "Description of the analytics opting buttong",
+    "type": "text"
+  },
+  "appLangTitle": "Язык",
+  "@appLangTitle": {
+    "description": "Title for app language options",
+    "type": "text"
+  },
+  "appLangDescription": "Сменить язык приложения.",
+  "@appLangDescription": {
+    "description": "Description for language options",
+    "type": "text"
+  },
+  "modLevelLabel": "Уровень {rank}",
+  "@modLevelLabel": {
+    "description": "The label shown to users as they slide the mod slider",
+    "type": "text",
+    "placeholders": {
+      "rank": {
+        "type": "int"
+      }
+    }
+  },
+  "codexHint": "Искать по кодексу...",
+  "@codexHint": {
+    "description": "Codex description when a user enters the codex or when the search bar is empty",
+    "type": "text"
+  },
+  "codexNoResults": "Ничего не найдено",
+  "@codexNoResults": {
+    "description": "Displayed when a search result in codex returns empty",
+    "type": "text"
+  },
+  "codexVaultedLabel": "В хранилище",
+  "@codexVaultedLabel": {
+    "description": "A label shown in codex items to detenote items that are vaulted",
+    "type": "text"
+  },
+  "exploreTitle": "Исследовать",
+  "@exploreTitle": {
+    "description": "Title for explore page",
+    "type": "text"
+  },
+  "constructionProgressTitle": "Статус Постройки",
+  "@constructionProgressTitle": {
+    "description": "Title for invasion constrcution progress",
+    "type": "text"
+  },
+  "synthTargetTitle": "Цели Синтеза",
+  "@synthTargetTitle": {
+    "description": "Title for synthtargets.",
+    "type": "text"
+  },
+  "archonHuntTitle": "Охота за Архонтом",
+  "@archonHuntTitle": {
+    "description": "Title for archon hunt notification toggle.",
+    "type": "text"
+  },
+  "archonHuntDescription": "Уведомление о сбросе Охоты за Архонтом.",
+  "@archonHuntDescription": {
+    "description": "Description for archon hunt notification toggle.",
+    "type": "text"
+  },
+  "allFissuresButton": "Все",
+  "@allFissuresButton": {
+    "description": "Button label for all fissures",
+    "type": "text"
+  },
+  "voidStormFissuresButton": "Разрывы Бездны",
+  "@voidStormFissuresButton": {
+    "description": "Button label for void storm fissures",
+    "type": "text"
+  },
+  "saleEndsTitle": "ПРОДАЖИ ЗАВЕРШЕНЫ",
+  "@saleEndsTitle": {
+    "description": "Sale ends title for countdown timer",
+    "type": "text"
+  },
+  "salePriceTitle": "Цена продажи",
+  "@salePriceTitle": {
+    "description": "Displays the item's sale price for darvo sales",
+    "type": "text"
+  },
+  "originalPriceTitle": "Обычная цена",
+  "@originalPriceTitle": {
+    "description": "Displays the item's original price for darvo sales",
+    "type": "text"
+  },
+  "discountTitle": "Скидка {discount}%!",
+  "@discountTitle": {
+    "description": "Displays the discount applied for a given darvo sale",
+    "type": "text",
+    "placeholders": {
+      "discount": {}
+    }
+  },
+  "inStockInformation": "Осталось только {stock}",
+  "@inStockInformation": {
+    "description": "Displays the stock information for a darvo deal",
+    "type": "text",
+    "placeholders": {
+      "stock": {}
+    }
+  },
+  "outOfStockTitle": "НЕТ В НАЛИЧИИ",
+  "@outOfStockTitle": {
+    "description": "Tells the user when darvo is out of stock for the current sale",
+    "type": "text"
+  },
+  "duviriJoy": "Дувири: Радость",
+  "@duviriJoy": {
+    "description": "Duviri joy state. ",
+    "type": "text"
+  },
+  "duviriAnger": "Дувири: Ярость",
+  "@duviriAnger": {
+    "description": "Duviri anger state.",
+    "type": "text"
+  },
+  "duviriEnvy": "Дувири: Зависть",
+  "@duviriEnvy": {
+    "description": "Duviri envy state.",
+    "type": "text"
+  },
+  "duviriSorrow": "Дувири: Печаль",
+  "@duviriSorrow": {
+    "description": "sorrow Duviri state",
+    "type": "text"
+  },
+  "duviriFear": "Дувири: Страх",
+  "@duviriFear": {
+    "description": "Fear Duviri state",
+    "type": "text"
+  },
+  "mapTitle": "Карта",
+  "@mapTitle": {
+    "description": "Map title",
+    "type": "text"
+  },
+  "mapDescription": "Посмотреть карты регионов",
+  "@mapDescription": {
+    "description": "Map card description",
+    "type": "text"
+  },
+  "fishTitle": "Название рыбы",
+  "@fishTitle": {
+    "description": "Fish title",
+    "type": "text"
+  },
+  "fishDescription": "Посмотреть информацию о рыбе по регионам",
+  "@fishDescription": {
+    "description": "fish card description",
+    "type": "text"
+  },
+  "fishName": "Название",
+  "@fishName": {
+    "description": "Display a fish name along side it",
+    "type": "text"
+  },
+  "fishTime": "Фаза",
+  "@fishTime": {
+    "description": "Display time a day a fish can be caught in",
+    "type": "text"
+  },
+  "fishSpear": "Гарпун",
+  "@fishSpear": {
+    "description": "Display the type of spear used to catch fish",
+    "type": "text"
+  },
+  "fishRarity": "Редкость",
+  "@fishRarity": {
+    "description": "Display rarity of a given fish",
+    "type": "text"
+  },
+  "fishBait": "Приманка",
+  "@fishBait": {
+    "description": "Display type of bait needed to catch fish",
+    "type": "text"
+  },
+  "fishStanding": "Репутация",
+  "@fishStanding": {
+    "description": "Display standing earned with fish",
+    "type": "text"
+  },
+  "fishUnique": "Уникальный ресурс",
+  "@fishUnique": {
+    "description": "Display a unique resources earned by given fish",
+    "type": "text"
+  },
+  "fishBladder": "Ферментный пузырь",
+  "@fishBladder": {
+    "description": "Displays how many bladders can be earned with the given fish size",
+    "type": "text"
+  },
+  "fishGills": "Жабры",
+  "@fishGills": {
+    "description": "Displays how many gills can be earned with the given fish size",
+    "type": "text"
+  },
+  "fishTumors": "Доброкачественная Заражённая Опухоль",
+  "@fishTumors": {
+    "description": "Displays how many tumors can be earned with the given fish size",
+    "type": "text"
+  },
+  "fishMeat": "Рыбье мясо",
+  "@fishMeat": {
+    "description": "Displays how many meat can be earned with the given fish size",
+    "type": "text"
+  },
+  "fishOil": "Рыбий жир",
+  "@fishOil": {
+    "description": "Displays how many oils can be earned with the given fish size",
+    "type": "text"
+  },
+  "fishScales": "Рыбья чешуя",
+  "@fishScales": {
+    "description": "Displays how many scales can be earned with the given fish size",
+    "type": "text"
+  },
+  "fishScrap": "Хлам",
+  "@fishScrap": {
+    "description": "Displays how many scraps can be earned with the given fish size",
+    "type": "text"
+  },
+  "fishAny": "Любая",
+  "@fishAny": {
+    "description": "Displayed when a fish can be caught by any spear",
+    "type": "text"
+  },
+  "dropChance": "Шанс выпадения {chance}%",
+  "@dropChance": {
+    "description": "Drop chance percentage",
+    "type": "text",
+    "placeholders": {
+      "chance": {}
+    }
+  },
+  "statsTitle": "Статистика",
+  "@statsTitle": {
+    "description": "Codex stat title",
+    "type": "text"
+  },
+  "patchlogsTitle": "Журнал исправлений",
+  "@patchlogsTitle": {
+    "description": "Codex patchlogs title",
+    "type": "text"
+  },
+  "impactDamageTitle": "Удар",
+  "@impactDamageTitle": {
+    "description": "Codex Weapon damage type title",
+    "type": "text"
+  },
+  "punctureDamageTitle": "Пронзание",
+  "@punctureDamageTitle": {
+    "description": "Codex Weapon damage type title",
+    "type": "text"
+  },
+  "slashDamageTitle": "Разрез",
+  "@slashDamageTitle": {
+    "description": "Codex Weapon damage type title",
+    "type": "text"
+  },
+  "heatDamageTitle": "Огонь",
+  "@heatDamageTitle": {
+    "description": "Codex Weapon damage type title",
+    "type": "text"
+  },
+  "coldDamageTitle": "Холод",
+  "@coldDamageTitle": {
+    "description": "Codex Weapon damage type title",
+    "type": "text"
+  },
+  "electricityDamageTitle": "Электричество",
+  "@electricityDamageTitle": {
+    "description": "Codex Weapon damage type title",
+    "type": "text"
+  },
+  "toxinDamageTitle": "Токсин",
+  "@toxinDamageTitle": {
+    "description": "Codex Weapon damage type title",
+    "type": "text"
+  },
+  "blastDamageTitle": "Взрыв",
+  "@blastDamageTitle": {
+    "description": "Codex Weapon damage type title",
+    "type": "text"
+  },
+  "radiationDamageTitle": "Радиация",
+  "@radiationDamageTitle": {
+    "description": "Codex Weapon damage type title",
+    "type": "text"
+  },
+  "gasDamageTitle": "Газ",
+  "@gasDamageTitle": {
+    "description": "Codex Weapon damage type title",
+    "type": "text"
+  },
+  "magneticDamageTitle": "Магнит",
+  "@magneticDamageTitle": {
+    "description": "Codex Weapon damage type title",
+    "type": "text"
+  },
+  "viralDamageTitle": "Вирус",
+  "@viralDamageTitle": {
+    "description": "Codex Weapon damage type title",
+    "type": "text"
+  },
+  "corrosiveDamageTitle": "Коррозия",
+  "@corrosiveDamageTitle": {
+    "description": "Codex Weapon damage type title",
+    "type": "text"
+  },
+  "voidDamageTitle": "Урон Бездны",
+  "@voidDamageTitle": {
+    "description": "Codex Weapon damage type title",
+    "type": "text"
+  },
+  "tauDamageTitle": "Тау",
+  "@tauDamageTitle": {
+    "description": "Codex Weapon damage type title",
+    "type": "text"
+  },
+  "cinematicDamageTitle": "Синематик",
+  "@cinematicDamageTitle": {
+    "description": "Codex Weapon damage type title",
+    "type": "text"
+  },
+  "shieldDrainDamageTitle": "Истощение щита",
+  "@shieldDrainDamageTitle": {
+    "description": "Codex Weapon damage type title",
+    "type": "text"
+  },
+  "healthDrainDamageTitle": "Истощение здоровья",
+  "@healthDrainDamageTitle": {
+    "description": "Codex Weapon damage type title",
+    "type": "text"
+  },
+  "energyDrainDamageTitle": "Истощение энергии",
+  "@energyDrainDamageTitle": {
+    "description": "Codex Weapon damage type title",
+    "type": "text"
+  },
+  "physicalDamageTitle": "Физический урон",
+  "@physicalDamageTitle": {
+    "description": "Codex Weapon damage type title",
+    "type": "text"
+  },
+  "circuitResetTitle": "Смена наград через",
+  "@circuitResetTitle": {
+    "description": "Text displayed next to the weekly reset time for the circuit",
+    "type": "text"
+  },
+  "circuitResetSubtitle": "Посмотреть текущие предложения",
+  "@circuitResetSubtitle": {
+    "description": "Text displayed under circuitResetTitle",
+    "type": "text"
+  },
+  "archimedeaResetTitle": "Resets in",
+  "@archimedeaResetTitle": {
+    "description": "Text in Archimedea page for weekly reset time",
+    "type": "text"
+  },
+  "deepArchimedeaTitle": "Deep Archimedea",
+  "@deepArchimedeaTitle": {
+    "description": "Text for DA in case it needs translations",
+    "type": "text"
+  },
+  "temporalArchimedeaTitle": "Temporal Archimedea",
+  "@temporalArchimedeaTitle": {
+    "description": "Text for TA in case it needs translations",
+    "type": "text"
+  },
+  "archimedeaDeviationTitle": "Deviation",
+  "@archimedeaDeviationTitle": {
+    "description": "Text displayed next to Deep Archimedea deviation name",
+    "type": "text"
+  },
+  "archimedeaRiskTitle": "Уровень риска",
+  "@archimedeaRiskTitle": {
+    "description": "Text displayed next to Deep Archimedea risk variable name",
+    "type": "text"
+  },
+  "missionsCategoryTitle": "Миссии",
+  "@missionsCategoryTitle": {
+    "description": "Text displayed where a missions category is needed",
+    "type": "text"
+  },
+  "archimedeaPersonalModifierTitle": "Персональные усилители",
+  "@archimedeaPersonalModifierTitle": {
+    "description": "Text displayed above to Deep Archimedea personal modifiers",
+    "type": "text"
+  },
+  "archimedeaWarningTitle": "Предупреждение",
+  "@archimedeaWarningTitle": {
+    "description": "Warning title displayed under Deep Archimedea timer",
+    "type": "text"
+  },
+  "archimedeaWarningSubtitle": "DE doesn't always update Deep/Temporal Archimedea data after a weekly reset so consider this unstable.\nWarning will be removed when data rotation is more consistent",
+  "@archimedeaWarningSubtitle": {
+    "description": "Warning text displayed under Deep Archimedea warning title",
+    "type": "text"
+  },
+  "activitiesTitle": "Действия",
+  "@activitiesTitle": {
+    "description": "Activities title",
+    "type": "text"
+  },
+  "nightwaveSeasonSubtitle": "Сезон {season}",
+  "@nightwaveSeasonSubtitle": {
+    "description": "Current nightwave season number",
+    "type": "text",
+    "placeholders": {
+      "season": {
+        "type": "int"
+      }
+    }
+  },
+  "calendar1999Title": "Календарь 1999\n1999 Календарь",
+  "@calendar1999Title": {
+    "description": "Title text for 1999 calendar card",
+    "type": "text"
+  },
+  "traderItemHeaderTitle": "Товар",
+  "@traderItemHeaderTitle": {
+    "description": "Trader inventory header text",
+    "type": "text"
+  },
+  "traderDucatsHeaderTitle": "Товар",
+  "@traderDucatsHeaderTitle": {
+    "description": "Trader inventory header text",
+    "type": "text"
+  },
+  "traderCreditsHeaderTitle": "Товар",
+  "@traderCreditsHeaderTitle": {
+    "description": "Trader inventory header text",
+    "type": "text"
+  },
+  "itemRankSubtitle": "Ранг {rank}",
+  "@itemRankSubtitle": {
+    "description": "Subtitle showing the item's rank",
+    "type": "text",
+    "placeholders": {
+      "rank": {}
+    }
+  },
+  "syncingInfoText": "Информация о синхронизации опыта",
+  "@syncingInfoText": {
+    "description": "Text displayed when xp info is being synced",
+    "type": "text",
+    "placeholders": {}
+  },
+  "enterUsernameHintText": "Setup Inventoria",
+  "@enterUsernameHintText": {
+    "description": "Hint Text use as a placeholders in username input",
+    "type": "text",
+    "placeholders": {}
+  },
+  "clearUsernameButtonLabel": "Очистить имя пользователя",
+  "@clearUsernameButtonLabel": {
+    "description": "Label text for clear username button",
+    "type": "text",
+    "placeholders": {}
+  },
+  "cancelText": "Отменить",
+  "@cancelText": {
+    "description": "Text to display for cancel buttons",
+    "type": "text",
+    "placeholders": {}
+  },
+  "inventoriaSteps": "Cephalon Navis может использовать данные вашего профиля, доступные только для чтения, для отслеживания опыта вашего арсенала и очков мастерства.\n\n1. Перейдите по {url} на компьютере\n\n2. Загрузите свой EE.log или идентификатор учётной записи из файлов cookie\n\n3. Нажмите «Далее» и отсканируйте сгенерированный QR-код",
+  "@inventoriaSteps": {
+    "description": "Steps to setup Inventoria",
+    "type": "text",
+    "placeholders": {
+      "url": {
+        "type": "String"
+      }
+    }
+  },
+  "profileSyncError": "Возникла проблема при загрузке вашего профиля. Вам следует отправить отчет об ошибке",
+  "@profileSyncError": {
+    "description": "Error message to show when the app isn't able to pull a profile",
+    "type": "text"
+  },
+  "appSupportTitle": "Поддержка",
+  "@appSupportTitle": {
+    "description": "Title for app support card",
+    "type": "text",
+    "placeholders": {}
+  },
+  "appSupportSubtitle": "Нужна помощь с приложением? Переходите в Discord",
+  "@appSupportSubtitle": {
+    "description": "Subtitle for app support card",
+    "type": "text",
+    "placeholders": {}
+  },
+  "supportTitle": "Поддержка {text}",
+  "@supportTitle": {
+    "description": "Title for support cards",
+    "type": "text",
+    "placeholders": {
+      "text": {
+        "type": "String"
+      }
+    }
+  },
+  "supportSubtitle": "Всё, от технической поддержки до обслуживания приложений",
+  "@supportSubtitle": {
+    "description": "Subtitle for support section",
+    "type": "text",
+    "placeholders": {}
+  },
+  "supportSubtitleTobiah": "Помогите поддержать разработчика, который управляет API, активно используемым Navis",
+  "@supportSubtitleTobiah": {
+    "description": "Subtitle for API support card",
+    "type": "text",
+    "placeholders": {}
+  },
+  "supportSubtitleNavis": "Помогите поддержать обслуживание Cephalon Navis",
+  "@supportSubtitleNavis": {
+    "description": "Subtitle for Cephalon Navis support card",
+    "type": "text",
+    "placeholders": {}
+  },
+  "itemFailureErrorText": "Не удалось загрузить элемент",
+  "@itemFailureErrorText": {
+    "description": "Error message when loading a full item",
+    "type": "text",
+    "placeholders": {}
+  },
+  "worldstateFailureText": "Failed to parse Worldstate",
+  "@worldstateFailureText": {
+    "description": "Error message when loading/parsing the worldstate fails",
+    "type": "text",
+    "placeholders": {}
+  },
+  "worldstateOutdatedText": "Worldstate is out of date by more then 30 mins",
+  "@worldstateOutdatedText": {
+    "description": "Snackbar message to show when worldstate hasn't been updated due to failure or lack of internet connection",
+    "type": "text",
+    "placeholders": {}
+  },
+  "flashSaleAppbarTitle": "Flash Sales",
+  "@flashSaleAppbarTitle": {
+    "description": "AppBar Title for flash sales",
+    "type": "text",
+    "placeholders": {}
+  },
+  "flashSaleSubtitleText": "{plat} Платина {discount, plural, =0{} other{| {discount} % Скидка}}",
+  "@flashSaleSubtitleText": {
+    "description": "Subtitle text with platinum and discount text",
+    "type": "text",
+    "placeholders": {
+      "plat": {
+        "type": "int"
+      },
+      "discount": {
+        "type": "int"
+      }
+    }
+  },
+  "defaultScoreLocTagText": "Прогресс",
+  "@defaultScoreLocTagText": {
+    "description": "Default scoreLocTag text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "eventRewardRequireScoreText": "Требуемый счет",
+  "@eventRewardRequireScoreText": {
+    "description": "Event reward required score text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "primeVaultResetText": "Prime Resurgence resets on: ",
+  "@primeVaultResetText": {
+    "description": "Prime vault reset text",
+    "type": "text"
+  },
+  "stageText": "Stage",
+  "@stageText": {
+    "description": "Stage text, it just says stage",
+    "type": "text"
+  },
+  "isolationVaultText": "Isolation Vault (Tier {tier})",
+  "@isolationVaultText": {
+    "description": "Isolation Vault Text with tier number",
+    "type": "text",
+    "placeholders": {
+      "tier": {
+        "type": "int"
+      }
+    }
+  },
+  "userFeedbackLabelText": "Feedback",
+  "@userFeedbackLabelText": {
+    "description": "User feedback label text",
+    "type": "text"
+  },
+  "userFeedbackErrorText": "Please enter some text",
+  "@userFeedbackErrorText": {
+    "description": "User feedback error text",
+    "type": "text"
+  },
+  "userFeedbackSubmitButton": "Submit",
+  "@userFeedbackSubmitButton": {
+    "description": "User feedback submit button text",
+    "type": "text"
+  },
+  "donationDescriptionText": "Everything from tech support to supporting app maintance",
+  "@donationDescriptionText": {
+    "description": "donationText",
+    "type": "text"
+  }
+}
