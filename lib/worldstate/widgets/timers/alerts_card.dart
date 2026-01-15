@@ -108,19 +108,20 @@ class _AlertReward extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final rewardItem = reward.countedItems!.first;
+    final rewardItem = reward.countedItems?.first;
 
     return ListTile(
       leading: item != null
-          ? CachedNetworkImage(
-              imageUrl: item!.imageName.warframeItemsCdn().optimize(
-                pixelRatio: MediaQuery.devicePixelRatioOf(context),
+          ? CircleAvatar(
+              radius: 25,
+              foregroundImage: CachedNetworkImageProvider(
+                item!.imageName.warframeItemsCdn().optimize(pixelRatio: MediaQuery.devicePixelRatioOf(context)),
               ),
             )
           : null,
       title: RichText(
         text: TextSpan(
-          text: '${rewardItem.count}x ${rewardItem.type}',
+          text: rewardItem != null ? '${rewardItem.count}x ${rewardItem.type}' : reward.items?.first ?? '',
           style: context.theme.textTheme.titleMedium,
           children: [
             if (reward.credits != null)
@@ -132,7 +133,7 @@ class _AlertReward extends StatelessWidget {
         ),
       ),
       subtitle: item?.description != null
-          ? Text(item!.description!, maxLines: 2, overflow: TextOverflow.ellipsis)
+          ? Text(item!.description!, maxLines: 3, overflow: TextOverflow.ellipsis)
           : null,
       isThreeLine: item != null,
       dense: true,
