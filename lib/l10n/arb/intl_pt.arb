@@ -416,7 +416,7 @@
     "description": "Title for contribute translations link",
     "type": "text"
   },
-  "contributeTranslationsTitle": "Contribute translations",
+  "contributeTranslationsTitle": "Contribuir para a tradução",
   "@contributeTranslationsTitle": {
     "description": "Description for contribute translations link",
     "type": "text"
