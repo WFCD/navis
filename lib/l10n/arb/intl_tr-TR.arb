@@ -1,0 +1,1329 @@
+{
+  "@@locale": "tr",
+  "@@last_modified": "2020-03-03T16:56:42.387837",
+  "levelInfo": "Seviye: {min} - {max}",
+  "@levelInfo": {
+    "description": "The information of the current enemy levels",
+    "type": "text",
+    "placeholders": {
+      "min": {
+        "type": "int"
+      },
+      "max": {
+        "type": "int"
+      }
+    }
+  },
+  "tapForMoreDetails": "Daha fazla ayrıntı için tıklayın",
+  "@tapForMoreDetails": {
+    "description": "General description to tell the user that this object takes you to a different page",
+    "type": "text"
+  },
+  "seeDetails": "Ayrıntıları gör",
+  "@seeDetails": {
+    "description": "General button to see more details of given object",
+    "type": "text"
+  },
+  "seeMore": "See More",
+  "@seeMore": {
+    "description": "General button to see more of a overview object",
+    "type": "text"
+  },
+  "seeWiki": "See Wiki",
+  "@seeWiki": {
+    "description": "General button to wiki of given item",
+    "type": "text"
+  },
+  "eventDescription": "Açıklama",
+  "@eventDescription": {
+    "description": "Event description category title",
+    "type": "text"
+  },
+  "eventStatus": "Etkinlik durumu",
+  "@eventStatus": {
+    "description": "Event status category title",
+    "type": "text"
+  },
+  "eventStatusNode": "Düğüm",
+  "@eventStatusNode": {
+    "description": "The node that the event is taking place in",
+    "type": "text"
+  },
+  "eventStatusProgress": "İlerleme",
+  "@eventStatusProgress": {
+    "description": "The progress of the current event from 0 to 100 %",
+    "type": "text"
+  },
+  "eventStatusEta": "Kalan zaman (ETA)",
+  "@eventStatusEta": {
+    "description": "Current events remaining estimated time",
+    "type": "text"
+  },
+  "eventRewards": "Ödüller",
+  "@eventRewards": {
+    "description": "Event reward title",
+    "type": "text"
+  },
+  "bountyTitle": "Avlar",
+  "@bountyTitle": {
+    "description": "Bounty card title.",
+    "type": "text"
+  },
+  "errorTitle": "Bir uygulama hatası meydana geldi",
+  "@errorTitle": {
+    "description": "error title",
+    "type": "text"
+  },
+  "errorDescription": "Çekirdek sistemde beklenmeyen bir hata oluştu.\nHata, sistem yöneticisine bildiriliyor...",
+  "@errorDescription": {
+    "description": "error description",
+    "type": "text"
+  },
+  "baroTitle": "Baro Ki'Teer",
+  "@baroTitle": {
+    "description": "Title for Baro Ki'Teer card",
+    "type": "text"
+  },
+  "location": "Konum",
+  "@location": {
+    "description": "Reuseable string for location",
+    "type": "text"
+  },
+  "baroLeavesOn": "Gidiş",
+  "@baroLeavesOn": {
+    "description": "shows when Baro Ki'Teer is leaving",
+    "type": "text"
+  },
+  "baroArrivesOn": "Varış",
+  "@baroArrivesOn": {
+    "description": "shows at when Baro Ki'Teer will arrive",
+    "type": "text"
+  },
+  "characterInventory": "{character} Inventory",
+  "@characterInventory": {
+    "description": "character Inventory title",
+    "type": "text",
+    "placeholders": {
+      "character": {
+        "type": "String"
+      }
+    }
+  },
+  "countdownTooltip": "Sonlanma tarihi {date}",
+  "@countdownTooltip": {
+    "description": "Countdown tooltip with end date of the current running timer",
+    "type": "text",
+    "placeholders": {
+      "date": {
+        "type": "DateTime",
+        "format": "HH:mm:ss yyyy-MM-dd",
+        "isCustomDateFormat": true
+      }
+    }
+  },
+  "kuvaBanner": "Kuva yenilenecek",
+  "@kuvaBanner": {
+    "description": "Kuva refresh countdown title",
+    "type": "text"
+  },
+  "formorianTitle": "Fomorian",
+  "@formorianTitle": {
+    "description": "Fomorian progress title",
+    "type": "text"
+  },
+  "razorbackTitle": "Razorback",
+  "@razorbackTitle": {
+    "description": "Razorback progress title",
+    "type": "text"
+  },
+  "cetusCycleTitle": "Earth/Plains of Eidolon",
+  "@cetusCycleTitle": {
+    "description": "Earth and Cetus cycle title",
+    "type": "text"
+  },
+  "vallisCycleTitle": "Orb Vallis",
+  "@vallisCycleTitle": {
+    "description": "Vallis cycle title",
+    "type": "text"
+  },
+  "cambionCycleTitle": "Cambion Drift",
+  "@cambionCycleTitle": {
+    "description": "Cambion Cycle title",
+    "type": "text"
+  },
+  "zarimanCycleTitle": "Zariman",
+  "@zarimanCycleTitle": {
+    "description": "Zariman Cycle title",
+    "type": "text"
+  },
+  "duviriCycleTitle": "Duviri",
+  "@duviriCycleTitle": {
+    "description": "Duviri Cycle title",
+    "type": "text"
+  },
+  "timersTitle": "Zamanlayıcılar",
+  "@timersTitle": {
+    "description": "Times title",
+    "type": "text"
+  },
+  "fissuresTitle": "Yarıklar",
+  "@fissuresTitle": {
+    "description": "Fissures title",
+    "type": "text"
+  },
+  "invasionsTitle": "İşgaller",
+  "@invasionsTitle": {
+    "description": "Invasions title",
+    "type": "text"
+  },
+  "syndicatesTitle": "Sendikalar",
+  "@syndicatesTitle": {
+    "description": "Syndicates title",
+    "type": "text"
+  },
+  "codexTitle": "Kodeks",
+  "@codexTitle": {
+    "description": "Codex title",
+    "type": "text"
+  },
+  "codexDescription": "Tüm Warframe ögelerini ara",
+  "@codexDescription": {
+    "description": "Codex description",
+    "type": "text"
+  },
+  "helpfulLinksTitle": "Yararlı bağlantılar",
+  "@helpfulLinksTitle": {
+    "description": "Helpful Links title",
+    "type": "text"
+  },
+  "behaviorTitle": "Davranış",
+  "@behaviorTitle": {
+    "description": "Behavior category title",
+    "type": "text"
+  },
+  "themeTitle": "Tema",
+  "@themeTitle": {
+    "description": "Theme title",
+    "type": "text"
+  },
+  "themeDescription": "Uygulama temasını seçin.",
+  "@themeDescription": {
+    "description": "Theme option description",
+    "type": "text"
+  },
+  "notificationsTitle": "Bildirimler",
+  "@notificationsTitle": {
+    "description": "Notifications category title",
+    "type": "text"
+  },
+  "rareAlertsNotificationTitle": "Nadir Uyarılar",
+  "@rareAlertsNotificationTitle": {
+    "description": "Rare Alerts title",
+    "type": "text"
+  },
+  "rareAlertsNotificationDescription": "Nadir uyarı bildirimleri, genellikle Lotus'un hediyeleri.",
+  "@rareAlertsNotificationDescription": {
+    "description": "Description for rare alerts option",
+    "type": "text"
+  },
+  "operationAlertsNotificationTitle": "Operation Alerts",
+  "@operationAlertsNotificationTitle": {
+    "description": "Rare Alerts title",
+    "type": "text"
+  },
+  "operationAlertsNotificationDescription": "Alert notifications for operations",
+  "@operationAlertsNotificationDescription": {
+    "description": "Description for rare alerts option",
+    "type": "text"
+  },
+  "baroNotificationTitle": "Baro Ki'Teer",
+  "@baroNotificationTitle": {
+    "description": "Baro's notification title",
+    "type": "text"
+  },
+  "baroNotificationDescription": "Baro'nun varışı ve ayrılışı için bildirimler.",
+  "@baroNotificationDescription": {
+    "description": "Notification description for both Baro's arrivial and departure.",
+    "type": "text"
+  },
+  "darvoNotificationTitle": "Darvo'nun Günlük Teklifleri",
+  "@darvoNotificationTitle": {
+    "description": "Notification title for darvo's daily deals",
+    "type": "text"
+  },
+  "darvoNotificationDescription": "Darvo'nun Günün Yeni Keşfi.",
+  "@darvoNotificationDescription": {
+    "description": "Notification description for Darvo's Daily Deal",
+    "type": "text"
+  },
+  "sortieNotificationTitle": "Sorti",
+  "@sortieNotificationTitle": {
+    "description": "Notification title for sorties",
+    "type": "text"
+  },
+  "sortieNotificationDescription": "Yeni sorti bildirimleri.",
+  "@sortieNotificationDescription": {
+    "description": "description for sortie notification option",
+    "type": "text"
+  },
+  "sentientOutpostNotificationTitle": "Sentient Karakolu",
+  "@sentientOutpostNotificationTitle": {
+    "description": "Notification title for sentient outpost",
+    "type": "text"
+  },
+  "sentientOutpostNotificationDescription": "Yeni sentient tehditleri için bildirimler.",
+  "@sentientOutpostNotificationDescription": {
+    "description": "Notification description for sentient outpost option",
+    "type": "text"
+  },
+  "warframeNewsTitle": "Haberler",
+  "@warframeNewsTitle": {
+    "description": "Main Title for Warframe news page",
+    "type": "text"
+  },
+  "warframeNewsNotificationTitle": "Haberler",
+  "@warframeNewsNotificationTitle": {
+    "description": "Main Title for Warframe news notifications",
+    "type": "text"
+  },
+  "warframeNewsNotificationDescription": "Prime Erişimi, Yayınlar ve Güncellemeler için haber bildirimleri.",
+  "@warframeNewsNotificationDescription": {
+    "description": "Main description for Warframe news notifications",
+    "type": "text"
+  },
+  "planetCyclesNotificationTitle": "Açık Dünya Döngüleri",
+  "@planetCyclesNotificationTitle": {
+    "description": "Main title for open world notifications",
+    "type": "text"
+  },
+  "planetCyclesNotificationDescription": "Açık dünya döngülerine yönelik bildirimler.",
+  "@planetCyclesNotificationDescription": {
+    "description": "Main description for open world notifications",
+    "type": "text"
+  },
+  "resourcesNotificationTitle": "Kaynaklar",
+  "@resourcesNotificationTitle": {
+    "description": "Main title for resource notifications",
+    "type": "text"
+  },
+  "resourcesNotificationDescription": "Çoğunlukla işgallerde bulunan kaynaklar.",
+  "@resourcesNotificationDescription": {
+    "description": "Main description for resource notifications",
+    "type": "text"
+  },
+  "fissuresNotificationTitle": "Yarık Görevleri",
+  "@fissuresNotificationTitle": {
+    "description": "Main title for fisssures notifications",
+    "type": "text"
+  },
+  "fissuresNotificationDescription": "Yarık bildirimlerini tercih edilen görev türüne göre filtrele.",
+  "@fissuresNotificationDescription": {
+    "description": "Main description for fissures notifications",
+    "type": "text"
+  },
+  "earthDayOption": "Dünya Gündüz",
+  "@earthDayOption": {
+    "description": "Earth cycle option",
+    "type": "text"
+  },
+  "earthNightOption": "Dünya Gece",
+  "@earthNightOption": {
+    "description": "Earth cycle option",
+    "type": "text"
+  },
+  "cetusDayOption": "Cetus Gündüz",
+  "@cetusDayOption": {
+    "description": "Cetus cycle option",
+    "type": "text"
+  },
+  "cetusNightOption": "Cetus Gece",
+  "@cetusNightOption": {
+    "description": "Cetus cycle option",
+    "type": "text"
+  },
+  "vallisWarmOption": "Orb Vallis Ilık",
+  "@vallisWarmOption": {
+    "description": "Orb vallis cycle option",
+    "type": "text"
+  },
+  "vallisColdOption": "Orb Vallis soğuk",
+  "@vallisColdOption": {
+    "description": "Orb vallis cycle option",
+    "type": "text"
+  },
+  "cambionFassOption": "Cambion Fass",
+  "@cambionFassOption": {
+    "description": "Cambion Fass cycle option",
+    "type": "text"
+  },
+  "cambionVomeOption": "Cambion Vome",
+  "@cambionVomeOption": {
+    "description": "Cambion Fass cycle option",
+    "type": "text"
+  },
+  "primeAccessNewsOption": "Prime Erişimi",
+  "@primeAccessNewsOption": {
+    "description": "Warframe news option",
+    "type": "text"
+  },
+  "streamNewsOption": "Yayın Duyuruları",
+  "@streamNewsOption": {
+    "description": "Warframe news option",
+    "type": "text"
+  },
+  "updateNewsOption": "Warframe Güncelleme Haberleri",
+  "@updateNewsOption": {
+    "description": "Warframe news option",
+    "type": "text"
+  },
+  "reportBugsTitle": "Hata Bildir",
+  "@reportBugsTitle": {
+    "description": "Title for bug report link",
+    "type": "text"
+  },
+  "reportBugsDescription": "Hata bildir veya bir özellik talep et.",
+  "@reportBugsDescription": {
+    "description": "Description for bug report link",
+    "type": "text"
+  },
+  "aboutCategoryTitle": "Hakkında",
+  "@aboutCategoryTitle": {
+    "description": "Title for the about category of the settings page",
+    "type": "text"
+  },
+  "aboutAppTitle": "Uygulama Hakkında",
+  "@aboutAppTitle": {
+    "description": "Title for the about app dialog",
+    "type": "text"
+  },
+  "contributeAppTranslationsTitle": "App Translations",
+  "@contributeAppTranslationsTitle": {
+    "description": "Title for contribute translations link",
+    "type": "text"
+  },
+  "contributeAppTranslationsDescription": "Contribute translations to the app itself",
+  "@contributeAppTranslationsDescription": {
+    "description": "Title for contribute translations link",
+    "type": "text"
+  },
+  "contributeDataTranslationsTitle": "Worldstate Translations",
+  "@contributeDataTranslationsTitle": {
+    "description": "Title for contribute translations link",
+    "type": "text"
+  },
+  "contributeDataTranslationsDescription": "Contribute translations to worldstate strings, i.e. nodes, mission types, etc",
+  "@contributeDataTranslationsDescription": {
+    "description": "Title for contribute translations link",
+    "type": "text"
+  },
+  "contributeTranslationsTitle": "Çevirilere Katkıda Bulun",
+  "@contributeTranslationsTitle": {
+    "description": "Description for contribute translations link",
+    "type": "text"
+  },
+  "contributeTranslationsDescription": "Çevirilere katkıda bulunmak için gönüllü ol",
+  "@contributeTranslationsDescription": {
+    "description": "Description for contribute translations link",
+    "type": "text"
+  },
+  "lightThemeTitle": "Açık",
+  "@lightThemeTitle": {
+    "description": "Title for light theme",
+    "type": "text"
+  },
+  "darkThemeTitle": "Koyu",
+  "@darkThemeTitle": {
+    "description": "Title for dark theme",
+    "type": "text"
+  },
+  "systemThemeTitle": "Sistem",
+  "@systemThemeTitle": {
+    "description": "Title for system theme",
+    "type": "text"
+  },
+  "legalese": "Warframe ve Warframe logosu, Digital Extremes Ltd.'nin tescilli ticari markalarıdır. Cephalon Navis ve WFCD, Digital Extremes Ltd. ile herhangi bir şekilde ilişkili değildir.",
+  "@legalese": {
+    "description": "Cephalon Navis legalese",
+    "type": "text"
+  },
+  "homePageTitle": "Ana Sayfa",
+  "@homePageTitle": {
+    "description": "Displayes a link to Navis's homepage",
+    "type": "text"
+  },
+  "sourceCode": "Kaynak kodu",
+  "@sourceCode": {
+    "description": "Displayes a link to Navis's source code",
+    "type": "text"
+  },
+  "issueTrackerDescription": "Bu proje için sorun bildirme veya özellik talepleri",
+  "@issueTrackerDescription": {
+    "description": "Description for Navis's issue tracker",
+    "type": "text"
+  },
+  "issueTrackerTitle": "sorun izleyici",
+  "@issueTrackerTitle": {
+    "description": "Display link to Navis's issue tracker",
+    "type": "text"
+  },
+  "warframeLinkTitle": "Warframe hakkında daha fazla bilgi, resmi sitelerinde bulunabilir",
+  "@warframeLinkTitle": {
+    "description": "Description for Warframe's main site link",
+    "type": "text"
+  },
+  "settingsTitle": "Ayarlar",
+  "@settingsTitle": {
+    "description": "Settings title",
+    "type": "text"
+  },
+  "dailyResetTitle": "Daily Reset Timer",
+  "@dailyResetTitle": {
+    "description": "Title for daily timer",
+    "type": "text"
+  },
+  "weeklyResetTitle": "Weekly Reset Timer",
+  "@weeklyResetTitle": {
+    "description": "Title for weekly timer",
+    "type": "text"
+  },
+  "eliteBadgeTitle": "Elit",
+  "@eliteBadgeTitle": {
+    "description": "Nightwave Elite badge title",
+    "type": "text"
+  },
+  "dailyNightwaveTitle": "Günlük",
+  "@dailyNightwaveTitle": {
+    "description": "Nightwave daily title",
+    "type": "text"
+  },
+  "weeklyNightwaveTitle": "Haftalık",
+  "@weeklyNightwaveTitle": {
+    "description": "Nightwave weekly title",
+    "type": "text"
+  },
+  "warframePassiveTitle": "Pasif",
+  "@warframePassiveTitle": {
+    "description": "Warframes passive title",
+    "type": "text"
+  },
+  "auraTitle": "Aura Polaritesi",
+  "@auraTitle": {
+    "description": "Aura polarity title for items",
+    "type": "text"
+  },
+  "preinstalledPolarities": "Önceden Yüklü Polariteler",
+  "@preinstalledPolarities": {
+    "description": "Preinstalled polarites title for items",
+    "type": "text"
+  },
+  "shieldTitle": "Kalkan",
+  "@shieldTitle": {
+    "description": "Title for shield value",
+    "type": "text"
+  },
+  "armorTitle": "Zırh",
+  "@armorTitle": {
+    "description": "Title for armor value",
+    "type": "text"
+  },
+  "healthTitle": "Sağlık",
+  "@healthTitle": {
+    "description": "Title for health value",
+    "type": "text"
+  },
+  "powerTitle": "Güç",
+  "@powerTitle": {
+    "description": "Title for power value",
+    "type": "text"
+  },
+  "sprintSpeedTitle": "Koşma Hızı",
+  "@sprintSpeedTitle": {
+    "description": "Title for sprint speed value",
+    "type": "text"
+  },
+  "abilitiesTitle": "Yetenekler",
+  "@abilitiesTitle": {
+    "description": "Title for warframe, archwings, and Necromech abilites",
+    "type": "text"
+  },
+  "componentsTitle": "Bileşenler",
+  "@componentsTitle": {
+    "description": "Title for item components",
+    "type": "text"
+  },
+  "masteryRequirementTitle": "Ustalık Gereksinimi",
+  "@masteryRequirementTitle": {
+    "description": "Mastery requirement for item",
+    "type": "text"
+  },
+  "weaponTypeTitle": "Silah Türü",
+  "@weaponTypeTitle": {
+    "description": "Weapon item type",
+    "type": "text"
+  },
+  "accuracyTitle": "İsabet",
+  "@accuracyTitle": {
+    "description": "Weapon accuracy title",
+    "type": "text"
+  },
+  "criticalChanceTitle": "Kritik Vuruş Şansı",
+  "@criticalChanceTitle": {
+    "description": "Weapon crictical chance",
+    "type": "text"
+  },
+  "cricticalMultiplierTitle": "Kritik Vuruş Çarpanı",
+  "@cricticalMultiplierTitle": {
+    "description": "Weapon critical multiplier",
+    "type": "text"
+  },
+  "fireRateTitle": "Atış Hızı",
+  "@fireRateTitle": {
+    "description": "Weapon fire rate",
+    "type": "text"
+  },
+  "magazineTitle": "Şarjör",
+  "@magazineTitle": {
+    "description": "Weapon magazine size title",
+    "type": "text"
+  },
+  "multishotTitle": "Çoklu atış",
+  "@multishotTitle": {
+    "description": "Weapon multishot",
+    "type": "text"
+  },
+  "noiseTitle": "Gürültü",
+  "@noiseTitle": {
+    "description": "Weapon noise type",
+    "type": "text"
+  },
+  "reloadTitle": "Şarjör doldurma",
+  "@reloadTitle": {
+    "description": "Weapon item type",
+    "type": "text"
+  },
+  "rivenDispositionTitle": "Riven Dağılımı",
+  "@rivenDispositionTitle": {
+    "description": "Weapon's riven disposition",
+    "type": "text"
+  },
+  "statusChanceTitle": "Statü Şansı",
+  "@statusChanceTitle": {
+    "description": "Weapon's status chance",
+    "type": "text"
+  },
+  "triggerTitle": "Tetikleyici",
+  "@triggerTitle": {
+    "description": "Weapon item type",
+    "type": "text"
+  },
+  "damageTitle": "Hasar",
+  "@damageTitle": {
+    "description": "Weapon's damage category",
+    "type": "text"
+  },
+  "totalDamageTitle": "Toplam Hasar",
+  "@totalDamageTitle": {
+    "description": "Weapon's total damage'",
+    "type": "text"
+  },
+  "stancePolarityTitle": "Duruş Polaritesi",
+  "@stancePolarityTitle": {
+    "description": "Melee stance polarity title",
+    "type": "text"
+  },
+  "attackSpeedTitle": "Saldırı Hızı",
+  "@attackSpeedTitle": {
+    "description": "melee attack speed",
+    "type": "text"
+  },
+  "followThroughTitle": "Takip Et",
+  "@followThroughTitle": {
+    "description": "Melee follow through title",
+    "type": "text"
+  },
+  "rangeTitle": "Menzil",
+  "@rangeTitle": {
+    "description": "Melee's range title",
+    "type": "text"
+  },
+  "slamAttackTitle": "Çarpma Hasarı",
+  "@slamAttackTitle": {
+    "description": "Melee's slam attack",
+    "type": "text"
+  },
+  "slamRadialDamageTitle": "Çarpma Hasarı Çapı",
+  "@slamRadialDamageTitle": {
+    "description": "Melee's Slam Radial Damage",
+    "type": "text"
+  },
+  "slamRadiusTitle": "Çarpma Çapı",
+  "@slamRadiusTitle": {
+    "description": "Slam Radius title",
+    "type": "text"
+  },
+  "slideAttackTitle": "Kayma Saldırısı",
+  "@slideAttackTitle": {
+    "description": "Melee's slide attack",
+    "type": "text"
+  },
+  "heavyAttackTitle": "Ağır Saldırı",
+  "@heavyAttackTitle": {
+    "description": "Heavy attack title",
+    "type": "text"
+  },
+  "heavySlamAttackTitle": "Ağır Çarpma Saldırısı",
+  "@heavySlamAttackTitle": {
+    "description": "Heavy Slam attack title",
+    "type": "text"
+  },
+  "heavySlamRadialDamageTitle": "Ağır Çarpma Hasarı Çapı",
+  "@heavySlamRadialDamageTitle": {
+    "description": "Heavy Slam attack title",
+    "type": "text"
+  },
+  "heavySlamRadiusTitle": "Ağır Çarpma Çapı",
+  "@heavySlamRadiusTitle": {
+    "description": "Heavy Slam attack title",
+    "type": "text"
+  },
+  "windUpTitle": "Hazırlık",
+  "@windUpTitle": {
+    "description": "melee's heavy wind up time title",
+    "type": "text"
+  },
+  "discordSupportTitle": "Destek",
+  "@discordSupportTitle": {
+    "description": "Discord support title",
+    "type": "text"
+  },
+  "steelPathTitle": "Steel Path",
+  "@steelPathTitle": {
+    "description": "Steel path card title",
+    "type": "text"
+  },
+  "syndicateDualScreenTitle": "Sendika Seç",
+  "@syndicateDualScreenTitle": {
+    "description": "User hint when under syndicate tabs using a tablet",
+    "type": "text"
+  },
+  "optOutOfAnalyticsTitle": "Analitiklerden Çıkın",
+  "@optOutOfAnalyticsTitle": {
+    "description": "Title opting out of analytics",
+    "type": "text"
+  },
+  "optOutOfAnalyticsDescription": "Analizleri devre dışı bırak.",
+  "@optOutOfAnalyticsDescription": {
+    "description": "Description of the analytics opting buttong",
+    "type": "text"
+  },
+  "appLangTitle": "Dil",
+  "@appLangTitle": {
+    "description": "Title for app language options",
+    "type": "text"
+  },
+  "appLangDescription": "Dil tespiti için varsayılan davranışı geçersiz kıl.",
+  "@appLangDescription": {
+    "description": "Description for language options",
+    "type": "text"
+  },
+  "modLevelLabel": "Seviye: {rank}",
+  "@modLevelLabel": {
+    "description": "The label shown to users as they slide the mod slider",
+    "type": "text",
+    "placeholders": {
+      "rank": {
+        "type": "int"
+      }
+    }
+  },
+  "codexHint": "Search the codex here...",
+  "@codexHint": {
+    "description": "Codex description when a user enters the codex or when the search bar is empty",
+    "type": "text"
+  },
+  "codexNoResults": "Sonuç bulunamadı",
+  "@codexNoResults": {
+    "description": "Displayed when a search result in codex returns empty",
+    "type": "text"
+  },
+  "codexVaultedLabel": "Depolanan",
+  "@codexVaultedLabel": {
+    "description": "A label shown in codex items to detenote items that are vaulted",
+    "type": "text"
+  },
+  "exploreTitle": "Keşfet",
+  "@exploreTitle": {
+    "description": "Title for explore page",
+    "type": "text"
+  },
+  "constructionProgressTitle": "İnşaat Devam ediyor",
+  "@constructionProgressTitle": {
+    "description": "Title for invasion constrcution progress",
+    "type": "text"
+  },
+  "synthTargetTitle": "SynthTargets",
+  "@synthTargetTitle": {
+    "description": "Title for synthtargets.",
+    "type": "text"
+  },
+  "archonHuntTitle": "Archon Avı",
+  "@archonHuntTitle": {
+    "description": "Title for archon hunt notification toggle.",
+    "type": "text"
+  },
+  "archonHuntDescription": "Archon avı sıfırlanma bildirimi.",
+  "@archonHuntDescription": {
+    "description": "Description for archon hunt notification toggle.",
+    "type": "text"
+  },
+  "allFissuresButton": "Tümü",
+  "@allFissuresButton": {
+    "description": "Button label for all fissures",
+    "type": "text"
+  },
+  "voidStormFissuresButton": "Void Fırtınaları",
+  "@voidStormFissuresButton": {
+    "description": "Button label for void storm fissures",
+    "type": "text"
+  },
+  "saleEndsTitle": "SATIŞ BİTER",
+  "@saleEndsTitle": {
+    "description": "Sale ends title for countdown timer",
+    "type": "text"
+  },
+  "salePriceTitle": "Satış fiyatı",
+  "@salePriceTitle": {
+    "description": "Displays the item's sale price for darvo sales",
+    "type": "text"
+  },
+  "originalPriceTitle": "Orjinal Fiyat",
+  "@originalPriceTitle": {
+    "description": "Displays the item's original price for darvo sales",
+    "type": "text"
+  },
+  "discountTitle": "% {discount} İNDİRİM!",
+  "@discountTitle": {
+    "description": "Displays the discount applied for a given darvo sale",
+    "type": "text",
+    "placeholders": {
+      "discount": {}
+    }
+  },
+  "inStockInformation": "Sadece {stock} adet kaldı",
+  "@inStockInformation": {
+    "description": "Displays the stock information for a darvo deal",
+    "type": "text",
+    "placeholders": {
+      "stock": {}
+    }
+  },
+  "outOfStockTitle": "STOKLAR TÜKENDİ",
+  "@outOfStockTitle": {
+    "description": "Tells the user when darvo is out of stock for the current sale",
+    "type": "text"
+  },
+  "duviriJoy": "Joy",
+  "@duviriJoy": {
+    "description": "Duviri joy state. ",
+    "type": "text"
+  },
+  "duviriAnger": "Anger",
+  "@duviriAnger": {
+    "description": "Duviri anger state.",
+    "type": "text"
+  },
+  "duviriEnvy": "Envy",
+  "@duviriEnvy": {
+    "description": "Duviri envy state.",
+    "type": "text"
+  },
+  "duviriSorrow": "Sorrow",
+  "@duviriSorrow": {
+    "description": "sorrow Duviri state",
+    "type": "text"
+  },
+  "duviriFear": "Fear",
+  "@duviriFear": {
+    "description": "Fear Duviri state",
+    "type": "text"
+  },
+  "mapTitle": "Haritalar",
+  "@mapTitle": {
+    "description": "Map title",
+    "type": "text"
+  },
+  "mapDescription": "Bölge haritalarını gör",
+  "@mapDescription": {
+    "description": "Map card description",
+    "type": "text"
+  },
+  "fishTitle": "Balık",
+  "@fishTitle": {
+    "description": "Fish title",
+    "type": "text"
+  },
+  "fishDescription": "Bölgeye göre balık bilgilerini gör",
+  "@fishDescription": {
+    "description": "fish card description",
+    "type": "text"
+  },
+  "fishName": "Ad",
+  "@fishName": {
+    "description": "Display a fish name along side it",
+    "type": "text"
+  },
+  "fishTime": "Zaman",
+  "@fishTime": {
+    "description": "Display time a day a fish can be caught in",
+    "type": "text"
+  },
+  "fishSpear": "Mızrak",
+  "@fishSpear": {
+    "description": "Display the type of spear used to catch fish",
+    "type": "text"
+  },
+  "fishRarity": "Nadirlik",
+  "@fishRarity": {
+    "description": "Display rarity of a given fish",
+    "type": "text"
+  },
+  "fishBait": "Yem",
+  "@fishBait": {
+    "description": "Display type of bait needed to catch fish",
+    "type": "text"
+  },
+  "fishStanding": "Durum",
+  "@fishStanding": {
+    "description": "Display standing earned with fish",
+    "type": "text"
+  },
+  "fishUnique": "Eşsiz",
+  "@fishUnique": {
+    "description": "Display a unique resources earned by given fish",
+    "type": "text"
+  },
+  "fishBladder": "Mesaneler",
+  "@fishBladder": {
+    "description": "Displays how many bladders can be earned with the given fish size",
+    "type": "text"
+  },
+  "fishGills": "Solungaçlar",
+  "@fishGills": {
+    "description": "Displays how many gills can be earned with the given fish size",
+    "type": "text"
+  },
+  "fishTumors": "Tümörler",
+  "@fishTumors": {
+    "description": "Displays how many tumors can be earned with the given fish size",
+    "type": "text"
+  },
+  "fishMeat": "Etler",
+  "@fishMeat": {
+    "description": "Displays how many meat can be earned with the given fish size",
+    "type": "text"
+  },
+  "fishOil": "Yağlar",
+  "@fishOil": {
+    "description": "Displays how many oils can be earned with the given fish size",
+    "type": "text"
+  },
+  "fishScales": "Pullar",
+  "@fishScales": {
+    "description": "Displays how many scales can be earned with the given fish size",
+    "type": "text"
+  },
+  "fishScrap": "Hurdalar",
+  "@fishScrap": {
+    "description": "Displays how many scraps can be earned with the given fish size",
+    "type": "text"
+  },
+  "fishAny": "Herhangi",
+  "@fishAny": {
+    "description": "Displayed when a fish can be caught by any spear",
+    "type": "text"
+  },
+  "dropChance": "Düşüş şansı % {chance}",
+  "@dropChance": {
+    "description": "Drop chance percentage",
+    "type": "text",
+    "placeholders": {
+      "chance": {}
+    }
+  },
+  "statsTitle": "İstatistikler",
+  "@statsTitle": {
+    "description": "Codex stat title",
+    "type": "text"
+  },
+  "patchlogsTitle": "Yama notları",
+  "@patchlogsTitle": {
+    "description": "Codex patchlogs title",
+    "type": "text"
+  },
+  "impactDamageTitle": "Darbe",
+  "@impactDamageTitle": {
+    "description": "Codex Weapon damage type title",
+    "type": "text"
+  },
+  "punctureDamageTitle": "Delici",
+  "@punctureDamageTitle": {
+    "description": "Codex Weapon damage type title",
+    "type": "text"
+  },
+  "slashDamageTitle": "Kesme",
+  "@slashDamageTitle": {
+    "description": "Codex Weapon damage type title",
+    "type": "text"
+  },
+  "heatDamageTitle": "Sıcaklık",
+  "@heatDamageTitle": {
+    "description": "Codex Weapon damage type title",
+    "type": "text"
+  },
+  "coldDamageTitle": "Soğuk",
+  "@coldDamageTitle": {
+    "description": "Codex Weapon damage type title",
+    "type": "text"
+  },
+  "electricityDamageTitle": "Elektrik",
+  "@electricityDamageTitle": {
+    "description": "Codex Weapon damage type title",
+    "type": "text"
+  },
+  "toxinDamageTitle": "Zehir",
+  "@toxinDamageTitle": {
+    "description": "Codex Weapon damage type title",
+    "type": "text"
+  },
+  "blastDamageTitle": "Patlama",
+  "@blastDamageTitle": {
+    "description": "Codex Weapon damage type title",
+    "type": "text"
+  },
+  "radiationDamageTitle": "Radyasyon",
+  "@radiationDamageTitle": {
+    "description": "Codex Weapon damage type title",
+    "type": "text"
+  },
+  "gasDamageTitle": "Gaz",
+  "@gasDamageTitle": {
+    "description": "Codex Weapon damage type title",
+    "type": "text"
+  },
+  "magneticDamageTitle": "Manyetik",
+  "@magneticDamageTitle": {
+    "description": "Codex Weapon damage type title",
+    "type": "text"
+  },
+  "viralDamageTitle": "Viral",
+  "@viralDamageTitle": {
+    "description": "Codex Weapon damage type title",
+    "type": "text"
+  },
+  "corrosiveDamageTitle": "Aşındırıcı",
+  "@corrosiveDamageTitle": {
+    "description": "Codex Weapon damage type title",
+    "type": "text"
+  },
+  "voidDamageTitle": "Void",
+  "@voidDamageTitle": {
+    "description": "Codex Weapon damage type title",
+    "type": "text"
+  },
+  "tauDamageTitle": "Tau",
+  "@tauDamageTitle": {
+    "description": "Codex Weapon damage type title",
+    "type": "text"
+  },
+  "cinematicDamageTitle": "Sinematik",
+  "@cinematicDamageTitle": {
+    "description": "Codex Weapon damage type title",
+    "type": "text"
+  },
+  "shieldDrainDamageTitle": "Kalkan Tüketme",
+  "@shieldDrainDamageTitle": {
+    "description": "Codex Weapon damage type title",
+    "type": "text"
+  },
+  "healthDrainDamageTitle": "Sağlık Tüketme",
+  "@healthDrainDamageTitle": {
+    "description": "Codex Weapon damage type title",
+    "type": "text"
+  },
+  "energyDrainDamageTitle": "Enerji Tüketme",
+  "@energyDrainDamageTitle": {
+    "description": "Codex Weapon damage type title",
+    "type": "text"
+  },
+  "physicalDamageTitle": "Fiziksel",
+  "@physicalDamageTitle": {
+    "description": "Codex Weapon damage type title",
+    "type": "text"
+  },
+  "circuitResetTitle": "Devre Sıfırlanacak",
+  "@circuitResetTitle": {
+    "description": "Text displayed next to the weekly reset time for the circuit",
+    "type": "text"
+  },
+  "circuitResetSubtitle": "Tap to see current offerings",
+  "@circuitResetSubtitle": {
+    "description": "Text displayed under circuitResetTitle",
+    "type": "text"
+  },
+  "archimedeaResetTitle": "Resets in",
+  "@archimedeaResetTitle": {
+    "description": "Text in Archimedea page for weekly reset time",
+    "type": "text"
+  },
+  "deepArchimedeaTitle": "Deep Archimedea",
+  "@deepArchimedeaTitle": {
+    "description": "Text for DA in case it needs translations",
+    "type": "text"
+  },
+  "temporalArchimedeaTitle": "Temporal Archimedea",
+  "@temporalArchimedeaTitle": {
+    "description": "Text for TA in case it needs translations",
+    "type": "text"
+  },
+  "archimedeaDeviationTitle": "Sapma",
+  "@archimedeaDeviationTitle": {
+    "description": "Text displayed next to Deep Archimedea deviation name",
+    "type": "text"
+  },
+  "archimedeaRiskTitle": "Risk Değişkeni",
+  "@archimedeaRiskTitle": {
+    "description": "Text displayed next to Deep Archimedea risk variable name",
+    "type": "text"
+  },
+  "missionsCategoryTitle": "Görevler",
+  "@missionsCategoryTitle": {
+    "description": "Text displayed where a missions category is needed",
+    "type": "text"
+  },
+  "archimedeaPersonalModifierTitle": "Kişisel Düzenleyiciler",
+  "@archimedeaPersonalModifierTitle": {
+    "description": "Text displayed above to Deep Archimedea personal modifiers",
+    "type": "text"
+  },
+  "archimedeaWarningTitle": "Uyarı",
+  "@archimedeaWarningTitle": {
+    "description": "Warning title displayed under Deep Archimedea timer",
+    "type": "text"
+  },
+  "archimedeaWarningSubtitle": "DE doesn't always update Deep/Temporal Archimedea data after a weekly reset so consider this unstable.\nWarning will be removed when data rotation is more consistent",
+  "@archimedeaWarningSubtitle": {
+    "description": "Warning text displayed under Deep Archimedea warning title",
+    "type": "text"
+  },
+  "activitiesTitle": "Activities",
+  "@activitiesTitle": {
+    "description": "Activities title",
+    "type": "text"
+  },
+  "nightwaveSeasonSubtitle": "Season {season}",
+  "@nightwaveSeasonSubtitle": {
+    "description": "Current nightwave season number",
+    "type": "text",
+    "placeholders": {
+      "season": {
+        "type": "int"
+      }
+    }
+  },
+  "calendar1999Title": "1999 Calendar",
+  "@calendar1999Title": {
+    "description": "Title text for 1999 calendar card",
+    "type": "text"
+  },
+  "traderItemHeaderTitle": "Item",
+  "@traderItemHeaderTitle": {
+    "description": "Trader inventory header text",
+    "type": "text"
+  },
+  "traderDucatsHeaderTitle": "Item",
+  "@traderDucatsHeaderTitle": {
+    "description": "Trader inventory header text",
+    "type": "text"
+  },
+  "traderCreditsHeaderTitle": "Item",
+  "@traderCreditsHeaderTitle": {
+    "description": "Trader inventory header text",
+    "type": "text"
+  },
+  "itemRankSubtitle": "Rank {rank}",
+  "@itemRankSubtitle": {
+    "description": "Subtitle showing the item's rank",
+    "type": "text",
+    "placeholders": {
+      "rank": {}
+    }
+  },
+  "syncingInfoText": "Syncing XP info",
+  "@syncingInfoText": {
+    "description": "Text displayed when xp info is being synced",
+    "type": "text",
+    "placeholders": {}
+  },
+  "enterUsernameHintText": "Setup Inventoria",
+  "@enterUsernameHintText": {
+    "description": "Hint Text use as a placeholders in username input",
+    "type": "text",
+    "placeholders": {}
+  },
+  "clearUsernameButtonLabel": "Clear username",
+  "@clearUsernameButtonLabel": {
+    "description": "Label text for clear username button",
+    "type": "text",
+    "placeholders": {}
+  },
+  "cancelText": "Cancel",
+  "@cancelText": {
+    "description": "Text to display for cancel buttons",
+    "type": "text",
+    "placeholders": {}
+  },
+  "inventoriaSteps": "Cephalon Navis can use your read-only profile data to help track your arsenal XP and mastery points.\n\n1. Go to {url} on a computer\n\n2. Upload your EE.log or account ID from cookies\n\n3. Tap next and scan the generated QR code",
+  "@inventoriaSteps": {
+    "description": "Steps to setup Inventoria",
+    "type": "text",
+    "placeholders": {
+      "url": {
+        "type": "String"
+      }
+    }
+  },
+  "profileSyncError": "A problem occurred fetching your profile, you should file a bug report",
+  "@profileSyncError": {
+    "description": "Error message to show when the app isn't able to pull a profile",
+    "type": "text"
+  },
+  "appSupportTitle": "App Support",
+  "@appSupportTitle": {
+    "description": "Title for app support card",
+    "type": "text",
+    "placeholders": {}
+  },
+  "appSupportSubtitle": "Need help with the app? Come on down to the discord",
+  "@appSupportSubtitle": {
+    "description": "Subtitle for app support card",
+    "type": "text",
+    "placeholders": {}
+  },
+  "supportTitle": "Support {text}",
+  "@supportTitle": {
+    "description": "Title for support cards",
+    "type": "text",
+    "placeholders": {
+      "text": {
+        "type": "String"
+      }
+    }
+  },
+  "supportSubtitle": "Everything from tech support to supporting app maintenance",
+  "@supportSubtitle": {
+    "description": "Subtitle for support section",
+    "type": "text",
+    "placeholders": {}
+  },
+  "supportSubtitleTobiah": "Help support the developer who runs the API used heavily by Navis",
+  "@supportSubtitleTobiah": {
+    "description": "Subtitle for API support card",
+    "type": "text",
+    "placeholders": {}
+  },
+  "supportSubtitleNavis": "Help support the maintenance of Cephalon Navis",
+  "@supportSubtitleNavis": {
+    "description": "Subtitle for Cephalon Navis support card",
+    "type": "text",
+    "placeholders": {}
+  },
+  "itemFailureErrorText": "Failed to load item",
+  "@itemFailureErrorText": {
+    "description": "Error message when loading a full item",
+    "type": "text",
+    "placeholders": {}
+  },
+  "worldstateFailureText": "Failed to parse Worldstate",
+  "@worldstateFailureText": {
+    "description": "Error message when loading/parsing the worldstate fails",
+    "type": "text",
+    "placeholders": {}
+  },
+  "worldstateOutdatedText": "Worldstate is out of date by more then 30 mins",
+  "@worldstateOutdatedText": {
+    "description": "Snackbar message to show when worldstate hasn't been updated due to failure or lack of internet connection",
+    "type": "text",
+    "placeholders": {}
+  },
+  "flashSaleAppbarTitle": "Flash Sales",
+  "@flashSaleAppbarTitle": {
+    "description": "AppBar Title for flash sales",
+    "type": "text",
+    "placeholders": {}
+  },
+  "flashSaleSubtitleText": "{plat} Platinum {discount, plural, =0{} other{| {discount}% OFF}}",
+  "@flashSaleSubtitleText": {
+    "description": "Subtitle text with platinum and discount text",
+    "type": "text",
+    "placeholders": {
+      "plat": {
+        "type": "int"
+      },
+      "discount": {
+        "type": "int"
+      }
+    }
+  },
+  "defaultScoreLocTagText": "Progress",
+  "@defaultScoreLocTagText": {
+    "description": "Default scoreLocTag text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "eventRewardRequireScoreText": "Required Score",
+  "@eventRewardRequireScoreText": {
+    "description": "Event reward required score text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "primeVaultResetText": "Prime Resurgence resets on: ",
+  "@primeVaultResetText": {
+    "description": "Prime vault reset text",
+    "type": "text"
+  },
+  "stageText": "Stage",
+  "@stageText": {
+    "description": "Stage text, it just says stage",
+    "type": "text"
+  },
+  "isolationVaultText": "Isolation Vault (Tier {tier})",
+  "@isolationVaultText": {
+    "description": "Isolation Vault Text with tier number",
+    "type": "text",
+    "placeholders": {
+      "tier": {
+        "type": "int"
+      }
+    }
+  },
+  "userFeedbackLabelText": "Feedback",
+  "@userFeedbackLabelText": {
+    "description": "User feedback label text",
+    "type": "text"
+  },
+  "userFeedbackErrorText": "Please enter some text",
+  "@userFeedbackErrorText": {
+    "description": "User feedback error text",
+    "type": "text"
+  },
+  "userFeedbackSubmitButton": "Submit",
+  "@userFeedbackSubmitButton": {
+    "description": "User feedback submit button text",
+    "type": "text"
+  },
+  "donationDescriptionText": "Everything from tech support to supporting app maintance",
+  "@donationDescriptionText": {
+    "description": "donationText",
+    "type": "text"
+  }
+}
