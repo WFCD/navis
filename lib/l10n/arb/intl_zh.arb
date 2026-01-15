@@ -1,7 +1,7 @@
 {
   "@@locale": "zh-CN",
   "@@last_modified": "2020-03-03T16:56:42.387837",
-  "levelInfo": "等级: {min} - {max}",
+  "levelInfo": "等級: {min} - {max}",
   "@levelInfo": {
     "description": "The information of the current enemy levels",
     "type": "text",
@@ -14,12 +14,12 @@
       }
     }
   },
-  "tapForMoreDetails": "点击以查看更多详细信息",
+  "tapForMoreDetails": "點擊以查看更多詳細信息",
   "@tapForMoreDetails": {
     "description": "General description to tell the user that this object takes you to a different page",
     "type": "text"
   },
-  "seeDetails": "查看详情",
+  "seeDetails": "查看詳情",
   "@seeDetails": {
     "description": "General button to see more details of given object",
     "type": "text"
@@ -34,7 +34,7 @@
     "description": "General button to wiki of given item",
     "type": "text"
   },
-  "eventDescription": "介绍",
+  "eventDescription": "介紹",
   "@eventDescription": {
     "description": "Event description category title",
     "type": "text"
@@ -54,12 +54,12 @@
     "description": "The progress of the current event from 0 to 100 %",
     "type": "text"
   },
-  "eventStatusEta": "剩余时间 (ETA)",
+  "eventStatusEta": "剩餘時間 (ETA)",
   "@eventStatusEta": {
     "description": "Current events remaining estimated time",
     "type": "text"
   },
-  "eventRewards": "奖励",
+  "eventRewards": "獎勵",
   "@eventRewards": {
     "description": "Event reward title",
     "type": "text"
@@ -69,7 +69,7 @@
     "description": "Bounty card title.",
     "type": "text"
   },
-  "errorTitle": "发生错误",
+  "errorTitle": "發生錯誤",
   "@errorTitle": {
     "description": "error title",
     "type": "text"
@@ -121,7 +121,7 @@
       }
     }
   },
-  "kuvaBanner": "Kuva 将会刷新在",
+  "kuvaBanner": "Kuva 將會刷新在",
   "@kuvaBanner": {
     "description": "Kuva refresh countdown title",
     "type": "text"
@@ -161,12 +161,12 @@
     "description": "Duviri Cycle title",
     "type": "text"
   },
-  "timersTitle": "计时器",
+  "timersTitle": "計時器",
   "@timersTitle": {
     "description": "Times title",
     "type": "text"
   },
-  "fissuresTitle": "虚空裂缝",
+  "fissuresTitle": "虛空裂縫",
   "@fissuresTitle": {
     "description": "Fissures title",
     "type": "text"
@@ -176,7 +176,7 @@
     "description": "Invasions title",
     "type": "text"
   },
-  "syndicatesTitle": "集团",
+  "syndicatesTitle": "集團",
   "@syndicatesTitle": {
     "description": "Syndicates title",
     "type": "text"
@@ -216,7 +216,7 @@
     "description": "Notifications category title",
     "type": "text"
   },
-  "rareAlertsNotificationTitle": "稀有警报",
+  "rareAlertsNotificationTitle": "稀有警報",
   "@rareAlertsNotificationTitle": {
     "description": "Rare Alerts title",
     "type": "text"
@@ -256,7 +256,7 @@
     "description": "Notification description for Darvo's Daily Deal",
     "type": "text"
   },
-  "sortieNotificationTitle": "突击",
+  "sortieNotificationTitle": "突擊",
   "@sortieNotificationTitle": {
     "description": "Notification title for sorties",
     "type": "text"
@@ -276,12 +276,12 @@
     "description": "Notification description for sentient outpost option",
     "type": "text"
   },
-  "warframeNewsTitle": "新闻",
+  "warframeNewsTitle": "新聞",
   "@warframeNewsTitle": {
     "description": "Main Title for Warframe news page",
     "type": "text"
   },
-  "warframeNewsNotificationTitle": "新闻",
+  "warframeNewsNotificationTitle": "新聞",
   "@warframeNewsNotificationTitle": {
     "description": "Main Title for Warframe news notifications",
     "type": "text"
@@ -331,12 +331,12 @@
     "description": "Earth cycle option",
     "type": "text"
   },
-  "cetusDayOption": "希图斯白天",
+  "cetusDayOption": "希圖斯白天",
   "@cetusDayOption": {
     "description": "Cetus cycle option",
     "type": "text"
   },
-  "cetusNightOption": "希图斯黑夜",
+  "cetusNightOption": "希圖斯黑夜",
   "@cetusNightOption": {
     "description": "Cetus cycle option",
     "type": "text"
@@ -371,7 +371,7 @@
     "description": "Warframe news option",
     "type": "text"
   },
-  "updateNewsOption": "Warframe 更新新闻",
+  "updateNewsOption": "Warframe 更新新聞",
   "@updateNewsOption": {
     "description": "Warframe news option",
     "type": "text"
@@ -386,12 +386,12 @@
     "description": "Description for bug report link",
     "type": "text"
   },
-  "aboutCategoryTitle": "关于",
+  "aboutCategoryTitle": "關於",
   "@aboutCategoryTitle": {
     "description": "Title for the about category of the settings page",
     "type": "text"
   },
-  "aboutAppTitle": "关于应用",
+  "aboutAppTitle": "關於應用程式",
   "@aboutAppTitle": {
     "description": "Title for the about app dialog",
     "type": "text"
@@ -416,17 +416,17 @@
     "description": "Title for contribute translations link",
     "type": "text"
   },
-  "contributeTranslationsTitle": "Contribute translations",
+  "contributeTranslationsTitle": "提交翻譯",
   "@contributeTranslationsTitle": {
     "description": "Description for contribute translations link",
     "type": "text"
   },
-  "contributeTranslationsDescription": "志愿者提交翻译",
+  "contributeTranslationsDescription": "志願者提交翻譯",
   "@contributeTranslationsDescription": {
     "description": "Description for contribute translations link",
     "type": "text"
   },
-  "lightThemeTitle": "浅色",
+  "lightThemeTitle": "淺色",
   "@lightThemeTitle": {
     "description": "Title for light theme",
     "type": "text"
@@ -436,7 +436,7 @@
     "description": "Title for dark theme",
     "type": "text"
   },
-  "systemThemeTitle": "跟随系统",
+  "systemThemeTitle": "跟隨系統",
   "@systemThemeTitle": {
     "description": "Title for system theme",
     "type": "text"
