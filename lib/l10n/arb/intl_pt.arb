@@ -395,9 +395,29 @@
     "description": "Title for the about app dialog",
     "type": "text"
   },
+  "contributeAppTranslationsTitle": "App Translations",
+  "@contributeAppTranslationsTitle": {
+    "description": "Title for contribute translations link",
+    "type": "text"
+  },
+  "contributeAppTranslationsDescription": "Contribute translations to the app itself",
+  "@contributeAppTranslationsDescription": {
+    "description": "Title for contribute translations link",
+    "type": "text"
+  },
+  "contributeDataTranslationsTitle": "Worldstate Translations",
+  "@contributeDataTranslationsTitle": {
+    "description": "Title for contribute translations link",
+    "type": "text"
+  },
+  "contributeDataTranslationsDescription": "Contribuir com traduções dos textos do World State, como nós, tipos de missão, etc",
+  "@contributeDataTranslationsDescription": {
+    "description": "Title for contribute translations link",
+    "type": "text"
+  },
   "contributeTranslationsTitle": "Contribuir para a tradução",
   "@contributeTranslationsTitle": {
-    "description": "Title for contribute translations link",
+    "description": "Description for contribute translations link",
     "type": "text"
   },
   "contributeTranslationsDescription": "Voluntário para contribuir com traduções",
@@ -1284,5 +1304,25 @@
         "type": "int"
       }
     }
+  },
+  "userFeedbackLabelText": "Opinião",
+  "@userFeedbackLabelText": {
+    "description": "User feedback label text",
+    "type": "text"
+  },
+  "userFeedbackErrorText": "Por favor, insira algum texto",
+  "@userFeedbackErrorText": {
+    "description": "User feedback error text",
+    "type": "text"
+  },
+  "userFeedbackSubmitButton": "Enviar",
+  "@userFeedbackSubmitButton": {
+    "description": "User feedback submit button text",
+    "type": "text"
+  },
+  "donationDescriptionText": "Tudo, desde suporte técnico até a manutenção do aplicativo",
+  "@donationDescriptionText": {
+    "description": "donationText",
+    "type": "text"
   }
 }
