@@ -1,13 +1,12 @@
 import 'dart:math';
 
 import 'package:codex/codex.dart';
-import 'package:collection/collection.dart';
 import 'package:warframestat_client/warframestat_client.dart';
 
 int masteryRank(CodexItem item, int xp) {
   if (!item.masterable) throw Exception('Not a masterable item');
 
-  return min(sqrt(xp / (item.type.isWeapon ? 500 : 1000)).floor(), item.maxLevelCap!);
+  return min(sqrt(xp / (item.type.isWeapon ? 500 : 1000)).floor(), item.maxLevelCap ?? 30);
 }
 
 int masteryPoints(CodexItem item) {
@@ -27,7 +26,8 @@ int masteryPoints(CodexItem item) {
 
 extension InventoryListX on List<CodexItem> {
   List<CodexItem> get inProgress =>
-      whereNot((i) => i.xpInfo.value == null && i.xpInfo.value!.xp < i.maxLevelCap!).toList();
+      where((i) => (i.xpInfo.value?.xp ?? 0) < (i.maxLevelCap ?? 30)).toList()
+        ..sort((a, b) => (b.xpInfo.value?.xp ?? 0).compareTo(a.xpInfo.value?.xp ?? 0));
 
   List<CodexItem> get warframes => where((i) => i.type == ItemType.warframes).toList();
 

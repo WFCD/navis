@@ -6,13 +6,14 @@ import 'package:navis/profile/profile.dart';
 import 'package:navis/profile/utils/mastery_utils.dart';
 import 'package:navis/router/routes.dart';
 import 'package:navis_ui/navis_ui.dart';
+import 'package:profile_models/profile_models.dart';
 
 class MasteryInProgressSection extends StatelessWidget {
   const MasteryInProgressSection({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocSelector<ProfileCubit, ProfileState, PlayerProfile?>(
+    return BlocSelector<ProfileCubit, ProfileState, Profile?>(
       selector: (state) {
         return switch (state) {
           ProfileSuccessful(profile: final profile) => profile,
@@ -59,8 +60,8 @@ class MasteryInProgressContent extends StatelessWidget {
                 ArsenalItemTitle(
                   name: i.name,
                   imageName: i.imageName!,
-                  rank: masteryRank(i, i.xpInfo.value!.xp),
-                  maxRank: i.maxLevelCap!,
+                  rank: masteryRank(i, i.xpInfo.value?.xp ?? 0),
+                  maxRank: i.maxLevelCap ?? 30,
                 ),
             ],
           );

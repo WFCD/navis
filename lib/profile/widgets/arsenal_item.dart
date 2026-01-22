@@ -21,7 +21,7 @@ class ArsenalItemWidget extends StatelessWidget {
     final codex = RepositoryProvider.of<Codex>(context);
     final repo = RepositoryProvider.of<WarframestatRepository>(context);
 
-    final rank = masteryRank(item, item.xpInfo.value!.xp);
+    final rank = masteryRank(item, item.xpInfo.value?.xp ?? 0);
 
     return OpenContainer(
       openColor: Theme.of(context).colorScheme.surfaceContainer,
@@ -56,12 +56,12 @@ class ArsenalItemWidget extends StatelessWidget {
       },
       closedBuilder: (context, onTap) {
         return AppCard(
-          color: rank == item.maxLevelCap! ? Theme.of(context).colorScheme.secondaryContainer : null,
+          color: rank == (item.maxLevelCap ?? 30) ? Theme.of(context).colorScheme.secondaryContainer : null,
           child: ArsenalItemTitle(
             name: item.name,
             imageName: item.imageName!,
             rank: rank,
-            maxRank: item.maxLevelCap!,
+            maxRank: item.maxLevelCap ?? 30,
           ),
         );
       },

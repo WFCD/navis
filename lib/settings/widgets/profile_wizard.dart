@@ -20,8 +20,9 @@ class ProfileWizard extends StatefulWidget {
 
     try {
       await BlocProvider.of<ProfileCubit>(context).loadProfile(id);
-    } on Exception {
+    } on Exception catch (e) {
       if (!context.mounted) return;
+      debugPrint(e.toString());
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(context.l10n.profileSyncError)));
     }
   }
@@ -62,7 +63,10 @@ class _ProfileWizardState extends State<ProfileWizard> {
             child: PageView(
               controller: _controller,
               onPageChanged: (page) => setState(() => _currentPage = page),
-              children: [const _InstructionsPage(), _QrScanner(onDetect: _onDetect)],
+              children: [
+                const _InstructionsPage(),
+                _QrScanner(onDetect: _onDetect),
+              ],
             ),
           ),
 
@@ -70,16 +74,15 @@ class _ProfileWizardState extends State<ProfileWizard> {
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
             child: Align(
               alignment: Alignment.centerRight,
-              child:
-                  _currentPage != 0
-                      ? OutlinedButton(
-                        onPressed: () => _controller.previousPage(duration: Durations.medium1, curve: Curves.easeOut),
-                        child: const Text('Back'),
-                      )
-                      : FilledButton(
-                        onPressed: () => _controller.nextPage(duration: Durations.medium1, curve: Curves.easeOut),
-                        child: const Text('Next'),
-                      ),
+              child: _currentPage != 0
+                  ? OutlinedButton(
+                      onPressed: () => _controller.previousPage(duration: Durations.medium1, curve: Curves.easeOut),
+                      child: const Text('Back'),
+                    )
+                  : FilledButton(
+                      onPressed: () => _controller.nextPage(duration: Durations.medium1, curve: Curves.easeOut),
+                      child: const Text('Next'),
+                    ),
             ),
           ),
         ],

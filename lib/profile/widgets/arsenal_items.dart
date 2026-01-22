@@ -12,22 +12,11 @@ class ArsenalItems extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RefreshIndicator(
-      onRefresh: () => BlocProvider.of<ProfileCubit>(context).syncProfile(),
-      child: BlocListener<ProfileCubit, ProfileState>(
-        listener: (context, state) {
-          final profile = switch (state) {
-            ProfileSuccessful() => state.profile,
-            _ => null,
-          };
-
-          if (profile == null) return;
-          BlocProvider.of<MasteryProgressCubit>(context).syncXpInfo();
-        },
-        child: ListView.builder(
-          controller: controller,
-          itemCount: items.length,
-          itemBuilder: (context, index) => ArsenalItemWidget(item: items[index]),
-        ),
+      onRefresh: () => BlocProvider.of<ProfileCubit>(context).refreshProfile(),
+      child: ListView.builder(
+        controller: controller,
+        itemCount: items.length,
+        itemBuilder: (context, index) => ArsenalItemWidget(item: items[index]),
       ),
     );
   }

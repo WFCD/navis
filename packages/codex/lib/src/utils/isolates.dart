@@ -4,7 +4,7 @@ import 'dart:isolate';
 import 'package:codex/src/schema/schema.dart';
 import 'package:collection/collection.dart';
 import 'package:isar_community/isar.dart';
-import 'package:warframestat_client/warframestat_client.dart';
+import 'package:profile_models/profile_models.dart';
 
 typedef IsarProps = ({String dir, String name, List<CollectionSchema<dynamic>> schemas});
 
@@ -52,10 +52,6 @@ Future<void> processXpInfo(IsarProps conn, List<XpItem> xpInfo) async {
 
             await database.masterableItems.put(masterable);
             await masterable.item.save();
-
-            final profile = await database.playerProfiles.get(profileDefaultId);
-            profile!.xpInfo.add(masterable);
-            await profile.xpInfo.save();
           }
         });
       }),

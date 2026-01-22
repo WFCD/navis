@@ -59,7 +59,7 @@ class _MasteryItemSearchBarState extends State<MasteryItemSearchBar> {
         _ => [],
       },
       builder: (context, items) {
-        final completed = items.where((i) => masteryRank(i, i.xpInfo.value!.xp) == i.maxLevelCap!);
+        final completed = items.where((i) => masteryRank(i, i.xpInfo.value?.xp ?? 0) == (i.maxLevelCap ?? 30));
 
         return SearchAnchor.bar(
           barLeading: IconButton(icon: const Icon(Icons.arrow_back_rounded), onPressed: widget.onPressed),

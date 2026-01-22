@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_settings_ui/flutter_settings_ui.dart';
 import 'package:intl/intl.dart';
 import 'package:navis/l10n/l10n.dart';
+import 'package:navis/profile/cubit/profile_cubit.dart';
 import 'package:navis/settings/settings.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:notification_repository/notification_repository.dart';
@@ -47,13 +48,13 @@ class _SettingsView extends StatelessWidget {
 
     final filters = NotificationTopics(context.l10n);
 
-    final settings = context.select<UserSettingsCubit, UserSettingsSuccess?>(
-      (cubit) => cubit.state is UserSettingsSuccess ? cubit.state as UserSettingsSuccess : null,
+    final settings = context.select(
+      (UserSettingsCubit cubit) => cubit.state is UserSettingsSuccess ? cubit.state as UserSettingsSuccess : null,
     );
 
-    // final profile = context.select<ProfileCubit, DriftProfileData?>(
-    //   (cubit) => cubit.state is ProfileSuccessful ? (cubit.state as ProfileSuccessful).profile : null,
-    // );
+    final profile = context.select(
+      (ProfileCubit cubit) => cubit.state is ProfileSuccessful ? (cubit.state as ProfileSuccessful).profile : null,
+    );
 
     final toggles = settings?.toggles ?? <String, bool>{};
 
@@ -62,22 +63,17 @@ class _SettingsView extends StatelessWidget {
       lightTheme: theme,
       darkTheme: theme,
       sections: [
-        // SettingsSection(
-        //   title: const Text('Inventoria'),
-        //   tiles: [
-        //     SettingsTile(
-        //       title: profile?.username != null
-        //           ? UserTitle(username: profile!.username)
-        //           : Text(l10n.enterUsernameHintText),
-        //       onPressed: profile?.username != null ? null : ProfileWizard.startWizard,
-        //     ),
-        //     if (profile?.username != null)
-        //       SettingsTile(
-        //         title: Text('Clear User', style: TextStyle(color: context.theme.colorScheme.error)),
-        //         onPressed: (_) => BlocProvider.of<ProfileCubit>(context).reset(),
-        //       ),
-        //   ],
-        // ),
+        SettingsSection(
+          title: const Text('Inventoria'),
+          tiles: [
+            SettingsTile(
+              title: profile?.username != null
+                  ? UserTitle(username: profile!.username)
+                  : Text(l10n.enterUsernameHintText),
+              onPressed: ProfileWizard.startWizard,
+            ),
+          ],
+        ),
         SettingsSection(
           title: Text(l10n.behaviorTitle),
           tiles: [
