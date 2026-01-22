@@ -83,7 +83,7 @@ class WarframeRepository {
       () => RawProfile.fromMap((json['Results'] as List<dynamic>).first as Map<String, dynamic>).toProfile(),
     );
 
-    await _cacheManager.set(key, profile.toMap());
+    await _cacheManager.set(key, profile.toMap(), ttl: const Duration(minutes: 60));
 
     return profile;
   }
