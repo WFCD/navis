@@ -7,4 +7,4 @@ const contributeAppTranslations = 'https://navis.t.warframestat.us/';
 const contributeDataTranslations = 'https://crowdin.com/project/genesis-parser';
 const tobiahkofi = 'https://ko-fi.com/tobiah';
 const buyMeCoffee = 'https://www.buymeacoffee.com/HydroNav';
-const homepage = 'https://navisqr.minilabs.dev/';
+const homepage = 'https://navis.minilabs.dev/';
