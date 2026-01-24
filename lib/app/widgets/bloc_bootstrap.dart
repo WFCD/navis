@@ -19,7 +19,7 @@ class BlocBootstrap extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (_) => UserSettingsCubit(settings)),
-        BlocProvider(create: (_) => ProfileCubit(codex, warframe)),
+        BlocProvider(create: (_) => ProfileCubit(codex, warframe)..refreshProfile()),
       ],
       child: child,
     );
