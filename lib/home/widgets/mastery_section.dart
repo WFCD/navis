@@ -1,3 +1,4 @@
+import 'package:black_hole_flutter/black_hole_flutter.dart';
 import 'package:codex/codex.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -7,6 +8,7 @@ import 'package:navis/profile/utils/mastery_utils.dart';
 import 'package:navis/router/routes.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:profile_models/profile_models.dart';
+import 'package:warframe_icons/warframe_icons.dart';
 
 class MasteryInProgressSection extends StatelessWidget {
   const MasteryInProgressSection({super.key});
@@ -52,6 +54,24 @@ class MasteryInProgressContent extends StatelessWidget {
 
           if (state is! MasteryProgressSuccess) {
             return const Padding(padding: padding, child: WarframeSpinner(size: 100));
+          }
+
+          if (state.items.inProgress.isEmpty) {
+            return Card(
+              child: Center(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 32),
+                  child: Column(
+                    spacing: 8,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Icon(WarframeIcons.menuWoundedInfestedCritter, size: 80),
+                      Text('No Items in progress', style: context.textTheme.titleMedium),
+                    ],
+                  ),
+                ),
+              ),
+            );
           }
 
           return Column(
