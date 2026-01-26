@@ -58,6 +58,7 @@ abstract class Topics {
   static const Topic sniptronVandalReceiver = Topic('sniptron_vandal_receiver');
   static const Topic sniptronVandalStock = Topic('sniptron_vandal_stock');
 
+  static const Topic sheevBlueprint = Topic('sheev_bp');
   static const Topic sheevBlade = Topic('sheev_blade');
   static const Topic sheevHeatsink = Topic('sheev_heatsink');
   static const Topic sheevHilt = Topic('sheev_hilt');
@@ -177,6 +178,7 @@ abstract class Topics {
       sniptronVandalBarrel,
       sniptronVandalReceiver,
       sniptronVandalStock,
+      sheevBlueprint,
       sheevBlade,
       sheevHeatsink,
       sheevHilt,

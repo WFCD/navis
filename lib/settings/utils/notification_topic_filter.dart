@@ -118,6 +118,7 @@ class NotificationTopics {
       SimpleTopics(title: 'Snipetron Vandal Barrel', topic: Topics.sniptronVandalBarrel),
       SimpleTopics(title: 'Snipetron Vandal Receiver', topic: Topics.sniptronVandalReceiver),
       SimpleTopics(title: 'Snipetron Vandal Stock', topic: Topics.sniptronVandalStock),
+      SimpleTopics(title: 'Sheev Blueprint', topic: Topics.sheevBlueprint),
       SimpleTopics(title: 'Sheev Blade', topic: Topics.sheevBlade),
       SimpleTopics(title: 'Sheev Heatsink', topic: Topics.sheevHeatsink),
       SimpleTopics(title: 'Sheev Hilt', topic: Topics.sheevHilt),
