@@ -440,7 +440,7 @@
     "description": "Title for system theme",
     "type": "text"
   },
-  "legalese": "Warframe과 Warframe 로고는 Digital Extremes Ltd.의 등록 상표입니다. Cephalon Navis 및 WFCD 역시 Digital Extremes Ltd.와 관계 없습니다.",
+  "legalese": "Cephalon Navis nor WFCD are affiliated with Digital Extremes Ltd. Warframe and the Warframe logo are registered trademarks of Digital Extremes Ltd.",
   "@legalese": {
     "description": "Cephalon Navis legalese",
     "type": "text"
@@ -1324,5 +1324,33 @@
   "@donationDescriptionText": {
     "description": "donationText",
     "type": "text"
+  },
+  "sendFeedbackTitle": "Send Feedback",
+  "@sendFeedbackTitle": {
+    "description": "send Feedback Title"
+  },
+  "sendFeedbackDescription": "Help us improve Navis! Share your thoughts, report bugs, or suggest new features.",
+  "@sendFeedbackDescription": {
+    "description": "Send feedback description"
+  },
+  "sendFeedbackLabelText": "Email (optional)",
+  "@sendFeedbackLabelText": {
+    "description": "Send feedback label text"
+  },
+  "sendFeedbackHintText": "your@email.com",
+  "@sendFeedbackHintText": {
+    "description": "Send feedback hint text"
+  },
+  "sendFeedbackHelperText": "We'll only use this to follow up on your feedback",
+  "@sendFeedbackHelperText": {
+    "description": "Send feedback helper text"
+  },
+  "sendFeedbackSubmissionSuccessful": "Submitted successfully!",
+  "@sendFeedbackSubmissionSuccessful": {
+    "description": "send Feedback Submission Successful"
+  },
+  "sendFeedbackSubmissionFailure": "Something went wrong...",
+  "@sendFeedbackSubmissionFailure": {
+    "description": "Send feedback submission failure"
   }
 }
