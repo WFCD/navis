@@ -26,7 +26,9 @@ int masteryPoints(CodexItem item) {
 
 extension InventoryListX on List<CodexItem> {
   List<CodexItem> get inProgress =>
-      where((i) => i.xpInfo.value != null).where((i) => i.xpInfo.value!.xp < (i.maxLevelCap ?? 30)).toList()
+      where(
+          (i) => i.xpInfo.value != null,
+        ).where((i) => masteryRank(i, i.xpInfo.value!.xp) < (i.maxLevelCap ?? 30)).toList()
         ..sort((a, b) => (b.xpInfo.value!.xp).compareTo(a.xpInfo.value!.xp));
 
   List<CodexItem> get warframes => where((i) => i.type == ItemType.warframes).toList();

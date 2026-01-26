@@ -55,7 +55,7 @@ class _UserFeedbackState extends State<UserFeedback> {
       if (Sentry.lastEventId != const SentryId.empty()) id = Sentry.lastEventId;
 
       final contactEmail = _emailController.text.isEmpty ? null : _emailController.text;
-      await Sentry.captureFeedback(
+      id = await Sentry.captureFeedback(
         SentryFeedback(contactEmail: contactEmail, message: _feedbackController.text, associatedEventId: id),
       );
       _feedbackForm = _feedbackForm.copyWith(status: .success);

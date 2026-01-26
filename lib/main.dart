@@ -30,7 +30,6 @@ Future<void> main() async {
     (option) {
       option
         ..dsn = kDebugMode || kProfileMode ? '' : const String.fromEnvironment('SENTRY_DSN')
-        ..debug = kDebugMode
         ..enableDeduplication = true
         ..tracesSampleRate = sampleRate
         ..ignoreErrors = ['SocketException', 'ClientException']
@@ -38,9 +37,7 @@ Future<void> main() async {
         ..replay.onErrorSampleRate = sampleRate
         ..replay.quality = SentryReplayQuality.low
         ..enableBreadcrumbTrackingForCurrentPlatform()
-        ..addIntegration(LoggingIntegration())
-        ..feedback.isEmailRequired = false
-        ..feedback.isNameRequired = false;
+        ..addIntegration(LoggingIntegration());
     },
     appRunner: () async {
       if (!kDebugMode || !kProfileMode) {
