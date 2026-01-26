@@ -1,30 +1,34 @@
 import 'package:codex/codex.dart';
 import 'package:equatable/equatable.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
+import 'package:navis/settings/settings.dart';
 import 'package:profile_models/profile_models.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:warframe_repository/warframe_repository.dart';
 
 part 'profile_state.dart';
 
 class ProfileCubit extends Cubit<ProfileState> {
-  ProfileCubit(this.codex, this.warframe) : super(ProfileInitial());
+  ProfileCubit(Codex codex, WarframeRepository repo, UserSettings settings)
+    : _codex = codex,
+      _repo = repo,
+      _settings = settings,
+      super(ProfileInitial());
 
-  final Codex codex;
-  final WarframeRepository warframe;
+  final Codex _codex;
+  final WarframeRepository _repo;
+  final UserSettings _settings;
 
   Future<void> loadProfile(String id) async {
     if (state is! ProfileSuccessful) emit(ProfileUpdating());
 
     try {
-      final profile = await warframe.fetchProfile(id);
+      _settings.accountId = id;
+      final profile = await _repo.fetchProfile(id);
 
       if (isClosed) return;
       emit(ProfileSuccessful(profile));
 
-      final prefs = await SharedPreferences.getInstance();
-      await prefs.setString('profile_id', id);
-      await codex.syncXpInfo(profile.loadout.xpInfo);
+      await _codex.syncXpInfo(profile.loadout.xpInfo);
     } on Exception {
       if (isClosed) return;
       emit(ProfileFailure());
@@ -36,12 +40,11 @@ class ProfileCubit extends Cubit<ProfileState> {
     if (state is! ProfileSuccessful) emit(ProfileUpdating());
 
     try {
-      final prefs = await SharedPreferences.getInstance();
-      final id = prefs.getString('profile_id');
+      final id = _settings.accountId;
       if (id == null) return emit(ProfileFailure());
 
-      final profile = await warframe.fetchProfile(id);
-      await codex.syncXpInfo(profile.loadout.xpInfo);
+      final profile = await _repo.fetchProfile(id);
+      await _codex.syncXpInfo(profile.loadout.xpInfo);
 
       if (isClosed) return;
       emit(ProfileSuccessful(profile));

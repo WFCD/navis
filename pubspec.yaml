@@ -40,6 +40,7 @@ dependencies:
     sdk: flutter
   flutter_settings_ui: ^3.0.1
   flutter_svg: ^2.2.2
+  formz: ^0.8.0
   go_router: ^17.0.0
   hive_ce: ^2.17.0
   hive_ce_flutter: ^2.3.4
@@ -68,9 +69,8 @@ dependencies:
   replay_bloc: ^0.3.0
   responsive_builder: ^0.7.0
   rxdart: ^0.28.0
-  sentry_flutter: ^9.9.2
-  sentry_logging: ^9.9.2
-  shared_preferences: ^2.5.4
+  sentry_flutter: ^9.10.0
+  sentry_logging: ^9.10.0
   simple_icons: 10.1.3 # Do not update
   visibility_detector: ^0.4.0+2
   warframe_icons:
