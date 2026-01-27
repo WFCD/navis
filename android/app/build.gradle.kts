@@ -3,6 +3,9 @@ import java.io.FileInputStream
 
 plugins {
     id("com.android.application")
+    // START: FlutterFire Configuration
+    id("com.google.gms.google-services")
+    // END: FlutterFire Configuration
     id("kotlin-android")
     id("io.sentry.android.gradle") version "5.12.1"
     // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
