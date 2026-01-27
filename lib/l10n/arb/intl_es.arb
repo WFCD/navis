@@ -440,7 +440,7 @@
     "description": "Title for system theme",
     "type": "text"
   },
-  "legalese": "El logotipo de Warframe y Warframe son marcas registradas de Digital Extremes Ltd. Cephalon Navis y WFCD están afiliados a Digital Extremes Ltd. de cualquier modo.",
+  "legalese": "Cephalon Navis nor WFCD are affiliated with Digital Extremes Ltd. Warframe and the Warframe logo are registered trademarks of Digital Extremes Ltd.",
   "@legalese": {
     "description": "Cephalon Navis legalese",
     "type": "text"
@@ -1324,5 +1324,77 @@
   "@donationDescriptionText": {
     "description": "donationText",
     "type": "text"
+  },
+  "sendFeedbackTitle": "Send Feedback",
+  "@sendFeedbackTitle": {
+    "description": "send Feedback Title"
+  },
+  "sendFeedbackDescription": "Help us improve Navis! Share your thoughts, report bugs, or suggest new features.",
+  "@sendFeedbackDescription": {
+    "description": "Send feedback description"
+  },
+  "sendFeedbackLabelText": "Email (optional)",
+  "@sendFeedbackLabelText": {
+    "description": "Send feedback label text"
+  },
+  "sendFeedbackHintText": "your@email.com",
+  "@sendFeedbackHintText": {
+    "description": "Send feedback hint text"
+  },
+  "sendFeedbackHelperText": "We'll only use this to follow up on your feedback",
+  "@sendFeedbackHelperText": {
+    "description": "Send feedback helper text"
+  },
+  "sendFeedbackSubmissionSuccessful": "Submitted successfully!",
+  "@sendFeedbackSubmissionSuccessful": {
+    "description": "send Feedback Submission Successful"
+  },
+  "sendFeedbackSubmissionFailure": "Something went wrong...",
+  "@sendFeedbackSubmissionFailure": {
+    "description": "Send feedback submission failure"
+  },
+  "inventoriaStepOneTitle": "Welcome to Inventoria",
+  "@inventoriaStepOneTitle": {
+    "description": "welcome To Inventoria Title"
+  },
+  "inventoriaStepOne": "Cephalon Navis will guide you through the process of retrieving your account ID in order to use inventoria and track mastered items.\n\nProfile information is retrieved through a read-only public endpoint and will never post or make changes to your account.\n\nFor any further information please see the FAQ.\n{faqLink}\n\nFor support head over to the discord server\n{discordLink}",
+  "@inventoriaStepOne": {
+    "description": "Inventoria step 1",
+    "placeholders": {
+      "faqLink": {
+        "type": "String"
+      },
+      "discordLink": {
+        "type": "String"
+      }
+    }
+  },
+  "inventoriaStepTwoTitle": "Sign into Warframe",
+  "@inventoriaStepTwoTitle": {
+    "description": "Inventoria step 2 title"
+  },
+  "inventoriaStepTwoDescription": "In order for you to get your user ID you need to make sure your device is signed into Warframe, then come back to this screen.",
+  "@inventoriaStepTwoDescription": {
+    "description": "Inventoria step three description"
+  },
+  "inventoriaStepThreeTitle": "Get user data",
+  "@inventoriaStepThreeTitle": {
+    "description": "inventoria step four title"
+  },
+  "inventoriaStepThreeDescription": "Now copy and paste the response from this link into the text field below.",
+  "@inventoriaStepThreeDescription": {
+    "description": "Inventoria step four description"
+  },
+  "inventoriaStepThreeButtonLabel": "Get user ID",
+  "@inventoriaStepThreeButtonLabel": {
+    "description": "Inventoria step three button label"
+  },
+  "inventoriaStepThreeTextLabel": "JSON output",
+  "@inventoriaStepThreeTextLabel": {
+    "description": "Inventoria step four text lable"
+  },
+  "inventoriaStepFourTitle": "Confirm Account",
+  "@inventoriaStepFourTitle": {
+    "description": "Inventoria step four title"
   }
 }
