@@ -2,7 +2,6 @@ import 'package:codex/codex.dart';
 import 'package:equatable/equatable.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:navis/settings/settings.dart';
-import 'package:profile_models/profile_models.dart';
 import 'package:warframe_repository/warframe_repository.dart';
 
 part 'profile_state.dart';
@@ -18,17 +17,18 @@ class ProfileCubit extends Cubit<ProfileState> {
   final WarframeRepository _repo;
   final UserSettings _settings;
 
-  Future<void> loadProfile(String id) async {
+  Future<void> saveProfile(String data) async {
     if (state is! ProfileSuccessful) emit(ProfileUpdating());
 
     try {
-      _settings.accountId = id;
-      final profile = await _repo.fetchProfile(id);
-
-      if (isClosed) return;
-      emit(ProfileSuccessful(profile));
+      final user = _repo.convertUserData(data);
+      final profile = await _repo.fetchProfile(user.id);
+      _settings.user = data;
 
       await _codex.syncXpInfo(profile.loadout.xpInfo);
+
+      if (isClosed) return;
+      emit(ProfileSuccessful(user));
     } on Exception {
       if (isClosed) return;
       emit(ProfileFailure());
@@ -40,14 +40,15 @@ class ProfileCubit extends Cubit<ProfileState> {
     if (state is! ProfileSuccessful) emit(ProfileUpdating());
 
     try {
-      final id = _settings.accountId;
-      if (id == null) return emit(ProfileFailure());
+      final data = _settings.user;
+      if (data == null) return emit(ProfileInitial());
 
-      final profile = await _repo.fetchProfile(id);
+      final user = _repo.convertUserData(data);
+      final profile = await _repo.fetchProfile(user.id);
       await _codex.syncXpInfo(profile.loadout.xpInfo);
 
       if (isClosed) return;
-      emit(ProfileSuccessful(profile));
+      emit(ProfileSuccessful(user));
     } on Exception {
       if (isClosed) return;
       emit(ProfileFailure());

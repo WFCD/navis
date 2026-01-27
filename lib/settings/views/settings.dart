@@ -68,7 +68,11 @@ class _SettingsView extends StatelessWidget {
           tiles: [
             SettingsTile(
               title: profile?.username != null
-                  ? UserTitle(username: profile!.username)
+                  ? UserTitle(
+                      avatar: profile!.avatar,
+                      username: profile.username,
+                      rank: profile.masteryRank,
+                    )
                   : Text(l10n.enterUsernameHintText),
               onPressed: ProfileWizard.startWizard,
             ),

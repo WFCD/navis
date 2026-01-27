@@ -1,28 +1,30 @@
-import 'dart:convert';
-
-import 'package:black_hole_flutter/black_hole_flutter.dart';
-import 'package:flutter/gestures.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mobile_scanner/mobile_scanner.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis/profile/cubit/profile_cubit.dart';
 import 'package:navis_ui/navis_ui.dart';
+import 'package:warframe_repository/warframe_repository.dart';
 
 class ProfileWizard extends StatefulWidget {
   const ProfileWizard({super.key});
 
   static Future<void> startWizard(BuildContext context) async {
-    final id = await showModalBottomSheet<String>(context: context, builder: (context) => const ProfileWizard());
-    if (!context.mounted || id == null) return;
+    final data = await showModalBottomSheet<String>(
+      context: context,
+      useSafeArea: true,
+      isScrollControlled: true,
+      builder: (context) => const ProfileWizard(),
+    );
+
+    if (!context.mounted || data == null) return;
 
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(context.l10n.syncingInfoText)));
 
     try {
-      await BlocProvider.of<ProfileCubit>(context).loadProfile(id);
-    } on Exception catch (e) {
+      await BlocProvider.of<ProfileCubit>(context).saveProfile(data);
+    } on Exception {
       if (!context.mounted) return;
-      debugPrint(e.toString());
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(context.l10n.profileSyncError)));
     }
   }
@@ -32,154 +34,149 @@ class ProfileWizard extends StatefulWidget {
 }
 
 class _ProfileWizardState extends State<ProfileWizard> {
-  late final PageController _controller;
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
+  late TextEditingController _jsonTextFieldController;
+
+  static const _maxSteps = 3;
+
+  UserData? _user;
   int _currentPage = 0;
-
-  void _onDetect(BarcodeCapture codes) {
-    final accoundId = codes.barcodes.first.displayValue;
-    if (accoundId == null) return;
-
-    Navigator.pop(context, accoundId);
-  }
 
   @override
   void initState() {
     super.initState();
-    _controller = PageController(keepPage: false);
+    _jsonTextFieldController = TextEditingController();
   }
 
-  @override
-  Widget build(BuildContext context) {
-    final size = MediaQuery.sizeOf(context);
+  void _onStepContinue() {
+    if (_currentPage == 2) {
+      if (!_formKey.currentState!.validate()) return;
 
-    return SizedBox(
-      height: size.height * .4,
-      width: size.width,
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
+      final user = RepositoryProvider.of<WarframeRepository>(context).convertUserData(_jsonTextFieldController.text);
+      setState(() {
+        _user = user;
+        _currentPage++;
+      });
+    } else if (_currentPage == _maxSteps) {
+      Navigator.pop(context, _jsonTextFieldController.text);
+    } else {
+      setState(() => _currentPage++);
+    }
+  }
+
+  Widget _controlsBuilder(BuildContext context, ControlsDetails details) {
+    final locale = MaterialLocalizations.of(context);
+
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 24),
+      child: OverflowBar(
+        alignment: MainAxisAlignment.spaceBetween,
+
         children: [
-          Expanded(
-            child: PageView(
-              controller: _controller,
-              onPageChanged: (page) => setState(() => _currentPage = page),
-              children: [
-                const _InstructionsPage(),
-                _QrScanner(onDetect: _onDetect),
-              ],
+          if (details.stepIndex > 0)
+            OutlinedButton(onPressed: details.onStepCancel, child: Text(locale.backButtonTooltip)),
+          if (details.stepIndex < _maxSteps)
+            FilledButton(
+              onPressed: details.onStepContinue,
+              child: Text(locale.continueButtonLabel),
             ),
-          ),
-
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
-            child: Align(
-              alignment: Alignment.centerRight,
-              child: _currentPage != 0
-                  ? OutlinedButton(
-                      onPressed: () => _controller.previousPage(duration: Durations.medium1, curve: Curves.easeOut),
-                      child: const Text('Back'),
-                    )
-                  : FilledButton(
-                      onPressed: () => _controller.nextPage(duration: Durations.medium1, curve: Curves.easeOut),
-                      child: const Text('Next'),
-                    ),
+          if (details.stepIndex == _maxSteps)
+            FilledButton(
+              onPressed: details.onStepContinue,
+              child: Text(locale.okButtonLabel),
             ),
-          ),
         ],
       ),
     );
   }
 
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-}
+  String? _validateJson(String? input) {
+    if (input == null) return null;
+    if (input.isEmpty) return 'JSON value cannot be empty';
 
-class _InstructionsPage extends StatelessWidget {
-  const _InstructionsPage();
-
-  List<String> _splitLocale(String str) {
-    return const LineSplitter().convert(str).where((s) => s.isNotEmpty).toList();
+    try {
+      RepositoryProvider.of<WarframeRepository>(context).convertUserData(input);
+      return null;
+    } on Exception {
+      return 'Input was incorret or user is not signed in';
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    final introStyle = context.textTheme.titleMedium;
-    final stepsStyle = context.textTheme.bodyLarge;
-    // Flutter didn't have an easy way to localize RitchText sooo... temporary fix?
-    final steps = _splitLocale(NavisLocalizations.of(context).inventoriaSteps(homepage));
-    final step1 = steps[1].split(homepage);
-
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 12),
-      // child: Container(),
-      child: RichText(
-        text: TextSpan(
-          style: introStyle,
-          text: '${steps[0]}\n\n',
-          children: [
-            TextSpan(
-              text: step1[0],
-              style: stepsStyle,
-              children: [
-                TextSpan(
-                  text: homepage,
-                  style: stepsStyle?.copyWith(color: context.theme.colorScheme.secondary),
-                  recognizer: TapGestureRecognizer()..onTap = () => homepage.launchLink(context),
+    return Stepper(
+      controlsBuilder: _controlsBuilder,
+      currentStep: _currentPage,
+      onStepContinue: _onStepContinue,
+      onStepCancel: () => setState(() => _currentPage--),
+      steps: [
+        Step(
+          title: Text(context.l10n.inventoriaStepOneTitle),
+          content: Text('${context.l10n.inventoriaStepOne(faqPage, discordInvite)}\n\n${context.l10n.legalese}'),
+        ),
+        Step(
+          title: Text(context.l10n.inventoriaStepTwoTitle),
+          content: Column(
+            spacing: 24,
+            children: [
+              Text(context.l10n.inventoriaStepTwoDescription),
+              Center(
+                child: FilledButton.tonal(
+                  onPressed: () => warframeLogin.launchLink(context),
+                  child: Text(context.l10n.inventoriaStepTwoTitle),
                 ),
-                TextSpan(text: '${step1[1]}\n\n'),
-              ],
-            ),
-            TextSpan(text: '${steps[2]}\n\n', style: stepsStyle),
-            TextSpan(text: steps[3], style: stepsStyle),
-          ],
+              ),
+            ],
+          ),
         ),
-      ),
-    );
-  }
-}
-
-class _QrScanner extends StatefulWidget {
-  const _QrScanner({required this.onDetect});
-
-  final void Function(BarcodeCapture) onDetect;
-
-  @override
-  State<_QrScanner> createState() => _QrScannerState();
-}
-
-class _QrScannerState extends State<_QrScanner> {
-  late final MobileScannerController _controller;
-
-  @override
-  void initState() {
-    super.initState();
-    _controller = MobileScannerController(formats: [BarcodeFormat.qrCode]);
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 86, vertical: 40),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(8),
-        child: MobileScanner(
-          controller: _controller,
-          onDetect: (b) {
-            // When recording the screen I found that popping the screen while it's still detecting softlocks the app
-            _controller.stop();
-            widget.onDetect(b);
-          },
+        Step(
+          title: Text(context.l10n.inventoriaStepThreeTitle),
+          content: Column(
+            mainAxisSize: .min,
+            spacing: 24,
+            children: [
+              Text(context.l10n.inventoriaStepThreeDescription),
+              FilledButton.tonal(
+                onPressed: () => warframeUserData.launchLink(context),
+                child: Text(context.l10n.inventoriaStepThreeButtonLabel),
+              ),
+              Form(
+                key: _formKey,
+                child: TextFormField(
+                  maxLines: 6,
+                  validator: _validateJson,
+                  controller: _jsonTextFieldController,
+                  decoration: InputDecoration(
+                    border: const OutlineInputBorder(),
+                    labelText: context.l10n.inventoriaStepThreeTextLabel,
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
-      ),
+        Step(
+          title: Text(context.l10n.inventoriaStepFourTitle),
+          content: _user != null
+              ? ListTile(
+                  contentPadding: const EdgeInsets.symmetric(vertical: 16),
+                  leading: CircleAvatar(
+                    radius: 25,
+                    foregroundImage: CachedNetworkImageProvider(_user!.avatar),
+                  ),
+                  title: Text(_user!.username),
+                  subtitle: Text(context.l10n.itemRankSubtitle(_user!.masteryRank)),
+                )
+              : const SizedBox.shrink(),
+        ),
+      ],
     );
   }
 
   @override
   void dispose() {
-    _controller.dispose();
+    _jsonTextFieldController.dispose();
     super.dispose();
   }
 }

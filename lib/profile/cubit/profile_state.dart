@@ -14,7 +14,7 @@ final class ProfileUpdating extends ProfileState {}
 final class ProfileSuccessful extends ProfileState {
   const ProfileSuccessful(this.profile);
 
-  final Profile profile;
+  final UserData profile;
 
   @override
   List<Object> get props => [profile];
