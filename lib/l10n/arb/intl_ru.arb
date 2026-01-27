@@ -1352,5 +1352,49 @@
   "sendFeedbackSubmissionFailure": "Something went wrong...",
   "@sendFeedbackSubmissionFailure": {
     "description": "Send feedback submission failure"
+  },
+  "inventoriaStepOneTitle": "Welcome to Inventoria",
+  "@inventoriaStepOneTitle": {
+    "description": "welcome To Inventoria Title"
+  },
+  "inventoriaStepOne": "Cephalon Navis will guide you through the process of retrieving your account ID in order to use inventoria and track mastered items.\n\nProfile information is retrieved through a read-only public endpoint and will never post or make changes to your account.\n\nFor any further information please see the FAQ.\n{faqLink}\n\nFor support head over to the discord server\n{discordLink}",
+  "@inventoriaStepOne": {
+    "description": "Inventoria step 1",
+    "placeholders": {
+      "faqLink": {
+        "type": "String"
+      },
+      "discordLink": {
+        "type": "String"
+      }
+    }
+  },
+  "inventoriaStepTwoTitle": "Sign into Warframe",
+  "@inventoriaStepTwoTitle": {
+    "description": "Inventoria step 2 title"
+  },
+  "inventoriaStepTwoDescription": "In order for you to get your user ID you need to make sure your device is signed into Warframe, then come back to this screen.",
+  "@inventoriaStepTwoDescription": {
+    "description": "Inventoria step three description"
+  },
+  "inventoriaStepThreeTitle": "Get user data",
+  "@inventoriaStepThreeTitle": {
+    "description": "inventoria step four title"
+  },
+  "inventoriaStepThreeDescription": "Now copy and paste the response from this link into the text field below.",
+  "@inventoriaStepThreeDescription": {
+    "description": "Inventoria step four description"
+  },
+  "inventoriaStepThreeButtonLabel": "Get user ID",
+  "@inventoriaStepThreeButtonLabel": {
+    "description": "Inventoria step three button label"
+  },
+  "inventoriaStepThreeTextLabel": "JSON output",
+  "@inventoriaStepThreeTextLabel": {
+    "description": "Inventoria step four text lable"
+  },
+  "inventoriaStepFourTitle": "Confirm Account",
+  "@inventoriaStepFourTitle": {
+    "description": "Inventoria step four title"
   }
 }
