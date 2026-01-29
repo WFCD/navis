@@ -1,11 +1,11 @@
 import 'package:black_hole_flutter/black_hole_flutter.dart';
-import 'package:codex/codex.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/home/widgets/section.dart';
 import 'package:navis/profile/profile.dart';
 import 'package:navis/profile/utils/mastery_utils.dart';
 import 'package:navis/router/routes.dart';
+import 'package:navis_codex/navis_codex.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:warframe_icons/warframe_icons.dart';
 import 'package:warframe_repository/warframe_repository.dart';
@@ -25,7 +25,7 @@ class MasteryInProgressSection extends StatelessWidget {
       builder: (context, profile) {
         if (profile == null) return const SizedBox.shrink();
 
-        final codex = RepositoryProvider.of<Codex>(context);
+        final codex = RepositoryProvider.of<CodexDatabase>(context);
 
         return BlocProvider(
           create: (context) => MasteryProgressCubit(codex)..fetchInProgress(),
@@ -78,10 +78,10 @@ class MasteryInProgressContent extends StatelessWidget {
             children: [
               for (final i in state.items.inProgress.take(5))
                 ArsenalItemTitle(
-                  name: i.name,
-                  imageName: i.imageName!,
-                  rank: masteryRank(i, i.xpInfo.value?.xp ?? 0),
-                  maxRank: i.maxLevelCap ?? 30,
+                  name: i.item.name,
+                  imageName: i.item.imageName!,
+                  rank: masteryRank(i),
+                  maxRank: i.item.maxLevel ?? 30,
                 ),
             ],
           );

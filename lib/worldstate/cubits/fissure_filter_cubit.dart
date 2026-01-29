@@ -1,36 +1,37 @@
 import 'package:collection/collection.dart';
 import 'package:equatable/equatable.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
-import 'package:logging/logging.dart';
+import 'package:navis/utils/bloc_mixin.dart';
 import 'package:worldstate_models/worldstate_models.dart';
 
 part 'fissure_filter_state.dart';
 
 enum FissureFilter { fissures, voidStorm, steelPath }
 
-class FissureFilterCubit extends HydratedCubit<FissureFilterState> {
+class FissureFilterCubit extends HydratedCubit<FissureFilterState> with SafeBlocMixin {
   FissureFilterCubit(List<VoidFissure> fissures)
     : super(FissureFilterState(fissures: fissures, type: FissureFilter.fissures));
-
-  static final _logger = Logger('FissureFilterCubit');
 
   FissureFilter _filter = FissureFilter.fissures;
 
   void filterFissures(FissureFilter filter, List<VoidFissure> fissures) {
-    _filter = filter;
+    safeEmit(
+      () {
+        _filter = filter;
 
-    Iterable<VoidFissure> filteredFissures;
-    switch (filter) {
-      case FissureFilter.fissures:
-        filteredFissures = fissures.whereNot((i) => i.isSteelpath || i.isStorm);
-      case FissureFilter.voidStorm:
-        filteredFissures = fissures.where((i) => i.isStorm);
-      case FissureFilter.steelPath:
-        filteredFissures = fissures.where((i) => i.isSteelpath);
-    }
+        Iterable<VoidFissure> filteredFissures;
+        switch (filter) {
+          case FissureFilter.fissures:
+            filteredFissures = fissures.whereNot((i) => i.isSteelpath || i.isStorm);
+          case FissureFilter.voidStorm:
+            filteredFissures = fissures.where((i) => i.isStorm);
+          case FissureFilter.steelPath:
+            filteredFissures = fissures.where((i) => i.isSteelpath);
+        }
 
-    if (isClosed) return;
-    emit(FissureFilterState(fissures: List.unmodifiable(filteredFissures.toList()), type: filter));
+        return FissureFilterState(fissures: List.unmodifiable(filteredFissures.toList()), type: filter);
+      },
+    );
   }
 
   void updateFissues(List<VoidFissure> fissures) {
@@ -39,7 +40,7 @@ class FissureFilterCubit extends HydratedCubit<FissureFilterState> {
 
   @override
   FissureFilterState? fromJson(Map<String, dynamic> json) {
-    _logger.info('Hydrating filtered fissures');
+    logger.info('Hydrating filtered fissures');
     try {
       final type = json['filter'] == 'all'
           ? FissureFilter.fissures
@@ -51,14 +52,14 @@ class FissureFilterCubit extends HydratedCubit<FissureFilterState> {
 
       return FissureFilterState(fissures: fissures, type: type);
     } on Exception catch (e, stack) {
-      _logger.warning('Failed to hydrate state', e, stack);
+      logger.warning('Failed to hydrate state', e, stack);
       return null;
     }
   }
 
   @override
   Map<String, dynamic>? toJson(FissureFilterState state) {
-    _logger.info('Caching current state');
+    logger.info('Caching current state');
     return {'filter': state.type.name, 'fissures': state.fissures.map((e) => e.toMap()).toList()};
   }
 }

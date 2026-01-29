@@ -1,8 +1,8 @@
 import 'dart:io';
 
-import 'package:cache/cache.dart';
 import 'package:http/http.dart';
 import 'package:mocktail/mocktail.dart';
+import 'package:navis_cache/navis_cache.dart';
 import 'package:test/test.dart';
 import 'package:warframe_drop_data/warframe_drop_data.dart';
 import 'package:warframe_repository/warframe_repository.dart';

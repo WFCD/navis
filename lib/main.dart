@@ -1,5 +1,3 @@
-import 'dart:developer' as dev;
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:logging/logging.dart';
@@ -13,42 +11,28 @@ Future<void> main() async {
   const siteId = 2;
   const sampleRate = 1.0;
 
-  if (kDebugMode) {
-    Logger.root.level = Level.ALL; // defaults to Level.INFO
-    Logger.root.onRecord.listen((record) {
-      var message = '${record.level.name}: ${record.time.toIso8601String()}: ${record.loggerName}: ${record.message} ';
-      if (record.error != null) message += '${record.error}';
-      if (record.stackTrace != null) message += '${record.stackTrace}';
-
-      dev.log(message);
-    });
-  }
-
-  final logger = Logger('Main');
-
   await SentryFlutter.init(
     (option) {
       option
         ..dsn = kDebugMode || kProfileMode ? '' : const String.fromEnvironment('SENTRY_DSN')
         ..enableDeduplication = true
+        ..enableLogs = true
         ..tracesSampleRate = sampleRate
         ..ignoreErrors = ['SocketException', 'ClientException']
         ..replay.sessionSampleRate = sampleRate
         ..replay.onErrorSampleRate = sampleRate
         ..replay.quality = SentryReplayQuality.low
         ..enableBreadcrumbTrackingForCurrentPlatform()
-        ..addIntegration(LoggingIntegration());
+        ..addIntegration(LoggingIntegration(minBreadcrumbLevel: Level.FINE));
     },
     appRunner: () async {
       if (!kDebugMode || !kProfileMode) {
-        logger.info('Starting up Matomo Tracker');
         await MatomoTracker.instance.initialize(
           siteId: siteId.toString(),
           url: const String.fromEnvironment('MATOMO_URL'),
         );
       }
 
-      logger.info('Boostraping app start up');
       await bootstrap(
         (router) => DefaultAssetBundle(
           bundle: SentryAssetBundle(),

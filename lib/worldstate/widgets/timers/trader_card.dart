@@ -19,7 +19,7 @@ class BaroKiTeerCard extends StatelessWidget {
     return AppCard(
       clipBehavior: Clip.antiAlias,
       color: baroPurple,
-      padding: EdgeInsets.zero,
+      contentPadding: EdgeInsets.zero,
       child: BlocSelector<WorldstateBloc, WorldState, List<Trader>?>(
         selector: (s) => switch (s) {
           WorldstateSuccess() => s.seed.voidTraders,
@@ -57,7 +57,7 @@ class VarziaTraderCard extends StatelessWidget {
     return AppCard(
       clipBehavior: Clip.antiAlias,
       color: Colors.blue[800],
-      padding: EdgeInsets.zero,
+      contentPadding: EdgeInsets.zero,
       child: BlocSelector<WorldstateBloc, WorldState, Trader?>(
         selector: (s) => switch (s) {
           WorldstateSuccess() => s.seed.vaultTrader,

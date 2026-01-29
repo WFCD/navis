@@ -1,17 +1,16 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/widgets.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
-import 'package:logging/logging.dart';
-import 'package:navis/utils/utils.dart';
+import 'package:navis/utils/bloc_mixin.dart';
+import 'package:navis/worldstate/utils/worldstate_helpers.dart';
 import 'package:replay_bloc/replay_bloc.dart';
-import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:warframe_repository/warframe_repository.dart';
 import 'package:worldstate_models/worldstate_models.dart';
 
 part 'worldstate_event.dart';
 part 'worldstate_state.dart';
 
-class WorldstateBloc extends HydratedBloc<WorldstateEvent, WorldState> with ReplayBlocMixin {
+class WorldstateBloc extends HydratedBloc<WorldstateEvent, WorldState> with ReplayBlocMixin, SafeBlocMixin {
   WorldstateBloc(this.repository) : super(WorldstateInitial()) {
     on<WorldstateStarted>(_emiteState);
     on<WorldstateUpdated>((event, emit) => emit(WorldstateSuccess(event.state)));
@@ -21,46 +20,21 @@ class WorldstateBloc extends HydratedBloc<WorldstateEvent, WorldState> with Repl
 
   final WarframeRepository repository;
 
-  final _logger = Logger('WorldstateBloc');
-
   Future<void> _emiteState(WorldstateStarted event, Emitter<WorldState> emit) async {
     final locale = event.locale.languageCode;
 
-    if (state is WorldstateSuccess) {
-      final current = (state as WorldstateSuccess).seed.timestamp;
-      final elapsed = DateTime.timestamp().difference(current);
-      if (elapsed >= worldstateRefreshTime) await _forceUpdateWorldstate(locale);
-    } else {
-      // Assume there's no cache and update the state
-      await _forceUpdateWorldstate(locale);
-    }
+    final worldstate = await repository.fetchWorldstate(locale);
+    if (!isClosed) add(WorldstateUpdated(worldstate..clean()));
 
     await emit.onEach<Worldstate>(
       repository.worldstateEmitter(locale: locale),
-      onData: (state) {
-        if (isClosed) return;
-        add(WorldstateUpdated(state..clean()));
-      },
+      onData: (state) => add(WorldstateUpdated(state..clean())),
       onError: (error, stackTrace) async {
-        if (isClosed) return;
-        add(WorldstateFailed(error, stackTrace));
+        add(WorldstateFailed());
         undo();
-        await Sentry.captureException(error, stackTrace: stackTrace);
+        addError(error, stackTrace);
       },
     );
-  }
-
-  Future<void> _forceUpdateWorldstate(String locale) async {
-    try {
-      final worldstate = await repository.fetchWorldstate(locale);
-      if (isClosed) return;
-      add(WorldstateUpdated(worldstate..clean()));
-    } on Exception catch (error, stackTrace) {
-      if (isClosed) return;
-      add(WorldstateFailed(error, stackTrace));
-      undo();
-      await Sentry.captureException(error, stackTrace: stackTrace);
-    }
   }
 
   @override
@@ -69,7 +43,7 @@ class WorldstateBloc extends HydratedBloc<WorldstateEvent, WorldState> with Repl
       final seed = Worldstate.fromMap(json);
       return WorldstateSuccess(seed);
     } on Exception catch (e, stack) {
-      _logger.warning('Failed to load worldstate from cache', e, stack);
+      logger.warning('Failed to load worldstate from cache', e, stack);
       return null;
     }
   }

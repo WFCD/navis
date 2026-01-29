@@ -1,13 +1,12 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:codex/codex.dart';
 import 'package:flutter/material.dart';
 import 'package:navis/codex/bloc/search_event.dart';
 import 'package:navis/codex/bloc/search_state.dart';
 import 'package:navis/codex/utils/result_filters.dart';
+import 'package:navis_codex/navis_codex.dart';
 import 'package:rxdart/rxdart.dart';
-import 'package:sentry_flutter/sentry_flutter.dart';
 
 export 'search_event.dart';
 export 'search_state.dart';
@@ -18,7 +17,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
     on<CodexResultsFiltered>(_filterResults);
   }
 
-  final Codex codex;
+  final CodexDatabase codex;
 
   List<CodexItem> _originalResults = [];
 
@@ -36,11 +35,9 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
 
         _originalResults = results;
         emit(CodexSearchSuccess(results));
-      } on FormatException catch (e, stack) {
-        return emit(CodexSearchFailure(error: e, stackTrace: stack));
       } on Exception catch (e, stack) {
-        emit(CodexSearchFailure(error: e, stackTrace: stack));
-        await Sentry.captureException(e, stackTrace: stack);
+        addError(e, stack);
+        emit(const CodexSearchFailure());
       }
     }
   }

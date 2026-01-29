@@ -12,7 +12,7 @@ final class MasteryProgressInitial extends MasteryProgressState {}
 final class MasteryProgressSuccess extends MasteryProgressState {
   const MasteryProgressSuccess(this.items);
 
-  final List<CodexItem> items;
+  final List<MasterableItem> items;
 
   @override
   List<Object> get props => [items];

@@ -1,15 +1,15 @@
 import 'package:black_hole_flutter/black_hole_flutter.dart';
-import 'package:codex/codex.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/profile/profile.dart';
+import 'package:navis_codex/navis_codex.dart';
 import 'package:warframe_icons/warframe_icons.dart';
 
 class ArsenalItems extends StatelessWidget {
   const ArsenalItems({super.key, this.controller, required this.items});
 
   final ScrollController? controller;
-  final List<CodexItem> items;
+  final List<MasterableItem> items;
 
   @override
   Widget build(BuildContext context) {

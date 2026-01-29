@@ -26,7 +26,7 @@ final class ItemFetchSuccess extends ItemState {
 final class ItemFetchFailure extends ItemState {
   const ItemFetchFailure({required this.exception, required this.stackTrace});
 
-  final Exception exception;
+  final Object exception;
   final StackTrace stackTrace;
 
   @override

@@ -1,8 +1,8 @@
-import 'package:codex/codex.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/profile/profile.dart';
 import 'package:navis/profile/utils/mastery_utils.dart';
+import 'package:navis_codex/navis_codex.dart';
 import 'package:navis_ui/navis_ui.dart';
 
 class MasteryPage extends StatelessWidget {
@@ -10,7 +10,7 @@ class MasteryPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final codex = RepositoryProvider.of<Codex>(context);
+    final codex = RepositoryProvider.of<CodexDatabase>(context);
 
     return Scaffold(
       body: SafeArea(
@@ -33,17 +33,17 @@ class MasteryView extends StatefulWidget {
 class _MasteryViewState extends State<MasteryView> {
   late final List<ScrollController> _controllers;
 
-  final _tabs = <({String name, List<CodexItem> Function(List<CodexItem> items) items})>[
-    (name: 'In Progress', items: (List<CodexItem> items) => items.inProgress),
-    (name: 'Warframes', items: (List<CodexItem> items) => items.warframes),
-    (name: 'Primary', items: (List<CodexItem> items) => items.primaries),
-    (name: 'Secondary', items: (List<CodexItem> items) => items.secondary),
-    (name: 'Melee', items: (List<CodexItem> items) => items.melee),
-    (name: 'Companions', items: (List<CodexItem> items) => items.companions),
-    (name: 'K-Drive', items: (List<CodexItem> items) => items.kDrives),
-    (name: 'Archwing', items: (List<CodexItem> items) => items.archwing),
-    (name: 'Arch-Gun', items: (List<CodexItem> items) => items.archGun),
-    (name: 'Arch-Melee', items: (List<CodexItem> items) => items.archMelee),
+  final _tabs = <({String name, List<MasterableItem> Function(List<MasterableItem> items) items})>[
+    (name: 'In Progress', items: (List<MasterableItem> items) => items.inProgress),
+    (name: 'Warframes', items: (List<MasterableItem> items) => items.warframes),
+    (name: 'Primary', items: (List<MasterableItem> items) => items.primaries),
+    (name: 'Secondary', items: (List<MasterableItem> items) => items.secondary),
+    (name: 'Melee', items: (List<MasterableItem> items) => items.melee),
+    (name: 'Companions', items: (List<MasterableItem> items) => items.companions),
+    (name: 'K-Drive', items: (List<MasterableItem> items) => items.kDrives),
+    (name: 'Archwing', items: (List<MasterableItem> items) => items.archwing),
+    (name: 'Arch-Gun', items: (List<MasterableItem> items) => items.archGun),
+    (name: 'Arch-Melee', items: (List<MasterableItem> items) => items.archMelee),
   ];
 
   void _onTap(int index) {

@@ -1,5 +1,4 @@
 import 'package:black_hole_flutter/black_hole_flutter.dart';
-import 'package:codex/codex.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
@@ -7,6 +6,7 @@ import 'package:navis/codex/codex.dart';
 import 'package:navis/codex/utils/debouncer.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis/router/routes.dart';
+import 'package:navis_codex/navis_codex.dart';
 
 class CodexSearchBar extends StatefulWidget {
   const CodexSearchBar({super.key, this.focusNode, this.controller, this.hintText});
@@ -28,7 +28,7 @@ class _CodexSearchBarState extends State<CodexSearchBar> {
   late final Debounceable<Iterable<CodexItem>?, String> _debounceSearch;
 
   Future<List<CodexItem>?> _search(String query) async {
-    final api = RepositoryProvider.of<Codex>(context);
+    final api = RepositoryProvider.of<CodexDatabase>(context);
 
     try {
       final options = await api.search(query);
@@ -51,7 +51,7 @@ class _CodexSearchBarState extends State<CodexSearchBar> {
         description: item.description,
         imageName: item.imageName,
         type: item.type,
-        vaulted: item.vaulted,
+        vaulted: item.isVaulted,
         wikiaUrl: item.wikiaUrl,
         wikiaThumbnail: item.wikiaThumbnail,
         builder: (_, onTap) {

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/l10n/l10n.dart';
-import 'package:navis/utils/utils.dart';
 import 'package:navis/worldstate/bloc/worldstate_bloc.dart';
+import 'package:navis/worldstate/utils/utils.dart';
 import 'package:navis_ui/navis_ui.dart';
 
 class DailyReward extends StatelessWidget {
@@ -12,7 +12,7 @@ class DailyReward extends StatelessWidget {
     if (next is! WorldstateSuccess) return false;
     final timestamp = next.seed.timestamp;
     final daily = dailyReset();
-    final weekly = weeklReset();
+    final weekly = weeklyReset();
 
     return timestamp.isAfter(daily) ||
         timestamp.isAtSameMomentAs(daily) ||
@@ -23,7 +23,7 @@ class DailyReward extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final daily = dailyReset();
-    final weekly = weeklReset();
+    final weekly = weeklyReset();
 
     // If we don't tie it to something it would require rebuilding the widget to refresh. So use the worldstate as a
     // way to rebuild it at the end of the day

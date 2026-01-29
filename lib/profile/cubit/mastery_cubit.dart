@@ -1,29 +1,26 @@
-import 'package:codex/codex.dart';
 import 'package:equatable/equatable.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
+import 'package:navis/utils/bloc_mixin.dart';
+import 'package:navis_codex/navis_codex.dart';
 
 part 'mastery_state.dart';
 
-class MasteryProgressCubit extends Cubit<MasteryProgressState> {
+class MasteryProgressCubit extends Cubit<MasteryProgressState> with SafeBlocMixin {
   MasteryProgressCubit(this.codex) : super(MasteryProgressInitial());
 
-  final Codex codex;
+  final CodexDatabase codex;
 
   static const _overrides = <String>['Excalibur Prime', 'Lato Prime', 'Skana Prime'];
 
   Future<void> fetchInProgress() async {
-    try {
-      final inventory = await codex.fetchMasterable();
+    await safeEmit(() async {
+      final inventory = await codex.buildXpInfo();
       inventory
         // User either has it or not, mainly founders items
-        ..removeWhere((i) => _overrides.contains(i.name) && i.xpInfo.value == null)
-        ..sort((a, b) => (a.xpInfo.value?.xp ?? 0).compareTo(b.xpInfo.value?.xp ?? 0));
+        ..removeWhere((i) => _overrides.contains(i.item.name))
+        ..sort((a, b) => a.xp.compareTo(b.xp));
 
-      if (isClosed) return;
-      emit(MasteryProgressSuccess(inventory));
-    } on Exception {
-      if (isClosed) return;
-      emit(MasteryProgressFailure());
-    }
+      return MasteryProgressSuccess(inventory);
+    });
   }
 }

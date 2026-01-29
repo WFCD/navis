@@ -1,9 +1,9 @@
-import 'package:codex/codex.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/codex/utils/debouncer.dart';
 import 'package:navis/profile/profile.dart';
 import 'package:navis/profile/utils/mastery_utils.dart';
+import 'package:navis_codex/navis_codex.dart';
 
 class MasteryItemSearchBar extends StatefulWidget {
   const MasteryItemSearchBar({super.key, required this.onPressed});
@@ -15,10 +15,10 @@ class MasteryItemSearchBar extends StatefulWidget {
 }
 
 class _MasteryItemSearchBarState extends State<MasteryItemSearchBar> {
-  late final Debounceable<List<CodexItem>?, String> _debounceSearch;
+  late final Debounceable<List<MasterableItem>?, String> _debounceSearch;
   late final SearchController _controller;
 
-  Iterable<CodexItem> _lastOptions = [];
+  Iterable<MasterableItem> _lastOptions = [];
 
   @override
   void initState() {
@@ -28,14 +28,14 @@ class _MasteryItemSearchBarState extends State<MasteryItemSearchBar> {
     _debounceSearch = debounce(_search);
   }
 
-  List<CodexItem> _search(String query) {
+  List<MasterableItem> _search(String query) {
     final state = BlocProvider.of<MasteryProgressCubit>(context).state;
     final items = switch (state) {
       MasteryProgressSuccess(items: final items) => items,
-      _ => <CodexItem>[],
+      _ => <MasterableItem>[],
     };
 
-    return items.where((i) => i.name.toLowerCase().contains(query.toLowerCase())).toList();
+    return items.where((i) => i.item.name.toLowerCase().contains(query.toLowerCase())).toList();
   }
 
   Future<Iterable<Widget>> _suggestionsBuilder(BuildContext context, SearchController controller) async {
@@ -53,13 +53,13 @@ class _MasteryItemSearchBarState extends State<MasteryItemSearchBar> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocSelector<MasteryProgressCubit, MasteryProgressState, List<CodexItem>>(
+    return BlocSelector<MasteryProgressCubit, MasteryProgressState, List<MasterableItem>>(
       selector: (state) => switch (state) {
         MasteryProgressSuccess(items: final items) => items,
         _ => [],
       },
       builder: (context, items) {
-        final completed = items.where((i) => masteryRank(i, i.xpInfo.value?.xp ?? 0) == (i.maxLevelCap ?? 30));
+        final completed = items.where((i) => masteryRank(i) == (i.item.maxLevel ?? 30));
 
         return SearchAnchor.bar(
           barLeading: IconButton(icon: const Icon(Icons.arrow_back_rounded), onPressed: widget.onPressed),

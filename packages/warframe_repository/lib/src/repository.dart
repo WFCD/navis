@@ -1,10 +1,10 @@
 import 'dart:convert';
 import 'dart:isolate';
 
-import 'package:cache/cache.dart';
 import 'package:collection/collection.dart';
 import 'package:http/http.dart';
 import 'package:meta/meta.dart';
+import 'package:navis_cache/navis_cache.dart';
 import 'package:profile_models/profile_models.dart';
 import 'package:warframe_drop_data/warframe_drop_data.dart';
 import 'package:warframe_repository/src/user_data.dart';

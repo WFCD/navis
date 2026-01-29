@@ -20,3 +20,4 @@ linter:
     always_put_required_named_parameters_first: false
     lines_longer_than_80_chars: false
     discarded_futures: false
+    specify_nonobvious_property_types: false

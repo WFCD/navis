@@ -17,52 +17,60 @@ class ConstructionProgressCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppCard(
-      title: context.l10n.constructionProgressTitle,
-      child: BlocBuilder<WorldstateBloc, WorldState>(
-        builder: (context, state) {
-          const iconSize = 25.0;
-          final textTheme = Theme.of(context).textTheme;
+      child: Column(
+        spacing: 16,
+        children: [
+          Text(
+            context.l10n.constructionProgressTitle,
+            style: Theme.of(context).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w500),
+          ),
+          BlocBuilder<WorldstateBloc, WorldState>(
+            builder: (context, state) {
+              const iconSize = 25.0;
+              final textTheme = Theme.of(context).textTheme;
 
-          final constructionProgress = switch (state) {
-            WorldstateSuccess() => state.seed.constructionProgress,
-            _ => null,
-          };
+              final constructionProgress = switch (state) {
+                WorldstateSuccess() => state.seed.constructionProgress,
+                _ => null,
+              };
 
-          final razorbackProgress = _parseProgress(constructionProgress?.razorbackProgress);
-          final fomorianProgress = _parseProgress(constructionProgress?.fomorianProgress);
+              final razorbackProgress = _parseProgress(constructionProgress?.razorbackProgress);
+              final fomorianProgress = _parseProgress(constructionProgress?.fomorianProgress);
 
-          return Padding(
-            padding: const EdgeInsets.only(bottom: 8),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const Spacer(),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 12),
-                  child: Row(
-                    children: [
-                      AppIcon(WarframeIcons.factionsGrineer, size: iconSize, color: Factions.grineer.primaryColor),
-                      Gaps.gap12,
-                      Text('$fomorianProgress%', style: textTheme.titleLarge),
-                    ],
-                  ),
+              return Padding(
+                padding: const EdgeInsets.only(bottom: 8),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 12),
+                      child: Row(
+                        children: [
+                          AppIcon(WarframeIcons.factionsGrineer, size: iconSize, color: Factions.grineer.primaryColor),
+                          Gaps.gap12,
+                          Text('$fomorianProgress%', style: textTheme.titleLarge),
+                        ],
+                      ),
+                    ),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 12),
+                      child: Row(
+                        children: [
+                          Text('$razorbackProgress%', style: textTheme.titleLarge),
+                          Gaps.gap12,
+                          AppIcon(WarframeIcons.factionsCorpus, size: iconSize, color: Factions.corpus.primaryColor),
+                        ],
+                      ),
+                    ),
+                    const Spacer(),
+                  ],
                 ),
-                const Spacer(),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 12),
-                  child: Row(
-                    children: [
-                      Text('$razorbackProgress%', style: textTheme.titleLarge),
-                      Gaps.gap12,
-                      AppIcon(WarframeIcons.factionsCorpus, size: iconSize, color: Factions.corpus.primaryColor),
-                    ],
-                  ),
-                ),
-                const Spacer(),
-              ],
-            ),
-          );
-        },
+              );
+            },
+          ),
+        ],
       ),
     );
   }

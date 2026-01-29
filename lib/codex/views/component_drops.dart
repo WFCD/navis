@@ -1,8 +1,8 @@
-import 'package:codex/codex.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/codex/codex.dart';
 import 'package:navis/l10n/l10n.dart';
+import 'package:navis_codex/navis_codex.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:warframestat_client/warframestat_client.dart' hide ItemNotFound;
 import 'package:warframestat_repository/warframestat_repository.dart';
@@ -14,7 +14,7 @@ class ComponentDrops extends StatelessWidget {
   final List<Drop> drops;
 
   void _loadRelic(BuildContext context, String itemName) {
-    final codex = RepositoryProvider.of<Codex>(context);
+    final codex = RepositoryProvider.of<CodexDatabase>(context);
     final repo = RepositoryProvider.of<WarframestatRepository>(context);
 
     Navigator.of(context).push(

@@ -1,12 +1,12 @@
 import 'package:animations/animations.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:codex/codex.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/codex/codex.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis/profile/utils/mastery_utils.dart';
 import 'package:navis/utils/string_extensions.dart';
+import 'package:navis_codex/navis_codex.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:warframe_icons/warframe_icons.dart';
 import 'package:warframestat_repository/warframestat_repository.dart';
@@ -14,21 +14,21 @@ import 'package:warframestat_repository/warframestat_repository.dart';
 class ArsenalItemWidget extends StatelessWidget {
   const ArsenalItemWidget({super.key, required this.item});
 
-  final CodexItem item;
+  final MasterableItem item;
 
   @override
   Widget build(BuildContext context) {
-    final codex = RepositoryProvider.of<Codex>(context);
+    final codex = RepositoryProvider.of<CodexDatabase>(context);
     final repo = RepositoryProvider.of<WarframestatRepository>(context);
 
-    final rank = masteryRank(item, item.xpInfo.value?.xp ?? 0);
+    final rank = masteryRank(item);
 
     return OpenContainer(
       openColor: Theme.of(context).colorScheme.surfaceContainer,
       closedColor: Colors.transparent,
       openBuilder: (context, _) {
         return BlocProvider(
-          create: (_) => ItemCubit(item.uniqueName, codex, repo)..fetchItem(),
+          create: (_) => ItemCubit(item.item.uniqueName, codex, repo)..fetchItem(),
           child: Builder(
             builder: (context) {
               return BlocBuilder<ItemCubit, ItemState>(
@@ -56,12 +56,12 @@ class ArsenalItemWidget extends StatelessWidget {
       },
       closedBuilder: (context, onTap) {
         return AppCard(
-          color: rank == (item.maxLevelCap ?? 30) ? Theme.of(context).colorScheme.secondaryContainer : null,
+          color: rank == (item.item.maxLevel ?? 30) ? Theme.of(context).colorScheme.secondaryContainer : null,
           child: ArsenalItemTitle(
-            name: item.name,
-            imageName: item.imageName!,
+            name: item.item.name,
+            imageName: item.item.imageName!,
             rank: rank,
-            maxRank: item.maxLevelCap ?? 30,
+            maxRank: item.item.maxLevel ?? 30,
           ),
         );
       },

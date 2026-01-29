@@ -1,22 +1,18 @@
 import 'dart:math';
 
-import 'package:codex/codex.dart';
+import 'package:navis_codex/navis_codex.dart';
 import 'package:warframestat_client/warframestat_client.dart';
 
-int masteryRank(CodexItem item, int xp) {
-  if (!item.masterable) throw Exception('Not a masterable item');
-
-  return min(sqrt(xp / (item.type.isWeapon ? 500 : 1000)).floor(), item.maxLevelCap ?? 30);
+int masteryRank(MasterableItem item) {
+  return min(sqrt(item.xp / (item.item.type.isWeapon ? 500 : 1000)).floor(), item.item.maxLevel ?? 30);
 }
 
-int masteryPoints(CodexItem item) {
-  if (!item.masterable) throw Exception('Not a masterable item');
-
+int masteryPoints(MasterableItem item) {
   const basePoints = 3000;
   const extra = 1000;
 
-  final isWeapon = item.type.isWeapon;
-  if (item.maxLevelCap! > 30) {
+  final isWeapon = item.item.type.isWeapon;
+  if (item.item.maxLevel! > 30) {
     const points = basePoints + extra;
     return isWeapon ? points : points * 2;
   }
@@ -24,37 +20,35 @@ int masteryPoints(CodexItem item) {
   return isWeapon ? basePoints : basePoints * 2;
 }
 
-extension InventoryListX on List<CodexItem> {
-  List<CodexItem> get inProgress =>
-      where(
-          (i) => i.xpInfo.value != null,
-        ).where((i) => masteryRank(i, i.xpInfo.value!.xp) < (i.maxLevelCap ?? 30)).toList()
-        ..sort((a, b) => (b.xpInfo.value!.xp).compareTo(a.xpInfo.value!.xp));
+extension InventoryListX on List<MasterableItem> {
+  List<MasterableItem> get inProgress =>
+      where((i) => i.xp != 0).where((i) => masteryRank(i) < (i.item.maxLevel ?? 30)).toList()
+        ..sort((a, b) => (b.xp).compareTo(a.xp));
 
-  List<CodexItem> get warframes => where((i) => i.type == ItemType.warframes).toList();
+  List<MasterableItem> get warframes => where((i) => i.item.type == ItemType.warframes).toList();
 
-  List<CodexItem> get weapons => where((i) => i.type.isWeapon).toList();
+  List<MasterableItem> get weapons => where((i) => i.item.type.isWeapon).toList();
 
-  List<CodexItem> get primaries => where((i) => i.type.isPrimary).toList();
+  List<MasterableItem> get primaries => where((i) => i.item.type.isPrimary).toList();
 
-  List<CodexItem> get secondary => where((i) => i.type.isSecondary).toList();
+  List<MasterableItem> get secondary => where((i) => i.item.type.isSecondary).toList();
 
-  List<CodexItem> get melee => where((i) => i.type.isMelee).toList();
+  List<MasterableItem> get melee => where((i) => i.item.type.isMelee).toList();
 
-  List<CodexItem> get companions {
+  List<MasterableItem> get companions {
     return where(
-      (i) => switch (i.type) {
+      (i) => switch (i.item.type) {
         ItemType.sentinels || ItemType.pets => true,
         _ => false,
       },
     ).toList();
   }
 
-  List<CodexItem> get kDrives => where((i) => i.type == ItemType.kDriveComponent).toList();
+  List<MasterableItem> get kDrives => where((i) => i.item.type == ItemType.kDriveComponent).toList();
 
-  List<CodexItem> get archwing => where((i) => i.type == ItemType.archwing).toList();
+  List<MasterableItem> get archwing => where((i) => i.item.type == ItemType.archwing).toList();
 
-  List<CodexItem> get archGun => where((i) => i.type == ItemType.archGun).toList();
+  List<MasterableItem> get archGun => where((i) => i.item.type == ItemType.archGun).toList();
 
-  List<CodexItem> get archMelee => where((i) => i.type == ItemType.archMelee).toList();
+  List<MasterableItem> get archMelee => where((i) => i.item.type == ItemType.archMelee).toList();
 }

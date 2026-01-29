@@ -1,5 +1,5 @@
-import 'package:cache/cache.dart';
 import 'package:http/http.dart';
+import 'package:navis_cache/navis_cache.dart';
 import 'package:warframestat_client/warframestat_client.dart' hide Worldstate;
 import 'package:warframestat_repository/src/models/regions.dart';
 

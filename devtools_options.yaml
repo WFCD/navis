@@ -4,3 +4,4 @@ extensions:
   - drift: true
   - hive_ce: true
   - provider: false
+  - shared_preferences: true

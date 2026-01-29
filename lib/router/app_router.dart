@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matomo_tracker/matomo_tracker.dart';
@@ -8,7 +9,7 @@ class AppRouter {
   AppRouter({
     required GlobalKey<NavigatorState> navigatorKey,
     required RouteObserver<ModalRoute<void>> observer,
-    bool debugLogDiagnostics = false,
+    bool debugLogDiagnostics = kDebugMode,
   }) {
     _goRouter = _routes(navigatorKey, observer, debugLogDiagnostics);
   }

@@ -1,10 +1,10 @@
 import 'package:animations/animations.dart';
 import 'package:black_hole_flutter/black_hole_flutter.dart';
-import 'package:codex/codex.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/codex/codex.dart';
 import 'package:navis/l10n/l10n.dart';
+import 'package:navis_codex/navis_codex.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:warframestat_client/warframestat_client.dart';
 import 'package:warframestat_repository/warframestat_repository.dart';
@@ -104,7 +104,7 @@ class EntryView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final codex = RepositoryProvider.of<Codex>(context);
+    final codex = RepositoryProvider.of<CodexDatabase>(context);
     final repo = RepositoryProvider.of<WarframestatRepository>(context);
     final overview = _Overview(
       uniqueName: uniqueName,

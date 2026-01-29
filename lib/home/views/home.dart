@@ -1,16 +1,16 @@
-import 'package:codex/codex.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:navis/codex/codex.dart';
 import 'package:navis/home/home.dart';
+import 'package:navis_codex/navis_codex.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final repo = RepositoryProvider.of<Codex>(context);
+    final repo = RepositoryProvider.of<CodexDatabase>(context);
 
     return BlocProvider(create: (_) => SearchBloc(repo), child: const HomeView());
   }

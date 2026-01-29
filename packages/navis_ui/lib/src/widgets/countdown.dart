@@ -134,7 +134,6 @@ class CountdownTimerState extends State<CountdownTimer> with TickerProviderState
           final remainingTime = _remainingTime * _animation.value;
 
           return ColoredBox(
-            // _bgColor won't be null if widget.color is not present
             color: widget.color ?? _bgColor?.value ?? Theme.of(context).colorScheme.secondaryContainer,
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 2),

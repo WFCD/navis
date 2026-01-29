@@ -1,14 +1,14 @@
 import 'package:black_hole_flutter/black_hole_flutter.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:codex/codex.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:navis/codex/codex.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis/utils/string_extensions.dart';
-import 'package:navis/utils/utils.dart';
 import 'package:navis/worldstate/bloc/worldstate_bloc.dart';
+import 'package:navis/worldstate/utils/utils.dart';
+import 'package:navis_codex/navis_codex.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:warframestat_repository/warframestat_repository.dart';
 import 'package:worldstate_models/worldstate_models.dart';
@@ -72,7 +72,7 @@ class CircuitResetTimer extends StatelessWidget {
       hoverColor: Colors.transparent,
       title: Text(context.l10n.circuitResetTitle),
       subtitle: Text(context.l10n.circuitResetSubtitle),
-      trailing: CountdownTimer(tooltip: date, expiry: weeklReset()),
+      trailing: CountdownTimer(tooltip: date, expiry: weeklyReset()),
       onTap: onTap,
     );
   }
@@ -85,7 +85,7 @@ class CircuitChoiceTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final codex = RepositoryProvider.of<Codex>(context);
+    final codex = RepositoryProvider.of<CodexDatabase>(context);
     final repo = RepositoryProvider.of<WarframestatRepository>(context);
     final isSteelPatch = choice.key == 'EXC_HARD';
 

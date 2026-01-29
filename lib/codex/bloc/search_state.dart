@@ -1,19 +1,16 @@
-import 'package:codex/codex.dart';
 import 'package:equatable/equatable.dart';
+import 'package:navis_codex/navis_codex.dart';
 
 sealed class SearchState extends Equatable {
   const SearchState();
+
+  @override
+  List<Object?> get props => [];
 }
 
-final class CodexSearchEmpty extends SearchState {
-  @override
-  List<Object> get props => [];
-}
+final class CodexSearchEmpty extends SearchState {}
 
-final class CodexSearchInProgress extends SearchState {
-  @override
-  List<Object> get props => [];
-}
+final class CodexSearchInProgress extends SearchState {}
 
 final class CodexSearchSuccess extends SearchState {
   const CodexSearchSuccess(this.results);
@@ -28,11 +25,8 @@ final class CodexSearchSuccess extends SearchState {
 }
 
 final class CodexSearchFailure extends SearchState {
-  const CodexSearchFailure({required this.error, required this.stackTrace});
-
-  final Exception error;
-  final StackTrace stackTrace;
+  const CodexSearchFailure();
 
   @override
-  List<Object> get props => [error, stackTrace];
+  String toString() => 'CodexSearchFailure()';
 }

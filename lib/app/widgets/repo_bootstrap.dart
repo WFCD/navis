@@ -1,9 +1,9 @@
-import 'package:cache/cache.dart';
-import 'package:codex/codex.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:http/http.dart';
 import 'package:navis/settings/settings.dart';
+import 'package:navis_cache/navis_cache.dart';
+import 'package:navis_codex/navis_codex.dart';
 import 'package:notification_repository/notification_repository.dart';
 import 'package:warframe_repository/warframe_repository.dart';
 import 'package:warframestat_client/warframestat_client.dart';
@@ -15,7 +15,7 @@ class RepositoryBootstrap extends StatelessWidget {
     required RouteObserver<ModalRoute<void>> routeObserver,
     required Client client,
     required CacheManager cacheManager,
-    required Codex codex,
+    required CodexDatabase codex,
     required UserSettings settings,
     required this.child,
   }) : _settings = settings,
@@ -28,7 +28,7 @@ class RepositoryBootstrap extends StatelessWidget {
   final Client _client;
   final CacheManager _cacheManager;
   final UserSettings _settings;
-  final Codex _codex;
+  final CodexDatabase _codex;
   final Widget child;
 
   @override

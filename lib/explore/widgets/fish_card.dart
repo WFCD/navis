@@ -19,7 +19,7 @@ class FishCard extends StatelessWidget {
     final l10n = context.l10n;
 
     return AppCard(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+      contentPadding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 300),
         child: Column(

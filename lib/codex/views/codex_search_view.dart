@@ -1,9 +1,9 @@
-import 'package:codex/codex.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:matomo_tracker/matomo_tracker.dart';
 import 'package:navis/codex/codex.dart';
 import 'package:navis/l10n/l10n.dart';
+import 'package:navis_codex/navis_codex.dart';
 import 'package:navis_ui/navis_ui.dart';
 
 class CodexSearchPage extends StatelessWidget {
@@ -13,7 +13,7 @@ class CodexSearchPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final repo = RepositoryProvider.of<Codex>(context);
+    final repo = RepositoryProvider.of<CodexDatabase>(context);
 
     return TraceableWidget(
       child: Scaffold(
@@ -61,7 +61,7 @@ class CodexSearchView extends StatelessWidget {
         return switch (state) {
           CodexSearchEmpty() => const SizedBox.shrink(),
           CodexSearchInProgress() => const Center(child: WarframeSpinner()),
-          CodexSearchFailure() => Center(child: Text(state.error.toString())),
+          CodexSearchFailure() => Center(child: Text(context.l10n.itemFailureErrorText)),
           CodexSearchSuccess(results: final r) =>
             r.isEmpty ? Center(child: Text(l10n.codexNoResults)) : _CodexViewContent(results: r),
         };
@@ -92,7 +92,7 @@ class _CodexViewContent extends StatelessWidget {
               description: item.description,
               imageName: item.imageName,
               type: item.type,
-              vaulted: item.vaulted,
+              vaulted: item.isVaulted,
               wikiaUrl: item.wikiaUrl,
               wikiaThumbnail: item.wikiaThumbnail,
               builder: (_, onTap) {

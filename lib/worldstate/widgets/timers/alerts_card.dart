@@ -1,6 +1,5 @@
 import 'package:black_hole_flutter/black_hole_flutter.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:codex/codex.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -9,6 +8,7 @@ import 'package:navis/codex/codex.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis/utils/string_extensions.dart';
 import 'package:navis/worldstate/bloc/worldstate_bloc.dart';
+import 'package:navis_codex/navis_codex.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:warframe_icons/warframe_icons.dart';
 import 'package:warframestat_client/warframestat_client.dart' show ItemCommon;
@@ -18,7 +18,7 @@ import 'package:worldstate_models/worldstate_models.dart';
 class AlertsCard extends StatelessWidget {
   const AlertsCard({super.key});
 
-  Widget _buildAlerts(Alert a, Codex c, WarframestatRepository r) {
+  Widget _buildAlerts(Alert a, CodexDatabase c, WarframestatRepository r) {
     final reward = a.mission.reward.items?.firstOrNull?.replaceAll('Blueprint', '').trim();
 
     if (reward == null) return _AlertWidget(alert: a, isParent: false);
@@ -37,7 +37,7 @@ class AlertsCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final codex = RepositoryProvider.of<Codex>(context);
+    final codex = RepositoryProvider.of<CodexDatabase>(context);
     final wsRepo = RepositoryProvider.of<WarframestatRepository>(context);
 
     return BlocBuilder<WorldstateBloc, WorldState>(

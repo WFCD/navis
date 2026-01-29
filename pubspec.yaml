@@ -8,8 +8,8 @@ environment:
   flutter: ^3.38.0
 
 workspace:
-  - packages/cache
-  - packages/codex
+  - packages/navis_cache
+  - packages/navis_codex
   - packages/fish_repository
   - packages/http_client
   - packages/navis_ui
@@ -21,11 +21,7 @@ dependencies:
   animations: ^2.0.11
   black_hole_flutter: ^1.2.0
   bloc: ^9.2.0
-  cache:
-    path: packages/cache
   cached_network_image: ^3.3.1
-  codex:
-    path: packages/codex
   collection: ^1.19.0
   drift_flutter: ^0.2.7
   dynamic_system_colors: ^1.8.0
@@ -50,11 +46,13 @@ dependencies:
   hydrated_bloc: ^10.1.1
   internet_connection_checker_plus: ^2.9.1+2
   intl: ^0.20.2
-  isar_community: ^3.3.0
-  isar_community_flutter_libs: ^3.3.0
   logging: ^1.3.0
   matomo_tracker: ^6.1.0
   mobile_scanner: ^7.1.2
+  navis_cache:
+    path: packages/navis_cache
+  navis_codex:
+    path: packages/navis_codex
   navis_ui:
     path: packages/navis_ui
   notification_repository:
@@ -65,7 +63,7 @@ dependencies:
     git:
       url: https://github.com/SlayerOrnstein/wfcd_dart.git
       path: packages/profile_models
-      ref: profile_models-v0.1.2+4
+      ref: profile_models-v0.1.2+7
   replay_bloc: ^0.3.0
   responsive_builder: ^0.7.0
   rxdart: ^0.28.0
@@ -81,15 +79,15 @@ dependencies:
     git:
       url: https://github.com/SlayerOrnstein/wfcd_dart.git
       path: packages/warframe_worldstate_data
-      ref: warframe_worldstate_data-v0.1.3+2
-  warframestat_client: ^5.3.5
+      ref: warframe_worldstate_data-v0.1.3+4
+  warframestat_client: ^5.4.3
   warframestat_repository:
     path: packages/warframestat_repository
   worldstate_models:
     git:
       url: https://github.com/SlayerOrnstein/wfcd_dart.git
       path: packages/worldstate_models
-      ref: worldstate_models-v0.1.5+4
+      ref: worldstate_models-v0.1.5+7
 
 dev_dependencies:
   bloc_test: ^10.0.0

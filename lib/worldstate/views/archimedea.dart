@@ -1,7 +1,7 @@
 import 'package:black_hole_flutter/black_hole_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:navis/l10n/l10n.dart';
-import 'package:navis/utils/reset_timers.dart';
+import 'package:navis/worldstate/utils/utils.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:worldstate_models/worldstate_models.dart';
 
@@ -12,7 +12,7 @@ class ArchimedeaPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final reset = weeklReset();
+    final reset = weeklyReset();
 
     return Scaffold(
       appBar: AppBar(),
