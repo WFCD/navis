@@ -7,7 +7,10 @@ sealed class WorldState extends Equatable {
   List<Object> get props => [];
 }
 
-final class WorldstateInitial extends WorldState {}
+final class WorldstateInitial extends WorldState {
+  @override
+  String toString() => 'WorldstateInitial()';
+}
 
 final class WorldstateSuccess extends WorldState {
   const WorldstateSuccess(this.seed);
@@ -21,4 +24,7 @@ final class WorldstateSuccess extends WorldState {
   String toString() => 'WorldstateSuccess(state: ${seed.timestamp})';
 }
 
-final class WorldstateFailure extends WorldState {}
+final class WorldstateFailure extends WorldState {
+  @override
+  String toString() => 'WorldstateFailure()';
+}

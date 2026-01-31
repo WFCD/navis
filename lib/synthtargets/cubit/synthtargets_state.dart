@@ -8,6 +8,9 @@ sealed class SynthtargetsState extends Equatable {
 class SynthtargetsInitial extends SynthtargetsState {
   @override
   List<Object> get props => [];
+
+  @override
+  String toString() => 'SynthtargetsInitial()';
 }
 
 class TargetsLocated extends SynthtargetsState {
@@ -25,4 +28,7 @@ class TargetsLocated extends SynthtargetsState {
 class TargetsNotFound extends SynthtargetsState {
   @override
   List<Object?> get props => [];
+
+  @override
+  String toString() => 'TargetsNotFound()';
 }

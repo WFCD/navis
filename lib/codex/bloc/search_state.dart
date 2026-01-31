@@ -8,9 +8,15 @@ sealed class SearchState extends Equatable {
   List<Object?> get props => [];
 }
 
-final class CodexSearchEmpty extends SearchState {}
+final class CodexSearchEmpty extends SearchState {
+  @override
+  String toString() => 'CodexSearchEmpty()';
+}
 
-final class CodexSearchInProgress extends SearchState {}
+final class CodexSearchInProgress extends SearchState {
+  @override
+  String toString() => 'CodexSearchInProgress()';
+}
 
 final class CodexSearchSuccess extends SearchState {
   const CodexSearchSuccess(this.results);

@@ -7,9 +7,15 @@ sealed class ItemState extends Equatable {
   List<Object> get props => [];
 }
 
-final class ItemInitial extends ItemState {}
+final class ItemInitial extends ItemState {
+  @override
+  String toString() => 'ItemInitial()';
+}
 
-final class ItemFetchInProgress extends ItemState {}
+final class ItemFetchInProgress extends ItemState {
+  @override
+  String toString() => 'ItemFetchInProgress()';
+}
 
 final class ItemFetchSuccess extends ItemState {
   const ItemFetchSuccess(this.item);

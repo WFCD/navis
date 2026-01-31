@@ -7,9 +7,15 @@ sealed class ProfileState extends Equatable {
   List<Object> get props => [];
 }
 
-final class ProfileInitial extends ProfileState {}
+final class ProfileInitial extends ProfileState {
+  @override
+  String toString() => 'ProfileInitial()';
+}
 
-final class ProfileUpdating extends ProfileState {}
+final class ProfileUpdating extends ProfileState {
+  @override
+  String toString() => 'ProfileUpdating()';
+}
 
 final class ProfileSuccessful extends ProfileState {
   const ProfileSuccessful(this.profile);

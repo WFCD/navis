@@ -7,7 +7,10 @@ sealed class MasteryProgressState extends Equatable {
   List<Object> get props => [];
 }
 
-final class MasteryProgressInitial extends MasteryProgressState {}
+final class MasteryProgressInitial extends MasteryProgressState {
+  @override
+  String toString() => 'MasteryProgressInitial()';
+}
 
 final class MasteryProgressSuccess extends MasteryProgressState {
   const MasteryProgressSuccess(this.items);
