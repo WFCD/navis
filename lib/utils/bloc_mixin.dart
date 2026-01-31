@@ -14,15 +14,10 @@ mixin SafeBlocMixin<S> on BlocBase<S> {
       final state = await callback();
       if (!isClosed) emit(state);
     } on Exception catch (error, stackTrace) {
-      if (isClosed) {
-        logger.warning('$runtimeType was closed before new state was emitted');
-        return;
-      }
-
       logger.warning('Error in operation', error, stackTrace);
 
       addError(error, stackTrace);
-      if (onError != null) emit(onError(error, stackTrace));
+      if (onError != null && !isClosed) emit(onError(error, stackTrace));
     }
   }
 }
