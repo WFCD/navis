@@ -24,7 +24,7 @@ dependencies:
     git:
       url: https://github.com/SlayerOrnstein/wfcd_dart.git
       path: packages/profile_models
-      ref: profile_models-v0.1.2+9
+      ref: profile_models-v0.1.2+10
   sentry_drift: ^9.10.0
   warframe_repository:
     path: ../warframe_repository
