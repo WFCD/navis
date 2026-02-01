@@ -29,4 +29,7 @@ final class ProfileSuccessful extends ProfileState {
   String toString() => 'ProfileSuccessful(profile: ${profile.id})';
 }
 
-final class ProfileFailure extends ProfileState {}
+final class ProfileFailure extends ProfileState {
+  @override
+  String toString() => 'ProfileFailure()';
+}

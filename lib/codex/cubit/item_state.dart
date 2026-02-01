@@ -37,6 +37,16 @@ final class ItemFetchFailure extends ItemState {
 
   @override
   List<Object> get props => [exception, stackTrace];
+
+  @override
+  String toString() => 'ItemFetchFailure()';
 }
 
-final class ItemNotFound extends ItemState {}
+final class ItemNotFound extends ItemState {
+  const ItemNotFound(this.name);
+
+  final String name;
+
+  @override
+  String toString() => 'ItemNotFound($name)';
+}

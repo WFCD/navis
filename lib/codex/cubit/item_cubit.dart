@@ -23,7 +23,7 @@ class ItemCubit extends HydratedCubit<ItemState> with SafeBlocMixin {
     await safeEmit(
       () async {
         final item = await _handleItemFetch(() => repo.fetchItem(name)) as ItemCommon?;
-        if (item == null) return ItemNotFound();
+        if (item == null) return ItemNotFound(name);
 
         return ItemFetchSuccess(item);
       },
@@ -36,7 +36,7 @@ class ItemCubit extends HydratedCubit<ItemState> with SafeBlocMixin {
       () async {
         final items = await _handleItemFetch(() => codex.search(name));
         final item = items.where((item) => item.imageName != null).firstWhereOrNull((item) => item.name == name);
-        if (item == null) return ItemNotFound();
+        if (item == null) return ItemNotFound(name);
 
         final externalItem = await repo.fetchItem(item.uniqueName);
 
@@ -54,7 +54,7 @@ class ItemCubit extends HydratedCubit<ItemState> with SafeBlocMixin {
           return name.replaceAll(RegExp('and', caseSensitive: false), '&') == item.name;
         });
 
-        if (item == null) return ItemNotFound();
+        if (item == null) return ItemNotFound(name);
 
         final externalItem = await repo.fetchItem(item.uniqueName);
 
