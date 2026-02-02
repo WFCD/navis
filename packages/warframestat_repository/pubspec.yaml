@@ -19,7 +19,7 @@ dependencies:
   logging: ^1.3.0
   navis_cache:
     path: ../navis_cache
-  warframestat_client: ^5.3.4
+  warframestat_client: ^5.4.4
   web_socket_client: ^0.2.1
 
 dev_dependencies:
