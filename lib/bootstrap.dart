@@ -14,6 +14,7 @@ import 'package:navis/router/app_router.dart';
 import 'package:navis/settings/settings.dart';
 import 'package:navis_cache/navis_cache.dart';
 import 'package:navis_codex/navis_codex.dart';
+import 'package:navis_database/navis_database.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
@@ -38,7 +39,7 @@ Future<void> bootstrap(BootstrapBuilder builder) async {
   final client = SentryHttpClient(client: await buildNativeClient(), captureFailedRequests: true);
   final cacheManager = await CacheManager.open(temp.path);
 
-  final codex = CodexDatabase(client, cacheManager);
+  final codex = CodexDatabase(NavisDatabase.queryExecutor, client: client, manager: cacheManager);
 
   Timer(const Duration(seconds: 2), codex.initialize);
 
