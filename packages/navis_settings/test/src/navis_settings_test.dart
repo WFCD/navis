@@ -1,11 +1,9 @@
-// Not required for test files
-
 import 'package:test/test.dart';
 
 void main() {
-  group('Codex', () {
+  group('NavisSettings', () {
     test('can be instantiated', () {
-      expect(<String>[], isNotNull);
+      expect(const <String>[], isNotNull);
     });
   });
 }

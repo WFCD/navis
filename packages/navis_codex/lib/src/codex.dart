@@ -1,5 +1,4 @@
 import 'package:drift/drift.dart';
-import 'package:drift_flutter/drift_flutter.dart';
 import 'package:http/http.dart';
 import 'package:logging/logging.dart';
 import 'package:navis_cache/navis_cache.dart';
@@ -7,7 +6,6 @@ import 'package:navis_codex/src/models/warframe_item.dart';
 import 'package:navis_codex/src/tables/tables.dart';
 import 'package:navis_codex/src/utils/extensions.dart';
 import 'package:profile_models/profile_models.dart' as profile;
-import 'package:sentry_drift/sentry_drift.dart';
 import 'package:warframe_repository/warframe_repository.dart';
 import 'package:warframestat_client/warframestat_client.dart' as wfcd;
 
@@ -17,21 +15,14 @@ typedef MasterableItem = ({CodexItem item, int xp});
 
 @DriftDatabase(tables: [CodexBuilds, CodexItems, XpItems])
 class CodexDatabase extends _$CodexDatabase {
-  CodexDatabase(Client client, CacheManager manager, [QueryExecutor? executor])
+  CodexDatabase(super.e, {required Client client, required CacheManager manager})
     : _client = client,
-      _manager = manager,
-      super(executor ?? _openConnection());
+      _manager = manager;
 
   final Client _client;
   final CacheManager _manager;
 
   final _logger = Logger('Codex');
-
-  static const _name = 'codex';
-
-  static QueryExecutor _openConnection() {
-    return driftDatabase(name: _name).interceptWith(SentryQueryInterceptor(databaseName: _name));
-  }
 
   Future<void> initialize() async {
     final client = wfcd.WarframeItemsClient(client: _client);
