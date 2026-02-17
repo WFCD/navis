@@ -1,0 +1,22 @@
+name: navis_database
+description: A Very Good Project created by Very Good CLI.
+version: 0.1.0+1
+publish_to: none
+
+environment:
+  sdk: ^3.10.0
+  flutter: ^3.38.0
+
+resolution: workspace
+
+dependencies:
+  drift: ^2.30.1
+  drift_flutter: ^0.3.0
+  flutter:
+    sdk: flutter
+  sentry_drift: ^9.10.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  mocktail: ^1.0.4
