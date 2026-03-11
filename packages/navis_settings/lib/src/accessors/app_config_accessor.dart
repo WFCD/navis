@@ -11,17 +11,16 @@ class AppConfigAccessor extends DatabaseAccessor<SettingsDatabase> with _$AppCon
 
   Stream<AppConfig> watchSettings() => select(appConfigs).watchSingle();
 
-  Future<AppConfig> fetchSettings() async {
+  Future<void> initSettings() async {
     final temp = await select(appConfigs).getSingleOrNull();
-    if (temp == null) {
-      return into(appConfigs).insertReturning(AppConfigsCompanion.insert());
-    }
-
-    return temp;
+    if (temp != null) return;
+    await into(appConfigs).insert(AppConfigsCompanion.insert());
   }
 
+  Future<AppConfig> fetchSettings() => select(appConfigs).getSingle();
+
   Future<void> updateSettings({String? language, ThemeMode? theme, bool? optOut, String? account}) async {
-    final current = await select(appConfigs).getSingle();
+    final current = await fetchSettings();
 
     await (update(appConfigs)..where((s) => s.id.equals(current.id))).write(
       AppConfigsCompanion(

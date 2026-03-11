@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/codex/codex.dart';
 import 'package:navis/l10n/l10n.dart';
-import 'package:navis_codex/navis_codex.dart';
 import 'package:navis_ui/navis_ui.dart';
+import 'package:warframe_repository/warframe_repository.dart';
 import 'package:warframestat_client/warframestat_client.dart' hide ItemNotFound;
-import 'package:warframestat_repository/warframestat_repository.dart';
 
 class ComponentDrops extends StatelessWidget {
   const ComponentDrops({super.key, required this.controller, required this.drops});
@@ -14,14 +13,13 @@ class ComponentDrops extends StatelessWidget {
   final List<Drop> drops;
 
   void _loadRelic(BuildContext context, String itemName) {
-    final codex = RepositoryProvider.of<CodexDatabase>(context);
-    final repo = RepositoryProvider.of<WarframestatRepository>(context);
+    final repo = RepositoryProvider.of<WarframeRepository>(context);
 
     Navigator.of(context).push(
       MaterialPageRoute<void>(
-        builder: (BuildContext context) {
+        builder: (context) {
           return BlocProvider(
-            create: (context) => ItemCubit(itemName, codex, repo)..fetchItem(),
+            create: (context) => ItemCubit(itemName, repo)..fetchItem(),
             child: Scaffold(
               body: Builder(
                 builder: (context) {

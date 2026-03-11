@@ -31,7 +31,7 @@ class _ActivitiesContent extends StatelessWidget {
     return BlocSelector<WorldstateBloc, WorldState, _Activities?>(
       selector: (state) {
         return switch (state) {
-          WorldstateSuccess(seed: final seed) => (events: seed.events, alerts: seed.alerts),
+          WorldstateSuccess(: final seed) => (events: seed.events, alerts: seed.alerts),
           _ => null,
         };
       },

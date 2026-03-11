@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/codex/utils/debouncer.dart';
 import 'package:navis/profile/profile.dart';
 import 'package:navis/profile/utils/mastery_utils.dart';
-import 'package:navis_codex/navis_codex.dart';
+import 'package:warframe_repository/warframe_repository.dart';
 
 class MasteryItemSearchBar extends StatefulWidget {
   const MasteryItemSearchBar({super.key, required this.onPressed});
@@ -31,7 +31,7 @@ class _MasteryItemSearchBarState extends State<MasteryItemSearchBar> {
   List<MasterableItem> _search(String query) {
     final state = BlocProvider.of<MasteryProgressCubit>(context).state;
     final items = switch (state) {
-      MasteryProgressSuccess(items: final items) => items,
+      MasteryProgressSuccess(: final items) => items,
       _ => <MasterableItem>[],
     };
 
@@ -55,7 +55,7 @@ class _MasteryItemSearchBarState extends State<MasteryItemSearchBar> {
   Widget build(BuildContext context) {
     return BlocSelector<MasteryProgressCubit, MasteryProgressState, List<MasterableItem>>(
       selector: (state) => switch (state) {
-        MasteryProgressSuccess(items: final items) => items,
+        MasteryProgressSuccess(: final items) => items,
         _ => [],
       },
       builder: (context, items) {

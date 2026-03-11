@@ -25,7 +25,7 @@ class FishDataView extends StatelessWidget {
           slivers: <Widget>[
             SliverOverlapInjector(handle: NestedScrollView.sliverOverlapAbsorberHandleFor(context)),
             SliverList(
-              delegate: SliverChildBuilderDelegate((BuildContext context, int index) {
+              delegate: SliverChildBuilderDelegate((context, index) {
                 return FishCard(fish: data[index]);
                 // format doesn't know whether it needs it or not
               }, childCount: data!.length),

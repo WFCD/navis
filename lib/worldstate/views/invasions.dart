@@ -58,7 +58,7 @@ class _TabletInvasions extends StatelessWidget {
         crossAxisSpacing: 2,
       ),
       itemCount: invasions.length,
-      itemBuilder: (BuildContext context, int index) {
+      itemBuilder: (context, index) {
         return InvasionWidget(invasion: invasions[index]);
       },
     );

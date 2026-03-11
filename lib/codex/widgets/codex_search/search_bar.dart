@@ -7,6 +7,7 @@ import 'package:navis/codex/utils/debouncer.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis/router/routes.dart';
 import 'package:navis_codex/navis_codex.dart';
+import 'package:warframe_repository/warframe_repository.dart';
 
 class CodexSearchBar extends StatefulWidget {
   const CodexSearchBar({super.key, this.focusNode, this.controller, this.hintText});

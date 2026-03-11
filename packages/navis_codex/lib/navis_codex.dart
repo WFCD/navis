@@ -2,4 +2,3 @@
 library;
 
 export 'src/codex.dart';
-export 'src/utils/extensions.dart';

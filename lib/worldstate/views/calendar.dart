@@ -70,15 +70,15 @@ class EventContent extends StatelessWidget {
     };
 
     Widget content(CalendarDayEvent event) => switch (event) {
-      CalendarDayChallenge(title: final title, description: final description) => ListTile(
+      CalendarDayChallenge(: final title, : final description) => ListTile(
         title: Text(title),
         subtitle: Text(description),
       ),
-      CalendarDayUpgrade(name: final name, description: final description) => ListTile(
+      CalendarDayUpgrade(: final name, : final description) => ListTile(
         title: Text(name),
         subtitle: Text(description),
       ),
-      CalendarDayReward(reward: final reward) => ListTile(title: Text(reward)),
+      CalendarDayReward(: final reward) => ListTile(title: Text(reward)),
       CalendarDayBirthday(conversation: final convo) => ListTile(
         title: Text(convo.replaceFirst('BirthdayConvo', "'s Birthday")),
       ),

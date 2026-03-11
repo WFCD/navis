@@ -1,25 +1,18 @@
 import 'package:equatable/equatable.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:navis/utils/bloc_mixin.dart';
-import 'package:navis_codex/navis_codex.dart';
+import 'package:warframe_repository/warframe_repository.dart';
 
 part 'mastery_state.dart';
 
 class MasteryProgressCubit extends Cubit<MasteryProgressState> with SafeBlocMixin {
-  MasteryProgressCubit(this.codex) : super(MasteryProgressInitial());
+  MasteryProgressCubit(this.repository) : super(MasteryProgressInitial());
 
-  final CodexDatabase codex;
-
-  static const _overrides = <String>['Excalibur Prime', 'Lato Prime', 'Skana Prime'];
+  final WarframeRepository repository;
 
   Future<void> fetchInProgress() async {
     await safeEmit(() async {
-      final inventory = await codex.buildXpInfo();
-      inventory
-        // User either has it or not, mainly founders items
-        ..removeWhere((i) => _overrides.contains(i.item.name))
-        ..sort((a, b) => a.xp.compareTo(b.xp));
-
+      final inventory = await repository.buildXpInfo();
       return MasteryProgressSuccess(inventory);
     });
   }

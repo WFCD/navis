@@ -2,8 +2,8 @@ import 'package:black_hole_flutter/black_hole_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/profile/profile.dart';
-import 'package:navis_codex/navis_codex.dart';
 import 'package:warframe_icons/warframe_icons.dart';
+import 'package:warframe_repository/warframe_repository.dart';
 
 class ArsenalItems extends StatelessWidget {
   const ArsenalItems({super.key, this.controller, required this.items});
