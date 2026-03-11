@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/home/widgets/activities_section.dart';
 import 'package:navis/home/widgets/news_section.dart';
 import 'package:navis/worldstate/bloc/worldstate_bloc.dart';
-import 'package:warframe_repository/warframe_repository.dart';
+import 'package:warframe_repository/Warframe_repository.dart';
 
 class WorldstateSection extends StatelessWidget {
   const WorldstateSection({super.key});

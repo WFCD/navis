@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis/profile/cubit/profile_cubit.dart';
 import 'package:navis_ui/navis_ui.dart';
+import 'package:warframe_api/warframe_api.dart';
 import 'package:warframe_repository/warframe_repository.dart';
 
 class ProfileWizard extends StatefulWidget {
@@ -49,11 +50,14 @@ class _ProfileWizardState extends State<ProfileWizard> {
     _jsonTextFieldController = TextEditingController();
   }
 
-  void _onStepContinue() {
+  Future<void> _onStepContinue() async {
     if (_currentPage == 2) {
       if (!_formKey.currentState!.validate()) return;
 
-      final user = RepositoryProvider.of<WarframeRepository>(context).convertUserData(_jsonTextFieldController.text);
+      final user = await RepositoryProvider.of<WarframeRepository>(
+        context,
+      ).updateAccountId(_jsonTextFieldController.text);
+
       setState(() {
         _user = user;
         _currentPage++;
@@ -96,7 +100,7 @@ class _ProfileWizardState extends State<ProfileWizard> {
     if (input.isEmpty) return 'JSON value cannot be empty';
 
     try {
-      RepositoryProvider.of<WarframeRepository>(context).convertUserData(input);
+      RepositoryProvider.of<WarframeRepository>(context).updateAccountId(input);
       return null;
     } on Exception {
       return 'Input was incorret or user is not signed in';

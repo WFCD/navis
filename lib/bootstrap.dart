@@ -15,8 +15,10 @@ import 'package:navis/settings/settings.dart';
 import 'package:navis_cache/navis_cache.dart';
 import 'package:navis_codex/navis_codex.dart';
 import 'package:navis_database/navis_database.dart';
+import 'package:navis_settings/navis_settings.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
+import 'package:warframe_repository/warframe_repository.dart';
 
 typedef BootstrapBuilder = FutureOr<Widget> Function(AppRouter);
 
@@ -39,9 +41,19 @@ Future<void> bootstrap(BootstrapBuilder builder) async {
   final client = SentryHttpClient(client: await buildNativeClient(), captureFailedRequests: true);
   final cacheManager = await CacheManager.open(temp.path);
 
-  final codex = CodexDatabase(NavisDatabase.queryExecutor, client: client, manager: cacheManager);
+  final newSettings = SettingsDatabase(NavisDatabase.createExceutor(SettingsDatabase.name));
+  final appConfig = AppConfigAccessor(newSettings);
+  await appConfig.initSettings();
 
-  Timer(const Duration(seconds: 2), codex.initialize);
+  final codex = CodexDatabase(NavisDatabase.createExceutor(CodexDatabase.name));
+  final warframeRepository = WarframeRepository(
+    client: client,
+    manager: cacheManager,
+    codex: codex,
+    appconfig: appConfig,
+  );
+
+  Timer(const Duration(seconds: 5), warframeRepository.syncCodex);
 
   logger.info('Booting up Navis');
   runApp(
@@ -49,8 +61,7 @@ Future<void> bootstrap(BootstrapBuilder builder) async {
       routeObserver: observer,
       settings: settings,
       codex: codex,
-      client: client,
-      cacheManager: cacheManager,
+      warframeRepository: warframeRepository,
       child: BlocBootstrap(child: await builder(router)),
     ),
   );

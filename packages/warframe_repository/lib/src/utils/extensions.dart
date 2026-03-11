@@ -1,13 +1,10 @@
-import 'package:drift/drift.dart';
-import 'package:navis_codex/src/codex.dart';
-import 'package:navis_codex/src/models/warframe_item.dart';
+import 'package:navis_codex/navis_codex.dart';
+import 'package:warframe_repository/src/models/warframe_item.dart';
 import 'package:warframestat_client/warframestat_client.dart';
 
-extension CodexBuildX on CodexBuild {
-  bool get isOutdated => timestamp.difference(DateTime.now()) > const Duration(days: DateTime.daysPerWeek * 2);
-}
-
+/// Utility functions
 extension WarframeItemX on WarframeItem {
+  /// Convert to a [CodexItem]
   CodexItem toCodexItem() {
     return CodexItem(
       uniqueName: uniqueName,
@@ -21,24 +18,6 @@ extension WarframeItemX on WarframeItem {
       type: type,
       wikiaUrl: wikiaUrl,
       wikiaThumbnail: wikiaThumbnail,
-    );
-  }
-}
-
-extension CodexItemX on CodexItem {
-  CodexItemsCompanion toCompanion() {
-    return CodexItemsCompanion(
-      uniqueName: Value(uniqueName),
-      name: Value(name),
-      description: Value.absentIfNull(description),
-      imageName: Value(imageName),
-      category: Value(category),
-      isVaulted: Value(isVaulted),
-      isMasterable: Value(isMasterable),
-      maxLevel: Value.absentIfNull(maxLevel),
-      type: Value(type),
-      wikiaUrl: Value.absentIfNull(wikiaUrl),
-      wikiaThumbnail: Value.absentIfNull(wikiaThumbnail),
     );
   }
 }
@@ -111,7 +90,9 @@ final Map<ItemType, int> _mapPriority = {
   ItemType.glyph: 6,
 };
 
+/// Utility functions
 extension ListItemX on List<CodexItem> {
+  /// Helps sort items by things users care the most about
   void prioritizeResults() {
     sort((a, b) {
       final aPriority = _mapPriority[a.type] ?? 100;

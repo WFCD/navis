@@ -11,20 +11,20 @@ import 'package:navis/worldstate/bloc/worldstate_bloc.dart';
 import 'package:navis_codex/navis_codex.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:warframe_icons/warframe_icons.dart';
+import 'package:warframe_repository/warframe_repository.dart';
 import 'package:warframestat_client/warframestat_client.dart' show ItemCommon;
-import 'package:warframestat_repository/warframestat_repository.dart';
 import 'package:worldstate_models/worldstate_models.dart';
 
 class AlertsCard extends StatelessWidget {
   const AlertsCard({super.key});
 
-  Widget _buildAlerts(Alert a, CodexDatabase c, WarframestatRepository r) {
+  Widget _buildAlerts(Alert a, CodexDatabase c, WarframeRepository r) {
     final reward = a.mission.reward.items?.firstOrNull?.replaceAll('Blueprint', '').trim();
 
     if (reward == null) return _AlertWidget(alert: a, isParent: false);
 
     return BlocProvider(
-      create: (_) => ItemCubit(reward, c, r)..fetchByName(),
+      create: (_) => ItemCubit(reward, r)..fetchByName(),
       child: _AlertWidget(alert: a),
     );
   }
@@ -38,7 +38,7 @@ class AlertsCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final codex = RepositoryProvider.of<CodexDatabase>(context);
-    final wsRepo = RepositoryProvider.of<WarframestatRepository>(context);
+    final wsRepo = RepositoryProvider.of<WarframeRepository>(context);
 
     return BlocBuilder<WorldstateBloc, WorldState>(
       buildWhen: _buildWhen,

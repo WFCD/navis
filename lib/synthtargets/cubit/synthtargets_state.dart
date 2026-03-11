@@ -1,5 +1,4 @@
-import 'package:equatable/equatable.dart';
-import 'package:warframestat_client/warframestat_client.dart';
+part of 'synthtargets_cubit.dart';
 
 sealed class SynthtargetsState extends Equatable {
   const SynthtargetsState();

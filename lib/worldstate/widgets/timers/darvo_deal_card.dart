@@ -8,9 +8,8 @@ import 'package:navis/l10n/l10n.dart';
 import 'package:navis/router/routes.dart';
 import 'package:navis/utils/string_extensions.dart';
 import 'package:navis/worldstate/bloc/worldstate_bloc.dart';
-import 'package:navis_codex/navis_codex.dart';
 import 'package:navis_ui/navis_ui.dart';
-import 'package:warframestat_repository/warframestat_repository.dart';
+import 'package:warframe_repository/warframe_repository.dart';
 import 'package:worldstate_models/worldstate_models.dart';
 
 class DarvoDealCard extends StatelessWidget {
@@ -32,8 +31,7 @@ class DarvoDealCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final codex = RepositoryProvider.of<CodexDatabase>(context);
-    final repo = RepositoryProvider.of<WarframestatRepository>(context);
+    final repo = RepositoryProvider.of<WarframeRepository>(context);
 
     return ClipRRect(
       child: BlocBuilder<WorldstateBloc, WorldState>(
@@ -77,7 +75,7 @@ class DarvoDealCard extends StatelessWidget {
                   ),
                   if (deal != null)
                     BlocProvider(
-                      create: (_) => ItemCubit(deal.item, codex, repo)..fetchByName(),
+                      create: (_) => ItemCubit(deal.item, repo)..fetchByName(),
                       child: _DealWidget(deal: deal),
                     ),
                   Align(

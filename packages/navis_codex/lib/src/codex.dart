@@ -1,58 +1,41 @@
 import 'package:drift/drift.dart';
-import 'package:http/http.dart';
-import 'package:logging/logging.dart';
-import 'package:navis_cache/navis_cache.dart';
-import 'package:navis_codex/src/models/warframe_item.dart';
+import 'package:navis_codex/src/codex.steps.dart';
 import 'package:navis_codex/src/tables/tables.dart';
-import 'package:navis_codex/src/utils/extensions.dart';
-import 'package:profile_models/profile_models.dart' as profile;
-import 'package:warframe_repository/warframe_repository.dart';
 import 'package:warframestat_client/warframestat_client.dart' as wfcd;
 
 part 'codex.g.dart';
 
-typedef MasterableItem = ({CodexItem item, int xp});
-
-@DriftDatabase(tables: [CodexBuilds, CodexItems, XpItems])
+@DriftDatabase(tables: [CodexItems])
 class CodexDatabase extends _$CodexDatabase {
-  CodexDatabase(super.e, {required Client client, required CacheManager manager})
-    : _client = client,
-      _manager = manager;
+  CodexDatabase(super.e);
 
-  final Client _client;
-  final CacheManager _manager;
+  static const name = 'codex';
 
-  final _logger = Logger('Codex');
+  @override
+  int get schemaVersion => 2;
 
-  Future<void> initialize() async {
-    final client = wfcd.WarframeItemsClient(client: _client);
-    final buildLabel = (await WarframeRepository(client: _client, manager: _manager).fetchWorldstate()).buildLabel;
-    var lastBuild = await select(codexBuilds).getSingleOrNull();
-    if (lastBuild?.buildLabel == buildLabel || !(lastBuild?.isOutdated ?? true)) {
-      _logger.info('Codex updated');
-      return;
-    }
+  @override
+  MigrationStrategy get migration {
+    return MigrationStrategy(
+      onUpgrade: stepByStep(
+        from1To2: (m, schema) async {
+          await m.deleteTable('codex_builds');
+          await m.deleteTable('xp_items');
+        },
+      ),
+    );
+  }
 
-    _logger.info('Fetching items');
-    List<WarframeItem> items;
-    try {
-      items = await client.fetchAllItems(props: codexProps, encoder: WarframeItem.fromJson) as List<WarframeItem>;
-    } on Exception {
-      _logger.warning('Failed to populate codex with items');
-      return;
-    }
+  Future<void> addItem(CodexItem item) {
+    return into(codexItems).insertOnConflictUpdate(item);
+  }
 
-    _logger.info('Updating items');
-    final inserts = items.map((i) => i.toCodexItem()).toList();
-    await batch((batch) async {
-      batch.insertAllOnConflictUpdate(codexItems, inserts);
-    });
+  Future<void> addItems(List<CodexItem> items) {
+    return batch((batch) => batch.insertAllOnConflictUpdate(codexItems, items));
+  }
 
-    _logger.info('Updating timestamp');
-    lastBuild = CodexBuild(id: 1, buildLabel: buildLabel, timestamp: DateTime.timestamp());
-    await codexBuilds.insertOnConflictUpdate(lastBuild);
-
-    _logger.info('Finished updating the codex');
+  Future<CodexItem?> fetchItem(String uniqueName) {
+    return (select(codexItems, distinct: true)..where((i) => i.uniqueName.contains(uniqueName))).getSingleOrNull();
   }
 
   Future<List<CodexItem>> search(String query) async {
@@ -60,38 +43,10 @@ class CodexDatabase extends _$CodexDatabase {
     const ignores = ['Chassis', 'Neuroptics', 'System'];
     if (ignores.any((i) => query.contains(i))) return [];
 
-    final results = await (codexItems.select(distinct: true)..where((i) => i.name.contains(query))).get();
-    if (results.isNotEmpty) return results;
-
-    _logger.warning("$query wasn't found falling back to warframe-items");
-    final client = wfcd.WarframeItemsClient(client: _client);
-    final items = await client.search(query, props: codexProps, encoder: WarframeItem.fromJson);
-
-    return items.map((i) => i.toCodexItem()).toList();
+    return (select(codexItems, distinct: true)..where((i) => i.name.contains(query))).get();
   }
 
   Future<List<CodexItem>> fetchMasterable() async {
     return (select(codexItems)..where((i) => i.isMasterable.equals(true))).get();
   }
-
-  Future<void> syncXpInfo(List<profile.XpItem> xpInfo) async {
-    final items = xpInfo.map((i) => XpItem(uniqueName: i.uniqueName, xp: i.xp));
-
-    _logger.info('Syncing XP info');
-    await batch((batch) async {
-      batch.insertAllOnConflictUpdate(xpItems, items);
-    });
-    _logger.info('XP info in sync');
-  }
-
-  Future<List<MasterableItem>> buildXpInfo() async {
-    final items = await fetchMasterable();
-    final xi = await select(xpItems).get();
-    final mappedXpItems = {for (final x in xi) x.uniqueName: x.xp};
-
-    return items.map((i) => (item: i, xp: mappedXpItems[i.uniqueName] ?? 0)).toList();
-  }
-
-  @override
-  int get schemaVersion => 1;
 }

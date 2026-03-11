@@ -6,10 +6,9 @@ import 'package:navis/codex/codex.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis/profile/utils/mastery_utils.dart';
 import 'package:navis/utils/string_extensions.dart';
-import 'package:navis_codex/navis_codex.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:warframe_icons/warframe_icons.dart';
-import 'package:warframestat_repository/warframestat_repository.dart';
+import 'package:warframe_repository/warframe_repository.dart';
 
 class ArsenalItemWidget extends StatelessWidget {
   const ArsenalItemWidget({super.key, required this.item});
@@ -18,8 +17,7 @@ class ArsenalItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final codex = RepositoryProvider.of<CodexDatabase>(context);
-    final repo = RepositoryProvider.of<WarframestatRepository>(context);
+    final repo = RepositoryProvider.of<WarframeRepository>(context);
 
     final rank = masteryRank(item);
 
@@ -28,7 +26,7 @@ class ArsenalItemWidget extends StatelessWidget {
       closedColor: Colors.transparent,
       openBuilder: (context, _) {
         return BlocProvider(
-          create: (_) => ItemCubit(item.item.uniqueName, codex, repo)..fetchItem(),
+          create: (_) => ItemCubit(item.item.uniqueName, repo)..fetchItem(),
           child: Builder(
             builder: (context) {
               return BlocBuilder<ItemCubit, ItemState>(

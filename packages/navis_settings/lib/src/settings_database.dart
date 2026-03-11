@@ -16,6 +16,8 @@ class SettingsDatabase extends _$SettingsDatabase {
   /// {@macro navis_settings}
   SettingsDatabase(super.e);
 
+  static const name = 'settings';
+
   @override
   int get schemaVersion => 1;
 }

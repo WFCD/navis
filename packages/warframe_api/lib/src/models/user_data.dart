@@ -1,5 +1,3 @@
-// ignore_for_file: public_member_api_docs All values are self explanatory
-
 class UserData {
   UserData({required this.id, required this.avatar, required this.username, required this.masteryRank});
 

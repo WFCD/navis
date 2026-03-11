@@ -5,8 +5,8 @@ import 'package:navis/home/widgets/section.dart';
 import 'package:navis/profile/profile.dart';
 import 'package:navis/profile/utils/mastery_utils.dart';
 import 'package:navis/router/routes.dart';
-import 'package:navis_codex/navis_codex.dart';
 import 'package:navis_ui/navis_ui.dart';
+import 'package:profile_models/profile_models.dart';
 import 'package:warframe_icons/warframe_icons.dart';
 import 'package:warframe_repository/warframe_repository.dart';
 
@@ -15,7 +15,7 @@ class MasteryInProgressSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocSelector<ProfileCubit, ProfileState, UserData?>(
+    return BlocSelector<ProfileCubit, ProfileState, Profile?>(
       selector: (state) {
         return switch (state) {
           ProfileSuccessful(: final profile) => profile,
@@ -25,10 +25,10 @@ class MasteryInProgressSection extends StatelessWidget {
       builder: (context, profile) {
         if (profile == null) return const SizedBox.shrink();
 
-        final codex = RepositoryProvider.of<CodexDatabase>(context);
+        final repo = RepositoryProvider.of<WarframeRepository>(context);
 
         return BlocProvider(
-          create: (context) => MasteryProgressCubit(codex)..fetchInProgress(),
+          create: (context) => MasteryProgressCubit(repo)..fetchInProgress(),
           child: const MasteryInProgressContent(),
         );
       },
