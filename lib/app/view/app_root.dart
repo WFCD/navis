@@ -14,7 +14,7 @@ class NavisApp extends StatelessWidget {
   Widget _builder(BuildContext context, Widget? widget) {
     final l10n = NavisLocalizations.of(context);
 
-    ErrorWidget.builder = (FlutterErrorDetails error) {
+    ErrorWidget.builder = (error) {
       Widget errorWidget = NavisErrorWidget(title: l10n.errorTitle, description: l10n.errorDescription, details: error);
 
       if (widget is Scaffold || widget is Navigator) {

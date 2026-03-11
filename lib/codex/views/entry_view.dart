@@ -4,10 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/codex/codex.dart';
 import 'package:navis/l10n/l10n.dart';
-import 'package:navis_codex/navis_codex.dart';
 import 'package:navis_ui/navis_ui.dart';
+import 'package:warframe_repository/warframe_repository.dart';
 import 'package:warframestat_client/warframestat_client.dart';
-import 'package:warframestat_repository/warframestat_repository.dart';
 
 const List<ItemType> _miscTypes = [ItemType.skin, ItemType.misc, ItemType.glyph];
 
@@ -104,8 +103,7 @@ class EntryView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final codex = RepositoryProvider.of<CodexDatabase>(context);
-    final repo = RepositoryProvider.of<WarframestatRepository>(context);
+    final repo = RepositoryProvider.of<WarframeRepository>(context);
     final overview = _Overview(
       uniqueName: uniqueName,
       name: name,
@@ -120,7 +118,7 @@ class EntryView extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: BlocProvider(
-          create: (context) => ItemCubit(uniqueName, codex, repo)..fetchItem(),
+          create: (context) => ItemCubit(uniqueName, repo)..fetchItem(),
           child: overview,
         ),
       ),

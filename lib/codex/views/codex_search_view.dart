@@ -83,7 +83,7 @@ class _CodexViewContent extends StatelessWidget {
         SliverOverlapInjector(handle: NestedScrollView.sliverOverlapAbsorberHandleFor(context)),
         SliverList.builder(
           itemCount: results.length,
-          itemBuilder: (BuildContext context, int index) {
+          itemBuilder: (context, index) {
             final item = results[index];
 
             return EntryViewOpenContainer(

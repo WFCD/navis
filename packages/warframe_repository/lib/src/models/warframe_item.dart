@@ -1,8 +1,11 @@
+// ignore_for_file: public_member_api_docs For documentation just see ItemCommon
+
 import 'package:json_annotation/json_annotation.dart';
 import 'package:warframestat_client/warframestat_client.dart';
 
 part 'warframe_item.g.dart';
 
+/// Required props to tell the warframe-items to include
 const List<ItemProps> codexProps = [
   ItemProps.uniqueName,
   ItemProps.name,
@@ -26,11 +29,11 @@ class WarframeItem extends Item {
     required this.imageName,
     required this.category,
     required this.type,
-    this.vaulted = false,
-    this.masterable = false,
     required this.maxLevelCap,
     required this.wikiaUrl,
     required this.wikiaThumbnail,
+    this.vaulted = false,
+    this.masterable = false,
   });
 
   factory WarframeItem.fromJson(Map<String, dynamic> json) => _$WarframeItemFromJson(json);

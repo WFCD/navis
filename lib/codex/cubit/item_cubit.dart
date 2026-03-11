@@ -5,24 +5,22 @@ import 'package:equatable/equatable.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:navis/utils/bloc_mixin.dart';
 import 'package:navis/utils/utils.dart';
-import 'package:navis_codex/navis_codex.dart';
+import 'package:warframe_repository/warframe_repository.dart';
 import 'package:warframestat_client/warframestat_client.dart';
-import 'package:warframestat_repository/warframestat_repository.dart';
 
 part 'item_state.dart';
 
 class ItemCubit extends HydratedCubit<ItemState> with SafeBlocMixin {
-  ItemCubit(this.name, this.codex, this.repo) : super(ItemInitial());
+  ItemCubit(this.name, this.repo) : super(ItemInitial());
 
   /// Can be Item name or Item uniqueName
   final String name;
-  final CodexDatabase codex;
-  final WarframestatRepository repo;
+  final WarframeRepository repo;
 
   Future<void> fetchItem() async {
     await safeEmit(
       () async {
-        final item = await _handleItemFetch(() => repo.fetchItem(name)) as ItemCommon?;
+        final item = await _handleItemFetch(() => repo.fetchItem(name));
         if (item == null) return ItemNotFound(name);
 
         return ItemFetchSuccess(item);
@@ -34,13 +32,13 @@ class ItemCubit extends HydratedCubit<ItemState> with SafeBlocMixin {
   Future<void> fetchByName() async {
     await safeEmit(
       () async {
-        final items = await _handleItemFetch(() => codex.search(name));
+        final items = await _handleItemFetch(() => repo.searchItem(name));
         final item = items.where((item) => item.imageName != null).firstWhereOrNull((item) => item.name == name);
         if (item == null) return ItemNotFound(name);
 
         final externalItem = await repo.fetchItem(item.uniqueName);
 
-        return ItemFetchSuccess(externalItem! as ItemCommon);
+        return ItemFetchSuccess(externalItem!);
       },
       onError: (error, stackTrace) => ItemFetchFailure(exception: error, stackTrace: stackTrace),
     );
@@ -49,7 +47,7 @@ class ItemCubit extends HydratedCubit<ItemState> with SafeBlocMixin {
   Future<void> fetchIncarnonGenesis() async {
     await safeEmit(
       () async {
-        final items = await _handleItemFetch(() async => codex.search('Incarnon'));
+        final items = await _handleItemFetch(() async => repo.searchItem('Incarnon'));
         final item = items.where((item) => item.imageName != null).firstWhereOrNull((item) {
           return name.replaceAll(RegExp('and', caseSensitive: false), '&') == item.name;
         });
@@ -58,7 +56,7 @@ class ItemCubit extends HydratedCubit<ItemState> with SafeBlocMixin {
 
         final externalItem = await repo.fetchItem(item.uniqueName);
 
-        return ItemFetchSuccess(externalItem! as ItemCommon);
+        return ItemFetchSuccess(externalItem!);
       },
       onError: (error, stackTrace) => ItemFetchFailure(exception: error, stackTrace: stackTrace),
     );

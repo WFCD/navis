@@ -28,7 +28,7 @@ class FlashSalesView extends StatelessWidget {
     return BlocSelector<WorldstateBloc, WorldState, List<FlashSale>?>(
       selector: (state) {
         return switch (state) {
-          WorldstateSuccess(seed: final seed) => seed.flashSales,
+          WorldstateSuccess(: final seed) => seed.flashSales,
           _ => null,
         };
       },

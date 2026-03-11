@@ -32,7 +32,7 @@ class AboutApp extends AbstractSettingsTile {
 
     return FutureBuilder(
       future: PackageInfo.fromPlatform(),
-      builder: (_, AsyncSnapshot<PackageInfo> snapshot) {
+      builder: (_, snapshot) {
         final info = snapshot.data;
 
         return AboutDialog(

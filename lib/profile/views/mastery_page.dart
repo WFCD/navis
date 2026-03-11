@@ -2,20 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/profile/profile.dart';
 import 'package:navis/profile/utils/mastery_utils.dart';
-import 'package:navis_codex/navis_codex.dart';
 import 'package:navis_ui/navis_ui.dart';
+import 'package:warframe_repository/warframe_repository.dart';
 
 class MasteryPage extends StatelessWidget {
   const MasteryPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final codex = RepositoryProvider.of<CodexDatabase>(context);
+    final repo = RepositoryProvider.of<WarframeRepository>(context);
 
     return Scaffold(
       body: SafeArea(
         child: BlocProvider(
-          create: (_) => MasteryProgressCubit(codex)..fetchInProgress(),
+          create: (_) => MasteryProgressCubit(repo)..fetchInProgress(),
           child: const MasteryView(),
         ),
       ),

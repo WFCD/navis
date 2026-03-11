@@ -18,7 +18,7 @@ class AppView extends StatelessWidget {
     return Scaffold(
       key: GlobalKey<ScaffoldState>(),
       body: PageTransitionSwitcher(
-        transitionBuilder: (Widget child, Animation<double> animation, Animation<double> secondaryAnimation) {
+        transitionBuilder: (child, animation, secondaryAnimation) {
           return FadeThroughTransition(animation: animation, secondaryAnimation: secondaryAnimation, child: child);
         },
         child: TraceableWidget(actionName: children[currentIndex].toStringShort(), child: children[currentIndex]),

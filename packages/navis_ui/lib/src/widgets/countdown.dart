@@ -130,7 +130,7 @@ class CountdownTimerState extends State<CountdownTimer> with TickerProviderState
       shape: RoundedRectangleBorder(borderRadius: BorderRadiusGeometry.circular(4)),
       child: AnimatedBuilder(
         animation: _controller,
-        builder: (BuildContext context, Widget? child) {
+        builder: (context, child) {
           final remainingTime = _remainingTime * _animation.value;
 
           return ColoredBox(

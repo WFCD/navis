@@ -1,6 +1,6 @@
 import 'dart:math';
 
-import 'package:navis_codex/navis_codex.dart';
+import 'package:warframe_repository/warframe_repository.dart';
 import 'package:warframestat_client/warframestat_client.dart';
 
 int masteryRank(MasterableItem item) {

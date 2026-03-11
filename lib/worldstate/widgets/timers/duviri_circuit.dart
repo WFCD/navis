@@ -8,9 +8,8 @@ import 'package:navis/l10n/l10n.dart';
 import 'package:navis/utils/string_extensions.dart';
 import 'package:navis/worldstate/bloc/worldstate_bloc.dart';
 import 'package:navis/worldstate/utils/utils.dart';
-import 'package:navis_codex/navis_codex.dart';
 import 'package:navis_ui/navis_ui.dart';
-import 'package:warframestat_repository/warframestat_repository.dart';
+import 'package:warframe_repository/warframe_repository.dart';
 import 'package:worldstate_models/worldstate_models.dart';
 
 class DuviriCircuit extends StatelessWidget {
@@ -85,8 +84,7 @@ class CircuitChoiceTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final codex = RepositoryProvider.of<CodexDatabase>(context);
-    final repo = RepositoryProvider.of<WarframestatRepository>(context);
+    final repo = RepositoryProvider.of<WarframeRepository>(context);
     final isSteelPatch = choice.key == 'EXC_HARD';
 
     var category = toBeginningOfSentenceCase(choice.mode);
@@ -108,7 +106,7 @@ class CircuitChoiceTile extends StatelessWidget {
 
             return BlocProvider(
               create: (_) {
-                final cubit = ItemCubit(name, codex, repo);
+                final cubit = ItemCubit(name, repo);
 
                 isSteelPatch ? cubit.fetchIncarnonGenesis() : cubit.fetchByName();
 

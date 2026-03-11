@@ -1,0 +1,8 @@
+targets:
+  $default:
+    builders:
+      drift_dev:
+        options:
+          schema_dir: drift_schemas/
+          databases:
+            codex_database: lib/src/codex.dart

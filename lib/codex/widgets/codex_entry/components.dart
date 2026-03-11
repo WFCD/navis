@@ -51,7 +51,7 @@ void _onTap(BuildContext context, List<Drop> drops) {
       minChildSize: 0.2,
       maxChildSize: 0.9,
       expand: false,
-      builder: (BuildContext context, ScrollController scrollController) {
+      builder: (context, scrollController) {
         return ComponentDrops(controller: scrollController, drops: drops);
       },
     ),

@@ -95,7 +95,7 @@ class _MobileFissures extends StatelessWidget {
       itemExtent: height,
       itemCount: fissures.length,
       shrinkWrap: true,
-      itemBuilder: (BuildContext context, int index) {
+      itemBuilder: (context, index) {
         return FissureWidget(key: ValueKey(fissures[index].id), fissure: fissures[index]);
       },
     );
@@ -117,7 +117,7 @@ class _TabletFissures extends StatelessWidget {
         crossAxisSpacing: 2,
       ),
       itemCount: fissures.length,
-      itemBuilder: (BuildContext context, int index) {
+      itemBuilder: (context, index) {
         return FissureWidget(fissure: fissures[index]);
       },
     );

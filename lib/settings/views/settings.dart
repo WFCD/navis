@@ -8,6 +8,7 @@ import 'package:navis/profile/cubit/profile_cubit.dart';
 import 'package:navis/settings/settings.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:notification_repository/notification_repository.dart';
+import 'package:profile_models/profile_models.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});
@@ -48,12 +49,12 @@ class _SettingsView extends StatelessWidget {
 
     final filters = NotificationTopics(context.l10n);
 
-    final settings = context.select(
-      (UserSettingsCubit cubit) => cubit.state is UserSettingsSuccess ? cubit.state as UserSettingsSuccess : null,
+    final settings = context.select<UserSettingsCubit, UserSettingsSuccess?>(
+      (cubit) => cubit.state is UserSettingsSuccess ? cubit.state as UserSettingsSuccess : null,
     );
 
-    final profile = context.select(
-      (ProfileCubit cubit) => cubit.state is ProfileSuccessful ? (cubit.state as ProfileSuccessful).profile : null,
+    final profile = context.select<ProfileCubit, Profile?>(
+      (cubit) => cubit.state is ProfileSuccessful ? (cubit.state as ProfileSuccessful).profile : null,
     );
 
     final toggles = settings?.toggles ?? <String, bool>{};
@@ -69,8 +70,7 @@ class _SettingsView extends StatelessWidget {
             SettingsTile(
               title: profile?.username != null
                   ? UserTitle(
-                      avatar: profile!.avatar,
-                      username: profile.username,
+                      username: profile!.username,
                       rank: profile.masteryRank,
                     )
                   : Text(l10n.enterUsernameHintText),

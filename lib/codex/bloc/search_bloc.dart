@@ -7,6 +7,7 @@ import 'package:navis/codex/bloc/search_state.dart';
 import 'package:navis/codex/utils/result_filters.dart';
 import 'package:navis_codex/navis_codex.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:warframe_repository/warframe_repository.dart';
 
 export 'search_event.dart';
 export 'search_state.dart';
