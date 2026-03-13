@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis/router/app_router.dart';
-import 'package:navis/settings/settings.dart';
+import 'package:navis/settings/bloc/app_config_bloc.dart';
 import 'package:navis_ui/navis_ui.dart';
 
 class NavisApp extends StatelessWidget {
@@ -29,7 +29,7 @@ class NavisApp extends StatelessWidget {
     throw Exception('Widget is null');
   }
 
-  Locale localeResolutionCallback(BuildContext context, Locale? locale, Iterable<Locale> supportedLocales) {
+  Locale _localeResolutionCallback(BuildContext context, Locale? locale, Iterable<Locale> supportedLocales) {
     const defaultLocale = Locale('en');
     Locale? newLocale;
 
@@ -41,52 +41,79 @@ class NavisApp extends StatelessWidget {
 
     newLocale ??= defaultLocale;
 
-    final userSettingsCubit = context.read<UserSettingsCubit>();
-    final settings = userSettingsCubit.state;
-    final language = switch (settings) {
-      UserSettingsSuccess() => settings.language,
+    final appConfig = context.read<AppConfigBloc>();
+    final language = switch (appConfig.state) {
+      AppConfigUpdated(:final config) => Locale(config.language),
       _ => defaultLocale,
     };
 
     if (language != newLocale) {
-      userSettingsCubit.updateLanguage(newLocale);
+      appConfig.add(AppConfigUpdate(language: newLocale.languageCode));
     }
-    context.read<UserSettingsCubit>().updateLanguage(newLocale);
 
     return newLocale;
   }
 
+  bool _buildWhen(AppConfigState previous, AppConfigState next) {
+    const defaultThemeMode = ThemeMode.system;
+    const defaultLocale = Locale('en');
+
+    final previousThemeMode = switch (previous) {
+      AppConfigUpdated(:final config) => ThemeMode.values[config.theme],
+      _ => defaultThemeMode,
+    };
+
+    final previousLanguage = switch (previous) {
+      AppConfigUpdated(:final config) => Locale(config.language),
+      _ => defaultLocale,
+    };
+
+    final nextThemeMode = switch (next) {
+      AppConfigUpdated(:final config) => ThemeMode.values[config.theme],
+      _ => defaultThemeMode,
+    };
+
+    final nextLanguage = switch (next) {
+      AppConfigUpdated(:final config) => Locale(config.language),
+      _ => defaultLocale,
+    };
+
+    return previousThemeMode != nextThemeMode || previousLanguage != nextLanguage;
+  }
+
   @override
   Widget build(BuildContext context) {
-    final settings = context.watch<UserSettingsCubit>().state;
-
-    final themeMode = switch (settings) {
-      UserSettingsSuccess() => settings.themeMode,
-      _ => ThemeMode.system,
-    };
-
-    final language = switch (settings) {
-      UserSettingsSuccess() => settings.language,
-      _ => const Locale('en'),
-    };
-
     return DynamicColorBuilder(
       builder: (lightDynamic, darkDynamic) {
-        return MaterialApp.router(
-          routerConfig: router.routes,
-          title: 'Cephalon Navis',
-          color: Colors.grey[900],
-          themeMode: themeMode,
-          debugShowCheckedModeBanner: false,
+        return BlocBuilder<AppConfigBloc, AppConfigState>(
+          buildWhen: _buildWhen,
+          builder: (context, state) {
+            final themeMode = switch (state) {
+              AppConfigUpdated(:final config) => ThemeMode.values[config.theme],
+              _ => null,
+            };
 
-          theme: NavisThemes.theme(Brightness.light, lightDynamic),
-          darkTheme: NavisThemes.theme(Brightness.dark, darkDynamic),
-          builder: _builder,
-          supportedLocales: NavisLocalizations.supportedLocales,
-          locale: language,
-          localizationsDelegates: NavisLocalizations.localizationsDelegates,
-          localeResolutionCallback: (locale, supportedLocales) =>
-              localeResolutionCallback(context, locale, supportedLocales),
+            final language = switch (state) {
+              AppConfigUpdated(:final config) => Locale(config.language),
+              _ => null,
+            };
+
+            return MaterialApp.router(
+              routerConfig: router.routes,
+              title: 'Cephalon Navis',
+              color: Colors.grey[900],
+              themeMode: themeMode,
+              debugShowCheckedModeBanner: false,
+              theme: NavisThemes.theme(Brightness.light, lightDynamic),
+              darkTheme: NavisThemes.theme(Brightness.dark, darkDynamic),
+              builder: _builder,
+              supportedLocales: NavisLocalizations.supportedLocales,
+              locale: language,
+              localizationsDelegates: NavisLocalizations.localizationsDelegates,
+              localeResolutionCallback: (locale, supportedLocales) =>
+                  _localeResolutionCallback(context, locale, supportedLocales),
+            );
+          },
         );
       },
     );

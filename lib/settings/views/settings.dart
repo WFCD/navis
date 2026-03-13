@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_settings_ui/flutter_settings_ui.dart';
 import 'package:intl/intl.dart';
+import 'package:matomo_tracker/matomo_tracker.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis/profile/cubit/profile_cubit.dart';
 import 'package:navis/settings/settings.dart';
 import 'package:navis_ui/navis_ui.dart';
-import 'package:notification_repository/notification_repository.dart';
 import 'package:profile_models/profile_models.dart';
 
 class SettingsPage extends StatelessWidget {
@@ -22,22 +22,21 @@ class SettingsPage extends StatelessWidget {
 class _SettingsView extends StatelessWidget {
   const _SettingsView();
 
-  Future<void> _onNotificationChanged(BuildContext context, Topic topic, bool value) async {
-    final repo = context.read<NotificationRepository>();
-    context.read<UserSettingsCubit>().updateToggle(topic.name, value: value);
+  // Future<void> _onNotificationChanged(BuildContext context, Topic topic, bool value) async {
+  //   final repo = context.read<NotificationRepository>();
+  //   final hasPermission = repo.hasPermission;
 
-    await repo.requestPermission();
-    await repo.updateTopic(topic, value: value);
+  //   if (await hasPermission()) await repo.requestPermission();
 
-    final hasPermission = await repo.hasPermission();
-    if (!hasPermission && context.mounted) {
-      context.read<UserSettingsCubit>().updateToggle(topic.name, value: false);
-    }
-  }
+  //   if (!(await hasPermission()) && context.mounted) {
+  //     context.read<UserSettingsCubit>().updateToggle(topic.name, value: value);
+  //     await repo.updateTopic(topic, value: value);
+  //   }
+  // }
 
-  void _openDialog(BuildContext context, List<SimpleTopics> filters) {
-    FilterDialog.showFilters(context, filters);
-  }
+  // void _openDialog(BuildContext context, List<SimpleTopics> filters) {
+  //   FilterDialog.showFilters(context, filters);
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -47,17 +46,23 @@ class _SettingsView extends StatelessWidget {
       settingsListBackground: context.theme.scaffoldBackgroundColor,
     );
 
-    final filters = NotificationTopics(context.l10n);
-
-    final settings = context.select<UserSettingsCubit, UserSettingsSuccess?>(
-      (cubit) => cubit.state is UserSettingsSuccess ? cubit.state as UserSettingsSuccess : null,
-    );
-
     final profile = context.select<ProfileCubit, Profile?>(
       (cubit) => cubit.state is ProfileSuccessful ? (cubit.state as ProfileSuccessful).profile : null,
     );
 
-    final toggles = settings?.toggles ?? <String, bool>{};
+    final themeMode = context.select<AppConfigBloc, ThemeMode>(
+      (bloc) => switch (bloc.state) {
+        AppConfigUpdated(:final config) => ThemeMode.values[config.theme],
+        _ => ThemeMode.system,
+      },
+    );
+
+    final isOptOut = context.select<AppConfigBloc, bool>(
+      (bloc) => switch (bloc.state) {
+        AppConfigUpdated(:final config) => config.optOut,
+        _ => false,
+      },
+    );
 
     return SettingsList(
       platform: DevicePlatform.android,
@@ -90,35 +95,38 @@ class _SettingsView extends StatelessWidget {
             SettingsTile.navigation(
               title: Text(l10n.themeTitle),
               description: Text(l10n.themeDescription),
-              value: Text(toBeginningOfSentenceCase((settings?.themeMode ?? ThemeMode.system).name) ?? ''),
+              value: Text(toBeginningOfSentenceCase(themeMode.name)),
               onPressed: ThemePicker.showModes,
             ),
             SettingsTile.switchTile(
               title: Text(l10n.optOutOfAnalyticsTitle),
               description: Text(l10n.optOutOfAnalyticsDescription),
-              initialValue: settings?.isOptOut ?? false,
-              onToggle: (b) => context.read<UserSettingsCubit>().updateAnalyticsOpt(isOptOut: b),
+              initialValue: isOptOut,
+              onToggle: (b) {
+                context.read<AppConfigBloc>().add(AppConfigUpdate(optOut: b));
+                MatomoTracker.instance.setOptOut(optOut: b);
+              },
             ),
           ],
         ),
-        SettingsSection(
-          title: Text(l10n.notificationsTitle),
-          tiles: [
-            for (final topic in filters.simpleFilters)
-              SettingsTile.switchTile(
-                title: Text(topic.title),
-                description: Text(topic.description ?? ''),
-                initialValue: toggles[topic.topic.name],
-                onToggle: (b) => _onNotificationChanged(context, topic.topic, b),
-              ),
-            for (final mt in filters.filtered)
-              SettingsTile.navigation(
-                title: Text(mt.title),
-                description: Text(mt.description),
-                onPressed: (context) => _openDialog(context, mt.filters),
-              ),
-          ],
-        ),
+        // SettingsSection(
+        //   title: Text(l10n.notificationsTitle),
+        //   tiles: [
+        //     for (final topic in filters.simpleFilters)
+        //       SettingsTile.switchTile(
+        //         title: Text(topic.title),
+        //         description: Text(topic.description ?? ''),
+        //         initialValue: toggles[topic.topic.name],
+        //         onToggle: (b) => _onNotificationChanged(context, topic.topic, b),
+        //       ),
+        //     for (final mt in filters.filtered)
+        //       SettingsTile.navigation(
+        //         title: Text(mt.title),
+        //         description: Text(mt.description),
+        //         onPressed: (context) => _openDialog(context, mt.filters),
+        //       ),
+        //   ],
+        // ),
         SettingsSection(
           title: Text(l10n.aboutCategoryTitle),
           tiles: [
