@@ -38,7 +38,7 @@ class _MobileTimers extends StatelessWidget {
               const BaroKiTeerCard(),
               const VarziaTraderCard(),
               if (worldstate?.events.isNotEmpty ?? false) const EventCard(),
-              // if (false) const ArbitrationCard(), // TODO(Orn): add arbis in models
+              const ArbitrationCard(),
               // if (state.outpostDetected) const SentientOutpostCard(),
               const SteelPathCard(),
               if (worldstate?.alerts.isNotEmpty ?? false) const AlertsCard(),

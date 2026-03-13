@@ -1,7 +1,12 @@
+// ignore_for_file: experimental_member_use Its cool, I know what I'm doing
+
+import 'dart:isolate';
+
 import 'package:http/http.dart';
 import 'package:navis_cache/navis_cache.dart';
 import 'package:warframestat_client/warframestat_client.dart' hide Worldstate;
 import 'package:warframestat_repository/src/models/regions.dart';
+import 'package:warframestat_repository/src/utils/parse_arbi.dart';
 
 ///
 const userAgent = 'navis';
@@ -72,6 +77,28 @@ class WarframestatRepository {
     await _manager.set(key, json, ttl: const Duration(days: 31));
 
     return regions;
+  }
+
+  Future<Arbitration> fetchArbitrations() async {
+    const key = 'arbis';
+    bool isActive(Arbitration a) {
+      final now = DateTime.timestamp();
+      return now.isAfter(a.activation) && now.isBefore(a.expiry);
+    }
+
+    final data = await _manager.get<List<dynamic>>(key);
+    if (data != null) {
+      final arbis = List<Map<String, dynamic>>.from(data).map(Arbitration.fromJson).toList();
+      return arbis.firstWhere(isActive);
+    }
+
+    final res = await _client.get(Uri.parse('https://browse.wf/arbys.txt'));
+    final csv = res.body;
+    final arbis = await Isolate.run(() => parseArbitration(csv));
+    final ttl = DateTime.timestamp().difference(arbis.last.expiry);
+
+    await _manager.set(key, arbis.map((a) => a.toJson()).toList(), ttl: ttl);
+    return arbis.firstWhere(isActive);
   }
 
   CraigRegion _decodeData(Map<String, dynamic> data) {
