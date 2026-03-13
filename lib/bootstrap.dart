@@ -1,17 +1,18 @@
 import 'dart:async';
 
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:http_client/http_client.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:logging/logging.dart';
+import 'package:matomo_tracker/matomo_tracker.dart';
 import 'package:navis/app/app_observer.dart';
 import 'package:navis/app/widgets/bloc_bootstrap.dart';
 import 'package:navis/app/widgets/repo_bootstrap.dart';
 import 'package:navis/firebase_options.dart';
 import 'package:navis/router/app_router.dart';
-import 'package:navis/settings/settings.dart';
 import 'package:navis_cache/navis_cache.dart';
 import 'package:navis_codex/navis_codex.dart';
 import 'package:navis_database/navis_database.dart';
@@ -35,14 +36,14 @@ Future<void> bootstrap(BootstrapBuilder builder) async {
   PaintingBinding.instance.imageCache.maximumSize = 200;
   PaintingBinding.instance.imageCache.maximumSizeBytes = 200 * 1024 * 1024;
 
-  final settings = await UserSettings.initSettings();
+  // final settings = await UserSettings.initSettings();
   final observer = RouteObserver<ModalRoute<void>>();
   final router = AppRouter(navigatorKey: GlobalKey<NavigatorState>(), observer: observer);
   final client = SentryHttpClient(client: await buildNativeClient(), captureFailedRequests: true);
   final cacheManager = await CacheManager.open(temp.path);
 
-  final newSettings = SettingsDatabase(NavisDatabase.createExceutor(SettingsDatabase.name));
-  final appConfig = AppConfigAccessor(newSettings);
+  final settings = SettingsDatabase(NavisDatabase.createExceutor(SettingsDatabase.name));
+  final appConfig = AppConfigAccessor(settings);
   await appConfig.initSettings();
 
   final codex = CodexDatabase(NavisDatabase.createExceutor(CodexDatabase.name));
@@ -53,7 +54,9 @@ Future<void> bootstrap(BootstrapBuilder builder) async {
     appconfig: appConfig,
   );
 
-  Timer(const Duration(seconds: 5), warframeRepository.syncCodex);
+  if (!kDebugMode || !kProfileMode) {
+    await MatomoTracker.instance.setOptOut(optOut: (await appConfig.fetchSettings()).optOut);
+  }
 
   logger.info('Booting up Navis');
   runApp(
@@ -65,4 +68,6 @@ Future<void> bootstrap(BootstrapBuilder builder) async {
       child: BlocBootstrap(child: await builder(router)),
     ),
   );
+
+  Timer(const Duration(seconds: 5), warframeRepository.syncCodex);
 }

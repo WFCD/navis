@@ -12,23 +12,28 @@ class LanguagePicker extends StatelessWidget {
       context: context,
       useSafeArea: true,
       isScrollControlled: true,
-      builder: (_) =>
-          BlocProvider.value(value: BlocProvider.of<UserSettingsCubit>(context), child: const LanguagePicker()),
+      builder: (_) => BlocProvider.value(value: context.read<AppConfigBloc>(), child: const LanguagePicker()),
     );
+  }
+
+  bool _buildWhen(AppConfigState previous, AppConfigState next) {
+    final previousLanguage = switch (previous) {
+      AppConfigUpdated(:final config) => Locale(config.language),
+      _ => null,
+    };
+
+    final nextLanguage = switch (next) {
+      AppConfigUpdated(:final config) => Locale(config.language),
+      _ => null,
+    };
+
+    return previousLanguage != nextLanguage;
   }
 
   @override
   Widget build(BuildContext context) {
     const supportedLocales = NavisLocalizations.supportedLocales;
-
-    final materialLocalizations = MaterialLocalizations.of(context);
     final accentColor = Theme.of(context).colorScheme.secondary;
-
-    final settings = context.watch<UserSettingsCubit>().state;
-    final language = switch (settings) {
-      UserSettingsSuccess() => settings.language,
-      _ => context.locale,
-    };
 
     return DraggableScrollableSheet(
       expand: false,
@@ -37,31 +42,31 @@ class LanguagePicker extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Flexible(
-              child: RadioGroup<Locale>(
-                groupValue: language,
-                onChanged: (l) {
-                  if (l == null) return;
-                  context.read<UserSettingsCubit>().updateLanguage(l);
-                },
-                child: ListView.builder(
-                  controller: controller,
-                  itemCount: supportedLocales.length,
-                  itemBuilder: (context, index) {
-                    final l = supportedLocales[index];
+              child: BlocBuilder<AppConfigBloc, AppConfigState>(
+                buildWhen: _buildWhen,
+                builder: (context, state) {
+                  final language = switch (state) {
+                    AppConfigUpdated(:final config) => Locale(config.language),
+                    _ => context.locale,
+                  };
 
-                    return RadioListTile<Locale>(title: Text(l.fullName), value: l, activeColor: accentColor);
-                  },
-                ),
-              ),
-            ),
-            Align(
-              alignment: Alignment.centerRight,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                child: FilledButton(
-                  onPressed: () => Navigator.of(context).pop(language),
-                  child: Text(materialLocalizations.okButtonLabel),
-                ),
+                  return RadioGroup<Locale>(
+                    groupValue: language,
+                    onChanged: (l) {
+                      if (l == null) return;
+                      context.read<AppConfigBloc>().add(AppConfigUpdate(language: l.languageCode));
+                    },
+                    child: ListView.builder(
+                      controller: controller,
+                      itemCount: supportedLocales.length,
+                      itemBuilder: (context, index) {
+                        final l = supportedLocales[index];
+
+                        return RadioListTile<Locale>(title: Text(l.fullName), value: l, activeColor: accentColor);
+                      },
+                    ),
+                  );
+                },
               ),
             ),
           ],

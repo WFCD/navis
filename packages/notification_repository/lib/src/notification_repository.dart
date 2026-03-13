@@ -26,11 +26,7 @@ class NotificationRepository {
     final settings = await _messaging.getNotificationSettings();
     final authorization = settings.authorizationStatus;
 
-    if (authorization == AuthorizationStatus.authorized || authorization == AuthorizationStatus.provisional) {
-      return true;
-    }
-
-    return false;
+    return authorization == AuthorizationStatus.authorized || authorization == AuthorizationStatus.provisional;
   }
 
   // IOS requires and APNS check, if the first time fails we can wait the

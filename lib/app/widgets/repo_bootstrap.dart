@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:navis/settings/settings.dart';
 import 'package:navis_codex/navis_codex.dart';
+import 'package:navis_settings/navis_settings.dart';
 import 'package:notification_repository/notification_repository.dart';
 import 'package:warframe_repository/warframe_repository.dart';
 
@@ -10,7 +10,7 @@ class RepositoryBootstrap extends StatelessWidget {
     super.key,
     required RouteObserver<ModalRoute<void>> routeObserver,
     required CodexDatabase codex,
-    required UserSettings settings,
+    required SettingsDatabase settings,
     required WarframeRepository warframeRepository,
     required this.child,
   }) : _settings = settings,
@@ -19,7 +19,7 @@ class RepositoryBootstrap extends StatelessWidget {
        _warframeRepository = warframeRepository;
 
   final RouteObserver<ModalRoute<void>> _routeObserver;
-  final UserSettings _settings;
+  final SettingsDatabase _settings;
   final CodexDatabase _codex;
   final WarframeRepository _warframeRepository;
   final Widget child;
