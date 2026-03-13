@@ -24,7 +24,7 @@ class ArbitrationCard extends StatelessWidget {
           Align(
             alignment: Alignment.bottomRight,
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+              padding: const EdgeInsets.only(right: 12, bottom: 4),
               child: Text(
                 'via browse.wf',
                 style: context.textTheme.labelMedium?.copyWith(color: context.colorScheme.primary),
