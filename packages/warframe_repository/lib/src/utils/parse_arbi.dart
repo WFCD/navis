@@ -6,6 +6,9 @@ import 'package:crypto/crypto.dart';
 import 'package:warframe_worldstate_data/warframe_worldstate_data.dart';
 import 'package:warframestat_client/warframestat_client.dart';
 
+/// Untitlit function to parse https://browse.wf/ csv style data
+///
+/// Drops all expired arbitration to reduce List size for caching and lookups
 List<Arbitration> parseArbitration(String csv) {
   const arbitrationActiveTime = Duration(hours: 1, seconds: 60);
 

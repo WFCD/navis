@@ -1,3 +1,7 @@
+// ignore_for_file: experimental_member_use Arbitration is only experimental because there's no easy way of getting data for it
+
+import 'dart:isolate';
+
 import 'package:http/http.dart';
 import 'package:navis_cache/navis_cache.dart';
 import 'package:navis_codex/navis_codex.dart';
@@ -6,7 +10,7 @@ import 'package:profile_models/profile_models.dart';
 import 'package:warframe_api/warframe_api.dart';
 import 'package:warframe_drop_data/warframe_drop_data.dart';
 import 'package:warframe_repository/src/models/warframe_item.dart';
-import 'package:warframe_repository/src/utils/extensions.dart';
+import 'package:warframe_repository/src/utils/utils.dart';
 import 'package:warframe_worldstate_data/warframe_worldstate_data.dart';
 import 'package:warframestat_client/warframestat_client.dart' hide Profile, SynthTarget, Worldstate;
 import 'package:worldstate_models/worldstate_models.dart';
@@ -203,5 +207,28 @@ class WarframeRepository {
   /// Get locally stored list of [SynthTarget]s
   Future<List<SynthTarget>> fetchTargets() async {
     return synthTargets(await _wLocale);
+  }
+
+  /// Fetches the currently know arbitration schedule from https://browse.wf/
+  Future<Arbitration> fetchArbitrations() async {
+    const key = 'arbis';
+    bool isActive(Arbitration a) {
+      final now = DateTime.timestamp();
+      return now.isAfter(a.activation) && now.isBefore(a.expiry);
+    }
+
+    final data = await _cacheManager.get<List<dynamic>>(key);
+    if (data != null) {
+      final arbis = List<Map<String, dynamic>>.from(data).map(Arbitration.fromJson).toList();
+      return arbis.firstWhere(isActive);
+    }
+
+    final res = await _client.get(Uri.parse('https://browse.wf/arbys.txt'));
+    final csv = res.body;
+    final arbis = await Isolate.run(() => parseArbitration(csv));
+    final ttl = DateTime.timestamp().difference(arbis.last.expiry);
+
+    await _cacheManager.set(key, arbis.map((a) => a.toJson()).toList(), ttl: ttl);
+    return arbis.firstWhere(isActive);
   }
 }

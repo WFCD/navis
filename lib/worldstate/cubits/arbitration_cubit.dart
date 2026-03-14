@@ -2,15 +2,15 @@ import 'package:equatable/equatable.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:navis/utils/bloc_mixin.dart';
 import 'package:navis/utils/connection_manager.dart';
+import 'package:warframe_repository/warframe_repository.dart';
 import 'package:warframestat_client/warframestat_client.dart';
-import 'package:warframestat_repository/warframestat_repository.dart';
 
 part 'arbitration_state.dart';
 
 class ArbitrationCubit extends HydratedCubit<ArbitrationState> with SafeBlocMixin {
   ArbitrationCubit(this.repo) : super(ArbitrationInitial());
 
-  final WarframestatRepository repo;
+  final WarframeRepository repo;
 
   Future<void> fetchArbitrations() async {
     await safeEmit(

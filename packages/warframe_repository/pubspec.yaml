@@ -9,6 +9,7 @@ environment:
 resolution: workspace
 
 dependencies:
+  crypto: ^3.0.7
   http: ^1.6.0
   json_annotation: ^4.11.0
   meta: ^1.17.0
