@@ -5,14 +5,15 @@ import 'package:navis/l10n/l10n.dart';
 import 'package:navis/worldstate/cubits/arbitration_cubit.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:warframe_icons/warframe_icons.dart';
-import 'package:warframestat_repository/warframestat_repository.dart';
+import 'package:warframe_repository/warframe_repository.dart';
 
 class ArbitrationCard extends StatelessWidget {
   const ArbitrationCard({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final repo = RepositoryProvider.of<WarframestatRepository>(context);
+    final repo = RepositoryProvider.of<WarframeRepository>(context);
+
     return AppCard(
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -40,11 +41,26 @@ class ArbitrationCard extends StatelessWidget {
 class _ArbitrationContent extends StatelessWidget {
   const _ArbitrationContent();
 
+  bool _buildWhen(ArbitrationState previous, ArbitrationState next) {
+    final previousArbi = switch (previous) {
+      ArbitrationActive(:final arbitration) => arbitration,
+      _ => null,
+    };
+
+    final nextArbi = switch (next) {
+      ArbitrationActive(:final arbitration) => arbitration,
+      _ => null,
+    };
+
+    return previousArbi?.id != nextArbi?.id;
+  }
+
   @override
   Widget build(BuildContext context) {
     const gracePeriod = Duration(seconds: 1);
 
     return BlocBuilder<ArbitrationCubit, ArbitrationState>(
+      buildWhen: _buildWhen,
       builder: (context, state) {
         final arbitration = switch (state) {
           ArbitrationActive(:final arbitration) => arbitration,
