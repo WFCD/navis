@@ -124,7 +124,7 @@ GEM
       xcpretty-travis-formatter (>= 0.0.3, < 2.0.0)
     fastlane-plugin-flutter_version (1.1.15)
     fastlane-plugin-git_tags (0.1.1)
-    fastlane-plugin-semantic_release (1.25.0)
+    fastlane-plugin-semantic_release (1.26.0)
     fastlane-sirp (1.0.0)
       sysrandom (~> 1.0)
     gh_inspector (1.1.3)
