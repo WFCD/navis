@@ -98,7 +98,7 @@ dev_dependencies:
   flutter_native_splash: ^2.4.6
   flutter_test:
     sdk: flutter
-  go_router_builder: ^4.1.1
+  go_router_builder: ^4.3.0
   husky: ^0.1.7
   mocktail: ^1.0.5
   path: ^1.8.3
