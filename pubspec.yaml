@@ -35,7 +35,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   flutter_settings_ui: ^3.0.1
-  flutter_svg: ^2.2.2
+  flutter_svg: ^2.2.4
   formz: ^0.8.0
   go_router: ^17.0.0
   hive_ce: ^2.17.0
