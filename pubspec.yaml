@@ -23,7 +23,7 @@ dependencies:
   bloc: ^9.2.0
   cached_network_image: ^3.3.1
   collection: ^1.19.0
-  drift_flutter: ^0.2.7
+  drift_flutter: ^0.3.0
   dynamic_color: ^1.8.1
   equatable: ^2.0.8
   firebase_core: ^4.7.0
