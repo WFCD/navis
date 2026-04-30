@@ -2,9 +2,7 @@ version: 2
 enable-beta-ecosystems: true
 updates:
   - package-ecosystem: "pub"
-    directories:
-      - "/"
-      - "/packages/**"
+    directory: "/"
     target-branch: "master"
     schedule:
       interval: "daily"
