@@ -636,10 +636,10 @@ packages:
     dependency: transitive
     description:
       name: flutter_ua
-      sha256: bc2af3e4c67da74764082cff76de4d0361065743e4a8b54d34d476962fcad0dc
+      sha256: da5bb6cea954ab8388abad0e82064dcf42e5341904da38b88bda8a3d09db34cc
       url: "https://pub.dev"
     source: hosted
-    version: "1.0.1"
+    version: "1.0.2"
   flutter_web_plugins:
     dependency: transitive
     description: flutter
