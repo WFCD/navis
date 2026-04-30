@@ -26,7 +26,7 @@ dependencies:
   drift_flutter: ^0.2.7
   dynamic_color: ^1.8.1
   equatable: ^2.0.8
-  firebase_core: ^4.2.1
+  firebase_core: ^4.7.0
   fish_repository:
     path: packages/fish_repository
   flutter:
