@@ -100,7 +100,7 @@ dev_dependencies:
     sdk: flutter
   go_router_builder: ^4.1.1
   husky: ^0.1.7
-  mocktail: ^1.0.4
+  mocktail: ^1.0.5
   path: ^1.8.3
   sentry_dart_plugin: ^3.2.0
   test: ^1.26.3
