@@ -35,5 +35,5 @@ dev_dependencies:
   drift_dev: ^2.30.1
   flutter_test:
     sdk: flutter
-  json_serializable: ^6.11.2
+  json_serializable: ^6.13.1
   mocktail: ^1.0.5
