@@ -1,4 +1,4 @@
-// dart format width=120
+// dart format width=80
 
 /// GENERATED CODE - DO NOT MODIFY BY HAND
 /// *****************************************************
@@ -14,15 +14,24 @@ import 'package:flutter/widgets.dart';
 class Assets {
   const Assets._();
 
-  static const AssetGenImage baroBanner = AssetGenImage('assets/baro_banner.webp');
-  static const AssetGenImage varziaBanner = AssetGenImage('assets/varzia_banner.webp');
+  static const AssetGenImage baroBanner = AssetGenImage(
+    'assets/baro_banner.webp',
+  );
+  static const AssetGenImage varziaBanner = AssetGenImage(
+    'assets/varzia_banner.webp',
+  );
 
   /// List of all assets
   static List<AssetGenImage> get values => [baroBanner, varziaBanner];
 }
 
 class AssetGenImage {
-  const AssetGenImage(this._assetName, {this.size, this.flavors = const {}, this.animation});
+  const AssetGenImage(
+    this._assetName, {
+    this.size,
+    this.flavors = const {},
+    this.animation,
+  });
 
   final String _assetName;
 
@@ -93,7 +102,11 @@ class AssetGenImage {
 }
 
 class AssetGenImageAnimation {
-  const AssetGenImageAnimation({required this.isAnimation, required this.duration, required this.frames});
+  const AssetGenImageAnimation({
+    required this.isAnimation,
+    required this.duration,
+    required this.frames,
+  });
 
   final bool isAnimation;
   final Duration duration;

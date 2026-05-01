@@ -109,3 +109,6 @@ ios/Runner/GoogleService-Info.plist
 
 # Files are generated when running flutter pub get so no point in commiting them
 lib/l10n/generated/*.dart
+
+# Zed related
+.zed
