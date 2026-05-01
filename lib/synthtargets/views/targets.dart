@@ -33,14 +33,14 @@ class _SynthTargetsPage extends StatelessWidget {
     const cacheExtent = 500.0;
 
     return BlocBuilder<SynthtargetsCubit, SynthtargetsState>(
-      builder: (BuildContext context, SynthtargetsState state) {
+      builder: (context, state) {
         if (state is TargetsLocated) {
           final targets = state.targets;
 
           return ListView.builder(
             cacheExtent: cacheExtent,
             itemCount: targets.length,
-            itemBuilder: (BuildContext context, int index) {
+            itemBuilder: (context, index) {
               return TargetInfo(target: targets[index]);
             },
           );

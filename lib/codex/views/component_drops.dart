@@ -19,7 +19,7 @@ class ComponentDrops extends StatelessWidget {
 
     Navigator.of(context).push(
       MaterialPageRoute<void>(
-        builder: (BuildContext context) {
+        builder: (context) {
           return BlocProvider(
             create: (context) => ItemCubit(itemName, codex, repo)..fetchItem(),
             child: Scaffold(

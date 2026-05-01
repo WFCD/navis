@@ -35,7 +35,7 @@ class ArsenalItemWidget extends StatelessWidget {
                 builder: (context, state) {
                   return switch (state) {
                     ItemNotFound() => const Center(child: Text('Item Not Found')),
-                    ItemFetchSuccess(item: final item) => EntryView(
+                    ItemFetchSuccess(: final item) => EntryView(
                       uniqueName: item.uniqueName,
                       name: item.name,
                       description: item.description,

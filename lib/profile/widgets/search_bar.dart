@@ -31,7 +31,7 @@ class _MasteryItemSearchBarState extends State<MasteryItemSearchBar> {
   List<MasterableItem> _search(String query) {
     final state = BlocProvider.of<MasteryProgressCubit>(context).state;
     final items = switch (state) {
-      MasteryProgressSuccess(items: final items) => items,
+      MasteryProgressSuccess(: final items) => items,
       _ => <MasterableItem>[],
     };
 
@@ -55,7 +55,7 @@ class _MasteryItemSearchBarState extends State<MasteryItemSearchBar> {
   Widget build(BuildContext context) {
     return BlocSelector<MasteryProgressCubit, MasteryProgressState, List<MasterableItem>>(
       selector: (state) => switch (state) {
-        MasteryProgressSuccess(items: final items) => items,
+        MasteryProgressSuccess(: final items) => items,
         _ => [],
       },
       builder: (context, items) {

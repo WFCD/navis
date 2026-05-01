@@ -18,7 +18,7 @@ class MasteryInProgressSection extends StatelessWidget {
     return BlocSelector<ProfileCubit, ProfileState, UserData?>(
       selector: (state) {
         return switch (state) {
-          ProfileSuccessful(profile: final profile) => profile,
+          ProfileSuccessful(: final profile) => profile,
           _ => null,
         };
       },
