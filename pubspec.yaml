@@ -48,7 +48,6 @@ dependencies:
   intl: ^0.20.2
   logging: ^1.3.0
   matomo_tracker: ^6.1.0
-  mobile_scanner: ^7.1.2
   navis_cache:
     path: packages/navis_cache
   navis_codex:
