@@ -389,10 +389,10 @@ packages:
     dependency: transitive
     description:
       name: drift
-      sha256: "055c249d1f91be5a47fe447f88afc24c4ca6f4cd6c5ed66767b4797d48acc2e5"
+      sha256: "8033500116b24398fba0cca0369cc31678cd627c01e41753a61186911cea743e"
       url: "https://pub.dev"
     source: hosted
-    version: "2.32.1"
+    version: "2.33.0"
   drift_dev:
     dependency: transitive
     description:
