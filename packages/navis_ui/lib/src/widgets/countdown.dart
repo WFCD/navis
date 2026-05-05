@@ -31,10 +31,9 @@ class CountdownTimerState extends State<CountdownTimer> with TickerProviderState
   bool _isExpired = false;
 
   void _setupCountdown() {
-    final expiry = widget.expiry;
     final now = DateTime.timestamp();
 
-    _remainingTime = expiry?.difference(now) ?? const Duration(seconds: 60);
+    _remainingTime = widget.expiry?.difference(now) ?? const Duration(seconds: 60);
     _isExpired = _remainingTime <= Duration.zero;
 
     if (_isExpired) _remainingTime = const Duration(seconds: 60);
