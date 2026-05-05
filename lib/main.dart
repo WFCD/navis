@@ -26,12 +26,12 @@ Future<void> main() async {
         ..addIntegration(LoggingIntegration(minBreadcrumbLevel: Level.FINE));
     },
     appRunner: () async {
-      if (!kDebugMode || !kProfileMode) {
-        await MatomoTracker.instance.initialize(
-          siteId: siteId.toString(),
-          url: const String.fromEnvironment('MATOMO_URL'),
-        );
-      }
+      await MatomoTracker.instance.initialize(
+        siteId: siteId.toString(),
+        url: const String.fromEnvironment('MATOMO_URL'),
+      );
+
+      if (kDebugMode || kProfileMode) await MatomoTracker.instance.setOptOut(optOut: false);
 
       await bootstrap(
         (router) => DefaultAssetBundle(
