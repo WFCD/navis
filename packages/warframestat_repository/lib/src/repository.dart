@@ -88,8 +88,10 @@ class WarframestatRepository {
 
     final data = await _manager.get<List<dynamic>>(key);
     if (data != null) {
-      final arbis = List<Map<String, dynamic>>.from(data).map(Arbitration.fromJson).toList();
-      return arbis.firstWhere(isActive);
+      return Isolate.run(() {
+        final arbis = List<Map<String, dynamic>>.from(data).map(Arbitration.fromJson).toList();
+        return arbis.firstWhere(isActive);
+      });
     }
 
     final res = await _client.get(Uri.parse('https://browse.wf/arbys.txt'));

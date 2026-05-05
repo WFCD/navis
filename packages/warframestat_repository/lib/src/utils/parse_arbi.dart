@@ -19,7 +19,7 @@ List<Arbitration> parseArbitration(String csv) {
     final activation = DateTime.fromMillisecondsSinceEpoch(int.parse(parts[0]) * 1000);
     final expiry = activation.add(arbitrationActiveTime);
 
-    // Discard any arbitrations that have passed except the currentyl active one
+    // Discard any arbitrations that have already expired
     if (now.isAfter(expiry)) continue;
 
     final node = nodes.fetchNode(parts[1]);

@@ -1,10 +1,8 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/gen/assets.gen.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis/router/routes.dart';
-import 'package:navis/utils/utils.dart';
 import 'package:navis/worldstate/worldstate.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:worldstate_models/worldstate_models.dart';
@@ -67,13 +65,11 @@ class VarziaTraderCard extends StatelessWidget {
           if (trader == null) return const SizedBox.shrink();
           final schedule = trader.schedule;
           final current = schedule?[schedule.length - 2];
-          final background = primeResurganceBackgrounds[current?.key?.split('/').last ?? ''];
-          final hasBackground = background != null;
 
           return _TraderWidget(
             title: Text(trader.character),
             subtitle: Text(current?.resurgence?.replaceAll('Dual Pack', '').trim() ?? ''),
-            background: hasBackground ? CachedNetworkImageProvider(background) : Assets.varziaBanner.provider(),
+            background: Assets.varziaBanner.provider(),
             color: Colors.blue[800],
             onTap: () => TraderPageRoute(trader.character, trader.inventory, isVarzia: true).push<void>(context),
             isActive: trader.isActive,
