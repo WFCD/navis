@@ -27,7 +27,7 @@ Future<void> bootstrap(BootstrapBuilder builder) async {
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
   Bloc.observer = AppBlocObserver();
-  HydratedBloc.storage = await HydratedStorageIsolate.build(storageDirectory: HydratedStorageDirectory(temp.path));
+  HydratedBloc.storage = await HydratedStorage.build(storageDirectory: HydratedStorageDirectory(temp.path));
 
   PaintingBinding.instance.imageCache.maximumSize = 200;
   PaintingBinding.instance.imageCache.maximumSizeBytes = 200 * 1024 * 1024;
