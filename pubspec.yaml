@@ -20,7 +20,7 @@ workspace:
 dependencies:
   animations: ^2.2.0
   black_hole_flutter: ^1.2.0
-  bloc: ^9.2.0
+  bloc: ^9.2.1
   cached_network_image: ^3.3.1
   collection: ^1.19.0
   drift_flutter: ^0.3.0
