@@ -205,7 +205,7 @@ jobs:
             --flavor prod --split-per-abi --split-debug-info=debug_info
 
       - name: Github Releases Deploy Beta
-        uses: xresloader/upload-to-github-release@v1.6.1
+        uses: xresloader/upload-to-github-release@v1.6.2
         if: contains(github.ref_name, 'beta')
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
@@ -216,7 +216,7 @@ jobs:
           prerelease: true
 
       - name: Github Releases Deploy
-        uses: xresloader/upload-to-github-release@v1.6.1
+        uses: xresloader/upload-to-github-release@v1.6.2
         if: contains(github.ref_name, 'beta') == false
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
@@ -280,7 +280,7 @@ jobs:
             --export-options-plist=ios/ExportOptions.plist
 
       - name: Github Releases Deploy Beta
-        uses: xresloader/upload-to-github-release@v1.6.1
+        uses: xresloader/upload-to-github-release@v1.6.2
         if: contains(github.ref_name, 'beta')
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
@@ -291,7 +291,7 @@ jobs:
           prerelease: true
 
       - name: Github Releases Deploy
-        uses: xresloader/upload-to-github-release@v1.6.1
+        uses: xresloader/upload-to-github-release@v1.6.2
         if: contains(github.ref_name, 'beta') == false
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
