@@ -11,9 +11,31 @@
 
 import 'package:flutter/widgets.dart';
 
+class $AssetsArcanesGen {
+  const $AssetsArcanesGen();
+
+  /// File path: assets/arcanes/common.webp
+  AssetGenImage get common => const AssetGenImage('assets/arcanes/common.webp');
+
+  /// File path: assets/arcanes/legendary.webp
+  AssetGenImage get legendary =>
+      const AssetGenImage('assets/arcanes/legendary.webp');
+
+  /// File path: assets/arcanes/rare.webp
+  AssetGenImage get rare => const AssetGenImage('assets/arcanes/rare.webp');
+
+  /// File path: assets/arcanes/uncommon.webp
+  AssetGenImage get uncommon =>
+      const AssetGenImage('assets/arcanes/uncommon.webp');
+
+  /// List of all assets
+  List<AssetGenImage> get values => [common, legendary, rare, uncommon];
+}
+
 class Assets {
   const Assets._();
 
+  static const $AssetsArcanesGen arcanes = $AssetsArcanesGen();
   static const AssetGenImage baroBanner = AssetGenImage(
     'assets/baro_banner.webp',
   );

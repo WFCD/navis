@@ -946,7 +946,9 @@
     "description": "Drop chance percentage",
     "type": "text",
     "placeholders": {
-      "chance": {}
+      "chance": {
+        "type": "num"
+      }
     }
   },
   "statsTitle": "属性",

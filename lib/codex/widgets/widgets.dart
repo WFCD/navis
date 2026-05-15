@@ -1,3 +1,4 @@
+export 'codex_entry/arcane_stats.dart';
 export 'codex_entry/components.dart';
 export 'codex_entry/drops.dart';
 export 'codex_entry/frame_stats.dart';

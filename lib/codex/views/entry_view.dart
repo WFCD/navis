@@ -162,7 +162,7 @@ class _Overview extends StatelessWidget {
           final isPowerSuit = item is PowerSuit;
           final isGun = item is Gun;
           final isMelee = item is Melee;
-          final isMod = item is Mod;
+          final isMod = item is Mod || item is Arcane;
           final isRelic = item is Relic;
 
           var isFoundryItem = item is BuildableItem;
@@ -187,6 +187,7 @@ class _Overview extends StatelessWidget {
                   description: description,
                   releaseDate: item?.releaseDate,
                   isMod: isMod,
+                  pinTitle: item is Arcane,
                   isVaulted: vaulted ?? false,
                   wikiUrl: wikiaUrl,
                   expandedHeight: height,
@@ -209,7 +210,8 @@ class _Overview extends StatelessWidget {
                     if (isPowerSuit) FrameStats(powerSuit: item),
                     if (isGun) GunStats(gun: item),
                     if (isMelee) MeleeStats(melee: item),
-                    if (isMod) ModStats(mod: item),
+                    if (isMod && item is Mod) ModStats(mod: item),
+                    if (isMod && item is Arcane) ArcaneStats(arcane: item),
                     if (isRelic) RelicRewardWidget(relic: item),
                     if (drops != null) DropLocations(drops: drops),
                     if (item!.patchlogs != null) PatchlogSection(patchlogs: item.patchlogs!),

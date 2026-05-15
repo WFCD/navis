@@ -18,6 +18,7 @@ class ItemOverviewAppBar extends SliverPersistentHeaderDelegate {
     this.releaseDate,
     this.wikiUrl,
     this.isMod = false,
+    this.pinTitle = false,
     this.isVaulted = false,
     required this.expandedHeight,
   });
@@ -28,6 +29,7 @@ class ItemOverviewAppBar extends SliverPersistentHeaderDelegate {
   final String? releaseDate;
   final String? wikiUrl;
   final bool isMod;
+  final bool pinTitle;
   final bool isVaulted;
   final double expandedHeight;
 
@@ -42,6 +44,7 @@ class ItemOverviewAppBar extends SliverPersistentHeaderDelegate {
     const duration = Durations.medium1;
     final height = shrinkOffset > 0.0 ? 0.0 : (expandedHeight / 100) * 75;
     final progress = shrinkOffset / maxExtent;
+    final title = Text(name);
 
     return SizedBox(
       height: maxExtent,
@@ -51,7 +54,7 @@ class ItemOverviewAppBar extends SliverPersistentHeaderDelegate {
         children: <Widget>[
           AppBar(
             elevation: 0,
-            title: AnimatedOpacity(opacity: progress, duration: duration, child: Text(name)),
+            title: pinTitle ? title : AnimatedOpacity(opacity: progress, duration: duration, child: title),
             leading: IconButton.filledTonal(
               onPressed: () => Navigator.pop(context),
               icon: const Icon(Icons.arrow_back),

@@ -46,7 +46,15 @@ class CodexDatabase extends _$CodexDatabase {
     _logger.info('Fetching items');
     List<WarframeItem> items;
     try {
-      items = await client.fetchAllItems(props: codexProps, encoder: WarframeItem.fromJson) as List<WarframeItem>;
+      items =
+          await client.fetchAllItems(
+                props: codexProps,
+                encoder: (item) {
+                  _typeOverride(item);
+                  return WarframeItem.fromJson(item);
+                },
+              )
+              as List<WarframeItem>;
     } on Exception {
       _logger.warning('Failed to populate codex with items');
       return;
@@ -75,7 +83,14 @@ class CodexDatabase extends _$CodexDatabase {
 
     _logger.warning("$query wasn't found falling back to warframe-items");
     final client = wfcd.WarframeItemsClient(client: _client);
-    final items = await client.search(query, props: codexProps, encoder: WarframeItem.fromJson);
+    final items = await client.search(
+      query,
+      props: codexProps,
+      encoder: (item) {
+        _typeOverride(item);
+        return WarframeItem.fromJson(item);
+      },
+    );
 
     return items.map((i) => i.toCodexItem()).toList();
   }
@@ -100,6 +115,19 @@ class CodexDatabase extends _$CodexDatabase {
     final mappedXpItems = {for (final x in xi) x.uniqueName: x.xp};
 
     return items.map((i) => (item: i, xp: mappedXpItems[i.uniqueName] ?? 0)).toList();
+  }
+
+  static void _typeOverride(Map<String, dynamic> item) {
+    final name = item['name'] as String;
+    final uniqueName = item['uniqueName'] as String;
+    final category = item['category'] as String;
+
+    if (name == 'Venari' || name == 'Venari Prime') item['type'] = 'Pets';
+    if (category == 'Arcanes') item['type'] = 'Arcane';
+
+    if (uniqueName.contains(RegExp('MoaPetParts|ZanukaPetParts'))) {
+      item['type'] = 'Pet Resource';
+    }
   }
 
   @override
