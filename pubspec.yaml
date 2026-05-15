@@ -35,7 +35,6 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   flutter_settings_ui: ^3.0.1
-  flutter_svg: ^2.2.4
   formz: ^0.8.0
   go_router: ^17.2.3
   hive_ce: ^2.19.3
@@ -62,14 +61,28 @@ dependencies:
     git:
       url: https://github.com/SlayerOrnstein/wfcd_dart.git
       path: packages/profile_models
-      ref: profile_models-v0.1.2+19
+      ref: profile_models-v0.1.2+20
   replay_bloc: ^0.3.0
   responsive_builder: ^0.7.0
   rxdart: ^0.28.0
-  sentry_flutter: ^9.20.0
-  sentry_logging: ^9.19.0
+  # TODO update to v10 when its release for now we need this to update cronet to fix background fetching
+  sentry_flutter:
+     git:
+      url: https://github.com/getsentry/sentry-dart.git
+      ref: deps/jni-0.15.x
+      path: packages/flutter
+  sentry_logging:
+    git:
+      url: https://github.com/getsentry/sentry-dart.git
+      ref: deps/jni-0.15.x
+      path: packages/logging
   simple_icons: 10.1.3 # Do not update
   visibility_detector: ^0.4.0+2
+  warframe_drop_data:
+    git:
+      url: https://github.com/SlayerOrnstein/wfcd_dart.git
+      path: packages/warframe_drop_data
+      ref: warframe_drop_data-v0.1.8+1
   warframe_icons:
     git: https://github.com/SlayerOrnstein/warframe_icons.git
   warframe_repository:
@@ -78,7 +91,7 @@ dependencies:
     git:
       url: https://github.com/SlayerOrnstein/wfcd_dart.git
       path: packages/warframe_worldstate_data
-      ref: warframe_worldstate_data-v0.1.3+9
+      ref: warframe_worldstate_data-v0.1.3+10
   warframestat_client: ^5.4.4
   warframestat_repository:
     path: packages/warframestat_repository
@@ -86,7 +99,7 @@ dependencies:
     git:
       url: https://github.com/SlayerOrnstein/wfcd_dart.git
       path: packages/worldstate_models
-      ref: worldstate_models-v0.1.6+3
+      ref: worldstate_models-v0.1.7+5
 
 dev_dependencies:
   bloc_test: ^10.0.0

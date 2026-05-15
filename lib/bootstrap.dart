@@ -40,8 +40,6 @@ Future<void> bootstrap(BootstrapBuilder builder) async {
 
   final codex = CodexDatabase(client, cacheManager);
 
-  Timer(const Duration(seconds: 2), codex.initialize);
-
   logger.info('Booting up Navis');
   runApp(
     RepositoryBootstrap(
@@ -53,4 +51,7 @@ Future<void> bootstrap(BootstrapBuilder builder) async {
       child: BlocBootstrap(child: await builder(router)),
     ),
   );
+
+  // All calls for items will fallback to the API so its alright to deffer this and let the app warm up
+  Timer(const Duration(seconds: 15), codex.initialize);
 }

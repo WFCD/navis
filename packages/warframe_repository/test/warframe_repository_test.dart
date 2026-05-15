@@ -82,7 +82,7 @@ void main() {
       test('returns cached drop data when available', () async {
         when(() => mockCacheManager.get<Map<String, dynamic>>('drop_data')).thenReturn(Future.value(mockDropDataMap));
 
-        final result = await repository.fetchSyndicateRewards();
+        final result = await repository.buildWorldstateDropData();
 
         expect(result, isA<DropData>());
         verify(() => mockCacheManager.get<Map<String, dynamic>>('drop_data')).called(1);

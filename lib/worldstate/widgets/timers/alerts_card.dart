@@ -31,8 +31,7 @@ class AlertsCard extends StatelessWidget {
 
   bool _buildWhen(WorldState previous, WorldState next) {
     if (previous is! WorldstateSuccess || next is! WorldstateSuccess) return false;
-
-    return const DeepCollectionEquality().equals(previous.seed.alerts, next.seed.alerts);
+    return previous.seed.alerts.length != next.seed.alerts.length;
   }
 
   @override
@@ -49,7 +48,8 @@ class AlertsCard extends StatelessWidget {
         };
 
         return Column(
-          children: alerts.map((a) => _buildAlerts(a, codex, wsRepo)).map((i) => AppCard(child: i)).toList(),
+          mainAxisSize: MainAxisSize.min,
+          children: alerts.map((a) => _buildAlerts(a, codex, wsRepo)).toList(),
         );
       },
     );
@@ -73,28 +73,30 @@ class _AlertWidget extends StatelessWidget {
 
     final enemyLvlRange = context.l10n.levelInfo(mission.minEnemyLevel, mission.maxEnemyLevel);
 
-    return Padding(
-      padding: const EdgeInsets.all(8),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          ListTile(
-            title: Row(
-              children: [
-                Text(node),
-                if (mission.archwingRequired)
-                  const Padding(
-                    padding: EdgeInsets.only(left: 8),
-                    child: Icon(WarframeIcons.archwing, color: Colors.blue, size: 25),
-                  ),
-              ],
+    return AppCard(
+      child: Padding(
+        padding: const EdgeInsets.all(8),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            ListTile(
+              title: Row(
+                children: [
+                  Text(node),
+                  if (mission.archwingRequired)
+                    const Padding(
+                      padding: EdgeInsets.only(left: 8),
+                      child: Icon(WarframeIcons.archwing, color: Colors.blue, size: 25),
+                    ),
+                ],
+              ),
+              subtitle: Text('$type ($faction) | $enemyLvlRange'),
+              trailing: CountdownTimer(tooltip: context.l10n.countdownTooltip(alert.expiry), expiry: alert.expiry),
+              dense: true,
             ),
-            subtitle: Text('$type ($faction) | $enemyLvlRange'),
-            trailing: CountdownTimer(tooltip: context.l10n.countdownTooltip(alert.expiry), expiry: alert.expiry),
-            dense: true,
-          ),
-          if (isParent) _AlertItemReward(reward: reward) else _AlertReward(reward: reward),
-        ],
+            if (isParent) _AlertItemReward(reward: reward) else _AlertReward(reward: reward),
+          ],
+        ),
       ),
     );
   }

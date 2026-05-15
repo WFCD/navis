@@ -1,13 +1,12 @@
 import 'dart:async';
 import 'dart:math';
 
-import 'package:black_hole_flutter/black_hole_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:navis/l10n/l10n.dart';
+import 'package:navis/worldstate/widgets/fissures/fissure_mission_rewards.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:warframe_icons/warframe_icons.dart';
-
 import 'package:worldstate_models/worldstate_models.dart';
 
 class FissureWidget extends StatelessWidget {
@@ -15,97 +14,62 @@ class FissureWidget extends StatelessWidget {
 
   final VoidFissure fissure;
 
-  @override
-  Widget build(BuildContext context) {
-    const iconSize = 100.0;
-    const opacity = .30;
-
-    final child = _FissureContent(
-      fissure: fissure,
-      opacity: opacity,
-      iconSize: iconSize,
-      icon: switch (fissure.tier) {
-        .lith => WarframeIcons.fissuresLith,
-        .meso => WarframeIcons.fissuresMeso,
-        .neo => WarframeIcons.fissuresNeo,
-        .axi => WarframeIcons.fissuresAxi,
-        .requiem => WarframeIcons.fissuresRequiem,
-        .omnia || .unknown => WarframeIcons.nightmare,
+  void _openMissionRewardModal(BuildContext context, Widget header) {
+    showModalBottomSheet<void>(
+      context: context,
+      isScrollControlled: true,
+      builder: (context) {
+        return DraggableScrollableSheet(
+          maxChildSize: .9,
+          initialChildSize: .9,
+          expand: false,
+          builder: (context, scrollController) => FissureMissionRewards(
+            controller: scrollController,
+            node: fissure.node,
+            header: header,
+            region: fissure.rewardPools,
+          ),
+        );
       },
     );
-
-    if (fissure.tier == .omnia) return GlitchySkyCard(node: fissure.node, child: child);
-
-    return SkyboxCard(node: fissure.node, child: child);
   }
-}
-
-class _FissureContent extends StatelessWidget {
-  const _FissureContent({required this.fissure, required this.opacity, required this.iconSize, required this.icon});
-
-  final VoidFissure fissure;
-  final double opacity;
-  final double iconSize;
-  final IconData? icon;
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      alignment: AlignmentDirectional.center,
-      children: [
-        if (fissure.isStorm)
-          Center(
-            child: Opacity(
-              opacity: opacity,
-              child: AppIcon(WarframeIcons.archwing, size: iconSize),
+    final fissureInfo = ListTile(
+      textColor: Colors.white,
+      iconColor: Colors.white,
+      contentPadding: EdgeInsets.zero,
+      leading: fissure.tier == .omnia
+          ? const OmniaFissureWidget()
+          : Icon(
+              switch (fissure.tier) {
+                .lith => WarframeIcons.fissuresLith,
+                .meso => WarframeIcons.fissuresMeso,
+                .neo => WarframeIcons.fissuresNeo,
+                .axi => WarframeIcons.fissuresAxi,
+                .requiem => WarframeIcons.fissuresRequiem,
+                _ => WarframeIcons.nightmare,
+              },
+              size: 40,
             ),
-          ),
-        if (fissure.isSteelpath)
-          Center(
-            child: Opacity(
-              opacity: opacity,
-              child: AppIcon(WarframeIcons.spLogo, size: iconSize),
-            ),
-          ),
-        Row(
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8),
-              child: fissure.tier == .omnia ? const OmniaFissureWidget() : Icon(icon, size: 40),
-            ),
-            Expanded(child: _FissureInfo(fissure: fissure)),
-            CountdownTimer(tooltip: context.l10n.countdownTooltip(fissure.expiry), expiry: fissure.expiry),
+      title: Text(fissure.node),
+      subtitle: Text('${toBeginningOfSentenceCase(fissure.tier.name)} | ${fissure.missionType}'),
+      trailing: CountdownTimer(tooltip: context.l10n.countdownTooltip(fissure.expiry), expiry: fissure.expiry),
+    );
+
+    return SkyboxCard(
+      node: fissure.node,
+      child: InkWell(
+        onTap: () => fissure.rewardPools.isNotEmpty ? _openMissionRewardModal(context, fissureInfo) : null,
+        child: Stack(
+          alignment: AlignmentGeometry.center,
+          children: [
+            Center(child: fissureInfo),
+            if (fissure.rewardPools.isNotEmpty)
+              const Align(alignment: Alignment.bottomRight, child: Icon(Icons.arrow_drop_down_outlined)),
           ],
         ),
-      ],
-    );
-  }
-}
-
-class _FissureInfo extends StatelessWidget {
-  const _FissureInfo({required this.fissure});
-
-  final VoidFissure fissure;
-
-  @override
-  Widget build(BuildContext context) {
-    final tierString = toBeginningOfSentenceCase(fissure.tier.name);
-
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 8),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(fissure.node, style: context.theme.textTheme.titleMedium),
-          Padding(
-            padding: const EdgeInsets.only(top: 4),
-            child: Text(
-              '$tierString | ${fissure.missionType}',
-              style: context.theme.textTheme.bodyMedium?.copyWith(color: context.theme.textTheme.bodySmall!.color),
-            ),
-          ),
-        ],
       ),
     );
   }
@@ -134,18 +98,21 @@ class _OmniaFissureWidgetState extends State<OmniaFissureWidget> {
     super.initState();
 
     rand = Random();
-    timer = Timer.periodic(glitchFrequency + const Duration(milliseconds: 3000), (timer) {
+    timer = Timer.periodic(GlitchyWidget.glitchFrequency, (timer) {
       if (mounted) setState(() {});
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedSwitcher(
-      duration: Durations.short4,
-      switchInCurve: Curves.easeInOut,
-      switchOutCurve: Curves.easeInOut,
-      child: Icon(_icons[rand.nextInt(_icons.length)], size: 40),
+    return SizedBox.square(
+      dimension: 40,
+      child: AnimatedSwitcher(
+        duration: Durations.short4,
+        switchInCurve: Curves.easeInOut,
+        switchOutCurve: Curves.easeInOut,
+        child: GlitchyWidget(child: Icon(_icons[rand.nextInt(_icons.length)], size: 40)),
+      ),
     );
   }
 

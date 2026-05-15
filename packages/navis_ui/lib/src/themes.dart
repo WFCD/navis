@@ -6,7 +6,7 @@ abstract class NavisThemes {
     brightness: brightness,
   );
 
-  static ThemeData theme(Brightness brightness, ColorScheme? colorScheme) {
+  static ThemeData theme(Brightness brightness, [ColorScheme? colorScheme]) {
     const radius = Radius.circular(8);
     final scheme = colorScheme ?? _defaultScheme(brightness);
 

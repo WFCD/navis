@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:isolate';
 
-import 'package:collection/collection.dart';
+import 'package:html/parser.dart';
 import 'package:http/http.dart';
 import 'package:meta/meta.dart';
 import 'package:navis_cache/navis_cache.dart';
@@ -32,15 +32,14 @@ class WarframeRepository {
   final CacheManager _cacheManager;
 
   /// Fetches and parses a worldstate
-  Future<Worldstate> fetchWorldstate([String locale = 'en']) async {
+  Future<Worldstate> fetchWorldstate([WorldstateDataLocale locale = .en]) async {
     const key = 'worldstate';
     final data = await _cacheManager.get<Map<String, dynamic>>(key);
     if (data != null) return Worldstate.fromMap(data);
 
-    final syndicateBountyTables = await fetchSyndicateRewards();
+    final dropData = await buildWorldstateDropData();
     final raw = await _fetchRawWorldstate();
-    final lang = WorldstateDataLocale.values.firstWhereOrNull((v) => v.name == locale) ?? .en;
-    final worldstate = await Isolate.run(() => raw.toWorldstate(Dependency(syndicateBountyTables, lang)));
+    final worldstate = await Isolate.run(() => raw.toWorldstate(Dependency(locale: locale, dropData: dropData)));
 
     await _cacheManager.set('worldstate', worldstate.toMap(), ttl: worldstateRefreshTime);
 
@@ -48,26 +47,32 @@ class WarframeRepository {
   }
 
   /// Emits a worldstate every 3 mins
-  Stream<Worldstate> worldstateEmitter({String locale = 'en', @visibleForTesting Duration? tick}) async* {
+  Stream<Worldstate> worldstateEmitter({WorldstateDataLocale locale = .en, @visibleForTesting Duration? tick}) async* {
     yield* Stream<Future<Worldstate>>.periodic(
       tick ?? worldstateRefreshTime,
       (_) async => fetchWorldstate(locale),
     ).asyncMap((future) async => future);
   }
 
-  /// Builds a drap data instance
-  Future<List<BountyRewardTable>> fetchSyndicateRewards() async {
+  // At some point this will just build out all the data and added to the explorer page
+  /// Builds and caches both bounty reward tables and mission reward tables
+  Future<DropData> buildWorldstateDropData() async {
     final buildLabel = (await _fetchRawWorldstate()).buildLabel;
-    final data = await _cacheManager.get<List<dynamic>>(buildLabel);
-    if (data != null) return List<Map<String, dynamic>>.from(data).map(BountyRewardTable.fromMap).toList();
+    final dropData = await _cacheManager.get<Map<String, dynamic>>('drop_data_$buildLabel');
+    if (dropData != null) {
+      return Isolate.run(() => DropData.fromMap(dropData));
+    }
 
-    final dropData = await fetchWarframeDropData(_client);
-    final bountyTables = await Isolate.run(
-      () => Syndicates.values.map((v) => parseBountyRewardTables(dropData, v)).nonNulls.flattenedToList,
-    );
-    await _cacheManager.set(buildLabel, bountyTables.map((t) => t.toMap()).toList(), ttl: __dropDataRefreshTime);
+    final res = await _client.get(Uri.parse(warframeDropDataPage));
+    final raw = res.bodyBytes;
+    final data = await Isolate.run(() async {
+      final html = await Isolate.run(() => parse(raw, encoding: 'urf-8'));
+      return buildDropData(html.body!);
+    });
 
-    return bountyTables;
+    await _cacheManager.set('drop_data_$buildLabel', await Isolate.run(data.toMap), ttl: __dropDataRefreshTime);
+
+    return data;
   }
 
   /// Self explanatory
@@ -86,11 +91,10 @@ class WarframeRepository {
 
     final res = await _client.get(Uri.parse('$_profileApi?playerId=$id'));
     final body = res.body; // Can't pass Response into isolate... yay
-
-    final json = await Isolate.run(() => jsonDecode(body) as Map<String, dynamic>);
-    final profile = await Isolate.run(
-      () => RawProfile.fromMap((json['Results'] as List<dynamic>).first as Map<String, dynamic>).toProfile(),
-    );
+    final profile = await Isolate.run(() {
+      final json = jsonDecode(body) as Map<String, dynamic>;
+      return RawProfile.fromMap((json['Results'] as List<dynamic>).first as Map<String, dynamic>).toProfile();
+    });
 
     await _cacheManager.set(key, profile.toMap(), ttl: const Duration(minutes: 60));
 

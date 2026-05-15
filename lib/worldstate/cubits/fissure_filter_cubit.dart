@@ -6,7 +6,7 @@ import 'package:worldstate_models/worldstate_models.dart';
 
 part 'fissure_filter_state.dart';
 
-enum FissureFilter { fissures, voidStorm, steelPath }
+enum FissureFilter { fissures, steelPath, voidStorm }
 
 class FissureFilterCubit extends HydratedCubit<FissureFilterState> with SafeBlocMixin {
   FissureFilterCubit(List<VoidFissure> fissures)

@@ -1,4 +1,3 @@
-import 'package:animated_glitch/animated_glitch.dart';
 import 'package:black_hole_flutter/black_hole_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:navis_ui/navis_ui.dart';
@@ -34,67 +33,13 @@ class SkyboxCard extends StatelessWidget {
           height: height,
           child: SizedBox(
             height: height,
-            child: Padding(padding: padding, child: child),
+            child: Padding(
+              padding: padding,
+              child: Center(child: child),
+            ),
           ),
         ),
       ),
     );
-  }
-}
-
-const glitchFrequency = Duration(milliseconds: 1500);
-
-class GlitchySkyCard extends StatefulWidget {
-  const GlitchySkyCard({
-    super.key,
-    required this.node,
-    this.margin = const EdgeInsets.symmetric(vertical: 3, horizontal: 3),
-    this.padding = const EdgeInsets.symmetric(vertical: 3, horizontal: 3),
-    this.height = 150,
-    required this.child,
-  });
-
-  final String node;
-  final EdgeInsetsGeometry margin;
-  final EdgeInsetsGeometry padding;
-  final double height;
-  final Widget child;
-
-  @override
-  State<GlitchySkyCard> createState() => _GlitchySkyCardState();
-}
-
-class _GlitchySkyCardState extends State<GlitchySkyCard> {
-  late AnimatedGlitchController _controller;
-
-  @override
-  void initState() {
-    super.initState();
-
-    _controller = AnimatedGlitchController(
-      frequency: glitchFrequency,
-      distortionShift: const DistortionShift(count: 5),
-      // autoStart: true,
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return AnimatedGlitchWithoutShader(
-      controller: _controller,
-      child: SkyboxCard(
-        node: widget.node,
-        margin: widget.margin,
-        padding: widget.padding,
-        height: widget.height,
-        child: widget.child,
-      ),
-    );
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
   }
 }

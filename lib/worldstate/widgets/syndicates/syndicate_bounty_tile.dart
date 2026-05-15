@@ -3,7 +3,6 @@ import 'dart:math';
 import 'package:black_hole_flutter/black_hole_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:navis/codex/codex.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:warframe_icons/warframe_icons.dart';
@@ -148,26 +147,13 @@ class BountyReward extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final textTheme = context.textTheme;
     final count = reward.count;
-    final color = ws.Rarity.values.byName(reward.rarity.toLowerCase()).toColor();
+    final rarity = ws.Rarity.values.byName(reward.rarity.toLowerCase());
 
-    return ListTile(
-      title: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            '${count == 1 ? '' : '${count}X '}${reward.item}',
-            style: context.textTheme.titleMedium,
-          ),
-          Text(
-            '${reward.chance}%',
-            style: textTheme.bodyMedium?.copyWith(color: color),
-          ),
-        ],
-      ),
-      subtitle: LinearProgressIndicator(value: reward.chance / 100, color: color),
-      dense: true,
+    return RewardTile(
+      reward: '${count == 1 ? '' : '${count}X '}${reward.item}',
+      chance: reward.chance,
+      rarity: rarity,
     );
   }
 }

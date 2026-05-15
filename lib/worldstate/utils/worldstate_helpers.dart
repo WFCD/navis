@@ -17,7 +17,7 @@ extension WorldstateX on Worldstate {
 
     fissures
       ..retainWhere((e) => e.isActive)
-      ..sort((a, b) => a.tierNum.compareTo(b.tierNum));
+      ..sort((a, b) => (a.tier.index).compareTo(b.tier.index));
 
     invasions.retainWhere((e) => !e.isComplete);
 

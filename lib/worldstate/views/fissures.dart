@@ -127,7 +127,7 @@ class _TabletFissures extends StatelessWidget {
 class _FissureFilter extends StatelessWidget {
   const _FissureFilter();
 
-  void onSelected(BuildContext context, FissureFilter filter) {
+  void _onSelected(BuildContext context, FissureFilter filter) {
     final state = context.read<WorldstateBloc>().state;
     final fissures = state is WorldstateSuccess ? state.seed.fissures : <VoidFissure>[];
 
@@ -136,15 +136,15 @@ class _FissureFilter extends StatelessWidget {
 
   Widget _toggleButton(NavisLocalizations l10n, FissureFilter filter) {
     final text = switch (filter) {
-      FissureFilter.fissures => l10n.fissuresTitle,
-      FissureFilter.voidStorm => l10n.voidStormFissuresButton,
+      FissureFilter.fissures => l10n.normalFissureTabTitle,
       FissureFilter.steelPath => l10n.steelPathTitle,
+      FissureFilter.voidStorm => l10n.voidStormFissuresButton,
     };
 
     final icon = switch (filter) {
-      FissureFilter.fissures => WarframeIcons.fissuresRequiem,
-      FissureFilter.voidStorm => WarframeIcons.archwing,
+      FissureFilter.fissures => WarframeIcons.emLogo,
       FissureFilter.steelPath => WarframeIcons.spLogo,
+      FissureFilter.voidStorm => WarframeIcons.archwing,
     };
 
     return Tooltip(
@@ -170,7 +170,7 @@ class _FissureFilter extends StatelessWidget {
             constraints: BoxConstraints(minHeight: screen.height * .05, minWidth: screen.width * .32),
             borderRadius: BorderRadius.circular(8),
             isSelected: FissureFilter.values.map((i) => state.type == i).toList(),
-            onPressed: (index) => onSelected(context, FissureFilter.values[index]),
+            onPressed: (index) => _onSelected(context, FissureFilter.values[index]),
             children: FissureFilter.values.map((i) => _toggleButton(l10n, i)).toList(),
           );
         },

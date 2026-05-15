@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 import 'dart:isolate';
 
@@ -23,6 +24,8 @@ class CacheManager {
     if (!Hive.isAdapterRegistered(CachedDataAdapter().typeId)) Hive.registerAdapter(CachedDataAdapter());
 
     final box = await Hive.openBox<CachedData>(name);
+    _cleanCache(box);
+    Timer.periodic(const Duration(hours: Duration.hoursPerDay), (_) => _cleanCache(box));
 
     return CacheManager._(name: name, box: box);
   }
@@ -46,4 +49,16 @@ class CacheManager {
   /// Closes the internal box
   @visibleForTesting
   Future<void> close() => _box.close();
+
+  static void _cleanCache(Box<CachedData> box) {
+    final toRemove = <dynamic>[];
+    for (final key in box.keys) {
+      if (box.get(key)?.isExpired ?? false) continue;
+      toRemove.add(key);
+    }
+
+    box
+      ..deleteAll(toRemove)
+      ..flush();
+  }
 }

@@ -1,5 +1,6 @@
 import 'package:drift/drift.dart';
 import 'package:drift_flutter/drift_flutter.dart';
+import 'package:flutter/foundation.dart';
 import 'package:http/http.dart';
 import 'package:logging/logging.dart';
 import 'package:navis_cache/navis_cache.dart';
@@ -52,7 +53,7 @@ class CodexDatabase extends _$CodexDatabase {
     }
 
     _logger.info('Updating items');
-    final inserts = items.map((i) => i.toCodexItem()).toList();
+    final inserts = await compute((items) => items.map((i) => i.toCodexItem()).toList(), items);
     await batch((batch) async {
       batch.insertAllOnConflictUpdate(codexItems, inserts);
     });
