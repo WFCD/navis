@@ -170,6 +170,11 @@
     "description": "Fissures title",
     "type": "text"
   },
+  "normalFissureTabTitle": "Normal",
+  "@normalFissureTabTitle": {
+    "description": "Normal fissure tab title title",
+    "type": "text"
+  },
   "invasionsTitle": "Invaze",
   "@invasionsTitle": {
     "description": "Invasions title",
