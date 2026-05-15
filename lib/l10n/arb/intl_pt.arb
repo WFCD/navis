@@ -245,7 +245,7 @@
     "description": "Baro's notification title",
     "type": "text"
   },
-  "baroNotificationDescription": "Notificações tanto da chegada quanto da partida do Baro.",
+  "baroNotificationDescription": "Notifications for both Baro's arrival and departure.",
   "@baroNotificationDescription": {
     "description": "Notification description for both Baro's arrivial and departure.",
     "type": "text"
@@ -951,7 +951,9 @@
     "description": "Drop chance percentage",
     "type": "text",
     "placeholders": {
-      "chance": {}
+      "chance": {
+        "type": "num"
+      }
     }
   },
   "statsTitle": "Estatísticas",
@@ -1401,5 +1403,30 @@
   "inventoriaStepFourTitle": "Confirm Account",
   "@inventoriaStepFourTitle": {
     "description": "Inventoria step four title"
+  },
+  "maxRankTitle": "Max Rank",
+  "@maxRankTitle": {
+    "description": "Arcane max rank subtitle"
+  },
+  "requiresForNextArcaneRank": "Requires +{rank}",
+  "@requiresForNextArcaneRank": {
+    "description": "Requires for next Arcane rank",
+    "placeholders": {
+      "rank": {
+        "type": "int"
+      }
+    }
+  },
+  "unrankedTitle": "Unranked",
+  "@unrankedTitle": {
+    "description": "Unranked Arcane title"
+  },
+  "rankCategoryTitle": "Ranks",
+  "@rankCategoryTitle": {
+    "description": "Rank Category Title"
+  },
+  "acquisitionCategoryTitle": "Acquisition",
+  "@acquisitionCategoryTitle": {
+    "description": "Acquisition Category Title"
   }
 }
