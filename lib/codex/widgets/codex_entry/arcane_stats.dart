@@ -8,9 +8,6 @@ import 'package:navis/utils/string_extensions.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:warframestat_client/warframestat_client.dart' hide Alignment;
 
-// https://wiki.warframe.com/w/Arcane_Enhancement#Rank
-const _requiredForRank = <int>[2, 3, 4, 5, 6, 0];
-
 class ArcaneStats extends StatelessWidget {
   const ArcaneStats({super.key, required this.arcane});
 
@@ -39,7 +36,7 @@ class ArcaneStats extends StatelessWidget {
       children: [
         if (imageName != null) _ArcaneImage(imageName: imageName, rarity: arcane.rarity!),
         CategoryTitle(title: context.l10n.rankCategoryTitle, contentPadding: EdgeInsets.zero),
-        ...?arcane.levelStats?.mapIndexed((i, l) => _ArcaneLevelTile(rank: i, level: l)),
+        ...?arcane.levelStats?.mapIndexed((i, l) => _ArcaneLevelTile(index: i, level: l)),
       ],
     );
   }
@@ -84,16 +81,22 @@ class _ArcaneImage extends StatelessWidget {
 }
 
 class _ArcaneLevelTile extends StatelessWidget {
-  const _ArcaneLevelTile({required this.rank, required this.level});
+  const _ArcaneLevelTile({required this.index, required this.level});
 
-  final int rank;
+  final int index;
   final LevelStat level;
+
+  int get _totalCost => ((index + 1) * (index + 2) / 2).floor();
+  int get _costForNextRank => index + 2;
 
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
-    final maxRank = _requiredForRank.length - 1;
-    final title = rank == 0 ? l10n.unrankedTitle : context.l10n.itemRankSubtitle(rank);
+    final hintStyle = context.textTheme.bodySmall?.copyWith(color: context.colorScheme.primary);
+
+    final title = index == 0 ? l10n.unrankedTitle : context.l10n.itemRankSubtitle(index);
+    final requiredForNextRank = l10n.requiresForNextArcaneRank(_costForNextRank);
+    final totalForRank = l10n.totalArcaneCost(_totalCost);
 
     return ListTile(
       contentPadding: EdgeInsets.zero,
@@ -101,9 +104,12 @@ class _ArcaneLevelTile extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(title, style: context.textTheme.titleMedium),
-          Text(
-            rank < maxRank ? l10n.requiresForNextArcaneRank(_requiredForRank[rank]) : l10n.maxRankTitle,
-            style: context.textTheme.bodySmall?.copyWith(color: context.colorScheme.primary),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              Text(totalForRank, style: hintStyle),
+              if (_totalCost != 21) Text(requiredForNextRank, style: hintStyle),
+            ],
           ),
         ],
       ),
