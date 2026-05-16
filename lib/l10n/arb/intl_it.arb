@@ -1408,7 +1408,7 @@
   "@maxRankTitle": {
     "description": "Arcane max rank subtitle"
   },
-  "requiresForNextArcaneRank": "Requires +{rank}",
+  "requiresForNextArcaneRank": "Requires +{rank} for next rank",
   "@requiresForNextArcaneRank": {
     "description": "Requires for next Arcane rank",
     "placeholders": {
@@ -1428,5 +1428,14 @@
   "acquisitionCategoryTitle": "Acquisition",
   "@acquisitionCategoryTitle": {
     "description": "Acquisition Category Title"
+  },
+  "totalArcaneCost": "Total Required: {cost}",
+  "@totalArcaneCost": {
+    "description": "id",
+    "placeholders": {
+      "cost": {
+        "type": "int"
+      }
+    }
   }
 }
