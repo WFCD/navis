@@ -1,15 +1,9 @@
 import 'package:drift/drift.dart';
 import 'package:drift_flutter/drift_flutter.dart';
-import 'package:flutter/foundation.dart';
-import 'package:http/http.dart';
 import 'package:logging/logging.dart';
-import 'package:navis_cache/navis_cache.dart';
-import 'package:navis_codex/src/models/warframe_item.dart';
 import 'package:navis_codex/src/tables/tables.dart';
-import 'package:navis_codex/src/utils/extensions.dart';
 import 'package:profile_models/profile_models.dart' as profile;
 import 'package:sentry_drift/sentry_drift.dart';
-import 'package:warframe_repository/warframe_repository.dart';
 import 'package:warframestat_client/warframestat_client.dart' as wfcd;
 
 part 'codex.g.dart';
@@ -18,13 +12,7 @@ typedef MasterableItem = ({CodexItem item, int xp});
 
 @DriftDatabase(tables: [CodexBuilds, CodexItems, XpItems])
 class CodexDatabase extends _$CodexDatabase {
-  CodexDatabase(Client client, CacheManager manager, [QueryExecutor? executor])
-    : _client = client,
-      _manager = manager,
-      super(executor ?? _openConnection());
-
-  final Client _client;
-  final CacheManager _manager;
+  CodexDatabase([QueryExecutor? executor]) : super(executor ?? _openConnection());
 
   final _logger = Logger('Codex');
 
@@ -34,65 +22,19 @@ class CodexDatabase extends _$CodexDatabase {
     return driftDatabase(name: _name).interceptWith(SentryQueryInterceptor(databaseName: _name));
   }
 
-  Future<void> initialize() async {
-    final client = wfcd.WarframeItemsClient(client: _client);
-    final buildLabel = (await WarframeRepository(client: _client, manager: _manager).fetchWorldstate()).buildLabel;
-    var lastBuild = await select(codexBuilds).getSingleOrNull();
-    if (lastBuild?.buildLabel == buildLabel || !(lastBuild?.isOutdated ?? true)) {
-      _logger.info('Codex updated');
-      return;
-    }
-
-    _logger.info('Fetching items');
-    List<WarframeItem> items;
-    try {
-      items =
-          await client.fetchAllItems(
-                props: codexProps,
-                encoder: (item) {
-                  _typeOverride(item);
-                  return WarframeItem.fromJson(item);
-                },
-              )
-              as List<WarframeItem>;
-    } on Exception {
-      _logger.warning('Failed to populate codex with items');
-      return;
-    }
-
-    _logger.info('Updating items');
-    final inserts = await compute((items) => items.map((i) => i.toCodexItem()).toList(), items);
-    await batch((batch) async {
-      batch.insertAllOnConflictUpdate(codexItems, inserts);
-    });
-
-    _logger.info('Updating timestamp');
-    lastBuild = CodexBuild(id: 1, buildLabel: buildLabel, timestamp: DateTime.timestamp());
-    await codexBuilds.insertOnConflictUpdate(lastBuild);
-
-    _logger.info('Finished updating the codex');
+  Future<void> addItems(List<CodexItem> items) async {
+    return computeWithDatabase(
+      connect: CodexDatabase.new,
+      computation: (codex) async {
+        await codex.batch((batch) async {
+          batch.insertAllOnConflictUpdate(codex.codexItems, items);
+        });
+      },
+    );
   }
 
   Future<List<CodexItem>> search(String query) async {
-    // TODO(orn): have a better way to pull static images like this
-    const ignores = ['Chassis', 'Neuroptics', 'System'];
-    if (ignores.any((i) => query.contains(i))) return [];
-
-    final results = await (codexItems.select(distinct: true)..where((i) => i.name.contains(query))).get();
-    if (results.isNotEmpty) return results;
-
-    _logger.warning("$query wasn't found falling back to warframe-items");
-    final client = wfcd.WarframeItemsClient(client: _client);
-    final items = await client.search(
-      query,
-      props: codexProps,
-      encoder: (item) {
-        _typeOverride(item);
-        return WarframeItem.fromJson(item);
-      },
-    );
-
-    return items.map((i) => i.toCodexItem()).toList();
+    return (codexItems.select(distinct: true)..where((i) => i.name.contains(query))).get();
   }
 
   Future<List<CodexItem>> fetchMasterable() async {
@@ -115,19 +57,6 @@ class CodexDatabase extends _$CodexDatabase {
     final mappedXpItems = {for (final x in xi) x.uniqueName: x.xp};
 
     return items.map((i) => (item: i, xp: mappedXpItems[i.uniqueName] ?? 0)).toList();
-  }
-
-  static void _typeOverride(Map<String, dynamic> item) {
-    final name = item['name'] as String;
-    final uniqueName = item['uniqueName'] as String;
-    final category = item['category'] as String;
-
-    if (name == 'Venari' || name == 'Venari Prime') item['type'] = 'Pets';
-    if (category == 'Arcanes') item['type'] = 'Arcane';
-
-    if (uniqueName.contains(RegExp('MoaPetParts|ZanukaPetParts'))) {
-      item['type'] = 'Pet Resource';
-    }
   }
 
   @override

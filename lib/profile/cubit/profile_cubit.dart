@@ -3,6 +3,7 @@ import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:navis/settings/settings.dart';
 import 'package:navis/utils/bloc_mixin.dart';
 import 'package:navis_codex/navis_codex.dart';
+import 'package:warframe_api/warframe_api.dart';
 import 'package:warframe_repository/warframe_repository.dart';
 
 part 'profile_state.dart';
@@ -23,9 +24,11 @@ class ProfileCubit extends Cubit<ProfileState> with SafeBlocMixin {
 
     await safeEmit(
       () async {
-        final user = _repo.convertUserData(data);
+        if (!_repo.verifyUserData(data)) return ProfileFailure();
+
+        final user = UserData.raw(data);
         final profile = await _repo.fetchProfile(user.id);
-        _settings.user = data;
+        _settings.user = user.toJson();
 
         await _codex.syncXpInfo(profile.loadout.xpInfo);
 
@@ -43,7 +46,7 @@ class ProfileCubit extends Cubit<ProfileState> with SafeBlocMixin {
         final data = _settings.user;
         if (data == null) return ProfileInitial();
 
-        final user = _repo.convertUserData(data);
+        final user = UserData.fromJson(data);
         final profile = await _repo.fetchProfile(user.id);
         await _codex.syncXpInfo(profile.loadout.xpInfo);
 

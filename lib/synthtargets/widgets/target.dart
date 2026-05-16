@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:warframestat_client/warframestat_client.dart';
+import 'package:warframe_worldstate_data/warframe_worldstate_data.dart';
 
 class TargetInfo extends StatelessWidget {
   const TargetInfo({super.key, required this.target});
@@ -27,13 +27,12 @@ class TargetInfo extends StatelessWidget {
         // textColor: NavisColors.secondary,
         // iconColor: NavisColors.secondary,
         onExpansionChanged: (b) => _onExpansionChanged(context, isExpanded: b),
-        children:
-            target.locations.map<Widget>((l) {
-              return ListTile(
-                title: Text('${l.planet} (${l.mission})'),
-                subtitle: Text('${l.type} | ${l.faction} | ${l.spawnRate}'),
-              );
-            }).toList(),
+        children: target.locations.map<Widget>((l) {
+          return ListTile(
+            title: Text('${l.planet} (${l.mission})'),
+            subtitle: Text('${l.type} | ${l.faction} | ${l.spawnRate}'),
+          );
+        }).toList(),
       ),
     );
   }

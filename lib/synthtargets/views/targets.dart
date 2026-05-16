@@ -4,7 +4,7 @@ import 'package:matomo_tracker/matomo_tracker.dart';
 import 'package:navis/synthtargets/cubit/synthtargets_cubit.dart';
 import 'package:navis/synthtargets/widgets/target.dart';
 import 'package:navis_ui/navis_ui.dart';
-import 'package:warframestat_repository/warframestat_repository.dart';
+import 'package:warframe_repository/warframe_repository.dart';
 
 class SynthTargetsView extends StatelessWidget {
   const SynthTargetsView({super.key});
@@ -13,11 +13,13 @@ class SynthTargetsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final repo = RepositoryProvider.of<WarframeRepository>(context);
+
     return TraceableWidget(
       child: Scaffold(
         appBar: AppBar(),
         body: BlocProvider(
-          create: (_) => SynthtargetsCubit(RepositoryProvider.of<WarframestatRepository>(context))..fetchSynthtargets(),
+          create: (_) => SynthtargetsCubit(repo)..fetchSynthtargets(),
           child: const _SynthTargetsPage(),
         ),
       ),

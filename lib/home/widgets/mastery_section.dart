@@ -7,8 +7,8 @@ import 'package:navis/profile/utils/mastery_utils.dart';
 import 'package:navis/router/routes.dart';
 import 'package:navis_codex/navis_codex.dart';
 import 'package:navis_ui/navis_ui.dart';
+import 'package:warframe_api/warframe_api.dart';
 import 'package:warframe_icons/warframe_icons.dart';
-import 'package:warframe_repository/warframe_repository.dart';
 
 class MasteryInProgressSection extends StatelessWidget {
   const MasteryInProgressSection({super.key});
@@ -18,7 +18,7 @@ class MasteryInProgressSection extends StatelessWidget {
     return BlocSelector<ProfileCubit, ProfileState, UserData?>(
       selector: (state) {
         return switch (state) {
-          ProfileSuccessful(: final profile) => profile,
+          ProfileSuccessful(:final profile) => profile,
           _ => null,
         };
       },
