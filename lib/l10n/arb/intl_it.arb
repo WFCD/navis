@@ -170,6 +170,11 @@
     "description": "Fissures title",
     "type": "text"
   },
+  "normalFissureTabTitle": "Normal",
+  "@normalFissureTabTitle": {
+    "description": "Normal fissure tab title title",
+    "type": "text"
+  },
   "invasionsTitle": "Invasioni",
   "@invasionsTitle": {
     "description": "Invasions title",
@@ -240,7 +245,7 @@
     "description": "Baro's notification title",
     "type": "text"
   },
-  "baroNotificationDescription": "Notifiche per gli arrivi e le partenze di Baro.",
+  "baroNotificationDescription": "Notifications for both Baro's arrival and departure.",
   "@baroNotificationDescription": {
     "description": "Notification description for both Baro's arrivial and departure.",
     "type": "text"
@@ -1398,5 +1403,43 @@
   "inventoriaStepFourTitle": "Confirm Account",
   "@inventoriaStepFourTitle": {
     "description": "Inventoria step four title"
+  },
+  "maxRankTitle": "Max Rank",
+  "@maxRankTitle": {
+    "description": "Arcane max rank subtitle"
+  },
+  "requiresForNextArcaneRank": "Requires +{rank} for next rank",
+  "@requiresForNextArcaneRank": {
+    "description": "Requires for next Arcane rank",
+    "placeholders": {
+      "rank": {
+        "type": "int"
+      }
+    }
+  },
+  "unrankedTitle": "Unranked",
+  "@unrankedTitle": {
+    "description": "Unranked Arcane title"
+  },
+  "rankCategoryTitle": "Ranks",
+  "@rankCategoryTitle": {
+    "description": "Rank Category Title"
+  },
+  "acquisitionCategoryTitle": "Acquisition",
+  "@acquisitionCategoryTitle": {
+    "description": "Acquisition Category Title"
+  },
+  "totalArcaneCost": "Total Required: {cost}",
+  "@totalArcaneCost": {
+    "description": "id",
+    "placeholders": {
+      "cost": {
+        "type": "int"
+      }
+    }
+  },
+  "inventoriaInputError": "Input is missing user id. Please make sure you've logged in to warframe.com before trying again",
+  "@inventoriaInputError": {
+    "description": "inventoria input error message"
   }
 }
