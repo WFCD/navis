@@ -5,7 +5,7 @@ import 'dart:isolate';
 import 'package:arbi_api/arbi_api.dart';
 import 'package:http/http.dart';
 import 'package:navis_cache/navis_cache.dart';
-import 'package:navis_codex/navis_codex.dart';
+import 'package:navis_codex/navis_codex.dart' hide XpItem;
 import 'package:profile_models/profile_models.dart';
 import 'package:warframe_api/warframe_api.dart';
 import 'package:warframe_drop_data/warframe_drop_data.dart';
@@ -16,6 +16,8 @@ import 'package:warframe_worldstate_data/warframe_worldstate_data.dart';
 import 'package:warframestat_client/warframestat_client.dart'
     show Arbitration, Item, ItemCommon, WarframeItemsClient, toItem;
 import 'package:worldstate_models/worldstate_models.dart';
+
+typedef MasterableItem = ({CodexItem item, int xp});
 
 /// {@template warframe_repository}
 /// A Very Good Project created by Very Good CLI.
@@ -112,31 +114,29 @@ class WarframeRepository {
   }
 
   Future<void> initializeCodex() async {
-    final singleItem = await (_codex.select(_codex.codexItems)..limit(1)).getSingleOrNull();
-    if (singleItem != null) return;
+    final buildLabel = (await buildWorldstate()).buildLabel;
+    if (buildLabel == await _codex.lastBuild) return;
 
+    await updateCodex();
+    await _codex.updateBuild(buildLabel);
+  }
+
+  Future<bool> updateCodex() async {
     try {
-      final items = await _items.fetchAllItems(props: slimItemProps, encoder: _encode) as List<SlimItem>;
+      final items = await _items.fetchAllItems(props: slimItemProps, encoder: encodeSlimItem) as List<SlimItem>;
       final inserts = items.map((i) => i.toCodexItem()).toList();
 
       await _codex.addItems(inserts);
+      return true;
     } on Exception {
-      return;
+      return false;
     }
   }
 
-  static SlimItem _encode(Map<String, dynamic> item) {
-    final name = item['name'] as String;
-    final uniqueName = item['uniqueName'] as String;
-    final category = item['category'] as String;
+  Future<List<MasterableItem>> buildXpInfo(List<XpItem> xpInfo) async {
+    final masterableItems = await _codex.fetchMasterable();
+    final mappedXpItems = {for (final x in xpInfo) x.uniqueName: x.xp};
 
-    if (name == 'Venari' || name == 'Venari Prime') item['type'] = 'Pets';
-    if (category == 'Arcanes') item['type'] = 'Arcane';
-
-    if (uniqueName.contains(RegExp('MoaPetParts|ZanukaPetParts'))) {
-      item['type'] = 'Pet Resource';
-    }
-
-    return SlimItem.fromJson(item);
+    return masterableItems.map((i) => (item: i, xp: mappedXpItems[i.uniqueName] ?? 0)).toList();
   }
 }

@@ -9,6 +9,7 @@ import 'package:navis/settings/settings.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:notification_repository/notification_repository.dart';
 import 'package:warframe_api/warframe_api.dart';
+import 'package:warframe_repository/warframe_repository.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});
@@ -54,7 +55,10 @@ class _SettingsView extends StatelessWidget {
     );
 
     final profile = context.select<ProfileCubit, UserData?>(
-      (cubit) => cubit.state is ProfileSuccessful ? (cubit.state as ProfileSuccessful).profile : null,
+      (c) => switch (c.state) {
+        ProfileSuccessful(:final profile) => profile,
+        _ => null,
+      },
     );
 
     final toggles = settings?.toggles ?? <String, bool>{};
@@ -76,6 +80,19 @@ class _SettingsView extends StatelessWidget {
                     )
                   : Text(l10n.enterUsernameHintText),
               onPressed: ProfileWizard.startWizard,
+            ),
+            SettingsTile(
+              title: const Text('Update Codex'),
+              onPressed: (context) async {
+                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Updating Codex')));
+
+                final isUpdated = await RepositoryProvider.of<WarframeRepository>(context).updateCodex();
+                if (!context.mounted) return;
+
+                ScaffoldMessenger.of(
+                  context,
+                ).showSnackBar(SnackBar(content: Text(isUpdated ? 'Codex updated' : 'Codex was not updated')));
+              },
             ),
           ],
         ),

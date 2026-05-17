@@ -5,30 +5,26 @@ import 'package:navis/home/widgets/section.dart';
 import 'package:navis/profile/profile.dart';
 import 'package:navis/profile/utils/mastery_utils.dart';
 import 'package:navis/router/routes.dart';
-import 'package:navis_codex/navis_codex.dart';
 import 'package:navis_ui/navis_ui.dart';
-import 'package:warframe_api/warframe_api.dart';
 import 'package:warframe_icons/warframe_icons.dart';
+import 'package:warframe_repository/warframe_repository.dart';
 
 class MasteryInProgressSection extends StatelessWidget {
   const MasteryInProgressSection({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocSelector<ProfileCubit, ProfileState, UserData?>(
+    return BlocSelector<ProfileCubit, ProfileState, ProfileSuccessful?>(
       selector: (state) {
-        return switch (state) {
-          ProfileSuccessful(:final profile) => profile,
-          _ => null,
-        };
+        if (state is ProfileSuccessful) return state;
+        return null;
       },
-      builder: (context, profile) {
-        if (profile == null) return const SizedBox.shrink();
-
-        final codex = RepositoryProvider.of<CodexDatabase>(context);
+      builder: (context, state) {
+        if (state == null) return const SizedBox.shrink();
+        final repository = RepositoryProvider.of<WarframeRepository>(context);
 
         return BlocProvider(
-          create: (context) => MasteryProgressCubit(codex)..fetchInProgress(),
+          create: (context) => MasteryProgressCubit(repository)..fetchInProgress(state.xpInfo),
           child: const MasteryInProgressContent(),
         );
       },

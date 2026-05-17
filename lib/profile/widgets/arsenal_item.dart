@@ -6,7 +6,6 @@ import 'package:navis/codex/codex.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis/profile/utils/mastery_utils.dart';
 import 'package:navis/utils/string_extensions.dart';
-import 'package:navis_codex/navis_codex.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:warframe_icons/warframe_icons.dart';
 import 'package:warframe_repository/warframe_repository.dart';
@@ -19,7 +18,6 @@ class ArsenalItemWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final repo = RepositoryProvider.of<WarframeRepository>(context);
-
     final rank = masteryRank(item);
 
     return OpenContainer(
