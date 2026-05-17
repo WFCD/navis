@@ -1437,5 +1437,9 @@
         "type": "int"
       }
     }
+  },
+  "inventoriaInputError": "Input is missing user id. Please make sure you've logged in to warframe.com before trying again",
+  "@inventoriaInputError": {
+    "description": "inventoria input error message"
   }
 }
