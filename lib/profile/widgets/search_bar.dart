@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/codex/utils/debouncer.dart';
 import 'package:navis/profile/profile.dart';
 import 'package:navis/profile/utils/mastery_utils.dart';
-import 'package:navis_codex/navis_codex.dart';
+import 'package:warframe_repository/warframe_repository.dart';
 
 class MasteryItemSearchBar extends StatefulWidget {
   const MasteryItemSearchBar({super.key, required this.onPressed});

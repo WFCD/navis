@@ -11,6 +11,9 @@ import 'package:warframestat_client/warframestat_client.dart';
 // If you add a number that's not with the box size it will be cut off and not
 // drawn in the frame
 
+// TODO(Orn): It's getting complicated to have this as apart of the app so may need to seprate into different package
+//  and do a port of mod-generator instead https://github.com/WFCD/mod-generator
+
 class CommonModPainter extends ModPainter {
   const CommonModPainter({required super.mod, required super.rank, required super.assets});
 
@@ -41,6 +44,9 @@ abstract class ModPainter extends CustomPainter {
   double get effectsY;
   double get ranksY;
 
+  Rarity? get _rarity => mod.rarity;
+  int? get drain => mod.baseDrain != null ? mod.baseDrain! + rank : null;
+
   void drawEffects(Canvas canvas) {
     final paint = Paint();
     final frame = assets.frame;
@@ -66,9 +72,6 @@ abstract class ModPainter extends CustomPainter {
     }
   }
 
-  Rarity? get _rarity => mod.rarity;
-  int? get drain => mod.baseDrain != null ? mod.baseDrain! + rank : null;
-
   void paintBacker(Canvas canvas) {
     final surface = assets.surface;
     if (drain != null) {
@@ -76,7 +79,10 @@ abstract class ModPainter extends CustomPainter {
 
       if (drain! < 0) {
         TextPainter(
-            text: TextSpan(text: '^${drain!.abs()}', style: TextStyle(color: _rarity?.toColor())),
+            text: TextSpan(
+              text: '^${drain!.abs()}',
+              style: TextStyle(color: _rarity?.toColor()),
+            ),
             textAlign: TextAlign.center,
             textDirection: TextDirection.ltr,
           )
@@ -84,7 +90,10 @@ abstract class ModPainter extends CustomPainter {
           ..paint(canvas, const Offset(218, 102));
       } else {
         TextPainter(
-            text: TextSpan(text: '${drain!.abs()}', style: TextStyle(color: _rarity?.toColor())),
+            text: TextSpan(
+              text: '${drain!.abs()}',
+              style: TextStyle(color: _rarity?.toColor()),
+            ),
             textAlign: TextAlign.center,
             textDirection: TextDirection.ltr,
           )
@@ -110,7 +119,10 @@ abstract class ModPainter extends CustomPainter {
     canvas.drawImage(assets.surface.lowerTab, const Offset(23, 386), Paint());
 
     final painter = TextPainter(
-      text: TextSpan(text: mod.compatName?.trim() ?? '', style: TextStyle(color: _rarity?.toColor())),
+      text: TextSpan(
+        text: mod.compatName?.trim() ?? '',
+        style: TextStyle(color: _rarity?.toColor()),
+      ),
       textAlign: TextAlign.center,
       textDirection: TextDirection.ltr,
     )..layout();
@@ -121,7 +133,10 @@ abstract class ModPainter extends CustomPainter {
   void paintDescription(Canvas canvas, Size size) {
     final description = formatDescription(mod.description, mod.levelStats, rank);
 
-    final span = TextSpan(text: description, style: TextStyle(color: mod.rarity?.toColor(), fontSize: 12));
+    final span = TextSpan(
+      text: description,
+      style: TextStyle(color: mod.rarity?.toColor(), fontSize: 12),
+    );
 
     final painter = TextPainter(text: span, textAlign: TextAlign.center, textDirection: TextDirection.ltr)
       ..layout(maxWidth: 200);
@@ -151,7 +166,7 @@ abstract class ModPainter extends CustomPainter {
     final surface = assets.surface;
     canvas.drawImage(surface.background, Offset.zero, paint);
 
-    final dstRec = const Offset(6, 86) & const Size(244, 180);
+    final dstRec = const Offset(6, 86) & const Size(370, 256);
     final thumbnailRec = Offset.zero & const Size(250, 250);
     canvas.drawImageRect(assets.thumbnail, thumbnailRec, dstRec, paint);
   }
@@ -180,5 +195,5 @@ abstract class ModPainter extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
+  bool shouldRepaint(ModPainter oldDelegate) => true;
 }

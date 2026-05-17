@@ -18,12 +18,13 @@ final class ProfileUpdating extends ProfileState {
 }
 
 final class ProfileSuccessful extends ProfileState {
-  const ProfileSuccessful(this.profile);
+  const ProfileSuccessful(this.profile, this.xpInfo);
 
   final UserData profile;
+  final List<XpItem> xpInfo;
 
   @override
-  List<Object> get props => [profile];
+  List<Object> get props => [profile, xpInfo];
 
   @override
   String toString() => 'ProfileSuccessful(profile: ${profile.id})';

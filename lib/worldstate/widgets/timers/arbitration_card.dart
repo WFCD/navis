@@ -5,14 +5,14 @@ import 'package:navis/l10n/l10n.dart';
 import 'package:navis/worldstate/cubits/arbitration_cubit.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:warframe_icons/warframe_icons.dart';
-import 'package:warframestat_repository/warframestat_repository.dart';
+import 'package:warframe_repository/warframe_repository.dart';
 
 class ArbitrationCard extends StatelessWidget {
   const ArbitrationCard({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final repo = RepositoryProvider.of<WarframestatRepository>(context);
+    final repo = RepositoryProvider.of<WarframeRepository>(context);
     return AppCard(
       child: Column(
         mainAxisSize: MainAxisSize.min,

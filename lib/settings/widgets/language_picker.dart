@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis/settings/settings.dart';
-import 'package:warframestat_client/warframestat_client.dart' hide Alignment;
-import 'package:warframestat_repository/warframestat_repository.dart';
+import 'package:warframe_api/warframe_api.dart';
+import 'package:warframe_repository/warframe_repository.dart';
 
 class LanguagePicker extends StatelessWidget {
   const LanguagePicker({super.key});
@@ -14,12 +14,14 @@ class LanguagePicker extends StatelessWidget {
       context: context,
       useSafeArea: true,
       isScrollControlled: true,
-      builder:
-          (_) => BlocProvider.value(value: BlocProvider.of<UserSettingsCubit>(context), child: const LanguagePicker()),
+      builder: (_) => BlocProvider.value(
+        value: BlocProvider.of<UserSettingsCubit>(context),
+        child: const LanguagePicker(),
+      ),
     );
 
     if (locale == null || !context.mounted) return;
-    context.read<WarframestatRepository>().language = Language.values.byName(locale.languageCode);
+    context.read<WarframeRepository>().locale = WorldstateLocale.values.byName(locale.languageCode);
   }
 
   @override

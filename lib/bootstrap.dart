@@ -16,6 +16,7 @@ import 'package:navis_cache/navis_cache.dart';
 import 'package:navis_codex/navis_codex.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
+import 'package:warframe_repository/warframe_repository.dart';
 
 typedef BootstrapBuilder = FutureOr<Widget> Function(AppRouter);
 
@@ -32,13 +33,15 @@ Future<void> bootstrap(BootstrapBuilder builder) async {
   PaintingBinding.instance.imageCache.maximumSize = 200;
   PaintingBinding.instance.imageCache.maximumSizeBytes = 200 * 1024 * 1024;
 
-  final settings = await UserSettings.initSettings();
   final observer = RouteObserver<ModalRoute<void>>();
   final router = AppRouter(navigatorKey: GlobalKey<NavigatorState>(), observer: observer);
   final client = SentryHttpClient(client: await buildNativeClient(), captureFailedRequests: true);
-  final cacheManager = await CacheManager.open(temp.path);
 
-  final codex = CodexDatabase(client, cacheManager);
+  final settings = await UserSettings.initSettings();
+  final cacheManager = await CacheManager.open(temp.path);
+  final codex = CodexDatabase();
+
+  final repository = WarframeRepository(client: client, cache: cacheManager, codex: codex);
 
   logger.info('Booting up Navis');
   runApp(
@@ -46,12 +49,11 @@ Future<void> bootstrap(BootstrapBuilder builder) async {
       routeObserver: observer,
       settings: settings,
       codex: codex,
-      client: client,
-      cacheManager: cacheManager,
+      repository: repository,
       child: BlocBootstrap(child: await builder(router)),
     ),
   );
 
   // All calls for items will fallback to the API so its alright to deffer this and let the app warm up
-  Timer(const Duration(seconds: 15), codex.initialize);
+  Timer(const Duration(seconds: 15), repository.initializeCodex);
 }

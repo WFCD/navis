@@ -1,4 +1,3 @@
-import 'package:collection/collection.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/widgets.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
@@ -6,7 +5,6 @@ import 'package:navis/utils/bloc_mixin.dart';
 import 'package:navis/worldstate/utils/worldstate_helpers.dart';
 import 'package:replay_bloc/replay_bloc.dart';
 import 'package:warframe_repository/warframe_repository.dart';
-import 'package:warframe_worldstate_data/warframe_worldstate_data.dart';
 import 'package:worldstate_models/worldstate_models.dart';
 
 part 'worldstate_event.dart';
@@ -23,13 +21,11 @@ class WorldstateBloc extends HydratedBloc<WorldstateEvent, WorldState> with Repl
   final WarframeRepository repository;
 
   Future<void> _emiteState(WorldstateStarted event, Emitter<WorldState> emit) async {
-    final locale = WorldstateDataLocale.values.firstWhereOrNull((v) => v.name == event.locale.languageCode) ?? .en;
-
-    final worldstate = await repository.fetchWorldstate(locale);
+    final worldstate = await repository.buildWorldstate();
     if (!isClosed) add(WorldstateUpdated(worldstate..clean()));
 
     await emit.onEach<Worldstate>(
-      repository.worldstateEmitter(locale: locale),
+      repository.worldstateEmitter(),
       onData: (state) => add(WorldstateUpdated(state..clean())),
       onError: (error, stackTrace) async {
         add(WorldstateFailed());
