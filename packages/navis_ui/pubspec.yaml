@@ -19,7 +19,7 @@ dependencies:
   gap: ^3.0.1
   html: ^0.15.6
   intl: ^0.20.2
-  meta: ^1.17.0
+  meta: ^1.18.0
   visibility_detector: ^0.4.0+2
   warframe_icons:
     git: https://github.com/SlayerOrnstein/warframe_icons.git
