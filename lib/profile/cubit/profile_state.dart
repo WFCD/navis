@@ -31,6 +31,12 @@ final class ProfileSuccessful extends ProfileState {
 }
 
 final class ProfileFailure extends ProfileState {
+  const ProfileFailure(this.data);
+
+  // Doesn't look like there isn't any security issues or tokens passed into the user-data so I figured it's
+  // okay to pass for debugging
+  final String data;
+
   @override
-  String toString() => 'ProfileFailure()';
+  String toString() => 'ProfileFailure(data: $data)';
 }

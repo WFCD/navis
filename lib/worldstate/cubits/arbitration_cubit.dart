@@ -37,4 +37,7 @@ class ArbitrationCubit extends HydratedCubit<ArbitrationState> with SafeBlocMixi
 
     return state.arbitration.toJson();
   }
+
+  @override
+  String toString() => 'ArbitrationCubit()';
 }

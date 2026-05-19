@@ -22,7 +22,7 @@ class ProfileCubit extends Cubit<ProfileState> with SafeBlocMixin {
 
     await safeEmit(
       () async {
-        if (!_repo.verifyUserData(data)) return ProfileFailure();
+        if (!_repo.verifyUserData(data)) return ProfileFailure(data);
 
         final user = UserData.raw(data);
         final profile = await _repo.fetchProfile(user.id);
@@ -30,16 +30,16 @@ class ProfileCubit extends Cubit<ProfileState> with SafeBlocMixin {
 
         return ProfileSuccessful(user, profile.loadout.xpInfo);
       },
-      onError: (_, _) => ProfileFailure(),
+      onError: (_, _) => ProfileFailure(data),
     );
   }
 
   Future<void> refreshProfile() async {
     if (state is! ProfileSuccessful) emit(ProfileUpdating());
+    final data = _settings.user;
 
     await safeEmit(
       () async {
-        final data = _settings.user;
         if (data == null) return ProfileInitial();
 
         final user = UserData.fromJson(data);
@@ -47,7 +47,10 @@ class ProfileCubit extends Cubit<ProfileState> with SafeBlocMixin {
 
         return ProfileSuccessful(user, profile.loadout.xpInfo);
       },
-      onError: (_, _) => ProfileFailure(),
+      onError: (_, _) => ProfileFailure(data ?? ''),
     );
   }
+
+  @override
+  String toString() => 'ProfileCubit()';
 }

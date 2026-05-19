@@ -18,7 +18,7 @@ class MasteryProgressCubit extends Cubit<MasteryProgressState> with SafeBlocMixi
       final inventory = await _repository.buildXpInfo(items);
       inventory
         // User either has it or not, mainly founders items
-        ..removeWhere((i) => _overrides.contains(i.item.name))
+        ..removeWhere((i) => _overrides.contains(i.item.name) && i.xp == 0)
         ..sort((a, b) => a.xp.compareTo(b.xp));
 
       return MasteryProgressSuccess(inventory);

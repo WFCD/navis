@@ -37,7 +37,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
         emit(CodexSearchSuccess(results));
       } on Exception catch (e, stack) {
         addError(e, stack);
-        emit(const CodexSearchFailure());
+        emit(CodexSearchFailure(text));
       }
     }
   }

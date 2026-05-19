@@ -24,4 +24,7 @@ final class MasteryProgressSuccess extends MasteryProgressState {
   String toString() => 'MasteryProgressSuccess(items: ${items.length})';
 }
 
-final class MasteryProgressFailure extends MasteryProgressState {}
+final class MasteryProgressFailure extends MasteryProgressState {
+  @override
+  String toString() => 'MasteryProgressFailure()';
+}

@@ -31,8 +31,10 @@ final class CodexSearchSuccess extends SearchState {
 }
 
 final class CodexSearchFailure extends SearchState {
-  const CodexSearchFailure();
+  const CodexSearchFailure(this.query);
+
+  final String query;
 
   @override
-  String toString() => 'CodexSearchFailure()';
+  String toString() => 'CodexSearchFailure(query: $query)';
 }

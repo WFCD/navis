@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:matomo_tracker/matomo_tracker.dart';
 import 'package:navis/worldstate/worldstate.dart';
@@ -19,8 +20,6 @@ class _MobileTimers extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const cacheExtent = 500.0;
-
     return BlocSelector<WorldstateBloc, WorldState, Worldstate?>(
       selector: (state) => switch (state) {
         WorldstateSuccess() => state.seed,
@@ -30,9 +29,9 @@ class _MobileTimers extends StatelessWidget {
         return ViewLoading(
           isLoading: worldstate == null,
           child: ListView(
+            scrollCacheExtent: const ScrollCacheExtent.pixels(500),
             key: const PageStorageKey('timers'),
             shrinkWrap: true,
-            cacheExtent: cacheExtent,
             children: [
               const DailyReward(),
               const BaroKiTeerCard(),

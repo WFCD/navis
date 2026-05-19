@@ -62,4 +62,7 @@ class FissureFilterCubit extends HydratedCubit<FissureFilterState> with SafeBloc
     logger.info('Caching current state');
     return {'filter': state.type.name, 'fissures': state.fissures.map((e) => e.toMap()).toList()};
   }
+
+  @override
+  String toString() => 'FIssureFilterCubit()';
 }

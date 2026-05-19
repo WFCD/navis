@@ -7,7 +7,10 @@ sealed class ArbitrationState extends Equatable {
   List<Object> get props => [];
 }
 
-final class ArbitrationInitial extends ArbitrationState {}
+final class ArbitrationInitial extends ArbitrationState {
+  @override
+  String toString() => 'ArbitrationInitial()';
+}
 
 final class ArbitrationActive extends ArbitrationState {
   const ArbitrationActive({required this.arbitration});
@@ -19,5 +22,5 @@ final class ArbitrationActive extends ArbitrationState {
   List<Object> get props => [arbitration];
 
   @override
-  String toString() => 'ArbitrationActive(${arbitration.id})';
+  String toString() => 'ArbitrationActive(arbitration: ${arbitration.toJson()})';
 }

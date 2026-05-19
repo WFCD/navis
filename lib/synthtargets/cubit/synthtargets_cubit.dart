@@ -20,4 +20,7 @@ class SynthtargetsCubit extends Cubit<SynthtargetsState> with SafeBlocMixin {
       return TargetsLocated(targets);
     });
   }
+
+  @override
+  String toString() => 'SynthtargetsCubit()';
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis/worldstate/worldstate.dart';
@@ -86,12 +87,11 @@ class _MobileFissures extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const cacheExntent = 300.0;
     final height = (MediaQuery.of(context).size.height / 100) * 15;
 
     return ListView.builder(
+      scrollCacheExtent: const ScrollCacheExtent.pixels(500),
       key: const PageStorageKey('fissures_mobile'),
-      cacheExtent: cacheExntent,
       itemExtent: height,
       itemCount: fissures.length,
       shrinkWrap: true,

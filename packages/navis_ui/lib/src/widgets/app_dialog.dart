@@ -21,8 +21,7 @@ class NavisDialog extends StatelessWidget {
     final title = Padding(
       padding: const EdgeInsets.fromLTRB(24, 24, 24, 20),
       child: DefaultTextStyle(
-        style: dialogTheme.titleTextStyle ??
-            Theme.of(context).textTheme.titleLarge!,
+        style: dialogTheme.titleTextStyle ?? Theme.of(context).textTheme.titleLarge!,
         child: Semantics(
           namesRoute: true,
           container: true,
@@ -32,8 +31,7 @@ class NavisDialog extends StatelessWidget {
     );
 
     final content = DefaultTextStyle(
-      style: dialogTheme.contentTextStyle ??
-          Theme.of(context).textTheme.titleLarge!,
+      style: dialogTheme.contentTextStyle ?? Theme.of(context).textTheme.titleLarge!,
       child: Flexible(
         child: Padding(
           padding: contentPadding ?? const EdgeInsets.fromLTRB(8, 10, 8, 14),
@@ -50,8 +48,7 @@ class NavisDialog extends StatelessWidget {
         children: <Widget>[
           if (this.title != null) title,
           content,
-          if (actions != null)
-            OverflowBar(children: <Widget>[if (actions != null) ...actions!]),
+          if (actions != null) OverflowBar(children: actions!),
         ],
       ),
     );

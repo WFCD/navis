@@ -53,4 +53,7 @@ class UserSettingsCubit extends Cubit<UserSettingsState> {
 
     emit(settings);
   }
+
+  @override
+  String toString() => 'UserSettingsCubit()';
 }

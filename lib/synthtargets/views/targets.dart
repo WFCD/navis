@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:matomo_tracker/matomo_tracker.dart';
 import 'package:navis/synthtargets/cubit/synthtargets_cubit.dart';
@@ -32,15 +33,13 @@ class _SynthTargetsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const cacheExtent = 500.0;
-
     return BlocBuilder<SynthtargetsCubit, SynthtargetsState>(
       builder: (context, state) {
         if (state is TargetsLocated) {
           final targets = state.targets;
 
           return ListView.builder(
-            cacheExtent: cacheExtent,
+            scrollCacheExtent: const ScrollCacheExtent.pixels(500),
             itemCount: targets.length,
             itemBuilder: (context, index) {
               return TargetInfo(target: targets[index]);

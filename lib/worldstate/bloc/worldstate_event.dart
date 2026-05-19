@@ -16,7 +16,7 @@ final class WorldstateStarted extends WorldstateEvent {
   List<Object> get props => [locale];
 
   @override
-  String toString() => 'WorldstateStarted($locale)';
+  String toString() => 'WorldstateStarted(locale: $locale)';
 }
 
 final class WorldstateUpdated extends WorldstateEvent {

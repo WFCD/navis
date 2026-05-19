@@ -83,4 +83,7 @@ class ItemCubit extends HydratedCubit<ItemState> with SafeBlocMixin {
 
     return state.item.toJson();
   }
+
+  @override
+  String toString() => 'ItemCubit(name: $name)';
 }

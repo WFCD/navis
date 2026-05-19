@@ -51,4 +51,7 @@ class WorldstateBloc extends HydratedBloc<WorldstateEvent, WorldState> with Repl
     if (state is! WorldstateSuccess) return null;
     return state.seed.toMap();
   }
+
+  @override
+  String toString() => 'WorldstateBloc()';
 }

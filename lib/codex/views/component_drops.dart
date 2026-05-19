@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/codex/codex.dart';
 import 'package:navis/l10n/l10n.dart';
@@ -57,7 +58,6 @@ class ComponentDrops extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const cacheExtent = 150.0;
     const densityThreshold = 10;
 
     final drops = this.drops
@@ -67,8 +67,8 @@ class ComponentDrops extends StatelessWidget {
       });
 
     return ListView.builder(
+      scrollCacheExtent: const ScrollCacheExtent.pixels(500),
       controller: controller,
-      cacheExtent: cacheExtent,
       itemCount: drops.length,
       itemBuilder: (context, index) {
         final drop = drops[index];
