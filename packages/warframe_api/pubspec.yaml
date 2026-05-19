@@ -37,4 +37,4 @@ dev_dependencies:
   build_runner: ^2.15.0
   dart_mappable_builder: ^4.8.0
   mocktail: ^1.0.5
-  test: ^1.26.3
+  test: ^1.31.0
