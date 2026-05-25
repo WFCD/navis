@@ -28,7 +28,7 @@ class SupportBottomSheet extends StatelessWidget {
         spacing: 8,
         children: [
           Material(
-            color: const Color(0xFF5865F2),
+            color: SimpleIconColors.discord,
             borderRadius: borderRadius,
             child: ListTile(
               textColor: Colors.white,
@@ -63,7 +63,7 @@ class SupportBottomSheet extends StatelessWidget {
             child: ListTile(
               textColor: Colors.white,
               iconColor: Colors.white,
-              leading: const Icon(WarframeIcons.nightmare, size: 30),
+              leading: const Icon(WarframeIcons.simaris),
               title: Text(context.l10n.supportTitle('Cephalon Navis')),
               subtitle: Text(context.l10n.supportSubtitleNavis),
               onTap: () => buyMeCoffee.launchLink(context),

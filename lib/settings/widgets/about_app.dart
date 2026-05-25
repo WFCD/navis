@@ -83,24 +83,24 @@ class AboutApp extends AbstractSettingsTile {
                   onPressed: () => communityPage.launchLink(context),
                 ),
                 IconButton(
-                  icon: Icon(SimpleIcons.github, color: isDark ? Colors.white : const Color(0xFF181717)),
+                  icon: Icon(SimpleIcons.github, color: isDark ? Colors.white : SimpleIconColors.github),
                   iconSize: iconSize,
                   splashColor: Colors.transparent,
                   onPressed: () => projectPage.launchLink(context),
                 ),
                 IconButton(
-                  icon: const Icon(SimpleIcons.discord, color: Color(0xFF7289DA)),
+                  icon: const Icon(SimpleIcons.discord, color: SimpleIconColors.discord),
                   iconSize: iconSize,
                   splashColor: Colors.transparent,
                   onPressed: () => discordInvite.launchLink(context),
                 ),
                 IconButton(
                   onPressed: () => buyMeCoffee.launchLink(context),
-                  icon: const Icon(SimpleIcons.buymeacoffee, color: Color(0xFFFFDD00)),
+                  icon: const Icon(SimpleIcons.buymeacoffee, color: SimpleIconColors.buymeacoffee),
                 ),
                 IconButton(
                   onPressed: () => tobiahkofi.launchLink(context),
-                  icon: const Icon(SimpleIcons.kofi, color: Color(0xFF72A5F2)),
+                  icon: const Icon(SimpleIcons.kofi, color: SimpleIconColors.kofi),
                 ),
               ],
             ),

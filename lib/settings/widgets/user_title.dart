@@ -49,8 +49,8 @@ class _PlatformIcon extends StatelessWidget {
 
     const pc = 'PC';
     const psn = 'Sony PlayStation';
-    const xbl = 'Microsoft Xbox';
-    const swi = 'Nintendo Switch';
+    // const xbl = 'Microsoft Xbox';
+    // const swi = 'Nintendo Switch';
     const ios = 'Apple iOS';
 
     final isDark = context.theme.isDark;
@@ -62,19 +62,19 @@ class _PlatformIcon extends StatelessWidget {
     final psnColor = isDark ? const Color(0xFF0070CC) : const Color(0xFF00439C);
 
     // Couldn't find a recent official color so 2019 it is
-    const xboxColor = Color(0xFF107C10);
+    // const xboxColor = Color(0xFF107C10);
 
     // Out of all of these guys and nintendo had better docs... NINTENDO!!
-    const swiColor = Color(0xFFe60012);
+    // const swiColor = Color(0xFFe60012);
 
     final codepoint = platform.codeUnitAt(0).toRadixString(16);
 
     return switch (int.parse(codepoint[codepoint.length - 1])) {
       0 => Icon(SimpleIcons.steam, color: steamColor, semanticLabel: pc),
       // Gonna hope nobody at MS uses this app https://github.com/simple-icons/simple-icons/pull/10019
-      1 => const Icon(SimpleIcons.xbox, color: xboxColor, semanticLabel: xbl),
+      // 1 => const Icon(SimpleIcons.xbox, color: xboxColor, semanticLabel: xbl),
       2 => Icon(SimpleIcons.playstation, color: psnColor, semanticLabel: psn),
-      3 => const Icon(SimpleIcons.nintendo, color: swiColor, semanticLabel: swi),
+      // 3 => const Icon(SimpleIcons.nintendo, color: swiColor, semanticLabel: swi),
       // https://www.apple.com/legal/sales-support/certification/docs/logo_guidelines.pdf
       4 => Icon(SimpleIcons.apple, color: steamColor, semanticLabel: ios),
       _ => const Icon(WarframeIcons.nightmare),
