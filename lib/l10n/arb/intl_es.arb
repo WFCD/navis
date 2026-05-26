@@ -170,7 +170,7 @@
     "description": "Fissures title",
     "type": "text"
   },
-  "normalFissureTabTitle": "Normal",
+  "normalFissureTabTitle": "Fisura normal: título de la pestaña",
   "@normalFissureTabTitle": {
     "description": "Normal fissure tab title title",
     "type": "text"
@@ -245,7 +245,7 @@
     "description": "Baro's notification title",
     "type": "text"
   },
-  "baroNotificationDescription": "Notifications for both Baro's arrival and departure.",
+  "baroNotificationDescription": "Descripción de la notificación tanto para la llegada como para la salida de Baro.",
   "@baroNotificationDescription": {
     "description": "Notification description for both Baro's arrivial and departure.",
     "type": "text"
@@ -400,12 +400,12 @@
     "description": "Title for the about app dialog",
     "type": "text"
   },
-  "contributeAppTranslationsTitle": "App Translations",
+  "contributeAppTranslationsTitle": "Título del enlace «Colabora con tus traducciones»",
   "@contributeAppTranslationsTitle": {
     "description": "Title for contribute translations link",
     "type": "text"
   },
-  "contributeAppTranslationsDescription": "Contribute translations to the app itself",
+  "contributeAppTranslationsDescription": "Título del enlace «Colabora con tus traducciones»",
   "@contributeAppTranslationsDescription": {
     "description": "Title for contribute translations link",
     "type": "text"
