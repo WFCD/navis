@@ -1,12 +1,12 @@
+import 'package:navis_codex/navis_codex.dart';
 import 'package:warframe_api/warframe_api.dart';
-import 'package:warframe_repository/src/models/slim_item.dart';
 import 'package:warframestat_client/warframestat_client.dart';
 
 Language localeToLang(WorldstateLocale locale) {
   return Language.values.byName(locale.name);
 }
 
-SlimItem encodeSlimItem(Map<String, dynamic> item) {
+CodexItem encodeCodexItem(Map<String, dynamic> item) {
   final name = item['name'] as String;
   final uniqueName = item['uniqueName'] as String;
   final category = item['category'] as String;
@@ -18,5 +18,5 @@ SlimItem encodeSlimItem(Map<String, dynamic> item) {
     item['type'] = 'Pet Resource';
   }
 
-  return SlimItem.fromJson(item);
+  return CodexItem.fromJson(item);
 }

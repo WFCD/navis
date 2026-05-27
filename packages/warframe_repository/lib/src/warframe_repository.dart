@@ -10,11 +10,10 @@ import 'package:profile_models/profile_models.dart';
 import 'package:warframe_api/warframe_api.dart';
 import 'package:warframe_drop_data/warframe_drop_data.dart';
 import 'package:warframe_repository/src/constants.dart';
-import 'package:warframe_repository/src/models/slim_item.dart';
 import 'package:warframe_repository/src/utils/utils.dart';
 import 'package:warframe_worldstate_data/warframe_worldstate_data.dart';
 import 'package:warframestat_client/warframestat_client.dart'
-    show Arbitration, Item, ItemCommon, WarframeItemsClient, toItem;
+    show Arbitration, Item, ItemProps, WarframeItemsClient, toItem;
 import 'package:worldstate_models/worldstate_models.dart';
 
 typedef MasterableItem = ({CodexItem item, int xp});
@@ -93,8 +92,8 @@ class WarframeRepository {
     final dbItems = await _codex.search(name);
     if (dbItems.isNotEmpty) return dbItems.map(SearchResult.fromCodexItem).toList();
 
-    final items = await _items.search<ItemCommon>(name);
-    return items.map(SearchResult.fromItem).toList();
+    final items = await _items.searchRaw(name, props: [.uniqueName, .name, .description, .imageName]);
+    return items.map(SearchResult.fromMap).toList();
   }
 
   Future<Arbitration> fetchArbitration() async {
@@ -122,9 +121,23 @@ class WarframeRepository {
   }
 
   Future<bool> updateCodex() async {
+    const codexProps = <ItemProps>[
+      .uniqueName,
+      .name,
+      .description,
+      .imageName,
+      .type,
+      .category,
+      .vaulted,
+      .masterable,
+      .maxLevelCap,
+      .wikiaUrl,
+      .wikiaThumbnail,
+    ];
+
     try {
-      final items = await _items.fetchAllItems(props: slimItemProps, encoder: encodeSlimItem) as List<SlimItem>;
-      final inserts = items.map((i) => i.toCodexItem()).toList();
+      final items = await _items.fetchAllItemsRaw(codexProps);
+      final inserts = items.map(encodeCodexItem).toList();
 
       await _codex.addItems(inserts);
       return true;

@@ -22,6 +22,15 @@ class SearchResult {
     );
   }
 
+  factory SearchResult.fromMap(Map<String, dynamic> map) {
+    return SearchResult(
+      uniqueName: map['uniqueName'] as String,
+      name: map['name'] as String,
+      description: map['description'] as String?,
+      imageName: map['imageName'] as String?,
+    );
+  }
+
   final String uniqueName;
   final String name;
   final String? description;
