@@ -48,7 +48,7 @@ dependencies:
     path: packages/navis_ui
   notification_repository:
     path: packages/notification_repository
-  package_info_plus: ^9.0.1
+  package_info_plus: ^10.1.0
   path_provider: ^2.1.5
   profile_models:
     git:
