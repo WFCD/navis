@@ -27,7 +27,7 @@ dependencies:
   sentry_drift: ^9.10.0
   warframe_repository:
     path: ../warframe_repository
-  warframestat_client: ^5.4.7
+  warframestat_client: ^5.5.0
 
 dev_dependencies:
   build_runner: ^2.15.0

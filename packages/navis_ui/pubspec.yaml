@@ -23,7 +23,7 @@ dependencies:
   visibility_detector: ^0.4.0+2
   warframe_icons:
     git: https://github.com/SlayerOrnstein/warframe_icons.git
-  warframestat_client: ^5.4.7
+  warframestat_client: ^5.5.0
 
 flutter:
   uses-material-design: true

@@ -16,7 +16,7 @@ dependencies:
       url: https://github.com/SlayerOrnstein/wfcd_dart.git
       path: packages/warframe_worldstate_data
       ref: warframe_worldstate_data-v0.1.3+10
-  warframestat_client: ^5.4.7
+  warframestat_client: ^5.5.0
 
 dev_dependencies:
   mocktail: ^1.0.5
