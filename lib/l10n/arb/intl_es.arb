@@ -245,7 +245,7 @@
     "description": "Baro's notification title",
     "type": "text"
   },
-  "baroNotificationDescription": "Notifications for both Baro's arrival and departure.",
+  "baroNotificationDescription": "Notificaciones tanto de la llegada como de la salida de Baro.",
   "@baroNotificationDescription": {
     "description": "Notification description for both Baro's arrivial and departure.",
     "type": "text"
@@ -400,22 +400,22 @@
     "description": "Title for the about app dialog",
     "type": "text"
   },
-  "contributeAppTranslationsTitle": "App Translations",
+  "contributeAppTranslationsTitle": "Aplicación de Traducciones",
   "@contributeAppTranslationsTitle": {
     "description": "Title for contribute translations link",
     "type": "text"
   },
-  "contributeAppTranslationsDescription": "Contribute translations to the app itself",
+  "contributeAppTranslationsDescription": "Aporta traducciones a la propia aplicación",
   "@contributeAppTranslationsDescription": {
     "description": "Title for contribute translations link",
     "type": "text"
   },
-  "contributeDataTranslationsTitle": "Worldstate Translations",
+  "contributeDataTranslationsTitle": "Estado actual de traducciones",
   "@contributeDataTranslationsTitle": {
     "description": "Title for contribute translations link",
     "type": "text"
   },
-  "contributeDataTranslationsDescription": "Contribute translations to worldstate strings, i.e. nodes, mission types, etc",
+  "contributeDataTranslationsDescription": "Aporta traducciones a las cadenas de estado mundial, es decir, nodos, tipos de misiones, etc",
   "@contributeDataTranslationsDescription": {
     "description": "Title for contribute translations link",
     "type": "text"
@@ -445,7 +445,7 @@
     "description": "Title for system theme",
     "type": "text"
   },
-  "legalese": "Cephalon Navis nor WFCD are affiliated with Digital Extremes Ltd. Warframe and the Warframe logo are registered trademarks of Digital Extremes Ltd.",
+  "legalese": "Cephalon Navis ni WFCD están afiliados a Digital Extremes Ltd. Warframe y el logotipo Warframe son marcas registradas de Digital Extremes Ltd.",
   "@legalese": {
     "description": "Cephalon Navis legalese",
     "type": "text"
@@ -1297,12 +1297,12 @@
     "description": "Prime vault reset text",
     "type": "text"
   },
-  "stageText": "Stage",
+  "stageText": "Etapa",
   "@stageText": {
     "description": "Stage text, it just says stage",
     "type": "text"
   },
-  "isolationVaultText": "Isolation Vault (Tier {tier})",
+  "isolationVaultText": "Bóveda de aislamiento (Nivel {tier})",
   "@isolationVaultText": {
     "description": "Isolation Vault Text with tier number",
     "type": "text",
@@ -1312,59 +1312,59 @@
       }
     }
   },
-  "userFeedbackLabelText": "Feedback",
+  "userFeedbackLabelText": "Sugerencias",
   "@userFeedbackLabelText": {
     "description": "User feedback label text",
     "type": "text"
   },
-  "userFeedbackErrorText": "Please enter some text",
+  "userFeedbackErrorText": "Por favor ingresa algo de texto",
   "@userFeedbackErrorText": {
     "description": "User feedback error text",
     "type": "text"
   },
-  "userFeedbackSubmitButton": "Submit",
+  "userFeedbackSubmitButton": "Enviar",
   "@userFeedbackSubmitButton": {
     "description": "User feedback submit button text",
     "type": "text"
   },
-  "donationDescriptionText": "Everything from tech support to supporting app maintance",
+  "donationDescriptionText": "Todo, desde el soporte técnico hasta el mantenimiento de las aplicaciones",
   "@donationDescriptionText": {
     "description": "donationText",
     "type": "text"
   },
-  "sendFeedbackTitle": "Send Feedback",
+  "sendFeedbackTitle": "Da tu opinión",
   "@sendFeedbackTitle": {
     "description": "send Feedback Title"
   },
-  "sendFeedbackDescription": "Help us improve Navis! Share your thoughts, report bugs, or suggest new features.",
+  "sendFeedbackDescription": "¡Ayúdanos a mejorar Navis! Comparte tus pensamientos, reporta errores o sugiere nuevas características.",
   "@sendFeedbackDescription": {
     "description": "Send feedback description"
   },
-  "sendFeedbackLabelText": "Email (optional)",
+  "sendFeedbackLabelText": "Correo electrónico (opcional)",
   "@sendFeedbackLabelText": {
     "description": "Send feedback label text"
   },
-  "sendFeedbackHintText": "your@email.com",
+  "sendFeedbackHintText": "tu@email.com",
   "@sendFeedbackHintText": {
     "description": "Send feedback hint text"
   },
-  "sendFeedbackHelperText": "We'll only use this to follow up on your feedback",
+  "sendFeedbackHelperText": "Solo usaremos esto para hacer un seguimiento de tus comentarios",
   "@sendFeedbackHelperText": {
     "description": "Send feedback helper text"
   },
-  "sendFeedbackSubmissionSuccessful": "Submitted successfully!",
+  "sendFeedbackSubmissionSuccessful": "¡Enviado correctamente!",
   "@sendFeedbackSubmissionSuccessful": {
     "description": "send Feedback Submission Successful"
   },
-  "sendFeedbackSubmissionFailure": "Something went wrong...",
+  "sendFeedbackSubmissionFailure": "Algo salió mal...",
   "@sendFeedbackSubmissionFailure": {
     "description": "Send feedback submission failure"
   },
-  "inventoriaStepOneTitle": "Welcome to Inventoria",
+  "inventoriaStepOneTitle": "Bienvenido a Inventoria",
   "@inventoriaStepOneTitle": {
     "description": "welcome To Inventoria Title"
   },
-  "inventoriaStepOne": "Cephalon Navis will guide you through the process of retrieving your account ID in order to use inventoria and track mastered items.\n\nProfile information is retrieved through a read-only public endpoint and will never post or make changes to your account.\n\nFor any further information please see the FAQ.\n{faqLink}\n\nFor support head over to the discord server\n{discordLink}",
+  "inventoriaStepOne": "Cephalon Navis te guiará a lo largo del proceso para recuperar tu ID de cuenta, con el fin de que puedas utilizar Inventoria y realizar un seguimiento de los objetos dominados.\n\nLa información del perfil se recupera a través de un punto de acceso público de solo lectura y nunca se publicará ni se realizarán cambios en tu cuenta.\n\nPara obtener más información, consulta las preguntas frecuentes.\n{faqLink}\n\nSi necesitas ayuda, dirígete al servidor de Discord\n{discordLink}",
   "@inventoriaStepOne": {
     "description": "Inventoria step 1",
     "placeholders": {
@@ -1376,39 +1376,39 @@
       }
     }
   },
-  "inventoriaStepTwoTitle": "Sign into Warframe",
+  "inventoriaStepTwoTitle": "Iniciar sesión en el Warframe",
   "@inventoriaStepTwoTitle": {
     "description": "Inventoria step 2 title"
   },
-  "inventoriaStepTwoDescription": "In order for you to get your user ID you need to make sure your device is signed into Warframe, then come back to this screen.",
+  "inventoriaStepTwoDescription": "Para obtener tu ID de usuario necesitas asegurarte de que tu dispositivo esté conectado a Warframe, luego vuelve a esta pantalla.",
   "@inventoriaStepTwoDescription": {
     "description": "Inventoria step three description"
   },
-  "inventoriaStepThreeTitle": "Get user data",
+  "inventoriaStepThreeTitle": "Obtener datos de usuario",
   "@inventoriaStepThreeTitle": {
     "description": "inventoria step four title"
   },
-  "inventoriaStepThreeDescription": "Now copy and paste the response from this link into the text field below.",
+  "inventoriaStepThreeDescription": "Ahora copie y pegue la respuesta de este enlace en el campo de texto de abajo.",
   "@inventoriaStepThreeDescription": {
     "description": "Inventoria step four description"
   },
-  "inventoriaStepThreeButtonLabel": "Get user ID",
+  "inventoriaStepThreeButtonLabel": "Obtener ID de usuario",
   "@inventoriaStepThreeButtonLabel": {
     "description": "Inventoria step three button label"
   },
-  "inventoriaStepThreeTextLabel": "JSON output",
+  "inventoriaStepThreeTextLabel": "Salida JSON",
   "@inventoriaStepThreeTextLabel": {
     "description": "Inventoria step four text lable"
   },
-  "inventoriaStepFourTitle": "Confirm Account",
+  "inventoriaStepFourTitle": "Confirmar cuenta",
   "@inventoriaStepFourTitle": {
     "description": "Inventoria step four title"
   },
-  "maxRankTitle": "Max Rank",
+  "maxRankTitle": "Rango Máximo",
   "@maxRankTitle": {
     "description": "Arcane max rank subtitle"
   },
-  "requiresForNextArcaneRank": "Requires +{rank} for next rank",
+  "requiresForNextArcaneRank": "Requiere +{rank} para el siguiente rango",
   "@requiresForNextArcaneRank": {
     "description": "Requires for next Arcane rank",
     "placeholders": {
@@ -1417,19 +1417,19 @@
       }
     }
   },
-  "unrankedTitle": "Unranked",
+  "unrankedTitle": "Sin clasificar",
   "@unrankedTitle": {
     "description": "Unranked Arcane title"
   },
-  "rankCategoryTitle": "Ranks",
+  "rankCategoryTitle": "Rangos",
   "@rankCategoryTitle": {
     "description": "Rank Category Title"
   },
-  "acquisitionCategoryTitle": "Acquisition",
+  "acquisitionCategoryTitle": "Adquisición",
   "@acquisitionCategoryTitle": {
     "description": "Acquisition Category Title"
   },
-  "totalArcaneCost": "Total Required: {cost}",
+  "totalArcaneCost": "Total requerido: {cost}",
   "@totalArcaneCost": {
     "description": "id",
     "placeholders": {
@@ -1438,7 +1438,7 @@
       }
     }
   },
-  "inventoriaInputError": "Input is missing user id. Please make sure you've logged in to warframe.com before trying again",
+  "inventoriaInputError": "La entrada no tiene identificador de usuario. Por favor, asegúrese de haber iniciado sesión en warframe.com antes de intentarlo de nuevo",
   "@inventoriaInputError": {
     "description": "inventoria input error message"
   }
