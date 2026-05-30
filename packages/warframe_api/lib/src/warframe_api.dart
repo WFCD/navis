@@ -54,10 +54,14 @@ class WarframeApi {
   }
 
   bool verifyUserData(String data) {
-    final sanitized = const LineSplitter().convert(data).join();
-    final json = jsonDecode(sanitized) as Map<String, dynamic>;
+    try {
+      final sanitized = const LineSplitter().convert(data).join();
+      final json = jsonDecode(sanitized) as Map<String, dynamic>;
 
-    // These fields don't exist if the user is logged off
-    return json.containsKey('user_id') || json.containsKey('account');
+      // These fields don't exist if the user is logged off
+      return json.containsKey('user_id') || json.containsKey('account');
+    } on FormatException {
+      return false;
+    }
   }
 }
