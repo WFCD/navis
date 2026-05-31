@@ -54,7 +54,7 @@ dependencies:
     git:
       url: https://github.com/SlayerOrnstein/wfcd_dart.git
       path: packages/profile_models
-      ref: profile_models-v0.1.2+20
+      ref: profile_models-v0.1.2+22
   replay_bloc: ^0.3.0
   responsive_builder: ^0.7.0
   rxdart: ^0.28.0
@@ -89,13 +89,13 @@ dependencies:
     git:
       url: https://github.com/SlayerOrnstein/wfcd_dart.git
       path: packages/warframe_worldstate_data
-      ref: warframe_worldstate_data-v0.1.3+10
+      ref: warframe_worldstate_data-v0.1.3+12
   warframestat_client: ^5.5.1
   worldstate_models:
     git:
       url: https://github.com/SlayerOrnstein/wfcd_dart.git
       path: packages/worldstate_models
-      ref: worldstate_models-v0.1.7+6
+      ref: worldstate_models-v0.1.7+9
 
 dev_dependencies:
   bloc_test: ^10.0.0
