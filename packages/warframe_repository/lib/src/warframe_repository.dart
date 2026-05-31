@@ -115,15 +115,10 @@ class WarframeRepository {
     return arbis.current;
   }
 
-  Future<void> initializeCodex() async {
-    final buildLabel = (await buildWorldstate()).buildLabel;
-    if (buildLabel == await _codex.lastBuild) return;
+  Future<bool> updateCodex({String? buildLabel, bool forceUpdate = false}) async {
+    if (buildLabel == await _codex.lastBuild) return false;
+    if (!forceUpdate && buildLabel == null) return false;
 
-    await updateCodex();
-    await _codex.updateBuild(buildLabel);
-  }
-
-  Future<bool> updateCodex() async {
     const codexProps = <ItemProps>[
       .uniqueName,
       .name,
@@ -143,6 +138,8 @@ class WarframeRepository {
       final inserts = items.map(encodeCodexItem).toList();
 
       await _codex.addItems(inserts);
+      if (buildLabel != null) await _codex.updateBuild(buildLabel);
+
       return true;
     } on Exception {
       return false;

@@ -322,13 +322,12 @@ class $CodexItemsTable extends CodexItems
   late final GeneratedColumn<bool> isVaulted = GeneratedColumn<bool>(
     'is_vaulted',
     aliasedName,
-    false,
+    true,
     type: DriftSqlType.bool,
     requiredDuringInsert: false,
     defaultConstraints: GeneratedColumn.constraintIsAlways(
       'CHECK ("is_vaulted" IN (0, 1))',
     ),
-    defaultValue: const Constant(false),
   );
   static const VerificationMeta _isMasterableMeta = const VerificationMeta(
     'isMasterable',
@@ -337,9 +336,9 @@ class $CodexItemsTable extends CodexItems
   late final GeneratedColumn<bool> isMasterable = GeneratedColumn<bool>(
     'is_masterable',
     aliasedName,
-    false,
+    true,
     type: DriftSqlType.bool,
-    requiredDuringInsert: true,
+    requiredDuringInsert: false,
     defaultConstraints: GeneratedColumn.constraintIsAlways(
       'CHECK ("is_masterable" IN (0, 1))',
     ),
@@ -378,12 +377,12 @@ class $CodexItemsTable extends CodexItems
     requiredDuringInsert: false,
   );
   @override
-  late final GeneratedColumnWithTypeConverter<wfcd.ItemType, String> type =
-      GeneratedColumn<String>(
+  late final GeneratedColumnWithTypeConverter<wfcd.ItemType, int> type =
+      GeneratedColumn<int>(
         'type',
         aliasedName,
         false,
-        type: DriftSqlType.string,
+        type: DriftSqlType.int,
         requiredDuringInsert: true,
       ).withConverter<wfcd.ItemType>($CodexItemsTable.$convertertype);
   @override
@@ -465,8 +464,6 @@ class $CodexItemsTable extends CodexItems
           _isMasterableMeta,
         ),
       );
-    } else if (isInserting) {
-      context.missing(_isMasterableMeta);
     }
     if (data.containsKey('max_level')) {
       context.handle(
@@ -521,11 +518,11 @@ class $CodexItemsTable extends CodexItems
       isVaulted: attachedDatabase.typeMapping.read(
         DriftSqlType.bool,
         data['${effectivePrefix}is_vaulted'],
-      )!,
+      ),
       isMasterable: attachedDatabase.typeMapping.read(
         DriftSqlType.bool,
         data['${effectivePrefix}is_masterable'],
-      )!,
+      ),
       maxLevel: attachedDatabase.typeMapping.read(
         DriftSqlType.int,
         data['${effectivePrefix}max_level'],
@@ -540,7 +537,7 @@ class $CodexItemsTable extends CodexItems
       ),
       type: $CodexItemsTable.$convertertype.fromSql(
         attachedDatabase.typeMapping.read(
-          DriftSqlType.string,
+          DriftSqlType.int,
           data['${effectivePrefix}type'],
         )!,
       ),
@@ -552,8 +549,8 @@ class $CodexItemsTable extends CodexItems
     return $CodexItemsTable(attachedDatabase, alias);
   }
 
-  static JsonTypeConverter2<wfcd.ItemType, String, String> $convertertype =
-      const EnumNameConverter<wfcd.ItemType>(wfcd.ItemType.values);
+  static JsonTypeConverter2<wfcd.ItemType, int, int> $convertertype =
+      const EnumIndexConverter<wfcd.ItemType>(wfcd.ItemType.values);
 }
 
 class CodexItem extends DataClass implements Insertable<CodexItem> {
@@ -562,8 +559,8 @@ class CodexItem extends DataClass implements Insertable<CodexItem> {
   final String? description;
   final String? imageName;
   final String category;
-  final bool isVaulted;
-  final bool isMasterable;
+  final bool? isVaulted;
+  final bool? isMasterable;
   final int? maxLevel;
   final String? wikiaUrl;
   final String? wikiaThumbnail;
@@ -574,8 +571,8 @@ class CodexItem extends DataClass implements Insertable<CodexItem> {
     this.description,
     this.imageName,
     required this.category,
-    required this.isVaulted,
-    required this.isMasterable,
+    this.isVaulted,
+    this.isMasterable,
     this.maxLevel,
     this.wikiaUrl,
     this.wikiaThumbnail,
@@ -593,8 +590,12 @@ class CodexItem extends DataClass implements Insertable<CodexItem> {
       map['image_name'] = Variable<String>(imageName);
     }
     map['category'] = Variable<String>(category);
-    map['is_vaulted'] = Variable<bool>(isVaulted);
-    map['is_masterable'] = Variable<bool>(isMasterable);
+    if (!nullToAbsent || isVaulted != null) {
+      map['is_vaulted'] = Variable<bool>(isVaulted);
+    }
+    if (!nullToAbsent || isMasterable != null) {
+      map['is_masterable'] = Variable<bool>(isMasterable);
+    }
     if (!nullToAbsent || maxLevel != null) {
       map['max_level'] = Variable<int>(maxLevel);
     }
@@ -605,9 +606,7 @@ class CodexItem extends DataClass implements Insertable<CodexItem> {
       map['wikia_thumbnail'] = Variable<String>(wikiaThumbnail);
     }
     {
-      map['type'] = Variable<String>(
-        $CodexItemsTable.$convertertype.toSql(type),
-      );
+      map['type'] = Variable<int>($CodexItemsTable.$convertertype.toSql(type));
     }
     return map;
   }
@@ -623,8 +622,12 @@ class CodexItem extends DataClass implements Insertable<CodexItem> {
           ? const Value.absent()
           : Value(imageName),
       category: Value(category),
-      isVaulted: Value(isVaulted),
-      isMasterable: Value(isMasterable),
+      isVaulted: isVaulted == null && nullToAbsent
+          ? const Value.absent()
+          : Value(isVaulted),
+      isMasterable: isMasterable == null && nullToAbsent
+          ? const Value.absent()
+          : Value(isMasterable),
       maxLevel: maxLevel == null && nullToAbsent
           ? const Value.absent()
           : Value(maxLevel),
@@ -649,13 +652,13 @@ class CodexItem extends DataClass implements Insertable<CodexItem> {
       description: serializer.fromJson<String?>(json['description']),
       imageName: serializer.fromJson<String?>(json['imageName']),
       category: serializer.fromJson<String>(json['category']),
-      isVaulted: serializer.fromJson<bool>(json['isVaulted']),
-      isMasterable: serializer.fromJson<bool>(json['isMasterable']),
+      isVaulted: serializer.fromJson<bool?>(json['isVaulted']),
+      isMasterable: serializer.fromJson<bool?>(json['isMasterable']),
       maxLevel: serializer.fromJson<int?>(json['maxLevel']),
       wikiaUrl: serializer.fromJson<String?>(json['wikiaUrl']),
       wikiaThumbnail: serializer.fromJson<String?>(json['wikiaThumbnail']),
       type: $CodexItemsTable.$convertertype.fromJson(
-        serializer.fromJson<String>(json['type']),
+        serializer.fromJson<int>(json['type']),
       ),
     );
   }
@@ -668,12 +671,12 @@ class CodexItem extends DataClass implements Insertable<CodexItem> {
       'description': serializer.toJson<String?>(description),
       'imageName': serializer.toJson<String?>(imageName),
       'category': serializer.toJson<String>(category),
-      'isVaulted': serializer.toJson<bool>(isVaulted),
-      'isMasterable': serializer.toJson<bool>(isMasterable),
+      'isVaulted': serializer.toJson<bool?>(isVaulted),
+      'isMasterable': serializer.toJson<bool?>(isMasterable),
       'maxLevel': serializer.toJson<int?>(maxLevel),
       'wikiaUrl': serializer.toJson<String?>(wikiaUrl),
       'wikiaThumbnail': serializer.toJson<String?>(wikiaThumbnail),
-      'type': serializer.toJson<String>(
+      'type': serializer.toJson<int>(
         $CodexItemsTable.$convertertype.toJson(type),
       ),
     };
@@ -685,8 +688,8 @@ class CodexItem extends DataClass implements Insertable<CodexItem> {
     Value<String?> description = const Value.absent(),
     Value<String?> imageName = const Value.absent(),
     String? category,
-    bool? isVaulted,
-    bool? isMasterable,
+    Value<bool?> isVaulted = const Value.absent(),
+    Value<bool?> isMasterable = const Value.absent(),
     Value<int?> maxLevel = const Value.absent(),
     Value<String?> wikiaUrl = const Value.absent(),
     Value<String?> wikiaThumbnail = const Value.absent(),
@@ -697,8 +700,8 @@ class CodexItem extends DataClass implements Insertable<CodexItem> {
     description: description.present ? description.value : this.description,
     imageName: imageName.present ? imageName.value : this.imageName,
     category: category ?? this.category,
-    isVaulted: isVaulted ?? this.isVaulted,
-    isMasterable: isMasterable ?? this.isMasterable,
+    isVaulted: isVaulted.present ? isVaulted.value : this.isVaulted,
+    isMasterable: isMasterable.present ? isMasterable.value : this.isMasterable,
     maxLevel: maxLevel.present ? maxLevel.value : this.maxLevel,
     wikiaUrl: wikiaUrl.present ? wikiaUrl.value : this.wikiaUrl,
     wikiaThumbnail: wikiaThumbnail.present
@@ -785,8 +788,8 @@ class CodexItemsCompanion extends UpdateCompanion<CodexItem> {
   final Value<String?> description;
   final Value<String?> imageName;
   final Value<String> category;
-  final Value<bool> isVaulted;
-  final Value<bool> isMasterable;
+  final Value<bool?> isVaulted;
+  final Value<bool?> isMasterable;
   final Value<int?> maxLevel;
   final Value<String?> wikiaUrl;
   final Value<String?> wikiaThumbnail;
@@ -813,7 +816,7 @@ class CodexItemsCompanion extends UpdateCompanion<CodexItem> {
     this.imageName = const Value.absent(),
     required String category,
     this.isVaulted = const Value.absent(),
-    required bool isMasterable,
+    this.isMasterable = const Value.absent(),
     this.maxLevel = const Value.absent(),
     this.wikiaUrl = const Value.absent(),
     this.wikiaThumbnail = const Value.absent(),
@@ -822,7 +825,6 @@ class CodexItemsCompanion extends UpdateCompanion<CodexItem> {
   }) : uniqueName = Value(uniqueName),
        name = Value(name),
        category = Value(category),
-       isMasterable = Value(isMasterable),
        type = Value(type);
   static Insertable<CodexItem> custom({
     Expression<String>? uniqueName,
@@ -835,7 +837,7 @@ class CodexItemsCompanion extends UpdateCompanion<CodexItem> {
     Expression<int>? maxLevel,
     Expression<String>? wikiaUrl,
     Expression<String>? wikiaThumbnail,
-    Expression<String>? type,
+    Expression<int>? type,
     Expression<int>? rowid,
   }) {
     return RawValuesInsertable({
@@ -860,8 +862,8 @@ class CodexItemsCompanion extends UpdateCompanion<CodexItem> {
     Value<String?>? description,
     Value<String?>? imageName,
     Value<String>? category,
-    Value<bool>? isVaulted,
-    Value<bool>? isMasterable,
+    Value<bool?>? isVaulted,
+    Value<bool?>? isMasterable,
     Value<int?>? maxLevel,
     Value<String?>? wikiaUrl,
     Value<String?>? wikiaThumbnail,
@@ -918,7 +920,7 @@ class CodexItemsCompanion extends UpdateCompanion<CodexItem> {
       map['wikia_thumbnail'] = Variable<String>(wikiaThumbnail.value);
     }
     if (type.present) {
-      map['type'] = Variable<String>(
+      map['type'] = Variable<int>(
         $CodexItemsTable.$convertertype.toSql(type.value),
       );
     }
@@ -1338,8 +1340,8 @@ typedef $$CodexItemsTableCreateCompanionBuilder =
       Value<String?> description,
       Value<String?> imageName,
       required String category,
-      Value<bool> isVaulted,
-      required bool isMasterable,
+      Value<bool?> isVaulted,
+      Value<bool?> isMasterable,
       Value<int?> maxLevel,
       Value<String?> wikiaUrl,
       Value<String?> wikiaThumbnail,
@@ -1353,8 +1355,8 @@ typedef $$CodexItemsTableUpdateCompanionBuilder =
       Value<String?> description,
       Value<String?> imageName,
       Value<String> category,
-      Value<bool> isVaulted,
-      Value<bool> isMasterable,
+      Value<bool?> isVaulted,
+      Value<bool?> isMasterable,
       Value<int?> maxLevel,
       Value<String?> wikiaUrl,
       Value<String?> wikiaThumbnail,
@@ -1421,11 +1423,11 @@ class $$CodexItemsTableFilterComposer
     builder: (column) => ColumnFilters(column),
   );
 
-  ColumnWithTypeConverterFilters<wfcd.ItemType, wfcd.ItemType, String>
-  get type => $composableBuilder(
-    column: $table.type,
-    builder: (column) => ColumnWithTypeConverterFilters(column),
-  );
+  ColumnWithTypeConverterFilters<wfcd.ItemType, wfcd.ItemType, int> get type =>
+      $composableBuilder(
+        column: $table.type,
+        builder: (column) => ColumnWithTypeConverterFilters(column),
+      );
 }
 
 class $$CodexItemsTableOrderingComposer
@@ -1487,7 +1489,7 @@ class $$CodexItemsTableOrderingComposer
     builder: (column) => ColumnOrderings(column),
   );
 
-  ColumnOrderings<String> get type => $composableBuilder(
+  ColumnOrderings<int> get type => $composableBuilder(
     column: $table.type,
     builder: (column) => ColumnOrderings(column),
   );
@@ -1540,7 +1542,7 @@ class $$CodexItemsTableAnnotationComposer
     builder: (column) => column,
   );
 
-  GeneratedColumnWithTypeConverter<wfcd.ItemType, String> get type =>
+  GeneratedColumnWithTypeConverter<wfcd.ItemType, int> get type =>
       $composableBuilder(column: $table.type, builder: (column) => column);
 }
 
@@ -1580,8 +1582,8 @@ class $$CodexItemsTableTableManager
                 Value<String?> description = const Value.absent(),
                 Value<String?> imageName = const Value.absent(),
                 Value<String> category = const Value.absent(),
-                Value<bool> isVaulted = const Value.absent(),
-                Value<bool> isMasterable = const Value.absent(),
+                Value<bool?> isVaulted = const Value.absent(),
+                Value<bool?> isMasterable = const Value.absent(),
                 Value<int?> maxLevel = const Value.absent(),
                 Value<String?> wikiaUrl = const Value.absent(),
                 Value<String?> wikiaThumbnail = const Value.absent(),
@@ -1608,8 +1610,8 @@ class $$CodexItemsTableTableManager
                 Value<String?> description = const Value.absent(),
                 Value<String?> imageName = const Value.absent(),
                 required String category,
-                Value<bool> isVaulted = const Value.absent(),
-                required bool isMasterable,
+                Value<bool?> isVaulted = const Value.absent(),
+                Value<bool?> isMasterable = const Value.absent(),
                 Value<int?> maxLevel = const Value.absent(),
                 Value<String?> wikiaUrl = const Value.absent(),
                 Value<String?> wikiaThumbnail = const Value.absent(),

@@ -18,5 +18,9 @@ CodexItem encodeCodexItem(Map<String, dynamic> item) {
     item['type'] = 'Pet Resource';
   }
 
+  if (item.containsKey('vaulted')) item['isVaulted'] = item['vaulted'];
+  if (item.containsKey('masterable')) item['isMasterable'] = item['masterable'];
+
+  item['type'] = ItemType.byType(item['type'] as String).index;
   return CodexItem.fromJson(item);
 }

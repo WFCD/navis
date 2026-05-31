@@ -86,7 +86,9 @@ class _SettingsView extends StatelessWidget {
               onPressed: (context) async {
                 ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Updating Codex')));
 
-                final isUpdated = await RepositoryProvider.of<WarframeRepository>(context).updateCodex();
+                final isUpdated = await RepositoryProvider.of<WarframeRepository>(
+                  context,
+                ).updateCodex(forceUpdate: true);
                 if (!context.mounted) return;
 
                 ScaffoldMessenger.of(

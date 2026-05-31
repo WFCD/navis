@@ -42,6 +42,7 @@ Future<void> bootstrap(BootstrapBuilder builder) async {
   final codex = CodexDatabase();
 
   final repository = WarframeRepository(client: client, cache: cacheManager, codex: codex);
+  final worldstate = await repository.buildWorldstate();
 
   logger.info('Booting up Navis');
   runApp(
@@ -55,5 +56,5 @@ Future<void> bootstrap(BootstrapBuilder builder) async {
   );
 
   // All calls for items will fallback to the API so its alright to deffer this and let the app warm up
-  Timer(const Duration(seconds: 15), repository.initializeCodex);
+  Timer(const Duration(seconds: 15), () => repository.updateCodex(buildLabel: worldstate.buildLabel));
 }
