@@ -7,7 +7,7 @@ class CodexItems extends Table {
   late final description = text().nullable()();
   late final imageName = text().nullable()();
   late final category = text()();
-  late final isVaulted = boolean()();
+  late final isVaulted = boolean().withDefault(const Constant(false))();
   late final isMasterable = boolean()();
   late final maxLevel = integer().nullable()();
   late final wikiaUrl = text().nullable()();

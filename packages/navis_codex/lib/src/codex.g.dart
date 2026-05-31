@@ -324,10 +324,11 @@ class $CodexItemsTable extends CodexItems
     aliasedName,
     false,
     type: DriftSqlType.bool,
-    requiredDuringInsert: true,
+    requiredDuringInsert: false,
     defaultConstraints: GeneratedColumn.constraintIsAlways(
       'CHECK ("is_vaulted" IN (0, 1))',
     ),
+    defaultValue: const Constant(false),
   );
   static const VerificationMeta _isMasterableMeta = const VerificationMeta(
     'isMasterable',
@@ -455,8 +456,6 @@ class $CodexItemsTable extends CodexItems
         _isVaultedMeta,
         isVaulted.isAcceptableOrUnknown(data['is_vaulted']!, _isVaultedMeta),
       );
-    } else if (isInserting) {
-      context.missing(_isVaultedMeta);
     }
     if (data.containsKey('is_masterable')) {
       context.handle(
@@ -813,7 +812,7 @@ class CodexItemsCompanion extends UpdateCompanion<CodexItem> {
     this.description = const Value.absent(),
     this.imageName = const Value.absent(),
     required String category,
-    required bool isVaulted,
+    this.isVaulted = const Value.absent(),
     required bool isMasterable,
     this.maxLevel = const Value.absent(),
     this.wikiaUrl = const Value.absent(),
@@ -823,7 +822,6 @@ class CodexItemsCompanion extends UpdateCompanion<CodexItem> {
   }) : uniqueName = Value(uniqueName),
        name = Value(name),
        category = Value(category),
-       isVaulted = Value(isVaulted),
        isMasterable = Value(isMasterable),
        type = Value(type);
   static Insertable<CodexItem> custom({
@@ -1340,7 +1338,7 @@ typedef $$CodexItemsTableCreateCompanionBuilder =
       Value<String?> description,
       Value<String?> imageName,
       required String category,
-      required bool isVaulted,
+      Value<bool> isVaulted,
       required bool isMasterable,
       Value<int?> maxLevel,
       Value<String?> wikiaUrl,
@@ -1610,7 +1608,7 @@ class $$CodexItemsTableTableManager
                 Value<String?> description = const Value.absent(),
                 Value<String?> imageName = const Value.absent(),
                 required String category,
-                required bool isVaulted,
+                Value<bool> isVaulted = const Value.absent(),
                 required bool isMasterable,
                 Value<int?> maxLevel = const Value.absent(),
                 Value<String?> wikiaUrl = const Value.absent(),
