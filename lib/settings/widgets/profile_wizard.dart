@@ -21,13 +21,6 @@ class ProfileWizard extends StatefulWidget {
     if (!context.mounted || data == null) return;
 
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(context.l10n.syncingInfoText)));
-
-    try {
-      await BlocProvider.of<ProfileCubit>(context).saveProfile(data);
-    } on Exception {
-      if (!context.mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(context.l10n.profileSyncError)));
-    }
   }
 
   @override
@@ -35,14 +28,13 @@ class ProfileWizard extends StatefulWidget {
 }
 
 class _ProfileWizardState extends State<ProfileWizard> {
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-
-  late TextEditingController _jsonTextFieldController;
-
   static const _maxSteps = 3;
 
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  late TextEditingController _jsonTextFieldController;
+
   UserData? _user;
-  int _currentPage = 0;
+  int _activePage = 0;
 
   @override
   void initState() {
@@ -51,45 +43,19 @@ class _ProfileWizardState extends State<ProfileWizard> {
   }
 
   void _onStepContinue() {
-    if (_currentPage == 2) {
+    UserData? usr;
+    if (_activePage == 2) {
       if (!_formKey.currentState!.validate()) return;
-
-      final user = RepositoryProvider.of<WarframeRepository>(context).user(_jsonTextFieldController.text);
-      setState(() {
-        _user = user;
-        _currentPage++;
-      });
-    } else if (_currentPage == _maxSteps) {
-      Navigator.pop(context, _jsonTextFieldController.text);
-    } else {
-      setState(() => _currentPage++);
+      usr = RepositoryProvider.of<WarframeRepository>(context).user(_jsonTextFieldController.text);
+      BlocProvider.of<ProfileCubit>(context).loadProfile(_jsonTextFieldController.text);
     }
-  }
 
-  Widget _controlsBuilder(BuildContext context, ControlsDetails details) {
-    final locale = MaterialLocalizations.of(context);
+    if (_activePage == _maxSteps) return Navigator.pop(context);
 
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 24),
-      child: OverflowBar(
-        alignment: MainAxisAlignment.spaceBetween,
-
-        children: [
-          if (details.stepIndex > 0)
-            OutlinedButton(onPressed: details.onStepCancel, child: Text(locale.backButtonTooltip)),
-          if (details.stepIndex < _maxSteps)
-            FilledButton(
-              onPressed: details.onStepContinue,
-              child: Text(locale.continueButtonLabel),
-            ),
-          if (details.stepIndex == _maxSteps)
-            FilledButton(
-              onPressed: details.onStepContinue,
-              child: Text(locale.okButtonLabel),
-            ),
-        ],
-      ),
-    );
+    setState(() {
+      if (_activePage < _maxSteps) _activePage++;
+      if (usr != null) _user = usr;
+    });
   }
 
   String? _validateJson(String? input) {
@@ -106,16 +72,18 @@ class _ProfileWizardState extends State<ProfileWizard> {
   @override
   Widget build(BuildContext context) {
     return Stepper(
-      controlsBuilder: _controlsBuilder,
-      currentStep: _currentPage,
+      controlsBuilder: (_, details) => _StepsControls(details, _maxSteps),
+      currentStep: _activePage,
       onStepContinue: _onStepContinue,
-      onStepCancel: () => setState(() => _currentPage--),
+      onStepCancel: () => setState(() => _activePage--),
       steps: [
         Step(
+          isActive: _activePage == 0,
           title: Text(context.l10n.inventoriaStepOneTitle),
           content: Text('${context.l10n.inventoriaStepOne(faqPage, discordInvite)}\n\n${context.l10n.legalese}'),
         ),
         Step(
+          isActive: _activePage == 1,
           title: Text(context.l10n.inventoriaStepTwoTitle),
           content: Column(
             spacing: 24,
@@ -131,6 +99,7 @@ class _ProfileWizardState extends State<ProfileWizard> {
           ),
         ),
         Step(
+          isActive: _activePage == 2,
           title: Text(context.l10n.inventoriaStepThreeTitle),
           content: Column(
             mainAxisSize: .min,
@@ -157,9 +126,16 @@ class _ProfileWizardState extends State<ProfileWizard> {
           ),
         ),
         Step(
+          isActive: _activePage == _maxSteps,
           title: Text(context.l10n.inventoriaStepFourTitle),
-          content: _user != null
-              ? ListTile(
+          content: BlocBuilder<ProfileCubit, ProfileState>(
+            builder: (context, state) {
+              if (state is ProfileUpdating) return const WarframeSpinner();
+              if (state is ProfileFailure) return Center(child: Text(context.l10n.inventoriaProfileError));
+
+              if (state is ProfileSuccessful && _user != null) {
+                // At this point user data is verified and non null
+                return ListTile(
                   contentPadding: const EdgeInsets.symmetric(vertical: 16),
                   leading: CircleAvatar(
                     radius: 25,
@@ -167,8 +143,12 @@ class _ProfileWizardState extends State<ProfileWizard> {
                   ),
                   title: Text(_user!.username),
                   subtitle: Text(context.l10n.itemRankSubtitle(_user!.account.masteryRank)),
-                )
-              : const SizedBox.shrink(),
+                );
+              }
+
+              return const SizedBox.shrink();
+            },
+          ),
         ),
       ],
     );
@@ -178,5 +158,46 @@ class _ProfileWizardState extends State<ProfileWizard> {
   void dispose() {
     _jsonTextFieldController.dispose();
     super.dispose();
+  }
+}
+
+class _StepsControls extends StatelessWidget {
+  const _StepsControls(this.details, this.maxSteps);
+
+  final ControlsDetails details;
+  final int maxSteps;
+
+  @override
+  Widget build(BuildContext context) {
+    final locale = MaterialLocalizations.of(context);
+
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 24),
+      child: OverflowBar(
+        alignment: MainAxisAlignment.spaceBetween,
+        children: [
+          if (details.stepIndex > 0)
+            OutlinedButton(onPressed: details.onStepCancel, child: Text(locale.backButtonTooltip)),
+          if (details.stepIndex < maxSteps)
+            FilledButton(
+              onPressed: details.onStepContinue,
+              child: Text(locale.continueButtonLabel),
+            ),
+          if (details.stepIndex == maxSteps)
+            BlocBuilder<ProfileCubit, ProfileState>(
+              builder: (context, state) {
+                if (state is ProfileSuccessful) {
+                  return FilledButton(
+                    onPressed: details.onStepContinue,
+                    child: Text(locale.okButtonLabel),
+                  );
+                }
+
+                return const SizedBox.shrink();
+              },
+            ),
+        ],
+      ),
+    );
   }
 }

@@ -32,12 +32,6 @@ class AppBlocObserver extends BlocObserver {
 
   @override
   void onError(BlocBase<dynamic> bloc, Object error, StackTrace stackTrace) {
-    if (error is StateError && error.message.contains('Cannot emit')) {
-      _logger.warning('$bloc was closed before new state was emmited');
-    } else {
-      _logger.shout('onError($bloc)', error, stackTrace);
-    }
-
     super.onError(bloc, error, stackTrace);
   }
 }

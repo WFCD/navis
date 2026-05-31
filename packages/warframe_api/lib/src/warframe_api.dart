@@ -1,9 +1,11 @@
 import 'dart:convert';
+import 'dart:io';
 import 'dart:isolate';
 
 import 'package:html/parser.dart';
 import 'package:http/http.dart';
 import 'package:profile_models/profile_models.dart';
+import 'package:warframe_api/src/exceptions.dart';
 import 'package:warframe_drop_data/warframe_drop_data.dart';
 import 'package:warframe_worldstate_data/warframe_worldstate_data.dart';
 import 'package:worldstate_models/worldstate_models.dart';
@@ -38,7 +40,7 @@ class WarframeApi {
     final raw = res.bodyBytes;
 
     return Isolate.run(() async {
-      final html = parse(raw, encoding: 'urf-8');
+      final html = parse(raw, encoding: 'utf-8');
       return buildDropData(html.body!);
     });
   }
@@ -46,6 +48,10 @@ class WarframeApi {
   Future<Profile> fetchProfile(String id) async {
     final res = await _client.get(Uri.parse('$_profileApi?playerId=$id'));
     final body = res.body;
+
+    if (res.statusCode == HttpStatus.notFound || res.statusCode == HttpStatus.conflict) {
+      throw ProfileNotFound(res.body);
+    }
 
     return Isolate.run(() {
       final json = jsonDecode(body) as Map<String, dynamic>;

@@ -31,12 +31,13 @@ final class ProfileSuccessful extends ProfileState {
 }
 
 final class ProfileFailure extends ProfileState {
-  const ProfileFailure(this.data);
+  const ProfileFailure([this.message]);
 
-  // Doesn't look like there isn't any security issues or tokens passed into the user-data so I figured it's
-  // okay to pass for debugging
-  final String data;
+  final dynamic message;
 
   @override
-  String toString() => 'ProfileFailure(data: $data)';
+  List<Object> get props => [message as Object];
+
+  @override
+  String toString() => 'ProfileFailure(data: $message)';
 }

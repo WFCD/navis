@@ -17,20 +17,20 @@ class ProfileCubit extends Cubit<ProfileState> with SafeBlocMixin {
   final WarframeRepository _repo;
   final UserSettings _settings;
 
-  Future<void> saveProfile(String data) async {
+  Future<void> loadProfile(String data) async {
     if (state is! ProfileSuccessful) emit(ProfileUpdating());
 
     await safeEmit(
       () async {
         if (!_repo.verifyUserData(data)) return ProfileFailure(data);
 
-        final user = UserData.raw(data);
+        final user = _repo.user(data);
         final profile = await _repo.fetchProfile(user.id);
         _settings.user = user.toJson();
 
         return ProfileSuccessful(user, profile.loadout.xpInfo);
       },
-      onError: (_, _) => ProfileFailure(data),
+      onError: _throwError,
     );
   }
 
@@ -47,8 +47,13 @@ class ProfileCubit extends Cubit<ProfileState> with SafeBlocMixin {
 
         return ProfileSuccessful(user, profile.loadout.xpInfo);
       },
-      onError: (_, _) => ProfileFailure(data ?? ''),
+      onError: _throwError,
     );
+  }
+
+  ProfileFailure _throwError(Object error, StackTrace stackTrace) {
+    if (error is ProfileNotFound) return ProfileFailure(error.message);
+    return const ProfileFailure();
   }
 
   @override

@@ -69,7 +69,10 @@ class WarframeRepository {
 
   Future<Profile> fetchProfile(String id) async {
     final cache = await _cacheManager.get<Map<String, dynamic>>(CacheKeys.profile);
-    if (cache != null) return Isolate.run(() => Profile.fromMap(cache));
+    if (cache != null) {
+      final profile = await Isolate.run(() => Profile.fromMap(cache));
+      if (profile.id == id) return profile;
+    }
 
     final data = await _warframeApi.fetchProfile(id);
     await _cacheManager.set(CacheKeys.profile, data.toMap(), ttl: CacheTime.profileRefreshTime);
