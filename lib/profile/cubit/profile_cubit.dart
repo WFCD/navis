@@ -3,6 +3,7 @@ import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:navis/settings/settings.dart';
 import 'package:navis/utils/bloc_mixin.dart';
 import 'package:profile_models/profile_models.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:warframe_api/warframe_api.dart';
 import 'package:warframe_repository/warframe_repository.dart';
 
@@ -24,13 +25,18 @@ class ProfileCubit extends Cubit<ProfileState> with SafeBlocMixin {
       () async {
         if (!_repo.verifyUserData(data)) return ProfileFailure(data);
 
-        final user = _repo.user(data);
-        final profile = await _repo.fetchProfile(user.id);
-        _settings.user = user.toJson();
+        try {
+          final user = _repo.user(data);
+          final profile = await _repo.fetchProfile(user.id);
+          _settings.user = user.toJson();
 
-        return ProfileSuccessful(user, profile.loadout.xpInfo);
+          return ProfileSuccessful(user, profile.loadout.xpInfo);
+        } on ProfileNotFound catch (e) {
+          await Sentry.addBreadcrumb(Breadcrumb(message: e.toString(), data: _repo.user(data).toMap()));
+          rethrow;
+        }
       },
-      onError: _throwError,
+      onError: (_, _) => const ProfileFailure(),
     );
   }
 
@@ -42,18 +48,13 @@ class ProfileCubit extends Cubit<ProfileState> with SafeBlocMixin {
       () async {
         if (data == null) return ProfileInitial();
 
-        final user = UserData.fromJson(data);
+        final user = _repo.user(data);
         final profile = await _repo.fetchProfile(user.id);
 
         return ProfileSuccessful(user, profile.loadout.xpInfo);
       },
-      onError: _throwError,
+      onError: (_, _) => const ProfileFailure(),
     );
-  }
-
-  ProfileFailure _throwError(Object error, StackTrace stackTrace) {
-    if (error is ProfileNotFound) return ProfileFailure(error.message);
-    return const ProfileFailure();
   }
 
   @override
