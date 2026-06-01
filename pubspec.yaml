@@ -103,7 +103,7 @@ dev_dependencies:
   commitlint_cli: ^0.8.1
   flutter_gen_runner: ^5.14.1
   flutter_launcher_icons: ^0.14.4
-  flutter_native_splash: ^2.4.6
+  flutter_native_splash: ^2.4.8
   flutter_test:
     sdk: flutter
   go_router_builder: ^4.1.1
