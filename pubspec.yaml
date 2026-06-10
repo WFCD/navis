@@ -69,10 +69,7 @@ dependencies:
       url: https://github.com/getsentry/sentry-dart.git
       ref: deps/jni-0.15.x
       path: packages/logging
-  simple_icons:
-    git:
-      url: https://github.com/jlnrrg/simple_icons
-      ref: develop
+  simple_icons: ^16.23.0
   visibility_detector: ^0.4.0+2
   warframe_api:
     path: packages/warframe_api

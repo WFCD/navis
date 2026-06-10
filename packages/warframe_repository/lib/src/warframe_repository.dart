@@ -115,9 +115,16 @@ class WarframeRepository {
     return arbis.current;
   }
 
-  Future<bool> updateCodex({String? buildLabel, bool forceUpdate = false}) async {
-    if (buildLabel == await _codex.lastBuild) return false;
-    if (!forceUpdate && buildLabel == null) return false;
+  Future<void> autoUpdateCodex() async {
+    final buildLabel = (await buildWorldstate()).buildLabel;
+    if (buildLabel == await _codex.lastBuild) return;
+
+    await updateCodex(forceUpdate: true);
+    await _codex.updateBuild(buildLabel);
+  }
+
+  Future<bool> updateCodex({bool forceUpdate = false}) async {
+    if (!forceUpdate) return false;
 
     const codexProps = <ItemProps>[
       .uniqueName,
@@ -138,7 +145,6 @@ class WarframeRepository {
       final inserts = items.map(encodeCodexItem).toList();
 
       await _codex.addItems(inserts);
-      if (buildLabel != null) await _codex.updateBuild(buildLabel);
 
       return true;
     } on Exception {
