@@ -1341,10 +1341,10 @@ packages:
     description:
       path: "."
       ref: develop
-      resolved-ref: fa3798db2995e5c7a0464610ad2610d4c0142cc3
+      resolved-ref: "6a93f2392d50104663b232da524a8d86528b7f52"
       url: "https://github.com/jlnrrg/simple_icons"
     source: git
-    version: "16.20.0"
+    version: "16.23.0"
   sky_engine:
     dependency: transitive
     description: flutter
