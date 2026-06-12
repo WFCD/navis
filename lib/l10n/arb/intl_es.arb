@@ -1441,5 +1441,9 @@
   "inventoriaInputError": "La entrada no tiene identificador de usuario. Por favor, asegúrese de haber iniciado sesión en warframe.com antes de intentarlo de nuevo",
   "@inventoriaInputError": {
     "description": "inventoria input error message"
+  },
+  "inventoriaProfileError": "Could not find requested account",
+  "@inventoriaProfileError": {
+    "description": "Error text when the profile is retrievable"
   }
 }
