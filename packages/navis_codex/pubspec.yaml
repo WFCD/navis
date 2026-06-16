@@ -18,7 +18,7 @@ dependencies:
   json_annotation: ^4.11.0
   navis_cache:
     path: ../navis_cache
-  path_provider: ^2.1.5
+  path_provider: ^2.1.6
   profile_models:
     git:
       url: https://github.com/SlayerOrnstein/wfcd_dart.git
