@@ -1756,11 +1756,11 @@ packages:
     dependency: "direct main"
     description:
       path: "packages/worldstate_models"
-      ref: "worldstate_models-v0.1.7+9"
-      resolved-ref: f92a6d3bb2388e754542909055a511ab8e6b9ee0
+      ref: "worldstate_models-v0.1.7+11"
+      resolved-ref: ceb933a1150cbe36dcc2c8b445806e27118917b8
       url: "https://github.com/SlayerOrnstein/wfcd_dart.git"
     source: git
-    version: "0.1.7+9"
+    version: "0.1.7+11"
   xdg_directories:
     dependency: transitive
     description:
