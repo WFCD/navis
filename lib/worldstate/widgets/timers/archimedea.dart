@@ -23,7 +23,11 @@ class ArchimedeaCard extends StatelessWidget {
               ...?archimedea?.map(
                 (a) => ListTile(
                   hoverColor: Colors.transparent,
-                  title: Text('${a.type} Archimedea'),
+                  title: Text(switch (a.type) {
+                    ArchimedeaType.deep => context.l10n.deepArchimedeaTitle,
+                    ArchimedeaType.temporal => context.l10n.temporalArchimedeaTitle,
+                    ArchimedeaType.unknonw => 'Unknown',
+                  }),
                   subtitle: Text(context.l10n.tapForMoreDetails),
                   onTap: () => ArchimedeaPageRoute(a).push<void>(context),
                 ),
