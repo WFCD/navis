@@ -27,3 +27,4 @@ rules:
       - notifications
       - fissures
       - invasions
+      - dependabot

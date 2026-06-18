@@ -26,3 +26,7 @@ updates:
     schedule:
       interval: "daily"
       time: "00:00"
+    groups:
+      fastlane:
+        patterns:
+          - fastlane
