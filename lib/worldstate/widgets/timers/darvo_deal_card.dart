@@ -42,6 +42,11 @@ class DarvoDealCard extends StatelessWidget {
             _ => null,
           };
 
+          final flashSale = switch (state) {
+            WorldstateSuccess() => state.seed.flashSales,
+            _ => <List<FlashSale>>[],
+          };
+
           final stock = deal != null ? deal.total - deal.sold : 0;
           final inStock = stock != 0;
           final expiry = deal?.expiry ?? DateTime.now();
@@ -78,13 +83,14 @@ class DarvoDealCard extends StatelessWidget {
                       create: (_) => ItemCubit(deal.item, repo)..fetchByName(),
                       child: _DealWidget(deal: deal),
                     ),
-                  Align(
-                    alignment: Alignment.centerRight,
-                    child: TextButton(
-                      onPressed: () => FlashSalesPageRoute().push<void>(context),
-                      child: const Text('See all Sales'),
+                  if (flashSale.isNotEmpty)
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: TextButton(
+                        onPressed: () => FlashSalesPageRoute().push<void>(context),
+                        child: const Text('See all Sales'),
+                      ),
                     ),
-                  ),
                 ],
               ),
             ),
