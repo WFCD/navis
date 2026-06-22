@@ -67,15 +67,7 @@ class _ArchimedeaMissionsCategory extends StatelessWidget {
                   title: Text('${l10n.archimedeaDeviationTitle}: ${m.deviation.title}', style: titleStyle),
                   subtitle: Text(m.deviation.description),
                 ),
-                ...m.risks.map(
-                  (rv) => ListTile(
-                    title: Text(
-                      '${l10n.archimedeaRiskTitle}: ${rv.title}',
-                      style: titleStyle,
-                    ),
-                    subtitle: Text(rv.description),
-                  ),
-                ),
+                ...m.risks.map((rv) => _Risk(risk: rv)),
               ],
             ),
           ),
@@ -90,15 +82,73 @@ class _PersonalModifierCategory extends StatelessWidget {
 
   final List<PersonalModifiers> personalModifiers;
 
+  void _onExpansionChanged(BuildContext context, {bool isExpanded = false}) {
+    if (!isExpanded) return;
+
+    Future<void>.delayed(kThemeAnimationDuration, () {
+      if (!context.mounted) return;
+      Scrollable.ensureVisible(context, duration: kThemeAnimationDuration);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return AppCard(
-      child: Column(
-        children: [
-          CategoryTitle(title: context.l10n.archimedeaPersonalModifierTitle),
-          ...personalModifiers.map((pm) => ListTile(title: Text(pm.title), subtitle: Text(pm.description))),
-        ],
+      child: ExpansionTile(
+        shape: LinearBorder.none,
+        onExpansionChanged: (value) => _onExpansionChanged(context, isExpanded: value),
+        title: Text(context.l10n.archimedeaPersonalModifierTitle),
+        children: personalModifiers
+            .map((pm) => ListTile(title: Text(pm.title), subtitle: Text(pm.description)))
+            .toList(),
       ),
     );
+  }
+}
+
+class _Risk extends StatelessWidget {
+  const _Risk({required this.risk});
+
+  final ArchimedeaRisk risk;
+
+  @override
+  Widget build(BuildContext context) {
+    final child = ListTile(
+      title: Text('${context.l10n.archimedeaRiskTitle}: ${risk.title}'),
+      titleTextStyle: context.textTheme.titleSmall,
+      subtitle: Text(risk.description),
+    );
+
+    if (risk.isElite) {
+      const corner = Radius.circular(4);
+
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.end,
+        children: [
+          DecoratedBox(
+            decoration: BoxDecoration(
+              color: context.colorScheme.secondaryContainer,
+              borderRadius: const BorderRadius.only(topLeft: corner, topRight: corner),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8),
+              child: Text(
+                'Elite',
+                style: context.textTheme.labelLarge,
+              ),
+            ),
+          ),
+          DecoratedBox(
+            decoration: BoxDecoration(
+              border: BoxBorder.all(color: context.colorScheme.secondaryContainer, width: 4),
+              borderRadius: const BorderRadius.only(topLeft: corner, bottomLeft: corner, bottomRight: corner),
+            ),
+            child: child,
+          ),
+        ],
+      );
+    }
+
+    return child;
   }
 }

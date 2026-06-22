@@ -23,7 +23,7 @@ rules:
       - timers
       - syndicates
       - events
-      - archimedea
+      - Archimedea
       - notifications
       - fissures
       - invasions
