@@ -1,5 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:fish_repository/fish_repository.dart';
+import 'package:fish_data/fish_data.dart';
 import 'package:flutter/material.dart';
 import 'package:navis/codex/codex.dart';
 import 'package:navis/l10n/l10n.dart';

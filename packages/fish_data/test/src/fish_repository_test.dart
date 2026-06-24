@@ -1,7 +1,7 @@
 // Don't worry about it
 // ignore_for_file: inference_failure_on_function_invocation
 
-import 'package:fish_repository/fish_repository.dart';
+import 'package:fish_data/fish_data.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

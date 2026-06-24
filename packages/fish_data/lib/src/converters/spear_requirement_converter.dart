@@ -1,4 +1,4 @@
-import 'package:fish_repository/src/models/spear_requirements.dart';
+import 'package:fish_data/src/models/spear_requirements.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 /// {@template region_time_converter}

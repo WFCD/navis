@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
-import 'package:fish_repository/fish_repository.dart';
+import 'package:fish_data/src/converters/converters.dart';
+import 'package:fish_data/src/models/region_resource.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'fish_size.g.dart';

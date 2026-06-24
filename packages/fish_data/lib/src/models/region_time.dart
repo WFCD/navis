@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:fish_repository/src/models/region_time_preference.dart';
+import 'package:fish_data/src/models/region_time_preference.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'region_time.g.dart';

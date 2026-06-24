@@ -1,4 +1,4 @@
-import 'package:fish_repository/fish_repository.dart';
+import 'package:fish_data/fish_data.dart';
 import 'package:flutter/material.dart';
 import 'package:navis/explore/explore.dart';
 

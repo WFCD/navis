@@ -19,8 +19,8 @@ dependencies:
   dynamic_color: ^1.8.1
   equatable: ^2.1.0
   firebase_core: ^4.11.0
-  fish_repository:
-    path: packages/fish_repository
+  fish_data:
+    path: packages/fish_data
   flutter:
     sdk: flutter
   flutter_bloc: ^9.1.0

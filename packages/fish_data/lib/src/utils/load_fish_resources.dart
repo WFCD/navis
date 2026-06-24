@@ -1,6 +1,7 @@
 import 'dart:convert';
 
-import 'package:fish_repository/fish_repository.dart';
+import 'package:fish_data/gen/assets.gen.dart';
+import 'package:fish_data/src/models/models.dart';
 import 'package:flutter/services.dart';
 
 /// An enum for the different fishing regions.

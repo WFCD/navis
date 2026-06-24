@@ -1,4 +1,4 @@
-import 'package:fish_repository/src/models/region_resource.dart';
+import 'package:fish_data/src/models/region_resource.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 /// {@template region_resources_converter}
