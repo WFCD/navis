@@ -4,8 +4,8 @@ import 'dart:convert';
 import 'dart:isolate';
 
 import 'package:arbi_api/arbi_api.dart';
+import 'package:cache/cache.dart';
 import 'package:http/http.dart';
-import 'package:navis_cache/navis_cache.dart';
 import 'package:navis_codex/navis_codex.dart' hide XpItem;
 import 'package:profile_models/profile_models.dart';
 import 'package:warframe_api/warframe_api.dart';

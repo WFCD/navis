@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:cache/cache.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -12,7 +13,6 @@ import 'package:navis/app/widgets/repo_bootstrap.dart';
 import 'package:navis/firebase_options.dart';
 import 'package:navis/router/app_router.dart';
 import 'package:navis/settings/settings.dart';
-import 'package:navis_cache/navis_cache.dart';
 import 'package:navis_codex/navis_codex.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';

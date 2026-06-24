@@ -11,10 +11,10 @@ resolution: workspace
 dependencies: 
   arbi_api:
     path: ../arbi_api
+  cache:
+    path: ../cache
   http: ^1.6.0
   json_annotation: ^4.12.0
-  navis_cache:
-    path: ../navis_cache
   navis_codex:
     path: ../navis_codex
   profile_models:

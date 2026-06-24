@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:hive_ce/hive.dart';
-import 'package:navis_cache/navis_cache.dart';
+import '../../lib/cache.dart';
 import 'package:test/test.dart';
 
 void main() {

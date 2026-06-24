@@ -2,10 +2,11 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:isolate';
 
+import 'package:cache/hive/hive_adapters.dart';
+import 'package:cache/src/models/cached_data.dart';
 import 'package:hive_ce/hive.dart';
 import 'package:meta/meta.dart';
-import 'package:navis_cache/hive/hive_adapters.dart';
-import 'package:navis_cache/src/models/cached_data.dart';
+
 
 /// {@template cache}
 /// A cache manager for storing Map data.
