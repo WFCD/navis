@@ -61,12 +61,10 @@ class WarframeApi {
 
   bool verifyUserData(String data) {
     try {
-      // Remove the html De injects into the json that seems to break in dart
-      final sanitized = data.replaceAll(RegExp(',"ratings_board":".+?"(?=[,}])', dotAll: true), '');
-      final json = jsonDecode(sanitized) as Map<String, dynamic>;
+      final json = jsonDecode(data) as Map<String, dynamic>;
 
       // These fields don't exist if the user is logged off
-      return json.containsKey('user_id') || json.containsKey('account');
+      return json.containsKey('user_id');
     } on FormatException {
       return false;
     }

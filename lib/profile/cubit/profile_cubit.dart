@@ -26,13 +26,12 @@ class ProfileCubit extends Cubit<ProfileState> with SafeBlocMixin {
         if (!_repo.verifyUserData(data)) return ProfileFailure(data);
 
         try {
-          final user = _repo.user(data);
-          final profile = await _repo.fetchProfile(user.id);
-          _settings.user = user.toJson();
+          final profile = await _repo.fetchProfile(data);
+          _settings.user = data;
 
-          return ProfileSuccessful(user, profile.loadout.xpInfo);
+          return ProfileSuccessful(profile);
         } on ProfileNotFound catch (e) {
-          await Sentry.addBreadcrumb(Breadcrumb(message: e.toString(), data: _repo.user(data).toMap()));
+          await Sentry.addBreadcrumb(Breadcrumb(message: e.toString()));
           rethrow;
         }
       },
@@ -48,10 +47,9 @@ class ProfileCubit extends Cubit<ProfileState> with SafeBlocMixin {
       () async {
         if (data == null) return ProfileInitial();
 
-        final user = _repo.user(data);
-        final profile = await _repo.fetchProfile(user.id);
+        final profile = await _repo.fetchProfile(data);
 
-        return ProfileSuccessful(user, profile.loadout.xpInfo);
+        return ProfileSuccessful(profile);
       },
       onError: (_, _) => const ProfileFailure(),
     );

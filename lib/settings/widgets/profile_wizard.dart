@@ -1,10 +1,8 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis/profile/cubit/profile_cubit.dart';
 import 'package:navis_ui/navis_ui.dart';
-import 'package:warframe_api/warframe_api.dart';
 import 'package:warframe_repository/warframe_repository.dart';
 
 class ProfileWizard extends StatefulWidget {
@@ -33,7 +31,6 @@ class _ProfileWizardState extends State<ProfileWizard> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   late TextEditingController _jsonTextFieldController;
 
-  UserData? _user;
   int _activePage = 0;
 
   @override
@@ -43,10 +40,8 @@ class _ProfileWizardState extends State<ProfileWizard> {
   }
 
   void _onStepContinue() {
-    UserData? usr;
     if (_activePage == 2) {
       if (!_formKey.currentState!.validate()) return;
-      usr = RepositoryProvider.of<WarframeRepository>(context).user(_jsonTextFieldController.text);
       BlocProvider.of<ProfileCubit>(context).loadProfile(_jsonTextFieldController.text);
     }
 
@@ -54,7 +49,6 @@ class _ProfileWizardState extends State<ProfileWizard> {
 
     setState(() {
       if (_activePage < _maxSteps) _activePage++;
-      if (usr != null) _user = usr;
     });
   }
 
@@ -133,16 +127,13 @@ class _ProfileWizardState extends State<ProfileWizard> {
               if (state is ProfileUpdating) return const WarframeSpinner();
               if (state is ProfileFailure) return Center(child: Text(context.l10n.inventoriaProfileError));
 
-              if (state is ProfileSuccessful && _user != null) {
+              if (state is ProfileSuccessful) {
                 // At this point user data is verified and non null
                 return ListTile(
                   contentPadding: const EdgeInsets.symmetric(vertical: 16),
-                  leading: CircleAvatar(
-                    radius: 25,
-                    foregroundImage: CachedNetworkImageProvider(_user!.avatar),
-                  ),
-                  title: Text(_user!.username),
-                  subtitle: Text(context.l10n.itemRankSubtitle(_user!.account.masteryRank)),
+
+                  title: Text(state.profile.username),
+                  subtitle: Text(context.l10n.itemRankSubtitle(state.profile.masteryRank)),
                 );
               }
 

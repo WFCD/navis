@@ -18,7 +18,7 @@ extension FactionsX on Factions {
       case Factions.infested:
         return WarframeIcons.factionsInfested;
       case Factions.narmer:
-        return WarframeIcons.factionsNarmer;
+        return WarframeIcons.factionsNarmer2;
       case Factions.unknown:
         return WarframeIcons.factionsSentient;
     }

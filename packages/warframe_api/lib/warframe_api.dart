@@ -2,5 +2,4 @@
 library;
 
 export 'src/exceptions.dart';
-export 'src/models/user_data.dart';
 export 'src/warframe_api.dart';

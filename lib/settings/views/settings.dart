@@ -8,7 +8,7 @@ import 'package:navis/profile/cubit/profile_cubit.dart';
 import 'package:navis/settings/settings.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:notification_repository/notification_repository.dart';
-import 'package:warframe_api/warframe_api.dart';
+import 'package:profile_models/profile_models.dart';
 import 'package:warframe_repository/warframe_repository.dart';
 
 class SettingsPage extends StatelessWidget {
@@ -54,7 +54,7 @@ class _SettingsView extends StatelessWidget {
       (cubit) => cubit.state is UserSettingsSuccess ? cubit.state as UserSettingsSuccess : null,
     );
 
-    final profile = context.select<ProfileCubit, UserData?>(
+    final profile = context.select<ProfileCubit, Profile?>(
       (c) => switch (c.state) {
         ProfileSuccessful(:final profile) => profile,
         _ => null,
@@ -74,9 +74,8 @@ class _SettingsView extends StatelessWidget {
             SettingsTile(
               title: profile?.username != null
                   ? UserTitle(
-                      avatar: profile!.avatar,
-                      username: profile.username,
-                      rank: profile.account.masteryRank,
+                      username: profile!.username,
+                      rank: profile.masteryRank,
                     )
                   : Text(l10n.enterUsernameHintText),
               onPressed: ProfileWizard.startWizard,

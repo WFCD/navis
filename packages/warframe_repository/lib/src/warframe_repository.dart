@@ -1,5 +1,6 @@
 // ignore_for_file: experimental_member_use Its gonna get unmarked I swear
 
+import 'dart:convert';
 import 'dart:isolate';
 
 import 'package:arbi_api/arbi_api.dart';
@@ -39,7 +40,6 @@ class WarframeRepository {
 
   List<SynthTarget> targets() => synthTargets(locale);
   bool verifyUserData(String json) => _warframeApi.verifyUserData(json);
-  UserData user(String data) => UserData.raw(data);
 
   Stream<Worldstate> worldstateEmitter() async* {
     yield* Stream.periodic(CacheTime.worldstateRefreshTime, (_) => buildWorldstate()).asyncMap((f) => f);
@@ -67,17 +67,18 @@ class WarframeRepository {
     return data;
   }
 
-  Future<Profile> fetchProfile(String id) async {
+  Future<Profile> fetchProfile(String data) async {
+    final userId = (json.decode(data) as Map<String, dynamic>)['user_id'] as String;
     final cache = await _cacheManager.get<Map<String, dynamic>>(CacheKeys.profile);
     if (cache != null) {
       final profile = await Isolate.run(() => Profile.fromMap(cache));
-      if (profile.id == id) return profile;
+      if (profile.id == data) return profile;
     }
 
-    final data = await _warframeApi.fetchProfile(id);
-    await _cacheManager.set(CacheKeys.profile, data.toMap(), ttl: CacheTime.profileRefreshTime);
+    final profile = await _warframeApi.fetchProfile(userId);
+    await _cacheManager.set(CacheKeys.profile, profile.toMap(), ttl: CacheTime.profileRefreshTime);
 
-    return data;
+    return profile;
   }
 
   Future<Item?> fetchItem(String uniqueName) async {

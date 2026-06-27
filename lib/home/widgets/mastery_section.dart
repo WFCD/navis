@@ -24,7 +24,7 @@ class MasteryInProgressSection extends StatelessWidget {
         final repository = RepositoryProvider.of<WarframeRepository>(context);
 
         return BlocProvider(
-          create: (context) => MasteryProgressCubit(repository)..fetchInProgress(state.xpInfo),
+          create: (context) => MasteryProgressCubit(repository)..fetchInProgress(state.profile.loadout.xpInfo),
           child: const MasteryInProgressContent(),
         );
       },

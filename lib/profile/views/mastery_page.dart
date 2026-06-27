@@ -14,7 +14,7 @@ class MasteryPage extends StatelessWidget {
     final repository = RepositoryProvider.of<WarframeRepository>(context);
     final xpInfo = context.select<ProfileCubit, List<XpItem>>(
       (c) => switch (c.state) {
-        ProfileSuccessful(:final xpInfo) => xpInfo,
+        ProfileSuccessful(:final profile) => profile.loadout.xpInfo,
         _ => [],
       },
     );

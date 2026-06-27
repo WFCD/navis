@@ -142,7 +142,7 @@ class _FissureFilter extends StatelessWidget {
     };
 
     final icon = switch (filter) {
-      FissureFilter.fissures => WarframeIcons.emLogo,
+      FissureFilter.fissures => WarframeIcons.normalLogo,
       FissureFilter.steelPath => WarframeIcons.spLogo,
       FissureFilter.voidStorm => WarframeIcons.archwing,
     };
