@@ -39,8 +39,6 @@ dependencies:
   hydrated_bloc: ^11.0.0
   internet_connection_checker_plus: ^3.1.1
   intl: ^0.20.2
-  item_database:
-    path: packages/item_database
   logging: ^1.3.0
   matomo_tracker: ^6.1.1
   navis_ui:
@@ -70,26 +68,10 @@ dependencies:
       path: packages/logging
   simple_icons: ^16.23.0
   visibility_detector: ^0.4.0+2
-  warframe_api:
-    path: packages/warframe_api
-  warframe_drop_data:
-    git:
-      url: https://github.com/SlayerOrnstein/wfcd_dart.git
-      path: packages/warframe_drop_data
-      ref: warframe_drop_data-v0.1.8+1
+  warframe_common:
+    path: packages/warframe_common
   warframe_icons:
     git: https://github.com/SlayerOrnstein/warframe_icons.git
-  warframe_worldstate_data:
-    git:
-      url: https://github.com/SlayerOrnstein/wfcd_dart.git
-      path: packages/warframe_worldstate_data
-      ref: warframe_worldstate_data-v0.1.3+12
-  warframestat_client: ^5.5.1
-  worldstate_models:
-    git:
-      url: https://github.com/SlayerOrnstein/wfcd_dart.git
-      path: packages/worldstate_models
-      ref: worldstate_models-v0.1.8
 
 dev_dependencies:
   bloc_test: ^10.0.0
