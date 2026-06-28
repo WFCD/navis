@@ -3,14 +3,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:navis/codex/codex.dart';
 import 'package:navis/home/home.dart';
-import 'package:navis_codex/navis_codex.dart';
+import '../../../packages/items_database/lib/items.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final repo = RepositoryProvider.of<CodexDatabase>(context);
+    final repo = RepositoryProvider.of<ItemDatabase>(context);
 
     return BlocProvider(create: (_) => SearchBloc(repo), child: const HomeView());
   }

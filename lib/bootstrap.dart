@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:http_client/http_client.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
+import 'package:item_database/item_database.dart';
 import 'package:logging/logging.dart';
 import 'package:navis/app/app_observer.dart';
 import 'package:navis/app/widgets/bloc_bootstrap.dart';
@@ -13,7 +14,6 @@ import 'package:navis/app/widgets/repo_bootstrap.dart';
 import 'package:navis/firebase_options.dart';
 import 'package:navis/router/app_router.dart';
 import 'package:navis/settings/settings.dart';
-import 'package:navis_codex/navis_codex.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:warframe_repository/warframe_repository.dart';
@@ -39,7 +39,7 @@ Future<void> bootstrap(BootstrapBuilder builder) async {
 
   final settings = await UserSettings.initSettings();
   final cacheManager = await CacheManager.open(temp.path);
-  final codex = CodexDatabase();
+  final codex = ItemDatabase();
   final repository = WarframeRepository(client: client, cache: cacheManager, codex: codex);
 
   logger.info('Booting up Navis');

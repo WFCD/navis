@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:navis_codex/navis_codex.dart';
+import '../../../packages/items_database/lib/items.dart';
 
 sealed class SearchState extends Equatable {
   const SearchState();

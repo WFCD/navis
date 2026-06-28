@@ -1,19 +1,14 @@
 import 'dart:convert';
 import 'dart:io';
-import 'dart:isolate';
+import 'dart:typed_data';
 
-import 'package:html/parser.dart';
 import 'package:http/http.dart';
-import 'package:profile_models/profile_models.dart';
 import 'package:warframe_api/src/exceptions.dart';
-import 'package:warframe_drop_data/warframe_drop_data.dart';
-import 'package:warframe_worldstate_data/warframe_worldstate_data.dart';
-import 'package:worldstate_models/worldstate_models.dart';
 
 const _worldstateApi = 'https://api.warframe.com/cdn/worldState.php';
 const _profileApi = 'https://api.warframe.com/cdn/getProfileViewingData.php';
-
-typedef WorldstateLocale = WorldstateDataLocale;
+const _dropPage =
+    'https://warframe-web-assets.nyc3.cdn.digitaloceanspaces.com/uploads/cms/hnfvc0o3jnfvc873njb03enrf56.html';
 
 /// {@template warframe_api}
 /// A Very Good Project created by Very Good CLI.
@@ -24,49 +19,32 @@ class WarframeApi {
 
   final Client _client;
 
-  Future<Worldstate> fetchWorldstate(DropData data, [WorldstateLocale locale = .en]) async {
+  Future<Map<String, dynamic>> fetchWorldstate([String locale = 'en']) async {
+    final body = await fetchWorldstateBytes(locale);
+    return utf8.decoder.fuse(json.decoder).convert(body)! as Map<String, dynamic>;
+  }
+
+  Future<Uint8List> fetchWorldstateBytes([String locale = 'en']) async {
     final res = await _client.get(Uri.parse(_worldstateApi));
-    final body = res.body;
-
-    return Isolate.run(() {
-      final raw = RawWorldstate.fromJson(body);
-      final deps = Dependency(locale: locale, dropData: data);
-      return raw.toWorldstate(deps);
-    });
+    return res.bodyBytes;
   }
 
-  Future<DropData> fetchDropData() async {
-    final res = await _client.get(Uri.parse(warframeDropDataPage));
-    final raw = res.bodyBytes;
-
-    return Isolate.run(() async {
-      final html = parse(raw, encoding: 'utf-8');
-      return buildDropData(html.body!);
-    });
+  Future<String> fetchDropData() async {
+    final res = await _client.get(Uri.parse(_dropPage));
+    return utf8.decode(res.bodyBytes);
   }
 
-  Future<Profile> fetchProfile(String id) async {
+  Future<Map<String, dynamic>> fetchProfile(String id) async {
+    final body = await fetchProfileBytes(id);
+    return utf8.decoder.fuse(json.decoder).convert(body)! as Map<String, dynamic>;
+  }
+
+  Future<Uint8List> fetchProfileBytes(String id) async {
     final res = await _client.get(Uri.parse('$_profileApi?playerId=$id'));
-    final body = res.body;
-
     if (res.statusCode == HttpStatus.notFound || res.statusCode == HttpStatus.conflict) {
       throw ProfileNotFound(res.body);
     }
 
-    return Isolate.run(() {
-      final json = jsonDecode(body) as Map<String, dynamic>;
-      return RawProfile.fromMap((json['Results'] as List<dynamic>).first as Map<String, dynamic>).toProfile();
-    });
-  }
-
-  bool verifyUserData(String data) {
-    try {
-      final json = jsonDecode(data) as Map<String, dynamic>;
-
-      // These fields don't exist if the user is logged off
-      return json.containsKey('user_id');
-    } on FormatException {
-      return false;
-    }
+    return res.bodyBytes;
   }
 }

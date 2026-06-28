@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:matomo_tracker/matomo_tracker.dart';
 import 'package:navis/codex/codex.dart';
 import 'package:navis/l10n/l10n.dart';
-import 'package:navis_codex/navis_codex.dart';
+import '../../../packages/items_database/lib/items.dart';
 import 'package:navis_ui/navis_ui.dart';
 
 class CodexSearchPage extends StatelessWidget {
@@ -13,7 +13,7 @@ class CodexSearchPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final repo = RepositoryProvider.of<CodexDatabase>(context);
+    final repo = RepositoryProvider.of<ItemDatabase>(context);
 
     return TraceableWidget(
       child: Scaffold(

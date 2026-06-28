@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:navis/utils/string_extensions.dart';
-import 'package:navis_codex/navis_codex.dart';
+import '../../../../packages/items_database/lib/items.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:warframestat_client/warframestat_client.dart';
 

@@ -1,45 +1,33 @@
 import 'dart:io';
 
+import 'package:cache/cache.dart';
 import 'package:hive_ce/hive.dart';
-import '../../lib/cache.dart';
+import 'package:storage/storage.dart';
 import 'package:test/test.dart';
 
-void main() {
+Future<void> main() async {
+  final systemTemp = Directory.systemTemp;
+  Hive.init(systemTemp.absolute.path);
+
+  // Create temporary directory for tests
+  final testDir = await Directory.systemTemp.createTemp('cache_test_');
+  final box = await Hive.openBox<Map<dynamic, dynamic>>('cache', path: testDir.absolute.path);
+  final storage = Storage<Map<dynamic, dynamic>>(box: box);
+
   group('CacheManager', () {
-    late Directory testDir;
     late CacheManager cacheManager;
-    const testBoxName = 'test_cache';
 
     setUp(() async {
-      // Create temporary directory for tests
-      testDir = await Directory.systemTemp.createTemp('cache_test_');
-
       // Initialize cache manager
-      cacheManager = await CacheManager.open(testDir.path, name: testBoxName);
+      cacheManager = CacheManager(storage: storage);
     });
 
-    tearDown(() async {
+    tearDownAll(() async {
       // Clean up
-      await Hive.close();
+      await storage.close();
       if (testDir.existsSync()) {
         await testDir.delete(recursive: true);
       }
-    });
-
-    group('open', () {
-      test('creates a CacheManager with correct name', () async {
-        final manager = await CacheManager.open(testDir.path, name: 'custom_name');
-
-        expect(manager.name, equals('custom_name'));
-        await Hive.close();
-      });
-
-      test('uses default name "temp" when not specified', () async {
-        final manager = await CacheManager.open(testDir.path);
-
-        expect(manager.name, equals('temp'));
-        await Hive.close();
-      });
     });
 
     group('set', () {
@@ -47,7 +35,7 @@ void main() {
         final testData = {'key': 'value', 'number': 42};
 
         await cacheManager.set('test_key', testData);
-        final retrieved = cacheManager.get<Map<String, dynamic>>('test_key');
+        final retrieved = await cacheManager.get<Map<String, dynamic>>('test_key');
 
         expect(retrieved, equals(testData));
       });
@@ -57,7 +45,7 @@ void main() {
 
         await cacheManager.set('ttl_key', testData, ttl: const Duration(hours: 1));
 
-        final retrieved = cacheManager.get<Map<String, dynamic>>('ttl_key');
+        final retrieved = await cacheManager.get<Map<String, dynamic>>('ttl_key');
         expect(retrieved, equals(testData));
       });
 
@@ -68,14 +56,14 @@ void main() {
         await cacheManager.set('overwrite_key', firstData);
         await cacheManager.set('overwrite_key', secondData);
 
-        final retrieved = cacheManager.get<Map<String, dynamic>>('overwrite_key');
+        final retrieved = await cacheManager.get<Map<String, dynamic>>('overwrite_key');
         expect(retrieved, equals(secondData));
       });
 
       test('stores empty map', () async {
         await cacheManager.set('empty_key', {});
 
-        final retrieved = cacheManager.get<Map<String, dynamic>>('empty_key');
+        final retrieved = await cacheManager.get<Map<String, dynamic>>('empty_key');
         expect(retrieved, equals({}));
       });
 
@@ -92,14 +80,14 @@ void main() {
 
         await cacheManager.set('nested_key', complexData);
 
-        final retrieved = cacheManager.get<Map<String, dynamic>>('nested_key');
+        final retrieved = await cacheManager.get<Map<String, dynamic>>('nested_key');
         expect(retrieved, equals(complexData));
       });
     });
 
     group('get', () {
-      test('returns null for non-existent key', () {
-        final result = cacheManager.get<Map<String, dynamic>>('non_existent_key');
+      test('returns null for non-existent key', () async {
+        final result = await cacheManager.get<Map<String, dynamic>>('non_existent_key');
 
         expect(result, isNull);
       });
@@ -108,7 +96,7 @@ void main() {
         final testData = {'status': 'active'};
         await cacheManager.set('valid_key', testData);
 
-        final result = cacheManager.get<Map<String, dynamic>>('valid_key');
+        final result = await cacheManager.get<Map<String, dynamic>>('valid_key');
 
         expect(result, equals(testData));
       });
@@ -122,7 +110,7 @@ void main() {
         // Wait for expiration
         await Future<void>.delayed(const Duration(milliseconds: 10));
 
-        final result = cacheManager.get<Map<String, dynamic>>('expired_key');
+        final result = await cacheManager.get<Map<String, dynamic>>('expired_key');
         expect(result, isNull);
       });
 
@@ -131,7 +119,7 @@ void main() {
 
         await cacheManager.set('fresh_key', testData, ttl: const Duration(seconds: 10));
 
-        final result = cacheManager.get<Map<String, dynamic>>('fresh_key');
+        final result = await cacheManager.get<Map<String, dynamic>>('fresh_key');
         expect(result, equals(testData));
       });
 
@@ -144,9 +132,9 @@ void main() {
         await cacheManager.set('key2', data2);
         await cacheManager.set('key3', data3);
 
-        expect(cacheManager.get<Map<String, dynamic>>('key1'), equals(data1));
-        expect(cacheManager.get<Map<String, dynamic>>('key2'), equals(data2));
-        expect(cacheManager.get<Map<String, dynamic>>('key3'), equals(data3));
+        expect(await cacheManager.get<Map<String, dynamic>>('key1'), equals(data1));
+        expect(await cacheManager.get<Map<String, dynamic>>('key2'), equals(data2));
+        expect(await cacheManager.get<Map<String, dynamic>>('key3'), equals(data3));
       });
     });
 
@@ -157,7 +145,7 @@ void main() {
         await cacheManager.set('zero_ttl', testData, ttl: Duration.zero);
 
         // With Duration.zero, data should expire immediately
-        final result = cacheManager.get<Map<String, dynamic>>('zero_ttl');
+        final result = await cacheManager.get<Map<String, dynamic>>('zero_ttl');
         expect(result, isNull);
       });
 
@@ -166,7 +154,7 @@ void main() {
 
         await cacheManager.set('long_ttl', testData, ttl: const Duration(days: 365));
 
-        final result = cacheManager.get<Map<String, dynamic>>('long_ttl');
+        final result = await cacheManager.get<Map<String, dynamic>>('long_ttl');
         expect(result, equals(testData));
       });
     });
@@ -178,7 +166,7 @@ void main() {
 
         await cacheManager.set(specialKey, testData);
 
-        final result = cacheManager.get<Map<String, dynamic>>(specialKey);
+        final result = await cacheManager.get<Map<String, dynamic>>(specialKey);
         expect(result, equals(testData));
       });
 
@@ -195,24 +183,7 @@ void main() {
 
         await cacheManager.set('mixed_types', testData);
 
-        final result = cacheManager.get<Map<String, dynamic>>('mixed_types');
-        expect(result, equals(testData));
-      });
-    });
-
-    group('persistence', () {
-      test('data persists across cache manager instances', () async {
-        final testData = {'persist': 'test'};
-
-        // Store data
-        await cacheManager.set('persist_key', testData, ttl: const Duration(hours: 1));
-        await Hive.close();
-
-        // Create new instance
-        final newManager = await CacheManager.open(testDir.path, name: testBoxName);
-
-        // Data should still be there
-        final result = newManager.get<Map<String, dynamic>>('persist_key');
+        final result = await cacheManager.get<Map<String, dynamic>>('mixed_types');
         expect(result, equals(testData));
       });
     });

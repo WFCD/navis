@@ -2,38 +2,22 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:isolate';
 
-import 'package:cache/hive/hive_adapters.dart';
 import 'package:cache/src/models/cached_data.dart';
-import 'package:hive_ce/hive.dart';
-import 'package:meta/meta.dart';
-
+import 'package:storage/storage.dart';
 
 /// {@template cache}
 /// A cache manager for storing Map data.
 /// {@endtemplate}
 class CacheManager {
   /// {@macro cache}
-  const CacheManager._({required this.name, required Box<CachedData> box}) : _box = box;
+  const CacheManager({required this._storage});
 
-  /// Box name
-  final String name;
-  final Box<CachedData> _box;
-
-  /// Creates a new cache manager using Hive as the backend
-  static Future<CacheManager> open(String path, {String name = 'temp'}) async {
-    Hive.init(path);
-    if (!Hive.isAdapterRegistered(CachedDataAdapter().typeId)) Hive.registerAdapter(CachedDataAdapter());
-
-    final box = await Hive.openBox<CachedData>(name);
-    _cleanCache(box);
-    Timer.periodic(const Duration(hours: Duration.hoursPerDay), (_) => _cleanCache(box));
-
-    return CacheManager._(name: name, box: box);
-  }
+  final Storage<Map<dynamic, dynamic>> _storage;
 
   /// Get the given data stored under [key]
   Future<T>? get<T>(String key) {
-    final cached = _box.get(key);
+    final data = _storage.read(key);
+    final cached = data != null ? CachedData.fromJson(data as Map<String, dynamic>) : null;
     if (cached == null || cached.isExpired) return null;
 
     return Isolate.run(() => json.decode(cached.data) as T);
@@ -44,22 +28,18 @@ class CacheManager {
   /// The default [ttl] is 60 seconds if non is given
   Future<void> set(String key, Object data, {Duration ttl = const Duration(seconds: 60)}) async {
     final encoded = await Isolate.run(() => json.encode(data));
-    await _box.put(key, CachedData.create(encoded, ttl: ttl));
+    await _storage.write(key, CachedData(data: encoded, ttl: ttl).toJson());
   }
 
-  /// Closes the internal box
-  @visibleForTesting
-  Future<void> close() => _box.close();
-
-  static void _cleanCache(Box<CachedData> box) {
+  Future<void> clean() async {
     final toRemove = <dynamic>[];
-    for (final key in box.keys) {
-      if (box.get(key)?.isExpired ?? false) continue;
-      toRemove.add(key);
+    final cached = _storage.readAll();
+    for (final cache in cached) {
+      final data = CachedData.fromJson(cache as Map<String, dynamic>);
+      if (data.isExpired) continue;
+      toRemove.add(cache);
     }
 
-    box
-      ..deleteAll(toRemove)
-      ..flush();
+    await _storage.deleteAll(toRemove);
   }
 }

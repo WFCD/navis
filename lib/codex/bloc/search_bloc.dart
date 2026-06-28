@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:navis/codex/bloc/search_event.dart';
 import 'package:navis/codex/bloc/search_state.dart';
 import 'package:navis/codex/utils/result_filters.dart';
-import 'package:navis_codex/navis_codex.dart';
+import '../../../packages/items_database/lib/items.dart';
 import 'package:rxdart/rxdart.dart';
 
 export 'search_event.dart';
@@ -17,7 +17,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
     on<CodexResultsFiltered>(_filterResults);
   }
 
-  final CodexDatabase codex;
+  final ItemDatabase codex;
 
   List<CodexItem> _originalResults = [];
 

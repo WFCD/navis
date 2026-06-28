@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/settings/settings.dart';
-import 'package:navis_codex/navis_codex.dart';
 import 'package:notification_repository/notification_repository.dart';
 import 'package:warframe_repository/warframe_repository.dart';
 
@@ -9,7 +8,7 @@ class RepositoryBootstrap extends StatelessWidget {
   const RepositoryBootstrap({
     super.key,
     required RouteObserver<ModalRoute<void>> routeObserver,
-    required CodexDatabase codex,
+    required ItemDatabase codex,
     required UserSettings settings,
     required WarframeRepository repository,
     required this.child,
@@ -20,7 +19,7 @@ class RepositoryBootstrap extends StatelessWidget {
 
   final RouteObserver<ModalRoute<void>> _routeObserver;
   final UserSettings _settings;
-  final CodexDatabase _codex;
+  final ItemDatabase _codex;
   final WarframeRepository _repository;
   final Widget child;
 
