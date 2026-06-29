@@ -6,7 +6,7 @@ import 'package:warframe_api/warframe_api.dart';
 void main() {
   group('WarframeApi', () {
     test('can be instantiated', () {
-      expect(WarframeApi(client: Client()), isNotNull);
+      expect(WarframeApi(Client()), isNotNull);
     });
   });
 }

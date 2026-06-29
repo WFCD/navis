@@ -15,16 +15,16 @@ const _dropPage =
 /// {@endtemplate}
 class WarframeApi {
   /// {@macro warframe_api}
-  const WarframeApi({required Client client}) : _client = client;
+  const WarframeApi(Client client) : _client = client;
 
   final Client _client;
 
-  Future<Map<String, dynamic>> fetchWorldstate([String locale = 'en']) async {
-    final body = await fetchWorldstateBytes(locale);
+  Future<Map<String, dynamic>> fetchWorldstate() async {
+    final body = await fetchWorldstateBytes();
     return utf8.decoder.fuse(json.decoder).convert(body)! as Map<String, dynamic>;
   }
 
-  Future<Uint8List> fetchWorldstateBytes([String locale = 'en']) async {
+  Future<Uint8List> fetchWorldstateBytes() async {
     final res = await _client.get(Uri.parse(_worldstateApi));
     return res.bodyBytes;
   }

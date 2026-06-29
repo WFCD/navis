@@ -15,9 +15,16 @@ class StorageException implements Exception {
 
 /// A Dart Storage Client Interface
 class Storage<T> {
-  Storage({required this._box});
-
+  Storage._({required this._box});
+  
   final Box<T> _box;
+
+  static Future<Storage<T>> open<T>(String name, String path) async {
+    Hive.init(path);
+    final box = await Hive.openBox<T>(name);
+
+    return Storage._(box: box);
+  }
 
   Future<void> clear() async {
     try {
@@ -68,8 +75,6 @@ class Storage<T> {
       Error.throwWithStackTrace(error, stackTrace);
     }
   }
-
-  
 
   Future<void> close() => _box.close();
 }

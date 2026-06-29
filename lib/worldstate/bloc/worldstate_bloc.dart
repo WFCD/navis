@@ -2,7 +2,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/widgets.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:navis/utils/bloc_mixin.dart';
-import 'package:navis/worldstate/utils/worldstate_helpers.dart';
+import 'package:worldstate_repository/src/utils/worldstate_helpers.dart';
 import 'package:replay_bloc/replay_bloc.dart';
 import 'package:warframe_repository/warframe_repository.dart';
 import 'package:worldstate_models/worldstate_models.dart';

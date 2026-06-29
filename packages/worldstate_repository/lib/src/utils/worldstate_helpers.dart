@@ -1,4 +1,5 @@
-import 'package:worldstate_models/worldstate_models.dart';
+// Conflict between the translation data fissures and Worldstate.fissures
+import 'package:warframe_common/warframe_common.dart' hide fissures;
 
 extension WorldstateX on Worldstate {
   void clean() {

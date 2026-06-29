@@ -6,6 +6,7 @@ import 'package:cache/cache.dart';
 import 'package:crypto/crypto.dart';
 import 'package:warframe_api/warframe_api.dart';
 import 'package:warframe_common/warframe_common.dart';
+import 'package:worldstate_repository/src/utils/utils.dart';
 
 const _worldstateCacheKey = 'worldstate';
 const _arbitrationCacheKey = 'arbitration';
@@ -26,7 +27,7 @@ class WorldstateRepository {
   String locale = 'en';
 
   Stream<Worldstate> worldstateEmitter() async* {
-    yield* Stream.periodic(_refreshTime, (_) => buildWorldstate(locale)).asyncMap((f) => f);
+    yield* Stream.periodic(_refreshTime, (_) => buildWorldstate(locale)).asyncMap((f) => f).map((w) => w..clean());
   }
 
   Future<Worldstate> buildWorldstate(String locale) async {
@@ -34,9 +35,12 @@ class WorldstateRepository {
     final cached = await _cache.get<Map<String, dynamic>>(key);
     if (cached != null) return Isolate.run(() => Worldstate.fromMap(cached));
 
-    final raw = RawWorldstate.fromMap(await _api.fetchWorldstate(locale));
+    final data = await _api.fetchWorldstateBytes();
     final worldstate = await Isolate.run(() {
+      final json = utf8.decoder.fuse(const JsonDecoder()).convert(data)! as Map<String,dynamic>;
+      final raw = RawWorldstate.fromMap(json);
       final deps = Dependency(locale: WorldstateDataLocale.values.byName(locale));
+
       return raw.toWorldstate(deps);
     });
 

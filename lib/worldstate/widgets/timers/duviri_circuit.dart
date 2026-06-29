@@ -7,7 +7,7 @@ import 'package:navis/codex/codex.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis/utils/string_extensions.dart';
 import 'package:navis/worldstate/bloc/worldstate_bloc.dart';
-import 'package:navis/worldstate/utils/utils.dart';
+import 'package:worldstate_repository/src/utils/utils.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:warframe_repository/warframe_repository.dart';
 import 'package:worldstate_models/worldstate_models.dart';

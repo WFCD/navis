@@ -11,8 +11,7 @@ Future<void> main() async {
 
   // Create temporary directory for tests
   final testDir = await Directory.systemTemp.createTemp('cache_test_');
-  final box = await Hive.openBox<Map<dynamic, dynamic>>('cache', path: testDir.absolute.path);
-  final storage = Storage<Map<dynamic, dynamic>>(box: box);
+  final storage = await Storage.open<Map<dynamic, dynamic>>('cache', testDir.path);
 
   group('CacheManager', () {
     late CacheManager cacheManager;

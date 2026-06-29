@@ -2,20 +2,15 @@ import 'package:equatable/equatable.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:navis/settings/settings.dart';
 import 'package:navis/utils/bloc_mixin.dart';
-import 'package:profile_models/profile_models.dart';
+import 'package:profile_repository/profile_repository.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
-import 'package:warframe_api/warframe_api.dart';
-import 'package:warframe_repository/warframe_repository.dart';
 
 part 'profile_state.dart';
 
 class ProfileCubit extends Cubit<ProfileState> with SafeBlocMixin {
-  ProfileCubit(WarframeRepository repo, UserSettings settings)
-    : _repo = repo,
-      _settings = settings,
-      super(ProfileInitial());
+  ProfileCubit(this._repo, this._settings) : super(ProfileInitial());
 
-  final WarframeRepository _repo;
+  final ProfileRepository _repo;
   final UserSettings _settings;
 
   Future<void> loadProfile(String data) async {
