@@ -5,9 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis_ui/navis_ui.dart';
-import 'package:warframe_icons/warframe_icons.dart';
-import 'package:warframestat_client/warframestat_client.dart' as ws;
-import 'package:worldstate_models/worldstate_models.dart';
+import 'package:warframe_common/warframe_common.dart';
 
 class SyndicateBountyTile extends StatelessWidget {
   const SyndicateBountyTile({super.key, required this.color, required this.job});
@@ -103,10 +101,10 @@ class SyndicateBountyStage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     rewards.sort(
-      (a, b) => ws.Rarity.values
+      (a, b) => Rarity.values
           .byName(a.rarity.toLowerCase())
           .index
-          .compareTo(ws.Rarity.values.byName(b.rarity.toLowerCase()).index),
+          .compareTo(Rarity.values.byName(b.rarity.toLowerCase()).index),
     );
 
     return Column(
@@ -148,7 +146,7 @@ class BountyReward extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final count = reward.count;
-    final rarity = ws.Rarity.values.byName(reward.rarity.toLowerCase());
+    final rarity = Rarity.values.byName(reward.rarity.toLowerCase());
 
     return RewardTile(
       reward: '${count == 1 ? '' : '${count}X '}${reward.item}',

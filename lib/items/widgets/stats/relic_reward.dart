@@ -1,6 +1,6 @@
 import 'package:black_hole_flutter/black_hole_flutter.dart';
 import 'package:flutter/material.dart';
-import 'package:warframestat_client/warframestat_client.dart';
+import 'package:warframe_common/warframe_common.dart';
 
 class RelicRewardWidget extends StatelessWidget {
   const RelicRewardWidget({super.key, required this.relic});

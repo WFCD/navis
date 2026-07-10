@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis_ui/navis_ui.dart';
-import 'package:warframestat_client/warframestat_client.dart';
+import 'package:warframe_common/warframe_common.dart';
 
 class PatchlogSection extends StatelessWidget {
   const PatchlogSection({super.key, required this.patchlogs});

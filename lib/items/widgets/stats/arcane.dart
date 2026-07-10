@@ -8,7 +8,6 @@ import 'package:navis/utils/string_extensions.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:warframe_common/warframe_common.dart';
 
-
 class ArcaneStats extends StatelessWidget {
   const ArcaneStats({super.key, required this.arcane});
 

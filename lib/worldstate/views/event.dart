@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:matomo_tracker/matomo_tracker.dart';
 import 'package:navis/utils/utils.dart';
 import 'package:navis/worldstate/widgets/widgets.dart';
-import 'package:worldstate_models/worldstate_models.dart';
+import 'package:warframe_common/warframe_common.dart';
 
 class EventInformation extends StatelessWidget {
   const EventInformation({required this.event, super.key});

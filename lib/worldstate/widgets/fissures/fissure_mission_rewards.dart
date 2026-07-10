@@ -1,9 +1,7 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:navis_ui/navis_ui.dart';
-import 'package:warframe_drop_data/warframe_drop_data.dart';
-import 'package:warframe_icons/warframe_icons.dart';
-import 'package:warframestat_client/warframestat_client.dart';
+import 'package:warframe_common/warframe_common.dart';
 
 class FissureMissionRewards extends StatelessWidget {
   const FissureMissionRewards({

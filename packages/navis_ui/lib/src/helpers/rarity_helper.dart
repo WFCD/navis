@@ -1,5 +1,5 @@
 import 'package:flutter/widgets.dart';
-import 'package:warframestat_client/warframestat_client.dart';
+import 'package:warframe_common/warframe_common.dart';
 
 extension RarityX on Rarity {
   String toUniqueName() {

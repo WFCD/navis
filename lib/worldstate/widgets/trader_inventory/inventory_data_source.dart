@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:worldstate_models/worldstate_models.dart';
+import 'package:warframe_common/warframe_common.dart';
 
 class InventoryDataSource extends DataTableSource {
   InventoryDataSource({required this.inventory});

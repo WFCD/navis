@@ -42,4 +42,3 @@ class ItemsSearchPage extends StatelessWidget {
     );
   }
 }
-

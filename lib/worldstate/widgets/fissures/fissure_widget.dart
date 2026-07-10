@@ -6,8 +6,7 @@ import 'package:intl/intl.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis/worldstate/widgets/fissures/fissure_mission_rewards.dart';
 import 'package:navis_ui/navis_ui.dart';
-import 'package:warframe_icons/warframe_icons.dart';
-import 'package:worldstate_models/worldstate_models.dart';
+import 'package:warframe_common/warframe_common.dart';
 
 class FissureWidget extends StatelessWidget {
   const FissureWidget({super.key, required this.fissure});

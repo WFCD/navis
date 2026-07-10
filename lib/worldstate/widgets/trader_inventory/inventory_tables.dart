@@ -4,7 +4,7 @@ import 'package:navis/l10n/l10n.dart';
 import 'package:navis/worldstate/widgets/widgets.dart';
 import 'package:navis/worldstate/worldstate.dart';
 import 'package:responsive_builder/responsive_builder.dart';
-import 'package:worldstate_models/worldstate_models.dart';
+import 'package:warframe_common/warframe_common.dart';
 
 class InventoryDataTable extends StatelessWidget {
   const InventoryDataTable({super.key, required this.inventory, this.isVarzia = false});

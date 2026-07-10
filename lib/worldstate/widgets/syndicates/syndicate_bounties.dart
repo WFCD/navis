@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:navis/worldstate/worldstate.dart';
 import 'package:navis_ui/navis_ui.dart';
-import 'package:worldstate_models/worldstate_models.dart';
+import 'package:warframe_common/warframe_common.dart';
 
 class SyndicateBounties extends StatelessWidget {
   const SyndicateBounties({super.key, required this.color, required this.syndicate});

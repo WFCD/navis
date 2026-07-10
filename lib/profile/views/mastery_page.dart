@@ -1,7 +1,6 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:navis/profile/cubit/profile_cubit.dart';
 import 'package:navis/profile/profile.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:profile_repository/profile_repository.dart';

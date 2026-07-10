@@ -5,7 +5,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis/worldstate/bloc/worldstate_bloc.dart';
 import 'package:navis_ui/navis_ui.dart';
-import 'package:warframe_icons/warframe_icons.dart';
 
 class ConstructionProgressCard extends StatelessWidget {
   const ConstructionProgressCard({super.key});

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis/worldstate/widgets/widgets.dart';
 import 'package:navis_ui/navis_ui.dart';
-import 'package:worldstate_models/worldstate_models.dart';
+import 'package:warframe_common/warframe_common.dart';
 
 class EventBounties extends StatelessWidget {
   const EventBounties({super.key, required this.jobs});

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:navis_ui/navis_ui.dart';
-import 'package:warframe_worldstate_data/warframe_worldstate_data.dart';
-import 'package:worldstate_models/worldstate_models.dart';
+import 'package:warframe_common/warframe_common.dart';
 
 class CalendarPage extends StatelessWidget {
   const CalendarPage({super.key, required this.season, required this.days});
@@ -70,15 +69,15 @@ class EventContent extends StatelessWidget {
     };
 
     Widget content(CalendarDayEvent event) => switch (event) {
-      CalendarDayChallenge(: final title, : final description) => ListTile(
+      CalendarDayChallenge(:final title, :final description) => ListTile(
         title: Text(title),
         subtitle: Text(description),
       ),
-      CalendarDayUpgrade(: final name, : final description) => ListTile(
+      CalendarDayUpgrade(:final name, :final description) => ListTile(
         title: Text(name),
         subtitle: Text(description),
       ),
-      CalendarDayReward(: final reward) => ListTile(title: Text(reward)),
+      CalendarDayReward(:final reward) => ListTile(title: Text(reward)),
       CalendarDayBirthday(conversation: final convo) => ListTile(
         title: Text(convo.replaceFirst('BirthdayConvo', "'s Birthday")),
       ),

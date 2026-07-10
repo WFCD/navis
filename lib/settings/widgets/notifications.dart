@@ -19,7 +19,10 @@ class FilterDialog extends StatelessWidget {
 
         return RepositoryProvider.value(
           value: notifications,
-          child: BlocProvider.value(value: usersettings, child: FilterDialog(options: options)),
+          child: BlocProvider.value(
+            value: usersettings,
+            child: FilterDialog(options: options),
+          ),
         );
       },
     );

@@ -1,9 +1,9 @@
 import 'package:black_hole_flutter/black_hole_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:navis/l10n/l10n.dart';
-import 'package:worldstate_repository/src/utils/utils.dart';
 import 'package:navis_ui/navis_ui.dart';
-import 'package:worldstate_models/worldstate_models.dart';
+import 'package:warframe_common/warframe_common.dart';
+import 'package:worldstate_repository/worldstate_repository.dart';
 
 class ArchimedeaPage extends StatelessWidget {
   const ArchimedeaPage({super.key, required this.archimedea});

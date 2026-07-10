@@ -46,7 +46,7 @@ class AppBootstrap extends StatelessWidget {
           BlocProvider(create: (_) => SettingsCubit(_settingsRepository)),
           BlocProvider(create: (_) => ProfileCubit(_profileRepository, _settingsRepository)..refreshProfile()),
           BlocProvider(create: (_) => WorldstateBloc(_settingsRepository.locale, _worldstateRepository)),
-          BlocProvider(create: (_) => ItemUpdateCubit(_itemsRepository))
+          BlocProvider(create: (_) => ItemUpdateCubit(_itemsRepository)),
         ],
         child: child,
       ),

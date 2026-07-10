@@ -2,7 +2,7 @@ import 'package:black_hole_flutter/black_hole_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:navis_ui/navis_ui.dart';
-import 'package:worldstate_models/worldstate_models.dart';
+import 'package:warframe_common/warframe_common.dart';
 
 class TraderItemCard extends StatelessWidget {
   const TraderItemCard({super.key, required this.item, this.isVarzia = false});

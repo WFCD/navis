@@ -43,10 +43,9 @@ class FishView extends StatelessWidget {
           },
           body: TabBarView(
             // These are the contents of the tab views, below the tabs.
-            children:
-                tabs.map((r) {
-                  return FishDataView(region: r['region']! as FishingRegion);
-                }).toList(),
+            children: tabs.map((r) {
+              return FishDataView(region: r['region']! as FishingRegion);
+            }).toList(),
           ),
         ),
       ),

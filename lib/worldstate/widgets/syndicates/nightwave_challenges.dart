@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:navis/worldstate/worldstate.dart';
-import 'package:worldstate_models/worldstate_models.dart' as model;
+import 'package:warframe_common/warframe_common.dart' as model;
 
 class NightwaveChalleneges extends StatelessWidget {
   const NightwaveChalleneges({super.key, required this.nightwave});

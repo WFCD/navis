@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:navis_ui/navis_ui.dart';
-import 'package:warframe_icons/warframe_icons.dart';
 
 enum Factions { grineer, corpus, corrupted, infestation, infested, narmer, unknown }
 

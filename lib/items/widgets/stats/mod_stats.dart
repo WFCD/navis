@@ -4,7 +4,6 @@ import 'package:navis/items/widgets/mod_painter.dart';
 import 'package:navis/utils/string_extensions.dart';
 import 'package:warframe_common/warframe_common.dart';
 
-
 class ModStats extends StatelessWidget {
   const ModStats({super.key, required this.mod});
 

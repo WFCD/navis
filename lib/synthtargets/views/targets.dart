@@ -1,3 +1,4 @@
+import 'package:black_hole_flutter/black_hole_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -13,12 +14,11 @@ class SynthTargetsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return TraceableWidget(
       child: Scaffold(
         appBar: AppBar(),
         body: BlocProvider(
-          create: (_) => SynthtargetsCubit()..fetchSynthtargets(),
+          create: (context) => SynthtargetsCubit()..fetchSynthtargets(context.locale.languageCode),
           child: const _SynthTargetsPage(),
         ),
       ),

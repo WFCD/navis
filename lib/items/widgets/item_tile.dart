@@ -43,4 +43,3 @@ class ItemTile extends StatelessWidget {
     );
   }
 }
-
