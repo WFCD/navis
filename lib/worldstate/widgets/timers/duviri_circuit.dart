@@ -3,39 +3,26 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
-import 'package:navis/codex/codex.dart';
+import 'package:item_repository/items_repository.dart';
+import 'package:navis/items/items.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis/utils/string_extensions.dart';
 import 'package:navis/worldstate/bloc/worldstate_bloc.dart';
-import 'package:worldstate_repository/src/utils/utils.dart';
 import 'package:navis_ui/navis_ui.dart';
-import 'package:warframe_repository/warframe_repository.dart';
-import 'package:worldstate_models/worldstate_models.dart';
+import 'package:warframe_common/warframe_common.dart';
+import 'package:worldstate_repository/worldstate_repository.dart';
 
 class DuviriCircuit extends StatelessWidget {
   const DuviriCircuit({super.key});
 
-  bool _buildWhen(WorldState previous, WorldState current) {
-    if (previous is! WorldstateSuccess || current is! WorldstateSuccess) {
-      return false;
-    }
-
-    final previousCycle = previous.seed.duviriCycle;
-    final nextCycle = current.seed.duviriCycle;
-
-    return previousCycle.id != nextCycle.id;
-  }
-
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<WorldstateBloc, WorldState>(
-      buildWhen: _buildWhen,
-      builder: (context, state) {
-        final cycle = switch (state) {
-          WorldstateSuccess() => state.seed.duviriCycle,
-          _ => null,
-        };
-
+    return BlocSelector<WorldstateBloc, WorldState, DuviriCycle?>(
+      selector: (state) => switch (state) {
+        WorldstateSuccess(:final seed) => seed.duviriCycle,
+        _ => null,
+      },
+      builder: (context, cycle) {
         final choices = cycle?.choices.map((c) => CircuitChoiceTile(choice: c));
 
         return AppCard(
@@ -84,7 +71,7 @@ class CircuitChoiceTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final repo = RepositoryProvider.of<WarframeRepository>(context);
+    final repo = RepositoryProvider.of<ItemsRepository>(context);
     final isSteelPatch = choice.key == 'EXC_HARD';
 
     var category = toBeginningOfSentenceCase(choice.mode);
@@ -102,17 +89,14 @@ class CircuitChoiceTile extends StatelessWidget {
             ),
           ),
           ...choice.choices.map((c) {
-            final name = isSteelPatch ? '$c Incarnon Genesis' : c;
-
             return BlocProvider(
               create: (_) {
-                final cubit = ItemCubit(name, repo);
-
-                isSteelPatch ? cubit.fetchIncarnonGenesis() : cubit.fetchByName();
+                final cubit = ItemCubit(repo);
+                isSteelPatch ? cubit.fetchIncarnon(c) : cubit.fetchByName(c);
 
                 return cubit;
               },
-              child: _CircuitPathTile(name: name),
+              child: _CircuitPathTile(name: c),
             );
           }),
         ],
@@ -131,7 +115,7 @@ class _CircuitPathTile extends StatelessWidget {
     return BlocBuilder<ItemCubit, ItemState>(
       builder: (context, state) {
         final item = switch (state) {
-          ItemFetchSuccess() => state.item,
+          ItemStoreFetchSuccess() => state.item,
           _ => null,
         };
 
@@ -155,16 +139,7 @@ class _CircuitPathTile extends StatelessWidget {
 
         if (item == null || item.name.contains('Incarnon')) return tile;
 
-        return EntryViewOpenContainer(
-          uniqueName: item.uniqueName,
-          name: item.name,
-          description: item.description,
-          imageName: item.imageName.warframeItemsCdn().optimize(pixelRatio: MediaQuery.devicePixelRatioOf(context)),
-          type: item.type,
-          wikiaUrl: item.wikiaUrl,
-          wikiaThumbnail: item.wikiaThumbnail,
-          builder: (_, _) => tile,
-        );
+        return OpenItemContainer(item: item, closedBuilder: (_, _) => tile);
       },
     );
   }

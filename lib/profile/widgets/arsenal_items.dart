@@ -1,9 +1,10 @@
 import 'package:black_hole_flutter/black_hole_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:navis/profile/cubit/profile_cubit.dart';
 import 'package:navis/profile/profile.dart';
-import 'package:warframe_icons/warframe_icons.dart';
-import 'package:warframe_repository/warframe_repository.dart';
+import 'package:navis_ui/navis_ui.dart';
+import 'package:profile_repository/profile_repository.dart';
 
 class ArsenalItems extends StatelessWidget {
   const ArsenalItems({super.key, this.controller, required this.items});
@@ -31,7 +32,7 @@ class ArsenalItems extends StatelessWidget {
           : ListView.builder(
               controller: controller,
               itemCount: items.length,
-              itemBuilder: (context, index) => ArsenalItemWidget(item: items[index]),
+              itemBuilder: (context, index) => MasteryItemTile(masterableItem: items[index]),
             ),
     );
   }

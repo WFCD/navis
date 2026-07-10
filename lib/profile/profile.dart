@@ -1,3 +1,3 @@
-export 'cubit/cubits.dart';
-export 'views/mastery_page.dart';
+export 'cubit/cubit.dart';
+export 'views/views.dart';
 export 'widgets/widgets.dart';

@@ -70,13 +70,30 @@ final Map<ItemType, int> _mapPriority = {
 
 extension ListItemX on List<WarframeItem> {
   void prioritizeResults() {
-    sort((a, b) {
+    return sort((a, b) {
       final aPriority = _mapPriority[a.type] ?? 100;
       final bPriority = _mapPriority[b.type] ?? 100;
 
       if (aPriority != bPriority) return aPriority.compareTo(bPriority);
 
       return a.name.compareTo(b.name);
+    });
+  }
+
+  Iterable<WarframeItem> filterByCategory(ItemType type) => where((e) => e.type == type);
+}
+
+extension DropListExt on List<Drop> {
+  Iterable<Drop> filter() {
+    return where((d) => d.location.contains(RegExp(r'\(([^)]+)\)')));
+  }
+
+  void sortDrops({bool reverse = false}) {
+    return sort((a, b) {
+      final chanceA = (reverse ? a : b).chance;
+      final chanceB = (reverse ? b : a).chance;
+
+      return (chanceB ?? 0).compareTo(chanceA ?? 0);
     });
   }
 }

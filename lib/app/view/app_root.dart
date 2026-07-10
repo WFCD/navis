@@ -41,32 +41,30 @@ class NavisApp extends StatelessWidget {
 
     newLocale ??= defaultLocale;
 
-    final userSettingsCubit = context.read<UserSettingsCubit>();
-    final settings = userSettingsCubit.state;
-    final language = switch (settings) {
-      UserSettingsSuccess() => settings.language,
+    final settings = context.read<SettingsCubit>();
+    final language = switch (settings.state) {
+      SettingsSuccess(:final language) => language,
       _ => defaultLocale,
     };
 
     if (language != newLocale) {
-      userSettingsCubit.updateLanguage(newLocale);
+      settings.updateLocale(newLocale);
     }
-    context.read<UserSettingsCubit>().updateLanguage(newLocale);
 
     return newLocale;
   }
 
   @override
   Widget build(BuildContext context) {
-    final settings = context.watch<UserSettingsCubit>().state;
+    final settings = context.watch<SettingsCubit>().state;
 
     final themeMode = switch (settings) {
-      UserSettingsSuccess() => settings.themeMode,
+      SettingsSuccess() => settings.themeMode,
       _ => ThemeMode.system,
     };
 
     final language = switch (settings) {
-      UserSettingsSuccess() => settings.language,
+      SettingsSuccess() => settings.language,
       _ => const Locale('en'),
     };
 
@@ -78,7 +76,6 @@ class NavisApp extends StatelessWidget {
           color: Colors.grey[900],
           themeMode: themeMode,
           debugShowCheckedModeBanner: false,
-
           theme: NavisThemes.theme(Brightness.light, lightDynamic),
           darkTheme: NavisThemes.theme(Brightness.dark, darkDynamic),
           builder: _builder,

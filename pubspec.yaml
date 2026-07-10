@@ -66,6 +66,8 @@ dependencies:
       url: https://github.com/getsentry/sentry-dart.git
       ref: deps/jni-0.15.x
       path: packages/logging
+  settings_repository:
+    path: packages/settings_repository
   simple_icons: ^16.23.0
   storage:
     path: packages/storage

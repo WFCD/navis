@@ -1,4 +1,6 @@
+import 'dart:convert';
 import 'dart:isolate';
+import 'dart:math';
 
 import 'package:cache/cache.dart';
 import 'package:profile_repository/src/utils/masterable_item.dart';
@@ -8,61 +10,70 @@ import 'package:warframe_common/warframe_common.dart';
 
 const _cacheKey = 'profile';
 const _refreshTime = Duration(minutes: 60);
+const _overrides = <String>['Excalibur Prime', 'Lato Prime', 'Skana Prime'];
+
+typedef XpInfo = ({Map<String, MasterableItem> lookup, List<MasterableItem> list});
 
 /// {@template profile_repository}
 /// A Very Good Project created by Very Good CLI.
 /// {@endtemplate}
 class ProfileRepository {
   /// {@macro profile_repository}
-  const ProfileRepository(this._api, this._cache, this._db);
+  const ProfileRepository(this._api, this._cache, this._itemStore);
 
   final WarframeApi _api;
   final CacheManager _cache;
-  final Storage<Map<dynamic, dynamic>> _db;
+  final Storage<Map<dynamic, dynamic>> _itemStore;
 
-  Future<Profile> fetchProfile(String id) async {
+  Future<Profile> fetchProfile(String input) async {
+    final userData = json.decode(input) as Map<String, dynamic>;
+    if (!userData.containsKey('user_id')) throw const FormatException('Missing user id');
+
     final cache = await _cache.get<Map<String, dynamic>>(_cacheKey);
     if (cache != null) {
       final profile = await Isolate.run(() => Profile.fromMap(cache));
-      if (profile.id == id) return profile;
+      if (profile.id == userData['user_id']) return profile;
     }
 
-    final data = await _api.fetchProfile(id);
+    final data = await _api.fetchProfile(userData['id'] as String);
     final profile = await Isolate.run(() => Profile.fromMap(data));
     await _cache.set(_cacheKey, profile, ttl: _refreshTime);
 
     return profile;
   }
 
-  Future<List<MasterableItem>> buildXpInfo() async {
+  Future<XpInfo> buildXpInfo() async {
     final cache = await _cache.get<Map<String, dynamic>>(_cacheKey);
-    if (cache == null) return [];
+    if (cache == null) return (lookup: <String, MasterableItem>{}, list: <MasterableItem>[]);
 
     final profile = await Isolate.run(() => Profile.fromMap(cache));
-    final items = _createLookup(List<Map<String, dynamic>>.from(_db.readAll()));
-    final info = profile.loadout.xpInfo.map((i) => MasterableItem(item: items[i.uniqueName]!, xp: i.xp)).toList();
-    _fixSiriusOrion(info);
+    final items = List<Map<String, dynamic>>.from(_itemStore.readAll());
+    final xpLookup = {for (final xpItem in profile.loadout.xpInfo) xpItem.uniqueName: xpItem.xp};
+    final info = <MasterableItem>[];
 
-    return info;
-  }
-
-  Map<String, WarframeItem> _createLookup(List<Map<String, dynamic>> items) {
-    final entries = items.map((i) {
+    int? siriusOrionXp;
+    for (final i in items) {
       final item = WarframeItem.fromDatabase(i);
-      return MapEntry(item.uniqueName, item);
-    });
+      final xp = xpLookup[item.uniqueName] ?? 0;
 
-    return Map.fromEntries(entries);
+      // These get removed from the xp info so players aren't nagged about unobtainable items
+      if (_overrides.contains(item.name)) continue;
+
+      // Syncs Sirius' & Orion's rank
+      if (item.uniqueName.contains('SiriusOrion')) {
+        siriusOrionXp ??= xp;
+        info.add(MasterableItem(item: item, xp: max(xp, siriusOrionXp)));
+      }
+
+      info.add(MasterableItem(item: item, xp: xp));
+    }
+
+    info.sort((a, b) => a.xp.compareTo(b.xp));
+    return (lookup: {for (final i in info) i.item.uniqueName: i}, list: info);
   }
 
-  // Syncs Sirius & Orion powersuit entiries
-  void _fixSiriusOrion(List<MasterableItem> items) {
-    final siriusOrion = items.where((i) => i.item.uniqueName.contains('SiriusOrion'));
-    // One will always be 0
-    final largestXp = siriusOrion.map((i) => i.xp).reduce((value, i) => value + i);
-
-    for (final f in siriusOrion) {
-      items[items.indexOf(f)] = MasterableItem(item: f.item, xp: largestXp);
-    }
+  bool validateUserData(String input) {
+    final userData = json.decode(input) as Map<String, dynamic>;
+    return userData.containsKey('user_id');
   }
 }

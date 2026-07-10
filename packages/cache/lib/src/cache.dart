@@ -10,7 +10,7 @@ import 'package:storage/storage.dart';
 /// {@endtemplate}
 class CacheManager {
   /// {@macro cache}
-  const CacheManager({required this._storage});
+  const CacheManager(this._storage);
 
   final Storage<Map<dynamic, dynamic>> _storage;
 

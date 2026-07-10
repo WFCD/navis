@@ -15,7 +15,7 @@ class FilterDialog extends StatelessWidget {
       useRootNavigator: false,
       builder: (_) {
         final notifications = RepositoryProvider.of<NotificationRepository>(context);
-        final usersettings = BlocProvider.of<UserSettingsCubit>(context);
+        final usersettings = BlocProvider.of<SettingsCubit>(context);
 
         return RepositoryProvider.value(
           value: notifications,
@@ -53,22 +53,22 @@ class _NotificationCheckBox extends StatelessWidget {
 
   Future<void> _onChanged(BuildContext context, Topic topic, bool value) async {
     final repo = context.read<NotificationRepository>();
-    context.read<UserSettingsCubit>().updateToggle(topic.name, value: value);
+    // context.read<SettingsCubit>().updateToggle(topic.name, value: value);
 
     await repo.requestPermission();
     await repo.updateTopic(topic, value: value);
 
     final hasPermission = await repo.hasPermission();
     if (!hasPermission && context.mounted) {
-      context.read<UserSettingsCubit>().updateToggle(topic.name, value: false);
+      // context.read<SettingsCubit>().updateToggle(topic.name, value: false);
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    final settings = context.watch<UserSettingsCubit>().state;
+    final settings = context.watch<SettingsCubit>().state;
     final toggles = switch (settings) {
-      UserSettingsSuccess() => settings.toggles,
+      // SettingsSuccess() => settings.toggles,
       _ => <String, bool>{},
     };
 

@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:navis/codex/codex.dart';
+import 'package:item_repository/items_repository.dart';
 import 'package:navis/home/home.dart';
-import '../../../packages/items_database/lib/items.dart';
+import 'package:navis/search/search.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final repo = RepositoryProvider.of<ItemDatabase>(context);
+    final repo = RepositoryProvider.of<ItemsRepository>(context);
 
     return BlocProvider(create: (_) => SearchBloc(repo), child: const HomeView());
   }
@@ -62,14 +62,14 @@ class _HomeViewState extends State<HomeView> with RouteAware {
 
     return CustomScrollView(
       slivers: [
-        SliverAppBar(
+        const SliverAppBar(
           floating: true,
           snap: true,
           backgroundColor: Colors.transparent,
           surfaceTintColor: Colors.transparent,
           titleSpacing: 0,
           clipBehavior: Clip.none,
-          title: CodexSearchBar(focusNode: _focusNode, controller: _controller),
+          title: ItemsSearchBar(),
         ),
         SliverList.list(children: children),
       ],

@@ -24,9 +24,7 @@ class WorldstateRepository {
   final WarframeApi _api;
   final ArbiApi _arbiApi;
 
-  String locale = 'en';
-
-  Stream<Worldstate> worldstateEmitter() async* {
+  Stream<Worldstate> worldstateEmitter(String locale) async* {
     yield* Stream.periodic(_refreshTime, (_) => buildWorldstate(locale)).asyncMap((f) => f).map((w) => w..clean());
   }
 
@@ -37,7 +35,7 @@ class WorldstateRepository {
 
     final data = await _api.fetchWorldstateBytes();
     final worldstate = await Isolate.run(() {
-      final json = utf8.decoder.fuse(const JsonDecoder()).convert(data)! as Map<String,dynamic>;
+      final json = utf8.decoder.fuse(const JsonDecoder()).convert(data)! as Map<String, dynamic>;
       final raw = RawWorldstate.fromMap(json);
       final deps = Dependency(locale: WorldstateDataLocale.values.byName(locale));
 
@@ -50,8 +48,8 @@ class WorldstateRepository {
   }
 
   // ignore: experimental_member_use Its in a controlled environment
-  Future<Arbitration> fetchArbitration() async {
-    final cached = await _cache.get<List<dynamic>>(_arbitrationCacheKey);
+  Future<Arbitration> fetchArbitration(String locale) async {
+    final cached = await _cache.get<List<dynamic>>('${_arbitrationCacheKey}_$locale');
     if (cached != null) {
       return Isolate.run(() {
         // ignore: experimental_member_use Its in a controlled environment
@@ -60,9 +58,10 @@ class WorldstateRepository {
       });
     }
 
+    final lang = WorldstateDataLocale.values.byName(locale);
     final timestamp = DateTime.timestamp();
     final raw = await _arbiApi.fetchArbis();
-    final arbis = _parseArbitrations(raw);
+    final arbis = _parseArbitrations(raw, lang);
     final ttl = timestamp.difference(arbis.last.expiry);
     await _cache.set(_arbitrationCacheKey, arbis.map((i) => i.toJson()).toList(), ttl: ttl);
 

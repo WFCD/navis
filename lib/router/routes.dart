@@ -2,14 +2,14 @@ import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matomo_tracker/matomo_tracker.dart';
 import 'package:navis/app/app.dart';
-import 'package:navis/codex/codex.dart';
 import 'package:navis/explore/explore.dart';
 import 'package:navis/home/home.dart';
 import 'package:navis/profile/profile.dart';
+import 'package:navis/search/view/search_page.dart';
 import 'package:navis/settings/settings.dart';
 import 'package:navis/synthtargets/synthtargets.dart';
 import 'package:navis/worldstate/worldstate.dart';
-import 'package:worldstate_models/worldstate_models.dart';
+import 'package:warframe_common/warframe_common.dart';
 
 part 'routes.g.dart';
 
@@ -212,8 +212,8 @@ class CodexPageRoute extends GoRouteData with $CodexPageRoute {
   @override
   Widget build(BuildContext context, GoRouterState state) {
     return TraceableWidget(
-      actionName: 'CodexSearch()',
-      child: CodexSearchPage(query: $extra),
+      actionName: 'CodexSearch',
+      child: ItemsSearchPage(query: $extra),
     );
   }
 }

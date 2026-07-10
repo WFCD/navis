@@ -41,19 +41,6 @@ class __NewsCarouselViewState extends State<_NewsCarouselView> {
   Timer? _timer;
   int _currentPage = 0;
 
-  @override
-  void initState() {
-    super.initState();
-    _controller = CarouselController();
-  }
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    _timer?.cancel();
-    _timer = Timer.periodic(_autoScrollDuration, (_) => _autoScroll());
-  }
-
   void _autoScroll() {
     if (!mounted || !_controller.hasClients || !_controller.position.hasViewportDimension) return;
 
@@ -71,7 +58,14 @@ class __NewsCarouselViewState extends State<_NewsCarouselView> {
     if (previous is! WorldstateSuccess && next is WorldstateSuccess) return true;
     if (previous is! WorldstateSuccess || next is! WorldstateSuccess) return false;
 
-    return const DeepCollectionEquality().equals(previous.seed.news, next.seed.news);
+    return !(const DeepCollectionEquality().equals(previous.seed.news, next.seed.news));
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = CarouselController();
+    _timer = Timer.periodic(_autoScrollDuration, (_) => _autoScroll());
   }
 
   @override

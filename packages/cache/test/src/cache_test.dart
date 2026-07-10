@@ -18,7 +18,7 @@ Future<void> main() async {
 
     setUp(() async {
       // Initialize cache manager
-      cacheManager = CacheManager(storage: storage);
+      cacheManager = CacheManager(storage);
     });
 
     tearDownAll(() async {

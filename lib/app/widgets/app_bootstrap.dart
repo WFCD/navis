@@ -1,17 +1,20 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:item_repository/items_repository.dart';
+import 'package:navis/items/cubit/item_update_cubit.dart';
 import 'package:navis/profile/profile.dart';
 import 'package:navis/settings/settings.dart';
+import 'package:navis/worldstate/bloc/worldstate_bloc.dart';
 import 'package:notification_repository/notification_repository.dart';
 import 'package:profile_repository/profile_repository.dart';
+import 'package:settings_repository/settings_repository.dart';
 import 'package:worldstate_repository/worldstate_repository.dart';
 
 class AppBootstrap extends StatelessWidget {
   const AppBootstrap({
     super.key,
     required this._routeObserver,
-    required this._settings,
+    required this._settingsRepository,
     required this._notificationRepository,
     required this._itemsRepository,
     required this._worldstateRepository,
@@ -20,7 +23,7 @@ class AppBootstrap extends StatelessWidget {
   });
 
   final RouteObserver<ModalRoute<void>> _routeObserver;
-  final UserSettings _settings;
+  final SettingsRepository _settingsRepository;
   final NotificationRepository _notificationRepository;
   final ItemsRepository _itemsRepository;
   final WorldstateRepository _worldstateRepository;
@@ -32,7 +35,7 @@ class AppBootstrap extends StatelessWidget {
     return MultiRepositoryProvider(
       providers: [
         RepositoryProvider.value(value: _routeObserver),
-        RepositoryProvider.value(value: _settings),
+        RepositoryProvider.value(value: _settingsRepository),
         RepositoryProvider.value(value: _notificationRepository),
         RepositoryProvider.value(value: _itemsRepository),
         RepositoryProvider.value(value: _worldstateRepository),
@@ -40,8 +43,10 @@ class AppBootstrap extends StatelessWidget {
       ],
       child: MultiBlocProvider(
         providers: [
-          BlocProvider(create: (_) => UserSettingsCubit(_settings)),
-          BlocProvider(create: (_) => ProfileCubit(_profileRepository, _settings)..refreshProfile()),
+          BlocProvider(create: (_) => SettingsCubit(_settingsRepository)),
+          BlocProvider(create: (_) => ProfileCubit(_profileRepository, _settingsRepository)..refreshProfile()),
+          BlocProvider(create: (_) => WorldstateBloc(_settingsRepository.locale, _worldstateRepository)),
+          BlocProvider(create: (_) => ItemUpdateCubit(_itemsRepository))
         ],
         child: child,
       ),

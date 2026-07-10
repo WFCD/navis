@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis/profile/cubit/profile_cubit.dart';
+import 'package:navis/settings/settings.dart';
 import 'package:navis_ui/navis_ui.dart';
-import 'package:warframe_repository/warframe_repository.dart';
 
 class ProfileWizard extends StatefulWidget {
   const ProfileWizard({super.key});
@@ -56,9 +56,7 @@ class _ProfileWizardState extends State<ProfileWizard> {
     if (input == null) return null;
     if (input.isEmpty) return '';
 
-    if (RepositoryProvider.of<WarframeRepository>(context).verifyUserData(input)) {
-      return null;
-    }
+    context.read<ProfileCubit>().loadProfile(input);
 
     return context.l10n.inventoriaInputError;
   }
@@ -124,20 +122,12 @@ class _ProfileWizardState extends State<ProfileWizard> {
           title: Text(context.l10n.inventoriaStepFourTitle),
           content: BlocBuilder<ProfileCubit, ProfileState>(
             builder: (context, state) {
-              if (state is ProfileUpdating) return const WarframeSpinner();
-              if (state is ProfileFailure) return Center(child: Text(context.l10n.inventoriaProfileError));
-
-              if (state is ProfileSuccessful) {
-                // At this point user data is verified and non null
-                return ListTile(
-                  contentPadding: const EdgeInsets.symmetric(vertical: 16),
-
-                  title: Text(state.profile.username),
-                  subtitle: Text(context.l10n.itemRankSubtitle(state.profile.masteryRank)),
-                );
-              }
-
-              return const SizedBox.shrink();
+              return switch (state) {
+                ProfileUpdating() => const WarframeSpinner(),
+                ProfileFailure() => Center(child: Text(context.l10n.inventoriaProfileError)),
+                ProfileSuccessful(:final profile) => UserTitle(username: profile.username, rank: profile.masteryRank),
+                _ => const SizedBox.shrink(),
+              };
             },
           ),
         ),

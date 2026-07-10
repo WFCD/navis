@@ -26,7 +26,15 @@ class ItemsRepository {
 
   Future<WarframeItem?> fetchItemFStore(String uniqueName) async {
     final data = _itemStore.read(uniqueName);
-    return data != null ? WarframeItem.fromDatabase(data as Map<String, dynamic>) : null;
+    if (data == null) {
+      final items = _itemStore.readAll();
+      final results = items.where((i) => (i['uniqueName'] as String).contains(uniqueName.split('/').last));
+      final closesMatch = results.firstOrNull;
+
+      return closesMatch != null ? WarframeItem.fromDatabase(closesMatch as Map<String, dynamic>) : null;
+    }
+
+    return WarframeItem.fromDatabase(data as Map<String, dynamic>);
   }
 
   Future<Item?> fetchItemFApi(String uniqueName) async {
@@ -40,28 +48,38 @@ class ItemsRepository {
     return item;
   }
 
+  Future<WarframeItem?> fetchFStorByName(String name) async {
+    final items = await search(name.replaceAll('Blueprint', '').trim());
+    return items.firstWhereOrNull((item) => item.name == name);
+  }
+
   Future<List<WarframeItem>> search(String name) async {
     final stored = _itemStore.readAll().cast<Map<String, dynamic>>();
     final resuls = stored.where((i) => i['name'] == name).map(WarframeItem.fromDatabase);
-    if (resuls.isNotEmpty) return resuls.toList()..prioritizeResults();
+    if (resuls.isNotEmpty) return resuls.toList(growable: false)..prioritizeResults();
 
     final items = await _client.searchRaw(name, props: WarframeItem.requiredProps);
-    return items.map(WarframeItem.fromApi).toList()..prioritizeResults();
+    return items.map(WarframeItem.fromApi).toList(growable: false)..prioritizeResults();
   }
 
   Future<WarframeItem?> searchIncarnon(String name) async {
     final incarnons = await search('Incarnon');
     final normalizeName = name.replaceAll(RegExp('and', caseSensitive: false), '&');
 
-    return incarnons.firstWhereOrNull((i) => i.name == normalizeName);
+    return incarnons.firstWhereOrNull((i) => i.name.contains(normalizeName));
+  }
+
+  Future<List<WarframeItem>> searchMasterable(String name) async {
+    final results = await search(name);
+    return results.where((i) => i.isMasterable).toList(growable: false);
   }
 
   Future<void> updateItems(String buildLabel, {ItemUpdateProgress? onProgress, bool forceUpdate = false}) async {
     const key = 'buildStoreLabel';
-    if (!forceUpdate) {
-      final lastRun = await _cache.get<Map<String, dynamic>>(key);
-      final timestamp = lastRun?['timestamp'] as String?;
+    final lastRun = await _cache.get<Map<String, dynamic>>(key);
 
+    if (!forceUpdate) {
+      final timestamp = lastRun?['timestamp'] as String?;
       final labelChanged = lastRun?['label'] != buildLabel;
       final lapsed =
           timestamp == null || DateTime.timestamp().difference(DateTime.parse(timestamp)) > _itemUpdateInterval;
@@ -71,7 +89,12 @@ class ItemsRepository {
 
     final items = await _client.fetchAllItemsRaw(WarframeItem.requiredProps);
     final mapped = {for (final item in items) item['uniqueName'] as String: item};
-    await _cache.set(key, {'label': buildLabel, 'timestamp': DateTime.timestamp()});
+
+    if (forceUpdate) {
+      await _cache.set(key, {'label': lastRun?['label'], 'timestamp': DateTime.timestamp()});
+    } else {
+      await _cache.set(key, {'label': buildLabel, 'timestamp': DateTime.timestamp()});
+    }
 
     if (onProgress != null) {
       for (var i = 0; i < items.length; i++) {

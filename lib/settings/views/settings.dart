@@ -8,8 +8,7 @@ import 'package:navis/profile/cubit/profile_cubit.dart';
 import 'package:navis/settings/settings.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:notification_repository/notification_repository.dart';
-import 'package:profile_models/profile_models.dart';
-import 'package:warframe_repository/warframe_repository.dart';
+import 'package:warframe_common/warframe_common.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});
@@ -25,14 +24,14 @@ class _SettingsView extends StatelessWidget {
 
   Future<void> _onNotificationChanged(BuildContext context, Topic topic, bool value) async {
     final repo = context.read<NotificationRepository>();
-    context.read<UserSettingsCubit>().updateToggle(topic.name, value: value);
+    // context.read<SettingsCubit>().updateToggle(topic.name, value: value);
 
     await repo.requestPermission();
     await repo.updateTopic(topic, value: value);
 
     final hasPermission = await repo.hasPermission();
     if (!hasPermission && context.mounted) {
-      context.read<UserSettingsCubit>().updateToggle(topic.name, value: false);
+      // context.read<SettingsCubit>().updateToggle(topic.name, value: false);
     }
   }
 
@@ -50,8 +49,8 @@ class _SettingsView extends StatelessWidget {
 
     final filters = NotificationTopics(context.l10n);
 
-    final settings = context.select<UserSettingsCubit, UserSettingsSuccess?>(
-      (cubit) => cubit.state is UserSettingsSuccess ? cubit.state as UserSettingsSuccess : null,
+    final settings = context.select<SettingsCubit, SettingsSuccess?>(
+      (cubit) => cubit.state is SettingsSuccess ? cubit.state as SettingsSuccess : null,
     );
 
     final profile = context.select<ProfileCubit, Profile?>(
@@ -61,7 +60,7 @@ class _SettingsView extends StatelessWidget {
       },
     );
 
-    final toggles = settings?.toggles ?? <String, bool>{};
+    final toggles = <String, bool>{};
 
     return SettingsList(
       platform: DevicePlatform.android,
@@ -72,9 +71,9 @@ class _SettingsView extends StatelessWidget {
           title: const Text('Inventoria'),
           tiles: [
             SettingsTile(
-              title: profile?.username != null
+              title: profile != null
                   ? UserTitle(
-                      username: profile!.username,
+                      username: profile.username,
                       rank: profile.masteryRank,
                     )
                   : Text(l10n.enterUsernameHintText),
@@ -82,18 +81,7 @@ class _SettingsView extends StatelessWidget {
             ),
             SettingsTile(
               title: const Text('Update Codex'),
-              onPressed: (context) async {
-                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Updating Codex')));
-
-                final isUpdated = await RepositoryProvider.of<WarframeRepository>(
-                  context,
-                ).updateCodex(forceUpdate: true);
-                if (!context.mounted) return;
-
-                ScaffoldMessenger.of(
-                  context,
-                ).showSnackBar(SnackBar(content: Text(isUpdated ? 'Codex updated' : 'Codex was not updated')));
-              },
+              onPressed: (context) async {},
             ),
           ],
         ),
@@ -109,14 +97,14 @@ class _SettingsView extends StatelessWidget {
             SettingsTile.navigation(
               title: Text(l10n.themeTitle),
               description: Text(l10n.themeDescription),
-              value: Text(toBeginningOfSentenceCase((settings?.themeMode ?? ThemeMode.system).name) ?? ''),
+              value: Text(toBeginningOfSentenceCase((settings?.themeMode ?? ThemeMode.system).name)),
               onPressed: ThemePicker.showModes,
             ),
             SettingsTile.switchTile(
               title: Text(l10n.optOutOfAnalyticsTitle),
               description: Text(l10n.optOutOfAnalyticsDescription),
               initialValue: settings?.isOptOut ?? false,
-              onToggle: (b) => context.read<UserSettingsCubit>().updateAnalyticsOpt(isOptOut: b),
+              onToggle: (b) => context.read<SettingsCubit>().updateAnalyticsOpt(b),
             ),
           ],
         ),

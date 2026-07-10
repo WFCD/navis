@@ -1,8 +1,8 @@
 import 'package:black_hole_flutter/black_hole_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:navis/l10n/l10n.dart';
+import 'package:navis_ui/navis_ui.dart' show WarframeIcons;
 import 'package:simple_icons/simple_icons.dart';
-import 'package:warframe_icons/warframe_icons.dart';
 
 class UserTitle extends StatelessWidget {
   const UserTitle({super.key, required this.username, required this.rank});
@@ -18,6 +18,7 @@ class UserTitle extends StatelessWidget {
 
     return ListTile(
       contentPadding: EdgeInsets.zero,
+      // leading: CircleAvatar(radius: 29, foregroundImage: CachedNetworkImageProvider(avatar)),
       title: Row(
         mainAxisSize: MainAxisSize.min,
         spacing: 16,

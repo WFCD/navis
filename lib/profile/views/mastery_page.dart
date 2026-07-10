@@ -1,32 +1,17 @@
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:navis/profile/cubit/profile_cubit.dart';
 import 'package:navis/profile/profile.dart';
-import 'package:navis/profile/utils/mastery_utils.dart';
 import 'package:navis_ui/navis_ui.dart';
-import 'package:profile_models/profile_models.dart';
-import 'package:warframe_repository/warframe_repository.dart';
+import 'package:profile_repository/profile_repository.dart';
 
 class MasteryPage extends StatelessWidget {
   const MasteryPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final repository = RepositoryProvider.of<WarframeRepository>(context);
-    final xpInfo = context.select<ProfileCubit, List<XpItem>>(
-      (c) => switch (c.state) {
-        ProfileSuccessful(:final profile) => profile.loadout.xpInfo,
-        _ => [],
-      },
-    );
-
-    return Scaffold(
-      body: SafeArea(
-        child: BlocProvider(
-          create: (_) => MasteryProgressCubit(repository)..fetchInProgress(xpInfo),
-          child: const MasteryView(),
-        ),
-      ),
-    );
+    return const Scaffold(body: SafeArea(child: MasteryView()));
   }
 }
 
@@ -37,20 +22,22 @@ class MasteryView extends StatefulWidget {
   State<MasteryView> createState() => _MasteryViewState();
 }
 
+typedef _MasteryCategory = ({String name, List<MasterableItem> Function(List<MasterableItem> items) filter});
+
 class _MasteryViewState extends State<MasteryView> {
   late final List<ScrollController> _controllers;
 
-  final _tabs = <({String name, List<MasterableItem> Function(List<MasterableItem> items) items})>[
-    (name: 'In Progress', items: (List<MasterableItem> items) => items.inProgress),
-    (name: 'Warframes', items: (List<MasterableItem> items) => items.warframes),
-    (name: 'Primary', items: (List<MasterableItem> items) => items.primaries),
-    (name: 'Secondary', items: (List<MasterableItem> items) => items.secondary),
-    (name: 'Melee', items: (List<MasterableItem> items) => items.melee),
-    (name: 'Companions', items: (List<MasterableItem> items) => items.companions),
-    (name: 'K-Drive', items: (List<MasterableItem> items) => items.kDrives),
-    (name: 'Archwing', items: (List<MasterableItem> items) => items.archwing),
-    (name: 'Arch-Gun', items: (List<MasterableItem> items) => items.archGun),
-    (name: 'Arch-Melee', items: (List<MasterableItem> items) => items.archMelee),
+  final _tabs = <_MasteryCategory>[
+    (name: 'In Progress', filter: (items) => items.inProgress),
+    (name: 'Warframes', filter: (items) => items.warframes),
+    (name: 'Primary', filter: (items) => items.primaries),
+    (name: 'Secondary', filter: (items) => items.secondary),
+    (name: 'Melee', filter: (items) => items.melee),
+    (name: 'Companions', filter: (items) => items.companions),
+    (name: 'K-Drive', filter: (items) => items.kDrives),
+    (name: 'Archwing', filter: (items) => items.archwing),
+    (name: 'Arch-Gun', filter: (items) => items.archGun),
+    (name: 'Arch-Melee', filter: (items) => items.archMelee),
   ];
 
   void _onTap(int index) {
@@ -84,7 +71,7 @@ class _MasteryViewState extends State<MasteryView> {
                 snap: true,
                 clipBehavior: Clip.hardEdge,
                 automaticallyImplyLeading: false,
-                title: MasteryItemSearchBar(onPressed: () => Navigator.pop(context)),
+                title: const MasteryItemSearchBar(),
                 bottom: TabBar(
                   isScrollable: true,
                   tabs: _tabs.map((i) => Tab(text: i.name)).toList(),
@@ -94,25 +81,20 @@ class _MasteryViewState extends State<MasteryView> {
             ),
           ];
         },
-        body: BlocBuilder<MasteryProgressCubit, MasteryProgressState>(
+        body: BlocBuilder<ProfileCubit, ProfileState>(
           builder: (context, state) {
-            if (state is! MasteryProgressSuccess) {
+            if (state is! ProfileSuccessful) {
               return const Center(child: WarframeSpinner());
             }
 
             return TabBarView(
               children: _tabs
-                  .asMap()
-                  .map((index, tab) {
-                    return MapEntry(
-                      index,
-                      ArsenalItems(
-                        controller: _controllers[index],
-                        items: tab.items(state.items),
-                      ),
-                    );
-                  })
-                  .values
+                  .mapIndexed(
+                    (index, tab) => ArsenalItems(
+                      controller: _controllers[index],
+                      items: tab.filter(state.xpInfo.list),
+                    ),
+                  )
                   .toList(),
             );
           },

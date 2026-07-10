@@ -1,62 +1,36 @@
 import 'package:animations/animations.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:navis/codex/codex.dart';
+import 'package:navis/items/views/views.dart';
 import 'package:navis/l10n/l10n.dart';
-import 'package:navis/profile/utils/mastery_utils.dart';
 import 'package:navis/utils/string_extensions.dart';
 import 'package:navis_ui/navis_ui.dart';
-import 'package:warframe_icons/warframe_icons.dart';
-import 'package:warframe_repository/warframe_repository.dart';
+import 'package:profile_repository/profile_repository.dart';
 
-class ArsenalItemWidget extends StatelessWidget {
-  const ArsenalItemWidget({super.key, required this.item});
+class MasteryItemTile extends StatelessWidget {
+  const MasteryItemTile({super.key, required this.masterableItem});
 
-  final MasterableItem item;
+  final MasterableItem masterableItem;
 
   @override
   Widget build(BuildContext context) {
-    final repo = RepositoryProvider.of<WarframeRepository>(context);
-    final rank = masteryRank(item);
+    final rank = masterableItem.level;
+    final maxRank = masterableItem.item.maxLevel ?? 30;
 
     return OpenContainer(
       openColor: Theme.of(context).colorScheme.surfaceContainer,
       closedColor: Colors.transparent,
       openBuilder: (context, _) {
-        return BlocProvider(
-          create: (_) => ItemCubit(item.item.uniqueName, repo)..fetchItem(),
-          child: Builder(
-            builder: (context) {
-              return BlocBuilder<ItemCubit, ItemState>(
-                builder: (context, state) {
-                  return switch (state) {
-                    ItemNotFound() => const Center(child: Text('Item Not Found')),
-                    ItemFetchSuccess(:final item) => EntryView(
-                      uniqueName: item.uniqueName,
-                      name: item.name,
-                      description: item.description,
-                      imageName: item.imageName,
-                      type: item.type,
-                      wikiaUrl: item.wikiaUrl,
-                      wikiaThumbnail: item.wikiaThumbnail,
-                    ),
-                    _ => const Center(child: WarframeSpinner()),
-                  };
-                },
-              );
-            },
-          ),
-        );
+        return ItemDetailPage(item: masterableItem.item);
       },
       closedBuilder: (context, onTap) {
         return AppCard(
-          color: rank == (item.item.maxLevel ?? 30) ? Theme.of(context).colorScheme.secondaryContainer : null,
-          child: ArsenalItemTitle(
-            name: item.item.name,
-            imageName: item.item.imageName!,
+          color: rank == maxRank ? Theme.of(context).colorScheme.secondaryContainer : null,
+          child: _MasteryItemTileContent(
+            name: masterableItem.item.name,
+            imageName: masterableItem.item.imageName!,
             rank: rank,
-            maxRank: item.item.maxLevel ?? 30,
+            maxRank: maxRank,
           ),
         );
       },
@@ -64,9 +38,8 @@ class ArsenalItemWidget extends StatelessWidget {
   }
 }
 
-class ArsenalItemTitle extends StatelessWidget {
-  const ArsenalItemTitle({
-    super.key,
+class _MasteryItemTileContent extends StatelessWidget {
+  const _MasteryItemTileContent({
     required this.name,
     required this.imageName,
     required this.rank,

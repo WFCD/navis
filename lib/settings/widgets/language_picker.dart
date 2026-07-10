@@ -3,25 +3,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis/settings/settings.dart';
-import 'package:warframe_api/warframe_api.dart';
-import 'package:warframe_repository/warframe_repository.dart';
 
 class LanguagePicker extends StatelessWidget {
   const LanguagePicker({super.key});
 
   static Future<void> showOptions(BuildContext context) async {
-    final locale = await showModalBottomSheet<Locale>(
+    await showModalBottomSheet<Locale>(
       context: context,
       useSafeArea: true,
       isScrollControlled: true,
       builder: (_) => BlocProvider.value(
-        value: BlocProvider.of<UserSettingsCubit>(context),
+        value: BlocProvider.of<SettingsCubit>(context),
         child: const LanguagePicker(),
       ),
     );
-
-    if (locale == null || !context.mounted) return;
-    context.read<WarframeRepository>().locale = WorldstateLocale.values.byName(locale.languageCode);
   }
 
   @override
@@ -31,9 +26,9 @@ class LanguagePicker extends StatelessWidget {
     final materialLocalizations = MaterialLocalizations.of(context);
     final accentColor = Theme.of(context).colorScheme.secondary;
 
-    final settings = context.watch<UserSettingsCubit>().state;
+    final settings = context.watch<SettingsCubit>().state;
     final language = switch (settings) {
-      UserSettingsSuccess() => settings.language,
+      SettingsSuccess() => settings.language,
       _ => context.locale,
     };
 
@@ -48,7 +43,7 @@ class LanguagePicker extends StatelessWidget {
                 groupValue: language,
                 onChanged: (l) {
                   if (l == null) return;
-                  context.read<UserSettingsCubit>().updateLanguage(l);
+                  context.read<SettingsCubit>().updateLocale(l);
                 },
                 child: ListView.builder(
                   controller: controller,
