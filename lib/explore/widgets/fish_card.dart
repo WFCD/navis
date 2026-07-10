@@ -9,7 +9,7 @@ import 'package:navis_ui/navis_ui.dart';
 class FishCard extends StatelessWidget {
   const FishCard({super.key, required this.fish});
 
-  // I'm sure this won't cause an problems down the line but I shoooould fix
+  // I'm sure this won't cause any problems down the line but I shoooould fix
   // that up later
   // ignore: strict_raw_type
   final Fish fish;

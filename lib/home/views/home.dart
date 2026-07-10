@@ -11,7 +11,6 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final repo = RepositoryProvider.of<ItemsRepository>(context);
-
     return BlocProvider(create: (_) => SearchBloc(repo), child: const HomeView());
   }
 }
@@ -34,16 +33,10 @@ class _HomeViewState extends State<HomeView> with RouteAware {
     super.initState();
     _focusNode = FocusNode();
     _controller = SearchController();
+    _observer = RepositoryProvider.of<RouteObserver<ModalRoute<void>>>(context)
+      ..subscribe(this, ModalRoute.of(context)!);
 
     GoRouter.of(context).routerDelegate.addListener(_handleRouteChange);
-  }
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-
-    _observer ??= RepositoryProvider.of<RouteObserver<ModalRoute<void>>>(context)
-      ..subscribe(this, ModalRoute.of(context)!);
   }
 
   void _handleRouteChange() {

@@ -2,7 +2,6 @@ import 'package:black_hole_flutter/black_hole_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:matomo_tracker/matomo_tracker.dart';
 import 'package:navis/synthtargets/cubit/synthtargets_cubit.dart';
 import 'package:navis/synthtargets/widgets/target.dart';
 import 'package:navis_ui/navis_ui.dart';
@@ -14,13 +13,11 @@ class SynthTargetsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TraceableWidget(
-      child: Scaffold(
-        appBar: AppBar(),
-        body: BlocProvider(
-          create: (context) => SynthtargetsCubit()..fetchSynthtargets(context.locale.languageCode),
-          child: const _SynthTargetsPage(),
-        ),
+    return Scaffold(
+      appBar: AppBar(),
+      body: BlocProvider(
+        create: (context) => SynthtargetsCubit()..fetchSynthtargets(context.locale.languageCode),
+        child: const _SynthTargetsPage(),
       ),
     );
   }
