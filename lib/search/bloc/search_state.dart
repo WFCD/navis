@@ -9,12 +9,12 @@ sealed class SearchState extends Equatable {
 
 final class SearchEmpty extends SearchState {
   @override
-  String toString() => 'CodexSearchEmpty()';
+  String toString() => 'SearchEmpty()';
 }
 
 final class SearchInProgress extends SearchState {
   @override
-  String toString() => 'CodexSearchInProgress()';
+  String toString() => 'SearchInProgress()';
 }
 
 final class SearchSuccessful extends SearchState {
@@ -35,5 +35,5 @@ final class SearchFailure extends SearchState {
   final String query;
 
   @override
-  String toString() => 'CodexSearchFailure(query: $query)';
+  String toString() => 'SearchFailure(query: $query)';
 }

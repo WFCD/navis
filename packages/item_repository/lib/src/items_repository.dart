@@ -54,12 +54,16 @@ class ItemsRepository {
   }
 
   Future<List<WarframeItem>> search(String name) async {
-    final stored = _itemStore.readAll().cast<Map<String, dynamic>>();
-    final resuls = stored.where((i) => i['name'] == name).map(WarframeItem.fromDatabase);
-    if (resuls.isNotEmpty) return resuls.toList(growable: false)..prioritizeResults();
+    try {
+      final stored = _itemStore.readAll().cast<Map<String, dynamic>>();
+      final resuls = stored.where((i) => i['name'] == name).map(WarframeItem.fromDatabase);
+      if (resuls.isNotEmpty) return resuls.toList(growable: false)..prioritizeResults();
 
-    final items = await _client.searchRaw(name, props: WarframeItem.requiredProps);
-    return items.map(WarframeItem.fromApi).toList(growable: false)..prioritizeResults();
+      final items = await _client.searchRaw(name, props: WarframeItem.requiredProps);
+      return items.map(WarframeItem.fromApi).toList(growable: false)..prioritizeResults();
+    } on Exception {
+      return [];
+    }
   }
 
   Future<WarframeItem?> searchIncarnon(String name) async {
@@ -71,7 +75,7 @@ class ItemsRepository {
 
   Future<List<WarframeItem>> searchMasterable(String name) async {
     final results = await search(name);
-    return results.where((i) => i.isMasterable).toList(growable: false);
+    return results.where((i) => i.isMasterable ?? false).toList(growable: false);
   }
 
   Future<void> updateItems(String buildLabel, {ItemUpdateProgress? onProgress, bool forceUpdate = false}) async {
@@ -90,10 +94,11 @@ class ItemsRepository {
     final items = await _client.fetchAllItemsRaw(WarframeItem.requiredProps);
     final mapped = {for (final item in items) item['uniqueName'] as String: item};
 
+    final timestamp = DateTime.timestamp().toIso8601String();
     if (forceUpdate) {
-      await _cache.set(key, {'label': lastRun?['label'], 'timestamp': DateTime.timestamp()});
+      await _cache.set(key, {'label': lastRun?['label'], 'timestamp': timestamp});
     } else {
-      await _cache.set(key, {'label': buildLabel, 'timestamp': DateTime.timestamp()});
+      await _cache.set(key, {'label': buildLabel, 'timestamp': timestamp});
     }
 
     if (onProgress != null) {

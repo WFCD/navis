@@ -1,5 +1,4 @@
 import 'package:equatable/equatable.dart';
-import 'package:flutter/widgets.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:navis/utils/bloc_mixin.dart';
 import 'package:replay_bloc/replay_bloc.dart';
@@ -14,6 +13,7 @@ class WorldstateBloc extends HydratedBloc<WorldstateEvent, WorldState> with Repl
     on<WorldstateStarted>(_emiteState);
     on<WorldstateUpdated>((event, emit) => emit(WorldstateSuccess(event.state)));
     on<WorldstateFailed>((event, emit) => emit(WorldstateFailure()));
+    add(WorldstateStarted(locale));
   }
 
   final String locale;

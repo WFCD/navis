@@ -25,7 +25,7 @@ class WorldstateRepository {
   final ArbiApi _arbiApi;
 
   Stream<Worldstate> worldstateEmitter(String locale) async* {
-    yield* Stream.periodic(_refreshTime, (_) => buildWorldstate(locale)).asyncMap((f) => f).map((w) => w..clean());
+    yield* Stream.periodic(_refreshTime, (_) => buildWorldstate(locale)).asyncMap((f) => f);
   }
 
   Future<Worldstate> buildWorldstate(String locale) async {
@@ -39,7 +39,7 @@ class WorldstateRepository {
       final raw = RawWorldstate.fromMap(json);
       final deps = Dependency(locale: WorldstateDataLocale.values.byName(locale));
 
-      return raw.toWorldstate(deps);
+      return raw.toWorldstate(deps)..clean();
     });
 
     await _cache.set(key, worldstate.toMap(), ttl: _refreshTime);

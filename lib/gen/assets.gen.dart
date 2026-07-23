@@ -32,9 +32,7 @@ class $AssetsArcanesGen {
   List<AssetGenImage> get values => [common, legendary, rare, uncommon];
 }
 
-class Assets {
-  const Assets._();
-
+abstract final class Assets {
   static const $AssetsArcanesGen arcanes = $AssetsArcanesGen();
   static const AssetGenImage baroBanner = AssetGenImage(
     'assets/baro_banner.webp',

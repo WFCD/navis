@@ -12,6 +12,8 @@ class OpenItemContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return OpenContainer(
+      closedColor: Theme.of(context).canvasColor,
+      closedElevation: 0,
       closedBuilder: closedBuilder,
       openBuilder: (_, _) => ItemDetailPage(item: item),
     );

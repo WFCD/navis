@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter/material.dart';
 import 'package:item_repository/items_repository.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:warframe_common/warframe_common.dart';
@@ -69,7 +68,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
 
   EventTransformer<T> _waitForUser<T extends SearchTextChanged>() {
     return (event, mapper) {
-      return event.debounceTime(Durations.medium2).distinct().flatMap(mapper);
+      return event.debounceTime(const Duration(milliseconds: 500)).distinct().flatMap(mapper);
     };
   }
 }

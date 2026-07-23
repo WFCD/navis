@@ -12,6 +12,7 @@ class NavisSearchBar extends StatelessWidget {
     this.trailing,
     this.backgroundColor,
     required this.suggestionsBuilder,
+    this.viewBuilder,
     required this.onChange,
     required this.onSubmit,
   });
@@ -23,20 +24,24 @@ class NavisSearchBar extends StatelessWidget {
   final WidgetStateProperty<Color?>? backgroundColor;
   final String? hintText;
   final SuggestionsBuilder suggestionsBuilder;
-  final ItemsValueChanged onChange;
+  final ViewBuilder? viewBuilder;
+  final ValueChanged<String>? onChange;
   final ItemsValueChanged onSubmit;
 
-  void _onPressed(BuildContext context) {
-    controller?.closeView(null);
-
-    if (!Navigator.canPop(context)) {
-      controller?.clear();
-      focusNode?.unfocus();
-    }
+  void _onClose(BuildContext context) {
+    controller?.clear();
+    focusNode?.unfocus();
   }
 
   @override
   Widget build(BuildContext context) {
+    final viewLeading = Navigator.canPop(context)
+        ? IconButton(
+            icon: const Icon(Icons.arrow_back_outlined),
+            onPressed: () => controller?.closeView(null),
+          )
+        : null;
+
     return Padding(
       padding: const EdgeInsets.all(8),
       child: SearchAnchor(
@@ -44,24 +49,19 @@ class NavisSearchBar extends StatelessWidget {
         textInputAction: TextInputAction.search,
         textCapitalization: TextCapitalization.words,
         suggestionsBuilder: suggestionsBuilder,
-        viewLeading:
-            leading ??
-            IconButton(
-              icon: const Icon(Icons.arrow_back_outlined),
-              onPressed: () => _onPressed(context),
-            ),
+        viewBuilder: viewBuilder,
+        viewLeading: leading ?? viewLeading,
         viewOnSubmitted: (query) => onSubmit(context, query),
+        viewOnChanged: onChange,
+        viewOnClose: () => _onClose(context),
         builder: (context, controller) {
           return SearchBar(
             focusNode: focusNode,
             controller: controller,
             onTap: this.controller?.openView,
             onTapOutside: (_) => focusNode?.unfocus(),
-            onChanged: (query) => onChange(context, query),
             hintText: hintText,
             backgroundColor: backgroundColor,
-            leading: leading,
-            trailing: trailing,
           );
         },
       ),

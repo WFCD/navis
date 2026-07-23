@@ -22,15 +22,11 @@ class _ItemsSearchBarState extends State<ItemsSearchBar> {
   late final FocusNode _focusNode;
   late final SearchController _controller;
 
-  Future<Iterable<Widget>> _suggestionsBuilder(BuildContext context, SearchController controller) async {
-    final bloc = context.read<SearchBloc>();
-    final state = bloc.state;
-
-    if (state case SearchSuccessful(:final results)) {
-      return results.map((i) => ItemTile(item: i));
-    }
-
-    return <Widget>[];
+  @override
+  void initState() {
+    super.initState();
+    _focusNode = FocusNode(debugLabel: 'item_search_bar');
+    _controller = SearchController();
   }
 
   void _onSubmitted(BuildContext context, String query) {
@@ -44,22 +40,24 @@ class _ItemsSearchBarState extends State<ItemsSearchBar> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder(
+    return BlocBuilder<SearchBloc, SearchState>(
       builder: (context, state) {
         return NavisSearchBar(
           focusNode: _focusNode,
           controller: _controller,
-          suggestionsBuilder: _suggestionsBuilder,
-          onChange: _onSubmitted,
+          suggestionsBuilder: (_, _) => [],
+          onChange: (query) => BlocProvider.of<SearchBloc>(context).add(ItemsSearchTextChanged(query)),
           onSubmit: _onSubmitted,
           hintText: widget.hintText ?? context.l10n.codexHint,
           backgroundColor: WidgetStatePropertyAll(context.theme.colorScheme.secondaryContainer),
-          leading: Navigator.of(context).canPop()
+          leading: Navigator.canPop(context)
               ? IconButton(icon: const Icon(Icons.arrow_back), onPressed: () => Navigator.pop(context))
-              : const Icon(Icons.search),
-          trailing: Navigator.of(context).canPop()
+              : null,
+          trailing: Navigator.canPop(context)
               ? [if (state is SearchSuccessful) const _ItemTypePopupMenuButton()]
               : null,
+          viewBuilder: (_) =>
+              BlocProvider.value(value: BlocProvider.of<SearchBloc>(context), child: const _ItemResultsView()),
         );
       },
     );
@@ -86,6 +84,27 @@ class _ItemTypePopupMenuButton extends StatelessWidget {
       icon: const Icon(Icons.filter_list),
       itemBuilder: (_) => types,
       onSelected: (s) => BlocProvider.of<SearchBloc>(context).add(ItemResultsFiltered(s)),
+    );
+  }
+}
+
+class _ItemResultsView extends StatelessWidget {
+  const _ItemResultsView();
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<SearchBloc, SearchState>(
+      builder: (context, state) => switch (state) {
+        SearchSuccessful(:final results) when results.isNotEmpty => ListView.builder(
+          itemCount: results.length,
+          itemBuilder: (context, index) => OpenItemContainer(
+            item: results[index],
+            closedBuilder: (_, _) => ItemTile(item: results[index]),
+          ),
+        ),
+        SearchSuccessful(:final results) when results.isEmpty => Center(child: Text(context.l10n.codexNoResults)),
+        _ => const SizedBox.shrink(),
+      },
     );
   }
 }

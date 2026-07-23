@@ -4,7 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_settings_ui/flutter_settings_ui.dart';
 import 'package:intl/intl.dart';
 import 'package:navis/l10n/l10n.dart';
-import 'package:navis/profile/cubit/profile_cubit.dart';
+import 'package:navis/profile/profile.dart';
+import 'package:navis/profile_setup/profile_setup.dart';
 import 'package:navis/settings/settings.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:notification_repository/notification_repository.dart';
@@ -77,7 +78,7 @@ class _SettingsView extends StatelessWidget {
                       rank: profile.masteryRank,
                     )
                   : Text(l10n.enterUsernameHintText),
-              onPressed: ProfileWizard.startWizard,
+              onPressed: SetupView.openBottomSheet,
             ),
             SettingsTile(
               title: const Text('Update Codex'),

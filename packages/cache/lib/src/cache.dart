@@ -17,7 +17,7 @@ class CacheManager {
   /// Get the given data stored under [key]
   Future<T>? get<T>(String key) {
     final data = _storage.read(key);
-    final cached = data != null ? CachedData.fromJson(data as Map<String, dynamic>) : null;
+    final cached = data != null ? CachedData.fromJson(Map<String, dynamic>.from(data)) : null;
     if (cached == null || cached.isExpired) return null;
 
     return Isolate.run(() => json.decode(cached.data) as T);

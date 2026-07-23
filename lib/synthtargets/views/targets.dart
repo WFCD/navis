@@ -13,10 +13,12 @@ class SynthTargetsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final locale = context.locale.languageCode;
+
     return Scaffold(
       appBar: AppBar(),
       body: BlocProvider(
-        create: (context) => SynthtargetsCubit()..fetchSynthtargets(context.locale.languageCode),
+        create: (context) => SynthtargetsCubit()..fetchSynthtargets(locale),
         child: const _SynthTargetsPage(),
       ),
     );

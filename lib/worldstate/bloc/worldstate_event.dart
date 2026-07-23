@@ -10,7 +10,7 @@ sealed class WorldstateEvent extends ReplayEvent with EquatableMixin {
 final class WorldstateStarted extends WorldstateEvent {
   const WorldstateStarted(this.locale);
 
-  final Locale locale;
+  final String locale;
 
   @override
   List<Object> get props => [locale];

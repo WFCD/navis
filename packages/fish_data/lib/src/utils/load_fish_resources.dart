@@ -13,12 +13,12 @@ enum FishingRegion {
   poe,
 
   /// Orb Vallis
-  vallis
+  vallis,
 }
 
 /// Loads the correct fishing data depending on [FishingRegion]
 Future<List<Fish<T, S, R, U>>>
-    loadFishResources<T extends RegionTime, S extends SpearRequirements, R extends RegionResources, U>(
+loadFishResources<T extends RegionTime, S extends SpearRequirements, R extends RegionResources, U>(
   FishingRegion region,
 ) async {
   final resourcesJson = switch (region) {
@@ -27,13 +27,16 @@ Future<List<Fish<T, S, R, U>>>
     FishingRegion.vallis => await rootBundle.loadString(Assets.fish.vallis),
   };
 
+  print(region);
+
   final resources = List<Map<String, dynamic>>.from(
     json.decode(resourcesJson) as List<dynamic>,
   );
 
   return switch (region) {
-    FishingRegion.deimos => resources.map(DeimosFish.fromJson).toList(),
-    FishingRegion.poe => resources.map(PoeFish.fromJson).toList(),
-    FishingRegion.vallis => resources.map(VallisFish.fromJson).toList(),
-  } as List<Fish<T, S, R, U>>;
+        FishingRegion.deimos => resources.map(DeimosFish.fromJson).toList(),
+        FishingRegion.poe => resources.map(PoeFish.fromJson).toList(),
+        FishingRegion.vallis => resources.map(VallisFish.fromJson).toList(),
+      }
+      as List<Fish<T, S, R, U>>;
 }

@@ -23,7 +23,7 @@ class AppStateListener extends StatelessWidget {
         BlocListener<SettingsCubit, SettingsState>(
           listener: (context, state) {
             if (state case SettingsSuccess(:final language)) {
-              context.read<WorldstateBloc>().add(WorldstateStarted(language));
+              context.read<WorldstateBloc>().add(WorldstateStarted(language.languageCode));
             }
           },
         ),

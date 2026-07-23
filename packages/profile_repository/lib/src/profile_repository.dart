@@ -72,8 +72,12 @@ class ProfileRepository {
     return (lookup: {for (final i in info) i.item.uniqueName: i}, list: info);
   }
 
-  bool validateUserData(String input) {
-    final userData = json.decode(input) as Map<String, dynamic>;
-    return userData.containsKey('user_id');
+  static bool validateUserData(String input) {
+    try {
+      final userData = json.decode(input) as Map<String, dynamic>;
+      return userData.containsKey('user_id');
+    } on FormatException {
+      return false;
+    }
   }
 }

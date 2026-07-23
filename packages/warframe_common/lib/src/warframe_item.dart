@@ -22,9 +22,9 @@ class WarframeItem {
       description: map['description'] as String?,
       imageName: map['imageName'] as String?,
       category: map['category'] as String,
-      isVaulted: map['vaulted'] as bool,
-      isMasterable: map['masterable'] as bool,
-      maxLevel: map['maxLevelCap'] as int,
+      isVaulted: map['vaulted'] as bool?,
+      isMasterable: map['masterable'] as bool?,
+      maxLevel: map['maxLevelCap'] as int?,
       wikiaUrl: map['wikiaUrl'] as String?,
       wikiaThumbnail: map['wikiaThumbnail'] as String?,
       type: ItemType.byType(map['type'] as String),
@@ -38,9 +38,9 @@ class WarframeItem {
       description: map['description'] as String?,
       imageName: map['imageName'] as String?,
       category: map['category'] as String,
-      isVaulted: map['isVaulted'] as bool,
-      isMasterable: map['isMasterable'] as bool,
-      maxLevel: map['maxLevel'] as int,
+      isVaulted: map['isVaulted'] as bool?,
+      isMasterable: map['isMasterable'] as bool?,
+      maxLevel: map['maxLevel'] as int?,
       wikiaUrl: map['wikiaUrl'] as String?,
       wikiaThumbnail: map['wikiaThumbnail'] as String?,
       type: ItemType.byType(map['type'] as String),
@@ -52,8 +52,8 @@ class WarframeItem {
   final String? description;
   final String? imageName;
   final String category;
-  final bool isVaulted;
-  final bool isMasterable;
+  final bool? isVaulted;
+  final bool? isMasterable;
   final int? maxLevel;
   final String? wikiaUrl;
   final String? wikiaThumbnail;

@@ -68,7 +68,7 @@ class _MasteryItemSearchBarState extends State<MasteryItemSearchBar> {
           focusNode: _focusNode,
           controller: _controller,
           suggestionsBuilder: _suggestionsBuilder,
-          onChange: _onSubmitted,
+          onChange: (query) => BlocProvider.of<SearchBloc>(context).add(MasteryItemSearchTextChanged(query)),
           onSubmit: _onSubmitted,
           hintText: widget.hintText ?? context.l10n.codexHint,
           backgroundColor: WidgetStatePropertyAll(context.theme.colorScheme.secondaryContainer),
