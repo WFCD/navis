@@ -23,7 +23,7 @@ class WarframeItem {
       imageName: map['imageName'] as String?,
       category: map['category'] as String,
       isVaulted: map['vaulted'] as bool?,
-      isMasterable: map['masterable'] as bool?,
+      isMasterable: map['masterable'] as bool? ?? false,
       maxLevel: map['maxLevelCap'] as int?,
       wikiaUrl: map['wikiaUrl'] as String?,
       wikiaThumbnail: map['wikiaThumbnail'] as String?,
@@ -39,7 +39,7 @@ class WarframeItem {
       imageName: map['imageName'] as String?,
       category: map['category'] as String,
       isVaulted: map['isVaulted'] as bool?,
-      isMasterable: map['isMasterable'] as bool?,
+      isMasterable: map['isMasterable'] as bool? ?? false,
       maxLevel: map['maxLevel'] as int?,
       wikiaUrl: map['wikiaUrl'] as String?,
       wikiaThumbnail: map['wikiaThumbnail'] as String?,
@@ -53,7 +53,7 @@ class WarframeItem {
   final String? imageName;
   final String category;
   final bool? isVaulted;
-  final bool? isMasterable;
+  final bool isMasterable;
   final int? maxLevel;
   final String? wikiaUrl;
   final String? wikiaThumbnail;
@@ -72,4 +72,20 @@ class WarframeItem {
     .wikiaThumbnail,
     .type,
   ];
+
+  Map<String, dynamic> toJson() {
+    return {
+      'uniqueName': uniqueName,
+      'name': name,
+      'description': description,
+      'imageName': imageName,
+      'category': category,
+      'isVaulted': isVaulted,
+      'isMasterable': isMasterable,
+      'maxLevel': maxLevel,
+      'wikiaUrl': wikiaUrl,
+      'wikiaThumbnail': wikiaThumbnail,
+      'type': type.type,
+    };
+  }
 }

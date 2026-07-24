@@ -2,10 +2,10 @@ import 'package:black_hole_flutter/black_hole_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
+import 'package:navis/item_search/item_search.dart';
 import 'package:navis/items/items.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis/router/routes.dart';
-import 'package:navis/search/bloc/search_bloc.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:warframe_common/warframe_common.dart';
 

@@ -70,7 +70,7 @@ class ItemCubit extends HydratedCubit<ItemState> with SafeBlocMixin {
 
   @override
   Map<String, dynamic>? toJson(ItemState state) {
-    // Only persist API calls everything else is local and just as fast
+    // Only persist API calls everything that comes from "store" is local and just as fast
     if (state case ItemApiFetchSuccess(:final item)) return item.toJson();
     return null;
   }

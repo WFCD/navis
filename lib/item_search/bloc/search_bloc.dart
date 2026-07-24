@@ -12,7 +12,6 @@ part 'search_state.dart';
 class SearchBloc extends Bloc<SearchEvent, SearchState> {
   SearchBloc(this.codex) : super(SearchEmpty()) {
     on<ItemsSearchTextChanged>(_searchItems, transformer: _waitForUser());
-    on<MasteryItemSearchTextChanged>(_searchMastery, transformer: _waitForUser());
     on<ItemResultsFiltered>(_filterResults);
   }
 
@@ -31,24 +30,6 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
       try {
         _originalResults = await codex.search(text);
         emit(SearchSuccessful(_originalResults));
-      } on Exception catch (e, stack) {
-        addError(e, stack);
-        emit(SearchFailure(text));
-      }
-    }
-  }
-
-  Future<void> _searchMastery(SearchTextChanged event, Emitter<SearchState> emit) async {
-    final text = event.text;
-
-    if (text.isEmpty) {
-      emit(SearchEmpty());
-    } else {
-      emit(SearchInProgress());
-
-      try {
-        final results = await codex.searchMasterable(text);
-        emit(SearchSuccessful(results));
       } on Exception catch (e, stack) {
         addError(e, stack);
         emit(SearchFailure(text));

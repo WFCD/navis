@@ -31,10 +31,10 @@ class ItemsRepository {
       final results = items.where((i) => (i['uniqueName'] as String).contains(uniqueName.split('/').last));
       final closesMatch = results.firstOrNull;
 
-      return closesMatch != null ? WarframeItem.fromDatabase(closesMatch as Map<String, dynamic>) : null;
+      return closesMatch != null ? WarframeItem.fromDatabase(Map<String, dynamic>.from(closesMatch)) : null;
     }
 
-    return WarframeItem.fromDatabase(data as Map<String, dynamic>);
+    return WarframeItem.fromDatabase(Map<String, dynamic>.from(data));
   }
 
   Future<Item?> fetchItemFApi(String uniqueName) async {
@@ -55,8 +55,11 @@ class ItemsRepository {
 
   Future<List<WarframeItem>> search(String name) async {
     try {
-      final stored = _itemStore.readAll().cast<Map<String, dynamic>>();
-      final resuls = stored.where((i) => i['name'] == name).map(WarframeItem.fromDatabase);
+      final stored = _itemStore.readAll();
+      final resuls = stored
+          .where((i) => i['name'] == name)
+          .map((i) => WarframeItem.fromDatabase(Map<String, dynamic>.from(i)));
+
       if (resuls.isNotEmpty) return resuls.toList(growable: false)..prioritizeResults();
 
       final items = await _client.searchRaw(name, props: WarframeItem.requiredProps);
@@ -75,7 +78,7 @@ class ItemsRepository {
 
   Future<List<WarframeItem>> searchMasterable(String name) async {
     final results = await search(name);
-    return results.where((i) => i.isMasterable ?? false).toList(growable: false);
+    return results.where((i) => i.isMasterable).toList(growable: false);
   }
 
   Future<void> updateItems(String buildLabel, {ItemUpdateProgress? onProgress, bool forceUpdate = false}) async {
@@ -105,7 +108,7 @@ class ItemsRepository {
       for (var i = 0; i < items.length; i++) {
         onProgress(i / items.length, items.length);
         final item = items[i];
-        await _itemStore.write(item['uniqueName'] as String, item);
+        await _itemStore.write(item['uniqueName'] as String, WarframeItem.fromApi(item).toJson());
       }
     } else {
       await _itemStore.writeAll(mapped);

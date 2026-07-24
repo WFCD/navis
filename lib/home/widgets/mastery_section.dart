@@ -2,6 +2,7 @@ import 'package:black_hole_flutter/black_hole_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/home/widgets/section.dart';
+import 'package:navis/mastery/mastery.dart';
 import 'package:navis/profile/profile.dart';
 import 'package:navis/router/routes.dart';
 import 'package:navis_ui/navis_ui.dart';
@@ -89,7 +90,7 @@ class _MasteryInProgressQuickView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        for (final i in items.inProgress.take(5)) MasteryItemTile(masterableItem: i),
+        for (final i in items.inProgress.take(5)) MasteryItemTile(masterableItem: i, enableCard: false),
       ],
     );
   }

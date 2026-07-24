@@ -49,14 +49,18 @@ class NavisSearchBar extends StatelessWidget {
         textInputAction: TextInputAction.search,
         textCapitalization: TextCapitalization.words,
         suggestionsBuilder: suggestionsBuilder,
-        viewBuilder: viewBuilder,
-        viewLeading: leading ?? viewLeading,
+        viewPadding: EdgeInsets.zero,
+        viewBuilder: viewBuilder != null
+            ? (s) => MediaQuery.removePadding(context: context, removeTop: true, child: viewBuilder!.call(s))
+            : null,
+        viewLeading: viewLeading,
         viewOnSubmitted: (query) => onSubmit(context, query),
         viewOnChanged: onChange,
         viewOnClose: () => _onClose(context),
         builder: (context, controller) {
           return SearchBar(
             focusNode: focusNode,
+            leading: leading,
             controller: controller,
             onTap: this.controller?.openView,
             onTapOutside: (_) => focusNode?.unfocus(),

@@ -11,6 +11,7 @@ import 'package:warframe_common/warframe_common.dart';
 const _cacheKey = 'profile';
 const _refreshTime = Duration(minutes: 60);
 const _overrides = <String>['Excalibur Prime', 'Lato Prime', 'Skana Prime'];
+const _siriusOrion = <String>['/Lotus/Powersuits/SiriusOrion/SiriusSuit', '/Lotus/Powersuits/SiriusOrion/OrionSuit'];
 
 typedef XpInfo = ({Map<String, MasterableItem> lookup, List<MasterableItem> list});
 
@@ -19,13 +20,26 @@ typedef XpInfo = ({Map<String, MasterableItem> lookup, List<MasterableItem> list
 /// {@endtemplate}
 class ProfileRepository {
   /// {@macro profile_repository}
-  const ProfileRepository(this._api, this._cache, this._itemStore);
+  ProfileRepository(this._api, this._cache, this._itemStore);
 
   final WarframeApi _api;
   final CacheManager _cache;
   final Storage<Map<dynamic, dynamic>> _itemStore;
 
-  Future<Profile> fetchProfile(String input) async {
+  XpInfo _xpInfo = (lookup: {}, list: []);
+
+  XpInfo get xpInfo => _xpInfo;
+
+  static bool validateUserData(String input) {
+    try {
+      final userData = json.decode(input) as Map<String, dynamic>;
+      return userData.containsKey('user_id');
+    } on FormatException {
+      return false;
+    }
+  }
+
+  Future<Profile> fetchProfile(WarframeSupportedPlatform platform, String input) async {
     final userData = json.decode(input) as Map<String, dynamic>;
     if (!userData.containsKey('user_id')) throw const FormatException('Missing user id');
 
@@ -35,49 +49,48 @@ class ProfileRepository {
       if (profile.id == userData['user_id']) return profile;
     }
 
-    final data = await _api.fetchProfile(userData['id'] as String);
-    final profile = await Isolate.run(() => Profile.fromMap(data));
-    await _cache.set(_cacheKey, profile, ttl: _refreshTime);
+    final data = await _api.fetchProfile(platform, userData['user_id'] as String);
+    final results = List<Map<String, dynamic>>.from(data['Results'] as List<dynamic>);
+    final profile = await Isolate.run(() => RawProfile.fromMap(results.first).toProfile());
+    await _cache.set(_cacheKey, profile.toMap(), ttl: _refreshTime);
 
-    return profile;
+    // You have buildXPInfo to create full items so for memory sake there's no need for profile to have it as well
+    return profile.copyWith(loadout: profile.loadout.copyWith(xpInfo: []));
   }
 
-  Future<XpInfo> buildXpInfo() async {
-    final cache = await _cache.get<Map<String, dynamic>>(_cacheKey);
-    if (cache == null) return (lookup: <String, MasterableItem>{}, list: <MasterableItem>[]);
+  Future<void> buildXpInfo() async {
+    final cachedProfile = await _cache.get<Map<String, dynamic>>(_cacheKey);
+    if (cachedProfile == null) return;
 
-    final profile = await Isolate.run(() => Profile.fromMap(cache));
-    final items = List<Map<String, dynamic>>.from(_itemStore.readAll());
+    final profile = await Isolate.run(() => Profile.fromMap(cachedProfile));
+    final items = _itemStore.readAll();
     final xpLookup = {for (final xpItem in profile.loadout.xpInfo) xpItem.uniqueName: xpItem.xp};
     final info = <MasterableItem>[];
 
-    int? siriusOrionXp;
     for (final i in items) {
-      final item = WarframeItem.fromDatabase(i);
+      final item = WarframeItem.fromDatabase(Map<String, dynamic>.from(i));
+      if (!item.isMasterable) continue;
+
       final xp = xpLookup[item.uniqueName] ?? 0;
 
       // These get removed from the xp info so players aren't nagged about unobtainable items
       if (_overrides.contains(item.name)) continue;
 
       // Syncs Sirius' & Orion's rank
-      if (item.uniqueName.contains('SiriusOrion')) {
-        siriusOrionXp ??= xp;
-        info.add(MasterableItem(item: item, xp: max(xp, siriusOrionXp)));
+      if (item.uniqueName.contains('Powersuits/SiriusOrion')) {
+        final temp = max(xpLookup[_siriusOrion.first] ?? 0, xpLookup[_siriusOrion.last] ?? 0);
+        info.add(MasterableItem(item: item, xp: temp));
+        continue;
       }
 
       info.add(MasterableItem(item: item, xp: xp));
     }
 
     info.sort((a, b) => a.xp.compareTo(b.xp));
-    return (lookup: {for (final i in info) i.item.uniqueName: i}, list: info);
+    _xpInfo = (lookup: {for (final i in info) i.item.uniqueName: i}, list: info);
   }
 
-  static bool validateUserData(String input) {
-    try {
-      final userData = json.decode(input) as Map<String, dynamic>;
-      return userData.containsKey('user_id');
-    } on FormatException {
-      return false;
-    }
+  List<MasterableItem> searchXpInfo(String query) {
+    return _xpInfo.list.where((i) => i.item.name.contains(query)).toList();
   }
 }

@@ -23,13 +23,6 @@ final class ItemsSearchTextChanged extends SearchTextChanged {
   String toString() => 'CodexSearchTextChanged($text)';
 }
 
-final class MasteryItemSearchTextChanged extends SearchTextChanged {
-  const MasteryItemSearchTextChanged(super.text);
-
-  @override
-  String toString() => 'MasterySearchTextChanged($text)';
-}
-
 final class ItemResultsFiltered extends SearchEvent {
   const ItemResultsFiltered(this.type);
 

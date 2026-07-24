@@ -31,4 +31,6 @@ extension MasterableItemExtension on List<MasterableItem> {
       },
     ).toList();
   }
+
+  Iterable<MasterableItem> filterByCategory(ItemType type) => where((e) => e.item.type == type);
 }

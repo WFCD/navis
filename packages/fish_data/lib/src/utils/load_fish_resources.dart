@@ -27,8 +27,6 @@ loadFishResources<T extends RegionTime, S extends SpearRequirements, R extends R
     FishingRegion.vallis => await rootBundle.loadString(Assets.fish.vallis),
   };
 
-  print(region);
-
   final resources = List<Map<String, dynamic>>.from(
     json.decode(resourcesJson) as List<dynamic>,
   );

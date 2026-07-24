@@ -17,7 +17,7 @@ class ItemDetailPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: BlocProvider(
-        create: (context) => ItemCubit(context.read<ItemsRepository>())..fetchItem(item.uniqueName),
+        create: (context) => ItemCubit(context.read<ItemsRepository>())..fetchItemApi(item.uniqueName),
         child: ItemDetailView(item: item),
       ),
     );
@@ -71,17 +71,15 @@ class ItemDetailView extends StatelessWidget {
                 pinned: true,
                 delegate: ItemHeaderAppBar(item: this.item, expandedHeight: _calculateHeight(context)),
               ),
+              if (state is ItemFetchInProgress) _fillRemaining(const WarframeSpinner()),
+              if (state case ItemFetchFailure() || ItemNotFound())
+                _fillRemaining(Text(context.l10n.itemFailureErrorText)),
               SliverPadding(
                 padding: const EdgeInsetsGeometry.symmetric(horizontal: 16),
                 sliver: SliverList.list(
                   children: [
                     if (item case BuildableItem(:final components) when components != null) ItemComponents(item: item),
-                    ?switch (state) {
-                      ItemFetchInProgress() => _fillRemaining(const WarframeSpinner()),
-                      ItemApiFetchSuccess(:final item) => _stats(context, item),
-                      ItemFetchFailure() || ItemNotFound() => _fillRemaining(Text(context.l10n.itemFailureErrorText)),
-                      _ => null,
-                    },
+                    if (state case ItemApiFetchSuccess(:final item)) ?_stats(context, item),
                     if (item case DroppableItem(:final drops) when drops != null) DropLocations(drops: drops),
                     if (patchlogs != null) PatchlogSection(patchlogs: patchlogs),
                   ],

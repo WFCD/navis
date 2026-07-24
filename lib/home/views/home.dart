@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:item_repository/items_repository.dart';
 import 'package:navis/home/home.dart';
-import 'package:navis/search/search.dart';
+import 'package:navis/item_search/item_search.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
