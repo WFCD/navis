@@ -18,7 +18,7 @@ final class ProfileUpdating extends ProfileState {
 }
 
 final class ProfileSuccessful extends ProfileState {
-  const ProfileSuccessful(this.profile);
+  const ProfileSuccessful(this.profile, this.xpInfo);
 
   final Profile profile;
   final XpInfo xpInfo;
