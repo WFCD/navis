@@ -8,6 +8,7 @@ import 'package:navis/worldstate/bloc/worldstate_bloc.dart';
 import 'package:notification_repository/notification_repository.dart';
 import 'package:profile_repository/profile_repository.dart';
 import 'package:settings_repository/settings_repository.dart';
+import 'package:warframe_drop_repository/warframe_drop_repository.dart';
 import 'package:worldstate_repository/worldstate_repository.dart';
 
 class AppBootstrap extends StatelessWidget {
@@ -19,6 +20,7 @@ class AppBootstrap extends StatelessWidget {
     required this._itemsRepository,
     required this._worldstateRepository,
     required this._profileRepository,
+    required this._warframeDropRepository,
     required this.child,
   });
 
@@ -28,6 +30,7 @@ class AppBootstrap extends StatelessWidget {
   final ItemsRepository _itemsRepository;
   final WorldstateRepository _worldstateRepository;
   final ProfileRepository _profileRepository;
+  final WarframeDropRepository _warframeDropRepository;
   final Widget child;
 
   @override
@@ -40,6 +43,7 @@ class AppBootstrap extends StatelessWidget {
         RepositoryProvider.value(value: _itemsRepository),
         RepositoryProvider.value(value: _worldstateRepository),
         RepositoryProvider.value(value: _profileRepository),
+        RepositoryProvider.value(value: _warframeDropRepository),
       ],
       child: MultiBlocProvider(
         providers: [

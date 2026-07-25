@@ -19,6 +19,7 @@ import 'package:settings_repository/settings_repository.dart';
 import 'package:storage/storage.dart';
 import 'package:warframe_api/warframe_api.dart';
 import 'package:warframe_common/warframe_common.dart';
+import 'package:warframe_drop_repository/warframe_drop_repository.dart';
 import 'package:worldstate_repository/worldstate_repository.dart';
 
 typedef BootstrapBuilder = FutureOr<Widget> Function(AppRouter);
@@ -55,6 +56,7 @@ Future<void> bootstrap(BootstrapBuilder builder) async {
   final itemsRepository = ItemsRepository(itemsClient, cacheManager, itemStore);
   final worldstateRepository = WorldstateRepository(cacheManager, warframeApi, arbitrationApi);
   final profileRepository = ProfileRepository(warframeApi, cacheManager, itemStore);
+  final warframeDropRepository = WarframeDropRepository(warframeApi, cacheManager);
 
   await profileRepository.buildXpInfo();
 
@@ -66,6 +68,7 @@ Future<void> bootstrap(BootstrapBuilder builder) async {
       itemsRepository: itemsRepository,
       worldstateRepository: worldstateRepository,
       profileRepository: profileRepository,
+      warframeDropRepository: warframeDropRepository,
       child: await builder(router),
     ),
   );

@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:warframe_common/warframe_common.dart';
 
-class FissureMissionRewards extends StatelessWidget {
-  const FissureMissionRewards({
+class MissionRewardsView extends StatelessWidget {
+  const MissionRewardsView({
     super.key,
     required this.controller,
     required this.node,
@@ -34,7 +34,7 @@ class FissureMissionRewards extends StatelessWidget {
         top,
         Gaps.gap8,
         if (region.length < 2)
-          _FissureRewardPoolBody(rewardPool: region.first)
+          _RewardPoolBody(rewardPool: region.first)
         else
           _MultipleRewardPools(regions: region),
       ],
@@ -78,7 +78,7 @@ class __MultipleRewardPoolsState extends State<_MultipleRewardPools> {
             (index, r) => ExpansionPanel(
               canTapOnHeader: true,
               headerBuilder: (_, _) => ListTile(title: Text(r.name)),
-              body: _FissureRewardPoolBody(rewardPool: r),
+              body: _RewardPoolBody(rewardPool: r),
               isExpanded: _panels[index],
             ),
           )
@@ -87,14 +87,14 @@ class __MultipleRewardPoolsState extends State<_MultipleRewardPools> {
   }
 }
 
-class _FissureRewardPoolBody extends StatelessWidget {
-  const _FissureRewardPoolBody({required this.rewardPool});
+class _RewardPoolBody extends StatelessWidget {
+  const _RewardPoolBody({required this.rewardPool});
 
   final RegionRewardPool rewardPool;
 
   @override
   Widget build(BuildContext context) {
-    if (rewardPool is MultiRewardPool) return _EndlessFissure(region: rewardPool as MultiRewardPool);
+    if (rewardPool is MultiRewardPool) return _EndlessMission(region: rewardPool as MultiRewardPool);
 
     return Column(
       mainAxisSize: MainAxisSize.min,
@@ -111,16 +111,16 @@ class _FissureRewardPoolBody extends StatelessWidget {
   }
 }
 
-class _EndlessFissure extends StatefulWidget {
-  const _EndlessFissure({required this.region});
+class _EndlessMission extends StatefulWidget {
+  const _EndlessMission({required this.region});
 
   final MultiRewardPool region;
 
   @override
-  State<_EndlessFissure> createState() => _EndlessFissureState();
+  State<_EndlessMission> createState() => _EndlessMissionState();
 }
 
-class _EndlessFissureState extends State<_EndlessFissure> {
+class _EndlessMissionState extends State<_EndlessMission> {
   static const _rotations = ['A', 'B', 'C'];
   String _rotation = _rotations[0];
 

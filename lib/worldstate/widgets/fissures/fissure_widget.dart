@@ -1,10 +1,12 @@
 import 'dart:async';
-import 'dart:math';
+import 'dart:math' as math;
 
+import 'package:black_hole_flutter/black_hole_flutter.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
+import 'package:navis/drops/drops.dart';
 import 'package:navis/l10n/l10n.dart';
-import 'package:navis/worldstate/widgets/fissures/fissure_mission_rewards.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:warframe_common/warframe_common.dart';
 
@@ -13,7 +15,7 @@ class FissureWidget extends StatelessWidget {
 
   final VoidFissure fissure;
 
-  void _openMissionRewardModal(BuildContext context, Widget header) {
+  void _openMissionRewardModal(BuildContext context, Widget header, List<RegionRewardPool> rewardpools) {
     showModalBottomSheet<void>(
       context: context,
       isScrollControlled: true,
@@ -22,11 +24,11 @@ class FissureWidget extends StatelessWidget {
           maxChildSize: .9,
           initialChildSize: .9,
           expand: false,
-          builder: (context, scrollController) => FissureMissionRewards(
+          builder: (context, scrollController) => MissionRewardsView(
             controller: scrollController,
             node: fissure.node,
             header: header,
-            region: fissure.rewardPools,
+            region: rewardpools,
           ),
         );
       },
@@ -35,23 +37,25 @@ class FissureWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final tierIcon = fissure.tier == .omnia
+        ? const OmniaFissureWidget()
+        : Icon(
+            switch (fissure.tier) {
+              .lith => WarframeIcons.fissuresLith,
+              .meso => WarframeIcons.fissuresMeso,
+              .neo => WarframeIcons.fissuresNeo,
+              .axi => WarframeIcons.fissuresAxi,
+              .requiem => WarframeIcons.fissuresRequiem,
+              _ => WarframeIcons.nightmare,
+            },
+            size: 40,
+          );
+
     final fissureInfo = ListTile(
       textColor: Colors.white,
       iconColor: Colors.white,
       contentPadding: EdgeInsets.zero,
-      leading: fissure.tier == .omnia
-          ? const OmniaFissureWidget()
-          : Icon(
-              switch (fissure.tier) {
-                .lith => WarframeIcons.fissuresLith,
-                .meso => WarframeIcons.fissuresMeso,
-                .neo => WarframeIcons.fissuresNeo,
-                .axi => WarframeIcons.fissuresAxi,
-                .requiem => WarframeIcons.fissuresRequiem,
-                _ => WarframeIcons.nightmare,
-              },
-              size: 40,
-            ),
+      leading: tierIcon,
       title: Text(fissure.node),
       subtitle: Text('${toBeginningOfSentenceCase(fissure.tier.name)} | ${fissure.missionType}'),
       trailing: CountdownTimer(tooltip: context.l10n.countdownTooltip(fissure.expiry), expiry: fissure.expiry),
@@ -59,16 +63,38 @@ class FissureWidget extends StatelessWidget {
 
     return SkyboxCard(
       node: fissure.node,
-      child: InkWell(
-        onTap: () => fissure.rewardPools.isNotEmpty ? _openMissionRewardModal(context, fissureInfo) : null,
-        child: Stack(
-          alignment: AlignmentGeometry.center,
-          children: [
-            Center(child: fissureInfo),
-            if (fissure.rewardPools.isNotEmpty)
-              const Align(alignment: Alignment.bottomRight, child: Icon(Icons.arrow_drop_down_outlined)),
-          ],
-        ),
+      child: BlocBuilder<DropsCubit, DropsState>(
+        builder: (context, state) {
+          final rewards = switch (state) {
+            RegionDrops(:final rewards) => rewards,
+            _ => <RegionRewardPool>[],
+          };
+
+          return InkWell(
+            onTap: () => rewards.isNotEmpty ? _openMissionRewardModal(context, fissureInfo, rewards) : null,
+            child: Stack(
+              alignment: AlignmentGeometry.center,
+              children: [
+                Center(child: fissureInfo),
+                if (rewards.isNotEmpty)
+                  Align(
+                    alignment: Alignment.bottomRight,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8),
+                      child: Transform.rotate(
+                        angle: -math.pi / 4.0,
+                        child: Icon(
+                          Icons.square,
+                          size: 12,
+                          color: context.theme.colorScheme.primary,
+                        ),
+                      ),
+                    ),
+                  ),
+              ],
+            ),
+          );
+        },
       ),
     );
   }
@@ -90,13 +116,13 @@ class _OmniaFissureWidgetState extends State<OmniaFissureWidget> {
   ];
 
   late final Timer timer;
-  late final Random rand;
+  late final math.Random rand;
 
   @override
   void initState() {
     super.initState();
 
-    rand = Random();
+    rand = math.Random();
     timer = Timer.periodic(GlitchyWidget.glitchFrequency, (timer) {
       if (mounted) setState(() {});
     });
