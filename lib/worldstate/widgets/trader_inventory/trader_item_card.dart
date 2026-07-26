@@ -22,12 +22,7 @@ class TraderItemCard extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: 8),
         child: BlocProvider(
           create: (context) => ItemCubit(RepositoryProvider.of<ItemsRepository>(context))..fetchItem(item.uniqueName),
-          child: Column(
-            children: [
-              _TraderItemContent(item: item, isVarzia: isVarzia),
-              _TraderItemTrailing(credits: item.regularPrice, ducats: item.primePrice, isVarzia: isVarzia),
-            ],
-          ),
+          child: _TraderItemContent(traderItem: item, isVarzia: isVarzia),
         ),
       ),
     );
@@ -35,9 +30,9 @@ class TraderItemCard extends StatelessWidget {
 }
 
 class _TraderItemContent extends StatelessWidget {
-  const _TraderItemContent({required this.item, this.isVarzia = false});
+  const _TraderItemContent({required this.traderItem, this.isVarzia = false});
 
-  final TraderItem item;
+  final TraderItem traderItem;
   final bool isVarzia;
 
   @override
@@ -53,10 +48,20 @@ class _TraderItemContent extends StatelessWidget {
           pixelRatio: MediaQuery.devicePixelRatioOf(context),
         );
 
-        return ListTile(
-          leading: imageUrl != null ? CachedNetworkImage(imageUrl: imageUrl, width: 60, memCacheWidth: 256) : null,
-          title: Text(item?.name ?? this.item.name),
-          subtitle: item != null ? Text(item.description ?? '', maxLines: 2, overflow: .ellipsis) : null,
+        return Column(
+          spacing: 8,
+          children: [
+            if (imageUrl != null) CachedNetworkImage(imageUrl: imageUrl, width: 100, memCacheWidth: 256),
+            ListTile(
+              title: Text(item?.name ?? traderItem.name),
+              subtitle: item != null ? Text(item.description ?? '', maxLines: 2, overflow: .ellipsis) : null,
+              trailing: _TraderItemTrailing(
+                credits: traderItem.regularPrice,
+                ducats: traderItem.primePrice,
+                isVarzia: isVarzia,
+              ),
+            ),
+          ],
         );
       },
     );
