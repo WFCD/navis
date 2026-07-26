@@ -25,11 +25,7 @@ class ThemePicker extends StatelessWidget {
 
   void _onChanged(BuildContext context, ThemeMode? mode) {
     if (mode == null) return;
-
-    final state = context.read<SettingsCubit>().state;
-    if (state is SettingsSuccess) {
-      context.read<SettingsCubit>().updateThemeMode(mode);
-    }
+    context.read<SettingsCubit>().updateThemeMode(mode);
 
     Navigator.of(context).pop();
   }
@@ -38,11 +34,7 @@ class ThemePicker extends StatelessWidget {
   Widget build(BuildContext context) {
     final accentColor = Theme.of(context).colorScheme.secondary;
     final l10n = context.l10n;
-    final state = context.watch<SettingsCubit>().state;
-    final currentTheme = switch (state) {
-      SettingsSuccess() => state.themeMode,
-      _ => ThemeMode.light,
-    };
+    final currentTheme = context.watch<SettingsCubit>().state.themeMode;
 
     return RadioGroup<ThemeMode>(
       groupValue: currentTheme,

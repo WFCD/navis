@@ -1,4 +1,3 @@
-import 'package:black_hole_flutter/black_hole_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/l10n/l10n.dart';
@@ -7,13 +6,15 @@ import 'package:navis/settings/settings.dart';
 class LanguagePicker extends StatelessWidget {
   const LanguagePicker({super.key});
 
-  static Future<void> showOptions(BuildContext context) async {
-    await showModalBottomSheet<Locale>(
+  static Future<void> showOptions(BuildContext context) {
+    final settings = BlocProvider.of<SettingsCubit>(context);
+
+    return showModalBottomSheet<void>(
       context: context,
       useSafeArea: true,
       isScrollControlled: true,
       builder: (_) => BlocProvider.value(
-        value: BlocProvider.of<SettingsCubit>(context),
+        value: settings,
         child: const LanguagePicker(),
       ),
     );
@@ -25,12 +26,7 @@ class LanguagePicker extends StatelessWidget {
 
     final materialLocalizations = MaterialLocalizations.of(context);
     final accentColor = Theme.of(context).colorScheme.secondary;
-
-    final settings = context.watch<SettingsCubit>().state;
-    final language = switch (settings) {
-      SettingsSuccess() => settings.language,
-      _ => context.locale,
-    };
+    final language = context.watch<SettingsCubit>().state.language;
 
     return DraggableScrollableSheet(
       expand: false,
@@ -50,7 +46,6 @@ class LanguagePicker extends StatelessWidget {
                   itemCount: supportedLocales.length,
                   itemBuilder: (context, index) {
                     final l = supportedLocales[index];
-
                     return RadioListTile<Locale>(title: Text(l.fullName), value: l, activeColor: accentColor);
                   },
                 ),
@@ -61,7 +56,7 @@ class LanguagePicker extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                 child: FilledButton(
-                  onPressed: () => Navigator.of(context).pop(language),
+                  onPressed: () => Navigator.pop(context),
                   child: Text(materialLocalizations.okButtonLabel),
                 ),
               ),

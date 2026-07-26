@@ -50,6 +50,8 @@ dependencies:
     path: packages/notification_repository
   package_info_plus: ^10.1.0
   path_provider: ^2.1.6
+  permissions_client:
+    path: packages/permissions_client
   profile_repository:
     path: packages/profile_repository
   replay_bloc: ^0.3.0
@@ -57,7 +59,7 @@ dependencies:
   rxdart: ^0.28.0
   # TODO update to v10 when its release for now we need this to update cronet to fix background fetching
   sentry_flutter:
-     git:
+    git:
       url: https://github.com/getsentry/sentry-dart.git
       ref: deps/jni-0.15.x
       path: packages/flutter

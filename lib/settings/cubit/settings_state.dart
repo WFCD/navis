@@ -1,48 +1,41 @@
 part of 'settings_cubit.dart';
 
-sealed class SettingsState extends Equatable {
-  const SettingsState();
-
-  @override
-  List<Object?> get props => [];
-}
-
-final class SettingsInitial extends SettingsState {}
-
-final class SettingsSuccess extends SettingsState {
-  const SettingsSuccess({
+class SettingsState extends Equatable {
+  const SettingsState({
     required this.language,
     required this.themeMode,
     required this.isFirstTime,
     this.isOptOut = false,
+    this.notifications = const <String, bool>{},
   });
 
   final Locale language;
   final ThemeMode themeMode;
   final bool isFirstTime;
   final bool isOptOut;
+  final Map<String, bool> notifications;
 
-  SettingsSuccess copyWith({
+  SettingsState copyWith({
     String? username,
     Locale? language,
     ThemeMode? themeMode,
     bool? isFirstTime,
     bool? isOptOut,
+    Map<String, bool>? notifications,
   }) {
-    return SettingsSuccess(
+    return SettingsState(
       language: language ?? this.language,
       themeMode: themeMode ?? this.themeMode,
       isFirstTime: isFirstTime ?? this.isFirstTime,
       isOptOut: isOptOut ?? this.isOptOut,
+      notifications: {...this.notifications, ...?notifications},
     );
   }
 
   @override
-  List<Object?> get props => [language, themeMode, isFirstTime];
+  List<Object> get props => [language, themeMode, isOptOut, isFirstTime, notifications];
 
   @override
   String toString() =>
-      'UserSettingsSucccess(locale: $language theme: $themeMode isfirstRun: $isFirstTime isOptOut: $isOptOut)';
+      'UserSettingsSucccess(locale: $language theme: $themeMode isfirstRun: $isFirstTime isOptOut: $isOptOut, notifications: $notifications)';
 }
-
-final class SettingsFailure extends SettingsState {}

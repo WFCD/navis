@@ -13,6 +13,7 @@ import 'package:navis/firebase_options.dart';
 import 'package:navis/router/app_router.dart';
 import 'package:notification_repository/notification_repository.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:permissions_client/permissions_client.dart';
 import 'package:profile_repository/profile_repository.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:settings_repository/settings_repository.dart';
@@ -51,20 +52,21 @@ Future<void> bootstrap(BootstrapBuilder builder) async {
   final cacheStore = await Storage.open<Map<dynamic, dynamic>>('cache', cacheDir.path);
 
   final cacheManager = CacheManager(cacheStore);
+  const permissionHandler = PermissionsClient();
+  final notificationStorage = NotificationStorage(settings);
 
   final settingsRepository = SettingsRepository(settings);
+  final notificationRepository = NotificationRepository(permissionHandler, notificationStorage);
   final itemsRepository = ItemsRepository(itemsClient, cacheManager, itemStore);
   final worldstateRepository = WorldstateRepository(cacheManager, warframeApi, arbitrationApi);
   final profileRepository = ProfileRepository(warframeApi, cacheManager, itemStore);
   final warframeDropRepository = WarframeDropRepository(warframeApi, cacheManager);
 
-  await profileRepository.buildXpInfo();
-
   runApp(
     AppBootstrap(
       routeObserver: routeObserver,
       settingsRepository: settingsRepository,
-      notificationRepository: NotificationRepository(),
+      notificationRepository: notificationRepository,
       itemsRepository: itemsRepository,
       worldstateRepository: worldstateRepository,
       profileRepository: profileRepository,
