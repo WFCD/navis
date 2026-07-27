@@ -1,17 +1,27 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 class RivenDisposition extends StatelessWidget {
   const RivenDisposition({super.key, required this.disposition});
 
-  final int disposition;
+  final double disposition;
+
+  static const _thresholds = [.5, .7, .9, 1.11, 1.31];
 
   @override
   Widget build(BuildContext context) {
-    const maxDisposition = 5;
+    final rounded = (disposition * pow(10, 2)).roundToDouble() / pow(10, 2);
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.end,
-      children: [for (int i = 0; i < maxDisposition; i++) _RivenDot(enable: i < disposition)],
+      children: [
+        for (int i = 0; i < _thresholds.length; i++) _RivenDot(enable: _thresholds[i] <= rounded),
+        Padding(
+          padding: const EdgeInsets.only(left: 4),
+          child: Text('(${disposition.toStringAsFixed(2)}x)'),
+        ),
+      ],
     );
   }
 }

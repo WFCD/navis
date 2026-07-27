@@ -34,7 +34,7 @@ class ArcaneStats extends StatelessWidget {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        if (imageName != null) _ArcaneImage(imageName: imageName, rarity: arcane.rarity!),
+        if (imageName != null) _ArcaneImage(imageName: imageName, rarity: arcane.rarity ?? Rarity.common),
         CategoryTitle(title: context.l10n.rankCategoryTitle, contentPadding: EdgeInsets.zero),
         ...?arcane.levelStats?.mapIndexed((i, l) => _ArcaneLevelTile(index: i, level: l)),
       ],

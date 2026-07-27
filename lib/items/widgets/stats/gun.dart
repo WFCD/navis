@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:navis/items/items.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis_ui/navis_ui.dart';
@@ -61,7 +60,7 @@ class GunStats extends StatelessWidget {
             ),
             Stat(
               name: Text(l10n.rivenDispositionTitle),
-              value: RivenDisposition(disposition: gun.disposition!),
+              value: RivenDisposition(disposition: gun.omegaAttenuation),
               isVisible: gun.disposition != null,
             ),
             Stat(name: Text(l10n.statusChanceTitle), value: Text('${(gun.procChance * 100).roundToDouble()}%')),

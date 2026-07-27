@@ -34,19 +34,22 @@ class MeleeStats extends StatelessWidget {
             Stat(name: Text(l10n.weaponTypeTitle), value: Text(melee.type.type)),
             Stat(
               name: Text(l10n.stancePolarityTitle),
-              value: Polarity(polarity: melee.stancePolarity!),
+              value: Polarity(polarity: melee.stancePolarity ?? ''),
               isVisible: melee.stancePolarity != null,
             ),
             Stat(
               name: Text(l10n.preinstalledPolarities),
-              value: PreinstalledPolarties(polarities: melee.polarities!),
+              value: PreinstalledPolarties(polarities: melee.polarities ?? []),
               isVisible: melee.polarities?.isNotEmpty ?? false,
             ),
             Stat(
               name: Text(l10n.criticalChanceTitle),
               value: Text('${(melee.criticalChance * 100).roundToDouble()}%'),
             ),
-            Stat(name: Text(l10n.cricticalMultiplierTitle), value: Text('${melee.criticalMultiplier}x')),
+            Stat(
+              name: Text(l10n.cricticalMultiplierTitle),
+              value: Text('${melee.criticalMultiplier.toStringAsFixed(2)}x'),
+            ),
             Stat(
               name: Text(l10n.followThroughTitle),
               value: Text('${melee.followThrough?.toStringAsFixed(2) ?? 0}'),
@@ -58,8 +61,7 @@ class MeleeStats extends StatelessWidget {
             Stat(name: Text(l10n.slideAttackTitle), value: Text('${melee.slideAttack}')),
             Stat(
               name: Text(l10n.rivenDispositionTitle),
-              value: RivenDisposition(disposition: melee.disposition!),
-              isVisible: melee.disposition != null,
+              value: RivenDisposition(disposition: melee.omegaAttenuation),
             ),
             Stat(name: Text(l10n.statusChanceTitle), value: Text('${(melee.procChance * 100).roundToDouble()}%')),
           ],
