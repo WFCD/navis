@@ -21,8 +21,6 @@ class NotificationRepository {
   Future<void> toggleFilter(String topic, {required bool enable}) async {
     try {
       log('${enable ? 'subscribed' : 'unsubscribed'} to $topic');
-      if (!enable) return;
-
       final status = await _permissionsClient.notificationsStatus();
       if (status.isPermanentlyDenied || status.isRestricted) {
         await _permissionsClient.openPermissionSettings();
@@ -35,7 +33,12 @@ class NotificationRepository {
       }
 
       await storage.toggleNotification(topic);
-      await _messaging.subscribeToTopic(topic);
+
+      if (enable) {
+        await _messaging.subscribeToTopic(topic);
+      } else {
+        await _messaging.unsubscribeFromTopic(topic);
+      }
     } on Exception catch (error, stackTrace) {
       throw Error.throwWithStackTrace(error, stackTrace);
     }
