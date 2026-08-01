@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:matomo_tracker/matomo_tracker.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis/router/routes.dart';
 import 'package:navis/synthtargets/views/targets.dart';
@@ -10,7 +9,7 @@ import 'package:navis/worldstate/widgets/syndicates/hex_card.dart';
 import 'package:navis/worldstate/worldstate.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:responsive_builder/responsive_builder.dart';
-import 'package:worldstate_models/worldstate_models.dart';
+import 'package:warframe_common/warframe_common.dart' hide Syndicates;
 
 typedef SyndicateData = ({List<SyndicateMission> jobs, Nightwave? nightwave, Calendar calendar});
 
@@ -32,20 +31,17 @@ class SyndicatePage extends StatelessWidget {
         );
       },
       builder: (context, state) {
-        return TraceableWidget(
-          actionName: 'SyndicatePage()',
-          child: ViewLoading(
-            isLoading: state == null,
-            child: ResponsiveBuilder(
-              builder: (context, info) {
-                return _SyndicateView(
-                  syndicates: state?.jobs ?? [],
-                  nightwave: state?.nightwave,
-                  calendar: state?.calendar,
-                  isMobile: info.deviceScreenType == DeviceScreenType.mobile,
-                );
-              },
-            ),
+        return ViewLoading(
+          isLoading: state == null,
+          child: ResponsiveBuilder(
+            builder: (context, info) {
+              return _SyndicateView(
+                syndicates: state?.jobs ?? [],
+                nightwave: state?.nightwave,
+                calendar: state?.calendar,
+                isMobile: info.deviceScreenType == DeviceScreenType.mobile,
+              );
+            },
           ),
         );
       },

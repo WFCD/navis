@@ -15,4 +15,8 @@ dependencies:
   flutter:
     sdk: flutter
   intl: ^0.20.1
+  permissions_client:
+    path: ../permissions_client
+  storage:
+    path: ../storage
   warframestat_client: ^5.5.1

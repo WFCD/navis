@@ -1,0 +1,19 @@
+name: profile_repository
+description: A Very Good Project created by Very Good CLI.
+version: 0.1.0+1
+publish_to: none
+
+environment:
+  sdk: ^3.12.0
+
+resolution: workspace
+
+dependencies:
+  cache:
+    path: ../cache
+  storage:
+    path: ../storage
+  warframe_api:
+    path: ../warframe_api
+  warframe_common:
+    path: ../warframe_common

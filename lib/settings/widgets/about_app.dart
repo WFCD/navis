@@ -5,7 +5,6 @@ import 'package:navis/l10n/l10n.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:simple_icons/simple_icons.dart';
-import 'package:warframe_icons/warframe_icons.dart';
 
 class AboutApp extends AbstractSettingsTile {
   const AboutApp({super.key});

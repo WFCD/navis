@@ -1,58 +1,77 @@
 import 'dart:async';
 
+import 'package:arbi_api/arbi_api.dart';
+import 'package:cache/cache.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:hive_ce/hive_ce.dart';
 import 'package:http_client/http_client.dart';
-import 'package:hydrated_bloc/hydrated_bloc.dart';
-import 'package:logging/logging.dart';
-import 'package:navis/app/app_observer.dart';
-import 'package:navis/app/widgets/bloc_bootstrap.dart';
-import 'package:navis/app/widgets/repo_bootstrap.dart';
+import 'package:hydrated_bloc/hydrated_bloc.dart' hide Storage;
+import 'package:item_repository/items_repository.dart';
+import 'package:navis/app/app.dart';
 import 'package:navis/firebase_options.dart';
 import 'package:navis/router/app_router.dart';
-import 'package:navis/settings/settings.dart';
-import 'package:navis_cache/navis_cache.dart';
-import 'package:navis_codex/navis_codex.dart';
+import 'package:notification_repository/notification_repository.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:permissions_client/permissions_client.dart';
+import 'package:profile_repository/profile_repository.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
-import 'package:warframe_repository/warframe_repository.dart';
+import 'package:settings_repository/settings_repository.dart';
+import 'package:storage/storage.dart';
+import 'package:warframe_api/warframe_api.dart';
+import 'package:warframe_common/warframe_common.dart';
+import 'package:warframe_drop_repository/warframe_drop_repository.dart';
+import 'package:worldstate_repository/worldstate_repository.dart';
 
 typedef BootstrapBuilder = FutureOr<Widget> Function(AppRouter);
 
 Future<void> bootstrap(BootstrapBuilder builder) async {
-  final logger = Logger('Bootstrap')..info('Starting up services');
-  final temp = await getTemporaryDirectory();
-
+  Bloc.observer = AppBlocObserver();
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
-  Bloc.observer = AppBlocObserver();
-  HydratedBloc.storage = await HydratedStorage.build(storageDirectory: HydratedStorageDirectory(temp.path));
+  final appDir = await getApplicationSupportDirectory();
+  final cacheDir = await getApplicationCacheDirectory();
 
-  PaintingBinding.instance.imageCache.maximumSize = 200;
-  PaintingBinding.instance.imageCache.maximumSizeBytes = 200 * 1024 * 1024;
+  Hive
+    ..init(appDir.path)
+    ..init(cacheDir.path);
 
-  final observer = RouteObserver<ModalRoute<void>>();
-  final router = AppRouter(navigatorKey: GlobalKey<NavigatorState>(), observer: observer);
+  HydratedBloc.storage = await HydratedStorage.build(storageDirectory: HydratedStorageDirectory(cacheDir.path));
+
+  final routeObserver = RouteObserver<ModalRoute<void>>();
+  final router = AppRouter(navigatorKey: GlobalKey<NavigatorState>(), observer: routeObserver);
   final client = SentryHttpClient(client: await buildNativeClient(), captureFailedRequests: true);
 
-  final settings = await UserSettings.initSettings();
-  final cacheManager = await CacheManager.open(temp.path);
-  final codex = CodexDatabase();
-  final repository = WarframeRepository(client: client, cache: cacheManager, codex: codex);
+  final warframeApi = WarframeApi(client);
+  final arbitrationApi = ArbiApi(client);
+  final itemsClient = WarframeItemsClient(client: client);
 
-  logger.info('Booting up Navis');
+  final settings = await Storage.open<dynamic>('settings', appDir.path);
+  final itemStore = await Storage.open<Map<dynamic, dynamic>>('items', appDir.path);
+  final cacheStore = await Storage.open<Map<dynamic, dynamic>>('cache', cacheDir.path);
+
+  final cacheManager = CacheManager(cacheStore);
+  const permissionHandler = PermissionsClient();
+  final notificationStorage = NotificationStorage(settings);
+
+  final settingsRepository = SettingsRepository(settings);
+  final notificationRepository = NotificationRepository(permissionHandler, notificationStorage);
+  final itemsRepository = ItemsRepository(itemsClient, cacheManager, itemStore);
+  final worldstateRepository = WorldstateRepository(cacheManager, warframeApi, arbitrationApi);
+  final profileRepository = ProfileRepository(warframeApi, cacheManager, itemStore);
+  final warframeDropRepository = WarframeDropRepository(warframeApi, cacheManager);
+
   runApp(
-    RepositoryBootstrap(
-      routeObserver: observer,
-      settings: settings,
-      codex: codex,
-      repository: repository,
-      child: BlocBootstrap(child: await builder(router)),
+    AppBootstrap(
+      routeObserver: routeObserver,
+      settingsRepository: settingsRepository,
+      notificationRepository: notificationRepository,
+      itemsRepository: itemsRepository,
+      worldstateRepository: worldstateRepository,
+      profileRepository: profileRepository,
+      warframeDropRepository: warframeDropRepository,
+      child: await builder(router),
     ),
   );
-
-  // All calls for items will fallback to the API so its alright to deffer this and let the app warm up
-  Timer(const Duration(seconds: 3), repository.autoUpdateCodex);
 }

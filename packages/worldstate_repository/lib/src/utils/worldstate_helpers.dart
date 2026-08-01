@@ -1,0 +1,33 @@
+// Conflict between the translation data fissures and Worldstate.fissures
+import 'package:warframe_common/warframe_common.dart' hide fissures;
+
+extension WorldstateX on Worldstate {
+  void clean() {
+    alerts.retainWhere((e) => e.isActive);
+
+    events.retainWhere((e) => e.isActive);
+
+    news
+      ..retainWhere((n) => !n.isCommunity)
+      ..sort((a, b) => b.date.compareTo(a.date));
+
+    syndicateMissions
+      ..retainWhere((s) => s.bounties.isNotEmpty)
+      ..retainWhere((s) => s.isActive)
+      ..sort((a, b) => a.name.compareTo(b.name));
+
+    fissures
+      ..retainWhere((e) => e.isActive)
+      ..sort((a, b) => (a.tier.index).compareTo(b.tier.index));
+
+    invasions.retainWhere((e) => !e.isComplete);
+
+    // Not sure why some items cost 1 plat when in-game they don't so best to filter those out until I understand why
+    const minimumPlat = 1;
+    flashSales
+      ..retainWhere((s) => s.shownInMarket && s.premiumOverride > minimumPlat)
+      ..sort((a, b) => a.expiry.compareTo(b.expiry));
+
+    calendar.days.removeWhere((d) => d.events.isEmpty);
+  }
+}

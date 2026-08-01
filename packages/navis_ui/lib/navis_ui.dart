@@ -1,3 +1,5 @@
+export 'package:warframe_icons/warframe_icons.dart';
+
 export 'src/colors/colors.dart';
 export 'src/constants/constants.dart';
 export 'src/helpers/helpers.dart';

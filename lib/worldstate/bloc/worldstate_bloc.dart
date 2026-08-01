@@ -1,32 +1,31 @@
 import 'package:equatable/equatable.dart';
-import 'package:flutter/widgets.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:navis/utils/bloc_mixin.dart';
-import 'package:navis/worldstate/utils/worldstate_helpers.dart';
 import 'package:replay_bloc/replay_bloc.dart';
-import 'package:warframe_repository/warframe_repository.dart';
-import 'package:worldstate_models/worldstate_models.dart';
+import 'package:warframe_common/warframe_common.dart';
+import 'package:worldstate_repository/worldstate_repository.dart';
 
 part 'worldstate_event.dart';
 part 'worldstate_state.dart';
 
 class WorldstateBloc extends HydratedBloc<WorldstateEvent, WorldState> with ReplayBlocMixin, SafeBlocMixin {
-  WorldstateBloc(this.repository) : super(WorldstateInitial()) {
+  WorldstateBloc(this.locale, this.repository) : super(WorldstateInitial()) {
     on<WorldstateStarted>(_emiteState);
     on<WorldstateUpdated>((event, emit) => emit(WorldstateSuccess(event.state)));
     on<WorldstateFailed>((event, emit) => emit(WorldstateFailure()));
-    add(const WorldstateStarted(Locale('en')));
+    add(WorldstateStarted(locale));
   }
 
-  final WarframeRepository repository;
+  final String locale;
+  final WorldstateRepository repository;
 
   Future<void> _emiteState(WorldstateStarted event, Emitter<WorldState> emit) async {
-    final worldstate = await repository.buildWorldstate();
-    if (!isClosed) add(WorldstateUpdated(worldstate..clean()));
+    final worldstate = await repository.buildWorldstate(locale);
+    if (!isClosed) add(WorldstateUpdated(worldstate));
 
     await emit.onEach<Worldstate>(
-      repository.worldstateEmitter(),
-      onData: (state) => add(WorldstateUpdated(state..clean())),
+      repository.worldstateEmitter(locale),
+      onData: (state) => add(WorldstateUpdated(state)),
       onError: (error, stackTrace) async {
         add(WorldstateFailed());
         undo();

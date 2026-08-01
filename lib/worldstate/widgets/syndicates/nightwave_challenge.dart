@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis_ui/navis_ui.dart';
-import 'package:warframe_icons/warframe_icons.dart';
-import 'package:worldstate_models/worldstate_models.dart' as models;
+import 'package:warframe_common/warframe_common.dart' as models;
 
 class NightwaveChallenge extends StatelessWidget {
   const NightwaveChallenge({super.key, required this.challenge});

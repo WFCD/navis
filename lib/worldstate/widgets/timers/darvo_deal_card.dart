@@ -3,49 +3,32 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:navis/codex/codex.dart';
+import 'package:item_repository/items_repository.dart';
+import 'package:navis/items/items.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis/router/routes.dart';
 import 'package:navis/utils/string_extensions.dart';
 import 'package:navis/worldstate/bloc/worldstate_bloc.dart';
 import 'package:navis_ui/navis_ui.dart';
-import 'package:warframe_repository/warframe_repository.dart';
-import 'package:worldstate_models/worldstate_models.dart';
+import 'package:warframe_common/warframe_common.dart';
+
+typedef _StoreSales = ({List<DailyDeal> dailyDeals, List<FlashSale> flashSales});
 
 class DarvoDealCard extends StatelessWidget {
   const DarvoDealCard({super.key});
 
-  bool _buildWhen(WorldState previous, WorldState next) {
-    final previousDailyDeals = switch (previous) {
-      WorldstateSuccess() => previous.seed.dailyDeals,
-      _ => <DailyDeal>[],
-    };
-
-    final nextDailyDeals = switch (next) {
-      WorldstateSuccess() => next.seed.dailyDeals,
-      _ => <DailyDeal>[],
-    };
-
-    return !previousDailyDeals.equals(nextDailyDeals);
-  }
-
   @override
   Widget build(BuildContext context) {
-    final repo = RepositoryProvider.of<WarframeRepository>(context);
+    final itemsRepository = RepositoryProvider.of<ItemsRepository>(context);
 
     return ClipRRect(
-      child: BlocBuilder<WorldstateBloc, WorldState>(
-        buildWhen: _buildWhen,
-        builder: (context, state) {
-          final deal = switch (state) {
-            WorldstateSuccess() => state.seed.dailyDeals.first,
-            _ => null,
-          };
-
-          final flashSale = switch (state) {
-            WorldstateSuccess() => state.seed.flashSales,
-            _ => <List<FlashSale>>[],
-          };
+      child: BlocSelector<WorldstateBloc, WorldState, _StoreSales>(
+        selector: (state) => switch (state) {
+          WorldstateSuccess(:final seed) => (dailyDeals: seed.dailyDeals, flashSales: seed.flashSales),
+          _ => (dailyDeals: <DailyDeal>[], flashSales: <FlashSale>[]),
+        },
+        builder: (context, sales) {
+          final deal = sales.dailyDeals.firstOrNull;
 
           final stock = deal != null ? deal.total - deal.sold : 0;
           final inStock = stock != 0;
@@ -80,10 +63,10 @@ class DarvoDealCard extends StatelessWidget {
                   ),
                   if (deal != null)
                     BlocProvider(
-                      create: (_) => ItemCubit(deal.item, repo)..fetchByName(),
+                      create: (_) => ItemCubit(itemsRepository)..fetchByName(deal.item),
                       child: _DealWidget(deal: deal),
                     ),
-                  if (flashSale.isNotEmpty)
+                  if (sales.flashSales.isNotEmpty)
                     Align(
                       alignment: Alignment.centerRight,
                       child: TextButton(
@@ -111,7 +94,7 @@ class _DealWidget extends StatelessWidget {
     return BlocBuilder<ItemCubit, ItemState>(
       builder: (context, state) {
         final item = switch (state) {
-          ItemFetchSuccess() => state.item,
+          ItemStoreFetchSuccess() => state.item,
           _ => null,
         };
 
@@ -145,16 +128,7 @@ class _DealWidget extends StatelessWidget {
 
         if (item == null) return row;
 
-        return EntryViewOpenContainer(
-          uniqueName: item.uniqueName,
-          name: item.name,
-          description: item.description,
-          imageName: item.imageName,
-          type: item.type,
-          wikiaUrl: item.wikiaUrl,
-          wikiaThumbnail: item.wikiaThumbnail,
-          builder: (_, _) => row,
-        );
+        return OpenItemContainer(item: item, closedBuilder: (_, _) => row);
       },
     );
   }

@@ -1,6 +1,6 @@
 // ignore_for_file: experimental_member_use Its gonna get unmarked I swear
 
-import 'package:warframestat_client/warframestat_client.dart';
+import 'package:warframe_common/warframe_common.dart';
 
 extension ArbitrationListExtension on List<Arbitration> {
   Arbitration get current {

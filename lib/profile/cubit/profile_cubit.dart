@@ -1,55 +1,32 @@
 import 'package:equatable/equatable.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
-import 'package:navis/settings/settings.dart';
 import 'package:navis/utils/bloc_mixin.dart';
-import 'package:profile_models/profile_models.dart';
-import 'package:sentry_flutter/sentry_flutter.dart';
+import 'package:profile_repository/profile_repository.dart';
+import 'package:settings_repository/settings_repository.dart';
 import 'package:warframe_api/warframe_api.dart';
-import 'package:warframe_repository/warframe_repository.dart';
+import 'package:warframe_common/warframe_common.dart' hide ProfileNotFound;
 
 part 'profile_state.dart';
 
 class ProfileCubit extends Cubit<ProfileState> with SafeBlocMixin {
-  ProfileCubit(WarframeRepository repo, UserSettings settings)
-    : _repo = repo,
-      _settings = settings,
-      super(ProfileInitial());
+  ProfileCubit(this._repo, this._settings) : super(ProfileInitial());
 
-  final WarframeRepository _repo;
-  final UserSettings _settings;
-
-  Future<void> loadProfile(String data) async {
-    if (state is! ProfileSuccessful) emit(ProfileUpdating());
-
-    await safeEmit(
-      () async {
-        if (!_repo.verifyUserData(data)) return ProfileFailure(data);
-
-        try {
-          final profile = await _repo.fetchProfile(data);
-          _settings.user = data;
-
-          return ProfileSuccessful(profile);
-        } on ProfileNotFound catch (e) {
-          await Sentry.addBreadcrumb(Breadcrumb(message: e.toString()));
-          rethrow;
-        }
-      },
-      onError: (_, _) => const ProfileFailure(),
-    );
-  }
+  final ProfileRepository _repo;
+  final SettingsRepository _settings;
 
   Future<void> refreshProfile() async {
     if (state is! ProfileSuccessful) emit(ProfileUpdating());
-    final data = _settings.user;
 
+    final data = _settings.accountId;
+    if (data == null) return emit(ProfileInitial());
+
+    final platform = WarframeSupportedPlatform.values[_settings.platform ?? 0];
     await safeEmit(
       () async {
-        if (data == null) return ProfileInitial();
+        final profile = await _repo.fetchProfile(platform, data);
+        await _repo.buildXpInfo();
 
-        final profile = await _repo.fetchProfile(data);
-
-        return ProfileSuccessful(profile);
+        return ProfileSuccessful(profile, _repo.xpInfo);
       },
       onError: (_, _) => const ProfileFailure(),
     );

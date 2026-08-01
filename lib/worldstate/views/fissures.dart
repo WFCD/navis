@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:navis/drops/cubit/cubit.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis/worldstate/worldstate.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:responsive_builder/responsive_builder.dart';
-import 'package:warframe_icons/warframe_icons.dart';
-import 'package:worldstate_models/worldstate_models.dart';
+import 'package:warframe_common/warframe_common.dart';
+import 'package:warframe_drop_repository/warframe_drop_repository.dart';
 
 class FissuresPage extends StatelessWidget {
   const FissuresPage({super.key});
@@ -96,7 +97,12 @@ class _MobileFissures extends StatelessWidget {
       itemCount: fissures.length,
       shrinkWrap: true,
       itemBuilder: (context, index) {
-        return FissureWidget(key: ValueKey(fissures[index].id), fissure: fissures[index]);
+        final fissure = fissures[index];
+
+        return BlocProvider(
+          create: (context) => DropsCubit(context.read<WarframeDropRepository>())..findRegionRewards(fissure.node),
+          child: FissureWidget(key: ValueKey(fissure.id), fissure: fissure),
+        );
       },
     );
   }

@@ -10,16 +10,15 @@ class FilterDialog extends StatelessWidget {
   final List<SimpleTopics> options;
 
   static Future<void> showFilters(BuildContext context, List<SimpleTopics> options) {
+    final usersettings = BlocProvider.of<SettingsCubit>(context);
+
     return showDialog<void>(
       context: context,
       useRootNavigator: false,
       builder: (_) {
-        final notifications = RepositoryProvider.of<NotificationRepository>(context);
-        final usersettings = BlocProvider.of<UserSettingsCubit>(context);
-
-        return RepositoryProvider.value(
-          value: notifications,
-          child: BlocProvider.value(value: usersettings, child: FilterDialog(options: options)),
+        return BlocProvider.value(
+          value: usersettings,
+          child: FilterDialog(options: options),
         );
       },
     );
@@ -32,7 +31,7 @@ class FilterDialog extends StatelessWidget {
       content: SingleChildScrollView(
         child: Column(
           mainAxisSize: MainAxisSize.min,
-          children: <Widget>[for (final t in options) _NotificationCheckBox(title: t.title, topic: t.topic)],
+          children: <Widget>[for (final t in options) _NotificationCheckBox(title: t.title, topic: t.value)],
         ),
       ),
       actions: [
@@ -51,32 +50,15 @@ class _NotificationCheckBox extends StatelessWidget {
   final String title;
   final Topic topic;
 
-  Future<void> _onChanged(BuildContext context, Topic topic, bool value) async {
-    final repo = context.read<NotificationRepository>();
-    context.read<UserSettingsCubit>().updateToggle(topic.name, value: value);
-
-    await repo.requestPermission();
-    await repo.updateTopic(topic, value: value);
-
-    final hasPermission = await repo.hasPermission();
-    if (!hasPermission && context.mounted) {
-      context.read<UserSettingsCubit>().updateToggle(topic.name, value: false);
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
-    final settings = context.watch<UserSettingsCubit>().state;
-    final toggles = switch (settings) {
-      UserSettingsSuccess() => settings.toggles,
-      _ => <String, bool>{},
-    };
+    final toggles = context.watch<SettingsCubit>().state.notifications;
 
     return CheckboxListTile(
       title: Text(title),
       value: toggles[topic.name] ?? false,
       activeColor: Theme.of(context).colorScheme.secondary,
-      onChanged: (b) => _onChanged(context, topic, b ?? false),
+      onChanged: (b) => context.read<SettingsCubit>().toggleFilter(topic.name, enable: b ?? false),
     );
   }
 }

@@ -3,7 +3,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:navis_ui/gen/assets.gen.dart';
 import 'package:navis_ui/navis_ui.dart';
-import 'package:worldstate_models/worldstate_models.dart';
+import 'package:warframe_common/warframe_common.dart';
 
 class OrbiterNewsCard extends StatelessWidget {
   const OrbiterNewsCard({super.key, required this.news});

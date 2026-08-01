@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:fish_repository/fish_repository.dart';
+import 'package:fish_data/fish_data.dart';
 import 'package:flutter/material.dart';
-import 'package:navis/codex/codex.dart';
+import 'package:navis/items/items.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis/utils/string_extensions.dart';
 import 'package:navis_ui/navis_ui.dart';
@@ -9,7 +9,7 @@ import 'package:navis_ui/navis_ui.dart';
 class FishCard extends StatelessWidget {
   const FishCard({super.key, required this.fish});
 
-  // I'm sure this won't cause an problems down the line but I shoooould fix
+  // I'm sure this won't cause any problems down the line but I shoooould fix
   // that up later
   // ignore: strict_raw_type
   final Fish fish;
@@ -35,38 +35,37 @@ class FishCard extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.only(bottom: 4),
-              child: Stats(
+              child: StatsColumn(
                 padding: const EdgeInsets.only(bottom: 4),
                 stats: [
-                  RowItem(text: Text(l10n.fishName), child: Text(fish.name)),
-                  RowItem(text: Text(l10n.fishTime), child: Text(fish.time.string)),
-                  RowItem(text: Text(l10n.location), child: Text(fish.location)),
-                  RowItem(
-                    text: Text(l10n.fishSpear),
-                    child: _BuildSpearRequirement(requirements: fish.spearRequirments),
+                  Stat(name: Text(l10n.fishName), value: Text(fish.name)),
+                  Stat(name: Text(l10n.fishTime), value: Text(fish.time.string)),
+                  Stat(name: Text(l10n.location), value: Text(fish.location)),
+                  Stat(
+                    name: Text(l10n.fishSpear),
+                    value: _BuildSpearRequirement(requirements: fish.spearRequirments),
                   ),
-                  RowItem(text: Text(l10n.fishRarity), child: Text(fish.rarity)),
-                  if (fish.bait.recommended) RowItem(text: Text(l10n.fishBait), child: Text(fish.bait.name)),
-                  if (fish.small.standing != null)
-                    RowItem(
-                      text: Text(l10n.fishStanding),
-                      child: Text(
-                        '${fish.small.standing}'
-                        '/${fish.medium.standing}'
-                        '/${fish.large.standing}',
-                      ),
+                  Stat(name: Text(l10n.fishRarity), value: Text(fish.rarity)),
+                  Stat(name: Text(l10n.fishBait), value: Text(fish.bait.name), isVisible: fish.bait.recommended),
+                  Stat(
+                    name: Text(l10n.fishStanding),
+                    value: Text(
+                      '${fish.small.standing}'
+                      '/${fish.medium.standing}'
+                      '/${fish.large.standing}',
                     ),
-                  if (!fish.name.contains('Boot'))
-                    RowItem(
-                      text: Text(l10n.fishUnique),
-                      child: _BuildUniqueResources(uniqueResources: fish.uniqueResources),
-                    ),
+                    isVisible: fish.small.standing != null,
+                  ),
+                  Stat(
+                    name: Text(l10n.fishUnique),
+                    value: _BuildUniqueResources(uniqueResources: fish.uniqueResources),
+                    isVisible: !fish.name.contains('Boot'),
+                  ),
                 ],
               ),
             ),
             if (!fish.name.contains('Boot')) ...{
               _BuildResources(small: fish.small.resources, medium: fish.medium.resources, large: fish.large.resources),
-              // RowItem(text: text, child: child),
             },
           ],
         ),
@@ -108,43 +107,43 @@ class _BuildResources extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
-    List<RowItem> widgets;
+    final sizes = (small, medium, large);
 
-    // Check small and assume the reset are all from the same region.
-    if (small is DeimosRegionResources) {
-      final small = this.small as DeimosRegionResources;
-      final medium = this.medium as DeimosRegionResources;
-      final large = this.large as DeimosRegionResources;
+    var stats = <Stat>[];
 
-      widgets = [
-        if (small.bladder > 1)
-          RowItem(text: Text(l10n.fishBladder), child: Text('${small.bladder}/${medium.bladder}/${large.bladder}')),
-        if (small.gills > 1)
-          RowItem(text: Text(l10n.fishGills), child: Text('${small.gills}/${medium.gills}/${large.gills}')),
-        if (small.tumor > 1)
-          RowItem(text: Text(l10n.fishTumors), child: Text('${small.tumor}/${medium.tumor}/${large.tumor}')),
+    if (sizes case (
+      final DeimosRegionResources small,
+      final DeimosRegionResources medium,
+      final DeimosRegionResources large,
+    )) {
+      stats = [
+        Stat(name: Text(l10n.fishBladder), value: Text('${small.bladder}/${medium.bladder}/${large.bladder}')),
+        Stat(name: Text(l10n.fishGills), value: Text('${small.gills}/${medium.gills}/${large.gills}')),
+        Stat(name: Text(l10n.fishTumors), value: Text('${small.tumor}/${medium.tumor}/${large.tumor}')),
       ];
-    } else if (small is PoeRegionResources) {
-      final small = this.small as PoeRegionResources;
-      final medium = this.medium as PoeRegionResources;
-      final large = this.large as PoeRegionResources;
-
-      widgets = [
-        if (small.meat > 1)
-          RowItem(text: Text(l10n.fishMeat), child: Text('${small.meat}/${medium.meat}/${large.meat}')),
-        if (small.oil > 1) RowItem(text: Text(l10n.fishOil), child: Text('${small.oil}/${medium.oil}/${large.oil}')),
-        if (small.scales > 1)
-          RowItem(text: Text(l10n.fishScales), child: Text('${small.scales}/${medium.scales}/${large.scales}')),
-      ];
-    } else {
-      final small = this.small as VallisRegionResources;
-      final medium = this.medium as VallisRegionResources;
-      final large = this.large as VallisRegionResources;
-
-      widgets = [RowItem(text: Text(l10n.fishScrap), child: Text('${small.scrap}/${medium.scrap}/${large.scrap}'))];
     }
 
-    return Stats(padding: const EdgeInsets.only(bottom: 4), stats: widgets);
+    if (sizes case (
+      final PoeRegionResources small,
+      final PoeRegionResources medium,
+      final PoeRegionResources large,
+    )) {
+      stats = [
+        Stat(name: Text(l10n.fishMeat), value: Text('${small.meat}/${medium.meat}/${large.meat}')),
+        Stat(name: Text(l10n.fishOil), value: Text('${small.oil}/${medium.oil}/${large.oil}')),
+        Stat(name: Text(l10n.fishScales), value: Text('${small.scales}/${medium.scales}/${large.scales}')),
+      ];
+    }
+
+    if (sizes case (
+      final VallisRegionResources small,
+      final VallisRegionResources medium,
+      final VallisRegionResources large,
+    )) {
+      stats = [Stat(name: Text(l10n.fishScrap), value: Text('${small.scrap}/${medium.scrap}/${large.scrap}'))];
+    }
+
+    return StatsColumn(padding: const EdgeInsets.only(bottom: 4), stats: stats);
   }
 }
 
@@ -155,23 +154,21 @@ class _BuildSpearRequirement extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (requirements is DeimosRequirements) {
-      final requirements = this.requirements as DeimosRequirements;
-      final requiresAny = requirements.requiresEbisu && requirements.requiresSpari;
+    if (requirements case DeimosRequirements(:final requiresEbisu, :final requiresSpari)) {
+      final requiresAny = requiresEbisu && requiresSpari;
 
       if (requiresAny) return const Text('Ebisu/Spari');
-      if (requirements.requiresEbisu) return const Text('Ebisu');
-      if (requirements.requiresSpari) return const Text('Spari');
+      if (requiresEbisu) return const Text('Ebisu');
+      if (requiresSpari) return const Text('Spari');
     }
 
-    if (requirements is PoeRequirements) {
-      final requirements = this.requirements as PoeRequirements;
-      final requiresAny = requirements.requiresLanzo && requirements.requiresPeram && requirements.requiresTulok;
+    if (requirements case PoeRequirements(:final requiresLanzo, :final requiresPeram, :final requiresTulok)) {
+      final requiresAny = requiresLanzo && requiresPeram && requiresTulok;
 
       if (requiresAny) return const Text('Lanzo/Peram/Tulok');
-      if (requirements.requiresLanzo) return const Text('Lanzo');
-      if (requirements.requiresPeram) return const Text('Peram');
-      if (requirements.requiresTulok) return const Text('Tulok');
+      if (requiresLanzo) return const Text('Lanzo');
+      if (requiresPeram) return const Text('Peram');
+      if (requiresTulok) return const Text('Tulok');
     }
 
     if (requirements is VallisRequirements) {

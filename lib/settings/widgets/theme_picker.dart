@@ -12,7 +12,7 @@ class ThemePicker extends StatelessWidget {
       context: context,
       builder: (_) {
         return BlocProvider.value(
-          value: BlocProvider.of<UserSettingsCubit>(context),
+          value: BlocProvider.of<SettingsCubit>(context),
           child: Localizations(
             locale: context.locale,
             delegates: NavisLocalizations.localizationsDelegates,
@@ -25,11 +25,7 @@ class ThemePicker extends StatelessWidget {
 
   void _onChanged(BuildContext context, ThemeMode? mode) {
     if (mode == null) return;
-
-    final state = context.read<UserSettingsCubit>().state;
-    if (state is UserSettingsSuccess) {
-      context.read<UserSettingsCubit>().updateThemeMode(mode);
-    }
+    context.read<SettingsCubit>().updateThemeMode(mode);
 
     Navigator.of(context).pop();
   }
@@ -38,11 +34,7 @@ class ThemePicker extends StatelessWidget {
   Widget build(BuildContext context) {
     final accentColor = Theme.of(context).colorScheme.secondary;
     final l10n = context.l10n;
-    final state = context.watch<UserSettingsCubit>().state;
-    final currentTheme = switch (state) {
-      UserSettingsSuccess() => state.themeMode,
-      _ => ThemeMode.light,
-    };
+    final currentTheme = context.watch<SettingsCubit>().state.themeMode;
 
     return RadioGroup<ThemeMode>(
       groupValue: currentTheme,

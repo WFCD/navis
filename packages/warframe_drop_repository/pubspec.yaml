@@ -1,0 +1,22 @@
+name: warframe_drop_repository
+description: A Very Good Project created by Very Good CLI.
+version: 0.1.0+1
+publish_to: none
+
+environment:
+  sdk: ^3.12.0
+
+resolution: workspace
+
+dependencies: 
+  cache:
+    path: ../cache
+  collection: ^1.19.1
+  html: ^0.15.6
+  warframe_api:
+    path: ../warframe_api
+  warframe_common:
+    path: ../warframe_common
+
+dev_dependencies:
+  very_good_analysis: ^10.3.0

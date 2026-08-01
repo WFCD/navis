@@ -4,7 +4,7 @@ import 'package:navis/l10n/l10n.dart';
 import 'package:navis/router/routes.dart';
 import 'package:navis/worldstate/bloc/worldstate_bloc.dart';
 import 'package:navis_ui/navis_ui.dart';
-import 'package:worldstate_models/worldstate_models.dart';
+import 'package:warframe_common/warframe_common.dart';
 
 class ArchimedeaCard extends StatelessWidget {
   const ArchimedeaCard({super.key});

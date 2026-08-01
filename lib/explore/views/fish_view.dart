@@ -1,4 +1,4 @@
-import 'package:fish_repository/fish_repository.dart';
+import 'package:fish_data/fish_data.dart';
 import 'package:flutter/material.dart';
 import 'package:navis/explore/explore.dart';
 
@@ -43,10 +43,9 @@ class FishView extends StatelessWidget {
           },
           body: TabBarView(
             // These are the contents of the tab views, below the tabs.
-            children:
-                tabs.map((r) {
-                  return FishDataView(region: r['region']! as FishingRegion);
-                }).toList(),
+            children: tabs.map((r) {
+              return FishDataView(region: r['region']! as FishingRegion);
+            }).toList(),
           ),
         ),
       ),

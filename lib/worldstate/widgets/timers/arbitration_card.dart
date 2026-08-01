@@ -2,23 +2,24 @@ import 'package:black_hole_flutter/black_hole_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/l10n/l10n.dart';
-import 'package:navis/worldstate/cubits/arbitration_cubit.dart';
+import 'package:navis/worldstate/worldstate.dart';
 import 'package:navis_ui/navis_ui.dart';
-import 'package:warframe_icons/warframe_icons.dart';
-import 'package:warframe_repository/warframe_repository.dart';
+import 'package:worldstate_repository/worldstate_repository.dart';
 
 class ArbitrationCard extends StatelessWidget {
   const ArbitrationCard({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final repo = RepositoryProvider.of<WarframeRepository>(context);
+    final locale = context.locale.languageCode;
+    final repo = RepositoryProvider.of<WorldstateRepository>(context);
+
     return AppCard(
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
           BlocProvider(
-            create: (_) => ArbitrationCubit(repo)..fetchArbitrations(),
+            create: (_) => ArbitrationCubit(repo)..fetchArbitrations(locale),
             child: const _ArbitrationContent(),
           ),
           Align(

@@ -1,27 +1,23 @@
-import 'package:black_hole_flutter/black_hole_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis/settings/settings.dart';
-import 'package:warframe_api/warframe_api.dart';
-import 'package:warframe_repository/warframe_repository.dart';
 
 class LanguagePicker extends StatelessWidget {
   const LanguagePicker({super.key});
 
-  static Future<void> showOptions(BuildContext context) async {
-    final locale = await showModalBottomSheet<Locale>(
+  static Future<void> showOptions(BuildContext context) {
+    final settings = BlocProvider.of<SettingsCubit>(context);
+
+    return showModalBottomSheet<void>(
       context: context,
       useSafeArea: true,
       isScrollControlled: true,
       builder: (_) => BlocProvider.value(
-        value: BlocProvider.of<UserSettingsCubit>(context),
+        value: settings,
         child: const LanguagePicker(),
       ),
     );
-
-    if (locale == null || !context.mounted) return;
-    context.read<WarframeRepository>().locale = WorldstateLocale.values.byName(locale.languageCode);
   }
 
   @override
@@ -30,12 +26,7 @@ class LanguagePicker extends StatelessWidget {
 
     final materialLocalizations = MaterialLocalizations.of(context);
     final accentColor = Theme.of(context).colorScheme.secondary;
-
-    final settings = context.watch<UserSettingsCubit>().state;
-    final language = switch (settings) {
-      UserSettingsSuccess() => settings.language,
-      _ => context.locale,
-    };
+    final language = context.watch<SettingsCubit>().state.language;
 
     return DraggableScrollableSheet(
       expand: false,
@@ -48,14 +39,13 @@ class LanguagePicker extends StatelessWidget {
                 groupValue: language,
                 onChanged: (l) {
                   if (l == null) return;
-                  context.read<UserSettingsCubit>().updateLanguage(l);
+                  context.read<SettingsCubit>().updateLocale(l);
                 },
                 child: ListView.builder(
                   controller: controller,
                   itemCount: supportedLocales.length,
                   itemBuilder: (context, index) {
                     final l = supportedLocales[index];
-
                     return RadioListTile<Locale>(title: Text(l.fullName), value: l, activeColor: accentColor);
                   },
                 ),
@@ -66,7 +56,7 @@ class LanguagePicker extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                 child: FilledButton(
-                  onPressed: () => Navigator.of(context).pop(language),
+                  onPressed: () => Navigator.pop(context),
                   child: Text(materialLocalizations.okButtonLabel),
                 ),
               ),

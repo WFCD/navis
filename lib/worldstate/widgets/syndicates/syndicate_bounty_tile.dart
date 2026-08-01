@@ -1,13 +1,10 @@
-import 'dart:math';
-
 import 'package:black_hole_flutter/black_hole_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:navis/drops/drops.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis_ui/navis_ui.dart';
-import 'package:warframe_icons/warframe_icons.dart';
-import 'package:warframestat_client/warframestat_client.dart' as ws;
-import 'package:worldstate_models/worldstate_models.dart';
+import 'package:warframe_common/warframe_common.dart';
 
 class SyndicateBountyTile extends StatelessWidget {
   const SyndicateBountyTile({super.key, required this.color, required this.job});
@@ -42,23 +39,8 @@ class SyndicateBountyTile extends StatelessWidget {
             minChildSize: 0.2,
             maxChildSize: 0.9,
             expand: false,
-            builder: (context, scrollController) {
-              if (job.rewards.length < 2) return Center(child: Text(job.rewards[0]));
-
-              return ListView(
-                controller: scrollController,
-                children: job.rewardPool
-                    .map(
-                      (bounty) => SyndicateBountyStage(
-                        stage: bounty.stage,
-                        maxStage: job.rewardPool.length,
-                        rewards: bounty.rewards,
-                        color: color,
-                      ),
-                    )
-                    .toList(),
-              );
-            },
+            builder: (context, scrollController) =>
+                BountyRewardsView(controller: scrollController, bounty: job, color: color),
           );
         },
       ),
@@ -82,107 +64,6 @@ class _Standing extends StatelessWidget {
         ),
         const Icon(WarframeIcons.standing, size: 20),
       ],
-    );
-  }
-}
-
-class SyndicateBountyStage extends StatelessWidget {
-  const SyndicateBountyStage({
-    super.key,
-    required this.stage,
-    required this.maxStage,
-    required this.color,
-    required this.rewards,
-  });
-
-  final int stage;
-  final int maxStage;
-  final Color color;
-  final List<RewardDrop> rewards;
-
-  @override
-  Widget build(BuildContext context) {
-    rewards.sort(
-      (a, b) => ws.Rarity.values
-          .byName(a.rarity.toLowerCase())
-          .index
-          .compareTo(ws.Rarity.values.byName(b.rarity.toLowerCase()).index),
-    );
-
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        if (maxStage >= 3)
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 16),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text(
-                  context.l10n.stageText,
-                  style: context.textTheme.titleLarge,
-                ),
-                Gaps.gap6,
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    for (int i = 0; i < maxStage; i++) _StageDimond(enable: i < stage, color: color),
-                  ],
-                ),
-              ],
-            ),
-          ),
-        ...rewards.map((r) => BountyReward(reward: r)),
-      ],
-    );
-  }
-}
-
-class BountyReward extends StatelessWidget {
-  const BountyReward({super.key, required this.reward});
-
-  final RewardDrop reward;
-
-  @override
-  Widget build(BuildContext context) {
-    final count = reward.count;
-    final rarity = ws.Rarity.values.byName(reward.rarity.toLowerCase());
-
-    return RewardTile(
-      reward: '${count == 1 ? '' : '${count}X '}${reward.item}',
-      chance: reward.chance,
-      rarity: rarity,
-    );
-  }
-}
-
-class _StageDimond extends StatelessWidget {
-  const _StageDimond({required this.enable, this.color});
-
-  final bool enable;
-  final Color? color;
-
-  @override
-  Widget build(BuildContext context) {
-    final color = this.color ?? Theme.of(context).colorScheme.secondary;
-    const size = Size.square(12);
-
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 8),
-      child: Transform.rotate(
-        angle: 75 * pi / 100,
-        child: SizedBox.fromSize(
-          size: size,
-          child: DecoratedBox(
-            decoration: BoxDecoration(
-              border: Border.all(color: color),
-              color: enable ? color : Colors.transparent,
-            ),
-          ),
-        ),
-      ),
     );
   }
 }

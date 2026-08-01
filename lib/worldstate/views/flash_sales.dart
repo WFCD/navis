@@ -1,21 +1,23 @@
+import 'package:black_hole_flutter/black_hole_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis/worldstate/worldstate.dart';
 import 'package:navis_ui/navis_ui.dart';
-import 'package:warframe_repository/warframe_repository.dart';
-import 'package:worldstate_models/worldstate_models.dart';
+import 'package:warframe_common/warframe_common.dart';
+import 'package:worldstate_repository/worldstate_repository.dart';
 
 class FlashSalesPage extends StatelessWidget {
   const FlashSalesPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final repo = RepositoryProvider.of<WarframeRepository>(context);
+    final locale = context.locale.languageCode;
+    final repository = RepositoryProvider.of<WorldstateRepository>(context);
 
     return Scaffold(
       appBar: AppBar(title: Text(context.l10n.flashSaleAppbarTitle)),
-      body: BlocProvider(create: (_) => WorldstateBloc(repo), child: const FlashSalesView()),
+      body: BlocProvider(create: (_) => WorldstateBloc(locale, repository), child: const FlashSalesView()),
     );
   }
 }
@@ -28,7 +30,7 @@ class FlashSalesView extends StatelessWidget {
     return BlocSelector<WorldstateBloc, WorldState, List<FlashSale>?>(
       selector: (state) {
         return switch (state) {
-          WorldstateSuccess(: final seed) => seed.flashSales,
+          WorldstateSuccess(:final seed) => seed.flashSales,
           _ => null,
         };
       },

@@ -1,3 +1,4 @@
+import 'package:black_hole_flutter/black_hole_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/l10n/l10n.dart';
@@ -7,7 +8,7 @@ import 'package:navis/worldstate/views/invasions.dart';
 import 'package:navis/worldstate/views/syndicates.dart';
 import 'package:navis/worldstate/views/timers.dart';
 import 'package:navis_ui/navis_ui.dart';
-import 'package:warframe_repository/warframe_repository.dart';
+import 'package:worldstate_repository/worldstate_repository.dart';
 
 enum Tabs { timers, fissures, invasions, syndicates }
 
@@ -16,9 +17,10 @@ class ActivitiesPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final wsRepo = RepositoryProvider.of<WarframeRepository>(context);
+    final locale = context.locale.languageCode;
+    final repository = RepositoryProvider.of<WorldstateRepository>(context);
 
-    return BlocProvider(create: (_) => WorldstateBloc(wsRepo), child: const _ActivitiesView());
+    return BlocProvider(create: (_) => WorldstateBloc(locale, repository), child: const _ActivitiesView());
   }
 }
 

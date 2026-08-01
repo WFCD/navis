@@ -4,12 +4,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_settings_ui/flutter_settings_ui.dart';
 import 'package:intl/intl.dart';
 import 'package:navis/l10n/l10n.dart';
-import 'package:navis/profile/cubit/profile_cubit.dart';
+import 'package:navis/profile/profile.dart';
+import 'package:navis/profile_setup/profile_setup.dart';
 import 'package:navis/settings/settings.dart';
 import 'package:navis_ui/navis_ui.dart';
-import 'package:notification_repository/notification_repository.dart';
-import 'package:profile_models/profile_models.dart';
-import 'package:warframe_repository/warframe_repository.dart';
+import 'package:warframe_common/warframe_common.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});
@@ -23,23 +22,6 @@ class SettingsPage extends StatelessWidget {
 class _SettingsView extends StatelessWidget {
   const _SettingsView();
 
-  Future<void> _onNotificationChanged(BuildContext context, Topic topic, bool value) async {
-    final repo = context.read<NotificationRepository>();
-    context.read<UserSettingsCubit>().updateToggle(topic.name, value: value);
-
-    await repo.requestPermission();
-    await repo.updateTopic(topic, value: value);
-
-    final hasPermission = await repo.hasPermission();
-    if (!hasPermission && context.mounted) {
-      context.read<UserSettingsCubit>().updateToggle(topic.name, value: false);
-    }
-  }
-
-  void _openDialog(BuildContext context, List<SimpleTopics> filters) {
-    FilterDialog.showFilters(context, filters);
-  }
-
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
@@ -49,10 +31,8 @@ class _SettingsView extends StatelessWidget {
     );
 
     final filters = NotificationTopics(context.l10n);
-
-    final settings = context.select<UserSettingsCubit, UserSettingsSuccess?>(
-      (cubit) => cubit.state is UserSettingsSuccess ? cubit.state as UserSettingsSuccess : null,
-    );
+    final settings = context.watch<SettingsCubit>().state;
+    final toggles = settings.notifications;
 
     final profile = context.select<ProfileCubit, Profile?>(
       (c) => switch (c.state) {
@@ -60,8 +40,6 @@ class _SettingsView extends StatelessWidget {
         _ => null,
       },
     );
-
-    final toggles = settings?.toggles ?? <String, bool>{};
 
     return SettingsList(
       platform: DevicePlatform.android,
@@ -72,28 +50,17 @@ class _SettingsView extends StatelessWidget {
           title: const Text('Inventoria'),
           tiles: [
             SettingsTile(
-              title: profile?.username != null
+              title: profile != null
                   ? UserTitle(
-                      username: profile!.username,
+                      username: profile.username,
                       rank: profile.masteryRank,
                     )
                   : Text(l10n.enterUsernameHintText),
-              onPressed: ProfileWizard.startWizard,
+              onPressed: SetupView.openBottomSheet,
             ),
             SettingsTile(
               title: const Text('Update Codex'),
-              onPressed: (context) async {
-                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Updating Codex')));
-
-                final isUpdated = await RepositoryProvider.of<WarframeRepository>(
-                  context,
-                ).updateCodex(forceUpdate: true);
-                if (!context.mounted) return;
-
-                ScaffoldMessenger.of(
-                  context,
-                ).showSnackBar(SnackBar(content: Text(isUpdated ? 'Codex updated' : 'Codex was not updated')));
-              },
+              onPressed: (context) async {},
             ),
           ],
         ),
@@ -109,14 +76,14 @@ class _SettingsView extends StatelessWidget {
             SettingsTile.navigation(
               title: Text(l10n.themeTitle),
               description: Text(l10n.themeDescription),
-              value: Text(toBeginningOfSentenceCase((settings?.themeMode ?? ThemeMode.system).name) ?? ''),
+              value: Text(toBeginningOfSentenceCase(settings.themeMode.name)),
               onPressed: ThemePicker.showModes,
             ),
             SettingsTile.switchTile(
               title: Text(l10n.optOutOfAnalyticsTitle),
               description: Text(l10n.optOutOfAnalyticsDescription),
-              initialValue: settings?.isOptOut ?? false,
-              onToggle: (b) => context.read<UserSettingsCubit>().updateAnalyticsOpt(isOptOut: b),
+              initialValue: settings.isOptOut,
+              onToggle: (b) => context.read<SettingsCubit>().updateAnalyticsOpt(b),
             ),
           ],
         ),
@@ -127,14 +94,14 @@ class _SettingsView extends StatelessWidget {
               SettingsTile.switchTile(
                 title: Text(topic.title),
                 description: Text(topic.description ?? ''),
-                initialValue: toggles[topic.topic.name],
-                onToggle: (b) => _onNotificationChanged(context, topic.topic, b),
+                initialValue: toggles[topic.value.name],
+                onToggle: (b) => context.read<SettingsCubit>().toggleFilter(topic.value.name, enable: b),
               ),
             for (final mt in filters.filtered)
               SettingsTile.navigation(
                 title: Text(mt.title),
                 description: Text(mt.description),
-                onPressed: (context) => _openDialog(context, mt.filters),
+                onPressed: (context) => FilterDialog.showFilters(context, mt.filters),
               ),
           ],
         ),

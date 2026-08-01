@@ -1,8 +1,8 @@
 import 'dart:developer';
-import 'dart:io';
 
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:notification_repository/src/topics.dart';
+import 'package:notification_repository/src/notification_storage.dart';
+import 'package:permissions_client/permissions_client.dart';
 
 /// {@template notification_repository}
 /// Main entry to start push notifications via firebase.
@@ -11,54 +11,36 @@ import 'package:notification_repository/src/topics.dart';
 /// {@endtemplate}
 class NotificationRepository {
   /// {@macro notification_repository}
-  NotificationRepository();
+  NotificationRepository(this._permissionsClient, this.storage);
+
+  final PermissionsClient _permissionsClient;
+  final NotificationStorage storage;
 
   final FirebaseMessaging _messaging = FirebaseMessaging.instance;
 
-  /// Prompts the user for notification permissions
-  ///
-  /// Has a platform check inside the lib itself.
-  Future<void> requestPermission() {
-    return _messaging.requestPermission(provisional: Platform.isIOS);
-  }
+  Future<void> toggleFilter(String topic, {required bool enable}) async {
+    try {
+      log('${enable ? 'subscribed' : 'unsubscribed'} to $topic');
+      final status = await _permissionsClient.notificationsStatus();
+      if (status.isPermanentlyDenied || status.isRestricted) {
+        await _permissionsClient.openPermissionSettings();
+        return;
+      }
 
-  Future<bool> hasPermission() async {
-    final settings = await _messaging.getNotificationSettings();
-    final authorization = settings.authorizationStatus;
+      if (status.isDenied) {
+        final updatedStatus = await _permissionsClient.requestNotifications();
+        if (updatedStatus.isDenied) return;
+      }
 
-    if (authorization == AuthorizationStatus.authorized || authorization == AuthorizationStatus.provisional) {
-      return true;
+      await storage.toggleNotification(topic);
+
+      if (enable) {
+        await _messaging.subscribeToTopic(topic);
+      } else {
+        await _messaging.unsubscribeFromTopic(topic);
+      }
+    } on Exception catch (error, stackTrace) {
+      throw Error.throwWithStackTrace(error, stackTrace);
     }
-
-    return false;
-  }
-
-  // IOS requires and APNS check, if the first time fails we can wait the
-  // 5 seconds. But if it's not availble the second time we can assume that
-  // they've been configured incorrectly or just taking awhile, an app refresh
-  // should take care of it.
-  Future<void> _iosAPNSCheck() async {
-    if (!Platform.isIOS) return;
-
-    var apns = await _messaging.getAPNSToken();
-    if (apns != null) return;
-
-    await Future<void>.delayed(const Duration(seconds: 5));
-
-    apns = await _messaging.getAPNSToken();
-    if (apns != null) return;
-
-    throw Exception('Failed to get APNS');
-  }
-
-  /// Subscribes or unsubscribes from the given topic
-  Future<void> updateTopic(Topic topic, {required bool value}) async {
-    if (!(await hasPermission())) return;
-
-    await _iosAPNSCheck();
-
-    value ? await _messaging.subscribeToTopic(topic.name) : await _messaging.unsubscribeFromTopic(topic.name);
-
-    log('${value ? 'subscribed' : 'unsubscribed'} to ${topic.name}');
   }
 }

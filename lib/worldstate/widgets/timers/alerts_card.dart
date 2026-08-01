@@ -4,50 +4,39 @@ import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
-import 'package:navis/codex/codex.dart';
+import 'package:item_repository/items_repository.dart';
+import 'package:navis/items/items.dart';
+
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis/utils/string_extensions.dart';
 import 'package:navis/worldstate/bloc/worldstate_bloc.dart';
 import 'package:navis_ui/navis_ui.dart';
-import 'package:warframe_icons/warframe_icons.dart';
-import 'package:warframe_repository/warframe_repository.dart';
-import 'package:warframestat_client/warframestat_client.dart' show ItemCommon;
-import 'package:worldstate_models/worldstate_models.dart';
+import 'package:warframe_common/warframe_common.dart';
 
 class AlertsCard extends StatelessWidget {
   const AlertsCard({super.key});
 
-  Widget _buildAlerts(Alert a, WarframeRepository r) {
-    final reward = a.mission.reward.items?.firstOrNull?.replaceAll('Blueprint', '').trim();
-
-    if (reward == null) return _AlertWidget(alert: a, isParent: false);
+  Widget _buildAlert(Alert alert) {
+    final reward = alert.mission.reward.items?.firstOrNull;
+    if (reward == null) return _AlertWidget(alert: alert, isParent: false);
 
     return BlocProvider(
-      create: (_) => ItemCubit(reward, r)..fetchByName(),
-      child: _AlertWidget(alert: a),
+      create: (context) => ItemCubit(context.read<ItemsRepository>())..fetchByName(reward),
+      child: _AlertWidget(alert: alert),
     );
-  }
-
-  bool _buildWhen(WorldState previous, WorldState next) {
-    if (previous is! WorldstateSuccess || next is! WorldstateSuccess) return false;
-    return previous.seed.alerts.length != next.seed.alerts.length;
   }
 
   @override
   Widget build(BuildContext context) {
-    final wsRepo = RepositoryProvider.of<WarframeRepository>(context);
-
-    return BlocBuilder<WorldstateBloc, WorldState>(
-      buildWhen: _buildWhen,
-      builder: (context, state) {
-        final alerts = switch (state) {
-          WorldstateSuccess() => state.seed.alerts,
-          _ => <Alert>[],
-        };
-
+    return BlocSelector<WorldstateBloc, WorldState, List<Alert>>(
+      selector: (state) => switch (state) {
+        WorldstateSuccess(:final seed) => seed.alerts,
+        _ => <Alert>[],
+      },
+      builder: (context, alerts) {
         return Column(
           mainAxisSize: MainAxisSize.min,
-          children: alerts.map((a) => _buildAlerts(a, wsRepo)).toList(),
+          children: alerts.map(_buildAlert).toList(),
         );
       },
     );
@@ -104,7 +93,7 @@ class _AlertReward extends StatelessWidget {
   const _AlertReward({required this.reward, this.item});
 
   final Reward reward;
-  final ItemCommon? item;
+  final WarframeItem? item;
 
   @override
   Widget build(BuildContext context) {
@@ -148,29 +137,16 @@ class _AlertItemReward extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ItemCubit, ItemState>(
-      builder: (context, state) {
-        final item = switch (state) {
-          ItemFetchSuccess() => state.item,
-          _ => null,
-        };
+    final item = switch (context.watch<ItemCubit>().state) {
+      ItemStoreFetchSuccess(:final item) => item,
+      _ => null,
+    };
 
-        if (item == null) return _AlertReward(reward: reward);
+    if (item == null) return _AlertReward(reward: reward);
 
-        return EntryViewOpenContainer(
-          uniqueName: item.uniqueName,
-          name: item.name,
-          description: item.description,
-          imageName: item.imageName,
-          type: item.type,
-          wikiaUrl: item.wikiaUrl,
-          wikiaThumbnail: item.wikiaThumbnail,
-          builder: (_, onTap) => InkWell(
-            onTap: onTap,
-            child: _AlertReward(reward: reward, item: item),
-          ),
-        );
-      },
+    return OpenItemContainer(
+      item: item,
+      closedBuilder: (context, action) => _AlertReward(reward: reward, item: item),
     );
   }
 }

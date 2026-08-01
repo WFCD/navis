@@ -4,23 +4,27 @@ description: Cephalon Navis is an Android app inspired by Warframe Hub.
 publish_to: none
 
 environment:
-  sdk: ^3.11.0
-  flutter: ^3.38.0
+  sdk: ^3.12.0
+  flutter: ^3.44.0
 
 workspace:
   - packages/*
 
 dependencies:
   animations: ^2.2.0
+  arbi_api:
+    path: packages/arbi_api
   black_hole_flutter: ^1.2.0
   bloc: ^9.2.1
+  cache:
+    path: packages/cache
   cached_network_image: ^3.3.1
   collection: ^1.19.0
   dynamic_color: ^1.8.1
   equatable: ^2.1.0
   firebase_core: ^4.11.0
-  fish_repository:
-    path: packages/fish_repository
+  fish_data:
+    path: packages/fish_data
   flutter:
     sdk: flutter
   flutter_bloc: ^9.1.0
@@ -31,35 +35,31 @@ dependencies:
   go_router: ^17.3.0
   hive_ce: ^2.19.3
   hive_ce_flutter: ^2.3.4
-  http: ^1.6.0
   http_client:
     path: packages/http_client
   hydrated_bloc: ^11.0.0
   internet_connection_checker_plus: ^3.1.1
   intl: ^0.20.2
+  item_repository:
+    path: packages/item_repository
   logging: ^1.3.0
   matomo_tracker: ^6.1.1
-  navis_cache:
-    path: packages/navis_cache
-  navis_codex:
-    path: packages/navis_codex
   navis_ui:
     path: packages/navis_ui
   notification_repository:
     path: packages/notification_repository
   package_info_plus: ^10.1.0
   path_provider: ^2.1.6
-  profile_models:
-    git:
-      url: https://github.com/SlayerOrnstein/wfcd_dart.git
-      path: packages/profile_models
-      ref: profile_models-v0.1.2+22
+  permissions_client:
+    path: packages/permissions_client
+  profile_repository:
+    path: packages/profile_repository
   replay_bloc: ^0.3.0
   responsive_builder: ^0.7.0
   rxdart: ^0.28.0
   # TODO update to v10 when its release for now we need this to update cronet to fix background fetching
   sentry_flutter:
-     git:
+    git:
       url: https://github.com/getsentry/sentry-dart.git
       ref: deps/jni-0.15.x
       path: packages/flutter
@@ -68,30 +68,20 @@ dependencies:
       url: https://github.com/getsentry/sentry-dart.git
       ref: deps/jni-0.15.x
       path: packages/logging
+  settings_repository:
+    path: packages/settings_repository
   simple_icons: ^16.23.0
+  storage:
+    path: packages/storage
   visibility_detector: ^0.4.0+2
   warframe_api:
     path: packages/warframe_api
-  warframe_drop_data:
-    git:
-      url: https://github.com/SlayerOrnstein/wfcd_dart.git
-      path: packages/warframe_drop_data
-      ref: warframe_drop_data-v0.1.8+1
-  warframe_icons:
-    git: https://github.com/SlayerOrnstein/warframe_icons.git
-  warframe_repository:
-    path: packages/warframe_repository
-  warframe_worldstate_data:
-    git:
-      url: https://github.com/SlayerOrnstein/wfcd_dart.git
-      path: packages/warframe_worldstate_data
-      ref: warframe_worldstate_data-v0.1.3+12
-  warframestat_client: ^5.5.1
-  worldstate_models:
-    git:
-      url: https://github.com/SlayerOrnstein/wfcd_dart.git
-      path: packages/worldstate_models
-      ref: worldstate_models-v0.1.7+12
+  warframe_common:
+    path: packages/warframe_common
+  warframe_drop_repository:
+    path: packages/warframe_drop_repository
+  worldstate_repository:
+    path: packages/worldstate_repository
 
 dev_dependencies:
   bloc_test: ^10.0.0

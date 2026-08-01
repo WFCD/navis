@@ -2,6 +2,7 @@ import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matomo_tracker/matomo_tracker.dart';
+import 'package:navis/app/widgets/state_listener.dart';
 import 'package:navis/app/widgets/widgets.dart';
 import 'package:navis/l10n/l10n.dart';
 
@@ -17,11 +18,13 @@ class AppView extends StatelessWidget {
 
     return Scaffold(
       key: GlobalKey<ScaffoldState>(),
-      body: PageTransitionSwitcher(
-        transitionBuilder: (child, animation, secondaryAnimation) {
-          return FadeThroughTransition(animation: animation, secondaryAnimation: secondaryAnimation, child: child);
-        },
-        child: TraceableWidget(actionName: children[currentIndex].toStringShort(), child: children[currentIndex]),
+      body: AppStateListener(
+        child: PageTransitionSwitcher(
+          transitionBuilder: (child, animation, secondaryAnimation) {
+            return FadeThroughTransition(animation: animation, secondaryAnimation: secondaryAnimation, child: child);
+          },
+          child: TraceableWidget(actionName: children[currentIndex].toStringShort(), child: children[currentIndex]),
+        ),
       ),
       bottomNavigationBar: NavigationBar(
         onDestinationSelected: (i) {
