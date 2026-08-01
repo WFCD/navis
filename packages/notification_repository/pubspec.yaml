@@ -10,7 +10,7 @@ environment:
 resolution: workspace
 
 dependencies:
-  firebase_core: ^4.11.0
+  firebase_core: ^4.12.1
   firebase_messaging: ^16.4.1
   flutter:
     sdk: flutter
