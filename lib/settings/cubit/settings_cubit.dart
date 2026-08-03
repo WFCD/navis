@@ -46,9 +46,9 @@ class SettingsCubit extends Cubit<SettingsState> {
     emit(state.copyWith(isOptOut: MatomoTracker.instance.optOut));
   }
 
-  void toggleFilter(String key, {required bool enable}) {
-    _notifications.toggleFilter(key, enable: enable);
-    emit(state.copyWith(notifications: {key: enable}));
+  Future<void> toggleFilter(String key, {required bool enable}) async {
+    final newValue = await _notifications.toggleFilter(key, enable: enable);
+    emit(state.copyWith(notifications: {key: newValue}));
   }
 
   @override

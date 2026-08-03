@@ -11,5 +11,5 @@ class PermissionsClient {
 
   Future<PermissionStatus> notificationsStatus() => Permission.notification.status;
 
-  Future<bool> openPermissionSettings() => openPermissionSettings();
+  Future<bool> openPermissionSettings() => openAppSettings();
 }
