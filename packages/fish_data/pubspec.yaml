@@ -20,7 +20,7 @@ dev_dependencies:
   flutter_gen_runner: ^5.15.0
   flutter_test:
     sdk: flutter
-  json_serializable: ^6.14.0
+  json_serializable: ^6.14.1
   mocktail: ^1.0.5
 
 flutter:
