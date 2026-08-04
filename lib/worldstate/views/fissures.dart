@@ -153,10 +153,7 @@ class _FissureFilter extends StatelessWidget {
       FissureFilter.voidStorm => WarframeIcons.archwing,
     };
 
-    return Tooltip(
-      message: text,
-      child: Row(children: [Icon(icon), Gaps.gap8, Text(text)]),
-    );
+    return Tooltip(message: text, child: Icon(icon));
   }
 
   @override
