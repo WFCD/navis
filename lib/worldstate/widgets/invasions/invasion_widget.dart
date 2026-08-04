@@ -51,8 +51,8 @@ class InvasionWidget extends StatelessWidget {
               Gaps.gap4,
               InvasionProgress(
                 progress: invasion.completion / decimalPoint,
-                attackingFaction: invasion.attacker.faction,
-                defendingFaction: invasion.defender.faction,
+                attacker: attacker,
+                defending: defender,
               ),
             ],
           ),

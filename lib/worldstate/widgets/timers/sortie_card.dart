@@ -8,21 +8,7 @@ import 'package:warframe_common/warframe_common.dart';
 class SortieCard extends StatelessWidget {
   const SortieCard({super.key});
 
-  bool _buildWhen(WorldState previous, WorldState next) {
-    final previousSortie = switch (previous) {
-      WorldstateSuccess() => previous.seed.sortie,
-      _ => null,
-    };
-
-    final nextSortie = switch (next) {
-      WorldstateSuccess() => next.seed.sortie,
-      _ => null,
-    };
-
-    return previousSortie?.expiry != nextSortie?.expiry;
-  }
-
-  SortieMission toSortieMission(Variant mission) {
+  SortieMission _toSortieMission(Variant mission) {
     // modifier is only null for archon hunt, safe to force for regular sorties
     return SortieMission(
       node: mission.node,
@@ -33,22 +19,20 @@ class SortieCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<WorldstateBloc, WorldState>(
-      buildWhen: _buildWhen,
-      builder: (context, state) {
-        final sortie = switch (state) {
-          WorldstateSuccess() => state.seed.sortie,
-          _ => null,
-        };
-
+    return BlocSelector<WorldstateBloc, WorldState, Sortie?>(
+      selector: (state) => switch (state) {
+        WorldstateSuccess() => state.seed.sortie,
+        _ => null,
+      },
+      builder: (context, sortie) {
         final missions = sortie?.missions ?? [];
         final expiry = sortie?.expiry ?? DateTime.now();
 
         return SortieWidget(
           key: GlobalKey(),
-          faction: sortie?.faction ?? '',
+          faction: sortie?.factionKey ?? '',
           boss: sortie?.boss ?? '',
-          missions: missions.map(toSortieMission).toList(),
+          missions: missions.map(_toSortieMission).toList(),
           timer: CountdownTimer(tooltip: context.l10n.countdownTooltip(expiry), expiry: expiry),
         );
       },

@@ -1137,11 +1137,11 @@ packages:
     dependency: transitive
     description:
       path: "packages/profile_models"
-      ref: "profile_models-v0.1.2+22"
-      resolved-ref: f92a6d3bb2388e754542909055a511ab8e6b9ee0
+      ref: "profile_models-v0.1.3+25"
+      resolved-ref: "03e274f87b62b10640f35a1336956302a9038089"
       url: "https://github.com/SlayerOrnstein/wfcd_dart.git"
     source: git
-    version: "0.1.2+22"
+    version: "0.1.3+25"
   properties:
     dependency: transitive
     description:
@@ -1617,11 +1617,11 @@ packages:
     dependency: transitive
     description:
       path: "packages/warframe_drop_data"
-      ref: "warframe_drop_data-v0.1.8+1"
-      resolved-ref: a7acf83e0067a68c5544388a6a0e8d0e982a9948
+      ref: "warframe_drop_data-v0.1.9+3"
+      resolved-ref: "03e274f87b62b10640f35a1336956302a9038089"
       url: "https://github.com/SlayerOrnstein/wfcd_dart.git"
     source: git
-    version: "0.1.8+1"
+    version: "0.1.9+3"
   warframe_icons:
     dependency: transitive
     description:
@@ -1635,11 +1635,11 @@ packages:
     dependency: transitive
     description:
       path: "packages/warframe_worldstate_data"
-      ref: "warframe_worldstate_data-v0.1.3+12"
-      resolved-ref: f92a6d3bb2388e754542909055a511ab8e6b9ee0
+      ref: "warframe_worldstate_data-v0.1.4+15"
+      resolved-ref: "03e274f87b62b10640f35a1336956302a9038089"
       url: "https://github.com/SlayerOrnstein/wfcd_dart.git"
     source: git
-    version: "0.1.3+12"
+    version: "0.1.4+15"
   warframestat_client:
     dependency: transitive
     description:
@@ -1716,11 +1716,11 @@ packages:
     dependency: transitive
     description:
       path: "packages/worldstate_models"
-      ref: "worldstate_models-v0.1.8+2"
-      resolved-ref: "539edb5148e8352ada7af7a58482e4017e7f75e6"
+      ref: "worldstate_models-v0.1.10+7"
+      resolved-ref: e231f16a7cd848622dbd5f51cfaf40a18abd2efb
       url: "https://github.com/SlayerOrnstein/wfcd_dart.git"
     source: git
-    version: "0.1.8+2"
+    version: "0.1.10+7"
   xdg_directories:
     dependency: transitive
     description:

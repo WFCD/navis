@@ -5,21 +5,18 @@ class InvasionProgress extends StatelessWidget {
   const InvasionProgress({
     super.key,
     required this.progress,
-    required this.attackingFaction,
-    required this.defendingFaction,
+    required this.attacker,
+    required this.defending,
   });
 
-  final String attackingFaction;
-  final String defendingFaction;
+  final Factions attacker;
+  final Factions defending;
   final double progress;
 
   @override
   Widget build(BuildContext context) {
-    final attacker = Factions.values.byName(attackingFaction.toLowerCase());
-    final defending = Factions.values.byName(defendingFaction.toLowerCase());
-
     return Tooltip(
-      message: '$attackingFaction vs $defendingFaction',
+      message: '$attacker vs $defending',
       child: Material(
         elevation: 4,
         color: Colors.transparent,
