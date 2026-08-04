@@ -1,6 +1,6 @@
 part of 'worldstate_bloc.dart';
 
-sealed class WorldstateEvent extends ReplayEvent with Equatable {
+sealed class WorldstateEvent extends ReplayEvent with EquatableMixin {
   const WorldstateEvent();
 
   @override

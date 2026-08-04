@@ -5,7 +5,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis/worldstate/bloc/worldstate_bloc.dart';
 import 'package:navis_ui/navis_ui.dart';
-import 'package:warframe_common/warframe_common.dart';
 
 class ConstructionProgressCard extends StatelessWidget {
   const ConstructionProgressCard({super.key});
@@ -47,7 +46,7 @@ class ConstructionProgressCard extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(horizontal: 12),
                       child: Row(
                         children: [
-                          AppIcon(WarframeIcons.factionsGrineer, size: iconSize, color: Faction.grineer.primaryColor),
+                          AppIcon(WarframeIcons.factionsGrineer, size: iconSize, color: Factions.grineer.primaryColor),
                           Gaps.gap12,
                           Text('$fomorianProgress%', style: textTheme.titleLarge),
                         ],
@@ -60,7 +59,7 @@ class ConstructionProgressCard extends StatelessWidget {
                         children: [
                           Text('$razorbackProgress%', style: textTheme.titleLarge),
                           Gaps.gap12,
-                          AppIcon(WarframeIcons.factionsCorpus, size: iconSize, color: Faction.corpus.primaryColor),
+                          AppIcon(WarframeIcons.factionsCorpus, size: iconSize, color: Factions.corpus.primaryColor),
                         ],
                       ),
                     ),

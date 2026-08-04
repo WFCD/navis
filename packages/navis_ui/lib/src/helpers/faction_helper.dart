@@ -1,41 +1,65 @@
 import 'package:flutter/material.dart';
 import 'package:navis_ui/navis_ui.dart';
-import 'package:warframe_common/warframe_common.dart';
 
-extension FactionX on Faction {
+enum Factions { grineer, corpus, corrupted, infestation, infested, narmer, unknown }
+
+extension FactionsX on Factions {
   IconData get factionIcon {
-    return switch (this) {
-      Faction.grineer => WarframeIcons.factionsGrineer,
-      Faction.corpus => WarframeIcons.factionsCorpus,
-      Faction.corrupted => WarframeIcons.factionsCorrupted,
-      Faction.infested => WarframeIcons.factionsInfested,
-      Faction.narmer => WarframeIcons.factionsNarmer2,
-      Faction.sentient => WarframeIcons.factionsSentient,
-      _ => WarframeIcons.simaris,
-    };
+    switch (this) {
+      case Factions.grineer:
+        return WarframeIcons.factionsGrineer;
+      case Factions.corpus:
+        return WarframeIcons.factionsCorpus;
+      case Factions.corrupted:
+        return WarframeIcons.factionsCorrupted;
+      case Factions.infestation:
+        return WarframeIcons.factionsInfested;
+      case Factions.infested:
+        return WarframeIcons.factionsInfested;
+      case Factions.narmer:
+        return WarframeIcons.factionsNarmer2;
+      case Factions.unknown:
+        return WarframeIcons.factionsSentient;
+    }
   }
 
   /// Faction's icon color.
   Color get iconColor {
-    return switch (this) {
-      Faction.grineer => FactionIconColors.grineer,
-      Faction.corpus => FactionIconColors.corpus,
-      Faction.corrupted => FactionIconColors.corrupted,
-      Faction.infested => FactionIconColors.infested,
-      Faction.narmer => FactionIconColors.corrupted,
-      _ => Colors.blue,
-    };
+    switch (this) {
+      case Factions.grineer:
+        return FactionIconColors.grineer;
+      case Factions.corpus:
+        return FactionIconColors.corpus;
+      case Factions.corrupted:
+        return FactionIconColors.corrupted;
+      case Factions.infestation:
+        return FactionIconColors.infested;
+      case Factions.infested:
+        return FactionIconColors.infested;
+      case Factions.narmer:
+        return FactionIconColors.corrupted;
+      case Factions.unknown:
+        return Colors.blue;
+    }
   }
 
   /// Faction's primary color.
   Color get primaryColor {
-    return switch (this) {
-      Faction.corpus => Colors.blue,
-      Faction.grineer => Colors.red[700]!,
-      Faction.corrupted => Colors.yellow[300]!,
-      Faction.infested => Colors.green,
-      Faction.narmer => Colors.yellow[300]!,
-      _ => Colors.blue,
-    };
+    switch (this) {
+      case Factions.corpus:
+        return Colors.blue;
+      case Factions.grineer:
+        return Colors.red[700]!;
+      case Factions.corrupted:
+        return Colors.yellow[300]!;
+      case Factions.infestation:
+        return Colors.green;
+      case Factions.infested:
+        return Colors.green;
+      case Factions.narmer:
+        return Colors.yellow[300]!;
+      case Factions.unknown:
+        return Colors.blue;
+    }
   }
 }
