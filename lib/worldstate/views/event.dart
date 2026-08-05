@@ -25,8 +25,9 @@ class EventInformation extends StatelessWidget {
                 pinned: true,
                 expandedHeight: height,
                 backgroundColor: Theme.of(context).primaryColor,
+                iconTheme: context.theme.iconTheme.copyWith(color: Colors.white),
                 flexibleSpace: FlexibleSpaceBar(
-                  title: Text(event.description),
+                  title: Text(event.description, style: context.textTheme.titleMedium?.copyWith(color: Colors.white)),
                   background: CachedNetworkImage(
                     imageUrl: eventBackkgrounds[event.tag] ?? 'https://i.imgur.com/CNrsc7V.png',
                     fit: BoxFit.cover,
@@ -38,17 +39,7 @@ class EventInformation extends StatelessWidget {
               ),
               SliverList(
                 delegate: SliverChildListDelegate.fixed(<Widget>[
-                  EventStatus(
-                    description: event.description,
-                    tooltip: event.tooltip,
-                    node: event.victimNode ?? event.node ?? '',
-                    health: event.health?.toDouble(),
-                    currentScore: event.count,
-                    maxScore: event.goal,
-                    scoreLocTag: event.scoreLocTag,
-                    expiry: event.expiry,
-                    rewards: event.rewards ?? [],
-                  ),
+                  EventStatus(event: event),
                   if (event.bounties != null) EventBounties(jobs: event.bounties!),
                 ]),
               ),

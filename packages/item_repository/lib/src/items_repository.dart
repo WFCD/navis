@@ -28,7 +28,10 @@ class ItemsRepository {
     final data = _itemStore.read(uniqueName);
     if (data == null) {
       final items = _itemStore.readAll();
-      final results = items.where((i) => (i['uniqueName'] as String).contains(uniqueName.split('/').last));
+      // Find the closest match in case of a partial uniqueName
+      final results = items.where(
+        (i) => (i['uniqueName'] as String).contains(uniqueName.split('/').last.replaceAll(' ', '')),
+      );
       final closesMatch = results.firstOrNull;
 
       return closesMatch != null ? WarframeItem.fromDatabase(Map<String, dynamic>.from(closesMatch)) : null;
