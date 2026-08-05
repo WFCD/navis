@@ -22,7 +22,7 @@ class ComponentDrops extends StatelessWidget {
       MaterialPageRoute<void>(
         builder: (context) {
           return BlocProvider(
-            create: (context) => ItemCubit(repo)..fetchByName(name),
+            create: (context) => ItemCubit(repo)..fetchItem(name),
             child: const _RelicView(),
           );
         },
@@ -38,7 +38,7 @@ class ComponentDrops extends StatelessWidget {
       itemCount: drops.length,
       itemBuilder: (context, index) {
         final drop = drops[index];
-        final percentage = ((drop.chance ?? 0) * 100).toStringAsFixed(2);
+        final percentage = drop.chance?.toStringAsFixed(2);
 
         return ListTile(
           title: Text(drop.location),
