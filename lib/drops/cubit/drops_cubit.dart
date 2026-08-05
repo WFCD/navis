@@ -13,12 +13,15 @@ class DropsCubit extends Cubit<DropsState> {
   void findBountyRewards(SyndicateBounty bounty) {
     emit(DropsLoading());
     final pool = _repository.findBountyRewards(bounty);
-    emit(BountyDrops(rewards: pool));
+    emit(BountyDrops(rewardPoolString: bounty.rewardPoolString, rewards: pool));
   }
 
   void findRegionRewards(String node) {
     emit(DropsLoading());
     final rewards = _repository.findRegionRewardpools(node);
-    emit(RegionDrops(rewards: rewards));
+    emit(RegionDrops(node: node, rewards: rewards));
   }
+
+  @override
+  String toString() => 'DropsCubit()';
 }

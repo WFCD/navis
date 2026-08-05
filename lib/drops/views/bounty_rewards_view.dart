@@ -38,7 +38,7 @@ class _BountRewardsList extends StatelessWidget {
       _ => (rewards: <String>[], rewardDrops: <common.BountyStage>[]),
     };
 
-    if (rewards.rewards.length < 2) return Center(child: Text(rewards.rewards[0]));
+    if (rewards.rewards.length == 1) return Center(child: Text(rewards.rewards[0]));
 
     return ListView(
       controller: controller,
