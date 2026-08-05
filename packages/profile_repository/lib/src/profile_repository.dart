@@ -32,7 +32,9 @@ class ProfileRepository {
 
   static bool validateUserData(String input) {
     try {
-      final userData = json.decode(input) as Map<String, dynamic>;
+      final userData = json.decode(input);
+      if (userData is! Map<String, dynamic>) return false;
+
       return userData.containsKey('user_id');
     } on FormatException {
       return false;
