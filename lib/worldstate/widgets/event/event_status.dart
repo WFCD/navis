@@ -169,7 +169,7 @@ class _RewardTile extends StatelessWidget {
 
         return ListTile(
           contentPadding: EdgeInsets.zero,
-          leading: item != null ? CachedNetworkImage(imageUrl: item.imageName.warframeItemsCdn()) : null,
+          leading: item != null ? CachedNetworkImage(imageUrl: item.imageName.warframeItemsCdn(), width: 50) : null,
           title: Text(item?.name ?? reward),
           subtitle: subRewards != null ? Text(subRewards!) : null,
           trailing: Column(

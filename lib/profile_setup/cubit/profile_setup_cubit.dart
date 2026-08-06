@@ -32,7 +32,6 @@ class ProfileSetupCubit extends Cubit<ProfileSetupState> {
     nextStep();
   }
 
-  // TODO(Orn): replace with enum in warframe_common
   void updatePlatform(WarframeSupportedPlatform platform) {
     _settings.platform = platform.index;
     emit(state.copyWith(platform: platform));
