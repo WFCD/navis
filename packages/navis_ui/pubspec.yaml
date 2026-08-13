@@ -18,7 +18,7 @@ dependencies:
   flutter_custom_tabs: ^2.5.0
   gap: ^3.0.1
   html: ^0.15.6
-  intl: ^0.20.2
+  intl: ^0.20.3
   meta: ^1.17.0
   visibility_detector: ^0.4.0+2
   warframe_common:

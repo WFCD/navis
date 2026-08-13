@@ -14,7 +14,7 @@ dependencies:
   firebase_messaging: ^16.4.1
   flutter:
     sdk: flutter
-  intl: ^0.20.1
+  intl: ^0.20.3
   permissions_client:
     path: ../permissions_client
   storage:
