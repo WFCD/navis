@@ -4,8 +4,8 @@ description: Cephalon Navis is an Android app inspired by Warframe Hub.
 publish_to: none
 
 environment:
-  sdk: ^3.12.0
-  flutter: ^3.44.0
+  sdk: ^3.13.0
+  flutter: ^3.47.0
 
 workspace:
   - packages/*
@@ -20,7 +20,7 @@ dependencies:
     path: packages/cache
   cached_network_image: ^3.3.1
   collection: ^1.19.0
-  dynamic_color: ^1.8.1
+  dynamic_color: ^1.9.0
   equatable: ^2.1.0
   firebase_core: ^4.11.0
   fish_data:
@@ -58,16 +58,8 @@ dependencies:
   responsive_builder: ^0.7.0
   rxdart: ^0.28.0
   # TODO update to v10 when its release for now we need this to update cronet to fix background fetching
-  sentry_flutter:
-    git:
-      url: https://github.com/getsentry/sentry-dart.git
-      ref: deps/jni-0.15.x
-      path: packages/flutter
-  sentry_logging:
-    git:
-      url: https://github.com/getsentry/sentry-dart.git
-      ref: deps/jni-0.15.x
-      path: packages/logging
+  sentry_flutter: ^10.0.0-alpha.3
+  sentry_logging: ^10.0.0-alpha.3
   settings_repository:
     path: packages/settings_repository
   simple_icons: ^16.23.0

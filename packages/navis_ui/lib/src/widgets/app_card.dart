@@ -1,4 +1,3 @@
-import 'package:black_hole_flutter/black_hole_flutter.dart';
 import 'package:flutter/material.dart';
 
 class AppCard extends StatelessWidget {
@@ -18,7 +17,7 @@ class AppCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: color ?? context.colorScheme.surfaceContainerHighest,
+      color: color,
       clipBehavior: clipBehavior,
       elevation: 6,
       child: Padding(

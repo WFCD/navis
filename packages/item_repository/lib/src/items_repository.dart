@@ -56,16 +56,16 @@ class ItemsRepository {
     return items.firstWhereOrNull((item) => item.name == name);
   }
 
-  Future<List<WarframeItem>> search(String name) async {
+  Future<List<WarframeItem>> search(String query) async {
     try {
       final stored = _itemStore.readAll();
       final resuls = stored
-          .where((i) => i['name'] == name)
+          .where((i) => (i['name'] as String).toLowerCase().contains(query.toLowerCase()))
           .map((i) => WarframeItem.fromDatabase(Map<String, dynamic>.from(i)));
 
       if (resuls.isNotEmpty) return resuls.toList(growable: false)..prioritizeResults();
 
-      final items = await _client.searchRaw(name, props: WarframeItem.requiredProps);
+      final items = await _client.searchRaw(query, props: WarframeItem.requiredProps);
       return items.map(WarframeItem.fromApi).toList(growable: false)..prioritizeResults();
     } on Exception {
       return [];

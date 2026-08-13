@@ -13,6 +13,13 @@ analyzer:
     - packages/inventoria/lib/src/*.g.dart
     - packages/inventoria/test/drift/inventoria/**
     - packages/cache/lib/hive/hive_registrar.g.dart
+    - build/**
+    - android/**
+    - ios/**
+    - web/**
+    - windows/**
+    - macos/**
+    - linux/**
 
 linter:
   rules:
