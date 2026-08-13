@@ -9,7 +9,7 @@ environment:
 resolution: workspace
 
 dependencies:
-  meta: ^1.17.0
+  meta: ^1.19.0
   storage: 
     path: ../storage
 
