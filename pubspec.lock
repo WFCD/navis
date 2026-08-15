@@ -1145,11 +1145,11 @@ packages:
     dependency: transitive
     description:
       path: "packages/profile_models"
-      ref: "profile_models-v0.1.3+25"
-      resolved-ref: "03e274f87b62b10640f35a1336956302a9038089"
+      ref: "profile_models-v0.1.4+26"
+      resolved-ref: d7cc557adedb2eadc8f2d91862114741e7e63f1a
       url: "https://github.com/SlayerOrnstein/wfcd_dart.git"
     source: git
-    version: "0.1.3+25"
+    version: "0.1.4+26"
   properties:
     dependency: transitive
     description:

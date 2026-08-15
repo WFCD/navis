@@ -14,7 +14,7 @@ dependencies:
     git:
       url: https://github.com/SlayerOrnstein/wfcd_dart.git
       path: packages/profile_models
-      ref: profile_models-v0.1.3+25
+      ref: profile_models-v0.1.4+26
   warframe_drop_data:
     git:
       url: https://github.com/SlayerOrnstein/wfcd_dart.git
