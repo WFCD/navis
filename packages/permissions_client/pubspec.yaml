@@ -12,4 +12,4 @@ resolution: workspace
 dependencies:
   flutter:
     sdk: flutter
-  permission_handler: ^13.0.0
+  permission_handler: ^13.0.1
