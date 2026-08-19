@@ -1,6 +1,5 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter/material.dart';
 import 'package:profile_repository/profile_repository.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:warframe_common/warframe_common.dart';
@@ -27,7 +26,6 @@ class MasterySearchBloc extends Bloc<MasterySearchEvent, MasterySearchState> {
       emit(MasterySearchInProgress());
 
       try {
-        debugPrint('test');
         final results = _repository.searchXpInfo(text);
         _originalResults = results;
 

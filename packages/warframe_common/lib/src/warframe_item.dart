@@ -13,9 +13,14 @@ class WarframeItem {
     required this.wikiaUrl,
     required this.wikiaThumbnail,
     required this.type,
+    required this.drops,
+    required this.rewards,
   });
 
   factory WarframeItem.fromApi(Map<String, dynamic> map) {
+    final drops = List<Map<String, dynamic>>.from(map['drops'] as List<dynamic>? ?? []);
+    final rewards = List<Map<String, dynamic>>.from(map['rewards'] as List<dynamic>? ?? []);
+
     return WarframeItem(
       uniqueName: map['uniqueName'] as String,
       name: map['name'] as String,
@@ -28,10 +33,15 @@ class WarframeItem {
       wikiaUrl: map['wikiaUrl'] as String?,
       wikiaThumbnail: map['wikiaThumbnail'] as String?,
       type: ItemType.byType(map['type'] as String),
+      drops: drops.map(Drop.fromJson).toList(),
+      rewards: rewards.map(RelicReward.fromJson).toList(),
     );
   }
 
   factory WarframeItem.fromDatabase(Map<String, dynamic> map) {
+    final drops = List<Map<String, dynamic>>.from(map['drops'] as List<dynamic>? ?? []);
+    final rewards = List<Map<String, dynamic>>.from(map['rewards'] as List<dynamic>? ?? []);
+
     return WarframeItem(
       uniqueName: map['uniqueName'] as String,
       name: map['name'] as String,
@@ -44,6 +54,8 @@ class WarframeItem {
       wikiaUrl: map['wikiaUrl'] as String?,
       wikiaThumbnail: map['wikiaThumbnail'] as String?,
       type: ItemType.byType(map['type'] as String),
+      drops: drops.map(Drop.fromJson).toList(),
+      rewards: rewards.map(RelicReward.fromJson).toList(),
     );
   }
 
@@ -58,6 +70,8 @@ class WarframeItem {
   final String? wikiaUrl;
   final String? wikiaThumbnail;
   final ItemType type;
+  final List<Drop>? drops;
+  final List<RelicReward>? rewards;
 
   static const requiredProps = <ItemProps>[
     .uniqueName,
@@ -86,6 +100,7 @@ class WarframeItem {
       'wikiaUrl': wikiaUrl,
       'wikiaThumbnail': wikiaThumbnail,
       'type': type.type,
+      'drops': ?drops?.map((d) => d.toJson()).toList(),
     };
   }
 }

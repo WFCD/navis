@@ -37,6 +37,14 @@ class ExploreView extends StatelessWidget {
             onTap: () => const FishPageRoute().push<void>(context),
           ),
         ),
+        AppCard(
+          child: ListTile(
+            leading: const Icon(WarframeIcons.menuRelic, size: iconSize),
+            title: const Text('Relics'),
+            subtitle: const Text('See all relics'),
+            onTap: () => const RelicsPageRoute().push<void>(context),
+          ),
+        ),
       ],
     );
   }

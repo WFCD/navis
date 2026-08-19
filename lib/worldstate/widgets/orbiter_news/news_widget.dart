@@ -1,4 +1,3 @@
-import 'package:black_hole_flutter/black_hole_flutter.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:navis_ui/gen/assets.gen.dart';
@@ -12,9 +11,9 @@ class OrbiterNewsCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
+    return AppCard(
       clipBehavior: Clip.antiAlias,
-      color: context.theme.colorScheme.secondaryContainer,
+      contentPadding: EdgeInsets.zero,
       child: InkWell(
         onTap: () => news.link.launchLink(context),
         child: OrbiterNewsContent(news: news),

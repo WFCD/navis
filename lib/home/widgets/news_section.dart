@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:black_hole_flutter/black_hole_flutter.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -97,15 +96,7 @@ class __NewsCarouselViewState extends State<_NewsCarouselView> {
               shrinkExtent: itemExtent,
               onTap: (i) => news[i].link.launchLink(context),
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
-              children: news
-                  .map(
-                    (n) => Card(
-                      color: context.theme.colorScheme.secondaryContainer,
-                      clipBehavior: Clip.antiAlias,
-                      child: OrbiterNewsContent(news: n),
-                    ),
-                  )
-                  .toList(),
+              children: news.map((n) => OrbiterNewsCard(news: n)).toList(),
             ),
           ),
         );

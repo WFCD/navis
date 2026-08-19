@@ -10,9 +10,12 @@ import 'package:navis_ui/navis_ui.dart';
 import 'package:warframe_common/warframe_common.dart';
 
 class ItemsSearchBar extends StatefulWidget {
-  const ItemsSearchBar({super.key, this.hintText});
+  const ItemsSearchBar({super.key, this.hintText, this.enableItemFilter = true, this.onChange, this.onSubmit});
 
   final String? hintText;
+  final bool enableItemFilter;
+  final ValueChanged<String>? onChange;
+  final ItemsValueChanged? onSubmit;
 
   @override
   State<ItemsSearchBar> createState() => _ItemsSearchBarState();
@@ -30,7 +33,12 @@ class _ItemsSearchBarState extends State<ItemsSearchBar> {
   }
 
   void _onSubmitted(BuildContext context, String query) {
-    context.read<SearchBloc>().add(ItemsSearchTextChanged(query));
+    if (widget.onSubmit != null) {
+      widget.onSubmit!.call(context, query);
+    } else {
+      context.read<SearchBloc>().add(ItemsSearchTextChanged(query));
+    }
+
     _controller.closeView(_controller.text);
 
     if (!Navigator.of(context).canPop()) {
@@ -46,8 +54,8 @@ class _ItemsSearchBarState extends State<ItemsSearchBar> {
           focusNode: _focusNode,
           controller: _controller,
           suggestionsBuilder: (_, _) => [],
-          onChange: (query) => BlocProvider.of<SearchBloc>(context).add(ItemsSearchTextChanged(query)),
-          onSubmit: _onSubmitted,
+          onChange: widget.onChange ?? (query) => context.read<SearchBloc>().add(ItemsSearchTextChanged(query)),
+          onSubmit: widget.onSubmit ?? _onSubmitted,
           hintText: widget.hintText ?? context.l10n.codexHint,
           backgroundColor: WidgetStatePropertyAll(context.theme.colorScheme.secondaryContainer),
           leading: Navigator.canPop(context)

@@ -10,12 +10,13 @@ part 'search_event.dart';
 part 'search_state.dart';
 
 class SearchBloc extends Bloc<SearchEvent, SearchState> {
-  SearchBloc(this.codex) : super(SearchEmpty()) {
+  SearchBloc(this._repository) : super(SearchEmpty()) {
     on<ItemsSearchTextChanged>(_searchItems, transformer: _waitForUser());
+    on<RelicSearchTextChanged>(_searchRelic, transformer: _waitForUser());
     on<ItemResultsFiltered>(_filterResults);
   }
 
-  final ItemsRepository codex;
+  final ItemsRepository _repository;
 
   List<WarframeItem> _originalResults = [];
 
@@ -28,8 +29,26 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
       emit(SearchInProgress());
 
       try {
-        _originalResults = await codex.search(text);
+        _originalResults = await _repository.search(text);
         emit(SearchSuccessful(_originalResults));
+      } on Exception catch (e, stack) {
+        addError(e, stack);
+        emit(SearchFailure(text));
+      }
+    }
+  }
+
+  Future<void> _searchRelic(RelicSearchTextChanged event, Emitter<SearchState> emit) async {
+    final text = event.text;
+
+    if (text.isEmpty) {
+      emit(SearchEmpty());
+    } else {
+      emit(SearchInProgress());
+
+      try {
+        final results = await _repository.searchRelics(text);
+        emit(SearchSuccessful(results));
       } on Exception catch (e, stack) {
         addError(e, stack);
         emit(SearchFailure(text));

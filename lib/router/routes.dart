@@ -6,6 +6,7 @@ import 'package:navis/explore/explore.dart';
 import 'package:navis/home/home.dart';
 import 'package:navis/item_search/item_search.dart';
 import 'package:navis/mastery/mastery.dart';
+import 'package:navis/relics/view/relics_view.dart';
 import 'package:navis/settings/settings.dart';
 import 'package:navis/synthtargets/synthtargets.dart';
 import 'package:navis/worldstate/worldstate.dart';
@@ -279,5 +280,16 @@ class FlashSalesPageRoute extends GoRouteData with $FlashSalesPageRoute {
   @override
   Widget build(BuildContext context, GoRouterState state) {
     return const TraceableWidget(actionName: 'flashSales', child: FlashSalesPage());
+  }
+}
+
+@immutable
+@TypedGoRoute<RelicsPageRoute>(name: 'relics', path: '/relics')
+class RelicsPageRoute extends GoRouteData with $RelicsPageRoute {
+  const RelicsPageRoute();
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) {
+    return const TraceableWidget(actionName: 'Relics()', child: RelicsPage());
   }
 }

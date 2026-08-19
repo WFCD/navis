@@ -20,6 +20,7 @@ List<RouteBase> get $appRoutes => [
   $calendar1999PageRoute,
   $archimedeaPageRoute,
   $flashSalesPageRoute,
+  $relicsPageRoute,
 ];
 
 RouteBase get $appShell => StatefulShellRouteData.$route(
@@ -31,6 +32,7 @@ RouteBase get $appShell => StatefulShellRouteData.$route(
         GoRouteData.$route(
           path: '/overview',
           name: 'overview',
+          hasOverriddenOnExit: false,
           factory: $OverviewPageRouteData._fromState,
         ),
       ],
@@ -40,6 +42,7 @@ RouteBase get $appShell => StatefulShellRouteData.$route(
         GoRouteData.$route(
           path: '/activities',
           name: 'activities',
+          hasOverriddenOnExit: false,
           factory: $ActivitesPageRouteData._fromState,
         ),
       ],
@@ -49,6 +52,7 @@ RouteBase get $appShell => StatefulShellRouteData.$route(
         GoRouteData.$route(
           path: '/explore',
           name: 'explore',
+          hasOverriddenOnExit: false,
           factory: $ExplorePageRouteData._fromState,
         ),
       ],
@@ -58,6 +62,7 @@ RouteBase get $appShell => StatefulShellRouteData.$route(
         GoRouteData.$route(
           path: '/settings',
           name: 'settings',
+          hasOverriddenOnExit: false,
           factory: $SettingsPageRouteData._fromState,
         ),
       ],
@@ -156,6 +161,7 @@ mixin $SettingsPageRouteData on GoRouteData {
 RouteBase get $worldEventPageRoute => GoRouteData.$route(
   path: '/event',
   name: 'event',
+  hasOverriddenOnExit: false,
   factory: $WorldEventPageRoute._fromState,
 );
 
@@ -187,6 +193,7 @@ mixin $WorldEventPageRoute on GoRouteData {
 RouteBase get $syndicatePageRoute => GoRouteData.$route(
   path: '/bounties',
   name: 'bounties',
+  hasOverriddenOnExit: false,
   factory: $SyndicatePageRoute._fromState,
 );
 
@@ -218,6 +225,7 @@ mixin $SyndicatePageRoute on GoRouteData {
 RouteBase get $nightwavePageRoute => GoRouteData.$route(
   path: '/nightwave',
   name: 'nightwave',
+  hasOverriddenOnExit: false,
   factory: $NightwavePageRoute._fromState,
 );
 
@@ -249,6 +257,7 @@ mixin $NightwavePageRoute on GoRouteData {
 RouteBase get $synthTargetsPageRoute => GoRouteData.$route(
   path: '/targets',
   name: 'targets',
+  hasOverriddenOnExit: false,
   factory: $SynthTargetsPageRoute._fromState,
 );
 
@@ -276,6 +285,7 @@ mixin $SynthTargetsPageRoute on GoRouteData {
 RouteBase get $traderPageRoute => GoRouteData.$route(
   path: '/trader',
   name: 'trader',
+  hasOverriddenOnExit: false,
   factory: $TraderPageRoute._fromState,
 );
 
@@ -345,6 +355,7 @@ bool _$boolConverter(String value) {
 RouteBase get $fishPageRoute => GoRouteData.$route(
   path: '/fish',
   name: 'fish',
+  hasOverriddenOnExit: false,
   factory: $FishPageRoute._fromState,
 );
 
@@ -371,6 +382,7 @@ mixin $FishPageRoute on GoRouteData {
 RouteBase get $codexPageRoute => GoRouteData.$route(
   path: '/codex',
   name: 'codex',
+  hasOverriddenOnExit: false,
   factory: $CodexPageRoute._fromState,
 );
 
@@ -402,6 +414,7 @@ mixin $CodexPageRoute on GoRouteData {
 RouteBase get $newsPageRoute => GoRouteData.$route(
   path: '/news',
   name: 'news',
+  hasOverriddenOnExit: false,
   factory: $NewsPageRoute._fromState,
 );
 
@@ -428,6 +441,7 @@ mixin $NewsPageRoute on GoRouteData {
 RouteBase get $masteryPageRoute => GoRouteData.$route(
   path: '/mastery',
   name: 'mastery',
+  hasOverriddenOnExit: false,
   factory: $MasteryPageRoute._fromState,
 );
 
@@ -455,6 +469,7 @@ mixin $MasteryPageRoute on GoRouteData {
 RouteBase get $calendar1999PageRoute => GoRouteData.$route(
   path: '/calendar',
   name: 'calendar',
+  hasOverriddenOnExit: false,
   factory: $Calendar1999PageRoute._fromState,
 );
 
@@ -490,6 +505,7 @@ mixin $Calendar1999PageRoute on GoRouteData {
 RouteBase get $archimedeaPageRoute => GoRouteData.$route(
   path: '/archimedea',
   name: 'archimedea',
+  hasOverriddenOnExit: false,
   factory: $ArchimedeaPageRoute._fromState,
 );
 
@@ -521,6 +537,7 @@ mixin $ArchimedeaPageRoute on GoRouteData {
 RouteBase get $flashSalesPageRoute => GoRouteData.$route(
   path: '/worldstate/flashSales',
   name: 'flashSales',
+  hasOverriddenOnExit: false,
   factory: $FlashSalesPageRoute._fromState,
 );
 
@@ -530,6 +547,34 @@ mixin $FlashSalesPageRoute on GoRouteData {
 
   @override
   String get location => GoRouteData.$location('/worldstate/flashSales');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $relicsPageRoute => GoRouteData.$route(
+  path: '/relics',
+  name: 'relics',
+  hasOverriddenOnExit: false,
+  factory: $RelicsPageRoute._fromState,
+);
+
+mixin $RelicsPageRoute on GoRouteData {
+  static RelicsPageRoute _fromState(GoRouterState state) =>
+      const RelicsPageRoute();
+
+  @override
+  String get location => GoRouteData.$location('/relics');
 
   @override
   void go(BuildContext context) => context.go(location);

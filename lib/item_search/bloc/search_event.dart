@@ -23,6 +23,13 @@ final class ItemsSearchTextChanged extends SearchTextChanged {
   String toString() => 'CodexSearchTextChanged($text)';
 }
 
+final class RelicSearchTextChanged extends SearchTextChanged {
+  const RelicSearchTextChanged(super.text);
+
+  @override
+  String toString() => 'RelicSearchTextChanged($text)';
+}
+
 final class ItemResultsFiltered extends SearchEvent {
   const ItemResultsFiltered(this.type);
 

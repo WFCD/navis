@@ -4,12 +4,15 @@ import 'dart:isolate';
 import 'package:cache/cache.dart';
 import 'package:collection/collection.dart';
 import 'package:item_repository/src/extensions.dart';
+import 'package:item_repository/src/relics.dart';
 import 'package:storage/storage.dart';
 import 'package:warframe_common/warframe_common.dart';
 
 const _itemUpdateInterval = Duration(hours: 6);
 
 typedef ItemUpdateProgress = void Function(double progress, int total);
+
+typedef RelicsByTier = ({WarframeItem intact, WarframeItem exceptional, WarframeItem flawless, WarframeItem radiant});
 
 /// {@template items_repository}
 /// A Very Good Project created by Very Good CLI.
@@ -82,6 +85,44 @@ class ItemsRepository {
   Future<List<WarframeItem>> searchMasterable(String name) async {
     final results = await search(name);
     return results.where((i) => i.isMasterable).toList(growable: false);
+  }
+
+  Future<List<WarframeItem>> searchRelics(String query) async {
+    try {
+      final stored = _itemStore.readAll();
+      final relics = stored
+          .where((i) => ItemType.byType(i['type'] as String) == .relics)
+          // warframe-items doesn't have any difference between the intact and the rest of the tiers
+          // in terms of drop rates
+          .where((i) => (i['name'] as String).contains('Intact'))
+          .map((i) {
+            final item = Map<String, dynamic>.from(i)
+              ..update('name', (value) => (value as String).replaceAll('Intact', '').trim());
+
+            return WarframeItem.fromDatabase(item);
+          });
+
+      return relics.where((relic) {
+        return relic.name.contains(query) || (relic.rewards!.any((r) => r.item.name.contains(query)));
+      }).toList();
+    } on Exception {
+      return [];
+    }
+  }
+
+  Future<List<RelicSet>> fetchRelics(FissureTier tier) async {
+    final relics =
+        _itemStore
+            .readAll()
+            .map(Map<String, dynamic>.from)
+            .where((r) => ItemType.byType(r['type'] as String) == .relics)
+            .where((r) => (r['name'] as String).contains(toTitleCase(tier.name)))
+            .toList()
+          ..sort(sortRelics);
+
+    final itemized = groupRelics(relics);
+
+    return List.unmodifiable(itemized);
   }
 
   Future<void> updateItems(String buildLabel, {ItemUpdateProgress? onProgress, bool forceUpdate = false}) async {
