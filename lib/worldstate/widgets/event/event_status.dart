@@ -111,7 +111,7 @@ class _EventProgress extends StatelessWidget {
       spacing: 4,
       children: [
         Text(
-          '${scoreLocTag ?? context.l10n.defaultScoreLocTagText}: ${health!.toStringAsFixed(2)}%',
+          '${scoreLocTag ?? context.l10n.defaultScoreLocTagText}: ${(health! * 100).toStringAsFixed(2)}%',
           style: tooltipStyle,
         ),
         LinearProgressIndicator(value: health),
