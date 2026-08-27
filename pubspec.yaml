@@ -11,7 +11,7 @@ workspace:
   - packages/*
 
 dependencies:
-  animations: ^2.2.0
+  animations: ^3.0.0
   arbi_api:
     path: packages/arbi_api
   black_hole_flutter: ^1.2.0
