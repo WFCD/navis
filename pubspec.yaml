@@ -20,7 +20,7 @@ dependencies:
     path: packages/cache
   cached_network_image: ^3.3.1
   collection: ^1.19.0
-  dynamic_color: ^1.9.0
+  dynamic_color: ^2.1.0
   equatable: ^2.1.0
   firebase_core: ^4.11.0
   fish_data:
