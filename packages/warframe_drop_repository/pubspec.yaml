@@ -12,7 +12,7 @@ dependencies:
   cache:
     path: ../cache
   collection: ^1.19.1
-  html: ^0.15.6
+  html: ^0.15.7
   warframe_api:
     path: ../warframe_api
   warframe_common:

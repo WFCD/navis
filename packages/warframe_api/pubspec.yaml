@@ -10,7 +10,7 @@ resolution: workspace
 
 dependencies:
   dart_mappable: ^4.8.0
-  html: ^0.15.6
+  html: ^0.15.7
   http: ^1.6.0
 
 dev_dependencies:
