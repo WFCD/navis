@@ -58,7 +58,7 @@ dependencies:
   responsive_builder: ^0.7.0
   rxdart: ^0.28.0
   # TODO update to v10 when its release for now we need this to update cronet to fix background fetching
-  sentry_flutter: ^10.0.0-alpha.3
+  sentry_flutter: ^10.0.0-alpha.4
   sentry_logging: ^10.0.0-alpha.3
   settings_repository:
     path: packages/settings_repository
