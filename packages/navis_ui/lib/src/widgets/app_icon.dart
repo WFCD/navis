@@ -20,7 +20,7 @@ class AppIcon extends StatelessWidget {
   ///
   /// The [size] and [color] default to the value given
   /// by the current [IconTheme].
-  const AppIcon(
+  const new(
     this.icon, {
     super.key,
     this.size,

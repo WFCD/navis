@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:navis/drops/cubit/cubit.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis/worldstate/worldstate.dart';
@@ -10,7 +10,7 @@ import 'package:warframe_common/warframe_common.dart';
 import 'package:warframe_drop_repository/warframe_drop_repository.dart';
 
 class FissuresPage extends StatelessWidget {
-  const FissuresPage({super.key});
+  const new({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +22,7 @@ class FissuresPage extends StatelessWidget {
 }
 
 class _FissuresView extends StatefulWidget {
-  const _FissuresView();
+  const new();
 
   @override
   State<_FissuresView> createState() => _FissuresViewState();
@@ -82,7 +82,7 @@ class _FissuresViewState extends State<_FissuresView> {
 }
 
 class _MobileFissures extends StatelessWidget {
-  const _MobileFissures({required this.fissures});
+  const new({required this.fissures});
 
   final List<VoidFissure> fissures;
 
@@ -109,7 +109,7 @@ class _MobileFissures extends StatelessWidget {
 }
 
 class _TabletFissures extends StatelessWidget {
-  const _TabletFissures({required this.fissures});
+  const new({required this.fissures});
 
   final List<VoidFissure> fissures;
 
@@ -131,7 +131,7 @@ class _TabletFissures extends StatelessWidget {
 }
 
 class _FissureFilter extends StatelessWidget {
-  const _FissureFilter();
+  const new();
 
   void _onSelected(BuildContext context, FissureFilter filter) {
     final state = context.read<WorldstateBloc>().state;

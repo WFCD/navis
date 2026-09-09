@@ -1,19 +1,18 @@
-import 'package:black_hole_flutter/black_hole_flutter.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:navis/synthtargets/cubit/synthtargets_cubit.dart';
 import 'package:navis/synthtargets/widgets/target.dart';
 import 'package:navis_ui/navis_ui.dart';
 
 class SynthTargetsView extends StatelessWidget {
-  const SynthTargetsView({super.key});
+  const new({super.key});
 
   static const route = '/simaris';
 
   @override
   Widget build(BuildContext context) {
-    final locale = context.locale.languageCode;
+    final locale = Localizations.localeOf(context).languageCode;
 
     return Scaffold(
       appBar: AppBar(),
@@ -26,7 +25,7 @@ class SynthTargetsView extends StatelessWidget {
 }
 
 class _SynthTargetsPage extends StatelessWidget {
-  const _SynthTargetsPage();
+  const new();
 
   @override
   Widget build(BuildContext context) {

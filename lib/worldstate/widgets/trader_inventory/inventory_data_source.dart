@@ -1,8 +1,8 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:warframe_common/warframe_common.dart';
 
 class InventoryDataSource extends DataTableSource {
-  InventoryDataSource({required this.inventory});
+  new({required this.inventory});
 
   final List<TraderItem> inventory;
 

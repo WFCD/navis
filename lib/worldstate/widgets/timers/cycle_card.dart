@@ -1,14 +1,13 @@
-import 'package:black_hole_flutter/black_hole_flutter.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis/worldstate/bloc/worldstate_bloc.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:warframe_common/warframe_common.dart';
 
 class CycleCard extends StatelessWidget {
-  const CycleCard({super.key});
+  const new({super.key});
 
   static const double _iconSize = 28;
 
@@ -122,7 +121,7 @@ class CycleCard extends StatelessWidget {
 }
 
 class _CycleRow extends StatelessWidget {
-  const _CycleRow({required this.currentState, required this.name, required this.expiry});
+  const new({required this.currentState, required this.name, required this.expiry});
 
   final Widget currentState;
   final String name;
@@ -133,7 +132,7 @@ class _CycleRow extends StatelessWidget {
     final expiry = this.expiry ?? DateTime.timestamp();
 
     return ListTile(
-      title: Text(name, style: context.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w600)),
+      title: Text(name, style: Theme.of(context).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w600)),
       trailing: Row(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[

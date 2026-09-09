@@ -1,8 +1,8 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:navis_ui/src/layout/spacers.dart';
 
 class NavisErrorWidget extends StatelessWidget {
-  const NavisErrorWidget({
+  const new({
     super.key,
     required this.title,
     required this.description,
@@ -40,7 +40,7 @@ class NavisErrorWidget extends StatelessWidget {
 }
 
 class _NavisErrorPage extends StatelessWidget {
-  const _NavisErrorPage({
+  const new({
     required this.title,
     required this.description,
   });
@@ -76,7 +76,7 @@ class _NavisErrorPage extends StatelessWidget {
 }
 
 class _NavisErrorWidget extends StatelessWidget {
-  const _NavisErrorWidget({
+  const new({
     required this.title,
     required this.description,
   });

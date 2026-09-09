@@ -9,7 +9,7 @@ part 'worldstate_event.dart';
 part 'worldstate_state.dart';
 
 class WorldstateBloc extends HydratedBloc<WorldstateEvent, WorldState> with ReplayBlocMixin, SafeBlocMixin {
-  WorldstateBloc(this.locale, this.repository) : super(WorldstateInitial()) {
+  new(this.locale, this.repository) : super(WorldstateInitial()) {
     on<WorldstateStarted>(_emiteState);
     on<WorldstateUpdated>((event, emit) => emit(WorldstateSuccess(event.state)));
     on<WorldstateFailed>((event, emit) => emit(WorldstateFailure()));

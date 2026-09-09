@@ -1,6 +1,5 @@
-import 'package:black_hole_flutter/black_hole_flutter.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:navis/mastery/widgets/mastery_item_tile.dart';
 import 'package:navis/mastery_search/mastery_search.dart';
 import 'package:navis/profile/profile.dart';
@@ -8,7 +7,7 @@ import 'package:navis_ui/navis_ui.dart';
 import 'package:profile_repository/profile_repository.dart';
 
 class MasteryPage extends StatelessWidget {
-  const MasteryPage({super.key});
+  const new({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +19,7 @@ class MasteryPage extends StatelessWidget {
 }
 
 class MasteryView extends StatefulWidget {
-  const MasteryView({super.key});
+  const new({super.key});
 
   @override
   State<MasteryView> createState() => _MasteryViewState();
@@ -130,7 +129,7 @@ class _MasteryViewState extends State<MasteryView> {
 }
 
 class _MasteryList extends StatelessWidget {
-  const _MasteryList({this.controller, required this.items});
+  const new({this.controller, required this.items});
 
   final ScrollController? controller;
   final List<MasterableItem> items;
@@ -147,7 +146,7 @@ class _MasteryList extends StatelessWidget {
                   const Icon(WarframeIcons.menuWoundedInfestedPredator, size: 200),
                   Text(
                     'Nothing to see here',
-                    style: context.textTheme.titleLarge,
+                    style: TextTheme.of(context).titleLarge,
                   ),
                 ],
               ),

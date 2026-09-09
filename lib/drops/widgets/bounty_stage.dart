@@ -1,13 +1,12 @@
 import 'dart:math';
 
-import 'package:black_hole_flutter/black_hole_flutter.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:warframe_common/warframe_common.dart';
 
 class BountyStage extends StatelessWidget {
-  const BountyStage({
+  const new({
     super.key,
     required this.stage,
     required this.maxStage,
@@ -41,7 +40,7 @@ class BountyStage extends StatelessWidget {
               children: [
                 Text(
                   context.l10n.stageText,
-                  style: context.textTheme.titleLarge,
+                  style: TextTheme.of(context).titleLarge,
                 ),
                 Gaps.gap6,
                 Row(
@@ -61,7 +60,7 @@ class BountyStage extends StatelessWidget {
 }
 
 class _BountyReward extends StatelessWidget {
-  const _BountyReward({required this.reward});
+  const new({required this.reward});
 
   final RewardDrop reward;
 
@@ -79,7 +78,7 @@ class _BountyReward extends StatelessWidget {
 }
 
 class _StageDimond extends StatelessWidget {
-  const _StageDimond({required this.enable, this.color});
+  const new({required this.enable, this.color});
 
   final bool enable;
   final Color? color;

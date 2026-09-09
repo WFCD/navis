@@ -9,7 +9,7 @@ part 'fissure_filter_state.dart';
 enum FissureFilter { fissures, steelPath, voidStorm }
 
 class FissureFilterCubit extends HydratedCubit<FissureFilterState> with SafeBlocMixin {
-  FissureFilterCubit(List<VoidFissure> fissures)
+  new(List<VoidFissure> fissures)
     : super(FissureFilterState(fissures: fissures, type: FissureFilter.fissures));
 
   FissureFilter _filter = FissureFilter.fissures;

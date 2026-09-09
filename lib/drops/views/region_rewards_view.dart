@@ -1,10 +1,10 @@
 import 'package:collection/collection.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:warframe_common/warframe_common.dart';
 
 class MissionRewardsView extends StatelessWidget {
-  const MissionRewardsView({
+  const new({
     super.key,
     required this.controller,
     required this.node,
@@ -43,7 +43,7 @@ class MissionRewardsView extends StatelessWidget {
 }
 
 class _MultipleRewardPools extends StatefulWidget {
-  const _MultipleRewardPools({required this.regions});
+  const new({required this.regions});
 
   final List<RegionRewardPool> regions;
 
@@ -88,7 +88,7 @@ class __MultipleRewardPoolsState extends State<_MultipleRewardPools> {
 }
 
 class _RewardPoolBody extends StatelessWidget {
-  const _RewardPoolBody({required this.rewardPool});
+  const new({required this.rewardPool});
 
   final RegionRewardPool rewardPool;
 
@@ -112,7 +112,7 @@ class _RewardPoolBody extends StatelessWidget {
 }
 
 class _EndlessMission extends StatefulWidget {
-  const _EndlessMission({required this.region});
+  const new({required this.region});
 
   final MultiRewardPool region;
 

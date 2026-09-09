@@ -1,7 +1,7 @@
 part of 'profile_setup_cubit.dart';
 
 class ProfileSetupState extends Equatable {
-  const ProfileSetupState(this.currentStep, {this.platform, this.isValidData});
+  const new(this.currentStep, {this.platform, this.isValidData});
 
   final int currentStep;
   final WarframeSupportedPlatform? platform;

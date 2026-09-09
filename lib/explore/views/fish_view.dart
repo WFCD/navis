@@ -1,9 +1,9 @@
 import 'package:fish_data/fish_data.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:navis/explore/explore.dart';
 
 class FishPage extends StatelessWidget {
-  const FishPage({super.key});
+  const new({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +12,7 @@ class FishPage extends StatelessWidget {
 }
 
 class FishView extends StatelessWidget {
-  const FishView({super.key});
+  const new({super.key});
 
   @override
   Widget build(BuildContext context) {

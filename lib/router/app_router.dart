@@ -1,12 +1,12 @@
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:matomo_tracker/matomo_tracker.dart';
 import 'package:navis/router/routes.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
 class AppRouter {
-  AppRouter({
+  new({
     required GlobalKey<NavigatorState> navigatorKey,
     required RouteObserver<ModalRoute<void>> observer,
     bool debugLogDiagnostics = kDebugMode,

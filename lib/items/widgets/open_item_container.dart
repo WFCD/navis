@@ -1,10 +1,10 @@
 import 'package:animations/animations.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:navis/items/items.dart';
 import 'package:warframe_common/warframe_common.dart';
 
 class OpenItemContainer extends StatelessWidget {
-  const OpenItemContainer({
+  const new({
     super.key,
     required this.item,
     this.closedColor = Colors.transparent,

@@ -12,7 +12,7 @@ import 'package:warframe_drop_repository/warframe_drop_repository.dart';
 import 'package:worldstate_repository/worldstate_repository.dart';
 
 class AppBootstrap extends StatelessWidget {
-  const AppBootstrap({
+  const new({
     super.key,
     required this._routeObserver,
     required this._settingsRepository,

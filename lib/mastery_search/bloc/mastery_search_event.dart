@@ -1,14 +1,14 @@
 part of 'mastery_search_bloc.dart';
 
 sealed class MasterySearchEvent extends Equatable {
-  const MasterySearchEvent();
+  const new();
 
   @override
   List<Object?> get props => [];
 }
 
 final class MasterySearchTextChanged extends MasterySearchEvent {
-  const MasterySearchTextChanged(this.text);
+  const new(this.text);
 
   final String text;
 
@@ -20,7 +20,7 @@ final class MasterySearchTextChanged extends MasterySearchEvent {
 }
 
 final class MasteryResultsFiltered extends MasterySearchEvent {
-  const MasteryResultsFiltered(this.type);
+  const new(this.type);
 
   final ItemType? type;
 

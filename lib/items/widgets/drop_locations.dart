@@ -1,10 +1,10 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:warframe_common/warframe_common.dart';
 
 class DropLocations extends StatelessWidget {
-  const DropLocations({super.key, required this.drops});
+  const new({super.key, required this.drops});
 
   final List<Drop> drops;
 
@@ -30,7 +30,7 @@ class DropLocations extends StatelessWidget {
 }
 
 class _DropEntry extends StatelessWidget {
-  const _DropEntry({required this.location, required this.chance});
+  const new({required this.location, required this.chance});
 
   final String location;
   final num chance;

@@ -1,7 +1,7 @@
 part of 'mastery_search_bloc.dart';
 
 sealed class MasterySearchState extends Equatable {
-  const MasterySearchState();
+  const new();
 
   @override
   List<Object> get props => [];
@@ -18,7 +18,7 @@ final class MasterySearchInProgress extends MasterySearchState {
 }
 
 final class MasterySearchSuccessful extends MasterySearchState {
-  const MasterySearchSuccessful(this.results);
+  const new(this.results);
 
   final List<MasterableItem> results;
 
@@ -30,7 +30,7 @@ final class MasterySearchSuccessful extends MasterySearchState {
 }
 
 final class MasterySearchFailure extends MasterySearchState {
-  const MasterySearchFailure(this.query);
+  const new(this.query);
 
   final String query;
 

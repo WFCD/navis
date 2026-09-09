@@ -1,11 +1,11 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:matomo_tracker/matomo_tracker.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis/worldstate/worldstate.dart';
 import 'package:warframe_common/warframe_common.dart';
 
 class BaroInventory extends StatelessWidget {
-  const BaroInventory({super.key, required this.character, required this.inventory, this.isVarzia = false});
+  const new({super.key, required this.character, required this.inventory, this.isVarzia = false});
 
   final String character;
   final List<TraderItem>? inventory;

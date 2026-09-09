@@ -1,13 +1,13 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:fish_data/fish_data.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:navis/items/items.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis/utils/string_extensions.dart';
 import 'package:navis_ui/navis_ui.dart';
 
 class FishCard extends StatelessWidget {
-  const FishCard({super.key, required this.fish});
+  const new({super.key, required this.fish});
 
   // I'm sure this won't cause any problems down the line but I shoooould fix
   // that up later
@@ -75,7 +75,7 @@ class FishCard extends StatelessWidget {
 }
 
 class _BuildUniqueResources<T> extends StatelessWidget {
-  const _BuildUniqueResources({super.key, required this.uniqueResources});
+  const new({super.key, required this.uniqueResources});
 
   final T uniqueResources;
 
@@ -98,7 +98,7 @@ class _BuildUniqueResources<T> extends StatelessWidget {
 }
 
 class _BuildResources extends StatelessWidget {
-  const _BuildResources({required this.small, required this.medium, required this.large});
+  const new({required this.small, required this.medium, required this.large});
 
   final RegionResources small;
   final RegionResources medium;
@@ -148,7 +148,7 @@ class _BuildResources extends StatelessWidget {
 }
 
 class _BuildSpearRequirement extends StatelessWidget {
-  const _BuildSpearRequirement({required this.requirements});
+  const new({required this.requirements});
 
   final SpearRequirements requirements;
 

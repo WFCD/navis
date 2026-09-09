@@ -1,10 +1,10 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:matomo_tracker/matomo_tracker.dart';
 import 'package:navis/worldstate/widgets/syndicates/nightwave_challenges.dart';
 import 'package:warframe_common/warframe_common.dart';
 
 class NightwavesPage extends StatelessWidget {
-  const NightwavesPage({required this.nightwave, super.key});
+  const new({required this.nightwave, super.key});
 
   final Nightwave? nightwave;
 

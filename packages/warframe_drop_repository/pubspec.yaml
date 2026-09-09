@@ -18,5 +18,3 @@ dependencies:
   warframe_common:
     path: ../warframe_common
 
-dev_dependencies:
-  very_good_analysis: ^10.3.0

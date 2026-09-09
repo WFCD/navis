@@ -1,12 +1,11 @@
-import 'package:black_hole_flutter/black_hole_flutter.dart';
-import 'package:flutter/material.dart';
 import 'package:formz/formz.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis/settings/utils/feedback_forms.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
 class UserFeedback extends StatefulWidget {
-  const UserFeedback({super.key});
+  const new({super.key});
 
   static void show(BuildContext context) {
     showModalBottomSheet<void>(context: context, isScrollControlled: true, builder: (context) => const UserFeedback());
@@ -81,6 +80,8 @@ class _UserFeedbackState extends State<UserFeedback> {
 
   @override
   Widget build(BuildContext context) {
+    final textTheme = TextTheme.of(context);
+
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
@@ -93,7 +94,7 @@ class _UserFeedbackState extends State<UserFeedback> {
             children: [
               ListTile(
                 contentPadding: EdgeInsets.zero,
-                titleTextStyle: context.textTheme.titleLarge,
+                titleTextStyle: textTheme.titleLarge,
                 title: Text(context.l10n.sendFeedbackTitle),
                 subtitle: Text(context.l10n.sendFeedbackDescription),
               ),
@@ -125,7 +126,7 @@ class _UserFeedbackState extends State<UserFeedback> {
               Text(
                 context.l10n.legalese,
                 textAlign: .center,
-                style: context.textTheme.labelMedium?.copyWith(color: context.colorScheme.onSurface.withAlpha(195)),
+                style: textTheme.labelMedium?.copyWith(color: ColorScheme.of(context).onSurface.withAlpha(195)),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 16),

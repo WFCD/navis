@@ -1,9 +1,9 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 typedef ItemsValueChanged = void Function(BuildContext context, String query);
 
 class NavisSearchBar extends StatelessWidget {
-  const NavisSearchBar({
+  const new({
     super.key,
     this.focusNode,
     this.controller,

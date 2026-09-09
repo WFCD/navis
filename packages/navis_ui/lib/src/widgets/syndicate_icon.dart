@@ -1,9 +1,9 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:navis_ui/src/helpers/helpers.dart';
 import 'package:navis_ui/src/widgets/widgets.dart';
 
 class SyndicateIcon extends StatelessWidget {
-  const SyndicateIcon({
+  const new({
     super.key,
     required this.syndicate,
     this.iconSize,

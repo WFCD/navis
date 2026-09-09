@@ -1,6 +1,5 @@
-import 'package:black_hole_flutter/black_hole_flutter.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:navis/items/widgets/stats/polarity.dart';
 import 'package:navis/items/widgets/stats/preinstalled_polarities.dart';
 import 'package:navis/items/widgets/stats/stats_column.dart';
@@ -10,7 +9,7 @@ import 'package:navis_ui/navis_ui.dart';
 import 'package:warframe_common/warframe_common.dart' hide Polarity;
 
 class AvatarStats extends StatelessWidget {
-  const AvatarStats({super.key, required this.avatar});
+  const new({super.key, required this.avatar});
 
   final PowerSuit avatar;
 
@@ -70,7 +69,7 @@ class AvatarStats extends StatelessWidget {
 }
 
 class _Abilities extends StatefulWidget {
-  const _Abilities({required this.abilities});
+  const new({required this.abilities});
 
   final List<Ability> abilities;
 
@@ -95,7 +94,8 @@ class _AbilitiesState extends State<_Abilities> {
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = context.theme.colorScheme;
+    final colorScheme = ColorScheme.of(context);
+    final textTheme = TextTheme.of(context);
 
     return Column(
       children: [
@@ -116,12 +116,12 @@ class _AbilitiesState extends State<_Abilities> {
         ),
         if (_ability != null)
           Card(
-            color: context.theme.colorScheme.secondaryContainer,
+            color: colorScheme.secondaryContainer,
             child: ListTile(
               title: Text(_ability!.name),
               subtitle: Text(_ability!.description),
-              titleTextStyle: context.textTheme.titleMedium?.copyWith(color: colorScheme.onSecondaryContainer),
-              subtitleTextStyle: context.textTheme.bodyMedium?.copyWith(
+              titleTextStyle: textTheme.titleMedium?.copyWith(color: colorScheme.onSecondaryContainer),
+              subtitleTextStyle: textTheme.bodyMedium?.copyWith(
                 color: colorScheme.onSecondaryContainer.withAlpha(160),
               ),
             ),
@@ -132,7 +132,7 @@ class _AbilitiesState extends State<_Abilities> {
 }
 
 class _AbilityIcon extends StatelessWidget {
-  const _AbilityIcon({
+  const new({
     required this.ability,
     required this.isSelected,
     required this.onTap,
@@ -145,7 +145,8 @@ class _AbilityIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const defaultIconSize = 10.0;
-    final color = isSelected ? context.theme.colorScheme.secondary : context.theme.colorScheme.onSurface;
+    final colorScheme = ColorScheme.of(context);
+    final color = isSelected ? colorScheme.secondary : colorScheme.onSurface;
 
     return IconButton(
       onPressed: onTap,

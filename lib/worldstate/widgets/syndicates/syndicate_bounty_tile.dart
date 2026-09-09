@@ -1,13 +1,12 @@
-import 'package:black_hole_flutter/black_hole_flutter.dart';
-import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:navis/drops/drops.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:warframe_common/warframe_common.dart';
 
 class SyndicateBountyTile extends StatelessWidget {
-  const SyndicateBountyTile({super.key, required this.color, required this.job});
+  const new({super.key, required this.color, required this.job});
 
   final Color color;
   final SyndicateBounty job;
@@ -49,7 +48,7 @@ class SyndicateBountyTile extends StatelessWidget {
 }
 
 class _Standing extends StatelessWidget {
-  const _Standing({required this.standing});
+  const new({required this.standing});
 
   final int standing;
 
@@ -60,7 +59,7 @@ class _Standing extends StatelessWidget {
       children: <Widget>[
         Text(
           NumberFormat().format(standing),
-          style: context.textTheme.labelLarge,
+          style: TextTheme.of(context).labelLarge,
         ),
         const Icon(WarframeIcons.standing, size: 20),
       ],

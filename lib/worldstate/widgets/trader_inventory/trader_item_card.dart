@@ -1,16 +1,15 @@
-import 'package:black_hole_flutter/black_hole_flutter.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:item_repository/items_repository.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:navis/items/cubit/cubit.dart';
 import 'package:navis/utils/string_extensions.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:warframe_common/warframe_common.dart';
 
 class TraderItemCard extends StatelessWidget {
-  const TraderItemCard({super.key, required this.item, this.isVarzia = false});
+  const new({super.key, required this.item, this.isVarzia = false});
 
   final TraderItem item;
   final bool isVarzia;
@@ -30,7 +29,7 @@ class TraderItemCard extends StatelessWidget {
 }
 
 class _TraderItemContent extends StatelessWidget {
-  const _TraderItemContent({required this.traderItem, this.isVarzia = false});
+  const new({required this.traderItem, this.isVarzia = false});
 
   final TraderItem traderItem;
   final bool isVarzia;
@@ -69,7 +68,7 @@ class _TraderItemContent extends StatelessWidget {
 }
 
 class _TraderItemTrailing extends StatelessWidget {
-  const _TraderItemTrailing({required this.ducats, required this.credits, this.isVarzia = false});
+  const new({required this.ducats, required this.credits, this.isVarzia = false});
 
   final int ducats;
   final int credits;
@@ -93,16 +92,15 @@ class _TraderItemTrailing extends StatelessWidget {
 }
 
 class _TrailingColumn extends StatelessWidget {
-  const _TrailingColumn({required this.header, required this.value});
+  const new({required this.header, required this.value});
 
   final String header;
   final int value;
 
   @override
   Widget build(BuildContext context) {
-    final textTheme = context.textTheme;
-    final headerStyle = textTheme.bodySmall?.copyWith(color: context.theme.colorScheme.onSurfaceVariant);
-
+    final textTheme = TextTheme.of(context);
+    final headerStyle = textTheme.bodySmall?.copyWith(color: ColorScheme.of(context).onSurfaceVariant);
     final valueStyle = textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w800);
 
     return Column(

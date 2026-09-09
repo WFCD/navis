@@ -1,11 +1,10 @@
-import 'package:black_hole_flutter/black_hole_flutter.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis/settings/settings.dart';
 
 class ThemePicker extends StatelessWidget {
-  const ThemePicker({super.key});
+  const new({super.key});
 
   static Future<void> showModes(BuildContext context) {
     return showDialog<void>(
@@ -14,7 +13,7 @@ class ThemePicker extends StatelessWidget {
         return BlocProvider.value(
           value: BlocProvider.of<SettingsCubit>(context),
           child: Localizations(
-            locale: context.locale,
+            locale: Localizations.localeOf(context),
             delegates: NavisLocalizations.localizationsDelegates,
             child: const ThemePicker(),
           ),

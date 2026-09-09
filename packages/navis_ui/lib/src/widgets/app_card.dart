@@ -1,8 +1,7 @@
-import 'package:black_hole_flutter/black_hole_flutter.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 class AppCard extends StatelessWidget {
-  const AppCard({
+  const new({
     super.key,
     this.color,
     this.contentPadding = const EdgeInsets.all(4),
@@ -18,7 +17,7 @@ class AppCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: color ?? context.colorScheme.surfaceContainerHigh,
+      color: color,
       clipBehavior: clipBehavior ?? .hardEdge,
       elevation: 6,
       child: Padding(

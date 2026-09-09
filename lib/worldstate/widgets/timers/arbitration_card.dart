@@ -1,17 +1,16 @@
-import 'package:black_hole_flutter/black_hole_flutter.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis/worldstate/worldstate.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:worldstate_repository/worldstate_repository.dart';
 
 class ArbitrationCard extends StatelessWidget {
-  const ArbitrationCard({super.key});
+  const new({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final locale = context.locale.languageCode;
+    final locale = Localizations.localeOf(context).languageCode;
     final repo = RepositoryProvider.of<WorldstateRepository>(context);
 
     return AppCard(
@@ -28,7 +27,7 @@ class ArbitrationCard extends StatelessWidget {
               padding: const EdgeInsets.only(right: 12, bottom: 4),
               child: Text(
                 'via browse.wf',
-                style: context.textTheme.labelMedium?.copyWith(color: context.colorScheme.primary),
+                style: TextTheme.of(context).labelMedium?.copyWith(color: ColorScheme.of(context).primary),
               ),
             ),
           ),
@@ -39,7 +38,7 @@ class ArbitrationCard extends StatelessWidget {
 }
 
 class _ArbitrationContent extends StatelessWidget {
-  const _ArbitrationContent();
+  const new();
 
   @override
   Widget build(BuildContext context) {

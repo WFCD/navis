@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:navis_ui/src/colors/colors.dart';
 import 'package:warframe_icons/warframe_icons.dart';
 
@@ -11,7 +11,7 @@ enum Syndicates {
   hex('The Hex'),
   unknown('');
 
-  const Syndicates(this.fullName);
+  new(this.fullName);
 
   final String fullName;
 

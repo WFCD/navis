@@ -1,20 +1,19 @@
 import 'dart:math' as math;
 
-import 'package:black_hole_flutter/black_hole_flutter.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:material_ui/material_ui.dart';
 
 class SliverTopbar extends StatefulWidget {
-  const SliverTopbar({
+  const new({
     super.key,
     this.pinned = false,
     this.snap = false,
     this.floating = false,
     required this.child,
   }) : assert(
-          floating || !snap,
-          'The "snap" argument only makes sense for floating app bars.',
-        );
+         floating || !snap,
+         'The "snap" argument only makes sense for floating app bars.',
+       );
 
   final bool snap;
   final bool pinned;
@@ -25,8 +24,7 @@ class SliverTopbar extends StatefulWidget {
   SliverTopbarState createState() => SliverTopbarState();
 }
 
-class SliverTopbarState extends State<SliverTopbar>
-    with TickerProviderStateMixin {
+class SliverTopbarState extends State<SliverTopbar> with TickerProviderStateMixin {
   FloatingHeaderSnapConfiguration? _snapConfiguration;
 
   void _updateSnapConfiguration() {
@@ -50,8 +48,7 @@ class SliverTopbarState extends State<SliverTopbar>
   @override
   void didUpdateWidget(SliverTopbar oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (widget.snap != oldWidget.snap ||
-        widget.floating != oldWidget.floating) {
+    if (widget.snap != oldWidget.snap || widget.floating != oldWidget.floating) {
       _updateSnapConfiguration();
     }
   }
@@ -59,8 +56,9 @@ class SliverTopbarState extends State<SliverTopbar>
   @override
   Widget build(BuildContext context) {
     final topPadding = MediaQuery.of(context).padding.top;
-    final collapsedHeight =
-        (widget.pinned && widget.floating) ? topPadding : null;
+    final collapsedHeight = (widget.pinned && widget.floating) ? topPadding : null;
+    final isDark = Theme.brightnessOf(context) == .dark;
+    final colorScheme = ColorScheme.of(context);
 
     return MediaQuery.removePadding(
       context: context,
@@ -75,9 +73,7 @@ class SliverTopbarState extends State<SliverTopbar>
           topPadding: topPadding,
           collapsedHeight: collapsedHeight,
           vsync: this,
-          color: context.theme.brightness.isDark
-              ? context.theme.colorScheme.surface
-              : context.theme.colorScheme.primary,
+          color: isDark ? colorScheme.surface : colorScheme.primary,
           child: widget.child,
         ),
       ),
@@ -86,7 +82,7 @@ class SliverTopbarState extends State<SliverTopbar>
 }
 
 class _FloatingAppBar extends StatefulWidget {
-  const _FloatingAppBar({required this.child});
+  const new({required this.child});
 
   final Widget child;
 
@@ -123,8 +119,7 @@ class _FloatingAppBarState extends State<_FloatingAppBar> {
   }
 
   RenderSliverFloatingPersistentHeader? _headerRenderer() {
-    return context
-        .findAncestorRenderObjectOfType<RenderSliverFloatingPersistentHeader>();
+    return context.findAncestorRenderObjectOfType<RenderSliverFloatingPersistentHeader>();
   }
 
   void _isScrollingListener() {
@@ -145,7 +140,7 @@ class _FloatingAppBarState extends State<_FloatingAppBar> {
 }
 
 class _SliverTopbarDelegate extends SliverPersistentHeaderDelegate {
-  const _SliverTopbarDelegate({
+  const new({
     required this.floating,
     required this.pinned,
     required this.topPadding,
@@ -193,9 +188,7 @@ class _SliverTopbarDelegate extends SliverPersistentHeaderDelegate {
     //    1   |    0     |        1       ||  1.0
     //    1   |    1     |        0       ||  1.0
     //    1   |    1     |        1       ||  fade
-    final toolbarOpacity = !pinned || floating
-        ? (visibleMainHeight / kTextTabBarHeight).clamp(0.0, 1.0)
-        : 1.0;
+    final toolbarOpacity = !pinned || floating ? (visibleMainHeight / kTextTabBarHeight).clamp(0.0, 1.0) : 1.0;
 
     final widget = FlexibleSpaceBar.createSettings(
       maxExtent: maxExtent,

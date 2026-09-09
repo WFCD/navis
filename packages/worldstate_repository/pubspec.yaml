@@ -20,6 +20,3 @@ dependencies:
     path: ../warframe_common
   warframe_drop_repository:
     path: ../warframe_drop_repository
-
-dev_dependencies:
-  very_good_analysis: ^10.3.0

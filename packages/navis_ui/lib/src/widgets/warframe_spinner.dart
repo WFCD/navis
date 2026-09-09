@@ -1,9 +1,9 @@
 import 'dart:math';
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 class WarframeSpinner extends StatefulWidget {
-  const WarframeSpinner({super.key, this.size});
+  const new({super.key, this.size});
 
   final double? size;
 
@@ -115,7 +115,7 @@ class _WarframeSpinnerState extends State<WarframeSpinner> with TickerProviderSt
 typedef Ring = ({double size, double rotation});
 
 class _WarframeSpinnerPainter extends CustomPainter {
-  const _WarframeSpinnerPainter({
+  const new({
     required this.primary,
     required this.background,
     required this.rings,

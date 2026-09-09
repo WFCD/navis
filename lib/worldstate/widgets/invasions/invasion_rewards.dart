@@ -1,9 +1,9 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:warframe_common/warframe_common.dart';
 
 class InvasionReward extends StatelessWidget {
-  const InvasionReward({super.key, required this.attacker, required this.defender, this.vsInfestation = false});
+  const new({super.key, required this.attacker, required this.defender, this.vsInfestation = false});
 
   final InvasionFaction attacker;
   final InvasionFaction defender;
@@ -26,7 +26,7 @@ class InvasionReward extends StatelessWidget {
 }
 
 class _InvasionRewardBox extends StatelessWidget {
-  const _InvasionRewardBox({required this.color, required this.reward});
+  const new({required this.color, required this.reward});
 
   final Color color;
   final String reward;

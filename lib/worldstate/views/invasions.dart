@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:matomo_tracker/matomo_tracker.dart';
 import 'package:navis/worldstate/worldstate.dart';
 import 'package:navis_ui/navis_ui.dart';
@@ -7,7 +7,7 @@ import 'package:responsive_builder/responsive_builder.dart';
 import 'package:warframe_common/warframe_common.dart';
 
 class InvasionsPage extends StatelessWidget {
-  const InvasionsPage({super.key});
+  const new({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +27,7 @@ class InvasionsPage extends StatelessWidget {
 }
 
 class _MobileInvasions extends StatelessWidget {
-  const _MobileInvasions({required this.invasions});
+  const new({required this.invasions});
 
   final List<Invasion> invasions;
 
@@ -44,7 +44,7 @@ class _MobileInvasions extends StatelessWidget {
 }
 
 class _TabletInvasions extends StatelessWidget {
-  const _TabletInvasions({required this.invasions});
+  const new({required this.invasions});
 
   final List<Invasion> invasions;
 

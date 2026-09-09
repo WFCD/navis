@@ -1,17 +1,16 @@
 import 'dart:async';
 import 'dart:math' as math;
 
-import 'package:black_hole_flutter/black_hole_flutter.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:navis/drops/drops.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:warframe_common/warframe_common.dart';
 
 class FissureWidget extends StatelessWidget {
-  const FissureWidget({super.key, required this.fissure});
+  const new({super.key, required this.fissure});
 
   final VoidFissure fissure;
 
@@ -86,7 +85,7 @@ class FissureWidget extends StatelessWidget {
                         child: Icon(
                           Icons.square,
                           size: 12,
-                          color: context.theme.colorScheme.primary,
+                          color: ColorScheme.of(context).primary,
                         ),
                       ),
                     ),
@@ -101,7 +100,7 @@ class FissureWidget extends StatelessWidget {
 }
 
 class OmniaFissureWidget extends StatefulWidget {
-  const OmniaFissureWidget({super.key});
+  const new({super.key});
 
   @override
   State<OmniaFissureWidget> createState() => _OmniaFissureWidgetState();

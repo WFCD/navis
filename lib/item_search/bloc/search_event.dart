@@ -1,11 +1,11 @@
 part of 'search_bloc.dart';
 
 abstract class SearchEvent extends Equatable {
-  const SearchEvent();
+  const new();
 }
 
 sealed class SearchTextChanged extends SearchEvent {
-  const SearchTextChanged(this.text);
+  const new(this.text);
 
   final String text;
 
@@ -17,21 +17,21 @@ sealed class SearchTextChanged extends SearchEvent {
 }
 
 final class ItemsSearchTextChanged extends SearchTextChanged {
-  const ItemsSearchTextChanged(super.text);
+  const new(super.text);
 
   @override
   String toString() => 'CodexSearchTextChanged($text)';
 }
 
 final class RelicSearchTextChanged extends SearchTextChanged {
-  const RelicSearchTextChanged(super.text);
+  const new(super.text);
 
   @override
   String toString() => 'RelicSearchTextChanged($text)';
 }
 
 final class ItemResultsFiltered extends SearchEvent {
-  const ItemResultsFiltered(this.type);
+  const new(this.type);
 
   final ItemType? type;
 

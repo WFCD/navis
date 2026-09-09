@@ -1,11 +1,11 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:navis/settings/settings.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:notification_repository/notification_repository.dart';
 
 class FilterDialog extends StatelessWidget {
-  const FilterDialog({super.key, required this.options});
+  const new({super.key, required this.options});
 
   final List<SimpleTopics> options;
 
@@ -45,7 +45,7 @@ class FilterDialog extends StatelessWidget {
 }
 
 class _NotificationCheckBox extends StatelessWidget {
-  const _NotificationCheckBox({required this.title, required this.topic});
+  const new({required this.title, required this.topic});
 
   final String title;
   final Topic topic;

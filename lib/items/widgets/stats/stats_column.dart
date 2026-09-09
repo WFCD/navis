@@ -1,8 +1,8 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:navis_ui/navis_ui.dart';
 
 class Stat {
-  Stat({required this.name, required this.value, this.isVisible = true});
+  new({required this.name, required this.value, this.isVisible = true});
 
   final Widget name;
   final Widget value;
@@ -10,7 +10,7 @@ class Stat {
 }
 
 class StatsColumn extends StatelessWidget {
-  const StatsColumn({super.key, this.padding = const EdgeInsets.only(bottom: 16), required this.stats});
+  const new({super.key, this.padding = const EdgeInsets.only(bottom: 16), required this.stats});
 
   final EdgeInsets padding;
   final List<Stat> stats;

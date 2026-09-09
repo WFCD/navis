@@ -1,8 +1,7 @@
-import 'package:black_hole_flutter/black_hole_flutter.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 class ColoredContainer extends StatelessWidget {
-  const ColoredContainer({
+  const new({
     super.key,
     required this.tooltip,
     this.padding = const EdgeInsets.all(4),
@@ -13,7 +12,7 @@ class ColoredContainer extends StatelessWidget {
     required this.child,
   });
 
-  factory ColoredContainer.text({
+  factory text({
     required String text,
     Color? color,
     TextStyle? style,
@@ -53,7 +52,7 @@ class ColoredContainer extends StatelessWidget {
         margin: margin,
         curve: Curves.easeInOut,
         decoration: BoxDecoration(
-          color: color ?? context.theme.colorScheme.secondaryContainer,
+          color: color ?? Theme.of(context).colorScheme.secondaryContainer,
           borderRadius: const BorderRadius.all(Radius.circular(4)),
         ),
         child: child,

@@ -1,9 +1,8 @@
-import 'package:black_hole_flutter/black_hole_flutter.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:item_repository/items_repository.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:navis/item_search/item_search.dart';
 import 'package:navis/items/items.dart';
 import 'package:navis/relics/cubit/relics_cubit.dart';
@@ -12,7 +11,7 @@ import 'package:navis_ui/navis_ui.dart';
 import 'package:warframe_common/warframe_common.dart';
 
 class RelicsPage extends StatelessWidget {
-  const RelicsPage({super.key});
+  const new({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +28,7 @@ class RelicsPage extends StatelessWidget {
 }
 
 class RelicsView extends StatefulWidget {
-  const RelicsView({super.key});
+  const new({super.key});
 
   @override
   State<RelicsView> createState() => _RelicsViewState();
@@ -110,7 +109,7 @@ class _RelicsViewState extends State<RelicsView> {
 }
 
 class _RelicsGrid extends StatelessWidget {
-  const _RelicsGrid({required this.relics});
+  const new({required this.relics});
 
   final List<RelicSet> relics;
 
@@ -129,7 +128,7 @@ class _RelicsGrid extends StatelessWidget {
           closedBuilder: (_, onTap) {
             return AppCard(
               contentPadding: EdgeInsets.zero,
-              color: (relic.isVaulted ?? false) ? context.colorScheme.surfaceContainerLow : null,
+              color: (relic.isVaulted ?? false) ? ColorScheme.of(context).surfaceContainerLow : null,
               child: InkWell(
                 onTap: onTap,
                 child: Column(
@@ -137,7 +136,7 @@ class _RelicsGrid extends StatelessWidget {
                   mainAxisAlignment: .center,
                   children: [
                     CachedNetworkImage(imageUrl: relic.imageName.warframeItemsCdn(), height: 75),
-                    Text(displayName, style: context.textTheme.titleMedium),
+                    Text(displayName, style: TextTheme.of(context).titleMedium),
                   ],
                 ),
               ),

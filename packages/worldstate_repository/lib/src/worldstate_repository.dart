@@ -31,7 +31,7 @@ class WorldstateRepository {
   Future<Worldstate> buildWorldstate(String locale) async {
     final key = '$_worldstateCacheKey}_$locale';
     final cached = await _cache.get<Map<String, dynamic>>(key);
-    if (cached != null) return Isolate.run(() => Worldstate.fromMap(cached));
+    if (cached != null) return await Isolate.run(() => Worldstate.fromMap(cached));
 
     final data = await _api.fetchWorldstateBytes();
     final worldstate = await Isolate.run(() {
@@ -51,7 +51,7 @@ class WorldstateRepository {
   Future<Arbitration> fetchArbitration(String locale) async {
     final cached = await _cache.get<List<dynamic>>('${_arbitrationCacheKey}_$locale');
     if (cached != null) {
-      return Isolate.run(() {
+      return await Isolate.run(() {
         // ignore: experimental_member_use Its in a controlled environment
         final arbis = List<Map<String, dynamic>>.from(cached).map(Arbitration.fromJson).toList();
         return arbis.current;

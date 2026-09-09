@@ -1,12 +1,12 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:item_repository/items_repository.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:navis/item_search/bloc/search_bloc.dart';
 import 'package:navis/item_search/view/search_view.dart';
 import 'package:navis/item_search/widgets/search_bar.dart';
 
 class ItemsSearchPage extends StatelessWidget {
-  const ItemsSearchPage({super.key, required this.query});
+  const new({super.key, required this.query});
 
   final String query;
 

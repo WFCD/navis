@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:ui' as ui;
 
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:warframe_common/warframe_common.dart';
 
 const imgHost = 'https://cdn.warframestat.us/genesis';
@@ -53,7 +53,7 @@ String polarityUrl(String polarity) {
 }
 
 class ModParts {
-  const ModParts({required this.thumbnail, required this.polarity, required this.rarity});
+  const new({required this.thumbnail, required this.polarity, required this.rarity});
 
   final String thumbnail;
   final String? polarity;

@@ -1,11 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:navis_ui/gen/assets.gen.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:warframe_common/warframe_common.dart';
 
 class OrbiterNewsCard extends StatelessWidget {
-  const OrbiterNewsCard({super.key, required this.news});
+  const new({super.key, required this.news});
 
   final News news;
 
@@ -23,7 +23,7 @@ class OrbiterNewsCard extends StatelessWidget {
 }
 
 class OrbiterNewsContent extends StatelessWidget {
-  const OrbiterNewsContent({super.key, required this.news});
+  const new({super.key, required this.news});
 
   final News news;
 
@@ -46,7 +46,7 @@ class OrbiterNewsContent extends StatelessWidget {
 }
 
 class _NewsImage extends StatelessWidget {
-  const _NewsImage({required this.imageUrl});
+  const new({required this.imageUrl});
 
   final String imageUrl;
 

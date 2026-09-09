@@ -1,12 +1,12 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:navis/items/items.dart';
 import 'package:navis/settings/settings.dart';
 import 'package:navis/worldstate/worldstate.dart';
 import 'package:warframe_drop_repository/warframe_drop_repository.dart';
 
 class AppStateListener extends StatelessWidget {
-  const AppStateListener({super.key, required this.child});
+  const new({super.key, required this.child});
 
   final Widget child;
 

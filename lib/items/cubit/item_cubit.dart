@@ -10,7 +10,7 @@ import 'package:warframe_common/warframe_common.dart';
 part 'item_state.dart';
 
 class ItemCubit extends HydratedCubit<ItemState> with SafeBlocMixin {
-  ItemCubit(this.repo) : super(ItemInitial());
+  new(this.repo) : super(ItemInitial());
 
   final ItemsRepository repo;
 

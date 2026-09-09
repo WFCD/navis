@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:navis/item_search/bloc/search_bloc.dart';
 import 'package:navis/items/items.dart';
 import 'package:navis/l10n/l10n.dart';
@@ -7,7 +7,7 @@ import 'package:navis_ui/navis_ui.dart';
 import 'package:warframe_common/warframe_common.dart';
 
 class SearchView extends StatelessWidget {
-  const SearchView({super.key});
+  const new({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +27,7 @@ class SearchView extends StatelessWidget {
 }
 
 class _SearchResults extends StatelessWidget {
-  const _SearchResults({required this.results});
+  const new({required this.results});
 
   final List<WarframeItem> results;
 

@@ -1,8 +1,8 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:navis_ui/navis_ui.dart';
 
 class InvasionProgress extends StatelessWidget {
-  const InvasionProgress({
+  const new({
     super.key,
     required this.progress,
     required this.attacker,

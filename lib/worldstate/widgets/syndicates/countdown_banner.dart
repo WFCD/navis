@@ -1,9 +1,9 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis_ui/navis_ui.dart';
 
 class CountdownBanner extends StatelessWidget {
-  const CountdownBanner({
+  const new({
     super.key,
     required this.message,
     required this.time,

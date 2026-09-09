@@ -1,8 +1,8 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:navis_ui/navis_ui.dart';
 
 class ExpandableAppCard extends StatefulWidget {
-  const ExpandableAppCard({
+  const new({
     super.key,
     required this.header,
     required this.content,

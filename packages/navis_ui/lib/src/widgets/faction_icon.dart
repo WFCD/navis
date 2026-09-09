@@ -1,9 +1,9 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:navis_ui/src/helpers/faction_helper.dart';
 import 'package:navis_ui/src/widgets/app_icon.dart';
 
 class FactionIcon extends StatelessWidget {
-  const FactionIcon({
+  const new({
     super.key,
     required this.name,
     this.size,

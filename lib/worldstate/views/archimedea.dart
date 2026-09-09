@@ -1,12 +1,11 @@
-import 'package:black_hole_flutter/black_hole_flutter.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:warframe_common/warframe_common.dart';
 import 'package:worldstate_repository/worldstate_repository.dart';
 
 class ArchimedeaPage extends StatelessWidget {
-  const ArchimedeaPage({super.key, required this.archimedea});
+  const new({super.key, required this.archimedea});
 
   final Archimedea archimedea;
 
@@ -39,15 +38,15 @@ class ArchimedeaPage extends StatelessWidget {
 }
 
 class _ArchimedeaMissionsCategory extends StatelessWidget {
-  const _ArchimedeaMissionsCategory({required this.missions});
+  const new({required this.missions});
 
   final List<ArchimedeaMission> missions;
 
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
-    final secondary = context.theme.colorScheme.secondary;
-    final titleStyle = context.textTheme.titleSmall;
+    final secondary = ColorScheme.of(context).secondary;
+    final titleStyle = TextTheme.of(context).titleSmall;
 
     return Column(
       children: [
@@ -78,7 +77,7 @@ class _ArchimedeaMissionsCategory extends StatelessWidget {
 }
 
 class _PersonalModifierCategory extends StatelessWidget {
-  const _PersonalModifierCategory({required this.personalModifiers});
+  const new({required this.personalModifiers});
 
   final List<PersonalModifiers> personalModifiers;
 
@@ -107,15 +106,18 @@ class _PersonalModifierCategory extends StatelessWidget {
 }
 
 class _Risk extends StatelessWidget {
-  const _Risk({required this.risk});
+  const new({required this.risk});
 
   final ArchimedeaRisk risk;
 
   @override
   Widget build(BuildContext context) {
+    final textTheme = TextTheme.of(context);
+    final colorScheme = ColorScheme.of(context);
+
     final child = ListTile(
       title: Text('${context.l10n.archimedeaRiskTitle}: ${risk.title}'),
-      titleTextStyle: context.textTheme.titleSmall,
+      titleTextStyle: textTheme.titleSmall,
       subtitle: Text(risk.description),
     );
 
@@ -127,20 +129,20 @@ class _Risk extends StatelessWidget {
         children: [
           DecoratedBox(
             decoration: BoxDecoration(
-              color: context.colorScheme.secondaryContainer,
+              color: colorScheme.secondaryContainer,
               borderRadius: const BorderRadius.only(topLeft: corner, topRight: corner),
             ),
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8),
               child: Text(
                 'Elite',
-                style: context.textTheme.labelLarge,
+                style: textTheme.labelLarge,
               ),
             ),
           ),
           DecoratedBox(
             decoration: BoxDecoration(
-              border: BoxBorder.all(color: context.colorScheme.secondaryContainer, width: 4),
+              border: BoxBorder.all(color: colorScheme.secondaryContainer, width: 4),
               borderRadius: const BorderRadius.only(topLeft: corner, bottomLeft: corner, bottomRight: corner),
             ),
             child: child,

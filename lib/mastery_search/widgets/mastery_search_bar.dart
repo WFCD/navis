@@ -1,13 +1,12 @@
-import 'package:black_hole_flutter/black_hole_flutter.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:navis/mastery_search/bloc/mastery_search_bloc.dart';
 import 'package:navis/mastery_search/view/view.dart';
 import 'package:navis/router/routes.dart';
 import 'package:navis_ui/navis_ui.dart';
 
 class MasterySearchBar extends StatefulWidget {
-  const MasterySearchBar({super.key, this.hintText});
+  const new({super.key, this.hintText});
 
   final String? hintText;
 
@@ -37,7 +36,7 @@ class _MasterySearchBarState extends State<MasterySearchBar> {
       onChange: (query) => BlocProvider.of<MasterySearchBloc>(context).add(MasterySearchTextChanged(query)),
       onSubmit: _onSubmitted,
       hintText: widget.hintText,
-      backgroundColor: WidgetStatePropertyAll(context.theme.colorScheme.secondaryContainer),
+      backgroundColor: WidgetStatePropertyAll(ColorScheme.of(context).secondaryContainer),
       leading: Navigator.of(context).canPop()
           ? IconButton(icon: const Icon(Icons.arrow_back), onPressed: () => Navigator.pop(context))
           : const Icon(Icons.search),

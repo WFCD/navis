@@ -1,7 +1,7 @@
-import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:item_repository/items_repository.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:navis/items/cubit/item_cubit.dart';
 import 'package:navis/items/views/views.dart';
 import 'package:navis/l10n/l10n.dart';
@@ -9,7 +9,7 @@ import 'package:navis_ui/navis_ui.dart';
 import 'package:warframe_common/warframe_common.dart' hide ItemNotFound;
 
 class ComponentDrops extends StatelessWidget {
-  ComponentDrops({super.key, required this.controller, required List<Drop> drops})
+  new({super.key, required this.controller, required List<Drop> drops})
     : drops = drops.filter().toList()..sortDrops(reverse: true);
 
   final ScrollController controller;
@@ -51,7 +51,7 @@ class ComponentDrops extends StatelessWidget {
 }
 
 class _RelicView extends StatelessWidget {
-  const _RelicView();
+  const new();
 
   @override
   Widget build(BuildContext context) {

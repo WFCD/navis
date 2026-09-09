@@ -1,14 +1,14 @@
 part of 'worldstate_bloc.dart';
 
 sealed class WorldstateEvent extends ReplayEvent with Equatable {
-  const WorldstateEvent();
+  const new();
 
   @override
   List<Object> get props => [];
 }
 
 final class WorldstateStarted extends WorldstateEvent {
-  const WorldstateStarted(this.locale);
+  const new(this.locale);
 
   final String locale;
 
@@ -20,7 +20,7 @@ final class WorldstateStarted extends WorldstateEvent {
 }
 
 final class WorldstateUpdated extends WorldstateEvent {
-  const WorldstateUpdated(this.state);
+  const new(this.state);
 
   final Worldstate state;
 
@@ -32,7 +32,7 @@ final class WorldstateUpdated extends WorldstateEvent {
 }
 
 final class WorldstateFailed extends WorldstateEvent {
-  WorldstateFailed();
+  new();
 
   @override
   String toString() => 'WorldstateFailed()';

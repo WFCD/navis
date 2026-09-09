@@ -1,13 +1,13 @@
-import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:matomo_tracker/matomo_tracker.dart';
 import 'package:navis/worldstate/worldstate.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:warframe_common/warframe_common.dart';
 
 class Timers extends StatelessWidget {
-  const Timers({super.key});
+  const new({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +16,7 @@ class Timers extends StatelessWidget {
 }
 
 class _MobileTimers extends StatelessWidget {
-  const _MobileTimers();
+  const new();
 
   @override
   Widget build(BuildContext context) {

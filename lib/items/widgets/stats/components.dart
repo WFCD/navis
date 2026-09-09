@@ -1,5 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:navis/items/views/component_drops.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis/utils/string_extensions.dart';
@@ -7,7 +7,7 @@ import 'package:navis_ui/navis_ui.dart';
 import 'package:warframe_common/warframe_common.dart';
 
 class ItemComponents extends StatelessWidget {
-  const ItemComponents({super.key, required this.item});
+  const new({super.key, required this.item});
 
   final BuildableItem item;
 
@@ -54,7 +54,7 @@ void _onTap(BuildContext context, List<Drop> drops) {
 }
 
 class _BuildComponent extends StatelessWidget {
-  const _BuildComponent({required this.component});
+  const new({required this.component});
 
   final Component component;
 
@@ -91,7 +91,7 @@ class _BuildComponent extends StatelessWidget {
 }
 
 class _BuildBlueprint extends StatelessWidget {
-  const _BuildBlueprint({required this.blueprintImage, required this.componentImage, required this.drops});
+  const new({required this.blueprintImage, required this.componentImage, required this.drops});
 
   final String? blueprintImage;
   final String? componentImage;

@@ -1,10 +1,10 @@
-import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis_ui/navis_ui.dart';
 
 class SyndicateCard extends StatelessWidget {
-  const SyndicateCard({
+  const new({
     super.key,
     required this.syndicate,
     this.title,

@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:navis/home/widgets/section.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis/router/routes.dart';
@@ -9,7 +9,7 @@ import 'package:navis_ui/navis_ui.dart';
 import 'package:warframe_common/warframe_common.dart';
 
 class ActivitiesSection extends StatelessWidget {
-  const ActivitiesSection({super.key});
+  const new({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +24,7 @@ class ActivitiesSection extends StatelessWidget {
 typedef _Activities = ({List<WorldEvent> events, List<Alert> alerts});
 
 class _ActivitiesContent extends StatelessWidget {
-  const _ActivitiesContent();
+  const new();
 
   @override
   Widget build(BuildContext context) {

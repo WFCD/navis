@@ -1,11 +1,11 @@
-import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:warframe_common/warframe_common.dart' as models;
 
 class NightwaveChallenge extends StatelessWidget {
-  const NightwaveChallenge({super.key, required this.challenge});
+  const new({super.key, required this.challenge});
 
   final models.NightwaveChallenge challenge;
 
@@ -45,7 +45,7 @@ class NightwaveChallenge extends StatelessWidget {
 }
 
 class _StandingBadge extends StatelessWidget {
-  const _StandingBadge({required this.reputation});
+  const new({required this.reputation});
 
   final int reputation;
 
@@ -66,7 +66,7 @@ class _StandingBadge extends StatelessWidget {
 }
 
 class _NightwaveIcon extends StatelessWidget {
-  const _NightwaveIcon({this.isElite = false, this.isDaily = false});
+  const new({this.isElite = false, this.isDaily = false});
 
   final bool isElite;
   final bool isDaily;

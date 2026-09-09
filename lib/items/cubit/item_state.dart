@@ -1,7 +1,7 @@
 part of 'item_cubit.dart';
 
 sealed class ItemState extends Equatable {
-  const ItemState();
+  const new();
 
   @override
   List<Object> get props => [];
@@ -18,7 +18,7 @@ final class ItemFetchInProgress extends ItemState {
 }
 
 final class ItemStoreFetchSuccess extends ItemState {
-  const ItemStoreFetchSuccess(this.item);
+  const new(this.item);
 
   final WarframeItem item;
 
@@ -30,7 +30,7 @@ final class ItemStoreFetchSuccess extends ItemState {
 }
 
 final class ItemApiFetchSuccess extends ItemState {
-  const ItemApiFetchSuccess(this.item);
+  const new(this.item);
 
   final ItemCommon item;
 
@@ -42,7 +42,7 @@ final class ItemApiFetchSuccess extends ItemState {
 }
 
 final class ItemFetchFailure extends ItemState {
-  const ItemFetchFailure({required this.exception, required this.stackTrace});
+  const new({required this.exception, required this.stackTrace});
 
   final Object exception;
   final StackTrace stackTrace;
@@ -55,7 +55,7 @@ final class ItemFetchFailure extends ItemState {
 }
 
 final class ItemNotFound extends ItemState {
-  const ItemNotFound(this.name);
+  const new(this.name);
 
   final String name;
 

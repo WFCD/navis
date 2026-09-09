@@ -1,7 +1,7 @@
 part of 'settings_cubit.dart';
 
 class SettingsState extends Equatable {
-  const SettingsState({
+  const new({
     required this.language,
     required this.themeMode,
     required this.isFirstTime,

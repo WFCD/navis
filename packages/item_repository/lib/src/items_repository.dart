@@ -45,7 +45,7 @@ class ItemsRepository {
 
   Future<Item?> fetchItemFApi(String uniqueName) async {
     final cached = await _cache.get<Map<String, dynamic>>(uniqueName);
-    if (cached != null) return Isolate.run(() => toItem(cached));
+    if (cached != null) return await Isolate.run(() => toItem(cached));
 
     final item = await _client.fetchItem(uniqueName);
     if (item == null) return null;

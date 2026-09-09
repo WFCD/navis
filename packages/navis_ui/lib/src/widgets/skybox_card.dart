@@ -1,9 +1,8 @@
-import 'package:black_hole_flutter/black_hole_flutter.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:navis_ui/navis_ui.dart';
 
 class SkyboxCard extends StatelessWidget {
-  const SkyboxCard({
+  const new({
     super.key,
     required this.node,
     this.margin = const EdgeInsets.symmetric(vertical: 3, horizontal: 3),
@@ -20,12 +19,14 @@ class SkyboxCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Card(
       clipBehavior: Clip.antiAlias,
       child: Theme(
-        data: context.theme.copyWith(
+        data: theme.copyWith(
           textTheme: Typography.whiteMountainView,
-          iconTheme: context.theme.iconTheme.copyWith(color: Colors.white),
+          iconTheme: theme.iconTheme.copyWith(color: Colors.white),
         ),
         child: BackgroundImage(
           imageUrl: getSkybox(node),

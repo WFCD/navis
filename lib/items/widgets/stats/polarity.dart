@@ -1,16 +1,15 @@
-import 'package:black_hole_flutter/black_hole_flutter.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:navis/items/utils/mod_utils.dart';
 
 class Polarity extends StatelessWidget {
-  const Polarity({super.key, required this.polarity});
+  const new({super.key, required this.polarity});
 
   final String polarity;
 
   @override
   Widget build(BuildContext context) {
-    final color = context.theme.isDark ? Colors.white : null;
+    final color = Theme.brightnessOf(context) == .dark ? Colors.white : null;
 
     return SizedBox(
       width: 20,

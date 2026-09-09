@@ -1,10 +1,9 @@
-import 'package:black_hole_flutter/black_hole_flutter.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:navis_ui/src/helpers/helpers.dart';
 import 'package:warframe_common/warframe_common.dart' show Rarity;
 
 class RewardTile extends StatelessWidget {
-  const RewardTile({super.key, required this.reward, required this.chance, required this.rarity});
+  const new({super.key, required this.reward, required this.chance, required this.rarity});
 
   final String reward;
   final num chance;
@@ -12,7 +11,7 @@ class RewardTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final textTheme = context.textTheme;
+    final textTheme = TextTheme.of(context);
     final color = rarity.toColor();
 
     return ListTile(

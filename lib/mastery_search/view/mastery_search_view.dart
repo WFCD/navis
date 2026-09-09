@@ -1,11 +1,11 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis/mastery/mastery.dart';
 import 'package:navis/mastery_search/bloc/mastery_search_bloc.dart';
 
 class MasterySearchView extends StatelessWidget {
-  const MasterySearchView({super.key});
+  const new({super.key});
 
   @override
   Widget build(BuildContext context) {

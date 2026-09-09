@@ -1,7 +1,6 @@
 import 'package:animations/animations.dart';
-import 'package:black_hole_flutter/black_hole_flutter.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:navis/items/views/views.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis/utils/string_extensions.dart';
@@ -9,7 +8,7 @@ import 'package:navis_ui/navis_ui.dart';
 import 'package:profile_repository/profile_repository.dart';
 
 class MasteryItemTile extends StatelessWidget {
-  const MasteryItemTile({super.key, required this.masterableItem, this.enableCard = true});
+  const new({super.key, required this.masterableItem, this.enableCard = true});
 
   final MasterableItem masterableItem;
   final bool enableCard;
@@ -21,7 +20,7 @@ class MasteryItemTile extends StatelessWidget {
 
     return OpenContainer(
       openColor: Theme.of(context).colorScheme.surfaceContainer,
-      closedColor: enableCard ? Colors.transparent : context.theme.canvasColor,
+      closedColor: enableCard ? Colors.transparent : Theme.of(context).canvasColor,
       openBuilder: (context, _) {
         return ItemDetailPage(item: masterableItem.item);
       },
@@ -47,7 +46,7 @@ class MasteryItemTile extends StatelessWidget {
 }
 
 class _MasteryItemTileContent extends StatelessWidget {
-  const _MasteryItemTileContent({
+  const new({
     required this.name,
     required this.imageName,
     required this.rank,

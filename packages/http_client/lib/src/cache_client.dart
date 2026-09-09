@@ -9,8 +9,8 @@ import 'package:path_provider/path_provider.dart';
 
 class CacheClient extends BaseClient {
   CacheClient({Client? client, required Box<CachedItem> cacheBox, this.cacheDuration = const Duration(seconds: 60)})
-      : _inner = client ?? Client(),
-        _cacheBox = cacheBox;
+    : _inner = client ?? Client(),
+      _cacheBox = cacheBox;
 
   final Client _inner;
   final Box<CachedItem> _cacheBox;
@@ -30,7 +30,7 @@ class CacheClient extends BaseClient {
 
   @override
   Future<StreamedResponse> send(BaseRequest request) async {
-    if (request.method != 'GET') return _inner.send(request);
+    if (request.method != 'GET') return await _inner.send(request);
     final cache = _cacheBox.get(request.url.toString());
 
     if (cache != null && !cache.isExpired) {

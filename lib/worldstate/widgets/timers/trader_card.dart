@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:navis/gen/assets.gen.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis/router/routes.dart';
@@ -8,7 +8,7 @@ import 'package:navis_ui/navis_ui.dart';
 import 'package:warframe_common/warframe_common.dart';
 
 class BaroKiTeerCard extends StatelessWidget {
-  const BaroKiTeerCard({super.key});
+  const new({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +48,7 @@ class BaroKiTeerCard extends StatelessWidget {
 }
 
 class VarziaTraderCard extends StatelessWidget {
-  const VarziaTraderCard({super.key});
+  const new({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -83,7 +83,7 @@ class VarziaTraderCard extends StatelessWidget {
 }
 
 class _TraderWidget extends StatelessWidget {
-  const _TraderWidget({
+  const new({
     required this.title,
     required this.subtitle,
     required this.background,

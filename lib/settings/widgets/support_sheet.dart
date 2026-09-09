@@ -1,11 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:simple_icons/simple_icons.dart';
 
 class SupportBottomSheet extends StatelessWidget {
-  const SupportBottomSheet({super.key});
+  const new({super.key});
 
   static Future<void> showSheet(BuildContext context) {
     return showModalBottomSheet<void>(

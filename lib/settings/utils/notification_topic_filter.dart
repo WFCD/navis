@@ -4,7 +4,7 @@ import 'package:navis/l10n/l10n.dart';
 import 'package:notification_repository/notification_repository.dart';
 
 class NotificationTopics {
-  const NotificationTopics(this.l10n);
+  const new(this.l10n);
 
   final NavisLocalizations l10n;
 
@@ -165,7 +165,7 @@ class NotificationTopics {
 }
 
 class SimpleTopics extends Equatable {
-  const SimpleTopics({required this.title, this.description, required this.value});
+  const new({required this.title, this.description, required this.value});
 
   final String title;
   final String? description;
@@ -176,7 +176,7 @@ class SimpleTopics extends Equatable {
 }
 
 class MultiTopic extends Equatable {
-  const MultiTopic({required this.title, required this.description, required this.filters});
+  const new({required this.title, required this.description, required this.filters});
 
   final String title;
   final String description;

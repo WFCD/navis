@@ -1,9 +1,9 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:warframe_common/warframe_common.dart';
 
 class CalendarPage extends StatelessWidget {
-  const CalendarPage({super.key, required this.season, required this.days});
+  const new({super.key, required this.season, required this.days});
 
   final String season;
   final List<CalendarDay> days;
@@ -20,7 +20,7 @@ class CalendarPage extends StatelessWidget {
 }
 
 class CalendarView extends StatelessWidget {
-  const CalendarView({super.key, required this.days});
+  const new({super.key, required this.days});
 
   final List<CalendarDay> days;
 
@@ -55,7 +55,7 @@ class CalendarView extends StatelessWidget {
 }
 
 class EventContent extends StatelessWidget {
-  const EventContent({super.key, required this.events});
+  const new({super.key, required this.events});
 
   final List<CalendarDayEvent> events;
 

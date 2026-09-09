@@ -1,10 +1,10 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:navis_ui/src/widgets/widgets.dart';
 
 const _iconSize = 30.0;
 
 class SortieWidget extends StatelessWidget {
-  const SortieWidget({
+  const new({
     super.key,
     required this.faction,
     required this.boss,
@@ -49,7 +49,7 @@ class SortieWidget extends StatelessWidget {
 }
 
 class SortieMission extends StatelessWidget {
-  const SortieMission({
+  const new({
     super.key,
     required this.node,
     required this.objective,
@@ -70,7 +70,7 @@ class SortieMission extends StatelessWidget {
 }
 
 class _SortieSheetContent extends StatelessWidget {
-  const _SortieSheetContent({
+  const new({
     required this.faction,
     required this.boss,
     required this.missions,

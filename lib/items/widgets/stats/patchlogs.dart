@@ -1,10 +1,10 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:warframe_common/warframe_common.dart';
 
 class PatchlogSection extends StatelessWidget {
-  const PatchlogSection({super.key, required this.patchlogs});
+  const new({super.key, required this.patchlogs});
 
   final List<Patchlog> patchlogs;
 
@@ -25,7 +25,7 @@ class PatchlogSection extends StatelessWidget {
 }
 
 class _PatchlogEntry extends StatelessWidget {
-  const _PatchlogEntry({required this.patchlog});
+  const new({required this.patchlog});
 
   final Patchlog patchlog;
 

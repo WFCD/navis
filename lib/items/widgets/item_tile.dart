@@ -1,12 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:navis/items/widgets/open_item_container.dart';
 import 'package:navis/utils/string_extensions.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:warframe_common/warframe_common.dart';
 
 class ItemTile extends StatelessWidget {
-  const ItemTile({super.key, required this.item, this.child});
+  const new({super.key, required this.item, this.child});
 
   final WarframeItem item;
   final Widget? child;

@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:navis_ui/navis_ui.dart';
 
 enum Factions { grineer, corpus, corrupted, infestation, infested, narmer, unknown }

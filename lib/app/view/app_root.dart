@@ -1,13 +1,13 @@
 import 'package:dynamic_color/dynamic_color.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis/router/app_router.dart';
 import 'package:navis/settings/settings.dart';
 import 'package:navis_ui/navis_ui.dart';
 
 class NavisApp extends StatelessWidget {
-  const NavisApp({super.key, required this.router});
+  const new({super.key, required this.router});
 
   final AppRouter router;
 

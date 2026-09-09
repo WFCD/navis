@@ -1,9 +1,9 @@
 import 'dart:math';
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 class RivenDisposition extends StatelessWidget {
-  const RivenDisposition({super.key, required this.disposition});
+  const new({super.key, required this.disposition});
 
   final double disposition;
 
@@ -27,7 +27,7 @@ class RivenDisposition extends StatelessWidget {
 }
 
 class _RivenDot extends StatelessWidget {
-  const _RivenDot({required this.enable});
+  const new({required this.enable});
 
   final bool enable;
 

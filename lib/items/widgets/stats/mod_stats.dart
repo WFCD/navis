@@ -1,11 +1,11 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:navis/items/utils/mod_utils.dart';
 import 'package:navis/items/widgets/mod_painter.dart';
 import 'package:navis/utils/string_extensions.dart';
 import 'package:warframe_common/warframe_common.dart';
 
 class ModStats extends StatelessWidget {
-  const ModStats({super.key, required this.mod});
+  const new({super.key, required this.mod});
 
   final Mod mod;
 
@@ -19,7 +19,7 @@ class ModStats extends StatelessWidget {
 }
 
 class _ModBuilder extends StatelessWidget {
-  const _ModBuilder({required this.mod});
+  const new({required this.mod});
 
   final Mod mod;
 

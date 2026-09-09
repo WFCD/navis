@@ -1,11 +1,10 @@
-import 'package:black_hole_flutter/black_hole_flutter.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:navis/worldstate/worldstate.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:warframe_common/warframe_common.dart';
 
 class InvasionWidget extends StatelessWidget {
-  const InvasionWidget({super.key, required this.invasion});
+  const new({super.key, required this.invasion});
 
   final Invasion invasion;
 
@@ -63,15 +62,16 @@ class InvasionWidget extends StatelessWidget {
 }
 
 class _InvasionDetails extends StatelessWidget {
-  const _InvasionDetails({required this.node, required this.description});
+  const new({required this.node, required this.description});
 
   final String node;
   final String description;
 
   @override
   Widget build(BuildContext context) {
-    final nodeStyle = context.theme.textTheme.titleMedium;
-    final infoStyle = context.theme.textTheme.bodySmall;
+    final textTheme = TextTheme.of(context);
+    final nodeStyle = textTheme.titleMedium;
+    final infoStyle = textTheme.bodySmall;
 
     return Column(
       mainAxisSize: MainAxisSize.min,

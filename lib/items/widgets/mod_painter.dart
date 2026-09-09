@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:navis/items/utils/mod_utils.dart';
 import 'package:warframe_common/warframe_common.dart';
 
@@ -15,7 +15,7 @@ import 'package:warframe_common/warframe_common.dart';
 //  and do a port of mod-generator instead https://github.com/WFCD/mod-generator
 
 class CommonModPainter extends ModPainter {
-  const CommonModPainter({required super.mod, required super.rank, required super.assets});
+  const new({required super.mod, required super.rank, required super.assets});
 
   @override
   double get effectsY => 375;
@@ -25,7 +25,7 @@ class CommonModPainter extends ModPainter {
 }
 
 class LegendaryModPainter extends ModPainter {
-  const LegendaryModPainter({required super.mod, required super.rank, required super.assets});
+  const new({required super.mod, required super.rank, required super.assets});
 
   @override
   double get effectsY => 380;
@@ -35,7 +35,7 @@ class LegendaryModPainter extends ModPainter {
 }
 
 abstract class ModPainter extends CustomPainter {
-  const ModPainter({required this.mod, required this.rank, required this.assets});
+  const new({required this.mod, required this.rank, required this.assets});
 
   final Mod mod;
   final int rank;

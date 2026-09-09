@@ -6,7 +6,7 @@ import 'package:warframe_drop_repository/warframe_drop_repository.dart';
 part 'drops_state.dart';
 
 class DropsCubit extends Cubit<DropsState> {
-  DropsCubit(this._repository) : super(DropsInitial());
+  new(this._repository) : super(DropsInitial());
 
   final WarframeDropRepository _repository;
 

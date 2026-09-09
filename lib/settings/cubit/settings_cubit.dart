@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:matomo_tracker/matomo_tracker.dart';
 import 'package:notification_repository/notification_repository.dart';
 import 'package:settings_repository/settings_repository.dart';
@@ -8,7 +8,7 @@ import 'package:settings_repository/settings_repository.dart';
 part 'settings_state.dart';
 
 class SettingsCubit extends Cubit<SettingsState> {
-  SettingsCubit(this._settings, this._notifications)
+  new(this._settings, this._notifications)
     : super(
         SettingsState(
           language: Locale(_settings.locale),

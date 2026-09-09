@@ -6,7 +6,7 @@ import 'package:warframe_common/warframe_common.dart';
 part 'relics_state.dart';
 
 class RelicsCubit extends Cubit<RelicsState> {
-  RelicsCubit(this._repository) : super(RelicsInitial());
+  new(this._repository) : super(RelicsInitial());
 
   final ItemsRepository _repository;
 

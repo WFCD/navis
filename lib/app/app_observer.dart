@@ -2,7 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:logging/logging.dart';
 
 class AppBlocObserver extends BlocObserver {
-  AppBlocObserver();
+  new();
 
   static final _logger = Logger('AppBlocObserver');
 

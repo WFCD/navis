@@ -1,7 +1,6 @@
-import 'package:black_hole_flutter/black_hole_flutter.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:navis/item_search/item_search.dart';
 import 'package:navis/items/items.dart';
 import 'package:navis/l10n/l10n.dart';
@@ -10,7 +9,7 @@ import 'package:navis_ui/navis_ui.dart';
 import 'package:warframe_common/warframe_common.dart';
 
 class ItemsSearchBar extends StatefulWidget {
-  const ItemsSearchBar({super.key, this.hintText, this.enableItemFilter = true, this.onChange, this.onSubmit});
+  const new({super.key, this.hintText, this.enableItemFilter = true, this.onChange, this.onSubmit});
 
   final String? hintText;
   final bool enableItemFilter;
@@ -57,7 +56,7 @@ class _ItemsSearchBarState extends State<ItemsSearchBar> {
           onChange: widget.onChange ?? (query) => context.read<SearchBloc>().add(ItemsSearchTextChanged(query)),
           onSubmit: widget.onSubmit ?? _onSubmitted,
           hintText: widget.hintText ?? context.l10n.codexHint,
-          backgroundColor: WidgetStatePropertyAll(context.theme.colorScheme.secondaryContainer),
+          backgroundColor: WidgetStatePropertyAll(ColorScheme.of(context).secondaryContainer),
           leading: Navigator.canPop(context)
               ? IconButton(icon: const Icon(Icons.arrow_back), onPressed: () => Navigator.pop(context))
               : null,
@@ -80,7 +79,7 @@ class _ItemsSearchBarState extends State<ItemsSearchBar> {
 }
 
 class _ItemTypePopupMenuButton extends StatelessWidget {
-  const _ItemTypePopupMenuButton();
+  const new();
 
   @override
   Widget build(BuildContext context) {
@@ -97,7 +96,7 @@ class _ItemTypePopupMenuButton extends StatelessWidget {
 }
 
 class _ItemResultsView extends StatelessWidget {
-  const _ItemResultsView();
+  const new();
 
   @override
   Widget build(BuildContext context) {

@@ -1,7 +1,7 @@
 part of 'synthtargets_cubit.dart';
 
 sealed class SynthtargetsState extends Equatable {
-  const SynthtargetsState();
+  const new();
 }
 
 class SynthtargetsInitial extends SynthtargetsState {
@@ -13,7 +13,7 @@ class SynthtargetsInitial extends SynthtargetsState {
 }
 
 class TargetsLocated extends SynthtargetsState {
-  const TargetsLocated(this.targets);
+  const new(this.targets);
 
   final List<SynthTarget> targets;
 

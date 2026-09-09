@@ -1,7 +1,6 @@
-import 'package:black_hole_flutter/black_hole_flutter.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_custom_tabs/flutter_custom_tabs.dart';
 import 'package:html/parser.dart';
+import 'package:material_ui/material_ui.dart';
 
 extension StringNx on String {
   String parseHtmlString() {
@@ -10,6 +9,7 @@ extension StringNx on String {
   }
 
   Future<void> launchLink(BuildContext context, {bool pop = false}) async {
+    final colorScheme = Theme.of(context).colorScheme;
     if (pop) Navigator.of(context).pop();
 
     try {
@@ -19,15 +19,15 @@ extension StringNx on String {
           urlBarHidingEnabled: true,
           showTitle: true,
           colorSchemes: CustomTabsColorSchemes.defaults(
-            toolbarColor: context.theme.colorScheme.surface,
+            toolbarColor: colorScheme.surface,
           ),
           closeButton: CustomTabsCloseButton(
             icon: CustomTabsCloseButtonIcons.back,
           ),
         ),
         safariVCOptions: SafariViewControllerOptions(
-          preferredBarTintColor: context.theme.colorScheme.surface,
-          preferredControlTintColor: context.theme.colorScheme.onSurface,
+          preferredBarTintColor: colorScheme.surface,
+          preferredControlTintColor: colorScheme.onSurface,
           barCollapsingEnabled: true,
           dismissButtonStyle: SafariViewControllerDismissButtonStyle.close,
         ),

@@ -1,12 +1,12 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:item_repository/items_repository.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:navis/home/home.dart';
 import 'package:navis/item_search/item_search.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+  const new({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +16,7 @@ class HomePage extends StatelessWidget {
 }
 
 class HomeView extends StatefulWidget {
-  const HomeView({super.key});
+  const new({super.key});
 
   @override
   State<HomeView> createState() => _HomeViewState();

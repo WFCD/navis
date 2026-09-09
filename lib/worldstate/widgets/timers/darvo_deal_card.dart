@@ -1,9 +1,8 @@
-import 'package:black_hole_flutter/black_hole_flutter.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:collection/collection.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:item_repository/items_repository.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:navis/items/items.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis/router/routes.dart';
@@ -15,7 +14,7 @@ import 'package:warframe_common/warframe_common.dart';
 typedef _StoreSales = ({List<DailyDeal> dailyDeals, List<FlashSale> flashSales});
 
 class DarvoDealCard extends StatelessWidget {
-  const DarvoDealCard({super.key});
+  const new({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +46,7 @@ class DarvoDealCard extends StatelessWidget {
                       Text('${context.l10n.saleEndsTitle}:'),
                       Gaps.gap16,
                       CountdownTimer(
-                        tooltip: context.materialLocalizations.formatFullDate(expiry),
+                        tooltip: MaterialLocalizations.of(context).formatFullDate(expiry),
                         expiry: expiry,
                         padding: const EdgeInsets.symmetric(horizontal: 4),
                         margin: EdgeInsets.zero,
@@ -59,7 +58,7 @@ class DarvoDealCard extends StatelessWidget {
                     color: inStock ? Colors.green : Colors.red,
                     padding: const EdgeInsets.symmetric(horizontal: 4),
                     margin: const EdgeInsets.only(top: 10),
-                    style: context.textTheme.bodyMedium?.copyWith(color: Colors.white),
+                    style: TextTheme.of(context).bodyMedium?.copyWith(color: Colors.white),
                   ),
                   if (deal != null)
                     BlocProvider(
@@ -85,7 +84,7 @@ class DarvoDealCard extends StatelessWidget {
 }
 
 class _DealWidget extends StatelessWidget {
-  const _DealWidget({required this.deal});
+  const new({required this.deal});
 
   final DailyDeal deal;
 
@@ -135,7 +134,7 @@ class _DealWidget extends StatelessWidget {
 }
 
 class _DarvoPlatTrailing extends StatelessWidget {
-  const _DarvoPlatTrailing({required this.salePrice, required this.originalPrice});
+  const new({required this.salePrice, required this.originalPrice});
 
   final int salePrice;
   final int originalPrice;
@@ -151,7 +150,7 @@ class _DarvoPlatTrailing extends StatelessWidget {
             width: 10,
             height: 2,
             margin: const EdgeInsets.only(left: 8, top: 18, right: 8),
-            color: context.theme.textTheme.bodyMedium?.color,
+            color: TextTheme.of(context).bodyMedium?.color,
           ),
           _DarvoPlatColumn(header: context.l10n.originalPriceTitle, value: originalPrice),
         ],
@@ -161,7 +160,7 @@ class _DarvoPlatTrailing extends StatelessWidget {
 }
 
 class _DarvoPlatColumn extends StatelessWidget {
-  const _DarvoPlatColumn({required this.header, required this.value});
+  const new({required this.header, required this.value});
 
   final String header;
   final int value;
@@ -169,7 +168,7 @@ class _DarvoPlatColumn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const stringPadding = 2;
-    final textTheme = context.textTheme;
+    final textTheme = TextTheme.of(context);
     final headerStyle = textTheme.labelSmall?.copyWith(fontWeight: FontWeight.w500);
     final valueStyle = textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.w800);
 

@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:navis/items/widgets/stats/damage.dart';
 import 'package:navis/items/widgets/stats/polarity.dart';
 import 'package:navis/items/widgets/stats/preinstalled_polarities.dart';
@@ -9,7 +9,7 @@ import 'package:navis_ui/navis_ui.dart';
 import 'package:warframe_common/warframe_common.dart' hide Polarity;
 
 class MeleeStats extends StatelessWidget {
-  const MeleeStats({super.key, required this.melee});
+  const new({super.key, required this.melee});
 
   final Melee melee;
 

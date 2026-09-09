@@ -5,7 +5,7 @@ import 'package:item_repository/items_repository.dart';
 part 'item_update_state.dart';
 
 class ItemUpdateCubit extends Cubit<ItemUpdateState> {
-  ItemUpdateCubit(this._repository) : super(ItemUpdateInitial());
+  new(this._repository) : super(ItemUpdateInitial());
 
   final ItemsRepository _repository;
 

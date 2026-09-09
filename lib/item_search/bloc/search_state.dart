@@ -1,7 +1,7 @@
 part of 'search_bloc.dart';
 
 sealed class SearchState extends Equatable {
-  const SearchState();
+  const new();
 
   @override
   List<Object?> get props => [];
@@ -18,7 +18,7 @@ final class SearchInProgress extends SearchState {
 }
 
 final class SearchSuccessful extends SearchState {
-  const SearchSuccessful(this.results);
+  const new(this.results);
 
   final List<WarframeItem> results;
 
@@ -30,7 +30,7 @@ final class SearchSuccessful extends SearchState {
 }
 
 final class SearchFailure extends SearchState {
-  const SearchFailure(this.query);
+  const new(this.query);
 
   final String query;
 

@@ -1,7 +1,7 @@
 import 'package:formz/formz.dart';
 
 class FeedbackForm with FormzMixin {
-  FeedbackForm({
+  new({
     EmailInput? email,
     FeedbackInput? feedback,
     this.status = FormzSubmissionStatus.initial,
@@ -42,9 +42,9 @@ extension EmailValidationExtension on EmailValidationError {
 }
 
 class EmailInput extends FormzInput<String, EmailValidationError> with FormzInputErrorCacheMixin {
-  EmailInput.pure([super.value = '']) : super.pure();
+  new pure([super.value = '']) : super.pure();
 
-  EmailInput.dirty([super.value = '']) : super.dirty();
+  new dirty([super.value = '']) : super.dirty();
 
   static final _emailRegExp = RegExp(
     r'^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$',
@@ -76,9 +76,9 @@ extension FeedbackValidationErrorEx on FeedbackValidationError {
 }
 
 class FeedbackInput extends FormzInput<String, FeedbackValidationError> with FormzInputErrorCacheMixin {
-  FeedbackInput.pure([super.value = '']) : super.pure();
+  new pure([super.value = '']) : super.pure();
 
-  FeedbackInput.dirty([super.value = '']) : super.dirty();
+  new dirty([super.value = '']) : super.dirty();
 
   @override
   FeedbackValidationError? validator(String value) {

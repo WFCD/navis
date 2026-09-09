@@ -8,7 +8,7 @@ part 'mastery_search_event.dart';
 part 'mastery_search_state.dart';
 
 class MasterySearchBloc extends Bloc<MasterySearchEvent, MasterySearchState> {
-  MasterySearchBloc(this._repository) : super(MasterySearchEmpty()) {
+  new(this._repository) : super(MasterySearchEmpty()) {
     on<MasterySearchTextChanged>(_searchMastery, transformer: _waitForUser());
     on<MasteryResultsFiltered>(_filterResults);
   }

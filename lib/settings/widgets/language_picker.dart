@@ -1,10 +1,10 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis/settings/settings.dart';
 
 class LanguagePicker extends StatelessWidget {
-  const LanguagePicker({super.key});
+  const new({super.key});
 
   static Future<void> showOptions(BuildContext context) {
     final settings = BlocProvider.of<SettingsCubit>(context);

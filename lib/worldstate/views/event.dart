@@ -1,19 +1,18 @@
-import 'package:black_hole_flutter/black_hole_flutter.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:matomo_tracker/matomo_tracker.dart';
 import 'package:navis/utils/utils.dart';
 import 'package:navis/worldstate/widgets/widgets.dart';
 import 'package:warframe_common/warframe_common.dart';
 
 class EventInformation extends StatelessWidget {
-  const EventInformation({required this.event, super.key});
+  const new({required this.event, super.key});
 
   final WorldEvent event;
 
   @override
   Widget build(BuildContext context) {
-    final height = (context.mediaQuery.size.height / 100) * 25;
+    final height = (MediaQuery.sizeOf(context).height / 100) * 25;
 
     return TraceableWidget(
       child: Scaffold(
@@ -25,15 +24,18 @@ class EventInformation extends StatelessWidget {
                 pinned: true,
                 expandedHeight: height,
                 backgroundColor: Theme.of(context).primaryColor,
-                iconTheme: context.theme.iconTheme.copyWith(color: Colors.white),
+                iconTheme: IconTheme.of(context).copyWith(color: Colors.white),
                 flexibleSpace: FlexibleSpaceBar(
-                  title: Text(event.description, style: context.textTheme.titleMedium?.copyWith(color: Colors.white)),
+                  title: Text(
+                    event.description,
+                    style: TextTheme.of(context).titleMedium?.copyWith(color: Colors.white),
+                  ),
                   background: CachedNetworkImage(
                     imageUrl: eventBackkgrounds[event.tag] ?? 'https://i.imgur.com/CNrsc7V.png',
                     fit: BoxFit.cover,
                     color: Theme.of(context).colorScheme.shadow.withValues(alpha: .5),
                     colorBlendMode: BlendMode.darken,
-                    memCacheHeight: (height * context.mediaQuery.devicePixelRatio).toInt(),
+                    memCacheHeight: (height * MediaQuery.devicePixelRatioOf(context)).toInt(),
                   ),
                 ),
               ),

@@ -1,6 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:logging/logging.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:matomo_tracker/matomo_tracker.dart' hide Level;
 import 'package:navis/app/app.dart';
 import 'package:navis/bootstrap.dart';
@@ -16,7 +16,6 @@ Future<void> main() async {
       option
         ..dsn = kDebugMode || kProfileMode ? '' : const String.fromEnvironment('SENTRY_DSN')
         ..enableDeduplication = true
-        ..enableLogs = true
         ..tracesSampleRate = sampleRate
         ..ignoreErrors = ['SocketException', 'ClientException']
         ..replay.sessionSampleRate = sampleRate

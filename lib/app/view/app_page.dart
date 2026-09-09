@@ -1,13 +1,13 @@
 import 'package:animations/animations.dart';
-import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:matomo_tracker/matomo_tracker.dart';
 import 'package:navis/app/widgets/state_listener.dart';
 import 'package:navis/app/widgets/widgets.dart';
 import 'package:navis/l10n/l10n.dart';
 
 class AppView extends StatelessWidget {
-  const AppView({required this.navigationShell, required this.children, super.key});
+  const new({required this.navigationShell, required this.children, super.key});
 
   final StatefulNavigationShell navigationShell;
   final List<Widget> children;

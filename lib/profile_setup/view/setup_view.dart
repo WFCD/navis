@@ -1,12 +1,12 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:navis/profile/profile.dart';
 import 'package:navis/profile_setup/cubit/profile_setup_cubit.dart';
 import 'package:navis/profile_setup/widgets/stepper.dart';
 import 'package:settings_repository/settings_repository.dart';
 
 class SetupView extends StatelessWidget {
-  const SetupView({super.key});
+  const new({super.key});
 
   static Future<void> openBottomSheet(BuildContext context) {
     final settings = context.read<SettingsRepository>();

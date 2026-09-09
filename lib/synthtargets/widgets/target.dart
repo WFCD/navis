@@ -1,8 +1,8 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:warframe_common/warframe_common.dart';
 
 class TargetInfo extends StatelessWidget {
-  const TargetInfo({super.key, required this.target});
+  const new({super.key, required this.target});
 
   final SynthTarget target;
 

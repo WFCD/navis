@@ -1,9 +1,8 @@
-import 'package:black_hole_flutter/black_hole_flutter.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:warframe_common/warframe_common.dart';
 
 class RelicRewardWidget extends StatelessWidget {
-  const RelicRewardWidget({super.key, required this.relic});
+  const new({super.key, required this.relic});
 
   final Relic relic;
 
@@ -22,7 +21,7 @@ class RelicRewardWidget extends StatelessWidget {
     return Column(
       children: rewards.map((r) {
         final color = _toColor(r.chance);
-        final titleStyle = context.theme.textTheme.titleSmall;
+        final titleStyle = TextTheme.of(context).titleSmall;
 
         return ListTile(
           contentPadding: EdgeInsets.zero,

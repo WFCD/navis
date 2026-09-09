@@ -1,7 +1,7 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 class NavigationIcon extends StatelessWidget {
-  const NavigationIcon({super.key, required this.activeIcon, required this.inactiveIcon, this.isActive = false});
+  const new({super.key, required this.activeIcon, required this.inactiveIcon, this.isActive = false});
 
   final Widget activeIcon;
   final Widget inactiveIcon;

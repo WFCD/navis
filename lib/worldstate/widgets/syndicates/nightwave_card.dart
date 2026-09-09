@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis/worldstate/worldstate.dart';
 import 'package:navis_ui/navis_ui.dart';
@@ -7,7 +7,7 @@ import 'package:warframe_common/warframe_common.dart' hide Syndicates;
 typedef OnTap = void Function();
 
 class NightwaveCard extends StatelessWidget {
-  const NightwaveCard({super.key, required this.nightwave, required this.onTap});
+  const new({super.key, required this.nightwave, required this.onTap});
 
   final Nightwave nightwave;
   final OnTap onTap;

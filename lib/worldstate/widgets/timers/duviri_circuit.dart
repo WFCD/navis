@@ -1,9 +1,8 @@
-import 'package:black_hole_flutter/black_hole_flutter.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:item_repository/items_repository.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:navis/items/items.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis/utils/string_extensions.dart';
@@ -13,7 +12,7 @@ import 'package:warframe_common/warframe_common.dart';
 import 'package:worldstate_repository/worldstate_repository.dart';
 
 class DuviriCircuit extends StatelessWidget {
-  const DuviriCircuit({super.key});
+  const new({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +44,7 @@ class DuviriCircuit extends StatelessWidget {
 }
 
 class CircuitResetTimer extends StatelessWidget {
-  const CircuitResetTimer({super.key, required this.expiry, required this.onTap});
+  const new({super.key, required this.expiry, required this.onTap});
 
   final DateTime expiry;
   final void Function() onTap;
@@ -65,7 +64,7 @@ class CircuitResetTimer extends StatelessWidget {
 }
 
 class CircuitChoiceTile extends StatelessWidget {
-  const CircuitChoiceTile({super.key, required this.choice});
+  const new({super.key, required this.choice});
 
   final CircuitChoice choice;
 
@@ -85,7 +84,8 @@ class CircuitChoiceTile extends StatelessWidget {
             padding: const EdgeInsets.symmetric(vertical: 4),
             child: Text(
               category,
-              style: context.textTheme.titleMedium?.copyWith(color: context.theme.colorScheme.secondary),
+              style: TextTheme.of(context).titleMedium
+                  ?.copyWith(color: Theme.of(context).colorScheme.onSecondaryContainer),
             ),
           ),
           ...choice.choices.map((c) {
@@ -106,7 +106,7 @@ class CircuitChoiceTile extends StatelessWidget {
 }
 
 class _CircuitPathTile extends StatelessWidget {
-  const _CircuitPathTile({required this.name});
+  const new({required this.name});
 
   final String name;
 

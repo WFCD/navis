@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 abstract class NavisThemes {
   static ColorScheme _defaultScheme(Brightness brightness) => ColorScheme.fromSeed(

@@ -1,9 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:navis_ui/gen/assets.gen.dart';
 
 class BackgroundImage extends StatelessWidget {
-  const BackgroundImage({
+  const new({
     super.key,
     this.imageUrl,
     this.padding = EdgeInsets.zero,
@@ -66,7 +66,7 @@ class BackgroundImage extends StatelessWidget {
 }
 
 class ImageContainer extends StatelessWidget {
-  const ImageContainer({
+  const new({
     super.key,
     required this.imageProvider,
     required this.padding,

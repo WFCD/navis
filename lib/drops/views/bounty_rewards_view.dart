@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:navis/drops/cubit/drops_cubit.dart';
 import 'package:navis/drops/widgets/bounty_stage.dart';
 import 'package:navis_ui/navis_ui.dart';
@@ -7,7 +7,7 @@ import 'package:warframe_common/warframe_common.dart' as common;
 import 'package:warframe_drop_repository/warframe_drop_repository.dart';
 
 class BountyRewardsView extends StatelessWidget {
-  const BountyRewardsView({super.key, this.controller, required this.bounty, required this.color});
+  const new({super.key, this.controller, required this.bounty, required this.color});
 
   final ScrollController? controller;
   final common.SyndicateBounty bounty;
@@ -23,7 +23,7 @@ class BountyRewardsView extends StatelessWidget {
 }
 
 class _BountRewardsList extends StatelessWidget {
-  const _BountRewardsList({this.controller, required this.color});
+  const new({this.controller, required this.color});
 
   final ScrollController? controller;
   final Color color;

@@ -11,7 +11,7 @@ part 'synthtargets_state.dart';
 enum SynthtargetsEvent { update }
 
 class SynthtargetsCubit extends Cubit<SynthtargetsState> with SafeBlocMixin {
-  SynthtargetsCubit() : super(SynthtargetsInitial());
+  new() : super(SynthtargetsInitial());
 
   Future<void> fetchSynthtargets(String locale) async {
     await safeEmit(() async {

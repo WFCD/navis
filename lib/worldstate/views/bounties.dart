@@ -1,11 +1,11 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:matomo_tracker/matomo_tracker.dart';
 import 'package:navis/worldstate/widgets/syndicates/syndicate_bounties.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:warframe_common/warframe_common.dart' hide Syndicates;
 
 class BountiesPage extends StatelessWidget {
-  const BountiesPage({required this.syndicate, super.key});
+  const new({required this.syndicate, super.key});
 
   final SyndicateMission syndicate;
 

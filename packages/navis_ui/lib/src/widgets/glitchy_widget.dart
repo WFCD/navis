@@ -2,7 +2,7 @@ import 'package:animated_glitch/animated_glitch.dart';
 import 'package:flutter/widgets.dart';
 
 class GlitchyWidget extends StatefulWidget {
-  const GlitchyWidget({super.key, required this.child});
+  const new({super.key, required this.child});
 
   final Widget child;
 

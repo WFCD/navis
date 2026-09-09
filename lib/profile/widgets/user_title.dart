@@ -1,11 +1,10 @@
-import 'package:black_hole_flutter/black_hole_flutter.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis_ui/navis_ui.dart' show WarframeIcons;
 import 'package:simple_icons/simple_icons.dart';
 
 class UserTitle extends StatelessWidget {
-  const UserTitle({super.key, required this.username, required this.rank});
+  const new({super.key, required this.username, required this.rank});
 
   final String username;
   final int rank;
@@ -33,7 +32,7 @@ class UserTitle extends StatelessWidget {
 }
 
 class _PlatformIcon extends StatelessWidget {
-  const _PlatformIcon({required this.platform});
+  const new({required this.platform});
 
   final String platform;
 
@@ -51,7 +50,7 @@ class _PlatformIcon extends StatelessWidget {
     // const swi = 'Nintendo Switch';
     const ios = 'Apple iOS';
 
-    final isDark = context.theme.isDark;
+    final isDark = Theme.brightnessOf(context) == .dark;
 
     // The offical brand guidline just white or black
     final steamColor = isDark ? Colors.white : Colors.black;

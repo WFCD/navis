@@ -1,7 +1,6 @@
-import 'package:black_hole_flutter/black_hole_flutter.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:item_repository/items_repository.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:navis/items/cubit/item_cubit.dart';
 import 'package:navis/items/widgets/widgets.dart';
 import 'package:navis/l10n/l10n.dart';
@@ -9,7 +8,7 @@ import 'package:navis_ui/navis_ui.dart';
 import 'package:warframe_common/warframe_common.dart' hide ItemNotFound;
 
 class ItemDetailPage extends StatelessWidget {
-  const ItemDetailPage({super.key, required this.item});
+  const new({super.key, required this.item});
 
   final WarframeItem item;
 
@@ -25,7 +24,7 @@ class ItemDetailPage extends StatelessWidget {
 }
 
 class ItemDetailView extends StatelessWidget {
-  const ItemDetailView({super.key, required this.item});
+  const new({super.key, required this.item});
 
   final WarframeItem item;
 
@@ -42,7 +41,7 @@ class ItemDetailView extends StatelessWidget {
   }
 
   double _calculateHeight(BuildContext context) {
-    final heightRatio = context.mediaQuery.size.height / 100;
+    final heightRatio = MediaQuery.sizeOf(context).height / 100;
     return heightRatio * 30;
   }
 

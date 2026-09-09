@@ -4,21 +4,21 @@ version: 1.0.0
 publish_to: none
 
 environment:
-  sdk: ^3.12.0
-  flutter: ^3.44.0
+  sdk: ^3.13.0
+  flutter: ^3.47.0
 
 resolution: workspace
 
 dependencies:
   animated_glitch: ^2.0.0+2
-  black_hole_flutter: ^1.0.1
-  cached_network_image: ^3.4.1
+  cached_network_image: ^4.0.0
   flutter:
     sdk: flutter
   flutter_custom_tabs: ^2.5.0
   gap: ^3.0.1
   html: ^0.15.6
   intl: ^0.20.2
+  material_ui: ^1.1.1
   meta: ^1.17.0
   visibility_detector: ^0.4.0+2
   warframe_common:

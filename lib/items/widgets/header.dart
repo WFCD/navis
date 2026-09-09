@@ -1,8 +1,7 @@
 import 'dart:math';
 
-import 'package:black_hole_flutter/black_hole_flutter.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis/utils/string_extensions.dart';
 import 'package:navis_ui/navis_ui.dart';
@@ -12,7 +11,7 @@ import 'package:warframe_common/warframe_common.dart';
 const _appBarHeight = 64.0;
 
 class ItemHeaderAppBar extends SliverPersistentHeaderDelegate {
-  const ItemHeaderAppBar({
+  const new({
     required this.item,
     required this.expandedHeight,
     this.pinTitle = false,
@@ -57,7 +56,7 @@ class ItemHeaderAppBar extends SliverPersistentHeaderDelegate {
               if (isVaulted)
                 TextButton(
                   onPressed: null,
-                  style: ButtonStyle(foregroundColor: WidgetStateProperty.all(context.theme.colorScheme.error)),
+                  style: ButtonStyle(foregroundColor: WidgetStateProperty.all(ColorScheme.of(context).error)),
                   child: Text(context.l10n.codexVaultedLabel),
                 ),
               if (wikiaUrl != null)
@@ -91,7 +90,7 @@ class ItemHeaderAppBar extends SliverPersistentHeaderDelegate {
 }
 
 class ItemHeader extends StatelessWidget {
-  const ItemHeader({
+  const new({
     super.key,
     required this.name,
     this.imageName,
@@ -104,7 +103,8 @@ class ItemHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = context.theme.colorScheme;
+    final colorScheme = ColorScheme.of(context);
+    final textTheme = TextTheme.of(context);
 
     return Card(
       color: colorScheme.secondaryContainer,
@@ -117,7 +117,7 @@ class ItemHeader extends StatelessWidget {
             Flexible(child: ItemAvatar(imageName: imageName)),
             Text(
               name,
-              style: context.textTheme.titleLarge,
+              style: textTheme.titleLarge,
               textAlign: TextAlign.center,
             ),
             if (description != null)
@@ -125,7 +125,7 @@ class ItemHeader extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
                 child: Text(
                   description!,
-                  style: context.textTheme.bodyMedium,
+                  style: textTheme.bodyMedium,
                   textAlign: TextAlign.center,
                 ),
               ),
@@ -137,7 +137,7 @@ class ItemHeader extends StatelessWidget {
 }
 
 class ItemAvatar extends StatelessWidget {
-  const ItemAvatar({super.key, required this.imageName});
+  const new({super.key, required this.imageName});
 
   final String? imageName;
 
@@ -150,7 +150,7 @@ class ItemAvatar extends StatelessWidget {
 
         return CircleAvatar(
           radius: radius,
-          backgroundColor: context.colorScheme.onSecondaryContainer,
+          backgroundColor: ColorScheme.of(context).onSecondaryContainer,
           foregroundImage: CachedNetworkImageProvider(
             imageName.warframeItemsCdn().optimize(
               width: (diameter * MediaQuery.devicePixelRatioOf(context)).round(),

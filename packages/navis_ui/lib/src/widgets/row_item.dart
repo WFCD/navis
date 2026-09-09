@@ -1,9 +1,8 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:material_ui/material_ui.dart';
 
 class RowItem extends StatelessWidget {
-  const RowItem({
+  const new({
     super.key,
     this.icons = const <Widget>[],
     required this.text,
@@ -11,7 +10,7 @@ class RowItem extends StatelessWidget {
     this.padding,
   });
 
-  factory RowItem.richText({
+  factory richText({
     required String title,
     required String richText,
     required Color color,

@@ -1,9 +1,9 @@
 import 'package:fish_data/fish_data.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:navis/explore/explore.dart';
 
 class FishDataView extends StatelessWidget {
-  const FishDataView({super.key, required this.region});
+  const new({super.key, required this.region});
 
   final FishingRegion region;
 

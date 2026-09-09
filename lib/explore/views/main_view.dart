@@ -1,10 +1,10 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis/router/routes.dart';
 import 'package:navis_ui/navis_ui.dart';
 
 class ExplorePage extends StatelessWidget {
-  const ExplorePage({super.key});
+  const new({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +13,7 @@ class ExplorePage extends StatelessWidget {
 }
 
 class ExploreView extends StatelessWidget {
-  const ExploreView({super.key});
+  const new({super.key});
 
   @override
   Widget build(BuildContext context) {

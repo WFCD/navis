@@ -8,7 +8,7 @@ import 'package:worldstate_repository/worldstate_repository.dart';
 part 'arbitration_state.dart';
 
 class ArbitrationCubit extends HydratedCubit<ArbitrationState> with SafeBlocMixin {
-  ArbitrationCubit(this.repo) : super(ArbitrationInitial());
+  new(this.repo) : super(ArbitrationInitial());
 
   final WorldstateRepository repo;
 

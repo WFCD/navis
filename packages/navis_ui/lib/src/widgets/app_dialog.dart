@@ -1,7 +1,7 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 class NavisDialog extends StatelessWidget {
-  const NavisDialog({
+  const new({
     super.key,
     this.title,
     this.contentPadding,

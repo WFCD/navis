@@ -10,7 +10,7 @@ part 'search_event.dart';
 part 'search_state.dart';
 
 class SearchBloc extends Bloc<SearchEvent, SearchState> {
-  SearchBloc(this._repository) : super(SearchEmpty()) {
+  new(this._repository) : super(SearchEmpty()) {
     on<ItemsSearchTextChanged>(_searchItems, transformer: _waitForUser());
     on<RelicSearchTextChanged>(_searchRelic, transformer: _waitForUser());
     on<ItemResultsFiltered>(_filterResults);

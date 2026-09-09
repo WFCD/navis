@@ -1,7 +1,7 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis/router/routes.dart';
 import 'package:navis/synthtargets/views/targets.dart';
@@ -14,7 +14,7 @@ import 'package:warframe_common/warframe_common.dart' hide Syndicates;
 typedef SyndicateData = ({List<SyndicateMission> jobs, Nightwave? nightwave, Calendar calendar});
 
 class SyndicatePage extends StatelessWidget {
-  const SyndicatePage({super.key});
+  const new({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +50,7 @@ class SyndicatePage extends StatelessWidget {
 }
 
 class _BuildSyndicates extends StatelessWidget {
-  const _BuildSyndicates({required this.syndicates, required this.onTap});
+  const new({required this.syndicates, required this.onTap});
 
   final List<SyndicateMission> syndicates;
   final void Function(SyndicateMission) onTap;
@@ -69,7 +69,7 @@ class _BuildSyndicates extends StatelessWidget {
 }
 
 class _SyndicateView extends StatefulWidget {
-  const _SyndicateView({required this.syndicates, this.nightwave, required this.calendar, this.isMobile = true});
+  const new({required this.syndicates, this.nightwave, required this.calendar, this.isMobile = true});
 
   final List<SyndicateMission> syndicates;
   final Nightwave? nightwave;

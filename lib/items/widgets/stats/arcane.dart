@@ -1,7 +1,6 @@
-import 'package:black_hole_flutter/black_hole_flutter.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:collection/collection.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:navis/gen/assets.gen.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis/utils/string_extensions.dart';
@@ -9,7 +8,7 @@ import 'package:navis_ui/navis_ui.dart';
 import 'package:warframe_common/warframe_common.dart';
 
 class ArcaneStats extends StatelessWidget {
-  const ArcaneStats({super.key, required this.arcane});
+  const new({super.key, required this.arcane});
 
   final Arcane arcane;
 
@@ -43,7 +42,7 @@ class ArcaneStats extends StatelessWidget {
 }
 
 class _ArcaneImage extends StatelessWidget {
-  const _ArcaneImage({required this.imageName, required this.rarity});
+  const new({required this.imageName, required this.rarity});
 
   final String imageName;
   final Rarity rarity;
@@ -81,7 +80,7 @@ class _ArcaneImage extends StatelessWidget {
 }
 
 class _ArcaneLevelTile extends StatelessWidget {
-  const _ArcaneLevelTile({required this.index, required this.level});
+  const new({required this.index, required this.level});
 
   final int index;
   final LevelStat level;
@@ -92,7 +91,8 @@ class _ArcaneLevelTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
-    final hintStyle = context.textTheme.bodySmall?.copyWith(color: context.colorScheme.primary);
+    final textTheme = TextTheme.of(context);
+    final hintStyle = textTheme.bodySmall?.copyWith(color: ColorScheme.of(context).primary);
 
     final title = index == 0 ? l10n.unrankedTitle : context.l10n.itemRankSubtitle(index);
     final requiredForNextRank = l10n.requiresForNextArcaneRank(_costForNextRank);
@@ -103,7 +103,7 @@ class _ArcaneLevelTile extends StatelessWidget {
       title: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(title, style: context.textTheme.titleMedium),
+          Text(title, style: textTheme.titleMedium),
           Column(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [

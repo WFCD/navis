@@ -1,8 +1,8 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:navis_ui/navis_ui.dart';
 
 class ViewLoading extends StatelessWidget {
-  const ViewLoading({super.key, required this.isLoading, required this.child});
+  const new({super.key, required this.isLoading, required this.child});
 
   final bool isLoading;
   final Widget child;

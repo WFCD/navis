@@ -1,7 +1,7 @@
 part of 'worldstate_bloc.dart';
 
 sealed class WorldState extends Equatable {
-  const WorldState();
+  const new();
 
   @override
   List<Object> get props => [];
@@ -13,7 +13,7 @@ final class WorldstateInitial extends WorldState {
 }
 
 final class WorldstateSuccess extends WorldState {
-  const WorldstateSuccess(this.seed);
+  const new(this.seed);
 
   final Worldstate seed;
 

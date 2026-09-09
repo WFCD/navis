@@ -1,9 +1,9 @@
-import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:navis/items/widgets/stats/polarity.dart';
 
 class PreinstalledPolarties extends StatelessWidget {
-  const PreinstalledPolarties({super.key, required this.polarities});
+  const new({super.key, required this.polarities});
 
   final List<String> polarities;
 

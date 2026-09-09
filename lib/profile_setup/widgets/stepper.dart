@@ -1,6 +1,5 @@
-import 'package:black_hole_flutter/black_hole_flutter.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis/profile/profile.dart';
 import 'package:navis/profile_setup/profile_setup.dart';
@@ -8,13 +7,13 @@ import 'package:navis_ui/navis_ui.dart';
 import 'package:warframe_api/warframe_api.dart';
 
 class InventoriaSetup extends StatelessWidget {
-  const InventoriaSetup({super.key, required this.currentStep});
+  const new({super.key, required this.currentStep});
 
   final int currentStep;
 
   @override
   Widget build(BuildContext context) {
-    final noteStyle = context.textTheme.labelMedium?.copyWith(color: Colors.grey[400]);
+    final noteStyle = TextTheme.of(context).labelMedium?.copyWith(color: Colors.grey[400]);
 
     return Stepper(
       currentStep: currentStep,
@@ -110,7 +109,7 @@ class InventoriaSetup extends StatelessWidget {
 }
 
 class _StepsControls extends StatelessWidget {
-  const _StepsControls(this.details);
+  const new(this.details);
 
   final ControlsDetails details;
 

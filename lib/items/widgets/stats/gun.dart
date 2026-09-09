@@ -1,11 +1,11 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:navis/items/items.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:warframe_common/warframe_common.dart';
 
 class GunStats extends StatelessWidget {
-  const GunStats({super.key, required this.gun});
+  const new({super.key, required this.gun});
 
   final Gun gun;
 

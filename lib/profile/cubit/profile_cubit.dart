@@ -9,7 +9,7 @@ import 'package:warframe_common/warframe_common.dart' hide ProfileNotFound;
 part 'profile_state.dart';
 
 class ProfileCubit extends Cubit<ProfileState> with SafeBlocMixin {
-  ProfileCubit(this._repo, this._settings) : super(ProfileInitial());
+  new(this._repo, this._settings) : super(ProfileInitial());
 
   final ProfileRepository _repo;
   final SettingsRepository _settings;

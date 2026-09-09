@@ -1,12 +1,10 @@
-import 'package:black_hole_flutter/black_hole_flutter.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:collection/collection.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:item_repository/items_repository.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:navis/items/items.dart';
-
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis/utils/string_extensions.dart';
 import 'package:navis/worldstate/bloc/worldstate_bloc.dart';
@@ -14,7 +12,7 @@ import 'package:navis_ui/navis_ui.dart';
 import 'package:warframe_common/warframe_common.dart';
 
 class AlertsCard extends StatelessWidget {
-  const AlertsCard({super.key});
+  const new({super.key});
 
   Widget _buildAlert(Alert alert) {
     final reward = alert.mission.reward.items?.firstOrNull;
@@ -44,7 +42,7 @@ class AlertsCard extends StatelessWidget {
 }
 
 class _AlertWidget extends StatelessWidget {
-  const _AlertWidget({required this.alert, this.isParent = true});
+  const new({required this.alert, this.isParent = true});
 
   final Alert alert;
   final bool isParent;
@@ -90,13 +88,16 @@ class _AlertWidget extends StatelessWidget {
 }
 
 class _AlertReward extends StatelessWidget {
-  const _AlertReward({required this.reward, this.item});
+  const new({required this.reward, this.item});
 
   final Reward reward;
   final WarframeItem? item;
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final textTheme = Theme.of(context).textTheme;
+    final bodyColor = theme.colorScheme.onSurfaceVariant;
     final rewardItem = reward.countedItems?.first;
 
     return ListTile(
@@ -111,12 +112,12 @@ class _AlertReward extends StatelessWidget {
       title: RichText(
         text: TextSpan(
           text: rewardItem != null ? '${rewardItem.count}x ${rewardItem.type}' : reward.items?.first ?? '',
-          style: context.theme.textTheme.titleMedium,
+          style: textTheme.titleMedium,
           children: [
             if (reward.credits != null)
               TextSpan(
                 text: ' + ${NumberFormat().format(reward.credits ?? 0)}cr',
-                style: context.textTheme.bodySmall?.copyWith(color: context.theme.colorScheme.onSurfaceVariant),
+                style: textTheme.bodySmall?.copyWith(color: bodyColor),
               ),
           ],
         ),
@@ -131,7 +132,7 @@ class _AlertReward extends StatelessWidget {
 }
 
 class _AlertItemReward extends StatelessWidget {
-  const _AlertItemReward({required this.reward});
+  const new({required this.reward});
 
   final Reward reward;
 

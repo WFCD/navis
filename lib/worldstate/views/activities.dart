@@ -1,6 +1,5 @@
-import 'package:black_hole_flutter/black_hole_flutter.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis/worldstate/bloc/worldstate_bloc.dart';
 import 'package:navis/worldstate/views/fissures.dart';
@@ -13,11 +12,11 @@ import 'package:worldstate_repository/worldstate_repository.dart';
 enum Tabs { timers, fissures, invasions, syndicates }
 
 class ActivitiesPage extends StatelessWidget {
-  const ActivitiesPage({super.key});
+  const new({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final locale = context.locale.languageCode;
+    final locale = Localizations.localeOf(context).languageCode;
     final repository = RepositoryProvider.of<WorldstateRepository>(context);
 
     return BlocProvider(create: (_) => WorldstateBloc(locale, repository), child: const _ActivitiesView());
@@ -25,7 +24,7 @@ class ActivitiesPage extends StatelessWidget {
 }
 
 class _ActivitiesView extends StatelessWidget {
-  const _ActivitiesView();
+  const new();
 
   String _getTabLocale(BuildContext context, Tabs name) {
     final l10n = context.l10n;
@@ -87,7 +86,7 @@ class _ActivitiesView extends StatelessWidget {
 }
 
 class _TabView extends StatelessWidget {
-  const _TabView({required this.tab});
+  const new({required this.tab});
 
   final Tabs tab;
 

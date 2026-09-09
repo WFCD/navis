@@ -1,13 +1,13 @@
 import 'package:flutter/gestures.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_settings_ui/flutter_settings_ui.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:package_info_plus/package_info_plus.dart';
+import 'package:settings_ui/settings_ui.dart';
 import 'package:simple_icons/simple_icons.dart';
 
 class AboutApp extends AbstractSettingsTile {
-  const AboutApp({super.key});
+  const new({super.key});
 
   static Future<void> displayDialog(BuildContext context) {
     return showDialog<void>(

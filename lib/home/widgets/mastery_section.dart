@@ -1,6 +1,5 @@
-import 'package:black_hole_flutter/black_hole_flutter.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:navis/home/widgets/section.dart';
 import 'package:navis/mastery/mastery.dart';
 import 'package:navis/profile/profile.dart';
@@ -10,7 +9,7 @@ import 'package:profile_repository/profile_repository.dart';
 import 'package:settings_repository/settings_repository.dart';
 
 class MasteryInProgressSection extends StatelessWidget {
-  const MasteryInProgressSection({super.key});
+  const new({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +33,7 @@ class MasteryInProgressSection extends StatelessWidget {
 }
 
 class MasteryInProgressContent extends StatelessWidget {
-  const MasteryInProgressContent({super.key});
+  const new({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +58,7 @@ class MasteryInProgressContent extends StatelessWidget {
 }
 
 class _MasteryInProgressEmpty extends StatelessWidget {
-  const _MasteryInProgressEmpty();
+  const new();
 
   @override
   Widget build(BuildContext context) {
@@ -72,7 +71,7 @@ class _MasteryInProgressEmpty extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Icon(WarframeIcons.menuWoundedInfestedCritter, size: 80),
-              Text('No Items in progress', style: context.textTheme.titleMedium),
+              Text('No Items in progress', style: TextTheme.of(context).titleMedium),
             ],
           ),
         ),
@@ -82,7 +81,7 @@ class _MasteryInProgressEmpty extends StatelessWidget {
 }
 
 class _MasteryInProgressQuickView extends StatelessWidget {
-  const _MasteryInProgressQuickView(this.items);
+  const new(this.items);
 
   final List<MasterableItem> items;
 

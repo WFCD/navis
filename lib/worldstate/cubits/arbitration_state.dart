@@ -1,7 +1,7 @@
 part of 'arbitration_cubit.dart';
 
 sealed class ArbitrationState extends Equatable {
-  const ArbitrationState();
+  const new();
 
   @override
   List<Object> get props => [];
@@ -13,7 +13,7 @@ final class ArbitrationInitial extends ArbitrationState {
 }
 
 final class ArbitrationActive extends ArbitrationState {
-  const ArbitrationActive({required this.arbitration});
+  const new({required this.arbitration});
 
   // ignore: experimental_member_use Good for now
   final Arbitration arbitration;

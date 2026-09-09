@@ -1,11 +1,11 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 const _toggleHeight = 40.0;
 
 typedef Segment = ({String label, Widget child});
 
 class SliverSegmentedBar extends SliverPersistentHeaderDelegate {
-  SliverSegmentedBar({required this.children, required this.onChange});
+  new({required this.children, required this.onChange});
 
   final List<Segment> children;
   final void Function(int) onChange;
@@ -42,7 +42,7 @@ class SliverSegmentedBar extends SliverPersistentHeaderDelegate {
 }
 
 class SegmentedBar extends StatefulWidget {
-  const SegmentedBar({super.key, required this.children, required this.onChange});
+  const new({super.key, required this.children, required this.onChange});
 
   final List<Segment> children;
   final void Function(int) onChange;

@@ -1,18 +1,18 @@
 part of 'relics_cubit.dart';
 
 sealed class RelicsState extends Equatable {
-  const RelicsState();
+  const new();
 
   @override
   List<Object> get props => [];
 }
 
-final class RelicsInitial extends RelicsState {}
+final class RelicsInitial extends RelicsState;
 
-final class RelicsLoading extends RelicsState {}
+final class RelicsLoading extends RelicsState;
 
 final class RelicsSuccessful extends RelicsState {
-  const RelicsSuccessful(this.relics);
+  const new(this.relics);
 
   final List<RelicSet> relics;
 

@@ -9,7 +9,7 @@ import 'package:warframe_api/warframe_api.dart';
 part 'profile_setup_state.dart';
 
 class ProfileSetupCubit extends Cubit<ProfileSetupState> {
-  ProfileSetupCubit(this._settings, [this.maxSteps = 3]) : super(const ProfileSetupState(0));
+  new(this._settings, [this.maxSteps = 3]) : super(const ProfileSetupState(0));
 
   final int maxSteps;
   final SettingsRepository _settings;

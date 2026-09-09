@@ -1,7 +1,7 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 class CategoryTitle extends StatelessWidget {
-  const CategoryTitle({
+  const new({
     super.key,
     required this.title,
     this.subtitle,
