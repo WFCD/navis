@@ -32,11 +32,10 @@ jobs:
 
           sed -i "s/^version: .*/version: ${new_version}/" pubspec.yaml
 
-        
       - name: Create Release
         if: steps.semantic.outputs.new_release_published == 'true'
         env:
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }} 
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
           RELEASE_NOTES: ${{ steps.semantic.outputs.new_release_notes}}
           NEW_RELEASE: ${{ steps.semantic.outputs.new_release_version }}
           PRERELEASE: ${{ contains(steps.semantic.outputs.new_release_channel, 'beta') }}
@@ -46,15 +45,11 @@ jobs:
           git add pubspec.yaml
           git commit -m "chore(release): $NEW_RELEASE [skip ci]" -m "$RELEASE_NOTES" --no-verify
 
-          git push
-
           # semantic-release creates a tag with the commit that triggerd the action so it needs to be moved
           git push origin :refs/tags/"v$NEW_RELEASE"
           git tag -f "v$NEW_RELEASE" "$(git rev-parse HEAD)"
-          git push --tags
-          
+
+          git push --follow-tags
+
           gh release create "v$NEW_RELEASE" --title "v$NEW_RELEASE" \
           --notes "$RELEASE_NOTES" $([ "$PRERELEASE" = "true" ] && echo "--prerelease")
-
-
-    
