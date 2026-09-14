@@ -1376,34 +1376,6 @@
       }
     }
   },
-  "inventoriaStepTwoTitle": "Iniciar sesión en el Warframe",
-  "@inventoriaStepTwoTitle": {
-    "description": "Inventoria step 2 title"
-  },
-  "inventoriaStepTwoDescription": "Para obtener tu ID de usuario necesitas asegurarte de que tu dispositivo esté conectado a Warframe, luego vuelve a esta pantalla.",
-  "@inventoriaStepTwoDescription": {
-    "description": "Inventoria step three description"
-  },
-  "inventoriaStepThreeTitle": "Obtener datos de usuario",
-  "@inventoriaStepThreeTitle": {
-    "description": "inventoria step four title"
-  },
-  "inventoriaStepThreeDescription": "Ahora copie y pegue la respuesta de este enlace en el campo de texto de abajo.",
-  "@inventoriaStepThreeDescription": {
-    "description": "Inventoria step four description"
-  },
-  "inventoriaStepThreeButtonLabel": "Obtener ID de usuario",
-  "@inventoriaStepThreeButtonLabel": {
-    "description": "Inventoria step three button label"
-  },
-  "inventoriaStepThreeTextLabel": "Salida JSON",
-  "@inventoriaStepThreeTextLabel": {
-    "description": "Inventoria step four text lable"
-  },
-  "inventoriaStepFourTitle": "Confirmar cuenta",
-  "@inventoriaStepFourTitle": {
-    "description": "Inventoria step four title"
-  },
   "maxRankTitle": "Rango Máximo",
   "@maxRankTitle": {
     "description": "Arcane max rank subtitle"
@@ -1441,5 +1413,9 @@
   "inventoriaInputError": "La entrada no tiene identificador de usuario. Por favor, asegúrese de haber iniciado sesión en warframe.com antes de intentarlo de nuevo",
   "@inventoriaInputError": {
     "description": "inventoria input error message"
+  },
+  "inventoriaProfileError": "Could not find requested account",
+  "@inventoriaProfileError": {
+    "description": "Error text when the profile is retrievable"
   }
 }
