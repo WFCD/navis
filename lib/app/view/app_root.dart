@@ -69,7 +69,10 @@ class NavisApp extends StatelessWidget {
           builder: _builder,
           supportedLocales: NavisLocalizations.supportedLocales,
           locale: language,
-          localizationsDelegates: NavisLocalizations.localizationsDelegates,
+          localizationsDelegates: const [
+            NavisLocalizations.delegate,
+            GlobalMaterialLocalizations.delegate,
+          ],
           localeResolutionCallback: (locale, supportedLocales) =>
               localeResolutionCallback(context, locale, supportedLocales),
         );

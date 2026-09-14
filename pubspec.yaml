@@ -29,7 +29,6 @@ dependencies:
   flutter_bloc: ^9.1.0
   flutter_localizations:
     sdk: flutter
-
   formz: ^0.8.1
   go_router: ^18.0.1
   hive_ce: ^2.19.3
@@ -42,7 +41,7 @@ dependencies:
   item_repository:
     path: packages/item_repository
   logging: ^1.3.0
-  material_ui: ^1.1.1
+  material_ui: ^1.2.0
   matomo_tracker: ^6.1.1
   navis_ui:
     path: packages/navis_ui
