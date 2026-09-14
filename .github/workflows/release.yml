@@ -49,7 +49,7 @@ jobs:
           git push origin :refs/tags/"v$NEW_RELEASE"
           git tag -f "v$NEW_RELEASE" "$(git rev-parse HEAD)"
 
-          git push --follow-tags
+          git push --atomic origin master "v$NEW_RELEASE"
 
           gh release create "v$NEW_RELEASE" --title "v$NEW_RELEASE" \
           --notes "$RELEASE_NOTES" $([ "$PRERELEASE" = "true" ] && echo "--prerelease")
