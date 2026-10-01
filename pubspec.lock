@@ -29,10 +29,10 @@ packages:
     dependency: transitive
     description:
       name: animated_glitch
-      sha256: "0e9dac2a8863f3a77861192d9f136062d1776e50a63ab8d2325f331bd2cd3f63"
+      sha256: ff7946c8f3401f018c7b94b04f6732f1bd7c145ffd8a974048ec89355765fa74
       url: "https://pub.dev"
     source: hosted
-    version: "2.0.0+2"
+    version: "3.0.0"
   animations:
     dependency: "direct main"
     description:
