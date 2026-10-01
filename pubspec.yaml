@@ -61,7 +61,7 @@ dependencies:
   sentry_logging: ^10.0.0-alpha.3
   settings_repository:
     path: packages/settings_repository
-  settings_ui: ^3.0.1
+  settings_ui: ^4.0.0
   simple_icons: ^16.23.0
   storage:
     path: packages/storage

@@ -3,7 +3,6 @@ import 'package:intl/intl.dart';
 import 'package:material_ui/material_ui.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis/profile/profile.dart';
-import 'package:navis/profile_setup/profile_setup.dart';
 import 'package:navis/settings/settings.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:settings_ui/settings_ui.dart';
@@ -41,100 +40,96 @@ class _SettingsView extends StatelessWidget {
       },
     );
 
-    // ignore: deprecated_member_use Temp
-    return MaterialUiCompatibilityBridge(
-      child: SettingsList(
-        platform: DevicePlatform.android,
-        lightTheme: theme,
-        darkTheme: theme,
-        brightness: Theme.brightnessOf(context),
-        sections: [
-          SettingsSection(
-            title: const Text('Inventoria'),
-            tiles: [
+    return SettingsList(
+      platform: DevicePlatform.android,
+      lightTheme: theme,
+      darkTheme: theme,
+      sections: [
+        SettingsSection(
+          title: const Text('Inventoria'),
+          tiles: [
+            if (profile != null)
               SettingsTile(
-                title: profile != null
-                    ? UserTitle(
-                        username: profile.username,
-                        rank: profile.masteryRank,
-                      )
-                    : Text(l10n.enterUsernameHintText),
-                onPressed: SetupView.openBottomSheet,
+                title: UserTitle(
+                  username: profile.username,
+                  rank: profile.masteryRank,
+                ),
+                // : Text(l10n.enterUsernameHintText),
+                onPressed: (_) {}, // SetupView.openBottomSheet,
               ),
-              SettingsTile(
-                title: const Text('Update Codex'),
-                onPressed: (context) async {},
-              ),
-            ],
-          ),
-          SettingsSection(
-            title: Text(l10n.behaviorTitle),
-            tiles: [
-              SettingsTile.navigation(
-                title: Text(l10n.appLangTitle),
-                description: Text(l10n.appLangDescription),
-                value: Text(Localizations.localeOf(context).fullName),
-                onPressed: LanguagePicker.showOptions,
-              ),
-              SettingsTile.navigation(
-                title: Text(l10n.themeTitle),
-                description: Text(l10n.themeDescription),
-                value: Text(toBeginningOfSentenceCase(settings.themeMode.name)),
-                onPressed: ThemePicker.showModes,
-              ),
+            SettingsTile(
+              title: const Text('Update Codex'),
+              onPressed: (context) async {},
+            ),
+          ],
+        ),
+        SettingsSection(
+          title: Text(l10n.behaviorTitle),
+          tiles: [
+            SettingsTile.navigation(
+              title: Text(l10n.appLangTitle),
+              description: Text(l10n.appLangDescription),
+              value: Text(Localizations.localeOf(context).fullName),
+              onPressed: LanguagePicker.showOptions,
+            ),
+            SettingsTile.navigation(
+              title: Text(l10n.themeTitle),
+              description: Text(l10n.themeDescription),
+              value: Text(toBeginningOfSentenceCase(settings.themeMode.name)),
+              onPressed: ThemePicker.showModes,
+            ),
+            SettingsTile.switchTile(
+              title: Text(l10n.optOutOfAnalyticsTitle),
+              description: Text(l10n.optOutOfAnalyticsDescription),
+              initialValue: settings.isOptOut,
+              onToggle: (b) => context.read<SettingsCubit>().updateAnalyticsOpt(b),
+            ),
+          ],
+        ),
+        SettingsSection(
+          title: Text(l10n.notificationsTitle),
+          tiles: [
+            for (final topic in filters.simpleFilters)
               SettingsTile.switchTile(
-                title: Text(l10n.optOutOfAnalyticsTitle),
-                description: Text(l10n.optOutOfAnalyticsDescription),
-                initialValue: settings.isOptOut,
-                onToggle: (b) => context.read<SettingsCubit>().updateAnalyticsOpt(b),
+                title: Text(topic.title),
+                description: Text(topic.description ?? ''),
+                initialValue: toggles[topic.value.name],
+                onToggle: (b) => context.read<SettingsCubit>().toggleFilter(topic.value.name, enable: b),
               ),
-            ],
-          ),
-          SettingsSection(
-            title: Text(l10n.notificationsTitle),
-            tiles: [
-              for (final topic in filters.simpleFilters)
-                SettingsTile.switchTile(
-                  title: Text(topic.title),
-                  description: Text(topic.description ?? ''),
-                  initialValue: toggles[topic.value.name],
-                  onToggle: (b) => context.read<SettingsCubit>().toggleFilter(topic.value.name, enable: b),
-                ),
-              for (final mt in filters.filtered)
-                SettingsTile.navigation(
-                  title: Text(mt.title),
-                  description: Text(mt.description),
-                  onPressed: (context) => FilterDialog.showFilters(context, mt.filters),
-                ),
-            ],
-          ),
-          SettingsSection(
-            title: Text(l10n.aboutCategoryTitle),
-            tiles: [
+            for (final mt in filters.filtered)
               SettingsTile.navigation(
-                title: Text(l10n.reportBugsTitle),
-                description: Text(l10n.reportBugsDescription),
-                onPressed: UserFeedback.show,
+                title: Text(mt.title),
+                description: Text(mt.description),
+                onPressed: (context) => FilterDialog.showFilters(context, mt.filters),
               ),
-              SettingsTile.navigation(
-                title: Text(l10n.contributeTranslationsTitle),
-                description: Text(l10n.contributeTranslationsDescription),
-                onPressed: (context) =>
-                    showModalBottomSheet<void>(context: context, builder: (context) => const _TranslationsSheet()),
-              ),
-              SettingsTile.navigation(
-                title: Text(l10n.supportTitle('').trim()),
-                description: Text(l10n.donationDescriptionText),
-                onPressed: SupportBottomSheet.showSheet,
-              ),
-              SettingsTile.navigation(
-                title: Text(l10n.aboutAppTitle),
-                onPressed: AboutApp.displayDialog,
-              ),
-            ],
-          ),
-        ],
-      ),
+          ],
+        ),
+        SettingsSection(
+          title: Text(l10n.aboutCategoryTitle),
+          tiles: [
+            SettingsTile.navigation(
+              title: Text(l10n.reportBugsTitle),
+              description: Text(l10n.reportBugsDescription),
+              onPressed: UserFeedback.show,
+            ),
+            SettingsTile.navigation(
+              title: Text(l10n.contributeTranslationsTitle),
+              description: Text(l10n.contributeTranslationsDescription),
+              onPressed: (context) =>
+                  showModalBottomSheet<void>(context: context, builder: (context) => const _TranslationsSheet()),
+            ),
+            SettingsTile.navigation(
+              title: Text(l10n.supportTitle('').trim()),
+              description: Text(l10n.donationDescriptionText),
+              onPressed: SupportBottomSheet.showSheet,
+            ),
+            SettingsTile.navigation(
+              title: Text(l10n.aboutAppTitle),
+              onPressed: AboutApp.displayDialog,
+            ),
+          ],
+        ),
+      ],
     );
   }
 }

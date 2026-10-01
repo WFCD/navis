@@ -1250,10 +1250,10 @@ packages:
     dependency: "direct main"
     description:
       name: settings_ui
-      sha256: "7437c9c867f331ff6c90e951f2333441eab5cf5e654c3a7f3e4aad0c01db51ef"
+      sha256: "6b3d1d4745a1e109e2342dda71a8613c7a240a2a9dc22cc0d020be21059013b2"
       url: "https://pub.dev"
     source: hosted
-    version: "3.0.1"
+    version: "4.0.1"
   shared_preferences:
     dependency: transitive
     description:
@@ -1730,11 +1730,11 @@ packages:
     dependency: transitive
     description:
       path: "packages/worldstate_models"
-      ref: "worldstate_models-v0.1.12+9"
-      resolved-ref: "777302c71f94769d1aa05b35e18502abdda7b441"
+      ref: "worldstate_models-v0.1.13+10"
+      resolved-ref: a14d50cef9e8459b37004c543d2b3d3b82efaea8
       url: "https://github.com/SlayerOrnstein/wfcd_dart.git"
     source: git
-    version: "0.1.12+9"
+    version: "0.1.13+10"
   xdg_directories:
     dependency: transitive
     description:
