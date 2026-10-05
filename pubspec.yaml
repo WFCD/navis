@@ -31,7 +31,7 @@ dependencies:
     sdk: flutter
   formz: ^0.8.1
   go_router: ^18.0.1
-  hive_ce: ^2.19.3
+  hive_ce: ^2.20.1
   hive_ce_flutter: ^2.3.4
   http_client:
     path: packages/http_client

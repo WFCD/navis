@@ -15,7 +15,7 @@ dependencies:
   # cupertino_http: ^2.3.0
   flutter:
     sdk: flutter
-  hive_ce: ^2.19.3
+  hive_ce: ^2.20.1
   http: ^1.6.0
   meta: ^1.17.0
   path_provider: ^2.1.6
