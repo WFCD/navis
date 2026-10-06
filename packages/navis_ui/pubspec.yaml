@@ -18,7 +18,7 @@ dependencies:
   gap: ^3.0.1
   html: ^0.15.6
   intl: ^0.20.2
-  material_ui: ^1.1.1
+  material_ui: ^1.5.0
   meta: ^1.17.0
   visibility_detector: ^0.4.0+2
   warframe_common:

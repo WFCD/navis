@@ -41,7 +41,7 @@ dependencies:
   item_repository:
     path: packages/item_repository
   logging: ^1.3.0
-  material_ui: ^1.2.0
+  material_ui: ^1.5.0
   matomo_tracker: ^6.1.1
   navis_ui:
     path: packages/navis_ui
