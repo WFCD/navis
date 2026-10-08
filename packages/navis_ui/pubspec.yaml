@@ -11,7 +11,7 @@ resolution: workspace
 
 dependencies:
   animated_glitch: ^2.0.0+2
-  cached_network_image: ^4.0.0
+  cached_network_image: ^4.0.4
   flutter:
     sdk: flutter
   flutter_custom_tabs: ^2.5.0
