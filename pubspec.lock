@@ -1145,11 +1145,11 @@ packages:
     dependency: transitive
     description:
       path: "packages/profile_models"
-      ref: "profile_models-v0.1.4+26"
-      resolved-ref: d7cc557adedb2eadc8f2d91862114741e7e63f1a
+      ref: "profile_models-v0.1.5+27"
+      resolved-ref: "214e19972e55b7b2e2e0777aeaa40c2d45db65a1"
       url: "https://github.com/SlayerOrnstein/wfcd_dart.git"
     source: git
-    version: "0.1.4+26"
+    version: "0.1.5+27"
   properties:
     dependency: transitive
     description:
@@ -1649,11 +1649,11 @@ packages:
     dependency: transitive
     description:
       path: "packages/warframe_worldstate_data"
-      ref: "warframe_worldstate_data-v0.1.4+15"
-      resolved-ref: "03e274f87b62b10640f35a1336956302a9038089"
+      ref: "warframe_worldstate_data-v0.1.5+16"
+      resolved-ref: "214e19972e55b7b2e2e0777aeaa40c2d45db65a1"
       url: "https://github.com/SlayerOrnstein/wfcd_dart.git"
     source: git
-    version: "0.1.4+15"
+    version: "0.1.5+16"
   warframestat_client:
     dependency: transitive
     description:
@@ -1730,11 +1730,11 @@ packages:
     dependency: transitive
     description:
       path: "packages/worldstate_models"
-      ref: "worldstate_models-v0.1.13+10"
-      resolved-ref: a14d50cef9e8459b37004c543d2b3d3b82efaea8
+      ref: "worldstate_models-v0.1.14+11"
+      resolved-ref: "214e19972e55b7b2e2e0777aeaa40c2d45db65a1"
       url: "https://github.com/SlayerOrnstein/wfcd_dart.git"
     source: git
-    version: "0.1.13+10"
+    version: "0.1.14+11"
   xdg_directories:
     dependency: transitive
     description:

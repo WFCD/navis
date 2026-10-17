@@ -6,4 +6,5 @@ const eventBackkgrounds = <String, String>{
   'GhoulEmergence': 'https://wiki.warframe.com/images/Ghoul_Purge.png?5a862',
   '12MinWarEvent': 'https://www-static.warframe.com/uploads/thumbnails/6f75399793114eee969c91be892ba8f8_1600x900.png',
   'WaterFight': 'https://wiki.warframe.com/images/Dog_Days.jpg',
+  'RoadToTauEvent': 'https://www-static.warframe.com/uploads/thumbnails/d4940c6cab0ad90994427983cc628371_1600x900.jpg',
 };
