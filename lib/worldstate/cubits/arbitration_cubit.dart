@@ -13,6 +13,8 @@ class ArbitrationCubit extends HydratedCubit<ArbitrationState> with SafeBlocMixi
   final WorldstateRepository repo;
 
   Future<void> fetchArbitrations(String locale) async {
+    if (state case ArbitrationActive(:final arbitration) when arbitration.expiry.isAfter(DateTime.timestamp())) return;
+
     await safeEmit(
       () async {
         final arbit = await ConnectionManager.call(() => repo.fetchArbitration(locale));
@@ -34,7 +36,6 @@ class ArbitrationCubit extends HydratedCubit<ArbitrationState> with SafeBlocMixi
   @override
   Map<String, dynamic>? toJson(ArbitrationState state) {
     if (state is! ArbitrationActive) return null;
-
     return state.arbitration.toJson();
   }
 

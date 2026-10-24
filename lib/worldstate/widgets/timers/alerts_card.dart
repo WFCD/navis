@@ -93,20 +93,21 @@ class _AlertReward extends StatelessWidget {
   final Reward reward;
   final WarframeItem? item;
 
+  static final _numberFormat = NumberFormat();
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final textTheme = Theme.of(context).textTheme;
+    final textTheme = theme.textTheme;
     final bodyColor = theme.colorScheme.onSurfaceVariant;
     final rewardItem = reward.countedItems?.first;
+    final itemImage = item?.imageName.warframeItemsCdn().optimize(pixelRatio: MediaQuery.devicePixelRatioOf(context));
 
     return ListTile(
       leading: item != null
           ? CircleAvatar(
               radius: 25,
-              foregroundImage: CachedNetworkImageProvider(
-                item!.imageName.warframeItemsCdn().optimize(pixelRatio: MediaQuery.devicePixelRatioOf(context)),
-              ),
+              foregroundImage: CachedNetworkImageProvider(itemImage!),
             )
           : null,
       title: RichText(
@@ -116,7 +117,7 @@ class _AlertReward extends StatelessWidget {
           children: [
             if (reward.credits != null)
               TextSpan(
-                text: ' + ${NumberFormat().format(reward.credits ?? 0)}cr',
+                text: ' + ${_numberFormat.format(reward.credits ?? 0)}cr',
                 style: textTheme.bodySmall?.copyWith(color: bodyColor),
               ),
           ],

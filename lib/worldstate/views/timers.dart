@@ -30,8 +30,7 @@ class _MobileTimers extends StatelessWidget {
           isLoading: worldstate == null,
           child: ListView(
             scrollCacheExtent: const ScrollCacheExtent.pixels(500),
-            key: const PageStorageKey('timers'),
-            shrinkWrap: true,
+            restorationId: 'timers',
             children: [
               const DailyReward(),
               const BaroKiTeerCard(),
