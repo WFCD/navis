@@ -10,7 +10,7 @@ environment:
 resolution: workspace
 
 dependencies:
-  animated_glitch: ^2.0.0+2
+  animated_glitch: ^3.0.0
   cached_network_image: ^4.0.4
   flutter:
     sdk: flutter
@@ -30,8 +30,6 @@ flutter:
   uses-material-design: true
   assets:
     - assets/Derelict.webp
-  shaders:
-    - "packages/animated_glitch/shader/glitch.frag"
 
 flutter_gen:
   assets:
