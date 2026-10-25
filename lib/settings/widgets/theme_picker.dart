@@ -1,3 +1,4 @@
+import 'package:animations/animations.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:material_ui/material_ui.dart';
 import 'package:navis/l10n/l10n.dart';
@@ -7,16 +8,12 @@ class ThemePicker extends StatelessWidget {
   const new({super.key});
 
   static Future<void> showModes(BuildContext context) {
-    return showDialog<void>(
+    return showModal<void>(
       context: context,
       builder: (_) {
         return BlocProvider.value(
           value: BlocProvider.of<SettingsCubit>(context),
-          child: Localizations(
-            locale: Localizations.localeOf(context),
-            delegates: NavisLocalizations.localizationsDelegates,
-            child: const ThemePicker(),
-          ),
+          child: const ThemePicker(),
         );
       },
     );
@@ -56,13 +53,17 @@ class ThemePicker extends StatelessWidget {
             value: ThemeMode.system,
             activeColor: accentColor,
           ),
-          OverflowBar(
-            children: [
-              TextButton(
-                onPressed: () => Navigator.of(context).pop(),
-                child: Text(MaterialLocalizations.of(context).cancelButtonLabel),
-              ),
-            ],
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8),
+            child: OverflowBar(
+              alignment: .end,
+              children: [
+                TextButton(
+                  onPressed: () => Navigator.of(context).pop(),
+                  child: Text(MaterialLocalizations.of(context).cancelButtonLabel),
+                ),
+              ],
+            ),
           ),
         ],
       ),

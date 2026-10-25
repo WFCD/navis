@@ -26,7 +26,8 @@ class _SettingsView extends StatelessWidget {
     final colorScheme = ColorScheme.of(context);
     final theme = SettingsThemeData(
       titleTextColor: colorScheme.primary,
-      settingsListBackground: Theme.of(context).scaffoldBackgroundColor,
+      settingsListBackground: colorScheme.surface,
+      settingsSectionBackground: colorScheme.surface,
     );
 
     final filters = NotificationTopics(context.l10n);
