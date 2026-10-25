@@ -7,6 +7,7 @@ import 'package:http/io_client.dart';
 import 'package:http/retry.dart';
 
 const int cacheMaxSize = 2 * 1024 * 1024;
+const String _userAgent = 'cephalon-navis (https://github.com/WFCD/navis)';
 
 Future<Client> buildNativeClient() async {
   Client? httpClient;
@@ -22,14 +23,9 @@ Future<Client> buildNativeClient() async {
   // }
 
   if (Platform.isAndroid) {
-    final engine = CronetEngine.build(
-      cacheMode: CacheMode.memory,
-      cacheMaxSize: cacheMaxSize,
-      enableBrotli: true
-    );
-
-    httpClient = CronetClient.fromCronetEngine(engine, closeEngine: true);
+    final engine = CronetEngine.build(cacheMode: CacheMode.memory, cacheMaxSize: cacheMaxSize, userAgent: _userAgent);
+    httpClient = CronetClient.fromCronetEngine(engine);
   }
 
-  return RetryClient(httpClient ?? IOClient(HttpClient()));
+  return RetryClient(httpClient ?? IOClient(HttpClient()..userAgent = _userAgent));
 }
