@@ -7,36 +7,22 @@ import 'package:material_ui/material_ui.dart';
 import 'package:navis/items/items.dart';
 import 'package:navis/l10n/l10n.dart';
 import 'package:navis/utils/string_extensions.dart';
-import 'package:navis/worldstate/bloc/worldstate_bloc.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:warframe_common/warframe_common.dart';
 
-class AlertsCard extends StatelessWidget {
-  const new({super.key});
+class AlertCard extends StatelessWidget {
+  const new({super.key, required this.alert});
 
-  Widget _buildAlert(Alert alert) {
+  final Alert alert;
+
+  @override
+  Widget build(BuildContext context) {
     final reward = alert.mission.reward.items?.firstOrNull;
     if (reward == null) return _AlertWidget(alert: alert, isParent: false);
 
     return BlocProvider(
       create: (context) => ItemCubit(context.read<ItemsRepository>())..fetchByName(reward),
       child: _AlertWidget(alert: alert),
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocSelector<WorldstateBloc, WorldState, List<Alert>>(
-      selector: (state) => switch (state) {
-        WorldstateSuccess(:final seed) => seed.alerts,
-        _ => <Alert>[],
-      },
-      builder: (context, alerts) {
-        return Column(
-          mainAxisSize: MainAxisSize.min,
-          children: alerts.map(_buildAlert).toList(),
-        );
-      },
     );
   }
 }
@@ -62,7 +48,8 @@ class _AlertWidget extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(8),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: .start,
+          mainAxisSize: .min,
           children: <Widget>[
             ListTile(
               title: Row(

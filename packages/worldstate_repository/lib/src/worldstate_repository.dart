@@ -52,20 +52,28 @@ class WorldstateRepository {
     final cached = await _cache.get<List<dynamic>>('${_arbitrationCacheKey}_$locale');
     if (cached != null) {
       return await Isolate.run(() {
-        // ignore: experimental_member_use Its in a controlled environment
-        final arbis = List<Map<String, dynamic>>.from(cached).map(Arbitration.fromJson).toList();
-        return arbis.current;
+        final timestamp = DateTime.timestamp();
+
+        for (final j in List<Map<String, dynamic>>.from(cached)) {
+          final activation = DateTime.parse(j['activation'] as String);
+          final expiry = DateTime.parse(j['expiry'] as String);
+
+          if (timestamp.isAfter(activation) && timestamp.isBefore(expiry)) {
+            // ignore: experimental_member_use Its in a controlled environment
+            return Arbitration.fromJson(j);
+          }
+        }
+
+        throw Exception('No Arbitration found');
       });
     }
 
     final lang = WorldstateDataLocale.values.byName(locale);
-    final timestamp = DateTime.timestamp();
     final raw = await _arbiApi.fetchArbis();
     final arbis = _parseArbitrations(raw, lang);
-    final ttl = timestamp.difference(arbis.last.expiry);
-    await _cache.set(_arbitrationCacheKey, arbis.map((i) => i.toJson()).toList(), ttl: ttl);
+    await _cache.set(_arbitrationCacheKey, arbis.map((i) => i.toJson()).toList(), ttl: const Duration(days: 365));
 
-    return arbis.firstWhere((i) => timestamp.isAfter(i.activation) && timestamp.isBefore(i.expiry));
+    return arbis.first;
   }
 
   // ignore: experimental_member_use Its in a controlled environment

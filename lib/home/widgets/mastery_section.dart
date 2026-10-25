@@ -88,9 +88,7 @@ class _MasteryInProgressQuickView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: [
-        for (final i in items.inProgress.take(5)) MasteryItemTile(masterableItem: i, enableCard: false),
-      ],
+      children: items.inProgress.take(5).map((i) => MasteryItemTile(masterableItem: i, enableCard: false)).toList(),
     );
   }
 }

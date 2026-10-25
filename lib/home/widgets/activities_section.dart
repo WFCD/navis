@@ -43,7 +43,7 @@ class _ActivitiesContent extends StatelessWidget {
             children: [
               const DailyReward(),
               if (activities?.events.isNotEmpty ?? false) const EventCard(),
-              if (activities?.alerts.isNotEmpty ?? false) const AlertsCard(),
+              if (activities?.alerts.isNotEmpty ?? false) ...activities!.alerts.map((i) => AlertCard(alert: i)),
             ],
           ),
         );

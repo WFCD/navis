@@ -39,7 +39,7 @@ class _MobileTimers extends StatelessWidget {
               const ArbitrationCard(),
               // if (state.outpostDetected) const SentientOutpostCard(),
               const SteelPathCard(),
-              if (worldstate?.alerts.isNotEmpty ?? false) const AlertsCard(),
+              if (worldstate?.alerts.isNotEmpty ?? false) ...worldstate!.alerts.map((i) => AlertCard(alert: i)),
               const CycleCard(),
               const DuviriCircuit(),
               if (worldstate?.archimedeas.isNotEmpty ?? false) const ArchimedeaCard(),
