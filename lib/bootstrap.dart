@@ -62,6 +62,8 @@ Future<void> bootstrap(BootstrapBuilder builder) async {
   final profileRepository = ProfileRepository(warframeApi, cacheManager, itemStore);
   final warframeDropRepository = WarframeDropRepository(warframeApi, cacheManager);
 
+  await worldstateRepository.buildArbitrationCache(settingsRepository.locale);
+
   runApp(
     AppBootstrap(
       routeObserver: routeObserver,

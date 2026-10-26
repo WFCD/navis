@@ -3,7 +3,6 @@ import 'dart:isolate';
 
 import 'package:arbi_api/arbi_api.dart';
 import 'package:cache/cache.dart';
-import 'package:crypto/crypto.dart';
 import 'package:warframe_api/warframe_api.dart';
 import 'package:warframe_common/warframe_common.dart';
 import 'package:worldstate_repository/src/utils/utils.dart';
@@ -34,12 +33,18 @@ class WorldstateRepository {
     if (cached != null) return await Isolate.run(() => Worldstate.fromMap(cached));
 
     final data = await _api.fetchWorldstateBytes();
+    final arby = await _fetchArbitration(locale);
+
     final worldstate = await Isolate.run(() {
       final json = utf8.decoder.fuse(const JsonDecoder()).convert(data)! as Map<String, dynamic>;
       final raw = RawWorldstate.fromMap(json);
       final deps = Dependency(locale: WorldstateDataLocale.values.byName(locale));
+      var worldstate = raw.toWorldstate(deps);
+      if (arby != null) {
+        worldstate = worldstate.copyWith(arbitration: Arbitration.fromWF(arby, deps));
+      }
 
-      return raw.toWorldstate(deps)..clean();
+      return worldstate..clean();
     });
 
     await _cache.set(key, worldstate.toMap(), ttl: _refreshTime);
@@ -47,39 +52,49 @@ class WorldstateRepository {
     return worldstate;
   }
 
-  // ignore: experimental_member_use Its in a controlled environment
-  Future<Arbitration> fetchArbitration(String locale) async {
+  Future<Map<String, dynamic>?> _fetchArbitration(String locale) async {
+    final timestamp = DateTime.timestamp();
+    final activeKey = '${_arbitrationCacheKey}_${locale}_active';
+
+    bool isActive(String activation, String expiry) {
+      final start = DateTime.parse(activation);
+      final end = DateTime.parse(expiry);
+      return timestamp.isAfter(start) && timestamp.isBefore(end) || timestamp.isAtSameMomentAs(start);
+    }
+
+    final current = await _cache.get<Map<String, dynamic>>(activeKey);
+    if (current != null) {
+      final active = isActive(current['activation'] as String, current['expiry'] as String);
+      if (active) return current;
+    }
+
     final cached = await _cache.get<List<dynamic>>('${_arbitrationCacheKey}_$locale');
     if (cached != null) {
-      return await Isolate.run(() {
-        final timestamp = DateTime.timestamp();
-
-        for (final j in List<Map<String, dynamic>>.from(cached)) {
-          final activation = DateTime.parse(j['activation'] as String);
-          final expiry = DateTime.parse(j['expiry'] as String);
-
-          if (timestamp.isAfter(activation) && timestamp.isBefore(expiry)) {
-            // ignore: experimental_member_use Its in a controlled environment
-            return Arbitration.fromJson(j);
-          }
+      for (final j in List<Map<String, dynamic>>.from(cached)) {
+        final active = isActive(j['activation'] as String, j['expiry'] as String);
+        if (active) {
+          await _cache.set(activeKey, j);
+          return j;
         }
-
-        throw Exception('No Arbitration found');
-      });
+      }
     }
+
+    return null;
+  }
+
+  Future<void> buildArbitrationCache(String locale) async {
+    final key = '${_arbitrationCacheKey}_$locale';
+    final cached = await _cache.get<List<dynamic>>(key);
+    if (cached != null) return;
 
     final lang = WorldstateDataLocale.values.byName(locale);
     final raw = await _arbiApi.fetchArbis();
     final arbis = _parseArbitrations(raw, lang);
-    await _cache.set(_arbitrationCacheKey, arbis.map((i) => i.toJson()).toList(), ttl: const Duration(days: 365));
-
-    return arbis.first;
+    await _cache.set(key, arbis.toList(), ttl: const Duration(days: 365));
   }
 
-  // ignore: experimental_member_use Its in a controlled environment
-  Iterable<Arbitration> _parseArbitrations(String csv, [WorldstateDataLocale locale = .en]) sync* {
+  Iterable<Map<String, dynamic>> _parseArbitrations(String csv, [WorldstateDataLocale locale = .en]) sync* {
     final timestamp = DateTime.timestamp();
-    final nodes = solNodes(locale);
     final lines = const LineSplitter().convert(csv);
 
     for (final line in lines) {
@@ -89,21 +104,7 @@ class WorldstateRepository {
 
       if (timestamp.isAfter(expiry)) continue;
 
-      final node = nodes.fetchNode(key);
-      // ignore: experimental_member_use See above
-      yield Arbitration(
-        id: md5.convert(utf8.encode(line)).toString(),
-        activation: activation,
-        expiry: expiry,
-        node: node.name,
-        nodeKey: key,
-        enemy: node.enemy,
-        type: node.type ?? key,
-        typeKey: key,
-        archwing: false,
-        sharkwing: false,
-        expired: timestamp.isAfter(expiry),
-      );
+      yield {'activation': activation.toIso8601String(), 'expiry': expiry.toIso8601String(), 'key': key};
     }
   }
 }

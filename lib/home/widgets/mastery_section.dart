@@ -6,27 +6,21 @@ import 'package:navis/profile/profile.dart';
 import 'package:navis/router/routes.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:profile_repository/profile_repository.dart';
-import 'package:settings_repository/settings_repository.dart';
+import 'package:warframe_common/warframe_common.dart';
 
 class MasteryInProgressSection extends StatelessWidget {
   const new({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocSelector<ProfileCubit, ProfileState, ProfileSuccessful?>(
-      selector: (state) {
-        if (state is ProfileSuccessful) return state;
-        return null;
+    return BlocSelector<ProfileCubit, ProfileState, Profile?>(
+      selector: (state) => switch (state) {
+        ProfileSuccessful(:final profile) => profile,
+        _ => null,
       },
       builder: (context, state) {
         if (state == null) return const SizedBox.shrink();
-        final profile = context.read<ProfileRepository>();
-        final settings = context.read<SettingsRepository>();
-
-        return BlocProvider(
-          create: (_) => ProfileCubit(profile, settings)..refreshProfile(),
-          child: const MasteryInProgressContent(),
-        );
+        return const MasteryInProgressContent();
       },
     );
   }
@@ -45,7 +39,6 @@ class MasteryInProgressContent extends StatelessWidget {
           const padding = EdgeInsets.symmetric(vertical: 16);
 
           return switch (state) {
-            ProfileInitial() => const SizedBox.shrink(),
             ProfileUpdating() => const Padding(padding: padding, child: WarframeSpinner(size: 100)),
             ProfileSuccessful(:final xpInfo) when xpInfo.list.isEmpty => const _MasteryInProgressEmpty(),
             ProfileSuccessful(:final xpInfo) when xpInfo.list.isNotEmpty => _MasteryInProgressQuickView(xpInfo.list),

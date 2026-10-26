@@ -14,20 +14,20 @@ dependencies:
     git:
       url: https://github.com/SlayerOrnstein/wfcd_dart.git
       path: packages/profile_models
-      ref: profile_models-v0.1.5+27
+      ref: profile_models-v0.1.6+28
   warframe_drop_data:
     git:
       url: https://github.com/SlayerOrnstein/wfcd_dart.git
       path: packages/warframe_drop_data
-      ref: warframe_drop_data-v0.1.9+3
+      ref: warframe_drop_data-v0.1.10+4
   warframe_worldstate_data:
     git:
       url: https://github.com/SlayerOrnstein/wfcd_dart.git
       path: packages/warframe_worldstate_data
-      ref: warframe_worldstate_data-v0.1.5+16
+      ref: warframe_worldstate_data-v0.1.6+17
   warframestat_client: ^5.5.1
   worldstate_models:
     git:
       url: https://github.com/SlayerOrnstein/wfcd_dart.git
       path: packages/worldstate_models
-      ref: worldstate_models-v0.1.14+11
+      ref: worldstate_models-v0.1.17+14

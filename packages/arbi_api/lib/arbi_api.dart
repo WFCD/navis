@@ -2,4 +2,3 @@
 library;
 
 export 'src/arbi_api.dart';
-export 'src/extensions.dart';
