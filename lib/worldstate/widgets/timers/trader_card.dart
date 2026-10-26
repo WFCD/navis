@@ -7,16 +7,16 @@ import 'package:navis/worldstate/worldstate.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:warframe_common/warframe_common.dart';
 
+const Color _scaroRed = Color(0xFF842629);
+const Color _baroPurple = Color(0xFF82598b);
+
 class BaroKiTeerCard extends StatelessWidget {
   const new({super.key});
 
   @override
   Widget build(BuildContext context) {
-    const baroPurple = Color(0xFF82598b);
-
     return AppCard(
       clipBehavior: Clip.antiAlias,
-      color: baroPurple,
       contentPadding: EdgeInsets.zero,
       child: BlocSelector<WorldstateBloc, WorldState, List<Trader>?>(
         selector: (s) => switch (s) {
@@ -29,14 +29,15 @@ class BaroKiTeerCard extends StatelessWidget {
           final isActive = trader.isActive;
           final date = isActive ? trader.expiry : trader.activation;
           final dateFormatted = MaterialLocalizations.of(context).formatFullDate(date);
-          final title = '${trader.character} ${isActive ? '| ${trader.node}' : ''}';
+          final isEvil = trader.character.contains('Evil');
+          final title = "Baro Ki'Teer ${isActive ? '| ${trader.node}' : ''}";
 
           return _TraderWidget(
             title: Text(title),
             subtitle: Text('${isActive ? context.l10n.baroLeavesOn : context.l10n.baroArrivesOn} $dateFormatted'),
             onTap: () => TraderPageRoute(trader.character, trader.inventory).push<void>(context),
-            background: Assets.baroBanner.provider(),
-            color: baroPurple,
+            background: isEvil ? Assets.scaroBanner.provider() : Assets.baroBanner.provider(),
+            color: isEvil ? _scaroRed : _baroPurple,
             isActive: trader.isActive,
             activation: trader.activation,
             expiry: trader.expiry,

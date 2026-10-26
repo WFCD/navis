@@ -97,6 +97,7 @@ flutter:
   uses-material-design: true
   assets:
     - assets/baro_banner.webp
+    - assets/scaro_banner.webp
     - assets/varzia_banner.webp
     - assets/arcanes/
 

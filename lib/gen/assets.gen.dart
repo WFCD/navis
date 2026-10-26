@@ -37,12 +37,19 @@ abstract final class Assets {
   static const AssetGenImage baroBanner = AssetGenImage(
     'assets/baro_banner.webp',
   );
+  static const AssetGenImage scaroBanner = AssetGenImage(
+    'assets/scaro_banner.webp',
+  );
   static const AssetGenImage varziaBanner = AssetGenImage(
     'assets/varzia_banner.webp',
   );
 
   /// List of all assets
-  static List<AssetGenImage> get values => [baroBanner, varziaBanner];
+  static List<AssetGenImage> get values => [
+    baroBanner,
+    scaroBanner,
+    varziaBanner,
+  ];
 }
 
 class AssetGenImage {
