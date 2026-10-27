@@ -7,8 +7,8 @@ import 'package:navis/worldstate/worldstate.dart';
 import 'package:navis_ui/navis_ui.dart';
 import 'package:warframe_common/warframe_common.dart';
 
-const Color _scaroRed = Color(0xFF842629);
-const Color _baroPurple = Color(0xFF82598b);
+const Color _scaroRed = Color(0xFF752325);
+const Color _baroPurple = Color(0xFF59839D);
 
 class BaroKiTeerCard extends StatelessWidget {
   const new({super.key});
