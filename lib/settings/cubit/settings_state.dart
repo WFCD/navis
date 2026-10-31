@@ -36,6 +36,8 @@ class SettingsState extends Equatable {
   List<Object> get props => [language, themeMode, isOptOut, isFirstTime, notifications];
 
   @override
-  String toString() =>
-      'UserSettingsSucccess(locale: $language theme: $themeMode isfirstRun: $isFirstTime isOptOut: $isOptOut, notifications: $notifications)';
+  String toString() {
+    final enabledNotifications = Map<String, bool>.from(notifications)..removeWhere((k, v) => !v);
+    return 'UserSettingsSucccess(locale: $language theme: $themeMode isfirstRun: $isFirstTime isOptOut: $isOptOut, notifications: $enabledNotifications)';
+  }
 }

@@ -102,6 +102,8 @@ abstract class Topics {
   static const Topic strunReciever = Topic('strun_reciever');
   static const Topic strunStock = Topic('strun_stock');
 
+  static const Topic arbitrations = Topic('arbitrations');
+
   static Iterable<Topic> generateFissureTopics() sync* {
     const tiers = <String>['Lith', 'Meso', 'Neo', 'Axi', 'Requiem', 'Omnia'];
     const missionTypes = <String>[
@@ -215,6 +217,7 @@ abstract class Topics {
       strunReciever,
       strunStock,
       operationAlertsKey,
+      arbitrations,
       ...generateFissureTopics(),
     ];
   }

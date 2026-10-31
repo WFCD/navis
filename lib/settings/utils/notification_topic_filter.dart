@@ -36,6 +36,11 @@ class NotificationTopics {
         value: Topics.sortiesKey,
       ),
       SimpleTopics(title: l10n.archonHuntTitle, description: l10n.archonHuntDescription, value: Topics.archonHuntKey),
+      SimpleTopics(
+        title: l10n.arbitrationNotificationTitle,
+        description: l10n.arbitrationNotificationDescription ,
+        value: Topics.arbitrations,
+      ),
       // SimpleTopics(
       //   title: l10n.sentientOutpostNotificationTitle,
       //   description: l10n.sentientOutpostNotificationDescription,
