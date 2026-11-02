@@ -8,7 +8,7 @@ plugins {
     // START: FlutterFire Configuration
     id("com.google.gms.google-services")
     // END: FlutterFire Configuration
-    id("io.sentry.android.gradle") version "6.18.0"
+    id("io.sentry.android.gradle") version "6.25.0"
     // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
     id("dev.flutter.flutter-gradle-plugin") 
 }

@@ -47,8 +47,16 @@ class SettingsCubit extends Cubit<SettingsState> {
   }
 
   Future<void> toggleFilter(String key, {required bool enable}) async {
-    final newValue = await _notifications.toggleFilter(key, enable: enable);
-    emit(state.copyWith(notifications: {key: newValue}));
+    // Updatre the UI so it doesn't feel like a lag while waiting for firebase. If firebase fails it'll just reset to false
+    emit(state.copyWith(notifications: {key: enable}));
+
+    try {
+      final newValue = await _notifications.toggleFilter(key, enable: enable);
+      if (newValue != state.notifications[key]) emit(state.copyWith(notifications: {key: newValue}));
+    } on Exception catch (err, stack) {
+      emit(state.copyWith(notifications: {key: false}));
+      addError(err, stack);
+    }
   }
 
   @override
