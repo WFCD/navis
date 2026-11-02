@@ -13,6 +13,9 @@ updates:
       firebase:
         patterns:
           - firebase_*
+      sentry:
+        patterns:
+          - sentry_*
 
   - package-ecosystem: github-actions
     directory: "/"
