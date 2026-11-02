@@ -1417,5 +1417,13 @@
   "inventoriaProfileError": "Could not find requested account",
   "@inventoriaProfileError": {
     "description": "Error text when the profile is retrievable"
+  },
+  "arbitrationNotificationTitle": "Arbitrations",
+  "@arbitrationNotificationTitle": {
+    "description": "Arbitration Notification Title"
+  },
+  "arbitrationNotificationDescription": "Enable notifications for arbitrations",
+  "@arbitrationNotificationDescription": {
+    "description": "Arbitration Notification Description"
   }
 }
