@@ -13,7 +13,7 @@ dependencies:
     path: ../arbi_api
   cache:
     path: ../cache
-  crypto: ^3.0.7
+  crypto: ^3.0.8
   warframe_api:
     path: ../warframe_api
   warframe_common:
