@@ -11,7 +11,7 @@ resolution: workspace
 
 dependencies:
   cronet_http: ^1.10.0
-  crypto: ^3.0.6
+  crypto: ^3.0.8
   # cupertino_http: ^2.3.0
   flutter:
     sdk: flutter
