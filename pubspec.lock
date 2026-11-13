@@ -381,10 +381,10 @@ packages:
     dependency: "direct main"
     description:
       name: equatable
-      sha256: "3bce007a596ff8b3119c45d68aaef631272537c03d30e5d4534dd24bf4c5eaa2"
+      sha256: ea36e500cbf0ec18361deabca755434f73e42fe53c5130021c7e2d6b5ebe1702
       url: "https://pub.dev"
     source: hosted
-    version: "2.1.0"
+    version: "3.0.0"
   fake_async:
     dependency: transitive
     description:
@@ -1666,10 +1666,10 @@ packages:
     dependency: transitive
     description:
       name: warframestat_client
-      sha256: "0bd16c3b2ff74edcc0635b8418dda8f496243ba09f2f272c88b76e1ff047b761"
+      sha256: d8c632be3aa7cb4ef07c9ca2e62ef5eb46c7daa6ecd07e404f67badbeb2f0a8f
       url: "https://pub.dev"
     source: hosted
-    version: "5.5.1"
+    version: "5.5.3"
   watcher:
     dependency: transitive
     description:
