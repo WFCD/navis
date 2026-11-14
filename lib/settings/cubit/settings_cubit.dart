@@ -34,13 +34,11 @@ class SettingsCubit extends Cubit<SettingsState> {
     emit(state.copyWith(themeMode: ThemeMode.values[_settings.theme]));
   }
 
-  // ignore: avoid_positional_boolean_parameters Not needed
   void updateRunStatus(bool value) {
     _settings.firstRun = value;
     emit(state.copyWith(isFirstTime: _settings.firstRun));
   }
 
-  // ignore: avoid_positional_boolean_parameters Not needed
   void updateAnalyticsOpt(bool value) {
     MatomoTracker.instance.setOptOut(optOut: value);
     emit(state.copyWith(isOptOut: MatomoTracker.instance.optOut));

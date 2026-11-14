@@ -13,7 +13,6 @@ class ExpandableAppCard extends StatefulWidget {
   final Widget content;
 
   // Don't need a named parameter for this
-  // ignore: avoid_positional_boolean_parameters
   final void Function(bool isExpanded)? onTap;
 
   @override
